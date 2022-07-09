@@ -1,6 +1,3 @@
----
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
----
 * [Visual Studio Code](https://code.visualstudio.com/download)
 * [C# for Visual Studio Code (latest version)](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
 * [!INCLUDE [.NET Core 3.1 SDK](~/includes/3.1-SDK.md)]

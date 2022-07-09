@@ -6,7 +6,6 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-mvc/concurrency
 ---
 
@@ -95,13 +94,13 @@ In the remainder of this tutorial you'll add a `rowversion` tracking property to
 
 ## Add a tracking property
 
-In *Models/Department.cs*, add a tracking property named RowVersion:
+In `Models/Department.cs`, add a tracking property named RowVersion:
 
 [!code-csharp[](intro/samples/cu/Models/Department.cs?name=snippet_Final&highlight=26,27)]
 
 The `Timestamp` attribute specifies that this column will be included in the Where clause of Update and Delete commands sent to the database. The attribute is called `Timestamp` because previous versions of SQL Server used a SQL `timestamp` data type before the SQL `rowversion` replaced it. The .NET type for `rowversion` is a byte array.
 
-If you prefer to use the fluent API, you can use the `IsConcurrencyToken` method (in *Data/SchoolContext.cs*) to specify the tracking property, as shown in the following example:
+If you prefer to use the fluent API, you can use the `IsConcurrencyToken` method (in `Data/SchoolContext.cs`) to specify the tracking property, as shown in the following example:
 
 ```csharp
 modelBuilder.Entity<Department>()
@@ -126,7 +125,7 @@ Scaffold a Departments controller and views as you did earlier for Students, Cou
 
 ![Scaffold Department](concurrency/_static/add-departments-controller.png)
 
-In the *DepartmentsController.cs* file, change all four occurrences of "FirstMidName" to "FullName" so that the department administrator drop-down lists will contain the full name of the instructor rather than just the last name.
+In the `DepartmentsController.cs` file, change all four occurrences of "FirstMidName" to "FullName" so that the department administrator drop-down lists will contain the full name of the instructor rather than just the last name.
 
 [!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_Dropdown)]
 
@@ -134,7 +133,7 @@ In the *DepartmentsController.cs* file, change all four occurrences of "FirstMid
 
 The scaffolding engine created a `RowVersion` column in the Index view, but that field shouldn't be displayed.
 
-Replace the code in *Views/Departments/Index.cshtml* with the following code.
+Replace the code in `Views/Departments/Index.cshtml` with the following code.
 
 [!code-cshtml[](intro/samples/cu/Views/Departments/Index.cshtml?highlight=4,7,44)]
 
@@ -180,7 +179,7 @@ The `ModelState.Remove` statement is required because `ModelState` has the old `
 
 ## Update Edit view
 
-In *Views/Departments/Edit.cshtml*, make the following changes:
+In `Views/Departments/Edit.cshtml`, make the following changes:
 
 * Add a hidden field to save the `RowVersion` property value, immediately following the hidden field for the `DepartmentID` property.
 
@@ -214,7 +213,7 @@ For the Delete page, the Entity Framework detects concurrency conflicts caused b
 
 ### Update the Delete methods in the Departments controller
 
-In *DepartmentsController.cs*, replace the HttpGet `Delete` method with the following code:
+In `DepartmentsController.cs`, replace the HttpGet `Delete` method with the following code:
 
 [!code-csharp[](intro/samples/cu/Controllers/DepartmentsController.cs?name=snippet_DeleteGet&highlight=1,10,14-17,21-29)]
 
@@ -244,7 +243,7 @@ If a concurrency error is caught, the code redisplays the Delete confirmation pa
 
 ### Update the Delete view
 
-In *Views/Departments/Delete.cshtml*, replace the scaffolded code with the following code that adds an error message field and hidden fields for the DepartmentID and RowVersion properties. The changes are highlighted.
+In `Views/Departments/Delete.cshtml`, replace the scaffolded code with the following code that adds an error message field and hidden fields for the DepartmentID and RowVersion properties. The changes are highlighted.
 
 [!code-cshtml[](intro/samples/cu/Views/Departments/Delete.cshtml?highlight=9,38,44,45,48)]
 
@@ -274,11 +273,11 @@ If you click **Delete** again, you're redirected to the Index page, which shows 
 
 You can optionally clean up scaffolded code in the Details and Create views.
 
-Replace the code in *Views/Departments/Details.cshtml* to delete the RowVersion column and show the full name of the Administrator.
+Replace the code in `Views/Departments/Details.cshtml` to delete the RowVersion column and show the full name of the Administrator.
 
 [!code-cshtml[](intro/samples/cu/Views/Departments/Details.cshtml?highlight=35)]
 
-Replace the code in *Views/Departments/Create.cshtml* to add a Select option to the drop-down list.
+Replace the code in `Views/Departments/Create.cshtml` to add a Select option to the drop-down list.
 
 [!code-cshtml[](intro/samples/cu/Views/Departments/Create.cshtml?highlight=32-34)]
 

@@ -1,0 +1,61 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div style="font-size:20px">
+    <span class="label label-success">@Model.Result</span>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <form method="post">
+            <h2>Add a message</h2>
+            <hr>
+            <div class="form-group">
+                <label asp-for="Message!.Text"></label>
+                <input asp-for="Message!.Text" class="form-control">
+            </div>
+            <div class="form-group">
+                <button type="submit" asp-page-handler="AddMessage" 
+                        class="btn btn-default">Add Message</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <form method="post">
+            <h2>Clear all messages</h2>
+            <hr>
+            <div class="form-group">
+                <button type="submit" asp-page-handler="DeleteAllMessages" 
+                        class="btn btn-danger">Clear All</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <h2>Messages</h2>
+            <hr>
+            <ol>
+                @foreach (var message in Model.Messages!)
+                {
+                    <li>
+                        @message.Text
+                        <button type="submit" asp-page-handler="DeleteMessage" 
+                            class="btn btn-danger" 
+                            asp-route-id="@message.Id">Delete</button>
+                    </li>
+                }
+            </ol>
+        </form>
+    </div>
+</div>

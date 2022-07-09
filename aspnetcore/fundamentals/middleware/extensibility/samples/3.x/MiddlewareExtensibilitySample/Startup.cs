@@ -10,7 +10,7 @@ namespace MiddlewareExtensibilitySample
 {
     public class Startup
     {
-        #region snippet1
+        // <snippet1>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options =>
@@ -20,9 +20,9 @@ namespace MiddlewareExtensibilitySample
 
             services.AddRazorPages();
         }
-        #endregion
+        // </snippet1>
 
-        #region snippet2
+        // <snippet2>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -45,6 +45,6 @@ namespace MiddlewareExtensibilitySample
                 endpoints.MapRazorPages();
             });
         }
-        #endregion
+        // </snippet2>
     }
 }

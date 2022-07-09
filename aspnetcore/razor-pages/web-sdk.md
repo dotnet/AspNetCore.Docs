@@ -4,7 +4,6 @@ author: Rick-Anderson
 description: Overview of Microsoft.NET.Sdk.Web.
 ms.author: riande
 ms.date: 01/25/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: razor-pages/web-sdk
 ---
 

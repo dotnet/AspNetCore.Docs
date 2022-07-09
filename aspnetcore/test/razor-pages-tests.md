@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/22/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/razor-pages-tests
 ---
 # Razor Pages unit tests in ASP.NET Core
@@ -45,10 +44,10 @@ dotnet test
 
 The message app is a Razor Pages message system with the following characteristics:
 
-* The Index page of the app (*Pages/Index.cshtml* and *Pages/Index.cshtml.cs*) provides a UI and page model methods to control the addition, deletion, and analysis of messages (find the average number of words per message).
-* A message is described by the `Message` class (*Data/Message.cs*) with two properties: `Id` (key) and `Text` (message). The `Text` property is required and limited to 200 characters.
+* The Index page of the app (`Pages/Index.cshtml` and `Pages/Index.cshtml.cs`) provides a UI and page model methods to control the addition, deletion, and analysis of messages (find the average number of words per message).
+* A message is described by the `Message` class (`Data/Message.cs`) with two properties: `Id` (key) and `Text` (message). The `Text` property is required and limited to 200 characters.
 * Messages are stored using [Entity Framework's in-memory database](/ef/core/providers/in-memory/)&#8224;.
-* The app contains a DAL in its database context class, `AppDbContext` (*Data/AppDbContext.cs*). The DAL methods are marked `virtual`, which allows mocking the methods for use in the tests.
+* The app contains a DAL in its database context class, `AppDbContext` (`Data/AppDbContext.cs`). The DAL methods are marked `virtual`, which allows mocking the methods for use in the tests.
 * If the database is empty on app startup, the message store is initialized with three messages. These *seeded messages* are also used in tests.
 
 &#8224;The EF topic, [Test with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for tests with MSTest. This topic uses the [xUnit](https://github.com/xunit/xunit) test framework. Test concepts and test implementations across different test frameworks are similar but not identical.
@@ -61,14 +60,14 @@ The test app is a console app inside the *tests/RazorPagesTestSample.Tests* fold
 
 | Test app folder | Description |
 | --------------- | ----------- |
-| *UnitTests*     | <ul><li>*DataAccessLayerTest.cs* contains the unit tests for the DAL.</li><li>*IndexPageTests.cs* contains the unit tests for the Index page model.</li></ul> |
+| *UnitTests*     | <ul><li>`DataAccessLayerTest.cs` contains the unit tests for the DAL.</li><li>`IndexPageTests.cs` contains the unit tests for the Index page model.</li></ul> |
 | *Utilities*     | Contains the `TestDbContextOptions` method used to create new database context options for each DAL unit test so that the database is reset to its baseline condition for each test. |
 
 The test framework is [xUnit](https://github.com/xunit/xunit). The object mocking framework is [Moq](https://github.com/moq/moq4).
 
 ## Unit tests of the data access layer (DAL)
 
-The message app has a DAL with four methods contained in the `AppDbContext` class (*src/RazorPagesTestSample/Data/AppDbContext.cs*). Each method has one or two unit tests in the test app.
+The message app has a DAL with four methods contained in the `AppDbContext` class (`src/RazorPagesTestSample/Data/AppDbContext.cs`). Each method has one or two unit tests in the test app.
 
 | DAL method               | Function                                                                   |
 | ------------------------ | -------------------------------------------------------------------------- |
@@ -89,7 +88,7 @@ using (var db = new AppDbContext(optionsBuilder.Options))
 }
 ```
 
-The problem with this approach is that each test receives the database in whatever state the previous test left it. This can be problematic when trying to write atomic unit tests that don't interfere with each other. To force the `AppDbContext` to use a new database context for each test, supply a `DbContextOptions` instance that's based on a new service provider. The test app shows how to do this using its `Utilities` class method `TestDbContextOptions` (*tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs*):
+The problem with this approach is that each test receives the database in whatever state the previous test left it. This can be problematic when trying to write atomic unit tests that don't interfere with each other. To force the `AppDbContext` to use a new database context for each test, supply a `DbContextOptions` instance that's based on a new service provider. The test app shows how to do this using its `Utilities` class method `TestDbContextOptions` (`tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs`):
 
 [!code-csharp[](razor-pages-tests/samples/3.x/tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs?name=snippet1)]
 
@@ -102,13 +101,13 @@ using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
 }
 ```
 
-Each test method in the `DataAccessLayerTest` class (*UnitTests/DataAccessLayerTest.cs*) follows a similar Arrange-Act-Assert pattern:
+Each test method in the `DataAccessLayerTest` class (`UnitTests/DataAccessLayerTest.cs`) follows a similar Arrange-Act-Assert pattern:
 
 1. Arrange: The database is configured for the test and/or the expected outcome is defined.
 1. Act: The test is executed.
 1. Assert: Assertions are made to determine if the test result is a success.
 
-For example, the `DeleteMessageAsync` method is responsible for removing a single message identified by its `Id` (*src/RazorPagesTestSample/Data/AppDbContext.cs*):
+For example, the `DeleteMessageAsync` method is responsible for removing a single message identified by its `Id` (`src/RazorPagesTestSample/Data/AppDbContext.cs`):
 
 [!code-csharp[](razor-pages-tests/samples/3.x/src/RazorPagesTestSample/Data/AppDbContext.cs?name=snippet4)]
 
@@ -139,7 +138,7 @@ A similar test method, `DeleteMessageAsync_NoMessageIsDeleted_WhenMessageIsNotFo
 
 ## Unit tests of the page model methods
 
-Another set of unit tests is responsible for tests of page model methods. In the message app, the Index page models are found in the `IndexModel` class in *src/RazorPagesTestSample/Pages/Index.cshtml.cs*.
+Another set of unit tests is responsible for tests of page model methods. In the message app, the Index page models are found in the `IndexModel` class in `src/RazorPagesTestSample/Pages/Index.cshtml.cs`.
 
 | Page model method | Function |
 | ----------------- | -------- |
@@ -149,7 +148,7 @@ Another set of unit tests is responsible for tests of page model methods. In the
 | `OnPostDeleteMessageAsync` | Executes `DeleteMessageAsync` to delete a message with the `Id` specified. |
 | `OnPostAnalyzeMessagesAsync` | If one or more messages are in the database, calculates the average number of words per message. |
 
-The page model methods are tested using seven tests in the `IndexPageTests` class (*tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs*). The tests use the familiar Arrange-Assert-Act pattern. These tests focus on:
+The page model methods are tested using seven tests in the `IndexPageTests` class (`tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs`). The tests use the familiar Arrange-Assert-Act pattern. These tests focus on:
 
 * Determining if the methods follow the correct behavior when the [ModelState](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary) is invalid.
 * Confirming the methods produce the correct <xref:Microsoft.AspNetCore.Mvc.IActionResult>.
@@ -163,11 +162,11 @@ The `OnGetAsync_PopulatesThePageModel_WithAListOfMessages` test shows how the `G
 
 When the `OnGetAsync` method is executed in the Act step, it calls the page model's `GetMessagesAsync` method.
 
-Unit test Act step (*tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs*):
+Unit test Act step (`tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs`):
 
 [!code-csharp[](razor-pages-tests/samples/3.x/tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs?name=snippet2)]
 
-`IndexPage` page model's `OnGetAsync` method (*src/RazorPagesTestSample/Pages/Index.cshtml.cs*):
+`IndexPage` page model's `OnGetAsync` method (`src/RazorPagesTestSample/Pages/Index.cshtml.cs`):
 
 [!code-csharp[](razor-pages-tests/samples/3.x/src/RazorPagesTestSample/Pages/Index.cshtml.cs?name=snippet1&highlight=3)]
 
@@ -229,10 +228,10 @@ dotnet test
 
 The message app is a Razor Pages message system with the following characteristics:
 
-* The Index page of the app (*Pages/Index.cshtml* and *Pages/Index.cshtml.cs*) provides a UI and page model methods to control the addition, deletion, and analysis of messages (find the average number of words per message).
-* A message is described by the `Message` class (*Data/Message.cs*) with two properties: `Id` (key) and `Text` (message). The `Text` property is required and limited to 200 characters.
+* The Index page of the app (`Pages/Index.cshtml` and `Pages/Index.cshtml.cs`) provides a UI and page model methods to control the addition, deletion, and analysis of messages (find the average number of words per message).
+* A message is described by the `Message` class (`Data/Message.cs`) with two properties: `Id` (key) and `Text` (message). The `Text` property is required and limited to 200 characters.
 * Messages are stored using [Entity Framework's in-memory database](/ef/core/providers/in-memory/)&#8224;.
-* The app contains a DAL in its database context class, `AppDbContext` (*Data/AppDbContext.cs*). The DAL methods are marked `virtual`, which allows mocking the methods for use in the tests.
+* The app contains a DAL in its database context class, `AppDbContext` (`Data/AppDbContext.cs`). The DAL methods are marked `virtual`, which allows mocking the methods for use in the tests.
 * If the database is empty on app startup, the message store is initialized with three messages. These *seeded messages* are also used in tests.
 
 &#8224;The EF topic, [Test with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for tests with MSTest. This topic uses the [xUnit](https://github.com/xunit/xunit) test framework. Test concepts and test implementations across different test frameworks are similar but not identical.
@@ -245,14 +244,14 @@ The test app is a console app inside the *tests/RazorPagesTestSample.Tests* fold
 
 | Test app folder | Description |
 | --------------- | ----------- |
-| *UnitTests*     | <ul><li>*DataAccessLayerTest.cs* contains the unit tests for the DAL.</li><li>*IndexPageTests.cs* contains the unit tests for the Index page model.</li></ul> |
+| *UnitTests*     | <ul><li>`DataAccessLayerTest.cs` contains the unit tests for the DAL.</li><li>`IndexPageTests.cs` contains the unit tests for the Index page model.</li></ul> |
 | *Utilities*     | Contains the `TestDbContextOptions` method used to create new database context options for each DAL unit test so that the database is reset to its baseline condition for each test. |
 
 The test framework is [xUnit](https://github.com/xunit/xunit). The object mocking framework is [Moq](https://github.com/moq/moq4).
 
 ## Unit tests of the data access layer (DAL)
 
-The message app has a DAL with four methods contained in the `AppDbContext` class (*src/RazorPagesTestSample/Data/AppDbContext.cs*). Each method has one or two unit tests in the test app.
+The message app has a DAL with four methods contained in the `AppDbContext` class (`src/RazorPagesTestSample/Data/AppDbContext.cs`). Each method has one or two unit tests in the test app.
 
 | DAL method               | Function                                                                   |
 | ------------------------ | -------------------------------------------------------------------------- |
@@ -273,7 +272,7 @@ using (var db = new AppDbContext(optionsBuilder.Options))
 }
 ```
 
-The problem with this approach is that each test receives the database in whatever state the previous test left it. This can be problematic when trying to write atomic unit tests that don't interfere with each other. To force the `AppDbContext` to use a new database context for each test, supply a `DbContextOptions` instance that's based on a new service provider. The test app shows how to do this using its `Utilities` class method `TestDbContextOptions` (*tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs*):
+The problem with this approach is that each test receives the database in whatever state the previous test left it. This can be problematic when trying to write atomic unit tests that don't interfere with each other. To force the `AppDbContext` to use a new database context for each test, supply a `DbContextOptions` instance that's based on a new service provider. The test app shows how to do this using its `Utilities` class method `TestDbContextOptions` (`tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs`):
 
 [!code-csharp[](razor-pages-tests/samples/2.x/tests/RazorPagesTestSample.Tests/Utilities/Utilities.cs?name=snippet1)]
 
@@ -286,13 +285,13 @@ using (var db = new AppDbContext(Utilities.TestDbContextOptions()))
 }
 ```
 
-Each test method in the `DataAccessLayerTest` class (*UnitTests/DataAccessLayerTest.cs*) follows a similar Arrange-Act-Assert pattern:
+Each test method in the `DataAccessLayerTest` class (`UnitTests/DataAccessLayerTest.cs`) follows a similar Arrange-Act-Assert pattern:
 
 1. Arrange: The database is configured for the test and/or the expected outcome is defined.
 1. Act: The test is executed.
 1. Assert: Assertions are made to determine if the test result is a success.
 
-For example, the `DeleteMessageAsync` method is responsible for removing a single message identified by its `Id` (*src/RazorPagesTestSample/Data/AppDbContext.cs*):
+For example, the `DeleteMessageAsync` method is responsible for removing a single message identified by its `Id` (`src/RazorPagesTestSample/Data/AppDbContext.cs`):
 
 [!code-csharp[](razor-pages-tests/samples/2.x/src/RazorPagesTestSample/Data/AppDbContext.cs?name=snippet4)]
 
@@ -323,7 +322,7 @@ A similar test method, `DeleteMessageAsync_NoMessageIsDeleted_WhenMessageIsNotFo
 
 ## Unit tests of the page model methods
 
-Another set of unit tests is responsible for tests of page model methods. In the message app, the Index page models are found in the `IndexModel` class in *src/RazorPagesTestSample/Pages/Index.cshtml.cs*.
+Another set of unit tests is responsible for tests of page model methods. In the message app, the Index page models are found in the `IndexModel` class in `src/RazorPagesTestSample/Pages/Index.cshtml.cs`.
 
 | Page model method | Function |
 | ----------------- | -------- |
@@ -333,7 +332,7 @@ Another set of unit tests is responsible for tests of page model methods. In the
 | `OnPostDeleteMessageAsync` | Executes `DeleteMessageAsync` to delete a message with the `Id` specified. |
 | `OnPostAnalyzeMessagesAsync` | If one or more messages are in the database, calculates the average number of words per message. |
 
-The page model methods are tested using seven tests in the `IndexPageTests` class (*tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs*). The tests use the familiar Arrange-Assert-Act pattern. These tests focus on:
+The page model methods are tested using seven tests in the `IndexPageTests` class (`tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs`). The tests use the familiar Arrange-Assert-Act pattern. These tests focus on:
 
 * Determining if the methods follow the correct behavior when the [ModelState](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary) is invalid.
 * Confirming the methods produce the correct <xref:Microsoft.AspNetCore.Mvc.IActionResult>.
@@ -347,11 +346,11 @@ The `OnGetAsync_PopulatesThePageModel_WithAListOfMessages` test shows how the `G
 
 When the `OnGetAsync` method is executed in the Act step, it calls the page model's `GetMessagesAsync` method.
 
-Unit test Act step (*tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs*):
+Unit test Act step (`tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs`):
 
 [!code-csharp[](razor-pages-tests/samples/2.x/tests/RazorPagesTestSample.Tests/UnitTests/IndexPageTests.cs?name=snippet2)]
 
-`IndexPage` page model's `OnGetAsync` method (*src/RazorPagesTestSample/Pages/Index.cshtml.cs*):
+`IndexPage` page model's `OnGetAsync` method (`src/RazorPagesTestSample/Pages/Index.cshtml.cs`):
 
 [!code-csharp[](razor-pages-tests/samples/2.x/src/RazorPagesTestSample/Pages/Index.cshtml.cs?name=snippet1&highlight=3)]
 

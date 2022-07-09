@@ -5,7 +5,6 @@ description: This tutorial provides a walkthrough of adding Swagger to generate 
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/29/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/web-api-help-pages-using-swagger
 ---
 # ASP.NET Core web API documentation with Swagger / OpenAPI
@@ -33,7 +32,7 @@ In short:
 
 ## OpenAPI specification (openapi.json)
 
-The OpenAPI specification is a document that describes the capabilities of your API. The document is based on the XML and attribute annotations within the controllers and models. It's the core part of the OpenAPI flow and is used to drive tooling such as SwaggerUI. By default, it's named *openapi.json*. Here's an example of an OpenAPI specification, reduced for brevity:
+The OpenAPI specification is a document that describes the capabilities of your API. The document is based on the [XML](xref:tutorials/get-started-with-swashbuckle#xml-comments) and attribute annotations within the controllers and models. It's the core part of the OpenAPI flow and is used to drive tooling such as SwaggerUI. By default, it's named `openapi.json`. Here's an example of an OpenAPI specification, reduced for brevity:
 
 ```json
 {

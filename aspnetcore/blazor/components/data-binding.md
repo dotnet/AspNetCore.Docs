@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/data-binding
 ---
 # ASP.NET Core Blazor data binding
@@ -26,7 +25,7 @@ When an `<input>` element loses focus, its bound field or property is updated.
 
 `Pages/Bind.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/Bind.razor?highlight=4,8)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/Bind.razor" highlight="4,8":::
 
 The text box is updated in the UI only when the component is rendered, not in response to changing the field's or property's value. Since components render themselves after event handler code executes, field and property updates are usually reflected in the UI immediately after an event handler is triggered.
 
@@ -34,7 +33,7 @@ As a demonstration of how data binding composes in HTML, the following example b
 
 `Pages/BindTheory.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/BindTheory.razor?highlight=12-14)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/BindTheory.razor" highlight="12-14":::
 
 When the `BindTheory` component is rendered, the `value` of the HTML demonstration `<input>` element comes from the `InputValue` property. When the user enters a value in the text box and changes element focus, the `onchange` event is fired and the `InputValue` property is set to the changed value. In reality, code execution is more complex because [`@bind`](xref:mvc/views/razor#bind) handles cases where type conversions are performed. In general, [`@bind`](xref:mvc/views/razor#bind) associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
@@ -42,7 +41,7 @@ Bind a property or field on other [Document Object Model (DOM)](https://develope
 
 `Page/BindEvent.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor?highlight=4)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor" highlight="4":::
 
 Razor attribute binding is case sensitive:
 
@@ -132,7 +131,7 @@ Consider the following component, where an `<input>` element is bound to an `int
 
 `Pages/UnparsableValues.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/UnparsableValues.razor?highlight=4,12)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/UnparsableValues.razor" highlight="4,12":::
 
 By default, binding applies to the element's `onchange` event. If the user updates the value of the text box's entry to `123.45` and changes the focus, the element's value is reverted to `123` when `onchange` fires. When the value `123.45` is rejected in favor of the original value of `123`, the user understands that their value wasn't accepted.
 
@@ -150,7 +149,7 @@ Data binding works with a single <xref:System.DateTime> format string using `@bi
 
 `Pages/DateBinding.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/DateBinding.razor?highlight=6)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/DateBinding.razor" highlight="6":::
 
 In the preceding code, the `<input>` element's field type (`type` attribute) defaults to `text`.
 
@@ -173,7 +172,7 @@ Specifying a format for the `date` field type isn't recommended because Blazor h
 
 `Pages/DecimalBinding.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/DecimalBinding.razor?highlight=7,21-31)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/DecimalBinding.razor" highlight="7,21-31":::
 
 ## Binding with component parameters
 
@@ -191,7 +190,7 @@ The following `ChildBind` component has a `Year` component parameter and an <xre
 
 `Shared/ChildBind.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/ChildBind.razor?highlight=14-15,17-18,22)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/ChildBind.razor" highlight="14-15,17-18,22":::
 
 For more information on events and <xref:Microsoft.AspNetCore.Components.EventCallback%601>, see the *EventCallback* section of the <xref:blazor/components/event-handling#eventcallback> article.
 
@@ -199,7 +198,7 @@ In the following `Parent` component, the `year` field is bound to the `Year` par
 
 `Pages/Parent.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor?highlight=9)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor" highlight="9":::
 
 By convention, a property can be bound to a corresponding event handler by including an `@bind-{PROPERTY}:event` attribute assigned to the handler, where the `{PROPERTY}` placeholder is the property. `<ChildBind @bind-Year="year" />` is equivalent to writing:
 
@@ -215,13 +214,13 @@ In a more sophisticated and real-world example, the following `PasswordEntry` co
 
 `Shared/PasswordEntry.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry.razor?highlight=7-10,13,23-24,26-27,36-39)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry.razor" highlight="7-10,13,23-24,26-27,36-39":::
 
 The `PasswordEntry` component is used in another component, such as the following `PasswordBinding` component example.
 
 `Pages/PasswordBinding.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/PasswordBinding.razor?highlight=5)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/PasswordBinding.razor" highlight="5":::
 
 When the `PasswordBinding` component is initially rendered, the `password` value of `Not set` is displayed in the UI. After initial rendering, the value of `password` reflects changes made to the `Password` component parameter value in the `PasswordEntry` component.
 
@@ -232,7 +231,7 @@ Perform checks or trap errors in the handler. The following revised `PasswordEnt
 
 `Shared/PasswordEntry.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry2.razor?highlight=35-46)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry2.razor" highlight="35-46":::
 
 ## Bind across more than two components
 
@@ -245,23 +244,24 @@ A common and recommended approach is to only store the underlying data in the pa
 
 `Pages/Parent.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/Parent2.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/Parent2.razor":::
 
 `Shared/NestedChild.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/NestedChild.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/NestedChild.razor":::
 
 > [!WARNING]
 > Generally, avoid creating components that write directly to their own component parameters. The preceding `NestedChild` component makes use of a `BoundValue` property instead of writing directly to its `ChildMessage` parameter. For more information, see <xref:blazor/components/index#overwritten-parameters>.
 
 `Shared/NestedGrandchild.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/NestedGrandchild.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/NestedGrandchild.razor":::
 
 For an alternative approach suited to sharing data in memory and across components that aren't necessarily nested, see <xref:blazor/state-management>.
 
 ## Additional resources
 
+* [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
 * <xref:blazor/forms-validation>
 * [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
 * [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-validation#binding-inputselect-options-to-c-object-null-values)
@@ -457,6 +457,7 @@ For an alternative approach suited to sharing data in memory and across componen
 
 ## Additional resources
 
+* [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
 * <xref:blazor/forms-validation>
 * [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
 * [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-validation#binding-inputselect-options-to-c-object-null-values)
@@ -652,6 +653,7 @@ For an alternative approach suited to sharing data in memory and across componen
 
 ## Additional resources
 
+* [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
 * <xref:blazor/forms-validation>
 * [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
 * [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-validation#binding-inputselect-options-to-c-object-null-values)

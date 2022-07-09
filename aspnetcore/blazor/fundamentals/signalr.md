@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/signalr
 ---
 # ASP.NET Core Blazor SignalR guidance
@@ -45,11 +44,11 @@ To configure SignalR's underlying client to send credentials, such as cookies or
 * Where a hub connection is built, assign the <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option:
 
   ```csharp
-  private HubConnectionBuilder? hubConnecton;
+  private HubConnectionBuilder? hubConnection;
 
   ...
 
-  hubConnecton = new HubConnectionBuilder()
+  hubConnection = new HubConnectionBuilder()
       .WithUrl(new Uri(NavigationManager.ToAbsoluteUri("/chathub")), options =>
       {
           options.HttpMessageHandlerFactory = innerHandler => 
@@ -141,15 +140,18 @@ In `Program.cs`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.Comp
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
-To customize the UI, define an element with an `id` of `components-reconnect-modal` in the `<body>` of the `_Layout.cshtml` Razor page.
+To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the layout page:
 
 `Pages/_Layout.cshtml`:
 
 ```cshtml
 <div id="components-reconnect-modal">
-    ...
+    There was a problem with the connection!
 </div>
 ```
+
+> ![NOTE]
+> If more than one element with an `id` of `components-reconnect-modal` are rendered by the app, only the first rendered element receives CSS class changes to display or hide the element. 
 
 Add the following CSS styles to the site's stylesheet.
 
@@ -160,7 +162,9 @@ Add the following CSS styles to the site's stylesheet.
     display: none;
 }
 
-#components-reconnect-modal.components-reconnect-show {
+#components-reconnect-modal.components-reconnect-show, 
+#components-reconnect-modal.components-reconnect-failed, 
+#components-reconnect-modal.components-reconnect-rejected {
     display: block;
 }
 ```
@@ -197,7 +201,7 @@ Configure the manual start of a Blazor Server app's SignalR circuit in the `Page
 
 When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
-For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
+For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
 ## Configure SignalR client logging (Blazor Server)
 
@@ -300,7 +304,7 @@ Blazor Server allows code to define a *circuit handler*, which allows running co
 
 `TrackingCircuitHandler.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_Server/TrackingCircuitHandler.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_Server/TrackingCircuitHandler.cs":::
 
 Circuit handlers are registered using DI. Scoped instances are created per instance of a circuit. Using the `TrackingCircuitHandler` in the preceding example, a singleton service is created because the state of all circuits must be tracked.
 
@@ -358,11 +362,11 @@ To configure SignalR's underlying client to send credentials, such as cookies or
 * Where a hub connection is built, assign the <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option:
 
   ```csharp
-  HubConnectionBuilder hubConnecton;
+  HubConnectionBuilder hubConnection;
 
   ...
 
-  hubConnecton = new HubConnectionBuilder()
+  hubConnection = new HubConnectionBuilder()
       .WithUrl(new Uri(NavigationManager.ToAbsoluteUri("/chathub")), options =>
       {
           options.HttpMessageHandlerFactory = innerHandler => 
@@ -454,15 +458,18 @@ In `Startup.Configure`, Blazor Server apps call <xref:Microsoft.AspNetCore.Build
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
-To customize the UI, define an element with an `id` of `components-reconnect-modal` in the `<body>` of the `_Host.cshtml` Razor page.
+To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page:
 
 `Pages/_Host.cshtml`:
 
 ```cshtml
 <div id="components-reconnect-modal">
-    ...
+    There was a problem with the connection!
 </div>
 ```
+
+> ![NOTE]
+> If more than one element with an `id` of `components-reconnect-modal` are rendered by the app, only the first rendered element receives CSS class changes to display or hide the element. 
 
 Add the following CSS styles to the site's stylesheet.
 
@@ -473,7 +480,9 @@ Add the following CSS styles to the site's stylesheet.
     display: none;
 }
 
-#components-reconnect-modal.components-reconnect-show {
+#components-reconnect-modal.components-reconnect-show, 
+#components-reconnect-modal.components-reconnect-failed, 
+#components-reconnect-modal.components-reconnect-rejected {
     display: block;
 }
 ```
@@ -510,7 +519,7 @@ Configure the manual start of a Blazor Server app's SignalR circuit in the `Page
 
 When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
-For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
+For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
 ## Configure SignalR client logging (Blazor Server)
 
@@ -675,11 +684,11 @@ To configure SignalR's underlying client to send credentials, such as cookies or
 * Where a hub connection is built, assign the <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option:
 
   ```csharp
-  HubConnectionBuilder hubConnecton;
+  HubConnectionBuilder hubConnection;
 
   ...
 
-  hubConnecton = new HubConnectionBuilder()
+  hubConnection = new HubConnectionBuilder()
       .WithUrl(new Uri(NavigationManager.ToAbsoluteUri("/chathub")), options =>
       {
           options.HttpMessageHandlerFactory = innerHandler => 
@@ -764,15 +773,18 @@ In `Startup.Configure`, Blazor Server apps call <xref:Microsoft.AspNetCore.Build
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
-To customize the UI, define an element with an `id` of `components-reconnect-modal` in the `<body>` of the `_Host.cshtml` Razor page.
+To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page:
 
 `Pages/_Host.cshtml`:
 
 ```cshtml
 <div id="components-reconnect-modal">
-    ...
+    There was a problem with the connection!
 </div>
 ```
+
+> ![NOTE]
+> If more than one element with an `id` of `components-reconnect-modal` are rendered by the app, only the first rendered element receives CSS class changes to display or hide the element. 
 
 Add the following CSS styles to the site's stylesheet.
 
@@ -783,7 +795,9 @@ Add the following CSS styles to the site's stylesheet.
     display: none;
 }
 
-#components-reconnect-modal.components-reconnect-show {
+#components-reconnect-modal.components-reconnect-show, 
+#components-reconnect-modal.components-reconnect-failed, 
+#components-reconnect-modal.components-reconnect-rejected {
     display: block;
 }
 ```
@@ -810,7 +824,7 @@ Configure the manual start of a Blazor Server app's SignalR circuit in the `Page
 
 When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
-For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
+For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
 ## Configure SignalR client logging (Blazor Server)
 

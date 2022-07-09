@@ -5,7 +5,6 @@ description: Use Identity with an ASP.NET Core app. Learn how to set password re
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.date: 03/21/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/identity
 ---
 # Introduction to Identity on ASP.NET Core
@@ -17,6 +16,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 ASP.NET Core Identity:
 
 * Is an API that supports user interface (UI) login functionality.
+* Is designed to be used together with [Duende IdentityServer4](https://duendesoftware.com/products/identityserver).
 * Manages users, passwords, profile data, roles, claims, tokens, email confirmation, and more.
 
 Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social/index).
@@ -32,7 +32,8 @@ In this topic, you learn how to use Identity to register, log in, and log out a 
 [Microsoft identity platform](/azure/active-directory/develop/) is:
 
 * An evolution of the Azure Active Directory (Azure AD) developer platform.
-* Unrelated to ASP.NET Core Identity.
+* An alternative identity solution for authentication and authorization in ASP.NET Core apps.
+* Not related to ASP.NET Core Identity.
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
@@ -106,7 +107,7 @@ Run the app and register a user. Depending on your screen size, you might need t
 Services are added in `Program.cs`. The typical pattern is to call methods in the following order:
 
 1. `Add{Service}`
-1. `Services.Configure{Service}`
+1. `builder.Services.Configure{Service}`
 
 [!code-csharp[](identity/sample/WebApp6x/Program.cs?name=snippet_)]
 
@@ -181,7 +182,7 @@ In the preceding code, the code `return RedirectToPage();` needs to be a redirec
 
 <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignOutAsync%2A> clears the user's claims stored in a cookie.
 
-Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
+Post is specified in the `Pages/Shared/_LoginPartial.cshtml`:
 
 [!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 
@@ -264,6 +265,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 ASP.NET Core Identity:
 
 * Is an API that supports user interface (UI) login functionality.
+* Is designed to be used together with [Duende IdentityServer4](https://duendesoftware.com/products/identityserver).
 * Manages users, passwords, profile data, roles, claims, tokens, email confirmation, and more.
 
 Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social/index).
@@ -277,9 +279,9 @@ Identity is typically configured using a SQL Server database to store user names
 In this topic, you learn how to use Identity to register, log in, and log out a user. Note: the templates treat username and email as the same for users. For more detailed instructions about creating apps that use Identity, see [Next Steps](#next).
 
 [Microsoft identity platform](/azure/active-directory/develop/) is:
-
 * An evolution of the Azure Active Directory (Azure AD) developer platform.
-* Unrelated to ASP.NET Core Identity.
+* An alternative identity solution for authentication and authorization in ASP.NET Core apps.
+* Not related to ASP.NET Core Identity.
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
@@ -447,7 +449,7 @@ In the preceding code, the code `return RedirectToPage();` needs to be a redirec
 
 <xref:Microsoft.AspNetCore.Identity.SignInManager%601.SignOutAsync%2A> clears the user's claims stored in a cookie.
 
-Post is specified in the *Pages/Shared/_LoginPartial.cshtml*:
+Post is specified in the `Pages/Shared/_LoginPartial.cshtml`:
 
 [!code-cshtml[](identity/sample/WebApp3/Pages/Shared/_LoginPartial.cshtml?highlight=15)]
 

@@ -4,7 +4,6 @@ author: wadepickett
 description: Learn when to use which ASP.NET Core web UI technologies. Understand the server, client and hybrid options.
 ms.author: wpickett
 ms.date: 03/02/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/choose-web-ui
 ---
 # Choose an ASP.NET Core web UI
@@ -119,14 +118,12 @@ Benefits of Razor components:
   * Leverage the existing .NET ecosystem of [.NET libraries](/dotnet/standard/class-libraries).
   * Let developers understand and work on both client-side and server-side code.
 * Create reusable, sharable UI components.
-* Quickly get productive with Blazor reusable UI components from [top component vendors](https://blazor.net).
+* Quickly get productive with Blazor reusable UI components from [top component vendors](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor).
 * Work with all modern web browsers, including mobile browsers. Blazor uses open web standards without plug-ins or code transpilation.
 
-For more information, see <xref:blazor/components/prerendering-and-integration>.
+Host Razor components either using Blazor Server or Blazor WebAssembly to take advantage of server or client rendering.
 
-#### Blazor hosting options:
-
-Razor components have the flexibility of being hosted either using Blazor Server or Blazor WebAssembly to take advantage of server or client rendering. For more information, see [Blazor hosting models: Server versus WebAssembly](xref:blazor/hosting-models).
+For more information, see <xref:blazor/index> and <xref:blazor/hosting-models>.
 
 ### ASP.NET Core Single Page Application (SPA) with JavaScript Frameworks such as Angular and React
 
@@ -148,23 +145,22 @@ To get started, see:
 * <xref:spa/angular>
 * <xref:spa/react>
 
-## Choose a hybrid solution: ASP.NET Core MVC plus Blazor
+## Choose a hybrid solution: ASP.NET Core MVC or Razor Pages plus Blazor
 
-MVC and Blazor are both part of the ASP.NET Core framework and are designed to be used together. Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly or Server solution. When the page or view is rendered, components can be prerendered at the same time.
+MVC, Razor Pages, and Blazor are part of the ASP.NET Core framework and are designed to be used together. Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly or Blazor Server solution. When a view or page is rendered, components can be prerendered at the same time.
 
-Benefits for MVC plus Blazor, in addition to MVC benefits:
+Benefits for MVC or Razor Pages plus Blazor, in addition to MVC or Razor Pages benefits:
 
-* Prerendering:
-  * Executes Razor components on the server and renders them into a page or view.
-      * Improves the perceived load time of the app while setting up interactivity.
-* Add islands of interactivity to existing views (pages) with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+* Prerendering executes Razor components on the server and renders them into a view or page, which improves the perceived load time of the app.
+* Add interactivity to existing views or pages with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
-To get started with ASP.NET Core MVC plus Blazor, see <xref:blazor/components/prerendering-and-integration>.
+To get started with ASP.NET Core MVC or Razor Pages plus Blazor, see <xref:blazor/components/prerendering-and-integration>.
 
 ## Next steps
 
 For more information, see:
 
-* [Blazor hosting models: Server versus WebAssembly](xref:blazor/hosting-models)
-* <xref:grpc/comparison>
+* <xref:blazor/index>
+* <xref:blazor/hosting-models>
 * <xref:blazor/components/prerendering-and-integration>
+* <xref:grpc/comparison>

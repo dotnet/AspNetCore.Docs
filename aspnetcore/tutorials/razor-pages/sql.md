@@ -3,9 +3,8 @@ title: Part 4, work with a database
 author: rick-anderson
 description: Part 4 of tutorial series on Razor Pages.
 ms.author: riande
-ms.date: 10/13/2021
+ms.date: 06/28/2022
 ms.custom: contperf-fy21q2
-no-loc: ["Blazor Hybrid", Home, Privacy, Index, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/razor-pages/sql
 ---
 # Part 4 of tutorial series on Razor Pages
@@ -325,11 +324,11 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_di&highlight=9-10)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_di&highlight=8-9)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_di_sl&highlight=6-7)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_di_sl&highlight=5-6)]
 
 ---
 
@@ -364,7 +363,7 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 
    ![Contextual menus open on Movie table](sql/_static/5/design.png)
 
-   ![Movie tables open in Designer](sql/_static/dv.png)
+   ![Movie tables open in Designer](sql/_static/dv605.png)
 
    Note the key icon next to `ID`. By default, EF creates a property named `ID` for the primary key.
 
@@ -426,7 +425,7 @@ Update the `Program.cs` with the following highlighted code:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/ProgramSeed.cs?name=snippet_all&highlight=3,14-19)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/ProgramSeed.cs?name=snippet_all&highlight=3,12-17)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -451,7 +450,7 @@ Delete all the records in the database so the seed method will run. Stop and sta
 
 The app shows the seeded data:
 
-![Movie application open in browser showing movie data](sql/_static/5/m55.png)
+![Movie application open in browser showing movie data](sql/_static/m605.png)
 
 ## Additional resources
 

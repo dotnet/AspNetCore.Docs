@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/02/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
@@ -48,7 +47,7 @@ Validation attributes let you specify validation rules for model properties. The
 Here are some of the built-in validation attributes:
 
 * [[ValidateNever]](xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidateNeverAttribute): Indicates that a property or parameter should be excluded from validation.
-* [[CreditCard]](xref:System.ComponentModel.DataAnnotations.CreditCardAttribute): Validates that the property has a credit card format. Requires [jQuery Validation Additional Methods](https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js).
+* [[CreditCard]](xref:System.ComponentModel.DataAnnotations.CreditCardAttribute): Validates that the property has a credit card format. Requires [jQuery Validation Additional Methods](https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.js).
 * [[Compare]](xref:System.ComponentModel.DataAnnotations.CompareAttribute): Validates that two properties in a model match.
 * [[EmailAddress]](xref:System.ComponentModel.DataAnnotations.EmailAddressAttribute): Validates that the property has an email format.
 * [[Phone]](xref:System.ComponentModel.DataAnnotations.PhoneAttribute): Validates that the property has a telephone number format.
@@ -79,6 +78,10 @@ When applied to a `Name` property, the error message created by the preceding co
 
 To find out which parameters are passed to `String.Format` for a particular attribute's error message, see the [DataAnnotations source code](https://github.com/dotnet/runtime/tree/main/src/libraries/System.ComponentModel.Annotations/src/System/ComponentModel/DataAnnotations).
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
 ## Non-nullable reference types and [Required] attribute
 
 The validation system treats non-nullable parameters or bound properties as if they had a `[Required(AllowEmptyStrings = true)]` attribute. By [enabling `Nullable` contexts](/dotnet/csharp/nullable-references#nullable-contexts), MVC implicitly starts validating non-nullable properties or parameters as if they had been attributed with the `[Required(AllowEmptyStrings = true)]` attribute. Consider the following code:
@@ -105,6 +108,53 @@ This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcO
 builder.Services.AddControllers(
     options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 ```
+
+:::moniker-end
+
+:::moniker range="= aspnetcore-6.0"
+
+## Non-nullable reference types and the [Required] attribute
+
+The validation system treats non-nullable parameters or bound properties as if they had a `[Required(AllowEmptyStrings = true)]` attribute. By [enabling `Nullable` contexts](/dotnet/csharp/nullable-references#nullable-contexts), MVC implicitly starts validating non-nullable properties [on non-generic types](#ngen) or parameters as if they had been attributed with the `[Required(AllowEmptyStrings = true)]` attribute. Consider the following code:
+
+```csharp
+public class Person
+{
+    public string Name { get; set; }
+}
+```
+
+If the app was built with `<Nullable>enable</Nullable>`, a missing value for `Name` in a JSON or form post results in a validation error. Use a nullable reference type to allow null or missing values to be specified for the `Name` property:
+
+```csharp
+public class Person
+{
+    public string? Name { get; set; }
+}
+```
+
+This behavior can be disabled by configuring <xref:Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes> in `Program.cs`:
+
+```csharp
+builder.Services.AddControllers(
+    options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+```
+
+<a name="ngen"></a>
+
+## Non-nullable properties on generic types and [Required] attribute
+
+Non-nullable properties on generic types must include the `[Required]` attribute when the type is required. In the following code, `TestRequired` is not required:
+
+[!code-csharp[](~/mvc/models/validation/samples/6.x/WeatherForecastG.cs?name=snippet&highlight=3)]
+
+In the following code, `TestRequired` is explicitly marked as required:
+
+[!code-csharp[](~/mvc/models/validation/samples/6.x/WeatherForecastG.cs?name=snippet2&highlight=5-6)]
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ### [Required] validation on the server
 
@@ -215,7 +265,7 @@ Top-level nodes can use <xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindRequired
 
 :::code language="csharp" source="validation/samples/6.x/ValidationSample/Controllers/UsersController.cs" id="snippet_CheckAgeSignature":::
 
-In the Check Age page (*CheckAge.cshtml*), there are two forms. The first form submits an `Age` value of `99` as a query string parameter: `https://localhost:5001/Users/CheckAge?Age=99`.
+In the Check Age page (`CheckAge.cshtml`), there are two forms. The first form submits an `Age` value of `99` as a query string parameter: `https://localhost:5001/Users/CheckAge?Age=99`.
 
 When a properly formatted `age` parameter from the query string is submitted, the form validates.
 
@@ -239,7 +289,7 @@ Validation is automatically short-circuited (skipped) if the model graph doesn't
 
 Client-side validation prevents submission until the form is valid. The Submit button runs JavaScript that either submits the form or displays error messages.
 
-Client-side validation avoids an unnecessary round trip to the server when there are input errors on a form. The following script references in *_Layout.cshtml* and *_ValidationScriptsPartial.cshtml* support client-side validation:
+Client-side validation avoids an unnecessary round trip to the server when there are input errors on a form. The following script references in `_Layout.cshtml` and `_ValidationScriptsPartial.cshtml` support client-side validation:
 
 :::code language="cshtml" source="validation/samples/6.x/ValidationSample/Views/Shared/_Layout.cshtml" id="snippet_Scripts":::
 
@@ -376,7 +426,7 @@ The following code disables client validation in Razor Pages:
 
 Other options to disable client-side validation:
 
-* Comment out the reference to `_ValidationScriptsPartial` in all the *.cshtml* files.
+* Comment out the reference to `_ValidationScriptsPartial` in all the `.cshtml` files.
 * Remove the contents of the *Pages\Shared\_ValidationScriptsPartial.cshtml* file.
 
 The preceding approach won't prevent client-side validation of ASP.NET Core Identity Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>.
@@ -421,7 +471,7 @@ Validation attributes let you specify validation rules for model properties. The
 Here are some of the built-in validation attributes:
 
 * [[ValidateNever]](xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidateNeverAttribute): Indicates that a property or parameter should be excluded from validation.
-* [[CreditCard]](xref:System.ComponentModel.DataAnnotations.CreditCardAttribute): Validates that the property has a credit card format. Requires [jQuery Validation Additional Methods](https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js).
+* [[CreditCard]](xref:System.ComponentModel.DataAnnotations.CreditCardAttribute): Validates that the property has a credit card format. Requires [jQuery Validation Additional Methods](https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.js).
 * [[Compare]](xref:System.ComponentModel.DataAnnotations.CompareAttribute): Validates that two properties in a model match.
 * [[EmailAddress]](xref:System.ComponentModel.DataAnnotations.EmailAddressAttribute): Validates that the property has an email format.
 * [[Phone]](xref:System.ComponentModel.DataAnnotations.PhoneAttribute): Validates that the property has a telephone number format.
@@ -586,7 +636,7 @@ Top-level nodes can use <xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindRequired
 
 :::code language="csharp" source="validation/samples/3.x/ValidationSample/Controllers/UsersController.cs" id="snippet_CheckAgeSignature":::
 
-In the Check Age page (*CheckAge.cshtml*), there are two forms. The first form submits an `Age` value of `99` as a query string parameter: `https://localhost:5001/Users/CheckAge?Age=99`.
+In the Check Age page (`CheckAge.cshtml`), there are two forms. The first form submits an `Age` value of `99` as a query string parameter: `https://localhost:5001/Users/CheckAge?Age=99`.
 
 When a properly formatted `age` parameter from the query string is submitted, the form validates.
 
@@ -610,7 +660,7 @@ Validation is automatically short-circuited (skipped) if the model graph doesn't
 
 Client-side validation prevents submission until the form is valid. The Submit button runs JavaScript that either submits the form or displays error messages.
 
-Client-side validation avoids an unnecessary round trip to the server when there are input errors on a form. The following script references in *_Layout.cshtml* and *_ValidationScriptsPartial.cshtml* support client-side validation:
+Client-side validation avoids an unnecessary round trip to the server when there are input errors on a form. The following script references in `_Layout.cshtml` and `_ValidationScriptsPartial.cshtml` support client-side validation:
 
 :::code language="cshtml" source="validation/samples/3.x/ValidationSample/Views/Shared/_Layout.cshtml" id="snippet_Scripts":::
 
@@ -747,7 +797,7 @@ The following code disables client validation in Razor Pages:
 
 Other options to disable client-side validation:
 
-* Comment out the reference to `_ValidationScriptsPartial` in all the *.cshtml* files.
+* Comment out the reference to `_ValidationScriptsPartial` in all the `.cshtml` files.
 * Remove the contents of the *Pages\Shared\_ValidationScriptsPartial.cshtml* file.
 
 The preceding approach won't prevent client-side validation of ASP.NET Core Identity Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>.

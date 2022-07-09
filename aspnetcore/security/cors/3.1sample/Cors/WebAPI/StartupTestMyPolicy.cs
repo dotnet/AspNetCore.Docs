@@ -13,9 +13,9 @@ namespace MyPolicy
             services.AddCors(options =>
             {
                 options.AddPolicy(name: "MyPolicy",
-                    builder =>
+                    policy =>
                     {
-                        builder.WithOrigins("http://example.com",
+                        policy.WithOrigins("http://example.com",
                                             "http://www.contoso.com")
                                 .WithMethods("PUT", "DELETE", "GET");
                     });

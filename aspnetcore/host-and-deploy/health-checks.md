@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
@@ -45,7 +44,7 @@ The following example creates a health check endpoint at `/healthz`:
 HEALTHCHECK CMD curl --fail http://localhost:5000/healthz || exit
 ```
 
-The preceding example ues `curl` to make a HTTP request to the health check endpoint at `/healthz`. `curl` isn't included in the .NET Linux container images, but it can be added by installing the required package in the Dockerfile. Containers that use images based on Alpine Linux can use the included `wget` in place of `curl`.
+The preceding example uses `curl` to make a HTTP request to the health check endpoint at `/healthz`. `curl` isn't included in the .NET Linux container images, but it can be added by installing the required package in the Dockerfile. Containers that use images based on Alpine Linux can use the included `wget` in place of `curl`.
 
 ## Create health checks
 
@@ -231,7 +230,7 @@ spec:
     readinessProbe:
       # an http probe
       httpGet:
-        path: /health/ready
+        path: /healthz/ready
         port: 80
       # length of time to wait for a pod to initialize
       # after pod startup, before applying health checking

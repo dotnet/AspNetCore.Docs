@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/4/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/static-files
 ---
 # Static files in ASP.NET Core
@@ -32,7 +31,7 @@ Static files are accessible via a path relative to the [web root](xref:fundament
   * `js`
   * `lib`
 
-Consider creating the *wwwroot/images* folder and adding the *wwwroot/images/MyImage.jpg* file. The URI format to access a file in the `images` folder is `https://<hostname>/images/<image_file_name>`. For example, `https://localhost:5001/images/MyImage.jpg`
+Consider creating the *wwwroot/images* folder and adding the `wwwroot/images/MyImage.jpg` file. The URI format to access a file in the `images` folder is `https://<hostname>/images/<image_file_name>`. For example, `https://localhost:5001/images/MyImage.jpg`
 
 ### Serve files in web root
 
@@ -40,7 +39,7 @@ The default web app templates call the <xref:Microsoft.AspNetCore.Builder.Static
 
 [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet&highlight=15)]
 
-The parameterless `UseStaticFiles` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following markup references *wwwroot/images/MyImage.jpg*:
+The parameterless `UseStaticFiles` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following markup references `wwwroot/images/MyImage.jpg`:
 
 ```html
 <img src="~/images/MyImage.jpg" class="img" alt="My image" />
@@ -64,9 +63,9 @@ A request can access the `red-rose.jpg` file by configuring the Static File Midd
 
 [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_rr&highlight=1,18-23)]
 
-In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to `https://<hostname>/StaticFiles/images/red-rose.jpg` serves the *red-rose.jpg* file.
+In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to `https://<hostname>/StaticFiles/images/red-rose.jpg` serves the `red-rose.jpg` file.
 
-The following markup references *MyStaticFiles/images/red-rose.jpg*:
+The following markup references `MyStaticFiles/images/red-rose.jpg`:
 <!-- zz test via /Home2/MyStaticFilesRR -->
 [!code-html[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Views/Home2/MyStaticFilesRR.cshtml?range=1)]
 
@@ -78,9 +77,7 @@ A <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> object can be used to se
 
 [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_rh&highlight=16-24)]
 
-The preceding code makes static files publicly available in the local cache for one week (604800 seconds):
-
-![Response headers showing the Cache-Control header has been added V6](static-files/_static/add-header.png)
+The preceding code makes static files publicly available in the local cache for one week (604800 seconds).
 
 ## Static file authorization
 
@@ -139,14 +136,14 @@ Setting a default page provides visitors a starting point on a site. To serve a 
 
 With `UseDefaultFiles`, requests to a folder in `wwwroot` search for:
 
-* *default.htm*
-* *default.html*
-* *index.htm*
-* *index.html*
+* `default.htm`
+* `default.html`
+* `index.htm`
+* `index.html`
 
 The first file found from the list is served as though the request included the file's name. The browser URL continues to reflect the URI requested.
 
-The following code changes the default file name to *mydefault.html*:
+The following code changes the default file name to `mydefault.html`:
 
 [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_df2&highlight=16-19)] 
 
@@ -188,8 +185,8 @@ Using the preceding file hierarchy and code, URLs resolve as follows:
 
 | URI            |      Response  |
 | ------- | ------|
-| `https://<hostname>/StaticFiles/images/MyImage.jpg` | *MyStaticFiles/images/MyImage.jpg* |
-| `https://<hostname>/StaticFiles` | *MyStaticFiles/default.html* |
+| `https://<hostname>/StaticFiles/images/MyImage.jpg` | `MyStaticFiles/images/MyImage.jpg` |
+| `https://<hostname>/StaticFiles` | `MyStaticFiles/default.html` |
 
 If no default-named file exists in the *MyStaticFiles* directory, `https://<hostname>/StaticFiles` returns the directory listing with clickable links:
 
@@ -212,7 +209,7 @@ The Static File Middleware understands almost 400 known file content types. If t
 
 The following code enables serving unknown types and renders the unknown file as an image:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ns&highlight=16-20)] 
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_ns&highlight=16-20)]
 
 With the preceding code, a request for a file with an unknown content type is returned as an image.
 
@@ -221,9 +218,22 @@ With the preceding code, a request for a file with an unknown content type is re
 
 ## Serve files from multiple locations
 
-`UseStaticFiles` and `UseFileServer` default to the file provider pointing at `wwwroot`. Additional instances of `UseStaticFiles` and `UseFileServer` can be provided with other file providers to serve files from other locations. The following example calls `UseStaticFiles` twice to serve files from both `wwwroot` and `static`:
+Consider the following Razor page which displays the `/MyStaticFiles/image3.png` file:
 
-[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_mul)] 
+[!code-cshtml[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Pages/Test.cshtml?highlight=5)]
+
+`UseStaticFiles` and `UseFileServer` default to the file provider pointing at `wwwroot`. Additional instances of `UseStaticFiles` and `UseFileServer` can be provided with other file providers to serve files from other locations. The following example calls `UseStaticFiles` twice to serve files from both `wwwroot` and `MyStaticFiles`:
+
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_mul)]
+
+Using the preceding code:
+
+* The `/MyStaticFiles/image3.png` file is displayed.
+* The [Image Tag Helpers](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper) <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.AppendVersion> is not applied because the Tag Helpers depend on <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>. `WebRootFileProvider` has not been updated to include the `MyStaticFiles` folder.
+
+The following code updates the `WebRootFileProvider`, which enables the Image Tag Helper to provide a version:
+
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFilesSample/Program.cs?name=snippet_mult2)]
 
 <a name="sc"></a>
 
@@ -244,7 +254,43 @@ With the preceding code, a request for a file with an unknown content type is re
 > [!WARNING]
 > If the IIS static file handler is enabled **and** the ASP.NET Core Module is configured incorrectly, static files are served. This happens, for example, if the *web.config* file isn't deployed.
 
-* Place code files, including *.cs* and *.cshtml*, outside of the app project's [web root](xref:fundamentals/index#web-root). A logical separation is therefore created between the app's client-side content and server-based code. This prevents server-side code from being leaked.
+* Place code files, including `.cs` and `.cshtml`, outside of the app project's [web root](xref:fundamentals/index#web-root). A logical separation is therefore created between the app's client-side content and server-based code. This prevents server-side code from being leaked.
+
+## Serve files outside wwwroot by updating IWebHostEnvironment.WebRootPath
+
+When <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootPath%2A?displayProperty=nameWithType> is set to a folder other than `wwwroot`:
+
+* In the development environment, static assets found in both `wwwroot` and the updated `IWebHostEnvironment.WebRootPath` are served from `wwwroot`.
+* In any environment other than development, duplicate static assets are served from the updated `IWebHostEnvironment.WebRootPath` folder.
+
+Consider a web app created with the empty web template:
+
+* Containing an `Index.html` file in `wwwroot` and `wwwroot-custom`.
+* With the following updated `Program.cs` file that sets `WebRootPath = "wwwroot-custom"`:
+
+  [!code-csharp[](~/fundamentals/static-files/samples/6.x/WebRoot/Program.cs?name=snippet1)]
+
+In the preceding code, requests to `/`:
+
+* In the development environment return `wwwroot/Index.html`
+* In any environment other than development return `wwwroot-custom/Index.html`
+
+To ensure assets from `wwwroot-custom` are returned, use one of the following approaches:
+
+* Delete duplicate named assets in `wwwroot`.
+* Set `"ASPNETCORE_ENVIRONMENT"` in `Properties/launchSettings.json` to any value other than `"Development"`.
+* Completely disable static web assets by setting `<StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>` in the project file. ***WARNING, disabling static web assets disables [Razor Class Libraries](xref:razor-pages/ui-class)***.
+* Add the following JSON to the project file:
+
+  ```xml
+  <ItemGroup>
+	  <Content Remove="wwwroot\**" />
+  </ItemGroup>
+  ```
+
+The following code updates `IWebHostEnvironment.WebRootPath` to a non development value, guaranteeing duplicate content is returned from `wwwroot-custom` rather than `wwwroot`:
+
+[!code-csharp[](~/fundamentals/static-files/samples/6.x/WebRoot/Program.cs?name=snippet2&highlight=5)]
 
 ## Additional resources
 
@@ -279,7 +325,7 @@ Static files are accessible via a path relative to the [web root](xref:fundament
   * `js`
   * `lib`
 
-Consider creating the *wwwroot/images* folder and adding the *wwwroot/images/MyImage.jpg* file. The URI format to access a file in the `images` folder is `https://<hostname>/images/<image_file_name>`. For example, `https://localhost:5001/images/MyImage.jpg`
+Consider creating the *wwwroot/images* folder and adding the `wwwroot/images/MyImage.jpg` file. The URI format to access a file in the `images` folder is `https://<hostname>/images/<image_file_name>`. For example, `https://localhost:5001/images/MyImage.jpg`
 
 ### Serve files in web root
 
@@ -287,7 +333,7 @@ The default web app templates call the <xref:Microsoft.AspNetCore.Builder.Static
 
 [!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/Startup.cs?name=snippet_Configure&highlight=15)]
 
-The parameterless `UseStaticFiles` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following markup references *wwwroot/images/MyImage.jpg*:
+The parameterless `UseStaticFiles` method overload marks the files in [web root](xref:fundamentals/index#web-root) as servable. The following markup references `wwwroot/images/MyImage.jpg`:
 
 ```html
 <img src="~/images/MyImage.jpg" class="img" alt="My image" />
@@ -311,9 +357,9 @@ A request can access the `red-rose.jpg` file by configuring the Static File Midd
 
 [!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/StartupRose.cs?name=snippet_Configure&highlight=15-22)]
 
-In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to `https://<hostname>/StaticFiles/images/red-rose.jpg` serves the *red-rose.jpg* file.
+In the preceding code, the *MyStaticFiles* directory hierarchy is exposed publicly via the *StaticFiles* URI segment. A request to `https://<hostname>/StaticFiles/images/red-rose.jpg` serves the `red-rose.jpg` file.
 
-The following markup references *MyStaticFiles/images/red-rose.jpg*:
+The following markup references `MyStaticFiles/images/red-rose.jpg`:
 
 ```html
 <img src="~/StaticFiles/images/red-rose.jpg" class="img" alt="A red rose" />
@@ -386,14 +432,14 @@ Setting a default page provides visitors a starting point on a site. To serve a 
 
 With `UseDefaultFiles`, requests to a folder in `wwwroot` search for:
 
-* *default.htm*
-* *default.html*
-* *index.htm*
-* *index.html*
+* `default.htm`
+* `default.html`
+* `index.htm`
+* `index.html`
 
 The first file found from the list is served as though the request included the file's name. The browser URL continues to reflect the URI requested.
 
-The following code changes the default file name to *mydefault.html*:
+The following code changes the default file name to `mydefault.html`:
 
 [!code-csharp[](~/fundamentals/static-files/samples/3.x/StaticFilesSample/StartupDefault.cs?name=snippet_DefaultFiles)]
 
@@ -440,8 +486,8 @@ Using the file hierarchy and preceding code, URLs resolve as follows:
 
 | URI            |      Response  |
 | ------- | ------|
-| `https://<hostname>/StaticFiles/images/MyImage.jpg` | *MyStaticFiles/images/MyImage.jpg* |
-| `https://<hostname>/StaticFiles` | *MyStaticFiles/default.html* |
+| `https://<hostname>/StaticFiles/images/MyImage.jpg` | `MyStaticFiles/images/MyImage.jpg` |
+| `https://<hostname>/StaticFiles` | `MyStaticFiles/default.html` |
 
 If no default-named file exists in the *MyStaticFiles* directory, `https://<hostname>/StaticFiles` returns the directory listing with clickable links:
 
@@ -501,7 +547,7 @@ With the preceding code, a request for a file with an unknown content type is re
 > [!WARNING]
 > If the IIS static file handler is enabled **and** the ASP.NET Core Module is configured incorrectly, static files are served. This happens, for example, if the *web.config* file isn't deployed.
 
-* Place code files, including *.cs* and *.cshtml*, outside of the app project's [web root](xref:fundamentals/index#web-root). A logical separation is therefore created between the app's client-side content and server-based code. This prevents server-side code from being leaked.
+* Place code files, including `.cs` and `.cshtml`, outside of the app project's [web root](xref:fundamentals/index#web-root). A logical separation is therefore created between the app's client-side content and server-based code. This prevents server-side code from being leaked.
 
 ## Additional resources
 

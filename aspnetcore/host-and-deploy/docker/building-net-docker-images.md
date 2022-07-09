@@ -5,7 +5,6 @@ description: Learn how to use the published ASP.NET Core Docker images from the 
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/04/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/docker/building-net-docker-images
 ---
 
@@ -120,9 +119,10 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 * Press Ctrl+C at the command prompt to stop the app.
 
-## Run in a Linux container
+## Run in a Linux container or Windows container
 
-* In the Docker client, [switch to Linux containers](https://docs.docker.com/desktop/windows/#switch-between-windows-and-linux-containers).
+* To run in a Linux container, right-click the System Tray's Docker client icon and select [switch to Linux containers](https://docs.docker.com/desktop/windows/#switch-between-windows-and-linux-containers).
+* To run in a Windows container, right-click the System Tray's Docker client icon and select [switch to Windows containers](https://docs.docker.com/desktop/windows/#switch-between-windows-and-linux-containers).
 
 * Navigate to the Dockerfile folder at *dotnet-docker/samples/aspnetapp*.
 
@@ -145,36 +145,6 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
   * Specify the aspnetapp image.
 
 * Go to `http://localhost:5000` in a browser to test the app.
-
-## Run in a Windows container
-
-* In the Docker client, [switch to Windows containers](https://docs.docker.com/desktop/windows/#switch-between-windows-and-linux-containers).
-
-Navigate to the docker file folder at `dotnet-docker/samples/aspnetapp`.
-
-* Run the following commands to build and run the sample in Docker:
-
-  ```console
-  docker build -t aspnetapp .
-  docker run -it --rm --name aspnetcore_sample aspnetapp
-  ```
-
-* For Windows containers, you need the IP address of the container (browsing to `http://localhost:5000` won't work):
-  * Open up another command prompt.
-  * Run `docker ps` to see the running containers. Verify that the "aspnetcore_sample" container is there.
-  * Run `docker exec aspnetcore_sample ipconfig` to display the IP address of the container. The output from the command looks like this example:
-
-    ```console
-    Ethernet adapter Ethernet:
-
-       Connection-specific DNS Suffix  . : contoso.com
-       Link-local IPv6 Address . . . . . : fe80::1967:6598:124:cfa3%4
-       IPv4 Address. . . . . . . . . . . : 172.29.245.43
-       Subnet Mask . . . . . . . . . . . : 255.255.240.0
-       Default Gateway . . . . . . . . . : 172.29.240.1
-    ```
-
-* Copy the container IPv4 address (for example, 172.29.245.43) and paste into the browser address bar to test the app.
 
 ## Build and deploy manually
 
@@ -215,7 +185,7 @@ To use the manually published app within a Docker container, create a new *Docke
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
 WORKDIR /app
-COPY published/aspnetapp.dll ./
+COPY published/ ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
@@ -254,7 +224,7 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
 WORKDIR /app
-COPY published/aspnetapp.dll ./
+COPY published/ ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
@@ -299,7 +269,7 @@ In the preceding *Dockerfile*, the `*.csproj` files are copied and restored as d
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
 WORKDIR /app
-COPY published/aspnetapp.dll ./
+COPY published/ ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
@@ -336,7 +306,7 @@ As noted in the preceding Dockerfile, the `*.csproj` files are copied and restor
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
 WORKDIR /app
-COPY published/aspnetapp.dll ./
+COPY published/ ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 

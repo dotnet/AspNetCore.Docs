@@ -5,7 +5,6 @@ description: Learn how to migrate a non-ASP.NET Core application that uses Micro
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/04/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/logging-nonaspnetcore
 ---
 

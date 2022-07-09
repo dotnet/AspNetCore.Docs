@@ -4,7 +4,6 @@ author: rick-anderson
 description: Provides links to the authentication samples in the ASP.NET Core repository.
 ms.author: riande
 ms.date: 02/21/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/samples
 ---
 # Authentication samples for ASP.NET Core

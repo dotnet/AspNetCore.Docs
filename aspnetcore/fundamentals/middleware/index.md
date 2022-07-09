@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/11/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/middleware/index
 ---
 # ASP.NET Core Middleware
@@ -180,6 +179,10 @@ app.MapRazorPages();
 ```
 
 For information about Single Page Applications, see the guides for the [React](xref:spa/react) and [Angular](xref:spa/angular) project templates.
+
+## UseCors and UseStaticFiles order
+
+The order for calling `UseCors` and `UseStaticFiles` depends on the app. For more information, see [UseCors and UseStaticFiles order](xref:security/cors#uc1)
 
 ### Forwarded Headers Middleware order
 

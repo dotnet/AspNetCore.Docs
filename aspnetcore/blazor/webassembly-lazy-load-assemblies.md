@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/webassembly-lazy-load-assemblies
 ---
 # Lazy load assemblies in ASP.NET Core Blazor WebAssembly
@@ -40,7 +39,7 @@ The Blazor framework automatically registers a singleton service for lazy loadin
 * Uses [JS interop](xref:blazor/js-interop/call-dotnet-from-javascript) to fetch assemblies via a network call.
 * Loads assemblies into the runtime executing on WebAssembly in the browser.
 
-&dagger;Guidance for *hosted* Blazor WebAssembly solutions is covered in the [Lazy load assemblies in a hosted Blazor WebAssembly solution](#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution) section.
+&dagger;Guidance for *hosted* Blazor WebAssembly [solutions](xref:blazor/tooling#visual-studio-solution-file-sln) is covered in the [Lazy load assemblies in a hosted Blazor WebAssembly solution](#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution) section.
 
 Blazor's <xref:Microsoft.AspNetCore.Components.Routing.Router> component designates the assemblies that Blazor searches for routable components and is also responsible for rendering the component for the route where the user navigates. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component's [`OnNavigateAsync` method](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync) is used in conjunction with lazy loading to load the correct assemblies for endpoints that a user requests.
 
@@ -168,7 +167,7 @@ To rectify this:
 
 ## Lazy load assemblies in a hosted Blazor WebAssembly solution
 
-The framework's lazy loading implementation supports lazy loading with prerendering in a hosted Blazor WebAssembly solution. During prerendering, all assemblies, including those marked for lazy loading, are assumed to be loaded. Manually register the <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service in the **`Server`** project.
+The framework's lazy loading implementation supports lazy loading with prerendering in a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). During prerendering, all assemblies, including those marked for lazy loading, are assumed to be loaded. Manually register the <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service in the **`Server`** project.
 
 At the top of the `Program.cs` file of the **`Server`** project, add the namespace for <xref:Microsoft.AspNetCore.Components.WebAssembly.Services?displayProperty=fullName>:
 
@@ -192,7 +191,7 @@ The demonstration in this section:
 1. Create a new ASP.NET Core class library project:
 
    * Visual Studio: **Create a solution** > **Create a new project** > **Razor Class Library**. Name the project `GrantImaharaRobotControls`.
-   * Visual Studio Code/.NET CLI: Execute `dotnet new razorclasslib -o GrantImaharaRobotControls` from a command prompt. The `-o|--output` option creates a folder for the solution and names the project `GrantImaharaRobotControls`.
+   * Visual Studio Code/.NET CLI: Execute `dotnet new razorclasslib -o GrantImaharaRobotControls` from a command prompt. The `-o|--output` option creates a folder for the [solution](xref:blazor/tooling#visual-studio-solution-file-sln) and names the project `GrantImaharaRobotControls`.
 
 1. The example component presented later in this section uses a [Blazor form](xref:blazor/forms-validation). In the RCL project, add the [`Microsoft.AspNetCore.Components.Forms`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Forms) package to the project.
 
@@ -374,7 +373,7 @@ If the `Robot` component from the RCL is requested at `https://localhost:5001/ro
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 Blazor WebAssembly app startup performance can be improved by waiting to load app assemblies until the assemblies are required, which is called *lazy loading*.
 
@@ -404,7 +403,7 @@ The Blazor framework automatically registers a singleton service for lazy loadin
 * Uses [JS interop](xref:blazor/js-interop/call-dotnet-from-javascript) to fetch assemblies via a network call.
 * Loads assemblies into the runtime executing on WebAssembly in the browser.
 
-&dagger;Guidance for *hosted* Blazor WebAssembly solutions is covered in the [Lazy load assemblies in a hosted Blazor WebAssembly solution](#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution) section.
+&dagger;Guidance for *hosted* Blazor WebAssembly [solutions](xref:blazor/tooling#visual-studio-solution-file-sln) is covered in the [Lazy load assemblies in a hosted Blazor WebAssembly solution](#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution) section.
 
 Blazor's <xref:Microsoft.AspNetCore.Components.Routing.Router> component designates the assemblies that Blazor searches for routable components and is also responsible for rendering the component for the route where the user navigates. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component's [`OnNavigateAsync` method](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync) is used in conjunction with lazy loading to load the correct assemblies for endpoints that a user requests.
 
@@ -536,7 +535,7 @@ To rectify this:
 
 ## Lazy load assemblies in a hosted Blazor WebAssembly solution
 
-The framework's lazy loading implementation supports lazy loading with prerendering in a hosted Blazor WebAssembly solution. During prerendering, all assemblies, including those marked for lazy loading, are assumed to be loaded. Manually register the <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service in the **`Server`** project.
+The framework's lazy loading implementation supports lazy loading with prerendering in a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). During prerendering, all assemblies, including those marked for lazy loading, are assumed to be loaded. Manually register the <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service in the **`Server`** project.
 
 At the top of the `Startup.cs` file of the **`Server`** project, add the namespace for <xref:Microsoft.AspNetCore.Components.WebAssembly.Services?displayProperty=fullName>:
 
@@ -560,7 +559,7 @@ The demonstration in this section:
 1. Create a new ASP.NET Core class library project:
 
    * Visual Studio: **Create a solution** > **Create a new project** > **Razor Class Library**. Name the project `GrantImaharaRobotControls`.
-   * Visual Studio Code/.NET CLI: Execute `dotnet new razorclasslib -o GrantImaharaRobotControls` from a command prompt. The `-o|--output` option creates a folder for the solution and names the project `GrantImaharaRobotControls`.
+   * Visual Studio Code/.NET CLI: Execute `dotnet new razorclasslib -o GrantImaharaRobotControls` from a command prompt. The `-o|--output` option creates a folder for the [solution](xref:blazor/tooling#visual-studio-solution-file-sln) and names the project `GrantImaharaRobotControls`.
 
 1. The example component presented later in this section uses a [Blazor form](xref:blazor/forms-validation). In the RCL project, add the [`Microsoft.AspNetCore.Components.Forms`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Forms) package to the project.
 
@@ -646,7 +645,7 @@ Create a Blazor WebAssembly app to demonstrate lazy loading of the RCL's assembl
 
 1. Create a project reference for the `GrantImaharaRobotControls` RCL:
 
-   * Visual Studio: Add the `GrantImaharaRobotControls` RCL project to the solution (**Add** > **Existing Project**). Select **Add** > **Project Reference** to add a project reference for the `GrantImaharaRobotControls` RCL.
+   * Visual Studio: Add the `GrantImaharaRobotControls` RCL project to the [solution](xref:blazor/tooling#visual-studio-solution-file-sln) (**Add** > **Existing Project**). Select **Add** > **Project Reference** to add a project reference for the `GrantImaharaRobotControls` RCL.
    * Visual Studio Code/.NET CLI: Execute `dotnet add reference {PATH}` in a command shell from the project's folder. The `{PATH}` placeholder is the path to the RCL project.
 
 Build and run the app. For the default page that loads the `Index` component (`Pages/Index.razor`), the developer tool's Network tab indicates that the RCL's assembly `GrantImaharaRobotControls.dll` is loaded. The `Index` component makes no use of the assembly, so loading the assembly is inefficient.

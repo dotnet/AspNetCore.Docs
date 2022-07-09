@@ -1,6 +1,3 @@
----
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
----
 The Response caching middleware:
 
 * Enables caching server responses based on [HTTP cache headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control). Implements the standard HTTP caching semantics. Caches based on HTTP cache headers like proxies do.

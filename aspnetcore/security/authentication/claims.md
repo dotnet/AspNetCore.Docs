@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 2/16/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/claims
 ---
 # Mapping, customizing, and transforming claims in ASP.NET Core
@@ -61,11 +60,13 @@ The <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> interface a
 builder.Services.AddTransient<IClaimsTransformation, MyClaimsTransformation>();
 ```
 
+<!-- see https://github.com/dotnet/AspNetCore.Docs/issues/26032
 ## Extend or add custom claims in ASP.NET Core Identity
 
 Refer to the following document:
 
 [Add claims to Identity using IUserClaimsPrincipalFactory](xref:security/authentication/add-user-data#add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser)
+-->
 
 ## Map claims from external identity providers
 

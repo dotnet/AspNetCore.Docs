@@ -6,7 +6,6 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/27/2019
 ms.topic: tutorial
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-mvc/complex-data-model
 ---
 
@@ -46,7 +45,7 @@ In this section you'll see how to customize the data model by using attributes t
 
 For student enrollment dates, all of the web pages currently display the time along with the date, although all you care about for this field is the date. By using data annotation attributes, you can make one code change that will fix the display format in every view that shows the data. To see an example of how to do that, you'll add an attribute to the `EnrollmentDate` property in the `Student` class.
 
-In *Models/Student.cs*, add a `using` statement for the `System.ComponentModel.DataAnnotations` namespace and add `DataType` and `DisplayFormat` attributes to the `EnrollmentDate` property, as shown in the following example:
+In `Models/Student.cs`, add a `using` statement for the `System.ComponentModel.DataAnnotations` namespace and add `DataType` and `DisplayFormat` attributes to the `EnrollmentDate` property, as shown in the following example:
 
 [!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_DataType&highlight=3,12-13)]
 
@@ -102,7 +101,7 @@ dotnet ef migrations add MaxLengthOnNames
 dotnet ef database update
 ```
 
-The `migrations add` command warns that data loss may occur, because the change makes the maximum length shorter for two columns.  Migrations creates a file named *\<timeStamp>_MaxLengthOnNames.cs*. This file contains code in the `Up` method that will update the database to match the current data model. The `database update` command ran that code.
+The `migrations add` command warns that data loss may occur, because the change makes the maximum length shorter for two columns.  Migrations creates a file named `<timeStamp>_MaxLengthOnNames.cs`. This file contains code in the `Up` method that will update the database to match the current data model. The `database update` command ran that code.
 
 The timestamp prefixed to the migrations file name is used by Entity Framework to order the migrations. You can create multiple migrations before running the update-database command, and then all of the migrations are applied in the order in which they were created.
 
@@ -114,7 +113,7 @@ You can also use attributes to control how your classes and properties are mappe
 
 The `Column` attribute specifies that when the database is created, the column of the `Student` table that maps to the `FirstMidName` property will be named `FirstName`. In other words, when your code refers to `Student.FirstMidName`, the data will come from or be updated in the `FirstName` column of the `Student` table. If you don't specify column names, they're given the same name as the property name.
 
-In the *Student.cs* file, add a `using` statement for `System.ComponentModel.DataAnnotations.Schema` and add the column name attribute to the `FirstMidName` property, as shown in the following highlighted code:
+In the `Student.cs` file, add a `using` statement for `System.ComponentModel.DataAnnotations.Schema` and add the column name attribute to the `FirstMidName` property, as shown in the following highlighted code:
 
 [!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_Column&highlight=4,14)]
 
@@ -143,7 +142,7 @@ Before you applied the first two migrations, the name columns were of type nvarc
 
 ![Student entity](complex-data-model/_static/student-entity.png)
 
-In *Models/Student.cs*, replace the code you added earlier with the following code. The changes are highlighted.
+In `Models/Student.cs`, replace the code you added earlier with the following code. The changes are highlighted.
 
 [!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_BeforeInheritance&highlight=11,13,15,18,22,24-31)]
 
@@ -172,7 +171,7 @@ The `Display` attribute specifies that the caption for the text boxes should be 
 
 ![Instructor entity](complex-data-model/_static/instructor-entity.png)
 
-Create *Models/Instructor.cs*, replacing the template code with the following code:
+Create `Models/Instructor.cs`, replacing the template code with the following code:
 
 [!code-csharp[](intro/samples/cu/Models/Instructor.cs?name=snippet_BeforeInheritance)]
 
@@ -208,7 +207,7 @@ public OfficeAssignment OfficeAssignment { get; set; }
 
 ![OfficeAssignment entity](complex-data-model/_static/officeassignment-entity.png)
 
-Create *Models/OfficeAssignment.cs* with the following code:
+Create `Models/OfficeAssignment.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu/Models/OfficeAssignment.cs)]
 
@@ -235,7 +234,7 @@ You could put a `[Required]` attribute on the Instructor navigation property to 
 
 ![Course entity](complex-data-model/_static/course-entity.png)
 
-In *Models/Course.cs*, replace the code you added earlier with the following code. The changes are highlighted.
+In `Models/Course.cs`, replace the code you added earlier with the following code. The changes are highlighted.
 
 [!code-csharp[](intro/samples/cu/Models/Course.cs?name=snippet_Final&highlight=2,10,13,16,19,21,23)]
 
@@ -284,7 +283,7 @@ public ICollection<CourseAssignment> CourseAssignments { get; set; }
 
 ![Department entity](complex-data-model/_static/department-entity.png)
 
-Create *Models/Department.cs* with the following code:
+Create `Models/Department.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu/Models/Department.cs?name=snippet_Begin)]
 
@@ -330,7 +329,7 @@ public ICollection<Course> Courses { get; set; }
 
 ![Enrollment entity](complex-data-model/_static/enrollment-entity.png)
 
-In *Models/Enrollment.cs*, replace the code you added earlier with the following code:
+In `Models/Enrollment.cs`, replace the code you added earlier with the following code:
 
 [!code-csharp[](intro/samples/cu/Models/Enrollment.cs?name=snippet_Final&highlight=1-2,16)]
 
@@ -370,7 +369,7 @@ EF Core supports implicit join tables for many-to-many relationships, but this t
 
 ![CourseAssignment entity](complex-data-model/_static/courseassignment-entity.png)
 
-Create *Models/CourseAssignment.cs* with the following code:
+Create `Models/CourseAssignment.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu/Models/CourseAssignment.cs)]
 
@@ -386,7 +385,7 @@ The composite key ensures that while you can have multiple rows for one course, 
 
 ## Update the database context
 
-Add the following highlighted code to the *Data/SchoolContext.cs* file:
+Add the following highlighted code to the `Data/SchoolContext.cs` file:
 
 [!code-csharp[](intro/samples/cu/Data/SchoolContext.cs?name=snippet_BeforeInheritance&highlight=15-18,25-31)]
 
@@ -421,7 +420,7 @@ Besides the one-to-many relationship lines (1 to \*), you can see here the one-t
 
 ## Seed database with test data
 
-Replace the code in the *Data/DbInitializer.cs* file with the following code in order to provide seed data for the new entities you've created.
+Replace the code in the `Data/DbInitializer.cs` file with the following code in order to provide seed data for the new entities you've created.
 
 [!code-csharp[](intro/samples/cu/Data/DbInitializer.cs?name=snippet_Final)]
 
@@ -450,7 +449,7 @@ Sometimes when you execute migrations with existing data, you need to insert stu
 
 To make this migration work with existing data you have to change the code to give the new column a default value, and create a stub department named "Temp" to act as the default department. As a result, existing Course rows will all be related to the "Temp" department after the `Up` method runs.
 
-* Open the *{timestamp}_ComplexDataModel.cs* file.
+* Open the `{timestamp}_ComplexDataModel.cs` file.
 
 * Comment out the line of code that adds the DepartmentID column to the Course table.
 

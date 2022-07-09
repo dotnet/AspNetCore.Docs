@@ -4,7 +4,6 @@ author: rick-anderson
 description: Learn implementation details of the ASP.NET Core Data Protection key storage format.
 ms.author: riande
 ms.date: 04/08/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/implementation/key-storage-format
 ---
 # Key storage format in ASP.NET Core
@@ -18,7 +17,7 @@ Objects are stored at rest in XML representation. The default directory for key 
 
 ## The \<key> element
 
-Keys exist as top-level objects in the key repository. By convention keys have the filename **key-{guid}.xml**, where {guid} is the id of the key. Each such file contains a single key. The format of the file is as follows.
+Keys exist as top-level objects in the key repository. By convention keys have the filename *`key-{guid}.xml`*, where {guid} is the id of the key. Each such file contains a single key. The format of the file is as follows.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -67,7 +66,7 @@ As with `<descriptor>`, the particular format of the `<encryptedSecret>` element
 
 ## The \<revocation> element
 
-Revocations exist as top-level objects in the key repository. By convention revocations have the filename **revocation-{timestamp}.xml** (for revoking all keys before a specific date) or **revocation-{guid}.xml** (for revoking a specific key). Each file contains a single \<revocation> element.
+Revocations exist as top-level objects in the key repository. By convention revocations have the filename *`revocation-{timestamp}.xml`* (for revoking all keys before a specific date) or *`revocation-{guid}.xml`* (for revoking a specific key). Each file contains a single \<revocation> element.
 
 For revocations of individual keys, the file contents will be as below.
 

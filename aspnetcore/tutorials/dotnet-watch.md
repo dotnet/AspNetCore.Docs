@@ -4,7 +4,6 @@ author: rick-anderson
 description: This tutorial demonstrates how to install and use the .NET Core CLI's file watcher (dotnet watch) tool in an ASP.NET Core app.
 ms.author: riande
 ms.date: 05/31/2018
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/dotnet-watch
 ---
 # Develop ASP.NET Core apps using a file watcher
@@ -46,7 +45,7 @@ Navigate to the product API (`http://localhost:<port number>/api/math/product?a=
 
 The `dotnet watch` file watcher tool is included with version 2.1.300 of the .NET Core SDK. The following steps are required when using an earlier version of the .NET Core SDK.
 
-1. Add a `Microsoft.DotNet.Watcher.Tools` package reference to the *.csproj* file:
+1. Add a `Microsoft.DotNet.Watcher.Tools` package reference to the `.csproj` file:
 
     ```xml
     <ItemGroup>
@@ -78,7 +77,7 @@ Run `dotnet watch run` in the *WebApp* folder. The console output indicates `wat
 :::moniker range=">= aspnetcore-5.0"
 Running `dotnet watch run` on a web app launches a browser that navigates to the app's URL once ready. `dotnet watch` does this by reading the app's console output and waiting for the ready message displayed by <xref:Microsoft.AspNetCore.WebHost>.
 
-`dotnet watch` refreshes the browser when it detects changes to watched files. To do this, the watch command injects a middleware to the app that modifies HTML responses created by the app. The middleware adds a JavaScript script block to the page that allows `dotnet watch` to instruct the browser to refresh. Currently, changes to all watched files, including static content such as *.html* and *.css* files cause the app to be rebuilt.
+`dotnet watch` refreshes the browser when it detects changes to watched files. To do this, the watch command injects a middleware to the app that modifies HTML responses created by the app. The middleware adds a JavaScript script block to the page that allows `dotnet watch` to instruct the browser to refresh. Currently, changes to all watched files, including static content such as `.html` and `.css` files cause the app to be rebuilt.
 
 `dotnet watch`:
 
@@ -96,7 +95,7 @@ For more information on configuration, see [dotnet-watch configuration](#dotnet-
 
 Make sure `dotnet watch` is running.
 
-Fix the bug in the `Product` method of *MathController.cs* so it returns the product and not the sum:
+Fix the bug in the `Product` method of `MathController.cs` so it returns the product and not the sum:
 
 ```csharp
 public static int Product(int a, int b)
@@ -111,7 +110,7 @@ Verify `http://localhost:<port number>/api/math/product?a=4&b=5` returns the cor
 
 ## Run tests using `dotnet watch`
 
-1. Change the `Product` method of *MathController.cs* back to returning the sum. Save the file.
+1. Change the `Product` method of `MathController.cs` back to returning the sum. Save the file.
 1. In a command shell, navigate to the *WebAppTests* folder.
 1. Run [dotnet restore](/dotnet/core/tools/dotnet-restore).
 1. Run `dotnet watch test`. Its output indicates that a test failed and that the watcher is awaiting file changes:
@@ -134,7 +133,7 @@ By default, `dotnet-watch` tracks all files matching the following glob patterns
 * `**/*.resx`
 * Content files: `wwwroot/**`, `**/*.config`, `**/*.json`
 
-More items can be added to the watch list by editing the *.csproj* file. Items can be specified individually or by using glob patterns.
+More items can be added to the watch list by editing the `.csproj` file. Items can be specified individually or by using glob patterns.
 
 ```xml
 <ItemGroup>
@@ -145,7 +144,7 @@ More items can be added to the watch list by editing the *.csproj* file. Items c
 
 ## Opt-out of files to be watched
 
-`dotnet-watch` can be configured to ignore its default settings. To ignore specific files, add the `Watch="false"` attribute to an item's definition in the *.csproj* file:
+`dotnet-watch` can be configured to ignore its default settings. To ignore specific files, add the `Watch="false"` attribute to an item's definition in the `.csproj` file:
 
 ```xml
 <ItemGroup>
@@ -172,8 +171,8 @@ More items can be added to the watch list by editing the *.csproj* file. Items c
 `dotnet-watch` isn't restricted to C# projects. Custom watch projects can be created to handle different scenarios. Consider the following project layout:
 
 * **test/**
-  * *UnitTests/UnitTests.csproj*
-  * *IntegrationTests/IntegrationTests.csproj*
+  * `UnitTests/UnitTests.csproj`
+  * `IntegrationTests/IntegrationTests.csproj`
 
 If the goal is to watch both projects, create a custom project file configured to watch both projects:
 
@@ -208,7 +207,7 @@ Some configuration options can be passed to `dotnet watch` through environment v
 | ------------- | ------------- |
 | `DOTNET_USE_POLLING_FILE_WATCHER`                | If set to "1" or "true", `dotnet watch` uses a polling file watcher instead of CoreFx's `FileSystemWatcher`. Used when watching files on network shares or Docker mounted volumes.                       |
 | `DOTNET_WATCH_SUPPRESS_MSBUILD_INCREMENTALISM`   | By default, `dotnet watch` optimizes the build by avoiding certain operations such as running restore or re-evaluating the set of watched files on every file change. If set to "1" or "true",  these optimizations are disabled. |
-| `DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER`   | `dotnet watch run` attempts to launch browsers for web apps with `launchBrowser` configured in *launchSettings.json*. If set to "1" or "true", this behavior is suppressed. |
+| `DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER`   | `dotnet watch run` attempts to launch browsers for web apps with `launchBrowser` configured in `launchSettings.json`. If set to "1" or "true", this behavior is suppressed. |
 | `DOTNET_WATCH_SUPPRESS_BROWSER_REFRESH`   | `dotnet watch run` attempts to refresh browsers when it detects file changes. If set to "1" or "true", this behavior is suppressed. This behavior is also suppressed if `DOTNET_WATCH_SUPPRESS_LAUNCH_BROWSER` is set. |
 
 ## Browser refresh

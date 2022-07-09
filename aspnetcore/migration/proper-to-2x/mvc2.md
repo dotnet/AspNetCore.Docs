@@ -5,7 +5,6 @@ description: Receive guidance for migrating existing ASP.NET MVC or Web API appl
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 10/24/2018
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/mvc2
 ---
 # Migrate from ASP.NET to ASP.NET Core 2.0
@@ -41,7 +40,7 @@ When the metapackage is used, no packages referenced in the metapackage are depl
 
 ## Project structure differences
 
-The *.csproj* file format has been simplified in ASP.NET Core. Some notable changes include:
+The `.csproj` file format has been simplified in ASP.NET Core. Some notable changes include:
 
 * Explicit inclusion of files isn't necessary for them to be considered part of the project. This reduces the risk of XML merge conflicts when working on large teams.
 * There are no GUID-based references to other projects, which improves file readability.

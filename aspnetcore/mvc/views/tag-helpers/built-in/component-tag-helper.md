@@ -6,7 +6,6 @@ description: Learn how to use the ASP.NET Core Component Tag Helper to render Ra
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
 ms.date: 10/29/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
 ---
 # Component Tag Helper in ASP.NET Core
@@ -156,7 +155,7 @@ The parameter type must be JSON serializable, which typically means that the typ
 
 In the following example, a class object is passed to the component:
 
-*MyClass.cs*:
+`MyClass.cs`:
 
 ```csharp
 public class MyClass
@@ -172,7 +171,7 @@ public class MyClass
 
 **The class must have a public parameterless constructor.**
 
-*Shared/MyComponent.razor*:
+`Shared/MyComponent.razor`:
 
 ```razor
 <h2>MyComponent</h2>
@@ -187,7 +186,7 @@ public class MyClass
 }
 ```
 
-*Pages/MyPage.cshtml*:
+`Pages/MyPage.cshtml`:
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

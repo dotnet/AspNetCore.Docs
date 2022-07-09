@@ -4,8 +4,7 @@ author: rick-anderson
 description: Discover approaches to preserve session between requests.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/25/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 03/22/2022
 uid: fundamentals/app-state
 ---
 # Session and state management in ASP.NET Core
@@ -79,7 +78,7 @@ The [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspN
 * Is included implicitly by the framework.
 * Provides middleware for managing session state.
 
-To enable the session middleware, `Progam.cs` must contain:
+To enable the session middleware, `Program.cs` must contain:
 
 * Any of the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see <xref:performance/caching/distributed>.
 * A call to <xref:Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession%2A>
@@ -240,15 +239,13 @@ In the following example, [middleware](xref:fundamentals/middleware/index) adds 
 
 [!code-csharp[](app-state/6.0samples/SessionSample/Program.cs?name=snippet_hci)]
 
-For middleware that's only used in a single app, fixed `string` keys are acceptable. Middleware shared between apps should use unique object keys to avoid key collisions. The following example shows how to use a unique object key defined in a middleware class:
+For middleware that's only used in a single app, it's unlikely that using a fixed `string` key would cause a key collision. However, to avoid the possibility of a key collision altogether, an `object` can be used as an item key. This approach is particularly useful for middleware that's shared between apps and also has the advantage of eliminating the use of key strings in the code. The following example shows how to use an `object` key defined in a middleware class:
 
 [!code-csharp[](app-state/6.0samples/SessionSample/Middleware/HttpContextItemsMiddleware.cs?name=snippet1&highlight=4,13)]
 
 Other code can access the value stored in `HttpContext.Items` using the key exposed by the middleware class:
 
 [!code-csharp[](app-state/6.0samples/SessionSample/Pages/Index2.cshtml.cs?name=snippet)]
-
-This approach also has the advantage of eliminating the use of key strings in the code.
 
 ## Cache
 

@@ -5,7 +5,6 @@ description: Learn how to use LibMan in an ASP.NET Core project with Visual Stud
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 08/20/2018
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: client-side/libman/libman-vs
 ---
 # Use LibMan with ASP.NET Core in Visual Studio
@@ -17,7 +16,7 @@ Visual Studio has built-in support for [LibMan](xref:client-side/libman/index) i
 * Support for configuring and running LibMan restore operations on build.
 * Menu items for triggering LibMan restore and clean operations.
 * Search dialog for finding libraries and adding the files to a project.
-* Editing support for *libman.json*&mdash;the LibMan manifest file.
+* Editing support for `libman.json`&mdash;the LibMan manifest file.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/client-side/libman/samples/) [(how to download)](xref:index#how-to-download-a-sample)
 
@@ -63,7 +62,7 @@ Follow these steps to install a client-side library:
   |project root (if *wwwroot* doesn't exist) |*lib/jquery/*         |
   |*Pages* folder in project                 |*Pages/jquery/*       |
 
-* Click the **Install** button to download the files, per the configuration in *libman.json*.
+* Click the **Install** button to download the files, per the configuration in `libman.json`.
 * Review the **Library Manager** feed of the **Output** window for installation details. For example:
 
   ```console
@@ -79,32 +78,32 @@ Follow these steps to install a client-side library:
 
 ### Manually configure LibMan manifest file entries
 
-All LibMan operations in Visual Studio are based on the content of the project root's LibMan manifest (*libman.json*). You can manually edit *libman.json* to configure library files for the project. Visual Studio restores all library files once *libman.json* is saved.
+All LibMan operations in Visual Studio are based on the content of the project root's LibMan manifest (`libman.json`). You can manually edit `libman.json` to configure library files for the project. Visual Studio restores all library files once `libman.json` is saved.
 
-To open *libman.json* for editing, the following options exist:
+To open `libman.json` for editing, the following options exist:
 
-* Double-click the *libman.json* file in **Solution Explorer**.
+* Double-click the `libman.json` file in **Solution Explorer**.
 * Right-click the project in **Solution Explorer** and select **Manage Client-Side Libraries**. **&#8224;**
 * Select **Manage Client-Side Libraries** from the Visual Studio **Project** menu. **&#8224;**
 
-**&#8224;** If the *libman.json* file doesn't already exist in the project root, it will be created with the default item template content.
+**&#8224;** If the `libman.json` file doesn't already exist in the project root, it will be created with the default item template content.
 
 Visual Studio offers rich JSON editing support such as colorization, formatting, IntelliSense, and schema validation. The LibMan manifest's JSON schema is found at [https://json.schemastore.org/libman](https://json.schemastore.org/libman).
 
 With the following manifest file, LibMan retrieves files per the configuration defined in the `libraries` property. An explanation of the object literals defined within `libraries` follows:
 
-* A subset of [jQuery](https://jquery.com/) version 3.3.1 is retrieved from the CDNJS provider. The subset is defined in the `files` property&mdash;*jquery.min.js*, *jquery.js*, and *jquery.min.map*. The files are placed in the project's *wwwroot/lib/jquery* folder.
+* A subset of [jQuery](https://jquery.com/) version 3.3.1 is retrieved from the CDNJS provider. The subset is defined in the `files` property&mdash;`jquery.min.js`, `jquery.js`, and *jquery.min.map*. The files are placed in the project's *wwwroot/lib/jquery* folder.
 * The entirety of [Bootstrap](https://getbootstrap.com/) version 4.1.3 is retrieved and placed in a *wwwroot/lib/bootstrap* folder. The object literal's `provider` property overrides the `defaultProvider` property value. LibMan retrieves the Bootstrap files from the unpkg provider.
-* A subset of [Lodash](https://lodash.com/) was approved by a governing body within the organization. The *lodash.js* and *lodash.min.js* files are retrieved from the local file system at *C:\\temp\\lodash\\*. The files are copied to the project's *wwwroot/lib/lodash* folder.
+* A subset of [Lodash](https://lodash.com/) was approved by a governing body within the organization. The `lodash.js` and `lodash.min.js` files are retrieved from the local file system at *C:\\temp\\lodash\\*. The files are copied to the project's *wwwroot/lib/lodash* folder.
 
 [!code-json[](samples/LibManSample/libman.json)]
 
 > [!NOTE]
-> LibMan only supports one version of each library from each provider. The *libman.json* file fails schema validation if it contains two libraries with the same library name for a given provider.
+> LibMan only supports one version of each library from each provider. The `libman.json` file fails schema validation if it contains two libraries with the same library name for a given provider.
 
 ## Restore library files
 
-To restore library files from within Visual Studio, there must be a valid *libman.json* file in the project root. Restored files are placed in the project at the location specified for each library.
+To restore library files from within Visual Studio, there must be a valid `libman.json` file in the project root. Restored files are placed in the project at the location specified for each library.
 
 Library files can be restored in an ASP.NET Core project in two ways:
 
@@ -117,7 +116,7 @@ LibMan can restore the defined library files as part of the build process. By de
 
 To enable and test the restore-on-build behavior:
 
-* Right-click *libman.json* in **Solution Explorer** and select **Enable Restore Client-Side Libraries on Build** from the context menu.
+* Right-click `libman.json` in **Solution Explorer** and select **Enable Restore Client-Side Libraries on Build** from the context menu.
 * Click the **Yes** button when prompted to install a NuGet package. The [Microsoft.Web.LibraryManager.Build](https://www.nuget.org/packages/Microsoft.Web.LibraryManager.Build/) NuGet package is added to the project:
 
   [!code-xml[](samples/LibManSample/LibManSample.csproj?name=snippet_RestoreOnBuildPackage)]
@@ -137,9 +136,9 @@ To enable and test the restore-on-build behavior:
   ========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
   ```
 
-When the restore-on-build behavior is enabled, the *libman.json* context menu displays a **Disable Restore Client-Side Libraries on Build** option. Selecting this option removes the `Microsoft.Web.LibraryManager.Build` package reference from the project file. Consequently, the client-side libraries are no longer restored on each build.
+When the restore-on-build behavior is enabled, the `libman.json` context menu displays a **Disable Restore Client-Side Libraries on Build** option. Selecting this option removes the `Microsoft.Web.LibraryManager.Build` package reference from the project file. Consequently, the client-side libraries are no longer restored on each build.
 
-Regardless of the restore-on-build setting, you can manually restore at any time from the *libman.json* context menu. For more information, see [Restore files manually](#restore-files-manually).
+Regardless of the restore-on-build setting, you can manually restore at any time from the `libman.json` context menu. For more information, see [Restore files manually](#restore-files-manually).
 
 ### Restore files manually
 
@@ -149,7 +148,7 @@ To manually restore library files:
   * Right-click the solution name in **Solution Explorer**.
   * Select the **Restore Client-Side Libraries** option.
 * For a specific project:
-  * Right-click the *libman.json* file in **Solution Explorer**.
+  * Right-click the `libman.json` file in **Solution Explorer**.
   * Select the **Restore Client-Side Libraries** option.
 
 While the restore operation is running:
@@ -172,7 +171,7 @@ While the restore operation is running:
 
 To perform the *clean* operation, which deletes library files previously restored in Visual Studio:
 
-* Right-click the *libman.json* file in **Solution Explorer**.
+* Right-click the `libman.json` file in **Solution Explorer**.
 * Select the **Clean Client-Side Libraries** option.
 
 To prevent unintentional removal of non-library files, the clean operation doesn't delete whole directories. It only removes files that were included in the previous restore.
@@ -194,19 +193,19 @@ The clean operation only deletes files from the project. Library files stay in t
 
 To uninstall library files:
 
-* Open *libman.json*.
+* Open `libman.json`.
 * Position the caret inside the corresponding `libraries` object literal.
 * Click the light bulb icon that appears in the left margin, and select **Uninstall \<library_name>@\<library_version>**:
 
   ![Uninstall library context menu option](_static/uninstall-menu-option.png)
 
-Alternatively, you can manually edit and save the LibMan manifest (*libman.json*). The [restore operation](#restore-library-files) runs when the file is saved. Library files that are no longer defined in *libman.json* are removed from the project.
+Alternatively, you can manually edit and save the LibMan manifest (`libman.json`). The [restore operation](#restore-library-files) runs when the file is saved. Library files that are no longer defined in `libman.json` are removed from the project.
 
 ## Update library version
 
 To check for an updated library version:
 
-* Open *libman.json*.
+* Open `libman.json`.
 * Position the caret inside the corresponding `libraries` object literal.
 * Click the light bulb icon that appears in the left margin. Hover over **Check for updates**.
 
@@ -219,7 +218,7 @@ LibMan checks for a library version newer than the version installed. The follow
 
 * If a pre-release newer than the installed version is available, the pre-release is displayed.
 
-To downgrade to an older library version, manually edit the *libman.json* file. When the file is saved, the LibMan [restore operation](#restore-library-files):
+To downgrade to an older library version, manually edit the `libman.json` file. When the file is saved, the LibMan [restore operation](#restore-library-files):
 
 * Removes redundant files from the previous version.
 * Adds new and updated files from the new version.

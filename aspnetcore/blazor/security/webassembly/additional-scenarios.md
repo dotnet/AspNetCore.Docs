@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/18/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/additional-scenarios
 ---
 # ASP.NET Core Blazor WebAssembly additional security scenarios
@@ -36,7 +35,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
-// AddHttpClient is an extension in Microsoft.Http.Extensions
+// AddHttpClient is an extension in Microsoft.Extensions.Http
 builder.Services.AddHttpClient("WebAPI", 
         client => client.BaseAddress = new Uri("https://www.example.com/base"))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
@@ -45,7 +44,7 @@ builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("WebAPI"));
 ```
 
-For a hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure), request URIs are within the app's base URI by default. Therefore, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> in an app generated from the project template.
+For a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln) based on the [Blazor WebAssembly project template](xref:blazor/project-structure), request URIs are within the app's base URI by default. Therefore, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> in an app generated from the project template.
 
 The configured <xref:System.Net.Http.HttpClient> is used to make authorized requests using the [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) pattern:
 
@@ -218,7 +217,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 ...
 
-// AddHttpClient is an extension in Microsoft.Http.Extensions
+// AddHttpClient is an extension in Microsoft.Extensions.Http
 builder.Services.AddHttpClient<WeatherForecastClient>(
         client => client.BaseAddress = new Uri("https://www.example.com/base"))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
@@ -246,7 +245,7 @@ The handler can be further configured with <xref:Microsoft.AspNetCore.Components
 In `Program.cs`:
 
 ```csharp
-// AddHttpClient is an extension in Microsoft.Http.Extensions
+// AddHttpClient is an extension in Microsoft.Extensions.Http
 builder.Services.AddHttpClient<WeatherForecastClient>(
         client => client.BaseAddress = new Uri("https://www.example.com/base"))
     .AddHttpMessageHandler(sp => sp.GetRequiredService<AuthorizationMessageHandler>()
@@ -269,7 +268,7 @@ If the Blazor WebAssembly app ordinarily uses a secure default <xref:System.Net.
 In `Program.cs`:
 
 ```csharp
-// AddHttpClient is an extension in Microsoft.Http.Extensions
+// AddHttpClient is an extension in Microsoft.Extensions.Http
 builder.Services.AddHttpClient("WebAPI.NoAuthenticationClient", 
     client => client.BaseAddress = new Uri("https://www.example.com/base"));
 ```
@@ -594,6 +593,8 @@ The `Authentication` component (`Pages/Authentication.razor`) saves and restores
 }
 ```
 
+In the preceding example, `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance. <xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework.
+
 This example uses Azure Active Directory (AAD) for authentication. In `Program.cs`:
 
 * The `ApplicationAuthenticationState` is configured as the Microsoft Autentication Library (MSAL) `RemoteAuthenticationState` type.
@@ -822,7 +823,7 @@ Prerendering content that requires authentication and authorization isn't curren
 * Prerenders paths for which authorization isn't required.
 * Doesn't prerender paths for which authorization is required.
 
-For the client (**`Client`**) app's `Program.cs`, factor common service registrations into a separate method (for example, create a `ConfigureCommonServices` method in the **`Client`** project). Common services are those that the developer registers for use by both the client and server (**`Server`**) apps.
+For the **`Client`** project's `Program.cs` file, factor common service registrations into a separate method (for example, create a `ConfigureCommonServices` method in the **`Client`** project). Common services are those that the developer registers for use by both the client and server projects.
 
 ```csharp
 public static void ConfigureCommonServices(IServiceCollection services)
@@ -844,7 +845,7 @@ ConfigureCommonServices(builder.Services);
 await builder.Build().RunAsync();
 ```
 
-In the **`Server`** app's `Program.cs` file, register the following additional services and call `ConfigureCommonServices`:
+In the **`Server`** project's `Program.cs` file, register the following additional services and call `ConfigureCommonServices`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -861,7 +862,7 @@ builder.Services.AddScoped<SignOutSessionStateManager>();
 Client.Program.ConfigureCommonServices(services);
 ```
 
-In the **`Server`** app's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
+In the **`Server`** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
 ```cshtml
 <div id="app">
@@ -1086,7 +1087,7 @@ builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("WebAPI"));
 ```
 
-For a hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure), request URIs are within the app's base URI by default. Therefore, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> in an app generated from the project template.
+For a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln) based on the [Blazor WebAssembly project template](xref:blazor/project-structure), request URIs are within the app's base URI by default. Therefore, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> in an app generated from the project template.
 
 The configured <xref:System.Net.Http.HttpClient> is used to make authorized requests using the [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) pattern:
 
@@ -1859,7 +1860,7 @@ Prerendering content that requires authentication and authorization isn't curren
 * Prerenders paths for which authorization isn't required.
 * Doesn't prerender paths for which authorization is required.
 
-In the client (**`Client`**) app's `Program` class (`Program.cs`), factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server (**`Server`**) apps.
+In the **`Client`** project's `Program` class (`Program.cs`), factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server projects.
 
 ```csharp
 public class Program
@@ -1885,7 +1886,7 @@ public class Program
 }
 ```
 
-In the server app's `Startup.ConfigureServices`, register the following additional services and call `ConfigureCommonServices`:
+In the **`Server`** project's `Startup.ConfigureServices` method, register the following additional services and call `ConfigureCommonServices`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -1905,7 +1906,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In the **`Server`** app's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
+In the **`Server`** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
 ```cshtml
 <div id="app">
@@ -2130,7 +2131,7 @@ builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
     .CreateClient("WebAPI"));
 ```
 
-For a hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure), request URIs are within the app's base URI by default. Therefore, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> in an app generated from the project template.
+For a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln) based on the [Blazor WebAssembly project template](xref:blazor/project-structure), request URIs are within the app's base URI by default. Therefore, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> in an app generated from the project template.
 
 The configured <xref:System.Net.Http.HttpClient> is used to make authorized requests using the [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) pattern:
 
@@ -2903,7 +2904,7 @@ Prerendering content that requires authentication and authorization isn't curren
 * Prerenders paths for which authorization isn't required.
 * Doesn't prerender paths for which authorization is required.
 
-In the client (**`Client`**) app's `Program` class (`Program.cs`), factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server (**`Server`**) apps.
+In the **`Client`** project's `Program` class (`Program.cs`), factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server projects.
 
 ```csharp
 public class Program
@@ -2929,7 +2930,7 @@ public class Program
 }
 ```
 
-In the server app's `Startup.ConfigureServices`, register the following additional services and call `ConfigureCommonServices`:
+In the **`Server`** project's `Startup.ConfigureServices` method, register the following additional services and call `ConfigureCommonServices`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -2949,7 +2950,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-In the **`Server`** app's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
+In the **`Server`** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
 ```cshtml
 <div id="app">

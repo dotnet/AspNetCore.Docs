@@ -5,7 +5,6 @@ description: Describes the built-in Tag Helpers used with Forms.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/working-with-forms
 ---
 # Tag Helpers in forms in ASP.NET Core
@@ -357,7 +356,7 @@ The following Razor shows how you access a specific `Color` element:
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Demo/EditColor.cshtml)]
 
-The *Views/Shared/EditorTemplates/String.cshtml* template:
+The `Views/Shared/EditorTemplates/String.cshtml` template:
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/String.cshtml)]
 
@@ -369,7 +368,7 @@ The following Razor shows how to iterate over a collection:
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Demo/Edit.cshtml)]
 
-The *Views/Shared/EditorTemplates/ToDoItem.cshtml* template:
+The `Views/Shared/EditorTemplates/ToDoItem.cshtml` template:
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/ToDoItem.cshtml)]
 
@@ -673,7 +672,7 @@ If you find yourself using the "not specified" option in multiple pages, you can
 
 [!code-cshtml[](../../mvc/views/working-with-forms/sample/final/Views/Home/IndexEmptyTemplate.cshtml?highlight=5)]
 
-The *Views/Shared/EditorTemplates/CountryViewModel.cshtml* template:
+The `Views/Shared/EditorTemplates/CountryViewModel.cshtml` template:
 
 [!code-cshtml[](working-with-forms/sample/final/Views/Shared/EditorTemplates/CountryViewModel.cshtml)]
 

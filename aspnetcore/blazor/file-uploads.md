@@ -5,7 +5,6 @@ description: Learn how to upload files in Blazor with the InputFile component.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 ms.date: 11/09/2021
 uid: blazor/file-uploads
 zone_pivot_groups: blazor-hosting-models
@@ -20,6 +19,8 @@ This article explains how to upload files in Blazor with the <xref:Microsoft.Asp
 > Always follow security best practices when permitting users to upload files. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
 Use the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component to read browser file data into .NET code. The <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component renders an HTML `<input>` element of type `file`. By default, the user selects single files. Add the `multiple` attribute to permit the user to upload multiple files at once.
+
+File selection isn't cumulative when using an <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component or its underlying [HTML `<input type="file">`](https://developer.mozilla.org/docs/Web/HTML/Element/input/file), so you can't add files to an existing file selection. The component always replaces the user's initial file selection, so file references from prior selections aren't available.
 
 The following <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component executes the `LoadFiles` method when the <xref:Microsoft.AspNetCore.Components.Forms.InputFile.OnChange> ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)) event occurs. An <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs> provides access to the selected file list and details about each file:
 
@@ -113,7 +114,7 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 
 :::zone pivot="server"
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor":::
 
 :::zone-end
 
@@ -125,7 +126,7 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 > * [Upload files to a server](#upload-files-to-a-server)
 > * [Upload files to an external service](#upload-files-to-an-external-service)
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor":::
 
 :::zone-end
 
@@ -166,7 +167,7 @@ For testing, the preceding URLs are configured in the projects' `Properties/laun
 
 :::zone pivot="webassembly"
 
-The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly solution.
+The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 
 > [!IMPORTANT]
 > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
@@ -197,7 +198,7 @@ public class UploadResult
 
 The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`. In the following example, the project's namespace is `BlazorSample.Shared`.
 
-`UploadResult.cs` in the **`Shared`** project of the hosted Blazor WebAssembly solution:
+`UploadResult.cs` in the **`Shared`** project of the hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln):
 
 ```csharp
 namespace BlazorSample.Shared
@@ -242,7 +243,7 @@ The following `FileUpload2` component:
 
 `Pages/FileUpload2.razor` in the Blazor Server app:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor":::
 
 :::zone-end
 
@@ -250,7 +251,7 @@ The following `FileUpload2` component:
 
 `Pages/FileUpload2.razor` in the **`Client`** project:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor":::
 
 :::zone-end
 
@@ -503,7 +504,7 @@ To use the following example in a test app:
 
 `Pages/FileUpload3.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload3.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/file-uploads/FileUpload3.razor":::
 
 For more information, see the following API resources:
 
@@ -553,12 +554,14 @@ For more information on Azure Blob Storage and Azure Files, see the [Azure Stora
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 > [!WARNING]
 > Always follow security best practices when permitting users to upload files. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
 Use the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component to read up to 2 GB of browser file data into .NET code. The <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component renders an HTML `<input>` element of type `file`. By default, the user selects single files. Add the `multiple` attribute to permit the user to upload multiple files at once.
+
+File selection isn't cumulative when using an <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component or its underlying [HTML `<input type="file">`](https://developer.mozilla.org/docs/Web/HTML/Element/input/file), so you can't add files to an existing file selection. The component always replaces the user's initial file selection, so file references from prior selections aren't available.
 
 The following <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component executes the `LoadFiles` method when the <xref:Microsoft.AspNetCore.Components.Forms.InputFile.OnChange> ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)) event occurs. An <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs> provides access to the selected file list and details about each file:
 
@@ -702,7 +705,7 @@ For testing, the preceding URLs are configured in the projects' `Properties/laun
 
 :::zone pivot="webassembly"
 
-The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly solution.
+The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 
 > [!IMPORTANT]
 > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
@@ -733,7 +736,7 @@ public class UploadResult
 
 The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`. In the following example, the project's namespace is `BlazorSample.Shared`.
 
-`UploadResult.cs` in the **`Shared`** project of the hosted Blazor WebAssembly solution:
+`UploadResult.cs` in the **`Shared`** project of the hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln):
 
 ```csharp
 namespace BlazorSample.Shared

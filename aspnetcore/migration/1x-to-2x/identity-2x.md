@@ -4,7 +4,6 @@ author: rick-anderson
 description: This article outlines the most common steps for migrating ASP.NET Core 1.x authentication and Identity to ASP.NET Core 2.0.
 ms.author: scaddie
 ms.date: 06/21/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/1x-to-2x/identity-2x
 ---
 # Migrate authentication and Identity to ASP.NET Core 2.0
@@ -333,7 +332,7 @@ For more information, see <xref:security/authentication/windowsauth>.
 
 A side effect of the 2.0 changes is the switch to using named options instead of cookie options instances. The ability to customize the Identity cookie scheme names is removed.
 
-For example, 1.x projects use [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) to pass an `IdentityCookieOptions` parameter into *AccountController.cs* and *ManageController.cs*. The external cookie authentication scheme is accessed from the provided instance:
+For example, 1.x projects use [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) to pass an `IdentityCookieOptions` parameter into `AccountController.cs` and `ManageController.cs`. The external cookie authentication scheme is accessed from the provided instance:
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Controllers/AccountController.cs?name=snippet_AccountControllerConstructor&highlight=4,11)]
 
@@ -413,19 +412,19 @@ protected override void OnModelCreating(ModelBuilder builder)
 
 ## Replace GetExternalAuthenticationSchemes
 
-The synchronous method `GetExternalAuthenticationSchemes` was removed in favor of an asynchronous version. 1.x projects have the following code in *Controllers/ManageController.cs*:
+The synchronous method `GetExternalAuthenticationSchemes` was removed in favor of an asynchronous version. 1.x projects have the following code in `Controllers/ManageController.cs`:
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Controllers/ManageController.cs?name=snippet_GetExternalAuthenticationSchemes)]
 
-This method appears in *Views/Account/Login.cshtml* too:
+This method appears in `Views/Account/Login.cshtml` too:
 
 [!code-cshtml[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Views/Account/Login.cshtml?name=snippet_GetExtAuthNSchemes&highlight=2)]
 
-In 2.0 projects, use the <xref:Microsoft.AspNetCore.Identity.SignInManager%601.GetExternalAuthenticationSchemesAsync%2A> method. The change in *ManageController.cs* resembles the following code:
+In 2.0 projects, use the <xref:Microsoft.AspNetCore.Identity.SignInManager%601.GetExternalAuthenticationSchemesAsync%2A> method. The change in `ManageController.cs` resembles the following code:
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Controllers/ManageController.cs?name=snippet_GetExternalAuthenticationSchemesAsync)]
 
-In *Login.cshtml*, the `AuthenticationScheme` property accessed in the `foreach` loop changes to `Name`:
+In `Login.cshtml`, the `AuthenticationScheme` property accessed in the `foreach` loop changes to `Name`:
 
 [!code-cshtml[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Views/Account/Login.cshtml?name=snippet_GetExtAuthNSchemesAsync&highlight=2,19)]
 
@@ -433,7 +432,7 @@ In *Login.cshtml*, the `AuthenticationScheme` property accessed in the `foreach`
 
 ## ManageLoginsViewModel property change
 
-A `ManageLoginsViewModel` object is used in the `ManageLogins` action of *ManageController.cs*. In 1.x projects, the object's `OtherLogins` property return type is `IList<AuthenticationDescription>`. This return type requires an import of `Microsoft.AspNetCore.Http.Authentication`:
+A `ManageLoginsViewModel` object is used in the `ManageLogins` action of `ManageController.cs`. In 1.x projects, the object's `OtherLogins` property return type is `IList<AuthenticationDescription>`. This return type requires an import of `Microsoft.AspNetCore.Http.Authentication`:
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Models/ManageViewModels/ManageLoginsViewModel.cs?name=snippet_ManageLoginsViewModel&highlight=2,11)]
 

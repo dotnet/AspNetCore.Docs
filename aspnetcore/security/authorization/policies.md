@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/policies
 ---
 # Policy-based authorization in ASP.NET Core
@@ -196,15 +195,15 @@ If a handler calls `context.Succeed` or `context.Fail`, all other handlers are s
 
 In cases where you want evaluation to be on an **OR** basis, implement multiple handlers for a single requirement. For example, Microsoft has doors that only open with key cards. If you leave your key card at home, the receptionist prints a temporary sticker and opens the door for you. In this scenario, you'd have a single requirement, *BuildingEntry*, but multiple handlers, each one examining a single requirement.
 
-*BuildingEntryRequirement.cs*
+`BuildingEntryRequirement.cs`
 
 :::code language="csharp" source="policies/samples/6.0/AuthorizationPoliciesSample/Policies/Requirements/BuildingEntryRequirement.cs":::
 
-*BadgeEntryHandler.cs*
+`BadgeEntryHandler.cs`
 
 :::code language="csharp" source="policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/BadgeEntryHandler.cs":::
 
-*TemporaryStickerHandler.cs*
+`TemporaryStickerHandler.cs`
 
 :::code language="csharp" source="policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/TemporaryStickerHandler.cs":::
 
@@ -442,15 +441,15 @@ If a handler calls `context.Succeed` or `context.Fail`, all other handlers are s
 
 In cases where you want evaluation to be on an **OR** basis, implement multiple handlers for a single requirement. For example, Microsoft has doors that only open with key cards. If you leave your key card at home, the receptionist prints a temporary sticker and opens the door for you. In this scenario, you'd have a single requirement, *BuildingEntry*, but multiple handlers, each one examining a single requirement.
 
-*BuildingEntryRequirement.cs*
+`BuildingEntryRequirement.cs`
 
 :::code language="csharp" source="policies/samples/PoliciesAuthApp1/Services/Requirements/BuildingEntryRequirement.cs" id="snippet_BuildingEntryRequirementClass":::
 
-*BadgeEntryHandler.cs*
+`BadgeEntryHandler.cs`
 
 :::code language="csharp" source="policies/samples/PoliciesAuthApp1/Services/Handlers/BadgeEntryHandler.cs" id="snippet_BadgeEntryHandlerClass":::
 
-*TemporaryStickerHandler.cs*
+`TemporaryStickerHandler.cs`
 
 :::code language="csharp" source="policies/samples/PoliciesAuthApp1/Services/Handlers/TemporaryStickerHandler.cs" id="snippet_TemporaryStickerHandlerClass":::
 
@@ -684,15 +683,15 @@ If a handler calls `context.Succeed` or `context.Fail`, all other handlers are s
 
 In cases where you want evaluation to be on an **OR** basis, implement multiple handlers for a single requirement. For example, Microsoft has doors that only open with key cards. If you leave your key card at home, the receptionist prints a temporary sticker and opens the door for you. In this scenario, you'd have a single requirement, *BuildingEntry*, but multiple handlers, each one examining a single requirement.
 
-*BuildingEntryRequirement.cs*
+`BuildingEntryRequirement.cs`
 
 :::code language="csharp" source="policies/samples/PoliciesAuthApp1/Services/Requirements/BuildingEntryRequirement.cs" id="snippet_BuildingEntryRequirementClass":::
 
-*BadgeEntryHandler.cs*
+`BadgeEntryHandler.cs`
 
 :::code language="csharp" source="policies/samples/PoliciesAuthApp1/Services/Handlers/BadgeEntryHandler.cs" id="snippet_BadgeEntryHandlerClass":::
 
-*TemporaryStickerHandler.cs*
+`TemporaryStickerHandler.cs`
 
 :::code language="csharp" source="policies/samples/PoliciesAuthApp1/Services/Handlers/TemporaryStickerHandler.cs" id="snippet_TemporaryStickerHandlerClass":::
 

@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/http-requests
 ---
 # Make HTTP requests using IHttpClientFactory in ASP.NET Core
@@ -225,7 +224,7 @@ Handlers can depend upon services of any scope. Services that handlers depend up
 
 Use one of the following approaches to share per-request state with message handlers:
 
-* Pass data into the handler using [HttpRequestMessage.Properties](xref:System.Net.Http.HttpRequestMessage.Properties).
+* Pass data into the handler using <xref:System.Net.Http.HttpRequestMessage.Options%2A?displayProperty=nameWithType>.
 * Use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> to access the current request.
 * Create a custom <xref:System.Threading.AsyncLocal%601> storage object to pass the data.
 
@@ -277,7 +276,7 @@ An approach to managing regularly used policies is to define them once and regis
 
 In the preceding code:
 
-* Two policies, `Regular` and `Short`, are added to the Polly registry.
+* Two policies, `Regular` and `Long`, are added to the Polly registry.
 * <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry%2A> configures individual named clients to use these policies from the Polly registry.
 
 For more information on `IHttpClientFactory` and Polly integrations, see the [Polly wiki](https://github.com/App-vNext/Polly/wiki/Polly-and-HttpClientFactory).
@@ -646,7 +645,7 @@ Handlers can depend upon services of any scope. Services that handlers depend up
 
 Use one of the following approaches to share per-request state with message handlers:
 
-* Pass data into the handler using [HttpRequestMessage.Properties](xref:System.Net.Http.HttpRequestMessage.Properties).
+* Pass data into the handler using <xref:System.Net.Http.HttpRequestMessage.Options%2A?displayProperty=nameWithType>.
 * Use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> to access the current request.
 * Create a custom <xref:System.Threading.AsyncLocal%601> storage object to pass the data.
 
@@ -1068,7 +1067,7 @@ Handlers can depend upon services of any scope. Services that handlers depend up
 
 Use one of the following approaches to share per-request state with message handlers:
 
-* Pass data into the handler using [HttpRequestMessage.Properties](xref:System.Net.Http.HttpRequestMessage.Properties).
+* Pass data into the handler using <xref:System.Net.Http.HttpRequestMessage.Properties%2A?displayProperty=nameWithType>.
 * Use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> to access the current request.
 * Create a custom <xref:System.Threading.AsyncLocal%601> storage object to pass the data.
 

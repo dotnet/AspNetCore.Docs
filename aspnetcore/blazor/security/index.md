@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/index
 ---
 # ASP.NET Core Blazor authentication and authorization
@@ -25,10 +24,7 @@ Blazor WebAssembly apps run on the client. Authorization is *only* used to deter
 [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page](xref:blazor/components/prerendering-and-integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601> aren't supported in Razor components. Blazor Server apps use ASP.NET Core Identity. For more information, see the following guidance:
-> 
-> * <xref:blazor/security/server/index>
-> * [Scaffold ASP.NET Core Identity into a Blazor Server app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project)
+> ASP.NET Core apps that use ASP.NET Core Identity for user management should use Razor Pages instead of Razor components for identity-related UI, such as user registration, login, logout, and other user management tasks. ASP.NET Core Identity is designed to work in the context of an HTTP request and response, which isn't generally available in Blazor apps. ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601>, aren't supported in Razor components. For more information on using ASP.NET Core Identity with Blazor, see [Scaffold ASP.NET Core Identity into a Blazor Server app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project).
 
 ## Authentication
 
@@ -58,7 +54,7 @@ The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationS
 
 For more information on creating apps and configuration, see <xref:blazor/security/server/index>.
 
-## AuthenticationStateProvider service
+## `AuthenticationStateProvider` service
 
 <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is the underlying service used by the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> component to get the authentication state.
 
@@ -76,24 +72,24 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
 <button @onclick="GetClaimsPrincipalData">Get ClaimsPrincipal Data</button>
 
-<p>@_authMessage</p>
+<p>@authMessage</p>
 
-@if (_claims.Count() > 0)
+@if (claims.Count() > 0)
 {
     <ul>
-        @foreach (var claim in _claims)
+        @foreach (var claim in claims)
         {
             <li>@claim.Type: @claim.Value</li>
         }
     </ul>
 }
 
-<p>@_surnameMessage</p>
+<p>@surnameMessage</p>
 
 @code {
-    private string _authMessage;
-    private string _surnameMessage;
-    private IEnumerable<Claim> _claims = Enumerable.Empty<Claim>();
+    private string authMessage;
+    private string surnameMessage;
+    private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
 
     private async Task GetClaimsPrincipalData()
     {
@@ -102,14 +98,14 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
         if (user.Identity.IsAuthenticated)
         {
-            _authMessage = $"{user.Identity.Name} is authenticated.";
-            _claims = user.Claims;
-            _surnameMessage = 
+            authMessage = $"{user.Identity.Name} is authenticated.";
+            claims = user.Claims;
+            surnameMessage = 
                 $"Surname: {user.FindFirst(c => c.Type == ClaimTypes.Surname)?.Value}";
         }
         else
         {
-            _authMessage = "The user is NOT authenticated.";
+            authMessage = "The user is NOT authenticated.";
         }
     }
 }
@@ -117,7 +113,7 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
 If `user.Identity.IsAuthenticated` is `true` and because the user is a <xref:System.Security.Claims.ClaimsPrincipal>, claims can be enumerated and membership in roles evaluated.
 
-For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and <xref:fundamentals/dependency-injection>.
+For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and <xref:fundamentals/dependency-injection>. For information on how to implement a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> in Blazor Server apps, see <xref:blazor/security/server/index#implement-a-custom-authenticationstateprovider>.
 
 ## Expose the authentication state as a cascading parameter
 
@@ -128,13 +124,13 @@ If authentication state data is required for procedural logic, such as when perf
 
 <button @onclick="LogUsername">Log username</button>
 
-<p>@_authMessage</p>
+<p>@authMessage</p>
 
 @code {
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
 
-    private string _authMessage;
+    private string authMessage;
 
     private async Task LogUsername()
     {
@@ -143,11 +139,11 @@ If authentication state data is required for procedural logic, such as when perf
 
         if (user.Identity.IsAuthenticated)
         {
-            _authMessage = $"{user.Identity.Name} is authenticated.";
+            authMessage = $"{user.Identity.Name} is authenticated.";
         }
         else
         {
-            _authMessage = "The user is NOT authenticated.";
+            authMessage = "The user is NOT authenticated.";
         }
     }
 }
@@ -302,7 +298,7 @@ For role-based authorization, use the <xref:Microsoft.AspNetCore.Components.Auth
 </AuthorizeView>
 ```
 
-For more information, see <xref:security/authorization/roles>.
+For more information, including configuration guidance, see <xref:security/authorization/roles>.
 
 For policy-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> parameter:
 
@@ -574,6 +570,7 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationS
 * <xref:security/index>
 * <xref:security/authentication/windowsauth>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
+* <xref:blazor/hybrid/security/index>
 * [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links
 
 :::moniker-end
@@ -590,10 +587,7 @@ Blazor WebAssembly apps run on the client. Authorization is *only* used to deter
 [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page](xref:blazor/components/prerendering-and-integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601> aren't supported in Razor components. Blazor Server apps use ASP.NET Core Identity. For more information, see the following guidance:
-> 
-> * <xref:blazor/security/server/index>
-> * [Scaffold ASP.NET Core Identity into a Blazor Server app without existing authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization)
+> ASP.NET Core apps that use ASP.NET Core Identity for user management should use Razor Pages instead of Razor components for identity-related UI, such as user registration, login, logout, and other user management tasks. ASP.NET Core Identity is designed to work in the context of an HTTP request and response, which isn't generally available in Blazor apps. ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601>, aren't supported in Razor components. For more information on using ASP.NET Core Identity with Blazor, see [Scaffold ASP.NET Core Identity into a Blazor Server app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project).
 
 ## Authentication
 
@@ -623,7 +617,7 @@ The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationS
 
 For more information on creating apps and configuration, see <xref:blazor/security/server/index>.
 
-## AuthenticationStateProvider service
+## `AuthenticationStateProvider` service
 
 <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is the underlying service used by the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> component to get the authentication state.
 
@@ -641,24 +635,24 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
 <button @onclick="GetClaimsPrincipalData">Get ClaimsPrincipal Data</button>
 
-<p>@_authMessage</p>
+<p>@authMessage</p>
 
-@if (_claims.Count() > 0)
+@if (claims.Count() > 0)
 {
     <ul>
-        @foreach (var claim in _claims)
+        @foreach (var claim in claims)
         {
             <li>@claim.Type: @claim.Value</li>
         }
     </ul>
 }
 
-<p>@_surnameMessage</p>
+<p>@surnameMessage</p>
 
 @code {
-    private string _authMessage;
-    private string _surnameMessage;
-    private IEnumerable<Claim> _claims = Enumerable.Empty<Claim>();
+    private string authMessage;
+    private string surnameMessage;
+    private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
 
     private async Task GetClaimsPrincipalData()
     {
@@ -667,14 +661,14 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
         if (user.Identity.IsAuthenticated)
         {
-            _authMessage = $"{user.Identity.Name} is authenticated.";
-            _claims = user.Claims;
-            _surnameMessage = 
+            authMessage = $"{user.Identity.Name} is authenticated.";
+            claims = user.Claims;
+            surnameMessage = 
                 $"Surname: {user.FindFirst(c => c.Type == ClaimTypes.Surname)?.Value}";
         }
         else
         {
-            _authMessage = "The user is NOT authenticated.";
+            authMessage = "The user is NOT authenticated.";
         }
     }
 }
@@ -682,7 +676,7 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
 If `user.Identity.IsAuthenticated` is `true` and because the user is a <xref:System.Security.Claims.ClaimsPrincipal>, claims can be enumerated and membership in roles evaluated.
 
-For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and <xref:fundamentals/dependency-injection>.
+For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and <xref:fundamentals/dependency-injection>. For information on how to implement a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> in Blazor Server apps, see <xref:blazor/security/server/index#implement-a-custom-authenticationstateprovider>.
 
 ## Expose the authentication state as a cascading parameter
 
@@ -693,13 +687,13 @@ If authentication state data is required for procedural logic, such as when perf
 
 <button @onclick="LogUsername">Log username</button>
 
-<p>@_authMessage</p>
+<p>@authMessage</p>
 
 @code {
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
 
-    private string _authMessage;
+    private string authMessage;
 
     private async Task LogUsername()
     {
@@ -708,11 +702,11 @@ If authentication state data is required for procedural logic, such as when perf
 
         if (user.Identity.IsAuthenticated)
         {
-            _authMessage = $"{user.Identity.Name} is authenticated.";
+            authMessage = $"{user.Identity.Name} is authenticated.";
         }
         else
         {
-            _authMessage = "The user is NOT authenticated.";
+            authMessage = "The user is NOT authenticated.";
         }
     }
 }
@@ -869,7 +863,7 @@ For role-based authorization, use the <xref:Microsoft.AspNetCore.Components.Auth
 </AuthorizeView>
 ```
 
-For more information, see <xref:security/authorization/roles>.
+For more information, including configuration guidance, see <xref:security/authorization/roles>.
 
 For policy-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> parameter:
 
@@ -1161,10 +1155,7 @@ Blazor WebAssembly apps run on the client. Authorization is *only* used to deter
 [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization) don't apply to routable Razor components. If a non-routable Razor component is [embedded in a page](xref:blazor/components/prerendering-and-integration), the page's authorization conventions indirectly affect the Razor component along with the rest of the page's content.
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601> aren't supported in Razor components. Blazor Server apps use ASP.NET Core Identity. For more information, see the following guidance:
-> 
-> * <xref:blazor/security/server/index>
-> * [Scaffold ASP.NET Core Identity into a Blazor Server app without existing authorization](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project-without-existing-authorization)
+> ASP.NET Core apps that use ASP.NET Core Identity for user management should use Razor Pages instead of Razor components for identity-related UI, such as user registration, login, logout, and other user management tasks. ASP.NET Core Identity is designed to work in the context of an HTTP request and response, which isn't generally available in Blazor apps. ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601>, aren't supported in Razor components. For more information on using ASP.NET Core Identity with Blazor, see [Scaffold ASP.NET Core Identity into a Blazor Server app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project).
 
 ## Authentication
 
@@ -1194,7 +1185,7 @@ The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationS
 
 For more information on creating apps and configuration, see <xref:blazor/security/server/index>.
 
-## AuthenticationStateProvider service
+## `AuthenticationStateProvider` service
 
 <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is the underlying service used by the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> component to get the authentication state.
 
@@ -1212,24 +1203,24 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
 <button @onclick="GetClaimsPrincipalData">Get ClaimsPrincipal Data</button>
 
-<p>@_authMessage</p>
+<p>@authMessage</p>
 
-@if (_claims.Count() > 0)
+@if (claims.Count() > 0)
 {
     <ul>
-        @foreach (var claim in _claims)
+        @foreach (var claim in claims)
         {
             <li>@claim.Type: @claim.Value</li>
         }
     </ul>
 }
 
-<p>@_surnameMessage</p>
+<p>@surnameMessage</p>
 
 @code {
-    private string _authMessage;
-    private string _surnameMessage;
-    private IEnumerable<Claim> _claims = Enumerable.Empty<Claim>();
+    private string authMessage;
+    private string surnameMessage;
+    private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
 
     private async Task GetClaimsPrincipalData()
     {
@@ -1238,14 +1229,14 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
         if (user.Identity.IsAuthenticated)
         {
-            _authMessage = $"{user.Identity.Name} is authenticated.";
-            _claims = user.Claims;
-            _surnameMessage = 
+            authMessage = $"{user.Identity.Name} is authenticated.";
+            claims = user.Claims;
+            surnameMessage = 
                 $"Surname: {user.FindFirst(c => c.Type == ClaimTypes.Surname)?.Value}";
         }
         else
         {
-            _authMessage = "The user is NOT authenticated.";
+            authMessage = "The user is NOT authenticated.";
         }
     }
 }
@@ -1253,7 +1244,7 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 
 If `user.Identity.IsAuthenticated` is `true` and because the user is a <xref:System.Security.Claims.ClaimsPrincipal>, claims can be enumerated and membership in roles evaluated.
 
-For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and <xref:fundamentals/dependency-injection>.
+For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and <xref:fundamentals/dependency-injection>. For information on how to implement a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> in Blazor Server apps, see <xref:blazor/security/server/index#implement-a-custom-authenticationstateprovider>.
 
 ## Expose the authentication state as a cascading parameter
 
@@ -1264,13 +1255,13 @@ If authentication state data is required for procedural logic, such as when perf
 
 <button @onclick="LogUsername">Log username</button>
 
-<p>@_authMessage</p>
+<p>@authMessage</p>
 
 @code {
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
 
-    private string _authMessage;
+    private string authMessage;
 
     private async Task LogUsername()
     {
@@ -1279,11 +1270,11 @@ If authentication state data is required for procedural logic, such as when perf
 
         if (user.Identity.IsAuthenticated)
         {
-            _authMessage = $"{user.Identity.Name} is authenticated.";
+            authMessage = $"{user.Identity.Name} is authenticated.";
         }
         else
         {
-            _authMessage = "The user is NOT authenticated.";
+            authMessage = "The user is NOT authenticated.";
         }
     }
 }
@@ -1438,7 +1429,7 @@ For role-based authorization, use the <xref:Microsoft.AspNetCore.Components.Auth
 </AuthorizeView>
 ```
 
-For more information, see <xref:security/authorization/roles>.
+For more information, including configuration guidance, see <xref:security/authorization/roles>.
 
 For policy-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> parameter:
 

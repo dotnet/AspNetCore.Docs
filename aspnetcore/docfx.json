@@ -65,6 +65,9 @@
         "**/getting-started/**/**.md": "tutorial",
         "**/tutorials/**/**.md": "tutorial"
       },
+      "no-loc": {
+        "**/**.md": [ "Blazor", "Blazor Hybrid", "Blazor Server", "Blazor WebAssembly", "BREACH", "cookie", "Cookie", "CRIME", "Home" , "Identity", "JS", "Kestrel", ".NET MAUI", ".NET Multi-platform App UI", "Privacy" , "Razor", "REST", "SignalR", "Web View"  ]
+      },
       "recommendations": {
         "**/tutorials/**/**.md": "false"
       }

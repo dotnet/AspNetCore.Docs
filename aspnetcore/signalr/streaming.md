@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: bradyg
 ms.custom: mvc, devx-track-js
 ms.date: 10/29/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/streaming
 ---
 # Use streaming in ASP.NET Core SignalR
@@ -107,27 +106,12 @@ while (await channel.WaitToReadAsync())
 Console.WriteLine("Streaming completed");
 ```
 
-The `StreamAsChannelAsync` method on `HubConnection` is used to invoke a server-to-client streaming method. Pass the hub method name and arguments defined in the hub method to `StreamAsChannelAsync`. The generic parameter on `StreamAsChannelAsync<T>` specifies the type of objects returned by the streaming method. A `ChannelReader<T>` is returned from the stream invocation and represents the stream on the client.
+In the previous code:
 
-```csharp
-// Call "Cancel" on this CancellationTokenSource to send a cancellation message to
-// the server, which will trigger the corresponding token in the hub method.
-var cancellationTokenSource = new CancellationTokenSource();
-var channel = await hubConnection.StreamAsChannelAsync<int>(
-    "Counter", 10, 500, cancellationTokenSource.Token);
+* The `StreamAsChannelAsync` method on `HubConnection` is used to invoke a server-to-client streaming method. Pass the hub method name and arguments defined in the hub method to `StreamAsChannelAsync`. 
+* The generic parameter on `StreamAsChannelAsync<T>` specifies the type of objects returned by the streaming method. 
+* A `ChannelReader<T>` is returned from the stream invocation and represents the stream on the client.
 
-// Wait asynchronously for data to become available
-while (await channel.WaitToReadAsync())
-{
-    // Read all currently available data synchronously, before waiting for more data
-    while (channel.TryRead(out var count))
-    {
-        Console.WriteLine($"{count}");
-    }
-}
-
-Console.WriteLine("Streaming completed");
-```
 
 ### Client-to-server streaming
 

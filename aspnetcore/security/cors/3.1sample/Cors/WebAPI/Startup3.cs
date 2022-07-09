@@ -23,16 +23,16 @@ namespace WebAPI3
             services.AddCors(options =>
             {
                 options.AddPolicy("Policy1",
-                    builder =>
+                    policy =>
                     {
-                        builder.WithOrigins("http://example.com",
+                        policy.WithOrigins("http://example.com",
                                             "http://www.contoso.com");
                     });
 
                 options.AddPolicy("AnotherPolicy",
-                    builder =>
+                    policy =>
                     {
-                        builder.WithOrigins("http://www.contoso.com")
+                        policy.WithOrigins("http://www.contoso.com")
                                             .AllowAnyHeader()
                                             .AllowAnyMethod();
                     });

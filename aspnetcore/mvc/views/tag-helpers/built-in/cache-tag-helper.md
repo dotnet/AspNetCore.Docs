@@ -5,7 +5,6 @@ description: Learn how to use the Cache Tag Helper.
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/10/2018
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
 ---
 # Cache Tag Helper in ASP.NET Core MVC
@@ -142,7 +141,7 @@ routes.MapRoute(
     template: "{controller=Home}/{action=Index}/{Make?}/{Model?}");
 ```
 
-*Index.cshtml*:
+`Index.cshtml`:
 
 ```cshtml
 <cache vary-by-route="Make,Model">
@@ -207,7 +206,7 @@ public IActionResult Index(string myParam1, string myParam2, string myParam3)
 }
 ```
 
-*Index.cshtml*:
+`Index.cshtml`:
 
 ```cshtml
 <cache vary-by="@Model">

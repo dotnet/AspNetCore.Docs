@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 08/05/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: test/integration-tests
 ---
 # Integration tests in ASP.NET Core
@@ -120,7 +119,7 @@ If the SUT's [environment](xref:fundamentals/environments) isn't set, the enviro
 
 :::moniker range=">= aspnetcore-6.0"
 
-ASP.NET Core 6 introduced <xref:Microsoft.AspNetCore.Builder.WebApplication> which removed the need for a `Startup` class. To test with `WebApplicationFactory` without a `Startup` class, an ASP.NET Core 6 app needs to expose the implicitly defined `Program` class to the test project by doing the following:
+ASP.NET Core 6 introduced <xref:Microsoft.AspNetCore.Builder.WebApplication> which removed the need for a `Startup` class. To test with `WebApplicationFactory` without a `Startup` class, an ASP.NET Core 6 app needs to expose the implicitly defined `Program` class to the test project by doing one of the following:
 
 * Expose internal types from the web app to the test project. This can be done in the project file (`.csproj`):
   ```xml

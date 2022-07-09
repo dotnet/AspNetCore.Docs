@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-6.0'
 ms.author: wigodbe
 ms.custom: mvc
 ms.date: 08/06/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/servers/kestrel/http3
 ---
 
@@ -39,7 +38,9 @@ The preceding Windows 11 Build versions may require the use of a [Windows Inside
 `libmsquic` is published via Microsoft's official Linux package repository at `packages.microsoft.com`. To install this package:
 
 1. Add the `packages.microsoft.com` repository. See [Linux Software Repository for Microsoft Products](/windows-server/administration/linux-package-repository-for-microsoft-software) for instructions.
-2. Install the `libmsquic` package using the distro's package manager. For example, `apt install libmsquic` on Ubuntu.
+2. Install the `libmsquic` package using the distro's package manager. For example, `apt install libmsquic=1.9*` on Ubuntu.
+
+**Note:** .NET 6 is only compatible with the 1.9.x versions of libmsquic. Libmsquic 2.x is not compatible due to breaking changes. Libmsquic receives updates to 1.9.x when needed to incorporate security fixes.  
 
 ### macOS
 

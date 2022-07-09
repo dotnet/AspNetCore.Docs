@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/14/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/configuration/overview
 ---
 # Configure ASP.NET Core Data Protection
@@ -115,6 +114,24 @@ To share protected payloads among apps:
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionSetApplicationName":::
 
+> [!WARNING]
+> In .NET 6, <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> normalizes the content root path to end with a <xref:System.IO.Path.DirectorySeparatorChar>. For example, on Windows the content root path ends in `\` and on Linux `/`. Other hosts don't normalize the path. Most apps migrating from <xref:Microsoft.Extensions.Hosting.HostBuilder> or  <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> won't share the same app name because they won't have the terminating `DirectorySeparatorChar`. To work around this issue, remove the directory separator character and set the app name manually, as shown in the following code:
+>
+> ```csharp
+> using Microsoft.AspNetCore.DataProtection;
+> using System.Reflection;
+> 
+> var builder = WebApplication.CreateBuilder(args);
+> var trimmedContentRootPath = builder.Environment.ContentRootPath.TrimEnd(Path.DirectorySeparatorChar);
+> builder.Services.AddDataProtection()
+>  .SetApplicationName(trimmedContentRootPath);
+> var app = builder.Build();
+> 
+> app.MapGet("/", () => Assembly.GetEntryAssembly()!.GetName().Name);
+> 
+> app.Run();
+>  ```
+
 ## DisableAutomaticKeyGeneration
 
 You may have a scenario where you don't want an app to automatically roll keys (create new keys) as they approach expiration. One example of this scenario might be apps set up in a primary/secondary relationship, where only the primary app is responsible for key management concerns and secondary apps simply have a read-only view of the key ring. The secondary apps can be configured to treat the key ring as read-only by configuring the system with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.DisableAutomaticKeyGeneration%2A>:
@@ -209,7 +226,7 @@ Only Redis versions supporting [Redis Data Persistence](/azure/azure-cache-for-r
 
 ## Logging DataProtection
 
-Enable `Information` level logging of DataProtection to help diagnosis problem. The following *appsetting.json* file enables information logging of the DataProtection API:
+Enable `Information` level logging of DataProtection to help diagnosis problem. The following `appsettings.json` file enables information logging of the DataProtection API:
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/appsettings.json" highlight="6":::
 
@@ -544,7 +561,7 @@ Only Redis versions supporting [Redis Data Persistence](/azure/azure-cache-for-r
 
 ## Logging DataProtection
 
-Enable `Information` level logging of DataProtection to help diagnosis problem. The following *appsetting.json* file enables information logging of the DataProtection API:
+Enable `Information` level logging of DataProtection to help diagnosis problem. The following `appsettings.json` file enables information logging of the DataProtection API:
 
 ```JSON
 {

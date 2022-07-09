@@ -5,7 +5,6 @@ description: Part 8 of Razor Pages and Entity Framework tutorial series.
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/22/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-rp/concurrency
 ---
 # Part 8, Razor Pages with EF Core in ASP.NET Core - Concurrency
@@ -93,7 +92,7 @@ The  SQL Server approach and SQLite implementation details are slightly differen
   * In the model, include a tracking column that is used to determine when a row has been changed.
   * Apply the <xref:System.ComponentModel.DataAnnotations.TimestampAttribute> to the concurrency property.
 
-  Update the *Models/Department.cs* file with the following highlighted code:
+  Update the `Models/Department.cs` file with the following highlighted code:
 
   [!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippet3&highlight=27,28)]
 
@@ -135,11 +134,11 @@ The following highlighted code shows the T-SQL that verifies exactly one row was
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-  * In the model, include a tracking column that can be used to determine when a row has been changed. In this sample, a `GUID` is used. Update the *Models/Department.cs* file with the following highlighted code:
+  * In the model, include a tracking column that can be used to determine when a row has been changed. In this sample, a `GUID` is used. Update the `Models/Department.cs` file with the following highlighted code:
 
     [!code-csharp[](intro/samples/cu50/Models/Department.cs?name=snippetSL&highlight=27)]
 
-  * Update the *Data/SchoolContext.cs* file by calling <xref:Microsoft.EntityFrameworkCore.Metadata.IProperty.IsConcurrencyToken> on the `Department.ConcurrencyToken` property:
+  * Update the `Data/SchoolContext.cs` file by calling <xref:Microsoft.EntityFrameworkCore.Metadata.IProperty.IsConcurrencyToken> on the `Department.ConcurrencyToken` property:
 
     [!code-csharp[](intro/samples/cu50/Data/SchoolContext.cs?name=snippet_SQLite&highlight=21-23)]
 
@@ -174,8 +173,8 @@ Run the following commands in the PMC:
 
 The preceding commands:
 
-* Creates the *Migrations/{time stamp}_RowVersion.cs* migration file.
-* Updates the *Migrations/SchoolContextModelSnapshot.cs* file. The update adds the following code to the `BuildModel` method:
+* Creates the `Migrations/{time stamp}_RowVersion.cs` migration file.
+* Updates the `Migrations/SchoolContextModelSnapshot.cs` file. The update adds the following code to the `BuildModel` method:
 
 ```csharp
  b.Property<byte[]>("ConcurrencyToken")
@@ -195,8 +194,8 @@ Run the following commands in a terminal:
 
 The preceding commands:
 
-* Creates the *Migrations/{time stamp}_RowVersion.cs* migration file.
-* Updates the *Migrations/SchoolContextModelSnapshot.cs* file. The update adds the following highlighted code to the `BuildModel` method:
+* Creates the `Migrations/{time stamp}_RowVersion.cs` migration file.
+* Updates the `Migrations/SchoolContextModelSnapshot.cs` file. The update adds the following highlighted code to the `BuildModel` method:
 
 ```csharp
 b.Property<Guid>("ConcurrencyToken")
@@ -278,7 +277,7 @@ The following code shows the updated page:
 
 ## Update the Edit page model
 
-Update *Pages\Departments\Edit.cshtml.cs* with the following code:
+Update `Pages/Departments/Edit.cshtml.cs` with the following code:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -363,7 +362,7 @@ The following shows the differences between the SQL Server and SQLite versions:
 
 ### Update the Edit Razor page
 
-Update *Pages/Departments/Edit.cshtml* with the following code:
+Update `Pages/Departments/Edit.cshtml` with the following code:
 
 [!code-cshtml[](intro/samples/cu50/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
@@ -404,7 +403,7 @@ Click **Save** again. The value you entered in the second browser tab is saved. 
 
 ## Update the Delete page model
 
-Update *Pages/Departments/Delete.cshtml.cs* with the following code:
+Update `Pages/Departments/Delete.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu50/Pages/Departments/Delete.cshtml.cs)]
 
@@ -416,7 +415,7 @@ The Delete page detects concurrency conflicts when the entity has changed after 
 
 ### Update the Delete Razor page
 
-Update *Pages/Departments/Delete.cshtml* with the following code:
+Update `Pages/Departments/Delete.cshtml` with the following code:
 
 [!code-cshtml[](intro/samples/cu50/Pages/Departments/Delete.cshtml?highlight=1,10,39,42,51)]
 
@@ -528,7 +527,7 @@ EF Core throws `DbConcurrencyException` exceptions when it detects conflicts. Th
 
 ## Add a tracking property
 
-In *Models/Department.cs*, add a tracking property named RowVersion:
+In `Models/Department.cs`, add a tracking property named RowVersion:
 
 [!code-csharp[](intro/samples/cu30/Models/Department.cs?highlight=26,27)]
 
@@ -606,8 +605,8 @@ Build the project.
 
 This command:
 
-* Creates the *Migrations/{time stamp}_RowVersion.cs* migration file.
-* Updates the *Migrations/SchoolContextModelSnapshot.cs* file. The update adds the following highlighted code to the `BuildModel` method:
+* Creates the `Migrations/{time stamp}_RowVersion.cs` migration file.
+* Updates the `Migrations/SchoolContextModelSnapshot.cs` file. The update adds the following highlighted code to the `BuildModel` method:
 
   [!code-csharp[](intro/samples/cu30/Migrations/SchoolContextModelSnapshot.cs?name=snippet_Department&highlight=15-17)]
 
@@ -688,7 +687,7 @@ The following code shows the updated page:
 
 ## Update the Edit page model
 
-Update *Pages\Departments\Edit.cshtml.cs* with the following code:
+Update `Pages/Departments/Edit.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Edit.cshtml.cs?name=snippet_All)]
 
@@ -718,7 +717,7 @@ The `ModelState.Remove` statement is required because `ModelState` has the old `
 
 ### Update the Edit page
 
-Update *Pages/Departments/Edit.cshtml* with the following code:
+Update `Pages/Departments/Edit.cshtml` with the following code:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
@@ -759,7 +758,7 @@ Click **Save** again. The value you entered in the second browser tab is saved. 
 
 ## Update the Delete page model
 
-Update *Pages/Departments/Delete.cshtml.cs* with the following code:
+Update `Pages/Departments/Delete.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu30/Pages/Departments/Delete.cshtml.cs)]
 
@@ -771,7 +770,7 @@ The Delete page detects concurrency conflicts when the entity has changed after 
 
 ### Update the Delete page
 
-Update *Pages/Departments/Delete.cshtml* with the following code:
+Update `Pages/Departments/Delete.cshtml` with the following code:
 
 [!code-cshtml[](intro/samples/cu30/Pages/Departments/Delete.cshtml?highlight=1,10,39,42,51)]
 
@@ -902,7 +901,7 @@ In EF Core, when no rows have been updated by an `Update` or `Delete` command, a
 
 ### Add a tracking property to the Department entity
 
-In *Models/Department.cs*, add a tracking property named RowVersion:
+In `Models/Department.cs`, add a tracking property named RowVersion:
 
 [!code-csharp[](intro/samples/cu/Models/Department.cs?name=snippet_Final&highlight=26,27)]
 
@@ -943,8 +942,8 @@ dotnet ef database update
 
 The preceding commands:
 
-* Adds the *Migrations/{time stamp}_RowVersion.cs* migration file.
-* Updates the *Migrations/SchoolContextModelSnapshot.cs* file. The update adds the following highlighted code to the `BuildModel` method:
+* Adds the `Migrations/{time stamp}_RowVersion.cs` migration file.
+* Updates the `Migrations/SchoolContextModelSnapshot.cs` file. The update adds the following highlighted code to the `BuildModel` method:
 
   [!code-csharp[](intro/samples/cu/Migrations/SchoolContextModelSnapshot.cs?name=snippet_Department&highlight=14-16)]
 
@@ -988,7 +987,7 @@ The following markup shows the updated page:
 
 ### Update the Edit page model
 
-Update *Pages\Departments\Edit.cshtml.cs* with the following code:
+Update `Pages/Departments/Edit.cshtml.cs` with the following code:
 
 [!code-csharp[](intro/samples/cu/Pages/Departments/Edit.cshtml.cs?name=snippet)]
 
@@ -1014,7 +1013,7 @@ The `ModelState.Remove` statement is required because `ModelState` has the old `
 
 ## Update the Edit page
 
-Update *Pages/Departments/Edit.cshtml* with the following markup:
+Update `Pages/Departments/Edit.cshtml` with the following markup:
 
 [!code-cshtml[](intro/samples/cu/Pages/Departments/Edit.cshtml?highlight=1,14,16-17,37-39)]
 
@@ -1069,7 +1068,7 @@ The Delete page detects concurrency conflicts when the entity has changed after 
 
 ### Update the Delete page
 
-Update *Pages/Departments/Delete.cshtml* with the following code:
+Update `Pages/Departments/Delete.cshtml` with the following code:
 
 [!code-cshtml[](intro/samples/cu/Pages/Departments/Delete.cshtml?highlight=1,10,39,51)]
 

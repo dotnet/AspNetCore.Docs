@@ -4,7 +4,6 @@ description: Migrate HTTP handlers and modules to ASP.NET Core middleware
 author: rick-anderson
 ms.author: riande
 ms.date: 12/07/2016
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/http-modules
 ---
 # Migrate HTTP handlers and modules to ASP.NET Core middleware
@@ -43,13 +42,13 @@ Before proceeding to ASP.NET Core middleware, let's first recap how HTTP modules
 
 2. For the same event, the order in which they're configured in *Web.config*.
 
-In addition to modules, you can add handlers for the life cycle events to your *Global.asax.cs* file. These handlers run after the handlers in the configured modules.
+In addition to modules, you can add handlers for the life cycle events to your `Global.asax.cs` file. These handlers run after the handlers in the configured modules.
 
 ## From handlers and modules to middleware
 
 **Middleware are simpler than HTTP modules and handlers:**
 
-* Modules, handlers, *Global.asax.cs*, *Web.config* (except for IIS configuration) and the application life cycle are gone
+* Modules, handlers, `Global.asax.cs`, *Web.config* (except for IIS configuration) and the application life cycle are gone
 
 * The roles of both modules and handlers have been taken over by middleware
 

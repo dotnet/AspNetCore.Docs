@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 05/17/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/groups
 ---
 
@@ -44,8 +43,8 @@ To protect access to resources while using groups, use [authentication and autho
 > [!NOTE]
 > Group names are case-sensitive.
 
-## Related resources
+## Additional resources
 
-* [Get started](xref:tutorials/signalr)
-* [Hubs](xref:signalr/hubs)
-* [Publish to Azure](xref:signalr/publish-to-azure-web-app)
+* <xref:tutorials/signalr>
+* <xref:signalr/hubs>
+* <xref:signalr/publish-to-azure-web-app>

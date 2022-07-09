@@ -6,7 +6,6 @@ ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
 ms.date: 03/22/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
@@ -118,7 +117,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormRemoveTagHelper":::
 
 > [!NOTE]
-> [Razor Pages](xref:razor-pages/index) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](xref:razor-pages/index#xsrf).
+> [Razor Pages](xref:razor-pages/index) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](xref:razor-pages/index#xsrfcsrf-and-razor-pages-1).
 
 The most common approach to defending against CSRF attacks is to use the *Synchronizer Token Pattern* (STP). STP is used when the user requests a page with form data:
 
@@ -145,6 +144,19 @@ ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working 
 * [ValidateAntiForgeryToken](xref:Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute)
 * [AutoValidateAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute)
 * [IgnoreAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.IgnoreAntiforgeryTokenAttribute)
+
+### Antiforgery with AddControllers
+
+Calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A> does ***not*** enable antiforgery tokens. <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A> must be called to have built-in antiforgery token support.
+
+## Multiple browser tabs and the Synchronizer Token Pattern
+
+With the Synchronizer Token Pattern, only the most recently loaded page contains a valid antiforgery token. Using multiple tabs can be problematic. For example, if a user opens multiple tabs:
+
+ * Only the most recently loaded tab contains a valid antiforgery token.
+ * Requests made from previously loaded tabs fail with an error: `Antiforgery token validation failed. The antiforgery cookie token and request token do not match`
+ 
+ Consider alternative CSRF protection patterns if this poses an issue.
 
 ## Configure antiforgery with `AntiforgeryOptions`
 
@@ -618,7 +630,7 @@ xhttp.send(JSON.stringify({ "name": "Learn C#" }));
 
 ### AngularJS
 
-AngularJS uses a convention to address CSRF. If the server sends a cookie with the name `XSRF-TOKEN`, the AngularJS `$http` service adds the cookie value to a header when it sends a request to the server. This process is automatic. The client doesn't need set the header explicitly. The header name is `X-XSRF-TOKEN`. The server should detect this header and validate its contents.
+AngularJS uses a convention to address CSRF. If the server sends a cookie with the name `XSRF-TOKEN`, the AngularJS `$http` service adds the cookie value to a header when it sends a request to the server. This process is automatic. The client doesn't need to set the header explicitly. The header name is `X-XSRF-TOKEN`. The server should detect this header and validate its contents.
 
 For ASP.NET Core API to work with this convention in your application startup:
 

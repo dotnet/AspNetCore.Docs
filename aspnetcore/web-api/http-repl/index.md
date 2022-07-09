@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/12/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/http-repl
 ---
 # Test web APIs with the HttpRepl
@@ -380,12 +379,12 @@ pref set editor.command.default.arguments "--disable-extensions --new-window"
 
 By default, the HttpRepl has a set of relative paths that it uses to find the OpenAPI description when executing the `connect` command without the `--openapi` option. These relative paths are combined with the root and base paths specified in the `connect` command. The default relative paths are:
 
-- *swagger.json*
-- *swagger/v1/swagger.json*
-- */swagger.json*
-- */swagger/v1/swagger.json*
-- *openapi.json*
-- */openapi.json*
+- `swagger.json`
+- `swagger/v1/swagger.json`
+- `/swagger.json`
+- `/swagger/v1/swagger.json`
+- `openapi.json`
+- `/openapi.json`
 
 To use a different set of search paths in your environment, set the `swagger.searchPaths` preference. The value must be a pipe-delimited list of relative paths. For example:
 

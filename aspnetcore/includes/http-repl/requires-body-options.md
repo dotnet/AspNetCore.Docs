@@ -1,6 +1,3 @@
----
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
----
 * `-c|--content`
 
   Provides an inline HTTP request body. For example, `-c "{"id":2,"name":"Cherry"}"`.

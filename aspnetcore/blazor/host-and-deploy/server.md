@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/server
 ---
 # Host and deploy Blazor Server
@@ -150,7 +149,7 @@ For more information and configuration guidance, consult the following resources
 * [WebSocket proxying](http://nginx.org/docs/http/websocket.html)
 * Consult developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
   * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 ## Linux with Apache
@@ -193,7 +192,7 @@ For more information and configuration guidance, consult the following resources
 * [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html)
 * Consult developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
   * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 ## Measure network latency
@@ -202,7 +201,7 @@ For more information and configuration guidance, consult the following resources
 
 `Shared/MeasureLatency.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/host-and-deploy/MeasureLatency.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/host-and-deploy/MeasureLatency.razor":::
 
 For a reasonable UI experience, we recommend a sustained UI latency of 250 ms or less.
 
@@ -330,7 +329,7 @@ For additional Kubernetes host support, consult the following resources:
 * [Kubernetes documentation](https://kubernetes.io/docs/home/)
 * Developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
   * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 ## Linux with Nginx
@@ -372,7 +371,7 @@ For additional Nginx host support, consult the following resources:
   * [WebSocket proxying](http://nginx.org/docs/http/websocket.html)
 * Developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
   * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 ## Linux with Apache
@@ -414,7 +413,7 @@ For additional Apache host support, consult the following resources:
 * [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html)
 * Developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
   * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 ## Measure network latency

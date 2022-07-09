@@ -1,6 +1,3 @@
----
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
----
 <!-- USED in RP and MVC tutorial for .NET 6 -->
 
 ## Add validation rules to the movie model

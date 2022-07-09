@@ -5,7 +5,6 @@ description: Learn how to restrict ASP.NET Core controller and action access by 
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/14/2016
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/roles
 ---
 # Role-based authorization in ASP.NET Core
@@ -17,6 +16,16 @@ uid: security/authorization/roles
 When an identity is created it may belong to one or more roles. For example, Tracy may belong to the `Administrator` and `User` roles while Scott may only belong to the `User` role. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through the <xref:System.Security.Principal.GenericPrincipal.IsInRole%2A> method on the <xref:System.Security.Claims.ClaimsPrincipal> class. <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> must be added to Role services.
 
 While roles are claims, not all claims are roles. Depending on the identity issuer a role may be a collection of users that may apply claims for group members, as well as an actual claim on an identity. However, claims are meant to be information about an individual user. Using roles to add claims to a user can confuse the boundary between the user and their individual claims. This confusion is why the SPA templates are not designed around roles. In addition, for organizations migrating from an on-premises legacy system the proliferation of roles over the years can mean a role claim may be too large to be contained within a token usable by SPAs. To secure SPAs, see <xref:security/authentication/identity/spa>.
+
+## Add Role services to Identity
+
+Register role-based authorization services in `Program.cs` by calling <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> with the role type in the app's Identity configuration. The role type in the following example is `IdentityRole`:
+
+```csharp
+builder.Services.AddDefaultIdentity<IdentityUser>( ... )
+    .AddRoles<IdentityRole>()
+    ...
+```
 
 ## Adding role checks
 
@@ -80,12 +89,6 @@ To specify multiple allowed roles in a requirement, specify them as parameters t
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Program.cs?name=snippet2&highlight=6-10)]
 
 The preceding code authorizes users who belong to the `Administrator`, `PowerUser` or `BackupAdministrator` roles.
-
-### Add Role services to Identity
-
-Append <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> to add Role services:
-
-[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Program.cs?name=snippet_ef&highlight=12)]
 
 :::moniker-end
 

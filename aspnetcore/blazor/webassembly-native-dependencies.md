@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/28/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/webassembly-native-dependencies
 ---
 # ASP.NET Core Blazor WebAssembly native dependencies
@@ -103,10 +102,7 @@ NuGet packages can contain native dependencies for use on WebAssembly. These lib
 
 ## SkiaSharp example library use
 
-[SkiaSharp](https://github.com/mono/SkiaSharp) is a cross-platform 2D graphics library for .NET based on the native [Skia graphics library](https://skia.org/), and it now has preview support for Blazor WebAssembly.
-
-> [!WARNING]
-> Experimental and preview features are provided for the purpose of collecting feedback and aren't supported for production use.
+[SkiaSharp](https://github.com/mono/SkiaSharp) is a cross-platform 2D graphics library for .NET based on the native [Skia graphics library](https://skia.org/) with support for Blazor WebAssembly.
 
 To use SkiaSharp in a Blazor WebAssembly app:
 
@@ -115,9 +111,6 @@ To use SkiaSharp in a Blazor WebAssembly app:
    ```dotnetcli
    dotnet add package –-prerelease SkiaSharp.Views.Blazor
    ```
-
-   > [!WARNING]
-   > The [`SkiaSharp.Views.Blazor`](https://www.nuget.org/packages/SkiaSharp.Views.Blazor) package is a prerelease NuGet package not supported for production use.
 
    [!INCLUDE[](~/includes/package-reference.md)]
 

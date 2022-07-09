@@ -5,7 +5,6 @@ description: Learn how to use the LibMan CLI in an ASP.NET Core project.
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 11/12/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: client-side/libman/libman-cli
 ---
 # Use the LibMan CLI with ASP.NET Core
@@ -87,7 +86,7 @@ The following sections outline the available CLI commands.
 
 ## Initialize LibMan in the project
 
-The `libman init` command creates a *libman.json* file if one doesn't exist. The file is created with the default item template content.
+The `libman init` command creates a `libman.json` file if one doesn't exist. The file is created with the default item template content.
 
 ### Synopsis
 
@@ -102,11 +101,11 @@ The following options are available for the `libman init` command:
 
 * `-d|--default-destination <PATH>`
 
-  A path relative to the current folder. Library files are installed in this location if no `destination` property is defined for a library in *libman.json*. The `<PATH>` value is written to the `defaultDestination` property of *libman.json*.
+  A path relative to the current folder. Library files are installed in this location if no `destination` property is defined for a library in `libman.json`. The `<PATH>` value is written to the `defaultDestination` property of `libman.json`.
 
 * `-p|--default-provider <PROVIDER>`
 
-  The provider to use if no provider is defined for a given library. The `<PROVIDER>` value is written to the `defaultProvider` property of *libman.json*. Replace `<PROVIDER>` with one of the following values:
+  The provider to use if no provider is defined for a given library. The `<PROVIDER>` value is written to the `defaultProvider` property of `libman.json`. Replace `<PROVIDER>` with one of the following values:
 
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
@@ -114,7 +113,7 @@ The following options are available for the `libman init` command:
 
 ### Examples
 
-To create a *libman.json* file in an ASP.NET Core project:
+To create a `libman.json` file in an ASP.NET Core project:
 
 * Navigate to the project root.
 * Run the following command:
@@ -129,7 +128,7 @@ To create a *libman.json* file in an ASP.NET Core project:
 
   ![libman init command - default provider](_static/libman-init-provider.png)
 
-A *libman.json* file is added to the project root with the following content:
+A `libman.json` file is added to the project root with the following content:
 
 ```json
 {
@@ -141,7 +140,7 @@ A *libman.json* file is added to the project root with the following content:
 
 ## Add library files
 
-The `libman install` command downloads and installs library files into the project. A *libman.json* file is added if one doesn't exist. The *libman.json* file is modified to store configuration details for the library files.
+The `libman install` command downloads and installs library files into the project. A `libman.json` file is added if one doesn't exist. The `libman.json` file is modified to store configuration details for the library files.
 
 ### Synopsis
 
@@ -162,7 +161,7 @@ The following options are available for the `libman install` command:
 
 * `-d|--destination <PATH>`
 
-  The location to install the library. If not specified, the default location is used. If no `defaultDestination` property is specified in *libman.json*, this option is required.
+  The location to install the library. If not specified, the default location is used. If no `defaultDestination` property is specified in `libman.json`, this option is required.
 
 * `--files <FILE>`
 
@@ -174,13 +173,13 @@ The following options are available for the `libman install` command:
   
   [!INCLUDE [LibMan provider names](../../includes/libman-cli/provider-names.md)]
 
-  If not specified, the `defaultProvider` property in *libman.json* is used. If no `defaultProvider` property is specified in *libman.json*, this option is required.
+  If not specified, the `defaultProvider` property in `libman.json` is used. If no `defaultProvider` property is specified in `libman.json`, this option is required.
 
 [!INCLUDE [standard-cli-options](../../includes/libman-cli/standard-cli-options.md)]
 
 ### Examples
 
-Consider the following *libman.json* file:
+Consider the following `libman.json` file:
 
 ```json
 {
@@ -190,13 +189,13 @@ Consider the following *libman.json* file:
 }
 ```
 
-To install the jQuery version 3.2.1 *jquery.min.js* file to the *wwwroot/scripts/jquery* folder using the CDNJS provider:
+To install the jQuery version 3.2.1 `jquery.min.js` file to the *wwwroot/scripts/jquery* folder using the CDNJS provider:
 
 ```console
 libman install jquery@3.2.1 --provider cdnjs --destination wwwroot/scripts/jquery --files jquery.min.js
 ```
 
-The *libman.json* file resembles the following:
+The `libman.json` file resembles the following:
 
 ```json
 {
@@ -214,7 +213,7 @@ The *libman.json* file resembles the following:
 }
 ```
 
-To install the *calendar.js* and *calendar.css* files from *C:\\temp\\contosoCalendar\\* using the file system provider:
+To install the `calendar.js` and `calendar.css` files from *C:\\temp\\contosoCalendar\\* using the file system provider:
 
   ```console
   libman install C:\temp\contosoCalendar\ --provider filesystem --files calendar.js --files calendar.css
@@ -222,12 +221,12 @@ To install the *calendar.js* and *calendar.css* files from *C:\\temp\\contosoCal
 
 The following prompt appears for two reasons:
 
-* The *libman.json* file doesn't contain a `defaultDestination` property.
+* The `libman.json` file doesn't contain a `defaultDestination` property.
 * The `libman install` command doesn't contain the `-d|--destination` option.
 
 ![libman install command - destination](_static/libman-install-destination.png)
 
-After accepting the default destination, the *libman.json* file resembles the following:
+After accepting the default destination, the `libman.json` file resembles the following:
 
 ```json
 {
@@ -256,11 +255,11 @@ After accepting the default destination, the *libman.json* file resembles the fo
 
 ## Restore library files
 
-The `libman restore` command installs library files defined in *libman.json*. The following rules apply:
+The `libman restore` command installs library files defined in `libman.json`. The following rules apply:
 
-* If no *libman.json* file exists in the project root, an error is returned.
-* If a library specifies a provider, the `defaultProvider` property in *libman.json* is ignored.
-* If a library specifies a destination, the `defaultDestination` property in *libman.json* is ignored.
+* If no `libman.json` file exists in the project root, an error is returned.
+* If a library specifies a provider, the `defaultProvider` property in `libman.json` is ignored.
+* If a library specifies a destination, the `defaultDestination` property in `libman.json` is ignored.
 
 ### Synopsis
 
@@ -277,7 +276,7 @@ The following options are available for the `libman restore` command:
 
 ### Examples
 
-To restore the library files defined in *libman.json*:
+To restore the library files defined in `libman.json`:
 
 ```console
 libman restore
@@ -285,7 +284,7 @@ libman restore
 
 ## Delete library files
 
-The `libman clean` command deletes library files previously restored via LibMan. Folders that become empty after this operation are deleted. The library files' associated configurations in the `libraries` property of *libman.json* aren't removed.
+The `libman clean` command deletes library files previously restored via LibMan. Folders that become empty after this operation are deleted. The library files' associated configurations in the `libraries` property of `libman.json` aren't removed.
 
 ### Synopsis
 
@@ -312,12 +311,12 @@ libman clean
 
 The `libman uninstall` command:
 
-* Deletes all files associated with the specified library from the destination in *libman.json*.
-* Removes the associated library configuration from *libman.json*.
+* Deletes all files associated with the specified library from the destination in `libman.json`.
+* Removes the associated library configuration from `libman.json`.
 
 An error occurs when:
 
-* No *libman.json* file exists in the project root.
+* No `libman.json` file exists in the project root.
 * The specified library doesn't exist.
 
 If more than one library with the same name is installed, you're prompted to choose one.
@@ -343,7 +342,7 @@ The following options are available for the `libman uninstall` command:
 
 ### Examples
 
-Consider the following *libman.json* file:
+Consider the following `libman.json` file:
 
 [!code-json[](samples/LibManSample/libman.json)]
 
@@ -369,7 +368,7 @@ The `libman update` command updates a library installed via LibMan to the specif
 
 An error occurs when:
 
-* No *libman.json* file exists in the project root.
+* No `libman.json` file exists in the project root.
 * The specified library doesn't exist.
 
 If more than one library with the same name is installed, you're prompted to choose one.

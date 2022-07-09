@@ -9,9 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
-                      builder =>
+                      policy  =>
                       {
-                          builder.WithOrigins("http://example.com",
+                          policy.WithOrigins("http://example.com",
                                               "http://www.contoso.com");
                       });
 });
@@ -42,9 +42,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(MyAllowSpecificOrigins,
-                          builder =>
+                          policy =>
                           {
-                              builder.WithOrigins("http://example.com",
+                              policy.WithOrigins("http://example.com",
                                                   "http://www.contoso.com")
                                                   .AllowAnyHeader()
                                                   .AllowAnyMethod();
@@ -73,9 +73,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(
-        builder =>
+        policy =>
         {
-            builder.WithOrigins("http://example.com",
+            policy.WithOrigins("http://example.com",
                                 "http://www.contoso.com");
         });
 });
@@ -105,9 +105,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
-                      builder =>
+                      policy =>
                       {
-                          builder.WithOrigins("http://example.com",
+                          policy.WithOrigins("http://example.com",
                                               "http://www.contoso.com");
                       });
 });
@@ -149,16 +149,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Policy1",
-        builder =>
+        policy =>
         {
-            builder.WithOrigins("http://example.com",
+            policy.WithOrigins("http://example.com",
                                 "http://www.contoso.com");
         });
 
     options.AddPolicy("AnotherPolicy",
-        builder =>
+        policy =>
         {
-            builder.WithOrigins("http://www.contoso.com")
+            policy.WithOrigins("http://www.contoso.com")
                                 .AllowAnyHeader()
                                 .AllowAnyMethod();
         });
@@ -187,9 +187,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "MyPolicy",
-        builder =>
+        policy =>
         {
-            builder.WithOrigins("http://example.com",
+            policy.WithOrigins("http://example.com",
                                 "http://www.contoso.com")
                     .WithMethods("PUT", "DELETE", "GET");
         });
@@ -222,9 +222,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "MyPolicy",
-        builder =>
+        policy =>
         {
-            builder.WithOrigins("http://example.com",
+            policy.WithOrigins("http://example.com",
                                 "http://www.contoso.com")
                     .WithMethods("PUT", "DELETE", "GET");
         });
@@ -257,9 +257,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
-        builder =>
+        policy =>
         {
-            builder.WithOrigins("https://*.example.com")
+            policy.WithOrigins("https://*.example.com")
                 .SetIsOriginAllowedToAllowWildcardSubdomains();
         });
 });
@@ -291,9 +291,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
-       builder =>
+       policy =>
        {
-           builder.WithOrigins("http://example.com")
+           policy.WithOrigins("http://example.com")
                   .WithHeaders(HeaderNames.ContentType, "x-custom-header");
        });
 });
@@ -323,9 +323,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
-        builder =>
+        policy =>
         {
-            builder.WithOrigins("https://*.example.com")
+            policy.WithOrigins("https://*.example.com")
                    .AllowAnyHeader();
         });
 });
@@ -352,9 +352,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("MyExposeResponseHeadersPolicy",
-        builder =>
+        policy =>
         {
-            builder.WithOrigins("https://*.example.com")
+            policy.WithOrigins("https://*.example.com")
                    .WithExposedHeaders("x-custom-header");
         });
 });
@@ -381,9 +381,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("MyMyAllowCredentialsPolicy",
-        builder =>
+        policy =>
         {
-            builder.WithOrigins("http://example.com")
+            policy.WithOrigins("http://example.com")
                    .AllowCredentials();
         });
 });
@@ -412,9 +412,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("MyAllowHeadersPolicy",
-        builder =>
+        policy =>
         {
-        builder.WithOrigins("http://example.com")
+        policy.WithOrigins("http://example.com")
                    .WithHeaders(HeaderNames.ContentType, "x-custom-header");
         });
 });
@@ -443,9 +443,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("MyAllowAllHeadersPolicy",
-        builder =>
+        policy =>
         {
-            builder.WithOrigins("https://*.example.com")
+            policy.WithOrigins("https://*.example.com")
                    .AllowAnyHeader();
         });
 });
@@ -472,9 +472,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("MySetPreflightExpirationPolicy",
-        builder =>
+        policy =>
         {
-            builder.WithOrigins("http://example.com")
+            policy.WithOrigins("http://example.com")
                    .SetPreflightMaxAge(TimeSpan.FromSeconds(2520));
         });
 });

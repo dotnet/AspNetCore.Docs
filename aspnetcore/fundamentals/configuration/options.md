@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/13/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/configuration/options
 --- 
 # Options pattern in ASP.NET Core
@@ -17,12 +16,14 @@ By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitt
 
 The options pattern uses classes to provide strongly typed access to groups of related settings. When [configuration settings](xref:fundamentals/configuration/index) are isolated by scenario into separate classes, the app adheres to two important software engineering principles:
 
-* The [Interface Segregation Principle (ISP) or Encapsulation](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#encapsulation): Scenarios (classes) that depend on configuration settings depend only on the configuration settings that they use.
-* [Separation of Concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns): Settings for different parts of the app aren't dependent or coupled to one another.
+* [Encapsulation](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#encapsulation):
+  * Classes that depend on configuration settings depend only on the configuration settings that they use.
+* [Separation of Concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns):
+  * Settings for different parts of the app aren't dependent or coupled to one another.
 
 Options also provide a mechanism to validate configuration data. For more information, see the [Options validation](#options-validation) section.
 
-This topic provides information on the options pattern in ASP.NET Core. For information on using the options pattern in console apps, see [Options pattern in .NET](/dotnet/core/extensions/options).
+This article provides information on the options pattern in ASP.NET Core. For information on using the options pattern in console apps, see [Options pattern in .NET](/dotnet/core/extensions/options).
 
 <a name="optpat"></a>
 
@@ -44,7 +45,7 @@ This topic provides information on the options pattern in ASP.NET Core. For info
 <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>:
 
 * Is useful in scenarios where options should be recomputed on every request. For more information, see [Use IOptionsSnapshot to read updated data](#ios).
-* Is registered as [Scoped](/dotnet/core/extensions/dependency-injection#scoped) and therefore cannot be injected into a Singleton service.
+* Is registered as [Scoped](/dotnet/core/extensions/dependency-injection#scoped) and therefore can't be injected into a Singleton service.
 * Supports [named options](#named)
 
 <xref:Microsoft.Extensions.Options.IOptionsMonitor%601>:
@@ -67,7 +68,11 @@ This topic provides information on the options pattern in ASP.NET Core. For info
 
 ## Use IOptionsSnapshot to read updated data
 
-Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, options are computed once per request when accessed and cached for the lifetime of the request. Changes to the configuration are read after the app starts when using configuration providers that support reading updated configuration values.
+Using <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>:
+
+* Options are computed once per request when accessed and cached for the lifetime of the request.
+* May incur a significant performance penalty because it's a [Scoped service](/dotnet/core/extensions/dependency-injection#scoped) and is recomputed per request. For more information, see [this GitHub issue](https://github.com/dotnet/runtime/issues/53793) and [Improve the performance of configuration binding](https://github.com/dotnet/runtime/issues/36130).
+* Changes to the configuration are read after the app starts when using configuration providers that support reading updated configuration values.
 
 The difference between `IOptionsMonitor` and `IOptionsSnapshot` is that:
 
@@ -109,8 +114,7 @@ Consider the following `appsettings.json` file:
 
 :::code language="json" source="options/samples/6.x/OptionsSample/appsettings.NO.json":::
 
-Rather than creating two classes to bind `TopItem:Month` and `TopItem:Year`,
-the following class is used for each section:
+Rather than creating two classes to bind `TopItem:Month` and `TopItem:Year`, the following class is used for each section:
 
 :::code language="csharp" source="options/samples/6.x/OptionsSample/Models/TopItemSettings.cs":::
 
@@ -180,7 +184,7 @@ The following code applies a more complex validation rule using a delegate:
 
 :::code language="csharp" source="options/samples/6.x/OptionsValidationSample/Program.cs" id="snippet_mc":::
 
-### IValidateOptions for complex validation
+### `IValidateOptions<TOptions>` and `IValidatableObject`
 
 The following class implements <xref:Microsoft.Extensions.Options.IValidateOptions%601>:
 
@@ -192,31 +196,16 @@ Using the preceding code, validation is enabled in `Program.cs` with the followi
 
 :::code language="csharp" source="options/samples/6.x/OptionsValidationSample/Program.cs" id="snippet_xm":::
 
-<!-- The following comment doesn't seem that useful 
-Options validation doesn't guard against options modifications after the options instance is created. For example, `IOptionsSnapshot` options are created and validated once per request when the options are first accessed. The `IOptionsSnapshot` options aren't validated again on subsequent access attempts *for the same request*.
+Options validation also supports <xref:System.ComponentModel.DataAnnotations.IValidatableObject>. To perform class-level validation of a class within the class itself:
 
-The `Validate` method accepts a `Func<TOptions, bool>`. To fully customize validation, implement `IValidateOptions<TOptions>`, which allows:
+* Implement the `IValidatableObject` interface and its <xref:System.ComponentModel.DataAnnotations.IValidatableObject.Validate%2A> method within the class.
+* Call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations%2A> in `Program.cs`.
 
-* Validation of multiple options types: `class ValidateTwo : IValidateOptions<Option1>, IValidationOptions<Option2>`
-* Validation that depends on another option type: `public DependsOnAnotherOptionValidator(IOptionsMonitor<AnotherOption> options)`
+### `ValidateOnStart`
 
-`IValidateOptions` validates:
+Options validation runs the first time an <xref:Microsoft.Extensions.Options.IOptions%601>, <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601>, or <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> implementation is created. To run options validation eagerly, when the app starts, call <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderExtensions.ValidateOnStart%2A> in `Program.cs`:
 
-* A specific named options instance.
-* All options when `name` is `null`.
-
-Return a `ValidateOptionsResult` from your implementation of the interface:
-
-```csharp
-public interface IValidateOptions<TOptions> where TOptions : class
-{
-    ValidateOptionsResult Validate(string name, TOptions options);
-}
-```
-
-Data Annotation-based validation is available from the [Microsoft.Extensions.Options.DataAnnotations](https://www.nuget.org/packages/Microsoft.Extensions.Options.DataAnnotations) package by calling the <xref:Microsoft.Extensions.DependencyInjection.OptionsBuilderDataAnnotationsExtensions.ValidateDataAnnotations*> method on `OptionsBuilder<TOptions>`. `Microsoft.Extensions.Options.DataAnnotations` is implicitly referenced in ASP.NET Core apps.
-
--->
+:::code language="csharp" source="options/samples/6.x/OptionsValidationSample/Snippets/Program.cs" id="snippet_ValidateOnStart" highlight="4":::
 
 ## Options post-configuration
 
@@ -250,8 +239,10 @@ By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitt
 
 The options pattern uses classes to provide strongly typed access to groups of related settings. When [configuration settings](xref:fundamentals/configuration/index) are isolated by scenario into separate classes, the app adheres to two important software engineering principles:
 
-* The [Interface Segregation Principle (ISP) or Encapsulation](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#encapsulation): Scenarios (classes) that depend on configuration settings depend only on the configuration settings that they use.
-* [Separation of Concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns): Settings for different parts of the app aren't dependent or coupled to one another.
+* [Encapsulation](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#encapsulation):
+  * Classes that depend on configuration settings depend only on the configuration settings that they use.
+* [Separation of Concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns):
+  * Settings for different parts of the app aren't dependent or coupled to one another.
 
 Options also provide a mechanism to validate configuration data. For more information, see the [Options validation](#options-validation) section.
 

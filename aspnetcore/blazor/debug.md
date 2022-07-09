@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/debug
 ---
 # Debug ASP.NET Core Blazor WebAssembly
@@ -35,7 +34,7 @@ For now, you *can't*:
 * Break on unhandled exceptions.
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.cs` and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](/visualstudio/devinit/devinit-and-codespaces)).
-* Automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+* Automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
 ## Prerequisites
 
@@ -61,6 +60,19 @@ Visual Studio for Mac requires version 8.8 (build 1532) or later:
 > [!NOTE]
 > Apple Safari on macOS isn't currently supported.
 
+## Packages
+
+Standalone Blazor WebAssembly:
+
+[`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+
+Hosted Blazor WebAssembly:
+
+* **`Client`** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+* **`Server`** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
 ## Debug a standalone Blazor WebAssembly app
 
 To enable debugging for an existing Blazor WebAssembly app, update the `launchSettings.json` file in the startup project to include the following `inspectUri` property in each launch profile:
@@ -84,7 +96,7 @@ The placeholder values for the WebSocket protocol (`wsProtocol`), host (`url.hos
 
 To debug a Blazor WebAssembly app in Visual Studio:
 
-1. Create a new hosted Blazor WebAssembly solution.
+1. Create a new hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 1. With the **`Server`** project selected in **Solution Explorer**, press <kbd>F5</kbd> to run the app in the debugger.
 
    > [!NOTE]
@@ -203,12 +215,24 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 ## Debug hosted Blazor WebAssembly
 
-For guidance on configuring VS Code assets in the `.vscode` folder and where to place the `.vscode` folder in the solution, see the **Linux** operating system guidance in <xref:blazor/tooling?pivots=linux>.
+For guidance on configuring VS Code assets in the `.vscode` folder and where to place the `.vscode` folder in the [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see the **Linux** operating system guidance in <xref:blazor/tooling?pivots=linux>.
 
 > [!NOTE]
 > Only [browser debugging](#debug-in-the-browser) is supported at this time.
 >
-> You can't automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+> You can't automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+
+To debug a **published**, hosted Blazor WebAssembly app, configure debugger support (`DebuggerSupport`) and copy output symbols to the `publish` directory (`CopyOutputSymbolsToPublishDirectory`) in the **`Client`** app's project file:
+
+```xml
+<DebuggerSupport>true</DebuggerSupport>
+<CopyOutputSymbolsToPublishDirectory>true</CopyOutputSymbolsToPublishDirectory>
+```
+
+By default, publishing an app disables the preceding properties by setting them to `false`.
+
+> [!WARNING]
+> Published, hosted Blazor WebAssembly apps should only enable debugging and copying output symbols when deploying published assets ***locally***. Do **not*** deploy a published app into production with the `DebuggerSupport` and `CopyOutputSymbolsToPublishDirectory` properties set to `true`.
 
 ## Attach to an existing debugging session
 
@@ -402,7 +426,7 @@ For now, you *can't*:
 * Break on unhandled exceptions.
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.cs` and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](/visualstudio/devinit/devinit-and-codespaces)).
-* Automatically rebuild the backend `*Server*` app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+* Automatically rebuild the backend `*Server*` app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
 ## Prerequisites
 
@@ -428,6 +452,19 @@ Visual Studio for Mac requires version 8.8 (build 1532) or later:
 > [!NOTE]
 > Apple Safari on macOS isn't currently supported.
 
+## Packages
+
+Standalone Blazor WebAssembly:
+
+[`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+
+Hosted Blazor WebAssembly:
+
+* **`Client`** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+* **`Server`** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
 ## Debug a standalone Blazor WebAssembly app
 
 To enable debugging for an existing Blazor WebAssembly app, update the `launchSettings.json` file in the startup project to include the following `inspectUri` property in each launch profile:
@@ -451,7 +488,7 @@ The placeholder values for the WebSocket protocol (`wsProtocol`), host (`url.hos
 
 To debug a Blazor WebAssembly app in Visual Studio:
 
-1. Create a new hosted Blazor WebAssembly solution.
+1. Create a new hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 1. With the **`Server`** project selected in **Solution Explorer**, press <kbd>F5</kbd> to run the app in the debugger.
 
    > [!NOTE]
@@ -570,9 +607,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 ## Debug hosted Blazor WebAssembly
 
-For guidance on configuring VS Code assets in the `.vscode` folder and where to place the `.vscode` folder in the solution, see the **Linux** operating system guidance in <xref:blazor/tooling?pivots=linux>.
+For guidance on configuring VS Code assets in the `.vscode` folder and where to place the `.vscode` folder in the [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see the **Linux** operating system guidance in <xref:blazor/tooling?pivots=linux>.
 
-The `.vscode/launch.json` file sets the current working directory to the **`Server`** project's folder, typically `Server` for a hosted Blazor WebAssembly solution:
+The `.vscode/launch.json` file sets the current working directory to the **`Server`** project's folder, typically `Server` for a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln):
 
 ```json
 "cwd": "${workspaceFolder}/Server"
@@ -584,7 +621,7 @@ If Microsoft Edge is used for debugging instead of Google Chrome, the `.vscode/l
 "browser": "edge"
 ```
 
-The `.vscode/tasks.json` file adds the **`Server`** app's project file path to the `dotnet build` arguments under `args`. The **`Server`** project's folder is typically named `Server` in a solution based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **`Server`** app of the [Blazor-SignalR tutorial](xref:blazor/tutorials/signalr-blazor), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
+The `.vscode/tasks.json` file adds the **`Server`** app's project file path to the `dotnet build` arguments under `args`. The **`Server`** project's folder is typically named `Server` in a [solution](xref:blazor/tooling#visual-studio-solution-file-sln) based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **`Server`** app of the [Blazor-SignalR tutorial](xref:blazor/tutorials/signalr-blazor), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
 
 ```json
 {
@@ -624,6 +661,18 @@ The **`Server`** project's `Properties/launchSettings.json` file includes the `i
   }
 }
 ```
+
+To debug a **published**, hosted Blazor WebAssembly app, configure debugger support (`DebuggerSupport`) and copy output symbols to the `publish` directory (`CopyOutputSymbolsToPublishDirectory`) in the **`Client`** app's project file:
+
+```xml
+<DebuggerSupport>true</DebuggerSupport>
+<CopyOutputSymbolsToPublishDirectory>true</CopyOutputSymbolsToPublishDirectory>
+```
+
+By default, publishing an app disables the preceding properties by setting them to `false`.
+
+> [!WARNING]
+> Published, hosted Blazor WebAssembly apps should only enable debugging and copying output symbols when deploying published assets ***locally***. Do **not*** deploy a published app into production with the `DebuggerSupport` and `CopyOutputSymbolsToPublishDirectory` properties set to `true`.
 
 ## Attach to an existing debugging session
 
@@ -817,7 +866,7 @@ For now, you *can't*:
 * Break on unhandled exceptions.
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.cs` and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](/visualstudio/devinit/devinit-and-codespaces)).
-* Automatically rebuild the backend `*Server*` app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+* Automatically rebuild the backend `*Server*` app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
 ## Prerequisites
 
@@ -843,6 +892,19 @@ Visual Studio for Mac requires version 8.8 (build 1532) or later:
 > [!NOTE]
 > Apple Safari on macOS isn't currently supported.
 
+## Packages
+
+Standalone Blazor WebAssembly:
+
+[`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+
+Hosted Blazor WebAssembly:
+
+* **`Client`** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+* **`Server`** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
 ## Debug a standalone Blazor WebAssembly app
 
 To enable debugging for an existing Blazor WebAssembly app, update the `launchSettings.json` file in the startup project to include the following `inspectUri` property in each launch profile:
@@ -866,7 +928,7 @@ The placeholder values for the WebSocket protocol (`wsProtocol`), host (`url.hos
 
 To debug a Blazor WebAssembly app in Visual Studio:
 
-1. Create a new hosted Blazor WebAssembly solution.
+1. Create a new hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 1. With the **`Server`** project selected in **Solution Explorer**, press <kbd>F5</kbd> to run the app in the debugger.
 
    > [!NOTE]
@@ -985,9 +1047,9 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 ## Debug hosted Blazor WebAssembly
 
-For guidance on configuring VS Code assets in the `.vscode` folder and where to place the `.vscode` folder in the solution, see the **Linux** operating system guidance in <xref:blazor/tooling?pivots=linux>.
+For guidance on configuring VS Code assets in the `.vscode` folder and where to place the `.vscode` folder in the [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see the **Linux** operating system guidance in <xref:blazor/tooling?pivots=linux>.
 
-The `.vscode/launch.json` file sets the current working directory to the **`Server`** project's folder, typically `Server` for a hosted Blazor WebAssembly solution:
+The `.vscode/launch.json` file sets the current working directory to the **`Server`** project's folder, typically `Server` for a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln):
 
 ```json
 "cwd": "${workspaceFolder}/Server"
@@ -999,7 +1061,7 @@ If Microsoft Edge is used for debugging instead of Google Chrome, the `.vscode/l
 "browser": "edge"
 ```
 
-The `.vscode/tasks.json` file adds the **`Server`** app's project file path to the `dotnet build` arguments under `args`. The **`Server`** project's folder is typically named `Server` in a solution based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **`Server`** app of the [Blazor-SignalR tutorial](xref:blazor/tutorials/signalr-blazor), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
+The `.vscode/tasks.json` file adds the **`Server`** app's project file path to the `dotnet build` arguments under `args`. The **`Server`** project's folder is typically named `Server` in a [solution](xref:blazor/tooling#visual-studio-solution-file-sln) based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **`Server`** app of the [Blazor-SignalR tutorial](xref:blazor/tutorials/signalr-blazor), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
 
 ```json
 {

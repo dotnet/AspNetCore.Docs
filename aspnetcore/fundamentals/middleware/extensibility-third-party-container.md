@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/22/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/middleware/extensibility-third-party-container
 ---
 # Middleware activation with a third-party container in ASP.NET Core
@@ -36,11 +35,11 @@ In the sample app, a middleware factory is implemented to create a `SimpleInject
 
 <xref:Microsoft.AspNetCore.Http.IMiddleware> defines middleware for the app's request pipeline.
 
-Middleware activated by an `IMiddlewareFactory` implementation (*Middleware/SimpleInjectorActivatedMiddleware.cs*):
+Middleware activated by an `IMiddlewareFactory` implementation (`Middleware/SimpleInjectorActivatedMiddleware.cs`):
 
 [!code-csharp[](extensibility-third-party-container/samples/3.x/SampleApp/Middleware/SimpleInjectorActivatedMiddleware.cs?name=snippet1)]
 
-An extension is created for the middleware (*Middleware/MiddlewareExtensions.cs*):
+An extension is created for the middleware (`Middleware/MiddlewareExtensions.cs`):
 
 [!code-csharp[](extensibility-third-party-container/samples/3.x/SampleApp/Middleware/MiddlewareExtensions.cs?name=snippet1)]
 
@@ -83,11 +82,11 @@ In the sample app, a middleware factory is implemented to create a `SimpleInject
 
 <xref:Microsoft.AspNetCore.Http.IMiddleware> defines middleware for the app's request pipeline.
 
-Middleware activated by an `IMiddlewareFactory` implementation (*Middleware/SimpleInjectorActivatedMiddleware.cs*):
+Middleware activated by an `IMiddlewareFactory` implementation (`Middleware/SimpleInjectorActivatedMiddleware.cs`):
 
 [!code-csharp[](extensibility-third-party-container/samples/2.x/SampleApp/Middleware/SimpleInjectorActivatedMiddleware.cs?name=snippet1)]
 
-An extension is created for the middleware (*Middleware/MiddlewareExtensions.cs*):
+An extension is created for the middleware (`Middleware/MiddlewareExtensions.cs`):
 
 [!code-csharp[](extensibility-third-party-container/samples/2.x/SampleApp/Middleware/MiddlewareExtensions.cs?name=snippet1)]
 

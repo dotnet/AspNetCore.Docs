@@ -5,24 +5,21 @@ description: Learn how to configure custom storage providers for ASP.NET Core Id
 ms.author: riande
 ms.custom: mvc
 ms.date: 07/23/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/identity-custom-storage-providers
 ---
 # Custom storage providers for ASP.NET Core Identity
 
 By [Steve Smith](https://ardalis.com/)
 
-ASP.NET Core Identity is an extensible system which enables you to create a custom storage provider and connect it to your app. This topic describes how to create a customized storage provider for ASP.NET Core Identity. It covers the important concepts for creating your own storage provider, but isn't a step-by-step walkthrough.
-
-[View or download sample from GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity-custom-storage-providers/sample/CustomIdentityProviderSample).
+ASP.NET Core Identity is an extensible system which enables you to create a custom storage provider and connect it to your app. This topic describes how to create a customized storage provider for ASP.NET Core Identity. It covers the important concepts for creating your own storage provider, but isn't a step-by-step walk through. See [Identity model customization](xref:security/authentication/customize_identity_model) to customize an Identity model.
 
 ## Introduction
 
 By default, the ASP.NET Core Identity system stores user information in a SQL Server database using Entity Framework Core. For many apps, this approach works well. However, you may prefer to use a different persistence mechanism or data schema. For example:
 
 * You use [Azure Table Storage](/azure/storage/) or another data store.
-* Your database tables have a different structure. 
-* You may wish to use a different data access approach, such as [Dapper](https://github.com/StackExchange/Dapper). 
+* Your database tables have a different structure.
+* You may wish to use a different data access approach, such as [Dapper](https://github.com/DapperLib/Dapper).
 
 In each of these cases, you can write a customized provider for your storage mechanism and plug that provider into your app.
 
@@ -44,7 +41,7 @@ The following diagram shows how a web app interacts with the managers, while sto
 
 To create a custom storage provider, create the data source, the data access layer, and the store classes that interact with this data access layer (the green and grey boxes in the diagram above). You don't need to customize the managers or your app code that interacts with them (the blue boxes above).
 
-When creating a new instance of `UserManager` or `RoleManager` you provide the type of the user class and pass an instance of the store class as an argument. This approach enables you to plug your customized classes into ASP.NET Core. 
+When creating a new instance of `UserManager` or `RoleManager` you provide the type of the user class and pass an instance of the store class as an argument. This approach enables you to plug your customized classes into ASP.NET Core.
 
 [Reconfigure app to use new storage provider](#reconfigure-app-to-use-a-new-storage-provider) shows how to instantiate `UserManager` and `RoleManager` with a customized store.
 
@@ -110,7 +107,7 @@ The implementation logic for creating the user is in the `_usersTable.CreateAsyn
 
 ## Customize the user class
 
-When implementing a storage provider, create a user class which is equivalent to the [IdentityUser class](xref:Microsoft.AspNet.Identity.CoreCompat.IdentityUser).
+When implementing a storage provider, create a user class which is equivalent to the [IdentityUser class](xref:security/authentication/customize_identity_model#model-generic-types).
 
 At a minimum, your user class must include an `Id` and a `UserName` property.
 
@@ -206,11 +203,13 @@ Once you have implemented a storage provider, you configure your app to use it. 
 1. Remove the `Microsoft.AspNetCore.EntityFramework.Identity` NuGet package.
 1. If the storage provider resides in a separate project or package, add a reference to it.
 1. Replace all references to `Microsoft.AspNetCore.EntityFramework.Identity` with a using statement for the namespace of your storage provider.
-1. In the `ConfigureServices` method, change the `AddIdentity` method to use your custom types. You can create your own extension methods for this purpose. See [IdentityServiceCollectionExtensions](https://github.com/aspnet/Identity/blob/rel/1.1.0/src/Microsoft.AspNetCore.Identity/IdentityServiceCollectionExtensions.cs) for an example.
+1. Change the `AddIdentity` method to use the custom types. You can create your own extension methods for this purpose. See [IdentityServiceCollectionExtensions](https://github.com/aspnet/Identity/blob/rel/1.1.0/src/Microsoft.AspNetCore.Identity/IdentityServiceCollectionExtensions.cs) for an example.
 1. If you are using Roles, update the `RoleManager` to use your `RoleStore` class.
 1. Update the connection string and credentials to your app's configuration.
 
 Example:
+
+:::moniker range="< aspnetcore-6.0"
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -230,7 +229,36 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+// Add identity types
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
+    .AddDefaultTokenProviders();
+
+// Identity Services
+builder.Services.AddTransient<IUserStore<ApplicationUser>, CustomUserStore>();
+builder.Services.AddTransient<IRoleStore<ApplicationRole>, CustomRoleStore>();
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddTransient<SqlConnection>(e => new SqlConnection(connectionString));
+builder.Services.AddTransient<DapperUsersTable>();
+
+// additional configuration
+
+builder.Services.AddRazorPages();
+
+var app = builder.Build();
+```
+
+:::moniker-end
+
 ## References
 
+* [Identity model customization](xref:security/authentication/customize_identity_model)
 * [Custom Storage Providers for ASP.NET 4.x Identity](/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity)
 * [ASP.NET Core Identity](https://github.com/dotnet/AspNetCore/tree/main/src/Identity): This repository includes links to community maintained store providers.
+* [View or download sample from GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity-custom-storage-providers/sample/CustomIdentityProviderSample).

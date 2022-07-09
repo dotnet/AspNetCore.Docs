@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/configuration
 ---
 # ASP.NET Core Blazor configuration
@@ -15,7 +14,7 @@ This article explains configuration of Blazor apps, including app settings, auth
 
 :::moniker range=">= aspnetcore-6.0"
 
-> [!NOTE]
+> [!IMPORTANT]
 > This topic applies to Blazor WebAssembly. For general guidance on ASP.NET Core app configuration, see <xref:fundamentals/configuration/index>.
 
 Blazor WebAssembly loads configuration from the following app settings files by default:
@@ -208,12 +207,6 @@ In the app settings file, provide logging configuration. The logging configurati
     }
   }
 }
-```
-
-Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> to `Program.cs`:
-
-```csharp
-using Microsoft.Extensions.Logging;
 ```
 
 In `Program.cs`:

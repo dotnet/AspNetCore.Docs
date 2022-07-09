@@ -5,7 +5,6 @@ description: Learn how to author Tag Helpers in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/05/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/authoring
 ---
 # Author Tag Helpers in ASP.NET Core
@@ -60,7 +59,7 @@ That is, an anchor tag that makes this an email link. You might want to do this 
    public class Email : TagHelper
    ```
 
-1. To make the `EmailTagHelper` class available to all our Razor views, add the `addTagHelper` directive to the *Views/_ViewImports.cshtml* file:
+1. To make the `EmailTagHelper` class available to all our Razor views, add the `addTagHelper` directive to the `Views/_ViewImports.cshtml` file:
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/_ViewImportsCopyEmail.cshtml?highlight=2,3)]
 
@@ -79,7 +78,7 @@ the following snippet uses TagHelpers3 and should use TagHelpers (not the 3)
 
 To add a tag helper to a view using a FQN, you first add the FQN (`AuthoringTagHelpers.TagHelpers.EmailTagHelper`), and then the **assembly name** (*AuthoringTagHelpers*, not necessarily the `namespace`). Most developers will prefer to use the wildcard syntax. [Introduction to Tag Helpers](intro.md) goes into detail on tag helper adding, removing, hierarchy, and wildcard syntax.
 
-1. Update the markup in the *Views/Home/Contact.cshtml* file with these changes:
+1. Update the markup in the `Views/Home/Contact.cshtml` file with these changes:
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
 
@@ -103,7 +102,7 @@ Update the `EmailTagHelper` class with the following:
 
 That approach works for the attribute "href" as long as it doesn't currently exist in the attributes collection. You can also use the `output.Attributes.Add` method to add a tag helper attribute to the end of the collection of tag attributes.
 
-1. Update the markup in the *Views/Home/Contact.cshtml* file with these changes:
+1. Update the markup in the `Views/Home/Contact.cshtml` file with these changes:
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/ContactCopy.cshtml?highlight=15,16)]
 
@@ -132,7 +131,7 @@ In this section, we'll write an asynchronous email helper.
 
    * Use the `output` parameter to get contents of the HTML element.
 
-1. Make the following change to the *Views/Home/Contact.cshtml* file so the tag helper can get the target email.
+1. Make the following change to the `Views/Home/Contact.cshtml` file so the tag helper can get the target email.
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=15,16&range=1-17)]
 
@@ -148,7 +147,7 @@ In this section, we'll write an asynchronous email helper.
 
    * Because you don't want to replace the existing tag content, you must write the opening `<strong>` tag with the `PreContent.SetHtmlContent` method and the closing `</strong>` tag with the `PostContent.SetHtmlContent` method.
 
-1. Modify the *About.cshtml* view to contain a `bold` attribute value. The completed code is shown below.
+1. Modify the `About.cshtml` view to contain a `bold` attribute value. The completed code is shown below.
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/AboutBoldOnly.cshtml?highlight=7)]
 
@@ -210,7 +209,7 @@ You can also use the `[HtmlTargetElement]` to change the name of the targeted el
    $@"<ul><li><strong>Version:</strong> {Info.Version}</li>
    ```
 
-1. Add the following markup to the *About.cshtml* view. The highlighted markup displays the web site information.
+1. Add the following markup to the `About.cshtml` view. The highlighted markup displays the web site information.
 
    [!code-cshtml[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/About.cshtml?highlight=1,4-8, 18-999)]
 
@@ -236,7 +235,7 @@ The condition tag helper renders output when passed a true value.
 
    [!code-csharp[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/TagHelpers/ConditionTagHelper.cs)]
 
-1. Replace the contents of the *Views/Home/Index.cshtml* file with the following markup:
+1. Replace the contents of the `Views/Home/Index.cshtml` file with the following markup:
 
    [!code-cshtml[](authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Index.cshtml)]
 
@@ -266,7 +265,7 @@ Because these two helpers are closely related and you may refactor them in the f
    >[!NOTE]
    >The `AutoLinkerHttpTagHelper` class targets `p` elements and uses [Regex](/dotnet/standard/base-types/regular-expression-language-quick-reference) to create the anchor.
 
-1. Add the following markup to the end of the *Views/Home/Contact.cshtml* file:
+1. Add the following markup to the end of the `Views/Home/Contact.cshtml` file:
 
    [!code-cshtml[](../../../mvc/views/tag-helpers/authoring/sample/AuthoringTagHelpers/src/AuthoringTagHelpers/Views/Home/Contact.cshtml?highlight=19)]
 

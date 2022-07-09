@@ -5,7 +5,6 @@ description: Entity Framework 6.3 and later works with ASP.NET Core 3.1 and late
 ms.author: riande
 ms.custom: mvc
 ms.date: 7/14/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/entity-framework-6
 ---
 # ASP.NET Core and Entity Framework 6
@@ -42,7 +41,7 @@ Regardless of project type in which you locate your EF6 context, only EF6 comman
 
 ## Reference full framework and EF6 in the ASP.NET Core project
 
-Your ASP.NET Core project needs to target .NET Framework and reference EF6. For example, the *.csproj* file of your ASP.NET Core project will look similar to the following example (only relevant parts of the file are shown).
+Your ASP.NET Core project needs to target .NET Framework and reference EF6. For example, the `.csproj` file of your ASP.NET Core project will look similar to the following example (only relevant parts of the file are shown).
 
 [!code-xml[](entity-framework-6/sample/MVCCore/MVCCore.csproj?range=3-9&highlight=2)]
 

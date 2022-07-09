@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/rendering
 ---
 # ASP.NET Core Razor component rendering
@@ -24,11 +23,16 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 * After applying an updated set of [parameters](xref:blazor/components/data-binding#binding-with-component-parameters) from a parent component.
 * After applying an updated value for a [cascading parameter](xref:blazor/components/cascading-values-and-parameters).
 * After notification of an event and invoking one of its own [event handlers](xref:blazor/components/event-handling).
-* After a call to its own <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> method (see <xref:blazor/components/lifecycle#state-changes-statehaschanged>).
+* After a call to its own <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> method (see <xref:blazor/components/lifecycle#state-changes-statehaschanged>). For guidance on how to prevent overwriting child component parameters when <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, see <xref:blazor/components/index#overwritten-parameters>.
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* All of the parameter values are of known immutable primitive types, such as `int`, `string`, `DateTime`, and haven't changed since the previous set of parameters were set.
+* All of the parameters are from a set of known types&dagger; or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
+
+  &dagger;The Blazor framework uses a set of built-in rules and explicit parameter type checks for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+  
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 * The component's [`ShouldRender` method](#suppress-ui-refreshing-shouldrender) returns `false`.
 
 ## Control the rendering flow
@@ -45,7 +49,7 @@ Even if <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is 
 
 `Pages/ControlRender.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/rendering/ControlRender.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/rendering/ControlRender.razor":::
 
 For more information on performance best practices pertaining to <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>, see <xref:blazor/performance#avoid-unnecessary-rendering-of-component-subtrees>.
 
@@ -75,7 +79,7 @@ Consider the following `CounterState1` component, which updates the count four t
 
 `Pages/CounterState1.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/rendering/CounterState1.razor?highlight=17,21,25,29)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/rendering/CounterState1.razor" highlight="17,21,25,29":::
 
 ### Receiving a call from something external to the Blazor rendering and event handling system
 
@@ -86,11 +90,13 @@ Consider the following `CounterState2` component that uses <xref:System.Timers.T
 * `OnTimerCallback` runs outside of any Blazor-managed rendering flow or event notification. Therefore, `OnTimerCallback` must call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> because Blazor isn't aware of the changes to `currentCount` in the callback.
 * The component implements <xref:System.IDisposable>, where the <xref:System.Timers.Timer> is disposed when the framework calls the `Dispose` method. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
-Because the callback is invoked outside of Blazor's synchronization context, the component must wrap the logic of `OnTimerCallback` in <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> to move it onto the renderer's synchronization context. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> can only be called from the renderer's synchronization context and throws an exception otherwise. This is equivalent to marshalling to the UI thread in other UI frameworks.
+Because the callback is invoked outside of Blazor's synchronization context, the component must wrap the logic of `OnTimerCallback` in <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> to move it onto the renderer's synchronization context. This is equivalent to marshalling to the UI thread in other UI frameworks. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> can only be called from the renderer's synchronization context and throws an exception otherwise:
+
+> :::no-loc text="System.InvalidOperationException: 'The current thread is not associated with the Dispatcher. Use InvokeAsync() to switch execution to the Dispatcher when triggering rendering or component state.'":::
 
 `Pages/CounterState2.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor?highlight=26)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor" highlight="26":::
 
 ### To render a component outside the subtree that's rerendered by a particular event
 
@@ -104,7 +110,7 @@ One way to deal with this scenario is to provide a *state management* class, oft
 
 Since these C# events are outside the Blazor rendering pipeline, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> on other components you wish to render in response to the state manager's events.
 
-This is similar to the earlier case with <xref:System.Timers.Timer?displayProperty=fullName> in the [previous section](#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system). Since the execution call stack typically remains on the renderer's synchronization context, calling <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A> isn't normally required. Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A> is only required if the logic escapes the synchronization context, such as calling <xref:System.Threading.Tasks.Task.ContinueWith%2A> on a <xref:System.Threading.Tasks.Task> or awaiting a <xref:System.Threading.Tasks.Task> with [`ConfigureAwait(false)`](xref:System.Threading.Tasks.Task.ConfigureAwait%2A).
+This is similar to the earlier case with <xref:System.Timers.Timer?displayProperty=fullName> in the [previous section](#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system). Since the execution call stack typically remains on the renderer's synchronization context, calling <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A> isn't normally required. Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A> is only required if the logic escapes the synchronization context, such as calling <xref:System.Threading.Tasks.Task.ContinueWith%2A> on a <xref:System.Threading.Tasks.Task> or awaiting a <xref:System.Threading.Tasks.Task> with [`ConfigureAwait(false)`](xref:System.Threading.Tasks.Task.ConfigureAwait%2A). For more information, see the [Receiving a call from something external to the Blazor rendering and event handling system](#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system) section.
 
 :::moniker-end
 
@@ -119,12 +125,21 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 * After applying an updated set of [parameters](xref:blazor/components/data-binding#binding-with-component-parameters) from a parent component.
 * After applying an updated value for a [cascading parameter](xref:blazor/components/cascading-values-and-parameters).
 * After notification of an event and invoking one of its own [event handlers](xref:blazor/components/event-handling).
-* After a call to its own <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> method (see <xref:blazor/components/lifecycle#state-changes-statehaschanged>).
+* After a call to its own <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> method (see <xref:blazor/components/lifecycle#state-changes-statehaschanged>). For guidance on how to prevent overwriting child component parameters when <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, see <xref:blazor/components/index#overwritten-parameters>.
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* All of the parameter values are of known immutable primitive types, such as `int`, `string`, `DateTime`, and haven't changed since the previous set of parameters were set.
+* All of the parameters are from a set of known types&dagger; or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
+
+  &dagger;The Blazor framework uses a set of built-in rules and explicit parameter type checks for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 * The component's [`ShouldRender` method](#suppress-ui-refreshing-shouldrender) returns `false`.
+
+Blazor's framework uses a set of built-in rules for change detection, which are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ## Control the rendering flow
 
@@ -181,7 +196,9 @@ Consider the following `CounterState2` component that uses <xref:System.Timers.T
 * `OnTimerCallback` runs outside of any Blazor-managed rendering flow or event notification. Therefore, `OnTimerCallback` must call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> because Blazor isn't aware of the changes to `currentCount` in the callback.
 * The component implements <xref:System.IDisposable>, where the <xref:System.Timers.Timer> is disposed when the framework calls the `Dispose` method. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
-Because the callback is invoked outside of Blazor's synchronization context, the component must wrap the logic of `OnTimerCallback` in <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> to move it onto the renderer's synchronization context. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> can only be called from the renderer's synchronization context and throws an exception otherwise. This is equivalent to marshalling to the UI thread in other UI frameworks.
+Because the callback is invoked outside of Blazor's synchronization context, the component must wrap the logic of `OnTimerCallback` in <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> to move it onto the renderer's synchronization context. This is equivalent to marshalling to the UI thread in other UI frameworks. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> can only be called from the renderer's synchronization context and throws an exception otherwise:
+
+> :::no-loc text="System.InvalidOperationException: 'The current thread is not associated with the Dispatcher. Use InvokeAsync() to switch execution to the Dispatcher when triggering rendering or component state.'":::
 
 `Pages/CounterState2.razor`:
 
@@ -199,7 +216,7 @@ One way to deal with this scenario is to provide a *state management* class, oft
 
 Since these C# events are outside the Blazor rendering pipeline, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> on other components you wish to render in response to the state manager's events.
 
-This is similar to the earlier case with <xref:System.Timers.Timer?displayProperty=fullName> in the [previous section](#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system). Since the execution call stack typically remains on the renderer's synchronization context, calling <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A> isn't normally required. Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A> is only required if the logic escapes the synchronization context, such as calling <xref:System.Threading.Tasks.Task.ContinueWith%2A> on a <xref:System.Threading.Tasks.Task> or awaiting a <xref:System.Threading.Tasks.Task> with [`ConfigureAwait(false)`](xref:System.Threading.Tasks.Task.ConfigureAwait%2A).
+This is similar to the earlier case with <xref:System.Timers.Timer?displayProperty=fullName> in the [previous section](#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system). Since the execution call stack typically remains on the renderer's synchronization context, calling <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A> isn't normally required. Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A> is only required if the logic escapes the synchronization context, such as calling <xref:System.Threading.Tasks.Task.ContinueWith%2A> on a <xref:System.Threading.Tasks.Task> or awaiting a <xref:System.Threading.Tasks.Task> with [`ConfigureAwait(false)`](xref:System.Threading.Tasks.Task.ConfigureAwait%2A). For more information, see the [Receiving a call from something external to the Blazor rendering and event handling system](#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system) section.
 
 :::moniker-end
 
@@ -214,12 +231,21 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 * After applying an updated set of [parameters](xref:blazor/components/data-binding#binding-with-component-parameters) from a parent component.
 * After applying an updated value for a [cascading parameter](xref:blazor/components/cascading-values-and-parameters).
 * After notification of an event and invoking one of its own [event handlers](xref:blazor/components/event-handling).
-* After a call to its own <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> method (see <xref:blazor/components/lifecycle#state-changes-statehaschanged>).
+* After a call to its own <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> method (see <xref:blazor/components/lifecycle#state-changes-statehaschanged>). For guidance on how to prevent overwriting child component parameters when <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, see <xref:blazor/components/index#overwritten-parameters>.
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
-* All of the parameter values are of known immutable primitive types, such as `int`, `string`, `DateTime`, and haven't changed since the previous set of parameters were set.
+* All of the parameters are from a set of known types&dagger; or any [primitive type](/dotnet/api/system.type.isprimitive) that hasn't changed since the previous set of parameters were set.
+
+  &dagger;The Blazor framework uses a set of built-in rules and explicit parameter type checks for change detection. These rules and the types are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 * The component's [`ShouldRender` method](#suppress-ui-refreshing-shouldrender) returns `false`.
+
+Blazor's framework uses a set of built-in rules for change detection, which are subject to change at any time. For more information, see the [`ChangeDetection` API in the ASP.NET Core reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ChangeDetection.cs).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ## Control the rendering flow
 
@@ -276,7 +302,9 @@ Consider the following `CounterState2` component that uses <xref:System.Timers.T
 * `OnTimerCallback` runs outside of any Blazor-managed rendering flow or event notification. Therefore, `OnTimerCallback` must call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> because Blazor isn't aware of the changes to `currentCount` in the callback.
 * The component implements <xref:System.IDisposable>, where the <xref:System.Timers.Timer> is disposed when the framework calls the `Dispose` method. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
-Because the callback is invoked outside of Blazor's synchronization context, the component must wrap the logic of `OnTimerCallback` in <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> to move it onto the renderer's synchronization context. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> can only be called from the renderer's synchronization context and throws an exception otherwise. This is equivalent to marshalling to the UI thread in other UI frameworks.
+Because the callback is invoked outside of Blazor's synchronization context, the component must wrap the logic of `OnTimerCallback` in <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> to move it onto the renderer's synchronization context. This is equivalent to marshalling to the UI thread in other UI frameworks. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> can only be called from the renderer's synchronization context and throws an exception otherwise:
+
+> :::no-loc text="System.InvalidOperationException: 'The current thread is not associated with the Dispatcher. Use InvokeAsync() to switch execution to the Dispatcher when triggering rendering or component state.'":::
 
 `Pages/CounterState2.razor`:
 
@@ -294,6 +322,6 @@ One way to deal with this scenario is to provide a *state management* class, oft
 
 Since these C# events are outside the Blazor rendering pipeline, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> on other components you wish to render in response to the state manager's events.
 
-This is similar to the earlier case with <xref:System.Timers.Timer?displayProperty=fullName> in the [previous section](#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system). Since the execution call stack typically remains on the renderer's synchronization context, calling <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A> isn't normally required. Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A> is only required if the logic escapes the synchronization context, such as calling <xref:System.Threading.Tasks.Task.ContinueWith%2A> on a <xref:System.Threading.Tasks.Task> or awaiting a <xref:System.Threading.Tasks.Task> with [`ConfigureAwait(false)`](xref:System.Threading.Tasks.Task.ConfigureAwait%2A).
+This is similar to the earlier case with <xref:System.Timers.Timer?displayProperty=fullName> in the [previous section](#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system). Since the execution call stack typically remains on the renderer's synchronization context, calling <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A> isn't normally required. Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A> is only required if the logic escapes the synchronization context , such as calling <xref:System.Threading.Tasks.Task.ContinueWith%2A> on a <xref:System.Threading.Tasks.Task> or awaiting a <xref:System.Threading.Tasks.Task> with [`ConfigureAwait(false)`](xref:System.Threading.Tasks.Task.ConfigureAwait%2A). For more information, see the [Receiving a call from something external to the Blazor rendering and event handling system](#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system) section.
 
 :::moniker-end

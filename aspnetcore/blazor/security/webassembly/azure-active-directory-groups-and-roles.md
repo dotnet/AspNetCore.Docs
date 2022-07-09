@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/aad-groups-roles
 ---
 # Azure Active Directory (AAD) groups, Administrator Roles, and App Roles
@@ -33,7 +32,7 @@ The guidance in this article applies to the Blazor WebAssembly AAD deployment sc
 
 The article's guidance provides instructions for client and server apps:
 
-* **CLIENT**: Standalone Blazor WebAssembly apps or the **`Client`** app of a hosted Blazor solution.
+* **CLIENT**: Standalone Blazor WebAssembly apps or the **`Client`** app of a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 * **SERVER**: Standalone ASP.NET Core server API/web API apps or the **`Server`** app of a hosted Blazor solution.
 
 ## Scopes
@@ -577,7 +576,7 @@ The guidance in this article applies to the Blazor WebAssembly AAD deployment sc
 
 The article's guidance provides instructions for client and server apps:
 
-* **CLIENT**: Standalone Blazor WebAssembly apps or the **`Client`** app of a hosted Blazor solution.
+* **CLIENT**: Standalone Blazor WebAssembly apps or the **`Client`** app of a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 * **SERVER**: Standalone ASP.NET Core server API/web API apps or the **`Server`** app of a hosted Blazor solution.
 
 ## Scopes

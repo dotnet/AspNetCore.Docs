@@ -5,7 +5,6 @@ description: Learn how to build an ASP.NET Core app with email confirmation and 
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 2/9/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/accconfirm
 ---
 
@@ -57,7 +56,7 @@ In this tutorial, [SendGrid](https://sendgrid.com) is used to send email. A Send
 
 The SendGrid account may require [adding a Sender](https://sendgrid.com/docs/ui/sending-email/senders/).
 
-Create a class to fetch the secure email key. For this sample, create *Services/AuthMessageSenderOptions.cs*:
+Create a class to fetch the secure email key. For this sample, create `Services/AuthMessageSenderOptions.cs`:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover60/Services/AuthMessageSenderOptions.cs)]
 
@@ -71,9 +70,9 @@ dotnet user-secrets set SendGridKey <key>
 Successfully saved SendGridKey to the secret store.
 ```
 
-On Windows, Secret Manager stores keys/value pairs in a *secrets.json* file in the `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` directory.
+On Windows, Secret Manager stores keys/value pairs in a `secrets.json` file in the `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` directory.
 
-The contents of the *secrets.json* file aren't encrypted. The following markup shows the *secrets.json* file. The `SendGridKey` value has been removed.
+The contents of the `secrets.json` file aren't encrypted. The following markup shows the `secrets.json` file. The `SendGridKey` value has been removed.
 
 ```json
 {
@@ -111,7 +110,7 @@ See [Get Started with SendGrid for Free](https://sendgrid.com/free/) to register
 
 ### Implement IEmailSender
 
-To Implement `IEmailSender`, create *Services/EmailSender.cs* with code similar to the following:
+To Implement `IEmailSender`, create `Services/EmailSender.cs` with code similar to the following:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover60/Services/EmailSender.cs)]
 
@@ -247,7 +246,7 @@ In this tutorial, [SendGrid](https://sendgrid.com) is used to send email. You ca
 
 The SendGrid account may require [adding a Sender](https://sendgrid.com/docs/ui/sending-email/senders/).
 
-Create a class to fetch the secure email key. For this sample, create *Services/AuthMessageSenderOptions.cs*:
+Create a class to fetch the secure email key. For this sample, create `Services/AuthMessageSenderOptions.cs`:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover60/Services/AuthMessageSenderOptions.cs)]
 
@@ -261,9 +260,9 @@ dotnet user-secrets set SendGridKey <SG.key>
 Successfully saved SendGridKey = SG.keyVal to the secret store.
 ```
 
-On Windows, Secret Manager stores keys/value pairs in a *secrets.json* file in the `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` directory.
+On Windows, Secret Manager stores keys/value pairs in a `secrets.json` file in the `%APPDATA%/Microsoft/UserSecrets/<WebAppName-userSecretsId>` directory.
 
-The contents of the *secrets.json* file aren't encrypted. The following markup shows the *secrets.json* file. The `SendGridKey` value has been removed.
+The contents of the `secrets.json` file aren't encrypted. The following markup shows the `secrets.json` file. The `SendGridKey` value has been removed.
 
 ```json
 {
@@ -301,7 +300,7 @@ See [Get Started with SendGrid for Free](https://sendgrid.com/free/) to register
 
 ### Implement IEmailSender
 
-To Implement `IEmailSender`, create *Services/EmailSender.cs* with code similar to the following:
+To Implement `IEmailSender`, create `Services/EmailSender.cs` with code similar to the following:
 
 [!code-csharp[](accconfirm/sample/WebPWrecover60/Services/EmailSender.cs)]
 

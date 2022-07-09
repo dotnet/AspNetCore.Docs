@@ -4,7 +4,6 @@ author: rick-anderson
 description: Part 7 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 09/15/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/search
 ---
 
@@ -16,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 In this section, you add search capability to the `Index` action method that lets you search movies by *genre* or *name*.
 
-Update the `Index` method found inside *Controllers/MoviesController.cs* with the following code:
+Update the `Index` method found inside `Controllers/MoviesController.cs` with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?name=IndexSearch1)]
 
@@ -33,7 +32,7 @@ If the `searchString` parameter contains a string, the movies query is modified 
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?name=IndexSearchCheckForNull)]
 
-The `s => s.Title.Contains(searchString)` code above is a [Lambda Expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas are used in method-based [LINQ](/dotnet/standard/using-linq) queries as arguments to standard query operator methods such as the <xref:System.Linq.Enumerable.Where%2A> method or `Contains` (used in the code above). LINQ queries are not executed when they're defined or when they're modified by calling a method such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred.  That means that the evaluation of an expression is delayed until its realized value is actually iterated over or the `ToListAsync` method is called. For more information about deferred query execution, see [Query Execution](/dotnet/framework/data/adonet/ef/language-reference/query-execution).
+The `s => s.Title!.Contains(searchString)` code above is a [Lambda Expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas are used in method-based [LINQ](/dotnet/standard/using-linq) queries as arguments to standard query operator methods such as the <xref:System.Linq.Enumerable.Where%2A> method or `Contains` (used in the code above). LINQ queries are not executed when they're defined or when they're modified by calling a method such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred.  That means that the evaluation of an expression is delayed until its realized value is actually iterated over or the `ToListAsync` method is called. For more information about deferred query execution, see [Query Execution](/dotnet/framework/data/adonet/ef/language-reference/query-execution).
 
 Note: The <xref:System.Data.Objects.DataClasses.EntityCollection%601.Contains%2A> method is run on the database, not in the c# code shown above. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. In SQLite, with the default collation, it's case sensitive.
 
@@ -63,7 +62,7 @@ However, you can't expect users to modify the URL every time they want to search
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?highlight=1,6,8&name=IndexSearch1)]
 
-Open the *Views/Movies/Index.cshtml* file, and add the `<form>` markup highlighted below:
+Open the `Views/Movies/Index.cshtml` file, and add the `<form>` markup highlighted below:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexForm1.cshtml?highlight=13-18&range=1-19)]
 
@@ -89,7 +88,7 @@ However, even if you add this `[HttpPost]` version of the `Index` method, there'
 
 You can see the search parameter and [XSRF](xref:security/anti-request-forgery) token in the request body. Note, as mentioned in the previous tutorial, the [Form Tag Helper](xref:mvc/views/working-with-forms) generates an [XSRF](xref:security/anti-request-forgery) anti-forgery token. We're not modifying data, so we don't need to validate the token in the controller method.
 
-Because the search parameter is in the request body and not the URL, you can't capture that search information to bookmark or share with others. Fix this by specifying the request should be `HTTP GET` found in the *Views/Movies/Index.cshtml* file.
+Because the search parameter is in the request body and not the URL, you can't capture that search information to bookmark or share with others. Fix this by specifying the request should be `HTTP GET` found in the `Views/Movies/Index.cshtml` file.
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/IndexGet.cshtml?highlight=13&range=1-19)]
 
@@ -132,7 +131,7 @@ When the user searches for the item, the search value is retained in the search 
 
 Update `Index.cshtml` found in *Views/Movies/* as follows:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/IndexFormGenreNoRating.cshtml?highlight=1,15,16,17,28,31,34,37)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/IndexFormGenreNoRating.cshtml?highlight=1,15,16,17,19,28,31,34,37,43)]
 
 Examine the lambda expression used in the following HTML Helper:
 
@@ -154,7 +153,7 @@ Test the app by searching by genre, by movie title, and by both:
 
 In this section, you add search capability to the `Index` action method that lets you search movies by *genre* or *name*.
 
-Update the `Index` method found inside *Controllers/MoviesController.cs* with the following code:
+Update the `Index` method found inside `Controllers/MoviesController.cs` with the following code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?name=snippet_1stSearch)]
 
@@ -201,7 +200,7 @@ However, you can't expect users to modify the URL every time they want to search
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Controllers/MoviesController.cs?highlight=1,6,8&name=snippet_1stSearch)]
 
-Open the *Views/Movies/Index.cshtml* file, and add the `<form>` markup highlighted below:
+Open the `Views/Movies/Index.cshtml` file, and add the `<form>` markup highlighted below:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Views/Movies/IndexForm1.cshtml?highlight=10-16&range=4-21)]
 
@@ -227,7 +226,7 @@ However, even if you add this `[HttpPost]` version of the `Index` method, there'
 
 You can see the search parameter and [XSRF](xref:security/anti-request-forgery) token in the request body. Note, as mentioned in the previous tutorial, the [Form Tag Helper](xref:mvc/views/working-with-forms) generates an [XSRF](xref:security/anti-request-forgery) anti-forgery token. We're not modifying data, so we don't need to validate the token in the controller method.
 
-Because the search parameter is in the request body and not the URL, you can't capture that search information to bookmark or share with others. Fix this by specifying the request should be `HTTP GET` found in the *Views/Movies/Index.cshtml* file.
+Because the search parameter is in the request body and not the URL, you can't capture that search information to bookmark or share with others. Fix this by specifying the request should be `HTTP GET` found in the `Views/Movies/Index.cshtml` file.
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/IndexGet.cshtml?highlight=12&range=1-23)]
 

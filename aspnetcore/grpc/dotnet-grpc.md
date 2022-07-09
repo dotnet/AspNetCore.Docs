@@ -5,7 +5,6 @@ description: Learn about adding, updating, removing, and listing Protobuf refere
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 10/17/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: grpc/dotnet-grpc
 ---
 # Manage Protobuf references with dotnet-grpc
@@ -22,7 +21,7 @@ dotnet tool install -g dotnet-grpc
 
 ## Add references
 
-`dotnet-grpc` can be used to add Protobuf references as `<Protobuf />` items to the *.csproj* file:
+`dotnet-grpc` can be used to add Protobuf references as `<Protobuf />` items to the `.csproj` file:
 
 ```xml
 <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
@@ -94,7 +93,7 @@ dotnet-grpc add-url [options] <url>
 
 ## Remove
 
-The `remove` command is used to remove Protobuf references from the *.csproj* file. The command accepts path arguments and source URLs as arguments. The tool:
+The `remove` command is used to remove Protobuf references from the `.csproj` file. The command accepts path arguments and source URLs as arguments. The tool:
 
 * Only removes the Protobuf reference.
 * Does not delete the `.proto` file, even if it was originally downloaded from a remote URL.

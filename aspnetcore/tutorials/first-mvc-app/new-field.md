@@ -5,7 +5,6 @@ description: Part 8 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/16/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/new-field
 ---
 # Part 8, add a new field to an ASP.NET Core MVC app
@@ -26,7 +25,7 @@ When EF Code First is used to automatically create a database, Code First:
 
 ## Add a Rating Property to the Movie Model
 
-Add a `Rating` property to *Models/Movie.cs*:
+Add a `Rating` property to `Models/Movie.cs`:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=AddRating&highlight=19)]
 
@@ -48,7 +47,7 @@ Command ⌘ + B
 
 ---
 
-Because you've added a new field to the `Movie` class, you need to update the property binding list so this new property will be included. In *MoviesController.cs*, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
+Because you've added a new field to the `Movie` class, you need to update the property binding list so this new property will be included. In `MoviesController.cs`, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
 
 ```csharp
 [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")]
@@ -56,11 +55,11 @@ Because you've added a new field to the `Movie` class, you need to update the pr
 
 Update the view templates in order to display, create, and edit the new `Rating` property in the browser view.
 
-Edit the */Views/Movies/Index.cshtml* file and add a `Rating` field:
+Edit the `/Views/Movies/Index.cshtml` file and add a `Rating` field:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/IndexGenreRating.cshtml?highlight=16-18,38-40&range=24-72)]
 
-Update the */Views/Movies/Create.cshtml* with a `Rating` field.
+Update the `/Views/Movies/Create.cshtml` with a `Rating` field.
 
 # [Visual Studio / Visual Studio for Mac](#tab/visual-studio+visual-studio-mac)
 
@@ -146,7 +145,7 @@ When EF Code First is used to automatically create a database, Code First:
 
 ## Add a Rating Property to the Movie Model
 
-Add a `Rating` property to *Models/Movie.cs*:
+Add a `Rating` property to `Models/Movie.cs`:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/MovieDateRating.cs?name=snippet)]
 
@@ -168,7 +167,7 @@ Command ⌘ + B
 
 ------
 
-Because you've added a new field to the `Movie` class, you need to update the property binding list so this new property will be included. In *MoviesController.cs*, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
+Because you've added a new field to the `Movie` class, you need to update the property binding list so this new property will be included. In `MoviesController.cs`, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
 
 ```csharp
 [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")]
@@ -176,11 +175,11 @@ Because you've added a new field to the `Movie` class, you need to update the pr
 
 Update the view templates in order to display, create, and edit the new `Rating` property in the browser view.
 
-Edit the */Views/Movies/Index.cshtml* file and add a `Rating` field:
+Edit the `/Views/Movies/Index.cshtml` file and add a `Rating` field:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie5/Views/Movies/IndexGenreRating.cshtml?highlight=16,38&range=24-63)]
 
-Update the */Views/Movies/Create.cshtml* with a `Rating` field.
+Update the `/Views/Movies/Create.cshtml` with a `Rating` field.
 
 # [Visual Studio / Visual Studio for Mac](#tab/visual-studio+visual-studio-mac)
 
@@ -266,7 +265,7 @@ When EF Code First is used to automatically create a database, Code First:
 
 ## Add a Rating Property to the Movie Model
 
-Add a `Rating` property to *Models/Movie.cs*:
+Add a `Rating` property to `Models/Movie.cs`:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/MovieDateRating.cs?name=snippet)]
 
@@ -288,7 +287,7 @@ Command ⌘ + B
 
 ------
 
-Because you've added a new field to the `Movie` class, you need to update the property binding list so this new property will be included. In *MoviesController.cs*, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
+Because you've added a new field to the `Movie` class, you need to update the property binding list so this new property will be included. In `MoviesController.cs`, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
 
 ```csharp
 [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")]
@@ -296,11 +295,11 @@ Because you've added a new field to the `Movie` class, you need to update the pr
 
 Update the view templates in order to display, create, and edit the new `Rating` property in the browser view.
 
-Edit the */Views/Movies/Index.cshtml* file and add a `Rating` field:
+Edit the `/Views/Movies/Index.cshtml` file and add a `Rating` field:
 
 [!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Views/Movies/IndexGenreRating.cshtml?highlight=16,38&range=24-63)]
 
-Update the */Views/Movies/Create.cshtml* with a `Rating` field.
+Update the `/Views/Movies/Create.cshtml` with a `Rating` field.
 
 # [Visual Studio / Visual Studio for Mac](#tab/visual-studio+visual-studio-mac)
 

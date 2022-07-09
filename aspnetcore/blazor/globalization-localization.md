@@ -5,8 +5,7 @@ description: Learn how to render globalized and localized content to users in di
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 06/09/2022
 uid: blazor/globalization-localization
 zone_pivot_groups: blazor-hosting-models
 ---
@@ -170,6 +169,9 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
   <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
 </PropertyGroup>
 ```
+
+> [!NOTE]
+> If the app's specification requires limiting the supported cultures to an explicit list, see the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article.
 
 :::zone-end
 
@@ -387,7 +389,7 @@ The `CultureSelector` component is placed in the `Shared` folder for use through
 
 ```razor
 @using  System.Globalization
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JS
 @inject NavigationManager Nav
 
 <p>
@@ -417,7 +419,7 @@ The `CultureSelector` component is placed in the `Shared` folder for use through
         {
             if (CultureInfo.CurrentCulture != value)
             {
-                var js = (IJSInProcessRuntime)JSRuntime;
+                var js = (IJSInProcessRuntime)JS;
                 js.InvokeVoid("blazorCulture.set", value.Name);
 
                 Nav.NavigateTo(Nav.Uri, forceLoad: true);
@@ -426,6 +428,9 @@ The `CultureSelector` component is placed in the `Shared` folder for use through
     }
 }
 ```
+
+> [!NOTE]
+> For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-blazor-webassembly-apps>.
 
 Inside the closing tag of the `<main>` element in `Shared/MainLayout.razor`, add the `CultureSelector` component:
 
@@ -453,7 +458,7 @@ In `Program.cs`:
 builder.Services.AddLocalization();
 ```
 
-Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SetDefaultCulture%2A?displayProperty=nameWithType>.
+Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions>.
 
 In `Program.cs` immediately after Routing Middleware is added to the processing pipeline:
 
@@ -1053,6 +1058,9 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
 </PropertyGroup>
 ```
 
+> [!NOTE]
+> If the app's specification requires limiting the supported cultures to an explicit list, see the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article.
+
 :::zone-end
 
 :::zone pivot="server"
@@ -1264,7 +1272,7 @@ The following `CultureSelector` component shows how to set the user's culture se
 
 ```razor
 @using  System.Globalization
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JS
 @inject NavigationManager Nav
 
 <p>
@@ -1294,7 +1302,7 @@ The following `CultureSelector` component shows how to set the user's culture se
         {
             if (CultureInfo.CurrentCulture != value)
             {
-                var js = (IJSInProcessRuntime)JSRuntime;
+                var js = (IJSInProcessRuntime)JS;
                 js.InvokeVoid("blazorCulture.set", value.Name);
 
                 Nav.NavigateTo(Nav.Uri, forceLoad: true);
@@ -1303,6 +1311,9 @@ The following `CultureSelector` component shows how to set the user's culture se
     }
 }
 ```
+
+> [!NOTE]
+> For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-blazor-webassembly-apps>.
 
 Inside the closing `</div>` tag of the `<div class="main">` element in `Shared/MainLayout.razor`, add the `CultureSelector` component:
 
@@ -1330,7 +1341,7 @@ In `Startup.ConfigureServices` (`Startup.cs`):
 services.AddLocalization();
 ```
 
-Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SetDefaultCulture%2A?displayProperty=nameWithType>.
+Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions>.
 
 In `Startup.Configure` immediately after Routing Middleware is added to the processing pipeline:
 
@@ -1386,10 +1397,10 @@ If the app isn't configured to process controller actions:
 
   The following example shows the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> after the line is added:
 
-  ```diff
+  ```csharp
   app.UseEndpoints(endpoints =>
   {
-  +   endpoints.MapControllers();
+      endpoints.MapControllers();
       endpoints.MapBlazorHub();
       endpoints.MapFallbackToPage("/_Host");
   });
@@ -2017,7 +2028,7 @@ using Microsoft.JSInterop;
 Remove the following line from `Program.cs`:
 
 ```diff
--await builder.Build().RunAsync();
+- await builder.Build().RunAsync();
 ```
 
 Replace the preceding line with the following code. The code adds Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> and uses [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to call into JS and retrieve the user's culture selection from local storage. If local storage doesn't contain a culture for the user, the code sets a default value of United States English (`en-US`).
@@ -2056,7 +2067,7 @@ The following `CultureSelector` component shows how to set the user's culture se
 
 ```razor
 @using  System.Globalization
-@inject IJSRuntime JSRuntime
+@inject IJSRuntime JS
 @inject NavigationManager Nav
 
 <p>
@@ -2086,7 +2097,7 @@ The following `CultureSelector` component shows how to set the user's culture se
         {
             if (CultureInfo.CurrentCulture != value)
             {
-                var js = (IJSInProcessRuntime)JSRuntime;
+                var js = (IJSInProcessRuntime)JS;
                 js.InvokeVoid("blazorCulture.set", value.Name);
 
                 Nav.NavigateTo(Nav.Uri, forceLoad: true);
@@ -2095,6 +2106,9 @@ The following `CultureSelector` component shows how to set the user's culture se
     }
 }
 ```
+
+> [!NOTE]
+> For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-blazor-webassembly-apps>.
 
 Inside the closing `</div>` tag of the `<div class="main">` element in `Shared/MainLayout.razor`, add the `CultureSelector` component:
 
@@ -2122,7 +2136,7 @@ In `Startup.ConfigureServices` (`Startup.cs`):
 services.AddLocalization();
 ```
 
-Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.SetDefaultCulture%2A?displayProperty=nameWithType>.
+Set the app's default and supported cultures with <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions>.
 
 In `Startup.Configure` immediately after Routing Middleware is added to the processing pipeline:
 
@@ -2178,10 +2192,10 @@ If the app isn't configured to process controller actions:
 
   The following example shows the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> after the line is added:
 
-  ```diff
+  ```csharp
   app.UseEndpoints(endpoints =>
   {
-  +   endpoints.MapControllers();
+      endpoints.MapControllers();
       endpoints.MapBlazorHub();
       endpoints.MapFallbackToPage("/_Host");
   });

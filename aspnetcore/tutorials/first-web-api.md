@@ -4,8 +4,7 @@ author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
+ms.date: 05/28/2022
 uid: tutorials/first-web-api
 ---
 
@@ -24,7 +23,7 @@ In this tutorial, you learn how to:
 > * Add a model class and a database context.
 > * Scaffold a controller with CRUD methods.
 > * Configure routing, URL paths, and return values.
-> * Call the web API with Postman.
+> * Call the web API with http-repl.
 
 At the end, you have a web API that can manage "to-do" items stored in a database.
 
@@ -56,8 +55,7 @@ The following diagram shows the design of the app.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
-<!-- [!INCLUDE[](~/includes/net-core-prereqs-mac-5.0.md)] -->
+[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
 
 ---
 
@@ -96,22 +94,19 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
-
-<!--
 * Select **File** > **New Solution**.
 
-  ![macOS New solution](first-web-api-mac/_static/sln.png)
+  ![macOS New solution](first-web-api-mac/_static/6/sln.png)
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
 
-  ![macOS API template selection](first-web-api-mac/_static/api_template.png)
+  ![macOS API template selection](first-web-api-mac/_static/6/api_template.png)
 
 * In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 5.x **Target Framework**. Select **Next**.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/2.png)
+  ![config dialog](first-web-api-mac/_static/6/configure_your_new_api2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -120,7 +115,6 @@ Open a command terminal in the project folder and run the following command:
    ```dotnetcli
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    ```
--->
 
 ---
 
@@ -152,7 +146,7 @@ Run the app:
   * Replace  `<project-name.dll>` with `TodoApi.dll`.
 * Press Ctrl+F5.
 * In the **Could not find the task 'build'** dialog, select **Configure Task**.
-* Select **Create *tasks.json* file from template**.
+* Select **Create `tasks.json` file from template**.
 * Select the **.NET Core** task template.
 * Press Ctrl+F5.
 
@@ -234,28 +228,28 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 # [Visual Studio](#tab/visual-studio)
 
-* In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+* In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
 
-* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
+* Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
 
 * Replace the template code with the following:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a folder named *Models*.
+* Add a folder named `Models`.
 
-* Add a *TodoItem.cs* file to the *Models* folder with the following code:
+* Add a `TodoItem.cs` file to the `Models` folder with the following code:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 <!--
-* Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+* Right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
 
-  ![new folder](first-web-api-mac/_static/folder.png)
+  ![new folder](first-web-api-mac/_static/6/add_new_folder.png)
 
-* Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
+* Right-click the `Models` folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
 * Name the class *TodoItem*, and then click **New**.
 
@@ -268,7 +262,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 The `Id` property functions as the unique key in a relational database.
 
-Model classes can go anywhere in the project, but the *Models* folder is used by convention.
+Model classes can go anywhere in the project, but the `Models` folder is used by convention.
 
 ## Add a database context
 
@@ -285,11 +279,11 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 ## Add the TodoContext database context
 
-* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
+* Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a *TodoContext.cs* file to the *Models* folder. 
+* Add a `TodoContext.cs` file to the `Models` folder. 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -298,7 +292,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 <!--
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Add a `TodoContext` class to the *Models* folder.
+* Add a `TodoContext` class to the `Models` folder.
 -->
 
 ---
@@ -394,7 +388,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 
 ### Install http-repl
 
-This tutorial uses [http-repl](../web-api/http-repl/index.md) to test the web API.
+This tutorial uses [http-repl](xref:web-api/http-repl) to test the web API.
 
 * Run the following command at a command prompt:
 
@@ -402,7 +396,7 @@ This tutorial uses [http-repl](../web-api/http-repl/index.md) to test the web AP
   dotnet tool install -g Microsoft.dotnet-httprepl
   ```
 
-* If you don't have the .NET 5.0 SDK or runtime installed, install the [.NET 5.0 runtime](https://dotnet.microsoft.com/download/dotnet/5.0/runtime).
+* If you don't have the .NET 6.0 SDK or runtime installed, install the [.NET 6.0 runtime](https://dotnet.microsoft.com/download/dotnet/6.0/runtime).
   
 <a name="post"></a>
 
@@ -689,17 +683,17 @@ The following diagram shows the design of the app.
 
 * Select **File** > **New Solution**.
 
-  ![macOS New solution](first-web-api-mac/_static/sln.png)
+  ![macOS New solution](first-web-api-mac/_static/5/sln.png)
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
 
-  ![macOS API template selection](first-web-api-mac/_static/api_template.png)
+  ![macOS API template selection](first-web-api-mac/_static/5/api_template.png)
 
 * In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 5.x **Target Framework**. Select **Next**.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/2.png)
+  ![config dialog](first-web-api-mac/_static/5/2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -808,25 +802,25 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 # [Visual Studio](#tab/visual-studio)
 
-* In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+* In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
 
-* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
+* Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
 
 * Replace the template code with the following:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a folder named *Models*.
+* Add a folder named `Models`.
 
-* Add a `TodoItem` class to the *Models* folder with the following code:
+* Add a `TodoItem` class to the `Models` folder with the following code:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+* Right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
 
-  ![new folder](first-web-api-mac/_static/folder.png)
+  ![new folder](first-web-api-mac/_static/5/folder.png)
 
-* Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
+* Right-click the `Models` folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
 * Name the class *TodoItem*, and then click **New**.
 
@@ -838,7 +832,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 The `Id` property functions as the unique key in a relational database.
 
-Model classes can go anywhere in the project, but the *Models* folder is used by convention.
+Model classes can go anywhere in the project, but the `Models` folder is used by convention.
 
 ## Add a database context
 
@@ -857,11 +851,11 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 ## Add the TodoContext database context
 
-* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
+* Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Add a `TodoContext` class to the *Models* folder.
+* Add a `TodoContext` class to the `Models` folder.
 
 ---
 
@@ -952,8 +946,9 @@ This tutorial uses Postman to test the web API.
 * Install [Postman](https://www.getpostman.com/downloads/)
 * Start the web app.
 * Start Postman.
-* Disable **SSL certificate verification**
-  * From **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
+* Disable **SSL certificate verification**:
+  * Postman for Windows: Select **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
+  * Postman for macOS: Select **Postman** > **Settings** (**General** tab), disable **SSL certificate verification**.
     > [!WARNING]
     > Re-enable SSL certificate verification after testing the controller.
 
@@ -978,7 +973,7 @@ This tutorial uses Postman to test the web API.
 
 * Select **Send**.
 
-  ![Postman with create request](first-web-api/_static/3/create.png)
+  ![Postman with create request](first-web-api/_static/create.png)
 
 ### Test the location header URI
 
@@ -989,7 +984,7 @@ To test in Postman:
 * Select the **Headers** tab in the **Response** pane.
 * Copy the **Location** header value:
 
-  ![Headers tab of the Postman console](first-web-api/_static/3/create.png)
+  ![Headers tab of the Postman console](first-web-api/_static/create.png)
 
 * Set the HTTP method to `GET`.
 * Set the URI to `https://localhost:<port>/api/todoitems/1`. For example, `https://localhost:5001/api/todoitems/1`.
@@ -1212,17 +1207,18 @@ The following diagram shows the design of the app.
 
 * Select **File** > **New Solution**.
 
-  ![macOS New solution](first-web-api-mac/_static/sln.png)
+  ![macOS New solution](first-web-api-mac/_static/5/sln.png)
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
 
-  ![macOS API template selection](first-web-api-mac/_static/api_template.png)
+  ![macOS API template selection](first-web-api-mac/_static/5/api_template.png
+  )
 
 * In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 3.x **Target Framework**. Select **Next**.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/2.png)
+  ![config dialog](first-web-api-mac/_static/5/2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -1299,25 +1295,25 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 # [Visual Studio](#tab/visual-studio)
 
-* In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+* In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
 
-* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
+* Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
 
 * Replace the template code with the following code:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a folder named *Models*.
+* Add a folder named `Models`.
 
-* Add a `TodoItem` class to the *Models* folder with the following code:
+* Add a `TodoItem` class to the `Models` folder with the following code:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Right-click the project. Select **Add** > **New Folder**. Name the folder *Models*.
+* Right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
 
-  ![new folder](first-web-api-mac/_static/folder.png)
+  ![new folder](first-web-api-mac/_static/5/folder.png)
 
-* Right-click the *Models* folder, and select **Add** > **New File** > **General** > **Empty Class**.
+* Right-click the `Models` folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
 * Name the class *TodoItem*, and then click **New**.
 
@@ -1329,7 +1325,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 The `Id` property functions as the unique key in a relational database.
 
-Model classes can go anywhere in the project, but the *Models* folder is used by convention.
+Model classes can go anywhere in the project, but the `Models` folder is used by convention.
 
 ## Add a database context
 
@@ -1348,11 +1344,11 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 ## Add the TodoContext database context
 
-* Right-click the *Models* folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
+* Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Add a `TodoContext` class to the *Models* folder.
+* Add a `TodoContext` class to the `Models` folder.
 
 ---
 
@@ -1442,8 +1438,9 @@ This tutorial uses Postman to test the web API.
 * Install [Postman](https://www.getpostman.com/downloads/)
 * Start the web app.
 * Start Postman.
-* Disable **SSL certificate verification**
-  * From **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
+* Disable **SSL certificate verification**:
+  * Postman for Windows: Postman for Windows **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
+  * Postman for macOS: Postman for Windows **Postman** > **Settings** (**General** tab), disable **SSL certificate verification**.
     > [!WARNING]
     > Re-enable SSL certificate verification after testing the controller.
 
@@ -1624,6 +1621,10 @@ See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-
 ## Add authentication support to a web API
 
 [!INCLUDE[](~/includes/DuendeIdentityServer.md)]
+
+## Publish to Azure
+
+For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore).
 
 ## Additional resources
 

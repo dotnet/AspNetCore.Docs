@@ -6,7 +6,6 @@ ms.author: riande
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: mvc
 ms.date: 11/11/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/app-secrets
 ---
 # Safe storage of app secrets in development in ASP.NET Core
@@ -93,7 +92,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 ### JSON structure flattening in Visual Studio
 
-Visual Studio's **Manage User Secrets** gesture opens a *secrets.json* file in the text editor. Replace the contents of *secrets.json* with the key-value pairs to be stored. For example:
+Visual Studio's **Manage User Secrets** gesture opens a `secrets.json` file in the text editor. Replace the contents of `secrets.json` with the key-value pairs to be stored. For example:
 
 ```json
 {
@@ -114,7 +113,7 @@ The JSON structure is flattened after modifications via `dotnet user-secrets rem
 
 ## Set multiple secrets
 
-A batch of secrets can be set by piping JSON to the `set` command. In the following example, the *input.json* file's contents are piped to the `set` command.
+A batch of secrets can be set by piping JSON to the `set` command. In the following example, the `input.json` file's contents are piped to the `set` command.
 
 # [Windows](#tab/windows)
 
@@ -216,7 +215,7 @@ Movies:ConnectionString = Server=(localdb)\mssqllocaldb;Database=Movie-1;Trusted
 Movies:ServiceApiKey = 12345
 ```
 
-In the preceding example, a colon in the key names denotes the object hierarchy within *secrets.json*.
+In the preceding example, a colon in the key names denotes the object hierarchy within `secrets.json`.
 
 ## Remove a single secret
 
@@ -228,7 +227,7 @@ Run the following command from the directory in which the project file exists:
 dotnet user-secrets remove "Movies:ConnectionString"
 ```
 
-The app's *secrets.json* file was modified to remove the key-value pair associated with the `MoviesConnectionString` key:
+The app's `secrets.json` file was modified to remove the key-value pair associated with the `MoviesConnectionString` key:
 
 ```json
 {
@@ -254,7 +253,7 @@ Run the following command from the directory in which the project file exists:
 dotnet user-secrets clear
 ```
 
-All user secrets for the app have been deleted from the *secrets.json* file:
+All user secrets for the app have been deleted from the `secrets.json` file:
 
 ```json
 {}
@@ -364,7 +363,7 @@ dotnet user-secrets set "Movies:ServiceApiKey" "12345" --project "C:\apps\WebApp
 
 ### JSON structure flattening in Visual Studio
 
-Visual Studio's **Manage User Secrets** gesture opens a *secrets.json* file in the text editor. Replace the contents of *secrets.json* with the key-value pairs to be stored. For example:
+Visual Studio's **Manage User Secrets** gesture opens a `secrets.json` file in the text editor. Replace the contents of `secrets.json` with the key-value pairs to be stored. For example:
 
 ```json
 {
@@ -385,7 +384,7 @@ The JSON structure is flattened after modifications via `dotnet user-secrets rem
 
 ## Set multiple secrets
 
-A batch of secrets can be set by piping JSON to the `set` command. In the following example, the *input.json* file's contents are piped to the `set` command.
+A batch of secrets can be set by piping JSON to the `set` command. In the following example, the `input.json` file's contents are piped to the `set` command.
 
 # [Windows](#tab/windows)
 
@@ -489,7 +488,7 @@ Movies:ConnectionString = Server=(localdb)\mssqllocaldb;Database=Movie-1;Trusted
 Movies:ServiceApiKey = 12345
 ```
 
-In the preceding example, a colon in the key names denotes the object hierarchy within *secrets.json*.
+In the preceding example, a colon in the key names denotes the object hierarchy within `secrets.json`.
 
 ## Remove a single secret
 
@@ -501,7 +500,7 @@ Run the following command from the directory in which the project file exists:
 dotnet user-secrets remove "Movies:ConnectionString"
 ```
 
-The app's *secrets.json* file was modified to remove the key-value pair associated with the `MoviesConnectionString` key:
+The app's `secrets.json` file was modified to remove the key-value pair associated with the `MoviesConnectionString` key:
 
 ```json
 {
@@ -527,7 +526,7 @@ Run the following command from the directory in which the project file exists:
 dotnet user-secrets clear
 ```
 
-All user secrets for the app have been deleted from the *secrets.json* file:
+All user secrets for the app have been deleted from the `secrets.json` file:
 
 ```json
 {}

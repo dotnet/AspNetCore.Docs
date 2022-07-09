@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/class-libraries
 ---
 # Consume ASP.NET Core Razor components from a Razor class library (RCL)
@@ -15,7 +14,7 @@ uid: blazor/components/class-libraries
 
 Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. Include components and static assets in an app from:
 
-* Another project in the solution.
+* Another project in the [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 * A referenced .NET library.
 * A NuGet package.
 
@@ -382,7 +381,7 @@ Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/d
 
 Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. Include components and static assets in an app from:
 
-* Another project in the solution.
+* Another project in the [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 * A referenced .NET library.
 * A NuGet package.
 
@@ -672,7 +671,7 @@ Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/d
 
 Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. Include components and static assets in an app from:
 
-* Another project in the solution.
+* Another project in the [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 * A referenced .NET library.
 * A NuGet package.
 
@@ -812,8 +811,8 @@ To provide `Component1`'s `my-component` CSS class, link to the library's styles
 
 `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
 
-```diff
-+ <link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
+```html
+<link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
 ```
 
 ## Create an RCL with static assets

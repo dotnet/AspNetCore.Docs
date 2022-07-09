@@ -17,11 +17,14 @@ namespace RazorPagesMovie.Pages.Movies
         }
         #endregion
 
-        public IList<Movie> Movie { get; set; }
+        public IList<Movie> Movie { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Movie = await _context.Movie.ToListAsync();
+            if (_context.Movie != null)
+            {
+                Movie = await _context.Movie.ToListAsync();
+            }
         }
     }
 }

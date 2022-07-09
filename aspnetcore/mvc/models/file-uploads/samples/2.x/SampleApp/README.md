@@ -37,7 +37,7 @@ For additional information, see [Upload files in ASP.NET Core](https://docs.micr
 
 ## How to use the sample
 
-In the *appsettings.json* file:
+In the `appsettings.json` file:
 
 1. Set the path for stored files (`StoredFilesPath`).
 

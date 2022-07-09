@@ -4,7 +4,6 @@ author: rick-anderson
 description: Learn how to get started with ASP.NET Core MVC.
 ms.author: riande
 ms.date: 09/17/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/start-mvc
 ms.custom: contperf-fy21q3
 ---
@@ -84,7 +83,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   * If a dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**, select **Yes**
 
   * `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
-  * `code -r MvcMovie`: Loads the *MvcMovie.csproj* project file in Visual Studio Code.
+  * `code -r MvcMovie`: Loads the `MvcMovie.csproj` project file in Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -168,7 +167,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
-<!-->
+<!--
 * Select **Run** > **Start Without Debugging** to launch the app.
 
   Visual Studio for Mac:
@@ -269,7 +268,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   * If a dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**, select **Yes**
 
   * `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
-  * `code -r MvcMovie`: Loads the *MvcMovie.csproj* project file in Visual Studio Code.
+  * `code -r MvcMovie`: Loads the `MvcMovie.csproj` project file in Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -450,7 +449,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
   * A dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**, select **Yes**.
 
   * `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
-  * `code -r MvcMovie`: Loads the *MvcMovie.csproj* project file in Visual Studio Code.
+  * `code -r MvcMovie`: Loads the `MvcMovie.csproj` project file in Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

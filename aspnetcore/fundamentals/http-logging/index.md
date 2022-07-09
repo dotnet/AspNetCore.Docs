@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-6.0'
 ms.author: jukotali
 ms.custom: mvc
 ms.date: 04/20/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/http-logging/index
 ---
 
@@ -41,7 +40,7 @@ HTTP Logging is enabled with <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuild
 
 By default, HTTP Logging logs common properties such as path, status-code, and headers for requests and responses. Add the following line to the `appsettings.Development.json` file at the `"LogLevel": {` level so the HTTP logs are displayed:
 
-```xml
+```json
  "Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware": "Information"
  ```
 
@@ -61,7 +60,7 @@ To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.Depend
 
 ### `RequestHeaders`
 
-<xref:Microsoft.AspNetCore.Http.HttpRequest.Headers> are a set of HTTP Request Headers that are allowed to be logged. Header values are only logged for header names that are in this collection. The following code logs the request header `"sec-ch-ua"`. If `logging.RequestHeaders.Add("sec-ch-ua");` is removed, the value of rhe request header `"sec-ch-ua"` is redacted. The following highlighted code calls [`HttpLoggingOptions.RequestHeaders`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.RequestHeaders) and [`HttpLoggingOptions.ResponseHeaders`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.ResponseHeaders) :
+<xref:Microsoft.AspNetCore.Http.HttpRequest.Headers> are a set of HTTP Request Headers that are allowed to be logged. Header values are only logged for header names that are in this collection. The following code logs the request header `"sec-ch-ua"`. If `logging.RequestHeaders.Add("sec-ch-ua");` is removed, the value of the request header `"sec-ch-ua"` is redacted. The following highlighted code calls [`HttpLoggingOptions.RequestHeaders`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.RequestHeaders) and [`HttpLoggingOptions.ResponseHeaders`](xref:Microsoft.AspNetCore.HttpLogging.HttpLoggingOptions.ResponseHeaders) :
 
 [!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices&highlight=8,9)]
 

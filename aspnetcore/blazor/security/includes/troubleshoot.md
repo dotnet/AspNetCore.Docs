@@ -1,6 +1,3 @@
----
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
----
 ## Troubleshoot
 
 ### Common errors
@@ -30,7 +27,7 @@ no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Cor
   The documentation team responds to document feedback and bugs in articles (open an issue from the **This page** feedback section) but is unable to provide product support. Several public support forums are available to assist with troubleshooting an app. We recommend the following:
   
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](http://tattoocoder.com/aspnet-slack-sign-up/)
+  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
   * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
   
   *The preceding forums are not owned or controlled by Microsoft.*
@@ -96,7 +93,7 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 
 ### Run the Server app
 
-When testing and troubleshooting a hosted Blazor solution, make sure that you're running the app from the **`Server`** project. For example in Visual Studio, confirm that the Server project is highlighted in **Solution Explorer** before you start the app with any of the following approaches:
+When testing and troubleshooting a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), make sure that you're running the app from the **`Server`** project. For example in Visual Studio, confirm that the Server project is highlighted in **Solution Explorer** before you start the app with any of the following approaches:
 
 * Select the **Run** button.
 * Use **Debug** > **Start Debugging** from the menu.

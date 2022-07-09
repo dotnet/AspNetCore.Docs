@@ -3,9 +3,8 @@ title: "Tutorial: Create a minimal web API with ASP.NET Core"
 author: rick-anderson
 description: Learn how to build a minimal web API with ASP.NET Core.
 ms.author: riande
-ms.date: 11/12/2021
+ms.date: 05/28/2022
 monikerRange: '>= aspnetcore-6.0'
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Models]
 uid: tutorials/min-web-api
 ---
 
@@ -44,11 +43,10 @@ This tutorial creates the following API:
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
-<!-- add VS Mac later
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 [!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
--->
+
 ---
 
 ## Create a Web API project
@@ -91,25 +89,36 @@ This tutorial creates the following API:
 
   The preceding command creates a new web minimal API project and opens it in Visual Studio Code.
 
-<!-- add VS Mac later 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Select **File** > **New Solution**.
+* Select **File** > **New Project...**.
 
-`  ![macOS New solution](first-web-api-mac/_static/sln.png)`
+![macOS New solution](first-web-api-mac/_static/6/sln.png)
 
-* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
+* In Visual Studio for Mac 2022, select **Web and Console** > **App** > **API** > **Next**.
 
-`  ![macOS API template selection](first-web-api-mac/_static/api_template.png)`
+![macOS API template selection](first-web-api-mac/_static/6/api_template.png)
 
-* In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 5.x **Target Framework**. Select **Next**.
+In the **Configure your new API** dialog, make the following selections:
+- **Target framework:** .NET 6.x (or more recent). 
+- **Configure for HTTPS**: Check
+- **Use Controllers (uncheck to use minimal APIs)**: Uncheck
+- **Enable OpenAPI Support**: Check
 
-* Enter *TodoApi* for the **Project Name** and then select **Create**.
+Select **Next**.
 
- ` ![config dialog](first-web-api-mac/_static/2.png)`
+![Configure Your New API Window 1](first-web-api-mac/_static/6/configure_your_new_api.png)
+
+* In the **Configure our new API** window, enter the following:
+- **Project name:** TodoApi
+- **Solution name:** TodoApi
+
+Select **Create**.
+
+![Configure Your New API Window 2](first-web-api-mac/_static/6/configure_your_new_api2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
--->
+
 ---
 
 ### Examine the code
@@ -142,11 +151,10 @@ Visual Studio launches the [Kestrel web server](xref:fundamentals/servers/kestre
 
 Press Ctrl+F5 to run the app. A browser window is opened. Append `/swagger` to the URL in the browser, for example `https://localhost:7122/swagger`.
 
-<!-- add VS Mac later 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. 
--->
+Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. 
+
 
 ---
 
@@ -212,7 +220,7 @@ app.MapGet("/", () => "Hello World!");
 
 `app.Run();` runs the app.
 
-Remove the two `"launchUrl": "swagger",` lines from the *Properties/launchSettings.json* file. When the `launchUrl` isn't specified, the web browser requests the `/` endpoint.
+Remove the two `"launchUrl": "swagger",` lines from the `Properties/launchSettings.json` file. When the `launchUrl` isn't specified, the web browser requests the `/` endpoint.
 
 Run the app. `Hello World!` is displayed. The updated `Program.cs` file contains a minimal but complete app.
 
@@ -223,7 +231,6 @@ NuGet packages must be added to support the database and diagnostics used in thi
 # [Visual Studio](#tab/visual-studio)
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
-* Select the **Browse** tab, and verify that **Include prerelease** is checked.
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane and then select **Install**.
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
@@ -233,19 +240,19 @@ NuGet packages must be added to support the database and diagnostics used in thi
 * Run the following commands:
 
    ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.InMemory --prerelease
-   dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --prerelease
+   dotnet add package Microsoft.EntityFrameworkCore.InMemory
+   dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
      ```
 
-<!-- add VS Mac later 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Open a command terminal in the project folder and run the following command:
+* In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**
+* In the searchbox, enter **Microsoft.EntityFrameworkCore.InMemory** 
+* In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
+* Select **Add Package**
+* In the **Select Projects** window, select **Ok**
+* In the **License Agreement** window, select **Agree**
 
-   ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.InMemory
-   ```
-   -->
 ---
 
 ## Add the API code
@@ -322,6 +329,7 @@ The sample app implements several GET endpoints using calls to `MapGet`:
 |--- | ---- | ---- | ---- |
 |`GET /` | Browser test, "Hello World" | None | `Hello World!`|
 |`GET /todoitems` | Get all to-do items | None | Array of to-do items|
+|`GET /todoitems/complete` | Get all completed to-do items | None | Array of to-do items|
 |`GET /todoitems/{id}` | Get an item by ID | None | To-do item|
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_get)]
@@ -379,7 +387,7 @@ Update the to-do item that has Id = 1 and set its name to `"feed fish"`:
 
 ```json
 {
-  "Id": 1,
+  "id": 1,
   "name": "feed fish",
   "isComplete": false
 }
@@ -460,6 +468,10 @@ The preceding code uses [web defaults](/dotnet/standard/serialization/system-tex
 ## Test minimal API
 
 For an example of testing a minimal API app, see [this GitHub sample](https://github.com/davidfowl/CommunityStandUpMinimalAPI/blob/main/TodoApi.Tests/TodoTests.cs).
+
+## Publish to Azure
+
+For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore).
 
 ## Additional resources
 

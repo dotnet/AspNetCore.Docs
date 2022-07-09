@@ -5,7 +5,6 @@ description: Learn about the new features in ASP.NET Core 6.0.
 ms.author: riande
 ms.custom: mvc
 ms.date: 10/29/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR, Kestrel]
 uid: aspnetcore-6.0
 ---
 # What's new in ASP.NET Core 6.0
@@ -144,6 +143,13 @@ With the preceding snippet, the SignalR C++ client is ready to use [`#include`](
 
 ## Blazor
 
+### Project template changes
+
+Several project template changes were made for Blazor apps, including the use of the `Pages/_Layout.cshtml` file for layout content that appeared in the `_Host.cshtml` file for earlier Blazor Server apps. Study the changes by creating an app from a 6.0 project template or accessing the ASP.NET Core reference source for the project templates:
+
+* [Blazor Server](https://github.com/dotnet/aspnetcore/tree/v6.0.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorServerWeb-CSharp)
+* [Blazor WebAssembly](https://github.com/dotnet/aspnetcore/tree/v6.0.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp)
+
 ### Blazor WebAssembly native dependencies support
 
 Blazor WebAssembly apps can use native dependencies built to run on WebAssembly. For more information, see <xref:blazor/webassembly-native-dependencies>.
@@ -241,34 +247,28 @@ Generic type parameters are now supported. For more information, see <xref:blazo
 
 Use a deployment layout to enable Blazor WebAssembly app downloads in restricted security environments. For more information, see <xref:blazor/host-and-deploy/webassembly-deployment-layout?view=aspnetcore-6.0>.
 
-### Blazor hybrid desktop apps (.NET MAUI)
-
-.NET Multi-platform App UI (.NET MAUI) is a cross-platform framework for creating native mobile and desktop apps with C# and XAML.
-
-> [!NOTE]
-> The .NET MAUI framework is in preview and shouldn't be used in production apps until final release.
-
-For more information, see the following resources:
-
-* [What is .NET MAUI?](/dotnet/maui/what-is-maui)
-* [Microsoft .NET Blog (category: ".NET MAUI")](https://devblogs.microsoft.com/dotnet/category/maui/)
-
-<!-- HOLD
-### Blazor WebAssembly packaging
-
-HOLD
-
-### Dynamically added root components
-
-HOLD
--->
-
 ### New Blazor articles
 
 In addition to the Blazor features described in the preceding sections, new Blazor articles are available on the following subjects:
 
 * <xref:blazor/file-downloads>: Learn how to download a file using native `byte[]` streaming interop to ensure efficient transfer to the client.
 * <xref:blazor/images>: Discover how to work with images in Blazor apps, including how to stream image data and preview an image.
+
+## Build Blazor Hybrid apps with .NET MAUI, WPF, and Windows Forms
+
+Use Blazor Hybrid to blend desktop and mobile native client frameworks with .NET and Blazor:
+
+* .NET Multi-platform App UI (.NET MAUI) is a cross-platform framework for creating native mobile and desktop apps with C# and XAML.
+* Blazor Hybrid apps can be built with Windows Presentation Foundation (WPF) and Windows Forms frameworks.
+
+> [!IMPORTANT]
+> Blazor Hybrid is in preview and shouldn't be used in production apps until final release.
+
+For more information, see the following resources:
+
+* [Preview ASP.NET Core Blazor Hybrid documentation](xref:blazor/hybrid/index)
+* [What is .NET MAUI?](/dotnet/maui/what-is-maui)
+* [Microsoft .NET Blog (category: ".NET MAUI")](https://devblogs.microsoft.com/dotnet/category/maui/)
 
 ## Kestrel
 
@@ -407,7 +407,7 @@ Cookie authentication sliding expiration can now be customized or suppressed usi
 
 ### Hot Reload
 
-Quickly make UI and code updates to running apps without losing app state for faster and more productive developer experience using [Hot Reload](xref:test/hot-reload). For more information, see [Update on .NET Hot Reload progress and Visual Studio 2022 Highlights](https://devblogs.microsoft.com/dotnet/update-on-net-hot-reload-progress-and-visual-studio-2022-highlights/).
+Quickly make UI and code updates to running apps without losing app state for faster and more productive developer experience using [Hot Reload](xref:test/hot-reload). For more information, see <xref:test/hot-reload> and [Update on .NET Hot Reload progress and Visual Studio 2022 Highlights](https://devblogs.microsoft.com/dotnet/update-on-net-hot-reload-progress-and-visual-studio-2022-highlights/).
 
 <!-- Notes:
 ### Single-file publishing
@@ -473,7 +473,7 @@ The web app templates:
 
 Random ports are assigned during project creation for use by the Kestrel web server. Random ports help minimize a port conflict when multiple projects are run on the same machine.
 
-When a project is created, a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300 is specified in the generated *Properties/launchSettings.json* file. The ports can be changed in the *Properties/launchSettings.json* file. If no port is specified, Kestrel  defaults to the HTTP 5000 and HTTPS 5001 ports. For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
+When a project is created, a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300 is specified in the generated `Properties/launchSettings.json` file. The ports can be changed in the `Properties/launchSettings.json` file. If no port is specified, Kestrel  defaults to the HTTP 5000 and HTTPS 5001 ports. For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
 
 ### New logging defaults
 
@@ -648,10 +648,6 @@ For example, the following app sets the <xref:System.Net.Sockets.Socket.LingerSt
 
 [!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_icsf)]
 
-### Hot Reload
-
-Hot Reload minimizes the number of app restarts after code changes. For more information, see <xref:test/hot-reload>.
-
 ### Generic type constraints in Razor
 
 When defining generic type parameters in Razor using the `@typeparam` directive, generic type constraints can now be specified using the standard C# syntax:
@@ -661,7 +657,7 @@ When defining generic type parameters in Razor using the `@typeparam` directive,
 
  The SignalR, MessagePack, and Blazor Server scripts are now significantly smaller, enabling smaller downloads, less JavaScript parsing and compiling by the browser, and faster start-up. The size reductions:
 
-* `signalr.min.js`: 70%
+* `signalr.js`: 70%
 * `blazor.server.js`: 45%
 
 The smaller scripts are a result of a community contribution from [Ben Adams](https://twitter.com/ben_a_adams). For more information on the details of the size reduction, see [Ben's GitHub pull request](https://github.com/dotnet/aspnetcore/pull/30320).

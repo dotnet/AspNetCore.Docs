@@ -4,7 +4,6 @@ author: rick-anderson
 description: Part 9 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.date: 09/16/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/first-mvc-app/validation
 ---
 
@@ -39,7 +38,7 @@ Select the **Create New** link to add a new movie. Fill out the form with some i
 
 Notice how the form has automatically rendered an appropriate validation error message in each field containing an invalid value. The errors are enforced both client-side (using JavaScript and jQuery) and server-side (in case a user has JavaScript disabled).
 
-A significant benefit is that you didn't need to change a single line of code in the `MoviesController` class or in the *Create.cshtml* view in order to enable this validation UI. The controller and views you created earlier in this tutorial automatically picked up the validation rules that you specified by using validation attributes on the properties of the `Movie` model class. Test validation using the `Edit` action method, and the same validation is applied.
+A significant benefit is that you didn't need to change a single line of code in the `MoviesController` class or in the `Create.cshtml` view in order to enable this validation UI. The controller and views you created earlier in this tutorial automatically picked up the validation rules that you specified by using validation attributes on the properties of the `Movie` model class. Test validation using the `Edit` action method, and the same validation is applied.
 
 The form data isn't sent to the server until there are no client side validation errors. You can verify this by putting a break point in the `HTTP Post` method, by using the [Fiddler tool](https://www.telerik.com/fiddler) , or the [F12 Developer tools](/microsoft-edge/devtools-guide).
 
@@ -65,7 +64,7 @@ After you disable JavaScript, post invalid data and step through the debugger.
 
 ![While debugging on a post of invalid data, Intellisense on ModelState.IsValid shows the value is false.](~/tutorials/first-mvc-app/validation/_static/ms.png)
 
-A portion of the *Create.cshtml* view template is shown in the following markup:
+A portion of the `Create.cshtml` view template is shown in the following markup:
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/CreateRatingBrevity.html)]
 
@@ -79,7 +78,7 @@ When you need to change validation logic, you can do so in exactly one place by 
 
 ## Using DataType Attributes
 
-Open the *Movie.cs* file and examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. We've already applied a `DataType` enumeration value to the release date and to the price fields. The following code shows the `ReleaseDate` and `Price` properties with the appropriate `DataType` attribute.
+Open the `Movie.cs` file and examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. We've already applied a `DataType` enumeration value to the release date and to the price fields. The following code shows the `ReleaseDate` and `Price` properties with the appropriate `DataType` attribute.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?highlight=2,6&name=DataType)]
 
@@ -158,7 +157,7 @@ Tap the **Create New** link to add a new movie. Fill out the form with some inva
 
 Notice how the form has automatically rendered an appropriate validation error message in each field containing an invalid value. The errors are enforced both client-side (using JavaScript and jQuery) and server-side (in case a user has JavaScript disabled).
 
-A significant benefit is that you didn't need to change a single line of code in the `MoviesController` class or in the *Create.cshtml* view in order to enable this validation UI. The controller and views you created earlier in this tutorial automatically picked up the validation rules that you specified by using validation attributes on the properties of the `Movie` model class. Test validation using the `Edit` action method, and the same validation is applied.
+A significant benefit is that you didn't need to change a single line of code in the `MoviesController` class or in the `Create.cshtml` view in order to enable this validation UI. The controller and views you created earlier in this tutorial automatically picked up the validation rules that you specified by using validation attributes on the properties of the `Movie` model class. Test validation using the `Edit` action method, and the same validation is applied.
 
 The form data isn't sent to the server until there are no client side validation errors. You can verify this by putting a break point in the `HTTP Post` method, by using the [Fiddler tool](https://www.telerik.com/fiddler) , or the [F12 Developer tools](/microsoft-edge/devtools-guide).
 
@@ -184,7 +183,7 @@ After you disable JavaScript, post invalid data and step through the debugger.
 
 ![While debugging on a post of invalid data, Intellisense on ModelState.IsValid shows the value is false.](~/tutorials/first-mvc-app/validation/_static/ms.png)
 
-The portion of the *Create.cshtml* view template is shown in the following markup:
+The portion of the `Create.cshtml` view template is shown in the following markup:
 
 [!code-HTML[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Views/Movies/CreateRatingBrevity.html)]
 
@@ -198,7 +197,7 @@ When you need to change validation logic, you can do so in exactly one place by 
 
 ## Using DataType Attributes
 
-Open the *Movie.cs* file and examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. We've already applied a `DataType` enumeration value to the release date and to the price fields. The following code shows the `ReleaseDate` and `Price` properties with the appropriate `DataType` attribute.
+Open the `Movie.cs` file and examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. We've already applied a `DataType` enumeration value to the release date and to the price fields. The following code shows the `ReleaseDate` and `Price` properties with the appropriate `DataType` attribute.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
 

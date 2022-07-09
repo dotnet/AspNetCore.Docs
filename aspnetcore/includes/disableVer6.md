@@ -1,6 +1,3 @@
----
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
----
 <a name="ddav"></a>
 ### Disable default account verification when Account.RegisterConfirmation has been scaffolded
 
@@ -8,7 +5,7 @@ This section only applies when `Account.RegisterConfirmation` is scaffolded. Ski
 
 The user is redirected to the `Account.RegisterConfirmation` where they can select a link to have the account confirmed. The default `Account.RegisterConfirmation` is used ***only*** for testing, automatic account verification should be disabled in a production app.
 
-To require a confirmed account and prevent immediate login at registration, set `DisplayConfirmAccountLink = false` in the scaffolded */Areas/Identity/Pages/Account/RegisterConfirmation.cshtml.cs* file:
+To require a confirmed account and prevent immediate login at registration, set `DisplayConfirmAccountLink = false` in the scaffolded `/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml.cs` file:
 
 [!code-csharp[](~/security/authentication/accconfirm/sample/RegisterConfirmation.cshtml.cs?highlight=63)]
 

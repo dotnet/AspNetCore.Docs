@@ -4,7 +4,6 @@ author: rick-anderson
 description: Learn about key storage providers in ASP.NET Core and how to configure key storage locations.
 ms.author: riande
 ms.date: 12/05/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/data-protection/implementation/key-storage-providers
 ---
 # Key storage providers in ASP.NET Core
@@ -47,13 +46,16 @@ If the web app is running as an Azure service, connection string can be used to 
 ```csharp
 string connectionString = "<connection_string>";
 string containerName = "my-key-container";
+string blobName = "keys.xml"
 BlobContainerClient container = new BlobContainerClient(connectionString, containerName);
 
 // optional - provision the container automatically
 await container.CreateIfNotExistsAsync();
 
+BlobClient blobClient = container.GetBlobClient(blobName);
+
 services.AddDataProtection()
-    .PersistKeysToAzureBlobStorage(container, "keys.xml");
+    .PersistKeysToAzureBlobStorage(blobClient);
 ```
 
 > [!NOTE]

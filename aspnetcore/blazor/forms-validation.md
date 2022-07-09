@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/forms-validation
 ---
 # ASP.NET Core Blazor forms and validation
@@ -19,13 +18,13 @@ To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> comp
 
 `ExampleModel.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/ExampleModel.cs?highlight=5-6)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/ExampleModel.cs" highlight="5-6":::
 
 A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following Razor component demonstrates typical elements, components, and Razor code to render a webform using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, which is bound to the preceding `ExampleModel` type.
 
 `Pages/FormExample1.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample1.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample1.razor":::
 
 In the preceding `FormExample1` component:
 
@@ -117,7 +116,7 @@ The following `Starship` type, which is used in several of this article's exampl
 
 `Starship.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Starship.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Starship.cs":::
 
 The following form accepts and validates user input using:
 
@@ -126,7 +125,7 @@ The following form accepts and validates user input using:
 
 `Pages/FormExample2.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample2.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample2.razor":::
 
 The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> in the preceding example creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> based on the assigned `Starship` instance (`Model="@starship"`) and handles a valid form. The next example (`FormExample3` component) demonstrates how to assign an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> to a form and validate when the form is submitted.
 
@@ -144,7 +143,7 @@ In the following example:
 
 `Pages/FormExample3.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample3.razor?highlight=5,39,44)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample3.razor" highlight="5,39,44":::
 
 > [!NOTE]
 > Changing the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> after its assigned is **not** supported.
@@ -303,7 +302,7 @@ In the following `FormExample4` component, the `HandleValidationRequested` handl
 
 `Pages/FormExample4.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor?highlight=38,42-52,72)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor" highlight="38,42-52,72":::
 
 ## Data Annotations Validator component and custom validation
 
@@ -343,7 +342,7 @@ Create a validator component from <xref:Microsoft.AspNetCore.Components.Componen
 
 `CustomValidation.cs` (if used in a test app, change the namespace, `BlazorSample`, to match the app's namespace):
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/CustomValidation.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/CustomValidation.cs":::
 
 > [!IMPORTANT]
 > Specifying a namespace is **required** when deriving from <xref:Microsoft.AspNetCore.Components.ComponentBase>. Failing to specify a namespace results in a build error:
@@ -371,7 +370,7 @@ When validation messages are set in the component, they're added to the validato
 
 `Pages/FormExample5.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample5.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample5.razor":::
 
 > [!NOTE]
 > As an alternative to using [validation components](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
@@ -390,7 +389,7 @@ Server validation is supported in addition to client-side validation:
 
 The following example is based on:
 
-* A hosted Blazor WebAssembly solution created from the [Blazor WebAssembly project template](xref:blazor/project-structure). The approach is supported for any of the secure hosted Blazor solutions described in the [hosted Blazor WebAssembly security documentation](xref:blazor/security/webassembly/index#implementation-guidance).
+* A hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) created from the [Blazor WebAssembly project template](xref:blazor/project-structure). The approach is supported for any of the secure hosted Blazor solutions described in the [hosted Blazor WebAssembly security documentation](xref:blazor/security/webassembly/index#implementation-guidance).
 * The `Starship` model  (`Starship.cs`) from the [Example form](#example-form) section.
 * The `CustomValidation` component shown in the [Validator components](#validator-components) section.
 
@@ -491,7 +490,7 @@ When a model binding validation error occurs on the server, an [`ApiController`]
 ```
 
 > [!NOTE]
-> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.postman.com).
+> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) or [Postman](https://www.postman.com).
 
 If the server API returns the preceding default JSON response, it's possible for the client to parse the response in developer code to obtain the children of the `errors` node for forms validation error processing. It's inconvenient to write developer code to parse the file. Parsing the JSON manually requires producing a [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary%602) of errors after calling <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A>. Ideally, the server API should only return the validation errors:
 
@@ -691,19 +690,19 @@ The following example uses the `ExampleModel` class.
 
 `ExampleModel.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/ExampleModel.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/ExampleModel.cs":::
 
 The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the [`oninput`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) event.
 
 `Shared/CustomInputText.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Shared/forms-and-validation/CustomInputText.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/forms-and-validation/CustomInputText.razor":::
 
 The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.Components.Forms.InputText> is used. The following `FormExample7` component uses the shared `CustomInputText` component.
 
 `Pages/FormExample7.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample7.razor?highlight=9)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample7.razor" highlight="9":::
 
 ## Radio buttons
 
@@ -854,7 +853,7 @@ The following example uses the `ExampleModel` class.
 
 `ExampleModel.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/ExampleModel.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/ExampleModel.cs":::
 
 To specify custom validation CSS class attributes, start by providing CSS styles for custom validation. In the following example, valid (`validField`) and invalid (`invalidField`) styles are specified.
 
@@ -874,19 +873,19 @@ Create a class derived from <xref:Microsoft.AspNetCore.Components.Forms.FieldCss
 
 `CustomFieldClassProvider.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider.cs?highlight=11)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider.cs":::
 
 Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance with <xref:Microsoft.AspNetCore.Components.Forms.EditContextFieldClassExtensions.SetFieldCssClassProvider%2A>.
 
 `Pages/FormExample8.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample8.razor?highlight=21)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample8.razor" highlight="21":::
 
 The preceding example checks the validity of all form fields and applies a style to each field. If the form should only apply custom styles to a subset of the fields, make `CustomFieldClassProvider` apply styles conditionally. The following `CustomFieldClassProvider2` example only applies a style to the `Name` field. For any fields with names not matching `Name`, `string.Empty` is returned, and no style is applied.
 
 `CustomFieldClassProvider2.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider2.cs?highlight=9,16)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider2.cs":::
 
 Add an additional property to `ExampleModel`, for example:
 
@@ -928,7 +927,7 @@ In the following example:
 
 `CustomFieldClassProvider3.cs`:
 
-[!code-csharp[](~/blazor/samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider3.cs?highlight=17-24)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/CustomFieldClassProvider3.cs":::
 
 Update the `EditContext` instance in the component's `OnInitialized` method to use the preceding Field CSS Class Provider:
 
@@ -1012,7 +1011,7 @@ To enable and disable the submit button based on form validation, the following 
 
 `Pages/FormExample9.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample9.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample9.razor":::
 
 If a form isn't preloaded with valid values and you wish to disable the **`Submit`** button on form load, set `formInvalid` to `true`.
 
@@ -1370,7 +1369,7 @@ Server validation is supported in addition to client-side validation:
 
 The following example is based on:
 
-* A hosted Blazor WebAssembly solution created from the [Blazor WebAssembly project template](xref:blazor/project-structure). The approach is supported for any of the secure hosted Blazor solutions described in the [hosted Blazor WebAssembly security documentation](xref:blazor/security/webassembly/index#implementation-guidance).
+* A hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) created from the [Blazor WebAssembly project template](xref:blazor/project-structure). The approach is supported for any of the secure hosted Blazor solutions described in the [hosted Blazor WebAssembly security documentation](xref:blazor/security/webassembly/index#implementation-guidance).
 * The `Starship` model  (`Starship.cs`) from the [Example form](#example-form) section.
 * The `CustomValidation` component shown in the [Validator components](#validator-components) section.
 
@@ -1471,7 +1470,7 @@ When a model binding validation error occurs on the server, an [`ApiController`]
 ```
 
 > [!NOTE]
-> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.postman.com).
+> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) or [Postman](https://www.postman.com).
 
 If the server API returns the preceding default JSON response, it's possible for the client to parse the response in developer code to obtain the children of the `errors` node for forms validation error processing. It's inconvenient to write developer code to parse the file. Parsing the JSON manually requires producing a [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary%602) of errors after calling <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A>. Ideally, the server API should only return the validation errors:
 
@@ -2315,7 +2314,7 @@ Server validation is supported in addition to client-side validation:
 
 The following example is based on:
 
-* A hosted Blazor WebAssembly solution created from the [Blazor WebAssembly project template](xref:blazor/project-structure). The approach is supported for any of the secure hosted Blazor solutions described in the [hosted Blazor WebAssembly security documentation](xref:blazor/security/webassembly/index#implementation-guidance).
+* A hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) created from the [Blazor WebAssembly project template](xref:blazor/project-structure). The approach is supported for any of the secure hosted Blazor solutions described in the [hosted Blazor WebAssembly security documentation](xref:blazor/security/webassembly/index#implementation-guidance).
 * The `Starship` model  (`Starship.cs`) from the [Example form](#example-form) section.
 * The `CustomValidation` component shown in the [Validator components](#validator-components) section.
 
@@ -2420,7 +2419,7 @@ When a model binding validation error occurs on the server, an [`ApiController`]
 ```
 
 > [!NOTE]
-> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/), or [Postman](https://www.postman.com).
+> To demonstrate the preceding JSON response, you must either disable the form's client-side validation to permit empty field form submission or use a tool to send a request directly to the server API, such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) or [Postman](https://www.postman.com).
 
 If the server API returns the preceding default JSON response, it's possible for the client to parse the response in developer code to obtain the children of the `errors` node for forms validation error processing. It's inconvenient to write developer code to parse the file. Parsing the JSON manually requires producing a [`Dictionary<string, List<string>>`](xref:System.Collections.Generic.Dictionary%602) of errors after calling <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A>. Ideally, the server API should only return the validation errors:
 

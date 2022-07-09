@@ -1,0 +1,10 @@
+@model IEnumerable<ViewComponentSample.Models.TodoItem>
+
+<h3>Sync Priority Items</h3>
+<ul>
+    @foreach (var todo in Model)
+    {
+        <li>@todo.Name</li>
+    }
+</ul>
+

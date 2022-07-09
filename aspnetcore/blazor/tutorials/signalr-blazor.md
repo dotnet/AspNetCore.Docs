@@ -5,8 +5,7 @@ description: Create a chat app that uses ASP.NET Core SignalR with Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 06/10/2022
 uid: blazor/tutorials/signalr-blazor
 zone_pivot_groups: blazor-hosting-models
 ---
@@ -76,6 +75,8 @@ Follow the guidance for your choice of tooling:
 
 1. Select **Create**.
 
+1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **`Client`** project and a **`Server`** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core hosted** checkbox before selecting **Create**.
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 1. In a command shell, execute the following command:
@@ -84,11 +85,13 @@ Follow the guidance for your choice of tooling:
    dotnet new blazorwasm -ho -o BlazorWebAssemblySignalRApp
    ```
 
-   The `-ho|--hosted` option creates a hosted Blazor WebAssembly solution. For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in <xref:blazor/tooling>.
+   The `-ho|--hosted` option creates a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in <xref:blazor/tooling>.
 
    The `-o|--output` option creates a folder for the solution. If you've created a folder for the solution and the command shell is open in that folder, omit the `-o|--output` option and value to create the solution.
 
 1. In Visual Studio Code, open the app's project folder.
+
+1. Confirm that a hosted Blazor WebAssembly app was created: Confirm the presence of a **`Client`** project and a **`Server`** project in the app's solution folder. If the two projects aren't present, start over and confirm passing the `-ho` or `--hosted` option to the `dotnet new` command when creating the solution.
 
 To configure Visual Studio Code assets in the `.vscode` folder for debugging, see:
 
@@ -113,7 +116,9 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
    If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
-1. Open the project by navigating to the project folder and opening the project's solution file (`.sln`).
+1. Open the project by navigating to the project folder and opening the project's [solution](xref:blazor/tooling#visual-studio-solution-file-sln) file (`.sln`).
+
+1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **`Client`** project and a **`Server`** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core Hosted** checkbox before selecting **Create**.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -123,9 +128,11 @@ In a command shell, execute the following command:
 dotnet new blazorwasm -ho -o BlazorWebAssemblySignalRApp
 ```
 
-The `-ho|--hosted` option creates a hosted Blazor WebAssembly solution.
+The `-ho|--hosted` option creates a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 
 The `-o|--output` option creates a folder for the solution. If you've created a folder for the solution and the command shell is open in that folder, omit the `-o|--output` option and value to create the solution.
+
+Confirm that a hosted Blazor WebAssembly app was created: Confirm the presence of a **`Client`** project and a **`Server`** project in the app's solution folder. If the two projects aren't present, start over and confirm passing the `-ho` or `--hosted` option to the `dotnet new` command when creating the solution.
 
 ---
 
@@ -169,7 +176,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-In a command shell from the solution's folder, execute the following command:
+In a command shell from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) folder, execute the following command:
 
 ```dotnetcli
 dotnet add Client package Microsoft.AspNetCore.SignalR.Client
@@ -183,7 +190,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-[!code-csharp[](signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs":::
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -197,14 +204,21 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Add SignalR and Response Compression Middleware services to `Program.cs`:
 
-   [!code-csharp[](signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Program.cs?name=snippet_ConfigureServices)]
+   ```csharp
+   builder.Services.AddSignalR();
+   builder.Services.AddResponseCompression(opts =>
+   {
+       opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+           new[] { "application/octet-stream" });
+   });
+   ```
 
 1. In `Program.cs`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Server/Program.cs?name=snippet_Configure)]
+   :::code language="csharp" source="~/../blazor-samples/6.0/BlazorWebAssemblySignalRApp/Server/Program.cs" id="snippet_Configure" highlight="1,21":::
 
 ## Add Razor component code for chat
 
@@ -212,7 +226,7 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Replace the markup with the following code:
 
-   [!code-razor[](signalr-blazor/samples/6.0/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor)]
+   :::code language="razor" source="~/../blazor-samples/6.0/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor":::
 
 ## Run the app
 
@@ -223,7 +237,7 @@ Follow the guidance for your tooling:
 1. In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -240,7 +254,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 1. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -255,7 +269,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 1. In the **Solution** sidebar, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -267,7 +281,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-1. In a command shell from the solution's folder, execute the following commands:
+1. In a command shell from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) folder, execute the following commands:
 
    ```dotnetcli
    cd Server
@@ -320,7 +334,7 @@ Follow the guidance for your choice of tooling:
 
 1. In Visual Studio Code, open the app's project folder.
 
-1. When the dialog appears to add assets to build and debug the app, select **Yes**. Visual Studio Code automatically adds the `.vscode` folder with generated `launch.json` and `tasks.json` files. For information on configuring VS Code assets in the `.vscode` folder, including how to manually add the files to the solution, see the **Linux** operating system guidance in <xref:blazor/tooling?pivot=linux>.
+1. When the dialog appears to add assets to build and debug the app, select **Yes**. Visual Studio Code automatically adds the `.vscode` folder with generated `launch.json` and `tasks.json` files. For information on configuring VS Code assets in the `.vscode` folder, including how to manually add the files to the [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see the **Linux** operating system guidance in <xref:blazor/tooling?pivot=linux>.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -406,7 +420,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-[!code-csharp[](signalr-blazor/samples/6.0/BlazorServerSignalRApp/Hubs/ChatHub.cs)]
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerSignalRApp/Hubs/ChatHub.cs":::
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -416,12 +430,12 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
    ```csharp
    using Microsoft.AspNetCore.ResponseCompression;
-   using BlazorServerSignalRApp.Hubs;
+   using BlazorServerSignalRApp.Server.Hubs;
    ```
 
 1. Add Response Compression Middleware services to `Program.cs`:
 
-   [!code-csharp[](signalr-blazor/samples/6.0/BlazorServerSignalRApp/Program.cs?name=snippet_ConfigureServices)]
+   :::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerSignalRApp/Program.cs" id="snippet_ConfigureServices":::
 
 1. In `Program.cs`:
 
@@ -432,7 +446,7 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
      app.MapHub<ChatHub>("/chathub");
      ```
 
-   [!code-csharp[](signalr-blazor/samples/6.0/BlazorServerSignalRApp/Program.cs?name=snippet_Configure)]
+   :::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerSignalRApp/Program.cs" id="snippet_Configure":::
 
 ## Add Razor component code for chat
 
@@ -440,7 +454,7 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 1. Replace the markup with the following code:
 
-   [!code-razor[](signalr-blazor/samples/6.0/BlazorServerSignalRApp/Pages/Index.razor)]
+   :::code language="razor" source="~/../blazor-samples/6.0/BlazorServerSignalRApp/Pages/Index.razor":::
 
 ## Run the app
 
@@ -599,7 +613,7 @@ Follow the guidance for your choice of tooling:
    dotnet new blazorwasm -ho -o BlazorWebAssemblySignalRApp
    ```
 
-   The `-ho|--hosted` option creates a hosted Blazor WebAssembly solution. For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in <xref:blazor/tooling>.
+   The `-ho|--hosted` option creates a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in <xref:blazor/tooling>.
 
    The `-o|--output` option creates a folder for the solution. If you've created a folder for the solution and the command shell is open in that folder, omit the `-o|--output` option and value to create the solution.
 
@@ -626,7 +640,7 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
    If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
-1. Open the project by navigating to the project folder and opening the project's solution file (`.sln`).
+1. Open the project by navigating to the project folder and opening the project's [solution](xref:blazor/tooling#visual-studio-solution-file-sln) file (`.sln`).
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -636,7 +650,7 @@ In a command shell, execute the following command:
 dotnet new blazorwasm -ho -o BlazorWebAssemblySignalRApp
 ```
 
-The `-ho|--hosted` option creates a hosted Blazor WebAssembly solution.
+The `-ho|--hosted` option creates a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 
 The `-o|--output` option creates a folder for the solution. If you've created a folder for the solution and the command shell is open in that folder, omit the `-o|--output` option and value to create the solution.
 
@@ -682,7 +696,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-In a command shell from the solution's folder, execute the following command:
+In a command shell from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) folder, execute the following command:
 
 ```dotnetcli
 dotnet add Client package Microsoft.AspNetCore.SignalR.Client
@@ -710,7 +724,14 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Add SignalR and Response Compression Middleware services to `Startup.ConfigureServices`:
 
-   [!code-csharp[](signalr-blazor/samples/5.0/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,6-10)]
+   ```csharp
+   services.AddSignalR();
+   services.AddResponseCompression(opts =>
+   {
+       opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+           new[] { "application/octet-stream" });
+   });
+   ```
 
 1. In `Startup.Configure`:
 
@@ -736,7 +757,7 @@ Follow the guidance for your tooling:
 1. In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -753,7 +774,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 1. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -770,7 +791,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
@@ -780,7 +801,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-1. In a command shell from the solution's folder, execute the following commands:
+1. In a command shell from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) folder, execute the following commands:
 
    ```dotnetcli
    cd Server
@@ -833,7 +854,7 @@ Follow the guidance for your choice of tooling:
 
 1. In Visual Studio Code, open the app's project folder.
 
-1. When the dialog appears to add assets to build and debug the app, select **Yes**. Visual Studio Code automatically adds the `.vscode` folder with generated `launch.json` and `tasks.json` files. For information on configuring VS Code assets in the `.vscode` folder, including how to manually add the files to the solution, see the **Linux** operating system guidance in <xref:blazor/tooling?pivot=linux>.
+1. When the dialog appears to add assets to build and debug the app, select **Yes**. Visual Studio Code automatically adds the `.vscode` folder with generated `launch.json` and `tasks.json` files. For information on configuring VS Code assets in the `.vscode` folder, including how to manually add the files to the [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see the **Linux** operating system guidance in <xref:blazor/tooling?pivot=linux>.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -851,7 +872,7 @@ Follow the guidance for your choice of tooling:
 
    If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
-1. Open the project by navigating to the project folder and opening the project's solution file (`.sln`).
+1. Open the project by navigating to the project folder and opening the project's [solution](xref:blazor/tooling#visual-studio-solution-file-sln) file (`.sln`).
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -1108,7 +1129,7 @@ Follow the guidance for your choice of tooling:
    dotnet new blazorwasm -ho -o BlazorWebAssemblySignalRApp
    ```
 
-   The `-ho|--hosted` option creates a hosted Blazor WebAssembly solution. For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in <xref:blazor/tooling>.
+   The `-ho|--hosted` option creates a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in <xref:blazor/tooling>.
 
    The `-o|--output` option creates a folder for the solution. If you've created a folder for the solution and the command shell is open in that folder, omit the `-o|--output` option and value to create the solution.
 
@@ -1135,7 +1156,7 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
    If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
-1. Open the project by navigating to the project folder and opening the project's solution file (`.sln`).
+1. Open the project by navigating to the project folder and opening the project's [solution](xref:blazor/tooling#visual-studio-solution-file-sln) file (`.sln`).
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -1145,7 +1166,7 @@ In a command shell, execute the following command:
 dotnet new blazorwasm -ho -o BlazorWebAssemblySignalRApp
 ```
 
-The `-ho|--hosted` option creates a hosted Blazor WebAssembly solution.
+The `-ho|--hosted` option creates a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 
 The `-o|--output` option creates a folder for the solution. If you've created a folder for the solution and the command shell is open in that folder, omit the `-o|--output` option and value to create the solution.
 
@@ -1191,7 +1212,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-In a command shell from the solution's folder, execute the following command:
+In a command shell from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) folder, execute the following command:
 
 ```dotnetcli
 dotnet add Client package Microsoft.AspNetCore.SignalR.Client
@@ -1219,7 +1240,14 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Add SignalR and Response Compression Middleware services to `Startup.ConfigureServices`:
 
-   [!code-csharp[](signalr-blazor/samples/3.1/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_ConfigureServices&highlight=3,5-9)]
+   ```csharp
+   services.AddSignalR();
+   services.AddResponseCompression(opts =>
+   {
+       opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+           new[] { "application/octet-stream" });
+   });
+   ```
 
 1. In `Startup.Configure`:
 
@@ -1245,7 +1273,7 @@ Follow the guidance for your tooling:
 1. In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1262,7 +1290,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 1. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1277,7 +1305,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 1. In the **Solution** sidebar, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1289,7 +1317,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-1. In a command shell from the solution's folder, execute the following commands:
+1. In a command shell from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) folder, execute the following commands:
 
    ```dotnetcli
    cd Server
@@ -1342,7 +1370,7 @@ Follow the guidance for your choice of tooling:
 
 1. In Visual Studio Code, open the app's project folder.
 
-1. When the dialog appears to add assets to build and debug the app, select **Yes**. Visual Studio Code automatically adds the `.vscode` folder with generated `launch.json` and `tasks.json` files. For information on configuring VS Code assets in the `.vscode` folder, including how to manually add the files to the solution, see the **Linux** operating system guidance in <xref:blazor/tooling?pivot=linux>.
+1. When the dialog appears to add assets to build and debug the app, select **Yes**. Visual Studio Code automatically adds the `.vscode` folder with generated `launch.json` and `tasks.json` files. For information on configuring VS Code assets in the `.vscode` folder, including how to manually add the files to the [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see the **Linux** operating system guidance in <xref:blazor/tooling?pivot=linux>.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -1360,7 +1388,7 @@ Follow the guidance for your choice of tooling:
 
    If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
-1. Open the project by navigating to the project folder and opening the project's solution file (`.sln`).
+1. Open the project by navigating to the project folder and opening the project's [solution](xref:blazor/tooling#visual-studio-solution-file-sln) file (`.sln`).
 
 # [.NET Core CLI](#tab/netcore-cli/)
 

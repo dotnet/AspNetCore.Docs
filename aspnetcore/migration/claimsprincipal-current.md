@@ -5,7 +5,6 @@ description: Learn how to migrate away from ClaimsPrincipal.Current to retrieve 
 ms.author: scaddie
 ms.custom: mvc
 ms.date: 03/26/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: migration/claimsprincipal-current
 ---
 # Migrate from ClaimsPrincipal.Current

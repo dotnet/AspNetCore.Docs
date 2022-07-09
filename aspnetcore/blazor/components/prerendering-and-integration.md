@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/components/prerendering-and-integration
 zone_pivot_groups: blazor-hosting-models
 ---
@@ -18,7 +17,7 @@ This article explains Razor component integration scenarios for Blazor apps, inc
 
 :::zone pivot="webassembly"
 
-Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution. When the page or view is rendered, components can be prerendered at the same time.
+Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). When the page or view is rendered, components can be prerendered at the same time.
 
 Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
 
@@ -153,6 +152,8 @@ To set up prerendering for a hosted Blazor WebAssembly app:
    app.MapFallbackToPage("/_Host");
    ```
 
+1. If the **`Client`** and **`Server`** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see <xref:blazor/fundamentals/dependency-injection#register-common-services-in-a-hosted-blazor-webassembly-solution>.
+
 1. Run the **`Server`** project. The hosted Blazor WebAssembly app is prerendered by the **`Server`** project for clients.
 
 ### Configuration for embedding Razor components into pages and views
@@ -201,23 +202,24 @@ Update the namespaces in the imported `_ViewImports.cshtml` file to match those 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 ```
 
-Update the imported layout file (`_Layout.cshtml`) to include the **`Client`** project's styles. In the following example, the **`Client`** project's namespace is `BlazorHosted.Client`. The `<title>` element can be updated at the same time. The `{APP NAME}` placeholder represents the donor project's app name.
+Update the imported layout file, which is `Pages/Shared/_Layout.cshtml` for Razor Pages or `Views/Shared/_Layout.cshtml` for MVC.
 
-`Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
+First, delete the title and the stylesheet from the donor project, which is `RPDonor.styles.css` in the following example. The `{APP NAME}` placeholder represents the donor project's app name.
 
 ```diff
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
--   <title>@ViewData["Title"] - {APP NAME}</title>
-+   <title>@ViewData["Title"] - BlazorHosted</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-+   <link href="css/app.css" rel="stylesheet" />
--   <link rel="stylesheet" href="~/RPDonor.styles.css" asp-append-version="true" />
-+   <link rel="stylesheet" href="BlazorHosted.Client.styles.css" asp-append-version="true" />
-+   <component type="typeof(HeadOutlet)" render-mode="WebAssemblyPrerendered" />
-</head>
+- <title>@ViewData["Title"] - {APP NAME}</title>
+- <link rel="stylesheet" href="~/RPDonor.styles.css" asp-append-version="true" />
+```
+
+Include the **`Client`** project's styles in the layout file. In the following example, the **`Client`** project's namespace is `BlazorHosted.Client`. The `<title>` element can be updated at the same time.
+
+Place the following lines in the `<head>` content of the layout file:
+
+```html
+<title>@ViewData["Title"] - BlazorHosted</title>
+<link href="css/app.css" rel="stylesheet" />
+<link rel="stylesheet" href="BlazorHosted.Client.styles.css" asp-append-version="true" />
+<component type="typeof(HeadOutlet)" render-mode="WebAssemblyPrerendered" />
 ```
 
 The imported layout contains two `Home` (`Index` page) and `Privacy` navigation links. To make the `Home` links point to the hosted Blazor WebAssembly app, change the hyperlinks:
@@ -351,7 +353,7 @@ Additional work might be required depending on the static resources that compone
 
 ### Set child content through a render fragment
 
-The [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) doesn't support receiving a [`RenderFragment` delegate for child content](xref:blazor/components/index#child-content) (for example, `param-ChildContent="..."`). We recommend creating a Razor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Razor component from the page or view.
+The [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) doesn't support receiving a [`RenderFragment` delegate for child content](xref:blazor/components/index#child-content-render-fragments) (for example, `param-ChildContent="..."`). We recommend creating a Razor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Razor component from the page or view.
 
 ### Ensure that top-level prerendered components aren't trimmed out on publish
 
@@ -950,7 +952,7 @@ By initializing components with the same state used during prerendering, any exp
 
 :::zone pivot="webassembly"
 
-Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution. When the page or view is rendered, components can be prerendered at the same time.
+Razor components can be integrated into Razor Pages and MVC apps in a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). When the page or view is rendered, components can be prerendered at the same time.
   
 Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mozilla.org/docs/Glossary/SEO) by rendering content for the initial HTTP response that search engines can use to calculate page rank.
 
@@ -1012,6 +1014,8 @@ To set up prerendering for a hosted Blazor WebAssembly app:
    - endpoints.MapFallbackToFile("index.html");
    + endpoints.MapFallbackToPage("/_Host");
    ```
+
+1. If the **`Client`** and **`Server`** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see <xref:blazor/fundamentals/dependency-injection#register-common-services-in-a-hosted-blazor-webassembly-solution>.
 
 1. Run the **`Server`** project. The hosted Blazor WebAssembly app is prerendered by the **`Server`** project for clients.
 
@@ -1098,11 +1102,11 @@ In the `Home` controller, return the view.
 
 `Controllers/HomeController.cs`:
 
-```diff
-+ public IActionResult Privacy()
-+ {
-+     return View();
-+ }
+```csharp
+public IActionResult Privacy()
+{
+    return View();
+}
 ```
 
 Import static assets to the **`Server`** project from the donor project's `wwwroot` folder:
@@ -1159,14 +1163,14 @@ After [configuring the solution](#solution-configuration), including the [additi
 
 In `Program.cs` of the **`Client`** project, add the namespace for the project's Razor components to the top of the file:
 
-```diff
-+ using BlazorHosted.Client.Pages;
+```csharp
+using BlazorHosted.Client.Pages;
 ```
 
 After the `builder` is established in `Program.cs`, add the `Counter` component as a root component:
 
-```diff
-+ builder.RootComponents.Add<Counter>("#counter-component");
+```csharp
+builder.RootComponents.Add<Counter>("#counter-component");
 ```
 
 In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections).
@@ -1217,8 +1221,8 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
    * Add the following `<base>` tag to the `<head>` element in `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
 
-     ```diff
-     + <base href="~/" />
+     ```html
+     <base href="~/" />
      ```
 
      The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:blazor/host-and-deploy/index#app-base-path> article.
@@ -1227,9 +1231,9 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
      `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
 
-     ```diff
+     ```cshtml
          ...
-     +   <script src="_framework/blazor.server.js"></script>
+         <script src="_framework/blazor.server.js"></script>
 
          @await RenderSectionAsync("Scripts", required: false)
      </body>
@@ -1254,18 +1258,18 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
 1. Register the Blazor Server service in `Startup.ConfigureServices`.
 
-   `Startup.cs`:
+   In `Startup.cs`:
 
-   ```diff
-   + services.AddServerSideBlazor();
+   ```csharp
+   services.AddServerSideBlazor();
    ```
 
 1. Add the Blazor Hub endpoint to the endpoints (`app.UseEndpoints`) of `Startup.Configure`.
 
    `Startup.cs`:
 
-   ```diff
-   + endpoints.MapBlazorHub();
+   ```csharp
+   endpoints.MapBlazorHub();
    ```
 
 1. Integrate components into any page or view. For example, add a `Counter` component to the project's `Shared` folder.
@@ -1383,12 +1387,18 @@ To support routable Razor components in Razor Pages apps:
 
 1. In the `Startup.Configure` endpoints of `Startup.cs`, add a low-priority route for the `_Host` page as the last endpoint:
 
-   ```diff
+   ```csharp
+   endpoints.MapFallbackToPage("/_Host");
+   ```
+
+   The following example shows the added line in a typical app's endpoint configuration:
+
+   ```csharp
    app.UseEndpoints(endpoints =>
    {
        endpoints.MapRazorPages();
        endpoints.MapBlazorHub();
-   +   endpoints.MapFallbackToPage("/_Host");
+       endpoints.MapFallbackToPage("/_Host");
    });
    ```
 
@@ -1483,14 +1493,20 @@ To support routable Razor components in MVC apps:
 
 1. In the `Startup.Configure` endpoints of `Startup.cs`, add a low-priority route for the controller action that returns the `_Host` view:
 
-   ```diff
+   ```csharp
+   endpoints.MapFallbackToController("Blazor", "Home");
+   ```
+   
+   The following example shows the added line in a typical app's endpoint configuration:
+
+   ```csharp
    app.UseEndpoints(endpoints =>
    {
        endpoints.MapControllerRoute(
            name: "default",
            pattern: "{controller=Home}/{action=Index}/{id?}");
        endpoints.MapBlazorHub();
-   +   endpoints.MapFallbackToController("Blazor", "Home");
+       endpoints.MapFallbackToController("Blazor", "Home");
    });
    ```
 
@@ -1635,7 +1651,7 @@ For more information, see <xref:blazor/components/index#namespaces>.
 
 :::zone pivot="webassembly"
 
-Integrating Razor components into Razor Pages and MVC apps in a hosted Blazor WebAssembly solution is supported in ASP.NET Core in .NET 5 or later. Select a .NET 5 or later version of this article.
+Integrating Razor components into Razor Pages and MVC apps in a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) is supported in ASP.NET Core in .NET 5 or later. Select a .NET 5 or later version of this article.
 
 :::zone-end
 
@@ -1670,9 +1686,9 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
      `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
 
-     ```diff
+     ```cshtml
          ...
-     +   <script src="_framework/blazor.server.js"></script>
+         <script src="_framework/blazor.server.js"></script>
 
          @await RenderSectionAsync("Scripts", required: false)
      </body>
@@ -1699,16 +1715,16 @@ An existing Razor Pages or MVC app can integrate Razor components into pages and
 
    `Startup.cs`:
 
-   ```diff
-   + services.AddServerSideBlazor();
+   ```csharp
+   services.AddServerSideBlazor();
    ```
 
 1. Add the Blazor Hub endpoint to the endpoints (`app.UseEndpoints`) of `Startup.Configure`.
 
    `Startup.cs`:
 
-   ```diff
-   + endpoints.MapBlazorHub();
+   ```csharp
+   endpoints.MapBlazorHub();
    ```
 
 1. Integrate components into any page or view. For example, add a `Counter` component to the project's `Shared` folder.
@@ -1824,12 +1840,18 @@ To support routable Razor components in Razor Pages apps:
 
 1. In the `Startup.Configure` endpoints of `Startup.cs`, add a low-priority route for the `_Host` page as the last endpoint:
 
-   ```diff
+   ```csharp
+   endpoints.MapFallbackToPage("/_Host");
+   ```
+
+   The following example shows the added line in a typical app's endpoint configuration:
+
+   ```csharp
    app.UseEndpoints(endpoints =>
    {
        endpoints.MapRazorPages();
        endpoints.MapBlazorHub();
-   +   endpoints.MapFallbackToPage("/_Host");
+       endpoints.MapFallbackToPage("/_Host");
    });
    ```
 
@@ -1922,14 +1944,20 @@ To support routable Razor components in MVC apps:
 
 1. In the `Startup.Configure` endpoints of `Startup.cs`, add a low-priority route for the controller action that returns the `_Host` view:
 
-   ```diff
+   ```csharp
+   endpoints.MapFallbackToController("Blazor", "Home");
+   ```
+
+   The following example shows the added line in a typical app's endpoint configuration:
+
+   ```csharp
    app.UseEndpoints(endpoints =>
    {
        endpoints.MapControllerRoute(
            name: "default",
            pattern: "{controller=Home}/{action=Index}/{id?}");
        endpoints.MapBlazorHub();
-   +   endpoints.MapFallbackToController("Blazor", "Home");
+       endpoints.MapFallbackToController("Blazor", "Home");
    });
    ```
 

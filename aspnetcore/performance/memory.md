@@ -5,7 +5,6 @@ description: Learn how memory is managed in ASP.NET Core and how the garbage col
 ms.author: riande
 ms.custom: mvc
 ms.date: 4/05/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: performance/memory
 ---
 
@@ -125,7 +124,7 @@ The .NET Garbage Collector has two different modes:
 * **Workstation GC**: Optimized for the desktop.
 * **Server GC**. The default GC for ASP.NET Core apps. Optimized for the server.
 
-The GC mode can be set explicitly in the project file or in the *runtimeconfig.json* file of the published app. The following markup shows setting `ServerGarbageCollection` in the project file:
+The GC mode can be set explicitly in the project file or in the `runtimeconfig.json` file of the published app. The following markup shows setting `ServerGarbageCollection` in the project file:
 
 ```xml
 <PropertyGroup>

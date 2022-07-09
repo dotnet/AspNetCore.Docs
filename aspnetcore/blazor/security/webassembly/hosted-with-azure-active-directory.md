@@ -6,17 +6,15 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/security/webassembly/hosted-with-azure-active-directory
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory
 
 This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication.
 
-:::moniker range=">= aspnetcore-6.0"
+For more information on *solutions*, see <xref:blazor/tooling#visual-studio-solution-file-sln>.
 
-> [!NOTE]
-> For Blazor WebAssembly apps created in Visual Studio that are configured to support accounts in an AAD organizational directory with Microsoft Identity Platform, use Visual Studio version 16.10 or later in order to create the app with the correct Azure configuration. If you use a version of Visual Studio earlier than 16.10, you must manually update the app's configuration per **_each section of this article_** after generating the app.
+:::moniker range=">= aspnetcore-6.0"
 
 ## Register apps in AAD and create solution
 
@@ -212,7 +210,7 @@ Example:
 
 ### WeatherForecast controller
 
-The WeatherForecast controller (*Controllers/WeatherForecastController.cs*) exposes a protected API with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied to the controller. It's **important** to understand that:
+The WeatherForecast controller (`Controllers/WeatherForecastController.cs`) exposes a protected API with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied to the controller. It's **important** to understand that:
 
 * The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protect this API from unauthorized access.
 * The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) used in the Blazor WebAssembly app only serves as a hint to the app that the user should be authorized for the app to work correctly.
@@ -410,9 +408,6 @@ Run the app from the Server project. When using Visual Studio, either:
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-> [!NOTE]
-> For Blazor WebAssembly apps created in Visual Studio that are configured to support accounts in an AAD organizational directory with Microsoft Identity Platform, use Visual Studio version 16.10 or later in order to create the app with the correct Azure configuration. If you use a version of Visual Studio earlier than 16.10, you must manually update the app's configuration per **_each section of this article_** after generating the app.
-
 ## Register apps in AAD and create solution
 
 ### Create a tenant
@@ -607,7 +602,7 @@ Example:
 
 ### WeatherForecast controller
 
-The WeatherForecast controller (*Controllers/WeatherForecastController.cs*) exposes a protected API with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied to the controller. It's **important** to understand that:
+The WeatherForecast controller (`Controllers/WeatherForecastController.cs`) exposes a protected API with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied to the controller. It's **important** to understand that:
 
 * The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protect this API from unauthorized access.
 * The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) used in the Blazor WebAssembly app only serves as a hint to the app that the user should be authorized for the app to work correctly.
@@ -993,7 +988,7 @@ Example:
 
 ### WeatherForecast controller
 
-The WeatherForecast controller (*Controllers/WeatherForecastController.cs*) exposes a protected API with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied to the controller. It's **important** to understand that:
+The WeatherForecast controller (`Controllers/WeatherForecastController.cs`) exposes a protected API with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied to the controller. It's **important** to understand that:
 
 * The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protect this API from unauthorized access.
 * The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) used in the Blazor WebAssembly app only serves as a hint to the app that the user should be authorized for the app to work correctly.

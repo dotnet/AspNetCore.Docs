@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: bradyg
 ms.custom: mvc, devx-track-js
 ms.date: 1/22/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: signalr/javascript-client
 ---
 # ASP.NET Core SignalR JavaScript client
@@ -37,7 +36,7 @@ npm init -y
 npm install @microsoft/signalr
 ```
 
-npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\browser* folder. Create the *wwwroot/lib/signalr* folder. Copy the *signalr.js* file to the *wwwroot/lib/signalr* folder.
+npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\browser* folder. Create the *wwwroot/lib/signalr* folder. Copy the `signalr.js` file to the *wwwroot/lib/signalr* folder.
 
 Reference the SignalR JavaScript client in the `<script>` element. For example:
 
@@ -55,7 +54,7 @@ The client library is available on the following CDNs:
 
 * [cdnjs](https://cdnjs.com/libraries/microsoft-signalr)
 * [jsDelivr](https://www.jsdelivr.com/package/npm/@microsoft/signalr)
-* [unpkg](https://unpkg.com/@microsoft/signalr@next/dist/browser/signalr.min.js)
+* [unpkg](https://unpkg.com/@microsoft/signalr@next/dist/browser/signalr.js)
 
 ### Install with LibMan
 
@@ -92,7 +91,7 @@ In the following highlighted code, the method name on the hub is `SendMessage`. 
 
 Calling hub methods from a client is only supported when using the ***Azure SignalR Service in Default*** mode. For more information, see [Frequently Asked Questions (azure-signalr GitHub repository)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose).
 
-The `invoke` method returns a JavaScript [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). The `Promise` is resolved with the return value (if any) when the method on the server returns. If the method on the server throws an error, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
+The `invoke` method returns a JavaScript [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). The `Promise` is resolved with the return value (if any) when the method on the server returns. If the method on the server throws an error, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
 
 JavaScript clients can also call public methods on hubs via the [send](/javascript/api/%40microsoft/signalr/hubconnection#@microsoft-signalr-hubconnection-send) method of the `HubConnection`. Unlike the `invoke` method, the `send` method doesn't wait for a response from the server. The `send` method returns a JavaScript `Promise`. The `Promise` is resolved when the message has been sent to the server. If there is an error sending the message, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
 
@@ -353,7 +352,7 @@ npm init -y
 npm install @microsoft/signalr
 ```
 
-npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the *signalr.js* file to the *wwwroot\lib\signalr* folder.
+npm installs the package contents in the *node_modules\\@microsoft\signalr\dist\browser* folder. Create a new folder named *signalr* under the *wwwroot\\lib* folder. Copy the `signalr.js` file to the *wwwroot\lib\signalr* folder.
 
 Reference the SignalR JavaScript client in the `<script>` element. For example:
 
@@ -371,7 +370,7 @@ The client library is available on the following CDNs:
 
 * [cdnjs](https://cdnjs.com/libraries/microsoft-signalr)
 * [jsDelivr](https://www.jsdelivr.com/package/npm/@microsoft/signalr)
-* [unpkg](https://unpkg.com/@microsoft/signalr@next/dist/browser/signalr.min.js)
+* [unpkg](https://unpkg.com/@microsoft/signalr@next/dist/browser/signalr.js)
 
 ### Install with LibMan
 
@@ -408,7 +407,7 @@ In the following example, the method name on the hub is `SendMessage`. The secon
 > [!NOTE]
 > Calling hub methods from a client is only supported when using the Azure SignalR Service in *Default* mode. For more information, see [Frequently Asked Questions (azure-signalr GitHub repository)](https://github.com/Azure/azure-signalr/blob/dev/docs/faq.md#what-is-the-meaning-of-service-mode-defaultserverlessclassic-how-can-i-choose).
 
-The `invoke` method returns a JavaScript [Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). The `Promise` is resolved with the return value (if any) when the method on the server returns. If the method on the server throws an error, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
+The `invoke` method returns a JavaScript [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). The `Promise` is resolved with the return value (if any) when the method on the server returns. If the method on the server throws an error, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
 
 JavaScript clients can also call public methods on hubs via the [send](/javascript/api/%40microsoft/signalr/hubconnection#send-string--any---) method of the `HubConnection`. Unlike the `invoke` method, the `send` method doesn't wait for a response from the server. The `send` method returns a JavaScript `Promise`. The `Promise` is resolved when the message has been sent to the server. If there is an error sending the message, the `Promise` is rejected with the error message. Use `async` and `await` or the `Promise`'s `then` and `catch` methods to handle these cases.
 

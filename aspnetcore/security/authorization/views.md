@@ -5,7 +5,6 @@ description: This document demonstrates how to inject and utilize the authorizat
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.date: 11/08/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authorization/views
 ---
 # View-based authorization in ASP.NET Core MVC
@@ -17,7 +16,7 @@ A developer often wants to show, hide, or otherwise modify a UI based on the cur
 @inject IAuthorizationService AuthorizationService
 ```
 
-If you want the authorization service in every view, place the `@inject` directive into the *_ViewImports.cshtml* file of the *Views* directory. For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection).
+If you want the authorization service in every view, place the `@inject` directive into the `_ViewImports.cshtml` file of the *Views* directory. For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection).
 
 Use the injected authorization service to invoke `AuthorizeAsync` in exactly the same way you would check during [resource-based authorization](xref:security/authorization/resourcebased#security-authorization-resource-based-imperative):
 

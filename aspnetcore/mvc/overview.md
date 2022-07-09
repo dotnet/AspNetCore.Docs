@@ -4,7 +4,6 @@ author: ardalis
 description: Learn how ASP.NET Core MVC is a rich framework for building web apps and APIs using the Model-View-Controller design pattern.
 ms.author: riande
 ms.date: 02/12/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/overview
 ---
 # Overview of ASP.NET Core MVC
@@ -214,8 +213,8 @@ The `EnvironmentTagHelper` can be used to include different scripts in your view
     <script src="~/lib/jquery/dist/jquery.js"></script>
 </environment>
 <environment names="Staging,Production">
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
-            asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.js"
+            asp-fallback-src="~/lib/jquery/dist/jquery.js"
             asp-fallback-test="window.jQuery">
     </script>
 </environment>

@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/host-and-deploy/webassembly-deployment-layout
 ---
 # Deployment layout for ASP.NET Core Blazor WebAssembly apps
@@ -39,7 +38,7 @@ The approach described in this article is used by the *experimental* [`Microsoft
 
 Later in this article, the [Customize the Blazor WebAssembly loading process via a NuGet package](#customize-the-blazor-webassembly-loading-process-via-a-nuget-package) section with its three subsections provide detailed explanations on the configuration and code in the `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package. The detailed explanations are important to understand when you create your own strategy and custom loading process for Blazor WebAssembly apps. To use the published, experimental, unsupported NuGet package without customization as a **local demonstration**, perform the following steps:
 
-1. Use an existing hosted Blazor WebAssembly solution or create a new solution from the Blazor WebAssembly project template using Visual Studio or by passing the [`-ho|--hosted` option](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) command (`dotnet new blazorwasm -ho`). For more information, see <xref:blazor/tooling>.
+1. Use an existing hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) or create a new solution from the Blazor WebAssembly project template using Visual Studio or by passing the [`-ho|--hosted` option](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) command (`dotnet new blazorwasm -ho`). For more information, see <xref:blazor/tooling>.
 
 1. In the **`Client`** project, add the experimental `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package.
 

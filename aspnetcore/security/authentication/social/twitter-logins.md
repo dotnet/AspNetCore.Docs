@@ -6,7 +6,6 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 12/08/2021
 monikerRange: '>= aspnetcore-3.0'
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: security/authentication/twitter-logins
 ---
 # Twitter external sign-in setup with ASP.NET Core

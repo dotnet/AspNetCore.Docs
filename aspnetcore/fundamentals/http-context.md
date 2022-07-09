@@ -6,14 +6,53 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 01/31/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/httpcontext
 ---
 # Access HttpContext in ASP.NET Core
 
 :::moniker range=">= aspnetcore-6.0"
-    
+
 ASP.NET Core apps access `HttpContext` through the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> interface and its default implementation <xref:Microsoft.AspNetCore.Http.HttpContextAccessor>. It's only necessary to use `IHttpContextAccessor` when you need access to the `HttpContext` inside a service.
+
+## HttpContext isn't thread safe
+
+This article primarily discusses using `HttpContext` in request and response flow from Razor Pages, controllers, middleware, etc. Consider the following when using `HttpContext` outside the request and response flow:
+
+* The `HttpContext` is **NOT** thread safe, accessing it from multiple threads can result in exceptions, data corruption and generally unpredictable results.
+* The <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> interface should be used with caution. As always, the `HttpContext` must ***not*** be captured outside of the request flow.  `IHttpContextAccessor`:
+  * Relies on  <xref:System.Threading.AsyncLocal%601> which can have a negative performance impact on asynchronous calls.
+  * Creates a dependency on "ambient state" which can make testing more difficult.
+* <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext%2A?displayProperty=nameWithType> may be `null` if accessed outside of the request flow.
+* To access information from `HttpContext` outside the request flow, copy the information inside the request flow. Be careful to copy the actual data and not just references. For example, rather than copying a reference to an `IHeaderDictionary`, copy the relevant header values or copy the entire dictionary key by key before leaving the request flow.
+* Don't capture `IHttpContextAccessor.HttpContext` in a constructor.
+
+The following sample logs GitHub branches when requested from the `/branch` endpoint:
+
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=26-45)]
+
+The GitHub API requires two headers. The `User-Agent` header is added dynamically by the `UserAgentHeaderHandler`:
+
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=10-20)]
+
+The `UserAgentHeaderHandler`:
+
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/UserAgentHeaderHandler.cs?highlight=21-29)]
+
+In the preceding code, when the `HttpContext` is `null`, the `userAgent` string is set to `"Unknown"`. If possible, `HttpContext` should be explicitly passed to the service. Explicitly passing in `HttpContext` data:
+
+* Makes the service API more useable outside the request flow.
+* Is better for performance.
+* Makes the code easier to understand and reason about than relying on ambient state.
+
+When the service must access `HttpContext`, it should account for the possibility of `HttpContext` being `null` when not called from a request thread.
+
+The application also includes `PeriodicBranchesLoggerService`, which logs the open GitHub branches of the specified repository every 30 seconds:
+
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/PeriodicBranchesLoggerService.cs)]
+
+`PeriodicBranchesLoggerService` is a [hosted service](xref:fundamentals/host/hosted-services), which runs outside the request and response flow. Logging from the `PeriodicBranchesLoggerService` has a null `HttpContext`. The `PeriodicBranchesLoggerService` was written to not depend on the `HttpContext`.
+
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=8&range=1-11)]
 
 ## Use HttpContext from Razor Pages
 

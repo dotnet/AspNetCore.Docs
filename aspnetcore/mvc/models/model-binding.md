@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-3.1'
 ms.assetid: 0be164aa-1d72-4192-bd6b-192c9c301164
 ms.author: riande
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/models/model-binding
 ---
 
@@ -193,9 +192,12 @@ The simple types that the model binder can convert source strings into include t
 
 ## Complex types
 
-A complex type must have a public default constructor and public writable properties to bind. When model binding occurs, the class is instantiated using the public default constructor. 
+A complex type must have a public default constructor and public writable properties to bind. When model binding occurs, the class is instantiated using the public default constructor.
 
-For each property of the complex type, model binding looks through the sources for the name pattern *prefix.property_name*. If nothing is found, it looks for just *property_name* without the prefix.
+For each property of the complex type, [model binding looks through the sources for the name pattern](https://github.com/dotnet/aspnetcore/blob/v6.0.3/src/Mvc/Mvc.Core/src/ModelBinding/ParameterBinder.cs#L157-L172) *prefix.property_name*. If nothing is found, it looks for just *property_name* without the prefix. The decision to use the query isn't made per property. For example, with a query containing `?Instructor.Id=100&Name=foo`, bound to method `OnGet(Instructor instructor)`, the resulting object of type `Instructor` contains:
+
+* `Id` set to `100`.
+* `Name` set to `null`. Model binding expects `Instructor.Name` because `Instructor.Id` was used in the preceding query parameter.
 
 For binding to a parameter, the prefix is the parameter name. For binding to a `PageModel` public property, the prefix is the public property name. Some attributes have a `Prefix` property that lets you override the default usage of parameter or property name.
 
@@ -246,9 +248,9 @@ Model binding starts by looking through the sources for the key `Instructor.ID`.
 
 Several built-in attributes are available for controlling model binding of complex types:
 
-* `[Bind]`
-* `[BindRequired]`
-* `[BindNever]`
+* [`[Bind]`](xref:Microsoft.AspNetCore.Mvc.BindAttribute)
+* [`[BindRequired]`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindRequiredAttribute)
+* [`[BindNever]`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindNeverAttribute)
 
 > [!WARNING]
 > These attributes affect model binding when posted form data is the source of values. They do ***not*** affect input formatters, which process posted JSON and XML request bodies. Input formatters are explained [later in this article](#input-formatters).
@@ -306,7 +308,7 @@ See also the discussion of the `[Required]` attribute in [Model validation](xref
 
 ### [BindNever] attribute
 
-Can only be applied to model properties, not to method parameters. Prevents model binding from setting a model's property. Here's an example:
+Can be applied to a property or a type. Prevents model binding from setting a model's property. When applied to a type, the model binding system excludes all properties the type defines. Here's an example:
 
 :::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/InstructorBindNever.cs" id="snippet_Class" highlight="3":::
 
@@ -749,7 +751,7 @@ These attributes:
 
 ### [FromBody] attribute
 
-Apply the `[FromBody]` attribute to a parameter to populate its properties from the body of an HTTP request. The ASP.NET Core runtime delegates the responsibility of reading the body to an input formatter. Input formatters are explained [later in this article](#input-formatters).
+Apply the `[FromBody]` attribute to a parameter to populate its properties from the body of an HTTP request. The ASP.NET Core runtime delegates the responsibility of reading the body to an input formatter. Input formatters are explained [later in this article](#input-formatters-1).
 
 When `[FromBody]` is applied to a complex type parameter, any binding source attributes applied to its properties are ignored. For example, the following `Create` action specifies that its `pet` parameter is populated from the body:
 
@@ -901,7 +903,7 @@ Several built-in attributes are available for controlling model binding of compl
 * `[BindNever]`
 
 > [!WARNING]
-> These attributes affect model binding when posted form data is the source of values. They do ***not*** affect input formatters, which process posted JSON and XML request bodies. Input formatters are explained [later in this article](#input-formatters).
+> These attributes affect model binding when posted form data is the source of values. They do ***not*** affect input formatters, which process posted JSON and XML request bodies. Input formatters are explained [later in this article](#input-formatters-1).
 
 ### [Bind] attribute
 

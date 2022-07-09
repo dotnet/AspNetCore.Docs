@@ -4,8 +4,7 @@ author: serpent5
 description: Use Facebook, Google, Twitter, etc. account user authentication without ASP.NET Core Identity.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.date: 01/11/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 04/05/2022
 uid: security/authentication/social/social-without-identity
 ---
 # Use social sign-in provider authentication without ASP.NET Core Identity
@@ -52,6 +51,18 @@ To learn more about authentication schemes, see [Authentication Concepts](xref:s
 Test the app's authentication configuration by applying the [[Authorize]](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to a controller, action, or page. The following code limits access to the *Privacy* page to users that have been authenticated:
 
 :::code language="csharp" source="social-without-identity/samples/6.x/SocialWithoutIdentitySample/Pages/Privacy.cshtml.cs" id="snippet_Class" highlight="1":::
+
+## Save the access token
+
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A> defines whether access and refresh tokens should be stored in the <xref:Microsoft.AspNetCore.Http.Authentication.AuthenticationProperties> after a successful authorization. `SaveTokens` is set to `false` by default to reduce the size of the final authentication cookie.
+
+To save access and refresh tokens after a successful authorization, set `SaveTokens` to `true` in `Program.cs`:
+
+:::code language="csharp" source="social-without-identity/samples/6.x/SocialWithoutIdentitySample/Snippets/Program.cs" id="snippet_SaveTokens" highlight="12":::
+
+To retrieve a saved token, use <xref:Microsoft.AspNetCore.Authentication.AuthenticationTokenExtensions.GetTokenAsync%2A>. The following example retrieves the token named `access_token`:
+
+:::code language="csharp" source="social-without-identity/samples/6.x/SocialWithoutIdentitySample/Snippets/Pages/Privacy.cshtml.cs" id="snippet_OnGetAsync" highlight="3-4":::
 
 ## Sign out
 

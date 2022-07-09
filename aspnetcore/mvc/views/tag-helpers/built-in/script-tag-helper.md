@@ -5,7 +5,6 @@ ms.author: riande
 description: Discover the ASP.NET Core Script Tag Helper attributes and the role each attribute plays in extending behavior of the HTML Script tag.
 ms.custom: mvc
 ms.date: 12/02/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
 ---
 # Script Tag Helper in ASP.NET Core
@@ -21,8 +20,8 @@ The Script Tag Helper allows you to specify a CDN for the script file and a fall
 The following Razor markup shows a `script` element with a fallback:
 
 ```html
-<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-        asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.js"
+        asp-fallback-src="~/lib/jquery/dist/jquery.js"
         asp-fallback-test="window.jQuery"
         crossorigin="anonymous"
         integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
@@ -42,6 +41,12 @@ The script method defined in the primary script to use for the fallback test. Fo
 ### asp-fallback-src
 
 The URL of a Script tag to fallback to in the case the primary one fails. For more information, see <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackSrc>.
+
+### asp-append-version
+
+When `asp-append-version` is specified with a `true` value along with a `src` attribute, a unique version is generated.
+
+[!INCLUDE[](~/includes/th_version.md)]
 
 ## Additional resources
 

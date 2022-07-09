@@ -5,8 +5,7 @@ description: Learn about Kestrel, the cross-platform web server for ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/04/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 04/01/2022
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -44,7 +43,7 @@ For information on apps that must protect a subset of the app with a certificate
 
 <a name="endpoint-configuration"></a>
 * <xref:fundamentals/servers/kestrel/endpoints>
-* Source for [`WebApplication.CreateBuilder` method call call to `UseKestrel`](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/DefaultBuilder/src/WebHost.cs#L224)
+* Source for [`WebApplication.CreateBuilder` method call to `UseKestrel`](https://github.com/dotnet/aspnetcore/blob/v6.0.2/src/DefaultBuilder/src/WebHost.cs#L224)
 <a name="kestrel-options"></a>
 * <xref:fundamentals/servers/kestrel/options>
 <a name="http2-support"></a>
@@ -153,15 +152,20 @@ Starting with .NET Core 3.0, HTTP/2 is enabled by default. For more information 
 
 ## When to use Kestrel with a reverse proxy
 
-Kestrel can be used by itself or with a *reverse proxy server*, such as [Internet Information Services (IIS)](https://www.iis.net/), [Nginx](https://nginx.org), or [Apache](https://httpd.apache.org/). A reverse proxy server receives HTTP requests from the network and forwards them to Kestrel.
+Kestrel can be used by itself or with a *reverse proxy server*. A reverse proxy server receives HTTP requests from the network and forwards them to Kestrel. Examples of a reverse proxy server include:
+
+* [Internet Information Services (IIS)](https://www.iis.net/)
+* [Nginx](https://nginx.org)
+* [Apache](https://httpd.apache.org/)
+* [YARP: Yet Another Reverse Proxy](https://microsoft.github.io/reverse-proxy/)
 
 Kestrel used as an edge (Internet-facing) web server:
 
-![Kestrel communicates directly with the Internet without a reverse proxy server](kestrel/_static/kestrel-to-internet2.png)
+:::image source="kestrel/_static/kestrel-to-internet2.png" alt-text="Kestrel communicates directly with the Internet without a reverse proxy server":::
 
 Kestrel used in a reverse proxy configuration:
 
-![Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache](kestrel/_static/kestrel-to-internet.png)
+:::image source="kestrel/_static/kestrel-to-internet.png" alt-text="Kestrel communicates indirectly with the Internet through a reverse proxy server, such as IIS, Nginx, or Apache":::
 
 Either configuration, with or without a reverse proxy server, is a supported hosting configuration.
 

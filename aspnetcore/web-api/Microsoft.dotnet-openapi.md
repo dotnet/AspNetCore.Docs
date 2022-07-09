@@ -5,7 +5,6 @@ description: Demonstrates how to use the 'Microsoft.dotnet-openapi' tool to add 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: rybrande
 ms.date: 3/9/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: web-api/Microsoft.dotnet-openapi
 ---
 # .NET OpenAPI tool command reference and installation
@@ -22,7 +21,7 @@ dotnet tool install -g Microsoft.dotnet-openapi
 
 ## Add
 
-Adding an OpenAPI reference using any of the commands on this page adds an `<OpenApiReference />` element similar to the following to the *.csproj* file:
+Adding an OpenAPI reference using any of the commands on this page adds an `<OpenApiReference />` element similar to the following to the `.csproj` file:
 
 ```xml
 <OpenApiReference Include="openapi.json" />
@@ -80,7 +79,7 @@ The preceding reference is required for the app to call the generated client cod
 
 ## Remove
 
-Removes the OpenAPI reference matching the given filename from the *.csproj* file. When the OpenAPI reference is removed, clients won't be generated. Local *.json* and *.yaml* files are deleted.
+Removes the OpenAPI reference matching the given filename from the `.csproj` file. When the OpenAPI reference is removed, clients won't be generated. Local `.json` and `.yaml` files are deleted.
 
 ### Options
 

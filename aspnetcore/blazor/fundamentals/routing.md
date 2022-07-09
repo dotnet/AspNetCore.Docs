@@ -6,12 +6,11 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: blazor/fundamentals/routing
 ---
 # ASP.NET Core Blazor routing and navigation
 
-This article explains how to manage request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create a navigation links in Blazor apps.
+This article explains how to manage request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create navigation links in Blazor apps.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -21,7 +20,7 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables rout
 
 `App.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/routing/App1.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/routing/App1.razor":::
 
 When a Razor component (`.razor`) with an [`@page` directive](xref:mvc/views/razor#page) is compiled, the generated component class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the component's route template.
 
@@ -38,7 +37,7 @@ Components support multiple route templates using multiple [`@page` directives](
 
 `Pages/BlazorRoute.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor?highlight=1-2)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor" highlight="1-2":::
 
 > [!IMPORTANT]
 > For URLs to resolve correctly, the app must include a `<base>` tag in its `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Layout.cshtml` file (Blazor Server) with the app base path specified in the `href` attribute. For more information, see <xref:blazor/host-and-deploy/index#app-base-path>.
@@ -73,7 +72,7 @@ In the `App` component, set custom content in the <xref:Microsoft.AspNetCore.Com
 
 `App.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/routing/App2.razor?highlight=5-8)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/routing/App2.razor" highlight="5-8":::
 
 Arbitrary items are supported as content of the `<NotFound>` tags, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see <xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>.
 
@@ -97,13 +96,13 @@ The router uses route parameters to populate the corresponding [component parame
 
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor?highlight=1)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor" highlight="1":::
 
 Optional parameters are supported. In the following example, the `text` optional parameter assigns the value of the route segment to the component's `Text` property. If the segment isn't present, the value of `Text` is set to `fantastic`.
 
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor?highlight=1)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter2.razor" highlight="1":::
 
 Use [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync) instead of [`OnInitialized{Async}`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) to permit app navigation to the same component with a different optional parameter value. Based on the preceding example, use `OnParametersSet` when the user should be able to navigate from `/RouteParameter` to `/RouteParameter/amazing` or from `/RouteParameter/amazing` to `/RouteParameter`:
 
@@ -125,7 +124,7 @@ In the following example, the route to the `User` component only matches if:
 
 `Pages/User.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/routing/User.razor?highlight=1)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/User.razor" highlight="1":::
 
 The route constraints shown in the following table are available. For the route constraints that match the invariant culture, see the warning below the table for more information.
 
@@ -175,9 +174,9 @@ Consider the following `Example` component that can receive a route parameter fr
 
 `Pages/Example.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/routing/Example.razor?highlight=1)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/Example.razor" highlight="1":::
 
-To permit the **`Server`** app of a hosted Blazor WebAssembly solution to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Program.cs`:
+To permit the **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Program.cs`:
 
 ```csharp
 app.MapFallbackToFile("/example/{param?}", "index.html");
@@ -203,7 +202,7 @@ Catch-all route parameters are:
 
 `Pages/CatchAll.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/routing/CatchAll.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/CatchAll.razor":::
 
 For the URL `/catch-all/this/is/a/test` with a route template of `/catch-all/{*pageRoute}`, the value of `PageRoute` is set to `this/is/a/test`.
 
@@ -241,7 +240,7 @@ The following component:
 
 `Pages/Navigate.razor`:
 
-[!code-razor[](~/blazor/samples/6.0/BlazorSample_WebAssembly/Pages/routing/Navigate.razor)]
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/routing/Navigate.razor":::
 
 For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
@@ -255,7 +254,7 @@ Use the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Compo
 Component parameters supplied from the query string support the following types:
 
 * `bool`, `DateTime`, `decimal`, `double`, `float`, `Guid`, `int`, `long`, `string`.
-* Nullable variants of the preceding types (except `string`, which doesn't have a nullable variant).
+* Nullable variants of the preceding types.
 * Arrays of the preceding types, whether they're nullable or not nullable.
 
 The correct culture-invariant formatting is applied for the given type (<xref:System.Globalization.CultureInfo.InvariantCulture?displayProperty=nameWithType>).
@@ -372,7 +371,7 @@ Supported types are identical to supported types for route constraints:
 
 Supported types include:
 
-* Nullable variants of the preceding types (except `string`, which doesn't have a nullable variant).
+* Nullable variants of the preceding types.
 * Arrays of the preceding types, whether they're nullable or not nullable.
 
 ### Replace a query parameter value when the parameter exists
@@ -559,7 +558,7 @@ In the following `App` component example:
     {
         if (context.Path == "/about") 
         {
-            var stats = new Stats = { Page = "/about" };
+            var stats = new Stats { Page = "/about" };
             await Http.PostAsJsonAsync("api/visited", stats, 
                 context.CancellationToken);
         }
@@ -621,7 +620,7 @@ The following HTML markup is rendered:
 > }
 > ```
 >
-> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content), not just the `NavLink` component.
+> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content-render-fragments), not just the `NavLink` component.
 >
 > Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>:
 >
@@ -660,8 +659,6 @@ For information on configuring <xref:Microsoft.AspNetCore.Builder.RazorPagesEndp
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-This article explains how to manage request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create a navigation links in Blazor apps.
 
 ## Route templates
 
@@ -815,7 +812,7 @@ Consider the following `Example` component that can receive a route parameter fr
 
 [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/routing/Example.razor?highlight=1)]
 
-To permit the **`Server`** app of a hosted Blazor WebAssembly solution to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Startup.Configure`.
+To permit the **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Startup.Configure`.
 
 `Startup.cs`:
 
@@ -987,7 +984,7 @@ In the following `App` component example:
     {
         if (context.Path == "/about") 
         {
-            var stats = new Stats = { Page = "/about" };
+            var stats = new Stats { Page = "/about" };
             await Http.PostAsJsonAsync("api/visited", stats, 
                 context.CancellationToken);
         }
@@ -1051,7 +1048,7 @@ The following HTML markup is rendered:
 > }
 > ```
 >
-> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content), not just the `NavLink` component.
+> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content-render-fragments), not just the `NavLink` component.
 >
 > Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>:
 >
@@ -1087,8 +1084,6 @@ For information on configuring <xref:Microsoft.AspNetCore.Builder.RazorPagesEndp
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
-
-This article explains how to manage request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create a navigation links in Blazor apps.
 
 ## Route templates
 
@@ -1215,7 +1210,7 @@ Consider the following `Example` component that can receive a route parameter fr
 
 [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/routing/Example.razor?highlight=2)]
 
-To permit the **`Server`** app of a hosted Blazor WebAssembly solution to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Startup.Configure`.
+To permit the **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Startup.Configure`.
 
 `Startup.cs`:
 
@@ -1325,7 +1320,7 @@ The following HTML markup is rendered:
 > }
 > ```
 >
-> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content), not just the `NavLink` component.
+> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content-render-fragments), not just the `NavLink` component.
 >
 > Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>:
 >

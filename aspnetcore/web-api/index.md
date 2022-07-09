@@ -5,8 +5,7 @@ description: Learn the basics of creating a web API in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 2/22/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
+ms.date: 04/19/2022
 uid: web-api/index
 ---
 # Create web APIs with ASP.NET Core
@@ -221,7 +220,7 @@ To disable binding source inference, set <xref:Microsoft.AspNetCore.Mvc.ApiBehav
 
 ## Multipart/form-data request inference
 
-The `[ApiController]` attribute applies an inference rule when an action parameter is annotated with the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute. The `multipart/form-data` request content type is inferred.
+The `[ApiController]` attribute applies an inference rule for action parameters of type <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection>. The `multipart/form-data` request content type is inferred for these types.
 
 To disable the default behavior, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressConsumesConstraintForFormFileParameters> property to `true`:
 
@@ -512,7 +511,7 @@ To disable binding source inference, set <xref:Microsoft.AspNetCore.Mvc.ApiBehav
 
 ## Multipart/form-data request inference
 
-The `[ApiController]` attribute applies an inference rule when an action parameter is annotated with the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute. The `multipart/form-data` request content type is inferred.
+The `[ApiController]` attribute applies an inference rule for action parameters of type <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection>. The `multipart/form-data` request content type is inferred for these types.
 
 To disable the default behavior, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressConsumesConstraintForFormFileParameters> property to `true`:
 
@@ -801,7 +800,7 @@ To disable binding source inference, set <xref:Microsoft.AspNetCore.Mvc.ApiBehav
 
 ## Multipart/form-data request inference
 
-The `[ApiController]` attribute applies an inference rule when an action parameter is annotated with the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute. The `multipart/form-data` request content type is inferred.
+The `[ApiController]` attribute applies an inference rule for action parameters of type <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection>. The `multipart/form-data` request content type is inferred for these types.
 
 To disable the default behavior, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressConsumesConstraintForFormFileParameters> property to `true` in `Startup.ConfigureServices`:
 
@@ -869,7 +868,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 :::moniker-end
 
-::: moniker range="< aspnetcore-3.0"
+:::moniker range="< aspnetcore-3.0"
 
 [!code-csharp[](index/samples/2.x/2.2/Controllers/ValuesController.cs?name=snippet_ControllerSignature&highlight=3)]
 Don't create a web API controller by deriving from the <xref:Microsoft.AspNetCore.Mvc.Controller> class. `Controller` derives from `ControllerBase` and adds support for views, so it's for handling web pages, not web API requests. There's an exception to this rule: if you plan to use the same controller for both views and web APIs, derive it from `Controller`.
@@ -1055,7 +1054,7 @@ When an action has more than one parameter bound from the request body, an excep
 To disable binding source inference, set <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressInferBindingSourcesForParameters> to `true`. Add the following code in `Startup.ConfigureServices`:
 [!code-csharp[](index/samples/2.x/2.1/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=1,4)]
 ## Multipart/form-data request inference
-The `[ApiController]` attribute applies an inference rule when an action parameter is annotated with the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute. The `multipart/form-data` request content type is inferred.
+The `[ApiController]` attribute applies an inference rule for action parameters of type <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection>. The `multipart/form-data` request content type is inferred for these types.
 To disable the default behavior, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressConsumesConstraintForFormFileParameters> property to `true` in `Startup.ConfigureServices`:
 [!code-csharp[](index/samples/2.x/2.1/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=1,3)]
 ## Problem details for error status codes
@@ -1102,4 +1101,4 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:mvc/controllers/routing>
 * [Microsoft Learn: Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)
-::: moniker-end
+:::moniker-end

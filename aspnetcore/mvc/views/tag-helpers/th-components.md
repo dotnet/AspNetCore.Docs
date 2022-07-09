@@ -5,7 +5,6 @@ description: Learn what Tag Helper Components are and how to use them in ASP.NET
 monikerRange: '>= aspnetcore-2.0'
 ms.author: scaddie
 ms.date: 06/12/2019
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: mvc/views/tag-helpers/th-components
 ---
 # Tag Helper Components in ASP.NET Core
@@ -14,7 +13,7 @@ By [Scott Addie](https://twitter.com/Scott_Addie) and [Fiyaz Bin Hasan](https://
 
 A Tag Helper Component is a Tag Helper that allows you to conditionally modify or add HTML elements from server-side code. This feature is available in ASP.NET Core 2.0 or later.
 
-ASP.NET Core includes two built-in Tag Helper Components: `head` and `body`. They're located in the <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> namespace and can be used in both MVC and Razor Pages. Tag Helper Components don't require registration with the app in *_ViewImports.cshtml*.
+ASP.NET Core includes two built-in Tag Helper Components: `head` and `body`. They're located in the <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> namespace and can be used in both MVC and Razor Pages. Tag Helper Components don't require registration with the app in `_ViewImports.cshtml`.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -47,7 +46,7 @@ The `body` Tag Helper Component can inject a `<script>` element into the `<body>
 
 [!code-csharp[](th-components/samples/RazorPagesSample/TagHelpers/AddressScriptTagHelperComponent.cs)]
 
-A separate HTML file is used to store the `<script>` element. The HTML file makes the code cleaner and more maintainable. The preceding code reads the contents of *TagHelpers/Templates/AddressToolTipScript.html* and appends it with the Tag Helper output. The *AddressToolTipScript.html* file includes the following markup:
+A separate HTML file is used to store the `<script>` element. The HTML file makes the code cleaner and more maintainable. The preceding code reads the contents of `TagHelpers/Templates/AddressToolTipScript.html` and appends it with the Tag Helper output. The `AddressToolTipScript.html` file includes the following markup:
 
 [!code-html[](th-components/samples/RazorPagesSample/TagHelpers/Templates/AddressToolTipScript.html)]
 

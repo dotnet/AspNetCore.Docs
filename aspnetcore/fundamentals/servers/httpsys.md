@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 09/09/2021
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: fundamentals/servers/httpsys
 ---
 # HTTP.sys web server implementation in ASP.NET Core
@@ -287,8 +286,8 @@ Additional HTTP/2 features in HTTP.sys support gRPC, including support for respo
 
 Requirements to run gRPC with HTTP.sys:
 
-* Windows 10, OS Build 19041.508 or later
-* TLS 1.2 or later connection
+* Windows 11 Build 22000 or later, Windows Server 2022 Build 20348 or later.
+* TLS 1.2 or later connection.
 
 ### Trailers
 

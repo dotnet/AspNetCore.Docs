@@ -6,7 +6,6 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 02/04/2019
 ms.topic: tutorial
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-mvc/crud
 ---
 
@@ -34,7 +33,7 @@ In this tutorial, you:
 
 The scaffolded code for the Students Index page left out the `Enrollments` property, because that property holds a collection. In the **Details** page, you'll display the contents of the collection in an HTML table.
 
-In *Controllers/StudentsController.cs*, the action method for the Details view uses the `FirstOrDefaultAsync` method to retrieve a single `Student` entity. Add code that calls `Include`. `ThenInclude`,  and `AsNoTracking` methods, as shown in the following highlighted code.
+In `Controllers/StudentsController.cs`, the action method for the Details view uses the `FirstOrDefaultAsync` method to retrieve a single `Student` entity. Add code that calls `Include`. `ThenInclude`,  and `AsNoTracking` methods, as shown in the following highlighted code.
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Details&highlight=8-12)]
 
@@ -88,7 +87,7 @@ For more information about tag helpers, see <xref:mvc/views/tag-helpers/intro>.
 
 ### Add enrollments to the Details view
 
-Open *Views/Students/Details.cshtml*. Each field is displayed using `DisplayNameFor` and `DisplayFor` helpers, as shown in the following example:
+Open `Views/Students/Details.cshtml`. Each field is displayed using `DisplayNameFor` and `DisplayFor` helpers, as shown in the following example:
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Details.cshtml?range=13-18&highlight=2,5)]
 
@@ -106,7 +105,7 @@ Run the app, select the **Students** tab, and click the **Details** link for a s
 
 ## Update the Create page
 
-In *StudentsController.cs*, modify the HttpPost `Create` method by adding a try-catch block and removing ID from the `Bind` attribute.
+In `StudentsController.cs`, modify the HttpPost `Create` method by adding a try-catch block and removing ID from the `Bind` attribute.
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Create&highlight=4,6-7,14-21)]
 
@@ -147,7 +146,7 @@ An alternative way to prevent overposting that's preferred by many developers is
 
 ### Test the Create page
 
-The code in *Views/Students/Create.cshtml* uses `label`, `input`, and `span` (for validation messages) tag helpers for each field.
+The code in `Views/Students/Create.cshtml` uses `label`, `input`, and `span` (for validation messages) tag helpers for each field.
 
 Run the app, select the **Students** tab, and click **Create New**.
 
@@ -163,7 +162,7 @@ Change the date to a valid value and click **Create** to see the new student app
 
 ## Update the Edit page
 
-In *StudentController.cs*, the HttpGet `Edit` method (the one without the `HttpPost` attribute) uses the `FirstOrDefaultAsync` method to retrieve the selected Student entity, as you saw in the `Details` method. You don't need to change this method.
+In `StudentController.cs`, the HttpGet `Edit` method (the one without the `HttpPost` attribute) uses the `FirstOrDefaultAsync` method to retrieve the selected Student entity, as you saw in the `Details` method. You don't need to change this method.
 
 ### Recommended HttpPost Edit code: Read and update
 
@@ -223,7 +222,7 @@ Change some of the data and click **Save**. The **Index** page opens and you see
 
 ## Update the Delete page
 
-In *StudentController.cs*, the template code for the HttpGet `Delete` method uses the `FirstOrDefaultAsync` method to retrieve the selected Student entity, as you saw in the Details and Edit methods. However, to implement a custom error message when the call to `SaveChanges` fails, you'll add some functionality to this method and its corresponding view.
+In `StudentController.cs`, the template code for the HttpGet `Delete` method uses the `FirstOrDefaultAsync` method to retrieve the selected Student entity, as you saw in the Details and Edit methods. However, to implement a custom error message when the call to `SaveChanges` fails, you'll add some functionality to this method and its corresponding view.
 
 As you saw for update and create operations, delete operations require two action methods. The method that's called in response to a GET request displays a view that gives the user a chance to approve or cancel the delete operation. If the user approves it, a POST request is created. When that happens, the HttpPost `Delete` method is called and then that method actually performs the delete operation.
 
@@ -253,7 +252,7 @@ If the entity has related data that should also be deleted, make sure that casca
 
 ### Update the Delete view
 
-In *Views/Student/Delete.cshtml*, add an error message between the h2 heading and the h3 heading, as shown in the following example:
+In `Views/Student/Delete.cshtml`, add an error message between the h2 heading and the h3 heading, as shown in the following example:
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Delete.cshtml?range=7-9&highlight=2)]
 

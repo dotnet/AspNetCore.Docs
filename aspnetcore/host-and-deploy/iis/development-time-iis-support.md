@@ -6,7 +6,6 @@ monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/07/2020
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: host-and-deploy/iis/development-time-iis-support
 ---
 # Development-time IIS support in Visual Studio for ASP.NET Core
@@ -41,6 +40,9 @@ IIS must have a website configured with the following:
   * For apps that use HTTP, confirm the existence of a binding to port 80 or create a binding to port 80 for a new site.
   * Use a single binding for either HTTP or HTTPS. **Binding to both HTTP and HTTPS ports simultaneously isn't supported.**
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 ## Enable development-time IIS support in Visual Studio
 
 1. Launch the Visual Studio installer.
@@ -48,6 +50,10 @@ IIS must have a website configured with the following:
 1. For the **ASP.NET and web development** workload, locate and install the **Development time IIS support** component.
 
    The component is listed in the **Optional** section under **Development time IIS support** in the **Installation details** panel to the right of the workloads. The component installs the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), which is a native IIS module required to run ASP.NET Core apps with IIS.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-3.0"
 
 ## Configure the project
 

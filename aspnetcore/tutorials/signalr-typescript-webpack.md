@@ -6,7 +6,6 @@ monikerRange: ">= aspnetcore-2.1"
 ms.author: bradyg
 ms.custom: mvc
 ms.date: 03/15/2022
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: tutorials/signalr-typescript-webpack
 ---
 # Tutorial: Get started with ASP.NET Core SignalR using TypeScript and Webpack
@@ -388,27 +387,27 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create a new *src* directory in the project root to store the project's client-side assets.
 
-1. Create *src/index.html* with the following markup.
+1. Create `src/index.html` with the following markup.
 
     :::code language="html" source="signalr-typescript-webpack/samples/3.x/src/index.html":::
 
     The preceding HTML defines the homepage's boilerplate markup.
 
-1. Create a new *src/css* directory. Its purpose is to store the project's *.css* files.
+1. Create a new *src/css* directory. Its purpose is to store the project's `.css` files.
 
-1. Create *src/css/main.css* with the following CSS:
+1. Create `src/css/main.css` with the following CSS:
 
     :::code language="css" source="signalr-typescript-webpack/samples/3.x/src/css/main.css":::
 
-    The preceding *main.css* file styles the app.
+    The preceding `main.css` file styles the app.
 
-1. Create *src/tsconfig.json* with the following JSON:
+1. Create `src/tsconfig.json` with the following JSON:
 
     :::code language="json" source="signalr-typescript-webpack/samples/3.x/src/tsconfig.json":::
 
     The preceding code configures the TypeScript compiler to produce [ECMAScript](https://wikipedia.org/wiki/ECMAScript) 5-compatible JavaScript.
 
-1. Create *src/index.ts* with the following code:
+1. Create `src/index.ts` with the following code:
 
     :::code language="typescript" source="signalr-typescript-webpack/samples_snapshot/3.x/index1.ts":::
 
@@ -423,7 +422,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
    :::code language="csharp" source="signalr-typescript-webpack/samples/3.x/Startup.cs" id="snippet_UseStaticDefaultFiles" highlight="9-10":::
 
-   The preceding code allows the server to locate and serve the *index.html* file.  The file is served whether the user enters its full URL or the root URL of the web app.
+   The preceding code allows the server to locate and serve the `index.html` file.  The file is served whether the user enters its full URL or the root URL of the web app.
 
 1. At the end of `Startup.Configure`, map a */hub* route to the `ChatHub` hub. Replace the code that displays *Hello World!* with the following line: 
 
@@ -435,7 +434,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create a new directory named *Hubs* in the project root *SignalRWebPack/* to store the SignalR hub.
 
-1. Create hub *Hubs/ChatHub.cs* with the following code:
+1. Create hub `Hubs/ChatHub.cs` with the following code:
 
     :::code language="csharp" source="signalr-typescript-webpack/samples_snapshot/3.x/ChatHub.cs":::
 
@@ -458,7 +457,7 @@ The app currently displays a basic form to send messages, but isn't yet function
      * The [SignalR TypeScript client](https://www.npmjs.com/package/@microsoft/signalr), which allows the client to send messages to the server.
      * The TypeScript type definitions for Node.js, which enables compile-time checking of Node.js types.
 
-1. Add the highlighted code to the *src/index.ts* file:
+1. Add the highlighted code to the `src/index.ts` file:
 
     :::code language="typescript" source="signalr-typescript-webpack/samples_snapshot/3.x/index2.ts" highlight="2,9-23":::
 
@@ -466,7 +465,7 @@ The app currently displays a basic form to send messages, but isn't yet function
 
     SignalR enables the exchange of messages between a client and a server. Each message has a specific name. For example, messages with the name `messageReceived` can run the logic responsible for displaying the new message in the messages zone. Listening to a specific message can be done via the `on` function. Any number of message names can be listened to. It's also possible to pass parameters to the message, such as the author's name and the content of the message received. Once the client receives a message, a new `div` element is created with the author's name and the message content in its `innerHTML` attribute. It's added to the main `div` element displaying the messages.
 
-1. Now that the client can receive a message, configure it to send messages. Add the highlighted code to the *src/index.ts* file:
+1. Now that the client can receive a message, configure it to send messages. Add the highlighted code to the `src/index.ts` file:
 
     :::code language="typescript" source="signalr-typescript-webpack/samples/3.x/src/index.ts" highlight="34-35":::
 
@@ -490,7 +489,7 @@ Confirm that the app works with the following steps.
 
     [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
 
-1. Select **Debug** > **Start without debugging** to launch the app in a browser without attaching the debugger. The *wwwroot/index.html* file is served at `http://localhost:<port_number>`.
+1. Select **Debug** > **Start without debugging** to launch the app in a browser without attaching the debugger. The `wwwroot/index.html` file is served at `http://localhost:<port_number>`.
 
    If you get compile errors, try closing and reopening the solution. 
 
@@ -512,7 +511,7 @@ Confirm that the app works with the following steps.
 
     The web server starts the app and makes it available on localhost.
 
-1. Open a browser to `http://localhost:<port_number>`. The *wwwroot/index.html* file is served. Copy the URL from the address bar.
+1. Open a browser to `http://localhost:<port_number>`. The `wwwroot/index.html` file is served. Copy the URL from the address bar.
 
 1. Open another browser instance (any browser). Paste the URL in the address bar.
 
@@ -646,27 +645,27 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create a new *src* directory in the project root to store the project's client-side assets.
 
-1. Create *src/index.html* with the following markup.
+1. Create `src/index.html` with the following markup.
 
     :::code language="html" source="signalr-typescript-webpack/samples/2.x/src/index.html":::
 
     The preceding HTML defines the homepage's boilerplate markup.
 
-1. Create a new *src/css* directory. Its purpose is to store the project's *.css* files.
+1. Create a new *src/css* directory. Its purpose is to store the project's `.css` files.
 
-1. Create *src/css/main.css* with the following markup:
+1. Create `src/css/main.css` with the following markup:
 
     :::code language="css" source="signalr-typescript-webpack/samples/2.x/src/css/main.css":::
 
-    The preceding *main.css* file styles the app.
+    The preceding `main.css` file styles the app.
 
-1. Create *src/tsconfig.json* with the following JSON:
+1. Create `src/tsconfig.json` with the following JSON:
 
     :::code language="json" source="signalr-typescript-webpack/samples/2.x/src/tsconfig.json":::
 
     The preceding code configures the TypeScript compiler to produce [ECMAScript](https://wikipedia.org/wiki/ECMAScript) 5-compatible JavaScript.
 
-1. Create *src/index.ts* with the following code:
+1. Create `src/index.ts` with the following code:
 
     :::code language="typescript" source="signalr-typescript-webpack/samples_snapshot/2.x/index1.ts":::
 
@@ -681,7 +680,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
     :::code language="csharp" source="signalr-typescript-webpack/samples/2.x/Startup.cs" id="snippet_UseStaticDefaultFiles":::
 
-    The preceding code allows the server to locate and serve the *index.html* file, whether the user enters its full URL or the root URL of the web app.
+    The preceding code allows the server to locate and serve the `index.html` file, whether the user enters its full URL or the root URL of the web app.
 
 1. Call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A> in `Startup.ConfigureServices`. It adds the SignalR services to the project.
 
@@ -693,7 +692,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. Create a new directory, called *Hubs*, in the project root. Its purpose is to store the SignalR hub, which is created in the next step.
 
-1. Create hub *Hubs/ChatHub.cs* with the following code:
+1. Create hub `Hubs/ChatHub.cs` with the following code:
 
     :::code language="csharp" source="signalr-typescript-webpack/samples_snapshot/2.x/ChatHub.cs":::
 
@@ -713,7 +712,7 @@ The app currently displays a simple form to send messages. Nothing happens when 
 
     The preceding command installs the [SignalR TypeScript client](https://www.npmjs.com/package/@microsoft/signalr), which allows the client to send messages to the server.
 
-1. Add the highlighted code to the *src/index.ts* file:
+1. Add the highlighted code to the `src/index.ts` file:
 
     :::code language="typescript" source="signalr-typescript-webpack/samples_snapshot/2.x/index2.ts" highlight="2,9-23":::
 
@@ -721,7 +720,7 @@ The app currently displays a simple form to send messages. Nothing happens when 
 
     SignalR enables the exchange of messages between a client and a server. Each message has a specific name. For example, messages with the name `messageReceived` can run the logic responsible for displaying the new message in the messages zone. Listening to a specific message can be done via the `on` function. You can listen to any number of message names. It's also possible to pass parameters to the message, such as the author's name and the content of the message received. Once the client receives a message, a new `div` element is created with the author's name and the message content in its `innerHTML` attribute. The new message is added to the main `div` element displaying the messages.
 
-1. Now that the client can receive a message, configure it to send messages. Add the highlighted code to the *src/index.ts* file:
+1. Now that the client can receive a message, configure it to send messages. Add the highlighted code to the `src/index.ts` file:
 
     :::code language="typescript" source="signalr-typescript-webpack/samples/2.x/src/index.ts" highlight="34-35":::
 
@@ -745,7 +744,7 @@ Confirm that the app works with the following steps.
 
     [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
 
-1. Select **Debug** > **Start without debugging** to launch the app in a browser without attaching the debugger. The *wwwroot/index.html* file is served at `http://localhost:<port_number>`.
+1. Select **Debug** > **Start without debugging** to launch the app in a browser without attaching the debugger. The `wwwroot/index.html` file is served at `http://localhost:<port_number>`.
 
 1. Open another browser instance (any browser). Paste the URL in the address bar.
 
@@ -765,7 +764,7 @@ Confirm that the app works with the following steps.
 
     The web server starts the app and makes it available on localhost.
 
-1. Open a browser to `http://localhost:<port_number>`. The *wwwroot/index.html* file is served. Copy the URL from the address bar.
+1. Open a browser to `http://localhost:<port_number>`. The `wwwroot/index.html` file is served. Copy the URL from the address bar.
 
 1. Open another browser instance (any browser). Paste the URL in the address bar.
 

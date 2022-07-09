@@ -5,7 +5,6 @@ author: rick-anderson
 ms.author: riande
 ms.date: 09/28/2019
 ms.topic: tutorial
-no-loc: ["Blazor Hybrid", Home, Privacy, Kestrel, appsettings.json, "ASP.NET Core Identity", cookie, Cookie, Blazor, "Blazor Server", "Blazor WebAssembly", "Identity", "Let's Encrypt", Razor, SignalR]
 uid: data/ef-mvc/read-related-data
 ---
 
@@ -63,13 +62,13 @@ Create a controller named `CoursesController` for the `Course` entity type, usin
 
 ![Add Courses controller](read-related-data/_static/add-courses-controller.png)
 
-Open *CoursesController.cs* and examine the `Index` method. The automatic scaffolding has specified eager loading for the `Department` navigation property by using the `Include` method.
+Open `CoursesController.cs` and examine the `Index` method. The automatic scaffolding has specified eager loading for the `Department` navigation property by using the `Include` method.
 
 Replace the `Index` method with the following code that uses a more appropriate name for the `IQueryable` that returns Course entities (`courses` instead of `schoolContext`):
 
 [!code-csharp[](intro/samples/cu/Controllers/CoursesController.cs?name=snippet_RevisedIndexMethod)]
 
-Open *Views/Courses/Index.cshtml* and replace the template code with the following code. The changes are highlighted:
+Open `Views/Courses/Index.cshtml` and replace the template code with the following code. The changes are highlighted:
 
 [!code-cshtml[](intro/samples/cu/Views/Courses/Index.cshtml?highlight=4,7,15-17,34-36,44)]
 
@@ -107,7 +106,7 @@ This page reads and displays related data in the following ways:
 
 The Instructors page shows data from three different tables. Therefore, you'll create a view model that includes three properties, each holding the data for one of the tables.
 
-In the *SchoolViewModels* folder, create *InstructorIndexData.cs* and replace the existing code with the following code:
+In the *SchoolViewModels* folder, create `InstructorIndexData.cs` and replace the existing code with the following code:
 
 [!code-csharp[](intro/samples/cu/Models/SchoolViewModels/InstructorIndexData.cs)]
 
@@ -117,7 +116,7 @@ Create an Instructors controller with EF read/write actions as shown in the foll
 
 ![Add Instructors controller](read-related-data/_static/add-instructors-controller.png)
 
-Open *InstructorsController.cs* and add a using statement for the ViewModels namespace:
+Open `InstructorsController.cs` and add a using statement for the ViewModels namespace:
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?name=snippet_Using)]
 
@@ -167,7 +166,7 @@ Next, if a course was selected, the selected course is retrieved from the list o
 
 ### Modify the Instructor Index view
 
-In *Views/Instructors/Index.cshtml*, replace the template code with the following code. The changes are highlighted.
+In `Views/Instructors/Index.cshtml`, replace the template code with the following code. The changes are highlighted.
 
 :::moniker range=">= aspnetcore-2.2"
 
@@ -210,7 +209,7 @@ Run the app and select the **Instructors** tab. The page displays the Location p
 
 ![Instructors Index page nothing selected](read-related-data/_static/instructors-index-no-selection.png)
 
-In the *Views/Instructors/Index.cshtml* file, after the closing table element (at the end of the file), add the following code. This code displays a list of courses related to an instructor when an instructor is selected.
+In the `Views/Instructors/Index.cshtml` file, after the closing table element (at the end of the file), add the following code. This code displays a list of courses related to an instructor when an instructor is selected.
 
 [!code-cshtml[](intro/samples/cu/Views/Instructors/Index1.cshtml?range=63-99)]
 
@@ -232,7 +231,7 @@ Refresh the page again and select an instructor. Then select a course to see the
 
 ## About explicit loading
 
-When you retrieved the list of instructors in *InstructorsController.cs*, you specified eager loading for the `CourseAssignments` navigation property.
+When you retrieved the list of instructors in `InstructorsController.cs`, you specified eager loading for the `CourseAssignments` navigation property.
 
 Suppose you expected users to only rarely want to see enrollments in a selected instructor and course. In that case, you might want to load the enrollment data only if it's requested. To see an example of how to do explicit loading, replace the `Index` method with the following code, which removes eager loading for `Enrollments` and loads that property explicitly. The code changes are highlighted.
 
