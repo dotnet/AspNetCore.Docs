@@ -61,7 +61,7 @@ Hub constructors can accept services from DI as parameters, which can be stored 
 
 ## Performance
 
-### Improved HTTP/2 performance
+### HTTP/2 Performance improvements
 
 .NET 7 introduces a significant re-architecture of how Kestrel processes HTTP/2 requests. ASP.NET Core apps with busy HTTP/2 connections will experience reduced CPU usage and higher throughput.
 
