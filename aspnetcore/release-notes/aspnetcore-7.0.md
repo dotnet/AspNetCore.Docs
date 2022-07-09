@@ -63,7 +63,9 @@ Hub constructors can accept services from DI as parameters, which can be stored 
 
 ### Improved HTTP/2 performance
 
-HTTP/2 allows up to 100 requests to run on a TCP connection in parallel, which is called multiplexing. Previous versions used the [lock](/dotnet/csharp/language-reference/statements/lock) statement to control which request could write to the TCP connection. While lock is a simple solution to writing safe multi-threading code, it’s inefficient under high thread contention. In ASP.NET Core 7, a  [thread-safe queue](https://devblogs.microsoft.com/dotnet/an-introduction-to-system-threading-channels/) replaces the write lock. The tread-safe queue results in a dramatic improvement in the Kestrel gRPC benchmark:
+Previously, the HTTP/2 multiplexing implementation relied on a [lock](/dotnet/csharp/language-reference/statements/lock) controlling which request can write to the underlying TCP connection. A thread-safe queue replaces the write lock. Now, rather than fighting over which thread gets to use the write lock, requests now queue up and a dedicated consumer processes them. Previously wasted CPU resources are available to the rest of the app.
+
+One place where these improvements can be noticed is in gRPC, a popular RPC framework that uses HTTP/2. Kestrel + gRPC benchmarks show a dramatic improvement:
 
 ![Entity diagram](https://user-images.githubusercontent.com/219224/177910504-e93579b4-02e4-4079-8a8c-d9d24857aabf.png)
 
