@@ -82,12 +82,6 @@ var client = new Greeter.GreeterClient(channel);
 var response = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
 ```
 
-> [!NOTE]
-> .NET Framework support is in its early stages and requires using pre-release software:
->
-> * Windows 10 Build 19622 or later is available as a [Windows Insider](https://insider.windows.com) build.
-> * [`System.Net.Http.WinHttpHandler`](https://www.nuget.org/packages/System.Net.Http.WinHttpHandler/) version 6.0.1 or later.
-
 ## gRPC C# core-library
 
 An alternative option for .NET Framework and Xamarin has been to use [gRPC C# core-library](https://grpc.io/docs/languages/csharp/quickstart/) to make gRPC calls. gRPC C# core-library is:
