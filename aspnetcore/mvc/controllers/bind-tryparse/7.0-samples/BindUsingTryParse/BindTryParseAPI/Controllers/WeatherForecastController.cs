@@ -1,22 +1,27 @@
+using BindTryParseAPI.Models;
 using System.Globalization;
-using BindTryParseMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BindTryParseMVC.Controllers
+namespace BindTryParseAPI.Controllers
 {
-    public class WeatherForecastController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        /// <summary>
-        /// /WeatherForecast?culture=en-GB
-        /// </summary>
-        /// <param name="culture"></param>
-        /// <returns></returns>
-        public IActionResult Index(Culture? culture)
+        private readonly ILogger<WeatherForecastController> _logger;
+
+        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        {
+            _logger = logger;
+        }
+
+        [HttpGet]
+        public IActionResult Get([FromQuery] Culture? culture)
         {
             var weatherForecasts = Enumerable
                 .Range(1, 5).Select(index => new WeatherForecast
@@ -33,15 +38,12 @@ namespace BindTryParseMVC.Controllers
                     Summary = wf.Summary
                 });
 
-            return View(weatherForecasts);
+            return Ok(weatherForecasts);
         }
 
-        /// <summary>
-        /// /WeatherForecast/Range?range=07/12/2022-07/14/2022
-        /// </summary>
-        /// <param name="range"></param>
-        /// <returns></returns>
-        public IActionResult Range(DateRange? range)
+        [HttpGet]
+        [Route("GetByRange")]
+        public IActionResult Range([FromQuery] DateRange? range)
         {
             var weatherForecasts = Enumerable
                 .Range(1, 5).Select(index => new WeatherForecast
@@ -59,7 +61,7 @@ namespace BindTryParseMVC.Controllers
                     Summary = wf.Summary
                 });
 
-            return View(weatherForecasts);
+            return Ok(weatherForecasts);
         }
     }
 }

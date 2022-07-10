@@ -1,4 +1,4 @@
-namespace BindTryParse
+namespace BindTryParseAPI.Models
 {
     public class WeatherForecast
     {
