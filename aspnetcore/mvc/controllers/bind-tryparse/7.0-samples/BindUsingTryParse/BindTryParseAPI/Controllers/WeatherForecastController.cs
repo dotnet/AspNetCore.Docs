@@ -1,5 +1,5 @@
-using BindTryParseAPI.Models;
 using System.Globalization;
+using BindTryParseAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BindTryParseAPI.Controllers

@@ -1,6 +1,6 @@
-﻿using BindTryParseMVC.Models;
-using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using BindTryParseMVC.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BindTryParseMVC.Controllers
 {

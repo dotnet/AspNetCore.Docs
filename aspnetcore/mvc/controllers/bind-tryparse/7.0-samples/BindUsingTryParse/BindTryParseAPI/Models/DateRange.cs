@@ -1,5 +1,3 @@
-using System.Globalization;
-
 namespace BindTryParseAPI.Models
 {
     public class DateRange

@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.Options;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
