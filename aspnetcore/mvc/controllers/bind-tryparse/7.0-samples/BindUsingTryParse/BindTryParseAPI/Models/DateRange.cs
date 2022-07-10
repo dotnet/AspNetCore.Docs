@@ -25,7 +25,7 @@ namespace BindTryParseAPI.Models
             }
 
             var range = value.Split('-');
-            result = new DateRange(range[0], range[1], provider);
+            result = new DateRange(range[0], range[1]);
             return true;
         }
     }
