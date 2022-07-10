@@ -18,7 +18,7 @@ namespace BindTryParseMVC.Models
 
         public static bool TryParse(string? value, IFormatProvider? provider, out DateRange? result)
         {
-            if (string.IsNullOrEmpty(value) || !value.Contains('-'))
+            if (string.IsNullOrEmpty(value) || value.Split('-').Length != 2)
             {
                 result = default;
                 return false;
