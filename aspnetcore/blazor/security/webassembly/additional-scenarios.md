@@ -1038,9 +1038,102 @@ The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `Blazo
 
 For more information, see <xref:grpc/browser>.
 
-## Build a custom version of the Authentication.MSAL JavaScript library
+## Replace the `AuthenticationService` implementation
 
-If an app requires a custom version of the [Microsoft Authentication Library for JavaScript (MSAL.js)](https://www.npmjs.com/package/@azure/msal-browser), perform the following steps:
+The following subsections explain how to replace:
+
+* Any JavaScript `AuthenticationService` implementation.
+* The Microsoft Authentication Library for JavaScript (`MSAL.js`).
+
+> [!WARNING]
+> The guidance in this section is an implementation detail of of the default `RemoteAuthenticationService` and subject to change without notice in upcoming releases of ASP.NET Core.
+
+### Replace any JavaScript `AuthenticationService` implementation
+
+Create your on JavaScript (JS) library to handle your custom authentication details. The main contract follows, however be warned that it might change in future versions and is considered an
+implementation detail of the default RemoteAuthenticationService.
+
+```typescript
+// .NET makes calls to an AuthenticationService object in the Window.
+declare global {
+    interface Window { AuthenticationService: AuthenticationService }
+}
+
+export interface AuthenticationService {
+    // Init is called to initialize the AuthenticationService.
+    public static init(settings: UserManagerSettings & AuthorizeServiceSettings, logger: any) : Promise<void>;
+
+    // Gets the currently authenticated user.
+    public static getUser() : Promise<{[key: string] : string }>;
+
+    // Tries to get an access token silently.
+    public static getAccessToken(options: AccessTokenRequestOptions) : Promise<AccessTokenResult>;
+
+    // Tries to sign in the user or get an access token interactively.
+    public static signIn(context: AuthenticationContext) : Promise<AuthenticationResult>;
+
+    // Handles the sign-in process when a redirect is used.
+    public static async completeSignIn(url: string) : Promise<AuthenticationResult>;
+
+    // Signs the user out.
+    public static signOut(context: AuthenticationContext) : Promise<AuthenticationResult>;
+
+    // Handles the signout callback when a redirect is used.
+    public static async completeSignOut(url: string) : Promise<AuthenticationResult>;
+}
+
+// The rest of these interfaces match their C# definitions.
+
+export interface AccessTokenRequestOptions {
+    scopes: string[];
+    returnUrl: string;
+}
+
+export interface AccessTokenResult {
+    status: AccessTokenResultStatus;
+    token?: AccessToken;
+}
+
+export interface AccessToken {
+    value: string;
+    expires: Date;
+    grantedScopes: string[];
+}
+
+export enum AccessTokenResultStatus {
+    Success = 'Success',
+    RequiresRedirect = 'RequiresRedirect'
+}
+
+export enum AuthenticationResultStatus {
+    Redirect = 'Redirect',
+    Success = 'Success',
+    Failure = 'Failure',
+    OperationCompleted = 'OperationCompleted'
+};
+
+export interface AuthenticationResult {
+    status: AuthenticationResultStatus;
+    state?: unknown;
+    message?: string;
+}
+
+export interface AuthenticationContext {
+    state?: unknown;
+    interactiveRequest: InteractiveAuthenticationRequest;
+}
+
+export interface InteractiveAuthenticationRequest {
+    scopes?: string[];
+    additionalRequestParameters?: { [key: string]: any };
+};
+```
+
+You can import the library by removing the original `<script>` tag and adding a `<script>` tag that loads the custom library.
+
+### Replace the Microsoft Authentication Library for JavaScript (`MSAL.js`)
+
+If an app requires a custom version of the [Microsoft Authentication Library for JavaScript (`MSAL.js`)](https://www.npmjs.com/package/@azure/msal-browser), perform the following steps:
 
 1. Confirm the system has the latest developer .NET SDK or obtain and install the latest developer SDK from [.NET Core SDK: Installers and Binaries](https://github.com/dotnet/installer#installers-and-binaries). Configuration of internal NuGet feeds isn't required for this scenario.
 1. Set up the `dotnet/aspnetcore` GitHub repository for development per the docs at [Build ASP.NET Core from Source](https://github.com/dotnet/aspnetcore/blob/main/docs/BuildFromSource.md). Fork and clone or download a ZIP archive of the [dotnet/aspnetcore GitHub repository](https://github.com/dotnet/aspnetcore).
@@ -1048,6 +1141,57 @@ If an app requires a custom version of the [Microsoft Authentication Library for
 1. Build the `Authentication.Msal` project in the `src/Components/WebAssembly/Authentication.Msal/src` folder with the `yarn build` command in a command shell.
 1. If the app uses [compressed assets (Brotli/Gzip)](xref:blazor/host-and-deploy/webassembly#compression), compress the `Interop/dist/Release/AuthenticationService.js` file.
 1. Copy the `AuthenticationService.js` file and compressed versions (`.br`/`.gz`) of the file, if produced, from the `Interop/dist/Release` folder into the app's `publish/wwwroot/_content/Microsoft.Authentication.WebAssembly.Msal` folder in the app's published assets.
+
+## Pass custom provider options
+
+Define a class for passing the data to the underlying JavaScript library. 
+
+> [!IMPORTANT]
+> The class's structure must match what the library expects when the JSON is serialized with <xref:System.Text.Json?displayProperty=fullName>.
+
+The following example demonstrates a `ProviderOptions` class with [`JsonPropertyName` attributes](xref:System.Text.Json.Serialization.JsonPropertyNameAttribute) matching a hypothetical custom provider library's expectations:
+
+```csharp
+public class ProviderOptions
+{
+    public string? Authority { get; set; }
+    public string? MetadataUrl { get; set; }
+    
+    [JsonPropertyName("client_id")]
+    public string? ClientId { get; set; }
+    
+    public IList<string> DefaultScopes { get; } = 
+        new List<string> { "openid", "profile" };
+        
+    [JsonPropertyName("redirect_uri")]
+    public string? RedirectUri { get; set; }
+    
+    [JsonPropertyName("post_logout_redirect_uri")]
+    public string? PostLogoutRedirectUri { get; set; }
+    
+    [JsonPropertyName("response_type")]
+    public string? ResponseType { get; set; }
+    
+    [JsonPropertyName("response_mode")]
+    public string? ResponseMode { get; set; }
+}
+```
+
+Register the provider options within the DI system and configure the appropriate values:
+
+```csharp
+builder.Services.AddRemoteAuthentication<RemoteAuthenticationState, RemoteUserAccount,
+    ProviderOptions>(options => {
+        options.Authority = "...";
+        options.MetadataUrl = "...";
+        options.ClientId = "...";
+        options.DefaultScopes = new List<string> { "openid", "profile", "myApi" };
+        options.RedirectUri = "https://localhost:5001/authentication/login-callback";
+        options.PostLogoutRedirectUri = "https://localhost:5001/authentication/logout-callback";
+        options.ResponseType = "...";
+        options.ResponseMode = "...";
+    });
+```
 
 ## Additional resources
 
@@ -2082,9 +2226,102 @@ The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `Blazo
 
 For more information, see <xref:grpc/browser>.
 
-## Build a custom version of the Authentication.MSAL JavaScript library
+## Replace the `AuthenticationService` implementation
 
-If an app requires a custom version of the [Microsoft Authentication Library for JavaScript (MSAL.js)](https://www.npmjs.com/package/@azure/msal-browser), perform the following steps:
+The following subsections explain how to replace:
+
+* Any JavaScript `AuthenticationService` implementation.
+* The Microsoft Authentication Library for JavaScript (`MSAL.js`).
+
+> [!WARNING]
+> The guidance in this section is an implementation detail of of the default `RemoteAuthenticationService` and subject to change without notice in upcoming releases of ASP.NET Core.
+
+### Replace any JavaScript `AuthenticationService` implementation
+
+Create your on JavaScript (JS) library to handle your custom authentication details. The main contract follows, however be warned that it might change in future versions and is considered an
+implementation detail of the default RemoteAuthenticationService.
+
+```typescript
+// .NET makes calls to an AuthenticationService object in the Window.
+declare global {
+    interface Window { AuthenticationService: AuthenticationService }
+}
+
+export interface AuthenticationService {
+    // Init is called to initialize the AuthenticationService.
+    public static init(settings: UserManagerSettings & AuthorizeServiceSettings, logger: any) : Promise<void>;
+
+    // Gets the currently authenticated user.
+    public static getUser() : Promise<{[key: string] : string }>;
+
+    // Tries to get an access token silently.
+    public static getAccessToken(options: AccessTokenRequestOptions) : Promise<AccessTokenResult>;
+
+    // Tries to sign in the user or get an access token interactively.
+    public static signIn(context: AuthenticationContext) : Promise<AuthenticationResult>;
+
+    // Handles the sign-in process when a redirect is used.
+    public static async completeSignIn(url: string) : Promise<AuthenticationResult>;
+
+    // Signs the user out.
+    public static signOut(context: AuthenticationContext) : Promise<AuthenticationResult>;
+
+    // Handles the signout callback when a redirect is used.
+    public static async completeSignOut(url: string) : Promise<AuthenticationResult>;
+}
+
+// The rest of these interfaces match their C# definitions.
+
+export interface AccessTokenRequestOptions {
+    scopes: string[];
+    returnUrl: string;
+}
+
+export interface AccessTokenResult {
+    status: AccessTokenResultStatus;
+    token?: AccessToken;
+}
+
+export interface AccessToken {
+    value: string;
+    expires: Date;
+    grantedScopes: string[];
+}
+
+export enum AccessTokenResultStatus {
+    Success = 'Success',
+    RequiresRedirect = 'RequiresRedirect'
+}
+
+export enum AuthenticationResultStatus {
+    Redirect = 'Redirect',
+    Success = 'Success',
+    Failure = 'Failure',
+    OperationCompleted = 'OperationCompleted'
+};
+
+export interface AuthenticationResult {
+    status: AuthenticationResultStatus;
+    state?: unknown;
+    message?: string;
+}
+
+export interface AuthenticationContext {
+    state?: unknown;
+    interactiveRequest: InteractiveAuthenticationRequest;
+}
+
+export interface InteractiveAuthenticationRequest {
+    scopes?: string[];
+    additionalRequestParameters?: { [key: string]: any };
+};
+```
+
+You can import the library by removing the original `<script>` tag and adding a `<script>` tag that loads the custom library.
+
+### Replace the Microsoft Authentication Library for JavaScript (`MSAL.js`)
+
+If an app requires a custom version of the [Microsoft Authentication Library for JavaScript (`MSAL.js`)](https://www.npmjs.com/package/@azure/msal-browser), perform the following steps:
 
 1. Confirm the system has the latest developer .NET SDK or obtain and install the latest developer SDK from [.NET Core SDK: Installers and Binaries](https://github.com/dotnet/installer#installers-and-binaries). Configuration of internal NuGet feeds isn't required for this scenario.
 1. Set up the `dotnet/aspnetcore` GitHub repository for development per the docs at [Build ASP.NET Core from Source](https://github.com/dotnet/aspnetcore/blob/main/docs/BuildFromSource.md). Fork and clone or download a ZIP archive of the [dotnet/aspnetcore GitHub repository](https://github.com/dotnet/aspnetcore).
@@ -2092,6 +2329,57 @@ If an app requires a custom version of the [Microsoft Authentication Library for
 1. Build the `Authentication.Msal` project in the `src/Components/WebAssembly/Authentication.Msal/src` folder with the `yarn build` command in a command shell.
 1. If the app uses [compressed assets (Brotli/Gzip)](xref:blazor/host-and-deploy/webassembly#compression), compress the `Interop/dist/Release/AuthenticationService.js` file.
 1. Copy the `AuthenticationService.js` file and compressed versions (`.br`/`.gz`) of the file, if produced, from the `Interop/dist/Release` folder into the app's `publish/wwwroot/_content/Microsoft.Authentication.WebAssembly.Msal` folder in the app's published assets.
+
+## Pass custom provider options
+
+Define a class for passing the data to the underlying JavaScript library. 
+
+> [!IMPORTANT]
+> The class's structure must match what the library expects when the JSON is serialized with <xref:System.Text.Json?displayProperty=fullName>.
+
+The following example demonstrates a `ProviderOptions` class with [`JsonPropertyName` attributes](xref:System.Text.Json.Serialization.JsonPropertyNameAttribute) matching a hypothetical custom provider library's expectations:
+
+```csharp
+public class ProviderOptions
+{
+    public string? Authority { get; set; }
+    public string? MetadataUrl { get; set; }
+    
+    [JsonPropertyName("client_id")]
+    public string? ClientId { get; set; }
+    
+    public IList<string> DefaultScopes { get; } = 
+        new List<string> { "openid", "profile" };
+        
+    [JsonPropertyName("redirect_uri")]
+    public string? RedirectUri { get; set; }
+    
+    [JsonPropertyName("post_logout_redirect_uri")]
+    public string? PostLogoutRedirectUri { get; set; }
+    
+    [JsonPropertyName("response_type")]
+    public string? ResponseType { get; set; }
+    
+    [JsonPropertyName("response_mode")]
+    public string? ResponseMode { get; set; }
+}
+```
+
+Register the provider options within the DI system and configure the appropriate values:
+
+```csharp
+builder.Services.AddRemoteAuthentication<RemoteAuthenticationState, RemoteUserAccount,
+    ProviderOptions>(options => {
+        options.Authority = "...";
+        options.MetadataUrl = "...";
+        options.ClientId = "...";
+        options.DefaultScopes = new List<string> { "openid", "profile", "myApi" };
+        options.RedirectUri = "https://localhost:5001/authentication/login-callback";
+        options.PostLogoutRedirectUri = "https://localhost:5001/authentication/logout-callback";
+        options.ResponseType = "...";
+        options.ResponseMode = "...";
+    });
+```
 
 ## Additional resources
 
@@ -3122,9 +3410,102 @@ The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `Blazo
 
 For more information, see <xref:grpc/browser>.
 
-## Build a custom version of the Authentication.MSAL JavaScript library
+## Replace the `AuthenticationService` implementation
 
-If an app requires a custom version of the [Microsoft Authentication Library for JavaScript (MSAL.js)](https://www.npmjs.com/package/@azure/msal-browser), perform the following steps:
+The following subsections explain how to replace:
+
+* Any JavaScript `AuthenticationService` implementation.
+* The Microsoft Authentication Library for JavaScript (`MSAL.js`).
+
+> [!WARNING]
+> The guidance in this section is an implementation detail of of the default `RemoteAuthenticationService` and subject to change without notice in upcoming releases of ASP.NET Core.
+
+### Replace any JavaScript `AuthenticationService` implementation
+
+Create your on JavaScript (JS) library to handle your custom authentication details. The main contract follows, however be warned that it might change in future versions and is considered an
+implementation detail of the default RemoteAuthenticationService.
+
+```typescript
+// .NET makes calls to an AuthenticationService object in the Window.
+declare global {
+    interface Window { AuthenticationService: AuthenticationService }
+}
+
+export interface AuthenticationService {
+    // Init is called to initialize the AuthenticationService.
+    public static init(settings: UserManagerSettings & AuthorizeServiceSettings, logger: any) : Promise<void>;
+
+    // Gets the currently authenticated user.
+    public static getUser() : Promise<{[key: string] : string }>;
+
+    // Tries to get an access token silently.
+    public static getAccessToken(options: AccessTokenRequestOptions) : Promise<AccessTokenResult>;
+
+    // Tries to sign in the user or get an access token interactively.
+    public static signIn(context: AuthenticationContext) : Promise<AuthenticationResult>;
+
+    // Handles the sign-in process when a redirect is used.
+    public static async completeSignIn(url: string) : Promise<AuthenticationResult>;
+
+    // Signs the user out.
+    public static signOut(context: AuthenticationContext) : Promise<AuthenticationResult>;
+
+    // Handles the signout callback when a redirect is used.
+    public static async completeSignOut(url: string) : Promise<AuthenticationResult>;
+}
+
+// The rest of these interfaces match their C# definitions.
+
+export interface AccessTokenRequestOptions {
+    scopes: string[];
+    returnUrl: string;
+}
+
+export interface AccessTokenResult {
+    status: AccessTokenResultStatus;
+    token?: AccessToken;
+}
+
+export interface AccessToken {
+    value: string;
+    expires: Date;
+    grantedScopes: string[];
+}
+
+export enum AccessTokenResultStatus {
+    Success = 'Success',
+    RequiresRedirect = 'RequiresRedirect'
+}
+
+export enum AuthenticationResultStatus {
+    Redirect = 'Redirect',
+    Success = 'Success',
+    Failure = 'Failure',
+    OperationCompleted = 'OperationCompleted'
+};
+
+export interface AuthenticationResult {
+    status: AuthenticationResultStatus;
+    state?: unknown;
+    message?: string;
+}
+
+export interface AuthenticationContext {
+    state?: unknown;
+    interactiveRequest: InteractiveAuthenticationRequest;
+}
+
+export interface InteractiveAuthenticationRequest {
+    scopes?: string[];
+    additionalRequestParameters?: { [key: string]: any };
+};
+```
+
+You can import the library by removing the original `<script>` tag and adding a `<script>` tag that loads the custom library.
+
+### Replace the Microsoft Authentication Library for JavaScript (`MSAL.js`)
+
+If an app requires a custom version of the [Microsoft Authentication Library for JavaScript (`MSAL.js`)](https://www.npmjs.com/package/@azure/msal-browser), perform the following steps:
 
 1. Confirm the system has the latest developer .NET SDK or obtain and install the latest developer SDK from [.NET Core SDK: Installers and Binaries](https://github.com/dotnet/installer#installers-and-binaries). Configuration of internal NuGet feeds isn't required for this scenario.
 1. Set up the `dotnet/aspnetcore` GitHub repository for development per the docs at [Build ASP.NET Core from Source](https://github.com/dotnet/aspnetcore/blob/main/docs/BuildFromSource.md). Fork and clone or download a ZIP archive of the [dotnet/aspnetcore GitHub repository](https://github.com/dotnet/aspnetcore).
@@ -3132,6 +3513,57 @@ If an app requires a custom version of the [Microsoft Authentication Library for
 1. Build the `Authentication.Msal` project in the `src/Components/WebAssembly/Authentication.Msal/src` folder with the `yarn build` command in a command shell.
 1. If the app uses [compressed assets (Brotli/Gzip)](xref:blazor/host-and-deploy/webassembly#compression), compress the `Interop/dist/Release/AuthenticationService.js` file.
 1. Copy the `AuthenticationService.js` file and compressed versions (`.br`/`.gz`) of the file, if produced, from the `Interop/dist/Release` folder into the app's `publish/wwwroot/_content/Microsoft.Authentication.WebAssembly.Msal` folder in the app's published assets.
+
+## Pass custom provider options
+
+Define a class for passing the data to the underlying JavaScript library. 
+
+> [!IMPORTANT]
+> The class's structure must match what the library expects when the JSON is serialized with <xref:System.Text.Json?displayProperty=fullName>.
+
+The following example demonstrates a `ProviderOptions` class with [`JsonPropertyName` attributes](xref:System.Text.Json.Serialization.JsonPropertyNameAttribute) matching a hypothetical custom provider library's expectations:
+
+```csharp
+public class ProviderOptions
+{
+    public string? Authority { get; set; }
+    public string? MetadataUrl { get; set; }
+    
+    [JsonPropertyName("client_id")]
+    public string? ClientId { get; set; }
+    
+    public IList<string> DefaultScopes { get; } = 
+        new List<string> { "openid", "profile" };
+        
+    [JsonPropertyName("redirect_uri")]
+    public string? RedirectUri { get; set; }
+    
+    [JsonPropertyName("post_logout_redirect_uri")]
+    public string? PostLogoutRedirectUri { get; set; }
+    
+    [JsonPropertyName("response_type")]
+    public string? ResponseType { get; set; }
+    
+    [JsonPropertyName("response_mode")]
+    public string? ResponseMode { get; set; }
+}
+```
+
+Register the provider options within the DI system and configure the appropriate values:
+
+```csharp
+builder.Services.AddRemoteAuthentication<RemoteAuthenticationState, RemoteUserAccount,
+    ProviderOptions>(options => {
+        options.Authority = "...";
+        options.MetadataUrl = "...";
+        options.ClientId = "...";
+        options.DefaultScopes = new List<string> { "openid", "profile", "myApi" };
+        options.RedirectUri = "https://localhost:5001/authentication/login-callback";
+        options.PostLogoutRedirectUri = "https://localhost:5001/authentication/logout-callback";
+        options.ResponseType = "...";
+        options.ResponseMode = "...";
+    });
+```
 
 ## Additional resources
 
