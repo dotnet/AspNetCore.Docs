@@ -2,7 +2,6 @@
 title: ASP.NET Core Blazor fundamentals
 author: guardrex
 description: Learn foundational concepts of the Blazor application framework.
-monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/08/2022
