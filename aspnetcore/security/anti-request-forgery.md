@@ -244,7 +244,7 @@ Assuming the script sends the token in a request header called `X-XSRF-TOKEN`, c
 
 The following example adds a protected endpoint that will write the request token to a JavaScript-readable cookie:
 
-:::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Program.cs" id="snippet_AddAntiforgeryEndpoint":::
+:::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Program.cs" id="snippet_AddAntiforgeryEndpoint":::
 
 The following example uses JavaScript to make an AJAX request to obtain the token and make another request with the appropriate header:
 
@@ -256,11 +256,11 @@ The following example uses JavaScript to make an AJAX request to obtain the toke
 
 The following example creates a filter that validate the antiforgery token:
 
-:::code language="csharp" source="anti-request-forgery/samples/7.x/AntiRequestForgeryMinimalSample/Program.cs" id="snippet_AntiforgeryFilter" highlight="9,10":::
+:::code language="csharp" source="anti-request-forgery/samples/7.x/AntiRequestForgeryMinimalSample/Program.cs" id="snippet_AntiforgeryFilter":::
 
 The filter could be applied to an endpoint:
 
-:::code language="csharp" source="anti-request-forgery/samples/7.x/AntiRequestForgeryMinimalSample/Program.cs" id="snippet_AntiforgeryEndpoint" highlight="3":::
+:::code language="csharp" source="anti-request-forgery/samples/7.x/AntiRequestForgeryMinimalSample/Program.cs" id="snippet_AntiforgeryEndpoint":::
 
 ## Windows authentication and antiforgery cookies
 
