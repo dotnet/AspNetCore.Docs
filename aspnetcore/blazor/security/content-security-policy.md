@@ -17,6 +17,15 @@ Remove this comment and rotate the 7.0 content to the top at 7.0 GA.
 
 -->
 
+<!--
+
+This topic contains one or more version-specific H2 sections. Edit 
+sections for each duplication of content under Whole-topic Versioning. 
+Refactor back into ordinary headings when Version-by-file Versioning 
+is adopted.
+
+-->
+
 This article explains how to use a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) with ASP.NET Core Blazor apps to help protect against [Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) attacks.
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
