@@ -68,9 +68,22 @@ The preceding `Counter` component:
 
 ## Sample apps
 
-Documentation sample apps are available for inspection or download:
+Documentation sample apps are available for inspection and download:
 
 [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples)
+
+The repo contains two types of samples:
+
+* Snippet sample apps for Blazor Server and Blazor WebAssembly provide the code examples that appear in Blazor articles. These apps don't compile and aren't runnable apps. They're provided solely for the purpose of obtaining article example code.
+* Samples apps to accompany Blazor articles compile and run for the following scenarios:
+  * Blazor Server with EF Core
+  * Blazor Server and Blazor WebAssembly with SignalR
+  * Blazor WebAssembly scopes-enabled logging
+
+> [!NOTE]
+> Not all of the preceding sample apps are available for all releases of ASP.NET Core.
+
+For more information, see the [`dotnet/blazor-samples` README.md file](https://github.com/dotnet/blazor-samples).
 
 ## Support requests
 
