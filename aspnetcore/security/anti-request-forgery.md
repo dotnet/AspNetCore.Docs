@@ -256,11 +256,11 @@ The following example uses JavaScript to make an AJAX request to obtain the toke
 
 The following example creates a filter that validate the antiforgery token:
 
-:::code language="csharp" source="anti-request-forgery/samples/7.x/AntiRequestForgeryMinimalSample/Program.cs" id="snippet_AntiforgeryFilter":::
+[!code-csharp[](anti-request-forgery/samples/7.x/AntiRequestForgeryMinimalSample/Program.cs?name=snippet_AntiforgeryFilter&highlight=9-10)]
 
 The filter could be applied to an endpoint:
 
-:::code language="csharp" source="anti-request-forgery/samples/7.x/AntiRequestForgeryMinimalSample/Program.cs" id="snippet_AntiforgeryEndpoint":::
+[!code-csharp[](anti-request-forgery/samples/7.x/AntiRequestForgeryMinimalSample/Program.cs?name=snippet_AntiforgeryEndpoint&highlight=3)]
 
 ## Windows authentication and antiforgery cookies
 
