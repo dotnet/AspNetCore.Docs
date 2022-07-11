@@ -248,7 +248,7 @@ The following example adds a protected endpoint that will write the request toke
 
 The following example uses JavaScript to make an AJAX request to obtain the token and make another request with the appropriate header:
 
-:::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Index.js" highlight="1,15":::
+:::code language="javascript" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Index.js" highlight="1,15":::
 
 ### Antiforgery with Minimal APIs
 

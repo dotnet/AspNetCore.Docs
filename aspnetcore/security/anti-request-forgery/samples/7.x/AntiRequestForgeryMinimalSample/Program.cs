@@ -12,15 +12,15 @@ var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// <snippet_AntiforgeryEndpoint>
+#region snippet_AntiforgeryEndpoint
 app.MapPost("api/upload", (IFormFile name) => Results.Accepted())
     .RequireAuthorization()
     .ValidateAntifogery();
-// <snippet_AntiforgeryEndpoint>
+#endregion
 
 app.Run();
 
-// <snippet_AntiforgeryFilter>
+#region snippet_AntiforgeryFilter
 internal static class AntiForgeryExtensions
 {
     public static TBuilder ValidateAntifogery<TBuilder>(this TBuilder builder) where TBuilder : IEndpointConventionBuilder
@@ -42,4 +42,4 @@ internal static class AntiForgeryExtensions
         });
     }
 }
-// <snippet_AntiforgeryFilter>
+#endregion
