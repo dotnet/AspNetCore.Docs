@@ -236,13 +236,16 @@ Using JavaScript with views, the token can be created using a service from withi
 
 The preceding example uses JavaScript to read the hidden field value for the AJAX POST header. 
 
-This approach eliminates the need to deal directly with setting cookies from the server or reading them from the client. However, when injecting the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> service is not possible, JavaScript can also access token in cookies, obtained from an additional request to the server (usually `same-origin`), and use the cookie's contents to create a header with the token's value. 
+This approach eliminates the need to deal directly with setting cookies from the server or reading them from the client. However, when injecting the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> service isn't possible, use JavaScript to access tokens in cookies:
+
+* Access tokens in an additional request to the server, typically usually `same-origin`.
+* Use the cookie's contents to create a header with the token's value. 
 
 Assuming the script sends the token in a request header called `X-XSRF-TOKEN`, configure the antiforgery service to look for the `X-XSRF-TOKEN` header:
 
 :::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Program.cs" id="snippet_AddAntiforgeryOptionsJavaScript":::
 
-The following example adds a protected endpoint that will write the request token to a JavaScript-readable cookie:
+The following example adds a protected endpoint that writes the request token to a JavaScript-readable cookie:
 
 :::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Program.cs" id="snippet_AddAntiforgeryEndpoint":::
 
@@ -252,19 +255,19 @@ The following example uses JavaScript to make an AJAX request to obtain the toke
 
 ### Antiforgery with Minimal APIs
 
-`Minimal APIs` do not support the usage of the included filters (`ValidateAntiForgeryToken`, `AutoValidateAntiforgeryToken`, `IgnoreAntiforgeryToken`), however, the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> provides the required APIs to validate a request.
+`Minimal APIs` do not support the usage of the included filters (`ValidateAntiForgeryToken`, `AutoValidateAntiforgeryToken`, `IgnoreAntiforgeryToken`), however, <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> provides the required APIs to validate a request.
 
-The following example creates a filter that validate the antiforgery token:
+The following example creates a filter that validates the antiforgery token:
 
 [!code-csharp[](anti-request-forgery/samples/7.x/AntiRequestForgeryMinimalSample/Program.cs?name=snippet_AntiforgeryFilter&highlight=9-10)]
 
-The filter could be applied to an endpoint:
+The filter can then be applied to an endpoint:
 
 [!code-csharp[](anti-request-forgery/samples/7.x/AntiRequestForgeryMinimalSample/Program.cs?name=snippet_AntiforgeryEndpoint&highlight=3)]
 
 ## Windows authentication and antiforgery cookies
 
-When using Windows Authentication, application endpoints must be protected against CSRF attacks in the same way as done for cookies. The browser implicitly sends the authentication context to the server and so endpoints need to be protected against CSRF attacks.
+When using Windows Authentication, application endpoints must be protected against CSRF attacks in the same way as done for cookies. The browser implicitly sends the authentication context to the server and endpoints need to be protected against CSRF attacks.
 
 ## Extend antiforgery
 

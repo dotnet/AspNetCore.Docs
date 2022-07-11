@@ -4,7 +4,7 @@ var response = await fetch("/antiforgery/token", {
 });
 
 if (response.ok) {
-    // https://developer.mozilla.org/en-US/docs/web/api/document/cookie
+    // https://developer.mozilla.org/docs/web/api/document/cookie
     const xsrfToken = document.cookie
         .split("; ")
         .find(row => row.startsWith("XSRF-TOKEN="))
