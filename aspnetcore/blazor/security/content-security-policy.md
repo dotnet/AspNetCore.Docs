@@ -17,15 +17,6 @@ Remove this comment and rotate the 7.0 content to the top at 7.0 GA.
 
 -->
 
-<!--
-
-This topic contains one or more version-specific H2 sections. Edit 
-sections for each duplication of content under Whole-topic Versioning. 
-Refactor back into ordinary headings when Version-by-file Versioning 
-is adopted.
-
--->
-
 This article explains how to use a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) with ASP.NET Core Blazor apps to help protect against [Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) attacks.
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
@@ -42,9 +33,9 @@ Policies are evaluated by the browser while a page is loading. The browser inspe
 
 CSP is supported in most modern desktop and mobile browsers, including Chrome, Edge, Firefox, Opera, and Safari. CSP is recommended for Blazor apps.
 
-<h2 id="policy-directives-6x">Policy directives</h2>
+## Policy directives
 
-Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the [Apply the policy](#apply-the-policy-6x) section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
+Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the *Apply the policy* section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
 
 * [base-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
 * [block-all-mixed-content](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content): Prevents loading mixed HTTP and HTTPS content.
@@ -70,13 +61,13 @@ The preceding directives are supported by all browsers except Microsoft Internet
 
 To obtain SHA hashes for additional inline scripts:
 
-* Apply the CSP shown in the [Apply the policy](#apply-the-policy-6x) section.
+* Apply the CSP shown in the *Apply the policy* section.
 * Access the browser's developer tools console while running the app locally. The browser calculates and displays hashes for blocked scripts when a CSP header or `meta` tag is present.
 * Copy the hashes provided by the browser to the `script-src` sources. Use single quotes around each hash.
 
 For a Content Security Policy Level 2 browser support matrix, see [Can I use: Content Security Policy Level 2](https://www.caniuse.com/#feat=contentsecuritypolicy2).
 
-<h2 id="apply-the-policy-6x">Apply the policy</h2>
+## Apply the policy
 
 Use a `<meta>` tag to apply the policy:
 
@@ -88,7 +79,7 @@ The following sections show example policies for Blazor WebAssembly and Blazor S
 
 ### Blazor WebAssembly
 
-In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the [Policy directives](#policy-directives-6x) section:
+In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the *Policy directives* section:
 
 ```html
 <meta http-equiv="Content-Security-Policy" 
@@ -115,7 +106,7 @@ The particular script associated with the error is displayed in the console next
 
 ### Blazor Server
 
-In the `<head>` content of the `Pages/_Layout.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives-6x) section:
+In the `<head>` content of the `Pages/_Layout.cshtml` host page, apply the directives described in the *Policy directives* section:
 
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
@@ -191,9 +182,9 @@ Policies are evaluated by the browser while a page is loading. The browser inspe
 
 CSP is supported in most modern desktop and mobile browsers, including Chrome, Edge, Firefox, Opera, and Safari. CSP is recommended for Blazor apps.
 
-<h2 id="policy-directives-5x">Policy directives</h2>
+## Policy directives
 
-Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the [Apply the policy](#apply-the-policy-5x) section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
+Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the *Apply the policy* section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
 
 * [base-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
 * [block-all-mixed-content](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content): Prevents loading mixed HTTP and HTTPS content.
@@ -219,13 +210,13 @@ The preceding directives are supported by all browsers except Microsoft Internet
 
 To obtain SHA hashes for additional inline scripts:
 
-* Apply the CSP shown in the [Apply the policy](#apply-the-policy-5x) section.
+* Apply the CSP shown in the *Apply the policy* section.
 * Access the browser's developer tools console while running the app locally. The browser calculates and displays hashes for blocked scripts when a CSP header or `meta` tag is present.
 * Copy the hashes provided by the browser to the `script-src` sources. Use single quotes around each hash.
 
 For a Content Security Policy Level 2 browser support matrix, see [Can I use: Content Security Policy Level 2](https://www.caniuse.com/#feat=contentsecuritypolicy2).
 
-<h2 id="apply-the-policy-5x">Apply the policy</h2>
+## Apply the policy
 
 Use a `<meta>` tag to apply the policy:
 
@@ -237,7 +228,7 @@ The following sections show example policies for Blazor WebAssembly and Blazor S
 
 ### Blazor WebAssembly
 
-In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the [Policy directives](#policy-directives-5x) section:
+In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the *Policy directives* section:
 
 ```html
 <meta http-equiv="Content-Security-Policy" 
@@ -264,7 +255,7 @@ The particular script associated with the error is displayed in the console next
 
 ### Blazor Server
 
-In the `<head>` content of the `Pages/_Host.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives-5x) section:
+In the `<head>` content of the `Pages/_Host.cshtml` host page, apply the directives described in the *Policy directives* section:
 
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
@@ -343,9 +334,9 @@ Policies are evaluated by the browser while a page is loading. The browser inspe
 
 CSP is supported in most modern desktop and mobile browsers, including Chrome, Edge, Firefox, Opera, and Safari. CSP is recommended for Blazor apps.
 
-<h2 id="policy-directives-3x">Policy directives</h2>
+## Policy directives
 
-Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the [Apply the policy](#apply-the-policy-3x) section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
+Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the *Apply the policy* section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
 
 * [base-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
 * [block-all-mixed-content](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content): Prevents loading mixed HTTP and HTTPS content.
@@ -371,13 +362,13 @@ The preceding directives are supported by all browsers except Microsoft Internet
 
 To obtain SHA hashes for additional inline scripts:
 
-* Apply the CSP shown in the [Apply the policy](#apply-the-policy-3x) section.
+* Apply the CSP shown in the *Apply the policy* section.
 * Access the browser's developer tools console while running the app locally. The browser calculates and displays hashes for blocked scripts when a CSP header or `meta` tag is present.
 * Copy the hashes provided by the browser to the `script-src` sources. Use single quotes around each hash.
 
 For a Content Security Policy Level 2 browser support matrix, see [Can I use: Content Security Policy Level 2](https://www.caniuse.com/#feat=contentsecuritypolicy2).
 
-<h2 id="apply-the-policy-3x">Apply the policy</h2>
+## Apply the policy
 
 Use a `<meta>` tag to apply the policy:
 
@@ -389,7 +380,7 @@ The following sections show example policies for Blazor WebAssembly and Blazor S
 
 ### Blazor WebAssembly
 
-In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the [Policy directives](#policy-directives-3x) section:
+In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the *Policy directives* section:
 
 ```html
 <meta http-equiv="Content-Security-Policy" 
@@ -418,7 +409,7 @@ The particular script associated with the error is displayed in the console next
 
 ### Blazor Server
 
-In the `<head>` content of the `Pages/_Host.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives-3x) section:
+In the `<head>` content of the `Pages/_Host.cshtml` host page, apply the directives described in the *Policy directives* section:
 
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
@@ -498,9 +489,9 @@ Policies are evaluated by the browser while a page is loading. The browser inspe
 
 CSP is supported in most modern desktop and mobile browsers, including Chrome, Edge, Firefox, Opera, and Safari. CSP is recommended for Blazor apps.
 
-<h2 id="policy-directives-7x">Policy directives</h2>
+## Policy directives
 
-Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the [Apply the policy](#apply-the-policy-7x) section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
+Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the *Apply the policy* section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
 
 * [base-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
 * [block-all-mixed-content](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content): Prevents loading mixed HTTP and HTTPS content.
@@ -524,13 +515,13 @@ The preceding directives are supported by all browsers except Microsoft Internet
 
 To obtain SHA hashes for additional inline scripts:
 
-* Apply the CSP shown in the [Apply the policy](#apply-the-policy-7x) section.
+* Apply the CSP shown in the *Apply the policy* section.
 * Access the browser's developer tools console while running the app locally. The browser calculates and displays hashes for blocked scripts when a CSP header or `meta` tag is present.
 * Copy the hashes provided by the browser to the `script-src` sources. Use single quotes around each hash.
 
 For a Content Security Policy Level 2 browser support matrix, see [Can I use: Content Security Policy Level 2](https://www.caniuse.com/#feat=contentsecuritypolicy2).
 
-<h2 id="apply-the-policy-7x">Apply the policy</h2>
+## Apply the policy
 
 Use a `<meta>` tag to apply the policy:
 
@@ -542,7 +533,7 @@ The following sections show example policies for Blazor WebAssembly and Blazor S
 
 ### Blazor WebAssembly
 
-In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the [Policy directives](#policy-directives-7x) section:
+In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the *Policy directives* section:
 
 ```html
 <meta http-equiv="Content-Security-Policy" 
@@ -565,7 +556,7 @@ The particular script associated with the error is displayed in the console next
 
 ### Blazor Server
 
-In the `<head>` content of the `Pages/_Layout.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives-7x) section:
+In the `<head>` content of the `Pages/_Layout.cshtml` host page, apply the directives described in the *Policy directives* section:
 
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
