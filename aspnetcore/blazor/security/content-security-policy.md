@@ -33,7 +33,7 @@ Policies are evaluated by the browser while a page is loading. The browser inspe
 
 CSP is supported in most modern desktop and mobile browsers, including Chrome, Edge, Firefox, Opera, and Safari. CSP is recommended for Blazor apps.
 
-## Policy directives
+<h2 id="policy-directives-6x">Policy directives</h2>
 
 Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the [Apply the policy](#apply-the-policy-6x) section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
 
@@ -79,7 +79,7 @@ The following sections show example policies for Blazor WebAssembly and Blazor S
 
 ### Blazor WebAssembly
 
-In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the [Policy directives](#policy-directives) section:
+In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the [Policy directives](#policy-directives-6x) section:
 
 ```html
 <meta http-equiv="Content-Security-Policy" 
@@ -106,7 +106,7 @@ The particular script associated with the error is displayed in the console next
 
 ### Blazor Server
 
-In the `<head>` content of the `Pages/_Layout.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives) section:
+In the `<head>` content of the `Pages/_Layout.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives-6x) section:
 
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
@@ -182,7 +182,7 @@ Policies are evaluated by the browser while a page is loading. The browser inspe
 
 CSP is supported in most modern desktop and mobile browsers, including Chrome, Edge, Firefox, Opera, and Safari. CSP is recommended for Blazor apps.
 
-## Policy directives
+<h2 id="policy-directives-5x">Policy directives</h2>
 
 Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the [Apply the policy](#apply-the-policy-5x) section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
 
@@ -228,7 +228,7 @@ The following sections show example policies for Blazor WebAssembly and Blazor S
 
 ### Blazor WebAssembly
 
-In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the [Policy directives](#policy-directives) section:
+In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the [Policy directives](#policy-directives-5x) section:
 
 ```html
 <meta http-equiv="Content-Security-Policy" 
@@ -255,7 +255,7 @@ The particular script associated with the error is displayed in the console next
 
 ### Blazor Server
 
-In the `<head>` content of the `Pages/_Host.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives) section:
+In the `<head>` content of the `Pages/_Host.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives-5x) section:
 
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
@@ -334,7 +334,7 @@ Policies are evaluated by the browser while a page is loading. The browser inspe
 
 CSP is supported in most modern desktop and mobile browsers, including Chrome, Edge, Firefox, Opera, and Safari. CSP is recommended for Blazor apps.
 
-## Policy directives
+<h2 id="policy-directives-3x">Policy directives</h2>
 
 Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the [Apply the policy](#apply-the-policy-3x) section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
 
@@ -380,7 +380,7 @@ The following sections show example policies for Blazor WebAssembly and Blazor S
 
 ### Blazor WebAssembly
 
-In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the [Policy directives](#policy-directives) section:
+In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the [Policy directives](#policy-directives-3x) section:
 
 ```html
 <meta http-equiv="Content-Security-Policy" 
@@ -409,7 +409,7 @@ The particular script associated with the error is displayed in the console next
 
 ### Blazor Server
 
-In the `<head>` content of the `Pages/_Host.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives) section:
+In the `<head>` content of the `Pages/_Host.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives-3x) section:
 
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
@@ -489,7 +489,7 @@ Policies are evaluated by the browser while a page is loading. The browser inspe
 
 CSP is supported in most modern desktop and mobile browsers, including Chrome, Edge, Firefox, Opera, and Safari. CSP is recommended for Blazor apps.
 
-## Policy directives
+<h2 id="policy-directives-7x">Policy directives</h2>
 
 Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the [Apply the policy](#apply-the-policy-7x) section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
 
@@ -533,7 +533,7 @@ The following sections show example policies for Blazor WebAssembly and Blazor S
 
 ### Blazor WebAssembly
 
-In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the [Policy directives](#policy-directives) section:
+In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the [Policy directives](#policy-directives-7x) section:
 
 ```html
 <meta http-equiv="Content-Security-Policy" 
@@ -556,7 +556,7 @@ The particular script associated with the error is displayed in the console next
 
 ### Blazor Server
 
-In the `<head>` content of the `Pages/_Layout.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives) section:
+In the `<head>` content of the `Pages/_Layout.cshtml` host page, apply the directives described in the [Policy directives](#policy-directives-7x) section:
 
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
