@@ -1192,6 +1192,30 @@ builder.Services.AddRemoteAuthentication<RemoteAuthenticationState, RemoteUserAc
     });
 ```
 
+The preceding example sets redirect URIs with a regular string literal. The following alternatives are available:
+
+* <xref:System.Uri.TryCreate%2A> using <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType>:
+
+  ```csharp
+  Uri.TryCreate($"{builder.HostEnvironment.BaseAddress}authentication/login-callback", UriKind.Absolute, out var redirectUri);
+  options.RedirectUri = redirectUri;
+  ```
+  
+* [Host builder configuration](xref:blazor/fundamentals/configuration#host-builder-configuration):
+
+  ```csharp
+  options.RedirectUri = builder.Configuration["RedirectUri"];
+  ```
+  
+  `wwwroot/appsettings.json`:
+  
+  ```json
+  {
+    "RedirectUri": "https://localhost:5001/authentication/login-callback"
+  }
+  ```
+  
+
 ## Additional resources
 
 * <xref:blazor/security/webassembly/graph-api>
@@ -2379,6 +2403,29 @@ builder.Services.AddRemoteAuthentication<RemoteAuthenticationState, RemoteUserAc
     });
 ```
 
+The preceding example sets redirect URIs with a regular string literal. The following alternatives are available:
+
+* <xref:System.Uri.TryCreate%2A> using <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType>:
+
+  ```csharp
+  Uri.TryCreate($"{builder.HostEnvironment.BaseAddress}authentication/login-callback", UriKind.Absolute, out var redirectUri);
+  options.RedirectUri = redirectUri;
+  ```
+  
+* [Host builder configuration](xref:blazor/fundamentals/configuration#host-builder-configuration):
+
+  ```csharp
+  options.RedirectUri = builder.Configuration["RedirectUri"];
+  ```
+  
+  `wwwroot/appsettings.json`:
+  
+  ```json
+  {
+    "RedirectUri": "https://localhost:5001/authentication/login-callback"
+  }
+  ```
+
 ## Additional resources
 
 * <xref:blazor/security/webassembly/graph-api>
@@ -3561,6 +3608,29 @@ builder.Services.AddRemoteAuthentication<RemoteAuthenticationState, RemoteUserAc
         options.ResponseMode = "...";
     });
 ```
+
+The preceding example sets redirect URIs with a regular string literal. The following alternatives are available:
+
+* <xref:System.Uri.TryCreate%2A> using <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType>:
+
+  ```csharp
+  Uri.TryCreate($"{builder.HostEnvironment.BaseAddress}authentication/login-callback", UriKind.Absolute, out var redirectUri);
+  options.RedirectUri = redirectUri;
+  ```
+  
+* [Host builder configuration](xref:blazor/fundamentals/configuration#host-builder-configuration):
+
+  ```csharp
+  options.RedirectUri = builder.Configuration["RedirectUri"];
+  ```
+  
+  `wwwroot/appsettings.json`:
+  
+  ```json
+  {
+    "RedirectUri": "https://localhost:5001/authentication/login-callback"
+  }
+  ```
 
 ## Additional resources
 
