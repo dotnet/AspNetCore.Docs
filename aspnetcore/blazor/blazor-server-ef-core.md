@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core Blazor Server with Entity Framework Core (EF Core)
-author: JeremyLikness
+author: guardrex
 description: Learn how to use Entity Framework Core (EF Core) in Blazor Server apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: jeliknes

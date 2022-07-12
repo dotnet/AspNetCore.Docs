@@ -1086,7 +1086,6 @@ For more information on Azure Blob Storage and Azure Files, see the [Azure Stora
 
 ## Additional resources
 
-* <xref:blazor/images>
 * <xref:mvc/models/file-uploads#security-considerations>
 * <xref:blazor/forms-validation>
 

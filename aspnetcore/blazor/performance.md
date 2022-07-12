@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core Blazor performance best practices
-author: pranavkm
+author: guardrex
 description: Tips for increasing performance in ASP.NET Core Blazor apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
