@@ -1333,9 +1333,7 @@ The following code demonstrates binding query strings to an array of primitive t
 
 [!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_bqs2pa)]
 
-Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented.
-
-The following code binds to a string array and returns all the items with the `home` or `work` tag:
+Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented. The following code binds to a string array and returns all the items with the specified tags:
 
 [!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_bind_str_array)]
 
@@ -1351,7 +1349,7 @@ To test the preceding code, add the following endpoint to populate the database 
 
 [!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_batch)]
 
-Paste the following JSON into a tool like Postman:
+Use a tool like Postman to pass the following data to the previous endpoint:
 
 [!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=batch_post_payload)]
 
