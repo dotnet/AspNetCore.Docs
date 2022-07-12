@@ -15,7 +15,7 @@ Browser Link is a Visual Studio feature. It creates a communication channel betw
 
 * Refresh your web app in several browsers at once.
 * Test across multiple browsers with specific settings such as screen sizes.
-* Select UI elements in browsers in real-time, see what markup and source it is correlated to in Visual Studio.
+* Select UI elements in browsers in real-time, see what markup and source it's correlated to in Visual Studio.
 * Conduct real-time browser test automation. Browser Link is also extensible.
 
 ## Browser Link setup
