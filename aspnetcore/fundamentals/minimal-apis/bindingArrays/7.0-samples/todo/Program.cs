@@ -54,6 +54,22 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 
     return Results.NotFound();
 });
+#region snippet_bqs2pa
+// Bind query string values to a primitive type array.
+// GET  /tags?q=1&q=2&q=3
+app.MapGet("/tags", (int[] q) =>
+                      $"tag1: {q[0]} , tag2: {q[1]}, tag3: {q[2]}");
+
+// Bind to a string array.
+// GET /tags2?names=john&names=jack&names=jane
+app.MapGet("/tags2", (string[] names) =>
+            $"tag1: {names[0]} , tag2: {names[1]}, tag3: {names[2]}");
+
+// Bind to StringValues.
+// GET /tags3?names=john&names=jack&names=jane
+app.MapGet("/tags3", (StringValues names) =>
+            $"tag1: {names[0]} , tag2: {names[1]}, tag3: {names[2]}");
+#endregion
 
 #region snippet_binding_arrays
 
@@ -107,8 +123,8 @@ app.MapPost("/todoitems/batch", async (Todo[] todos, TodoDb db) =>
 });
 #endregion
 
-#region snippet_bind_str_array
 // Bind to a string array
+#region snippet_bind_str_array
 // GET /todoitems/tags?tags=home&tags=work
 app.MapGet("/todoitems/tags", async (Tag[] tags, TodoDb db) =>
 {
@@ -119,6 +135,9 @@ app.MapGet("/todoitems/tags", async (Tag[] tags, TodoDb db) =>
 #endregion
 
 // Bind to headers
+// Use Postman or another tool to post Todo item. In the headers tab, set header key: X-Todo-Id and
+// Value the ID to fetch
+#region snippet_getHeader
 // GET /todoitems/header-ids
 // The keys of the headers should all be X-Todo-Id with different values
 app.MapGet("/todoitems/header-ids", async ([FromHeader(Name = "X-Todo-Id")] int[] ids, TodoDb db) =>
@@ -127,6 +146,7 @@ app.MapGet("/todoitems/header-ids", async ([FromHeader(Name = "X-Todo-Id")] int[
         .Where(t => ids.Contains(t.Id))
         .ToListAsync();
 });
+#endregion
 
 // Bind to a int array
 #region snippet_iaray
