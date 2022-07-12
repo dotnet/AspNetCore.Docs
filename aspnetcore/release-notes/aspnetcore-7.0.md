@@ -51,6 +51,14 @@ Filters can be helpful in the following scenarios:
 
 For more information, see <xref:fundamentals/minimal-apis/min-api-filters>
 
+### Bind arrays and string values from headers and query strings
+
+In ASP.NET 7, binding query strings to an array of primitive types, string arrays, and [StringValues](/dotnet/api/microsoft.extensions.primitives.stringvalues) is supported:
+
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_bqs2pa)]
+
+Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented. For more information, see [Bind arrays and string values from headers and query strings](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#bindar).
+
 ## Signal R
 
 ### Dependency injection for SignalR hub methods
