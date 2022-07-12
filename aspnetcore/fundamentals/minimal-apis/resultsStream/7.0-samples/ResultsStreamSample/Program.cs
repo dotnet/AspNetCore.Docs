@@ -1,9 +1,27 @@
 using Azure.Storage.Blobs;
 using Microsoft.Net.Http.Headers;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Jpeg;
+using SixLabors.ImageSharp.Processing;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
+
+app.MapGet("/process-image", (HttpContext http, CancellationToken token) =>
+{
+    http.Response.Headers.CacheControl = $"public,max-age={TimeSpan.FromHours(24).TotalSeconds}";
+    return Results.Stream(stream => ProcessImage(stream, token), "image/jpeg");
+});
+
+async Task ProcessImage(Stream stream, CancellationToken token)
+{
+    using var image = await Image.LoadAsync("wwwroot/img/microsoft.jpeg", token);
+    int width = image.Width / 2;
+    int height = image.Height / 2;
+    image.Mutate(x => x.Resize(width, height));
+    await image.SaveAsync(stream, JpegFormat.Instance, cancellationToken: token);
+}
 
 // For local development use Azure Storage Emulator and Azure Storage Explorer 
 // https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator
