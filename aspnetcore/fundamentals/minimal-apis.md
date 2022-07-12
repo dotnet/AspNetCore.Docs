@@ -799,17 +799,12 @@ The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specif
 
 [!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_grp)]
 
-<!-- 
-# Differences between minimal APIs and APIs with controllers
-
-Moved to uid: tutorials/min-web-api
--->
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
 
-This document:
+This article:
 
 * Provides an overview of minimal APIs.
 * Is intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>
