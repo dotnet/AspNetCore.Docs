@@ -8,10 +8,8 @@ namespace Tests
         [TestMethod()]
         public void MapWeatherApiTest()
         {
-            //act
             var result = WeatherApi.GetAllWeathers();
-            Console.WriteLine("hi");
-
+            // assert that the result is a typed result of type WeatherForecast[]
             Assert.IsInstanceOfType(result, typeof(Ok<WeatherForecast[]>));
         }
       

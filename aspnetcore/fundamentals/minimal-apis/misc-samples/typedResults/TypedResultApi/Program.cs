@@ -2,7 +2,7 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
-
+// map the /weatherforecast endpoint to a custom action
 app.MapWeatherApi();
 app.Run();
 
@@ -31,6 +31,7 @@ public static class WeatherApi
           summaries[Random.Shared.Next(summaries.Length)]
       ))
       .ToArray();
+        // return a typed result
         return TypedResults.Ok(forecast); ;
     }
 }
