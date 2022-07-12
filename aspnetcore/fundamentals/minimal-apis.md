@@ -1327,6 +1327,36 @@ The following types are bound without explicit attributes:
   app.MapGet("/", (ClaimsPrincipal user) => user.Identity.Name);
   ```
 
+### Bind arrays and string values from headers and query strings
+
+The following code demonstrates binding query strings to an array of primitive types, string arrays, and [StringValues](/dotnet/api/microsoft.extensions.primitives.stringvalues):
+
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_bqs2pa)]
+
+Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented. The following code binds to a string array and returns all the items with the specified tags:
+
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_bind_str_array)]
+
+The following code shows the model and the required `TryParse` implementation:
+
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_model)]
+
+The following code binds to a `int` array:
+
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_iaray)]
+
+To test the preceding code, add the following endpoint to populate the database with `Todo` items:
+
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_batch)]
+
+Use a tool like Postman to pass the following data to the previous endpoint:
+
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=batch_post_payload)]
+
+The following code binds to the header key `X-Todo-Id` and returns the `Todo` items with matching `Id` values:
+
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_getHeader)]
+
 ### Custom Binding
 
 There are two ways to customize parameter binding:
