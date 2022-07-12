@@ -14,9 +14,7 @@ uid: blazor/fundamentals/index
 
 ## Razor components
 
-Blazor apps are based on *Razor components*, often referred to as just *components*. Components are covered in detail in the *Components* articles, but it's important to learn component basics and note conventions used in the articles before reading *Fundamentals* articles, which use components to demonstrate concepts.
-
-A *component* is an element of UI, such as a page, dialog, or data entry form. Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/assembly/).
+Blazor apps are based on *Razor components*, often referred to as just *components*. A *component* is an element of UI, such as a page, dialog, or data entry form. Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/assembly/).
 
 *Razor* refers to how components are usually written in the form of a [Razor](xref:mvc/views/razor) markup page for client-side UI logic and composition. Razor is a syntax for combining HTML markup with C# code designed for developer productivity. Razor files use the `.razor` file extension.
 
