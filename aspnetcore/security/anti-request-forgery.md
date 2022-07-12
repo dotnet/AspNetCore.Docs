@@ -511,7 +511,7 @@ Assuming the script sends the token in a request header called `X-XSRF-TOKEN`, c
 
 The following example adds a protected endpoint that will write the request token to a JavaScript-readable cookie:
 
-:::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Program.cs" id="snippet_AddAntiforgeryEndpoint":::
+:::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Program.cs" id="snippet_AddAntiforgeryEndpoint":::
 
 The following example uses JavaScript to make an AJAX request to obtain the token and make another request with the appropriate header:
 
