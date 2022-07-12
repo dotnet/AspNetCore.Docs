@@ -26,19 +26,19 @@ async Task ProcessImage(Stream stream, CancellationToken token)
 // For local development use Azure Storage Emulator and Azure Storage Explorer 
 // https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator
 // https://azure.microsoft.com/en-us/features/storage-explorer/
-app.MapGet("/stream-image", async () =>
+app.MapGet("/stream-image", async (CancellationToken token) =>
 {
     BlobContainerClient blobContainerClient = new BlobContainerClient("UseDevelopmentStorage=true", "pictures");
     BlobClient blobClient = blobContainerClient.GetBlobClient("microsoft.jpeg");
-    return Results.Stream(await blobClient.OpenReadAsync(), "image/jpeg");
+    return Results.Stream(await blobClient.OpenReadAsync(cancellationToken: token), "image/jpeg");
 });
 
-app.MapGet("/stream-video", async (HttpContext http) =>
+app.MapGet("/stream-video", async (HttpContext http, CancellationToken token) =>
 {
     BlobContainerClient blobContainerClient = new BlobContainerClient("UseDevelopmentStorage=true", "videos");
     BlobClient blobClient = blobContainerClient.GetBlobClient("earth.mp4");
     
-    var properties = await blobClient.GetPropertiesAsync();
+    var properties = await blobClient.GetPropertiesAsync(cancellationToken: token);
     
     DateTimeOffset lastModified = properties.Value.LastModified;
     long length = properties.Value.ContentLength;
@@ -51,7 +51,7 @@ app.MapGet("/stream-video", async (HttpContext http) =>
     // This is an alias for File(Stream, string, string?, DateTimeOffset?, EntityTagHeaderValue?, bool);
     // When fileDownloadName: "rotating-earth.mp4" is added the Content-Disposition header is set to, 'attachment; filename="rotating-earth.mp4"'
     // Else it will show the video inline in the browser
-    return Results.Stream(await blobClient.OpenReadAsync(), 
+    return Results.Stream(await blobClient.OpenReadAsync(cancellationToken: token), 
         contentType: "video/mp4",
         lastModified: lastModified,
         entityTag: entityTag,
