@@ -1050,7 +1050,7 @@ The following subsections explain how to replace:
 Create a JavaScript library to handle your custom authentication details.
 
 > [!WARNING]
-> The guidance in this section is an implementation detail of of the default `RemoteAuthenticationService` and subject to change without notice in upcoming releases of ASP.NET Core.
+> The guidance in this section is an implementation detail of of the default <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationService%2A> and subject to change without notice in upcoming releases of ASP.NET Core.
 
 ```typescript
 // .NET makes calls to an AuthenticationService object in the Window.
@@ -1203,7 +1203,7 @@ builder.Services.AddRemoteAuthentication<RemoteAuthenticationState, RemoteUserAc
     });
 ```
 
-The preceding example sets redirect URIs with a regular string literal. The following alternatives are available:
+The preceding example sets redirect URIs with regular string literals. The following alternatives are available:
 
 * <xref:System.Uri.TryCreate%2A> using <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType>:
 
@@ -2272,7 +2272,7 @@ The following subsections explain how to replace:
 Create a JavaScript library to handle your custom authentication details.
 
 > [!WARNING]
-> The guidance in this section is an implementation detail of of the default `RemoteAuthenticationService` and subject to change without notice in upcoming releases of ASP.NET Core.
+> The guidance in this section is an implementation detail of of the default <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationService%2A> and subject to change without notice in upcoming releases of ASP.NET Core.
 
 ```typescript
 // .NET makes calls to an AuthenticationService object in the Window.
@@ -2425,7 +2425,7 @@ builder.Services.AddRemoteAuthentication<RemoteAuthenticationState, RemoteUserAc
     });
 ```
 
-The preceding example sets redirect URIs with a regular string literal. The following alternatives are available:
+The preceding example sets redirect URIs with regular string literals. The following alternatives are available:
 
 * <xref:System.Uri.TryCreate%2A> using <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType>:
 
@@ -3489,7 +3489,7 @@ The following subsections explain how to replace:
 Create a JavaScript library to handle your custom authentication details.
 
 > [!WARNING]
-> The guidance in this section is an implementation detail of of the default `RemoteAuthenticationService` and subject to change without notice in upcoming releases of ASP.NET Core.
+> The guidance in this section is an implementation detail of of the default <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationService%2A> and subject to change without notice in upcoming releases of ASP.NET Core.
 
 ```typescript
 // .NET makes calls to an AuthenticationService object in the Window.
@@ -3642,7 +3642,7 @@ builder.Services.AddRemoteAuthentication<RemoteAuthenticationState, RemoteUserAc
     });
 ```
 
-The preceding example sets redirect URIs with a regular string literal. The following alternatives are available:
+The preceding example sets redirect URIs with regular string literals. The following alternatives are available:
 
 * <xref:System.Uri.TryCreate%2A> using <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType>:
 
