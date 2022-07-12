@@ -1327,6 +1327,28 @@ The following types are bound without explicit attributes:
   app.MapGet("/", (ClaimsPrincipal user) => user.Identity.Name);
   ```
 
+### Bind arrays and string values from headers and query strings
+
+The following code inserts an array of `Todo` items:
+
+[!code-csharp[](~fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_batch)]
+
+Paste the following JSON into a tool like Postman to use the preceding endpoint:
+
+[!code-JSON[](~fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=batch_post_payload)]
+
+The following code binds to a string array and returns all the items with the `home` or `work` tag:
+
+[!code-csharp[](~fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_bind_str_array)]
+
+The following code shows the model and the required `TryParse` implementation:
+
+[!code-csharp[](~fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_model)]
+
+The following code binds to a `int` array:
+
+[!code-csharp[](~fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_iaray)]
+
 ### Custom Binding
 
 There are two ways to customize parameter binding:

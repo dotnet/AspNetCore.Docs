@@ -57,8 +57,8 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 
 #region snippet_binding_arrays
 
-#region batch_post_payload
 /*
+#region batch_post_payload
 [
     {
         "id": 1,
@@ -93,9 +93,10 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
         }
     }
 ]
-*/
 #endregion
+*/
 
+#region snippet_batch
 // POST /todoitems/batch
 app.MapPost("/todoitems/batch", async (Todo[] todos, TodoDb db) =>
 {
@@ -104,7 +105,9 @@ app.MapPost("/todoitems/batch", async (Todo[] todos, TodoDb db) =>
 
     return Results.Ok(todos);
 });
+#endregion
 
+#region snippet_bind_str_array
 // Bind to a string array
 // GET /todoitems/tags?tags=home&tags=work
 app.MapGet("/todoitems/tags", async (Tag[] tags, TodoDb db) =>
@@ -113,6 +116,7 @@ app.MapGet("/todoitems/tags", async (Tag[] tags, TodoDb db) =>
         .Where(t => tags.Select(i => i.Name).Contains(t.Tag.Name))
         .ToListAsync();
 });
+#endregion
 
 // Bind to headers
 // GET /todoitems/header-ids
@@ -125,13 +129,15 @@ app.MapGet("/todoitems/header-ids", async ([FromHeader(Name = "X-Todo-Id")] int[
 });
 
 // Bind to a int array
-// GET /todoitems/query-string-ids?ids=1&ids=2
+#region snippet_iaray
+// GET /todoitems/query-string-ids?ids=1&ids=3
 app.MapGet("/todoitems/query-string-ids", async (int[] ids, TodoDb db) =>
 {
     return await db.Todos
         .Where(t => ids.Contains(t.Id))
         .ToListAsync();
 });
+#endregion
 
 // Bind to a string array
 // GET /todoitems/query-string-names-v1?names=Have%20Breakfast&names=Have%20Lunch
