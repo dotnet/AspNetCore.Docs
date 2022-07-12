@@ -1045,87 +1045,86 @@ The following subsections explain how to replace:
 * Any JavaScript `AuthenticationService` implementation.
 * The Microsoft Authentication Library for JavaScript (`MSAL.js`).
 
-> [!WARNING]
-> The guidance in this section is an implementation detail of of the default `RemoteAuthenticationService` and subject to change without notice in upcoming releases of ASP.NET Core.
-
 ### Replace any JavaScript `AuthenticationService` implementation
 
-Create your on JavaScript (JS) library to handle your custom authentication details. The main contract follows, however be warned that it might change in future versions and is considered an
-implementation detail of the default RemoteAuthenticationService.
+Create a JavaScript library to handle your custom authentication details.
+
+> [!WARNING]
+> The guidance in this section is an implementation detail of of the default `RemoteAuthenticationService` and subject to change without notice in upcoming releases of ASP.NET Core.
 
 ```typescript
 // .NET makes calls to an AuthenticationService object in the Window.
 declare global {
-    interface Window { AuthenticationService: AuthenticationService }
+  interface Window { AuthenticationService: AuthenticationService }
 }
 
 export interface AuthenticationService {
-    // Init is called to initialize the AuthenticationService.
-    public static init(settings: UserManagerSettings & AuthorizeServiceSettings, logger: any) : Promise<void>;
+  // Init is called to initialize the AuthenticationService.
+  public static init(settings: UserManagerSettings & AuthorizeServiceSettings, logger: any) : Promise<void>;
 
-    // Gets the currently authenticated user.
-    public static getUser() : Promise<{[key: string] : string }>;
+  // Gets the currently authenticated user.
+  public static getUser() : Promise<{[key: string] : string }>;
 
-    // Tries to get an access token silently.
-    public static getAccessToken(options: AccessTokenRequestOptions) : Promise<AccessTokenResult>;
+  // Tries to get an access token silently.
+  public static getAccessToken(options: AccessTokenRequestOptions) : Promise<AccessTokenResult>;
 
-    // Tries to sign in the user or get an access token interactively.
-    public static signIn(context: AuthenticationContext) : Promise<AuthenticationResult>;
+  // Tries to sign in the user or get an access token interactively.
+  public static signIn(context: AuthenticationContext) : Promise<AuthenticationResult>;
 
-    // Handles the sign-in process when a redirect is used.
-    public static async completeSignIn(url: string) : Promise<AuthenticationResult>;
+  // Handles the sign-in process when a redirect is used.
+  public static async completeSignIn(url: string) : Promise<AuthenticationResult>;
 
-    // Signs the user out.
-    public static signOut(context: AuthenticationContext) : Promise<AuthenticationResult>;
+  // Signs the user out.
+  public static signOut(context: AuthenticationContext) : Promise<AuthenticationResult>;
 
-    // Handles the signout callback when a redirect is used.
-    public static async completeSignOut(url: string) : Promise<AuthenticationResult>;
+  // Handles the signout callback when a redirect is used.
+  public static async completeSignOut(url: string) : Promise<AuthenticationResult>;
 }
 
 // The rest of these interfaces match their C# definitions.
 
 export interface AccessTokenRequestOptions {
-    scopes: string[];
-    returnUrl: string;
+  scopes: string[];
+  returnUrl: string;
 }
 
 export interface AccessTokenResult {
-    status: AccessTokenResultStatus;
-    token?: AccessToken;
+  status: AccessTokenResultStatus;
+  token?: AccessToken;
 }
 
 export interface AccessToken {
-    value: string;
-    expires: Date;
-    grantedScopes: string[];
+  value: string;
+  expires: Date;
+  grantedScopes: string[];
 }
 
 export enum AccessTokenResultStatus {
-    Success = 'Success',
-    RequiresRedirect = 'RequiresRedirect'
+  Success = 'Success',
+  RequiresRedirect = 'RequiresRedirect'
 }
 
 export enum AuthenticationResultStatus {
-    Redirect = 'Redirect',
-    Success = 'Success',
-    Failure = 'Failure',
-    OperationCompleted = 'OperationCompleted'
+  Redirect = 'Redirect',
+  Success = 'Success',
+  Failure = 'Failure',
+  OperationCompleted = 'OperationCompleted'
 };
 
 export interface AuthenticationResult {
-    status: AuthenticationResultStatus;
-    state?: unknown;
-    message?: string;
+  status: AuthenticationResultStatus;
+  state?: unknown;
+  message?: string;
 }
 
 export interface AuthenticationContext {
-    state?: unknown;
-    interactiveRequest: InteractiveAuthenticationRequest;
+  state?: unknown;
+  interactiveRequest: InteractiveAuthenticationRequest;
 }
 
 export interface InteractiveAuthenticationRequest {
-    scopes?: string[];
-    additionalRequestParameters?: { [key: string]: any };
+  scopes?: string[];
+  additionalRequestParameters?: { [key: string]: any };
 };
 ```
 
@@ -2233,87 +2232,86 @@ The following subsections explain how to replace:
 * Any JavaScript `AuthenticationService` implementation.
 * The Microsoft Authentication Library for JavaScript (`MSAL.js`).
 
-> [!WARNING]
-> The guidance in this section is an implementation detail of of the default `RemoteAuthenticationService` and subject to change without notice in upcoming releases of ASP.NET Core.
-
 ### Replace any JavaScript `AuthenticationService` implementation
 
-Create your on JavaScript (JS) library to handle your custom authentication details. The main contract follows, however be warned that it might change in future versions and is considered an
-implementation detail of the default RemoteAuthenticationService.
+Create a JavaScript library to handle your custom authentication details.
+
+> [!WARNING]
+> The guidance in this section is an implementation detail of of the default `RemoteAuthenticationService` and subject to change without notice in upcoming releases of ASP.NET Core.
 
 ```typescript
 // .NET makes calls to an AuthenticationService object in the Window.
 declare global {
-    interface Window { AuthenticationService: AuthenticationService }
+  interface Window { AuthenticationService: AuthenticationService }
 }
 
 export interface AuthenticationService {
-    // Init is called to initialize the AuthenticationService.
-    public static init(settings: UserManagerSettings & AuthorizeServiceSettings, logger: any) : Promise<void>;
+  // Init is called to initialize the AuthenticationService.
+  public static init(settings: UserManagerSettings & AuthorizeServiceSettings, logger: any) : Promise<void>;
 
-    // Gets the currently authenticated user.
-    public static getUser() : Promise<{[key: string] : string }>;
+  // Gets the currently authenticated user.
+  public static getUser() : Promise<{[key: string] : string }>;
 
-    // Tries to get an access token silently.
-    public static getAccessToken(options: AccessTokenRequestOptions) : Promise<AccessTokenResult>;
+  // Tries to get an access token silently.
+  public static getAccessToken(options: AccessTokenRequestOptions) : Promise<AccessTokenResult>;
 
-    // Tries to sign in the user or get an access token interactively.
-    public static signIn(context: AuthenticationContext) : Promise<AuthenticationResult>;
+  // Tries to sign in the user or get an access token interactively.
+  public static signIn(context: AuthenticationContext) : Promise<AuthenticationResult>;
 
-    // Handles the sign-in process when a redirect is used.
-    public static async completeSignIn(url: string) : Promise<AuthenticationResult>;
+  // Handles the sign-in process when a redirect is used.
+  public static async completeSignIn(url: string) : Promise<AuthenticationResult>;
 
-    // Signs the user out.
-    public static signOut(context: AuthenticationContext) : Promise<AuthenticationResult>;
+  // Signs the user out.
+  public static signOut(context: AuthenticationContext) : Promise<AuthenticationResult>;
 
-    // Handles the signout callback when a redirect is used.
-    public static async completeSignOut(url: string) : Promise<AuthenticationResult>;
+  // Handles the signout callback when a redirect is used.
+  public static async completeSignOut(url: string) : Promise<AuthenticationResult>;
 }
 
 // The rest of these interfaces match their C# definitions.
 
 export interface AccessTokenRequestOptions {
-    scopes: string[];
-    returnUrl: string;
+  scopes: string[];
+  returnUrl: string;
 }
 
 export interface AccessTokenResult {
-    status: AccessTokenResultStatus;
-    token?: AccessToken;
+  status: AccessTokenResultStatus;
+  token?: AccessToken;
 }
 
 export interface AccessToken {
-    value: string;
-    expires: Date;
-    grantedScopes: string[];
+  value: string;
+  expires: Date;
+  grantedScopes: string[];
 }
 
 export enum AccessTokenResultStatus {
-    Success = 'Success',
-    RequiresRedirect = 'RequiresRedirect'
+  Success = 'Success',
+  RequiresRedirect = 'RequiresRedirect'
 }
 
 export enum AuthenticationResultStatus {
-    Redirect = 'Redirect',
-    Success = 'Success',
-    Failure = 'Failure',
-    OperationCompleted = 'OperationCompleted'
+  Redirect = 'Redirect',
+  Success = 'Success',
+  Failure = 'Failure',
+  OperationCompleted = 'OperationCompleted'
 };
 
 export interface AuthenticationResult {
-    status: AuthenticationResultStatus;
-    state?: unknown;
-    message?: string;
+  status: AuthenticationResultStatus;
+  state?: unknown;
+  message?: string;
 }
 
 export interface AuthenticationContext {
-    state?: unknown;
-    interactiveRequest: InteractiveAuthenticationRequest;
+  state?: unknown;
+  interactiveRequest: InteractiveAuthenticationRequest;
 }
 
 export interface InteractiveAuthenticationRequest {
-    scopes?: string[];
-    additionalRequestParameters?: { [key: string]: any };
+  scopes?: string[];
+  additionalRequestParameters?: { [key: string]: any };
 };
 ```
 
@@ -3417,87 +3415,86 @@ The following subsections explain how to replace:
 * Any JavaScript `AuthenticationService` implementation.
 * The Microsoft Authentication Library for JavaScript (`MSAL.js`).
 
-> [!WARNING]
-> The guidance in this section is an implementation detail of of the default `RemoteAuthenticationService` and subject to change without notice in upcoming releases of ASP.NET Core.
-
 ### Replace any JavaScript `AuthenticationService` implementation
 
-Create your on JavaScript (JS) library to handle your custom authentication details. The main contract follows, however be warned that it might change in future versions and is considered an
-implementation detail of the default RemoteAuthenticationService.
+Create a JavaScript library to handle your custom authentication details.
+
+> [!WARNING]
+> The guidance in this section is an implementation detail of of the default `RemoteAuthenticationService` and subject to change without notice in upcoming releases of ASP.NET Core.
 
 ```typescript
 // .NET makes calls to an AuthenticationService object in the Window.
 declare global {
-    interface Window { AuthenticationService: AuthenticationService }
+  interface Window { AuthenticationService: AuthenticationService }
 }
 
 export interface AuthenticationService {
-    // Init is called to initialize the AuthenticationService.
-    public static init(settings: UserManagerSettings & AuthorizeServiceSettings, logger: any) : Promise<void>;
+  // Init is called to initialize the AuthenticationService.
+  public static init(settings: UserManagerSettings & AuthorizeServiceSettings, logger: any) : Promise<void>;
 
-    // Gets the currently authenticated user.
-    public static getUser() : Promise<{[key: string] : string }>;
+  // Gets the currently authenticated user.
+  public static getUser() : Promise<{[key: string] : string }>;
 
-    // Tries to get an access token silently.
-    public static getAccessToken(options: AccessTokenRequestOptions) : Promise<AccessTokenResult>;
+  // Tries to get an access token silently.
+  public static getAccessToken(options: AccessTokenRequestOptions) : Promise<AccessTokenResult>;
 
-    // Tries to sign in the user or get an access token interactively.
-    public static signIn(context: AuthenticationContext) : Promise<AuthenticationResult>;
+  // Tries to sign in the user or get an access token interactively.
+  public static signIn(context: AuthenticationContext) : Promise<AuthenticationResult>;
 
-    // Handles the sign-in process when a redirect is used.
-    public static async completeSignIn(url: string) : Promise<AuthenticationResult>;
+  // Handles the sign-in process when a redirect is used.
+  public static async completeSignIn(url: string) : Promise<AuthenticationResult>;
 
-    // Signs the user out.
-    public static signOut(context: AuthenticationContext) : Promise<AuthenticationResult>;
+  // Signs the user out.
+  public static signOut(context: AuthenticationContext) : Promise<AuthenticationResult>;
 
-    // Handles the signout callback when a redirect is used.
-    public static async completeSignOut(url: string) : Promise<AuthenticationResult>;
+  // Handles the signout callback when a redirect is used.
+  public static async completeSignOut(url: string) : Promise<AuthenticationResult>;
 }
 
 // The rest of these interfaces match their C# definitions.
 
 export interface AccessTokenRequestOptions {
-    scopes: string[];
-    returnUrl: string;
+  scopes: string[];
+  returnUrl: string;
 }
 
 export interface AccessTokenResult {
-    status: AccessTokenResultStatus;
-    token?: AccessToken;
+  status: AccessTokenResultStatus;
+  token?: AccessToken;
 }
 
 export interface AccessToken {
-    value: string;
-    expires: Date;
-    grantedScopes: string[];
+  value: string;
+  expires: Date;
+  grantedScopes: string[];
 }
 
 export enum AccessTokenResultStatus {
-    Success = 'Success',
-    RequiresRedirect = 'RequiresRedirect'
+  Success = 'Success',
+  RequiresRedirect = 'RequiresRedirect'
 }
 
 export enum AuthenticationResultStatus {
-    Redirect = 'Redirect',
-    Success = 'Success',
-    Failure = 'Failure',
-    OperationCompleted = 'OperationCompleted'
+  Redirect = 'Redirect',
+  Success = 'Success',
+  Failure = 'Failure',
+  OperationCompleted = 'OperationCompleted'
 };
 
 export interface AuthenticationResult {
-    status: AuthenticationResultStatus;
-    state?: unknown;
-    message?: string;
+  status: AuthenticationResultStatus;
+  state?: unknown;
+  message?: string;
 }
 
 export interface AuthenticationContext {
-    state?: unknown;
-    interactiveRequest: InteractiveAuthenticationRequest;
+  state?: unknown;
+  interactiveRequest: InteractiveAuthenticationRequest;
 }
 
 export interface InteractiveAuthenticationRequest {
-    scopes?: string[];
-    additionalRequestParameters?: { [key: string]: any };
+  scopes?: string[];
+  additionalRequestParameters?: { [key: string]: any };
 };
 ```
 
