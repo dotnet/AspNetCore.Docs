@@ -1844,7 +1844,6 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 * [`InteropComponent.razor` example (dotnet/AspNetCore GitHub repository `main` branch)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): The `main` branch represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release (for example, `release/5.0`), use the **Switch branches or tags** dropdown list to select the branch.
-* <xref:blazor/file-downloads>
 * <xref:blazor/file-uploads>
 
 :::moniker-end
