@@ -56,7 +56,7 @@
     private async Task OnInputFileChange(InputFileChangeEventArgs e)
     {
         shouldRender = false;
-        long maxFileSize = 1024 * 1024 * 15;
+        long maxFileSize = 1024 * 15;
         var upload = false;
 
         using var content = new MultipartFormDataContent();
