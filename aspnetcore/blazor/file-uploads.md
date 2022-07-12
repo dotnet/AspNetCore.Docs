@@ -298,7 +298,7 @@ public class FilesaveController : ControllerBase
         [FromForm] IEnumerable<IFormFile> files)
     {
         var maxAllowedFiles = 3;
-        long maxFileSize = 1024 * 1024 * 15;
+        long maxFileSize = 1024 * 15;
         var filesProcessed = 0;
         var resourcePath = new Uri($"{Request.Scheme}://{Request.Host}/");
         List<UploadResult> uploadResults = new();
@@ -414,7 +414,7 @@ public class FilesaveController : ControllerBase
         [FromForm] IEnumerable<IFormFile> files)
     {
         var maxAllowedFiles = 3;
-        long maxFileSize = 1024 * 1024 * 15;
+        long maxFileSize = 1024 * 15;
         var filesProcessed = 0;
         var resourcePath = new Uri($"{Request.Scheme}://{Request.Host}/");
         List<UploadResult> uploadResults = new();
@@ -499,7 +499,7 @@ The following example demonstrates how to upload files in a Blazor Server app wi
 To use the following example in a test app:
 
 * Create a folder to save uploaded files for the `Development` environment: `Development/unsafe_uploads`.
-* Configure the maximum file size (`maxFileSize`, 15 MB in the following example) and maximum number of allowed files (`maxAllowedFiles`, 3 in the following example).
+* Configure the maximum file size (`maxFileSize`, 15 KB in the following example) and maximum number of allowed files (`maxAllowedFiles`, 3 in the following example).
 * Set the buffer to a different value (10 KB in the following example), if desired, for increased granularity in progress reporting. We don't recommended using a buffer larger than 30 KB due to performance and security concerns.
 
 `Pages/FileUpload3.razor`:
@@ -836,7 +836,7 @@ public class FilesaveController : ControllerBase
         [FromForm] IEnumerable<IFormFile> files)
     {
         var maxAllowedFiles = 3;
-        long maxFileSize = 1024 * 1024 * 15;
+        long maxFileSize = 1024 * 15;
         var filesProcessed = 0;
         var resourcePath = new Uri($"{Request.Scheme}://{Request.Host}/");
         List<UploadResult> uploadResults = new();
@@ -952,7 +952,7 @@ public class FilesaveController : ControllerBase
         [FromForm] IEnumerable<IFormFile> files)
     {
         var maxAllowedFiles = 3;
-        long maxFileSize = 1024 * 1024 * 15;
+        long maxFileSize = 1024 * 15;
         var filesProcessed = 0;
         var resourcePath = new Uri($"{Request.Scheme}://{Request.Host}/");
         List<UploadResult> uploadResults = new();
@@ -1035,7 +1035,7 @@ The following example demonstrates how to upload files in a Blazor Server app wi
 To use the following example in a test app:
 
 * Create a folder to save uploaded files for the `Development` environment: `Development/unsafe_uploads`.
-* Configure the maximum file size (`maxFileSize`, 15 MB in the following example) and maximum number of allowed files (`maxAllowedFiles`, 3 in the following example).
+* Configure the maximum file size (`maxFileSize`, 15 KB in the following example) and maximum number of allowed files (`maxAllowedFiles`, 3 in the following example).
 * Set the buffer to a different value (10 KB in the following example), if desired, for increased granularity in progress reporting. We don't recommended using a buffer larger than 30 KB due to performance and security concerns.
 
 `Pages/FileUpload3.razor`:
