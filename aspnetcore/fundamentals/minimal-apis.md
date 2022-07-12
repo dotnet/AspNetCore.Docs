@@ -409,7 +409,7 @@ Supported binding sources:
 * Custom
 
 > [!NOTE]
-> Binding from form values is ***not*** natively supported in .NET 6.
+> Binding from form values is ***not*** natively supported in .NET.
 
 The following example GET route handler uses some of these parameter binding sources:
 
@@ -449,7 +449,7 @@ Attributes can be used to explicitly declare where parameters are bound from.
 | `contentType` | header with the name `"Content-Type"` |
 
 > [!NOTE]
-> Binding from form values is ***not*** natively supported in .NET 6.
+> Binding from form values is ***not*** natively supported in .NET.
 
 ### Parameter binding with DI
 
@@ -1206,7 +1206,7 @@ Supported binding sources:
 * Custom
 
 > [!NOTE]
-> Binding from form values is ***not*** natively supported in .NET 6.
+> Binding from form values is ***not*** natively supported in .NET.
 
 The following example GET route handler uses some of these parameter binding sources:
 
@@ -1246,7 +1246,7 @@ Attributes can be used to explicitly declare where parameters are bound from.
 | `contentType` | header with the name `"Content-Type"` |
 
 > [!NOTE]
-> Binding from form values is ***not*** natively supported in .NET 6.
+> Binding from form values is ***not*** natively supported in .NET.
 
 ### Parameter binding with DI
 
