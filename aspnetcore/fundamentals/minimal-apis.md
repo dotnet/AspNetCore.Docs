@@ -799,7 +799,6 @@ The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specif
 
 [!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_grp)]
 
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
