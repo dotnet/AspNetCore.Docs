@@ -1,10 +1,10 @@
 ---
 title: Minimal APIs overview
 author: rick-anderson
-description: Provides an overview of minimal APIs in ASP.NET Core 6.0.
+description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 5/13/2022
+ms.date: 7/13/2022
 uid: fundamentals/minimal-apis
 ---
 
@@ -409,7 +409,7 @@ Supported binding sources:
 * Custom
 
 > [!NOTE]
-> Binding from form values is ***not*** natively supported in .NET 6.
+> Binding from form values is ***not*** natively supported in .NET.
 
 The following example GET route handler uses some of these parameter binding sources:
 
@@ -449,7 +449,13 @@ Attributes can be used to explicitly declare where parameters are bound from.
 | `contentType` | header with the name `"Content-Type"` |
 
 > [!NOTE]
-> Binding from form values is ***not*** natively supported in .NET 6.
+> Binding from form values is ***not*** natively supported in .NET.
+
+### Parameter binding with DI
+
+Parameter binding for minimal APIs binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
+
+[!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Program.cs?name=snippet_min)]
 
 ### Optional parameters
 
@@ -1200,7 +1206,7 @@ Supported binding sources:
 * Custom
 
 > [!NOTE]
-> Binding from form values is ***not*** natively supported in .NET 6.
+> Binding from form values is ***not*** natively supported in .NET.
 
 The following example GET route handler uses some of these parameter binding sources:
 
@@ -1240,7 +1246,13 @@ Attributes can be used to explicitly declare where parameters are bound from.
 | `contentType` | header with the name `"Content-Type"` |
 
 > [!NOTE]
-> Binding from form values is ***not*** natively supported in .NET 6.
+> Binding from form values is ***not*** natively supported in .NET.
+
+### Parameter binding with DI
+
+Parameter binding for minimal APIs binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
+
+[!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Program.cs?name=snippet_min)]
 
 ### Optional parameters
 
