@@ -1130,6 +1130,10 @@ export interface InteractiveAuthenticationRequest {
 
 You can import the library by removing the original `<script>` tag and adding a `<script>` tag that loads the custom library.
 
+For more information, see [`AuthenticationService.ts` in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly.Authentication/src/Interop/AuthenticationService.ts).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 ### Replace the Microsoft Authentication Library for JavaScript (`MSAL.js`)
 
 If an app requires a custom version of the [Microsoft Authentication Library for JavaScript (`MSAL.js`)](https://www.npmjs.com/package/@azure/msal-browser), perform the following steps:
@@ -2341,6 +2345,10 @@ export interface InteractiveAuthenticationRequest {
 
 You can import the library by removing the original `<script>` tag and adding a `<script>` tag that loads the custom library.
 
+For more information, see [`AuthenticationService.ts` in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly.Authentication/src/Interop/AuthenticationService.ts).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 ### Replace the Microsoft Authentication Library for JavaScript (`MSAL.js`)
 
 If an app requires a custom version of the [Microsoft Authentication Library for JavaScript (`MSAL.js`)](https://www.npmjs.com/package/@azure/msal-browser), perform the following steps:
@@ -3546,6 +3554,10 @@ export interface InteractiveAuthenticationRequest {
 ```
 
 You can import the library by removing the original `<script>` tag and adding a `<script>` tag that loads the custom library.
+
+For more information, see [`AuthenticationService.ts` in the `dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly.Authentication/src/Interop/AuthenticationService.ts).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ### Replace the Microsoft Authentication Library for JavaScript (`MSAL.js`)
 
