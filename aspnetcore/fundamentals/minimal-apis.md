@@ -1335,7 +1335,7 @@ The following code inserts an array of `Todo` items:
 
 Paste the following JSON into a tool like Postman to use the preceding endpoint:
 
-[!code-json[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=batch_post_payload)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=batch_post_payload)]
 
 The following code binds to a string array and returns all the items with the `home` or `work` tag:
 
