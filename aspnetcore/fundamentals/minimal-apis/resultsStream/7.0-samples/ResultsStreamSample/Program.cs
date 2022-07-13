@@ -1,4 +1,5 @@
 using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using Microsoft.Net.Http.Headers;            // for app.MapGet("/stream-video/{blobName}/{containerName}"
 // <snippet>
 using SixLabors.ImageSharp;
@@ -56,7 +57,7 @@ app.MapGet("/stream-image/{blobName}/{containerName}",
 });
 // </snippet_abs>
 
-#region snippet_video
+// <snippet_video>
 // GET /stream-video/earth.mp4/videos
 app.MapGet("/stream-video/{blobName}/{containerName}",
     async (HttpContext http, CancellationToken token, string blobName, string containerName) =>
@@ -81,11 +82,11 @@ app.MapGet("/stream-video/{blobName}/{containerName}",
         entityTag: entityTag,
         enableRangeProcessing: true);
 });
-#endregion
+// </snippet_video>
 
 app.MapGet("/", () => "Blob test");
 
-// quick test get an image and return it
+// quick test get wwwroot/img/{strImage} and return it
 app.MapGet("/process-image/{strImage}", (string strImage, HttpContext http, CancellationToken token) =>
 {
     http.Response.Headers.CacheControl = $"public,max-age={TimeSpan.FromHours(24).TotalSeconds}";
@@ -111,5 +112,50 @@ app.MapPost("/up/{blobName}/{containerName}", (string blobName, string container
     blob.Upload($"wwwroot/img/{blobName}");
 });
 
+app.MapGet("/list/{containerName}", async ( string containerName) =>
+{
+    var conStr = builder.Configuration["blogConStr"];
+    BlobContainerClient blobContainerClient = new BlobContainerClient(conStr, containerName);
+
+    await foreach (BlobItem blobItem in blobContainerClient.GetBlobsAsync())
+    {
+        app.Logger.LogInformation("\t" + blobItem.Name);
+    }
+});
+
+// GET 
+app.MapGet("/list-containers/", async () =>
+{
+    var conStr = builder.Configuration["blogConStr"];
+    BlobServiceClient blobServiceClient = new BlobServiceClient(conStr);
+
+    await ListContainers(blobServiceClient, "",99,app.Logger);
+});
 
 app.Run();
+
+async static Task ListContainers(BlobServiceClient blobServiceClient,
+                                string prefix,
+                                int? segmentSize,
+                                ILogger logger)
+{
+    try
+    {
+        var resultSegment =
+            blobServiceClient.GetBlobContainersAsync(BlobContainerTraits.Metadata, prefix, default)
+            .AsPages(default, segmentSize);
+
+        await foreach (Azure.Page<BlobContainerItem> containerPage in resultSegment)
+        {
+            foreach (BlobContainerItem containerItem in containerPage.Values)
+            {
+                logger.LogInformation("Container name: {0}", containerItem.Name);
+            }
+
+        }
+    }
+    catch (Azure.RequestFailedException e)
+    {
+        logger.LogInformation(e.Message);
+    }
+}
