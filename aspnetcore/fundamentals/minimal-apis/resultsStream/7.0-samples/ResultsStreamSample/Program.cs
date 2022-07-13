@@ -1,6 +1,6 @@
 using Azure.Storage.Blobs;
 using Microsoft.Net.Http.Headers;            // for app.MapGet("/stream-video/{blobName}/{containerName}"
-#region snippet
+// <snippet>
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using SixLabors.ImageSharp.Processing;
@@ -25,7 +25,7 @@ async Task Resize(string strImage, Stream stream, CancellationToken token)
     );
     await image.SaveAsync(stream, JpegFormat.Instance, cancellationToken: token);
 }
-#endregion
+// </snippet>
 
 app.MapGet("/rotate-image/{strImage}", (string strImage, HttpContext http, CancellationToken token) =>
 {
@@ -44,7 +44,8 @@ async Task RotateImage(string strImage, Stream stream, CancellationToken token)
     await image.SaveAsync(stream, JpegFormat.Instance, cancellationToken: token);
 }
 
-#region snippet_abs
+// GET /stream-image/microsoft.jpg/pictures
+// <snippet_abs>
 app.MapGet("/stream-image/{blobName}/{containerName}", 
     async (string blobName, string containerName, CancellationToken token) =>
 {
@@ -53,7 +54,7 @@ app.MapGet("/stream-image/{blobName}/{containerName}",
     BlobClient blobClient = blobContainerClient.GetBlobClient(blobName);
     return Results.Stream(await blobClient.OpenReadAsync(cancellationToken: token), "image/jpeg");
 });
-#endregion
+// </snippet_abs>
 
 #region snippet_video
 // GET /stream-video/earth.mp4/videos
@@ -94,6 +95,7 @@ app.MapGet("/process-image/{strImage}", (string strImage, HttpContext http, Canc
 // Upload an image to blob storage from local wwwroot/img folder
 // The following code requires an Azure storage account with the access key connection
 // string stored in configuration.
+///POST stream-video/earth.mp4/videos
 app.MapPost("/up/{blobName}/{containerName}", (string blobName, string containerName) =>
 {
     var conStr = builder.Configuration["blogConStr"];
