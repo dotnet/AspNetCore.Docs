@@ -4,6 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>9c3fb351-7b56-437a-80ad-b6cd67d61e31</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,11 +13,14 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.13.0" />
+    <PackageReference Include="Azure.Storage.Files.Shares" Version="12.1.0" />
+    <PackageReference Include="Azure.Storage.Queues" Version="12.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Azure" Version="1.0.0" />
     <PackageReference Include="SixLabors.ImageSharp" Version="2.1.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\img\microsoft.jpeg">
+    <Content Update="wwwroot\img\microsoft.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

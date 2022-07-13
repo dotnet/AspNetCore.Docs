@@ -1524,6 +1524,10 @@ app.MapGet("/text", () => Results.Text("This is some text"));
 
 [!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_stream)]
 
+[`Results.Stream`](/dotnet/api/microsoft.aspnetcore.http.results.stream?view=aspnetcore-7.0&preserve-view=true) overloads allow access to the underlying HTTP response stream without buffering. The following example uses [ImageSharp](https://sixlabors.com/products/imagesharp) to return a reduced size of the specified image:
+
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet)]
+
 ### Redirect
 
 ```csharp
