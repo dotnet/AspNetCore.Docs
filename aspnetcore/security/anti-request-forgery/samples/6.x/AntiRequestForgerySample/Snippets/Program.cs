@@ -36,7 +36,7 @@ public static class Program
 
     public static void AddAntiforgeryEndpoint(WebApplication app)
     {
-#region snippet_AddAntiforgeryEndpoint
+// <snippet_AddAntiforgeryEndpoint>
         app.UseAuthorization();
         app.MapGet("antiforgery/token", (IAntiforgery forgeryService, HttpContext context) =>
         {
@@ -46,6 +46,6 @@ public static class Program
 
             return Results.Ok();
         }).RequireAuthorization();
-#endregion
+// </snippet_AddAntiforgeryEndpoint>
     }
 }
