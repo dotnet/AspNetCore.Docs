@@ -117,6 +117,12 @@ The following Blazor Server example navigates users to the app's default compone
   </NotFound>
   ```
 
+If the Blazor Server navigation is to an MVC controller or Razor Pages page, set `forceLoad` to `true` to force the browser to make a request to the server for the resource. In the following example, the `Index` MVC view is requested:
+
+```csharp
+NavigationManager.NavigateTo("/Home/Index", true);
+```
+
 ## Route to components from multiple assemblies
 
 Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to specify additional assemblies for the <xref:Microsoft.AspNetCore.Components.Routing.Router> component to consider when searching for routable components. Additional assemblies are scanned in addition to the assembly specified to `AppAssembly`. In the following example, `Component1` is a routable component defined in a referenced [component class library](xref:blazor/components/class-libraries). The following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> example results in routing support for `Component1`.
@@ -786,6 +792,12 @@ The following Blazor Server example navigates users to the app's default compone
   </NotFound>
   ```
 
+If the Blazor Server navigation is to an MVC controller or Razor Pages page, set `forceLoad` to `true` to force the browser to make a request to the server for the resource. In the following example, the `Index` MVC view is requested:
+
+```csharp
+NavigationManager.NavigateTo("/Home/Index", true);
+```
+
 ## Route to components from multiple assemblies
 
 Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to specify additional assemblies for the <xref:Microsoft.AspNetCore.Components.Routing.Router> component to consider when searching for routable components. Additional assemblies are scanned in addition to the assembly specified to `AppAssembly`. In the following example, `Component1` is a routable component defined in a referenced [component class library](xref:blazor/components/class-libraries). The following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> example results in routing support for `Component1`.
@@ -1249,6 +1261,12 @@ The following Blazor Server example navigates users to the app's default compone
       <RedirectUsers />
   </NotFound>
   ```
+
+If the Blazor Server navigation is to an MVC controller or Razor Pages page, set `forceLoad` to `true` to force the browser to make a request to the server for the resource. In the following example, the `Index` MVC view is requested:
+
+```csharp
+NavigationManager.NavigateTo("/Home/Index", true);
+```
 
 ## Route to components from multiple assemblies
 
