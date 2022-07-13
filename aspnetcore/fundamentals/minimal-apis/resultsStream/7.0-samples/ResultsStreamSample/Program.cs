@@ -44,6 +44,7 @@ async Task RotateImage(string strImage, Stream stream, CancellationToken token)
     await image.SaveAsync(stream, JpegFormat.Instance, cancellationToken: token);
 }
 
+#region snippet_abs
 app.MapGet("/stream-image/{blobName}/{containerName}", 
     async (string blobName, string containerName, CancellationToken token) =>
 {
@@ -52,6 +53,7 @@ app.MapGet("/stream-image/{blobName}/{containerName}",
     BlobClient blobClient = blobContainerClient.GetBlobClient(blobName);
     return Results.Stream(await blobClient.OpenReadAsync(cancellationToken: token), "image/jpeg");
 });
+#endregion
 
 #region snippet_video
 // GET /stream-video/earth.mp4/videos

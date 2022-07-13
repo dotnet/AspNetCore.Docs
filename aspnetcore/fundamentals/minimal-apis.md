@@ -1528,6 +1528,14 @@ app.MapGet("/text", () => Results.Text("This is some text"));
 
 [!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet)]
 
+The following example streams an image from [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction):
+
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_abs)]
+
+The following example streams an video from an Azure Blob:
+
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_video)]
+
 ### Redirect
 
 ```csharp
