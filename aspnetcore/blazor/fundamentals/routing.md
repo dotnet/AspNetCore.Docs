@@ -76,6 +76,47 @@ In the `App` component, set custom content in the <xref:Microsoft.AspNetCore.Com
 
 Arbitrary items are supported as content of the `<NotFound>` tags, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see <xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>.
 
+To redirect users when content isn't found, Blazor WebAssembly apps can:
+
+* Inject a [Navigation Manager](#uri-and-navigation-state-helpers) into the `App` component:
+
+  ```razor
+  @inject NavigationManager NavigationManager
+  ```
+
+* Call <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> with the destination. The following example navigates to the default component, typically the `Index` component (`Pages/Index.razor`):
+
+  ```razor
+  <NotFound>
+      @{ NavigationManager.NavigateTo("/", false); }
+  </NotFound>
+  ```
+  
+To redirect users in a Blazor Server app, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> directly in the `App` component results in a <xref:Microsoft.AspNetCore.Components.NavigationException> during debugging, which is thrown during prerendering. To avoid the exception, call for the navigation in [`OnAfterRender`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) of a custom redirect component.
+
+The following Blazor Server example navigates users to the app's default component, typically the `Index` component:
+
+* Create a `RedirectUsers` component (`Shared/RedirectUsers.razor`):
+
+  ```razor
+  @inject NavigationManager NavigationManager
+
+  @code {
+      protected override void OnAfterRender(bool firstRender)
+      {
+          NavigationManager.NavigateTo("/", false);
+      }
+  }
+  ```
+
+* In the `App` component (`App.razor`), place the custom redirect component in `<NotFound>` child content:
+
+  ```razor
+  <NotFound>
+      <RedirectUsers />
+  </NotFound>
+  ```
+
 ## Route to components from multiple assemblies
 
 Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to specify additional assemblies for the <xref:Microsoft.AspNetCore.Components.Routing.Router> component to consider when searching for routable components. Additional assemblies are scanned in addition to the assembly specified to `AppAssembly`. In the following example, `Component1` is a routable component defined in a referenced [component class library](xref:blazor/components/class-libraries). The following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> example results in routing support for `Component1`.
@@ -704,6 +745,47 @@ In the `App` component, set custom content in the <xref:Microsoft.AspNetCore.Com
 
 Arbitrary items are supported as content of the `<NotFound>` tags, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see <xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>.
 
+To redirect users when content isn't found, Blazor WebAssembly apps can:
+
+* Inject a [Navigation Manager](#uri-and-navigation-state-helpers) into the `App` component:
+
+  ```razor
+  @inject NavigationManager NavigationManager
+  ```
+
+* Call <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> with the destination. The following example navigates to the default component, typically the `Index` component (`Pages/Index.razor`):
+
+  ```razor
+  <NotFound>
+      @{ NavigationManager.NavigateTo("/", false); }
+  </NotFound>
+  ```
+  
+To redirect users in a Blazor Server app, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> directly in the `App` component results in a <xref:Microsoft.AspNetCore.Components.NavigationException> during debugging, which is thrown during prerendering. To avoid the exception, call for the navigation in [`OnAfterRender`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) of a custom redirect component.
+
+The following Blazor Server example navigates users to the app's default component, typically the `Index` component:
+
+* Create a `RedirectUsers` component (`Shared/RedirectUsers.razor`):
+
+  ```razor
+  @inject NavigationManager NavigationManager
+
+  @code {
+      protected override void OnAfterRender(bool firstRender)
+      {
+          NavigationManager.NavigateTo("/", false);
+      }
+  }
+  ```
+
+* In the `App` component (`App.razor`), place the custom redirect component in `<NotFound>` child content:
+
+  ```razor
+  <NotFound>
+      <RedirectUsers />
+  </NotFound>
+  ```
+
 ## Route to components from multiple assemblies
 
 Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to specify additional assemblies for the <xref:Microsoft.AspNetCore.Components.Routing.Router> component to consider when searching for routable components. Additional assemblies are scanned in addition to the assembly specified to `AppAssembly`. In the following example, `Component1` is a routable component defined in a referenced [component class library](xref:blazor/components/class-libraries). The following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> example results in routing support for `Component1`.
@@ -1126,6 +1208,47 @@ In the `App` component, set custom content in the <xref:Microsoft.AspNetCore.Com
 [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/routing/App2.razor?highlight=5-8)]
 
 Arbitrary items are supported as content of the `<NotFound>` tags, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see <xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>.
+
+To redirect users when content isn't found, Blazor WebAssembly apps can:
+
+* Inject a [Navigation Manager](#uri-and-navigation-state-helpers) into the `App` component:
+
+  ```razor
+  @inject NavigationManager NavigationManager
+  ```
+
+* Call <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> with the destination. The following example navigates to the default component, typically the `Index` component (`Pages/Index.razor`):
+
+  ```razor
+  <NotFound>
+      @{ NavigationManager.NavigateTo("/", false); }
+  </NotFound>
+  ```
+  
+To redirect users in a Blazor Server app, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> directly in the `App` component results in a <xref:Microsoft.AspNetCore.Components.NavigationException> during debugging, which is thrown during prerendering. To avoid the exception, call for the navigation in [`OnAfterRender`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) of a custom redirect component.
+
+The following Blazor Server example navigates users to the app's default component, typically the `Index` component:
+
+* Create a `RedirectUsers` component (`Shared/RedirectUsers.razor`):
+
+  ```razor
+  @inject NavigationManager NavigationManager
+
+  @code {
+      protected override void OnAfterRender(bool firstRender)
+      {
+          NavigationManager.NavigateTo("/", false);
+      }
+  }
+  ```
+
+* In the `App` component (`App.razor`), place the custom redirect component in `<NotFound>` child content:
+
+  ```razor
+  <NotFound>
+      <RedirectUsers />
+  </NotFound>
+  ```
 
 ## Route to components from multiple assemblies
 
