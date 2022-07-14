@@ -21,6 +21,9 @@ This article explains how Blazor apps can inject services into components.
 * Framework-registered services can be injected directly into components of Blazor apps.
 * Blazor apps define and register custom services and make them available throughout the app via DI.
 
+> [!NOTE]
+> We recommend reading <xref:fundamentals/dependency-injection> before reading this topic.
+
 ## Default services
 
 The services shown in the following table are commonly used in Blazor apps.
@@ -398,6 +401,9 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
 
 * Framework-registered services can be injected directly into components of Blazor apps.
 * Blazor apps define and register custom services and make them available throughout the app via DI.
+
+> [!NOTE]
+> We recommend reading <xref:fundamentals/dependency-injection> before reading this topic.
 
 ## Default services
 
@@ -793,6 +799,9 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
 
 * Framework-registered services can be injected directly into components of Blazor apps.
 * Blazor apps define and register custom services and make them available throughout the app via DI.
+
+> [!NOTE]
+> We recommend reading <xref:fundamentals/dependency-injection> before reading this topic.
 
 ## Default services
 
