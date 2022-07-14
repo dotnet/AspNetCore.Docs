@@ -47,7 +47,7 @@ async Task RotateImage(string strImage, Stream stream, CancellationToken token)
 
 // GET /stream-image/microsoft.jpg/pictures
 // <snippet_abs>
-app.MapGet("/stream-image/{blobName}/{containerName}", 
+app.MapGet("/stream-image/{containerName}/{blobName}", 
     async (string blobName, string containerName, CancellationToken token) =>
 {
     var conStr = builder.Configuration["blogConStr"];
@@ -129,12 +129,12 @@ app.MapGet("/list-containers/", async () =>
     var conStr = builder.Configuration["blogConStr"];
     BlobServiceClient blobServiceClient = new BlobServiceClient(conStr);
 
-    await ListContainers(blobServiceClient, "",99,app.Logger);
+    await ListContainers(blobServiceClient, "", 99, app.Logger);
 });
 
 app.Run();
 
-async static Task ListContainers(BlobServiceClient blobServiceClient,
+async static Task ListContainersAsync(BlobServiceClient blobServiceClient,
                                 string prefix,
                                 int? segmentSize,
                                 ILogger logger)
