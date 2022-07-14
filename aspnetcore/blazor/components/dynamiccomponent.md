@@ -130,7 +130,7 @@ In the following example:
 
 ## Event callbacks (`EventCallback`)
 
-Event callbacks (<xref:Microsoft.AspNetCore.Components.EventCallback>) can be passed to a <xref:Microsoft.AspNetCore.Components.DynamicComponent> in it's parameter dictionary.
+Event callbacks (<xref:Microsoft.AspNetCore.Components.EventCallback>) can be passed to a <xref:Microsoft.AspNetCore.Components.DynamicComponent> in its parameter dictionary.
 
 > [!NOTE]
 > The example in this section is an extension of the full example shown in the *Pass parameters* section of this article.
@@ -167,7 +167,7 @@ In the parent component's `@code` block, implement the callback method. The foll
 The parent component passes the parameter with:
 
 * A `string` key equal to the callback method name, `OnClickCallback` in the following example.
-* An `object` value created by <xref:Microsoft.AspNetCore.Components.EventCallbackFactory.Create%2A> for the parent callback method, `ShowDTMessage` in the following example.
+* An `object` value created by <xref:Microsoft.AspNetCore.Components.EventCallbackFactory.Create%2A?displayProperty=nameWithType> for the parent callback method, `ShowDTMessage` in the following example.
 
 ```csharp
 private Dictionary<string, ComponentMetadata> components =
