@@ -633,13 +633,6 @@ If an instance of the type isn't registered in the dependency injection containe
 
 For nullable parameters, ensure that the parameter isn't `null` before accessing it.
 
-If an instance of the type isn't registered in the dependency injection container, the app throws an exception when attempting to bind the parameter. To make the parameter optional, use one of the following approaches:
-
-* Make the parameter nullable.
-* Set a default value for the parameter.
-
-For nullable parameters, ensure that the parameter isn't `null` before accessing it.
-
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:index#how-to-download-a-sample))
