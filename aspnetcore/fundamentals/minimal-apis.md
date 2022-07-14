@@ -1534,7 +1534,7 @@ The following example streams an image from [Azure Blob storage](/azure/storage/
 
 [!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_abs)]
 
-The following example streams an video from an Azure Blob:
+The following example streams a video from an Azure Blob:
 
 [!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_video)]
 
