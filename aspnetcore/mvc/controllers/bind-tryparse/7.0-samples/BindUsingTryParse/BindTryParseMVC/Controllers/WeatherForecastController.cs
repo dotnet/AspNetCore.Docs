@@ -53,13 +53,13 @@ namespace BindTryParseMVC.Controllers
                 .Where(wf => DateOnly.FromDateTime(wf.Date) >= (range?.From ?? DateOnly.MinValue) && DateOnly.FromDateTime(wf.Date) <= (range?.To ?? DateOnly.MaxValue))
                 .Select(wf => new WeatherForecastViewModel
                 {
-                    Date = wf.Date.ToString(),
+                    Date = wf.Date.ToString(CultureInfo.InvariantCulture),
                     TemperatureC = wf.TemperatureC,
                     TemperatureF = wf.TemperatureF,
                     Summary = wf.Summary
                 });
 
-            return View(weatherForecasts);
+            return View("Index", weatherForecasts);
         }
     }
 }
