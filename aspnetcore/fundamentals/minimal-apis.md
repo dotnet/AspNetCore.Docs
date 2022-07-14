@@ -1520,6 +1520,8 @@ app.MapGet("/405", () => Results.StatusCode(405));
 app.MapGet("/text", () => Results.Text("This is some text"));
 ```
 
+<a name="stream7"></a>
+
 ### Stream
 
 [!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_stream)]
