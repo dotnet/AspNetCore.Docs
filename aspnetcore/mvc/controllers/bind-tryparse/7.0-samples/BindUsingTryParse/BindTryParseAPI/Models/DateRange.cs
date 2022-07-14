@@ -1,5 +1,6 @@
 namespace BindTryParseAPI.Models
 {
+    // <snippet>
     public class DateRange
     {
         public DateOnly? From { get; }
@@ -29,4 +30,5 @@ namespace BindTryParseAPI.Models
             return true;
         }
     }
+    // </snippet>
 }

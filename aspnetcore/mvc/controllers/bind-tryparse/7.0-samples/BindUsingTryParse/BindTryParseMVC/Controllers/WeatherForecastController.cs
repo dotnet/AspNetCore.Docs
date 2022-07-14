@@ -11,11 +11,8 @@ namespace BindTryParseMVC.Controllers
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        /// <summary>
-        /// /WeatherForecast?culture=en-GB
-        /// </summary>
-        /// <param name="culture"></param>
-        /// <returns></returns>
+        // <snippet>
+        //GET /WeatherForecast?culture=en-GB
         public IActionResult Index(Culture? culture)
         {
             var weatherForecasts = Enumerable
@@ -35,12 +32,10 @@ namespace BindTryParseMVC.Controllers
 
             return View(weatherForecasts);
         }
+        // </snippet>
 
-        /// <summary>
-        /// /WeatherForecast/Range?range=07/12/2022-07/14/2022
-        /// </summary>
-        /// <param name="range"></param>
-        /// <returns></returns>
+        // GET /WeatherForecast/Range?range=07/12/2022-07/14/2022
+        // <snippet_1>
         public IActionResult Range(DateRange? range)
         {
             var weatherForecasts = Enumerable
@@ -50,7 +45,8 @@ namespace BindTryParseMVC.Controllers
                     TemperatureC = Random.Shared.Next(-20, 55),
                     Summary = Summaries[Random.Shared.Next(Summaries.Length)]
                 })
-                .Where(wf => DateOnly.FromDateTime(wf.Date) >= (range?.From ?? DateOnly.MinValue) && DateOnly.FromDateTime(wf.Date) <= (range?.To ?? DateOnly.MaxValue))
+                .Where(wf => DateOnly.FromDateTime(wf.Date) >= (range?.From ?? DateOnly.MinValue)
+                          && DateOnly.FromDateTime(wf.Date) <= (range?.To ?? DateOnly.MaxValue))
                 .Select(wf => new WeatherForecastViewModel
                 {
                     Date = wf.Date.ToString(CultureInfo.InvariantCulture),
@@ -61,5 +57,6 @@ namespace BindTryParseMVC.Controllers
 
             return View("Index", weatherForecasts);
         }
+        // </snippet_1>
     }
 }

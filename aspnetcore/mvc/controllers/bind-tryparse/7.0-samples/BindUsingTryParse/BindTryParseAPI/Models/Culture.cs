@@ -1,5 +1,6 @@
 namespace BindTryParseAPI.Models
 {
+    // <snippet>
     public class Culture
     {
         public string? DisplayName { get; }
@@ -24,4 +25,5 @@ namespace BindTryParseAPI.Models
             return true;
         }
     }
+    // </snippet>
 }
