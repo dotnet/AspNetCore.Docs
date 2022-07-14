@@ -68,7 +68,7 @@ The preceding `Counter` component:
 
 Documentation sample apps are available for inspection and download:
 
-[`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples)
+[Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 The repo contains two types of samples:
 
@@ -81,7 +81,7 @@ The repo contains two types of samples:
 > [!NOTE]
 > Not all of the preceding sample apps are available for all releases of ASP.NET Core.
 
-For more information, see the [`dotnet/blazor-samples` README.md file](https://github.com/dotnet/blazor-samples).
+For more information, see the [Blazor samples GitHub repository README.md file](https://github.com/dotnet/blazor-samples).
 
 ## Support requests
 

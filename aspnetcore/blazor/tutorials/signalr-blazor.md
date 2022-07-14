@@ -540,6 +540,7 @@ To learn more about building Blazor apps, see the Blazor documentation:
 * [SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
 * <xref:blazor/debug>
 * <xref:blazor/security/server/threat-mitigation>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 :::moniker-end
 

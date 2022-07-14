@@ -1546,7 +1546,7 @@ The following `HelloWorld` component uses a route template of `/hello-world`. Th
 
 `Pages/HelloWorld.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor":::
 
 The preceding component loads in the browser at `/hello-world` regardless of whether or not you add the component to the app's UI navigation. Optionally, components can be added to the `NavMenu` component so that a link to the component appears in the app's UI-based navigation.
 
@@ -1569,7 +1569,7 @@ Component members are used in rendering logic using C# expressions that start wi
 
 `Pages/Markup.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/Markup.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/Markup.razor":::
 
 > [!NOTE]
 > Examples throughout the Blazor documentation specify the [`private` access modifier](/dotnet/csharp/language-reference/keywords/private) for private members. Private members are scoped to a component's class. However, C# assumes the `private` access modifier when no access modifier is present, so explicitly marking members "`private`" in your own code is optional. For more information on access modifiers, see [Access Modifiers (C# Programming Guide)](/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers).
@@ -1592,13 +1592,13 @@ Consider the following `Heading` component, which can be used by other component
 
 `Shared/Heading.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/Heading.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/index/Heading.razor":::
 
 The following markup in the `HeadingExample` component renders the preceding `Heading` component at the location where the `<Heading />` tag appears.
 
 `Pages/HeadingExample.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/HeadingExample.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/HeadingExample.razor":::
 
 If a component contains an HTML element with an uppercase first letter that doesn't match a component name within the same namespace, a warning is emitted indicating that the element has an unexpected name. Adding an [`@using`][2] directive for the component's namespace makes the component available, which resolves the warning. For more information, see the [Namespaces](#namespaces) section.
 
@@ -1654,7 +1654,7 @@ The following example shows the default `Counter` component with an [`@code`][1]
 
 `Pages/Counter.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/Counter.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/Counter.razor":::
 
 The following `Counter` component splits HTML and Razor markup from  C# code using a code-behind file with a partial class:
 
@@ -1715,11 +1715,11 @@ The [`@inherits`][6] directive is used to specify a base class for a component. 
 
 `Pages/BlazorRocks.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/BlazorRocks.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/BlazorRocks.razor":::
 
 `BlazorRocksBase.cs`:
 
-[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/BlazorRocksBase.cs)]
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/BlazorRocksBase.cs":::
 
 ## Component parameters
 
@@ -1727,11 +1727,11 @@ The [`@inherits`][6] directive is used to specify a base class for a component. 
 
 `PanelBody.cs`:
 
-[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/PanelBody.cs)]
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/PanelBody.cs":::
 
 `Shared/ParameterChild.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/ParameterChild.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/index/ParameterChild.razor":::
 
 > [!WARNING]
 > Providing initial values for component parameters is supported, but don't create a component that writes to its own parameters after the component is rendered for the first time. For more information, see the [Overwritten parameters](#overwritten-parameters) section of this article.
@@ -1743,7 +1743,7 @@ The `Title` and `Body` component parameters of the `ParameterChild` component ar
 
 `Pages/ParameterParent.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/ParameterParent.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/ParameterParent.razor":::
 
 The following rendered HTML markup from the `ParameterParent` component shows `ParameterChild` component default values when the `ParameterParent` component doesn't supply component parameter values. When the `ParameterParent` component provides component parameter values, they replace the `ParameterChild` component's default values.
 
@@ -1789,7 +1789,7 @@ Throughout the documentation, code examples:
 
 `Pages/ParameterParent2.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/ParameterParent2.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/ParameterParent2.razor":::
 
 > [!NOTE]
 > When assigning a C# member to a component parameter, prefix the member with the `@` symbol and never prefix the parameter's HTML attribute.
@@ -1847,7 +1847,7 @@ To support the assignment of a composed value, use a method, field, or property.
 
 `Pages/ParameterParent3.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/ParameterParent3.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/ParameterParent3.razor":::
 
 For more information, see <xref:mvc/views/razor>.
 
@@ -1887,7 +1887,7 @@ Optional route parameters are supported. In the following example, the `text` op
 
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/RouteParameter.razor?highlight=1,6-7)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/RouteParameter.razor" highlight="1,6-7":::
 
 For information on catch-all route parameters (`{*pageRoute}`), which capture paths across multiple folder boundaries, see <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
 
@@ -1899,7 +1899,7 @@ In the following example, the `RenderFragmentChild` component has a `ChildConten
 
 `Shared/RenderFragmentChild.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/RenderFragmentChild.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/index/RenderFragmentChild.razor":::
 
 > [!IMPORTANT]
 > The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
@@ -1910,7 +1910,7 @@ The following `RenderFragmentParent` component provides content for rendering th
 
 `Pages/RenderFragmentParent.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/RenderFragmentParent.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/RenderFragmentParent.razor":::
 
 Due to the way that Blazor renders child content, rendering components inside a [`for`](/dotnet/csharp/language-reference/keywords/for) loop requires a local index variable if the incrementing loop variable is used in the `RenderFragmentChild` component's content. The following example can be added to the preceding `RenderFragmentParent` component:
 
@@ -2000,7 +2000,7 @@ After the following `Expander` component demonstrates an overwritten parameter, 
 
 `Shared/Expander.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/BadExpander.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/index/BadExpander.razor":::
 
 The `Expander` component is added to the following `ExpanderExample` parent component that may call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>:
 
@@ -2009,7 +2009,7 @@ The `Expander` component is added to the following `ExpanderExample` parent comp
 
 `Pages/ExpanderExample.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/ExpanderExample.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/ExpanderExample.razor":::
 
 Initially, the `Expander` components behave independently when their `Expanded` properties are toggled. The child components maintain their states as expected.
 
@@ -2036,7 +2036,7 @@ The following revised `Expander` component:
 
 `Shared/Expander.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/Expander.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/index/Expander.razor":::
 
 For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
 
@@ -2053,7 +2053,7 @@ In the following `Splat` component:
 
 `Pages/Splat.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/Splat.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/Splat.razor":::
 
 The rendered `<input>` elements in the webpage are identical:
 
@@ -2086,11 +2086,11 @@ The position of [`@attributes`][3] relative to the position of element attribute
 
 `Shared/AttributeOrderChild1.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild1.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild1.razor":::
 
 `Pages/AttributeOrderParent1.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent1.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent1.razor":::
 
 The `AttributeOrderChild1` component's `extra` attribute is set to the right of [`@attributes`][3]. The `AttributeOrderParent1` component's rendered `<div>` contains `extra="5"` when passed through the additional attribute because the attributes are processed right to left (last to first):
 
@@ -2102,11 +2102,11 @@ In the following example, the order of `extra` and [`@attributes`][3] is reverse
 
 `Shared/AttributeOrderChild2.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild2.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild2.razor":::
 
 `Pages/AttributeOrderParent2.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent2.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent2.razor":::
 
 The `<div>` in the parent component's rendered webpage contains `extra="10"` when passed through the additional attribute:
 
@@ -2127,7 +2127,7 @@ Consider the following `ReferenceChild` component that logs a message when its `
 
 `Shared/ReferenceChild.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/ReferenceChild.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/index/ReferenceChild.razor":::
 
 A component reference is only populated after the component is rendered and its output includes `ReferenceChild`'s element. Until the component is rendered, there's nothing to reference.
 
@@ -2139,13 +2139,13 @@ The following lambda approach uses the preceding `ReferenceChild` component.
 
 `Pages/ReferenceParent1.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent1.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent1.razor":::
 
 The following delegate approach uses the preceding `ReferenceChild` component.
 
 `Pages/ReferenceParent2.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent2.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/ReferenceParent2.razor":::
 
 While capturing component references use a similar syntax to [capturing element references](xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements), capturing component references isn't a JavaScript interop feature. Component references aren't passed to JavaScript code. Component references are only used in .NET code.
 
@@ -2178,11 +2178,11 @@ In the event a component must be updated based on an external event, such as a t
 
 `TimerService.cs`:
 
-[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/TimerService.cs)]
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/TimerService.cs":::
 
 `NotifierService.cs`:
 
-[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/NotifierService.cs)]
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/NotifierService.cs":::
 
 Register the services:
 
@@ -2204,7 +2204,7 @@ Use the `NotifierService` to update a component.
 
 `Pages/ReceiveNotifications.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/ReceiveNotifications.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/ReceiveNotifications.razor":::
 
 In the preceding example:
 
@@ -2227,13 +2227,13 @@ This demonstration allows you to:
 
 `Shared/Details.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/Details.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/index/Details.razor":::
 
 In the following `People` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the [`@key`][5] directive attribute is used to improve the user's experience.
 
 `Pages/People.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/People.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/People.razor":::
 
 The contents of the `people` collection changes with inserted, deleted, or re-ordered entries. Rerendering can lead to visible behavior differences. Each time a person is inserted into the `people` collection, the *preceding element* of the currently focused element receives the focus. The user's focus is lost.
 
@@ -2393,7 +2393,7 @@ In the following example, `IsCompleted` determines if the `<input>` element's `c
 
 `Pages/ConditionalAttribute.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/ConditionalAttribute.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/ConditionalAttribute.razor":::
 
 For more information, see <xref:mvc/views/razor>.
 
@@ -2411,7 +2411,7 @@ The following example shows using the <xref:Microsoft.AspNetCore.Components.Mark
 
 `Pages/MarkupStringExample.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/MarkupStringExample.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/MarkupStringExample.razor":::
 
 ## Razor templates
 
@@ -2425,7 +2425,7 @@ The following example illustrates how to specify <xref:Microsoft.AspNetCore.Comp
 
 `Pages/RazorTemplate.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/RazorTemplate.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/RazorTemplate.razor":::
 
 Rendered output of the preceding code:
 
@@ -2495,7 +2495,7 @@ In the following example, the `ListGenericTypeItems1` component is generically t
 
 `Shared/ListGenericTypeItems1.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/index/ListGenericTypeItems1.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/index/ListGenericTypeItems1.razor":::
 
 The following `GenericTypeExample1` component renders two `ListGenericTypeItems1` components:
 
@@ -2504,7 +2504,7 @@ The following `GenericTypeExample1` component renders two `ListGenericTypeItems1
 
 `Pages/GenericTypeExample1.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/index/GenericTypeExample1.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/GenericTypeExample1.razor":::
 
 For more information, see the following articles:
 
@@ -2552,7 +2552,7 @@ The following `HelloWorld` component uses a route template of `/hello-world`. Th
 
 `Pages/HelloWorld.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/HelloWorld.razor":::
 
 The preceding component loads in the browser at `/hello-world` regardless of whether or not you add the component to the app's UI navigation. Optionally, components can be added to the `NavMenu` component so that a link to the component appears in the app's UI-based navigation.
 
@@ -2575,7 +2575,7 @@ Component members are used in rendering logic using C# expressions that start wi
 
 `Pages/Markup.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/Markup.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/Markup.razor":::
 
 > [!NOTE]
 > Examples throughout the Blazor documentation specify the [`private` access modifier](/dotnet/csharp/language-reference/keywords/private) for private members. Private members are scoped to a component's class. However, C# assumes the `private` access modifier when no access modifier is present, so explicitly marking members "`private`" in your own code is optional. For more information on access modifiers, see [Access Modifiers (C# Programming Guide)](/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers).
@@ -2598,13 +2598,13 @@ Consider the following `Heading` component, which can be used by other component
 
 `Shared/Heading.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/Heading.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/index/Heading.razor":::
 
 The following markup in the `HeadingExample` component renders the preceding `Heading` component at the location where the `<Heading />` tag appears.
 
 `Pages/HeadingExample.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/HeadingExample.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/HeadingExample.razor":::
 
 If a component contains an HTML element with an uppercase first letter that doesn't match a component name within the same namespace, a warning is emitted indicating that the element has an unexpected name. Adding an [`@using`][2] directive for the component's namespace makes the component available, which resolves the warning. For more information, see the [Namespaces](#namespaces) section.
 
@@ -2657,7 +2657,7 @@ The following example shows the default `Counter` component with an [`@code`][1]
 
 `Pages/Counter.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/Counter.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/Counter.razor":::
 
 The following `Counter` component splits HTML and Razor markup from  C# code using a code-behind file with a partial class:
 
@@ -2715,11 +2715,11 @@ The [`@inherits`][6] directive is used to specify a base class for a component. 
 
 `Pages/BlazorRocks.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/BlazorRocks.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/BlazorRocks.razor":::
 
 `BlazorRocksBase.cs`:
 
-[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/BlazorRocksBase.cs)]
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/BlazorRocksBase.cs":::
 
 ## Component parameters
 
@@ -2727,11 +2727,11 @@ The [`@inherits`][6] directive is used to specify a base class for a component. 
 
 `PanelBody.cs`:
 
-[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/PanelBody.cs)]
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/PanelBody.cs":::
 
 `Shared/ParameterChild.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/ParameterChild.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/index/ParameterChild.razor":::
 
 > [!WARNING]
 > Providing initial values for component parameters is supported, but don't create a component that writes to its own parameters after the component is rendered for the first time. For more information, see the [Overwritten parameters](#overwritten-parameters) section of this article.
@@ -2743,7 +2743,7 @@ The `Title` and `Body` component parameters of the `ParameterChild` component ar
 
 `Pages/ParameterParent.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/ParameterParent.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/ParameterParent.razor":::
 
 The following rendered HTML markup from the `ParameterParent` component shows `ParameterChild` component default values when the `ParameterParent` component doesn't supply component parameter values. When the `ParameterParent` component provides component parameter values, they replace the `ParameterChild` component's default values.
 
@@ -2789,7 +2789,7 @@ Throughout the documentation, code examples:
 
 `Pages/ParameterParent2.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/ParameterParent2.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/ParameterParent2.razor":::
 
 > [!NOTE]
 > When assigning a C# member to a component parameter, prefix the member with the `@` symbol and never prefix the parameter's HTML attribute.
@@ -2847,7 +2847,7 @@ To support the assignment of a composed value, use a method, field, or property.
 
 `Pages/ParameterParent3.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/ParameterParent3.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/ParameterParent3.razor":::
 
 For more information, see <xref:mvc/views/razor>.
 
@@ -2885,7 +2885,7 @@ Components can specify route parameters in the route template of the [`@page`][9
 
 `Pages/RouteParameter.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/RouteParameter.razor?highlight=2,7-8)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/RouteParameter.razor" highlight="2,7-8":::
 
 Optional route parameters aren't supported, so two [`@page`][9] directives are applied in the preceding example. The first [`@page`][9] directive permits navigation to the component without a route parameter. The second [`@page`][9] directive receives the `{text}` route parameter and assigns the value to the `Text` property.
 
@@ -2899,7 +2899,7 @@ In the following example, the `RenderFragmentChild` component has a `ChildConten
 
 `Shared/RenderFragmentChild.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/RenderFragmentChild.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/index/RenderFragmentChild.razor":::
 
 > [!IMPORTANT]
 > The property receiving the <xref:Microsoft.AspNetCore.Components.RenderFragment> content must be named `ChildContent` by convention.
@@ -2910,7 +2910,7 @@ The following `RenderFragmentParent` component provides content for rendering th
 
 `Pages/RenderFragmentParent.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/RenderFragmentParent.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/RenderFragmentParent.razor":::
 
 Due to the way that Blazor renders child content, rendering components inside a [`for`](/dotnet/csharp/language-reference/keywords/for) loop requires a local index variable if the incrementing loop variable is used in the `RenderFragmentChild` component's content. The following example can be added to the preceding `RenderFragmentParent` component:
 
@@ -3000,7 +3000,7 @@ After the following `Expander` component demonstrates an overwritten parameter, 
 
 `Shared/Expander.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/BadExpander.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/index/BadExpander.razor":::
 
 The `Expander` component is added to the following `ExpanderExample` parent component that may call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>:
 
@@ -3009,7 +3009,7 @@ The `Expander` component is added to the following `ExpanderExample` parent comp
 
 `Pages/ExpanderExample.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/ExpanderExample.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/ExpanderExample.razor":::
 
 Initially, the `Expander` components behave independently when their `Expanded` properties are toggled. The child components maintain their states as expected.
 
@@ -3036,7 +3036,7 @@ The following revised `Expander` component:
 
 `Shared/Expander.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/Expander.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/index/Expander.razor":::
 
 For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
 
@@ -3053,7 +3053,7 @@ In the following `Splat` component:
 
 `Pages/Splat.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/Splat.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/Splat.razor":::
 
 The rendered `<input>` elements in the webpage are identical:
 
@@ -3086,11 +3086,11 @@ The position of [`@attributes`][3] relative to the position of element attribute
 
 `Shared/AttributeOrderChild1.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild1.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild1.razor":::
 
 `Pages/AttributeOrderParent1.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent1.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent1.razor":::
 
 The `AttributeOrderChild1` component's `extra` attribute is set to the right of [`@attributes`][3]. The `AttributeOrderParent1` component's rendered `<div>` contains `extra="5"` when passed through the additional attribute because the attributes are processed right to left (last to first):
 
@@ -3102,11 +3102,11 @@ In the following example, the order of `extra` and [`@attributes`][3] is reverse
 
 `Shared/AttributeOrderChild2.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild2.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild2.razor":::
 
 `Pages/AttributeOrderParent2.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent2.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent2.razor":::
 
 The `<div>` in the parent component's rendered webpage contains `extra="10"` when passed through the additional attribute:
 
@@ -3127,7 +3127,7 @@ Consider the following `ReferenceChild` component that logs a message when its `
 
 `Shared/ReferenceChild.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/ReferenceChild.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/index/ReferenceChild.razor":::
 
 A component reference is only populated after the component is rendered and its output includes `ReferenceChild`'s element. Until the component is rendered, there's nothing to reference.
 
@@ -3139,13 +3139,13 @@ The following lambda approach uses the preceding `ReferenceChild` component.
 
 `Pages/ReferenceParent1.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/ReferenceParent1.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/ReferenceParent1.razor":::
 
 The following delegate approach uses the preceding `ReferenceChild` component.
 
 `Pages/ReferenceParent2.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/ReferenceParent2.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/ReferenceParent2.razor":::
 
 While capturing component references use a similar syntax to [capturing element references](xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements), capturing component references isn't a JavaScript interop feature. Component references aren't passed to JavaScript code. Component references are only used in .NET code.
 
@@ -3178,11 +3178,11 @@ In the event a component must be updated based on an external event, such as a t
 
 `TimerService.cs`:
 
-[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/TimerService.cs)]
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/TimerService.cs":::
 
 `NotifierService.cs`:
 
-[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/NotifierService.cs)]
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/NotifierService.cs":::
 
 Register the services:
 
@@ -3204,7 +3204,7 @@ Use the `NotifierService` to update a component.
 
 `Pages/ReceiveNotifications.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/ReceiveNotifications.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/ReceiveNotifications.razor":::
 
 In the preceding example:
 
@@ -3227,13 +3227,13 @@ This demonstration allows you to:
 
 `Shared/Details.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/Details.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/index/Details.razor":::
 
 In the following `People` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the [`@key`][5] directive attribute is used to improve the user's experience.
 
 `Pages/People.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/People.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/People.razor":::
 
 The contents of the `people` collection changes with inserted, deleted, or re-ordered entries. Rerendering can lead to visible behavior differences. Each time a person is inserted into the `people` collection, the *preceding element* of the currently focused element receives the focus. The user's focus is lost.
 
@@ -3393,7 +3393,7 @@ In the following example, `IsCompleted` determines if the `<input>` element's `c
 
 `Pages/ConditionalAttribute.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/ConditionalAttribute.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/ConditionalAttribute.razor":::
 
 For more information, see <xref:mvc/views/razor>.
 
@@ -3411,7 +3411,7 @@ The following example shows using the <xref:Microsoft.AspNetCore.Components.Mark
 
 `Pages/MarkupStringExample.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/MarkupStringExample.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/MarkupStringExample.razor":::
 
 ## Razor templates
 
@@ -3425,7 +3425,7 @@ The following example illustrates how to specify <xref:Microsoft.AspNetCore.Comp
 
 `Pages/RazorTemplate.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/RazorTemplate.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/RazorTemplate.razor":::
 
 Rendered output of the preceding code:
 
@@ -3517,7 +3517,7 @@ In the following example, the `ListGenericTypeItems1` component is generically t
 
 `Shared/ListGenericTypeItems1.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/index/ListGenericTypeItems1.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/index/ListGenericTypeItems1.razor":::
 
 The following `GenericTypeExample1` component renders two `ListGenericTypeItems1` components:
 
@@ -3526,7 +3526,7 @@ The following `GenericTypeExample1` component renders two `ListGenericTypeItems1
 
 `Pages/GenericTypeExample1.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/index/GenericTypeExample1.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/GenericTypeExample1.razor":::
 
 For more information, see the following articles:
 

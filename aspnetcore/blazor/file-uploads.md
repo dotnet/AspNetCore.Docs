@@ -552,6 +552,7 @@ For more information on Azure Blob Storage and Azure Files, see the [Azure Stora
 * <xref:blazor/file-downloads>
 * <xref:mvc/models/file-uploads#security-considerations>
 * <xref:blazor/forms-validation>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 :::moniker-end
 
@@ -659,13 +660,13 @@ The following example demonstrates multiple file upload in a component. <xref:Mi
 
 :::zone pivot="server"
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_Server/Pages/file-uploads/FileUpload1.razor":::
 
 :::zone-end
 
 :::zone pivot="webassembly"
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload1.razor":::
 
 :::zone-end
 
@@ -782,7 +783,7 @@ The following `FileUpload2` component:
 
 `Pages/FileUpload2.razor` in the Blazor Server app:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_Server/Pages/file-uploads/FileUpload2.razor":::
 
 :::zone-end
 
@@ -790,7 +791,7 @@ The following `FileUpload2` component:
 
 `Pages/FileUpload2.razor` in the **`Client`** project:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor":::
 
 :::zone-end
 
@@ -1041,7 +1042,7 @@ To use the following example in a test app:
 
 `Pages/FileUpload3.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_Server/Pages/file-uploads/FileUpload3.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_Server/Pages/file-uploads/FileUpload3.razor":::
 
 For more information, see the following API resources:
 
@@ -1088,5 +1089,6 @@ For more information on Azure Blob Storage and Azure Files, see the [Azure Stora
 
 * <xref:mvc/models/file-uploads#security-considerations>
 * <xref:blazor/forms-validation>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 :::moniker-end
