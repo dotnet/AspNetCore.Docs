@@ -128,6 +128,110 @@ In the following example:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/dynamiccomponent/DynamicComponentExample2.razor":::
 
+## Event callbacks (`EventCallback`)
+
+Event callbacks (<xref:Microsoft.AspNetCore.Components.EventCallback>) can be passed to a <xref:Microsoft.AspNetCore.Components.DynamicComponent> in it's parameter dictionary.
+
+> [!NOTE]
+> The example in this section is an extension of the full example shown in the *Pass parameters* section of this article.
+
+Implement an event callback parameter (<xref:Microsoft.AspNetCore.Components.EventCallback>) within each dynamically-rendered component:
+
+```razor
+<button @onclick="OnClickCallback">
+    Trigger a Parent component method
+</button>
+
+@code {
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
+}
+```
+
+In the parent component's `@code` block, implement the callback method. The following example, the `ShowDTMessage` method assigns a string with the current time to `message`, and the value of `message` is rendered:
+
+```razor
+...
+
+<p>@message</p>
+
+@code {
+    ...
+    private string? message;
+    ...
+    private void ShowDTMessage(MouseEventArgs e) => 
+        message = $"The current DT is: {DateTime.Now}.";
+}
+```
+
+The parent component passes the parameter with:
+
+* A `string` key equal to the callback method name, `OnClickCallback` in the following example.
+* An `object` value created by <xref:Microsoft.AspNetCore.Components.EventCallbackFactory.Create%2A> for the parent callback method, `ShowDTMessage` in the following example.
+
+```csharp
+private Dictionary<string, ComponentMetadata> components =
+    new()
+    {
+        {
+            "RocketLabWithWindowSeat",
+            new ComponentMetadata
+            {
+                Name = "Rocket Lab with Window Seat",
+                Parameters = new()
+                {
+                    { "WindowSeat", false },
+                    { "OnClickCallback", 
+                          EventCallback.Factory.Create<MouseEventArgs>(
+                              this, ShowDTMessage) }
+                }
+            }
+        },
+        {
+            "VirginGalactic",
+            new ComponentMetadata
+            {
+                Name = "Virgin Galactic",
+                Parameters = new()
+                {
+                    { "WindowSeat", true },
+                    { "OnClickCallback", 
+                        EventCallback.Factory.Create<MouseEventArgs>(
+                            this, ShowDTMessage) }
+                }
+            }
+        },
+        {
+            "UnitedLaunchAlliance",
+            new ComponentMetadata
+            {
+                Name = "ULA",
+                Parameters = new()
+                {
+                    { "WindowSeat", true },
+                    { "OnClickCallback", 
+                          EventCallback.Factory.Create<MouseEventArgs>(
+                              this, ShowDTMessage) }
+                }
+            }
+        },
+        {
+            "SpaceX",
+            new ComponentMetadata
+            {
+                Name = "SpaceX",
+                Parameters = new()
+                {
+                    { "WindowSeat", true },
+                    { "OnClickCallback", 
+                          EventCallback.Factory.Create<MouseEventArgs>(
+                              this, ShowDTMessage) }
+                }
+            }
+        }
+    };
+```
+
 ## Avoid catch-all parameters
 
 Avoid the use of [catch-all parameters](xref:blazor/fundamentals/routing#catch-all-route-parameters). If catch-all parameters are used, every explicit parameter on <xref:Microsoft.AspNetCore.Components.DynamicComponent> effectively is a reserved word that you can't pass to a dynamic child. Any new parameters passed to <xref:Microsoft.AspNetCore.Components.DynamicComponent> are a breaking change, as they start shadowing child component parameters that happen to have the same name. It's unlikely that the caller always knows a fixed set of parameter names to pass to all possible dynamic children.
@@ -135,3 +239,7 @@ Avoid the use of [catch-all parameters](xref:blazor/fundamentals/routing#catch-a
 ## Trademarks
 
 Rocket Lab is a registered trademark of [Rocket Lab USA Inc.](https://www.rocketlabusa.com/) SpaceX is a registered trademark of [Space Exploration Technologies Corp.](https://www.spacex.com/) United Launch Alliance and ULA are registered trademarks of [United Launch Alliance, LLC](https://www.ulalaunch.com/). Virgin Galactic is a registered trademark of [Galactic Enterprises, LLC](https://www.virgingalactic.com/).
+
+## Additional resources
+
+* <xref:blazor/components/event-handling#eventcallback>
