@@ -189,6 +189,19 @@ The simple types that the model binder can convert source strings into include t
 * [Uri](xref:System.UriTypeConverter)
 * [Version](xref:System.ComponentModel.VersionConverter)
 
+## Bind with `TryParse`
+
+The following APIs support binding controller action parameter values using a `TryParse`:
+
+```csharp
+public static bool TryParse(string value, T out result);
+public static bool TryParse(string value, IFormatProvider provider, T out result);
+```
+
+The following `DateRange` class implements `TryParse` to support binding a date range:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/models/BindTryParseAPI/Models/DateRange.cs" id="snippet":::
+
 ## Complex types
 
 A complex type must have a public default constructor and public writable properties to bind. When model binding occurs, the class is instantiated using the public default constructor.
