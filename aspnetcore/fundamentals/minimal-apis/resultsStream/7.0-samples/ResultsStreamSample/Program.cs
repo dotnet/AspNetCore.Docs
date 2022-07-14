@@ -13,10 +13,10 @@ var app = builder.Build();
 app.MapGet("/process-image/{strImage}", (string strImage, HttpContext http, CancellationToken token) =>
 {
     http.Response.Headers.CacheControl = $"public,max-age={TimeSpan.FromHours(24).TotalSeconds}";
-    return Results.Stream(stream => Resize(strImage, stream, token), "image/jpeg");
+    return Results.Stream(stream => ResizeImageAsync(strImage, stream, token), "image/jpeg");
 });
 
-async Task Resize(string strImage, Stream stream, CancellationToken token)
+async Task ResizeImageAsync(string strImage, Stream stream, CancellationToken token)
 {
     var strPath = $"wwwroot/img/{strImage}";
     using var image = await Image.LoadAsync(strPath, token);
@@ -28,13 +28,14 @@ async Task Resize(string strImage, Stream stream, CancellationToken token)
 }
 // </snippet>
 
+// GET /rotate-image/microsoft.jpg
 app.MapGet("/rotate-image/{strImage}", (string strImage, HttpContext http, CancellationToken token) =>
 {
     http.Response.Headers.CacheControl = $"public,max-age={TimeSpan.FromHours(24).TotalSeconds}";
-    return Results.Stream(stream => RotateImage(strImage, stream, token), "image/jpeg");
+    return Results.Stream(stream => RotateImageAsync(strImage, stream, token), "image/jpeg");
 });
 
-async Task RotateImage(string strImage, Stream stream, CancellationToken token)
+async Task RotateImageAsync(string strImage, Stream stream, CancellationToken token)
 {
     var strPath = $"wwwroot/img/{strImage}";
     using var image = await Image.LoadAsync(strPath, token);
@@ -45,7 +46,7 @@ async Task RotateImage(string strImage, Stream stream, CancellationToken token)
     await image.SaveAsync(stream, JpegFormat.Instance, cancellationToken: token);
 }
 
-// GET /stream-image/microsoft.jpg/pictures
+// GET /stream-image/pictures/microsoft.jpg
 // <snippet_abs>
 app.MapGet("/stream-image/{containerName}/{blobName}", 
     async (string blobName, string containerName, CancellationToken token) =>
@@ -58,9 +59,9 @@ app.MapGet("/stream-image/{containerName}/{blobName}",
 // </snippet_abs>
 
 // <snippet_video>
-// GET /stream-video/earth.mp4/videos
-app.MapGet("/stream-video/{blobName}/{containerName}",
-    async (HttpContext http, CancellationToken token, string blobName, string containerName) =>
+// GET /stream-video/videos/earth.mp4
+app.MapGet("/stream-video/{containerName}/{blobName}",
+     async (HttpContext http, CancellationToken token, string blobName, string containerName) =>
 {
     var conStr = builder.Configuration["blogConStr"];
     BlobContainerClient blobContainerClient = new BlobContainerClient(conStr, containerName);
@@ -90,14 +91,14 @@ app.MapGet("/", () => "Blob test");
 app.MapGet("/process-image/{strImage}", (string strImage, HttpContext http, CancellationToken token) =>
 {
     http.Response.Headers.CacheControl = $"public,max-age={TimeSpan.FromHours(24).TotalSeconds}";
-    return Results.Stream(stream => Resize(strImage, stream, token), "image/jpeg");
+    return Results.Stream(stream => ResizeImageAsync(strImage, stream, token), "image/jpeg");
 });
 
 // Upload an image to blob storage from local wwwroot/img folder
 // The following code requires an Azure storage account with the access key connection
 // string stored in configuration.
-///POST stream-video/earth.mp4/videos
-app.MapPost("/up/{blobName}/{containerName}", (string blobName, string containerName) =>
+///POST stream-video/videos/earth.mp4
+app.MapPost("/up/{containerName}/{blobName}", async (string blobName, string containerName) =>
 {
     var conStr = builder.Configuration["blogConStr"];
     BlobContainerClient blobContainerClient = new BlobContainerClient(conStr, containerName);
@@ -109,7 +110,7 @@ app.MapPost("/up/{blobName}/{containerName}", (string blobName, string container
 
     BlobClient blob = blobContainerClient.GetBlobClient(blobName);
 
-    blob.Upload($"wwwroot/img/{blobName}");
+    await blob.UploadAsync($"wwwroot/img/{blobName}");
 });
 
 app.MapGet("/list/{containerName}", async ( string containerName) =>
@@ -123,13 +124,13 @@ app.MapGet("/list/{containerName}", async ( string containerName) =>
     }
 });
 
-// GET 
-app.MapGet("/list-containers/", async () =>
+// GET /list-containers
+app.MapGet("/list-containers", async () =>
 {
     var conStr = builder.Configuration["blogConStr"];
     BlobServiceClient blobServiceClient = new BlobServiceClient(conStr);
 
-    await ListContainers(blobServiceClient, "", 99, app.Logger);
+    await ListContainersAsync(blobServiceClient, "", 99, app.Logger);
 });
 
 app.Run();
@@ -149,7 +150,7 @@ async static Task ListContainersAsync(BlobServiceClient blobServiceClient,
         {
             foreach (BlobContainerItem containerItem in containerPage.Values)
             {
-                logger.LogInformation("Container name: {0}", containerItem.Name);
+                logger.LogInformation($"Container name: {containerItem.Name}");
             }
 
         }
