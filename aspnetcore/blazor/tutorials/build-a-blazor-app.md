@@ -253,7 +253,7 @@ cd TodoList
 
    `Pages/Todo.razor`:
 
-   [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo0.razor?highlight=1)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo0.razor" highlight="1":::
 
    Save the `Pages/Todo.razor` file.
 
@@ -265,7 +265,7 @@ cd TodoList
 
    In `Shared/NavMenu.razor`:
 
-   [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/build-a-blazor-app/NavMenu.razor?highlight=5-9)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/build-a-blazor-app/NavMenu.razor" highlight="5-9":::
 
    Save the `Shared/NavMenu.razor` file.
 
@@ -277,7 +277,7 @@ cd TodoList
 
    `TodoItem.cs`:
 
-   [!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/build-a-blazor-app/TodoItem.cs)]
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/build-a-blazor-app/TodoItem.cs":::
 
    > [!NOTE]
    > If using Visual Studio to create the `TodoItem.cs` file and `TodoItem` class, use either of the following approaches:
@@ -292,11 +292,11 @@ cd TodoList
 
    `Pages/Todo.razor`:
 
-   [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo2.razor?highlight=5-10,13)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo2.razor" highlight="5-10,13":::
 
 1. The app requires UI elements for adding todo items to the list. Add a text input (`<input>`) and a button (`<button>`) below the unordered list (`<ul>...</ul>`):
 
-   [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo3.razor?highlight=12-13)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo3.razor" highlight="12-13":::
 
 1. Save the `TodoItem.cs` file and the updated `Pages/Todo.razor` file. In the command shell, the app is automatically rebuilt when the files are saved. The browser reloads the page.
 
@@ -304,7 +304,7 @@ cd TodoList
 
 1. Add an `AddTodo` method to the `Todo` component and register the method for the button using the `@onclick` attribute. The `AddTodo` C# method is called when the button is selected:
 
-   [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo4.razor?highlight=2,7-10)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo4.razor" highlight="2,7-10":::
 
 1. To get the title of the new todo item, add a `newTodo` string field at the top of the `@code` block:
 
@@ -320,7 +320,7 @@ cd TodoList
 
 1. Update the `AddTodo` method to add the `TodoItem` with the specified title to the list. Clear the value of the text input by setting `newTodo` to an empty string:
 
-   [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo6.razor?highlight=19-26)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo6.razor" highlight="19-26":::
 
 1. Save the `Pages/Todo.razor` file. The app is automatically rebuilt in the command shell, and the page reloads in the browser.
 
@@ -346,7 +346,7 @@ cd TodoList
 
 1. The completed `Todo` component (`Pages/Todo.razor`):
 
-   [!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo1.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo1.razor":::
 
 1. Save the `Pages/Todo.razor` file. The app is automatically rebuilt in the command shell, and the page reloads in the browser.
 
@@ -434,7 +434,7 @@ cd TodoList
 
    `Pages/Todo.razor`:
 
-   [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo0.razor?highlight=1)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo0.razor" highlight="1":::
 
    Save the `Pages/Todo.razor` file.
 
@@ -446,7 +446,7 @@ cd TodoList
 
    In `Shared/NavMenu.razor`:
 
-   [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/build-a-blazor-app/NavMenu.razor?highlight=5-9)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/build-a-blazor-app/NavMenu.razor" highlight="5-9":::
 
    Save the `Shared/NavMenu.razor` file.
 
@@ -458,7 +458,7 @@ cd TodoList
 
    `TodoItem.cs`:
 
-   [!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/build-a-blazor-app/TodoItem.cs)]
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/build-a-blazor-app/TodoItem.cs":::
 
    > [!NOTE]
    > If using Visual Studio to create the `TodoItem.cs` file and `TodoItem` class, use either of the following approaches:
@@ -473,11 +473,11 @@ cd TodoList
 
    `Pages/Todo.razor`:
 
-   [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo2.razor?highlight=5-10,13)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo2.razor" highlight="5-10,13":::
 
 1. The app requires UI elements for adding todo items to the list. Add a text input (`<input>`) and a button (`<button>`) below the unordered list (`<ul>...</ul>`):
 
-   [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo3.razor?highlight=12-13)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo3.razor" highlight="12-13":::
 
 1. Save the `TodoItem.cs` file and the updated `Pages/Todo.razor` file. In the command shell, the app is automatically rebuilt when the files are saved. The browser reloads the page.
 
@@ -485,7 +485,7 @@ cd TodoList
 
 1. Add an `AddTodo` method to the `Todo` component and register the method for the button using the `@onclick` attribute. The `AddTodo` C# method is called when the button is selected:
 
-   [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo4.razor?highlight=2,7-10)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo4.razor" highlight="2,7-10":::
 
 1. To get the title of the new todo item, add a `newTodo` string field at the top of the `@code` block:
 
@@ -501,7 +501,7 @@ cd TodoList
 
 1. Update the `AddTodo` method to add the `TodoItem` with the specified title to the list. Clear the value of the text input by setting `newTodo` to an empty string:
 
-   [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo6.razor?highlight=19-26)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo6.razor" highlight="19-26":::
 
 1. Save the `Pages/Todo.razor` file. The app is automatically rebuilt in the command shell, and the page reloads in the browser.
 
@@ -527,7 +527,7 @@ cd TodoList
 
 1. The completed `Todo` component (`Pages/Todo.razor`):
 
-   [!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo1.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo1.razor":::
 
 1. Save the `Pages/Todo.razor` file. The app is automatically rebuilt in the command shell, and the page reloads in the browser.
 

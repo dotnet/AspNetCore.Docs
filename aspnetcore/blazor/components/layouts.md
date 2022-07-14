@@ -225,6 +225,7 @@ When routable components are integrated into a Razor Pages app, the app's shared
 ## Additional resources
 
 * <xref:mvc/views/layout>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 :::moniker-end
 
@@ -251,7 +252,7 @@ The following `DoctorWhoLayout` component shows the Razor template of a layout c
 
 `Shared/DoctorWhoLayout.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout.razor?highlight=1,13)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout.razor" highlight="1,13":::
 
 ### `MainLayout` component
 
@@ -259,7 +260,7 @@ In an app created from a [Blazor project template](xref:blazor/project-structure
 
 `Shared/MainLayout.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/layouts/MainLayout.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/layouts/MainLayout.razor":::
 
 [Blazor's CSS isolation feature](xref:blazor/components/css-isolation) applies isolated CSS styles to the `MainLayout` component. By convention, the styles are provided by the accompanying stylesheet of the same name, `Shared/MainLayout.razor.css`. The ASP.NET Core framework implementation of the stylesheet is available for inspection in the [ASP.NET Core reference source (dotnet/aspnetcore GitHub repository)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/Shared/MainLayout.razor.css).
 
@@ -275,7 +276,7 @@ The content of the following `Episodes` component is inserted into the `DoctorWh
 
 `Pages/Episodes.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/layouts/Episodes.razor?highlight=2)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/layouts/Episodes.razor" highlight="2":::
 
 The following rendered HTML markup is produced by the preceding `DoctorWhoLayout` and `Episodes` component. Extraneous markup doesn't appear in order to focus on the content provided by the two components involved:
 
@@ -343,7 +344,7 @@ Specify the default app layout in the `App` component's <xref:Microsoft.AspNetCo
 
 `App.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/layouts/App1.razor?highlight=3)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/layouts/App1.razor" highlight="3":::
 
 [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
@@ -383,13 +384,13 @@ The following `DoctorWhoLayout` component is a modified version of the example s
 
 `Shared/DoctorWhoLayout.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout2.razor?highlight=2,12)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout2.razor" highlight="2,12":::
 
 The `ProductionsLayout` component contains the top-level layout elements, where the header (`<header>...</header>`) and footer (`<footer>...</footer>`) elements now reside. The `DoctorWhoLayout` with the `Episodes` component is rendered where `@Body` appears.
 
 `Shared/ProductionsLayout.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/layouts/ProductionsLayout.razor?highlight=13)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/layouts/ProductionsLayout.razor" highlight="13":::
 
 The following rendered HTML markup is produced by the preceding nested layout. Extraneous markup doesn't appear in order to focus on the nested content provided by the three components involved:
 
@@ -445,6 +446,7 @@ When routable components are integrated into a Razor Pages app, the app's shared
 ## Additional resources
 
 * <xref:mvc/views/layout>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 :::moniker-end
 
@@ -471,7 +473,7 @@ The following `DoctorWhoLayout` component shows the Razor template of a layout c
 
 `Shared/DoctorWhoLayout.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout.razor?highlight=1,13)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout.razor" highlight="1,13":::
 
 ### `MainLayout` component
 
@@ -479,7 +481,7 @@ In an app created from a [Blazor project template](xref:blazor/project-structure
 
 `Shared/MainLayout.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/layouts/MainLayout.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/layouts/MainLayout.razor":::
 
 ## Apply a layout
 
@@ -491,7 +493,7 @@ The content of the following `Episodes` component is inserted into the `DoctorWh
 
 `Pages/Episodes.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/layouts/Episodes.razor?highlight=2)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/layouts/Episodes.razor" highlight="2":::
 
 The following rendered HTML markup is produced by the preceding `DoctorWhoLayout` and `Episodes` component. Extraneous markup doesn't appear in order to focus on the content provided by the two components involved:
 
@@ -558,7 +560,7 @@ Specify the default app layout in the `App` component's <xref:Microsoft.AspNetCo
 
 `App.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/layouts/App1.razor?highlight=3)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/layouts/App1.razor" highlight="3":::
 
 For more information on the <xref:Microsoft.AspNetCore.Components.Routing.Router> component, see <xref:blazor/fundamentals/routing>.
 
@@ -594,13 +596,13 @@ The following `DoctorWhoLayout` component is a modified version of the example s
 
 `Shared/DoctorWhoLayout.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout2.razor?highlight=2,12)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/layouts/DoctorWhoLayout2.razor" highlight="2,12":::
 
 The `ProductionsLayout` component contains the top-level layout elements, where the header (`<header>...</header>`) and footer (`<footer>...</footer>`) elements now reside. The `DoctorWhoLayout` with the `Episodes` component is rendered where `@Body` appears.
 
 `Shared/ProductionsLayout.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/layouts/ProductionsLayout.razor?highlight=13)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/layouts/ProductionsLayout.razor" highlight="13":::
 
 The following rendered HTML markup is produced by the preceding nested layout. Extraneous markup doesn't appear in order to focus on the nested content provided by the three components involved:
 
@@ -656,5 +658,6 @@ When routable components are integrated into a Razor Pages app, the app's shared
 ## Additional resources
 
 * <xref:mvc/views/layout>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 :::moniker-end

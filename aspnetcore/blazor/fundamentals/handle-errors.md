@@ -482,6 +482,7 @@ Consider manual render tree builder logic on the same level of complexity and wi
 * <xref:blazor/fundamentals/logging>
 * <xref:fundamentals/error-handling>&dagger;
 * <xref:web-api/index>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 &dagger;Applies to backend ASP.NET Core web API apps that client-side Blazor WebAssembly apps use for logging.
 
@@ -640,7 +641,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor" highlight="11,27-39":::
 
 ### Rendering logic (Blazor WebAssembly)
 
@@ -831,7 +832,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor" highlight="11,27-39":::
 
 ### Rendering logic (Blazor Server)
 
@@ -970,6 +971,7 @@ Consider manual render tree builder logic on the same level of complexity and wi
 * <xref:blazor/fundamentals/logging>
 * <xref:fundamentals/error-handling>&dagger;
 * <xref:web-api/index>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 &dagger;Applies to backend ASP.NET Core web API apps that client-side Blazor WebAssembly apps use for logging.
 
@@ -977,6 +979,7 @@ Consider manual render tree builder logic on the same level of complexity and wi
 
 * <xref:blazor/fundamentals/logging>
 * <xref:fundamentals/error-handling>&dagger;
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 &dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for Blazor apps.
 
@@ -1135,7 +1138,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/handle-errors/ProductDetails.razor" highlight="11,27-39":::
 
 ### Rendering logic (Blazor WebAssembly)
 
@@ -1326,7 +1329,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor?highlight=11,27-39)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor" highlight="11,27-39":::
 
 ### Rendering logic (Blazor Server)
 
@@ -1465,6 +1468,7 @@ Consider manual render tree builder logic on the same level of complexity and wi
 * <xref:blazor/fundamentals/logging>
 * <xref:fundamentals/error-handling>&dagger;
 * <xref:web-api/index>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 &dagger;Applies to backend ASP.NET Core web API apps that client-side Blazor WebAssembly apps use for logging.
 
@@ -1472,6 +1476,7 @@ Consider manual render tree builder logic on the same level of complexity and wi
 
 * <xref:blazor/fundamentals/logging>
 * <xref:fundamentals/error-handling>&dagger;
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 &dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for Blazor apps.
 

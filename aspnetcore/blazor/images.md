@@ -113,3 +113,4 @@ The following `ShowImage2` component:
 * <xref:blazor/file-downloads>
 * <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>
 * <xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-net-to-javascript>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)

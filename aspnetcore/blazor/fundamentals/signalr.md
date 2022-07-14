@@ -71,6 +71,7 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 ## Use sticky sessions for webfarm hosting (Blazor Server)
 
@@ -327,6 +328,7 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
 * <xref:signalr/publish-to-azure-web-app>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 :::moniker-end
 
@@ -389,6 +391,7 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 ## Use sticky sessions for webfarm hosting (Blazor Server)
 
@@ -622,7 +625,7 @@ Blazor Server allows code to define a *circuit handler*, which allows running co
 
 `TrackingCircuitHandler.cs`:
 
-[!code-csharp[](~/blazor/samples/5.0/BlazorSample_Server/TrackingCircuitHandler.cs)]
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_Server/TrackingCircuitHandler.cs":::
 
 Circuit handlers are registered using DI. Scoped instances are created per instance of a circuit. Using the `TrackingCircuitHandler` in the preceding example, a singleton service is created because the state of all circuits must be tracked.
 
@@ -649,6 +652,7 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
 * <xref:signalr/publish-to-azure-web-app>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 :::moniker-end
 
@@ -704,6 +708,7 @@ For more information, see <xref:signalr/configuration#configure-additional-optio
 
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 ## Use sticky sessions for webfarm hosting (Blazor Server)
 
@@ -915,7 +920,7 @@ Blazor Server allows code to define a *circuit handler*, which allows running co
 
 `TrackingCircuitHandler.cs`:
 
-[!code-csharp[](~/blazor/samples/3.1/BlazorSample_Server/TrackingCircuitHandler.cs)]
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_Server/TrackingCircuitHandler.cs":::
 
 Circuit handlers are registered using DI. Scoped instances are created per instance of a circuit. Using the `TrackingCircuitHandler` in the preceding example, a singleton service is created because the state of all circuits must be tracked.
 
@@ -942,5 +947,6 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
 * <xref:signalr/publish-to-azure-web-app>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 :::moniker-end
