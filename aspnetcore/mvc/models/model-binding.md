@@ -202,6 +202,10 @@ The following `DateRange` class implements `TryParse` to support binding a date 
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/models/BindTryParseAPI/Models/DateRange.cs" id="snippet":::
 
+The following controller uses the `DateRange` class to bind a date range:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/models/BindTryParseAPI/Controllers/WeatherForecastController.cs" id="snippet":::
+
 ## Complex types
 
 A complex type must have a public default constructor and public writable properties to bind. When model binding occurs, the class is instantiated using the public default constructor.
