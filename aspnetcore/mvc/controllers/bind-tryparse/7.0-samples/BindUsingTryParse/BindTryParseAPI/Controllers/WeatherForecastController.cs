@@ -20,6 +20,8 @@ namespace BindTryParseAPI.Controllers
             _logger = logger;
         }
 
+        // <snippet2>
+        // GET /WeatherForecast?culture=en-GB
         [HttpGet]
         public IActionResult Get([FromQuery] Culture? culture)
         {
@@ -40,7 +42,10 @@ namespace BindTryParseAPI.Controllers
 
             return Ok(weatherForecasts);
         }
+        // </snippet2>
 
+        // <snippet>
+        // GET /WeatherForecast/GetByRange?range=07/12/2022-07/14/2022
         [HttpGet]
         [Route("GetByRange")]
         public IActionResult Range([FromQuery] DateRange? range)
@@ -63,5 +68,6 @@ namespace BindTryParseAPI.Controllers
 
             return Ok(weatherForecasts);
         }
+        // </snippet>
     }
 }
