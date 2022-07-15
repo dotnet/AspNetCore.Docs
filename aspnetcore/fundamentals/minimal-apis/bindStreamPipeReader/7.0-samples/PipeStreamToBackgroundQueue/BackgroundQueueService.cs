@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Threading.Channels;
 
-namespace BackGroundQueueService;
+namespace BackgroundQueueService;
 
 class BackGroundQueue : BackgroundService
 {
