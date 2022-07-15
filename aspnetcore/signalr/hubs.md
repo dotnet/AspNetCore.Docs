@@ -129,6 +129,8 @@ Override the `OnDisconnectedAsync` virtual method to perform actions when a clie
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Snippets/Hubs/ChatHub.cs" id="snippet_OnDisconnectedAsync":::
 
+<xref:Microsoft.AspNetCore.SignalR.IGroupManager.RemoveFromGroupAsync%2A> does not need to be called in <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A>, it's automatically handled for you.
+
 ## Handle errors
 
 Exceptions thrown in hub methods are sent to the client that invoked the method. On the JavaScript client, the `invoke` method returns a [JavaScript `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises). Clients can attach a `catch` handler to the returned promise or use `try`/`catch` with `async`/`await` to handle exceptions:
@@ -305,6 +307,8 @@ Override the `OnDisconnectedAsync` virtual method to perform actions when a clie
 
 :::code language="csharp" source="hubs/samples/2.x/SignalRChat/Hubs/ChatHub.cs" id="OnDisconnectedAsync":::
 
+<xref:Microsoft.AspNetCore.SignalR.IGroupManager.RemoveFromGroupAsync%2A> does not need to be called in <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A>, it's automatically handled for you.
+
 [!INCLUDE[](~/includes/connectionid-signalr.md)]
 
 ## Handle errors
@@ -475,6 +479,8 @@ The SignalR Hubs API provides the <xref:Microsoft.AspNetCore.SignalR.Hub.OnConne
 Override the `OnDisconnectedAsync` virtual method to perform actions when a client disconnects. If the client disconnects intentionally (by calling `connection.stop()`, for example), the `exception` parameter will be `null`. However, if the client is disconnected due to an error (such as a network failure), the `exception` parameter will contain an exception describing the failure:
 
 :::code language="csharp" source="hubs/samples/2.x/SignalRChat/Hubs/ChatHub.cs" id="OnDisconnectedAsync":::
+
+<xref:Microsoft.AspNetCore.SignalR.IGroupManager.RemoveFromGroupAsync%2A> does not need to be called in <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A>, it's automatically handled for you.
 
 [!INCLUDE[](~/includes/connectionid-signalr.md)]
 
@@ -756,6 +762,7 @@ Override the `OnDisconnectedAsync` virtual method to perform actions when a clie
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Snippets/Hubs/ChatHub.cs" id="snippet_OnDisconnectedAsync":::
 
+<xref:Microsoft.AspNetCore.SignalR.IGroupManager.RemoveFromGroupAsync%2A> does not need to be called in <xref:Microsoft.AspNetCore.SignalR.Hub.OnDisconnectedAsync%2A>, it's automatically handled for you.
 ## Handle errors
 
 Exceptions thrown in hub methods are sent to the client that invoked the method. On the JavaScript client, the `invoke` method returns a [JavaScript `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Using_promises). Clients can attach a `catch` handler to the returned promise or use `try`/`catch` with `async`/`await` to handle exceptions:

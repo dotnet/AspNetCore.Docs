@@ -50,7 +50,7 @@ namespace SignalRChat.Hubs
         // <OnDisconnectedAsync>
         public override async Task OnDisconnectedAsync(Exception exception)
         {
-            await Groups.RemoveFromGroupAsync(Context.ConnectionId, "SignalR Users");
+            await Clients.Group("SignalR Users").SendAsync("ReceiveMessage", "I", "disconnect");
             await base.OnDisconnectedAsync(exception);
         }
         // </OnDisconnectedAsync>
