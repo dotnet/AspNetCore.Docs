@@ -99,6 +99,13 @@ The Blazor framework provides built-in form components to receive and validate u
 
 For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads>.
 
+<!--
+
+* <xref:blazor/file-uploads>
+* [Preview an image provided by the `InputFile` component](#preview-an-image-provided-by-the-inputfile-component) (this article)
+
+-->
+
 All of the input components, including <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the rendered HTML element.
 
 Input components provide default behavior for validating when a field is changed, including updating the field CSS class to reflect the field's state as valid or invalid. Some components include useful parsing logic. For example, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> handle unparseable values gracefully by registering unparseable values as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?` for a nullable integer).
@@ -148,9 +155,85 @@ In the following example:
 > [!NOTE]
 > Changing the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> after its assigned is **not** supported.
 
+<!--
+
 ## Preview an image provided by the `InputFile` component
 
-[!INCLUDE[](includes/inputfile-preview-images.md)]
+
+
+PLACE A COPY of the final section in the 5.x section (but not the 3.x section) and indicate that the JS goes into _Host.cshtml (not _Layout.cshtml).
+UNCOMMENT the cross-links to this section further down the topic --AND-- in the Additional Resources of the Images article.
+
+ALSO FROM THE DISCUSSION, NOT INCLUDED YET ...
+
+You may elect to create an event listener for the `InputFile` component that captures the [`FileList`](https://developer.mozilla.org/docs/Web/API/FileList) and displays a preview using JavaScript.
+
+
+
+
+The <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component reads browser file data into .NET code. An image preview can be shown to the user prior to submitting the form using the approach in this section, which doesn't rely upon round-tripping the file's data between JS and .NET code.
+
+Provide a JS function that:
+
+* Receives an <xref:Microsoft.AspNetCore.Components.Forms.InputFile> element reference and the image preview element's ID.
+* Sets the image source of the image preview element to the image file's object data.
+
+The preceding tasks are shown in the following `setImage` JS function example, which is placed inside the closing `</body>` tag of `Pages/_Layout.razor` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
+
+```html
+<script>
+  window.setImage = async (inputFileElement, imageElementId) => {
+    document.getElementById(imageElementId).src = inputFileElement.files[0];
+  }
+</script>
+```
+
+[!INCLUDE[](~/blazor/includes/js-location.md)]
+
+The following `PreviewInputFileImage` component uses:
+
+* An <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component to obtain an image from the user in an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
+* An `<img>` tag (`id="image"`) for displaying an image preview.
+
+When a file is selected, the `UpdateImagePreview` method is called with <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs>. The method invokes the `setImage` function with the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> element reference and the image preview element's ID.
+
+`Pages/PreviewInputFileImage.razor`:
+
+```razor
+@page "/preview-inputfile-image"
+@inject IJSRuntime JS
+
+<h1><code>InputFile</code> with Image Preview Example</h1>
+
+<EditForm OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <InputFile @ref="inputFileElement" OnChange="UpdateImagePreview" /> <img id="image" />
+    </p>
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private ElementReference inputFileElement;
+
+    private async Task UpdateImagePreview(InputFileChangeEventArgs e)
+    {
+        await JS.InvokeVoidAsync("setImage", inputFileElement, "image");
+    }
+
+    private void HandleValidSubmit()
+    {
+        // Process the valid form
+    }
+}
+```
+
+For additional guidance on JS interop, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
+
+-->
 
 ## Multiple option selection with the `InputSelect` component
 
@@ -1060,6 +1143,7 @@ private ExampleModel exampleModel = new();
 * <xref:blazor/security/webassembly/hosted-with-azure-active-directory>
 * <xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c>
 * <xref:blazor/security/webassembly/hosted-with-identity-server>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 :::moniker-end
 
@@ -1069,13 +1153,13 @@ To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> comp
 
 `ExampleModel.cs`:
 
-[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/ExampleModel.cs?highlight=5-6)]
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/ExampleModel.cs" highlight="5-6":::
 
 A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following Razor component demonstrates typical elements, components, and Razor code to render a webform using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, which is bound to the preceding `ExampleModel` type.
 
 `Pages/FormExample1.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample1.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample1.razor":::
 
 In the preceding `FormExample1` component:
 
@@ -1150,6 +1234,13 @@ The Blazor framework provides built-in form components to receive and validate u
 
 For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads>.
 
+<!--
+
+* <xref:blazor/file-uploads>
+* [Preview an image provided by the `InputFile` component](#preview-an-image-provided-by-the-inputfile-component) (this article)
+
+-->
+
 All of the input components, including <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the rendered HTML element.
 
 Input components provide default behavior for validating when a field is changed, including updating the field CSS class to reflect the field's state as valid or invalid. Some components include useful parsing logic. For example, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> handle unparseable values gracefully by registering unparseable values as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?` for a nullable integer).
@@ -1167,7 +1258,7 @@ The following `Starship` type, which is used in several of this article's exampl
 
 `Starship.cs`:
 
-[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Starship.cs)]
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Starship.cs":::
 
 The following form accepts and validates user input using:
 
@@ -1176,7 +1267,7 @@ The following form accepts and validates user input using:
 
 `Pages/FormExample2.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample2.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample2.razor":::
 
 The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> in the preceding example creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> based on the assigned `Starship` instance (`Model="@starship"`) and handles a valid form. The next example (`FormExample3` component) demonstrates how to assign an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> to a form and validate when the form is submitted.
 
@@ -1194,7 +1285,7 @@ In the following example:
 
 `Pages/FormExample3.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample3.razor?highlight=5,39,44)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample3.razor" highlight="5,39,44":::
 
 > [!NOTE]
 > Changing the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> after its assigned is **not** supported.
@@ -1282,7 +1373,7 @@ In the following `FormExample4` component, the `HandleValidationRequested` handl
 
 `Pages/FormExample4.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor?highlight=38,42-53,70)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor" highlight="38,42-53,70":::
 
 ## Data Annotations Validator component and custom validation
 
@@ -1322,7 +1413,7 @@ Create a validator component from <xref:Microsoft.AspNetCore.Components.Componen
 
 `CustomValidation.cs` (if used in a test app, change the namespace, `BlazorSample`, to match the app's namespace):
 
-[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/CustomValidation.cs)]
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/CustomValidation.cs":::
 
 > [!IMPORTANT]
 > Specifying a namespace is **required** when deriving from <xref:Microsoft.AspNetCore.Components.ComponentBase>. Failing to specify a namespace results in a build error:
@@ -1350,7 +1441,7 @@ When validation messages are set in the component, they're added to the validato
 
 `Pages/FormExample5.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample5.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample5.razor":::
 
 > [!NOTE]
 > As an alternative to using [validation components](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
@@ -1670,19 +1761,19 @@ The following example uses the `ExampleModel` class.
 
 `ExampleModel.cs`:
 
-[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/ExampleModel.cs)]
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/ExampleModel.cs":::
 
 The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the [`oninput`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) event.
 
 `Shared/CustomInputText.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Shared/forms-and-validation/CustomInputText.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/forms-and-validation/CustomInputText.razor":::
 
 The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.Components.Forms.InputText> is used. The following `FormExample7` component uses the shared `CustomInputText` component.
 
 `Pages/FormExample7.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample7.razor?highlight=9)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample7.razor" highlight="9":::
 
 ## Radio buttons
 
@@ -1833,7 +1924,7 @@ The following example uses the `ExampleModel` class.
 
 `ExampleModel.cs`:
 
-[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/ExampleModel.cs)]
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/ExampleModel.cs":::
 
 To specify custom validation CSS class attributes, start by providing CSS styles for custom validation. In the following example, valid (`validField`) and invalid (`invalidField`) styles are specified.
 
@@ -1853,19 +1944,19 @@ Create a class derived from <xref:Microsoft.AspNetCore.Components.Forms.FieldCss
 
 `CustomFieldClassProvider.cs`:
 
-[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/CustomFieldClassProvider.cs?highlight=11)]
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/CustomFieldClassProvider.cs" highlight="11":::
 
 Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext> instance with <xref:Microsoft.AspNetCore.Components.Forms.EditContextFieldClassExtensions.SetFieldCssClassProvider%2A>.
 
 `Pages/FormExample8.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample8.razor?highlight=21)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample8.razor" highlight="21":::
 
 The preceding example checks the validity of all form fields and applies a style to each field. If the form should only apply custom styles to a subset of the fields, make `CustomFieldClassProvider` apply styles conditionally. The following `CustomFieldClassProvider2` example only applies a style to the `Name` field. For any fields with names not matching `Name`, `string.Empty` is returned, and no style is applied.
 
 `CustomFieldClassProvider2.cs`:
 
-[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/CustomFieldClassProvider2.cs?highlight=9,16)]
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/CustomFieldClassProvider2.cs" highlight="9,16":::
 
 Add an additional property to `ExampleModel`, for example:
 
@@ -1907,7 +1998,7 @@ In the following example:
 
 `CustomFieldClassProvider3.cs`:
 
-[!code-csharp[](~/blazor/samples/5.0/BlazorSample_WebAssembly/CustomFieldClassProvider3.cs?highlight=17-24)]
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/CustomFieldClassProvider3.cs" highlight="17-24":::
 
 Update the `EditContext` instance in the component's `OnInitialized` method to use the preceding Field CSS Class Provider:
 
@@ -1991,7 +2082,7 @@ To enable and disable the submit button based on form validation, the following 
 
 `Pages/FormExample9.razor`:
 
-[!code-razor[](~/blazor/samples/5.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample9.razor)]
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample9.razor":::
 
 If a form isn't preloaded with valid values and you wish to disable the **`Submit`** button on form load, set `formInvalid` to `true`.
 
@@ -2040,6 +2131,7 @@ private ExampleModel exampleModel = new();
 * <xref:blazor/security/webassembly/hosted-with-azure-active-directory>
 * <xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c>
 * <xref:blazor/security/webassembly/hosted-with-identity-server>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 :::moniker-end
 
@@ -2049,13 +2141,13 @@ To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> comp
 
 `ExampleModel.cs`:
 
-[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/ExampleModel.cs?highlight=5-6)]
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/ExampleModel.cs" highlight="5-6":::
 
 A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following Razor component demonstrates typical elements, components, and Razor code to render a webform using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, which is bound to the preceding `ExampleModel` type.
 
 `Pages/FormExample1.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample1.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample1.razor":::
 
 In the preceding `FormExample1` component:
 
@@ -2145,7 +2237,7 @@ The following `Starship` type, which is used in several of this article's exampl
 
 `Starship.cs`:
 
-[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Starship.cs)]
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Starship.cs":::
 
 The following form accepts and validates user input using:
 
@@ -2154,7 +2246,7 @@ The following form accepts and validates user input using:
 
 `Pages/FormExample2.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample2.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample2.razor":::
 
 The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> in the preceding example creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> based on the assigned `Starship` instance (`Model="@starship"`) and handles a valid form. The next example (`FormExample3` component) demonstrates how to assign an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> to a form and validate when the form is submitted.
 
@@ -2172,7 +2264,7 @@ In the following example:
 
 `Pages/FormExample3.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample3.razor?highlight=5,39,44)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample3.razor" highlight="5,39,44":::
 
 > [!NOTE]
 > Changing the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> after its assigned is **not** supported.
@@ -2227,7 +2319,7 @@ In the following `FormExample4` component, the `HandleValidationRequested` handl
 
 `Pages/FormExample4.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor?highlight=38,42-53,70)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample4.razor" highlight="38,42-53,70":::
 
 ## Data Annotations Validator component and custom validation
 
@@ -2267,7 +2359,7 @@ Create a validator component from <xref:Microsoft.AspNetCore.Components.Componen
 
 `CustomValidation.cs` (if used in a test app, change the namespace, `BlazorSample`, to match the app's namespace):
 
-[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/CustomValidation.cs)]
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/CustomValidation.cs":::
 
 > [!IMPORTANT]
 > Specifying a namespace is **required** when deriving from <xref:Microsoft.AspNetCore.Components.ComponentBase>. Failing to specify a namespace results in a build error:
@@ -2295,7 +2387,7 @@ When validation messages are set in the component, they're added to the validato
 
 `Pages/FormExample5.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample5.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample5.razor":::
 
 > [!NOTE]
 > As an alternative to using [validation components](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
@@ -2619,19 +2711,19 @@ The following example uses the `ExampleModel` class.
 
 `ExampleModel.cs`:
 
-[!code-csharp[](~/blazor/samples/3.1/BlazorSample_WebAssembly/ExampleModel.cs)]
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/ExampleModel.cs":::
 
 The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the [`oninput`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) event.
 
 `Shared/CustomInputText.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Shared/forms-and-validation/CustomInputText.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/forms-and-validation/CustomInputText.razor":::
 
 The `CustomInputText` component can be used anywhere <xref:Microsoft.AspNetCore.Components.Forms.InputText> is used. The following `FormExample7` component uses the shared `CustomInputText` component.
 
 `Pages/FormExample7.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample7.razor?highlight=9)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample7.razor" highlight="9":::
 
 ## Radio buttons
 
@@ -2867,7 +2959,7 @@ To enable and disable the submit button based on form validation, the following 
 
 `Pages/FormExample9.razor`:
 
-[!code-razor[](~/blazor/samples/3.1/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample9.razor)]
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample9.razor":::
 
 If a form isn't preloaded with valid values and you wish to disable the **`Submit`** button on form load, set `formInvalid` to `true`.
 
@@ -2915,5 +3007,6 @@ private ExampleModel exampleModel = new ExampleModel();
 * <xref:blazor/security/webassembly/hosted-with-azure-active-directory>
 * <xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c>
 * <xref:blazor/security/webassembly/hosted-with-identity-server>
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 :::moniker-end

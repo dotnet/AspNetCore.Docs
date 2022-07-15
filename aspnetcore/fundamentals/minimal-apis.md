@@ -1520,6 +1520,8 @@ app.MapGet("/405", () => Results.StatusCode(405));
 app.MapGet("/text", () => Results.Text("This is some text"));
 ```
 
+<a name="stream7"></a>
+
 ### Stream
 
 [!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_stream)]
@@ -1532,7 +1534,7 @@ The following example streams an image from [Azure Blob storage](/azure/storage/
 
 [!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_abs)]
 
-The following example streams an video from an Azure Blob:
+The following example streams a video from an Azure Blob:
 
 [!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_video)]
 
