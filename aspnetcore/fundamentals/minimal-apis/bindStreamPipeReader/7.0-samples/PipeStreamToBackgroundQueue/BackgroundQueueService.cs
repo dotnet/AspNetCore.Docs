@@ -3,7 +3,7 @@ using System.Threading.Channels;
 
 namespace BackgroundQueueService;
 
-class BackGroundQueue : BackgroundService
+class BackgroundQueue : BackgroundService
 {
     private readonly ILogger<BackGroundQueue> _logger;
 
