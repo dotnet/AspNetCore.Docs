@@ -20,23 +20,17 @@ class BackgroundQueue : BackgroundService
             // reset the stream to the beginning
             dataStream.Position = 0;
 
-            var reader = new StreamReader(dataStream);
             try
             {   
-                var Person = JsonSerializer.Deserialize<Person>(await reader.ReadToEndAsync())!;
-                 _logger.LogInformation($"{Person.Name} is {Person.Age} years and from {Person.Country}");
+                var person = JsonSerializer.Deserialize<Person>(dataStream)!;
+                 _logger.LogInformation($"{person.Name} is {person.Age} years and from {person.Country}");
                 // you could do something else with the data
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
             }
-
         }
-
-
-        return;
-
     }
 }
 
