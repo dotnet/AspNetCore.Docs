@@ -5,11 +5,12 @@ namespace BackGroundQueueService;
 
 class BackGroundQueue : BackgroundService
 {
-    private Channel<Stream> _queue;
+    private readonly ILogger<BackGroundQueue> _logger;
 
-    public BackGroundQueue(Channel<Stream> queue)
+    public BackGroundQueue(Channel<Stream> queue, ILogger<BackGroundQueue> logger)
     {
         _queue = queue;
+        _logger = logger;
     }
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
