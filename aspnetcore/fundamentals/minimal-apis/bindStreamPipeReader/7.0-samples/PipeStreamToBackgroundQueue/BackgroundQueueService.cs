@@ -16,7 +16,7 @@ class BackGroundQueue : BackgroundService
     
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        await foreach (var dataStream in _queue.Reader.ReadAllAsync())
+        await foreach (var dataStream in _queue.Reader.ReadAllAsync(stoppingToken))
         {
             // reset the stream to the beginning
             dataStream.Position = 0;
