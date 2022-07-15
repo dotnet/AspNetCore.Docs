@@ -200,6 +200,8 @@ public static bool TryParse(string value, IFormatProvider provider, T out result
 
 The following `DateRange` class implements `TryParse` to support binding a date range:
 
+<!-- the following sample at:
+https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/mvc/models/BindTryParseAPI/Models/DateRange.cs  -->
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/models/BindTryParseAPI/Models/DateRange.cs" id="snippet":::
 
 The following controller uses the `DateRange` class to bind a date range:
