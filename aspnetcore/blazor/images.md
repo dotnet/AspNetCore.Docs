@@ -5,7 +5,7 @@ description: Learn how to work with images in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: taparik
 ms.custom: mvc
-ms.date: 07/01/2022
+ms.date: 07/15/2022
 uid: blazor/images
 ---
 # Work with images in ASP.NET Core Blazor
@@ -100,7 +100,12 @@ The following `ShowImage2` component:
 
 ## Additional resources
 
+<!--
+
 * <xref:blazor/forms-validation#preview-an-image-provided-by-the-inputfile-component>
+
+-->
+
 * <xref:blazor/file-uploads>
 * <xref:blazor/file-downloads>
 * <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>

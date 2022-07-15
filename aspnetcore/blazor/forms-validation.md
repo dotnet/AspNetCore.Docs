@@ -100,7 +100,12 @@ The Blazor framework provides built-in form components to receive and validate u
 For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see:
 
 * <xref:blazor/file-uploads>
+
+<!--
+
 * [Preview an image provided by the `InputFile` component](#preview-an-image-provided-by-the-inputfile-component) (this article)
+
+-->
 
 All of the input components, including <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the rendered HTML element.
 
@@ -151,17 +156,21 @@ In the following example:
 > [!NOTE]
 > Changing the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> after its assigned is **not** supported.
 
-## Preview an image provided by the `InputFile` component
-
 <!--
 
+## Preview an image provided by the `InputFile` component
+
+
+
 PLACE A COPY of the final section in the 5.x section (but not the 3.x section) and indicate that the JS goes into _Host.cshtml (not _Layout.cshtml).
+UNCOMMENT the cross-links to this section further down the topic --AND-- in the Additional Resources of the Images article.
 
-MENTION IN PR OPENING COMMENT THAT WE SAID IN PASSING:
+ALSO FROM THE DISCUSSION, NOT INCLUDED YET ...
 
-... you may elect to create an event listener for the `InputFile` component that captures the [`FileList`](https://developer.mozilla.org/docs/Web/API/FileList) and displays a preview using JavaScript.
+You may elect to create an event listener for the `InputFile` component that captures the [`FileList`](https://developer.mozilla.org/docs/Web/API/FileList) and displays a preview using JavaScript.
 
--->
+
+
 
 The <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component reads browser file data into .NET code. An image preview can be shown to the user prior to submitting the form using the approach in this section, which doesn't rely upon round-tripping the file's data between JS and .NET code.
 
@@ -225,17 +234,7 @@ When a file is selected, the `UpdateImagePreview` method is called with <xref:Mi
 
 For additional guidance on JS interop, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
 
-
-
-
-
-
-
-
-
-
-
-
+-->
 
 ## Multiple option selection with the `InputSelect` component
 
@@ -1236,7 +1235,12 @@ The Blazor framework provides built-in form components to receive and validate u
 For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see:
 
 * <xref:blazor/file-uploads>
+
+<!--
+
 * [Preview an image provided by the `InputFile` component](#preview-an-image-provided-by-the-inputfile-component) (this article)
+
+-->
 
 All of the input components, including <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the rendered HTML element.
 
