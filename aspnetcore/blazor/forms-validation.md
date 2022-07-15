@@ -97,12 +97,11 @@ The Blazor framework provides built-in form components to receive and validate u
 | <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
 
-For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see:
-
-* <xref:blazor/file-uploads>
+For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads>.
 
 <!--
 
+* <xref:blazor/file-uploads>
 * [Preview an image provided by the `InputFile` component](#preview-an-image-provided-by-the-inputfile-component) (this article)
 
 -->
@@ -1232,12 +1231,11 @@ The Blazor framework provides built-in form components to receive and validate u
 | <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
 
-For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see:
-
-* <xref:blazor/file-uploads>
+For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads>.
 
 <!--
 
+* <xref:blazor/file-uploads>
 * [Preview an image provided by the `InputFile` component](#preview-an-image-provided-by-the-inputfile-component) (this article)
 
 -->
