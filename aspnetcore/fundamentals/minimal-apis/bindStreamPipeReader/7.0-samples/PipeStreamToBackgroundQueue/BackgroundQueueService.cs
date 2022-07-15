@@ -29,7 +29,7 @@ class BackGroundQueue : BackgroundService
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _logger.LogError(ex.Message);
             }
 
         }
