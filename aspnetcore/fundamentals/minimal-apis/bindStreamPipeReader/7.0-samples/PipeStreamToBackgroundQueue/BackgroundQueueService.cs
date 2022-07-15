@@ -24,7 +24,7 @@ class BackGroundQueue : BackgroundService
             try
             {   
                 var Person = JsonSerializer.Deserialize<Person>(await reader.ReadToEndAsync())!;
-                  Console.WriteLine($"{Person.Name} is {Person.Age} years and from {Person.Country}");
+                 _logger.LogInformation($"{Person.Name} is {Person.Age} years and from {Person.Country}");
                 // you could do something else with the data
             }
             catch (Exception ex)
