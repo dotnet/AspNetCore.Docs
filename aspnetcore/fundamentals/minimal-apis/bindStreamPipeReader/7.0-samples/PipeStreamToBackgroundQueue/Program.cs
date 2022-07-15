@@ -20,7 +20,7 @@ app.Use(async (context, next) =>
 
 app.MapGet("/", () => "Hello World!");
 
-// curl --request POST 'http://localhost:5256/register' --header 'Content-Type: application/json' --data-raw '{ "Name":"Samson", "Age": 23, "Country":"Nigeria" }'
+// curl --request POST https://localhost:54535/register --header "Content-Type: application/json" --data-raw "{ \"Name\":\"Samson\", \"Age\": 23, \"Country\":\"Nigeria\" }"
 app.MapPost("/register", async (Stream body, HttpRequest req, Channel<Stream> queue) =>
 {
     // create a rewindable stream to be able to reuse the body stream
