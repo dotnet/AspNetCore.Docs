@@ -12,9 +12,9 @@ class BackgroundQueue : BackgroundService
         _queue = queue;
         _logger = logger;
     }
+    
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-
         await foreach (var dataStream in _queue.Reader.ReadAllAsync())
         {
             // reset the stream to the beginning
