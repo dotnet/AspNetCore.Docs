@@ -189,7 +189,7 @@ The simple types that the model binder can convert source strings into include t
 * [Uri](xref:System.UriTypeConverter)
 * [Version](xref:System.ComponentModel.VersionConverter)
 
-## Bind with `TryParse`
+## Bind with TryParse
 
 The following APIs support binding controller action parameter values using a `TryParse`:
 
