@@ -18,12 +18,10 @@ class BackgroundQueue : BackgroundService
     {
         await foreach (var dataStream in _queue.Reader.ReadAllAsync(stoppingToken))
         {
-           
             try
-            {   
-                
-                // var person = JsonSerializer.Deserialize<Person>(dataStream.Span);
-                //  _logger.LogInformation($"{person.Name} is {person.Age} years and from {person.Country}");
+            {    
+                var person = JsonSerializer.Deserialize<Person>(dataStream.Span)!;
+                 _logger.LogInformation($"{person.Name} is {person.Age} years and from {person.Country}");
                 // you could do something else with the data
             }
             catch (Exception ex)
