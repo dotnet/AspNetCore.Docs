@@ -2,7 +2,7 @@ using System.Threading.Channels;
 using BackgroundQueueService;
 var builder = WebApplication.CreateBuilder(args);
 // Create a channel to send data to the background queue.
-builder.Services.AddSingleton<Channel<ReadOnlyMemory<byte>>>((_) => Channel.CreateBounded<ReadOnlyMemory<byte>>(100));
+builder.Services.AddSingleton<Channel<ReadOnlyMemory<byte>>>((_) => Channel.CreateBounded<ReadOnlyMemory<byte>>(20));
 
 // Create a background queue service.
 builder.Services.AddHostedService<BackgroundQueue>();
@@ -19,7 +19,7 @@ app.MapPost("/register", async (Stream body, Channel<ReadOnlyMemory<byte>> queue
 
     // get buffer to avoid double allocation
     reusableStream.TryGetBuffer(out var buffer);
-
+ 
     // Send the buffer to the background queue.
     await queue.Writer.WriteAsync(buffer);
     
