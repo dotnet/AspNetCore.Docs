@@ -1,30 +1,28 @@
 var builder = WebApplication.CreateBuilder(args);
-//add cors
-builder.Services.AddCors(option=>{
-    option.AddPolicy("AllowAll", p=>p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-    option.AddDefaultPolicy(p=>p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-});
-var app = builder.Build();
-//add cors
-app.UseCors("AllowAll");
-app.MapGet("/", () => "Hello World!");
 
-app.MapPost("/fileUp", async (IFormFile file) =>
+var app = builder.Build();
+
+app.MapGet("/singleFile", () => Results.Text(@"<!DOCTYPE html> <html> <head> <meta charset='utf-8'> </head> <body> <form action='/fileup' method='post' enctype='multipart/form-data'> <input multiple name='formfile' type='file'>Swac <input type='submit'> </form> </body> </html>", "text/html"));
+app.MapGet("/multipleFiles", () => Results.Text(@"<!DOCTYPE html> <html> <head> <meta charset='utf-8'> </head> <body> <form action='/filesup' method='post' enctype='multipart/form-data'> <input multiple name='formfile' type='file'>Swac <input type='submit'> </form> </body> </html>", "text/html"));
+app.MapPost("/fileup", async (IFormFile file) =>
 {
+    // save a file
     string tempfile = Path.GetTempFileName();
     using var stream = File.OpenWrite(tempfile);
     await file.CopyToAsync(stream);
-    return TypedResults.Redirect("/");
+    return Results.Accepted();
 });
 
-app.MapPost("/FilesUp", async (IFormFileCollection myFiles) =>
+app.MapPost("/filesup", async (IFormFileCollection myFiles) =>
 {
+    // save file collections
     foreach (var file in myFiles)
     {
         string tempfile = Path.GetTempFileName();
         using var stream = File.OpenWrite(tempfile);
         await file.CopyToAsync(stream);
     }
+    return Results.Accepted();
 });
 
 app.Run();
