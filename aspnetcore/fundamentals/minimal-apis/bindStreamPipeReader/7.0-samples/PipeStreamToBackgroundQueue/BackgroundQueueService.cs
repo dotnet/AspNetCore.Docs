@@ -5,10 +5,10 @@ namespace BackgroundQueueService;
 
 class BackgroundQueue : BackgroundService
 {
-    private readonly Channel<Memory<byte>> _queue;
+    private readonly Channel<ReadOnlyMemory<byte>> _queue;
     private readonly ILogger<BackgroundQueue> _logger;
 
-    public BackgroundQueue(Channel<Memory<byte>> queue, ILogger<BackgroundQueue> logger)
+    public BackgroundQueue(Channel<ReadOnlyMemory<byte>> queue, ILogger<BackgroundQueue> logger)
     {
         _queue = queue;
         _logger = logger;
