@@ -5,7 +5,7 @@ description: Learn about logging in Blazor apps, including configuration and how
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/31/2022
+ms.date: 07/16/2022
 uid: blazor/fundamentals/logging
 ---
 # ASP.NET Core Blazor logging
@@ -67,6 +67,30 @@ To set the minimum logging level, call <xref:Microsoft.Extensions.Logging.Loggin
 ```csharp
 builder.Logging.SetMinimumLevel(LogLevel.Warning);
 ```
+
+### Log in `Program.cs`
+
+[Logging in `Program.cs`](xref:fundamentals/logging/index#log-in-programcs) is supported in Blazor WebAssembly apps after the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> is built using the framework's internal console logger provider ([`WebAssemblyConsoleLoggerProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly/src/Services/WebAssemblyConsoleLoggerProvider.cs)).
+
+In `Program.cs`:
+
+```csharp
+var host = builder.Build();
+
+var logger = host.Services.GetRequiredService<ILoggerFactory>()
+    .CreateLogger<Program>();
+
+logger.LogInformation("Logged after the app is built in Program.cs.");
+
+await host.RunAsync();
+```
+
+Developer tools console output:
+
+> :::no-loc text="info: Program[0]":::  
+> :::no-loc text="Logged after the app is built in Program.cs.":::
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ### Log category
 
