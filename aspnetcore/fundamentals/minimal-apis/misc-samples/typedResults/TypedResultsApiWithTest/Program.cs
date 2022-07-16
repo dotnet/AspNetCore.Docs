@@ -6,8 +6,6 @@ app.MapGet("/", () => "Hello World!");
 app.MapWeatherApi();
 app.Run();
 
-
-
 public static class WeatherApi
 {
     public static string[] summaries =
