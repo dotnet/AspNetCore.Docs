@@ -7,6 +7,7 @@ app.MapGet("/singleFile", () => Results.Text(@"<!DOCTYPE html> <html> <head> <me
 
 // End point to support multiple file uploads
 app.MapGet("/multipleFiles", () => Results.Text(@"<!DOCTYPE html> <html> <head> <meta charset='utf-8'> </head> <body> <form action='/filesup' method='post' enctype='multipart/form-data'> <input multiple name='formfile' type='file'>Swac <input type='submit'> </form> </body> </html>", "text/html"));
+
 app.MapPost("/fileup", async (IFormFile file) =>
 {
     // save a file
