@@ -127,7 +127,7 @@ See [this GitHub pull request](https://github.com/dotnet/sdk/pull/23318) for mor
 
 ### Configure dotnet watch to always restart for rude edits
 
-Rude edits are edits that  can’t be hot reloaded. To configure dotnet watch to always restart without a prompt for rude edits, setting the `DOTNET_WATCH_RESTART_ON_RUDE_EDIT` environment variable to `true`.
+Rude edits are edits that  can’t be hot reloaded. To configure dotnet watch to always restart without a prompt for rude edits, set the `DOTNET_WATCH_RESTART_ON_RUDE_EDIT` environment variable to `true`.
 
 ### Developer exception page dark mode
 
