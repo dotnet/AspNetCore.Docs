@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<Channel<Stream>>((_) => Channel.CreateUnbounded<Stream>());
 
 // Create a background queue service.
-builder.Services.AddHostedService<BackGroundQueue>();
+builder.Services.AddHostedService<BackgroundQueue>();
 var app = builder.Build();
 
 app.Use(async (context, next) =>
