@@ -7,8 +7,6 @@ builder.Services.AddSingleton<Channel<ReadOnlyMemory<byte>>>((_) => Channel.Crea
 // Create a background queue service.
 builder.Services.AddHostedService<BackgroundQueue>();
 var app = builder.Build();
-
-
 // curl --request POST 'http://localhost:5256/register' --header 'Content-Type: application/json' --data-raw '{ "Name":"Samson", "Age": 23, "Country":"Nigeria" }'
 app.MapPost("/register", async (Stream body, Channel<ReadOnlyMemory<byte>> queue) =>
 {
