@@ -31,7 +31,6 @@ public static class WeatherApi
           summaries[Random.Shared.Next(summaries.Length)]
       ))
       .ToArray();
-        // return a typed result
         return TypedResults.Ok(forecast); ;
     }
 }
