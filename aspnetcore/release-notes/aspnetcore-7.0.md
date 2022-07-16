@@ -113,6 +113,22 @@ For more information, see [Shadow copying in IIS](xref:host-and-deploy/iis/advan
 
 ## Miscellaneous
 
+### dotnet watch
+
+#### Improved console output for dotnet watch
+
+The console output from dotnet watch has been improved to better align with the logging of ASP.NET Core and to stand out with 😮emojis😍.
+
+Here’s an example of what the new output looks like:
+
+![output for dotnet watch](~/release-notes/aspnetcore-7/static/dnwatch.png)
+
+See [this GitHub pull request](https://github.com/dotnet/sdk/pull/23318) for more information.
+
+### Configure dotnet watch to always restart for rude edits
+
+Rude edits are edits that  can’t be hot reloaded. To configure dotnet watch to always restart without a prompt for rude edits, setting the `DOTNET_WATCH_RESTART_ON_RUDE_EDIT` environment variable to `true`.
+
 ### Developer exception page dark mode
 
 Dark mode support has been added to the developer exception page, thanks to a contribution by [Patrick Westerhoff](https://twitter.com/poke). To test dark mode in a browser, from the developer tools page, set the mode to dark. For example, in Firefox:
