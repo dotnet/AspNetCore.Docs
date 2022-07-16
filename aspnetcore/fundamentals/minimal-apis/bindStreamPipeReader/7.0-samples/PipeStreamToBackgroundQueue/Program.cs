@@ -19,8 +19,8 @@ app.MapPost("/register", async (Stream body, Channel<ReadOnlyMemory<byte>> queue
 
     // get buffer to avoid double allocation
     reusableStream.TryGetBuffer(out var buffer);
-    
-    // Send the stream to the background queue.
+
+    // Send the buffer to the background queue.
     await queue.Writer.WriteAsync(buffer);
     
     return Results.Accepted();
