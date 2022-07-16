@@ -60,7 +60,7 @@ builder.Services
 For more information, see [Configure gRPC-Web with the .NET gRPC client](xref:grpc/browser#configure-grpc-web-with-the-net-grpc-client).
 
 > [!IMPORTANT]
-> gRPC-Web only works when the client ***and*** server support it. gRPC-Web can be [quickly configured by an ASP.NET Core gRPC server](xref:grpc/browser#configure-grpc-web-in-aspnet-core) using middleware from the `Grpc.AspNetCore.Web` package. Other gRPC server implementations require a proxy to support gRPC-Web.
+> gRPC-Web requires the client ***and*** server to support it. gRPC-Web can be [quickly configured by an ASP.NET Core gRPC server](xref:grpc/browser#configure-grpc-web-in-aspnet-core). Other gRPC server implementations require a proxy to support gRPC-Web.
 
 ## .NET Framework
 
