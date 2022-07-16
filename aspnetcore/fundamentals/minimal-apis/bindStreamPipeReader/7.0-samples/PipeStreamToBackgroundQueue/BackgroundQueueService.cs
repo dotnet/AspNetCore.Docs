@@ -5,10 +5,10 @@ namespace BackgroundQueueService;
 
 class BackgroundQueue : BackgroundService
 {
-    private readonly Channel<Stream> _queue;
+    private readonly Channel<Memory<byte>> _queue;
     private readonly ILogger<BackgroundQueue> _logger;
 
-    public BackgroundQueue(Channel<Stream> queue, ILogger<BackgroundQueue> logger)
+    public BackgroundQueue(Channel<Memory<byte>> queue, ILogger<BackgroundQueue> logger)
     {
         _queue = queue;
         _logger = logger;
@@ -18,13 +18,12 @@ class BackgroundQueue : BackgroundService
     {
         await foreach (var dataStream in _queue.Reader.ReadAllAsync(stoppingToken))
         {
-            // reset the stream to the beginning
-            dataStream.Position = 0;
-
+           
             try
             {   
-                var person = JsonSerializer.Deserialize<Person>(dataStream)!;
-                 _logger.LogInformation($"{person.Name} is {person.Age} years and from {person.Country}");
+                
+                // var person = JsonSerializer.Deserialize<Person>(dataStream.Span);
+                //  _logger.LogInformation($"{person.Name} is {person.Age} years and from {person.Country}");
                 // you could do something else with the data
             }
             catch (Exception ex)
