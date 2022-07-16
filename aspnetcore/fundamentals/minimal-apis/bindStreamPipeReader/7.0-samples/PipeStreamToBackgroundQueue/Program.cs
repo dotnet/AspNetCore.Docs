@@ -8,17 +8,11 @@ builder.Services.AddSingleton<Channel<Stream>>((_) => Channel.CreateBounded<Stre
 builder.Services.AddHostedService<BackgroundQueue>();
 var app = builder.Build();
 
-app.Use(async (context, next) =>
-{
-    await next();
-    var reader = new StreamReader(context.Request.Body);
-    app.Logger.LogInformation("Reading the stream from the request body.");
-});
 
 app.MapGet("/", () => "Hello World!");
 
 // curl --request POST 'http://localhost:5256/register' --header 'Content-Type: application/json' --data-raw '{ "Name":"Samson", "Age": 23, "Country":"Nigeria" }'
-app.MapPost("/register", async (Stream body, HttpRequest req, Channel<Stream> queue) =>
+app.MapPost("/register", async (Stream body, Channel<Stream> queue) =>
 {
     // Create a rewindable stream to be able to reuse the body stream.
     var reusableStream = new MemoryStream();
@@ -32,16 +26,8 @@ app.MapPost("/register", async (Stream body, HttpRequest req, Channel<Stream> qu
     // Send the stream to the background queue.
     await queue.Writer.WriteAsync(reusableStream);
 
-    // Reset the stream to the beginning.
-    reusableStream.Position = 0;
-
-    // Set the response body to the reusable stream.
-    req.Body = new MemoryStream(reusableStream.ToArray());
-
     return Results.Accepted();
 });
 
 
 app.Run();
-
-
