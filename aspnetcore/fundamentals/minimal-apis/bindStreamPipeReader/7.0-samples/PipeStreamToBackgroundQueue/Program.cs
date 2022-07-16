@@ -2,7 +2,7 @@ using System.Threading.Channels;
 using BackgroundQueueService;
 var builder = WebApplication.CreateBuilder(args);
 // Create a channel to send data to the background queue.
-builder.Services.AddSingleton<Channel<Stream>>((_) => Channel.CreateUnbounded<Stream>());
+builder.Services.AddSingleton<Channel<Stream>>((_) => Channel.CreateBounded<Stream>(100));
 
 // Create a background queue service.
 builder.Services.AddHostedService<BackgroundQueue>();
@@ -38,7 +38,7 @@ app.MapPost("/register", async (Stream body, HttpRequest req, Channel<Stream> qu
     // Set the response body to the reusable stream.
     req.Body = new MemoryStream(reusableStream.ToArray());
 
-    return "registered";
+    return Results.Accepted();
 });
 
 
