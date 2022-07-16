@@ -11,6 +11,16 @@ uid: aspnetcore-7
 
 This article highlights the most significant changes in ASP.NET Core 7.0 with links to relevant documentation.
 
+## MVC and Razor pages
+
+### Support for nullable models in MVC views and Razor Pages
+
+Nullable page or view models are supported to improve the experience when using null state checking with ASP.NET Core apps:
+
+```csharp
+@model Product?
+```
+
 ## API controllers
 
 ### Parameter binding with DI in API controllers
