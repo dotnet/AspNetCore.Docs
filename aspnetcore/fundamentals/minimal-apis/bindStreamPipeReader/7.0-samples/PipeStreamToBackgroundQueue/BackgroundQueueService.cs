@@ -1,14 +1,14 @@
 using System.Text.Json;
 using System.Threading.Channels;
 
-namespace BackGroundQueueService;
+namespace BackgroundQueueService;
 
-class BackGroundQueue : BackgroundService
+class BackgroundQueue : BackgroundService
 {
     private readonly Channel<Stream> _queue;
-    private readonly ILogger<BackGroundQueue> _logger;
+    private readonly ILogger<BackgroundQueue> _logger;
 
-    public BackGroundQueue(Channel<Stream> queue, ILogger<BackGroundQueue> logger)
+    public BackgroundQueue(Channel<Stream> queue, ILogger<BackgroundQueue> logger)
     {
         _queue = queue;
         _logger = logger;
