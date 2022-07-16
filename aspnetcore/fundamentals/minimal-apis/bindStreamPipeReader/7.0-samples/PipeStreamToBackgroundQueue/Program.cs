@@ -1,5 +1,6 @@
 using System.Threading.Channels;
 using BackgroundQueueService;
+
 var builder = WebApplication.CreateBuilder(args);
 // Create a channel to send data to the background queue.
 builder.Services.AddSingleton<Channel<ReadOnlyMemory<byte>>>((_) => Channel.CreateBounded<ReadOnlyMemory<byte>>(20));
