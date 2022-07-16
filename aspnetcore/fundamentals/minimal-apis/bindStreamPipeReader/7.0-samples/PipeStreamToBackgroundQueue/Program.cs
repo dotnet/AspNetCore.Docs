@@ -19,21 +19,40 @@ builder.Services.AddHostedService<BackgroundQueue>();
 var app = builder.Build();
 
 // curl --request POST 'http://localhost:5256/register' --header 'Content-Type: application/json' --data-raw '{ "Name":"Samson", "Age": 23, "Country":"Nigeria" }'
-app.MapPost("/register", async (Stream body, Channel<ReadOnlyMemory<byte>> queue) =>
+app.MapPost("/register", async (HttpRequest req, Stream body, Channel<ReadOnlyMemory<byte>> queue) =>
 {
-    // Create a rewindable stream to be able to reuse the body stream.
-    var reusableStream = new MemoryStream();
+    if (req.ContentLength is not null && req.ContentLength > maxMessageSize)
+    {
+        // Message size exceeded
+        return Results.BadRequest();
+    }
 
-    // Copy the request body to the reusable stream.
-    await body.CopyToAsync(reusableStream);
+    // We're not above the message size and we have a content length, or
+    // we're a chunked request and we're going to read up to the maxMessageSize + 1. 
+    // We add one to the message size so that we can detect when a chunked request body
+    // is bigger than our configured max.
+    var readSize = (int?)req.ContentLength ?? (maxMessageSize + 1);
 
-    // get buffer to avoid double allocation
-    reusableStream.TryGetBuffer(out var buffer);
- 
-    // Send the buffer to the background queue.
-    await queue.Writer.WriteAsync(buffer);
-    
-    return Results.Accepted();
+    var buffer = new byte[readSize];
+
+    // Read at least that many bytes from the body
+    var read = await body.ReadAtLeastAsync(buffer, readSize, throwOnEndOfStream: false);
+
+    // We read more than the max, so this is a bad request
+    if (read > maxMessageSize)
+    {
+        // Message size exceeded
+        return Results.BadRequest();
+    }
+
+    // Attempt to send the buffer to the background queue.
+    if (queue.Writer.TryWrite(buffer.AsMemory(0..read)))
+    {
+        return Results.Accepted();
+    }
+
+    // We couldn't accept the message since we're overloaded
+    return Results.StatusCode(StatusCodes.Status429TooManyRequests);
 });
 
 
