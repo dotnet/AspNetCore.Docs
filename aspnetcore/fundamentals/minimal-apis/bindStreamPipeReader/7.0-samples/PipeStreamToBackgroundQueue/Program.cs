@@ -18,7 +18,8 @@ app.MapPost("/register", async (Stream body, Channel<ReadOnlyMemory<byte>> queue
     await body.CopyToAsync(reusableStream);
 
     // Send the stream to the background queue.
-    await queue.Writer.WriteAsync(reusableStream.ToArray());
+        reusableStream.TryGetBuffer(out var buffer);
+        await queue.Writer.WriteAsync(buffer);
     
     return Results.Accepted();
 });
