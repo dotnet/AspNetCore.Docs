@@ -2,8 +2,17 @@ using System.Threading.Channels;
 using BackgroundQueueService;
 
 var builder = WebApplication.CreateBuilder(args);
+// The max memory we're willing to use for the upload endpoint on this instance
+var maxMemory = 500 * 1024 * 1024;
+
+// The max size of a single message, we're staying below the default LOH size of 85K
+var maxMessageSize = 80 * 1024;
+
+// The max size of the queue based on those restrictions
+var maxQueueSize = maxMemory / maxMessageSize;
+
 // Create a channel to send data to the background queue.
-builder.Services.AddSingleton<Channel<ReadOnlyMemory<byte>>>((_) => Channel.CreateBounded<ReadOnlyMemory<byte>>(6400));
+builder.Services.AddSingleton<Channel<ReadOnlyMemory<byte>>>((_) => Channel.CreateBounded<ReadOnlyMemory<byte>>(maxQueueSize));
 
 // Create a background queue service.
 builder.Services.AddHostedService<BackgroundQueue>();
