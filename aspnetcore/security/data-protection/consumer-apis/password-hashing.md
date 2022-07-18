@@ -9,17 +9,13 @@ uid: security/data-protection/consumer-apis/password-hashing
 
 # Hash passwords in ASP.NET Core
 
-The data protection code base includes a NuGet package [Microsoft.AspNetCore.Cryptography.KeyDerivation](https://www.nuget.org/packages/Microsoft.AspNetCore.Cryptography.KeyDerivation/) which contains cryptographic key derivation functions. This package is a standalone component and has no dependencies on the rest of the data protection system. It can be used completely independently. The source exists alongside the data protection code base as a convenience.
-
-The package currently offers a method [`KeyDerivation.Pbkdf2`](/dotnet/api/microsoft.aspnetcore.cryptography.keyderivation.keyderivation.pbkdf2) which allows hashing a password using the [PBKDF2 algorithm](https://tools.ietf.org/html/rfc2898#section-5.2). This API is very similar to the .NET Framework's existing <xref:System.Security.Cryptography.Rfc2898DeriveBytes>, but there are three important distinctions:
-
-1. The `KeyDerivation.Pbkdf2` method supports consuming multiple PRFs (currently `HMACSHA1`, `HMACSHA256`, and `HMACSHA512`), whereas the `Rfc2898DeriveBytes` type only supports `HMACSHA1`.
-
-2. The `KeyDerivation.Pbkdf2` method detects the current operating system and attempts to choose the most optimized implementation of the routine, providing much better performance in certain cases. (On Windows 8, it offers around 10x the throughput of `Rfc2898DeriveBytes`.)
-
-3. The `KeyDerivation.Pbkdf2` method requires the caller to specify all parameters (salt, PRF, and iteration count). The `Rfc2898DeriveBytes` type provides default values for these.
+This article shows how to call the [`KeyDerivation.Pbkdf2`](/dotnet/api/microsoft.aspnetcore.cryptography.keyderivation.keyderivation.pbkdf2) method which allows hashing a password using the [PBKDF2 algorithm](https://tools.ietf.org/html/rfc2898#section-5.2).
 
 > [!WARNING]
+> The `KeyDerivation.Pbkdf2` API is a low-level cryptographic primitive and is intended to be used to integrate apps into an existing protocol or cryptographic system. `KeyDerivation.Pbkdf2` should not be used in new apps which support password based login and need to store hashed passwords in a datastore. New apps should use [`PasswordHasher`](/dotnet/api/microsoft.aspnetcore.identity.passwordhasher-1). For more information on `PasswordHasher`, see [Exploring the ASP.NET Core Identity PasswordHasher](https://andrewlock.net/exploring-the-asp-net-core-identity-passwordhasher/).
+
+The data protection code base includes a NuGet package [Microsoft.AspNetCore.Cryptography.KeyDerivation](https://www.nuget.org/packages/Microsoft.AspNetCore.Cryptography.KeyDerivation/) which contains cryptographic key derivation functions. This package is a standalone component and has no dependencies on the rest of the data protection system. It can be used independently. The source exists alongside the data protection code base as a convenience.
+
 > The following code shows how to use `KeyDerivation.Pbkdf2` to  generate a shared secret key. It should not be used to hash a password for storage in a datastore.
 
 :::moniker range=">= aspnetcore-6.0"
