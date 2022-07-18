@@ -16,6 +16,7 @@ This article shows how to call the [`KeyDerivation.Pbkdf2`](/dotnet/api/microsof
 
 The data protection code base includes a NuGet package [Microsoft.AspNetCore.Cryptography.KeyDerivation](https://www.nuget.org/packages/Microsoft.AspNetCore.Cryptography.KeyDerivation/) which contains cryptographic key derivation functions. This package is a standalone component and has no dependencies on the rest of the data protection system. It can be used independently. The source exists alongside the data protection code base as a convenience.
 
+> [!WARNING]
 > The following code shows how to use `KeyDerivation.Pbkdf2` to  generate a shared secret key. It should not be used to hash a password for storage in a datastore.
 
 :::moniker range=">= aspnetcore-6.0"
