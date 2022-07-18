@@ -19,6 +19,8 @@ The data protection code base includes a NuGet package [Microsoft.AspNetCore.Cry
 > [!WARNING]
 > The following code shows how to use `KeyDerivation.Pbkdf2` to  generate a shared secret key. It should not be used to hash a password for storage in a datastore.
 
+<!-- See https://github.com/dotnet/AspNetCore.Docs/pull/26253#issuecomment-1187984822 for detailed reasoning -->
+
 :::moniker range=">= aspnetcore-6.0"
 
 [!code-csharp[](password-hashing/samples/6.x/passwordhasher.cs)]
