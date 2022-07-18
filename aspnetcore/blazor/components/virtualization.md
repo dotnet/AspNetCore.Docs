@@ -118,7 +118,7 @@ protected override void OnInitialized()
 {
     WeatherForecastSource.ForcecastUpdated += async () => 
     {
-        await InvokeAsync(() =>
+        await InvokeAsync(async () =>
         {
             await virtualizeComponent?.RefreshDataAsync();
             StateHasChanged();
@@ -126,6 +126,11 @@ protected override void OnInitialized()
     });
 }
 ```
+
+In the preceding example:
+
+* <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.RefreshDataAsync%2A> is called first to obtain new data for the `Virtualize` component.
+* `StateHasChanged` is called to rerender the component.
 
 ## Placeholder
 
