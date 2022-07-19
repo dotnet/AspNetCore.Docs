@@ -1,8 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
-// map the /weatherforecast endpoint to a custom action
+app.MapGet("/", () => "Try /weatherforecast");
+// Map the /weatherforecast endpoint to a custom action.
 app.MapWeatherApi();
 app.Run();
 
