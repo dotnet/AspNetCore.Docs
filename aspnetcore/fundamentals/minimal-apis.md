@@ -1618,7 +1618,7 @@ The <xref:Microsoft.AspNetCore.Http.IResult> interface can represent values retu
 
 The types implementing `IResult` are public, allowing for type assertions when testing. For example:
 
-[!code-csharp[](~/fundamentals/minimal-apis/misc-samples/typedResults/TypedResultsApiWithTest/Test/WeatherApiTest.cs)]
+[!code-csharp[](~/fundamentals/minimal-apis/misc-samples/typedResults/TypedResultsApiWithTest/Test/WeatherApiTest.cs?name=snippet_1&highlight=7-8)]
 
 ## OpenAPI
 
