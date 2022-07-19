@@ -59,7 +59,7 @@ namespace BindTryParseMVC.Controllers
         }
         // </snippet_1>
 
-        // GET /WeatherForecast/GetByRangeWithCulture?culture=en-GB&range=07/12/2022-07/14/2022
+        // GET /WeatherForecast/RangeWithCulture?culture=en-GB&range=07/12/2022-07/14/2022
         public IActionResult RangeWithCulture(Culture culture, string range)
         {
             if (!DateRange.TryParse(range, new CultureInfo(culture?.DisplayName ?? "en-US"), out var dateRange))

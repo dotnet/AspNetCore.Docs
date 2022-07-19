@@ -12,7 +12,8 @@ namespace BindTryParseMVC.Models
             To = toDate;
         }
 
-        public static bool TryParse(string? value, IFormatProvider? provider, out DateRange? dateRange)
+        public static bool TryParse(string? value, IFormatProvider? provider,
+                                                    out DateRange? dateRange)
         {
             if (string.IsNullOrEmpty(value) || value.Split('-').Length != 2)
             {
@@ -22,7 +23,8 @@ namespace BindTryParseMVC.Models
             
             var range = value.Split('-');
 
-            if (!DateOnly.TryParse(range[0], provider, out var fromDate) || !DateOnly.TryParse(range[1], provider, out var toDate))
+            if (!DateOnly.TryParse(range[0], provider, out var fromDate) 
+             || !DateOnly.TryParse(range[1], provider, out var toDate))
             {
                 dateRange = default;
                 return false;
