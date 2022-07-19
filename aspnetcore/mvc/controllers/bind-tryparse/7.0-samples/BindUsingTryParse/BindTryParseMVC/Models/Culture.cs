@@ -7,21 +7,18 @@ namespace BindTryParseMVC.Models
 
         public Culture(string displayName)
         {
-            if (string.IsNullOrEmpty(displayName))
-                throw new ArgumentNullException(nameof(displayName));
-
             DisplayName = displayName;
         }
-
-        public static bool TryParse(string? value, out Culture? result)
+        
+        public static bool TryParse(string? value, out Culture? culture)
         {
-            if (value is null)
+            if (string.IsNullOrEmpty(value))
             {
-                result = default;
+                culture = default;
                 return false;
             }
 
-            result = new Culture(value);
+            culture = new Culture(value);
             return true;
         }
     }
