@@ -12,11 +12,11 @@ var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization();
 
-#region snippet_AntiforgeryEndpoint
+// <snippet_AntiforgeryEndpoint>
 app.MapPost("api/upload", (IFormFile name) => Results.Accepted())
     .RequireAuthorization()
     .ValidateAntiforgery();
-#endregion
+// </snippet_AntiforgeryEndpoint>
 
 app.Run();
 
@@ -42,4 +42,4 @@ internal static class AntiForgeryExtensions
         });
     }
 }
-// <snippet_AntiforgeryFilter>
+// </snippet_AntiforgeryFilter>
