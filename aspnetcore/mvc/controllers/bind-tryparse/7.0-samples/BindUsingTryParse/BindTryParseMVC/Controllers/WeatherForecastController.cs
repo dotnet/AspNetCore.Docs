@@ -36,7 +36,7 @@ namespace BindTryParseMVC.Controllers
 
         // GET /WeatherForecast/Range?range=07/12/2022-07/14/2022
         // <snippet_1>
-        public IActionResult Range(DateRange? range)
+        public IActionResult Range(DateRange range)
         {
             var weatherForecasts = Enumerable
                 .Range(1, 5).Select(index => new WeatherForecast
@@ -59,9 +59,8 @@ namespace BindTryParseMVC.Controllers
         }
         // </snippet_1>
 
-        // GET /WeatherForecast/RangeWithFormatter?culture=en-GB&range=07/12/2022-07/14/2022
-        // <snippet_2>
-        public IActionResult RangeWithFormatter(Culture culture, string? range)
+        // GET /WeatherForecast/GetByRangeWithCulture?culture=en-GB&range=07/12/2022-07/14/2022
+        public IActionResult RangeWithCulture(Culture culture, string range)
         {
             if (!DateRange.TryParse(range, new CultureInfo(culture?.DisplayName ?? "en-US"), out var dateRange))
                return View("Error", $"Invalid date range {range} for culture {culture?.DisplayName}");
