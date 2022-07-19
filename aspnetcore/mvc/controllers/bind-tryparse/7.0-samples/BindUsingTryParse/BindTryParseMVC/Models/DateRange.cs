@@ -1,6 +1,3 @@
-using System.Globalization;
-using System;
-
 namespace BindTryParseMVC.Models
 {
     // <snippet>
@@ -15,7 +12,7 @@ namespace BindTryParseMVC.Models
             To = toDate;
         }
 
-        public static bool TryParse(string? value, IFormatProvider? provider, out DateRange dateRange)
+        public static bool TryParse(string? value, IFormatProvider? provider, out DateRange? dateRange)
         {
             if (string.IsNullOrEmpty(value) || value.Split('-').Length != 2)
             {
