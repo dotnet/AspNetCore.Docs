@@ -25,7 +25,7 @@ internal static class AntiForgeryExtensions
 {
     public static TBuilder ValidateAntiforgery<TBuilder>(this TBuilder builder) where TBuilder : IEndpointConventionBuilder
     {
-        return builder.AddRouteHandlerFilter(routeHandlerFilter: async (context, next) =>
+        return builder.AddEndpointFilter(routeHandlerFilter: async (context, next) =>
         {
             try
             {
