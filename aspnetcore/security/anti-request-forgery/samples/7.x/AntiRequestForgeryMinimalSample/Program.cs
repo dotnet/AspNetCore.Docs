@@ -15,7 +15,7 @@ app.UseAuthorization();
 #region snippet_AntiforgeryEndpoint
 app.MapPost("api/upload", (IFormFile name) => Results.Accepted())
     .RequireAuthorization()
-    .ValidateAntifogery();
+    .ValidateAntiforgery();
 #endregion
 
 app.Run();
@@ -23,7 +23,7 @@ app.Run();
 #region snippet_AntiforgeryFilter
 internal static class AntiForgeryExtensions
 {
-    public static TBuilder ValidateAntifogery<TBuilder>(this TBuilder builder) where TBuilder : IEndpointConventionBuilder
+    public static TBuilder ValidateAntiforgery<TBuilder>(this TBuilder builder) where TBuilder : IEndpointConventionBuilder
     {
         return builder.AddRouteHandlerFilter(routeHandlerFilter: async (context, next) =>
         {
