@@ -11,6 +11,16 @@ uid: aspnetcore-7
 
 This article highlights the most significant changes in ASP.NET Core 7.0 with links to relevant documentation.
 
+## MVC and Razor pages
+
+### Support for nullable models in MVC views and Razor Pages
+
+Nullable page or view models are supported to improve the experience when using null state checking with ASP.NET Core apps:
+
+```csharp
+@model Product?
+```
+
 ## API controllers
 
 ### Parameter binding with DI in API controllers
@@ -102,6 +112,22 @@ Shadow copying app assemblies to the [ASP.NET Core Module (ANCM)](xref:host-and-
 For more information, see [Shadow copying in IIS](xref:host-and-deploy/iis/advanced?view=aspnetcore-7.0#shadow-copy)
 
 ## Miscellaneous
+
+### dotnet watch
+
+#### Improved console output for dotnet watch
+
+The console output from dotnet watch has been improved to better align with the logging of ASP.NET Core and to stand out with 😮emojis😍.
+
+Here’s an example of what the new output looks like:
+
+![output for dotnet watch](~/release-notes/aspnetcore-7/static/dnwatch.png)
+
+See [this GitHub pull request](https://github.com/dotnet/sdk/pull/23318) for more information.
+
+### Configure dotnet watch to always restart for rude edits
+
+Rude edits are edits that  can’t be hot reloaded. To configure dotnet watch to always restart without a prompt for rude edits, set the `DOTNET_WATCH_RESTART_ON_RUDE_EDIT` environment variable to `true`.
 
 ### Developer exception page dark mode
 
