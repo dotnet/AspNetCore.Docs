@@ -33,4 +33,19 @@ public static class Program
         builder.Services.AddAntiforgery(options => options.HeaderName = "X-XSRF-TOKEN");
         // </snippet_AddAntiforgeryOptionsJavaScript>
     }
+
+    public static void AddAntiforgeryEndpoint(WebApplication app)
+    {
+// <snippet_AddAntiforgeryEndpoint>
+        app.UseAuthorization();
+        app.MapGet("antiforgery/token", (IAntiforgery forgeryService, HttpContext context) =>
+        {
+            var tokens = forgeryService.GetAndStoreTokens(context);
+            context.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken!,
+                    new CookieOptions { HttpOnly = false });
+
+            return Results.Ok();
+        }).RequireAuthorization();
+// </snippet_AddAntiforgeryEndpoint>
+    }
 }
