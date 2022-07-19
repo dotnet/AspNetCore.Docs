@@ -799,11 +799,13 @@ The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specif
 
 [!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_grp)]
 
-<!-- 
-# Differences between minimal APIs and APIs with controllers
+## Typed results
 
-Moved to uid: tutorials/min-web-api
--->
+The <xref:Microsoft.AspNetCore.Http.IResult> interface can represent values returned from minimal APIs that don’t utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL.
+
+The types implementing `IResult` are public, allowing for type assertions when testing. For example:
+
+[!code-csharp[](~/fundamentals/minimal-apis/misc-samples/typedResults/TypedResultsApiWithTest/Test/WeatherApiTest.cs)]
 
 :::moniker-end
 

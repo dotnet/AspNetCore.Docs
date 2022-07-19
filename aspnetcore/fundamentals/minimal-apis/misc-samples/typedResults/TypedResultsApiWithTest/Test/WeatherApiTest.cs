@@ -12,8 +12,7 @@ namespace Tests
         {
             var result = WeatherApi.GetAllWeathers();
             Assert.IsInstanceOfType(result, typeof(Ok<WeatherForecast[]>));
-        }
-      
+        }      
     }
     // </snippet_1>
 }
