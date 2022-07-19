@@ -77,6 +77,14 @@ We introduced new [`Results.Stream`](/dotnet/api/microsoft.aspnetcore.http.resul
 
 For more information, see [Stream examples](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#stream7)
 
+### Typed results for minimal APIs
+
+In .NET 6, the <xref:Microsoft.AspNetCore.Http.IResult> interface was introduced to represent values returned from minimal APIs that don’t utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL. The `IResult` implementing framework types returned from these methods were internal however, making it difficult to verify the specific `IResult` type being returned from methods in a unit test.
+
+In .NET 7 the types implementing `IResult` are public, allowing for type assertions when testing. For example:
+
+[!code-csharp[](~/fundamentals/minimal-apis/misc-samples/typedResults/TypedResultsApiWithTest/Test/WeatherApiTest.cs?name=snippet_1&highlight=7-8)]
+
 ## Signal R
 
 ### Dependency injection for SignalR hub methods

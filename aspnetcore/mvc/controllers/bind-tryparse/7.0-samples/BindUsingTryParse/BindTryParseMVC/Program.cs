@@ -1,11 +1,17 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+//         // GET /WeatherForecast/RangeWithCulture?culture=en-GB&range=07/12/2022-07/14/2022
+
+var redirectDateRange = $"/WeatherForecast/RangeWithCulture?range={DateTime.Now.ToShortDateString()}" +
+                        $"-{DateTime.Now.AddDays(5).ToShortDateString()}" +
+                        "&culture=en-GB";
+
+app.MapGet("/", () => Results.Redirect(redirectDateRange));
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -19,6 +25,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=WeatherForecast}/{action=Index}/{id?}");
 
 app.Run();
