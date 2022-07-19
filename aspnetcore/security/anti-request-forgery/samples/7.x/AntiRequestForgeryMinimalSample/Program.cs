@@ -20,7 +20,7 @@ app.MapPost("api/upload", (IFormFile name) => Results.Accepted())
 
 app.Run();
 
-#region snippet_AntiforgeryFilter
+// <snippet_AntiforgeryFilter>
 internal static class AntiForgeryExtensions
 {
     public static TBuilder ValidateAntiforgery<TBuilder>(this TBuilder builder) where TBuilder : IEndpointConventionBuilder
@@ -42,4 +42,4 @@ internal static class AntiForgeryExtensions
         });
     }
 }
-#endregion
+// <snippet_AntiforgeryFilter>
