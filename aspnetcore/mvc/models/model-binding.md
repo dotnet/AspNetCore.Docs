@@ -204,7 +204,7 @@ The following `DateRange` class implements `TryParse` to support binding a date 
 
 The following controller uses the `DateRange` class to bind a date range:
 
-:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet":::
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_1":::
 
 The [sample apps on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse) show binding to a <xref:System.Globalization.CultureInfo> string, a date range string, and binding to both `CultureInfo` and a date range.
 
