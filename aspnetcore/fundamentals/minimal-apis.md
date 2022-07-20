@@ -1637,6 +1637,8 @@ In the preceding highlighted code:
 * <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithName%2A>: The <xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata> on the endpoint is used for link generation and is treated as the operation ID in the given endpoint's OpenAPI specification.
 * [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs) is explained later in this article.
 
+<a name="openapinuget"></a>
+
 ### `Microsoft.AspNetCore.OpenApi` NuGet package
 
 ASP.NET Core provides the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi/) package to interact with OpenAPI specifications for endpoints. The package acts as a link between the OpenAPI models that are defined in the `Microsoft.AspNetCore.OpenApi` package and the endpoints that are defined in Minimal APIs. The package provides an API that examines an endpoint's parameters, responses, and metadata to construct an OpenAPI annotation type that is used to describe an endpoint.
