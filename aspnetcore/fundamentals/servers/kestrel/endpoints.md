@@ -39,6 +39,8 @@ Call <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%
 
 `UseUrls`, the `--urls` command-line argument, `urls` host configuration key, and the `ASPNETCORE_URLS` environment variable also work but have the limitations noted later in this section (a default certificate must be available for HTTPS endpoint configuration).
 
+Ensure you have called **UseKestrel()**  before calling the ConfigureKestral method in WebHost.
+
 `KestrelServerOptions` configuration:
 
 ## ConfigureEndpointDefaults(Action\<ListenOptions>)
