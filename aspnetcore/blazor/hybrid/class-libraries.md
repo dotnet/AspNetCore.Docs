@@ -80,9 +80,172 @@ The root Razor Component (`App.razor` or `Main.razor`) can be shared, but often 
 
 ## Provide code and services independent of hosting model
 
-When code must differ for across hosting models, abstract the code as interfaces and inject the service implementations into each project.
+When code must differ for across hosting models or target platforms, abstract the code as interfaces and inject the service implementations into each project.
 
 ### Example 1
+
+The following weather data example abstracts different weather forecast service implementations:
+
+* Using an HTTP request with for Blazor Hybrid and Blazor WebAssembly.
+* Requesting data directly from the RCL for Blazor Server.
+
+The example uses the following specifications and conventions:
+
+* The RCL is named `SharedLibrary` and contains the following folders and namespaces:
+  * `Data`: Contains the `WeatherForecast` class, which serves as a model for weather data.
+  * `Interfaces`: Contains the service interface for the implementations.
+  * `Platforms`: Holds the weather forecast service implementation for the Blazor Hybrid and Blazor WebAssembly apps.
+  * `Web`: Hold the weather forecast service implementation for Blazor Server.
+* The `FetchData` component is maintained in the `Pages` folder of the RCL, which is routable by any of the apps consuming the RCL.
+
+`Data/WeatherForecast.cs`:
+
+```csharp
+namespace SharedLibrary.Data
+{
+    public class WeatherForecast
+    {
+        public DateTime Date { get; set; }
+
+        public int TemperatureC { get; set; }
+
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+
+        public string? Summary { get; set; }
+    }
+}
+```
+
+`Interfaces/IWeatherForecastService.cs`:
+
+```csharp
+using SharedLibrary.Data;
+
+namespace SharedLibrary.Interfaces
+{
+    public interface IWeatherForecastService
+    {
+        Task<WeatherForecast[]?> GetForecastAsync(DateTime startDate);
+    }
+}
+```
+
+`Platforms/WeatherForecastService.cs`:
+
+```csharp
+using System.Net.Http.Json;
+using SharedLibrary.Data;
+using SharedLibrary.Interfaces;
+
+namespace SharedLibrary.Platforms
+{
+    public class WeatherForecastService : IWeatherForecastService
+    {
+        private readonly HttpClient http;
+
+        public WeatherForecastService(HttpClient http)
+        {
+            this.http = http;
+        }
+
+        public async Task<WeatherForecast[]?> GetForecastAsync(DateTime startDate) =>
+            await http.GetFromJsonAsync<WeatherForecast[]?>("WeatherForecast");
+    }
+}
+```
+
+`Web/WeatherForecastService.cs`:
+
+```csharp
+using SharedLibrary.Data;
+using SharedLibrary.Interfaces;
+
+namespace SharedLibrary.Web
+{
+    public class WeatherForecastService : IWeatherForecastService
+    {
+        private static readonly string[] Summaries = new[]
+        {
+            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        };
+
+        public async Task<WeatherForecast[]?> GetForecastAsync(DateTime startDate) =>
+            await Task.FromResult(Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            {
+                Date = startDate.AddDays(index),
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            }).ToArray());
+    }
+}
+```
+
+`_Imports.razor` in the RCL includes the following added namespaces:
+
+```razor
+@using SharedLibrary.Data
+@using SharedLibrary.Interfaces
+```
+
+`Pages/FetchData.razor`:
+
+```razor
+@page "/fetchdata"
+@inject IWeatherForecastService ForecastService
+
+<PageTitle>Weather forecast</PageTitle>
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private WeatherForecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+}
+```
+
+The Blazor Hybrid, Blazor WebAssembly, and Blazor Server apps register the appropriate weather forecast service implementations:
+
+* Blazor Hybrid and Blazor WebAssembly: `SharedLibrary.Platforms.WeatherForecastService`
+* Blazor Server: `SharedLibrary.Web.WeatherForecastService`
+
+The Blazor WebAssembly project also registers a an <xref:System.Net.Http.HttpClient>. The <xref:System.Net.Http.HttpClient> registered by default in an app created from the Blazor WebAssembly project template is sufficient for this purpose. For more information, see <xref:blazor/call-web-api>.
+
+### Example 2
 
 The following example:
 
@@ -312,169 +475,6 @@ In an `ExampleClass` method:
 ```csharp
 var message = customService.GetMessage();
 ```
-
-### Example 2
-
-The following weather data example abstracts different weather forecast service implementations:
-
-* Using an HTTP request with for Blazor Hybrid and Blazor WebAssembly.
-* Requesting data directly from the RCL for Blazor Server.
-
-The example uses the following specifications and conventions:
-
-* The RCL is named `SharedLibrary` and contains the following folders and namespaces:
-  * `Data`: Contains the `WeatherForecast` class, which serves as a model for weather data.
-  * `Interfaces`: Contains the service interface for the implementations.
-  * `Platforms`: Holds the weather forecast service implementation for the Blazor Hybrid and Blazor WebAssembly apps.
-  * `Web`: Hold the weather forecast service implementation for Blazor Server.
-* The `FetchData` component is maintained in the `Pages` folder of the RCL, which is routable by any of the apps consuming the RCL.
-
-`Data/WeatherForecast.cs`:
-
-```csharp
-namespace SharedLibrary.Data
-{
-    public class WeatherForecast
-    {
-        public DateTime Date { get; set; }
-
-        public int TemperatureC { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-
-        public string? Summary { get; set; }
-    }
-}
-```
-
-`Interfaces/IWeatherForecastService.cs`:
-
-```csharp
-using SharedLibrary.Data;
-
-namespace SharedLibrary.Interfaces
-{
-    public interface IWeatherForecastService
-    {
-        Task<WeatherForecast[]?> GetForecastAsync(DateTime startDate);
-    }
-}
-```
-
-`Platforms/WeatherForecastService.cs`:
-
-```csharp
-using System.Net.Http.Json;
-using SharedLibrary.Data;
-using SharedLibrary.Interfaces;
-
-namespace SharedLibrary.Platforms
-{
-    public class WeatherForecastService : IWeatherForecastService
-    {
-        private readonly HttpClient http;
-
-        public WeatherForecastService(HttpClient http)
-        {
-            this.http = http;
-        }
-
-        public async Task<WeatherForecast[]?> GetForecastAsync(DateTime startDate) =>
-            await http.GetFromJsonAsync<WeatherForecast[]?>("WeatherForecast");
-    }
-}
-```
-
-`Web/WeatherForecastService.cs`:
-
-```csharp
-using SharedLibrary.Data;
-using SharedLibrary.Interfaces;
-
-namespace SharedLibrary.Web
-{
-    public class WeatherForecastService : IWeatherForecastService
-    {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        public async Task<WeatherForecast[]?> GetForecastAsync(DateTime startDate) =>
-            await Task.FromResult(Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = startDate.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            }).ToArray());
-    }
-}
-```
-
-`_Imports.razor` in the RCL includes the following added namespaces:
-
-```razor
-@using SharedLibrary.Data
-@using SharedLibrary.Interfaces
-```
-
-`Pages/FetchData.razor`:
-
-```razor
-@page "/fetchdata"
-@inject IWeatherForecastService ForecastService
-
-<PageTitle>Weather forecast</PageTitle>
-
-<h1>Weather forecast</h1>
-
-<p>This component demonstrates fetching data from a service.</p>
-
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-
-@code {
-    private WeatherForecast[]? forecasts;
-
-    protected override async Task OnInitializedAsync()
-    {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
-    }
-}
-```
-
-The Blazor Hybrid, Blazor WebAssembly, and Blazor Server apps register the appropriate weather forecast service implementations:
-
-* Blazor Hybrid and Blazor WebAssembly: `SharedLibrary.Platforms.WeatherForecastService`
-* Blazor Server: `SharedLibrary.Web.WeatherForecastService`
-
-The Blazor WebAssembly project also registers a an <xref:System.Net.Http.HttpClient>. The <xref:System.Net.Http.HttpClient> registered by default in an app created from the Blazor WebAssembly project template is sufficient for this purpose. For more information, see <xref:blazor/call-web-api>.
 
 ## Additional resources
 
