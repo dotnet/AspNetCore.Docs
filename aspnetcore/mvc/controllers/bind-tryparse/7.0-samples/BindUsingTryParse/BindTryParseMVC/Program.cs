@@ -1,13 +1,18 @@
+using System.Globalization;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-//         // GET /WeatherForecast/RangeWithCulture?culture=en-GB&range=07/12/2022-07/14/2022
+//         // GET /WeatherForecast/RangeWithCulture?range=20/07/2022-25/07/2022&culture=en-GB
 
-var redirectDateRange = $"/WeatherForecast/RangeWithCulture?range={DateTime.Now.ToShortDateString()}" +
-                        $"-{DateTime.Now.AddDays(5).ToShortDateString()}" +
+DateTimeFormatInfo dtfi = CultureInfo.CreateSpecificCulture("en-GB").DateTimeFormat;
+var now = DateTime.Now.ToString("d", dtfi);
+var fiveDays = DateTime.Now.AddDays(5).ToString("d", dtfi);
+var redirectDateRange = $"/WeatherForecast/RangeWithCulture?range={now}" +
+                        $"-{fiveDays}" +
                         "&culture=en-GB";
 
 app.MapGet("/", () => Results.Redirect(redirectDateRange));
