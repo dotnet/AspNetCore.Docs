@@ -59,6 +59,7 @@ namespace BindTryParseMVC.Controllers
         }
         // </snippet_1>
 
+        // <snippet_2>
         // GET /WeatherForecast/RangeWithCulture?culture=en-GB&range=07/12/2022-07/14/2022
         public IActionResult RangeWithCulture(Culture culture, string range)
         {

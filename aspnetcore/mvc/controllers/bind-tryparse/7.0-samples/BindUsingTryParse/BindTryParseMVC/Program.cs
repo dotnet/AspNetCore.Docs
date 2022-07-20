@@ -1,16 +1,14 @@
+using System.Globalization;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-//         // GET /WeatherForecast/RangeWithCulture?culture=en-GB&range=07/12/2022-07/14/2022
-
-var redirectDateRange = $"/WeatherForecast/RangeWithCulture?range={DateTime.Now.ToShortDateString()}" +
-                        $"-{DateTime.Now.AddDays(5).ToShortDateString()}" +
-                        "&culture=en-GB";
-
-app.MapGet("/", () => Results.Redirect(redirectDateRange));
+// GET /en-GB
+// returns an endpoint string for /WeatherForecast/RangeWithCulture
+app.MapGet("/{culture}", (string culture) => DRC.DateRangeCulture(culture, app.Logger));
 
 if (!app.Environment.IsDevelopment())
 {
@@ -28,3 +26,28 @@ app.MapControllerRoute(
     pattern: "{controller=WeatherForecast}/{action=Index}/{id?}");
 
 app.Run();
+
+public static class DRC
+{
+    public static string DateRangeCulture(string culture, ILogger logger)
+    {
+        DateTimeFormatInfo dtfi;
+
+        try
+        {
+            dtfi = CultureInfo.CreateSpecificCulture(culture).DateTimeFormat;
+        }
+        catch (Exception ex)
+        {
+            logger.LogError($"{culture} is not a valid culture.");
+            logger.LogError(ex.Message);
+            dtfi = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name).DateTimeFormat;
+        }
+        var now = DateTime.Now.ToString("d", dtfi);
+        var fiveDays = DateTime.Now.AddDays(5).ToString("d", dtfi);
+        var dateRangeCulture = $"/WeatherForecast/RangeWithCulture?range={now}" +
+                                $"-{fiveDays}" +
+                                $"&culture={culture}";
+        return dateRangeCulture;
+    }
+}
