@@ -1766,6 +1766,25 @@ The following code displays configuration data in a MVC view:
 
 [!code-cshtml[](index/samples/3.x/ConfigSample/Views/Home2/Index.cshtml)]
 
+## Access configuration in `Program.cs`
+
+The following code accesses configuration in the  `Program.cs` file.
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello World!");
+
+var key1 = app.Configuration.GetValue<int>("KeyOne");
+var key2 = app.Configuration.GetValue<bool>("KeyTwo");
+
+app.Logger.LogInformation($"KeyOne = {key1}");
+app.Logger.LogInformation($"KeyTwo = {key2}");
+
+app.Run();
+```
+
 ## Configure options with a delegate
 
 Options configured in a delegate override values set in the configuration providers.
