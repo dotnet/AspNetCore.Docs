@@ -6,9 +6,9 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// GET /en-GB
+// GET /test/en-GB
 // returns an endpoint string for /WeatherForecast/RangeWithCulture
-app.MapGet("/{culture}", (string culture) => DRC.DateRangeCulture(culture, app.Logger));
+app.MapGet("/test/{culture}", (string culture) => DRC.DateRangeCulture(culture, app.Logger));
 
 if (!app.Environment.IsDevelopment())
 {
