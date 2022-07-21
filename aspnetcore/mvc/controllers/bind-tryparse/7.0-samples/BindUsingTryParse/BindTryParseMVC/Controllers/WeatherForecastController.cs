@@ -1,4 +1,5 @@
 using System.Globalization;
+using BindTryParseAPI.Models;
 using BindTryParseMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -63,8 +64,14 @@ namespace BindTryParseMVC.Controllers
         // GET /en-GB/WeatherForecast/RangeWithCulture?range=07/12/2022-07/14/2022
         public IActionResult RangeWithCulture(string culture, string range)
         {
-            if (!DateRange.TryParse(range, new CultureInfo(culture), out var dateRange))
-               return View("Error", $"Invalid date range {range} for culture {culture}");
+            if(!Culture.TryParse(culture, out Culture? myCulture))
+            {
+                return View("Error", $"Invalid culture {culture}");
+            }
+            if (!DateRange.TryParse(range, out var dateRange))
+            {
+                return View("Error", $"Invalid date range {range} for culture {culture}");
+            }
 
             var weatherForecasts = Enumerable
                 .Range(1, 5).Select(index => new WeatherForecast
