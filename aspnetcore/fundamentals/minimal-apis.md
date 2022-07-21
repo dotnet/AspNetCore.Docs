@@ -1091,7 +1091,7 @@ The following table lists some of the middleware frequently used with minimal AP
 
 ## Bind the request body as a `Stream` or `PipeReader`
 
-The request body can bind as a `Stream` or `PipeReader` to efficiently support scenarios where the user has to process data and:
+The request body can bind as a [`Stream`](/dotnet/api/system.io.stream) or [`PipeReader`](/dotnet/api/system.io.pipelines.pipereader) to efficiently support scenarios where the user has to process data and:
 
 * Store the data to blob storage or enqueue the data to a queue provider.
 * Process the stored data with a worker process or cloud function.
