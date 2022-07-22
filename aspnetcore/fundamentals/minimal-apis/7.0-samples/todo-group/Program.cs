@@ -31,6 +31,8 @@ if (app.Environment.IsDevelopment())
 
 
 app.MapGet("/", () => "Hello World!");
+
+// group apis
 app.MapGroup("/public/todos").MapTodosApi();
 app.MapGroup("/public/notes").MapNotesApi();
 app.Run();
