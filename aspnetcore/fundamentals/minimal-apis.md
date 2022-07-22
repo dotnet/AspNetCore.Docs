@@ -1090,6 +1090,8 @@ The following table lists some of the middleware frequently used with minimal AP
 | [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer%2A> |
 | [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | <xref:Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions.UseWebSockets%2A> |
 
+<a name="rbs"></a>
+
 ## Bind the request body as a `Stream` or `PipeReader`
 
 The request body can bind as a [`Stream`](/dotnet/api/system.io.stream) or [`PipeReader`](/dotnet/api/system.io.pipelines.pipereader) to efficiently support scenarios where the user has to process data and:
@@ -1110,6 +1112,10 @@ The following code binds the request body to a `Stream`:
 The following code shows the complete `Program.cs` file:
 
 [!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet)]
+
+* When reading data, the `Stream` is the same object as `HttpRequest.Body`.
+* The request body isn’t buffered by default. After the body is read, it’s not rewindable. . The stream can't be read multiple times.
+* The `Stream` and `PipeReader` are'nt usable outside of the minimal action handler as the underlying buffers will be disposed or reused.
 
 ## Request handling
 
