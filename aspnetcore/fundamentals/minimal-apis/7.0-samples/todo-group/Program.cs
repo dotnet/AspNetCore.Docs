@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.OpenApi;
+using Repository;
+using Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
