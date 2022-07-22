@@ -1,8 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
-// map the /weatherforecast endpoint to a custom action
+app.MapGet("/", () => "Try /weatherforecast");
+// Map the /weatherforecast endpoint to a custom action.
 app.MapWeatherApi();
 app.Run();
 
@@ -12,11 +12,9 @@ public static class WeatherApi
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
-
     public static WebApplication MapWeatherApi(this WebApplication routes)
     {
         routes.MapGet("/weatherforecast", GetAllWeathers);
-
         return routes;
     }
     public static IResult GetAllWeathers()
@@ -32,7 +30,6 @@ public static class WeatherApi
         return TypedResults.Ok(forecast); ;
     }
 }
-
 public record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
