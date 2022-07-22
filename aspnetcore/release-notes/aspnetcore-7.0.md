@@ -11,6 +11,16 @@ uid: aspnetcore-7
 
 This article highlights the most significant changes in ASP.NET Core 7.0 with links to relevant documentation.
 
+## MVC and Razor pages
+
+### Support for nullable models in MVC views and Razor Pages
+
+Nullable page or view models are supported to improve the experience when using null state checking with ASP.NET Core apps:
+
+```csharp
+@model Product?
+```
+
 ## API controllers
 
 ### Parameter binding with DI in API controllers
@@ -67,6 +77,36 @@ We introduced new [`Results.Stream`](/dotnet/api/microsoft.aspnetcore.http.resul
 
 For more information, see [Stream examples](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#stream7)
 
+### Typed results for minimal APIs
+
+In .NET 6, the <xref:Microsoft.AspNetCore.Http.IResult> interface was introduced to represent values returned from minimal APIs that don’t utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL. The `IResult` implementing framework types returned from these methods were internal however, making it difficult to verify the specific `IResult` type being returned from methods in a unit test.
+
+In .NET 7 the types implementing `IResult` are public, allowing for type assertions when testing. For example:
+
+[!code-csharp[](~/fundamentals/minimal-apis/misc-samples/typedResults/TypedResultsApiWithTest/Test/WeatherApiTest.cs?name=snippet_1&highlight=7-8)]
+
+### OpenAPI improvements for minimal APIs
+
+<a name="openapinuget"></a>
+
+#### `Microsoft.AspNetCore.OpenApi` NuGet package
+
+The [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi/) package allows interactions with OpenAPI specifications for endpoints. The package acts as a link between the OpenAPI models that are defined in the `Microsoft.AspNetCore.OpenApi` package and the endpoints that are defined in Minimal APIs. The package provides an API that examines an endpoint's parameters, responses, and metadata to construct an OpenAPI annotation type that is used to describe an endpoint.
+
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/todo/Program.cs?name=snippet_withopenapi&highlight=9)]
+
+#### Call `WithOpenApi` with parameters
+
+The [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs#L49) method accepts a function that can be used to modify the OpenAPI annotation. For example, in the following code, a description is added to the first parameter of the endpoint:
+
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/todo/Program.cs?name=snippet_withopenapi2&highlight=9-99)]
+
+#### Exclude Open API description
+
+In the following sample, the `/skipme` endpoint is excluded from generating an OpenAPI description:
+
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_swag2&highlight=20-21)]
+
 ## Signal R
 
 ### Dependency injection for SignalR hub methods
@@ -102,6 +142,22 @@ Shadow copying app assemblies to the [ASP.NET Core Module (ANCM)](xref:host-and-
 For more information, see [Shadow copying in IIS](xref:host-and-deploy/iis/advanced?view=aspnetcore-7.0#shadow-copy)
 
 ## Miscellaneous
+
+### dotnet watch
+
+#### Improved console output for dotnet watch
+
+The console output from dotnet watch has been improved to better align with the logging of ASP.NET Core and to stand out with 😮emojis😍.
+
+Here’s an example of what the new output looks like:
+
+![output for dotnet watch](~/release-notes/aspnetcore-7/static/dnwatch.png)
+
+See [this GitHub pull request](https://github.com/dotnet/sdk/pull/23318) for more information.
+
+### Configure dotnet watch to always restart for rude edits
+
+Rude edits are edits that  can’t be hot reloaded. To configure dotnet watch to always restart without a prompt for rude edits, set the `DOTNET_WATCH_RESTART_ON_RUDE_EDIT` environment variable to `true`.
 
 ### Developer exception page dark mode
 
