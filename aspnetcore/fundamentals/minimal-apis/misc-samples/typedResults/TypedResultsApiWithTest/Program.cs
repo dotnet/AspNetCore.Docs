@@ -16,9 +16,9 @@ public static class WeatherApi
     public static WebApplication MapWeatherApi(this WebApplication routes)
     {
         routes.MapGet("/weatherforecast", GetAllWeathers);
+
         return routes;
     }
-
     public static IResult GetAllWeathers()
     {
         var forecast = Enumerable.Range(1, 5).Select(index =>
