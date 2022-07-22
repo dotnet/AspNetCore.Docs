@@ -187,7 +187,7 @@ In the preceding example, the `{APP NAMESPACE}` placeholder is the app's namespa
 
 The Blazor Hybrid, Blazor WebAssembly, and Blazor Server apps register their weather forecast service implementations (`Services.WeatherForecastService`) for `IWeatherForecastService`.
 
-The Blazor WebAssembly project also registers a an <xref:System.Net.Http.HttpClient>. The <xref:System.Net.Http.HttpClient> registered by default in an app created from the Blazor WebAssembly project template is sufficient for this purpose. For more information, see <xref:blazor/call-web-api>.
+The Blazor WebAssembly project also registers an <xref:System.Net.Http.HttpClient>. The <xref:System.Net.Http.HttpClient> registered by default in an app created from the Blazor WebAssembly project template is sufficient for this purpose. For more information, see <xref:blazor/call-web-api>.
 
 `Pages/FetchData.razor` in the RCL:
 
