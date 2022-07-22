@@ -21,7 +21,7 @@ builder.Services.AddHostedService<BackgroundQueue>();
 var app = builder.Build();
 
 // curl --request POST 'https://localhost:<port>/register' --header 'Content-Type: application/json' --data-raw '{ "Name":"Samson", "Age": 23, "Country":"Nigeria" }'
-// curl --request POST "https://localhost:58434/register" --header "Content-Type: application/json" --data-raw "{ \"Name\":\"Samson\", \"Age\": 23, \"Country\":\"Nigeria\" }"
+// curl --request POST "https://localhost:<port>/register" --header "Content-Type: application/json" --data-raw "{ \"Name\":\"Samson\", \"Age\": 23, \"Country\":\"Nigeria\" }"
 // <snippet_1>
 app.MapPost("/register", async (HttpRequest req, Stream body,
                                  Channel<ReadOnlyMemory<byte>> queue) =>
