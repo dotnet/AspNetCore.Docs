@@ -5,7 +5,7 @@ description: Learn how to share Razor components, C# code, and static assets acr
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/20/2022
+ms.date: 07/21/2022
 uid: blazor/hybrid/class-libraries
 ---
 # Share assets across web and native clients using a Razor class library (RCL)
@@ -79,25 +79,22 @@ The root Razor Component (`App.razor` or `Main.razor`) can be shared, but often 
 
 ## Provide code and services independent of hosting model
 
-When code must differ for across hosting models or target platforms, abstract the code as interfaces and inject the service implementations into each project.
-
-### Example 1
+When code must differ for across hosting models or target platforms, abstract the code as interfaces stored in the RCL and inject the service implementations in each project.
 
 The following weather data example abstracts different weather forecast service implementations:
 
-* Using an HTTP request with for Blazor Hybrid and Blazor WebAssembly.
-* Requesting data directly from the RCL for Blazor Server.
+* Using an HTTP request for Blazor Hybrid and Blazor WebAssembly.
+* Requesting data directly for Blazor Server.
 
 The example uses the following specifications and conventions:
 
 * The RCL is named `SharedLibrary` and contains the following folders and namespaces:
   * `Data`: Contains the `WeatherForecast` class, which serves as a model for weather data.
-  * `Interfaces`: Contains the service interface for the service implementations.
-  * `Platforms`: Holds the service implementation for the Blazor Hybrid and Blazor WebAssembly apps.
-  * `Web`: Holds the service implementation for Blazor Server.
+  * `Interfaces`: Contains the service interface for the service implementations, named `IWeatherForecastService`.
 * The `FetchData` component is maintained in the `Pages` folder of the RCL, which is routable by any of the apps consuming the RCL.
+* Each Blazor app maintains a service implementation that implements the `IWeatherForecastService` interface.
 
-`Data/WeatherForecast.cs`:
+`Data/WeatherForecast.cs` in the RCL:
 
 ```csharp
 namespace SharedLibrary.Data
@@ -112,7 +109,7 @@ namespace SharedLibrary.Data
 }
 ```
 
-`Interfaces/IWeatherForecastService.cs`:
+`Interfaces/IWeatherForecastService.cs` in the RCL:
 
 ```csharp
 using SharedLibrary.Data;
@@ -126,14 +123,21 @@ namespace SharedLibrary.Interfaces
 }
 ```
 
-`Platforms/WeatherForecastService.cs`:
+The `_Imports.razor` file in the RCL includes the following added namespaces:
+
+```razor
+@using SharedLibrary.Data
+@using SharedLibrary.Interfaces
+```
+
+`Services/WeatherForecastService.cs` in the Blazor Hybrid and Blazor WebAssembly apps:
 
 ```csharp
 using System.Net.Http.Json;
 using SharedLibrary.Data;
 using SharedLibrary.Interfaces;
 
-namespace SharedLibrary.Platforms
+namespace {APP NAMESPACE}.Services
 {
     public class WeatherForecastService : IWeatherForecastService
     {
@@ -150,13 +154,15 @@ namespace SharedLibrary.Platforms
 }
 ```
 
-`Web/WeatherForecastService.cs`:
+In the preceding example, the `{APP NAMESPACE}` placeholder is the app's namespace.
+
+`Services/WeatherForecastService.cs` in the Blazor Server app:
 
 ```csharp
 using SharedLibrary.Data;
 using SharedLibrary.Interfaces;
 
-namespace SharedLibrary.Web
+namespace {APP NAMESPACE}.Services
 {
     public class WeatherForecastService : IWeatherForecastService
     {
@@ -177,12 +183,11 @@ namespace SharedLibrary.Web
 }
 ```
 
-`_Imports.razor` in the RCL includes the following added namespaces:
+In the preceding example, the `{APP NAMESPACE}` placeholder is the app's namespace.
 
-```razor
-@using SharedLibrary.Data
-@using SharedLibrary.Interfaces
-```
+The Blazor Hybrid, Blazor WebAssembly, and Blazor Server apps register their weather forecast service implementations (`Services.WeatherForecastService`) for `IWeatherForecastService`.
+
+The Blazor WebAssembly project also registers a an <xref:System.Net.Http.HttpClient>. The <xref:System.Net.Http.HttpClient> registered by default in an app created from the Blazor WebAssembly project template is sufficient for this purpose. For more information, see <xref:blazor/call-web-api>.
 
 `Pages/FetchData.razor` in the RCL:
 
@@ -233,12 +238,9 @@ else
 }
 ```
 
-The Blazor Hybrid, Blazor WebAssembly, and Blazor Server apps register the appropriate weather forecast service implementations for `IWeatherForecastService`:
+<!--
 
-* Blazor Hybrid and Blazor WebAssembly: `SharedLibrary.Platforms.WeatherForecastService`
-* Blazor Server: `SharedLibrary.Web.WeatherForecastService`
-
-The Blazor WebAssembly project also registers a an <xref:System.Net.Http.HttpClient>. The <xref:System.Net.Http.HttpClient> registered by default in an app created from the Blazor WebAssembly project template is sufficient for this purpose. For more information, see <xref:blazor/call-web-api>.
+HELD PER https://github.com/dotnet/AspNetCore.Docs/pull/26331#discussion_r927174745
 
 ### Example 2
 
@@ -442,6 +444,8 @@ In an `ExampleClass` method:
 ```csharp
 var message = customService.GetMessage();
 ```
+
+-->
 
 ## Additional resources
 
