@@ -1,3 +1,6 @@
+using System.Drawing;
+using System;
+
 namespace BindTryParseMVC.Models
 {
     // <snippet>
