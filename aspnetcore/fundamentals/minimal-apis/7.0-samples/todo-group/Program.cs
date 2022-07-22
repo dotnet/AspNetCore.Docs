@@ -25,6 +25,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    // localhost:{port}/swagger
     app.UseSwagger();
     app.UseSwaggerUI();
 }
@@ -36,9 +37,11 @@ app.MapGroup("/public/notes").MapNotesApi();
 app.Run();
 
 
-public static class Actions {
+public static class Actions
+{
 
-    public static GroupRouteBuilder MapTodosApi(this GroupRouteBuilder group) {
+    public static GroupRouteBuilder MapTodosApi(this GroupRouteBuilder group)
+    {
         group.MapGet("/", GetAllTodos);
         group.MapGet("/{id}", GetTodo);
         group.MapPost("/", CreateTodo);
@@ -47,7 +50,8 @@ public static class Actions {
         return group;
     }
 
-    public static GroupRouteBuilder MapNotesApi(this GroupRouteBuilder group){
+    public static GroupRouteBuilder MapNotesApi(this GroupRouteBuilder group)
+    {
         group.MapGet("/", GetAllNotes);
         group.MapGet("/{id}", GetNote);
         group.MapPost("/", CreateNote);
@@ -59,27 +63,30 @@ public static class Actions {
     // get all todos
     private static async Task<IResult> GetAllTodos(TodosRepo todosRepo)
     {
-       var data =  await todosRepo.GetAllTodos();
-       return TypedResults.Ok(data);
+        var data = await todosRepo.GetAllTodos();
+        return TypedResults.Ok(data);
     }
 
     // get todo by id
     private static async Task<IResult> GetTodo(int id, TodosRepo todosRepo)
     {
         var data = await todosRepo.GetTodo(id);
-        if(data != null){
+        if (data != null)
+        {
             return TypedResults.Ok(data);
         }
-        else{
+        else
+        {
             return TypedResults.NotFound();
         }
-       
+
     }
 
     // create todo
     private static async Task<IResult> CreateTodo(TodoDto todo, TodosRepo todosRepo)
     {
-        var data =  await todosRepo.CreateTodo(new Todo{
+        var data = await todosRepo.CreateTodo(new Todo
+        {
             Title = todo.Title,
             Description = todo.Description,
             IsDone = todo.IsDone
@@ -90,19 +97,21 @@ public static class Actions {
     // update todo
     private static async Task<IResult> UpdateTodo(Todo todo, TodosRepo todosRepo)
     {
-        
-           var data = await todosRepo.UpdateTodo(todo);
-           if(data != null){
-           return TypedResults.Created($"/public/todos/{data.Id}", data);
-           }
-           return TypedResults.NotFound();  
+
+        var data = await todosRepo.UpdateTodo(todo);
+        if (data != null)
+        {
+            return TypedResults.Created($"/public/todos/{data.Id}", data);
+        }
+        return TypedResults.NotFound();
     }
 
     // delete todo
     private static async Task<IResult> DeleteTodo(int id, TodosRepo todosRepo)
     {
         var data = await todosRepo.DeleteTodo(id);
-        if(data != null){
+        if (data != null)
+        {
             return TypedResults.NoContent();
         }
         return TypedResults.NotFound();
@@ -119,10 +128,12 @@ public static class Actions {
     private static async Task<IResult> GetNote(int id, NotesRepo notesRepo)
     {
         var data = await notesRepo.GetNote(id);
-        if(data != null){
+        if (data != null)
+        {
             return TypedResults.Ok(data);
         }
-        else{
+        else
+        {
             return TypedResults.NotFound();
         }
     }
@@ -130,7 +141,8 @@ public static class Actions {
     // create note
     private static async Task<IResult> CreateNote(NoteDto note, NotesRepo notesRepo)
     {
-        var data = await notesRepo.CreateNote(new Note{
+        var data = await notesRepo.CreateNote(new Note
+        {
             Title = note.Title
         });
         return TypedResults.Created($"/public/notes/{data.Id}", data);
@@ -140,7 +152,8 @@ public static class Actions {
     private static async Task<IResult> UpdateNote(Note note, NotesRepo notesRepo)
     {
         var data = await notesRepo.UpdateNote(note);
-        if(data != null){
+        if (data != null)
+        {
             return TypedResults.Created($"/public/notes/{data.Id}", data);
         }
         return TypedResults.NotFound();
@@ -150,7 +163,8 @@ public static class Actions {
     private static async Task<IResult> DeleteNote(int id, NotesRepo notesRepo)
     {
         var data = await notesRepo.DeleteNote(id);
-        if(data != null){
+        if (data != null)
+        {
             return TypedResults.NoContent();
         }
         return TypedResults.NotFound();
