@@ -213,7 +213,7 @@ The following controller uses the `DateRange` class to bind a date range:
 
 The following `Culture` class implements `TryParse` to support binding
 
-The [sample apps on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse) show binding to a <xref:System.Globalization.CultureInfo> string, a date range string, and binding to both `CultureInfo` and a date range. The sample apps have types that implement `TryParse` APIs to convert a string to a pair of `DateTime` and use `string` types where the model binder uses the `TryParse` operation to bind to them.
+The [sample apps on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse) also show binding to date range string in an API Controller.
 
 ## Complex types
 
