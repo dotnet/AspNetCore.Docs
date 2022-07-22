@@ -13,3 +13,4 @@ namespace Data;
         public DbSet<Note> Notes { get; set; } = default!;
 
     }
+    
