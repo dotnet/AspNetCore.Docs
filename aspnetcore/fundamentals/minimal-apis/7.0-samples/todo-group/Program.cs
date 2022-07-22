@@ -56,12 +56,14 @@ public static class Actions {
         return group;
     }
 
+    // get all todos
     private static async Task<IResult> GetAllTodos(TodosRepo todosRepo)
     {
        var data =  await todosRepo.GetAllTodos();
        return TypedResults.Ok(data);
     }
 
+    // get todo by id
     private static async Task<IResult> GetTodo(int id, TodosRepo todosRepo)
     {
         var data = await todosRepo.GetTodo(id);
@@ -74,6 +76,7 @@ public static class Actions {
        
     }
 
+    // create todo
     private static async Task<IResult> CreateTodo(TodoDto todo, TodosRepo todosRepo)
     {
         var data =  await todosRepo.CreateTodo(new Todo{
@@ -84,6 +87,7 @@ public static class Actions {
         return TypedResults.Created($"/public/todos/{data.Id}", data);
     }
 
+    // update todo
     private static async Task<IResult> UpdateTodo(Todo todo, TodosRepo todosRepo)
     {
         
@@ -94,7 +98,7 @@ public static class Actions {
            return TypedResults.NotFound();  
     }
 
-
+    // delete todo
     private static async Task<IResult> DeleteTodo(int id, TodosRepo todosRepo)
     {
         var data = await todosRepo.DeleteTodo(id);
@@ -104,12 +108,14 @@ public static class Actions {
         return TypedResults.NotFound();
     }
 
+    // get all notes
     private static async Task<IResult> GetAllNotes(NotesRepo notesRepo)
     {
         var data = await notesRepo.GetAllNotes();
         return TypedResults.Ok(data);
     }
 
+    // get note by id
     private static async Task<IResult> GetNote(int id, NotesRepo notesRepo)
     {
         var data = await notesRepo.GetNote(id);
@@ -121,6 +127,7 @@ public static class Actions {
         }
     }
 
+    // create note
     private static async Task<IResult> CreateNote(NoteDto note, NotesRepo notesRepo)
     {
         var data = await notesRepo.CreateNote(new Note{
@@ -129,6 +136,7 @@ public static class Actions {
         return TypedResults.Created($"/public/notes/{data.Id}", data);
     }
 
+    // update note
     private static async Task<IResult> UpdateNote(Note note, NotesRepo notesRepo)
     {
         var data = await notesRepo.UpdateNote(note);
@@ -138,6 +146,7 @@ public static class Actions {
         return TypedResults.NotFound();
     }
 
+    // delete note
     private static async Task<IResult> DeleteNote(int id, NotesRepo notesRepo)
     {
         var data = await notesRepo.DeleteNote(id);
