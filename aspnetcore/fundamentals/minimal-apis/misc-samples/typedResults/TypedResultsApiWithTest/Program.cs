@@ -12,11 +12,13 @@ public static class WeatherApi
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
+
     public static WebApplication MapWeatherApi(this WebApplication routes)
     {
         routes.MapGet("/weatherforecast", GetAllWeathers);
         return routes;
     }
+
     public static IResult GetAllWeathers()
     {
         var forecast = Enumerable.Range(1, 5).Select(index =>
@@ -30,6 +32,7 @@ public static class WeatherApi
         return TypedResults.Ok(forecast); ;
     }
 }
+
 public record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
