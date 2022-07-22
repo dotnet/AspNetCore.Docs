@@ -1090,6 +1090,8 @@ The following table lists some of the middleware frequently used with minimal AP
 | [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer%2A> |
 | [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | <xref:Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions.UseWebSockets%2A> |
 
+<a name="rbs"></a>
+
 ## Bind the request body as a `Stream` or `PipeReader`
 
 The request body can bind as a [`Stream`](/dotnet/api/system.io.stream) or [`PipeReader`](/dotnet/api/system.io.pipelines.pipereader) to efficiently support scenarios where the user has to process data and:
