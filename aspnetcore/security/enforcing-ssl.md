@@ -1005,5 +1005,6 @@ To fix problems with the IIS Express certificate, select **Repair** from the Vis
 * [Host ASP.NET Core on Linux with Nginx: HTTPS configuration](xref:host-and-deploy/linux-nginx#https-configuration)
 * [How to Set Up SSL on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis)
 * [OWASP HSTS browser support](https://www.owasp.org/index.php/HTTP_Strict_Transport_Security_Cheat_Sheet#Browser_Support)
+* [`dotnet dev-certs`](/dotnet/core/tools/dotnet-dev-certs)
 
 :::moniker-end

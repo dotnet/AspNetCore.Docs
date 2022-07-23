@@ -29,7 +29,7 @@ For more information on these approaches, see [Server URLs](xref:fundamentals/ho
 A development certificate is created:
 
 * When the [.NET SDK](/dotnet/core/sdk) is installed.
-* The [dev-certs tool](xref:security/enforcing-ssl#trust) is used to create a certificate.
+* The [dev-certs tool](/dotnet/core/tools/dotnet-dev-certs) is used to create a certificate.
 
 The development certificate is available only for the user that generates the certificate. Some browsers require granting explicit permission to trust the local development certificate.
 
@@ -577,7 +577,7 @@ For more information on these approaches, see [Server URLs](xref:fundamentals/ho
 A development certificate is created:
 
 * When the [.NET SDK](/dotnet/core/sdk) is installed.
-* The [dev-certs tool](xref:security/enforcing-ssl#trust) is used to create a certificate.
+* The [dev-certs tool](/dotnet/core/tools/dotnet-dev-certs) is used to create a certificate.
 
 The development certificate is available only for the user that generates the certificate. Some browsers require granting explicit permission to trust the local development certificate.
 
@@ -1125,7 +1125,7 @@ For more information on these approaches, see [Server URLs](xref:fundamentals/ho
 A development certificate is created:
 
 * When the [.NET SDK](/dotnet/core/sdk) is installed.
-* The [dev-certs tool](xref:security/enforcing-ssl#trust) is used to create a certificate.
+* The [dev-certs tool](/dotnet/core/tools/dotnet-dev-certs) is used to create a certificate.
 
 Some browsers require granting explicit permission to trust the local development certificate.
 

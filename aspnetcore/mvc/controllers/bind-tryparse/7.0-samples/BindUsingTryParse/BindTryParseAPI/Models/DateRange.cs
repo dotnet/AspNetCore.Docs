@@ -22,7 +22,8 @@ namespace BindTryParseAPI.Models
 
             var range = value.Split('-');
 
-            if (!DateOnly.TryParse(range[0], provider, out var fromDate) || !DateOnly.TryParse(range[1], provider, out var toDate))
+            if (!DateOnly.TryParse(range[0], provider, out var fromDate) 
+             || !DateOnly.TryParse(range[1], provider, out var toDate))
             {
                 dateRange = default;
                 return false;

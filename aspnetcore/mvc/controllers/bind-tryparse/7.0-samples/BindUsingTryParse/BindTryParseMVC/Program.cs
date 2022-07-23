@@ -25,6 +25,10 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=WeatherForecast}/{action=Index}/{id?}");
 
+app.MapControllerRoute(
+    name: "culture",
+    pattern: "{culture=en-US}/{controller=WeatherForecast}/{action=Index}/{id?}");
+
 app.Run();
 
 public static class DRC
@@ -39,15 +43,15 @@ public static class DRC
         }
         catch (Exception ex)
         {
-            logger.LogError($"{culture} is not a valid culture.");
-            logger.LogError(ex.Message);
+            logger.LogError("{Culture} is not a valid culture.", culture);
+            logger.LogError("{Error}", ex.Message);
             dtfi = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name).DateTimeFormat;
         }
+        
         var now = DateTime.Now.ToString("d", dtfi);
         var fiveDays = DateTime.Now.AddDays(5).ToString("d", dtfi);
-        var dateRangeCulture = $"/WeatherForecast/RangeWithCulture?range={now}" +
-                                $"-{fiveDays}" +
-                                $"&culture={culture}";
+        var dateRangeCulture = $"/{culture}/WeatherForecast/RangeWithCulture?range={now}-{fiveDays}";
+        
         return dateRangeCulture;
     }
 }
