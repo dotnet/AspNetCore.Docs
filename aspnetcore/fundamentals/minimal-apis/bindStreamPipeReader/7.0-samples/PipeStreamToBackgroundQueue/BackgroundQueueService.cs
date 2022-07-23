@@ -8,21 +8,22 @@ class BackgroundQueue : BackgroundService
     private readonly Channel<ReadOnlyMemory<byte>> _queue;
     private readonly ILogger<BackgroundQueue> _logger;
 
-    public BackgroundQueue(Channel<ReadOnlyMemory<byte>> queue, ILogger<BackgroundQueue> logger)
+    public BackgroundQueue(Channel<ReadOnlyMemory<byte>> queue,
+                               ILogger<BackgroundQueue> logger)
     {
         _queue = queue;
         _logger = logger;
     }
-    
+
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         await foreach (var dataStream in _queue.Reader.ReadAllAsync(stoppingToken))
         {
             try
-            {    
+            {
                 var person = JsonSerializer.Deserialize<Person>(dataStream.Span)!;
-                 _logger.LogInformation($"{person.Name} is {person.Age} years and from {person.Country}");
-                // you could do something else with the data
+                _logger.LogInformation($"{person.Name} is {person.Age} " +
+                                       $"years and from {person.Country}");
             }
             catch (Exception ex)
             {

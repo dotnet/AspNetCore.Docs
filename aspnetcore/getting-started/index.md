@@ -94,7 +94,7 @@ cd aspnetcoreapp
 dotnet watch run
 ```
 
-After the command shell indicates that the app has started, browse to `https://localhost:5001`.
+After the command shell indicates that the app has started, browse to `https://localhost:{port}`, where `{port}`is the random port used.
 
 ## Edit a Razor page
 
@@ -102,7 +102,7 @@ Open `Pages/Index.cshtml` and modify and save the page with the following highli
 
 :::code language="cshtml" source="sample/index.cshtml" highlight="9":::
 
-Browse to `https://localhost:5001`, refresh the page, and verify the changes are displayed.
+Browse to `https://localhost:{port}`, refresh the page, and verify the changes are displayed.
 
 ## Next steps
 
