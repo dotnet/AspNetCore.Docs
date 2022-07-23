@@ -160,3 +160,7 @@ Start the container with ASP.NET Core configured for HTTPS:
 ```console
 docker-compose -f "docker-compose.debug.yml" up -d
 ```
+
+## See also
+
+* [`dotnet dev-certs`](/dotnet/core/tools/dotnet-dev-certs)

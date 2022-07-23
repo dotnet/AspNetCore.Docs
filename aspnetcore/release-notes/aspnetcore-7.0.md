@@ -69,6 +69,33 @@ In ASP.NET 7, binding query strings to an array of primitive types, string array
 
 Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented. For more information, see [Bind arrays and string values from headers and query strings](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#bindar).
 
+## Bind the request body as a `Stream` or `PipeReader`
+
+The request body can bind as a [`Stream`](/dotnet/api/system.io.stream) or [`PipeReader`](/dotnet/api/system.io.pipelines.pipereader) to efficiently support scenarios where the user has to process data and:
+
+* Store the data to blob storage or enqueue the data to a queue provider.
+* Process the stored data with a worker process or cloud function.
+
+For example, the data might be enqueued to [Azure Queue storage](/azure/storage/queues/storage-queues-introduction) or stored in [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction).
+
+The following code implements a background queue:
+
+[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/BackgroundQueueService.cs)]
+
+The following code binds the request body to a `Stream`:
+
+[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet_1)]
+
+The following code shows the complete `Program.cs` file:
+
+[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet)]
+
+Limitations when binding request body to `Stream` or `PipeReader`:
+
+* When reading data, the `Stream` is the same object as `HttpRequest.Body`.
+* The request body isn’t buffered by default. After the body is read, it’s not rewindable. The stream can't be read multiple times.
+* The `Stream` and `PipeReader` are'nt usable outside of the minimal action handler as the underlying buffers will be disposed or reused.
+
 ### New Results.Stream overloads
 
 We introduced new [`Results.Stream`](/dotnet/api/microsoft.aspnetcore.http.results.stream?view=aspnetcore-7.0&preserve-view=true) overloads to accommodate scenarios that need access to the underlying HTTP response stream without buffering. These overloads also improve cases where an API streams data to the HTTP response stream, like from Azure Blob Storage. The following example uses [ImageSharp](https://sixlabors.com/products/imagesharp) to return a reduced size of the specified image:
@@ -168,3 +195,17 @@ Dark mode support has been added to the developer exception page, thanks to a co
 In Chrome:
 
 ![F12 tools Chrome dark mode](https://user-images.githubusercontent.com/3605364/178082535-7719b77f-563a-4d0d-b70a-267801bb6526.png)
+
+### Project template option to use Program.Main method instead of top-level statements
+
+The .NET 7 templates include an option to not use [top-level statements](/dotnet/csharp/fundamentals/program-structure/top-level-statements) and generate a `namespace` and a `Main` method declared on a `Program` class.
+
+Using the .NET CLI, use the `--use-program-main` option:
+
+```dotnetcli
+dotnet new web --use-program-main
+```
+
+With Visual Studio, select the new **Do not use top-level statements** checkbox during project creation:
+
+![checkbox ](https://user-images.githubusercontent.com/3605364/180587645-90f7cce5-d9f8-49d2-88cf-2258960394e1.png)
