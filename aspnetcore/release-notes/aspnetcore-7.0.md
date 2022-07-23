@@ -195,3 +195,17 @@ Dark mode support has been added to the developer exception page, thanks to a co
 In Chrome:
 
 ![F12 tools Chrome dark mode](https://user-images.githubusercontent.com/3605364/178082535-7719b77f-563a-4d0d-b70a-267801bb6526.png)
+
+### Project template option to use Program.Main method instead of top-level statements
+
+The .NET 7 templates include an option to not use [top-level statements](/dotnet/csharp/fundamentals/program-structure/top-level-statements) and generate a `namespace` and a `Main` method declared on a `Program` class.
+
+Using the .NET CLI, use the `--use-program-main` option:
+
+```dotnetcli
+dotnet new web --use-program-main
+```
+
+With Visual Studio, select the new **Do not use top-level statements** checkbox during project creation:
+
+![checkbox ](https://user-images.githubusercontent.com/3605364/180587645-90f7cce5-d9f8-49d2-88cf-2258960394e1.png)
