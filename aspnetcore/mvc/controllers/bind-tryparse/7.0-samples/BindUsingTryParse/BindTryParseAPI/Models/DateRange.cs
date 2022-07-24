@@ -1,36 +1,35 @@
 namespace BindTryParseAPI.Models
 {
     // <snippet>
-    public class DateRange
+    public class DateRange : IParsable<DateRange>
     {
-        public DateOnly? From { get; }
-        public DateOnly? To { get; }
+        public DateOnly? From { get; set; }
+        public DateOnly? To { get; set; }
 
-        public DateRange(DateOnly fromDate, DateOnly toDate)
+        public static DateRange Parse(string value, IFormatProvider? provider)
         {
-            From = fromDate;
-            To = toDate;
+            if (!TryParse(value, provider, out var result))
+            {
+                throw new ArgumentException("Could not parse supplied value.", nameof(value));
+            }
+
+            return result;
         }
 
-        public static bool TryParse(string? value, IFormatProvider? provider, out DateRange? dateRange)
+        public static bool TryParse(string? value, IFormatProvider? provider, out DateRange dateRange)
         {
-            if (string.IsNullOrEmpty(value) || value.Split('-').Length != 2)
+            var segments = value?.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+            if (segments?.Length == 2
+                && DateOnly.TryParse(segments[0], provider, out var fromDate)
+                && DateOnly.TryParse(segments[1], provider, out var toDate))
             {
-                dateRange = default;
-                return false;
+                dateRange = new DateRange { From = fromDate, To = toDate };
+                return true;
             }
 
-            var range = value.Split('-');
-
-            if (!DateOnly.TryParse(range[0], provider, out var fromDate) 
-             || !DateOnly.TryParse(range[1], provider, out var toDate))
-            {
-                dateRange = default;
-                return false;
-            }
-
-            dateRange = new DateRange(fromDate, toDate);
-            return true;
+            dateRange = new DateRange();
+            return false;
         }
     }
     // </snippet>

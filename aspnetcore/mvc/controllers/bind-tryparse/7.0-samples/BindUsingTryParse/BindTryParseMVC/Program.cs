@@ -7,7 +7,7 @@ builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
 // GET /en-GB
-// returns an endpoint string for /WeatherForecast/RangeWithCulture
+// returns an endpoint string for /WeatherForecast/ByCulturalRange
 app.MapGet("/{culture}", (string culture) => DRC.DateRangeCulture(culture, app.Logger));
 
 if (!app.Environment.IsDevelopment())
@@ -50,7 +50,7 @@ public static class DRC
         
         var now = DateTime.Now.ToString("d", dtfi);
         var fiveDays = DateTime.Now.AddDays(5).ToString("d", dtfi);
-        var dateRangeCulture = $"/{culture}/WeatherForecast/RangeWithCulture?range={now}-{fiveDays}";
+        var dateRangeCulture = $"/WeatherForecast/ByCulturalRange?culture={culture}&range={now},{fiveDays}";
         
         return dateRangeCulture;
     }
