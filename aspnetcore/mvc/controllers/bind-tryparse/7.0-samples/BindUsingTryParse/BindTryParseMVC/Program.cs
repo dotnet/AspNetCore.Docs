@@ -25,10 +25,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=WeatherForecast}/{action=Index}/{id?}");
 
-app.MapControllerRoute(
-    name: "culture",
-    pattern: "{culture=en-US}/{controller=WeatherForecast}/{action=Index}/{id?}");
-
 app.Run();
 
 public static class DRC
