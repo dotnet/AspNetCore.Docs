@@ -2257,10 +2257,6 @@ In the preceding example, the namespace of the app is `BlazorSample` with compon
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor" highlight="1":::
 
-`Shared/SurveyPrompt.razor.cs`:
-
-:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/SurveyPrompt.razor.cs":::
-
 In the preceding example, the namespace of the app is `BlazorSample` with shared components in the `Shared` folder. If testing the code locally, update the namespace.
 
 ## Harden JavaScript interop calls
