@@ -503,11 +503,11 @@ In rare cases, automatic DI can break apps that have a type in DI that is also a
 
 To disable `[FromServices]` inference for a single action parameter, apply the desired binding source attribute to the parameter. For example, apply the `[FromBody]` attribute to an action parameter that should be bound from the body of the request.
 
-To disable automatic binding of parameters globally, set [DisableImplicitFromServicesParameters](/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.disableimplicitfromservicesparameters) to `true`, as shown in the following example:
+To disable `[FromServices]` inference globally, set [DisableImplicitFromServicesParameters](/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.disableimplicitfromservicesparameters) to `true`:
 
 [!code-csharp[](index/samples/7.x/ApiController/Program.cs?name=snippet_dis&highlight=8-11)]
 
-In ASP.NET Core 7.0, types in DI are checked at app startup with <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService> to determine if an argument in an API controller action comes from DI or from the other sources.
+Types in DI are checked at app startup with <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService> to determine if an argument in an API controller action comes from DI or from the other sources.
 
 The mechanism to infer binding source of API Controller action parameters uses the following rules:
 
