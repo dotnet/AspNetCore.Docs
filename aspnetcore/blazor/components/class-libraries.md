@@ -243,9 +243,7 @@ Add a page to the app that uses the `ExtraStyles` component from the RCL.
 <ExtraStyles />
 ```
 
-Link to the library's stylesheet in the app's `<head>` markup.
-
-`wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Layout.cshtml` file (Blazor Server):
+Link to the library's stylesheet in the app's `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-content)).
 
 ```html
 <link href="_content/ComponentLibrary/additionalStyles.css" rel="stylesheet" />
