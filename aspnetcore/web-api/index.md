@@ -2,10 +2,10 @@
 title: Create web APIs with ASP.NET Core
 author: rick-anderson
 description: Learn the basics of creating a web API in ASP.NET Core.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/19/2022
+ms.date: 07/25/2022
 uid: web-api/index
 ---
 # Create web APIs with ASP.NET Core
@@ -495,13 +495,27 @@ When an action has more than one parameter bound from the request body, an excep
 
 ### FromServices inference notes
 
-`[FromServices]` inference could, in rare cases, affect the app if a parameter type is registered in the Dependency Injection container and also expected to be bound from a different source, eg. `FromBody`.
+Parameter binding binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. This means it's not required to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
+
+[!code-csharp[](index/samples/7.x/ApiController/Controllers/MyController.cs?name=snippet)]
+
+In rare cases, automatic DI can break apps that have a type in DI that is also accepted in an API controller's action methods. It's not common to have a type in DI and as an argument in an API controller action.
 
 To disable `[FromServices]` inference for a single action parameter, apply the desired binding source attribute to the parameter. For example, apply the `[FromBody]` attribute to an action parameter that should be bound from the body of the request.
 
-To disable `[FromServices]` inference globally, set the `Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.DisableImplicitFromServicesParameters` property to `true`:
+To disable automatic binding of parameters globally, set [DisableImplicitFromServicesParameters](/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.disableimplicitfromservicesparameters) to `true`, as shown in the following example:
 
-[!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400D7&highlight=14)]
+[!code-csharp[](index/samples/7.x/ApiController/Program.cs?name=snippet_dis&highlight=8-11)]
+
+In ASP.NET Core 7.0, types in DI are checked at app startup with <xref:Microsoft.Extensions.DependencyInjection.IServiceProviderIsService> to determine if an argument in an API controller action comes from DI or from the other sources.
+
+The mechanism to infer binding source of API Controller action parameters uses the following rules:
+
+* A previously specified [`BindingInfo.BindingSource`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingInfo.BindingSource) is never overwritten.
+* A complex type parameter, registered in the DI container, is assigned [`BindingSource.Services`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Services).
+* A complex type parameter, not registered in the DI container, is assigned [`BindingSource.Body`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Body).
+* A parameter with a name that appears as a route value in ***any*** route template is assigned [`BindingSource.Path`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Path).
+* All other parameters are [`BindingSource.Query`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Query).
 
 ### Disable inference rules
 
