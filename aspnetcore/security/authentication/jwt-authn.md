@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-7.0'
 ms.author: riande
 ms.date: 09/22/2018
 ms.custom: "mvc, seodec18"
-uid: security/authentication/2fa
+uid: security/authentication/jwt
 ---
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
