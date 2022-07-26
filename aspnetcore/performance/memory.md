@@ -152,7 +152,7 @@ On a typical web server environment, CPU usage is more important than memory, th
 
 ### GC using Docker and small containers
 
-When multiple containerized apps are running on one machine, Workstation GC might be more preformant than Server GC. For more information, see [Running with Server GC in a Small Container](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-0/) and [Running with Server GC in a Small Container Scenario Part 1 – Hard Limit for the GC Heap](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-1-hard-limit-for-the-gc-heap/).
+When multiple containerized apps are running on one machine, Workstation GC might be more performant than Server GC. For more information, see [Running with Server GC in a Small Container](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-0/) and [Running with Server GC in a Small Container Scenario Part 1 – Hard Limit for the GC Heap](https://devblogs.microsoft.com/dotnet/running-with-server-gc-in-a-small-container-scenario-part-1-hard-limit-for-the-gc-heap/).
 
 ### Persistent object references
 
@@ -175,7 +175,7 @@ public ActionResult<string> GetStaticString()
 The preceding code:
 
 * Is an example of a typical memory leak.
-* With frequent calls, causes app memory to increases until the process crashes with an `OutOfMemory` exception.
+* With frequent calls, causes app memory to increase until the process crashes with an `OutOfMemory` exception.
 
 :::image source="memory/_static/eternal.png" alt-text="Chart showing a memory leak":::
 
@@ -212,10 +212,10 @@ The following image shows the memory profile while invoking the `fileprovider` A
 
 The preceding chart shows an obvious issue with the implementation of this class, as it keeps increasing memory usage. This is a known problem that is being tracked in [this issue](https://github.com/dotnet/aspnetcore/issues/3110).
 
-The same leak could be happen in user code, by one of the following:
+The same leak could happen in user code, by one of the following:
 
 * Not releasing the class correctly.
-* Forgetting to invoke the `Dispose`method of the dependent objects that should be disposed.
+* Forgetting to invoke the `Dispose` method of the dependent objects that should be disposed.
 
 ### Large objects heap
 
@@ -387,7 +387,7 @@ To set up disposal of the object:
 * Encapsulate the pooled array in a disposable object.
 * Register the pooled object with [HttpContext.Response.RegisterForDispose](xref:Microsoft.AspNetCore.Http.HttpResponse.RegisterForDispose%2A).
 
-`RegisterForDispose` will take care of calling `Dispose`on the target object so that it's only released when the HTTP request is complete.
+`RegisterForDispose` will take care of calling `Dispose` on the target object so that it's only released when the HTTP request is complete.
 
 ```csharp
 private static ArrayPool<byte> _arrayPool = ArrayPool<byte>.Create();
