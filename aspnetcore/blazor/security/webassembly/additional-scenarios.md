@@ -1056,7 +1056,7 @@ The following subsections explain how to replace:
 Create a JavaScript library to handle your custom authentication details.
 
 > [!WARNING]
-> The guidance in this section is an implementation detail of of the default <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationService%603> and subject to change without notice in upcoming releases of ASP.NET Core.
+> The guidance in this section is an implementation detail of the default <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationService%603> and subject to change without notice in upcoming releases of ASP.NET Core.
 
 ```typescript
 // .NET makes calls to an AuthenticationService object in the Window.
@@ -2284,7 +2284,7 @@ The following subsections explain how to replace:
 Create a JavaScript library to handle your custom authentication details.
 
 > [!WARNING]
-> The guidance in this section is an implementation detail of of the default <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationService%603> and subject to change without notice in upcoming releases of ASP.NET Core.
+> The guidance in this section is an implementation detail of the default <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationService%603> and subject to change without notice in upcoming releases of ASP.NET Core.
 
 ```typescript
 // .NET makes calls to an AuthenticationService object in the Window.
@@ -3507,7 +3507,7 @@ The following subsections explain how to replace:
 Create a JavaScript library to handle your custom authentication details.
 
 > [!WARNING]
-> The guidance in this section is an implementation detail of of the default <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationService%603> and subject to change without notice in upcoming releases of ASP.NET Core.
+> The guidance in this section is an implementation detail of the default <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationService%603> and subject to change without notice in upcoming releases of ASP.NET Core.
 
 ```typescript
 // .NET makes calls to an AuthenticationService object in the Window.
