@@ -22,7 +22,7 @@ The default model binders support most of the common .NET Core data types and sh
 
 ## Model binding review
 
-Model binding uses specific definitions for the types it operates on. A *simple type* is converted from a single string in the input. A *complex type* is converted from multiple input values. The framework determines the difference based on the existence of a `TypeConverter`. We recommended you create a type converter if you have a simple `string` -> `SomeType` mapping that doesn't require external resources.
+Model binding uses specific definitions for the types it operates on. A *simple type* is converted from a single string in the input. A *complex type* is converted from multiple input values. The framework determines the difference based on the existence of a `TypeConverter`. We recommend you create a type converter if you have a simple `string` -> `SomeType` mapping that doesn't require external resources.
 
 Before creating your own custom model binder, it's worth reviewing how existing model binders are implemented. Consider the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinder> which can be used to convert base64-encoded strings into byte arrays. The byte arrays are often stored as files or database BLOB fields.
 
@@ -147,7 +147,7 @@ The default model binders support most of the common .NET Core data types and sh
 
 ## Model binding review
 
-Model binding uses specific definitions for the types it operates on. A *simple type* is converted from a single string in the input. A *complex type* is converted from multiple input values. The framework determines the difference based on the existence of a `TypeConverter`. We recommended you create a type converter if you have a simple `string` -> `SomeType` mapping that doesn't require external resources.
+Model binding uses specific definitions for the types it operates on. A *simple type* is converted from a single string in the input. A *complex type* is converted from multiple input values. The framework determines the difference based on the existence of a `TypeConverter`. We recommend you create a type converter if you have a simple `string` -> `SomeType` mapping that doesn't require external resources.
 
 Before creating your own custom model binder, it's worth reviewing how existing model binders are implemented. Consider the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinder> which can be used to convert base64-encoded strings into byte arrays. The byte arrays are often stored as files or database BLOB fields.
 
