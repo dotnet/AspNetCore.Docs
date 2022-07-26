@@ -18,7 +18,7 @@ uid: fundamentals/servers/kestrel/http3
 > 
 > For more information on preview feature support, see [the preview features supported section](https://github.com/dotnet/designs/blob/main/accepted/2021/preview-features/preview-features.md#are-preview-features-supported).
 >
-> Apps configured to take advantage of HTTP/3 should be designed to also support HTTP/1.1 and HTTP/2. If issues are identified in HTTP/3, we recommended disabling HTTP/3 until the issues are resolved in a future release of ASP.NET Core. Significant issues are reported at the [Announcements GitHub repository](https://github.com/aspnet/Announcements/issues).
+> Apps configured to take advantage of HTTP/3 should be designed to also support HTTP/1.1 and HTTP/2. If issues are identified in HTTP/3, we recommend disabling HTTP/3 until the issues are resolved in a future release of ASP.NET Core. Significant issues are reported at the [Announcements GitHub repository](https://github.com/aspnet/Announcements/issues).
 
 ## HTTP/3 requirements
 
@@ -67,7 +67,7 @@ HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the `alt-svc` hea
 
 ## Localhost testing
 
-* Browsers don't allow self-signed certificates on HTTP/3 such as the Kestel development certificate.
+* Browsers don't allow self-signed certificates on HTTP/3 such as the Kestrel development certificate.
 * `HttpClient` can be used for localhost/loopback testing in .NET 6 or later. Extra configuration is required when using `HttpClient` to make an HTTP/3 request:
 
   * Set `HttpRequestMessage.Version` to 3.0, or
