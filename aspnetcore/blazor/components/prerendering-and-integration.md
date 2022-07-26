@@ -2083,10 +2083,10 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 
 1. Host the Blazor WebAssembly app in an ASP.NET Core app. A standalone Blazor WebAssembly app can be added to an ASP.NET Core solution, or you can use a hosted Blazor WebAssembly app created from the [Blazor WebAssembly project template](xref:blazor/tooling) with the hosted option:
 
-   * Visual Studio: In the **Additional information** dialog, select the **ASP.NET Core hosted** checkbox when creating the Blazor WebAssembly app. In this article's examples, the solution is named `BlazorHosted`.
+   * Visual Studio: In the **Additional information** dialog, select the **ASP.NET Core Hosted** checkbox when creating the Blazor WebAssembly app. In this article's examples, the solution is named `BlazorHosted`.
    * Visual Studio Code/.NET CLI command shell: `dotnet new blazorwasm -ho` (use the `-ho|--hosted` option). Use the `-o|--output {LOCATION}` option to create a folder for the solution and set the solution's project namespaces. In this article's examples, the solution is named `BlazorHosted` (`dotnet new blazorwasm -ho -o BlazorHosted`).
 
-   For the examples in this article, the client project's namespace is `BlazorHosted.Client`, and the server project's namespace is `BlazorHosted.Server`.
+   For the examples in this article, the hosted solution's name (assembly name) is `BlazorHosted`. The client project's namespace is `BlazorHosted.Client`, and the server project's namespace is `BlazorHosted.Server`.
 
 1. **Delete** the `wwwroot/index.html` file from the Blazor WebAssembly **`Client`** project.
 
@@ -2156,22 +2156,6 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      <script src="_framework/blazor.webassembly.js"></script>
      ```
 
-   In the `_Host.cshtml` file:
-
-   * Change the `Pages` namespace to that of the **`Client`** project. The `{APP NAMESPACE}` placeholder represents the namespace of the donor app's pages that provided the `_Host.cshtml` file:
-
-     Delete:
-
-     ```diff
-     - @namespace {APP NAMESPACE}.Pages
-     ```
-
-     Add:
-
-     ```razor
-     @namespace BlazorHosted.Client
-     ```
-
    * Update the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to prerender the root `App` component with <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>:
 
      Delete:
@@ -2189,7 +2173,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      > [!IMPORTANT]
      > Prerendering isn't supported for authentication endpoints (`/authentication/` path segment). For more information, see <xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication>.
 
-1. In endpoint mapping of the **`Server`** project in `Program.cs`, change the fallback from the `index.html` file to the `_Host.cshtml` page:
+1. In the `Program.cs` file of the **`Server`** project, change the fallback endpoint from the `index.html` file to the `_Host.cshtml` page:
 
    Delete:
 
@@ -2355,7 +2339,7 @@ Import static assets to the **`Server`** project from the donor project's `wwwro
 If the donor project is created from an ASP.NET Core project template and the files aren't modified, you can copy the entire `wwwroot` folder from the donor project into the **`Server`** project and remove the :::no-loc text="favicon"::: icon file.
 
 > [!WARNING]
-> Avoid placing the static asset into both the **`Client`** and **`Server`** `wwwroot` folders. If the same file is present in both folders, an exception is thrown because the static asset in each folder shares the same web root path. Therefore, host a static asset in either `wwwroot` folder, not both.
+> Avoid placing the static asset into both the **`Client`** and **`Server`** `wwwroot` folders. If the same file is present in both folders, an exception is thrown because the static assets share the same web root path. Therefore, host a static asset in either of the `wwwroot` folders, not both.
 
 After adopting the preceding configuration, embed Razor components into pages or views of the **`Server`** project. Use the guidance in the following sections of this article:
 
@@ -2469,37 +2453,14 @@ Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mo
 
 After [configuring the project](#configuration), use the guidance in the following sections depending on the project's requirements:
 
-* Routable components: For components that are directly routable from user requests. Follow this guidance when visitors should be able to make an HTTP request in their browser for a component with an [`@page`](xref:mvc/views/razor#page) directive.
+* For components that are directly routable from user requests. Follow this guidance when visitors should be able to make an HTTP request in their browser for a component with an [`@page`](xref:mvc/views/razor#page) directive.
   * [Use routable components in a Razor Pages app](#use-routable-components-in-a-razor-pages-app)
   * [Use routable components in an MVC app](#use-routable-components-in-an-mvc-app)
-* [Render components from a page or view](#render-components-from-a-page-or-view): For components that aren't directly routable from user requests. Follow this guidance when the app embeds components into existing pages and views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+* For components that aren't directly routable from user requests, see the [Render components from a page or view](#render-components-from-a-page-or-view) section. Follow this guidance when the app embeds components into existing pages and views with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
 
 ## Configuration
 
 Use the following guidance to integrate Razor components into pages and views of an existing Razor Pages or MVC app.
-
-1. In the project's layout file:
-
-   * Add the following `<base>` tag and <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component Tag Helper to the `<head>` element in `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
-
-     ```html
-     <base href="~/" />
-     <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
-     ```
-
-     The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:blazor/host-and-deploy/index#app-base-path> article.
-  
-     The <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is used to render head (`<head>`) content for page titles (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component) set by Razor components. For more information, see <xref:blazor/components/control-head-content>.
-
-   * Add a `<script>` tag for the `blazor.server.js` script immediately before the `Scripts` render section (`@await RenderSectionAsync(...)`) in the app's layout.
-
-     `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
-
-     ```html
-     <script src="_framework/blazor.server.js"></script>
-     ```
-
-     The framework adds the `blazor.server.js` script to the app. There's no need to manually add a `blazor.server.js` script file to the app.
 
 1. Add an imports file to the root folder of the project with the following content. Change the `{APP NAMESPACE}` placeholder to the namespace of the project.
 
@@ -2517,15 +2478,35 @@ Use the following guidance to integrate Razor components into pages and views of
    @using {APP NAMESPACE}
    ```
 
+1. In the project's layout file [`Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC)]:
+
+   * Add the following `<base>` tag and <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component Tag Helper to the `<head>` element:
+
+     ```cshtml
+     <base href="~/" />
+     <component type="typeof(Microsoft.AspNetCore.Components.Web.HeadOutlet)" 
+         render-mode="ServerPrerendered" />
+     ```
+
+     The `href` value (the *app base path*) in the preceding example assumes that the app resides at the root URL path (`/`). If the app is a sub-application, follow the guidance in the *App base path* section of the <xref:blazor/host-and-deploy/index#app-base-path> article.
+
+     The <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is used to render head (`<head>`) content for page titles (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component) set by Razor components. For more information, see <xref:blazor/components/control-head-content>.
+
+   * Add a `<script>` tag for the `blazor.server.js` script immediately before the `Scripts` render section (`@await RenderSectionAsync(...)`):
+
+     ```html
+     <script src="_framework/blazor.server.js"></script>
+     ```
+
+     The framework adds the `blazor.server.js` script to the app. There's no need to manually add a `blazor.server.js` script file to the app.
+
 1. Register the Blazor Server services in `Program.cs` where services are registered:
 
    ```csharp
    builder.Services.AddServerSideBlazor();
    ```
 
-1. Add the Blazor Hub endpoint to the endpoints of `Program.cs` where routes are mapped.
-
-   Place the following line after the call to `MapRazorPages` (Razor Pages) or `MapControllerRoute` (MVC):
+1. Add the Blazor Hub endpoint to the endpoints of `Program.cs` where routes are mapped. Place the following line after the call to `MapRazorPages` (Razor Pages) or `MapControllerRoute` (MVC):
 
    ```csharp
    app.MapBlazorHub();
@@ -2612,36 +2593,20 @@ To support routable Razor components in Razor Pages apps:
    </Router>
    ```
 
-1. Add a `_Host` page to the project with the following content.
+1. Add a `_Host` page to the project with the following content. Replace the `{APP NAMESPACE}` placeholder with the app's namespace.
 
    `Pages/_Host.cshtml`:
 
    ```cshtml
-   @page "/blazor"
-   @using Microsoft.AspNetCore.Components.Web
+   @page
    @namespace {APP NAMESPACE}.Pages
    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-   <!DOCTYPE html>
-   <html lang="en">
-   <head>
-       <meta charset="utf-8" />
-       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-       <base href="~/" />
-       <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-       <link href="css/site.css" rel="stylesheet" />
-       <link href="{APP NAMESPACE}.styles.css" rel="stylesheet" />
-       <link rel="icon" type="image/png" href="favicon.png"/>
-       <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
-       <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
-   </head>
-   <body>
-       <component type="typeof(App)" render-mode="ServerPrerendered" />
-
-       <script src="_framework/blazor.server.js"></script>
-   </body>
-   </html>
+   <component type="typeof(App)" render-mode="ServerPrerendered" />
    ```
+
+   > [!NOTE]
+   > The preceding example assumes that the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component and Blazor script (`_framework/blazor.server.js`) are rendered by the app's layout. For more information, see the [Configuration](#configuration) section.
   
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
 
@@ -2711,35 +2676,19 @@ To support routable Razor components in MVC apps:
    </Router>
    ```
 
-1. Add a `_Host` view to the project with the following content.
+1. Add a `_Host` view to the project with the following content. An `{APP NAMESPACE}` placeholder appears twice in the following example. Replace each `{APP NAMESPACE}` placeholder with the app's namespace.
 
    `Views/Home/_Host.cshtml`:
 
    ```cshtml
-   @using Microsoft.AspNetCore.Components.Web
    @namespace {APP NAMESPACE}.Pages
    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-   <!DOCTYPE html>
-   <html lang="en">
-   <head>
-       <meta charset="utf-8" />
-       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-       <base href="~/" />
-       <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
-       <link href="css/site.css" rel="stylesheet" />
-       <link href="{APP NAMESPACE}.styles.css" rel="stylesheet" />
-       <link rel="icon" type="image/png" href="favicon.png"/>
-       <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
-       <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
-   </head>
-   <body>
-       <component type="typeof(App)" render-mode="ServerPrerendered" />
-
-       <script src="_framework/blazor.server.js"></script>
-   </body>
-   </html>
+   <component type="typeof(App)" render-mode="ServerPrerendered" />
    ```
+
+   > [!NOTE]
+   > The preceding example assumes that the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component and Blazor script (`_framework/blazor.server.js`) are rendered by the app's layout. For more information, see the [Configuration](#configuration) section.
 
    <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configures whether the `App` component:
 
