@@ -2478,7 +2478,7 @@ Use the following guidance to integrate Razor components into pages and views of
    @using {APP NAMESPACE}
    ```
 
-1. In the project's layout file [`Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC)]:
+1. In the project's layout file (`Pages/Shared/_Layout.cshtml` in Razor Pages apps or `Views/Shared/_Layout.cshtml` in MVC apps):
 
    * Add the following `<base>` tag and <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component Tag Helper to the `<head>` element:
 
@@ -2499,6 +2499,9 @@ Use the following guidance to integrate Razor components into pages and views of
      ```
 
      The framework adds the `blazor.server.js` script to the app. There's no need to manually add a `blazor.server.js` script file to the app.
+
+   > [!NOTE]
+   > Typically, the layout loads via a `_ViewStart.cshtml` file.
 
 1. Register the Blazor Server services in `Program.cs` where services are registered:
 
@@ -2599,7 +2602,6 @@ To support routable Razor components in Razor Pages apps:
 
    ```cshtml
    @page
-   @namespace {APP NAMESPACE}.Pages
    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
    <component type="typeof(App)" render-mode="ServerPrerendered" />
@@ -2676,12 +2678,11 @@ To support routable Razor components in MVC apps:
    </Router>
    ```
 
-1. Add a `_Host` view to the project with the following content. An `{APP NAMESPACE}` placeholder appears twice in the following example. Replace each `{APP NAMESPACE}` placeholder with the app's namespace.
+1. Add a `_Host` view to the project with the following content. Replace the `{APP NAMESPACE}` placeholder with the app's namespace.
 
    `Views/Home/_Host.cshtml`:
 
    ```cshtml
-   @namespace {APP NAMESPACE}.Pages
    @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
    <component type="typeof(App)" render-mode="ServerPrerendered" />
