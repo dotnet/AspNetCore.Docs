@@ -175,6 +175,7 @@ ASP.NET Core doesn't produce a standardized error payload when an unhandled exce
 
 ## Additional resources
 
+* [How to Use ModelState Validation in ASP.NET Core Web API](https://code-maze.com/aspnetcore-modelstate-validation-web-api/)
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/handle-errors/samples) ([How to download](xref:index#how-to-download-a-sample))
 
 :::moniker-end
