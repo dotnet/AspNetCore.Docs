@@ -61,8 +61,8 @@ Usage: `dotnet user-jwts create [options]`
 | --scope | A scope claim to add to the JWT. Specify once for each scope. |
 | --role | A role claim to add to the JWT. Specify once for each role. |
 | --claim | Claims to add to the JWT. Specify once for each claim in the format "name=value". |
-| --not-before | The UTC date & time the JWT should not be valid before in the format |'yyyy-MM-dd [[HH:mm[[:ss]]]]'. Defaults to the date & time the JWT is created.
-| --expires-on | The UTC date & time the JWT should expire in the format 'yyyy-MM-dd [[[ |[HH:mm]]:ss]]'. Defaults to 6 months after the --not-before date. Do not use this option in conjunction with the --valid-for option.
+| --not-before | The UTC date & time the JWT should not be valid before in the format 'yyyy-MM-dd [[HH:mm[[:ss]]]]'. Defaults to the date & time the JWT is created. |
+| --expires-on | The UTC date & time the JWT should expire in the format 'yyyy-MM-dd [[[ |[HH:mm]]:ss]]'. Defaults to 6 months after the --not-before date. Do not use this option in conjunction with the --valid-for option. |
 | --valid-for | The period the JWT should expire after. Specify using a number followed by duration type like 'd' for days, 'h' for hours, 'm' for minutes, and 's' for seconds, e.g. 365d'. Do not use this option in conjunction with the --expires-on option. |
 | -o\|--output | The format to use for displaying output from the command. Can be one of 'default', 'token', or 'json'. |
 | -h\|--help     Show help information |
@@ -130,12 +130,12 @@ curl -i -H "Authorization: Bearer {token}" http://localhost:5000/secret
 
 Where `{token}` previously generated.
 
-### Create a token for a specific user
+### Create a token for a specific user and scope
 
 The following command creates a JWT for a user named ``:
 
 ```dotnetcli
-dotnet user-jwts create --name MyTestUser
+dotnet user-jwts create --name MyTestUser --scope "myapi:secrets"
 ```
 
 The preceding command has output similar to the following:
@@ -143,6 +143,7 @@ The preceding command has output similar to the following:
 ```dotnetcli
 New JWT saved with ID '43e0b748'.
 Name: MyTestUser
+Scopes: myapi:secrets
 
 Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.{Remaining token deleted}
 ```
