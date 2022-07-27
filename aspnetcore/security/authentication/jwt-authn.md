@@ -134,7 +134,7 @@ Where `{token}` is the previously generated JWT.
 
 See [Create](#create) in this topic for supported create options.
 
-The following command creates a JWT for a user named ``:
+The following command creates a JWT for a user named `MyTestUser`:
 
 ```dotnetcli
 dotnet user-jwts create --name MyTestUser --scope "myapi:secrets"
@@ -152,4 +152,4 @@ Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.{Remaining token deleted}
 
 The preceding token can be used to test the `/secret2` endpoint in the following code:
 
-:::code language="csharp" source="~/security/authentication/jwt-authn/samples/MyJWT/Program.cs" id="snippet_1" highlight="11-12":::
+:::code language="csharp" source="~/security/authentication/jwt-authn/samples/MyJWT/Program.cs" id="snippet_2" highlight="11-12":::
