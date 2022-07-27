@@ -40,12 +40,12 @@ The MSBuild project or solution to apply a command on. If a project or solution 
 
 | Command  | Description |
 | ------------- | ------------- |
-| clear  |  Delete all issued JWTs for a project |
-| create | Issue a new JSON Web Token   |
-| delete | Delete a given JWT |
-| key | Display or reset the signing key used to issue JWTs |
-| list | Lists the JWTs issued for the project |
-| print | Print the details of a given JWT |
+| clear  |  Delete all issued JWTs for a project. |
+| create | Issue a new JSON Web Token.   |
+| delete | Delete a given JWT. |
+| key | Display or reset the signing key used to issue JWTs. |
+| list | Lists the JWTs issued for the project. |
+| print | Print the details of a given JWT. |
 
 ### Create
 
@@ -152,4 +152,4 @@ Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.{Remaining token deleted}
 
 The preceding token can be used to test the `/secret2` endpoint in the following code:
 
-:::code language="csharp" source="~/security/authentication/jwt-authn/samples/MyJWT/Program.cs" id="snippet_1" highlight=13-14:::
+:::code language="csharp" source="~/security/authentication/jwt-authn/samples/MyJWT/Program.cs" id="snippet_1" highlight="13-14":::
