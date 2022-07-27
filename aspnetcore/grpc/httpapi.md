@@ -67,7 +67,7 @@ Traditional gRPC over HTTP/2 supports streaming in all directions. Transcoding i
 
 Server streaming methods use [line-delimited JSON](https://wikipedia.org/wiki/JSON_streaming#Line-delimited_JSON). Each message written using `WriteAsync` is serialized to JSON and followed by a new line.
 
-The following server streaming method writes 3 messages:
+The following server streaming method writes three messages:
 
 ```csharp
 public override async Task StreamingFromServer(ExampleRequest request,
@@ -81,7 +81,7 @@ public override async Task StreamingFromServer(ExampleRequest request,
 }
 ```
 
-The client receives 3 line-delimited JSON objects:
+The client receives three line-delimited JSON objects:
 
 ```json
 {"Text":"Message 1"}
