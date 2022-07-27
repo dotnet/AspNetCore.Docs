@@ -132,6 +132,8 @@ Where `{token}` previously generated.
 
 ### Create a token for a specific user and scope
 
+See [Create](#create) in this topic for supported create options.
+
 The following command creates a JWT for a user named ``:
 
 ```dotnetcli
