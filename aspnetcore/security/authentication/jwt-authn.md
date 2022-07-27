@@ -22,19 +22,38 @@ The `dotnet user-jwts` command line tool can create and manage app specific loca
 ## Synopsis
 
 ```dotnetcli
+dotnet user-jwts [<PROJECT>] [command]
+dotnet user-jwts [command] -h|--help
+```
+
+## Description
+
+Create and manages project specific specific local JSON Web Tokens.
+
+## Arguments
+
+`PROJECT | SOLUTION`
+
+The MSBuild project to apply a command on. If a project is not specified, MSBuild searches the current working directory for a file that has a file extension that ends in *proj* and uses that file.
+
+<!-- Once solutions are supported delete the preceding and uncomment this section 
+
+```dotnetcli
 dotnet user-jwts [<PROJECT>|<SOLUTION>] [command]
 dotnet user-jwts [command] -h|--help
 ```
 
 ## Description
 
-Create and manages app specific local JSON Web Tokens.
+Create and manages project specific specific local JSON Web Tokens.
 
 ## Arguments
 
 `PROJECT | SOLUTION`
 
 The MSBuild project or solution to apply a command on. If a project or solution file is not specified, MSBuild searches the current working directory for a file that has a file extension that ends in *proj* or *sln*, and uses that file.
+
+-->
 
 ## Commands
 
@@ -103,32 +122,31 @@ File system path:
 
 ### Create a JWT
 
-The following commands create a local JWT:
+The following command create a local JWT:
 
 ```dotnetcli
-dotnet user-secrets init
 dotnet user-jwts create
 ```
 
-In a future version, `dotnet user-jwts create` will call `dotnet user-secrets init`.
-
-The preceding command creates a JWT and updates the project’s `appsettings.Development.json` file with the JSON similar to the following:
+The preceding command creates a JWT and updates the project’s `appsettings.Development.json` file with JSON similar to the following:
 
 :::code language="csharp" source="~/security/authentication/jwt-authn/samples/MyJWT/appsettings.Development.json" highlight="8-21":::
 
-Copy the JWT and the `ID` created in the preceding command. The following command displays  JWT security information, including expiration, scopes, roles, token header and payload, and the compact token:
-
-```dotnetcli
-dotnet user-jwts print {ID} --show-all
-```
-
-Use a tool like Curl to test `/secret`:
+Copy the JWT and the `ID` created in the preceding command. Use a tool like Curl to test `/secret`:
 
 ```dotnetcli
 curl -i -H "Authorization: Bearer {token}" https://localhost:{port}/secret
 ```
 
 Where `{token}` is the previously generated JWT.
+
+### Display JWT security information
+
+The following command displays the JWT security information, including expiration, scopes, roles, token header and payload, and the compact token:
+
+```dotnetcli
+dotnet user-jwts print {ID} --show-all
+```
 
 ### Create a token for a specific user and scope
 
