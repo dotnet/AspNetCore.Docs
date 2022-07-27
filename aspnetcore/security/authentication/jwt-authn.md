@@ -1,7 +1,7 @@
 ---
 title: JWT authentication and 
 author: rick-anderson
-description: Learn how to set up two-factor authentication (2FA) with an ASP.NET Core app.
+description: Learn how to set up manage JSON Web Tokens in development with dotnet user-jwts
 monikerRange: '>= aspnetcore-7.0'
 ms.author: riande
 ms.date: 09/22/2018
@@ -60,3 +60,34 @@ dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --prerelease
 Replace the contents of `Program.cs` with the following code:
 
 :::code language="csharp" source="~/security/authentication/jwt-authn/samples/MyJWT/Program.cs" :::
+
+In the preceding code, a GET request to `/secret` returns an `401 Unauthorized` error. A production app might get the JWT from a [Security token service](/azure/active-directory/develop/security-tokens) (STS), perhaps in response to logging in via a set of credentials. Ror the purpose of working with the API during local development, the `dotnet user-jwts` command line tool can be used to create and manage app-specific local JWTs.
+
+The `user-jwts` tool is similar in concept to the  [user-secrets](xref:security/app-secrets) tool, in that it can be used to manage values for the app that are only valid for the developer on the local machine. In fact, the user-jwts tool utilizes the user-secrets infrastructure to manage the key that the JWTs will be signed with, ensuring it’s stored safely in the user profile.
+
+The `user-jwts` tool hides implementation details, such as where and how the values are stored. The tool can be used without knowing the implementation details. The values are stored in a JSON file in the local machine's user profile folder:
+
+# [Windows](#tab/windows)
+
+File system path:
+
+`%APPDATA%\Microsoft\UserSecrets\<secrets_GUID>\secrets.json`
+
+# [Linux / macOS](#tab/linux+macos)
+
+File system path:
+
+`~/.microsoft/usersecrets/<secrets_GUID>/secrets.json`
+
+---
+
+### Create a JWT
+
+The following commands create a local JWT:
+
+```dotnetcli
+dotnet user-secrets init
+dotnet user-jwts create
+```
+
+First, we have to initialize the user secrets system for our project by calling dotnet user-secrets init and dotnet user-secrets list (note this will be done for you automatically by dotnet user-jwts in a future preview release):
