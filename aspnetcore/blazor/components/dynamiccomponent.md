@@ -90,7 +90,7 @@ In the following example, a Razor component renders a component based on the use
 In the preceding example:
 
 * Component names are used as the option values using the [`nameof` operator](/dotnet/csharp/language-reference/operators/nameof), which returns component names as constant strings.
-* The namespace of the app is `BlazorSample`.
+* The namespace of the app is `BlazorSample`. Change the namespace to match your app's namespace.
 
 ## Pass parameters
 
@@ -118,7 +118,7 @@ The following `RocketLabWithWindowSeat` component (`Shared/RocketLabWithWindowSe
 In the following example:
 
 * Only the `RocketLabWithWindowSeat` component's parameter for a window seat (`WindowSeat`) receives the value of the **`Window Seat`** checkbox.
-* The namespace of the app is `BlazorSample`.
+* The namespace of the app is `BlazorSample`. Change the namespace to match your app's namespace.
 * The dynamically-rendered components are shared components in the app's `Shared` folder:
   * Shown in this article section: `RocketLabWithWindowSeat` (`Shared/RocketLabWithWindowSeat.razor`)
   * Components shown in the [Example](#example) section earlier in this article:
@@ -134,12 +134,29 @@ In the following example:
 
 Event callbacks (<xref:Microsoft.AspNetCore.Components.EventCallback>) can be passed to a <xref:Microsoft.AspNetCore.Components.DynamicComponent> in its parameter dictionary.
 
-> [!NOTE]
-> The example in this section is an extension of the full example shown in the *Pass parameters* section of this article.
+`ComponentMetadata.cs`:
 
-Implement an event callback parameter (<xref:Microsoft.AspNetCore.Components.EventCallback>) within each dynamically-rendered component:
+```csharp
+public class ComponentMetadata
+{
+    public string? Name { get; set; }
+    public Dictionary<string, object> Parameters { get; set; } =
+        new Dictionary<string, object>();
+}
+```
+
+Implement an event callback parameter (<xref:Microsoft.AspNetCore.Components.EventCallback>) within each dynamically-rendered component.
+
+`Shared/RocketLab2.razor`:
 
 ```razor
+<h2>Rocket Lab®</h2>
+
+<p>
+    Rocket Lab is a registered trademark of
+    <a href="https://www.rocketlabusa.com/">Rocket Lab USA Inc.</a>
+</p>
+
 <button @onclick="OnClickCallback">
     Trigger a Parent component method
 </button>
@@ -150,88 +167,194 @@ Implement an event callback parameter (<xref:Microsoft.AspNetCore.Components.Eve
 }
 ```
 
-In the parent component's `@code` block, implement the callback method. The following example, the `ShowDTMessage` method assigns a string with the current time to `message`, and the value of `message` is rendered:
+`Shared/SpaceX2.razor`:
 
 ```razor
-...
+<h2>SpaceX®</h2>
 
-<p>@message</p>
+<p>
+    SpaceX is a registered trademark of
+    <a href="https://www.spacex.com/">Space Exploration Technologies Corp.</a>
+</p>
+
+<button @onclick="OnClickCallback">
+    Trigger a Parent component method
+</button>
 
 @code {
-    ...
-    private string? message;
-    ...
-    private void ShowDTMessage(MouseEventArgs e) => 
-        message = $"The current DT is: {DateTime.Now}.";
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
 }
 ```
 
-The parent component passes the parameter with:
+`Shared/UnitedLaunchAlliance2.razor`:
 
-* A `string` key equal to the callback method name, `OnClickCallback` in the following example.
-* An `object` value created by <xref:Microsoft.AspNetCore.Components.EventCallbackFactory.Create%2A?displayProperty=nameWithType> for the parent callback method, `ShowDTMessage` in the following example.
+```razor
+<h2>United Launch Alliance®</h2>
 
-```csharp
-private Dictionary<string, ComponentMetadata> components =
-    new()
+<p>
+    United Launch Alliance and ULA are registered trademarks of
+    <a href="https://www.ulalaunch.com/">United Launch Alliance, LLC</a>.
+</p>
+
+<button @onclick="OnClickCallback">
+    Trigger a Parent component method
+</button>
+
+@code {
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
+}
+```
+
+`Shared/VirginGalactic2.razor`:
+
+```razor
+<h2>Virgin Galactic®</h2>
+
+<p>
+    Virgin Galactic is a registered trademark of
+    <a href="https://www.virgingalactic.com/">Galactic Enterprises, LLC</a>.
+</p>
+
+<button @onclick="OnClickCallback">
+    Trigger a Parent component method
+</button>
+
+@code {
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
+}
+```
+
+In the following parent component example, the `ShowDTMessage` method assigns a string with the current time to `message`, and the value of `message` is rendered.
+
+The parent component passes the callback method, `ShowDTMessage` in the parameter dictionary:
+
+* The `string` key is the callback method's name, `OnClickCallback`.
+* The `object` value is created by <xref:Microsoft.AspNetCore.Components.EventCallbackFactory.Create%2A?displayProperty=nameWithType> for the parent callback method, `ShowDTMessage`. Note that the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) isn't supported in C# fields, so a C# property is used for the parameter dictionary.
+
+**For the following component, change the namespace name of `BlazorSample` in the `OnDropdownChange` method to match your app's namespace.**
+
+`Pages/DynamicComponentExample3.razor`:
+
+```razor
+@page "/dynamiccomponent-example-3"
+
+<h1><code>DynamicComponent</code> Component Example 3</h1>
+
+<p>
+    <label>
+        Select your transport:
+        <select @onchange="OnDropdownChange">
+            <option value="">Select a value</option>
+            <option value="@nameof(RocketLab2)">Rocket Lab</option>
+            <option value="@nameof(SpaceX2)">SpaceX</option>
+            <option value="@nameof(UnitedLaunchAlliance2)">ULA</option>
+            <option value="@nameof(VirginGalactic2)">Virgin Galactic</option>
+        </select>
+    </label>
+</p>
+
+@if (selectedType is not null)
+{
+    <div class="border border-primary my-1 p-1">
+        <DynamicComponent Type="@selectedType"
+            Parameters="@Components[selectedType.Name].Parameters" />
+    </div>
+}
+
+<p>
+    @message
+</p>
+
+@code {
+    private Type? selectedType;
+    private string? message;
+
+    private Dictionary<string, ComponentMetadata> Components
     {
+        get
         {
-            "RocketLabWithWindowSeat",
-            new ComponentMetadata
+            return new Dictionary<string, ComponentMetadata>()
             {
-                Name = "Rocket Lab with Window Seat",
-                Parameters = new()
                 {
-                    { "WindowSeat", false },
-                    { "OnClickCallback", 
-                          EventCallback.Factory.Create<MouseEventArgs>(
-                              this, ShowDTMessage) }
-                }
-            }
-        },
-        {
-            "VirginGalactic",
-            new ComponentMetadata
-            {
-                Name = "Virgin Galactic",
-                Parameters = new()
+                    "RocketLab2",
+                    new ComponentMetadata
+                    {
+                        Name = "Rocket Lab",
+                        Parameters =
+                            new()
+                            {
+                                {
+                                    "OnClickCallback",
+                                    EventCallback.Factory.Create<MouseEventArgs>(
+                                        this, ShowDTMessage)
+                                }
+                            }
+                    }
+                },
                 {
-                    { "WindowSeat", true },
-                    { "OnClickCallback", 
-                        EventCallback.Factory.Create<MouseEventArgs>(
-                            this, ShowDTMessage) }
-                }
-            }
-        },
-        {
-            "UnitedLaunchAlliance",
-            new ComponentMetadata
-            {
-                Name = "ULA",
-                Parameters = new()
+                    "VirginGalactic2",
+                    new ComponentMetadata
+                    {
+                        Name = "Virgin Galactic",
+                        Parameters =
+                            new()
+                            {
+                                {
+                                    "OnClickCallback",
+                                    EventCallback.Factory.Create<MouseEventArgs>(
+                                        this, ShowDTMessage)
+                                }
+                            }
+                    }
+                },
                 {
-                    { "WindowSeat", true },
-                    { "OnClickCallback", 
-                          EventCallback.Factory.Create<MouseEventArgs>(
-                              this, ShowDTMessage) }
-                }
-            }
-        },
-        {
-            "SpaceX",
-            new ComponentMetadata
-            {
-                Name = "SpaceX",
-                Parameters = new()
+                    "UnitedLaunchAlliance2",
+                    new ComponentMetadata
+                    {
+                        Name = "ULA",
+                        Parameters =
+                            new()
+                            {
+                                {
+                                    "OnClickCallback",
+                                    EventCallback.Factory.Create<MouseEventArgs>(
+                                        this, ShowDTMessage)
+                                }
+                            }
+                    }
+                },
                 {
-                    { "WindowSeat", true },
-                    { "OnClickCallback", 
-                          EventCallback.Factory.Create<MouseEventArgs>(
-                              this, ShowDTMessage) }
+                    "SpaceX2",
+                    new ComponentMetadata
+                    {
+                        Name = "SpaceX",
+                        Parameters =
+                            new()
+                            {
+                                {
+                                    "OnClickCallback",
+                                    EventCallback.Factory.Create<MouseEventArgs>(
+                                        this, ShowDTMessage)
+                                }
+                            }
+                    }
                 }
-            }
+            };
         }
-    };
+    }
+
+    private void OnDropdownChange(ChangeEventArgs e)
+    {
+        selectedType = e.Value?.ToString()?.Length > 0 ?
+            Type.GetType($"BlazorSample.Shared.{e.Value}") : null;
+    }
+
+    private void ShowDTMessage(MouseEventArgs e) =>
+        message = $"The current DT is: {DateTime.Now}.";
+}
 ```
 
 ## Avoid catch-all parameters
@@ -324,7 +447,7 @@ In the following example, a Razor component renders a component based on the use
 In the preceding example:
 
 * Component names are used as the option values using the [`nameof` operator](/dotnet/csharp/language-reference/operators/nameof), which returns component names as constant strings.
-* The namespace of the app is `BlazorSample`.
+* The namespace of the app is `BlazorSample`. Change the namespace to match your app's namespace.
 
 ## Pass parameters
 
@@ -352,7 +475,7 @@ The following `RocketLabWithWindowSeat` component (`Shared/RocketLabWithWindowSe
 In the following example:
 
 * Only the `RocketLabWithWindowSeat` component's parameter for a window seat (`WindowSeat`) receives the value of the **`Window Seat`** checkbox.
-* The namespace of the app is `BlazorSample`.
+* The namespace of the app is `BlazorSample`. Change the namespace to match your app's namespace.
 * The dynamically-rendered components are shared components in the app's `Shared` folder:
   * Shown in this article section: `RocketLabWithWindowSeat` (`Shared/RocketLabWithWindowSeat.razor`)
   * Components shown in the [Example](#example) section earlier in this article:
@@ -368,12 +491,29 @@ In the following example:
 
 Event callbacks (<xref:Microsoft.AspNetCore.Components.EventCallback>) can be passed to a <xref:Microsoft.AspNetCore.Components.DynamicComponent> in its parameter dictionary.
 
-> [!NOTE]
-> The example in this section is an extension of the full example shown in the *Pass parameters* section of this article.
+`ComponentMetadata.cs`:
 
-Implement an event callback parameter (<xref:Microsoft.AspNetCore.Components.EventCallback>) within each dynamically-rendered component:
+```csharp
+public class ComponentMetadata
+{
+    public string? Name { get; set; }
+    public Dictionary<string, object> Parameters { get; set; } =
+        new Dictionary<string, object>();
+}
+```
+
+Implement an event callback parameter (<xref:Microsoft.AspNetCore.Components.EventCallback>) within each dynamically-rendered component.
+
+`Shared/RocketLab2.razor`:
 
 ```razor
+<h2>Rocket Lab®</h2>
+
+<p>
+    Rocket Lab is a registered trademark of
+    <a href="https://www.rocketlabusa.com/">Rocket Lab USA Inc.</a>
+</p>
+
 <button @onclick="OnClickCallback">
     Trigger a Parent component method
 </button>
@@ -384,88 +524,194 @@ Implement an event callback parameter (<xref:Microsoft.AspNetCore.Components.Eve
 }
 ```
 
-In the parent component's `@code` block, implement the callback method. The following example, the `ShowDTMessage` method assigns a string with the current time to `message`, and the value of `message` is rendered:
+`Shared/SpaceX2.razor`:
 
 ```razor
-...
+<h2>SpaceX®</h2>
 
-<p>@message</p>
+<p>
+    SpaceX is a registered trademark of
+    <a href="https://www.spacex.com/">Space Exploration Technologies Corp.</a>
+</p>
+
+<button @onclick="OnClickCallback">
+    Trigger a Parent component method
+</button>
 
 @code {
-    ...
-    private string? message;
-    ...
-    private void ShowDTMessage(MouseEventArgs e) => 
-        message = $"The current DT is: {DateTime.Now}.";
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
 }
 ```
 
-The parent component passes the parameter with:
+`Shared/UnitedLaunchAlliance2.razor`:
 
-* A `string` key equal to the callback method name, `OnClickCallback` in the following example.
-* An `object` value created by <xref:Microsoft.AspNetCore.Components.EventCallbackFactory.Create%2A?displayProperty=nameWithType> for the parent callback method, `ShowDTMessage` in the following example.
+```razor
+<h2>United Launch Alliance®</h2>
 
-```csharp
-private Dictionary<string, ComponentMetadata> components =
-    new()
+<p>
+    United Launch Alliance and ULA are registered trademarks of
+    <a href="https://www.ulalaunch.com/">United Launch Alliance, LLC</a>.
+</p>
+
+<button @onclick="OnClickCallback">
+    Trigger a Parent component method
+</button>
+
+@code {
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
+}
+```
+
+`Shared/VirginGalactic2.razor`:
+
+```razor
+<h2>Virgin Galactic®</h2>
+
+<p>
+    Virgin Galactic is a registered trademark of
+    <a href="https://www.virgingalactic.com/">Galactic Enterprises, LLC</a>.
+</p>
+
+<button @onclick="OnClickCallback">
+    Trigger a Parent component method
+</button>
+
+@code {
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
+}
+```
+
+In the following parent component example, the `ShowDTMessage` method assigns a string with the current time to `message`, and the value of `message` is rendered.
+
+The parent component passes the callback method, `ShowDTMessage` in the parameter dictionary:
+
+* The `string` key is the callback method's name, `OnClickCallback`.
+* The `object` value is created by <xref:Microsoft.AspNetCore.Components.EventCallbackFactory.Create%2A?displayProperty=nameWithType> for the parent callback method, `ShowDTMessage`. Note that the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) isn't supported in C# fields, so a C# property is used for the parameter dictionary.
+
+**For the following component, change the namespace name of `BlazorSample` in the `OnDropdownChange` method to match your app's namespace.**
+
+`Pages/DynamicComponentExample3.razor`:
+
+```razor
+@page "/dynamiccomponent-example-3"
+
+<h1><code>DynamicComponent</code> Component Example 3</h1>
+
+<p>
+    <label>
+        Select your transport:
+        <select @onchange="OnDropdownChange">
+            <option value="">Select a value</option>
+            <option value="@nameof(RocketLab2)">Rocket Lab</option>
+            <option value="@nameof(SpaceX2)">SpaceX</option>
+            <option value="@nameof(UnitedLaunchAlliance2)">ULA</option>
+            <option value="@nameof(VirginGalactic2)">Virgin Galactic</option>
+        </select>
+    </label>
+</p>
+
+@if (selectedType is not null)
+{
+    <div class="border border-primary my-1 p-1">
+        <DynamicComponent Type="@selectedType"
+            Parameters="@Components[selectedType.Name].Parameters" />
+    </div>
+}
+
+<p>
+    @message
+</p>
+
+@code {
+    private Type? selectedType;
+    private string? message;
+
+    private Dictionary<string, ComponentMetadata> Components
     {
+        get
         {
-            "RocketLabWithWindowSeat",
-            new ComponentMetadata
+            return new Dictionary<string, ComponentMetadata>()
             {
-                Name = "Rocket Lab with Window Seat",
-                Parameters = new()
                 {
-                    { "WindowSeat", false },
-                    { "OnClickCallback", 
-                          EventCallback.Factory.Create<MouseEventArgs>(
-                              this, ShowDTMessage) }
-                }
-            }
-        },
-        {
-            "VirginGalactic",
-            new ComponentMetadata
-            {
-                Name = "Virgin Galactic",
-                Parameters = new()
+                    "RocketLab2",
+                    new ComponentMetadata
+                    {
+                        Name = "Rocket Lab",
+                        Parameters =
+                            new()
+                            {
+                                {
+                                    "OnClickCallback",
+                                    EventCallback.Factory.Create<MouseEventArgs>(
+                                        this, ShowDTMessage)
+                                }
+                            }
+                    }
+                },
                 {
-                    { "WindowSeat", true },
-                    { "OnClickCallback", 
-                        EventCallback.Factory.Create<MouseEventArgs>(
-                            this, ShowDTMessage) }
-                }
-            }
-        },
-        {
-            "UnitedLaunchAlliance",
-            new ComponentMetadata
-            {
-                Name = "ULA",
-                Parameters = new()
+                    "VirginGalactic2",
+                    new ComponentMetadata
+                    {
+                        Name = "Virgin Galactic",
+                        Parameters =
+                            new()
+                            {
+                                {
+                                    "OnClickCallback",
+                                    EventCallback.Factory.Create<MouseEventArgs>(
+                                        this, ShowDTMessage)
+                                }
+                            }
+                    }
+                },
                 {
-                    { "WindowSeat", true },
-                    { "OnClickCallback", 
-                          EventCallback.Factory.Create<MouseEventArgs>(
-                              this, ShowDTMessage) }
-                }
-            }
-        },
-        {
-            "SpaceX",
-            new ComponentMetadata
-            {
-                Name = "SpaceX",
-                Parameters = new()
+                    "UnitedLaunchAlliance2",
+                    new ComponentMetadata
+                    {
+                        Name = "ULA",
+                        Parameters =
+                            new()
+                            {
+                                {
+                                    "OnClickCallback",
+                                    EventCallback.Factory.Create<MouseEventArgs>(
+                                        this, ShowDTMessage)
+                                }
+                            }
+                    }
+                },
                 {
-                    { "WindowSeat", true },
-                    { "OnClickCallback", 
-                          EventCallback.Factory.Create<MouseEventArgs>(
-                              this, ShowDTMessage) }
+                    "SpaceX2",
+                    new ComponentMetadata
+                    {
+                        Name = "SpaceX",
+                        Parameters =
+                            new()
+                            {
+                                {
+                                    "OnClickCallback",
+                                    EventCallback.Factory.Create<MouseEventArgs>(
+                                        this, ShowDTMessage)
+                                }
+                            }
+                    }
                 }
-            }
+            };
         }
-    };
+    }
+
+    private void OnDropdownChange(ChangeEventArgs e)
+    {
+        selectedType = e.Value?.ToString()?.Length > 0 ?
+            Type.GetType($"BlazorSample.Shared.{e.Value}") : null;
+    }
+
+    private void ShowDTMessage(MouseEventArgs e) =>
+        message = $"The current DT is: {DateTime.Now}.";
+}
 ```
 
 ## Avoid catch-all parameters
