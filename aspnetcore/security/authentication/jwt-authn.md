@@ -62,7 +62,7 @@ Usage: `dotnet user-jwts create [options]`
 | --role | A role claim to add to the JWT. Specify once for each role. |
 | --claim | Claims to add to the JWT. Specify once for each claim in the format "name=value". |
 | --not-before | The UTC date & time the JWT should not be valid before in the format 'yyyy-MM-dd [[HH:mm[[:ss]]]]'. Defaults to the date & time the JWT is created. |
-| --expires-on | The UTC date & time the JWT should expire in the format 'yyyy-MM-dd [[[ |[HH:mm]]:ss]]'. Defaults to 6 months after the --not-before date. Do not use this option in conjunction with the --valid-for option. |
+| --expires-on | The UTC date & time the JWT should expire in the format 'yyyy-MM-dd [[[ [HH:mm]]:ss]]'. Defaults to 6 months after the --not-before date. Do not use this option in conjunction with the --valid-for option. |
 | --valid-for | The period the JWT should expire after. Specify using a number followed by duration type like 'd' for days, 'h' for hours, 'm' for minutes, and 's' for seconds, e.g. 365d'. Do not use this option in conjunction with the --expires-on option. |
 | -o\|--output | The format to use for displaying output from the command. Can be one of 'default', 'token', or 'json'. |
 | -h\|--help     Show help information |
@@ -149,3 +149,7 @@ Scopes: myapi:secrets
 
 Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.{Remaining token deleted}
 ```
+
+The preceding token can be used to test the `/secret2` endpoint in the following code:
+
+:::code language="csharp" source="~/security/authentication/jwt-authn/samples/MyJWT/Program.cs" id="snippet_1" highlight=13-14:::
