@@ -618,7 +618,7 @@ In an ASP.NET Core MVC or Razor Pages app created with individual user accounts,
 @model LoginViewModel
 ```
 
-The class generated inherits from `RazorPage<dynamic>`:
+The class generated inherits from `RazorPage<LoginViewModel>`:
 
 ```csharp
 public class _Views_Account_Login_cshtml : RazorPage<LoginViewModel>
