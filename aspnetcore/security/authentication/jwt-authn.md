@@ -79,7 +79,7 @@ dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --prerelease
 
 Replace the contents of `Program.cs` with the following code:
 
-:::code language="csharp" source="~/security/authentication/jwt-authn/samples/MyJWT/Program.cs" name="snippet_1":::
+:::code language="csharp" source="~/security/authentication/jwt-authn/samples/MyJWT/Program.cs" id="snippet_1":::
 
 In the preceding code, a GET request to `/secret` returns an `401 Unauthorized` error. A production app might get the JWT from a [Security token service](/azure/active-directory/develop/security-tokens) (STS), perhaps in response to logging in via a set of credentials. Ror the purpose of working with the API during local development, the `dotnet user-jwts` command line tool can be used to create and manage app-specific local JWTs.
 
