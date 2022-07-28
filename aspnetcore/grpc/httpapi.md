@@ -97,9 +97,9 @@ Transcoding currently doesn't support OpenAPI. During the development of .NET 7,
 
 ### HTTP protocol
 
-The ASP.NET Core gRPC service template included with .NET creates an app that's configured for HTTP/2 only. This is a good default when an app only supports traditional gRPC over HTTP/2. Transcoding, however, works with both HTTP/1.1 and HTTP/2. Some platforms, such as UWP or Unity, can't use HTTP/2. To support all client apps, configure the server to enable HTTP/1.1 and HTTP/2.
+Included in .NET, the ASP.NET Core gRPC service template creates an app that's only configured for HTTP/2. This is a good default when an app only supports traditional gRPC over HTTP/2. Transcoding, however, works with both HTTP/1.1 and HTTP/2. Some platforms, such as UWP or Unity, can't use HTTP/2. To support all client apps, configure the server to enable HTTP/1.1 and HTTP/2.
 
-The default protocol can be updated in `appsettings.json`:
+Update the default protocol in `appsettings.json`:
 
 ```json
 {
