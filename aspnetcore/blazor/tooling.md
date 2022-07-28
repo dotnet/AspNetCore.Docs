@@ -853,7 +853,7 @@ dotnet new blazorserver -h
 
 1. For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Next**.
 
-   For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
+   For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
 
 1. Provide a **Project name** and confirm that the **Location** is correct. Select **Next**.
 
@@ -886,7 +886,7 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
 1. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
 
-1. For a Blazor Server experience with demonstration code and Bootstrap, execute the following command:
+1. For a Blazor Server experience with demonstration code and [Bootstrap](https://getbootstrap.com/), execute the following command:
 
    ```dotnetcli
    dotnet new blazorserver -o WebApplication1
@@ -898,7 +898,7 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
    dotnet new blazorserver-empty -o WebApplication1
    ```
    
-   For a Blazor WebAssembly experience with demonstration code and [Bootstrap](https://getbootstrap.com/), execute the following command:
+   For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
 
    ```dotnetcli
    dotnet new blazorwasm -o WebApplication1
@@ -1094,7 +1094,7 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
    For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Next**.
 
-   For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
+   For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap], or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
