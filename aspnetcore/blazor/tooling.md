@@ -1149,8 +1149,8 @@ For more information, see the following resources in the Visual Studio documenta
 
 The Blazor framework provides templates for creating new apps for each of the two Blazor hosting models. The templates are used to create new Blazor projects and solutions regardless of the tooling that you select for Blazor development (Visual Studio, Visual Studio for Mac, Visual Studio Code, or the [.NET command-line interface (CLI)](/dotnet/core/tools/)):
 
-* Blazor Server project template: `blazorserver`
-* Blazor WebAssembly project template: `blazorwasm`
+* Blazor Server project templates: `blazorserver`, `blazorserver-empty`
+* Blazor WebAssembly project templates: `blazorwasm`, `blazorwasm-empty`
 
 For more information on Blazor's hosting models, see <xref:blazor/hosting-models>. For more information on Blazor project templates, see <xref:blazor/project-structure>.
 
