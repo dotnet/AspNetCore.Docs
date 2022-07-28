@@ -984,6 +984,8 @@ For targets that are collections of simple types, model binding looks for matche
   public IActionResult Post(string productIndex, List<Product> products)
   ```
 
+* The following format is supported only in form data:
+
   ```
   selectedCourses[]=1050&selectedCourses[]=2000
   ```
