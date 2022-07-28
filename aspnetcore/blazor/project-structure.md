@@ -312,9 +312,9 @@ To create an app that can run as either a Blazor Server app or a Blazor WebAssem
 
 ## Blazor Server
 
-Blazor Server project template: `blazorserver`
+Blazor Server project template: `blazorserver`, `blazorserver-empty`
 
-The Blazor Server template creates the initial files and directory structure for a Blazor Server app. The app is populated with demonstration code for a `FetchData` component that loads data from a registered service, `WeatherForecastService`, and user interaction with a `Counter` component.
+The Blazor Server template creates the initial files and directory structure for a Blazor Server app. If the `blazorserver` template is used, the app is populated with demonstration code for a `FetchData` component that loads data from a registered service, `WeatherForecastService`, and user interaction with a `Counter` component. If the `blazorserver-empty` template is used, the app is created without demonstration code.
 
 * `Data` folder: Contains the `WeatherForecast` class and implementation of the `WeatherForecastService` that provides example weather data to the app's `FetchData` component.
 
@@ -355,9 +355,9 @@ Additional files and folders may appear in an app produced from a Blazor Server 
 
 ## Blazor WebAssembly
 
-Blazor WebAssembly project template: `blazorwasm`
+Blazor WebAssembly project template: `blazorwasm`, `blazorwasm-empty`
 
-The Blazor WebAssembly template creates the initial files and directory structure for a Blazor WebAssembly app. The app is populated with demonstration code for a `FetchData` component that loads data from a static asset, `weather.json`, and user interaction with a `Counter` component.
+The Blazor WebAssembly template creates the initial files and directory structure for a Blazor WebAssembly app. If the `blazorwasm` template is used, the app is populated with demonstration code for a `FetchData` component that loads data from a static asset, `weather.json`, and user interaction with a `Counter` component. If the `blazorwasm-empty` template is used, the app is created without demonstration code.
 
 * `Pages` folder: Contains the routable components/pages (`.razor`) that make up the Blazor app. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following components:
   * `Counter` component (`Counter.razor`): Implements the Counter page.
