@@ -75,6 +75,26 @@ Traditional gRPC over HTTP/2 supports streaming in all directions. gRPC-Web offe
 
 When using gRPC-Web, we only recommend the use of unary methods and server streaming methods.
 
+### HTTP protocol
+
+The ASP.NET Core gRPC service template included with .NET creates an app that's configured for HTTP/2 only. This is a good default when an app only supports traditional gRPC over HTTP/2. gRPC-Web, however, works with both HTTP/1.1 and HTTP/2. Some platforms, such as UWP or Unity, can't use HTTP/2. To support all client apps, configure the server to enable HTTP/1.1 and HTTP/2.
+
+The default protocol can be updated in `appsettings.json`:
+
+```json
+{
+  "Kestrel": {
+    "EndpointDefaults": {
+      "Protocols": "Http1AndHttp2"
+    }
+  }
+}
+```
+
+Alternatively, [configure Kestrel endpoints in startup code](xref:fundamentals/servers/kestrel/endpoints).
+
+Enabling HTTP/1.1 and HTTP/2 on the same port requires TLS for protocol negotiation. For more information about configuring HTTP protocols in a gRPC app, see [ASP.NET Core gRPC protocol negotiation](xref:grpc/aspnetcore#protocol-negotiation).
+
 ## Call gRPC-Web from the browser
 
 Browser apps can use gRPC-Web to call gRPC services. There are some requirements and limitations when calling gRPC services with gRPC-Web from the browser:
