@@ -473,17 +473,11 @@ By default, when an validation error occurs, model validation produces a <xref:M
 
 :::code language="csharp" source="~/mvc/models/validation/samples/7.x/ValidationJSON/Program.cs" id="snippet_1" highlight="5-8":::
 
-The following code sets the policy to use camel-casing:
-
-:::code language="csharp" source="~/mvc/models/validation/samples/7.x/ValidationJSON/Program.cs" id="snippet_cm1" highlight="6-10":::
-
 The following code configures validation to use the [`NewtonsoftJsonValidationMetadataProvider`](/dotnet/api/microsoft.aspnetcore.mvc.newtonsoftjson.newtonsoftjsonvalidationmetadataprovider) to use JSON property name when using [Json.NET](https://www.newtonsoft.com/json):
 
 :::code language="csharp" source="~/mvc/models/validation/samples/7.x/ValidationJSON/Program.cs" id="snippet" highlight="5-8":::
 
-The following code sets the policy to use camel-casing:
-
-:::code language="csharp" source="~/mvc/models/validation/samples/7.x/ValidationJSON/Program.cs" id="snippet_cm2" highlight="6-10":::
+For an example of the policy to use camel-casing, see [Program.cs on GitHub](aspnetcore/mvc/models/validation/samples/7.x/ValidationJSON/Program.cs)
 
 ## Non-nullable reference types and [Required] attribute
 
