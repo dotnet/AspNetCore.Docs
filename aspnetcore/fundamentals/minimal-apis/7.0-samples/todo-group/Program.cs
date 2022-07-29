@@ -1,9 +1,6 @@
 using Data;
-using Microsoft.AspNetCore.OpenApi;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
-using Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -227,5 +224,3 @@ static async Task<IResult> DeleteNote(int id, ApplicationDbContext database)
         return TypedResults.NotFound();
     }
 }
-
-

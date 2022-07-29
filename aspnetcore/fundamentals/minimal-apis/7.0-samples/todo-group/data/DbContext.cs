@@ -13,4 +13,3 @@ public class ApplicationDbContext : DbContext
     public DbSet<Note> Notes { get; set; } = default!;
 
 }
-
