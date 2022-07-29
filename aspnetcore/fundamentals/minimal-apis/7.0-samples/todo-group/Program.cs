@@ -22,6 +22,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(new SqliteConnection("DataSource=:memory:"));
 });
 
+builder.Services.AddSingleton<ApplicationDbContext>(sp=>{
+    var context = sp.GetRequiredService<ApplicationDbContext>();
+    context.Database.OpenConnection();
+    context.Database.EnsureCreated();
+    return context;
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -194,4 +202,5 @@ static async Task<IResult> DeleteNote(int id, NotesRepo notesRepo)
     }
     return TypedResults.NotFound();
 }
+
 
