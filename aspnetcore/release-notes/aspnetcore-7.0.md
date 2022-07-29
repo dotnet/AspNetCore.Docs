@@ -94,7 +94,7 @@ Limitations when binding request body to `Stream` or `PipeReader`:
 
 * When reading data, the `Stream` is the same object as `HttpRequest.Body`.
 * The request body isn’t buffered by default. After the body is read, it’s not rewindable. The stream can't be read multiple times.
-* The `Stream` and `PipeReader` are'nt usable outside of the minimal action handler as the underlying buffers will be disposed or reused.
+* The `Stream` and `PipeReader` aren't usable outside of the minimal action handler as the underlying buffers will be disposed or reused.
 
 ### New Results.Stream overloads
 
