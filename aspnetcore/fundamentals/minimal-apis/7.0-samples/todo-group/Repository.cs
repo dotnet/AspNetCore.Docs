@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Repository;
 
 
-class TodosRepo {
+public class TodosRepo
+{
     private ApplicationDbContext _context;
 
    public TodosRepo(ApplicationDbContext context){
