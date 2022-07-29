@@ -10,8 +10,8 @@ connection.Open();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-// Configure ApplicationDbContext to use the in-memory SQLite connection and register it as a service.
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+// Configure TodoGroupDbContext to use the in-memory SQLite connection and register it as a service.
+builder.Services.AddDbContext<TodoGroupDbContext>(options =>
 {
     options.UseSqlite(connection);
 });
@@ -34,16 +34,20 @@ todos.MapGet("/", GetAllTodos);
 todos.MapGet("/{id}", GetTodo);
 todos.MapPost("/", CreateTodo).AddRouteHandlerFilter((context, next) =>
 {
-    if (context.HttpContext.Request.ContentLength == 0)
+    if (context.HttpContext.Request.ContentLength > 80)
     {
         context.HttpContext.Response.StatusCode = 400;
-        return TypedResults.ValidationProblem(errors);
+        IDictionary<string, string[]> errors = new Dictionary<string, string[]>()
+        {
+            { "Error", new[] { "The size of the payload is above 80 characters" } },
+        };
+        return new ValueTask<object?>(Results.ValidationProblem(errors));
     }
     return next(context);
 });
 todos.MapPut("/{id}", UpdateTodo).AddRouteHandlerFilter((context, next) =>
 {
-    if (context.HttpContext.Request.ContentLength == 0)
+    if (context.HttpContext.Request.ContentLength > 80)
     {
         context.HttpContext.Response.StatusCode = 400;
         return new ValueTask<object?>(Results.BadRequest(new { Message = "Request body is too empty" }));
@@ -52,41 +56,19 @@ todos.MapPut("/{id}", UpdateTodo).AddRouteHandlerFilter((context, next) =>
 });
 todos.MapDelete("/{id}", DeleteTodo);
 
-// note endpoints
-var notes = app.MapGroup("/notes").WithTags("Note Endpoints");
-notes.MapGet("/", GetAllNotes);
-notes.MapGet("/{id}", GetNote);
-notes.MapPost("/", CreateNote).AddRouteHandlerFilter((context, next) =>
-{
-    if (context.HttpContext.Request.ContentLength == 0)
-    {
-        context.HttpContext.Response.StatusCode = 400;
-        return new ValueTask<object?>(Results.BadRequest(new { Message = "Request body is empty" }));
-    }
-    return next(context);
-}); ;
-notes.MapPut("/{id}", UpdateNote).AddRouteHandlerFilter((context, next) =>
-{
-    if (context.HttpContext.Request.ContentLength == 0)
-    {
-        context.HttpContext.Response.StatusCode = 400;
-        return new ValueTask<object?>(Results.BadRequest(new { Message = "Request body is empty" }));
-    }
-    return next(context);
-}); ;
-notes.MapDelete("/{id}", DeleteNote);
+
 app.Run();
 
 
 // get all todos
-static async Task<IResult> GetAllTodos(ApplicationDbContext database)
+static async Task<IResult> GetAllTodos(TodoGroupDbContext database)
 {
     var todos = await database.Todos.ToListAsync();
     return TypedResults.Ok(todos);
 }
 
 // get todo by id
-static async Task<IResult> GetTodo(int id, ApplicationDbContext database)
+static async Task<IResult> GetTodo(int id, TodoGroupDbContext database)
 {
     var todo = await database.Todos.FindAsync(id);
     if (todo != null)
@@ -97,7 +79,7 @@ static async Task<IResult> GetTodo(int id, ApplicationDbContext database)
 }
 
 // create todo
-static async Task<IResult> CreateTodo(TodoDto todo, ApplicationDbContext database)
+static async Task<IResult> CreateTodo(TodoDto todo, TodoGroupDbContext database)
 {
     var newTodo = new Todo
     {
@@ -111,7 +93,7 @@ static async Task<IResult> CreateTodo(TodoDto todo, ApplicationDbContext databas
 }
 
 // update todo
-static async Task<IResult> UpdateTodo(Todo todo, ApplicationDbContext database)
+static async Task<IResult> UpdateTodo(Todo todo, TodoGroupDbContext database)
 {
     var existingTodo = await database.Todos.FindAsync(todo.Id);
     if (existingTodo != null)
@@ -127,7 +109,7 @@ static async Task<IResult> UpdateTodo(Todo todo, ApplicationDbContext database)
 }
 
 // delete todo
-static async Task<IResult> DeleteTodo(int id, ApplicationDbContext database)
+static async Task<IResult> DeleteTodo(int id, TodoGroupDbContext database)
 {
     var todo = await database.Todos.FindAsync(id);
     if (todo != null)
@@ -138,65 +120,4 @@ static async Task<IResult> DeleteTodo(int id, ApplicationDbContext database)
     }
     return TypedResults.NotFound();
 
-}
-
-// get all notes
-static async Task<IResult> GetAllNotes(ApplicationDbContext database)
-{
-    var notes = await database.Notes.ToListAsync();
-    return TypedResults.Ok(notes);
-}
-
-
-// get note by id
-static async Task<IResult> GetNote(int id, ApplicationDbContext database)
-{
-    var note = await database.Notes.FindAsync(id);
-    if (note != null)
-    {
-        return TypedResults.Ok(note);
-    }
-    return TypedResults.NotFound();
-
-}
-
-// create note
-static async Task<IResult> CreateNote(NoteDto note, ApplicationDbContext database)
-{
-    var newNote = new Note
-    {
-        Title = note.Title,
-        Description = note.Description
-    };
-    await database.Notes.AddAsync(newNote);
-    await database.SaveChangesAsync();
-    return TypedResults.Created($"/public/notes/{newNote.Id}", newNote);
-}
-
-// update note
-static async Task<IResult> UpdateNote(Note note, ApplicationDbContext database)
-{
-    var existingNote = await database.Notes.FindAsync(note.Id);
-    if (existingNote != null)
-    {
-        existingNote.Title = note.Title;
-        existingNote.Description = note.Description;
-        await database.SaveChangesAsync();
-        return TypedResults.Created($"/public/notes/{existingNote.Id}", existingNote);
-    }
-
-    return TypedResults.NotFound();
-}
-
-// delete note
-static async Task<IResult> DeleteNote(int id, ApplicationDbContext database)
-{
-    var note = await database.Notes.FindAsync(id);
-    if (note != null)
-    {
-        database.Notes.Remove(note);
-        await database.SaveChangesAsync();
-        return TypedResults.NoContent();
-    }
-    return TypedResults.NotFound();
 }

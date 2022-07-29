@@ -2,13 +2,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data;
 
-public class ApplicationDbContext : DbContext
+public class TodoGroupDbContext : DbContext
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+    public TodoGroupDbContext(DbContextOptions<TodoGroupDbContext> options)
         : base(options)
     {
         Database.EnsureCreated();
     }
     public DbSet<Todo> Todos { get; set; } = default!;
-    public DbSet<Note> Notes { get; set; } = default!;
 }
