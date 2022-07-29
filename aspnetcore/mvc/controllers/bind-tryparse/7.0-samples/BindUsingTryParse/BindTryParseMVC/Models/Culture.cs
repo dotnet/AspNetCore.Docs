@@ -9,7 +9,12 @@ namespace BindTryParseMVC.Models
 
         public static Culture Parse(string value, IFormatProvider? provider)
         {
-            throw new NotImplementedException();
+            if (TryParse(value, provider, out var cultureResult))
+            {
+                throw new ArgumentException("Could not parse supplied value.", nameof(value));
+            }
+
+            return cultureResult;
         }
 
         public static bool TryParse(string? value, IFormatProvider? provider, out Culture culture)
