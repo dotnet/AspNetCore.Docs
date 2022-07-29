@@ -5031,6 +5031,8 @@ Use the custom element with any web framework. For example, the preceding `my-co
 
 For a complete example of how to create custom elements with Blazor, see the [`CustomElementsComponent` component](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/CustomElementsComponent.razor) in the reference source.
 
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 ## Generate Angular and React components
 
 Generate framework-specific JavaScript (JS) components from Razor components for web frameworks, such as Angular or React. This capability isn't included with .NET, but is enabled by the support for rendering Razor components from JS. The [JS component generation sample on GitHub](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/JSComponentGeneration) demonstrates how to generate Angular and React components from Razor components. See the GitHub sample app's `README.md` file for additional information.
