@@ -6,13 +6,13 @@ namespace Repository;
 
 public class TodosRepo
 {
-    private ApplicationDbContext _context;
+    private ApplicationDbContext database;
 
     public TodosRepo(ApplicationDbContext context)
     {
         context.Database.OpenConnection();
         context.Database.EnsureCreated();
-        _context = context;
+        database = context;
 
 
     }
@@ -21,35 +21,35 @@ public class TodosRepo
     public async Task<Todo?> GetTodo(int id)
     {
 
-        var todo = await _context.Todos.FindAsync(id);
+        var todo = await database.Todos.FindAsync(id);
         return todo;
     }
 
     // get all todos
     public async Task<List<Todo>> GetAllTodos()
     {
-        return await _context.Todos.ToListAsync();
+        return await database.Todos.ToListAsync();
     }
 
     // create todo
     public async Task<Todo> CreateTodo(Todo todo)
     {
-        await _context.Todos.AddAsync(todo);
-        await _context.SaveChangesAsync();
+        await database.Todos.AddAsync(todo);
+        await database.SaveChangesAsync();
         return todo;
     }
 
     // update todo
     public async Task<Todo?> UpdateTodo(Todo todo)
     {
-        var data = await _context.Todos.FindAsync(todo.Id);
+        var data = await database.Todos.FindAsync(todo.Id);
         if (data == null)
         {
             return null;
         }
         data.Description = todo.Description;
         data.Title = todo.Title;
-        await _context.SaveChangesAsync();
+        await database.SaveChangesAsync();
 
         return data;
     }
@@ -57,58 +57,58 @@ public class TodosRepo
     // delete todo
     public async Task<Todo?> DeleteTodo(int id)
     {
-        var data = await _context.Todos.FindAsync(id);
+        var data = await database.Todos.FindAsync(id);
         if (data == null)
         {
             return null;
         }
-        _context.Todos.Remove(data);
-        await _context.SaveChangesAsync();
+        database.Todos.Remove(data);
+        await database.SaveChangesAsync();
         return data;
     }
 }
 
 class NotesRepo
 {
-    private ApplicationDbContext _context;
+    private ApplicationDbContext database;
 
     public NotesRepo(ApplicationDbContext context)
     {
-        _context = context;
+        database = context;
     }
 
     // get note by id
     public async Task<Note?> GetNote(int id)
     {
 
-        var note = await _context.Notes.FindAsync(id);
+        var note = await database.Notes.FindAsync(id);
         return note;
     }
 
     // get all notes
     public async Task<List<Note>> GetAllNotes()
     {
-        return await _context.Notes.ToListAsync();
+        return await database.Notes.ToListAsync();
     }
 
     // create note
     public async Task<Note> CreateNote(Note note)
     {
-        await _context.Notes.AddAsync(note);
-        await _context.SaveChangesAsync();
+        await database.Notes.AddAsync(note);
+        await database.SaveChangesAsync();
         return note;
     }
 
     // update note
     public async Task<Note?> UpdateNote(Note note)
     {
-        var data = await _context.Notes.FindAsync(note.Id);
+        var data = await database.Notes.FindAsync(note.Id);
         if (data == null)
         {
             return null;
         }
         data.Title = note.Title;
-        await _context.SaveChangesAsync();
+        await database.SaveChangesAsync();
 
         return data;
     }
@@ -116,13 +116,13 @@ class NotesRepo
     // delete note
     public async Task<Note?> DeleteNote(int id)
     {
-        var data = await _context.Notes.FindAsync(id);
+        var data = await database.Notes.FindAsync(id);
         if (data == null)
         {
             return null;
         }
-        _context.Notes.Remove(data);
-        await _context.SaveChangesAsync();
+        database.Notes.Remove(data);
+        await database.SaveChangesAsync();
         return data;
     }
 }

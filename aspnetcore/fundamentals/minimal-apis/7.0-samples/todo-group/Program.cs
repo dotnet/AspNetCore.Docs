@@ -13,16 +13,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 // Add TodoRepository to the container.
-builder.Services.AddScoped<TodosRepo>();
+builder.Services.AddScoped<ApplicationDbContext>();
 // Add NoteRepository to the container.
-builder.Services.AddScoped<NotesRepo>();
+builder.Services.AddScoped<ApplicationDbContext>();
 // Add InMemoryDatabase to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlite(new SqliteConnection("DataSource=:memory:"));
 });
 
-builder.Services.AddSingleton<ApplicationDbContext>(sp=>{
+builder.Services.AddSingleton<ApplicationDbContext>(sp =>
+{
     var context = sp.GetRequiredService<ApplicationDbContext>();
     context.Database.OpenConnection();
     context.Database.EnsureCreated();
@@ -64,7 +65,7 @@ todos.MapPut("/{id}", UpdateTodo).AddRouteHandlerFilter((context, next) =>
         return new ValueTask<object?>(Results.BadRequest(new { Message = "Request body is too empty" }));
     }
     return next(context);
-});;
+}); ;
 todos.MapDelete("/{id}", DeleteTodo);
 
 // note endpoints
@@ -79,7 +80,7 @@ notes.MapPost("/", CreateNote).AddRouteHandlerFilter((context, next) =>
         return new ValueTask<object?>(Results.BadRequest(new { Message = "Request body is empty" }));
     }
     return next(context);
-});;
+}); ;
 notes.MapPut("/{id}", UpdateNote).AddRouteHandlerFilter((context, next) =>
 {
     if (context.HttpContext.Request.ContentLength == 0)
@@ -88,25 +89,25 @@ notes.MapPut("/{id}", UpdateNote).AddRouteHandlerFilter((context, next) =>
         return new ValueTask<object?>(Results.BadRequest(new { Message = "Request body is empty" }));
     }
     return next(context);
-});;
+}); ;
 notes.MapDelete("/{id}", DeleteNote);
 app.Run();
 
 
 // get all todos
-static async Task<IResult> GetAllTodos(TodosRepo todosRepo)
+static async Task<IResult> GetAllTodos(ApplicationDbContext database)
 {
-    var data = await todosRepo.GetAllTodos();
-    return TypedResults.Ok(data);
+    var todos = await database.Todos.ToListAsync();
+    return TypedResults.Ok(todos);
 }
 
 // get todo by id
-static async Task<IResult> GetTodo(int id, TodosRepo todosRepo)
+static async Task<IResult> GetTodo(int id, ApplicationDbContext database)
 {
-    var data = await todosRepo.GetTodo(id);
-    if (data != null)
+    var todo = await database.Todos.FindAsync(id);
+    if (todo != null)
     {
-        return TypedResults.Ok(data);
+        return TypedResults.Ok(todo);
     }
     else
     {
@@ -116,54 +117,66 @@ static async Task<IResult> GetTodo(int id, TodosRepo todosRepo)
 }
 
 // create todo
-static async Task<IResult> CreateTodo(TodoDto todo, TodosRepo todosRepo)
+static async Task<IResult> CreateTodo(TodoDto todo, ApplicationDbContext database)
 {
-    var data = await todosRepo.CreateTodo(new Todo
+    var newTodo = new Todo
     {
         Title = todo.Title,
         Description = todo.Description,
         IsDone = todo.IsDone
-    });
-    return TypedResults.Created($"/public/todos/{data.Id}", data);
+    };
+    await database.Todos.AddAsync(newTodo);
+    await database.SaveChangesAsync();
+    return TypedResults.Created($"/public/todos/{newTodo.Id}", newTodo);
 }
 
 // update todo
-static async Task<IResult> UpdateTodo(Todo todo, TodosRepo todosRepo)
+static async Task<IResult> UpdateTodo(Todo todo, ApplicationDbContext database)
 {
-
-    var data = await todosRepo.UpdateTodo(todo);
-    if (data != null)
+    var existingTodo = await database.Todos.FindAsync(todo.Id);
+    if (existingTodo != null)
     {
-        return TypedResults.Created($"/public/todos/{data.Id}", data);
+        existingTodo.Title = todo.Title;
+        existingTodo.Description = todo.Description;
+        existingTodo.IsDone = todo.IsDone;
+        await database.SaveChangesAsync();
+        return TypedResults.Created($"/public/todos/{existingTodo.Id}", existingTodo);
     }
+
     return TypedResults.NotFound();
 }
 
 // delete todo
-static async Task<IResult> DeleteTodo(int id, TodosRepo todosRepo)
+static async Task<IResult> DeleteTodo(int id, ApplicationDbContext database)
 {
-    var data = await todosRepo.DeleteTodo(id);
-    if (data != null)
+    var todo = await database.Todos.FindAsync(id);
+    if (todo != null)
     {
+        database.Todos.Remove(todo);
+        await database.SaveChangesAsync();
         return TypedResults.NoContent();
     }
-    return TypedResults.NotFound();
+    else
+    {
+        return TypedResults.NotFound();
+    }
 }
 
 // get all notes
-static async Task<IResult> GetAllNotes(NotesRepo notesRepo)
+static async Task<IResult> GetAllNotes(ApplicationDbContext database)
 {
-    var data = await notesRepo.GetAllNotes();
-    return TypedResults.Ok(data);
+    var notes = await database.Notes.ToListAsync();
+    return TypedResults.Ok(notes);
 }
 
+
 // get note by id
-static async Task<IResult> GetNote(int id, NotesRepo notesRepo)
+static async Task<IResult> GetNote(int id, ApplicationDbContext database)
 {
-    var data = await notesRepo.GetNote(id);
-    if (data != null)
+    var note = await database.Notes.FindAsync(id);
+    if (note != null)
     {
-        return TypedResults.Ok(data);
+        return TypedResults.Ok(note);
     }
     else
     {
@@ -172,35 +185,47 @@ static async Task<IResult> GetNote(int id, NotesRepo notesRepo)
 }
 
 // create note
-static async Task<IResult> CreateNote(NoteDto note, NotesRepo notesRepo)
+static async Task<IResult> CreateNote(NoteDto note, ApplicationDbContext database)
 {
-    var data = await notesRepo.CreateNote(new Note
+    var newNote = new Note
     {
-        Title = note.Title
-    });
-    return TypedResults.Created($"/public/notes/{data.Id}", data);
+        Title = note.Title,
+        Description = note.Description
+    };
+    await database.Notes.AddAsync(newNote);
+    await database.SaveChangesAsync();
+    return TypedResults.Created($"/public/notes/{newNote.Id}", newNote);
 }
 
 // update note
-static async Task<IResult> UpdateNote(Note note, NotesRepo notesRepo)
+static async Task<IResult> UpdateNote(Note note, ApplicationDbContext database)
 {
-    var data = await notesRepo.UpdateNote(note);
-    if (data != null)
+    var existingNote = await database.Notes.FindAsync(note.Id);
+    if (existingNote != null)
     {
-        return TypedResults.Created($"/public/notes/{data.Id}", data);
+        existingNote.Title = note.Title;
+        existingNote.Description = note.Description;
+        await database.SaveChangesAsync();
+        return TypedResults.Created($"/public/notes/{existingNote.Id}", existingNote);
     }
+
     return TypedResults.NotFound();
 }
 
 // delete note
-static async Task<IResult> DeleteNote(int id, NotesRepo notesRepo)
+static async Task<IResult> DeleteNote(int id, ApplicationDbContext database)
 {
-    var data = await notesRepo.DeleteNote(id);
-    if (data != null)
+    var note = await database.Notes.FindAsync(id);
+    if (note != null)
     {
+        database.Notes.Remove(note);
+        await database.SaveChangesAsync();
         return TypedResults.NoContent();
     }
-    return TypedResults.NotFound();
+    else
+    {
+        return TypedResults.NotFound();
+    }
 }
 
 
