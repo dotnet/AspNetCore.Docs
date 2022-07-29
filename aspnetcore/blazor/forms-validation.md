@@ -3924,8 +3924,83 @@ public class CustomValidator : ValidationAttribute
 }
 ```
 
-> [!NOTE]
-> <xref:System.ComponentModel.DataAnnotations.ValidationContext.GetService%2A?displayProperty=nameWithType> is `null`. Injecting services for validation in the `IsValid` method isn't supported.
+Inject services into custom validation attributes through the <xref:System.ComponentModel.DataAnnotations.ValidationContext>. The following example demonstrates a salad chef form that validates user input with dependency injection (DI).
+
+The `SaladChef` class indicates the approved fruit ingredient list for a salad.
+
+`SaladChef.cs`:
+
+```csharp
+public class SaladChef
+{
+    public string[] ThingsYouCanPutInASalad = { "Strawberries", "Pineapple", 
+        "Honeydew", "Watermelon", "Grapes" };
+}
+```
+
+Register `SaladChef` in the app's DI container in `Program.cs`:
+
+```csharp
+builder.Services.AddTransient<SaladChef>();
+```
+
+The `IsValid` method of the following `SaladChefValidatorAttribute` class obtains the `SaladChef` service from DI to check the user's input.
+
+`SaladChefValidatorAttribute.cs`:
+
+```csharp
+using System.ComponentModel.DataAnnotations;
+
+public class SaladChefValidatorAttribute : ValidationAttribute
+{
+    protected override ValidationResult? IsValid(object? value,
+        ValidationContext validationContext)
+    {
+        var saladChef = validationContext.GetRequiredService<SaladChef>();
+
+        if (saladChef.ThingsYouCanPutInASalad.Contains(value?.ToString()))
+        {
+            return ValidationResult.Success;
+        }
+
+        return new ValidationResult("You should not put that in a salad!");
+    }
+}
+```
+
+The following `ValidationWithDI` component validates user input by applying the `SaladChefValidatorAttribute` (`[SaladChefValidator]`) to the salad ingredient string (`SaladIngredient`).
+
+`Pages/ValidationWithDI.razor`:
+
+```razor
+@page "/validation-with-di"
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Forms
+
+<EditForm Model="@this" autocomplete="off">
+    <DataAnnotationsValidator />
+
+    <p>
+        Name something you can put in a salad:
+        <input @bind="SaladIngredient" />
+    </p>
+
+    <button type="submit">Submit</button>
+
+    <ul>
+        @foreach (var message in context.GetValidationMessages())
+        {
+            <li class="validation-message">@message</li>
+        }
+    </ul>
+
+</EditForm>
+
+@code {
+    [SaladChefValidator]
+    public string? SaladIngredient { get; set; }
+}
+```
 
 ## Custom validation CSS class attributes
 
