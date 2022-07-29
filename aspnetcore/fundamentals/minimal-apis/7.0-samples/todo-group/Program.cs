@@ -4,28 +4,17 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-// Add TodoRepository to the container.
-builder.Services.AddScoped<ApplicationDbContext>();
-// Add NoteRepository to the container.
-builder.Services.AddScoped<ApplicationDbContext>();
+var connection = new SqliteConnection("DataSource=:memory:");
+connection.Open();
 // Add InMemoryDatabase to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlite(new SqliteConnection("DataSource=:memory:"));
+    options.UseSqlite(connection);
 });
 
-builder.Services.AddSingleton<ApplicationDbContext>(sp =>
-{
-    var context = sp.GetRequiredService<ApplicationDbContext>();
-    context.Database.OpenConnection();
-    context.Database.EnsureCreated();
-    return context;
-});
 
 
 var app = builder.Build();
