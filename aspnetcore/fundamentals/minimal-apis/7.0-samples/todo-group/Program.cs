@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.OpenApi;
 using Repository;
 using Data;
+using Microsoft.Data.Sqlite;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,7 +18,9 @@ builder.Services.AddScoped<NotesRepo>();
 // Add InMemoryDatabase to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseInMemoryDatabase("InMemoryDb");
+    var connection = new SqliteConnection("Filename=:memory:");
+    connection.Open();
+    options.UseSqlite(connection);
 });
 
 var app = builder.Build();
