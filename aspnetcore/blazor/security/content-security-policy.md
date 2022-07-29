@@ -106,7 +106,7 @@ The particular script associated with the error is displayed in the console next
 
 ### Blazor Server
 
-In the `<head>` content of the `Pages/_Layout.cshtml` host page, apply the directives described in the *Policy directives* section:
+In the `<head>` markup of the host page ([location of `<head>` content](xref:blazor/project-structure#location-of-head-content)), apply the directives described in the *Policy directives* section:
 
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
@@ -556,7 +556,7 @@ The particular script associated with the error is displayed in the console next
 
 ### Blazor Server
 
-In the `<head>` content of the `Pages/_Layout.cshtml` host page, apply the directives described in the *Policy directives* section:
+In the `<head>` markup of the host page ([location of `<head>` content](xref:blazor/project-structure#location-of-head-content)), apply the directives described in the *Policy directives* section:
 
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 

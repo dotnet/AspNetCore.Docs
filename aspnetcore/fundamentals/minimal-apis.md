@@ -1114,8 +1114,8 @@ The following code shows the complete `Program.cs` file:
 [!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet)]
 
 * When reading data, the `Stream` is the same object as `HttpRequest.Body`.
-* The request body isn’t buffered by default. After the body is read, it’s not rewindable. . The stream can't be read multiple times.
-* The `Stream` and `PipeReader` are'nt usable outside of the minimal action handler as the underlying buffers will be disposed or reused.
+* The request body isn’t buffered by default. After the body is read, it’s not rewindable. The stream can't be read multiple times.
+* The `Stream` and `PipeReader` aren't usable outside of the minimal action handler as the underlying buffers will be disposed or reused.
 
 ## Request handling
 
