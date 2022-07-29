@@ -4988,54 +4988,54 @@ await Blazor.rootComponents.add(containerElement, 'counter', { incrementAmount: 
 
 ## Blazor custom elements
 
-*Experimental* support is available for building custom elements using the [`Microsoft.AspNetCore.Components.CustomElements` NuGet package](https://www.nuget.org/packages/microsoft.aspnetcore.components.customelements). Custom elements use standard HTML interfaces to implement custom HTML elements.
+Use Blazor custom elements to dynamically render Razor components from other SPA frameworks, such as Angular or React.
 
-> [!WARNING]
-> Experimental features are provided for the purpose of exploring feature viability and may not ship in a stable version.
+Blazor custom elements:
 
-Register a root component as a custom element:
+* Use standard HTML interfaces to implement custom HTML elements.
+* Eliminate the need to manually manage the state and lifecycle of root Razor components using JavaScript APIs.
+* Are useful for gradually introducing Razor components into existing projects written in other SPA frameworks.
 
-* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in `Program.cs`:
+### Blazor Server registration
 
-  ```csharp
-  builder.Services.AddServerSideBlazor(options =>
-  {
-      options.RootComponents.RegisterAsCustomElement<Counter>("my-counter");
-  });
-  ```
-  
-  > [!NOTE]
-  > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
+To register a root component as a custom element in a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in `Program.cs`. The following example registers the `Counter` component with the custom HTML element `my-counter`:
 
-* In a Blazor WebAssembly app, call `RegisterAsCustomElement` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in `Program.cs`:
-
-  ```csharp
-  builder.RootComponents.RegisterAsCustomElement<Counter>("my-counter");
-  ```
-  
-  > [!NOTE]
-  > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
-
-Include the following `<script>` tag in the app's HTML ***before*** the Blazor script tag:
-
-```html
-<script src="/_content/Microsoft.AspNetCore.Components.CustomElements/BlazorCustomElements.js"></script>
+```csharp
+builder.Services.AddServerSideBlazor(options =>
+{
+    options.RootComponents.RegisterCustomElement<Counter>("my-counter");
+});
 ```
 
-Use the custom element with any web framework. For example, the preceding counter custom element is used in a React app with the following markup:
+> [!NOTE]
+> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
+
+### Blazor WebAssembly registration
+
+To register a root component as a custom element in a Blazor WebAssembly app, call `RegisterCustomElement` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in `Program.cs`. The following example registers the `Counter` component with the custom HTML element `my-counter`:
+
+```csharp
+builder.RootComponents.RegisterCustomElement<Counter>("my-counter");
+```
+
+> [!NOTE]
+> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
+
+### Use the registered custom element
+
+Use the custom element with any web framework. For example, the preceding `my-counter` custom HTML element is used in a React app with the following markup:
 
 ```html
 <my-counter increment-amount={incrementAmount}></my-counter>
 ```
 
-For a complete example of how to create custom elements with Blazor, see the [Blazor Custom Elements sample project](https://github.com/aspnet/AspLabs/tree/main/src/BlazorCustomElements).
+For a complete example of how to create custom elements with Blazor, see the [`CustomElementsComponent` component](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/CustomElementsComponent.razor) in the reference source.
 
-> [!WARNING]
-> The custom elements feature is currently **experimental, unsupported, and subject to change or be removed at any time**. We welcome your feedback on how well this particular approach meets your requirements.
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ## Generate Angular and React components
 
-Generate framework-specific JavaScript (JS) components from Razor components for web frameworks, such as Angular or React. This capability isn't included with .NET 6, but is enabled by the new support for rendering Razor components from JS. The [JS component generation sample on GitHub](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/JSComponentGeneration) demonstrates how to generate Angular and React components from Razor components. See the GitHub sample app's `README.md` file for additional information.
+Generate framework-specific JavaScript (JS) components from Razor components for web frameworks, such as Angular or React. This capability isn't included with .NET, but is enabled by the support for rendering Razor components from JS. The [JS component generation sample on GitHub](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/JSComponentGeneration) demonstrates how to generate Angular and React components from Razor components. See the GitHub sample app's `README.md` file for additional information.
 
 > [!WARNING]
 > The Angular and React component features are currently **experimental, unsupported, and subject to change or be removed at any time**. We welcome your feedback on how well this particular approach meets your requirements.

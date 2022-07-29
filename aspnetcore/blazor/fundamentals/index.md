@@ -83,6 +83,12 @@ The repo contains two types of samples:
 
 For more information, see the [Blazor samples GitHub repository README.md file](https://github.com/dotnet/blazor-samples).
 
+The ASP.NET Core repository's Basic Test App is also a helpful set of samples for various Blazor scenarios:
+
+[`BasicTestApp` in ASP.NET Core reference source (`dotnet/aspnetcore`)](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/BasicTestApp)
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 ## Support requests
 
 Only documentation-related issues are appropriate for the `dotnet/AspNetCore.Docs` repository. ***For product support, don't open a documentation issue.*** Seek assistance through one or more of the following support channels:
