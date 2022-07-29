@@ -477,7 +477,7 @@ The following code configures validation to use the [`NewtonsoftJsonValidationMe
 
 :::code language="csharp" source="~/mvc/models/validation/samples/7.x/ValidationJSON/Program.cs" id="snippet" highlight="5-8":::
 
-For an example of the policy to use camel-casing, see [Program.cs on GitHub](aspnetcore/mvc/models/validation/samples/7.x/ValidationJSON/Program.cs)
+For an example of the policy to use camel-casing, see [`Program.cs` on GitHub](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/validation/samples/7.x/ValidationJSON/Program.cs).
 
 ## Non-nullable reference types and [Required] attribute
 
