@@ -36,7 +36,7 @@ todos.MapPost("/", CreateTodo).AddRouteHandlerFilter((context, next) =>
     if (context.HttpContext.Request.ContentLength == 0)
     {
         context.HttpContext.Response.StatusCode = 400;
-        return new ValueTask<object?>(Results.BadRequest(new { Message = "Request body is too empty" }));
+        return TypedResults.ValidationProblem(errors);
     }
     return next(context);
 });
