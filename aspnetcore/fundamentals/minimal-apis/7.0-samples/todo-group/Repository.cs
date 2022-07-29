@@ -9,7 +9,11 @@ public class TodosRepo
     private ApplicationDbContext _context;
 
    public TodosRepo(ApplicationDbContext context){
+         context.Database.OpenConnection();
+        context.Database.EnsureCreated();
         _context = context;
+      
+      
     }
 
     // get todo by id
