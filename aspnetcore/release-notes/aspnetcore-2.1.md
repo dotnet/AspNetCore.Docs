@@ -14,6 +14,7 @@ This article highlights the most significant changes in ASP.NET Core 2.1, with l
 ## SignalR
 
 SignalR has been rewritten for ASP.NET Core 2.1.
+
 ASP.NET Core SignalR includes a number of improvements:
 
 * A simplified scale-out model.
