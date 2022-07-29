@@ -53,7 +53,7 @@ The following code configures validation to use the [`NewtonsoftJsonValidationMe
 
 :::code language="csharp" source="~/mvc/models/validation/samples/7.x/ValidationJSON/Program.cs" id="snippet" highlight="5-8":::
 
-For more information, see [Use JSON property names in validation errors](xref:mvc/models/validation?view=aspnetcore-7.0&preserve-view=true)
+For more information, see [Use JSON property names in validation errors](xref:mvc/models/validation?view=aspnetcore-7.0&preserve-view=true#use-json-property-names-in-validation-errors)
 
 ## Minimal APIs
 
