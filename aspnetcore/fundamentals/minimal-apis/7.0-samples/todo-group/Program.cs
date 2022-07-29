@@ -44,19 +44,43 @@ todos.MapPost("/", CreateTodo).AddRouteHandlerFilter((context, next) =>
     if (context.HttpContext.Request.ContentLength == 0)
     {
         context.HttpContext.Response.StatusCode = 400;
-        return new ValueTask<object?>(Results.BadRequest(new { Message = "Request body is too small" }));
+        return new ValueTask<object?>(Results.BadRequest(new { Message = "Request body is too empty" }));
     }
     return next(context);
 });
-todos.MapPut("/{id}", UpdateTodo);
+todos.MapPut("/{id}", UpdateTodo).AddRouteHandlerFilter((context, next) =>
+{
+    if (context.HttpContext.Request.ContentLength == 0)
+    {
+        context.HttpContext.Response.StatusCode = 400;
+        return new ValueTask<object?>(Results.BadRequest(new { Message = "Request body is too empty" }));
+    }
+    return next(context);
+});;
 todos.MapDelete("/{id}", DeleteTodo);
 
 // note endpoints
 var notes = app.MapGroup("/notes").WithTags("Note Endpoints");
 notes.MapGet("/", GetAllNotes);
 notes.MapGet("/{id}", GetNote);
-notes.MapPost("/", CreateNote);
-notes.MapPut("/{id}", UpdateNote);
+notes.MapPost("/", CreateNote).AddRouteHandlerFilter((context, next) =>
+{
+    if (context.HttpContext.Request.ContentLength == 0)
+    {
+        context.HttpContext.Response.StatusCode = 400;
+        return new ValueTask<object?>(Results.BadRequest(new { Message = "Request body is empty" }));
+    }
+    return next(context);
+});;
+notes.MapPut("/{id}", UpdateNote).AddRouteHandlerFilter((context, next) =>
+{
+    if (context.HttpContext.Request.ContentLength == 0)
+    {
+        context.HttpContext.Response.StatusCode = 400;
+        return new ValueTask<object?>(Results.BadRequest(new { Message = "Request body is empty" }));
+    }
+    return next(context);
+});;
 notes.MapDelete("/{id}", DeleteNote);
 app.Run();
 
