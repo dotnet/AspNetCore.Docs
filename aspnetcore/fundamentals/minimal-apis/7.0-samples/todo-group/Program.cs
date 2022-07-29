@@ -3,13 +3,14 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+// Create and open an in-memory SQLite connection.
+var connection = new SqliteConnection("DataSource=:memory:");
+connection.Open();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-var connection = new SqliteConnection("DataSource=:memory:");
-connection.Open();
-// Add InMemoryDatabase to the container.
+// Configure ApplicationDbContext to use the in-memory SQLite connection and register it as a service.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlite(connection);
