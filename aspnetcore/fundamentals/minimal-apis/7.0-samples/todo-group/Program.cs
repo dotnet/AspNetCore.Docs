@@ -15,8 +15,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connection);
 });
 
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,7 +26,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapGet("/", () => "Hello World!");
-
 
 // todo endpoints
 var todos = app.MapGroup("/todos").WithTags("Todo Endpoints");
@@ -51,7 +48,7 @@ todos.MapPut("/{id}", UpdateTodo).AddRouteHandlerFilter((context, next) =>
         return new ValueTask<object?>(Results.BadRequest(new { Message = "Request body is too empty" }));
     }
     return next(context);
-}); ;
+});
 todos.MapDelete("/{id}", DeleteTodo);
 
 // note endpoints
@@ -95,11 +92,7 @@ static async Task<IResult> GetTodo(int id, ApplicationDbContext database)
     {
         return TypedResults.Ok(todo);
     }
-    else
-    {
-        return TypedResults.NotFound();
-    }
-
+    return TypedResults.NotFound();
 }
 
 // create todo
@@ -142,10 +135,8 @@ static async Task<IResult> DeleteTodo(int id, ApplicationDbContext database)
         await database.SaveChangesAsync();
         return TypedResults.NoContent();
     }
-    else
-    {
-        return TypedResults.NotFound();
-    }
+    return TypedResults.NotFound();
+
 }
 
 // get all notes
@@ -164,10 +155,8 @@ static async Task<IResult> GetNote(int id, ApplicationDbContext database)
     {
         return TypedResults.Ok(note);
     }
-    else
-    {
-        return TypedResults.NotFound();
-    }
+    return TypedResults.NotFound();
+
 }
 
 // create note
@@ -208,8 +197,5 @@ static async Task<IResult> DeleteNote(int id, ApplicationDbContext database)
         await database.SaveChangesAsync();
         return TypedResults.NoContent();
     }
-    else
-    {
-        return TypedResults.NotFound();
-    }
+    return TypedResults.NotFound();
 }
