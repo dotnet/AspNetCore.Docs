@@ -7,5 +7,5 @@ internal class TodoDto
 
 internal class NoteDto
 {
-    public string Title {get; set;} = String.Empty;
+    public string Title { get; set; } = String.Empty;
 }

@@ -1,9 +1,9 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.OpenApi;
-using Repository;
 using Data;
+using Microsoft.AspNetCore.OpenApi;
 using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +18,8 @@ builder.Services.AddScoped<TodosRepo>();
 builder.Services.AddScoped<NotesRepo>();
 // Add InMemoryDatabase to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{ 
-     options.UseSqlite(new SqliteConnection("DataSource=:memory:")); 
+{
+    options.UseSqlite(new SqliteConnection("DataSource=:memory:"));
 });
 
 var app = builder.Build();
@@ -33,6 +33,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapGet("/", () => "Hello World!");
+
 
 // todo endpoints
 var todos = app.MapGroup("/todos").WithTags("Todo Endpoints");
