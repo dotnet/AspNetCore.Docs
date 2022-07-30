@@ -16,7 +16,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 ASP.NET Core Identity:
 
 * Is an API that supports user interface (UI) login functionality.
-* Is designed to be used together with [Duende IdentityServer4](https://duendesoftware.com/products/identityserver).
 * Manages users, passwords, profile data, roles, claims, tokens, email confirmation, and more.
 
 Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social/index).
@@ -265,7 +264,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 ASP.NET Core Identity:
 
 * Is an API that supports user interface (UI) login functionality.
-* Is designed to be used together with [Duende IdentityServer4](https://duendesoftware.com/products/identityserver).
 * Manages users, passwords, profile data, roles, claims, tokens, email confirmation, and more.
 
 Users can create an account with the login information stored in Identity or they can use an external login provider. Supported external login providers include [Facebook, Google, Microsoft Account, and Twitter](xref:security/authentication/social/index).
