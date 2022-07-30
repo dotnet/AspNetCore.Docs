@@ -43,6 +43,18 @@ The new mechanism to infer binding source of API Controller action parameters us
 1. A parameter with a name that appears as a route value in ***any*** route template is assigned [`BindingSource.Path`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Path).
 1. All other parameters are [`BindingSource.Query`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindingSource.Query).
 
+### JSON property names in validation errors
+
+By default, when an validation error occurs, model validation produces a <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary> with the property name as the error key. Some apps, such as single page apps, benefit from using JSON property names for validation errors generated from Web APIs. The following code configures validation to use the [`SystemTextJsonValidationMetadataProvider`](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.metadata.systemtextjsonvalidationmetadataprovider) to use JSON property names:
+
+:::code language="csharp" source="~/mvc/models/validation/samples/7.x/ValidationJSON/Program.cs" id="snippet_1" highlight="5-8":::
+
+The following code configures validation to use the [`NewtonsoftJsonValidationMetadataProvider`](/dotnet/api/microsoft.aspnetcore.mvc.newtonsoftjson.newtonsoftjsonvalidationmetadataprovider) to use JSON property name when using [Json.NET](https://www.newtonsoft.com/json):
+
+:::code language="csharp" source="~/mvc/models/validation/samples/7.x/ValidationJSON/Program.cs" id="snippet" highlight="5-8":::
+
+For more information, see [Use JSON property names in validation errors](xref:mvc/models/validation?view=aspnetcore-7.0&preserve-view=true#use-json-property-names-in-validation-errors)
+
 ## Minimal APIs
 
 ### Filters in Minimal API apps
