@@ -61,7 +61,7 @@ namespace BindTryParseMVC.Controllers
         // </snippet_2>
 
         // <snippet_3>
-        // GET /af-ZA/WeatherForecast/RangeByLocale?culture=af-ZA&range=2022-07-24,2022-07-29
+        // GET /af-ZA/WeatherForecast/RangeByLocale&range=2022-07-24,2022-07-29
         public IActionResult RangeByLocale([FromRoute] Locale locale, [FromQuery] string range)
         {
             if (!ModelState.IsValid)
