@@ -3,8 +3,8 @@ namespace BindTryParseAPI.Models
     // <snippet>
     public class DateRange : IParsable<DateRange>
     {
-        public DateOnly? From { get; set; }
-        public DateOnly? To { get; set; }
+        public DateOnly? From { get; init; }
+        public DateOnly? To { get; init; }
 
         public static DateRange Parse(string value, IFormatProvider? provider)
         {
@@ -28,7 +28,7 @@ namespace BindTryParseAPI.Models
                 return true;
             }
 
-            dateRange = new DateRange();
+            dateRange = new DateRange { From = default, To = default };
             return false;
         }
     }

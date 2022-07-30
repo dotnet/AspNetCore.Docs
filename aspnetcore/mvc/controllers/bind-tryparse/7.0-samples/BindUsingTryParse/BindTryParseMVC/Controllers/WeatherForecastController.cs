@@ -1,4 +1,3 @@
-using System.Globalization;
 using BindTryParseMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,8 +10,8 @@ namespace BindTryParseMVC.Controllers
         };
 
         // <snippet_1>
-        // GET /WeatherForecast
-        public IActionResult Index()
+        // GET /en-GB/WeatherForecast
+        public IActionResult Index([FromRoute] Locale locale)
         {
             var weatherForecasts = Enumerable
                 .Range(1, 5).Select(index => new WeatherForecast
@@ -23,7 +22,7 @@ namespace BindTryParseMVC.Controllers
                 })
                 .Select(wf => new WeatherForecastViewModel
                 {
-                    Date = wf.Date.ToString("d"),
+                    Date = wf.Date.ToString("d", locale),
                     TemperatureC = wf.TemperatureC,
                     TemperatureF = 32 + (int)(wf.TemperatureC / 0.5556),
                     Summary = wf.Summary
@@ -35,7 +34,7 @@ namespace BindTryParseMVC.Controllers
 
         // <snippet_2>
         // GET /WeatherForecast/ByRange?range=7/24/2022,07/26/2022
-        public IActionResult ByRange(DateRange range)
+        public IActionResult ByRange([FromQuery] DateRange range)
         {
             if (!ModelState.IsValid)
                 return View("Error", ModelState.Values.SelectMany(v => v.Errors));
@@ -62,16 +61,16 @@ namespace BindTryParseMVC.Controllers
         // </snippet_2>
 
         // <snippet_3>
-        // GET /WeatherForecast/ByCulturalRange?culture=af-ZA&range=2022-07-24,2022-07-29
-        public IActionResult ByCulturalRange(Culture culture, string range)
+        // GET /af-ZA/WeatherForecast/RangeByLocale?culture=af-ZA&range=2022-07-24,2022-07-29
+        public IActionResult RangeByLocale([FromRoute] Locale locale, [FromQuery] string range)
         {
             if (!ModelState.IsValid)
                 return View("Error", ModelState.Values.SelectMany(v => v.Errors));
 
-            if (!DateRange.TryParse(range, culture.CultureInfo, out DateRange rangeResult))
+            if (!DateRange.TryParse(range, locale, out DateRange rangeResult))
             {
                 ModelState.TryAddModelError(nameof(range),
-                    $"Invalid date range: {range} for culture {culture.CultureInfo?.DisplayName}");
+                    $"Invalid date range: {range} for locale {locale.DisplayName}");
 
                 return View("Error", ModelState.Values.SelectMany(v => v.Errors));
             }
@@ -87,7 +86,7 @@ namespace BindTryParseMVC.Controllers
                              && DateOnly.FromDateTime(wf.Date) <= rangeResult.To)
                 .Select(wf => new WeatherForecastViewModel
                 {
-                    Date = wf.Date.ToString("d", culture.CultureInfo),
+                    Date = wf.Date.ToString("d", locale),
                     TemperatureC = wf.TemperatureC,
                     TemperatureF = 32 + (int) (wf.TemperatureC / 0.5556),
                     Summary = wf.Summary
