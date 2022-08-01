@@ -553,6 +553,25 @@ Consider an approach that uses [Azure Files](https://azure.microsoft.com/service
 
 For more information on Azure Blob Storage and Azure Files, see the [Azure Storage documentation](/azure/storage/).
 
+:::zone pivot="server"
+
+## SignalR message size limit
+
+File uploads may fail even before they start, when Blazor retrieves data about the files that exceeds the maximum SignalR message size.
+
+SignalR defines a message size limit that applies to every message Blazor receives, and the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component streams files to the server in messages that respect the configured limit. However, the first message, which indicates the set of files to upload, is sent as a unique single message. The size of the first message may exceed the SignalR message size limit. The issue isn't related to the size of the files, it's related to the number of files.
+
+The logged error is similar to the following:
+
+> :::no-loc text="Error: Connection disconnected with error 'Error: Server returned an error on close: Connection closed with an error.'.
+e.log @ blazor.server.js:1":::
+
+When uploading files, reaching the message size limit on the first message is rare. If the limit is reached, the app can configure <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> with a larger value.
+
+For more information on SignalR configuration and how to set <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize>, see <xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps>.
+
+:::zone-end
+
 ## Additional resources
 
 * <xref:blazor/file-downloads>
@@ -1090,6 +1109,25 @@ Consider an approach that uses [Azure Files](https://azure.microsoft.com/service
 * Secure files with server-side encryption (SSE).
 
 For more information on Azure Blob Storage and Azure Files, see the [Azure Storage documentation](/azure/storage/).
+
+:::zone pivot="server"
+
+## SignalR message size limit
+
+File uploads may fail even before they start, when Blazor retrieves data about the files that exceeds the maximum SignalR message size.
+
+SignalR defines a message size limit that applies to every message Blazor receives, and the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component streams files to the server in messages that respect the configured limit. However, the first message, which indicates the set of files to upload, is sent as a unique single message. The size of the first message may exceed the SignalR message size limit. The issue isn't related to the size of the files, it's related to the number of files.
+
+The logged error is similar to the following:
+
+> :::no-loc text="Error: Connection disconnected with error 'Error: Server returned an error on close: Connection closed with an error.'.
+e.log @ blazor.server.js:1":::
+
+When uploading files, reaching the message size limit on the first message is rare. If the limit is reached, the app can configure <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> with a larger value.
+
+For more information on SignalR configuration and how to set <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize>, see <xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps>.
+
+:::zone-end
 
 ## Additional resources
 
@@ -1632,6 +1670,25 @@ Consider an approach that uses [Azure Files](https://azure.microsoft.com/service
 * Secure files with server-side encryption (SSE).
 
 For more information on Azure Blob Storage and Azure Files, see the [Azure Storage documentation](/azure/storage/).
+
+:::zone pivot="server"
+
+## SignalR message size limit
+
+File uploads may fail even before they start, when Blazor retrieves data about the files that exceeds the maximum SignalR message size.
+
+SignalR defines a message size limit that applies to every message Blazor receives, and the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component streams files to the server in messages that respect the configured limit. However, the first message, which indicates the set of files to upload, is sent as a unique single message. The size of the first message may exceed the SignalR message size limit. The issue isn't related to the size of the files, it's related to the number of files.
+
+The logged error is similar to the following:
+
+> :::no-loc text="Error: Connection disconnected with error 'Error: Server returned an error on close: Connection closed with an error.'.
+e.log @ blazor.server.js:1":::
+
+When uploading files, reaching the message size limit on the first message is rare. If the limit is reached, the app can configure <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> with a larger value.
+
+For more information on SignalR configuration and how to set <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize>, see <xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps>.
+
+:::zone-end
 
 ## Additional resources
 
