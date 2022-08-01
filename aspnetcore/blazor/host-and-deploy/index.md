@@ -205,6 +205,8 @@ Using `CoolApp` as the example:
 
 Using either `dotnet run` with the `--pathbase` option or a launch profile configuration that sets the base path, the Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
+For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>.
+
 ## Blazor Server `MapFallbackToPage` configuration
 
 In scenarios where an app requires a separate area with custom resources and Razor components:
@@ -405,6 +407,8 @@ Using `CoolApp` as the example:
 ```
 
 Using either `dotnet run` with the `--pathbase` option or a launch profile configuration that sets the base path, the Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
+
+For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>.
 
 For additional third-party host support:
 
@@ -616,6 +620,8 @@ Using `CoolApp` as the example:
 ```
 
 Using either `dotnet run` with the `--pathbase` option or a launch profile configuration that sets the base path, the Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
+
+For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>.
 
 For additional third-party host support:
 
