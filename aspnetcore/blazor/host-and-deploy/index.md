@@ -80,8 +80,10 @@ By configuring the relative URL path for an app, a component that isn't in the r
 
 In many hosting scenarios, the relative URL path to the app is the root of the app. In these default cases, the app's relative URL base path is the following:
 
-* Blazor WebAssembly: `/` configured as `<base href="/" />` in `wwwroot/index.html`.
-* Blazor Server: `~/` configured as `<base href="~/" />` in `Pages/_Layout.cshtml`.
+* Blazor WebAssembly: `/` configured as `<base href="/" />`.
+* Blazor Server: `~/` configured as `<base href="~/" />`.
+
+For the location of `<head>` content in Blazor apps, see <xref:blazor/project-structure#location-of-head-content>.
 
 In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base path must be set to the server's relative URL path of the app.
 
@@ -115,7 +117,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
 * In a Blazor Server app, use ***either*** of the following approaches:
 
-  * Option 1: Use the `<base>` tag in `Pages/_Layout.cshtml` to set the app's base path:
+  * Option 1: Use the `<base>` tag to set the app's base path ([location of `<head>` content](xref:blazor/project-structure#location-of-head-content)):
 
     ```html
     <base href="/CoolApp/">
@@ -150,6 +152,8 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
         "ASPNETCORE_ENVIRONMENT": "Development"
     }
     ```
+    
+    For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>.
 
 > [!NOTE]
 > When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after `UsePathBase` so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by `UsePathBase` as described in the [Middleware Ordering](xref:fundamentals/middleware/index#order) and [Routing](xref:fundamentals/routing) articles.
@@ -200,6 +204,8 @@ Using `CoolApp` as the example:
 ```
 
 Using either `dotnet run` with the `--pathbase` option or a launch profile configuration that sets the base path, the Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
+
+For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>.
 
 ## Blazor Server `MapFallbackToPage` configuration
 
@@ -371,6 +377,8 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
         "ASPNETCORE_ENVIRONMENT": "Development"
     }
     ```
+    
+    For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>.
 
 For a Blazor WebAssembly app with a non-root relative URL path (for example, `<base href="/CoolApp/">`), the app fails to find its resources *when run locally*. To overcome this problem during local development and testing, you can supply a *path base* argument that matches the `href` value of the `<base>` tag at runtime. **Don't include a trailing slash.** To pass the path base argument when running the app locally, execute the `dotnet run` command from the app's directory with the `--pathbase` option:
 
@@ -399,6 +407,8 @@ Using `CoolApp` as the example:
 ```
 
 Using either `dotnet run` with the `--pathbase` option or a launch profile configuration that sets the base path, the Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
+
+For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>.
 
 For additional third-party host support:
 
@@ -580,6 +590,8 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
         "ASPNETCORE_ENVIRONMENT": "Development"
     }
     ```
+    
+    For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>.
 
 For a Blazor WebAssembly app with a non-root relative URL path (for example, `<base href="/CoolApp/">`), the app fails to find its resources *when run locally*. To overcome this problem during local development and testing, you can supply a *path base* argument that matches the `href` value of the `<base>` tag at runtime. **Don't include a trailing slash.** To pass the path base argument when running the app locally, execute the `dotnet run` command from the app's directory with the `--pathbase` option:
 
@@ -608,6 +620,8 @@ Using `CoolApp` as the example:
 ```
 
 Using either `dotnet run` with the `--pathbase` option or a launch profile configuration that sets the base path, the Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
+
+For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>.
 
 For additional third-party host support:
 

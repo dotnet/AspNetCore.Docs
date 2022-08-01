@@ -42,7 +42,7 @@ In the following image, `admin@contoso.com` is signed in and in the administrato
 
 The administrator has all privileges. She can read/edit/delete any contact and change the status of contacts.
 
-The app was created by [scaffolding](xref:tutorials/first-mvc-app/adding-model#scaffold-the-movie-model) the following `Contact` model:
+The app was created by [scaffolding](xref:tutorials/first-mvc-app/adding-model#scaffold-movie-pages) the following `Contact` model:
 
 [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 
@@ -397,7 +397,7 @@ In the following image, `admin@contoso.com` is signed in and in the administrato
 
 The administrator has all privileges. She can read/edit/delete any contact and change the status of contacts.
 
-The app was created by [scaffolding](xref:tutorials/first-mvc-app/adding-model#scaffold-the-movie-model) the following `Contact` model:
+The app was created by [scaffolding](xref:tutorials/first-mvc-app/adding-model#scaffold-movie-pages) the following `Contact` model:
 
 [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 

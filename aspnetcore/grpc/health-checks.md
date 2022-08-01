@@ -44,7 +44,7 @@ When health checks is set up:
   * `NotServing` is reported when there are any health results of <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType>.
   * Otherwise, `Serving` is reported.
 
-## Configure `Grpc.AspNetCore.HealthChecks`
+### Configure `Grpc.AspNetCore.HealthChecks`
 
 By default, the gRPC health checks service uses all registered health checks to determine health status. gRPC health checks can be customized when registered to use a subset of health checks. The `MapService` method is used to map health results to service names, along with a predicate for filtering health results:
 
@@ -58,7 +58,7 @@ gRPC health checks supports the client specifying a service name argument when c
 
 The service name specified by the client is usually the default (`""`) or a package-qualified name of a service in your app. However, nothing prevents the client using arbitrary values to check app health.
 
-## Configure health checks execution interval
+### Configure health checks execution interval
 
 Health checks are periodically executed using <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> to gather health results. By default, the publisher waits 5 seconds after app startup before running health checks, and then health checks are run again every 30 seconds.
 
@@ -133,7 +133,7 @@ When health checks is set up:
   * `NotServing` is reported when there are any health results of <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType>.
   * Otherwise, `Serving` is reported.
 
-## Configure `Grpc.AspNetCore.HealthChecks`
+### Configure `Grpc.AspNetCore.HealthChecks`
 
 By default, the gRPC health checks service uses all registered health checks to determine health status. gRPC health checks can be customized when registered to use a subset of health checks. The `MapService` method is used to map health results to service names, along with a predicate for filtering health results:
 
@@ -158,7 +158,7 @@ services.AddGrpcHealthChecks(o =>
 
 The service name specified by the client is usually the default (`""`) or a package-qualified name of a service in your app. However, nothing prevents the client using arbitrary values to check app health.
 
-## Configure health checks execution interval
+### Configure health checks execution interval
 
 Health checks are periodically executed using <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> to gather health results. By default, the publisher waits 5 seconds after app startup before running health checks, and then health checks are run again every 30 seconds.
 

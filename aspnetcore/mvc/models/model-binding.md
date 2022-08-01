@@ -369,15 +369,19 @@ For targets that are collections of simple types, model binding looks for matche
   [a]=1050&[b]=2000&index=a&index=b
   ```
 
- Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding attempts to use `index` as the index for the collection which might result in incorrect binding. For example, consider the following action:
+  Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding attempts to use `index` as the index for the collection which might result in incorrect binding. For example, consider the following action:
   
   ```csharp
   public IActionResult Post(string index, List<Product> products)
   ```
+   
   In the preceding code, the `index` query string parameter binds to the `index` method parameter and also is used to bind the product collection. Renaming the `index` parameter or using a model binding attribute to configure binding avoids this issue:
+   
   ```csharp
   public IActionResult Post(string productIndex, List<Product> products)
   ```
+
+* The following format is supported only in form data:
 
   ```
   selectedCourses[]=1050&selectedCourses[]=2000
@@ -1000,15 +1004,19 @@ For targets that are collections of simple types, model binding looks for matche
   [a]=1050&[b]=2000&index=a&index=b
   ```
 
- Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding attempts to use `index` as the index for the collection which might result in incorrect binding. For example, consider the following action:
+  Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding attempts to use `index` as the index for the collection which might result in incorrect binding. For example, consider the following action:
   
   ```csharp
   public IActionResult Post(string index, List<Product> products)
   ```
+  
   In the preceding code, the `index` query string parameter binds to the `index` method parameter and also is used to bind the product collection. Renaming the `index` parameter or using a model binding attribute to configure binding avoids this issue:
+  
   ```csharp
   public IActionResult Post(string productIndex, List<Product> products)
   ```
+
+* The following format is supported only in form data:
 
   ```
   selectedCourses[]=1050&selectedCourses[]=2000

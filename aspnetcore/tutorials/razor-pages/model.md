@@ -179,7 +179,7 @@ For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/
 
 The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
-[!INCLUDE[](~/includes/RP/sqlitedev.md)]
+[!INCLUDE[](~/includes/DevProdSQLite.md)]
 
 ---
 
