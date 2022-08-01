@@ -4,7 +4,7 @@ author: rick-anderson
 description: Overview of caching in ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.date: 1/11/2022
+ms.date: 08/12/2022
 uid: performance/caching/overview
 ---
 # Overview of caching in ASP.NET Core
@@ -38,3 +38,27 @@ For more information, see <xref:mvc/views/tag-helpers/builtin-th/distributed-cac
 ## Response caching
 
 [!INCLUDE[](~/includes/response-caching-mid.md)]
+
+## Output caching
+
+The output caching middleware enables caching of HTTP responses. Output caching differs from [response caching](#response-caching) in the following ways:
+
+* You configure the caching behavior on the server.
+
+  Response caching behavior is defined by HTTP headers. For example, when you visit a website with Chrome or Edge, the browser automatically sends a `Cache-control: max-age=0` header. This header effectively disables response caching, since the server follows the directions provided by the client. A new response is returned for every request, even if the server has a fresh cached response. With output caching the client doesn't override the caching behavior that you configure on the server.
+
+* The cache storage medium is extensible.
+
+  Memory is used by default. Disk, Redis, blob storage, and others are available. Response caching is limited to memory.
+
+* You can programmatically invalidate selected cache entries.
+
+  Response caching's dependence on HTTP headers leaves you with few options for invalidating cache entries.
+
+* Resource locking mitigates the risk of cache stampede and thundering herd.
+
+  *Cache stampede* happens when a frequently used cache entry is revoked, and too many requests try to repopulate the same cache entry at the same time. *Thundering herd* is similar: a burst of requests for the same response that isn't already in a cache entry. Resource locking ensures that all requests for a given response wait for the the first request to populate the cache. Response caching doesn't have a resource locking feature.
+
+* Cache revalidation minimizes bandwidth usage.
+
+  *Cache revalidation* means the server can return a `304 Not Modified` HTTP status code instead of a cached response body. This status code informs the client that the response to the request is unchanged from what was previously received. Response caching doesn't do cache revalidation.
