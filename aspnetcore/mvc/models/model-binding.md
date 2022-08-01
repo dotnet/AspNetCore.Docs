@@ -62,7 +62,7 @@ Can be applied to a public property of a controller or `PageModel` class to caus
 
 :::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Pages/Edit.cshtml.cs" id="snippet_Class" highlight="3":::
 
-### [BindProperties] attribute
+### [BindProperties] attribute
 
 Can be applied to a controller or `PageModel` class to tell model binding to target all public properties of the class:
 
@@ -188,6 +188,32 @@ The simple types that the model binder can convert source strings into include t
 * [UInt16](xref:System.ComponentModel.UInt16Converter), [UInt32](xref:System.ComponentModel.UInt32Converter), [UInt64](xref:System.ComponentModel.UInt64Converter)
 * [Uri](xref:System.UriTypeConverter)
 * [Version](xref:System.ComponentModel.VersionConverter)
+
+## Bind with TryParse
+
+The following APIs support binding controller action parameter values using a `TryParse`:
+
+```csharp
+public static bool TryParse(string value, T out result);
+public static bool TryParse(string value, IFormatProvider provider, T out result);
+```
+
+The following `DateRange` class implements `TryParse` to support binding a date range:
+
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Models/DateRange.cs" id="snippet":::
+
+The preceding code:
+
+* Converts a string representing two dates to a `DateRange` object consisting of two [DateOnly](/dotnet/api/system.dateonly).
+* The model binder uses the `TryParse` method to bind the `DateRange`.
+
+The following controller uses the `DateRange` class to bind a date range:
+
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_1":::
+
+The following `Culture` class implements `TryParse` to support binding
+
+The [sample apps on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse) also show binding to date range string in an API Controller.
 
 ## Complex types
 
@@ -343,19 +369,15 @@ For targets that are collections of simple types, model binding looks for matche
   [a]=1050&[b]=2000&index=a&index=b
   ```
 
-  Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding attempts to use `index` as the index for the collection which might result in incorrect binding. For example, consider the following action:
+ Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding attempts to use `index` as the index for the collection which might result in incorrect binding. For example, consider the following action:
   
   ```csharp
   public IActionResult Post(string index, List<Product> products)
   ```
-   
   In the preceding code, the `index` query string parameter binds to the `index` method parameter and also is used to bind the product collection. Renaming the `index` parameter or using a model binding attribute to configure binding avoids this issue:
-   
   ```csharp
   public IActionResult Post(string productIndex, List<Product> products)
   ```
-
-* The following format is supported only in form data:
 
   ```
   selectedCourses[]=1050&selectedCourses[]=2000
@@ -697,7 +719,7 @@ Can be applied to a public property of a controller or `PageModel` class to caus
 
 :::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Pages/Edit.cshtml.cs" id="snippet_Class" highlight="3":::
 
-### [BindProperties] attribute
+### [BindProperties] attribute
 
 Can be applied to a controller or `PageModel` class to tell model binding to target all public properties of the class:
 
@@ -978,19 +1000,15 @@ For targets that are collections of simple types, model binding looks for matche
   [a]=1050&[b]=2000&index=a&index=b
   ```
 
-  Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding attempts to use `index` as the index for the collection which might result in incorrect binding. For example, consider the following action:
+ Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding attempts to use `index` as the index for the collection which might result in incorrect binding. For example, consider the following action:
   
   ```csharp
   public IActionResult Post(string index, List<Product> products)
   ```
-  
   In the preceding code, the `index` query string parameter binds to the `index` method parameter and also is used to bind the product collection. Renaming the `index` parameter or using a model binding attribute to configure binding avoids this issue:
-  
   ```csharp
   public IActionResult Post(string productIndex, List<Product> products)
   ```
-
-* The following format is supported only in form data:
 
   ```
   selectedCourses[]=1050&selectedCourses[]=2000
@@ -1334,7 +1352,7 @@ Can be applied to a public property of a controller or `PageModel` class to caus
 
 :::code language="csharp" source="model-binding/samples/3.x/ModelBindingSample/Pages/Instructors/Edit.cshtml.cs" id="snippet_BindProperty" highlight="3-4":::
 
-### [BindProperties] attribute
+### [BindProperties] attribute
 
 Available in ASP.NET Core 2.1 and later.  Can be applied to a controller or `PageModel` class to tell model binding to target all public properties of the class:
 
