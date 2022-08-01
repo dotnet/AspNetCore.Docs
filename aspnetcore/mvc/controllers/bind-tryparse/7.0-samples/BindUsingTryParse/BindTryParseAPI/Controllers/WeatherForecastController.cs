@@ -1,4 +1,3 @@
-using System.Globalization;
 using BindTryParseAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,22 +7,15 @@ namespace BindTryParseAPI.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
+        private static readonly string[] Summaries = {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        {
-            _logger = logger;
-        }
-
-        // <snippet2>
-        // GET /WeatherForecast
+        // <snippet_1>
+        // GET /en-gb/WeatherForecast
         [HttpGet]
-        public IActionResult Get()
+        [Route("/{locale}/[controller]")]
+        public IActionResult Get([FromRoute] Locale locale)
         {
             var weatherForecasts = Enumerable
                 .Range(1, 5).Select(index => new WeatherForecast
@@ -34,20 +26,20 @@ namespace BindTryParseAPI.Controllers
                 })
                 .Select(wf => new WeatherForecastViewModel
                 {
-                    Date = wf.Date.ToString("d"),
+                    Date = wf.Date.ToString("d", locale),
                     TemperatureC = wf.TemperatureC,
-                    TemperatureF = wf.TemperatureF,
+                    TemperatureF = 32 + (int)(wf.TemperatureC / 0.5556),
                     Summary = wf.Summary
                 });
 
             return Ok(weatherForecasts);
         }
-        // </snippet2>
+        // </snippet_1>
 
-        // <snippet>
-        // GET /WeatherForecast/GetByRange?range=07/12/2022-07/14/2022
+        // <snippet_2>
+        // GET /WeatherForecast/ByRange?range=07/12/2022,07/14/2022
         [HttpGet]
-        [Route("GetByRange")]
+        [Route("ByRange")]
         public IActionResult GetByRange([FromQuery] DateRange range)
         {
             var weatherForecasts = Enumerable
@@ -57,28 +49,29 @@ namespace BindTryParseAPI.Controllers
                     TemperatureC = Random.Shared.Next(-20, 55),
                     Summary = Summaries[Random.Shared.Next(Summaries.Length)]
                 })
-                .Where(wf => DateOnly.FromDateTime(wf.Date) >= (range?.From ?? DateOnly.MinValue) 
-                          && DateOnly.FromDateTime(wf.Date) <= (range?.To ?? DateOnly.MaxValue))
+                .Where(wf => DateOnly.FromDateTime(wf.Date) >= range.From
+                             && DateOnly.FromDateTime(wf.Date) <= range.To)
                 .Select(wf => new WeatherForecastViewModel
                 {
                     Date = wf.Date.ToString("d"),
                     TemperatureC = wf.TemperatureC,
-                    TemperatureF = wf.TemperatureF,
+                    TemperatureF = 32 + (int)(wf.TemperatureC / 0.5556),
                     Summary = wf.Summary
                 });
 
             return Ok(weatherForecasts);
         }
-        // </snippet>
+        // </snippet_2>
 
-        // GET /en-gb/WeatherForecast/GetByRangeWithCulture?range=21/07/2022-23/07/2022
+        // <snippet_3>
+        // GET /af-ZA/WeatherForecast/ByLocaleRange?range=2022-07-24,2022-07-29
         [HttpGet]
-        [Route("/{culture}/[controller]/GetByRangeWithCulture")]
-        public IActionResult GetByRangeWithCulture([FromRoute] string culture, [FromQuery] string range)
+        [Route("/{locale}/[controller]/ByLocaleRange")]
+        public IActionResult GetByLocaleRange([FromRoute] Locale locale, [FromQuery] string range)
         {
-            if (!DateRange.TryParse(range, new CultureInfo(culture ?? "en-US"), out var dateRange))
-                return ValidationProblem($"Invalid date range {range} for culture {culture}");
-            
+            if (!DateRange.TryParse(range, locale, out DateRange rangeResult))
+                return ValidationProblem($"Invalid date range: {range} for locale {locale.DisplayName}");
+
             var weatherForecasts = Enumerable
                 .Range(1, 5).Select(index => new WeatherForecast
                 {
@@ -86,17 +79,18 @@ namespace BindTryParseAPI.Controllers
                     TemperatureC = Random.Shared.Next(-20, 55),
                     Summary = Summaries[Random.Shared.Next(Summaries.Length)]
                 })
-                .Where(wf => DateOnly.FromDateTime(wf.Date) >= (dateRange?.From ?? DateOnly.MinValue) 
-                          && DateOnly.FromDateTime(wf.Date) <= (dateRange?.To ?? DateOnly.MaxValue))
+                .Where(wf => DateOnly.FromDateTime(wf.Date) >= rangeResult.From
+                             && DateOnly.FromDateTime(wf.Date) <= rangeResult.To)
                 .Select(wf => new WeatherForecastViewModel
                 {
-                    Date = wf.Date.ToString(new CultureInfo(culture ?? "en-US")),
+                    Date = wf.Date.ToString("d", locale),
                     TemperatureC = wf.TemperatureC,
-                    TemperatureF = wf.TemperatureF,
+                    TemperatureF = 32 + (int)(wf.TemperatureC / 0.5556),
                     Summary = wf.Summary
                 });
 
             return Ok(weatherForecasts);
         }
+        // </snippet_3>
     }
 }
