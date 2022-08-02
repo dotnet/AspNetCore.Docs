@@ -6,7 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 var connection = new SqliteConnection("DataSource=:memory:");
 connection.Open();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 // Configure TodoGroupDbContext to use the in-memory SQLite connection and register it as a service.
