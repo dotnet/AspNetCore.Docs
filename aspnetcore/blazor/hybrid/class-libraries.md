@@ -30,7 +30,7 @@ For guidance on creating an RCL, see <xref:blazor/components/class-libraries>. O
 
 ## Target framework
 
-To publish a WPF or Windows Forms project with a Razor class library (RCL) in .NET 6.0, the RCL must target `net6.0-windows`.
+To publish a WPF or Windows Forms project with a Razor class library (RCL) in .NET 6, the RCL must target `net6.0-windows` in addition to `net6.0`.
 
 Example:
 
