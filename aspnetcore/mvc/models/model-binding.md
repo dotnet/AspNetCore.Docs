@@ -207,17 +207,15 @@ The preceding code:
 * Converts a string representing two dates to a `DateRange` object
 * The model binder uses the [`IParsable<TSelf>.TryParse`](/dotnet/api/system.iparsable-1.tryparse#system-iparsable-1-tryparse(system-string-system-iformatprovider-0@)) method to bind the `DateRange`.
 
-The following controller uses the `DateRange` class to bind a date range:
+The following controller action uses the `DateRange` class to bind a date range:
 
 :::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_2":::
-
-zzz new stuff
 
 The following `Locale` class implements [`IParsable<TSelf>`](/dotnet/api/system.iparsable-1) to support binding to `CultureInfo`:
 
 :::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Models/Locale.cs" id="snippet":::
 
-The following controller uses the `DateRange` and `Locale` classes to bind a date range with `CultureInfo`:
+The following controller action uses the `DateRange` and `Locale` classes to bind a date range with `CultureInfo`:
 
 :::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_3":::
 
