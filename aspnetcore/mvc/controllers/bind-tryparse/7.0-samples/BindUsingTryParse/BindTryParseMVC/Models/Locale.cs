@@ -14,13 +14,14 @@ namespace BindTryParseMVC.Models
         {
             if (!TryParse(value, provider, out var result))
             {
-                throw new ArgumentException("Could not parse supplied value.", nameof(value));
+               throw new ArgumentException("Could not parse supplied value.", nameof(value));
             }
 
             return result;
         }
 
-        public static bool TryParse([NotNullWhen(true)] string? value, IFormatProvider? provider, out Locale locale)
+        public static bool TryParse([NotNullWhen(true)] string? value,
+                                    IFormatProvider? provider, out Locale locale)
         {
             if (value is null)
             {
