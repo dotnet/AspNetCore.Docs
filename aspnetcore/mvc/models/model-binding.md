@@ -204,7 +204,7 @@ The following `DateRange` class implements `TryParse` to support binding a date 
 
 The preceding code:
 
-* Converts a string representing two dates to a `DateRange` object consisting of two [DateOnly](/dotnet/api/system.dateonly).
+* Converts a string representing two dates to a `DateRange` object.
 * The model binder uses the `TryParse` method to bind the `DateRange`.
 
 The following controller uses the `DateRange` class to bind a date range:

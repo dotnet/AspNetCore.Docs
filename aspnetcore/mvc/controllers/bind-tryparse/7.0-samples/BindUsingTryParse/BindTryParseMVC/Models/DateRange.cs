@@ -16,9 +16,11 @@ namespace BindTryParseMVC.Models
             return result;
         }
 
-        public static bool TryParse(string? value, IFormatProvider? provider, out DateRange dateRange)
+        public static bool TryParse(string? value,
+                                    IFormatProvider? provider, out DateRange dateRange)
         {
-            var segments = value?.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            var segments = value?.Split(',', StringSplitOptions.RemoveEmptyEntries 
+                                           | StringSplitOptions.TrimEntries);
 
             if (segments?.Length == 2
                 && DateOnly.TryParse(segments[0], provider, out var fromDate)

@@ -15,6 +15,26 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
 }
 
+// GET /WeatherForecast/ByRange?range=7/24/2022,07/26/2022
+
+var redirectDateRange = $"/WeatherForecast/ByRange?range={DateTime.Now.ToShortDateString()}" +
+                        $",{DateTime.Now.AddDays(5).ToShortDateString()}";
+
+
+app.MapGet("/range", () => redirectDateRange);
+
+// GET /culture/en-GB
+// /en-GB/WeatherForecast/RangeByLocale&range=01/08/2022,06/08/2022
+app.MapGet("/culture/{cultureID}", (string cultureID) =>
+{
+    var cultureRange = $"/{cultureID}/WeatherForecast/RangeByLocale&range=" +
+                      $"{DateTime.Now.ToString("d",new CultureInfo(cultureID))}" +
+                      $",{DateTime.Now.AddDays(5).ToString("d",new CultureInfo(cultureID))}";
+    return cultureRange;
+});
+
+//app.MapGet("/", () => Results.Redirect(redirectDateRange));
+
 app.UseStaticFiles();
 
 app.UseRouting();
