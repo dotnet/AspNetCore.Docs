@@ -189,31 +189,39 @@ The simple types that the model binder can convert source strings into include t
 * [Uri](xref:System.UriTypeConverter)
 * [Version](xref:System.ComponentModel.VersionConverter)
 
-## Bind with TryParse
+## Bind with IParsable and TryParse
 
-The following APIs support binding controller action parameter values using a `TryParse`:
+The following APIs support binding controller action parameter values using `TryParse`:
 
 ```csharp
 public static bool TryParse(string value, T out result);
 public static bool TryParse(string value, IFormatProvider provider, T out result);
 ```
 
-The following `DateRange` class implements `TryParse` to support binding a date range:
+The following `DateRange` class implements [`IParsable<TSelf>`](/dotnet/api/system.iparsable-1) to support binding a date range:
 
 :::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Models/DateRange.cs" id="snippet":::
 
 The preceding code:
 
-* Converts a string representing two dates to a `DateRange` object.
-* The model binder uses the `TryParse` method to bind the `DateRange`.
+* Converts a string representing two dates to a `DateRange` object
+* The model binder uses the [`IParsable<TSelf>.TryParse`](/dotnet/api/system.iparsable-1.tryparse#system-iparsable-1-tryparse(system-string-system-iformatprovider-0@)) method to bind the `DateRange`.
 
 The following controller uses the `DateRange` class to bind a date range:
 
-:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_1":::
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_2":::
 
-The following `Culture` class implements `TryParse` to support binding
+zzz new stuff
 
-The [sample apps on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse) also show binding to date range string in an API Controller.
+The following `Locale` class implements [`IParsable<TSelf>`](/dotnet/api/system.iparsable-1) to support binding to `CultureInfo`:
+
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Models/Locale.cs" id="snippet":::
+
+The following controller uses the `DateRange` and `Locale` classes to bind a date range with `CultureInfo`:
+
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_3":::
+
+The [API sample app on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse) shows the preceding samples for an API controller.
 
 ## Complex types
 
