@@ -1,7 +1,7 @@
 using Data;
 using Microsoft.EntityFrameworkCore;
 
-class RouteHandlers
+public class RouteHandlers
 {
 
   // get all todos
