@@ -10,7 +10,7 @@ namespace BindTryParseMVC.Models
         {
             if (!TryParse(value, provider, out var result))
             {
-                throw new ArgumentException("Could not parse supplied value.", nameof(value));
+               throw new ArgumentException("Could not parse supplied value.", nameof(value));
             }
 
             return result;
