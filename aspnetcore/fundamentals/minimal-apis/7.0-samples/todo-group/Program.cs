@@ -8,7 +8,6 @@ connection.Open();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-// Configure TodoGroupDbContext to use the in-memory SQLite connection and register it as a service.
 builder.Services.AddDbContext<TodoGroupDbContext>(options =>
 {
     options.UseSqlite(connection);
