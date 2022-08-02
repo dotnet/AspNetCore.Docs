@@ -86,13 +86,13 @@ gRPC is well suited to the following scenarios:
 
 It's impossible to directly call a gRPC service from a browser today. gRPC heavily uses HTTP/2 features and no browser provides the level of control required over web requests to support a gRPC client. For example, browsers do not allow a caller to require that HTTP/2 be used, or provide access to underlying HTTP/2 frames.
 
-gRPC on ASP.NET Core offers two browser compatible solutions:
+gRPC on ASP.NET Core offers two browser-compatible solutions:
 
 * **gRPC-Web** allows browser apps to call gRPC services with the gRPC-Web client and Protobuf. gRPC-Web requires the browser app to generate a gRPC client. gRPC-Web allows browser apps to benefit from the high-performance and low network usage of gRPC.
 
   .NET has built-in support for gRPC-Web. For more information, see <xref:grpc/grpcweb>.
 
-* **gRPC JSON transcoding** allows browser apps to call gRPC services as if they were RESTful APIs with JSON. The browser app doesn't need to generate a gRPC client or know anything about gRPC. RESTful APIs can be automatically created from gRPC services by annotating the `.proto` file with HTTP metadata. Transcoding allows an app to support both gRPC and JSON web APIs, without duplicating effort of building separate services for both.
+* **gRPC JSON transcoding** allows browser apps to call gRPC services as if they were RESTful APIs with JSON. The browser app doesn't need to generate a gRPC client or know anything about gRPC. RESTful APIs can be automatically created from gRPC services by annotating the `.proto` file with HTTP metadata. Transcoding allows an app to support both gRPC and JSON web APIs without duplicating the effort of building separate services for both.
 
   .NET has built-in support for creating JSON web APIs from gRPC services. For more information, see <xref:grpc/httpapi>.
 
