@@ -30,7 +30,7 @@ For guidance on creating an RCL, see <xref:blazor/components/class-libraries>. O
 
 ## Target framework
 
-To publish a WPF or Windows Forms project with a Razor class library (RCL) in ASP.NET Core 6.0, the RCL must have the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks) set to `net6.0;net6.0-windows`.
+To publish a WPF or Windows Forms project with a Razor class library (RCL) in ASP.NET Core 6.0, the RCL must target `net6.0` and `net6.0-windows`.
 
 In the RCL's project file:
 
@@ -38,6 +38,8 @@ In the RCL's project file:
 - <TargetFramework>net6.0</TargetFramework>
 + <TargetFrameworks>net6.0;net6.0-windows</TargetFrameworks>
 ```
+
+For more information, see [Target frameworks in SDK-style projects](/dotnet/standard/frameworks).
 
 :::moniker-end
 
