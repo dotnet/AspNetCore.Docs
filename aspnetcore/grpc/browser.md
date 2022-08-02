@@ -11,7 +11,7 @@ uid: grpc/browser
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-It's not possible to directly call a gRPC service from a browser today. gRPC uses HTTP/2 features and no browser provides the level of control required over web requests to support a gRPC client.
+It's not possible to directly call a gRPC service from a browser today. gRPC uses HTTP/2 features, and no browser provides the level of control required over web requests to support a gRPC client.
 
 gRPC on ASP.NET Core offers two browser-compatible solutions:
 
