@@ -3,7 +3,6 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-// Create and open an in-memory SQLite connection.
 var connection = new SqliteConnection("DataSource=:memory:");
 connection.Open();
 
