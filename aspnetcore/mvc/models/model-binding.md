@@ -189,13 +189,12 @@ The simple types that the model binder can convert source strings into include t
 * [Uri](xref:System.UriTypeConverter)
 * [Version](xref:System.ComponentModel.VersionConverter)
 
-## Bind with IParsable and TryParse
+## Bind with `IParsable<T>.TryParse`
 
-The following APIs support binding controller action parameter values using `TryParse`:
+The [`IParsable<TSelf>.TryParse`](/dotnet/api/system.iparsable-1.tryparse#system-iparsable-1-tryparse(system-string-system-iformatprovider-0@) API supports binding controller action parameter values:
 
 ```csharp
-public static bool TryParse(string value, T out result);
-public static bool TryParse(string value, IFormatProvider provider, T out result);
+public static bool TryParse (string? s, IFormatProvider? provider, out TSelf result);
 ```
 
 The following `DateRange` class implements [`IParsable<TSelf>`](/dotnet/api/system.iparsable-1) to support binding a date range:
