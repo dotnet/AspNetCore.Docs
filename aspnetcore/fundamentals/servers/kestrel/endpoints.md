@@ -419,6 +419,11 @@ When the port number `0` is specified, Kestrel dynamically binds to an available
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_IServerAddressesFeature":::
 
+Dynamically binding a port isn't available in some situations:
+
+* `ListenLocalhost`
+* Binding TCP based HTTP/1.1 or HTTP/2, and QUIC based HTTP/3 together.
+
 ## Limitations
 
 Configure endpoints with the following approaches:
