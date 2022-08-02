@@ -5,7 +5,7 @@ description: Learn how to share Razor components, C# code, and static assets acr
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/21/2022
+ms.date: 08/02/2022
 uid: blazor/hybrid/class-libraries
 ---
 # Share assets across web and native clients using a Razor class library (RCL)
@@ -25,6 +25,21 @@ The examples in this article share assets between a Blazor Server app and a .NET
 * The order that the projects are created isn't important. However, projects that rely on an RCL for assets must create a project reference to the RCL *after* the RCL is created.
 
 For guidance on creating an RCL, see <xref:blazor/components/class-libraries>. Optionally, access the additional guidance on RCLs that apply broadly to ASP.NET Core apps in <xref:razor-pages/ui-class>.
+
+:::moniker range="= aspnetcore-6.0"
+
+## Target framework
+
+To publish a WPF or Windows Forms project with a Razor class library (RCL) in ASP.NET Core 6.0, the RCL must have the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks) set to `net6.0;net6.0-windows`.
+
+In the RCL's project file:
+
+```diff
+- <TargetFramework>net6.0</TargetFramework>
++ <TargetFrameworks>net6.0;net6.0-windows</TargetFrameworks>
+```
+
+:::moniker-end
 
 ## Sample app
 
