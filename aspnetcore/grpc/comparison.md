@@ -90,7 +90,7 @@ There are two common approaches to bring gRPC to browser apps:
 
 * [gRPC-Web](https://grpc.io/docs/tutorials/basic/web.html) is an additional technology from the gRPC team that provides gRPC support in the browser. gRPC-Web allows browser apps to benefit from the high-performance and low network usage of gRPC. Not all of gRPC's features are supported by gRPC-Web. Client and bi-directional streaming isn't supported, and there is limited support for server streaming.
 
-  .NET Core has support for gRPC-Web. For more information, see <xref:grpc/browser>.
+  .NET Core has support for gRPC-Web. For more information, see <xref:grpc/grpcweb>.
 
 * RESTful JSON Web APIs can be automatically created from gRPC services by annotating the `.proto` file with [HTTP metadata](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule). This allows an app to support both gRPC and JSON web APIs, without duplicating effort of building separate services for both.
 
