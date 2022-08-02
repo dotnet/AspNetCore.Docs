@@ -28,9 +28,9 @@ For guidance on creating an RCL, see <xref:blazor/components/class-libraries>. O
 
 :::moniker range="= aspnetcore-6.0"
 
-## Target framework
+## Target frameworks for ClickOnce deployments
 
-To publish a WPF or Windows Forms project with a Razor class library (RCL) in .NET 6, the RCL must target `net6.0-windows` in addition to `net6.0`.
+To publish a WPF or Windows Forms project with a Razor class library (RCL) in .NET 6 with [ClickOnce](/visualstudio/deployment/clickonce-security-and-deployment), the RCL must target `net6.0-windows` in addition to `net6.0`.
 
 Example:
 
@@ -38,7 +38,11 @@ Example:
 <TargetFrameworks>net6.0;net6.0-windows</TargetFrameworks>
 ```
 
-For more information, see [Target frameworks in SDK-style projects](/dotnet/standard/frameworks).
+For more information, see the following articles:
+
+* [Target frameworks in SDK-style projects](/dotnet/standard/frameworks)
+* [ClickOnce security and deployment](/visualstudio/deployment/clickonce-security-and-deployment)
+* [Publish ClickOnce applications](/visualstudio/deployment/publishing-clickonce-applications)
 
 :::moniker-end
 
