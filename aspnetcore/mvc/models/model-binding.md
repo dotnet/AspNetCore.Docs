@@ -215,6 +215,10 @@ The following `Locale` class implements [`IParsable<TSelf>`](/dotnet/api/system.
 
 :::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Models/Locale.cs" id="snippet":::
 
+The following controller action uses the  `Locale` classes to bind a with `CultureInfo` string:
+
+:::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_1":::
+
 The following controller action uses the `DateRange` and `Locale` classes to bind a date range with `CultureInfo`:
 
 :::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_3":::
