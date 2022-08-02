@@ -17,7 +17,6 @@ builder.Services.AddDbContext<TodoGroupDbContext>(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     // localhost:{port}/swagger
