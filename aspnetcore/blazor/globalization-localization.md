@@ -321,19 +321,6 @@ In the `wwwroot/index.html` file after Blazor's `<script>` tag and before the cl
 
 > [!NOTE]
 > The preceding example pollutes the client with global methods. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules).
->
-> Example:
->
-> ```javascript
-> export function getBlazorCulture() {
->   return window.localStorage['BlazorCulture'];
-> };
-> export function setBlazorCulture(value) {
->   window.localStorage['BlazorCulture'] = value;
-> };
-> ```
->
-> If you use the preceding functions, change the JS interop calls in this section from `blazorCulture.get` to `getBlazorCulture` and from `blazorCulture.set` to `setBlazorCulture`.
 
 Add the namespaces for <xref:System.Globalization?displayProperty=fullName> and <xref:Microsoft.JSInterop?displayProperty=fullName> to the top of `Program.cs`:
 
@@ -1210,19 +1197,6 @@ In the `wwwroot/index.html` file after Blazor's `<script>` tag and before the cl
 
 > [!NOTE]
 > The preceding example pollutes the client with global methods. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules).
->
-> Example:
->
-> ```javascript
-> export function getBlazorCulture() {
->   return window.localStorage['BlazorCulture'];
-> };
-> export function setBlazorCulture(value) {
->   window.localStorage['BlazorCulture'] = value;
-> };
-> ```
->
-> If you use the preceding functions, change the JS interop calls in this section from `blazorCulture.get` to `getBlazorCulture` and from `blazorCulture.set` to `setBlazorCulture`.
 
 Add the namespaces for <xref:System.Globalization?displayProperty=fullName> and <xref:Microsoft.JSInterop?displayProperty=fullName> to the top of `Program.cs`:
 
@@ -2869,19 +2843,6 @@ In the `wwwroot/index.html` file after Blazor's `<script>` tag and before the cl
 
 > [!NOTE]
 > The preceding example pollutes the client with global methods. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules).
->
-> Example:
->
-> ```javascript
-> export function getBlazorCulture() {
->   return window.localStorage['BlazorCulture'];
-> };
-> export function setBlazorCulture(value) {
->   window.localStorage['BlazorCulture'] = value;
-> };
-> ```
->
-> If you use the preceding functions, change the JS interop calls in this section from `blazorCulture.get` to `getBlazorCulture` and from `blazorCulture.set` to `setBlazorCulture`.
 
 Add the namespaces for <xref:System.Globalization?displayProperty=fullName> and <xref:Microsoft.JSInterop?displayProperty=fullName> to the top of `Program.cs`:
 
