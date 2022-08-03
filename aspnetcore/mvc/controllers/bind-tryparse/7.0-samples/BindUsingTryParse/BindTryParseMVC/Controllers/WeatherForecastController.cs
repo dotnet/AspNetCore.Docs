@@ -1,3 +1,4 @@
+using System.Globalization;
 using BindTryParseMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -61,7 +62,7 @@ namespace BindTryParseMVC.Controllers
         // </snippet_2>
 
         // <snippet_3>
-        // GET /af-ZA/WeatherForecast/RangeByLocale&range=2022-07-24,2022-07-29
+        // GET /af-ZA/WeatherForecast/RangeByLocale?range=2022-07-24,2022-07-29
         public IActionResult RangeByLocale([FromRoute] Locale locale, [FromQuery] string range)
         {
             if (!ModelState.IsValid)
@@ -95,5 +96,22 @@ namespace BindTryParseMVC.Controllers
             return View("Index", weatherForecasts);
         }
         // </snippet_3>
+
+        public IResult GenRange()
+        {
+            var redirectDateRange = $"/WeatherForecast/ByRange?range={DateTime.Now.ToShortDateString()}" +
+                         $",{DateTime.Now.AddDays(5).ToShortDateString()}";
+            return Results.Redirect(redirectDateRange);
+        }
+
+        public IResult LocalGenRange()
+        {
+            var cultureID = "en-GB";
+            var cultureRange = $"/{cultureID}/WeatherForecast/RangeByLocale?range=" +
+                  $"{DateTime.Now.ToString("d", new CultureInfo(cultureID))}" +
+                  $",{DateTime.Now.AddDays(5).ToString("d", new CultureInfo(cultureID))}";
+
+            return Results.Redirect(cultureRange);
+        }
     }
 }
