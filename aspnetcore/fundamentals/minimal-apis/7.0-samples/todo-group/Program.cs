@@ -46,7 +46,11 @@ todos.MapPut("/{id}", RouteHandlers.UpdateTodo).AddRouteHandlerFilter((context, 
     if (context.HttpContext.Request.ContentLength > 80)
     {
         context.HttpContext.Response.StatusCode = 400;
-        return new ValueTask<object?>(Results.BadRequest(new { Message = "Request body is too empty" }));
+        IDictionary<string, string[]> errors = new Dictionary<string, string[]>()
+        {
+            { "Error", new[] { "The size of the payload is above 80 characters" } },
+        };
+        return new ValueTask<object?>(Results.ValidationProblem(errors));
     }
     return next(context);
 });
