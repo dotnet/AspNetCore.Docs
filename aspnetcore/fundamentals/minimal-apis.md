@@ -1364,7 +1364,7 @@ The following code shows the model and the required `TryParse` implementation:
 
 [!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_model)]
 
-The following code binds to a `int` array:
+The following code binds to an `int` array:
 
 [!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_iaray)]
 
