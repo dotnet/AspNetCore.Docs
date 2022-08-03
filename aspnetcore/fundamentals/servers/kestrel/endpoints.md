@@ -422,7 +422,7 @@ When the port number `0` is specified, Kestrel dynamically binds to an available
 Dynamically binding a port isn't available in some situations:
 
 * `ListenLocalhost`
-* Binding TCP based HTTP/1.1 or HTTP/2, and QUIC based HTTP/3 together.
+* Binding TCP-based HTTP/1.1 or HTTP/2, and QUIC-based HTTP/3 together.
 
 ## Limitations
 
