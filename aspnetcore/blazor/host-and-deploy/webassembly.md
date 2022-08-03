@@ -179,7 +179,7 @@ For more information, see the following articles:
 
 When publishing a hosted Blazor WebAssembly app, some of the options passed to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) result in runtime errors because the option applies to all of the solution's projects unconditionally, both the **`Client`** and the **`Server`** projects in a hosted deployment. Options that exhibit this behavior must be specified using the MSBuild property in the `dotnet publish` command or specified in the **`Server`** project's project file to scope the property correctly.
 
-The [Runtime Identifier (RID)](/dotnet/core/rid-catalog) falls into this category of options. Consider the following example, where the developer plans to publish a hosted WebAssembly app as both a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained).
+The [Runtime Identifier (RID)](/dotnet/core/rid-catalog) falls into this category of options. Consider the following example, where the developer plans to publish a hosted WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained).
 
 Normally, such a deployment is created with the following .NET CLI command, where the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog):
 
@@ -1008,7 +1008,7 @@ For more information, see the following articles:
 
 When publishing a hosted Blazor WebAssembly app, some of the options passed to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) result in runtime errors because the option applies to all of the solution's projects unconditionally, both the **`Client`** and the **`Server`** projects in a hosted deployment. Options that exhibit this behavior must be specified using the MSBuild property in the `dotnet publish` command or specified in the **`Server`** project's project file to scope the property correctly.
 
-The [Runtime Identifier (RID)](/dotnet/core/rid-catalog) falls into this category of options. Consider the following example, where the developer plans to publish a hosted WebAssembly app as both a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained).
+The [Runtime Identifier (RID)](/dotnet/core/rid-catalog) falls into this category of options. Consider the following example, where the developer plans to publish a hosted WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained).
 
 Normally, such a deployment is created with the following .NET CLI command, where the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog):
 
@@ -1713,7 +1713,7 @@ For more information, see the following articles:
 
 When publishing a hosted Blazor WebAssembly app, some of the options passed to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) result in runtime errors because the option applies to all of the solution's projects unconditionally, both the **`Client`** and the **`Server`** projects in a hosted deployment. Options that exhibit this behavior must be specified using the MSBuild property in the `dotnet publish` command or specified in the **`Server`** project's project file to scope the property correctly.
 
-The [Runtime Identifier (RID)](/dotnet/core/rid-catalog) falls into this category of options. Consider the following example, where the developer plans to publish a hosted WebAssembly app as both a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained).
+The [Runtime Identifier (RID)](/dotnet/core/rid-catalog) falls into this category of options. Consider the following example, where the developer plans to publish a hosted WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained).
 
 Normally, such a deployment is created with the following .NET CLI command, where the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog):
 
