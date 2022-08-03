@@ -1,5 +1,5 @@
 ---
-title: gRPC JSON transcoding
+title: gRPC JSON transcoding in ASP.NET Core gRPC apps
 author: jamesnk
 description: Learn how to create JSON HTTP APIs for gRPC services using gRPC JSON transcoding.
 monikerRange: '>= aspnetcore-7.0'
@@ -7,7 +7,7 @@ ms.author: jamesnk
 ms.date: 05/20/2022
 uid: grpc/httpapi
 ---
-# gRPC JSON transcoding
+# gRPC JSON transcoding in ASP.NET Core gRPC apps
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
@@ -153,3 +153,4 @@ For installation and usage of grpc-gateway, see the [grpc-gateway README](https:
 
 * [google.api.HttpRule documentation](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule)
 * <xref:grpc/browser>
+* <xref:grpc/grpcweb>

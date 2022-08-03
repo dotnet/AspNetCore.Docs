@@ -820,7 +820,13 @@ items:
       - name: Supported platforms
         uid: grpc/supported-platforms
       - name: Use gRPC in browser apps
-        uid: grpc/browser
+        items:
+          - name: Overview
+            uid: grpc/browser
+          - name: gRPC-Web
+            uid: grpc/grpcweb
+          - name: gRPC JSON transcoding
+            uid: grpc/httpapi
       - name: Configuration
         uid: grpc/configuration
       - name: Authentication and authorization
@@ -835,8 +841,6 @@ items:
         uid: grpc/performance
       - name: Inter-process communication
         uid: grpc/interprocess
-      - name: gRPC JSON transcoding
-        uid: grpc/httpapi
       - name: Code-first services and clients
         uid: grpc/code-first
       - name: gRPC health checks
