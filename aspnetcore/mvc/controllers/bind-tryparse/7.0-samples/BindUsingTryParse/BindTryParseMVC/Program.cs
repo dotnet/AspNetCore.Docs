@@ -7,8 +7,8 @@ builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
 // GET /en-GB
-// returns an endpoint string for /WeatherForecast/RangeWithCulture
-app.MapGet("/{culture}", (string culture) => DRC.DateRangeCulture(culture, app.Logger));
+// returns an endpoint string for /WeatherForecast/ByLocaleRange
+app.MapGet("/{locale}", (string locale) => LDR.LocaleDateRange(locale, app.Logger));
 
 if (!app.Environment.IsDevelopment())
 {
@@ -26,32 +26,32 @@ app.MapControllerRoute(
     pattern: "{controller=WeatherForecast}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
-    name: "culture",
-    pattern: "{culture=en-US}/{controller=WeatherForecast}/{action=Index}/{id?}");
+    name: "locale",
+    pattern: "{locale=en-US}/{controller=WeatherForecast}/{action=Index}/{id?}");
 
 app.Run();
 
-public static class DRC
+public static class LDR
 {
-    public static string DateRangeCulture(string culture, ILogger logger)
+    public static string LocaleDateRange(string locale, ILogger logger)
     {
         DateTimeFormatInfo dtfi;
 
         try
         {
-            dtfi = CultureInfo.CreateSpecificCulture(culture).DateTimeFormat;
+            dtfi = CultureInfo.CreateSpecificCulture(locale).DateTimeFormat;
         }
         catch (Exception ex)
         {
-            logger.LogError("{Culture} is not a valid culture.", culture);
+            logger.LogError("{Locale} is not a valid locale.", locale);
             logger.LogError("{Error}", ex.Message);
             dtfi = CultureInfo.CreateSpecificCulture(CultureInfo.CurrentCulture.Name).DateTimeFormat;
         }
         
         var now = DateTime.Now.ToString("d", dtfi);
         var fiveDays = DateTime.Now.AddDays(5).ToString("d", dtfi);
-        var dateRangeCulture = $"/{culture}/WeatherForecast/RangeWithCulture?range={now}-{fiveDays}";
+        var dateRangeLocale = $"/{locale}/WeatherForecast/RangeByLocale?range={now},{fiveDays}";
         
-        return dateRangeCulture;
+        return dateRangeLocale;
     }
 }
