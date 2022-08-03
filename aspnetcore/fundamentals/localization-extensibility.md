@@ -85,7 +85,7 @@ options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async
 
 :::moniker-end
 
-### Use a new implemetation of RequestCultureProvider
+### Use a new implementation of RequestCultureProvider
 
 A new implementation of <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> can be created that determines the request culture information from a custom source. For example, the custom source can be a configuration file or database.
 
