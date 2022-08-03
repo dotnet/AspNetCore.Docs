@@ -158,7 +158,7 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
    * Sets the current working directory to the `Server` folder.
    * Sets the URL for the app to `https://localhost:7268`.
-   * Changes the default browser from Google Chrome, which is the default browser, to Microsoft Edge.
+   * Changes the default browser from Google Chrome to Microsoft Edge.
 
    ```json
    "cwd": "${workspaceFolder}/Server",
@@ -1008,7 +1008,7 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
    * Sets the current working directory to the `Server` folder.
    * Sets the URL for the app to `https://localhost:7268`.
-   * Changes the default browser from Microsoft Edge, which is the default browser, to Google Chrome.
+   * Changes the default browser from Microsoft Edge to Google Chrome.
 
    ```json
    "cwd": "${workspaceFolder}/Server",
