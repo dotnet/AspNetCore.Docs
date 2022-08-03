@@ -154,7 +154,7 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
    If Microsoft Edge is used and Google Chrome isn't installed on the system, add an additional property of `"browser": "edge"` to the configuration.
 
-   The follow example `.vscode/launch.json` file:
+   The following example `.vscode/launch.json` file:
 
    * Sets the current working directory to the `Server` folder.
    * Sets the URL for the app to `https://localhost:7268`.
@@ -1004,7 +1004,7 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
    If Google Chrome is preferred over Microsoft Edge, update or add an additional property of `"browser": "chrome"` to the configuration.
 
-   The follow example `.vscode/launch.json` file:
+   The following example `.vscode/launch.json` file:
 
    * Sets the current working directory to the `Server` folder.
    * Sets the URL for the app to `https://localhost:7268`.
