@@ -191,7 +191,7 @@ The simple types that the model binder can convert source strings into include t
 
 ## Bind with `IParsable<T>.TryParse`
 
-The [`IParsable<TSelf>.TryParse`](/dotnet/api/system.iparsable-1.tryparse#system-iparsable-1-tryparse(system-string-system-iformatprovider-0@) API supports binding controller action parameter values:
+The [`IParsable<TSelf>.TryParse`](/dotnet/api/system.iparsable-1.tryparse#system-iparsable-1-tryparse(system-string-system-iformatprovider-0@)) API supports binding controller action parameter values:
 
 ```csharp
 public static bool TryParse (string? s, IFormatProvider? provider, out TSelf result);
