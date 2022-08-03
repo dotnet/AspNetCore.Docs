@@ -181,7 +181,7 @@ When publishing a hosted Blazor WebAssembly app, some of the options passed to t
 
 The [Runtime Identifier (RID)](/dotnet/core/rid-catalog) falls into this category of options. Consider the following example, where the developer plans to publish a hosted WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained).
 
-Normally, such a deployment is created with the following .NET CLI command, where the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog):
+Normally, such a deployment is created with the following .NET CLI command that uses the runtime option (`-r|--runtime`) with the `--no-self-contained` option, where the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog):
 
 ```dotnetcli
 dotnet publish -r {RID} --no-self-contained
@@ -1010,7 +1010,7 @@ When publishing a hosted Blazor WebAssembly app, some of the options passed to t
 
 The [Runtime Identifier (RID)](/dotnet/core/rid-catalog) falls into this category of options. Consider the following example, where the developer plans to publish a hosted WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained).
 
-Normally, such a deployment is created with the following .NET CLI command, where the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog):
+Normally, such a deployment is created with the following .NET CLI command that uses the runtime option (`-r|--runtime`) with the `--no-self-contained` option, where the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog):
 
 ```dotnetcli
 dotnet publish -r {RID} --no-self-contained
@@ -1715,7 +1715,7 @@ When publishing a hosted Blazor WebAssembly app, some of the options passed to t
 
 The [Runtime Identifier (RID)](/dotnet/core/rid-catalog) falls into this category of options. Consider the following example, where the developer plans to publish a hosted WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained).
 
-Normally, such a deployment is created with the following .NET CLI command, where the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog):
+Normally, such a deployment is created with the following .NET CLI command that uses the runtime option (`-r|--runtime`) with the `--no-self-contained` option, where the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog):
 
 ```dotnetcli
 dotnet publish -r {RID} --no-self-contained
