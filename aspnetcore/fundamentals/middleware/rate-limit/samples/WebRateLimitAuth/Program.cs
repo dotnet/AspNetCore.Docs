@@ -50,7 +50,10 @@ var options = new RateLimiterOptions()
         if (!context.User?.Identity?.IsAuthenticated ?? false)
         {
             var username = context?.User?.Identity?.Name ?? "null user";
-
+if (unlimitedUsers.Contains(username))
+{
+    return RateLimitPartition.CreateNoLimiter<string>(string.Empty);
+}
             return RateLimitPartition.CreateSlidingWindowLimiter<string>(username,
                   key => new SlidingWindowRateLimiterOptions(
                   permitLimit: 2,
@@ -163,7 +166,7 @@ app.UseRateLimiter(new RateLimiterOptions()
     {
         if (!StringValues.IsNullOrEmpty(httpContext.Request.Headers["my-token"]))
         {
-            return RateLimitPartition.CreateTokenBucketLimiter("token", key =>
+            return RateLimitPartition.CreateTokenBucketLimiter(httpContext.Request.Headers["my-token"], key =>
                 new TokenBucketRateLimiterOptions(tokenLimit: 5,
                     queueProcessingOrder: QueueProcessingOrder.OldestFirst,
                     queueLimit: 1, replenishmentPeriod: TimeSpan.FromSeconds(5),
