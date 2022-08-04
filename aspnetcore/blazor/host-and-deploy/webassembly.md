@@ -179,18 +179,18 @@ For more information, see the following articles:
 
 To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained):
 
-* Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
+* Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file or rely upon a Visual Studio publish profile (`.pubxml `) with the property set to `false` by default, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
 
   ```xml
   <SelfContained>false</SelfContained>
   ```
   
   > [!NOTE]
-  > The `SelfContained` property must be placed in the **`Server`** project's project file. The property can't be passed to the `dotnet publish` command as `/p:SelfContained=false`.
+  > The `SelfContained` property must be placed in the **`Server`** project's project file or the Visual Studio publish profile. The property can't be passed to the `dotnet publish` command as `/p:SelfContained=false`.
   
 * Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** of the following approaches:
 
-  * Option 1: Set the RID in the in the **`Server`** project's project file:
+  * Option 1: Set the RID in the in the **`Server`** project's project file or via a Visual Studio publish profile (`.pubxml`) **Target Runtime**:
   
     ```xml
     <RuntimeIdentifier>{RID}</RuntimeIdentifier>
@@ -198,13 +198,17 @@ To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable f
     
     In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
     
-    Publish the app in the Release configuration from the **`Server`** project:
+    Publish the app in the Release configuration from the **`Server`** project or publish the app from Visual Studio in the **Release** configuration.
+    
+    Using the .NET CLI:
     
     ```dotnetcli
     dotnet publish -c Release
     ```
     
-  * Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option. Publish the app from the **`Server`** project:
+  * Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option. Publish the app from the **`Server`** project.
+  
+    Using the .NET CLI:
   
     ```dotnetcli
     dotnet publish -c Release /p:RuntimeIdentifier={RID}
@@ -212,7 +216,10 @@ To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable f
     
     In the preceding command, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
 
-For more information, see [.NET application publishing overview](/dotnet/core/deploying/).
+For more information, see the following articles:
+
+* [.NET application publishing overview](/dotnet/core/deploying/)
+* <xref:host-and-deploy/index>
 
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
@@ -1018,18 +1025,18 @@ For more information, see the following articles:
 
 To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained):
 
-* Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
+* Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file or rely upon a Visual Studio publish profile (`.pubxml `) with the property set to `false` by default, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
 
   ```xml
   <SelfContained>false</SelfContained>
   ```
   
   > [!NOTE]
-  > The `SelfContained` property must be placed in the **`Server`** project's project file. The property can't be passed to the `dotnet publish` command as `/p:SelfContained=false`.
+  > The `SelfContained` property must be placed in the **`Server`** project's project file or the Visual Studio publish profile. The property can't be passed to the `dotnet publish` command as `/p:SelfContained=false`.
   
 * Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** of the following approaches:
 
-  * Option 1: Set the RID in the in the **`Server`** project's project file:
+  * Option 1: Set the RID in the in the **`Server`** project's project file or via a Visual Studio publish profile (`.pubxml`) **Target Runtime**:
   
     ```xml
     <RuntimeIdentifier>{RID}</RuntimeIdentifier>
@@ -1037,13 +1044,17 @@ To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable f
     
     In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
     
-    Publish the app in the Release configuration from the **`Server`** project:
+    Publish the app in the Release configuration from the **`Server`** project or publish the app from Visual Studio in the **Release** configuration.
+    
+    Using the .NET CLI:
     
     ```dotnetcli
     dotnet publish -c Release
     ```
     
-  * Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option. Publish the app from the **`Server`** project:
+  * Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option. Publish the app from the **`Server`** project.
+  
+    Using the .NET CLI:
   
     ```dotnetcli
     dotnet publish -c Release /p:RuntimeIdentifier={RID}
@@ -1051,7 +1062,10 @@ To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable f
     
     In the preceding command, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
 
-For more information, see [.NET application publishing overview](/dotnet/core/deploying/).
+For more information, see the following articles:
+
+* [.NET application publishing overview](/dotnet/core/deploying/)
+* <xref:host-and-deploy/index>
 
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
@@ -1735,18 +1749,18 @@ For more information, see the following articles:
 
 To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained):
 
-* Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
+* Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file or rely upon a Visual Studio publish profile (`.pubxml `) with the property set to `false` by default, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
 
   ```xml
   <SelfContained>false</SelfContained>
   ```
   
   > [!NOTE]
-  > The `SelfContained` property must be placed in the **`Server`** project's project file. The property can't be passed to the `dotnet publish` command as `/p:SelfContained=false`.
+  > The `SelfContained` property must be placed in the **`Server`** project's project file or the Visual Studio publish profile. The property can't be passed to the `dotnet publish` command as `/p:SelfContained=false`.
   
 * Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** of the following approaches:
 
-  * Option 1: Set the RID in the in the **`Server`** project's project file:
+  * Option 1: Set the RID in the in the **`Server`** project's project file or via a Visual Studio publish profile (`.pubxml`) **Target Runtime**:
   
     ```xml
     <RuntimeIdentifier>{RID}</RuntimeIdentifier>
@@ -1754,13 +1768,17 @@ To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable f
     
     In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
     
-    Publish the app in the Release configuration from the **`Server`** project:
+    Publish the app in the Release configuration from the **`Server`** project or publish the app from Visual Studio in the **Release** configuration.
+    
+    Using the .NET CLI:
     
     ```dotnetcli
     dotnet publish -c Release
     ```
     
-  * Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option. Publish the app from the **`Server`** project:
+  * Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option. Publish the app from the **`Server`** project.
+  
+    Using the .NET CLI:
   
     ```dotnetcli
     dotnet publish -c Release /p:RuntimeIdentifier={RID}
@@ -1768,7 +1786,10 @@ To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable f
     
     In the preceding command, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
 
-For more information, see [.NET application publishing overview](/dotnet/core/deploying/).
+For more information, see the following articles:
+
+* [.NET application publishing overview](/dotnet/core/deploying/)
+* <xref:host-and-deploy/index>
 
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
