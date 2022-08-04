@@ -175,32 +175,42 @@ For more information, see the following articles:
 * Deployment to Azure App Service: <xref:tutorials/publish-to-azure-webapp-using-vs>
 * Blazor project templates: <xref:blazor/project-structure>
 
-## Use MSBuild properties for hosted deployment options that apply to all projects
+## Hosted deployment of a framework-dependent executable for a specific platform
 
-When publishing a hosted Blazor WebAssembly app, some of the options passed to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) result in runtime errors because the option applies to all of the solution's projects unconditionally, both the **`Client`** and the **`Server`** projects in a hosted deployment. Options that exhibit this behavior must be specified using the MSBuild property in the `dotnet publish` command or specified in the **`Server`** project's project file to scope the property correctly.
+To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained):
 
-The [Runtime Identifier (RID)](/dotnet/core/rid-catalog) falls into this category of options. Consider the following example, where the developer plans to publish a hosted WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained).
-
-Normally, such a deployment is created with the following .NET CLI command that uses the runtime option (`-r|--runtime`) with the `--no-self-contained` option, where the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog):
-
-```dotnetcli
-dotnet publish -r {RID} --no-self-contained
-```
-
-For a hosted Blazor WebAssembly app, use of the preceding command results in a runtime error because the options apply to all of the solution's projects unconditionally. This is a current limitation of the .NET CLI/MSBuild pipeline. To resolve the problem, adopt ***either*** of the following approaches:
-
-* Specify the options as MSBuild properties in the `dotnet publish` command:
-
-  ```dotnetcli
-  dotnet publish /p:RuntimeIdentifier={RID} /p:SelfContained=false
-  ```
-
-* Specify the options as MSBuild properties in the **`Server`** project's project file (`.csproj`):
+* Configure the deployment for [self-contained](/dotnet/core/deploying/#publish-self-contained) by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
 
   ```xml
-  <RuntimeIdentifier>{RID}</RuntimeIdentifier>
   <SelfContained>false</SelfContained>
   ```
+  
+  > [!NOTE]
+  > The `SelfContained` property must be placed in the **`Server`** project's project file. The property can't be passed to the `dotnet publish` command as `/p:SelfContained=false`.
+  
+* Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** of the following approaches:
+
+  * Option 1: Set the RID in the in the **`Server`** project's project file:
+  
+    ```xml
+    <RuntimeIdentifier>{RID}</RuntimeIdentifier>
+    ```
+    
+    In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
+    
+    Publish the app in the Release configuration from the **`Server`** project:
+    
+    ```dotnetcli
+    dotnet publish -c Release
+    ```
+    
+  * Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option:
+  
+    ```dotnetcli
+    dotnet publish -c Release \p:RuntimeIdentifier={RID}
+    ```
+    
+    In the preceding command, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
 
 For more information, see [.NET application publishing overview](/dotnet/core/deploying/).
 
@@ -1004,32 +1014,44 @@ For more information, see the following articles:
 * Deployment to Azure App Service: <xref:tutorials/publish-to-azure-webapp-using-vs>
 * Blazor project templates: <xref:blazor/project-structure>
 
-## Use MSBuild properties for hosted deployment options that apply to all projects
+## Hosted deployment of a framework-dependent executable for a specific platform
 
-When publishing a hosted Blazor WebAssembly app, some of the options passed to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) result in runtime errors because the option applies to all of the solution's projects unconditionally, both the **`Client`** and the **`Server`** projects in a hosted deployment. Options that exhibit this behavior must be specified using the MSBuild property in the `dotnet publish` command or specified in the **`Server`** project's project file to scope the property correctly.
+To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained):
 
-The [Runtime Identifier (RID)](/dotnet/core/rid-catalog) falls into this category of options. Consider the following example, where the developer plans to publish a hosted WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained).
-
-Normally, such a deployment is created with the following .NET CLI command that uses the runtime option (`-r|--runtime`) with the `--no-self-contained` option, where the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog):
-
-```dotnetcli
-dotnet publish -r {RID} --no-self-contained
-```
-
-For a hosted Blazor WebAssembly app, use of the preceding command results in a runtime error because the options apply to all of the solution's projects unconditionally. This is a current limitation of the .NET CLI/MSBuild pipeline. To resolve the problem, adopt ***either*** of the following approaches:
-
-* Specify the options as MSBuild properties in the `dotnet publish` command:
-
-  ```dotnetcli
-  dotnet publish /p:RuntimeIdentifier={RID} /p:SelfContained=false
-  ```
-
-* Specify the options as MSBuild properties in the **`Server`** project's project file (`.csproj`):
+* Configure the deployment for [self-contained](/dotnet/core/deploying/#publish-self-contained) by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
 
   ```xml
-  <RuntimeIdentifier>{RID}</RuntimeIdentifier>
   <SelfContained>false</SelfContained>
   ```
+  
+  > [!NOTE]
+  > The `SelfContained` property must be placed in the **`Server`** project's project file. The property can't be passed to the `dotnet publish` command as `/p:SelfContained=false`.
+  
+* Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** of the following approaches:
+
+  * Option 1: Set the RID in the in the **`Server`** project's project file:
+  
+    ```xml
+    <RuntimeIdentifier>{RID}</RuntimeIdentifier>
+    ```
+    
+    In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
+    
+    Publish the app in the Release configuration from the **`Server`** project:
+    
+    ```dotnetcli
+    dotnet publish -c Release
+    ```
+    
+  * Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option:
+  
+    ```dotnetcli
+    dotnet publish -c Release \p:RuntimeIdentifier={RID}
+    ```
+    
+    In the preceding command, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
+
+For more information, see [.NET application publishing overview](/dotnet/core/deploying/).
 
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
@@ -1709,32 +1731,44 @@ For more information, see the following articles:
 * Deployment to Azure App Service: <xref:tutorials/publish-to-azure-webapp-using-vs>
 * Blazor project templates: <xref:blazor/project-structure>
 
-## Use MSBuild properties for hosted deployment options that apply to all projects
+## Hosted deployment of a framework-dependent executable for a specific platform
 
-When publishing a hosted Blazor WebAssembly app, some of the options passed to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) result in runtime errors because the option applies to all of the solution's projects unconditionally, both the **`Client`** and the **`Server`** projects in a hosted deployment. Options that exhibit this behavior must be specified using the MSBuild property in the `dotnet publish` command or specified in the **`Server`** project's project file to scope the property correctly.
+To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained):
 
-The [Runtime Identifier (RID)](/dotnet/core/rid-catalog) falls into this category of options. Consider the following example, where the developer plans to publish a hosted WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained).
-
-Normally, such a deployment is created with the following .NET CLI command that uses the runtime option (`-r|--runtime`) with the `--no-self-contained` option, where the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog):
-
-```dotnetcli
-dotnet publish -r {RID} --no-self-contained
-```
-
-For a hosted Blazor WebAssembly app, use of the preceding command results in a runtime error because the options apply to all of the solution's projects unconditionally. This is a current limitation of the .NET CLI/MSBuild pipeline. To resolve the problem, adopt ***either*** of the following approaches:
-
-* Specify the options as MSBuild properties in the `dotnet publish` command:
-
-  ```dotnetcli
-  dotnet publish /p:RuntimeIdentifier={RID} /p:SelfContained=false
-  ```
-
-* Specify the options as MSBuild properties in the **`Server`** project's project file (`.csproj`):
+* Configure the deployment for [self-contained](/dotnet/core/deploying/#publish-self-contained) by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
 
   ```xml
-  <RuntimeIdentifier>{RID}</RuntimeIdentifier>
   <SelfContained>false</SelfContained>
   ```
+  
+  > [!NOTE]
+  > The `SelfContained` property must be placed in the **`Server`** project's project file. The property can't be passed to the `dotnet publish` command as `/p:SelfContained=false`.
+  
+* Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** of the following approaches:
+
+  * Option 1: Set the RID in the in the **`Server`** project's project file:
+  
+    ```xml
+    <RuntimeIdentifier>{RID}</RuntimeIdentifier>
+    ```
+    
+    In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
+    
+    Publish the app in the Release configuration from the **`Server`** project:
+    
+    ```dotnetcli
+    dotnet publish -c Release
+    ```
+    
+  * Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option:
+  
+    ```dotnetcli
+    dotnet publish -c Release \p:RuntimeIdentifier={RID}
+    ```
+    
+    In the preceding command, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
+
+For more information, see [.NET application publishing overview](/dotnet/core/deploying/).
 
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
