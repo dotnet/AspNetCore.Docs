@@ -1,5 +1,6 @@
 namespace BindTryParseMVC.Models;
 
+// <snippet>
 public class DateRangeTP
 {
     public DateOnly? From { get; }
@@ -29,3 +30,4 @@ public class DateRangeTP
         return true;
     }
 }
+// </snippet>

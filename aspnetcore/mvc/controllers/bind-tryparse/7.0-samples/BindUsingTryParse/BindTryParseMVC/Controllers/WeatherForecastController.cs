@@ -61,7 +61,7 @@ namespace BindTryParseMVC.Controllers
         }
         // </snippet_2>
 
-        // <snippet_2>
+        // <snippet_22>
         // GET /WeatherForecast/ByRangeTP?range=7/24/2022,07/26/2022
         public IActionResult ByRangeTP([FromQuery] DateRange range)
         {
@@ -87,7 +87,7 @@ namespace BindTryParseMVC.Controllers
 
             return View("Index", weatherForecasts);
         }
-        // </snippet_2>
+        // </snippet_22>
 
         // <snippet_3>
         // GET /af-ZA/WeatherForecast/RangeByLocale?range=2022-07-24,2022-07-29
