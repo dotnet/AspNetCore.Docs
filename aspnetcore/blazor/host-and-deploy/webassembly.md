@@ -179,7 +179,7 @@ For more information, see the following articles:
 
 To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained):
 
-* Configure the deployment for [self-contained](/dotnet/core/deploying/#publish-self-contained) by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
+* Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
 
   ```xml
   <SelfContained>false</SelfContained>
@@ -1018,7 +1018,7 @@ For more information, see the following articles:
 
 To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained):
 
-* Configure the deployment for [self-contained](/dotnet/core/deploying/#publish-self-contained) by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
+* Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
 
   ```xml
   <SelfContained>false</SelfContained>
@@ -1735,7 +1735,7 @@ For more information, see the following articles:
 
 To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained):
 
-* Configure the deployment for [self-contained](/dotnet/core/deploying/#publish-self-contained) by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
+* Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
 
   ```xml
   <SelfContained>false</SelfContained>
