@@ -21,6 +21,10 @@ Nullable page or view models are supported to improve the experience when using 
 @model Product?
 ```
 
+### Bind with `IParsable<T>.TryParse` in MVC and API Controllers
+
+The [`IParsable<TSelf>.TryParse`](/dotnet/api/system.iparsable-1.tryparse#system-iparsable-1-tryparse(system-string-system-iformatprovider-0@)) API supports binding controller action parameter values. For more information, see [Bind with `IParsable<T>.TryParse`](xref:mvc/models/model-binding#itp7).
+
 ## API controllers
 
 ### Parameter binding with DI in API controllers
