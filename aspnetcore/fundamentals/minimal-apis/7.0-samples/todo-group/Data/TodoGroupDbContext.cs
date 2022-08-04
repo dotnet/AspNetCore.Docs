@@ -9,5 +9,6 @@ public class TodoGroupDbContext : DbContext
     {
         Database.EnsureCreated();
     }
+
     public DbSet<Todo> Todos { get; set; } = default!;
 }

@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 
 public class RouteHandlers
 {
-
     // get all todos
     public static async Task<IResult> GetAllTodos(TodoGroupDbContext database)
     {
