@@ -7,15 +7,16 @@ ms.custom: "mvc, seodec18"
 ms.date: 02/12/2020
 uid: fundamentals/choose-between-aspnet-and-aspnetcore
 ---
+
 # Choose between ASP.NET 4.x and ASP.NET Core
 
-ASP.NET Core is a redesign of ASP.NET 4.x. This article lists the differences between them.
+ASP.NET Core is a redesign of ASP.NET 4.x. This article lists the differences between them.dfgdfg
 
-## ASP.NET Core
+## ASP.NET Cored
 
 ASP.NET Core is an open-source, cross-platform framework for building modern, cloud-based web apps on Windows, macOS, or Linux.
 
-[!INCLUDE[](~/includes/benefits.md)]
+[!INCLUDE]
 
 ## ASP.NET 4.x
 
