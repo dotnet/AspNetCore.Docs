@@ -204,7 +204,7 @@ To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable f
     dotnet publish -c Release
     ```
     
-  * Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option:
+  * Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option. Publish the app from the **`Server`** project:
   
     ```dotnetcli
     dotnet publish -c Release \p:RuntimeIdentifier={RID}
@@ -1043,7 +1043,7 @@ To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable f
     dotnet publish -c Release
     ```
     
-  * Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option:
+  * Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option. Publish the app from the **`Server`** project:
   
     ```dotnetcli
     dotnet publish -c Release \p:RuntimeIdentifier={RID}
@@ -1760,7 +1760,7 @@ To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable f
     dotnet publish -c Release
     ```
     
-  * Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option:
+  * Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option. Publish the app from the **`Server`** project:
   
     ```dotnetcli
     dotnet publish -c Release \p:RuntimeIdentifier={RID}
