@@ -25,34 +25,30 @@ if (app.Environment.IsDevelopment())
 app.MapGet("/", () => "Hello World!");
 
 // todo endpoints
-var todos = app.MapGroup("/todos").WithTags("Todo Endpoints");
+var todos = app.MapGroup("/todos").WithTags("Todo Endpoints").AddRouteHandlerFilter(async (context, next) =>
+{
+    app.Logger.LogInformation("Accessing todo endpoints");
+    return await next(context);
+});
 todos.MapGet("/", RouteHandlers.GetAllTodos);
 todos.MapGet("/{id}", RouteHandlers.GetTodo);
-todos.MapPost("/", RouteHandlers.CreateTodo).AddRouteHandlerFilter((context, next) =>
+todos.MapPost("/", RouteHandlers.CreateTodo).AddRouteHandlerFilter(async (context, next) =>
 {
-    if (context.HttpContext.Request.ContentLength > 80)
-    {
-        context.HttpContext.Response.StatusCode = 400;
-        IDictionary<string, string[]> errors = new Dictionary<string, string[]>()
-        {
-            { "Error", new[] { "The size of the payload is above 80 characters" } },
-        };
-        return new ValueTask<object?>(Results.ValidationProblem(errors));
-    }
-    return next(context);
+    // log time taken to process
+    var start = DateTime.Now;
+    var result = await next(context);
+    var end = DateTime.Now;
+    app.Logger.LogInformation($"{context.HttpContext.Request.Path.Value} took {(end - start).TotalMilliseconds}ms");
+    return result;
 });
-todos.MapPut("/{id}", RouteHandlers.UpdateTodo).AddRouteHandlerFilter((context, next) =>
+todos.MapPut("/{id}", RouteHandlers.UpdateTodo).AddRouteHandlerFilter(async (context, next) =>
 {
-    if (context.HttpContext.Request.ContentLength > 80)
-    {
-        context.HttpContext.Response.StatusCode = 400;
-        IDictionary<string, string[]> errors = new Dictionary<string, string[]>()
-        {
-            { "Error", new[] { "The size of the payload is above 80 characters" } },
-        };
-        return new ValueTask<object?>(Results.ValidationProblem(errors));
-    }
-    return next(context);
+    // log time taken to process
+    var start = DateTime.Now;
+    var result = await next(context);
+    var end = DateTime.Now;
+    app.Logger.LogInformation($"{context.HttpContext.Request.Path.Value} took {(end - start).TotalMilliseconds}ms");
+    return result;
 });
 todos.MapDelete("/{id}", RouteHandlers.DeleteTodo);
 
