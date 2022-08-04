@@ -179,14 +179,17 @@ For more information, see the following articles:
 
 To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained):
 
-* Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file or rely upon a Visual Studio publish profile (`.pubxml `) with the property set to `false` by default, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
+* Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment using either of the following approaches:
+
+  * Place the `<SelfContained>` MSBuild property in the **`Server`** project's project file set to `false`.
+  * Use a Visual Studio publish profile (`.pubxml `) with the property set to `false`, which is the default setting for a generated publish profile.
 
   ```xml
   <SelfContained>false</SelfContained>
   ```
   
-  > [!NOTE]
-  > The `SelfContained` property must be placed in the **`Server`** project's project file or the Visual Studio publish profile. The property can't be passed to the `dotnet publish` command as `/p:SelfContained=false`.
+  > [!IMPORTANT]
+  > The `SelfContained` property must be placed in the **`Server`** project's project file or the Visual Studio publish profile. The property can't be set correctly with the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) using the `--no-self-contained` option or the MSBuild property `/p:SelfContained=false`.
   
 * Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** of the following approaches:
 
@@ -1025,14 +1028,17 @@ For more information, see the following articles:
 
 To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained):
 
-* Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file or rely upon a Visual Studio publish profile (`.pubxml `) with the property set to `false` by default, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
+* Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment using either of the following approaches:
+
+  * Place the `<SelfContained>` MSBuild property in the **`Server`** project's project file set to `false`.
+  * Use a Visual Studio publish profile (`.pubxml `) with the property set to `false`, which is the default setting for a generated publish profile.
 
   ```xml
   <SelfContained>false</SelfContained>
   ```
   
-  > [!NOTE]
-  > The `SelfContained` property must be placed in the **`Server`** project's project file or the Visual Studio publish profile. The property can't be passed to the `dotnet publish` command as `/p:SelfContained=false`.
+  > [!IMPORTANT]
+  > The `SelfContained` property must be placed in the **`Server`** project's project file or the Visual Studio publish profile. The property can't be set correctly with the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) using the `--no-self-contained` option or the MSBuild property `/p:SelfContained=false`.
   
 * Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** of the following approaches:
 
@@ -1749,14 +1755,17 @@ For more information, see the following articles:
 
 To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained):
 
-* Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in the **`Server`** project's project file or rely upon a Visual Studio publish profile (`.pubxml `) with the property set to `false` by default, ***not*** by passing the `--no-self-contained` option to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish):
+* Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment using either of the following approaches:
+
+  * Place the `<SelfContained>` MSBuild property in the **`Server`** project's project file set to `false`.
+  * Use a Visual Studio publish profile (`.pubxml `) with the property set to `false`, which is the default setting for a generated publish profile.
 
   ```xml
   <SelfContained>false</SelfContained>
   ```
   
-  > [!NOTE]
-  > The `SelfContained` property must be placed in the **`Server`** project's project file or the Visual Studio publish profile. The property can't be passed to the `dotnet publish` command as `/p:SelfContained=false`.
+  > [!IMPORTANT]
+  > The `SelfContained` property must be placed in the **`Server`** project's project file or the Visual Studio publish profile. The property can't be set correctly with the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) using the `--no-self-contained` option or the MSBuild property `/p:SelfContained=false`.
   
 * Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** of the following approaches:
 
