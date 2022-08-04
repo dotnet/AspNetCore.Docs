@@ -17,7 +17,7 @@ public class DateRangeTP
         To = DateOnly.Parse(to);
     }
 
-    public static bool TryParse(string? value, IFormatProvider? provider, out DateRangeTP? result)
+    public static bool TryParse(string? value, out DateRangeTP? result)
     {
         if (string.IsNullOrEmpty(value) || value.Split('-').Length != 2)
         {

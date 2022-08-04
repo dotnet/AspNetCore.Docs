@@ -224,7 +224,7 @@ The following controller action uses the `DateRange` and `Locale` classes to bin
 
 :::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_3":::
 
-The [API sample app on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse) shows the preceding samples for an API controller.
+The [API sample app on GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse) shows the preceding sample for an API controller.
 
 ### Bind with `TryParse`
 
