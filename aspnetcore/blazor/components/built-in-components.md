@@ -12,7 +12,7 @@ uid: blazor/components/built-in-components
 
 This article lists the Razor components that are provided by the Blazor framework.
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
 The following built-in Razor components are provided by the Blazor framework:
 
@@ -94,5 +94,41 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`NavMenu`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
 * [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
+The following built-in Razor components are provided by the Blazor framework:
+
+* [`App`](xref:blazor/project-structure)
+* [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)
+* [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
+* [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component)
+* [`DynamicComponent`](xref:blazor/components/dynamiccomponent)
+* [`ErrorBoundary`](xref:blazor/fundamentals/handle-errors#error-boundaries)
+* [`FocusOnNavigate`](xref:blazor/fundamentals/routing#focus-an-element-on-navigation)
+* [`HeadContent`](xref:blazor/components/control-head-content)
+* [`HeadOutlet`](xref:blazor/components/control-head-content)
+* [`InputCheckbox`](xref:blazor/forms-validation#built-in-form-components)
+* [`InputDate`](xref:blazor/forms-validation#built-in-form-components)
+* [`InputFile`](xref:blazor/file-uploads)
+* [`InputNumber`](xref:blazor/forms-validation#built-in-form-components)
+* [`InputRadio`](xref:blazor/forms-validation#built-in-form-components)
+* [`InputRadioGroup`](xref:blazor/forms-validation#built-in-form-components)
+* [`InputSelect`](xref:blazor/forms-validation#built-in-form-components)
+* [`InputText`](xref:blazor/forms-validation#built-in-form-components)
+* [`InputTextArea`](xref:blazor/forms-validation#built-in-form-components)
+* [`LayoutView`](xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component)
+* [`MainLayout`](xref:blazor/components/layouts#mainlayout-component)
+* [`NavLink`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
+* [`NavMenu`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
+* [`PageTitle`](xref:blazor/components/control-head-content)
+* [`QuickGrid`&dagger;](xref:blazor/components/index#quickgrid-component)
+* [`Router`](xref:blazor/fundamentals/routing#route-templates)
+* [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
+* [`Virtualize`](xref:blazor/components/virtualization)
+
+&dagger;Currently, the component is prerelease, experimental, unsupported, and not recommended for production apps.
 
 :::moniker-end

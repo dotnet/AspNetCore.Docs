@@ -5040,6 +5040,54 @@ Generate framework-specific JavaScript (JS) components from Razor components for
 > [!WARNING]
 > The Angular and React component features are currently **experimental, unsupported, and subject to change or be removed at any time**. We welcome your feedback on how well this particular approach meets your requirements.
 
+## `QuickGrid` component
+
+The `QuickGrid` component is an experimental Razor component for quickly and efficiently displaying data in tabular form. `QuickGrid` provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. `QuickGrid` is highly optimized and uses advanced techniques to achieve optimal rendering performance.
+
+To get started with `QuickGrid`:
+
+1. Add package reference for [`Microsoft.AspNetCore.Components.QuickGrid`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid). If using the .NET CLI to add the package reference, include the `--prerelease` option when you execute the [`dotnet add package` command](/dotnet/core/tools/dotnet-add-package).
+
+   [!INCLUDE[](~/includes/package-reference.md)]
+
+1. Add the following component to render a grid.
+
+   `Pages/QuickGridExample.razor`:
+
+   ```razor
+   @page "/quickgrid-example"
+   @using Microsoft.AspNetCore.Components.QuickGrid
+
+   <QuickGrid Items="@people">
+       <PropertyColumn Property="@(p => p.PersonId)" Sortable="true" />
+       <PropertyColumn Property="@(p => p.Name)" Sortable="true" />
+       <PropertyColumn Property="@(p => p.BirthDate)" Format="yyyy-MM-dd" Sortable="true" />
+   </QuickGrid>
+
+   @code {
+       private record Person(int PersonId, string Name, DateOnly BirthDate);
+
+       private IQueryable<Person> people = new[]
+       {
+           new Person(10895, "Jean Martin", new DateOnly(1985, 3, 16)),
+           new Person(10944, "António Langa", new DateOnly(1991, 12, 1)),
+           new Person(11203, "Julie Smith", new DateOnly(1958, 10, 10)),
+           new Person(11205, "Nur Sari", new DateOnly(1922, 4, 27)),
+           new Person(11898, "Jose Hernandez", new DateOnly(2011, 5, 3)),
+           new Person(12130, "Kenji Sato", new DateOnly(2004, 1, 9)),
+       }.AsQueryable();
+   }
+   ```
+
+1. Access the component in a browser at the relative path `/quickgrid-example`.
+
+For various `QuickGrid` demonstrations, see the [**QuickGrid for Blazor** app](https://aspnet.github.io/quickgridsamples/). The demo site is built using Blazor WebAssembly and is hosted on GitHub Pages. The site loads fast thanks to static prerendering using the community-maintained [`BlazorWasmPrerendering.Build` GitHub project](https://github.com/jsakamoto/BlazorWasmPreRendering.Build).
+
+There aren't current plans to extend `QuickGrid` with features that full-blown commercial grids tend to offer, for example, hierarchical rows, drag-to-reorder columns, or Excel-like range selections. If you require advanced features that you don't wish to develop on your own, continue using third-party grids.
+
+> [!WARNING]
+> `QuickGrid` is currently **prerelease**, **experimental**, and **unsupported** by Microsoft. `QuickGrid` is ***not*** recommended for use in production apps.
+
 :::moniker-end
 
 <!--Reference links in article-->
