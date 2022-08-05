@@ -1,4 +1,4 @@
-#define ADMIN // FIRST ADMIN
+#define FIRST // FIRST ADMIN
 #if NEVER
 #elif FIRST
 // <snippet_1>
@@ -49,11 +49,8 @@ var options = new RateLimiterOptions()
     {
         if (!context.User?.Identity?.IsAuthenticated ?? false)
         {
-            var username = context?.User?.Identity?.Name ?? "null user";
-if (unlimitedUsers.Contains(username))
-{
-    return RateLimitPartition.CreateNoLimiter<string>(string.Empty);
-}
+            var username = context?.User?.Identity?.Name ?? "anonymous user";
+
             return RateLimitPartition.CreateSlidingWindowLimiter<string>(username,
                   key => new SlidingWindowRateLimiterOptions(
                   permitLimit: 2,
@@ -71,12 +68,12 @@ if (unlimitedUsers.Contains(username))
 
 options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, IPAddress>(context =>
 {
-    var remoteIPaddress = context?.Connection?.RemoteIpAddress ?? new IPAddress(5001);
+    IPAddress? remoteIPaddress = context?.Connection?.RemoteIpAddress;
 
-    if (!IPAddress.IsLoopback(remoteIPaddress )) //context.Connection.RemoteIpAddress))
+    if (!IPAddress.IsLoopback(remoteIPaddress!))
     {
         return RateLimitPartition.CreateSlidingWindowLimiter<IPAddress>
-          (remoteIPaddress, key => new SlidingWindowRateLimiterOptions(
+          (remoteIPaddress!, key => new SlidingWindowRateLimiterOptions(
             permitLimit: 10,
             queueProcessingOrder: QueueProcessingOrder.OldestFirst,
             queueLimit: 0,
@@ -164,9 +161,10 @@ app.UseRateLimiter(new RateLimiterOptions()
     .AddNoLimiter(policyName: adminPolicyName)
     .AddPolicy(policyName: postPolicyName, partitioner: httpContext =>
     {
-        if (!StringValues.IsNullOrEmpty(httpContext.Request.Headers["my-token"]))
+        var myToken = httpContext.Request.Headers["my-token"].ToString();
+        if (!StringValues.IsNullOrEmpty(myToken))
         {
-            return RateLimitPartition.CreateTokenBucketLimiter(httpContext.Request.Headers["my-token"], key =>
+            return RateLimitPartition.CreateTokenBucketLimiter( myToken, key =>
                 new TokenBucketRateLimiterOptions(tokenLimit: 5,
                     queueProcessingOrder: QueueProcessingOrder.OldestFirst,
                     queueLimit: 1, replenishmentPeriod: TimeSpan.FromSeconds(5),
