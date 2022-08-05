@@ -22,7 +22,7 @@ Files can be downloaded from the app's own static assets or from any other locat
 This artcle covers approaches for the following scenarios:
 
 * [Stream file content to a raw binary data buffer on the client](#download-from-a-stream): Typically, this approach is used for relatively small files (\< 250 MB).
-* [Download files via a URL without streaming](#download-from-a-url): Usually, this approach is used for relatively large files (> 250 MB).
+* [Download a file via a URL without streaming](#download-from-a-url): Usually, this approach is used for relatively large files (> 250 MB).
 
 When downloading files from a different origin than the app, Cross-Origin Resource Sharing (CORS) considerations apply. For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
 
@@ -167,7 +167,7 @@ Files can be downloaded from the app's own static assets or from any other locat
 This artcle covers approaches for the following scenarios:
 
 * [Stream file content to a raw binary data buffer on the client](#download-from-a-stream): Typically, this approach is used for relatively small files (\< 250 MB).
-* [Download files via a URL without streaming](#download-from-a-url): Usually, this approach is used for relatively large files (> 250 MB).
+* [Download a file via a URL without streaming](#download-from-a-url): Usually, this approach is used for relatively large files (> 250 MB).
 
 When downloading files from a different origin than the app, Cross-Origin Resource Sharing (CORS) considerations apply. For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
 
