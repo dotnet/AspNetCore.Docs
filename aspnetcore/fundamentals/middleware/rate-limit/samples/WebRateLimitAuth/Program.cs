@@ -1,4 +1,4 @@
-#define FIRST // FIRST ADMIN
+#define ADMIN // FIRST ADMIN
 #if NEVER
 #elif FIRST
 // <snippet_1>
@@ -189,7 +189,8 @@ app.MapGet("/admin", context => context.Response.WriteAsync("/admin"))
 app.MapPost("/post", () => Results.Ok("/post"))
                            .RequireRateLimiting(postPolicyName);
 
-app.MapRazorPages().RequireRateLimiting(getPolicyName);
+app.MapRazorPages().RequireRateLimiting(getPolicyName)
+                   .RequireRateLimiting(postPolicyName);
 
 app.Run();
 // </snippet_adm>
