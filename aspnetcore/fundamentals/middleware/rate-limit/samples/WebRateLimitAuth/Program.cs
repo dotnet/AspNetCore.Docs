@@ -49,7 +49,7 @@ var options = new RateLimiterOptions()
     {
         if (!context.User?.Identity?.IsAuthenticated ?? false)
         {
-            var username = context?.User?.Identity?.Name ?? "anonymous user";
+            var username = "anonymous user";
 
             return RateLimitPartition.CreateSlidingWindowLimiter<string>(username,
                   key => new SlidingWindowRateLimiterOptions(
@@ -72,14 +72,12 @@ options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, IPAddress>(co
 
     if (!IPAddress.IsLoopback(remoteIPaddress!))
     {
-        return RateLimitPartition.CreateSlidingWindowLimiter<IPAddress>
-          (remoteIPaddress!, key => new SlidingWindowRateLimiterOptions(
-            permitLimit: 10,
-            queueProcessingOrder: QueueProcessingOrder.OldestFirst,
-            queueLimit: 0,
-            window: TimeSpan.FromSeconds(30),
-            segmentsPerWindow: 1
-            ));
+        return RateLimitPartition.CreateTokenBucketLimiter<IPAddress>
+           (remoteIPaddress!, key =>
+                 new TokenBucketRateLimiterOptions(tokenLimit: 5,
+                     queueProcessingOrder: QueueProcessingOrder.OldestFirst,
+                     queueLimit: 1, replenishmentPeriod: TimeSpan.FromSeconds(5),
+                     tokensPerPeriod: 1, autoReplenishment: true));
     }
     else
     {
@@ -91,7 +89,7 @@ app.UseRateLimiter(options);
 
 app.MapRazorPages().RequireRateLimiting(userPolicyName);
 
-static string GetUserEndPoint(HttpContext context) => 
+static string GetUserEndPoint(HttpContext context) =>
     $"Hello {context.User?.Identity?.Name ?? "Anonymous"}  {context.Request.Path}";
 
 app.MapGet("/a", (HttpContext context) => $"{GetUserEndPoint(context)}")
