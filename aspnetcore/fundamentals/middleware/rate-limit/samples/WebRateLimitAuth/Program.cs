@@ -1,4 +1,4 @@
-#define ADMIN // FIRST ADMIN
+#define FIRST // FIRST ADMIN
 #if NEVER
 #elif FIRST
 // <snippet_1>
@@ -47,7 +47,7 @@ var userPolicyName = "user";
 var options = new RateLimiterOptions()
     .AddPolicy<string>(userPolicyName, context =>
     {
-        if (!context.User?.Identity?.IsAuthenticated ?? false)
+        if (!context.User?.Identity?.IsAuthenticated ?? true)
         {
             var username = "anonymous user";
 
