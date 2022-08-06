@@ -19,7 +19,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -53,11 +55,11 @@ var options = new RateLimiterOptions()
 
             return RateLimitPartition.CreateSlidingWindowLimiter<string>(username,
                   key => new SlidingWindowRateLimiterOptions(
-                  permitLimit: 2,
+                  permitLimit: 12,
                   queueProcessingOrder: QueueProcessingOrder.OldestFirst,
                   queueLimit: 0,
-                  window: TimeSpan.FromSeconds(30),
-                  segmentsPerWindow: 1
+                  window: TimeSpan.FromSeconds(5),
+                  segmentsPerWindow: 3
                 ));
         }
         else
@@ -76,8 +78,10 @@ options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, IPAddress>(co
            (remoteIPaddress!, key =>
                  new TokenBucketRateLimiterOptions(tokenLimit: 5,
                      queueProcessingOrder: QueueProcessingOrder.OldestFirst,
-                     queueLimit: 1, replenishmentPeriod: TimeSpan.FromSeconds(5),
-                     tokensPerPeriod: 1, autoReplenishment: true));
+                     queueLimit: 1,
+                     replenishmentPeriod: TimeSpan.FromSeconds(15),
+                     tokensPerPeriod: 1,
+                     autoReplenishment: true));
     }
     else
     {
@@ -88,6 +92,10 @@ options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, IPAddress>(co
 app.UseRateLimiter(options);
 
 app.MapRazorPages().RequireRateLimiting(userPolicyName);
+app.MapDefaultControllerRoute();
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home2}/{action=Index}/{id?}");
 
 static string GetUserEndPoint(HttpContext context) =>
     $"Hello {context.User?.Identity?.Name ?? "Anonymous"}  {context.Request.Path}";
