@@ -58,7 +58,6 @@ var options = new RateLimiterOptions()
         }
 
         context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
-        context.HttpContext.Response.Headers.Add("Retry-After", "100");
         app.Logger.LogWarning($"policy: {userPolicyName} {GetUserEndPoint(context.HttpContext)}");
 
         return new ValueTask();
@@ -97,7 +96,7 @@ options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, IPAddress>(co
                      queueProcessingOrder: QueueProcessingOrder.OldestFirst,
                      queueLimit: 1,
                      replenishmentPeriod: TimeSpan.FromSeconds(15),
-                     tokensPerPeriod: 1,
+                     tokensPerPeriod: 1,                    
                      autoReplenishment: true));
     }
     else
