@@ -18,9 +18,9 @@ namespace WebRateLimitAuth.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
-            Thread.Sleep(5 * 1000);
+            await Task.Delay(100);
             return View();
         }
 

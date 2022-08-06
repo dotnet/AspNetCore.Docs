@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "dotnet-ef": {
+      "version": "6.0.7",
+      "commands": [
+        "dotnet-ef"
+      ]
+    }
+  }
+}
