@@ -5,6 +5,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 using System.Net;
 using System.Threading.RateLimiting;
 using WebRateLimitAuth.Data;
@@ -47,6 +48,22 @@ app.UseAuthorization();
 var userPolicyName = "user";
 
 var options = new RateLimiterOptions()
+{
+    OnRejected = (context, cancellationToken) =>
+    {
+        if (context.Lease.TryGetMetadata(MetadataName.RetryAfter, out var retryAfter))
+        {
+            context.HttpContext.Response.Headers.RetryAfter =
+            ((int)retryAfter.TotalSeconds).ToString(NumberFormatInfo.InvariantInfo);
+        }
+
+        context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
+        context.HttpContext.Response.Headers.Add("Retry-After", "100");
+        app.Logger.LogWarning($"policy: {userPolicyName} {GetUserEndPoint(context.HttpContext)}");
+
+        return new ValueTask();
+    }
+}
     .AddPolicy<string>(userPolicyName, context =>
     {
         if (!context.User?.Identity?.IsAuthenticated ?? true)
@@ -93,12 +110,9 @@ app.UseRateLimiter(options);
 
 app.MapRazorPages().RequireRateLimiting(userPolicyName);
 app.MapDefaultControllerRoute();
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Home2}/{action=Index}/{id?}");
 
 static string GetUserEndPoint(HttpContext context) =>
-    $"Hello {context.User?.Identity?.Name ?? "Anonymous"}  {context.Request.Path}";
+    $"User {context.User?.Identity?.Name ?? "Anonymous"}  {context.Request.Path}";
 
 app.MapGet("/a", (HttpContext context) => $"{GetUserEndPoint(context)}")
     .RequireRateLimiting(userPolicyName);
@@ -133,7 +147,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => 
                   options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -163,7 +179,8 @@ var postPolicyName = "post";
 app.UseRateLimiter(new RateLimiterOptions()
     .AddConcurrencyLimiter(policyName: getPolicyName,
           new ConcurrencyLimiterOptions(permitLimit: 2,
-          queueProcessingOrder: QueueProcessingOrder.OldestFirst, queueLimit: 2))
+          queueProcessingOrder: QueueProcessingOrder.OldestFirst,          
+          queueLimit: 2))
     .AddNoLimiter(policyName: adminPolicyName)
     .AddPolicy(policyName: postPolicyName, partitioner: httpContext =>
     {
@@ -173,8 +190,10 @@ app.UseRateLimiter(new RateLimiterOptions()
             return RateLimitPartition.CreateTokenBucketLimiter( myToken, key =>
                 new TokenBucketRateLimiterOptions(tokenLimit: 5,
                     queueProcessingOrder: QueueProcessingOrder.OldestFirst,
-                    queueLimit: 1, replenishmentPeriod: TimeSpan.FromSeconds(5),
-                    tokensPerPeriod: 1, autoReplenishment: true));
+                    queueLimit: 1,
+                    replenishmentPeriod: TimeSpan.FromSeconds(5),
+                    tokensPerPeriod: 1,                    
+                    autoReplenishment: true));
         }
         else
         {
@@ -199,6 +218,8 @@ app.MapPost("/post", () => Results.Ok("/post"))
 
 app.MapRazorPages().RequireRateLimiting(getPolicyName)
                    .RequireRateLimiting(postPolicyName);
+
+app.MapDefaultControllerRoute();
 
 app.Run();
 // </snippet_adm>
