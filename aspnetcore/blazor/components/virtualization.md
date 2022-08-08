@@ -716,7 +716,7 @@ If the `Virtualize` component is placed inside an element that requires a specif
 }
 ```
 
-In the preceding example, the document root is used as the scroll container, so the `html` and `body` elements are styled with `overflow-y: scroll`. For more informaiton, see the following resources:
+In the preceding example, the document root is used as the scroll container, so the `html` and `body` elements are styled with `overflow-y: scroll`. For more information, see the following resources:
 
 * [Root-level virtualization](#root-level-virtualization) section
 * <xref:blazor/components/control-head-content>
