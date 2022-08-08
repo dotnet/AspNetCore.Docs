@@ -4,11 +4,11 @@ using WebRateLimitAuth.Models;
 
 namespace WebRateLimitAuth.Controllers
 {
-    public class HomeController : Controller
+    public class Home2Controller : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<Home2Controller> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public Home2Controller(ILogger<Home2Controller> logger)
         {
             _logger = logger;
         }

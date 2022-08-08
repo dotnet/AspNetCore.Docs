@@ -111,7 +111,8 @@ app.MapRazorPages().RequireRateLimiting(userPolicyName);
 app.MapDefaultControllerRoute();
 
 static string GetUserEndPoint(HttpContext context) =>
-    $"User {context.User?.Identity?.Name ?? "Anonymous"}  {context.Request.Path}";
+    $"User {context.User?.Identity?.Name ?? "Anonymous"}  endpoint: {context.Request.Path}" +
+    $" {context.Connection.RemoteIpAddress}";
 
 app.MapGet("/a", (HttpContext context) => $"{GetUserEndPoint(context)}")
     .RequireRateLimiting(userPolicyName);
