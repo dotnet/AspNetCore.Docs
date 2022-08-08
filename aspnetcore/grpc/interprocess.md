@@ -11,7 +11,7 @@ uid: grpc/interprocess
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-Apps on the same machine can be designed to communicate with each other. Operating systems provide technologies for enabling fast and efficient [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication) between apps. Popular examples of IPC technologies are named pipes (Windows only), and unix domain sockets (Windows, Linux and MacOS).
+Apps on the same machine can be designed to communicate with each other. Operating systems provide technologies for enabling fast and efficient [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication) between apps. Popular examples of IPC technologies are named pipes (Windows only), and Unix domain sockets (Windows, Linux and MacOS).
 
 .NET provides support for inter-process communication using gRPC.
 
