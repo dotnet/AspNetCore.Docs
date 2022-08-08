@@ -58,7 +58,8 @@ To configure SignalR's underlying client to send credentials, such as cookies or
 
   The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration).
   
-* To authenticate users for SignalR hubs, configure the **`Server`** project with the guidance in <xref:signalr/authn-and-authz#authenticate-users-connecting-to-a-signalr-hub>. 
+> [!NOTE]
+> To authenticate users for SignalR hubs, see <xref:blazor/security/webassembly/index#secure-a-signalr-hub>.
 
 For more information, see <xref:signalr/configuration#configure-additional-options>.
 
@@ -380,7 +381,8 @@ To configure SignalR's underlying client to send credentials, such as cookies or
 
   The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration).
   
-* To authenticate users for SignalR hubs, configure the **`Server`** project with the guidance in <xref:signalr/authn-and-authz#authenticate-users-connecting-to-a-signalr-hub>. 
+> [!NOTE]
+> To authenticate users for SignalR hubs, see <xref:blazor/security/webassembly/index#secure-a-signalr-hub>.
 
 For more information, see <xref:signalr/configuration#configure-additional-options>.
 
@@ -706,7 +708,8 @@ To configure SignalR's underlying client to send credentials, such as cookies or
 
   The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration).
   
-* To authenticate users for SignalR hubs, configure the **`Server`** project with the guidance in <xref:signalr/authn-and-authz#authenticate-users-connecting-to-a-signalr-hub>. 
+> [!NOTE]
+> To authenticate users for SignalR hubs, see <xref:blazor/security/webassembly/index#secure-a-signalr-hub>.
 
 For more information, see <xref:signalr/configuration#configure-additional-options>.
 
