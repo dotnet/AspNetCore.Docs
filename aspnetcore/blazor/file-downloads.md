@@ -14,7 +14,17 @@ This article explains how to download files in Blazor Server and Blazor WebAssem
 
 :::moniker range="< aspnetcore-7.0"
 
-Files can be downloaded from the app's own static assets or from any other location. When downloading files from a different origin than the app, Cross-Origin Resource Sharing (CORS) considerations apply. For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
+Files can be downloaded from the app's own static assets or from any other location:
+
+* ASP.NET Core apps use [Static File Middleware](xref:fundamentals/static-files) to serve files to clients of Blazor Server and hosted Blazor WebAssembly apps.
+* The guidance in this article also applies to other types of file servers that don't use .NET, such as Content Delivery Networks (CDNs).
+
+This artcle covers approaches for the following scenarios:
+
+* [Stream file content to a raw binary data buffer on the client](#download-from-a-stream): Typically, this approach is used for relatively small files (\< 250 MB).
+* [Download a file via a URL without streaming](#download-from-a-url): Usually, this approach is used for relatively large files (> 250 MB).
+
+When downloading files from a different origin than the app, Cross-Origin Resource Sharing (CORS) considerations apply. For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
 
 ## Security considerations
 
@@ -149,7 +159,17 @@ For more information on CORS with ASP.NET Core apps and other Microsoft products
 
 :::moniker range=">= aspnetcore-7.0"
 
-Files can be downloaded from the app's own static assets or from any other location. When downloading files from a different origin than the app, Cross-Origin Resource Sharing (CORS) considerations apply. For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
+Files can be downloaded from the app's own static assets or from any other location:
+
+* ASP.NET Core apps use [Static File Middleware](xref:fundamentals/static-files) to serve files to clients of Blazor Server and hosted Blazor WebAssembly apps.
+* The guidance in this article also applies to other types of file servers that don't use .NET, such as Content Delivery Networks (CDNs).
+
+This artcle covers approaches for the following scenarios:
+
+* [Stream file content to a raw binary data buffer on the client](#download-from-a-stream): Typically, this approach is used for relatively small files (\< 250 MB).
+* [Download a file via a URL without streaming](#download-from-a-url): Usually, this approach is used for relatively large files (> 250 MB).
+
+When downloading files from a different origin than the app, Cross-Origin Resource Sharing (CORS) considerations apply. For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
 
 ## Security considerations
 
@@ -279,6 +299,5 @@ For more information on CORS with ASP.NET Core apps and other Microsoft products
 * <xref:blazor/file-uploads>
 * <xref:blazor/forms-validation>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-
 
 :::moniker-end
