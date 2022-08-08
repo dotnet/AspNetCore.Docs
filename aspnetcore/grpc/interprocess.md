@@ -11,11 +11,36 @@ uid: grpc/interprocess
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-gRPC calls between a client and service are usually sent over TCP sockets. TCP was designed for communicating across a network. [Inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication) is more efficient than TCP when the client and service are on the same machine. This document explains how to use gRPC with custom transports in IPC scenarios.
+Apps on the same machine can be designed to communicate with each other. Operating systems provide technologies for enabling fast and efficient [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication) between apps. Popular examples of IPC technologies are named pipes (Windows only), and unix domain sockets (Windows, Linux and MacOS).
 
-## Server configuration
+.NET provides excellent support for inter-process communication using gRPC.
 
-Custom transports are supported by [Kestrel](xref:fundamentals/servers/kestrel). Kestrel is configured in `Program.cs`:
+## Getting started with gRPC
+
+gRPC calls are always sent from a client to a server. To communicate between apps on a machine with gRPC, at least one app must host an ASP.NET Core gRPC server.
+
+ASP.NET Core and gRPC can be hosted in any app using .NET Core 3, or .NET 5 or later by adding the `Microsoft.AspNetCore.App` framework to the project.
+
+[!code-xml[](~/grpc/interprocess/Server.csproj?highlight=4-6)]
+
+The preceding project file:
+
+* Adds a framework reference to `Microsoft.AspNetCore.App`. The framework reference allows non-ASP.NET Core apps, such as Windows Services, WPF apps, or WinForms apps to use ASP.NET Core and host an ASP.NET Core server.
+* Adds a NuGet package reference to `Grpc.AspNetCore`.
+* Adds a `*.proto` file.
+
+## Configuring Unix domain sockets
+
+gRPC calls between a client and server on different machines are usually sent over TCP sockets. TCP was designed for communicating across a network. [Unix domain sockets (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) are a widely supported IPC technology that's more efficient than TCP when the client and server are on the same machine.
+
+Requirements:
+
+* .NET 5 or later.
+* Linux, macOS, or [Windows 10 or later, or Windows Server 2019 or later](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/).
+
+### Server configuration
+
+Unix domain sockets are supported by [Kestrel](xref:fundamentals/servers/kestrel). Kestrel is configured in `Program.cs`:
 
 ```csharp
 public static readonly string SocketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");
@@ -42,12 +67,10 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 The preceding example:
 
 * Configures Kestrel's endpoints in `ConfigureKestrel`.
-* Calls <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> to listen to a [Unix domain socket (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) with the specified path.
+* Calls <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> to listen to a UDS with the specified path.
 * Creates a UDS endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
 
-Kestrel has built-in support for UDS endpoints. UDS are supported on Linux, macOS and [modern versions of Windows](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/).
-
-## Client configuration
+### Client configuration
 
 `GrpcChannel` supports making gRPC calls over custom transports. When a channel is created, it can be configured with a `SocketsHttpHandler` that has a custom `ConnectCallback`. The callback allows the client to make connections over custom transports and then send HTTP requests over that transport.
 
