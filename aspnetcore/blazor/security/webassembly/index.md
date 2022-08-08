@@ -124,7 +124,7 @@ To secure a SignalR hub:
 
 * In the **`Server`** project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class that you want to secure.
 
-* In the **`Client`** project's component, supply the access token to the hub connection:
+* In the **`Client`** project's component, supply an access token to the hub connection:
 
   ```razor
   @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
@@ -285,7 +285,7 @@ To secure a SignalR hub:
 
 * In the **`Server`** project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class that you want to secure.
 
-* In the **`Client`** project's component, supply the access token to the hub connection:
+* In the **`Client`** project's component, supply an access token to the hub connection:
 
   ```razor
   @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
@@ -446,7 +446,7 @@ To secure a SignalR hub:
 
 * In the **`Server`** project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class that you want to secure.
 
-* In the **`Client`** project's component, supply the access token to the hub connection:
+* In the **`Client`** project's component, supply an access token to the hub connection:
 
   ```razor
   @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
