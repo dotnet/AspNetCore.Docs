@@ -216,7 +216,7 @@ The Azure App Services Log stream shows logging information as it occurs. To vie
 1. In the Azure portal, open the app in **App Services**.
 1. In the left pane, navigate to **Monitoring** > **App Service Logs**.
   ![App Service Logs](https://user-images.githubusercontent.com/3605364/183573538-80645002-d1c3-4451-9a2f-91ef4de4e248.png)
-1. Select **On** for **Web Server Logging**. Optionally enable **Application logging**.
+1. Select **File System** for **Web Server Logging**. Optionally enable **Application logging**.
   ![enable logging](https://user-images.githubusercontent.com/3605364/183529287-f63d3e1c-ee5b-4ca1-bcb6-a8c29d8b26f5.png)
 1. In the left pane, navigate to **Monitoring** > **Log stream**, and then select **Application logs** or **Web Server Logs**.
   ![Monitoring Log stream](https://user-images.githubusercontent.com/3605364/183561255-91f3d5e1-141b-413b-a403-91e74a770545.png)
