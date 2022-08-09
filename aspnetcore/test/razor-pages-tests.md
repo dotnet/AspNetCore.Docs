@@ -188,7 +188,7 @@ Other tests in this group create page model objects that include the <xref:Micro
 * <xref:test/integration-tests>
 * [xUnit.net](https://github.com/xunit/xunit)
 * [Building a complete .NET Core solution on macOS using Visual Studio for Mac](/dotnet/core/tutorials/using-on-mac-vs-full-solution)
-* [Getting started with xUnit.net: Using .NET Core with the .NET SDK command line](https://github.com/xunit/xunitdocs/getting-started-dotnet-core)
+* [Getting started with xUnit.net: Using .NET Core with the .NET SDK command line](https://xunit.net/docs/getting-started/netcore/cmdline)
 * [Moq](https://github.com/moq/moq4)
 * [Moq Quickstart](https://github.com/Moq/moq4/wiki/Quickstart)
 

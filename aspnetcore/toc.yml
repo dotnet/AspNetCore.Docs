@@ -1030,7 +1030,7 @@ items:
             href: /dotnet/architecture/devops-for-aspnet-developers
           - name: Tools and downloads
             displayName: azure, deploy, publish
-            href: /dotnet/architecture/devops-for-aspnet-developers/tool-and-downloads
+            href: /dotnet/architecture/devops-for-aspnet-developers/tools-and-downloads
           - name: Deploy to App Service
             displayName: azure, deploy, publish
             href: /dotnet/architecture/devops-for-aspnet-developers/deploying-to-app-service
@@ -1255,7 +1255,7 @@ items:
                   - name: Sign-in users and call web APIs using Azure AD V2
                     href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/enable-webapp-signin/
                   - name: Calling an ASP.NET Core 2.0 Web API from a WPF application using Azure AD V2
-                    href: /samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/calling-an-aspnet-core-web-api-from-a-wpf-application-using-azure-ad-v2/
+                    href: https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2/tree/master/1.%20Desktop%20app%20calls%20Web%20API
                   - name: Web API with Azure AD B2C
                     href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/how-to-secure-a-web-api-built-with-aspnet-core-using-the-azure-ad-b2c/
           - name: Secure ASP.NET Core apps with Duende Identity Server
