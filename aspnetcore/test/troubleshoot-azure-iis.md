@@ -211,7 +211,7 @@ The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is configured
 
 ### Azure App Services Log stream
 
-The Azure App Services Log stream shows logging information as it occurs. To view streaming logs:
+The Azure App Services Log streams logging information as it occurs. To view streaming logs:
 
 1. In the Azure portal, open the app in **App Services**.
 1. In the left pane, navigate to **Monitoring** > **App Service Logs**.
@@ -223,7 +223,7 @@ The Azure App Services Log stream shows logging information as it occurs. To vie
   ![Monitoring Log stream](https://user-images.githubusercontent.com/3605364/183561255-91f3d5e1-141b-413b-a403-91e74a770545.png)
 
   The following images shows the application logs output:
-  
+
   ![app logs](https://user-images.githubusercontent.com/3605364/183528795-532665c0-ce87-4ed3-8e4d-4b374d469c2a.png)
 
 Streaming logs have some latency and might not display immediately.
