@@ -11,7 +11,7 @@ uid: grpc/interprocess
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-Apps on the same machine can be designed to communicate with each other. Operating systems provide technologies for enabling fast and efficient [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication). Popular examples of IPC technologies are named pipes (Windows only), and Unix domain sockets (Windows, Linux and MacOS).
+Apps on the same machine can be designed to communicate with each other. Operating systems provide technologies for enabling fast and efficient [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication). Popular examples of IPC technologies are named pipes and Unix domain sockets.
 
 .NET provides support for inter-process communication using gRPC.
 
@@ -31,7 +31,7 @@ The preceding project file:
 
 ## Configure Unix domain sockets
 
-gRPC calls between a client and server on different machines are usually sent over TCP sockets. TCP was designed for communicating across a network. [Unix domain sockets (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) are a widely supported IPC technology that's more efficient than TCP when the client and server are on the same machine.
+gRPC calls between a client and server on different machines are usually sent over TCP sockets. TCP was designed for communicating across a network. [Unix domain sockets (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) are a widely supported IPC technology that's more efficient than TCP when the client and server are on the same machine. .NET provides built-in support for UDS in client and server apps.
 
 Requirements:
 
