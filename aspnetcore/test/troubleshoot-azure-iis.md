@@ -209,6 +209,18 @@ The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is configured
 
 [!INCLUDE [Azure App Service Preview Notice](~/includes/azure-apps-preview-notice.md)]
 
+### Azure App Services Log stream
+
+The Azure App Services Log stream shows logging information as it occurs. To view streaming logs:
+
+1. In the Azure portal, open the app in **App Services**.
+1. In the left pane, navigate to **Monitoring** > **App Service Logs**.
+  ![image]("https://user-images.githubusercontent.com/3605364/183528550-27e54ad0-32ff-4a42-88e0-1e37dd6d2027.png)
+1. Select **On** for **Web Server Logging**. Optionally enable **Application logging**.
+* In the left pane, navigate to **Monitoring** > **Log stream**, and then select the **Web Server Logs** option.
+  ![image](https://user-images.githubusercontent.com/3605364/183529287-f63d3e1c-ee5b-4ca1-bcb6-a8c29d8b26f5.png)
+  ![image](https://user-images.githubusercontent.com/3605364/183528795-532665c0-ce87-4ed3-8e4d-4b374d469c2a.png)
+
 ### Application Event Log (Azure App Service)
 
 To access the Application Event Log, use the **Diagnose and solve problems** blade in the Azure portal:
