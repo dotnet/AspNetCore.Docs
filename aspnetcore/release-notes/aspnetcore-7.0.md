@@ -150,6 +150,12 @@ In the following sample, the `/skipme` endpoint is excluded from generating an O
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_swag2&highlight=20-21)]
 
+## gRPC
+
+### JSON transcoding
+
+gRPC JSON transcoding is an extension for ASP.NET Core that creates RESTful JSON APIs for gRPC services. Transcoding allows apps to call gRPC services with familiar HTTP concepts. Apps can support both gRPC and RESTful JSON APIs without replicating functionality. For more information, see [gRPC JSON transcoding in ASP.NET Core gRPC apps](xref:grpc/httpapi?view=aspnetcore-7.0)
+
 ## SignalR
 
 ### Client results
