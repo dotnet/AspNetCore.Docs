@@ -154,7 +154,7 @@ In the following sample, the `/skipme` endpoint is excluded from generating an O
 
 ### Client results
 
-In addition to making calls to clients, the server now supports requesting a result from a client. This requires the server to use `ISingleClientProxy.InvokeAsync` and the client to return a result from its `.On` handler. Strongly-typed hubs can also return values from interface methods.
+The server now supports requesting a result from a client. This requires the server to use `ISingleClientProxy.InvokeAsync` and the client to return a result from its `.On` handler. Strongly-typed hubs can also return values from interface methods.
 
 For more information, see [Client results](xref:signalr/hubs?view=aspnetcore-7.0#client-results)
 
