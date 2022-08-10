@@ -1,4 +1,4 @@
-#define SECOND // FIRST SECOND
+#define FIRST // FIRST SECOND
 #if NEVER
 #elif FIRST
 // <snippet_1>
@@ -6,10 +6,12 @@ using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAuthentication("Bearer");
-builder.Authentication.AddJwtBearer();
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication("Bearer").AddJwtBearer();
 
 var app = builder.Build();
+
+app.UseAuthorization();
 
 app.MapGet("/", () => "Hello, World!");
 app.MapGet("/secret", (ClaimsPrincipal user) => $"Hello {user.Identity?.Name}. My secret")
@@ -23,8 +25,8 @@ using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAuthentication("Bearer");
-builder.Authentication.AddJwtBearer();
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication("Bearer").AddJwtBearer();
 
 var app = builder.Build();
 

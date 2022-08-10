@@ -122,7 +122,7 @@ File system path:
 
 ### Create a JWT
 
-The following command create a local JWT:
+The following command creates a local JWT:
 
 ```dotnetcli
 dotnet user-jwts create
