@@ -23,7 +23,7 @@ Filters can be helpful in the following scenarios:
 * Logging information about the request and response.
 * Validating that a request is targeting a supported API version.
 
-Filters can be registered by providing a [Delegate](/dotnet/csharp/programming-guide/delegates/) that takes a [`RouteHandlerInvocationContext`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerInvocationContext.cs) and returns a [`RouteHandlerFilterDelegate`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerFilterDelegate.cs). The `RouteHandlerInvocationContext` provides access to the `HttpContext` of the request and an `Arguments` list indicating the arguments passed to the handler in the order in which they appear in the declaration of the handler.
+Filters can be registered by providing a [Delegate](/dotnet/csharp/programming-guide/delegates/) that takes a [`EndpointFilterInvocationContext`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerInvocationContext.cs) and returns a [`EndpointFilterDelegate`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerFilterDelegate.cs). The `RouteHandlerInvocationContext` provides access to the `HttpContext` of the request and an `Arguments` list indicating the arguments passed to the handler in the order in which they appear in the declaration of the handler.
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet1)]
 
@@ -36,8 +36,8 @@ The preceding code:
 
 The filter is run before the endpoint handler. When multiple `AddFilter` invocations are made on a handler:
 
-* Filter code called before the `RouteHandlerFilterDelegate` (`next`) is called are executed in order of First In, First Out (FIFO) order.
-* Filter code called after the `RouteHandlerFilterDelegate` (`next`) is called are executed in order of First In, Last Out (FILO) order.
+* Filter code called before the `EndpointFilterDelegate` (`next`) is called are executed in order of First In, First Out (FIFO) order.
+* Filter code called after the `EndpointFilterDelegate` (`next`) is called are executed in order of First In, Last Out (FILO) order.
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet_xyz)]
 
@@ -53,7 +53,7 @@ Before first filter
 After first filter
 ```
 
-The following code uses filters that implement the `IRouteHandlerFilter` interface:
+The following code uses filters that implement the `IEndpointFilter` interface:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet_abc)]
 
@@ -82,13 +82,13 @@ Consider a filter that validates a `Todo` object:
 In the preceding code:
 
 * The `RouteHandlerInvocationContext` object provides access to the [`MethodInfo`](/dotnet/api/system.reflection.methodinfo) associated with the endpoint's handler and the `EndpointMetadata` that has been applied on the endpoint.
-* The filter is registered using a `delegate` that takes a `RouteHandlerInvocationContext` and returns a `RouteHandlerFilterDelegate`. This factory pattern is useful to register a filter that depends on the signature of the target route handler.
+* The filter is registered using a `delegate` that takes a `EndpointFilterInvocationContext` and returns a `EndpointFilterDelegate`. This factory pattern is useful to register a filter that depends on the signature of the target route handler.
 
-In addition to being passed as delegates, filters can be registered by implementing the `IRouteHandlerFilter` interface. The follow code shows the preceding filter encapsulated in a class which implements `IRouteHandlerFilter`:
+In addition to being passed as delegates, filters can be registered by implementing the `IEndpointFilter` interface. The follow code shows the preceding filter encapsulated in a class which implements `IEndpointFilter`:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/RouteFilters/ToDoIsValidFilter.cs?name=snippet)]
 
-Filters that implement the `IRouteHandlerFilter` interface can resolve dependencies from [Dependency Injection(DI)](xref:fundamentals/dependency-injection), as shown in the previous code. Although filters can resolve dependencies from DI, filters themselves can ***not*** be resolved from DI.
+Filters that implement the `IEndpointFilter` interface can resolve dependencies from [Dependency Injection(DI)](xref:fundamentals/dependency-injection), as shown in the previous code. Although filters can resolve dependencies from DI, filters themselves can ***not*** be resolved from DI.
 
 The `ToDoIsValidFilter` is applied to the following endpoints:
 
