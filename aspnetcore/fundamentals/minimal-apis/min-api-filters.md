@@ -23,7 +23,7 @@ Filters can be helpful in the following scenarios:
 * Logging information about the request and response.
 * Validating that a request is targeting a supported API version.
 
-Filters can be registered by providing a [Delegate](/dotnet/csharp/programming-guide/delegates/) that takes a [`EndpointFilterInvocationContext`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerInvocationContext.cs) and returns a [`EndpointFilterDelegate`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/RouteHandlerFilterDelegate.cs). The `RouteHandlerInvocationContext` provides access to the `HttpContext` of the request and an `Arguments` list indicating the arguments passed to the handler in the order in which they appear in the declaration of the handler.
+Filters can be registered by providing a [Delegate](/dotnet/csharp/programming-guide/delegates/) that takes a [`EndpointFilterInvocationContext`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/EndpointFilterInvocationContext.cs) and returns a [`EndpointFilterDelegate`](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/EndpointFilterDelegate.cs). The `EndpointFilterInvocationContext` provides access to the `HttpContext` of the request and an `Arguments` list indicating the arguments passed to the handler in the order in which they appear in the declaration of the handler.
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet1)]
 
@@ -69,7 +69,7 @@ BrouteFilter After next
 ArouteFilter After next
 ```
 
-Filters implementing the `IRouteHandlerFilter` interface are shown in the following example:
+Filters implementing the `IEndpointFilter` interface are shown in the following example:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/RouteFilters/AbcRouteFilters.cs)]
 
