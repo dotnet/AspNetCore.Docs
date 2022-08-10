@@ -130,7 +130,7 @@ dotnet user-jwts create
 
 The preceding command creates a JWT and updates the project’s `appsettings.Development.json` file with JSON similar to the following:
 
-:::code language="csharp" source="~/security/authentication/jwt-authn/samples/MyJWT/appsettings.Development.json" highlight="8-21":::
+:::code language="csharp" source="~/security/authentication/jwt-authn/samples/MyJWT/appsettings.Development.json" highlight="7-19":::
 
 Copy the JWT and the `ID` created in the preceding command. Use a tool like Curl to test `/secret`:
 
