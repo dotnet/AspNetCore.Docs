@@ -28,7 +28,7 @@ dotnet user-jwts [command] -h|--help
 
 ## Description
 
-Create and manages project specific local JSON Web Tokens.
+Creates and manages project specific local JSON Web Tokens.
 
 ## Arguments
 
