@@ -519,7 +519,7 @@ The following Blazor Server Razor component makes a request to a web API for Git
 ```razor
 @page "/call-web-api"
 @using System.Text.Json
-@using System.Text.Json.Serialization;
+@using System.Text.Json.Serialization
 @inject IHttpClientFactory ClientFactory
 
 <h1>Call web API from a Blazor Server Razor component</h1>
@@ -1136,7 +1136,7 @@ The following Blazor Server Razor component makes a request to a web API for Git
 ```razor
 @page "/call-web-api"
 @using System.Text.Json
-@using System.Text.Json.Serialization;
+@using System.Text.Json.Serialization
 @inject IHttpClientFactory ClientFactory
 
 <h1>Call web API from a Blazor Server Razor component</h1>
@@ -1755,7 +1755,7 @@ The following Blazor Server Razor component makes a request to a web API for Git
 ```razor
 @page "/call-web-api"
 @using System.Text.Json
-@using System.Text.Json.Serialization;
+@using System.Text.Json.Serialization
 @inject IHttpClientFactory ClientFactory
 
 <h1>Call web API from a Blazor Server Razor component</h1>
@@ -2374,7 +2374,7 @@ The following Blazor Server Razor component makes a request to a web API for Git
 ```razor
 @page "/call-web-api"
 @using System.Text.Json
-@using System.Text.Json.Serialization;
+@using System.Text.Json.Serialization
 @inject IHttpClientFactory ClientFactory
 
 <h1>Call web API from a Blazor Server Razor component</h1>
