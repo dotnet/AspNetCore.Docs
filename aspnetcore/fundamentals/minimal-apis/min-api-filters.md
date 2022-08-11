@@ -9,7 +9,7 @@ uid: fundamentals/minimal-apis/min-api-filters
 ---
 # Filters in Minimal API apps
 
-By [Martin Costello](https://twitter.com/martin_costello), [Fiyaz Bin Hasan](https://github.com/fiyazbinhasan), and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Fiyaz Bin Hasan](https://github.com/fiyazbinhasan), [Martin Costello](https://twitter.com/martin_costello), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Minimal API filters allow developers to implement business logic that supports:
 
@@ -71,7 +71,7 @@ ArouteFilter After next
 
 Filters implementing the `IRouteHandlerFilter` interface are shown in the following example:
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/RouteFilters/AbcRouteFilters.cs)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/EndpointFilters/AbcEndpointFilters.cs)]
 
 ## Validate an object with a filter
 
@@ -86,7 +86,7 @@ In the preceding code:
 
 In addition to being passed as delegates, filters can be registered by implementing the `IRouteHandlerFilter` interface. The follow code shows the preceding filter encapsulated in a class which implements `IRouteHandlerFilter`:
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/RouteFilters/ToDoIsValidFilter.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/EndpointFilters/ToDoIsValidFilter.cs?name=snippet)]
 
 Filters that implement the `IRouteHandlerFilter` interface can resolve dependencies from [Dependency Injection(DI)](xref:fundamentals/dependency-injection), as shown in the previous code. Although filters can resolve dependencies from DI, filters themselves can ***not*** be resolved from DI.
 
@@ -96,7 +96,7 @@ The `ToDoIsValidFilter` is applied to the following endpoints:
 
 The following filter validates the `Todo` object and modifies the `Name` property:
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/RouteFilters/ToDoIsValidFilter.cs?name=snippet2&highlight=7)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/EndpointFilters/ToDoIsValidFilter.cs?name=snippet2&highlight=7)]
 
 ## Additional Resources
 
