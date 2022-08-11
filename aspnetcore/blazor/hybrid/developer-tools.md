@@ -71,7 +71,7 @@ To use browser developer tools with an Android app:
 To use Safari developer tools with an iOS app:
 
 1. Open desktop Safari.
-1. Select the **Preferences** > **Advanced** > **Show Develop** menu item.
+1. Select the **Preferences** > **Advanced** > **Show Develop** menu command.
 1. Run the .NET MAUI Blazor app in the iOS simulator and navigate to an app page that uses a `BlazorWebView`.
 1. Return to desktop Safari. Select **Develop** > **Simulator** > **0.0.0.0**. If multiple entries for **0.0.0.0** are present, select the entry that highlights the `BlazorWebView`. The `BlazorWebView` is highlighted in blue in the iOS simulator when the correct **0.0.0.0** entry is selected.
 
@@ -92,7 +92,7 @@ Using browser developer tools with :::no-loc text="Mac Catalyst"::: apps isn't c
 To use Safari developer tools with a macOS app:
 
 1. Open desktop Safari.
-1. Select the **Preferences** > **Advanced** > **Show Develop** menu item.
+1. Select the **Preferences** > **Advanced** > **Show Develop** menu command.
 1. Run the .NET MAUI Blazor app in the macOS simulator.
 1. Return to desktop Safari. Select **Develop** > **Simulator** > **0.0.0.0**. If multiple entries for **0.0.0.0** are present, select the entry that highlights the `BlazorWebView`. The `BlazorWebView` is highlighted in blue in the macOS simulator when the correct **0.0.0.0** entry is selected.
 1. The **Web Inspector** window appears for the `BlazorWebView`.

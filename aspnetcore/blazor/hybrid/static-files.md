@@ -89,7 +89,7 @@ This is text from a static text file resource.
 
 If a `Properties` folder doesn't exist in the app, create a `Properties` folder in the root of the app.
 
-If the `Properties` folder doesn't contain a resources file (`Resources.resx`), create the file in **Solution Explorer** with the **Add** > **New Item** contextual menu item.
+If the `Properties` folder doesn't contain a resources file (`Resources.resx`), create the file in **Solution Explorer** with the **Add** > **New Item** contextual menu command.
 
 Double-click the `Resource.resx` file.
 
@@ -135,7 +135,7 @@ Place the asset into a folder of the app, typically at the project's root, such 
 This is text from a static text file resource.
 ```
 
-Examine the files associated with `Form1` in **Solution Explorer**. If `Form1` doesn't have a resource file (`.resx`), add a `Form1.resx` file with the **Add** > **New Item** contextual menu item.
+Examine the files associated with `Form1` in **Solution Explorer**. If `Form1` doesn't have a resource file (`.resx`), add a `Form1.resx` file with the **Add** > **New Item** contextual menu command.
 
 Double-click the `Form1.resx` file.
 
