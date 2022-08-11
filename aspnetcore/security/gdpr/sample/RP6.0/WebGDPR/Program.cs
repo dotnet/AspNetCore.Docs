@@ -1,4 +1,4 @@
-#define FIRST // FIRST
+#define SECOND // FIRST
 #if NEVER
 #elif FIRST
 // <snippet_1>
@@ -10,7 +10,7 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     // This lambda determines whether user consent for non-essential 
     // cookies is needed for a given request.
     options.CheckConsentNeeded = context => true;
-    // requires using Microsoft.AspNetCore.Http;
+
     options.MinimumSameSitePolicy = SameSiteMode.None;
 });
 
@@ -41,11 +41,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
-    // This lambda determines whether user consent for non-essential 
-    // cookies is needed for a given request.
     options.CheckConsentNeeded = context => true;
-    // requires using Microsoft.AspNetCore.Http;
     options.MinimumSameSitePolicy = SameSiteMode.None;
+    options.ConsentCookieValue = "true";
 });
 
 var app = builder.Build();
