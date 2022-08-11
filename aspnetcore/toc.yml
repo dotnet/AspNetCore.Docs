@@ -1232,6 +1232,9 @@ items:
             uid: security/authentication/cookie
           - name: Use social authentication without Identity
             uid: security/authentication/social/social-without-identity
+          - name: Manage JWTs in development
+            displayName: jwt, JSON WEB Token
+            uid: security/authentication/jwt
           - name: Azure Active Directory
             items:
               - name: Overview
@@ -1374,6 +1377,9 @@ items:
           - name: Protect secrets in development
             displayName: password, connection string, API key
             uid: security/app-secrets
+          - name: Manage JWTs in development
+            displayName: jwt, JSON WEB Token
+            uid: security/authentication/jwt
           - name: Azure Key Vault Configuration Provider
             displayName: password, connection string, API key, secrets
             uid: security/key-vault-configuration
