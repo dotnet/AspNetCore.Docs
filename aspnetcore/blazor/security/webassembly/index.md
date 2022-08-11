@@ -118,6 +118,35 @@ If Windows Authentication is used with Blazor Webassembly or with any other SPA 
 
 For more information, see <xref:security/anti-request-forgery>.
 
+## Secure a SignalR hub
+
+To secure a SignalR hub:
+
+* In the **`Server`** project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class that you want to secure.
+
+* In the **`Client`** project's component, supply an access token to the hub connection:
+
+  ```razor
+  @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+  @inject IAccessTokenProvider TokenProvider
+
+  ...
+
+  var tokenResult = await TokenProvider.RequestAccessToken();
+
+  if (tokenResult.TryGetToken(out var token))
+  {
+      hubConnection = new HubConnectionBuilder()
+          .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"), 
+              options => { options.AccessTokenProvider = () => Task.FromResult(token?.Value); })
+          .Build();
+
+    ...
+  }
+  ```
+  
+For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
+
 ## Implementation guidance
 
 Articles under this *Overview* provide information on authenticating users in Blazor WebAssembly apps against specific providers.
@@ -250,6 +279,35 @@ If Windows Authentication is used with Blazor Webassembly or with any other SPA 
 
 For more information, see <xref:security/anti-request-forgery>.
 
+## Secure a SignalR hub
+
+To secure a SignalR hub:
+
+* In the **`Server`** project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class that you want to secure.
+
+* In the **`Client`** project's component, supply an access token to the hub connection:
+
+  ```razor
+  @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+  @inject IAccessTokenProvider TokenProvider
+
+  ...
+
+  var tokenResult = await TokenProvider.RequestAccessToken();
+
+  if (tokenResult.TryGetToken(out var token))
+  {
+      hubConnection = new HubConnectionBuilder()
+          .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"), 
+              options => { options.AccessTokenProvider = () => Task.FromResult(token?.Value); })
+          .Build();
+
+    ...
+  }
+  ```
+  
+For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
+
 ## Implementation guidance
 
 Articles under this *Overview* provide information on authenticating users in Blazor WebAssembly apps against specific providers.
@@ -381,6 +439,35 @@ We don't recommend using Windows Authentication with Blazor Webassembly or with 
 If Windows Authentication is used with Blazor Webassembly or with any other SPA framework, additional measures are required to protect the app from cross-site request forgery (CSRF) tokens. The same concerns that apply to cookies apply to Windows Authentication with the addition that Windows Authentication doesn't offer any mechanism to prevent sharing of the authentication context across origins. Apps using Windows Authentication without additional protection from CSRF should at least be restricted to an organization's intranet and not be used on the Internet.
 
 For more information, see <xref:security/anti-request-forgery>.
+
+## Secure a SignalR hub
+
+To secure a SignalR hub:
+
+* In the **`Server`** project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class that you want to secure.
+
+* In the **`Client`** project's component, supply an access token to the hub connection:
+
+  ```razor
+  @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+  @inject IAccessTokenProvider TokenProvider
+
+  ...
+
+  var tokenResult = await TokenProvider.RequestAccessToken();
+
+  if (tokenResult.TryGetToken(out var token))
+  {
+      hubConnection = new HubConnectionBuilder()
+          .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"), 
+              options => { options.AccessTokenProvider = () => Task.FromResult(token?.Value); })
+          .Build();
+
+    ...
+  }
+  ```
+  
+For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
 
 ## Implementation guidance
 
