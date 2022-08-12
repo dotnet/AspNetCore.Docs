@@ -3,13 +3,13 @@ title: Filters in Minimal API applications
 author: rick-anderson
 description: Use filters in Minimal API applications
 ms.author: riande
-ms.date: 6/22/2022
+ms.date: 8/11/2022
 monikerRange: '>= aspnetcore-7.0'
 uid: fundamentals/minimal-apis/min-api-filters
 ---
 # Filters in Minimal API apps
 
-By [Martin Costello](https://twitter.com/martin_costello), [Fiyaz Bin Hasan](https://github.com/fiyazbinhasan), and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Fiyaz Bin Hasan](https://github.com/fiyazbinhasan), [Martin Costello](https://twitter.com/martin_costello), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Minimal API filters allow developers to implement business logic that supports:
 
@@ -32,7 +32,7 @@ The preceding code:
 * Calls the `AddFilter` extension method to add a filter to the `/colorSelector/{color}` endpoint.
 * Returns the color specified except for the value `"Red"`.
 * Returns [Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem%2A) when the `/colorSelector/Red` is requested.
-* Uses `next` as the `RouteHandlerFilterDelegate` and `invocationContext` as the `EndpointFilterInvocationContext` to invoke the next filter in the pipeline or the request delegate if the last filter has been invoked.
+* Uses `next` as the `EndpointFilterDelegate` and `invocationContext` as the `EndpointFilterInvocationContext` to invoke the next filter in the pipeline or the request delegate if the last filter has been invoked.
 
 The filter is run before the endpoint handler. When multiple `AddFilter` invocations are made on a handler:
 
@@ -53,7 +53,7 @@ Before first filter
 After first filter
 ```
 
-The following code uses filters that implement the `IEndpointFilter` interface:
+The following code uses filters that implement the `IRouteHandlerFilter` interface:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet_abc)]
 
@@ -69,9 +69,9 @@ BrouteFilter After next
 ArouteFilter After next
 ```
 
-Filters implementing the `IEndpointFilter` interface are shown in the following example:
+Filters implementing the `IRouteHandlerFilter` interface are shown in the following example:
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/RouteFilters/AbcRouteFilters.cs)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/EndpointFilters/AbcEndpointFilters.cs)]
 
 ## Validate an object with a filter
 
@@ -81,14 +81,14 @@ Consider a filter that validates a `Todo` object:
 
 In the preceding code:
 
-* The `RouteHandlerInvocationContext` object provides access to the [`MethodInfo`](/dotnet/api/system.reflection.methodinfo) associated with the endpoint's handler and the `EndpointMetadata` that has been applied on the endpoint.
+* The `EndpointFilterInvocationContext` object provides access to the [`MethodInfo`](/dotnet/api/system.reflection.methodinfo) associated with the endpoint's handler and the `EndpointMetadata` that has been applied on the endpoint.
 * The filter is registered using a `delegate` that takes a `EndpointFilterInvocationContext` and returns a `EndpointFilterDelegate`. This factory pattern is useful to register a filter that depends on the signature of the target route handler.
 
-In addition to being passed as delegates, filters can be registered by implementing the `IEndpointFilter` interface. The follow code shows the preceding filter encapsulated in a class which implements `IEndpointFilter`:
+In addition to being passed as delegates, filters can be registered by implementing the `IRouteHandlerFilter` interface. The follow code shows the preceding filter encapsulated in a class which implements `IRouteHandlerFilter`:
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/RouteFilters/ToDoIsValidFilter.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/EndpointFilters/ToDoIsValidFilter.cs?name=snippet)]
 
-Filters that implement the `IEndpointFilter` interface can resolve dependencies from [Dependency Injection(DI)](xref:fundamentals/dependency-injection), as shown in the previous code. Although filters can resolve dependencies from DI, filters themselves can ***not*** be resolved from DI.
+Filters that implement the `IRouteHandlerFilter` interface can resolve dependencies from [Dependency Injection(DI)](xref:fundamentals/dependency-injection), as shown in the previous code. Although filters can resolve dependencies from DI, filters themselves can ***not*** be resolved from DI.
 
 The `ToDoIsValidFilter` is applied to the following endpoints:
 
@@ -96,7 +96,7 @@ The `ToDoIsValidFilter` is applied to the following endpoints:
 
 The following filter validates the `Todo` object and modifies the `Name` property:
 
-[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/RouteFilters/ToDoIsValidFilter.cs?name=snippet2&highlight=7)]
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/EndpointFilters/ToDoIsValidFilter.cs?name=snippet2&highlight=7)]
 
 ## Additional Resources
 
