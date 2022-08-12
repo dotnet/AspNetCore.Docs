@@ -246,3 +246,7 @@ With Visual Studio, select the new **Do not use top-level statements** checkbox 
 ### Updated Angular and React templates
 
 The Angular project template has been updated to Angular 14. The React project template has been updated to React 18.2.
+
+### Manage JSON Web Tokens in development with dotnet user-jwts
+
+The new `dotnet user-jwts` command line tool can create and manage app specific local [JSON Web Tokens](https://jwt.io/introduction) (JWTs). For more information, see [Manage JSON Web Tokens in development with dotnet user-jwts](xref:security/authentication/jwt?view=aspnetcore-7.0&preserve-view=true).
