@@ -100,7 +100,7 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
 1. Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 
@@ -342,7 +342,7 @@ Follow the guidance for your choice of tooling:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
 1. Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 
@@ -635,7 +635,7 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
 1. Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 
@@ -873,7 +873,7 @@ Follow the guidance for your choice of tooling:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
 1. Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 
@@ -1161,7 +1161,7 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
 1. Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 
@@ -1399,7 +1399,7 @@ Follow the guidance for your choice of tooling:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
 1. Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 
@@ -1747,7 +1747,7 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
 1. Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 
@@ -1989,7 +1989,7 @@ Follow the guidance for your choice of tooling:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
 1. Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 

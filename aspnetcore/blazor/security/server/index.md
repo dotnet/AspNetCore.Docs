@@ -65,7 +65,7 @@ For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) comm
 
 1. Follow the Visual Studio for Mac guidance in <xref:blazor/tooling> to create a Blazor Server app.
 
-1. Select **Individual Authentication (in-app)** from the **Authentication** drop down.
+1. Select **Individual Authentication (in-app)** from the **Authentication** dropdown list.
 
 1. The app is created for individual users stored in the app with ASP.NET Core Identity.
 
@@ -224,7 +224,7 @@ For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) comm
 
 1. Follow the Visual Studio for Mac guidance in <xref:blazor/tooling> to create a Blazor Server app.
 
-1. Select **Individual Authentication (in-app)** from the **Authentication** drop down.
+1. Select **Individual Authentication (in-app)** .from the **Authentication** dropdown list.
 
 1. The app is created for individual users stored in the app with ASP.NET Core Identity.
 
@@ -386,7 +386,7 @@ For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) comm
 
 1. Follow the Visual Studio for Mac guidance in <xref:blazor/tooling> to create a Blazor Server app.
 
-1. Select **Individual Authentication (in-app)** from the **Authentication** drop down.
+1. Select **Individual Authentication (in-app)** from the **Authentication** dropdown list.
 
 1. The app is created for individual users stored in the app with ASP.NET Core Identity.
 

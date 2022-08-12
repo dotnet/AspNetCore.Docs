@@ -23,7 +23,7 @@ Apps are published for deployment in Release configuration.
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Select the **Publish {APPLICATION}** command from the **Build** menu.
+1. Select the **Publish {APPLICATION}** command from the **Build** menu, where the `{APPLICATION}` placeholder the app's name.
 1. Select the *publish target*. To publish locally, select **Folder**.
 1. Accept the default location in the **Choose a folder** field or specify a different location. Select the **`Publish`** button.
 
@@ -254,7 +254,7 @@ Apps are published for deployment in Release configuration.
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Select the **Publish {APPLICATION}** command from the **Build** menu.
+1. Select the **Publish {APPLICATION}** command from the **Build** menu, where the `{APPLICATION}` placeholder the app's name.
 1. Select the *publish target*. To publish locally, select **Folder**.
 1. Accept the default location in the **Choose a folder** field or specify a different location. Select the **`Publish`** button.
 
@@ -467,7 +467,7 @@ Apps are published for deployment in Release configuration.
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Select the **Publish {APPLICATION}** command from the **Build** menu.
+1. Select the **Publish {APPLICATION}** command from the **Build** menu, where the `{APPLICATION}` placeholder the app's name.
 1. Select the *publish target*. To publish locally, select **Folder**.
 1. Accept the default location in the **Choose a folder** field or specify a different location. Select the **`Publish`** button.
 

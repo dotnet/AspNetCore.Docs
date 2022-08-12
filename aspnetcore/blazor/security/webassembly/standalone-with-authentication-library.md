@@ -49,7 +49,7 @@ For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) comm
 
 To create a new Blazor WebAssembly project with an authentication mechanism:
 
-1. Select **Individual Authentication (in-app)** from the **Authentication** drop down when creating the app. For guidance on creating a Blazor WebAssembly app, see <xref:blazor/tooling>.
+1. Select **Individual Authentication (in-app)** from the **Authentication** dropdown list when creating the app. For guidance on creating a Blazor WebAssembly app, see <xref:blazor/tooling>.
 
 1. The app is created to use ASP.NET Core [Identity](xref:security/authentication/identity) and doesn't result in storing users in a database. The following sections of this article provide further details.
 
@@ -233,7 +233,7 @@ For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) comm
 
 To create a new Blazor WebAssembly project with an authentication mechanism:
 
-1. Select **Individual Authentication (in-app)** from the **Authentication** drop down when creating the app. For guidance on creating a Blazor WebAssembly app, see <xref:blazor/tooling>.
+1. Select **Individual Authentication (in-app)** from the **Authentication** dropdown list when creating the app. For guidance on creating a Blazor WebAssembly app, see <xref:blazor/tooling>.
 
 1. The app is created to use ASP.NET Core [Identity](xref:security/authentication/identity) and doesn't result in storing users in a database. The following sections of this article provide further details.
 
@@ -417,7 +417,7 @@ For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) comm
 
 To create a new Blazor WebAssembly project with an authentication mechanism:
 
-1. Select **Individual Authentication (in-app)** from the **Authentication** drop down when creating the app. For guidance on creating a Blazor WebAssembly app, see <xref:blazor/tooling>.
+1. Select **Individual Authentication (in-app)** from the **Authentication** dropdown list when creating the app. For guidance on creating a Blazor WebAssembly app, see <xref:blazor/tooling>.
 
 1. The app is created to use ASP.NET Core [Identity](xref:security/authentication/identity) and doesn't result in storing users in a database. The following sections of this article provide further details.
 

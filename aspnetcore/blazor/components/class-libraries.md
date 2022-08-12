@@ -68,7 +68,7 @@ If the **Support pages and views** checkbox is selected to support pages and vie
    1. Select the RCL's project file (`.csproj`) and select **Open**.
 1. Add a reference to the RCL from the app:
    1. Right-click the app project. Select **Add** > **Reference**. Alternatively, select the **Add Project Reference** menu command from the **Project** menu.
-   1. Select the RCL project's checkbox, and reference the project with the **Select** button.
+   1. Select the RCL project's checkbox and reference the project with the **Select** button.
 
 If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template:
 
@@ -433,7 +433,7 @@ If the **Support pages and views** checkbox is selected to support pages and vie
    1. Select the RCL's project file (`.csproj`) and select **Open**.
 1. Add a reference to the RCL from the app:
    1. Right-click the app project. Select **Add** > **Reference**. Alternatively, select the **Add Project Reference** menu command from the **Project** menu.
-   1. Select the RCL project's checkbox, and reference the project with the **Select** button.
+   1. Select the RCL project's checkbox and reference the project with the **Select** button.
 
 If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template:
 
@@ -711,7 +711,7 @@ If the **Support pages and views** checkbox is selected to support pages and vie
    1. Select the RCL's project file (`.csproj`) and select **Open**.
 1. Add a reference to the RCL from the app:
    1. Right-click the app project. Select **Add** > **Reference**. Alternatively, select the **Add Project Reference** menu command from the **Project** menu.
-   1. Select the RCL project's checkbox, and reference the project with the **Select** button.
+   1. Select the RCL project's checkbox and reference the project with the **Select** button.
 
 If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
 

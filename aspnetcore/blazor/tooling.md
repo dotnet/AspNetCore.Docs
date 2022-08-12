@@ -238,7 +238,7 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
-1. Select **File** > **New Project** or create a **New** project from the **Start Window**.
+1. Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
 
 1. In the sidebar, select **Web and Console** > **App**.
 
@@ -252,7 +252,7 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 1. In the **Project name** field, name the app `WebApplication1`. Select **Create**.
 
-1. In the menubar, select **Debug** > **Start Without Debugging** to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
+1. Select the **Start Without Debugging** command from the **Debug** menu to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
 
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
@@ -513,7 +513,7 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
-1. Select **File** > **New Project** or create a **New** project from the **Start Window**.
+1. Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
 
 1. In the sidebar, select **Web and Console** > **App**.
 
@@ -527,7 +527,7 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 1. In the **Project name** field, name the app `WebApplication1`. Select **Create**.
 
-1. In the menubar, select **Debug** > **Start Without Debugging** to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
+1. Select the **Start Without Debugging** command from the **Debug** menu to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
 
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
@@ -766,7 +766,7 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
-1. Select **File** > **New Project** or create a **New** project from the **Start Window**.
+1. Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
 
 1. In the sidebar, select **Web and Console** > **App**.
 
@@ -780,7 +780,7 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 1. In the **Project name** field, name the app `WebApplication1`. Select **Create**.
 
-1. In the menubar, select **Debug** > **Start Without Debugging** to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
+1. Select the **Start Without Debugging** command from the **Debug** menu to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
 
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
@@ -1089,7 +1089,7 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
-1. Select **File** > **New Project** or create a **New** project from the **Start Window**.
+1. Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
 
 1. In the sidebar, select **Web and Console** > **App**.
 
@@ -1105,7 +1105,7 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 1. In the **Project name** field, name the app `WebApplication1`. Select **Create**.
 
-1. In the menubar, select **Debug** > **Start Without Debugging** to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
+1. Select the **Start Without Debugging** command from the **Debug** menu to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
 
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
