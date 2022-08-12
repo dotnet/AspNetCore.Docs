@@ -4,12 +4,12 @@ namespace Filters.EndpointFilters;
 public abstract class ABCEndpointFilters : IEndpointFilter
 {
     protected readonly ILogger Logger;
-    private readonly string? _methodName;
+    private readonly string _methodName;
 
     protected ABCEndpointFilters(ILoggerFactory loggerFactory)
     {
         Logger = loggerFactory.CreateLogger<ABCEndpointFilters>();
-        _methodName = GetType().FullName;
+        _methodName = GetType().Name;
     }
 
     public virtual async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context,
