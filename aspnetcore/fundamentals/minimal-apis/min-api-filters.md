@@ -53,7 +53,7 @@ Before first filter
 After first filter
 ```
 
-The following code uses filters that implement the `IRouteHandlerFilter` interface:
+The following code uses filters that implement the `IEndpointFilter` interface:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet_abc)]
 
@@ -69,7 +69,7 @@ BrouteFilter After next
 ArouteFilter After next
 ```
 
-Filters implementing the `IRouteHandlerFilter` interface are shown in the following example:
+Filters implementing the `IEndpointFilter` interface are shown in the following example:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/EndpointFilters/AbcEndpointFilters.cs)]
 
@@ -84,11 +84,11 @@ In the preceding code:
 * The `EndpointFilterInvocationContext` object provides access to the [`MethodInfo`](/dotnet/api/system.reflection.methodinfo) associated with the endpoint's handler and the `EndpointMetadata` that has been applied on the endpoint.
 * The filter is registered using a `delegate` that takes a `EndpointFilterInvocationContext` and returns a `EndpointFilterDelegate`. This factory pattern is useful to register a filter that depends on the signature of the target route handler.
 
-In addition to being passed as delegates, filters can be registered by implementing the `IRouteHandlerFilter` interface. The follow code shows the preceding filter encapsulated in a class which implements `IRouteHandlerFilter`:
+In addition to being passed as delegates, filters can be registered by implementing the `IEndpointFilter` interface. The follow code shows the preceding filter encapsulated in a class which implements `IEndpointFilter`:
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/todo/EndpointFilters/ToDoIsValidFilter.cs?name=snippet)]
 
-Filters that implement the `IRouteHandlerFilter` interface can resolve dependencies from [Dependency Injection(DI)](xref:fundamentals/dependency-injection), as shown in the previous code. Although filters can resolve dependencies from DI, filters themselves can ***not*** be resolved from DI.
+Filters that implement the `IEndpointFilter` interface can resolve dependencies from [Dependency Injection(DI)](xref:fundamentals/dependency-injection), as shown in the previous code. Although filters can resolve dependencies from DI, filters themselves can ***not*** be resolved from DI.
 
 The `ToDoIsValidFilter` is applied to the following endpoints:
 
