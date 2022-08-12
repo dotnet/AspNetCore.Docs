@@ -58,17 +58,17 @@ If the **Support pages and views** checkbox is selected to support pages and vie
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. Create a new project.
-1. In the sidebar under **Web and Console**, select **App**. Under **ASP.NET Core**, select **Razor Class Library** from the project templates shown. Select **Next**.
-1. Select the target framework for the library with the **Target Framework** dropdown list. Select **Next**.
-1. In the **Configure your new Class Library** dialog, provide a project name in the **Project Name** field. Examples in this topic use the project name `ComponentLibrary`. Select **Create**.
+1. In the sidebar under **Web and Console**, select **App**. Under **ASP.NET Core**, select **Razor Class Library** from the project templates. Select **Continue**.
+1. Select the target framework for the library with the **Target framework** dropdown list. Select **Continue**.
+1. Provide a project name in the **Project name** field. Examples in this topic use the project name `ComponentLibrary`. Select **Create**.
 1. Add the RCL to a solution:
    1. Open the solution.
-   1. Right-click the solution in **Solution Explorer**. Select **Add** > **Existing Project**.
+   1. Right-click the solution in the **Solution** sidebar and select **Add** > **Existing Project**. Alternatively, use the **Add** > **Existing Project** menu command from the **File** menu.
    1. Navigate to the RCL's project file.
-   1. Select the RCL's project file (`.csproj`).
+   1. Select the RCL's project file (`.csproj`) and select **Open**.
 1. Add a reference to the RCL from the app:
-   1. Right-click the app project. Select **Add** > **Reference**.
-   1. Select the RCL project. Select **OK**.
+   1. Right-click the app project. Select **Add** > **Reference**. Alternatively, select the **Add Project Reference** menu command from the **Project** menu.
+   1. Select the RCL project's checkbox and reference the project with the **Select** button.
 
 If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template:
 
@@ -423,17 +423,17 @@ If the **Support pages and views** checkbox is selected to support pages and vie
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. Create a new project.
-1. In the sidebar under **Web and Console**, select **App**. Under **ASP.NET Core**, select **Razor Class Library** from the project templates shown. Select **Next**.
-1. Select the target framework for the library with the **Target Framework** dropdown list. Select **Next**.
-1. In the **Configure your new Class Library** dialog, provide a project name in the **Project Name** field. Examples in this topic use the project name `ComponentLibrary`. Select **Create**.
+1. In the sidebar under **Web and Console**, select **App**. Under **ASP.NET Core**, select **Razor Class Library** from the project templates. Select **Continue**.
+1. Select the target framework for the library with the **Target framework** dropdown list. Select **Continue**.
+1. Provide a project name in the **Project name** field. Examples in this topic use the project name `ComponentLibrary`. Select **Create**.
 1. Add the RCL to a solution:
    1. Open the solution.
-   1. Right-click the solution in **Solution Explorer**. Select **Add** > **Existing Project**.
+   1. Right-click the solution in the **Solution** sidebar and select **Add** > **Existing Project**. Alternatively, use the **Add** > **Existing Project** menu command from the **File** menu.
    1. Navigate to the RCL's project file.
-   1. Select the RCL's project file (`.csproj`).
+   1. Select the RCL's project file (`.csproj`) and select **Open**.
 1. Add a reference to the RCL from the app:
-   1. Right-click the app project. Select **Add** > **Reference**.
-   1. Select the RCL project. Select **OK**.
+   1. Right-click the app project. Select **Add** > **Reference**. Alternatively, select the **Add Project Reference** menu command from the **Project** menu.
+   1. Select the RCL project's checkbox and reference the project with the **Select** button.
 
 If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template:
 
@@ -701,17 +701,17 @@ If the **Support pages and views** checkbox is selected to support pages and vie
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. Create a new project.
-1. In the sidebar under **Web and Console**, select **App**. Under **ASP.NET Core**, select **Razor Class Library** from the project templates shown. Select **Next**.
-1. Select the target framework for the library with the **Target Framework** dropdown list. Select **Next**.
-1. In the **Configure your new Class Library** dialog, provide a project name in the **Project Name** field. Examples in this topic use the project name `ComponentLibrary`. Select **Create**.
+1. In the sidebar under **Web and Console**, select **App**. Under **ASP.NET Core**, select **Razor Class Library** from the project templates. Select **Continue**.
+1. Select the target framework for the library with the **Target framework** dropdown list. Select **Continue**.
+1. Provide a project name in the **Project name** field. Examples in this topic use the project name `ComponentLibrary`. Select **Create**.
 1. Add the RCL to a solution:
    1. Open the solution.
-   1. Right-click the solution in **Solution Explorer**. Select **Add** > **Existing Project**.
+   1. Right-click the solution in the **Solution** sidebar and select **Add** > **Existing Project**. Alternatively, use the **Add** > **Existing Project** menu command from the **File** menu.
    1. Navigate to the RCL's project file.
-   1. Select the RCL's project file (`.csproj`).
+   1. Select the RCL's project file (`.csproj`) and select **Open**.
 1. Add a reference to the RCL from the app:
-   1. Right-click the app project. Select **Add** > **Reference**.
-   1. Select the RCL project. Select **OK**.
+   1. Right-click the app project. Select **Add** > **Reference**. Alternatively, select the **Add Project Reference** menu command from the **Project** menu.
+   1. Select the RCL project's checkbox and reference the project with the **Select** button.
 
 If the **Support pages and views** checkbox is selected to support pages and views when generating the RCL from the template, add an `_Imports.razor` file to root of the generated RCL project with the following contents to enable Razor component authoring:
 
