@@ -1,6 +1,6 @@
-namespace TodoApi.RouteFilters;
+namespace TodoApi.EndpointFilters;
 #region snippet
-public class TodoIsValidFilter : IRouteHandlerFilter
+public class TodoIsValidFilter : IEndpointFilter
 {
     private ILogger _logger;
 
@@ -9,10 +9,10 @@ public class TodoIsValidFilter : IRouteHandlerFilter
         _logger = loggerFactory.CreateLogger<TodoIsValidFilter>();
     }
 
-    public async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext rhiContext,
-                                                RouteHandlerFilterDelegate next)
+    public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext efiContext, 
+        EndpointFilterDelegate next)
     {
-        var todo = rhiContext.GetArgument<Todo>(0);
+        var todo = efiContext.GetArgument<Todo>(0);
 
         var validationError = Utilities.IsValid(todo!);
 
@@ -21,17 +21,17 @@ public class TodoIsValidFilter : IRouteHandlerFilter
             _logger.LogWarning(validationError);
             return Results.Problem(validationError);
         }
-        return await next(rhiContext);
+        return await next(efiContext);
     }
 }
 #endregion
 #region snippet2
-public class TodoIsValidUcFilter : IRouteHandlerFilter
+public class TodoIsValidUcFilter : IEndpointFilter
 {
-    public async ValueTask<object?> InvokeAsync(RouteHandlerInvocationContext rhiContext,
-                                                RouteHandlerFilterDelegate next)
+    public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext efiContext, 
+        EndpointFilterDelegate next)
     {
-        var todo = rhiContext.GetArgument<Todo>(0);
+        var todo = efiContext.GetArgument<Todo>(0);
         todo.Name = todo.Name!.ToUpper();
 
         var validationError = Utilities.IsValid(todo!);
@@ -40,7 +40,7 @@ public class TodoIsValidUcFilter : IRouteHandlerFilter
         {
             return Results.Problem(validationError);
         }
-        return await next(rhiContext);
+        return await next(efiContext);
     }
 }
 #endregion

@@ -1,4 +1,4 @@
-namespace TodoApi.RouteFilters;
+namespace TodoApi.EndpointFilters;
 
 public static class Utilities
 {
