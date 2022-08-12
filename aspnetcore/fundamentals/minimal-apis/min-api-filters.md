@@ -13,9 +13,9 @@ By [Fiyaz Bin Hasan](https://github.com/fiyazbinhasan), [Martin Costello](https:
 
 Minimal API filters allow developers to implement business logic that supports:
 
-* Running code before and after the route handler.
-* Inspecting and modifying parameters provided during a route handler invocation.
-* Intercepting the response behavior of a route handler.
+* Running code before and after the endpoint handler.
+* Inspecting and modifying parameters provided during an endpoint handler invocation.
+* Intercepting the response behavior of an endpoint handler.
 
 Filters can be helpful in the following scenarios:
 
@@ -29,12 +29,12 @@ Filters can be registered by providing a [Delegate](/dotnet/csharp/programming-g
 
 The preceding code:
 
-* Calls the `AddFilter` extension method to add a filter to the `/colorSelector/{color}` endpoint.
+* Calls the `AddEndpointFilter` extension method to add a filter to the `/colorSelector/{color}` endpoint.
 * Returns the color specified except for the value `"Red"`.
 * Returns [Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem%2A) when the `/colorSelector/Red` is requested.
 * Uses `next` as the `EndpointFilterDelegate` and `invocationContext` as the `EndpointFilterInvocationContext` to invoke the next filter in the pipeline or the request delegate if the last filter has been invoked.
 
-The filter is run before the endpoint handler. When multiple `AddFilter` invocations are made on a handler:
+The filter is run before the endpoint handler. When multiple `AddEndpointFilter` invocations are made on a handler:
 
 * Filter code called before the `EndpointFilterDelegate` (`next`) is called are executed in order of First In, First Out (FIFO) order.
 * Filter code called after the `EndpointFilterDelegate` (`next`) is called are executed in order of First In, Last Out (FILO) order.
@@ -60,13 +60,13 @@ The following code uses filters that implement the `IEndpointFilter` interface:
 In the preceding code, the filters and handlers logs show the order they are run:
 
 ```dotnetcli
-ArouteFilter Before next
-BrouteFilter Before next
-CrouteFilter Before next
+AEndpointFilter Before next
+BEndpointFilter Before next
+CEndpointFilter Before next
       Endpoint
-CrouteFilter After next
-BrouteFilter After next
-ArouteFilter After next
+CEndpointFilter After next
+BEndpointFilter After next
+AEndpointFilter After next
 ```
 
 Filters implementing the `IEndpointFilter` interface are shown in the following example:
@@ -82,7 +82,7 @@ Consider a filter that validates a `Todo` object:
 In the preceding code:
 
 * The `EndpointFilterInvocationContext` object provides access to the [`MethodInfo`](/dotnet/api/system.reflection.methodinfo) associated with the endpoint's handler and the `EndpointMetadata` that has been applied on the endpoint.
-* The filter is registered using a `delegate` that takes a `EndpointFilterInvocationContext` and returns a `EndpointFilterDelegate`. This factory pattern is useful to register a filter that depends on the signature of the target route handler.
+* The filter is registered using a `delegate` that takes a `EndpointFilterInvocationContext` and returns a `EndpointFilterDelegate`. This factory pattern is useful to register a filter that depends on the signature of the target endpoint handler.
 
 In addition to being passed as delegates, filters can be registered by implementing the `IEndpointFilter` interface. The follow code shows the preceding filter encapsulated in a class which implements `IEndpointFilter`:
 
