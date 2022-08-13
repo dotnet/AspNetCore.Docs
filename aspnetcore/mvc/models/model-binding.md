@@ -355,7 +355,7 @@ public class Instructor
 
 ### [BindRequired] attribute
 
-Can only be applied to model properties, not to method parameters. Causes model binding to add a model state error if binding cannot occur for a model's property. Here's an example:
+Causes model binding to add a model state error if binding cannot occur for a model's property. Here's an example:
 
 :::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/InstructorBindRequired.cs" id="snippet_Class" highlight="5":::
 
@@ -986,7 +986,7 @@ public class Instructor
 
 ### [BindRequired] attribute
 
-Can only be applied to model properties, not to method parameters. Causes model binding to add a model state error if binding cannot occur for a model's property. Here's an example:
+Causes model binding to add a model state error if binding cannot occur for a model's property. Here's an example:
 
 :::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/InstructorBindRequired.cs" id="snippet_Class" highlight="5":::
 
