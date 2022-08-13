@@ -108,7 +108,7 @@ Call <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderEx
 
 ### Enable Cross-Origin Requests (CORS)
 
-Although running health checks manually from a browser isn't a common scenario, CORS Middleware can be enabled by calling [`RequireCors`](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/CORS/src/Infrastructure/CorsEndpointConventionBuilderExtensions.cs#L20-#L40) on the health checks endpoints. The <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors<TBuilder>(TBuilder, Action<CorsPolicyBuilder>)> overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. For more information, see <xref:security/cors>.
+Although running health checks manually from a browser isn't a common scenario, CORS Middleware can be enabled by calling [`RequireCors`](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/CORS/src/Infrastructure/CorsEndpointConventionBuilderExtensions.cs#L20-#L40) on the health checks endpoints. The [`RequireCors`](/dotnet/api/microsoft.aspnetcore.builder.corsendpointconventionbuilderextensions.requirecors) overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. For more information, see <xref:security/cors>.
 
 ## Health check options
 
