@@ -1,13 +1,15 @@
 using Data;
 using Microsoft.EntityFrameworkCore;
 
+namespace todo_group;
+
 public class TodoEndpoints
 {
     // get all todos
     public static async Task<IResult> GetAllTodos(TodoGroupDbContext database)
     {
         var todos = await database.Todos.ToListAsync();
-        return TypedResults.Ok(todos);
+        return Results.Ok(todos);
     }
 
     // get todo by id
@@ -16,9 +18,9 @@ public class TodoEndpoints
         var todo = await database.Todos.FindAsync(id);
         if (todo != null)
         {
-            return TypedResults.Ok(todo);
+            return Results.Ok(todo);
         }
-        return TypedResults.NotFound();
+        return Results.NotFound();
     }
 
     // create todo
@@ -32,7 +34,7 @@ public class TodoEndpoints
         };
         await database.Todos.AddAsync(newTodo);
         await database.SaveChangesAsync();
-        return TypedResults.Created($"/public/todos/{newTodo.Id}", newTodo);
+        return Results.Created($"/public/todos/{newTodo.Id}", newTodo);
     }
 
     // update todo
@@ -45,10 +47,10 @@ public class TodoEndpoints
             existingTodo.Description = todo.Description;
             existingTodo.IsDone = todo.IsDone;
             await database.SaveChangesAsync();
-            return TypedResults.Created($"/public/todos/{existingTodo.Id}", existingTodo);
+            return Results.Created($"/public/todos/{existingTodo.Id}", existingTodo);
         }
 
-        return TypedResults.NotFound();
+        return Results.NotFound();
     }
 
     // delete todo
@@ -59,8 +61,8 @@ public class TodoEndpoints
         {
             database.Todos.Remove(todo);
             await database.SaveChangesAsync();
-            return TypedResults.NoContent();
+            return Results.NoContent();
         }
-        return TypedResults.NotFound();
+        return Results.NotFound();
     }
 }

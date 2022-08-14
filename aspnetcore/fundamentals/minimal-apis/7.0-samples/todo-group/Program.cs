@@ -1,6 +1,7 @@
 using Data;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using todo_group;
 
 var builder = WebApplication.CreateBuilder(args);
 var connection = new SqliteConnection("DataSource=:memory:");
