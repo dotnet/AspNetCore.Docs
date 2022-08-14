@@ -1,7 +1,7 @@
 using Data;
 using Microsoft.EntityFrameworkCore;
 
-public class RouteHandlers
+public class TodoEndpoints
 {
     // get all todos
     public static async Task<IResult> GetAllTodos(TodoGroupDbContext database)
