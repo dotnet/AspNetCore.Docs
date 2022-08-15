@@ -263,4 +263,4 @@ services.AddW3CLogging(logging =>
 });
 ```
 
-For more information,see [W3CLogger options](xref:fundamentals/w3c-logger/index#w3clogger-options).
+For more information,see [W3CLogger options](xref:fundamentals/w3c-logger/index#w3clogger-options-1).
