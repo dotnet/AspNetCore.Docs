@@ -105,7 +105,7 @@ The following `ShowImage2` component:
 
 <!--
 
-* <xref:blazor/forms-validation#preview-an-image-provided-by-the-inputfile-component>
+* <xref:blazor/forms-and-input-components#preview-an-image-provided-by-the-inputfile-component>
 
 -->
 
@@ -210,7 +210,7 @@ The following `ShowImage2` component:
 
 <!--
 
-* <xref:blazor/forms-validation#preview-an-image-provided-by-the-inputfile-component>
+* <xref:blazor/forms-and-input-components#preview-an-image-provided-by-the-inputfile-component>
 
 -->
 
