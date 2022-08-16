@@ -423,8 +423,8 @@ items:
                 uid: blazor/components/built-in-components
           - name: Globalization and localization
             uid: blazor/globalization-localization
-          - name: Forms and validation
-            uid: blazor/forms-validation
+          - name: Forms and input components
+            uid: blazor/forms-and-input-components
           - name: File uploads
             uid: blazor/file-uploads
           - name: File downloads

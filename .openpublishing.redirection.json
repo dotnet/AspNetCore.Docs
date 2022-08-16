@@ -822,7 +822,7 @@
         },
         {
             "source_path": "aspnetcore/razor-components/forms-validation.md",
-            "redirect_url": "/aspnet/core/blazor/forms-validation",
+            "redirect_url": "/aspnet/core/blazor/forms-and-input-components",
             "redirect_document_id": false
         },
         {
@@ -1172,6 +1172,11 @@
         {
             "source_path": "aspnetcore/tutorials/signalr-blazor.md",
             "redirect_url": "/aspnet/core/blazor/tutorials/signalr-blazor",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/blazor/forms-validation.md",
+            "redirect_url": "/aspnet/core/blazor/forms-and-input-components",
             "redirect_document_id": false
         }
     ]

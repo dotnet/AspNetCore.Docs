@@ -139,7 +139,7 @@ For the `oninput` event (`@bind:event="oninput"`), a value reversion occurs afte
 
 * Don't use the `oninput` event. Use the default `onchange` event, where an invalid value isn't reverted until the element loses focus.
 * Bind to a nullable type, such as `int?` or `string` and provide [custom `get` and `set` accessor logic](#custom-binding-formats) to handle invalid entries.
-* Use a [form validation component](xref:blazor/forms-validation), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
+* Use a [form validation component](xref:blazor/forms-and-input-components), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
   * Permit the user to provide invalid input and receive validation errors on the associated <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
   * Display validation errors in the UI without interfering with the user entering additional webform data.
 
@@ -262,9 +262,9 @@ For an alternative approach suited to sharing data in memory and across componen
 ## Additional resources
 
 * [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
-* <xref:blazor/forms-validation>
-* [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
-* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-validation#binding-inputselect-options-to-c-object-null-values)
+* <xref:blazor/forms-and-input-components>
+* [Binding to radio buttons in a form](xref:blazor/forms-and-input-components#radio-buttons)
+* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-and-input-components#binding-inputselect-options-to-c-object-null-values)
 * [ASP.NET Core Blazor event handling: `EventCallback` section](xref:blazor/components/event-handling#eventcallback)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
@@ -336,7 +336,7 @@ For the `oninput` event (`@bind:event="oninput"`), a value reversion occurs afte
 
 * Don't use the `oninput` event. Use the default `onchange` event, where an invalid value isn't reverted until the element loses focus.
 * Bind to a nullable type, such as `int?` or `string` and provide [custom `get` and `set` accessor logic](#custom-binding-formats) to handle invalid entries.
-* Use a [form validation component](xref:blazor/forms-validation), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
+* Use a [form validation component](xref:blazor/forms-and-input-components), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
   * Permit the user to provide invalid input and receive validation errors on the associated <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
   * Display validation errors in the UI without interfering with the user entering additional webform data.
 
@@ -459,9 +459,9 @@ For an alternative approach suited to sharing data in memory and across componen
 ## Additional resources
 
 * [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
-* <xref:blazor/forms-validation>
-* [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
-* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-validation#binding-inputselect-options-to-c-object-null-values)
+* <xref:blazor/forms-and-input-components>
+* [Binding to radio buttons in a form](xref:blazor/forms-and-input-components#radio-buttons)
+* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-and-input-components#binding-inputselect-options-to-c-object-null-values)
 * [ASP.NET Core Blazor event handling: `EventCallback` section](xref:blazor/components/event-handling#eventcallback)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
@@ -533,7 +533,7 @@ For the `oninput` event (`@bind:event="oninput"`), a value reversion occurs afte
 
 * Don't use the `oninput` event. Use the default `onchange` event, where an invalid value isn't reverted until the element loses focus.
 * Bind to a nullable type, such as `int?` or `string` and provide [custom `get` and `set` accessor logic](#custom-binding-formats) to handle invalid entries.
-* Use a [form validation component](xref:blazor/forms-validation), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
+* Use a [form validation component](xref:blazor/forms-and-input-components), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
   * Permit the user to provide invalid input and receive validation errors on the associated <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
   * Display validation errors in the UI without interfering with the user entering additional webform data.
 
@@ -656,9 +656,9 @@ For an alternative approach suited to sharing data in memory and across componen
 ## Additional resources
 
 * [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
-* <xref:blazor/forms-validation>
-* [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
-* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-validation#binding-inputselect-options-to-c-object-null-values)
+* <xref:blazor/forms-and-input-components>
+* [Binding to radio buttons in a form](xref:blazor/forms-and-input-components#radio-buttons)
+* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-and-input-components#binding-inputselect-options-to-c-object-null-values)
 * [ASP.NET Core Blazor event handling: `EventCallback` section](xref:blazor/components/event-handling#eventcallback)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
@@ -791,7 +791,7 @@ For the `oninput` event (`@bind:event="oninput"`), a value reversion occurs afte
 
 * Don't use the `oninput` event. Use the default `onchange` event, where an invalid value isn't reverted until the element loses focus.
 * Bind to a nullable type, such as `int?` or `string` and provide [custom `get` and `set` accessor logic](#custom-binding-formats) to handle invalid entries.
-* Use a [form validation component](xref:blazor/forms-validation), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
+* Use a [form validation component](xref:blazor/forms-and-input-components), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
   * Permit the user to provide invalid input and receive validation errors on the associated <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
   * Display validation errors in the UI without interfering with the user entering additional webform data.
 
@@ -914,9 +914,9 @@ For an alternative approach suited to sharing data in memory and across componen
 ## Additional resources
 
 * [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
-* <xref:blazor/forms-validation>
-* [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
-* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-validation#binding-inputselect-options-to-c-object-null-values)
+* <xref:blazor/forms-and-input-components>
+* [Binding to radio buttons in a form](xref:blazor/forms-and-input-components#radio-buttons)
+* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-and-input-components#binding-inputselect-options-to-c-object-null-values)
 * [ASP.NET Core Blazor event handling: `EventCallback` section](xref:blazor/components/event-handling#eventcallback)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
