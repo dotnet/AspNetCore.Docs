@@ -152,7 +152,7 @@ For example:
 * A change event for a `<select>` could send a value that isn't within the options that the app presented to the client.
 * An `<input>` could send any text data to the server, bypassing client-side validation.
 
-The app must validate the data for any event that the app handles. The Blazor framework [forms components](xref:blazor/forms-validation) perform basic validations. If the app uses custom forms components, custom code must be written to validate event data as appropriate.
+The app must validate the data for any event that the app handles. The Blazor framework [forms components](xref:blazor/forms-and-input-components) perform basic validations. If the app uses custom forms components, custom code must be written to validate event data as appropriate.
 
 Blazor Server events are asynchronous, so multiple events can be dispatched to the server before the app has time to react by producing a new render. This has some security implications to consider. Limiting client actions in the app must be performed inside event handlers and not depend on the current rendered view state.
 
@@ -543,7 +543,7 @@ For example:
 * A change event for a `<select>` could send a value that isn't within the options that the app presented to the client.
 * An `<input>` could send any text data to the server, bypassing client-side validation.
 
-The app must validate the data for any event that the app handles. The Blazor framework [forms components](xref:blazor/forms-validation) perform basic validations. If the app uses custom forms components, custom code must be written to validate event data as appropriate.
+The app must validate the data for any event that the app handles. The Blazor framework [forms components](xref:blazor/forms-and-input-components) perform basic validations. If the app uses custom forms components, custom code must be written to validate event data as appropriate.
 
 Blazor Server events are asynchronous, so multiple events can be dispatched to the server before the app has time to react by producing a new render. This has some security implications to consider. Limiting client actions in the app must be performed inside event handlers and not depend on the current rendered view state.
 
@@ -934,7 +934,7 @@ For example:
 * A change event for a `<select>` could send a value that isn't within the options that the app presented to the client.
 * An `<input>` could send any text data to the server, bypassing client-side validation.
 
-The app must validate the data for any event that the app handles. The Blazor framework [forms components](xref:blazor/forms-validation) perform basic validations. If the app uses custom forms components, custom code must be written to validate event data as appropriate.
+The app must validate the data for any event that the app handles. The Blazor framework [forms components](xref:blazor/forms-and-input-components) perform basic validations. If the app uses custom forms components, custom code must be written to validate event data as appropriate.
 
 Blazor Server events are asynchronous, so multiple events can be dispatched to the server before the app has time to react by producing a new render. This has some security implications to consider. Limiting client actions in the app must be performed inside event handlers and not depend on the current rendered view state.
 

@@ -152,7 +152,7 @@ For more information on CORS with ASP.NET Core apps and other Microsoft products
 * <xref:blazor/js-interop/index>
 * [`<a>`: The Anchor element: Security and privacy (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Element/a#security_and_privacy)
 * <xref:blazor/file-uploads>
-* <xref:blazor/forms-validation>
+* <xref:blazor/forms-and-input-components>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 :::moniker-end
@@ -297,7 +297,7 @@ For more information on CORS with ASP.NET Core apps and other Microsoft products
 * <xref:blazor/js-interop/index>
 * [`<a>`: The Anchor element: Security and privacy (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Element/a#security_and_privacy)
 * <xref:blazor/file-uploads>
-* <xref:blazor/forms-validation>
+* <xref:blazor/forms-and-input-components>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
 :::moniker-end

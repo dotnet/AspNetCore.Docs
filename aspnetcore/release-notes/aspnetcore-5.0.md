@@ -126,7 +126,7 @@ The `InputFile` component allows reading one or more files selected by a user fo
 
 ### New `InputRadio` and `InputRadioGroup` components
 
-Blazor has built-in `InputRadio` and `InputRadioGroup` components that simplify data binding to radio button groups with integrated validation. For more information, see <xref:blazor/forms-validation>.
+Blazor has built-in `InputRadio` and `InputRadioGroup` components that simplify data binding to radio button groups with integrated validation. For more information, see <xref:blazor/forms-and-input-components>.
 
 ### Component virtualization
 
@@ -142,7 +142,7 @@ Use the `FocusAsync` convenience method on element references to set the UI focu
 
 ### Custom validation CSS class attributes
 
-Custom validation CSS class attributes are useful when integrating with CSS frameworks, such as Bootstrap. For more information, see <xref:blazor/forms-validation#custom-validation-css-class-attributes>.
+Custom validation CSS class attributes are useful when integrating with CSS frameworks, such as Bootstrap. For more information, see <xref:blazor/forms-and-input-components#custom-validation-css-class-attributes>.
 
 ### IAsyncDisposable support
 
@@ -160,7 +160,7 @@ The following built-in components support display names with the `DisplayName` p
 * `InputNumber`
 * `InputSelect`
 
-For more information, see <xref:blazor/forms-validation#display-name-support>.
+For more information, see <xref:blazor/forms-and-input-components#display-name-support>.
 
 ### Catch-all route parameters
 
