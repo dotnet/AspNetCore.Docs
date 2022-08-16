@@ -38,7 +38,6 @@ CSP is supported in most modern desktop and mobile browsers, including Chrome, E
 Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the *Apply the policy* section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
 
 * [base-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-* [block-all-mixed-content](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content): Prevents loading mixed HTTP and HTTPS content.
 * [default-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src): Indicates a fallback for source directives that aren't explicitly specified by the policy. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
 * [img-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src): Indicates valid sources for images.
   * Specify `data:` to permit loading images from `data:` URLs.
@@ -84,7 +83,6 @@ In the `<head>` content of the `wwwroot/index.html` host page, apply the directi
 ```html
 <meta http-equiv="Content-Security-Policy" 
       content="base-uri 'self';
-               block-all-mixed-content;
                default-src 'self';
                img-src data: https:;
                object-src 'none';
@@ -111,7 +109,6 @@ In the `<head>` markup of the host page ([location of `<head>` content](xref:bla
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
       content="base-uri 'self';
-               block-all-mixed-content;
                default-src 'self';
                img-src data: https:;
                object-src 'none';
@@ -187,7 +184,6 @@ CSP is supported in most modern desktop and mobile browsers, including Chrome, E
 Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the *Apply the policy* section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
 
 * [base-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-* [block-all-mixed-content](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content): Prevents loading mixed HTTP and HTTPS content.
 * [default-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src): Indicates a fallback for source directives that aren't explicitly specified by the policy. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
 * [img-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src): Indicates valid sources for images.
   * Specify `data:` to permit loading images from `data:` URLs.
@@ -233,7 +229,6 @@ In the `<head>` content of the `wwwroot/index.html` host page, apply the directi
 ```html
 <meta http-equiv="Content-Security-Policy" 
       content="base-uri 'self';
-               block-all-mixed-content;
                default-src 'self';
                img-src data: https:;
                object-src 'none';
@@ -260,7 +255,6 @@ In the `<head>` content of the `Pages/_Host.cshtml` host page, apply the directi
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
       content="base-uri 'self';
-               block-all-mixed-content;
                default-src 'self';
                img-src data: https:;
                object-src 'none';
@@ -339,7 +333,6 @@ CSP is supported in most modern desktop and mobile browsers, including Chrome, E
 Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the *Apply the policy* section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
 
 * [base-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-* [block-all-mixed-content](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content): Prevents loading mixed HTTP and HTTPS content.
 * [default-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src): Indicates a fallback for source directives that aren't explicitly specified by the policy. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
 * [img-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src): Indicates valid sources for images.
   * Specify `data:` to permit loading images from `data:` URLs.
@@ -385,7 +378,6 @@ In the `<head>` content of the `wwwroot/index.html` host page, apply the directi
 ```html
 <meta http-equiv="Content-Security-Policy" 
       content="base-uri 'self';
-               block-all-mixed-content;
                default-src 'self';
                img-src data: https:;
                object-src 'none';
@@ -414,7 +406,6 @@ In the `<head>` content of the `Pages/_Host.cshtml` host page, apply the directi
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
       content="base-uri 'self';
-               block-all-mixed-content;
                default-src 'self';
                img-src data: https:;
                object-src 'none';
@@ -494,7 +485,6 @@ CSP is supported in most modern desktop and mobile browsers, including Chrome, E
 Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the *Apply the policy* section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
 
 * [base-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-* [block-all-mixed-content](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/block-all-mixed-content): Prevents loading mixed HTTP and HTTPS content.
 * [default-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src): Indicates a fallback for source directives that aren't explicitly specified by the policy. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
 * [img-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src): Indicates valid sources for images.
   * Specify `data:` to permit loading images from `data:` URLs.
@@ -538,7 +528,6 @@ In the `<head>` content of the `wwwroot/index.html` host page, apply the directi
 ```html
 <meta http-equiv="Content-Security-Policy" 
       content="base-uri 'self';
-               block-all-mixed-content;
                default-src 'self';
                img-src data: https:;
                object-src 'none';
@@ -561,7 +550,6 @@ In the `<head>` markup of the host page ([location of `<head>` content](xref:bla
 ```cshtml
 <meta http-equiv="Content-Security-Policy" 
       content="base-uri 'self';
-               block-all-mixed-content;
                default-src 'self';
                img-src data: https:;
                object-src 'none';
