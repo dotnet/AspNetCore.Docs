@@ -187,6 +187,14 @@ One place where these improvements can be noticed is in gRPC, a popular RPC fram
 
 ![Entity diagram](https://user-images.githubusercontent.com/219224/177910504-e93579b4-02e4-4079-8a8c-d9d24857aabf.png)
 
+### Kestrel performance improvements on high core machines
+
+Kestrel uses <xref:System.Collections.Concurrent.ConcurrentQueue%601> for many purposes. One purpose is scheduling I/O operations in Kestrel's default Socket transport. Partitioning the `ConcurrentQueue` based on the associated socket reduces contention and increases throughput on machines with many CPU cores.
+
+Profiling on high core machines on .NET 6 showed significant contention in one of Kestrel's other `ConcurrentQueue` instances, the `PinnedMemoryPool` that Kestrel uses to cache byte buffers.
+
+In .NET 7, Kestrel's memory pool is partitioned the same way as its I/O queue, which leads to much lower contention and higher throughput on high core machines. On the 80 core ARM64 VMs, we're seeing over 500% improvement in responses per second (RPS) in the TechEmpower plaintext benchmark.  On 48 Core AMD VMs, the improvement is nearly 100% in our HTTPS JSON benchmark.
+
 ## Server
 
 ### New ServerReady event for measuring startup time
