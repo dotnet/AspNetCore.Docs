@@ -714,18 +714,18 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
 
 For more information on CSPs, see <xref:blazor/security/content-security-policy>.
 
-## Loading progress indicator
+## Loading progress indicators
 
 *This section only applies to Blazor WebAssembly apps.*
 
-The Blazor WebAssembly project template has a loading progress indicator that shows the loading progress of the app.
+The Blazor WebAssembly project template contains Scalable Vector Graphics (SVG) and text indicators that show the loading progress of the app.
 
-The progress indicator is implemented with HTML and CSS using two CSS custom properties (variables) provided by Blazor WebAssembly:
+The progress indicators are implemented with HTML and CSS using two CSS custom properties (variables) provided by Blazor WebAssembly:
 
 * `--blazor-load-percentage`: The percentage of app files loaded.
 * `--blazor-load-percentage-text`: The percentage of app files loaded, rounded to the nearest whole number.
 
-Using the preceding CSS variables, you can create a custom progress indicator that matches the styling of your app.
+Using the preceding CSS variables, you can create custom progress indicators that match the styling of your app.
 
 In the following example:
 
@@ -740,7 +740,7 @@ document.documentElement.style.setProperty(
   '--blazor-load-percentage-text', `"${Math.floor(percentage)}%"`);
 ```
 
-The progress indicator is implemented in HTML in the `wwwroot/index.html` file:
+The progress indicators are implemented in HTML in the `wwwroot/index.html` file:
 
 ```html
 <svg class="loading-progress">
@@ -750,7 +750,7 @@ The progress indicator is implemented in HTML in the `wwwroot/index.html` file:
 <div class="loading-progress-text"></div>
 ```
 
-To review the Blazor WebAssembly project template markup and styling for the default progress indicator, see the ASP.NET Core reference source:
+To review the Blazor WebAssembly project template markup and styling for the default progress indicators, see the ASP.NET Core reference source:
 
 * [`wwwroot/index.html`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot/index.html)
 * [`app.css`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot/css/app.css)
