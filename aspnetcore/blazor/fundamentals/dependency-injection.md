@@ -327,10 +327,10 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
 > System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
 
 > [!NOTE]
-> Transient service registrations for <xref:System.Net.Http.IHttpClientFactory> handlers are supported. The `TransientExample` component in this section indicates the following transient disposables in Blazor WebAssembly apps that call authentication web APIs, which is normal and supported:
+> Transient service registrations for <xref:System.Net.Http.IHttpClientFactory> handlers are supported. The `TransientExample` component in this section indicates the following transient disposables in Blazor WebAssembly apps that use authentication, which is expected:
 >
-> <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>
-> <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>
+> * <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>
+> * <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>
 
 ## Detect transient disposables in Blazor Server apps
 
@@ -714,10 +714,10 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
 > System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
 
 > [!NOTE]
-> Transient service registrations for <xref:System.Net.Http.IHttpClientFactory> handlers are supported. The `TransientExample` component in this section indicates the following transient disposables in Blazor WebAssembly apps that call authentication web APIs, which is normal and supported:
+> Transient service registrations for <xref:System.Net.Http.IHttpClientFactory> handlers are supported. The `TransientExample` component in this section indicates the following transient disposables in Blazor WebAssembly apps that use authentication, which is expected:
 >
-> <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>
-> <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>
+> * <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>
+> * <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>
 
 ## Detect transient disposables in Blazor Server apps
 
@@ -1118,10 +1118,10 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
 > System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
 
 > [!NOTE]
-> Transient service registrations for <xref:System.Net.Http.IHttpClientFactory> handlers are supported. The `TransientExample` component in this section indicates the following transient disposables in Blazor WebAssembly apps that call authentication web APIs, which is normal and supported:
+> Transient service registrations for <xref:System.Net.Http.IHttpClientFactory> handlers are supported. The `TransientExample` component in this section indicates the following transient disposables in Blazor WebAssembly apps that use authentication, which is expected:
 >
-> <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>
-> <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>
+> * <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>
+> * <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>
 
 ## Detect transient disposables in Blazor Server apps
 
@@ -1522,10 +1522,10 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
 > System.InvalidOperationException: Trying to resolve transient disposable service TransientDisposable in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
 
 > [!NOTE]
-> Transient service registrations for <xref:System.Net.Http.IHttpClientFactory> handlers are supported. The `TransientExample` component in this section indicates the following transient disposables in Blazor WebAssembly apps that call authentication web APIs, which is normal and supported:
+> Transient service registrations for <xref:System.Net.Http.IHttpClientFactory> handlers are supported. The `TransientExample` component in this section indicates the following transient disposables in Blazor WebAssembly apps that use authentication, which is expected:
 >
-> <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>
-> <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>
+> * <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler>
+> * <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AuthorizationMessageHandler>
 
 ## Detect transient disposables in Blazor Server apps
 
