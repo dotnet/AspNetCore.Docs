@@ -729,7 +729,7 @@ Using the preceding CSS variables, you can create custom progress indicators tha
 
 In the following example:
 
-* `resourcesLoaded` is a count of the resources loaded at any given time during app startup.
+* `resourcesLoaded` is an instantaneous count of the resources loaded during app startup.
 * `totalResources` is the total number of resources to load.
 
 ```javascript
