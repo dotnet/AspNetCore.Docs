@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 7.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/09/2022
+ms.date: 08/15/2022
 uid: aspnetcore-7
 ---
 # What's new in ASP.NET Core 7.0 preview
@@ -258,3 +258,17 @@ The Angular project template has been updated to Angular 14. The React project t
 ### Manage JSON Web Tokens in development with dotnet user-jwts
 
 The new `dotnet user-jwts` command line tool can create and manage app specific local [JSON Web Tokens](https://jwt.io/introduction) (JWTs). For more information, see [Manage JSON Web Tokens in development with dotnet user-jwts](xref:security/authentication/jwt?view=aspnetcore-7.0&preserve-view=true).
+
+### Support for additional request headers in W3CLogger
+
+You can now specify additional request headers to log when using the W3C logger by calling `AdditionalRequestHeaders()` on <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions>:
+
+```csharp
+services.AddW3CLogging(logging =>
+{
+    logging.AdditionalRequestHeaders.Add("x-forwarded-for");
+    logging.AdditionalRequestHeaders.Add("x-client-ssl-protocol");
+});
+```
+
+For more information,see [W3CLogger options](xref:fundamentals/w3c-logger/index#w3clogger-options-1).

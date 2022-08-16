@@ -12,7 +12,7 @@ Welcome to what's new in the ASP.NET Core docs from July 1, 2022 through July 31
 
 ### Updated articles
 
-- <xref:blazor/forms-validation>
+- <xref:blazor/forms-and-input-components>
   - Custom validation attribute with DI
   - Blazor template and prerendering updates
   - Partial updates for previewing images
