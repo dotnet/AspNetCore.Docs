@@ -97,16 +97,22 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 
 In the preceding code, the scopes `example.read` and `example.write` are generic examples not meant to reflect valid scopes for any particular provider. For apps that use Azure Active Directory, scopes are similar to `api://41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access` (trusted publisher domain) or `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access` (untrusted publisher domain).
 
-In `Program.cs`, `CustomAuthorizationMessageHandler` is registered as a scoped service and is configured as the <xref:System.Net.Http.DelegatingHandler> for outgoing <xref:System.Net.Http.HttpResponseMessage> instances made by a named <xref:System.Net.Http.HttpClient>:
+In `Program.cs`, `CustomAuthorizationMessageHandler` is registered as a transient service and is configured as the <xref:System.Net.Http.DelegatingHandler> for outgoing <xref:System.Net.Http.HttpResponseMessage> instances made by a named <xref:System.Net.Http.HttpClient>:
 
 ```csharp
-builder.Services.AddScoped<CustomAuthorizationMessageHandler>();
+builder.Services.AddTransient<CustomAuthorizationMessageHandler>();
 
 // AddHttpClient is an extension in Microsoft.Extensions.Http
 builder.Services.AddHttpClient("WebAPI",
         client => client.BaseAddress = new Uri("https://www.example.com/base"))
     .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
 ```
+
+> [!NOTE]
+> In the preceding example, the `CustomAuthorizationMessageHandler` <xref:System.Net.Http.DelegatingHandler> is registered as a transient service for <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>. Transient registration is supported for <xref:System.Net.Http.IHttpClientFactory>, which manages its own DI scopes. For more information, see the following resources:
+>
+> * [Utility base component classes to manage a DI scope](xref:blazor/fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
+> * [Detect transient disposables in Blazor WebAssembly apps](xref:blazor/fundamentals/dependency-injection#detect-transient-disposables-in-blazor-webassembly-apps)
 
 For a hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure), <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> by default.
 
@@ -1318,15 +1324,21 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 
 In the preceding code, the scopes `example.read` and `example.write` are generic examples not meant to reflect valid scopes for any particular provider. For apps that use Azure Active Directory, scopes are similar to `api://41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access` (trusted publisher domain) or `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access` (untrusted publisher domain).
 
-In `Program.cs`, `CustomAuthorizationMessageHandler` is registered as a scoped service and is configured as the <xref:System.Net.Http.DelegatingHandler> for outgoing <xref:System.Net.Http.HttpResponseMessage> instances made by a named <xref:System.Net.Http.HttpClient>:
+In `Program.cs`, `CustomAuthorizationMessageHandler` is registered as a transient service and is configured as the <xref:System.Net.Http.DelegatingHandler> for outgoing <xref:System.Net.Http.HttpResponseMessage> instances made by a named <xref:System.Net.Http.HttpClient>:
 
 ```csharp
-builder.Services.AddScoped<CustomAuthorizationMessageHandler>();
+builder.Services.AddTransient<CustomAuthorizationMessageHandler>();
 
 builder.Services.AddHttpClient("WebAPI",
         client => client.BaseAddress = new Uri("https://www.example.com/base"))
     .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
 ```
+
+> [!NOTE]
+> In the preceding example, the `CustomAuthorizationMessageHandler` <xref:System.Net.Http.DelegatingHandler> is registered as a transient service for <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>. Transient registration is supported for <xref:System.Net.Http.IHttpClientFactory>, which manages its own DI scopes. For more information, see the following resources:
+>
+> * [Utility base component classes to manage a DI scope](xref:blazor/fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
+> * [Detect transient disposables in Blazor WebAssembly apps](xref:blazor/fundamentals/dependency-injection#detect-transient-disposables-in-blazor-webassembly-apps)
 
 For a hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure), <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> by default.
 
@@ -2539,15 +2551,21 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 
 In the preceding code, the scopes `example.read` and `example.write` are generic examples not meant to reflect valid scopes for any particular provider. For apps that use Azure Active Directory, scopes are similar to `api://41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access` (trusted publisher domain) or `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access` (untrusted publisher domain).
 
-In `Program.cs`, `CustomAuthorizationMessageHandler` is registered as a scoped service and is configured as the <xref:System.Net.Http.DelegatingHandler> for outgoing <xref:System.Net.Http.HttpResponseMessage> instances made by a named <xref:System.Net.Http.HttpClient>:
+In `Program.cs`, `CustomAuthorizationMessageHandler` is registered as a transient service and is configured as the <xref:System.Net.Http.DelegatingHandler> for outgoing <xref:System.Net.Http.HttpResponseMessage> instances made by a named <xref:System.Net.Http.HttpClient>:
 
 ```csharp
-builder.Services.AddScoped<CustomAuthorizationMessageHandler>();
+builder.Services.AddTransient<CustomAuthorizationMessageHandler>();
 
 builder.Services.AddHttpClient("WebAPI",
         client => client.BaseAddress = new Uri("https://www.example.com/base"))
     .AddHttpMessageHandler<CustomAuthorizationMessageHandler>();
 ```
+
+> [!NOTE]
+> In the preceding example, the `CustomAuthorizationMessageHandler` <xref:System.Net.Http.DelegatingHandler> is registered as a transient service for <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>. Transient registration is supported for <xref:System.Net.Http.IHttpClientFactory>, which manages its own DI scopes. For more information, see the following resources:
+>
+> * [Utility base component classes to manage a DI scope](xref:blazor/fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
+> * [Detect transient disposables in Blazor WebAssembly apps](xref:blazor/fundamentals/dependency-injection#detect-transient-disposables-in-blazor-webassembly-apps)
 
 For a hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure), <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> by default.
 
