@@ -31,13 +31,11 @@ The word *progressive* is used to describe these apps because:
 
 # [Visual Studio](#tab/visual-studio)
 
-When creating a new **Blazor WebAssembly App** in the **Create a New Project** dialog, select the **Progressive Web Application** checkbox.
-
-<!--
+When creating a new **Blazor WebAssembly App**, select the **Progressive Web Application** checkbox.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
--->
+When creating a new **Blazor WebAssembly App**, select the **Progressive Web Application** checkbox.
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
@@ -388,12 +386,11 @@ The word *progressive* is used to describe such apps because:
 
 # [Visual Studio](#tab/visual-studio)
 
-When creating a new **Blazor WebAssembly App** in the **Create a New Project** dialog, select the **Progressive Web Application** checkbox.
-<!--
+When creating a new **Blazor WebAssembly App**, select the **Progressive Web Application** checkbox.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
--->
+When creating a new **Blazor WebAssembly App**, select the **Progressive Web Application** checkbox.
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
@@ -744,13 +741,11 @@ The word *progressive* is used to describe such apps because:
 
 # [Visual Studio](#tab/visual-studio)
 
-When creating a new **Blazor WebAssembly App** in the **Create a New Project** dialog, select the **Progressive Web Application** checkbox.
-
-<!--
+When creating a new **Blazor WebAssembly App**, select the **Progressive Web Application** checkbox.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
--->
+When creating a new **Blazor WebAssembly App**, select the **Progressive Web Application** checkbox.
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 

@@ -603,6 +603,7 @@ The next section fixes this error.
 ---
 
 -->
+<a name="applyexisting"></a>
 
 ## Apply the migration or drop and re-create
 

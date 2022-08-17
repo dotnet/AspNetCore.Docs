@@ -306,12 +306,18 @@ public class GraphAPIAuthorizationMessageHandler : AuthorizationMessageHandler
 In `Program.cs`, configure the named <xref:System.Net.Http.HttpClient> for Graph API:
 
 ```csharp
-builder.Services.AddScoped<GraphAPIAuthorizationMessageHandler>();
+builder.Services.AddTransient<GraphAPIAuthorizationMessageHandler>();
 
 builder.Services.AddHttpClient("GraphAPI",
         client => client.BaseAddress = new Uri("https://graph.microsoft.com"))
     .AddHttpMessageHandler<GraphAPIAuthorizationMessageHandler>();
 ```
+
+> [!NOTE]
+> In the preceding example, the `GraphAPIAuthorizationMessageHandler` <xref:System.Net.Http.DelegatingHandler> is registered as a transient service for <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>. Transient registration is recommended for <xref:System.Net.Http.IHttpClientFactory>, which manages its own DI scopes. For more information, see the following resources:
+>
+> * [Utility base component classes to manage a DI scope](xref:blazor/fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
+> * [Detect transient disposables in Blazor WebAssembly apps](xref:blazor/fundamentals/dependency-injection#detect-transient-disposables-in-blazor-webassembly-apps)
 
 ### Call Graph API from a component
 
@@ -799,12 +805,18 @@ public class GraphAPIAuthorizationMessageHandler : AuthorizationMessageHandler
 In `Program.cs`, configure the named <xref:System.Net.Http.HttpClient> for Graph API:
 
 ```csharp
-builder.Services.AddScoped<GraphAPIAuthorizationMessageHandler>();
+builder.Services.AddTransient<GraphAPIAuthorizationMessageHandler>();
 
 builder.Services.AddHttpClient("GraphAPI",
         client => client.BaseAddress = new Uri("https://graph.microsoft.com"))
     .AddHttpMessageHandler<GraphAPIAuthorizationMessageHandler>();
 ```
+
+> [!NOTE]
+> In the preceding example, the `GraphAPIAuthorizationMessageHandler` <xref:System.Net.Http.DelegatingHandler> is registered as a transient service for <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>. Transient registration is recommended for <xref:System.Net.Http.IHttpClientFactory>, which manages its own DI scopes. For more information, see the following resources:
+>
+> * [Utility base component classes to manage a DI scope](xref:blazor/fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
+> * [Detect transient disposables in Blazor WebAssembly apps](xref:blazor/fundamentals/dependency-injection#detect-transient-disposables-in-blazor-webassembly-apps)
 
 ### Call Graph API from a component
 
@@ -1037,12 +1049,18 @@ public class GraphAPIAuthorizationMessageHandler : AuthorizationMessageHandler
 In `Program.cs`, configure the named <xref:System.Net.Http.HttpClient> for Graph API:
 
 ```csharp
-builder.Services.AddScoped<GraphAPIAuthorizationMessageHandler>();
+builder.Services.AddTransient<GraphAPIAuthorizationMessageHandler>();
 
 builder.Services.AddHttpClient("GraphAPI",
         client => client.BaseAddress = new Uri("https://graph.microsoft.com"))
     .AddHttpMessageHandler<GraphAPIAuthorizationMessageHandler>();
 ```
+
+> [!NOTE]
+> In the preceding example, the `GraphAPIAuthorizationMessageHandler` <xref:System.Net.Http.DelegatingHandler> is registered as a transient service for <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>. Transient registration is recommended for <xref:System.Net.Http.IHttpClientFactory>, which manages its own DI scopes. For more information, see the following resources:
+>
+> * [Utility base component classes to manage a DI scope](xref:blazor/fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
+> * [Detect transient disposables in Blazor WebAssembly apps](xref:blazor/fundamentals/dependency-injection#detect-transient-disposables-in-blazor-webassembly-apps)
 
 ### Call Graph API from a component
 

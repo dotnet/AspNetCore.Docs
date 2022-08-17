@@ -246,7 +246,7 @@ namespace WebGoogOauth.Areas.Identity.Pages.Account
                         // using Microsoft.AspNetCore.Authentication;
                         var props = new AuthenticationProperties();
                         props.StoreTokens(info.AuthenticationTokens);
-                        props.IsPersistent = true;
+                        props.IsPersistent = false;
 
                         var userId = await _userManager.GetUserIdAsync(user);
                         var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -266,7 +266,7 @@ namespace WebGoogOauth.Areas.Identity.Pages.Account
                             return RedirectToPage("./RegisterConfirmation", new { Email = Input.Email });
                         }
 
-                        await _signInManager.SignInAsync(user, isPersistent: false, info.LoginProvider);
+                        await _signInManager.SignInAsync(user, props, info.LoginProvider);
                         return LocalRedirect(returnUrl);
                     }
                 }

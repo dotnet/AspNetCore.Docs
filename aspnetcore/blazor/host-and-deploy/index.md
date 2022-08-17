@@ -23,13 +23,13 @@ Apps are published for deployment in Release configuration.
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Select **Build** > **Publish {APPLICATION}** from the navigation bar.
+1. Select the **Publish {APPLICATION}** command from the **Build** menu, where the `{APPLICATION}` placeholder the app's name.
 1. Select the *publish target*. To publish locally, select **Folder**.
 1. Accept the default location in the **Choose a folder** field or specify a different location. Select the **`Publish`** button.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Select **Build** > **Publish to Folder**.
+1. Select the **Publish to Folder** command from the **Build** menu.
 1. Confirm the folder to receive the published assets and select **`Publish`**.
 
 # [.NET Core CLI](#tab/netcore-cli)
@@ -107,12 +107,10 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
   **The trailing slash is required.**
 
-  In the **`Server`** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***early*** in the app's request processing pipeline (`Program.cs`) to configure the base path for any following middleware that interacts with the request path:
+  In the **`Server`** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`) to configure the base path for any following middleware that interacts with the request path:
 
   ```csharp
   app.UsePathBase("/CoolApp");
-  // ...
-  app.UseRouting();
   ```
 
 * In a Blazor Server app, use ***either*** of the following approaches:
@@ -125,12 +123,10 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
     **The trailing slash is required.**
 
-  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***early*** in the app's request processing pipeline (`Program.cs`) to configure the base path for any following middleware that interacts with the request path:
+  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`) to configure the base path for any following middleware that interacts with the request path:
 
     ```csharp
     app.UsePathBase("/CoolApp");
-    // ...
-    app.UseRouting();
     ```
 
     Calling <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> is recommended when you also wish to run the Blazor Server app locally. For example, supply the launch URL in `Properties/launchSettings.json`:
@@ -254,13 +250,13 @@ Apps are published for deployment in Release configuration.
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Select **Build** > **Publish {APPLICATION}** from the navigation bar.
+1. Select the **Publish {APPLICATION}** command from the **Build** menu, where the `{APPLICATION}` placeholder the app's name.
 1. Select the *publish target*. To publish locally, select **Folder**.
 1. Accept the default location in the **Choose a folder** field or specify a different location. Select the **`Publish`** button.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Select **Build** > **Publish to Folder**.
+1. Select the **Publish to Folder** command from the **Build** menu.
 1. Confirm the folder to receive the published assets and select **`Publish`**.
 
 # [.NET Core CLI](#tab/netcore-cli)
@@ -336,7 +332,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
   **The trailing slash is required.**
 
-  In the **`Server`** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***early*** in the app's request processing pipeline (`Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
+  In the **`Server`** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (the `Configure` method of `Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
 
   ```csharp
   app.UsePathBase("/CoolApp");
@@ -352,7 +348,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
     **The trailing slash is required.**
 
-  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***early*** in the app's request processing pipeline (`Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
+  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (the `Configure` method of `Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
 
     ```csharp
     app.UsePathBase("/CoolApp");
@@ -467,13 +463,13 @@ Apps are published for deployment in Release configuration.
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Select **Build** > **Publish {APPLICATION}** from the navigation bar.
+1. Select the **Publish {APPLICATION}** command from the **Build** menu, where the `{APPLICATION}` placeholder the app's name.
 1. Select the *publish target*. To publish locally, select **Folder**.
 1. Accept the default location in the **Choose a folder** field or specify a different location. Select the **`Publish`** button.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Select **Build** > **Publish to Folder**.
+1. Select the **Publish to Folder** command from the **Build** menu.
 1. Confirm the folder to receive the published assets and select **`Publish`**.
 
 # [.NET Core CLI](#tab/netcore-cli)
@@ -549,7 +545,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
   **The trailing slash is required.**
 
-  In the **`Server`** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***early*** in the app's request processing pipeline (`Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
+  In the **`Server`** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (the `Configure` method of `Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
 
   ```csharp
   app.UsePathBase("/CoolApp");
@@ -565,7 +561,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
     **The trailing slash is required.**
 
-  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***early*** in the app's request processing pipeline (`Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
+  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (the `Configure` method of `Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
 
     ```csharp
     app.UsePathBase("/CoolApp");

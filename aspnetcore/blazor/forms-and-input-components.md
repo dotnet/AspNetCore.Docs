@@ -1,16 +1,19 @@
 ---
-title: ASP.NET Core Blazor forms and validation
+title: ASP.NET Core Blazor forms and input components
 author: guardrex
-description: Learn how to use forms and field validation scenarios in Blazor.
+description: Learn how to use forms with field validation and built-in input components in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/09/2021
-uid: blazor/forms-validation
+uid: blazor/forms-and-input-components
 ---
-# ASP.NET Core Blazor forms and validation
+# ASP.NET Core Blazor forms and input components
 
-The Blazor framework supports forms and validation using the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation).
+The Blazor framework supports forms and provides built-in input components:
+
+* <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation)
+* [Built-in input components](#built-in-input-components)
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
@@ -81,9 +84,9 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides the following
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit> to assign an event handler to run when a form with invalid fields is submitted.
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> to assign an event handler to run regardless of the form fields' validation status. The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> in the event handler method. If <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> returns `true`, the form is valid.
 
-## Built-in form components
+## Built-in input components
 
-The Blazor framework provides built-in form components to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table.
+The Blazor framework provides built-in input components to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table.
 
 | Input component | Rendered as&hellip; |
 | --------------- | ------------------- |
@@ -128,7 +131,7 @@ The following `Starship` type, which is used in several of this article's exampl
 The following form accepts and validates user input using:
 
 * The properties and validation defined in the preceding `Starship` model.
-* Several of Blazor's [built-in form components](#built-in-form-components).
+* Several of Blazor's [built-in input components](#built-in-input-components).
 
 `Pages/FormExample2.razor`:
 
@@ -1216,9 +1219,9 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides the following
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit> to assign an event handler to run when a form with invalid fields is submitted.
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> to assign an event handler to run regardless of the form fields' validation status. The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> in the event handler method. If <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> returns `true`, the form is valid.
 
-## Built-in form components
+## Built-in input components
 
-The Blazor framework provides built-in form components to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table.
+The Blazor framework provides built-in input components to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table.
 
 | Input component | Rendered as&hellip; |
 | --------------- | ------------------- |
@@ -1263,7 +1266,7 @@ The following `Starship` type, which is used in several of this article's exampl
 The following form accepts and validates user input using:
 
 * The properties and validation defined in the preceding `Starship` model.
-* Several of Blazor's [built-in form components](#built-in-form-components).
+* Several of Blazor's [built-in input components](#built-in-input-components).
 
 `Pages/FormExample2.razor`:
 
@@ -2204,9 +2207,9 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides the following
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit> to assign an event handler to run when a form with invalid fields is submitted.
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> to assign an event handler to run regardless of the form fields' validation status. The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> in the event handler method. If <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> returns `true`, the form is valid.
 
-## Built-in form components
+## Built-in input components
 
-The Blazor framework provides built-in form components to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table.
+The Blazor framework provides built-in input components to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table.
 
 | Input component | Rendered as&hellip; |
 | --------------- | ------------------- |
@@ -2242,7 +2245,7 @@ The following `Starship` type, which is used in several of this article's exampl
 The following form accepts and validates user input using:
 
 * The properties and validation defined in the preceding `Starship` model.
-* Several of Blazor's [built-in form components](#built-in-form-components).
+* Several of Blazor's [built-in input components](#built-in-input-components).
 
 `Pages/FormExample2.razor`:
 
@@ -3080,9 +3083,9 @@ The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> provides the following
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnInvalidSubmit> to assign an event handler to run when a form with invalid fields is submitted.
 * Use <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> to assign an event handler to run regardless of the form fields' validation status. The form is validated by calling <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A?displayProperty=nameWithType> in the event handler method. If <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate%2A> returns `true`, the form is valid.
 
-## Built-in form components
+## Built-in input components
 
-The Blazor framework provides built-in form components to receive and validate user input. Inputs are validated when they're changed and when a form is submitted. Available input components are shown in the following table.
+The Blazor framework provides built-in input components to receive and validate user input. The built-in input components in the following table are supported in an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> with an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> and outside of a form in Razor component markup. Inputs are validated when they're changed and when a form is submitted.
 
 | Input component | Rendered as&hellip; |
 | --------------- | ------------------- |
@@ -3107,7 +3110,12 @@ For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFil
 
 All of the input components, including <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the rendered HTML element.
 
-Input components provide default behavior for validating when a field is changed, including updating the field CSS class to reflect the field's state as valid or invalid. Some components include useful parsing logic. For example, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> handle unparseable values gracefully by registering unparseable values as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?` for a nullable integer).
+Input components provide default behavior for validating when a field is changed:
+
+* For input components in a form with an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, the defult validation behavior includes updating the field CSS class to reflect the field's state as valid or invalid with validation styling of the underlying HTML element.
+* For controls that don't have an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, the default validation reflects the valid or invalid state but does ***not*** provide validation styling to the underlying HTML element.
+
+Some components include useful parsing logic. For example, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> handle unparseable values gracefully by registering unparseable values as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?` for a nullable integer).
 
 ## Example form
 
@@ -3127,7 +3135,7 @@ The following `Starship` type, which is used in several of this article's exampl
 The following form accepts and validates user input using:
 
 * The properties and validation defined in the preceding `Starship` model.
-* Several of Blazor's [built-in form components](#built-in-form-components).
+* Several of Blazor's [built-in input components](#built-in-input-components).
 
 `Pages/FormExample2.razor`:
 

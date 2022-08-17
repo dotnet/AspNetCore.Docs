@@ -236,23 +236,23 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 :::zone pivot="macos"
 
-1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
+1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
-1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+1. Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
 
 1. In the sidebar, select **Web and Console** > **App**.
 
-   For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Next**.
+   For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Continue**.
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select **Next**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select **Continue**.
 
 1. For a hosted Blazor WebAssembly experience, select the **ASP.NET Core hosted** checkbox.
 
-1. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
+1. In the **Project name** field, name the app `WebApplication1`. Select **Create**.
 
-1. Select **Run** > **Start Without Debugging** to run the app *without the debugger*. Run the app with **Run** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
+1. Select the **Start Without Debugging** command from the **Debug** menu to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
 
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
@@ -511,23 +511,23 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 :::zone pivot="macos"
 
-1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
+1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
-1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+1. Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
 
 1. In the sidebar, select **Web and Console** > **App**.
 
-   For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Next**.
+   For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Continue**.
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select **Next**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select **Continue**.
 
 1. For a hosted Blazor WebAssembly experience, select the **ASP.NET Core hosted** checkbox.
 
-1. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
+1. In the **Project name** field, name the app `WebApplication1`. Select **Create**.
 
-1. Select **Run** > **Start Without Debugging** to run the app *without the debugger*. Run the app with **Run** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
+1. Select the **Start Without Debugging** command from the **Debug** menu to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
 
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
@@ -764,27 +764,28 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 :::zone pivot="macos"
 
-1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
+1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
-1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+1. Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
 
 1. In the sidebar, select **Web and Console** > **App**.
 
-   For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Next**.
+   For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Continue**.
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select **Next**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select **Continue**.
 
 1. For a hosted Blazor WebAssembly experience, select the **ASP.NET Core hosted** checkbox.
 
-1. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
+1. In the **Project name** field, name the app `WebApplication1`. Select **Create**.
 
-1. Select **Run** > **Start Without Debugging** to run the app *without the debugger*. Run the app with **Run** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
+1. Select the **Start Without Debugging** command from the **Debug** menu to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
 
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
-When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+> [!IMPORTANT]
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
 
 :::zone-end
 
@@ -1086,25 +1087,25 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 :::zone pivot="macos"
 
-1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
+1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
-1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+1. Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
 
 1. In the sidebar, select **Web and Console** > **App**.
 
-   For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Next**.
+   For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Continue**.
 
    For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select **Next**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select **Continue**.
 
 1. For a hosted Blazor WebAssembly experience, select the **ASP.NET Core hosted** checkbox.
 
-1. In the **Project Name** field, name the app `WebApplication1`. Select **Create**.
+1. In the **Project name** field, name the app `WebApplication1`. Select **Create**.
 
-1. Select **Run** > **Start Without Debugging** to run the app *without the debugger*. Run the app with **Run** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
+1. Select the **Start Without Debugging** command from the **Debug** menu to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
 
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
