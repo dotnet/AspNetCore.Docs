@@ -26,5 +26,8 @@ The [`AddFixedWindowLimiter`](https://docs.microsoft.com/en-us/dotnet/api/micros
 
 Consider the following code:
 
+:::code language="csharp" source="~/performance/rate-limit/samples/Program.cs" id="snippet_fixed":::
+
+
 
 :::moniker-end
