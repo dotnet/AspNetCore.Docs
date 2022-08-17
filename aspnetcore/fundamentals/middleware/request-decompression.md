@@ -3,7 +3,7 @@ title: Request Decompression in ASP.NET Core
 author: david-acker
 description: Learn how to use the request decompression middleware in ASP.NET Core
 monikerRange: '>= aspnetcore-7.0'
-ms.author: david-acker
+ms.author: riande
 ms.date: 8/17/2022
 uid: fundamentals/middleware/request-decompression
 ---
@@ -11,23 +11,35 @@ uid: fundamentals/middleware/request-decompression
 
 By [David Acker](https://github.com/david-acker)
 
-The request decompression middleware enables API endpoints to start accepting requests with compressed content, without requiring developers to manually handle compressed requests, by using the `Content-Encoding` HTTP header to automatically identify and decompress requests which contain compressed content.
+Request decompression middleware:
 
-When the `Content-Encoding` header value on a request matches one of the available decompression providers, the middleware will use the matching provider to wrap the <xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType> in an appropriate decompression stream and remove the `Content-Encoding` header (indicating that the request body is no longer compressed). For requests with uncompressed content, which specify no `Content-Encoding` header, the middleware will simply pass the requests on unchanged.
+* Enables API endpoints to start accepting requests with compressed content.
+* Uses the [`Content-Encoding`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Encoding) HTTP header to automatically identify and decompress requests which contain compressed content.
+* Eliminates the need to write code to handle compressed requests.
 
-> [!NOTE]
-> * Decompression occurs when the body of the request is being read (e.g. at the endpoint, during model binding). The request body is not decompressed eagerly.
-> * If the compressed data is invalid for the specified `Content-Encoding`, an exception will be thrown when attempting to read the decompressed request body.
+When the `Content-Encoding` header value on a request matches one of the available decompression providers:
 
-In the event that the middleware encounters a request with compressed content but will not be able to decompress the request, such as the request having an unsupported `Content-Encoding` header value or multiple `Content-Encoding` header values, the middleware will pass the request on changed.
+* The middleware uses the matching provider to wrap the <xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType> in an appropriate decompression stream.
+* Remove the `Content-Encoding` header, indicating that the request body is no longer compressed.
+
+Requests with uncompressed content which don't include a `Content-Encoding` header are ignored by the middleware.
+
+Decompression:
+
+* Occurs when the body of the request is being read. That is, decompression occurs at the endpoint on model binding. The request body is not decompressed eagerly.
+* When attempting to read the decompressed request body, if the compressed data is invalid for the specified `Content-Encoding`, an exception is thrown.
+
+If the middleware encounters a request with compressed content but is unable to decompress it, the request is passed to the next delegate in the pipeline. For example, a request with an unsupported `Content-Encoding` header value or multiple `Content-Encoding` header values, is passed to the next delegate in the pipeline.
 
 ## Configuration
 
-The following code shows how to enable request decompression for the default `Content-Encoding` types:
+The following code shows how to enable request decompression for the [default](#default) `Content-Encoding` types:
 
 [!code-csharp[](samples/request-decompression/7.x/Program.cs?name=snippet_WithDefaultProviders&highlight=3,7)]
 
 ## Decompression Providers
+
+<a name="default"></a>
 
 ### Default Providers
 
@@ -41,22 +53,22 @@ The `Content-Encoding` header values that the request decompression middleware s
 
 ### Custom Providers
 
-Support for custom or niche encodings can be added by creating custom decompression provider classes which implement <xref:Microsoft.AspNetCore.RequestDecompression.IDecompressionProvider>:
+Support for custom encodings can be added by creating custom decompression provider classes which implement <xref:Microsoft.AspNetCore.RequestDecompression.IDecompressionProvider>:
 
 [!code-csharp[](samples/request-decompression/7.x/CustomDecompressionProvider.cs?name=snippet_CustomDecompressionProvider)]
 
-These custom decompression providers can then be registered with <xref:Microsoft.AspNetCore.RequestDecompression.RequestDecompressionOptions> along with their corresponding `Content-Encoding` header values:
+Custom decompression providers are registered with <xref:Microsoft.AspNetCore.RequestDecompression.RequestDecompressionOptions> along with their corresponding `Content-Encoding` header values:
 
 [!code-csharp[](samples/request-decompression/7.x/Program.cs?name=snippet_WithCustomProvider&highlight=3-6,10)]
 
 ## Request Size Limits
 
-In order to guard against [zip bombs/decompression bombs](https://en.wikipedia.org/wiki/Zip_bomb), the maximum size of the decompressed request body is limited to the request body size limit enforced by the endpoint or server. If the number of bytes read from the decompressed request body stream exceeds this limit, an [InvalidOperationException](xref:System.InvalidOperationException) will be thrown to prevent additional bytes from being read from the stream.
+In order to guard against [zip bombs or decompression bombs](https://en.wikipedia.org/wiki/Zip_bomb), the maximum size of the decompressed request body is limited to the request body size limit enforced by the endpoint or server. If the number of bytes read from the decompressed request body stream exceeds the limit, an [InvalidOperationException](xref:System.InvalidOperationException) is thrown to prevent additional bytes from being read from the stream.
 
-If available, the size limit specified for the endpoint by <xref:Microsoft.AspNetCore.Http.Metadata.IRequestSizeLimitMetadata.MaxRequestBodySize?displayProperty=nameWithType>, such as <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> or <xref:Microsoft.AspNetCore.Mvc.DisableRequestSizeLimitAttribute> for MVC endpoints, will be used. Otherwise, the global server size limit specified by <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature.MaxRequestBodySize?displayProperty=nameWithType> will be used.
+If available, the size limit specified for the endpoint by <xref:Microsoft.AspNetCore.Http.Metadata.IRequestSizeLimitMetadata.MaxRequestBodySize?displayProperty=nameWithType>, such as <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> or <xref:Microsoft.AspNetCore.Mvc.DisableRequestSizeLimitAttribute> for MVC endpoints, is used. Otherwise, the global server size limit specified by <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature.MaxRequestBodySize?displayProperty=nameWithType> is used.
 
 > [!WARNING]
-> Disabling the request body size limit poses a security risk in regards to uncontrolled resource consumption, particularly if the request body is being buffered. Ensure that safeguards are in place to mitigate the risk of denial of service attacks.
+> Disabling the request body size limit poses a security risk in regards to uncontrolled resource consumption, particularly if the request body is being buffered. Ensure that safeguards are in place to mitigate the risk of [denial-of-service](https://www.cisa.gov/uscert/ncas/tips/ST04-015) (DoS) attacks.
 
 ## Additional Resources
 
