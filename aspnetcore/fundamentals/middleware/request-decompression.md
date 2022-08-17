@@ -11,7 +11,7 @@ uid: fundamentals/middleware/request-decompression
 
 By [David Acker](https://github.com/david-acker)
 
-The request decompression middleware enables API endpoints to start accept requests with compressed content, without requiring developers to manually include logic for identifying and decompressing these requests, by using the `Content-Encoding` HTTP header to automatically identify and decompress requests which contain compressed content.
+The request decompression middleware enables API endpoints to start accepting requests with compressed content, without requiring developers to manually handle compressed requests, by using the `Content-Encoding` HTTP header to automatically identify and decompress requests which contain compressed content.
 
 When the `Content-Encoding` header value on a request matches one of the available decompression providers, the middleware will use the matching provider to wrap the <xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType> in an appropriate decompression stream and remove the `Content-Encoding` header (indicating that the request body is no longer compressed). For requests with uncompressed content, which specify no `Content-Encoding` header, the middleware will simply pass the requests on unchanged.
 
