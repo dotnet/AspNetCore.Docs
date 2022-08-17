@@ -145,18 +145,20 @@ Configure Static File Middleware to serve static assets to clients by calling <x
 
 In Blazor Server apps, static web assets are only enabled by default in the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment. To enable static files for environments other than <xref:Microsoft.Extensions.Hosting.Environments.Development> during local development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> in `Program.cs`.
 
-<!--
-
 > [!WARNING]
-> Call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> for the ***exact environment*** or call it by testing for non-`Production` environments (`xxxxxxxx`) to prevent activating the feature in production, as it serves files from separate locations on disk *other than the project*. The example in this section checks explicitly for the <xref:Microsoft.Extensions.Hosting.Environments.Staging> environment by calling <xref:Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions.IsStaging%2A>.
+> Call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> for the ***exact environment*** or call it by testing for non-`Production` environments to prevent activating the feature in production, as it serves files from separate locations on disk *other than the project*. The example in this section checks explicitly for the <xref:Microsoft.Extensions.Hosting.Environments.Staging> environment.
 
--->
 
 ```csharp
 Host.CreateDefaultBuilder(args)
     .ConfigureWebHostDefaults(webBuilder =>
     {
-        webBuilder.UseStaticWebAssets();
+        if (webBuilder.GetSetting(WebHostDefaults.EnvironmentKey) == 
+            Environments.Staging)
+        {
+            webBuilder.UseStaticWebAssets();
+        }
+
         webBuilder.UseStartup<Startup>();
     });
 ```
@@ -266,28 +268,6 @@ app.UseStaticFiles("/static");
 ```
 
 For more information, see <xref:fundamentals/static-files>.
-
-## Static files in non-`Development` environments for Blazor Server apps
-
-*This section applies to Blazor Server apps.*
-
-In Blazor Server apps, static web assets are only enabled by default in the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment. To enable static files for environments other than <xref:Microsoft.Extensions.Hosting.Environments.Development> during local development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> in `Program.cs`.
-
-<!--
-
-> [!WARNING]
-> Call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> for the ***exact environment*** or call it by testing for non-`Production` environments (`xxxxxxxx`) to prevent activating the feature in production, as it serves files from separate locations on disk *other than the project*. The example in this section checks explicitly for the <xref:Microsoft.Extensions.Hosting.Environments.Staging> environment by calling <xref:Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions.IsStaging%2A>.
-
--->
-
-```csharp
-Host.CreateDefaultBuilder(args)
-    .ConfigureWebHostDefaults(webBuilder =>
-    {
-        webBuilder.UseStaticWebAssets();
-        webBuilder.UseStartup<Startup>();
-    });
-```
 
 ## Static web asset base path
 
