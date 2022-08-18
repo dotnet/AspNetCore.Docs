@@ -22,7 +22,7 @@ When the `Content-Encoding` header value on a request matches one of the availab
 * Uses the matching provider to wrap the <xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType> in an appropriate decompression stream.
 * Removes the `Content-Encoding` header, indicating that the request body is no longer compressed.
 
-Requests with uncompressed content which don't include a `Content-Encoding` header are ignored by the middleware.
+Requests that don't include a `Content-Encoding` header are ignored by the request decompression middleware.
 
 Decompression:
 
