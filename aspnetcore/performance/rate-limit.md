@@ -48,6 +48,8 @@ Apps should use [Configuration](xref:fundamentals/configuration/index) to set li
 |  30   | **[+20]**|         |         | 30 (10**+20**-30=0) |  |  |
 |  40  |          | **[+30]** |       |                 | 10 (0**+30**=30)  |  |
 |  50   |          |           | **[+40]**  |            |               | 10 (30**+40**=70) |
+| ---- | -- | --  | -- | -- | -- | -- |
+| Remaining | 89 | 50  | 10 | 0 | 30 | 70 |
 
 
 :::moniker-end
