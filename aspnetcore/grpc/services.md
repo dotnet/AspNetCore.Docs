@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to create gRPC services and methods.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 08/25/2020
+ms.date: 08/18/2022
 uid: grpc/services
 ---
 # Create gRPC services and methods
