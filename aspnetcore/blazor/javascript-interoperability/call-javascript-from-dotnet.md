@@ -62,7 +62,7 @@ The following `CallJsExample1` component:
 
 *This section only applies to Blazor Server apps.*
 
-Some browser JavaScript (JS) APIs can only be executed in the context of a user gesture, such as using the [`Fullscreen API` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Fullscreen_API). These APIs can't be called through the JS interop mechanism in Blazor Server apps because UI event handling is performed asynchronously and generally no longer in the context of the user gesture. The app must handle the UI event completely in JavaScript, so use [`onclick` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick) instead of Blazor's `@onclick` directive attribute.
+Some browser JavaScript (JS) APIs can only be executed in the context of a user gesture, such as using the [`Fullscreen API` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Fullscreen_API). These APIs can't be called through the JS interop mechanism in Blazor Server apps because UI event handling is performed asynchronously and generally no longer in the context of the user gesture. The app must handle the UI event completely in JavaScript, so use [`onclick` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Element/click_event) instead of Blazor's `@onclick` directive attribute.
 
 ## Invoke JavaScript functions without reading a returned value (`InvokeVoidAsync`)
 
@@ -872,7 +872,7 @@ The following `CallJsExample1` component:
 
 *This section only applies to Blazor Server apps.*
 
-Some browser JavaScript (JS) APIs can only be executed in the context of a user gesture, such as using the [`Fullscreen API` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Fullscreen_API). These APIs can't be called through the JS interop mechanism in Blazor Server apps because UI event handling is performed asynchronously and generally no longer in the context of the user gesture. The app must handle the UI event completely in JavaScript, so use [`onclick` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick) instead of Blazor's `@onclick` directive attribute.
+Some browser JavaScript (JS) APIs can only be executed in the context of a user gesture, such as using the [`Fullscreen API` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Fullscreen_API). These APIs can't be called through the JS interop mechanism in Blazor Server apps because UI event handling is performed asynchronously and generally no longer in the context of the user gesture. The app must handle the UI event completely in JavaScript, so use [`onclick` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Element/click_event) instead of Blazor's `@onclick` directive attribute.
 
 ## Invoke JavaScript functions without reading a returned value (`InvokeVoidAsync`)
 
@@ -1491,7 +1491,7 @@ The following `CallJsExample1` component:
 
 *This section only applies to Blazor Server apps.*
 
-Some browser JavaScript (JS) APIs can only be executed in the context of a user gesture, such as using the [`Fullscreen API` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Fullscreen_API). These APIs can't be called through the JS interop mechanism in Blazor Server apps because UI event handling is performed asynchronously and generally no longer in the context of the user gesture. The app must handle the UI event completely in JavaScript, so use [`onclick` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick) instead of Blazor's `@onclick` directive attribute.
+Some browser JavaScript (JS) APIs can only be executed in the context of a user gesture, such as using the [`Fullscreen API` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Fullscreen_API). These APIs can't be called through the JS interop mechanism in Blazor Server apps because UI event handling is performed asynchronously and generally no longer in the context of the user gesture. The app must handle the UI event completely in JavaScript, so use [`onclick` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Element/click_event) instead of Blazor's `@onclick` directive attribute.
 
 ## Invoke JavaScript functions without reading a returned value (`InvokeVoidAsync`)
 
@@ -1904,7 +1904,7 @@ The following `CallJsExample1` component:
 
 *This section only applies to Blazor Server apps.*
 
-Some browser JavaScript (JS) APIs can only be executed in the context of a user gesture, such as using the [`Fullscreen API` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Fullscreen_API). These APIs can't be called through the JS interop mechanism in Blazor Server apps because UI event handling is performed asynchronously and generally no longer in the context of the user gesture. The app must handle the UI event completely in JavaScript, so use [`onclick` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick) instead of Blazor's `@onclick` directive attribute.
+Some browser JavaScript (JS) APIs can only be executed in the context of a user gesture, such as using the [`Fullscreen API` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Fullscreen_API). These APIs can't be called through the JS interop mechanism in Blazor Server apps because UI event handling is performed asynchronously and generally no longer in the context of the user gesture. The app must handle the UI event completely in JavaScript, so use [`onclick` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Element/click_event) instead of Blazor's `@onclick` directive attribute.
 
 ## Invoke JavaScript functions without reading a returned value (`InvokeVoidAsync`)
 
