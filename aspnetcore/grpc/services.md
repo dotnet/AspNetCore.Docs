@@ -268,6 +268,68 @@ public override Task<ExampleResponse> UnaryCall(ExampleRequest request, ServerCa
 }
 ```
 
+## Multi-threading with gRPC streaming methods
+
+There are important considerations to gRPC streaming methods that use multiple threads.
+
+### Reader and writer thread safety
+
+`IAsyncStreamReader<TMessage>` and `IServerStreamWriter<TMessage>` can each be used by only one thread at a time. That means, for a streaming gRPC method, multiple threads can't read new messages with `requestStream.MoveNext()` at the same time. And multiple threads can't write new messages with `responseStream.WriteAsync(message)` at the same time.
+
+A safe way to enable multiple threads to interact with a gRPC method is to use the producer/consumer pattern with [System.Threading.Channels](/dotnet/core/extensions/channels).
+
+```csharp
+public override async Task DownloadResults(DataRequest request,
+    IServerStreamWriter<DataResult> responseStream, ServerCallContext context)
+{
+    var channel = Channel.CreateBounded<DataResult>(new BoundedChannelOptions(capacity: 5));
+
+    var processTask = Task.Run(async () =>
+    {
+        var dataChunks = request.Value.Chunk(size: 10);
+
+        // Process results in multiple background tasks.
+        var processTasks = dataChunks.Select(
+            async c =>
+            {
+                // Write results to channel across different threads.
+                var message = new DataResult { BytesProcessed = c.Length };
+                await channel.Writer.WriteAsync(message);
+            });
+        await Task.WhenAll(processTasks);
+
+        channel.Writer.Complete();
+    });
+
+    // Read results from channel.
+    await foreach (var message in channel.Reader.ReadAllAsync())
+    {
+        await responseStream.WriteAsync(message);
+    }
+
+    await processTask;
+}
+```
+
+The preceding gRPC server streaming method:
+
+* Creates a bounded channel for producing and consuming `DataResult` messages.
+* Writes messages to the channel from multiple background tasks.
+* Reads messages from the channel and writes them to the response stream.
+
+> [!NOTE]
+> Bidirectional streaming methods take `IAsyncStreamReader<TMessage>` and `IServerStreamWriter<TMessage>` as arguments. It's safe to use these types on separate threads from each other.
+
+### Interacting with gRPC method after call ends
+
+A gRPC call ends on the server once the gRPC method exits. Some parameters passed to gRPC methods aren't safe to use after the call has ended:
+
+* `ServerCallContext`
+* `IAsyncStreamReader<TMessage>`
+* `IServerStreamWriter<TMessage>`
+
+If a gRPC method starts background tasks that use these types then it must ensure the tasks are completed before the gRPC method exits. Continuing to use the context, stream reader, or stream writer, after the gRPC method exists causes errors and unpredictable behavior.
+
 ## Additional resources
 
 * <xref:grpc/basics>
