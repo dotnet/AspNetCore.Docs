@@ -123,7 +123,7 @@ Each call type has a different method signature. Overriding generated methods fr
 
 ### Unary method
 
-A unary method gets the request message as a parameter, and returns the response. A unary call is complete when the response is returned.
+A unary method has the request message as a parameter, and returns the response. A unary call is complete when the response is returned.
 
 ```csharp
 public override Task<ExampleResponse> UnaryCall(ExampleRequest request,
@@ -146,7 +146,7 @@ message ExampleRequest {
 
 ### Server streaming method
 
-A server streaming method gets the request message as a parameter. Because multiple messages can be streamed back to the caller, `responseStream.WriteAsync` is used to send response messages. A server streaming call is complete when the method returns.
+A server streaming method has the request message as a parameter. Because multiple messages can be streamed back to the caller, `responseStream.WriteAsync` is used to send response messages. A server streaming call is complete when the method returns.
 
 ```csharp
 public override async Task StreamingFromServer(ExampleRequest request,
@@ -322,7 +322,7 @@ The preceding gRPC server streaming method:
 
 ### Interacting with gRPC method after call ends
 
-A gRPC call ends on the server once the gRPC method exits. Some parameters passed to gRPC methods aren't safe to use after the call has ended:
+A gRPC call ends on the server once the gRPC method exits. Some arguments passed to gRPC methods aren't safe to use after the call has ended:
 
 * `ServerCallContext`
 * `IAsyncStreamReader<TMessage>`
