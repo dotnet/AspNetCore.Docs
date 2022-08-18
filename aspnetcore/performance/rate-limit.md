@@ -26,8 +26,25 @@ The [`AddFixedWindowLimiter`](/dotnet/api/microsoft.aspnetcore.ratelimiting.rate
 
 Consider the following code:
 
-:::code language="csharp" source="~/performance/rate-limit/samples/Program.cs" id="snippet_fixed":::
+:::code language="csharp" source="~/performance/rate-limit/samples/Program.cs" id="snippet_fixed" highlight="10-15,18":::
 
+The preceding code creates a fixed window limiter with a policy name of `"fixed"` and sets:
+
+* `permitLimit` to 4 and the time `window` to 12. A maximum of 4 requests per each 12 second window are allowed.
+* `queueProcessingOrder` to `QueueProcessingOrder.OldestFirst`.
+* `queueLimit` to 2.
+
+Apps should use [Configuration](xref:fundamentals/configuration/index) to set limiter options. The preceding code using Configuration:
+
+:::code language="csharp" source="~/performance/rate-limit/samples/Program.cs" id="snippet_fixed2" highlight="19,20,22":::
+
+### Sliding window limiter
+
+| Time | 0  | 10  | 20 | 30 | 40 | 50 | 60 |
+| --------- | -- | --  | -- | -- | -- | -- | -- |
+| Requests (remaining) | 20 (80) | 30 (50)  | 40 (10) |  |  |  |  |
+| Requests (remaining) | ~20 (80)~ | 30 (50)  | 40 (10) | 30 (10+20-30=0) |  |  |  |
+| Requests (remaining) | ~20 (80)~ | ~30 (50)~  | 40 (10) | 30 (10+20-30=0) | 10 (0+30=30)  |  |  | 
 
 
 :::moniker-end
