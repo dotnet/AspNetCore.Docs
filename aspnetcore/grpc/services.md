@@ -276,7 +276,7 @@ There are important considerations to gRPC streaming methods that use multiple t
 
 `IAsyncStreamReader<TMessage>` and `IServerStreamWriter<TMessage>` can each be used by only one thread at a time. For a streaming gRPC method, multiple threads can't read new messages with `requestStream.MoveNext()` simultaneously. And multiple threads can't write new messages with `responseStream.WriteAsync(message)` simultaneously.
 
-A safe way to enable multiple threads to interact with a gRPC method is to use the producer/consumer pattern with [System.Threading.Channels](/dotnet/core/extensions/channels).
+A safe way to enable multiple threads to interact with a gRPC method is to use the producer-consumer pattern with [System.Threading.Channels](/dotnet/core/extensions/channels).
 
 ```csharp
 public override async Task DownloadResults(DataRequest request,
@@ -322,7 +322,7 @@ The preceding gRPC server streaming method:
 
 ### Interacting with gRPC method after call ends
 
-A gRPC call ends on the server once the gRPC method exits. Some arguments passed to gRPC methods aren't safe to use after the call has ended:
+A gRPC call ends on the server once the gRPC method exits. The following arguments passed to gRPC methods aren't safe to use after the call has ended:
 
 * `ServerCallContext`
 * `IAsyncStreamReader<TMessage>`
