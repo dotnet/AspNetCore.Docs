@@ -770,7 +770,7 @@ In the following `FormExample6` component, update the namespace of the **`Shared
 
 ## `InputText` based on the input event
 
-Use the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component to create a custom component that uses the [`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event) event instead of the [`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event) event. Use of the `input` event triggers field validation on each keystroke.
+Use the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component to create a custom component that uses the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) instead of the `onchange` event ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)). Use of the `input` event triggers field validation on each keystroke.
 
 The following example uses the `ExampleModel` class.
 
@@ -778,7 +778,7 @@ The following example uses the `ExampleModel` class.
 
 :::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/ExampleModel.cs":::
 
-The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the [`oninput`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) event.
+The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)).
 
 `Shared/CustomInputText.razor`:
 
@@ -1758,7 +1758,7 @@ In the following `FormExample6` component, update the namespace of the **`Shared
 
 ## `InputText` based on the input event
 
-Use the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component to create a custom component that uses the [`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event) event instead of the [`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event) event. Use of the `input` event triggers field validation on each keystroke.
+Use the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component to create a custom component that uses the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) instead of the `onchange` event ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)). Use of the `input` event triggers field validation on each keystroke.
 
 The following example uses the `ExampleModel` class.
 
@@ -1766,7 +1766,7 @@ The following example uses the `ExampleModel` class.
 
 :::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/ExampleModel.cs":::
 
-The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the [`oninput`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) event.
+The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)).
 
 `Shared/CustomInputText.razor`:
 
@@ -2708,7 +2708,7 @@ In the following `FormExample6` component, update the namespace of the **`Shared
 
 ## `InputText` based on the input event
 
-Use the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component to create a custom component that uses the [`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event) event instead of the [`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event) event. Use of the `input` event triggers field validation on each keystroke.
+Use the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component to create a custom component that uses the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) instead of the `onchange` event ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)). Use of the `input` event triggers field validation on each keystroke.
 
 The following example uses the `ExampleModel` class.
 
@@ -2716,7 +2716,7 @@ The following example uses the `ExampleModel` class.
 
 :::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/ExampleModel.cs":::
 
-The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the [`oninput`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) event.
+The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)).
 
 `Shared/CustomInputText.razor`:
 
@@ -3774,7 +3774,7 @@ In the following `FormExample6` component, update the namespace of the **`Shared
 
 ## `InputText` based on the input event
 
-Use the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component to create a custom component that uses the [`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event) event instead of the [`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event) event. Use of the `input` event triggers field validation on each keystroke.
+Use the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component to create a custom component that uses the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) instead of the `onchange` event ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)). Use of the `input` event triggers field validation on each keystroke.
 
 The following example uses the `ExampleModel` class.
 
@@ -3782,7 +3782,7 @@ The following example uses the `ExampleModel` class.
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/ExampleModel.cs":::
 
-The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the [`oninput`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) event.
+The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)).
 
 `Shared/CustomInputText.razor`:
 

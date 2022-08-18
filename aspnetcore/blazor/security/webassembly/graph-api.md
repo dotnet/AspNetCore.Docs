@@ -155,7 +155,7 @@ builder.Services.AddGraphClient("https://graph.microsoft.com/User.Read");
 This section uses the [utility classes (`GraphClientExtensions.cs`)](#graph-sdk) described earlier in this article. The following `GraphExample` component uses an injected `GraphServiceClient` to obtain the user's AAD profile data and display their mobile phone number:
 
 ```razor
-@page "/GraphExample"
+@page "/graph-example"
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.Graph
 @attribute [Authorize]
@@ -331,7 +331,7 @@ In a Razor component:
 `Pages/CallUser.razor`:
 
 ```razor
-@page "/CallUser"
+@page "/call-user"
 @using System.ComponentModel.DataAnnotations
 @using System.Text.Json.Serialization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
@@ -654,7 +654,7 @@ builder.Services.AddGraphClient("https://graph.microsoft.com/User.Read");
 This section uses the [utility classes (`GraphClientExtensions.cs`)](#graph-sdk) described earlier in this article. The following `GraphExample` component uses an injected `GraphServiceClient` to obtain the user's AAD profile data and display their mobile phone number:
 
 ```razor
-@page "/GraphExample"
+@page "/graph-example"
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.Graph
 @attribute [Authorize]
@@ -830,7 +830,7 @@ In a Razor component:
 `Pages/CallUser.razor`:
 
 ```razor
-@page "/CallUser"
+@page "/call-user"
 @using System.ComponentModel.DataAnnotations
 @using System.Text.Json.Serialization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
@@ -1074,7 +1074,7 @@ In a Razor component:
 `Pages/CallUser.razor`:
 
 ```razor
-@page "/CallUser"
+@page "/call-user"
 @using System.ComponentModel.DataAnnotations
 @using System.Text.Json.Serialization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
