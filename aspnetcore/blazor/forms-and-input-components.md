@@ -778,7 +778,7 @@ The following example uses the `ExampleModel` class.
 
 :::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/ExampleModel.cs":::
 
-The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the [`input` event](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event).
+The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)).
 
 `Shared/CustomInputText.razor`:
 
@@ -1766,7 +1766,7 @@ The following example uses the `ExampleModel` class.
 
 :::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/ExampleModel.cs":::
 
-The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the [`input` event](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event).
+The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)).
 
 `Shared/CustomInputText.razor`:
 
@@ -2716,7 +2716,7 @@ The following example uses the `ExampleModel` class.
 
 :::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/ExampleModel.cs":::
 
-The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the [`input` event](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event).
+The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)).
 
 `Shared/CustomInputText.razor`:
 
@@ -3782,7 +3782,7 @@ The following example uses the `ExampleModel` class.
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/ExampleModel.cs":::
 
-The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the [`input` event](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event).
+The following `CustomInputText` component inherits the framework's `InputText` component and sets event binding to the `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)).
 
 `Shared/CustomInputText.razor`:
 

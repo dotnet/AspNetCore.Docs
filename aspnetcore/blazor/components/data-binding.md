@@ -704,13 +704,13 @@ In the following example:
 * `PerformSearch` calls a service with an asychronous method (`FetchAsync`) to return search results.
 
 ```razor
-@inject SearchService SearchService
+@inject ISearchService SearchService
 
 <input @bind="searchText" @bind:after="PerformSearch" />
 
 @code {
-    private string searchText;
-    private string[] searchResult;
+    private string? searchText;
+    private string[]? searchResult;
 
     private async Task PerformSearch()
     {

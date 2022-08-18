@@ -72,7 +72,7 @@ In the following `CallDotNetExample1` component, the `ReturnArrayAsync` C# metho
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor" highlight="12-16":::
 
-The `<button>` element's `onclick` HTML attribute is JavaScript's [`onclick`](https://developer.mozilla.org/docs/Web/API/Element/click_event) event handler assignment for processing [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) events, not Blazor's `@onclick` directive attribute. The `returnArrayAsync` JS function is assigned as the handler.
+The `<button>` element's `onclick` HTML attribute is JavaScript's `onclick` event handler assignment for processing [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) events, not Blazor's `@onclick` directive attribute. The `returnArrayAsync` JS function is assigned as the handler.
 
 The following `returnArrayAsync` JS function, calls the `ReturnArrayAsync` .NET method of the preceding `CallDotNetExample1` component and logs the result to the browser's web developer tools console. `BlazorSample` is the app's assembly name.
 
@@ -199,7 +199,7 @@ The example in this section demonstrates how to pass a <xref:Microsoft.JSInterop
 
 Create and pass a <xref:Microsoft.JSInterop.DotNetObjectReference> from the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) to a JS class for multiple functions to use. Make sure that the .NET code disposes of the <xref:Microsoft.JSInterop.DotNetObjectReference>, as the following example shows.
 
-In the following `CallDotNetExampleOneHelper` component, the `Trigger JS function` buttons call JS functions by setting the [JS `onclick` property](https://developer.mozilla.org/docs/Web/API/Element/click_event), ***not*** Blazor's `@onclick` directive attribute.
+In the following `CallDotNetExampleOneHelper` component, the `Trigger JS function` buttons call JS functions by setting the JS `onclick` property, ***not*** Blazor's `@onclick` directive attribute.
 
 `Pages/CallDotNetExampleOneHelper.razor`:
 
@@ -782,7 +782,7 @@ In the following `CallDotNetExample1` component, the `ReturnArrayAsync` C# metho
 
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor" highlight="12-16":::
 
-The `<button>` element's `onclick` HTML attribute is JavaScript's [`onclick`](https://developer.mozilla.org/docs/Web/API/Element/click_event) event handler assignment for processing [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) events, not Blazor's `@onclick` directive attribute. The `returnArrayAsync` JS function is assigned as the handler.
+The `<button>` element's `onclick` HTML attribute is JavaScript's `onclick` event handler assignment for processing [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) events, not Blazor's `@onclick` directive attribute. The `returnArrayAsync` JS function is assigned as the handler.
 
 The following `returnArrayAsync` JS function, calls the `ReturnArrayAsync` .NET method of the preceding `CallDotNetExample1` component and logs the result to the browser's web developer tools console. `BlazorSample` is the app's assembly name.
 
@@ -1109,7 +1109,7 @@ In the following `CallDotNetExample1` component, the `ReturnArrayAsync` C# metho
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor" highlight="12-16":::
 
-The `<button>` element's `onclick` HTML attribute is JavaScript's [`onclick`](https://developer.mozilla.org/docs/Web/API/Element/click_event) event handler assignment for processing [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) events, not Blazor's `@onclick` directive attribute. The `returnArrayAsync` JS function is assigned as the handler.
+The `<button>` element's `onclick` HTML attribute is JavaScript's `onclick` event handler assignment for processing [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) events, not Blazor's `@onclick` directive attribute. The `returnArrayAsync` JS function is assigned as the handler.
 
 The following `returnArrayAsync` JS function, calls the `ReturnArrayAsync` .NET method of the preceding `CallDotNetExample1` component and logs the result to the browser's web developer tools console. `BlazorSample` is the app's assembly name.
 
@@ -1424,7 +1424,7 @@ In the following `CallDotNetExample1` component, the `ReturnArrayAsync` C# metho
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample1.razor" highlight="12-16":::
 
-The `<button>` element's `onclick` HTML attribute is JavaScript's [`onclick`](https://developer.mozilla.org/docs/Web/API/Element/click_event) event handler assignment for processing [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) events, not Blazor's `@onclick` directive attribute. The `returnArrayAsync` JS function is assigned as the handler.
+The `<button>` element's `onclick` HTML attribute is JavaScript's `onclick` event handler assignment for processing [`click`](https://developer.mozilla.org/docs/Web/API/Element/click_event) events, not Blazor's `@onclick` directive attribute. The `returnArrayAsync` JS function is assigned as the handler.
 
 The following `returnArrayAsync` JS function, calls the `ReturnArrayAsync` .NET method of the preceding `CallDotNetExample1` component and logs the result to the browser's web developer tools console. `BlazorSample` is the app's assembly name.
 
@@ -1551,7 +1551,7 @@ The example in this section demonstrates how to pass a <xref:Microsoft.JSInterop
 
 Create and pass a <xref:Microsoft.JSInterop.DotNetObjectReference> from the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) to a JS class for multiple functions to use. Make sure that the .NET code disposes of the <xref:Microsoft.JSInterop.DotNetObjectReference>, as the following example shows.
 
-In the following `CallDotNetExampleOneHelper` component, the `Trigger JS function` buttons call JS functions by setting the [JS `onclick` property](https://developer.mozilla.org/docs/Web/API/Element/click_event), ***not*** Blazor's `@onclick` directive attribute.
+In the following `CallDotNetExampleOneHelper` component, the `Trigger JS function` buttons call JS functions by setting the JS `onclick` property, ***not*** Blazor's `@onclick` directive attribute.
 
 `Pages/CallDotNetExampleOneHelper.razor`:
 
