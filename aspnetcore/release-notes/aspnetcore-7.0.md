@@ -31,7 +31,7 @@ In ASP.NET Core versions earlier than 7, the cookie consent validation uses the 
 
 [!code-csharp[Main](~/security/gdpr/sample/RP6.0/WebGDPR/Program.cs?name=snippet_2&highlight=8)]
 
-For more information, see [Customize the cookie consent value](../security/gdpr.md#customize-the-cookie-consent-value).
+For more information, see [Customize the cookie consent value](xref:security/gdpr#customize-the-cookie-consent-value).
 
 ## API controllers
 
