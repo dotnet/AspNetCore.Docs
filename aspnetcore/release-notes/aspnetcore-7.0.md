@@ -275,10 +275,10 @@ For more information,see [W3CLogger options](xref:fundamentals/w3c-logger/index#
 
 ### Request decompression
 
-The new [Request decompression middleware](fundamentals/middleware/request-decompression?view=aspnetcore-7.0&preserve-view=true):
+The new [Request decompression middleware](xref:fundamentals/middleware/request-decompression?view=aspnetcore-7.0&preserve-view=true):
 
 * Enables API endpoints to accept requests with compressed content.
 * Uses the [`Content-Encoding`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Encoding) HTTP header to automatically identify and decompress requests which contain compressed content.
 * Eliminates the need to write code to handle compressed requests.
 
-For more information, see [Request decompression middleware](fundamentals/middleware/request-decompression?view=aspnetcore-7.0&preserve-view=true).
+For more information, see [Request decompression middleware](xref:fundamentals/middleware/request-decompression?view=aspnetcore-7.0&preserve-view=true).
