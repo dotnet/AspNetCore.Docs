@@ -1719,6 +1719,8 @@ The following highlighted code provides summary and description text for the Swa
 
 :::code language="csharp" source="minimal-apis/endpoint-description-summary/7.0-samples/OpenAPISummary/Program.cs" id="summary_and_description" highlight="13-14":::
 
+:::code language="csharp" source="minimal-apis/endpoint-description-summary/7.0-samples/OpenAPISummary/Program.cs" id="summary_and_description" highlight="2-3":::
+
 The preceding highlighted code is supported by [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) 6.4.0 and later.
 
 <!-- 
