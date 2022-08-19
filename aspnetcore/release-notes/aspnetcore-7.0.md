@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 7.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/15/2022
+ms.date: 08/19/2022
 uid: aspnetcore-7
 ---
 # What's new in ASP.NET Core 7.0 preview
@@ -24,6 +24,14 @@ Nullable page or view models are supported to improve the experience when using 
 ### Bind with `IParsable<T>.TryParse` in MVC and API Controllers
 
 The [`IParsable<TSelf>.TryParse`](/dotnet/api/system.iparsable-1.tryparse#system-iparsable-1-tryparse(system-string-system-iformatprovider-0@)) API supports binding controller action parameter values. For more information, see [Bind with `IParsable<T>.TryParse`](xref:mvc/models/model-binding#itp7).
+
+### Customize the cookie consent value
+
+In ASP.NET Core versions earlier than 7, the cookie consent validation uses the cookie value `yes` to indicate consent. Now you can specify the value that represents consent. For example, you could use `true` instead of `yes`:
+
+[!code-csharp[Main](~/security/gdpr/sample/RP6.0/WebGDPR/Program.cs?name=snippet_2&highlight=8)]
+
+For more information, see [Customize the cookie consent value](../security/gdpr.md#customize-the-cookie-consent-value).
 
 ## API controllers
 
