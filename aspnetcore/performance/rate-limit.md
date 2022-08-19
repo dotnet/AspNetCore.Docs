@@ -37,14 +37,16 @@ The preceding code creates a fixed window limiter with a policy name of `"fixed"
 
 Apps should use [Configuration](xref:fundamentals/configuration/index) to set limiter options. The preceding code using Configuration:
 
-:::code language="csharp" source="~/performance/rate-limit/samples/Program.cs" id="snippet_fixed2" highlight="19,20,22":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_fixed2":::
 
 ### Sliding window limiter
 
 The sliding window algorithm is similar to the fixed window algorithm, but each time window is divided in `n` segments per window. When a time window segment expires, the requests taken by the expired segment are added to the current segment. Consider the following table which shows a sliding window limiter with 3 segments per window and a limit of 100 requests:
 
 * The top row and first column shows the time.
-* The second row shows the remaining requests available. and each of the following rows shows the requests made at that time segment. Three rows below each requests at time entry shows those requests available for the current time segment.
+* The second row shows the remaining requests available.
+* The third and lower rows rows show the requests made at that time segment.
+* From time 30 on, the request taken from the 3 times slots previous are added back to the request limit.
 
 | Time | 0  | 10  | 20 | 30 | 40 | 50 | 60 |
 | ---- | -- | --  | -- | -- | -- | -- | -- |
