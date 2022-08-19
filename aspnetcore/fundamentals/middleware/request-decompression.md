@@ -66,10 +66,10 @@ In order to guard against [zip bombs or decompression bombs](https://en.wikipedi
 * The maximum size of the decompressed request body is limited to the request body size limit enforced by the endpoint or server.
 * If the number of bytes read from the decompressed request body stream exceeds the limit, an [InvalidOperationException](xref:System.InvalidOperationException) is thrown to prevent additional bytes from being read from the stream.
 
-The maximum request size for an endpoint is set by:
+In order of precedence, the maximum request size for an endpoint is set by:
 
-* <xref:Microsoft.AspNetCore.Http.Metadata.IRequestSizeLimitMetadata.MaxRequestBodySize?displayProperty=nameWithType>, such as <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> or <xref:Microsoft.AspNetCore.Mvc.DisableRequestSizeLimitAttribute> for MVC endpoints.
-* The global server size limit <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature.MaxRequestBodySize?displayProperty=nameWithType>. `MaxRequestBodySize` can be overridden per request with <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature.MaxRequestBodySize?displayProperty=nameWithType>, but defaults to the limit configured for the web server implementation.
+1. <xref:Microsoft.AspNetCore.Http.Metadata.IRequestSizeLimitMetadata.MaxRequestBodySize?displayProperty=nameWithType>, such as <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> or <xref:Microsoft.AspNetCore.Mvc.DisableRequestSizeLimitAttribute> for MVC endpoints.
+2. The global server size limit <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature.MaxRequestBodySize?displayProperty=nameWithType>. `MaxRequestBodySize` can be overridden per request with <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature.MaxRequestBodySize?displayProperty=nameWithType>, but defaults to the limit configured for the web server implementation.
 
 | Web server implementation | `MaxRequestBodySize` configuration |
 | --------- | --------- |
