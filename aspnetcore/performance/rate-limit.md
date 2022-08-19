@@ -26,7 +26,8 @@ The [`AddFixedWindowLimiter`](/dotnet/api/microsoft.aspnetcore.ratelimiting.rate
 
 Consider the following code:
 
-:::code language="csharp" source="~/performance/rate-limit/samples/Program.cs" id="snippet_fixed" highlight="10-15,18":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_fixed":::
+
 
 The preceding code creates a fixed window limiter with a policy name of `"fixed"` and sets:
 
