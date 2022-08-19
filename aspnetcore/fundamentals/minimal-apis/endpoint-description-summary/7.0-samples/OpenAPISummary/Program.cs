@@ -42,6 +42,26 @@ app.MapGet("/weatherforecast", () =>
 .WithOpenApi();
 // </summary_and_description>
 
+// <summary_and_description2>
+app.MapGet("/weatherforecast2",
+    [EndpointSummary("Sends a weather forecast.")]
+    [EndpointDescription("Sends a weather forecast for the next 5 days.")]
+    () =>
+    {
+        var forecast = Enumerable.Range(1, 5).Select(index =>
+            new WeatherForecast
+            (
+                DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                Random.Shared.Next(-20, 55),
+                summaries[Random.Shared.Next(summaries.Length)]
+            ))
+            .ToArray();
+        return forecast;
+    })
+.WithName("GetWeatherForecast2")
+.WithOpenApi();
+// </summary_and_description2>
+
 app.Run();
 
 internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
