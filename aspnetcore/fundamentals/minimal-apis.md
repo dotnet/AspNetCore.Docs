@@ -1715,7 +1715,7 @@ The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specif
 
 ### Add endpoint summary or description
 
-The following highlighted code provides summary and description text for the Swagger UI. You can call extension methods or use attributes:
+The following highlighted code provides summary and description text for OpenAPI spec generation. You can call extension methods or use attributes:
 
 :::code language="csharp" source="minimal-apis/endpoint-description-summary/7.0-samples/OpenAPISummary/Program.cs" id="summary_and_description" highlight="13-14":::
 
