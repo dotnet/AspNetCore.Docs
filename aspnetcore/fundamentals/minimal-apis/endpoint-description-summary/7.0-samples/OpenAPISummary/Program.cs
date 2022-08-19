@@ -36,8 +36,8 @@ app.MapGet("/weatherforecast", () =>
         .ToArray();
     return forecast;
 })
-.WithDescription("Sends a weather forecast for the next 5 days.")
 .WithSummary("Sends a weather forecast.")
+.WithDescription("Sends a weather forecast for the next 5 days.")
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 // </summary_and_description>
