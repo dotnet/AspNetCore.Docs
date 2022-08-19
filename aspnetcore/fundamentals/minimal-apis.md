@@ -4,7 +4,7 @@ author: rick-anderson
 description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 7/13/2022
+ms.date: 08/19/2022
 uid: fundamentals/minimal-apis
 ---
 
@@ -1674,7 +1674,7 @@ ASP.NET Core provides the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org
 
 [!code-xml[](minimal-apis/7.0-samples/WebMinOpenApi/projectFile.xml?highlight=10)]
 
-When using [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) with `Microsoft.AspNetCore.OpenApi`, `Swashbuckle.AspNetCore` 6.3.1 and later must be used.
+When using [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) with `Microsoft.AspNetCore.OpenApi`, `Swashbuckle.AspNetCore` 6.3.1 and later must be used. Version 6.4.0 or later is required if you want to [provide endpoint summary or description text](#add-endpoint-summary-or-description).
 
 ### `WithOpenApi` call on endpoints adds an OpenAPI annotation
 
@@ -1712,6 +1712,14 @@ The following example uses the built-in result types to customize the response:
 The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specification/grouping-operations-with-tags/):
 
 [!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_grp)]
+
+### Add endpoint summary or description
+
+The following highlighted code provides summary and description text for the Swagger UI:
+
+[!code-csharp[](minimal-apis/endpoint-description-summary/7.0-samples/OpenAPISummary/Program.cs?name=summary_description&highlight=13-14)]
+
+The preceding highlighted code is supported by [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) 6.4.0 and later.
 
 <!-- 
 # Differences between minimal APIs and APIs with controllers
