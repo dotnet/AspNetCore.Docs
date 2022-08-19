@@ -1717,7 +1717,7 @@ The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specif
 
 The following highlighted code provides summary and description text for the Swagger UI:
 
-[!code-csharp[](minimal-apis/endpoint-description-summary/7.0-samples/OpenAPISummary/Program.cs?name=summary_description&highlight=13-14)]
+:::code language="csharp" source="minimal-apis/endpoint-description-summary/7.0-samples/OpenAPISummary/Program.cs" id="summary_and_description" highlight="13-14":::
 
 The preceding highlighted code is supported by [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) 6.4.0 and later.
 
