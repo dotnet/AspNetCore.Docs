@@ -41,8 +41,8 @@ Apps should use [Configuration](xref:fundamentals/configuration/index) to set li
 ### Sliding window limiter
 
 | Time | 0  | 10  | 20 | 30 | 40 | 50 |
-| Remaining | 80 | 50  | 10 | 0 | 30 | 70 |
 | ---- | -- | --  | -- | -- | -- | -- |
+| Remaining | 80 | 50  | 10 | 0 | 30 | 70 |
 |  0    | 20 (80) |   |  |  |  |  |
 |  10   |         | 30 (50)  |  |  |  |  |
 |  20  |         |          | 40 (10) |  |  |  |
