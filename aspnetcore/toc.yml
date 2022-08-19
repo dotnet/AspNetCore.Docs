@@ -1473,7 +1473,7 @@ items:
         uid: fundamentals/middleware/request-response
       - name: Request decompression
         displayName: request decompression middleware
-        uid: fundamentals/middleware/request-response
+        uid: fundamentals/middleware/request-decompression
       - name: URL rewriting
         uid: fundamentals/url-rewriting
       - name: File providers
