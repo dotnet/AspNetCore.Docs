@@ -1,5 +1,5 @@
 ---
-title: Request Decompression in ASP.NET Core
+title: Request decompression in ASP.NET Core
 author: david-acker
 description: Learn how to use the request decompression middleware in ASP.NET Core
 monikerRange: '>= aspnetcore-7.0'
