@@ -19,9 +19,12 @@ Register an AAD app:
 1. Navigate to **Azure Active Directory** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Standalone AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** for this experience.
-1. Set the **Redirect URI** drop down to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. If the app is run on a different Kestrel port, use the app's port. For IIS Express, the randomly generated port for the app can be found in the app's properties in the **Debug** panel. Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI. A remark appears later in this topic to remind IIS Express users to update the redirect URI.
+1. Set the **Redirect URI** drop down to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost/authentication/login-callback`. If you know the production redirect URI for the Azure default host (for example, `azurewebsites.net`) or the custom domain host (for example, `contoso.com`), you can also add the production redirect URI at the same time that you're providing the `localhost`redirect URI. Be sure to include the port number for non-`:443` ports in any production redirect URIs that you add.
 1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox. If the publisher domain is verified, this checkbox isn't present.
 1. Select **Register**.
+
+> [!NOTE]
+> Supplying the port number for a `localhost` AAD redirect URI isn't required. For more information, see [Redirect URI (reply URL) restrictions and limitations: Localhost exceptions (Azure documentation)](/azure/active-directory/develop/reply-url#localhost-exceptions).
 
 Record the following information:
 
@@ -30,7 +33,7 @@ Record the following information:
 
 In **Authentication** > **Platform configurations** > **Single-page application (SPA)**:
 
-1. Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.
+1. Confirm the **Redirect URI** of `https://localhost/authentication/login-callback` is present.
 1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
@@ -48,13 +51,6 @@ dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" -o {APP NAME} --te
 | `{TENANT ID}` | Directory (tenant) ID   | `e86c78e2-8bb4-4c41-aefd-918e0565a45e` |
 
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
-
-> [!NOTE]
-> In the Azure portal, the app's platform configuration **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.
->
-> If the app is run on a random IIS Express port, the port for the app can be found in the app's properties in the **Debug** panel.
->
-> If the port wasn't configured earlier with the app's known port, return to the app's registration in the Azure portal and update the redirect URI with the correct port.
 
 [!INCLUDE[](~/blazor/security/includes/additional-scopes-standalone-AAD.md)]
 
@@ -187,9 +183,12 @@ Register an AAD app:
 1. Navigate to **Azure Active Directory** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Standalone AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** for this experience.
-1. Set the **Redirect URI** drop down to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. If the app is run on a different Kestrel port, use the app's port. For IIS Express, the randomly generated port for the app can be found in the app's properties in the **Debug** panel. Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI. A remark appears later in this topic to remind IIS Express users to update the redirect URI.
+1. Set the **Redirect URI** drop down to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost/authentication/login-callback`. If you know the production redirect URI for the Azure default host (for example, `azurewebsites.net`) or the custom domain host (for example, `contoso.com`), you can also add the production redirect URI at the same time that you're providing the `localhost`redirect URI. Be sure to include the port number for non-`:443` ports in any production redirect URIs that you add.
 1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox. If the publisher domain is verified, this checkbox isn't present.
 1. Select **Register**.
+
+> [!NOTE]
+> Supplying the port number for a `localhost` AAD redirect URI isn't required. For more information, see [Redirect URI (reply URL) restrictions and limitations: Localhost exceptions (Azure documentation)](/azure/active-directory/develop/reply-url#localhost-exceptions).
 
 Record the following information:
 
@@ -198,7 +197,7 @@ Record the following information:
 
 In **Authentication** > **Platform configurations** > **Single-page application (SPA)**:
 
-1. Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.
+1. Confirm the **Redirect URI** of `https://localhost/authentication/login-callback` is present.
 1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
@@ -216,13 +215,6 @@ dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" -o {APP NAME} --te
 | `{TENANT ID}` | Directory (tenant) ID   | `e86c78e2-8bb4-4c41-aefd-918e0565a45e` |
 
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
-
-> [!NOTE]
-> In the Azure portal, the app's platform configuration **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.
->
-> If the app is run on a random IIS Express port, the port for the app can be found in the app's properties in the **Debug** panel.
->
-> If the port wasn't configured earlier with the app's known port, return to the app's registration in the Azure portal and update the redirect URI with the correct port.
 
 [!INCLUDE[](~/blazor/security/includes/additional-scopes-standalone-AAD.md)]
 
@@ -355,9 +347,12 @@ Register an AAD app:
 1. Navigate to **Azure Active Directory** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Standalone AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** for this experience.
-1. Leave the **Redirect URI** drop down set to **Web** and provide the following redirect URI: `https://localhost:{PORT}/authentication/login-callback`. The default port for an app running on Kestrel is 5001. If the app is run on a different Kestrel port, use the app's port. For IIS Express, the randomly generated port for the app can be found in the app's properties in the **Debug** panel. Since the app doesn't exist at this point and the IIS Express port isn't known, return to this step after the app is created and update the redirect URI. A remark appears later in this topic to remind IIS Express users to update the redirect URI.
+1. Leave the **Redirect URI** drop down set to **Web** and provide the following redirect URI: `https://localhost/authentication/login-callback`. If you know the production redirect URI for the Azure default host (for example, `azurewebsites.net`) or the custom domain host (for example, `contoso.com`), you can also add the production redirect URI at the same time that you're providing the `localhost`redirect URI. Be sure to include the port number for non-`:443` ports in any production redirect URIs that you add.
 1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox. If the publisher domain is verified, this checkbox isn't present.
 1. Select **Register**.
+
+> [!NOTE]
+> Supplying the port number for a `localhost` AAD redirect URI isn't required. For more information, see [Redirect URI (reply URL) restrictions and limitations: Localhost exceptions (Azure documentation)](/azure/active-directory/develop/reply-url#localhost-exceptions).
 
 Record the following information:
 
@@ -366,7 +361,7 @@ Record the following information:
 
 In **Authentication** > **Platform configurations** > **Web**:
 
-1. Confirm the **Redirect URI** of `https://localhost:{PORT}/authentication/login-callback` is present.
+1. Confirm the **Redirect URI** of `https://localhost/authentication/login-callback` is present.
 1. In the **Implicit grant** section, select the checkboxes for **Access tokens** and **ID tokens**.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button.
@@ -384,13 +379,6 @@ dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" -o {APP NAME} --te
 | `{TENANT ID}` | Directory (tenant) ID   | `e86c78e2-8bb4-4c41-aefd-918e0565a45e` |
 
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
-
-> [!NOTE]
-> In the Azure portal, the app's platform configuration **Redirect URI** is configured for port 5001 for apps that run on the Kestrel server with default settings.
->
-> If the app is run on a random IIS Express port, the port for the app can be found in the app's properties in the **Debug** panel.
->
-> If the port wasn't configured earlier with the app's known port, return to the app's registration in the Azure portal and update the redirect URI with the correct port.
 
 After creating the app, you should be able to:
 
