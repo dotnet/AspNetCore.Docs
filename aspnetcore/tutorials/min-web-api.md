@@ -15,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a minimal web API with ASP.NET Core. For a tutorial on creating a web API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+This tutorial teaches the basics of building a minimal web API with ASP.NET Core. For a tutorial on creating a web API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api). For a comparison, see [Differences between minimal APIs and APIs with controllers](#diff-v6) in this document.
 
 ## Overview
 
@@ -441,6 +441,8 @@ Update the code to use `TodoItemDTO`:
 [!code-csharp[](min-web-api/samples/6.x/todoDTO/Program.cs?name=snippet_all)]
 
 Verify you can't post or get the secret field.
+
+<a name="diff-v6"></a>
 
 ## Differences between minimal APIs and APIs with controllers
 

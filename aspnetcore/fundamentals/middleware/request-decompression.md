@@ -29,7 +29,7 @@ Decompression:
 * Occurs when the body of the request is being read. That is, decompression occurs at the endpoint on model binding. The request body is not decompressed eagerly.
 * When attempting to read the decompressed request body, if the compressed data is invalid for the specified `Content-Encoding`, an exception is thrown.
 
-If the middleware encounters a request with compressed content but is unable to decompress it, the request is passed to the next delegate in the pipeline. For example, a request with an unsupported `Content-Encoding` header value or multiple `Content-Encoding` header values, is passed to the next delegate in the pipeline. For example, Brotli can throw `System.InvalidOperationException:` Decoder ran into invalid data, Deflate and GZip can throw `System.IO.InvalidDataException`: The archive entry was compressed using an unsupported compression method.
+If the middleware encounters a request with compressed content but is unable to decompress it, the request is passed to the next delegate in the pipeline. For example, a request with an unsupported `Content-Encoding` header value or multiple `Content-Encoding` header values, is passed to the next delegate in the pipeline. For example, Brotli can throw `System.InvalidOperationException`: Decoder ran into invalid data, Deflate and GZip can throw `System.IO.InvalidDataException`: The archive entry was compressed using an unsupported compression method.
 
 ## Configuration
 
@@ -66,10 +66,17 @@ In order to guard against [zip bombs or decompression bombs](https://en.wikipedi
 * The maximum size of the decompressed request body is limited to the request body size limit enforced by the endpoint or server.
 * If the number of bytes read from the decompressed request body stream exceeds the limit, an [InvalidOperationException](xref:System.InvalidOperationException) is thrown to prevent additional bytes from being read from the stream.
 
-The maximum request size for an endpoint is set by:
+In order of precedence, the maximum request size for an endpoint is set by:
 
-* <xref:Microsoft.AspNetCore.Http.Metadata.IRequestSizeLimitMetadata.MaxRequestBodySize?displayProperty=nameWithType>, such as <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> or <xref:Microsoft.AspNetCore.Mvc.DisableRequestSizeLimitAttribute> for MVC endpoints.
-* The global server size limit <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature.MaxRequestBodySize?displayProperty=nameWithType>. If not set, [`MaxRequestBodySize`](https://github.com/dotnet/aspnetcore/blob/197c1693d3c830af52b587e8d88891bc9689be44/src/Servers/Kestrel/Core/src/KestrelServerLimits.cs#L148-L157) uses the [default value](https://github.com/dotnet/aspnetcore/blob/197c1693d3c830af52b587e8d88891bc9689be44/src/Servers/Kestrel/Core/src/KestrelServerLimits.cs#L153). `MaxRequestBodySize` can be overridden per request with [`IHttpMaxRequestBodySizeFeature.MaxRequestBodySize`](xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature.MaxRequestBodySize)
+1. <xref:Microsoft.AspNetCore.Http.Metadata.IRequestSizeLimitMetadata.MaxRequestBodySize?displayProperty=nameWithType>, such as <xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> or <xref:Microsoft.AspNetCore.Mvc.DisableRequestSizeLimitAttribute> for MVC endpoints.
+2. The global server size limit <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature.MaxRequestBodySize?displayProperty=nameWithType>. `MaxRequestBodySize` can be overridden per request with <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature.MaxRequestBodySize?displayProperty=nameWithType>, but defaults to the limit configured for the web server implementation.
+
+| Web server implementation | `MaxRequestBodySize` configuration |
+| --------- | --------- |
+| [HTTP.sys](xref:fundamentals/servers/httpsys) | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize?displayProperty=nameWithType> |
+| [IIS](xref:host-and-deploy/iis/index) | <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize?displayProperty=nameWithType> |
+| [Kestrel](xref:fundamentals/servers/kestrel) | <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxRequestBodySize?displayProperty=nameWithType> |
+
 
 > [!WARNING]
 > Disabling the request body size limit poses a security risk in regards to uncontrolled resource consumption, particularly if the request body is being buffered. Ensure that safeguards are in place to mitigate the risk of [denial-of-service](https://www.cisa.gov/uscert/ncas/tips/ST04-015) (DoS) attacks.
