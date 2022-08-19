@@ -40,15 +40,18 @@ Apps should use [Configuration](xref:fundamentals/configuration/index) to set li
 
 ### Sliding window limiter
 
-| Time | 0  | 10  | 20 | 30 | 40 | 50 |
-| ---- | -- | --  | -- | -- | -- | -- |
-| Remaining | 100-20=80 | 80-30=50  | 50-40=10 | 10+20-30=0 |0+30-10=20 | 20-10+40=50 |
-|  0    | 20            |                                  |  |  |  |  |
-|  10   |               | 30                             |  |  |  |  |
-|  20   |               |            | 40                    |  |  |  |
-|  30   | **[+20]**     |            |         | 30        |  |  |
-|  40   |          |**[+30]**|       |                 | 10   |  |
-|  50   |          |           | **[+40]**  |            |               | 10  |
+The sliding window algorithm is similar to the fixed window algorithm, but each time window is divided in `n` segments per window. When a time window segment expires, the requests taken by the expired segment are added to the current segment. Consider the following table which shows a sliding window limiter with 3 segments per window and a limit of 100 requests. The top rows shows the time, the second row shows the remaining requests available, and each of the following rows shows the requests made at that time segment. Three rows below each requests at time entry shows those requests available for the current time segment.
+
+| Time | 0  | 10  | 20 | 30 | 40 | 50 | 60 |
+| ---- | -- | --  | -- | -- | -- | -- | -- |
+| Remaining | 100-20=80 | 80-30=50  | 50-40=10 | 10+20-30=0 |0+30-10=20 | 20-10+40=50 | 50-10+50=90 |
+|  0    | 20            |                                  |  |  |  |  | |
+|  10   |               | 30                             |  |  |  |  | |
+|  20   |               |            | 40                    |  |  |  | |
+|  30   | **[+20]**     |            |         | 30        |  |  | |
+|  40   |          |**[+30]**|       |                 | 10   |  | |
+|  50   |          |           | **[+40]**  |            |               | 10  | |
+|  60   |          |           |            |  **[+30]**  |    |  | 50|
 
 
 
