@@ -284,7 +284,7 @@ public override async Task DownloadResults(DataRequest request,
 {
     var channel = Channel.CreateBounded<DataResult>(new BoundedChannelOptions(capacity: 5));
 
-    var processTask = Task.Run(async () =>
+    var producerTask = Task.Run(async () =>
     {
         var dataChunks = request.Value.Chunk(size: 10);
 
@@ -301,13 +301,14 @@ public override async Task DownloadResults(DataRequest request,
         channel.Writer.Complete();
     });
 
-    // Read results from channel.
+    // Consume results from channel.
     await foreach (var message in channel.Reader.ReadAllAsync())
     {
         await responseStream.WriteAsync(message);
     }
 
-    await processTask;
+    // Ensure producer has finished.
+    await producerTask;
 }
 ```
 
