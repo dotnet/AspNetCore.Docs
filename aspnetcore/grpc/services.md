@@ -270,7 +270,7 @@ public override Task<ExampleResponse> UnaryCall(ExampleRequest request, ServerCa
 
 ## Multi-threading with gRPC streaming methods
 
-There are important considerations to creating gRPC streaming methods that use multiple threads.
+There are important considerations to implementing gRPC streaming methods that use multiple threads.
 
 ### Reader and writer thread safety
 
@@ -289,14 +289,13 @@ public override async Task DownloadResults(DataRequest request,
         var dataChunks = request.Value.Chunk(size: 10);
 
         // Process results in multiple background tasks.
-        var processTasks = dataChunks.Select(
+        await Task.WhenAll(dataChunks.Select(
             async c =>
             {
                 // Write results to channel across different threads.
                 var message = new DataResult { BytesProcessed = c.Length };
                 await channel.Writer.WriteAsync(message);
-            });
-        await Task.WhenAll(processTasks);
+            }));
 
         channel.Writer.Complete();
     });
