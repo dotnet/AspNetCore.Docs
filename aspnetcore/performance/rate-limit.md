@@ -44,7 +44,7 @@ In the sliding window algorithm:
 
 * Limits the requests for a window to `permitLimit` requests.
 * Each time window is divided in `n` segments per window.
-* Requests taken from the expired time segment one window back (`n` segments prior to the current segment), are added to the current segment. We refer to the expired ime segment one window back as the expired segment.  Consider the following table which shows a sliding window limiter with a 30 second window, 3 segments per window and a limit of 100 requests:
+* Requests taken from the expired time segment one window back (`n` segments prior to the current segment), are added to the current segment. We refer to the expired time segment one window back as the expired segment.  Consider the following table which shows a sliding window limiter with a 30 second window, 3 segments per window and a limit of 100 requests:
 
 * The top row and first column shows the time segment.
 * The second row shows the remaining requests available.
@@ -62,20 +62,41 @@ In the sliding window algorithm:
 |  50   |          |           | **[+40]**  |            |               | -10  | |
 |  60   |          |           |            |  **[+30]**  |    |  | -35|
 
-The follow table shows the data in the previous graph in a different format. The Available column shows the requests available from the previous segment. The first row shows 100 available because there is no previous segment:
+The follow table shows the data in the previous graph in a different format. The **Remaining** column shows the requests available from the previous segment (The **Carry over** from the previous row). The first row shows 100 available because there is no previous segment:
 
-| Time | Available | Taken | Recycled from expired | Remaining |
-| ---- | ---- | ----| ----| ---- |
-| 0 | 100 | 20 | 0  | 80 |
-| 10 | 80 | 30 | 0  | 50 |
-| 20 | 50  | 40 | 0  | 10 |
-| 30 | 10  | 30 | 20  | 0 |
-| 40 | 0  | 10 | 30  | 20 |
-| 50 | 20  | 10 | 40  | 50 |
-| 60 | 50  | 35 | 30  | 45 |
+| Time | Remaining | Taken | Recycled from expired | Carry over |
+| ---- | ----      | ------| ------                | ---- |
+| 0    | 100       | 20    | 0                     | 80 |
+| 10   | 80        | 30    | 0                     | 50 |
+| 20   | 50        | 40    | 0                     | 10 |
+| 30   | 10        | 30    | 20                    | 0  |
+| 40   | 0         | 10    | 30                    | 20 |
+| 50   | 20        | 10    | 40                    | 50 |
+| 60   | 50        | 35    | 30                    | 45 |
 
 The following code uses the sliding window rate limiter:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_slide":::
 
+### Token bucket limiter
+
+The token bucket limiter is similar to the sliding window limiter, but rather than adding back the requests taken from the expired segment, a fixed number of tokens are added each replenishment period. The tokens added each segment cannot increase the available tokens to a number higher than the token bucket limit. The following table shows a token bucket limiter with a limit of 100 tokens and a 10 second replenishment period:
+
+| Time | Remaining | Taken | Added | Carry over |
+| ---- | ----      | ------| ------| ---- |
+| 0    | 100       | 20    | 0     | 80 |
+| 10   | 80        | 10    | 20    | 90 |
+| 20   | 90        |  5    | 15    | 100 |
+| 30   | 100       | 30    | 20    | 90  |
+| 40   | 90        |  6    | 16    | 100 |
+| 50   | 100       | 40    | 20    | 80 |
+| 60   | 80        | 50    | 20    | 50 |
+
+The following code uses the token bucket limiter:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_token":::
+
+x
+x
+x
 :::moniker-end
