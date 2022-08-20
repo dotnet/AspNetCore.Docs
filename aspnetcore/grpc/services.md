@@ -282,23 +282,20 @@ A safe way to enable multiple threads to interact with a gRPC method is to use t
 public override async Task DownloadResults(DataRequest request,
     IServerStreamWriter<DataResult> responseStream, ServerCallContext context)
 {
-    var channel = Channel.CreateBounded<DataResult>(new BoundedChannelOptions(capacity: 5)
-    {
-        SingleReader = true,
-        SingleWriter = false
-    });
+    var channel = Channel.CreateBounded<DataResult>(new BoundedChannelOptions(capacity: 5));
 
     var consumerTask = Task.Run(async () =>
     {
-        // Consume results from channel and write to response stream.
+        // Consume messages from channel and write to response stream.
         await foreach (var message in channel.Reader.ReadAllAsync())
         {
             await responseStream.WriteAsync(message);
         }
     });
 
-    // Write results to channel from multiple threads.
     var dataChunks = request.Value.Chunk(size: 10);
+
+    // Write messages to channel from multiple threads.
     await Task.WhenAll(dataChunks.Select(
         async c =>
         {
@@ -315,8 +312,8 @@ public override async Task DownloadResults(DataRequest request,
 The preceding gRPC server streaming method:
 
 * Creates a bounded channel for producing and consuming `DataResult` messages.
-* Writes messages to the channel from multiple background tasks.
-* Reads messages from the channel and writes them to the response stream.
+* Starts a task to read messages from the channel and write them to the response stream.
+* Writes messages to the channel from multiple threads.
 
 > [!NOTE]
 > Bidirectional streaming methods take `IAsyncStreamReader<TMessage>` and `IServerStreamWriter<TMessage>` as arguments. It's safe to use these types on separate threads from each other.
