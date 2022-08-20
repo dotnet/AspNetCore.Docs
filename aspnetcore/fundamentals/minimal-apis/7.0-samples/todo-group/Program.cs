@@ -31,17 +31,34 @@ var todos = app.MapGroup("/todos").WithTags("Todo Endpoints").AddEndpointFilter(
     app.Logger.LogInformation("Accessing todo endpoints");
     return await next(context);
 });
+
 todos.MapGet("/", TodoEndpoints.GetAllTodos);
 todos.MapGet("/{id}", TodoEndpoints.GetTodo);
-todos.MapPost("/", TodoEndpoints.CreateTodo).AddEndpointFilter(async (context, next) =>
-{
-    // log time taken to process
-    var start = DateTime.Now;
-    var result = await next(context);
-    var end = DateTime.Now;
-    app.Logger.LogInformation($"{context.HttpContext.Request.Path.Value} took {(end - start).TotalMilliseconds}ms");
-    return result;
-});
+
+todos.MapPost("/", TodoEndpoints.CreateTodo)
+    .AddEndpointFilter(async (context, next) =>
+    {
+        // log time taken to process
+        var start = DateTime.Now;
+        var result = await next(context);
+        var end = DateTime.Now;
+        app.Logger.LogInformation($"{context.HttpContext.Request.Path.Value} took {(end - start).TotalMilliseconds}ms");
+        return result;
+    })
+    .AddEndpointFilter(async (efiContext, next) =>
+    {
+        var tdparam = efiContext.GetArgument<TodoDto>(0);
+    
+        var validationErrors = Utilities.IsValid(tdparam);
+    
+        if (validationErrors.Any())
+        {
+            return Results.ValidationProblem(validationErrors);
+        }
+        
+        return await next(efiContext);
+    });
+    
 todos.MapPut("/{id}", TodoEndpoints.UpdateTodo).AddEndpointFilter(async (context, next) =>
 {
     // log time taken to process
