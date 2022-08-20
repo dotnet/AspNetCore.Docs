@@ -41,16 +41,16 @@ Apps should use [Configuration](xref:fundamentals/configuration/index) to set li
 
 ### Sliding window limiter
 
-The sliding window algorithm is similar to the fixed window algorithm, but each time window is divided in `n` segments per window. When a time window segment expires, the requests taken by the expired segment are added to the current segment. Consider the following table which shows a sliding window limiter with 3 segments per window and a limit of 100 requests:
+The sliding window algorithm is similar to the fixed window algorithm, but each time window is divided in `n` segments per window. When a time segment expires, the requests taken by the most recently expired segment are added to the current segment. Consider the following table which shows a sliding window limiter with a 30 second window, 3 segments per window and a limit of 100 requests:
 
-* The top row and first column shows the time.
+* The top row and first column shows the time segment.
 * The second row shows the remaining requests available.
 * The third and lower rows rows show the requests made at that time segment.
 * From time 30 on, the request taken from the 3 times slots previous are added back to the request limit.
 
 | Time | 0  | 10  | 20 | 30 | 40 | 50 | 60 |
 | ---- | -- | --  | -- | -- | -- | -- | -- |
-| Remaining | 100-20+0=80 | 80-30+0=50  | 50-40+0=10 | 10-30+20=0 |0+30-10=20 | 20-10+40=50 | 50-35+50=65 |
+| Remaining | 100-20+0=80 | 80-30+0=50  | 50-40+0=10 | 10-30+20=0 |0+30-10=20 | 20-10+40=50 | 50-35+30=45 |
 |  0    | -20            |                                  |  |  |  |  | |
 |  10   |               | -30                             |  |  |  |  | |
 |  20   |               |            | -40                    |  |  |  | |
@@ -60,6 +60,15 @@ The sliding window algorithm is similar to the fixed window algorithm, but each 
 |  60   |          |           |            |  **[+30]**  |    |  | -35|
 
 
+| Time | Requests available | requests taken | requests recycled | total remaining |
+| ---- | ---- | ----| ----| ---- |
+| 0 | 100 | 20 taken| 0  | 80 remaining|
+| 0 | 80 | 30 taken| 0  | 50 remaining|
+| 20 | 50  | 40 taken| 0  | 10 remaining|
+| 30 | 10  | 30 taken| 20  | 0 remaining|
+| 40 | 0  | 10 taken| 30  | 20 remaining|
+| 50 | 20  | 10 taken| 40  | 50 remaining|
+| 60 | 50  | 35 taken| 30  | 45 remaining|
 
 
 :::moniker-end
