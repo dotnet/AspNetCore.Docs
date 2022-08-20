@@ -41,7 +41,10 @@ Apps should use [Configuration](xref:fundamentals/configuration/index) to set li
 
 ### Sliding window limiter
 
-The sliding window algorithm is similar to the fixed window algorithm, but each time window is divided in `n` segments per window. When a time segment expires, the requests taken by the most recently expired segment are added to the current segment. Consider the following table which shows a sliding window limiter with a 30 second window, 3 segments per window and a limit of 100 requests:
+The sliding window algorithm is similar to the fixed window algorithm:
+
+* But each time window is divided in `n` segments per window.
+* Requests taken from the expired time segment `n` segments prior the previous segment (one window), are added to the current segment. Consider the following table which shows a sliding window limiter with a 30 second window, 3 segments per window and a limit of 100 requests:
 
 * The top row and first column shows the time segment.
 * The second row shows the remaining requests available.
@@ -60,15 +63,15 @@ The sliding window algorithm is similar to the fixed window algorithm, but each 
 |  60   |          |           |            |  **[+30]**  |    |  | -35|
 
 
-| Time | Requests available | requests taken | requests recycled | total remaining |
+| Time | Requests available from previous segment | requests taken | requests recycled | total remaining |
 | ---- | ---- | ----| ----| ---- |
-| 0 | 100 | 20 taken| 0  | 80 remaining|
-| 0 | 80 | 30 taken| 0  | 50 remaining|
-| 20 | 50  | 40 taken| 0  | 10 remaining|
-| 30 | 10  | 30 taken| 20  | 0 remaining|
-| 40 | 0  | 10 taken| 30  | 20 remaining|
-| 50 | 20  | 10 taken| 40  | 50 remaining|
-| 60 | 50  | 35 taken| 30  | 45 remaining|
+| 0 | 100 | 20 | 0  | 80 |
+| 0 | 80 | 30 | 0  | 50 |
+| 20 | 50  | 40 | 0  | 10 |
+| 30 | 10  | 30 | 20  | 0 |
+| 40 | 0  | 10 | 30  | 20 |
+| 50 | 20  | 10 | 40  | 50 |
+| 60 | 50  | 35 | 30  | 45 |
 
 
 :::moniker-end
