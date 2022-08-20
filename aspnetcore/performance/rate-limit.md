@@ -18,7 +18,14 @@ The [Microsoft.AspNetCore.RateLimiting](https://www.nuget.org/packages/Microsoft
 
 ## Rate limiter algorithms
 
-The [`RateLimiterOptionsExtensions`](/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptionsextensions) class provide several extension methods for rate limiting, which are explained in the following sections.
+The [`RateLimiterOptionsExtensions`](/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptionsextensions) class provide the following extension methods for rate limiting:
+
+* [Fixed window limiter](#fixed)
+* [Sliding window limiter](#slide)
+* [Token bucket limiter](#token)
+* [Concurrency  limiter](#concur)
+
+<a name="fixed"></a>
 
 ### Fixed window limiter
 
@@ -37,6 +44,8 @@ The preceding code creates a fixed window limiter with a policy name of `"fixed"
 Apps should use [Configuration](xref:fundamentals/configuration/index) to set limiter options. The preceding code using Configuration:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_fixed2":::
+
+<a name="slide"></a>
 
 ### Sliding window limiter
 
@@ -78,6 +87,8 @@ The following code uses the sliding window rate limiter:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_slide":::
 
+<a name="token"></a>
+
 ### Token bucket limiter
 
 The token bucket limiter is similar to the sliding window limiter, but rather than adding back the requests taken from the expired segment, a fixed number of tokens are added each replenishment period. The tokens added each segment cannot increase the available tokens to a number higher than the token bucket limit. The following table shows a token bucket limiter with a limit of 100 tokens and a 10 second replenishment period:
@@ -96,7 +107,18 @@ The following code uses the token bucket limiter:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_token":::
 
-x
-x
-x
+<a name="concur"></a>
+
+### Concurrency limiter
+
+The concurrency limiter limits the number concurrent requests. Each request reduces the concurrency limit by one. When a request completes, the limit is increased by one. Unlike the other requests limiters that limit the total number of requests for a specified period, the concurrency limiter limits only the number of concurrent requests and doesn't cap the number of request in a time period.
+
+The following code uses the concurrency limiter:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_concur":::
+
+## Limiter algorithm comparison
+
+The fixed, sliding, and token limiter all limit the maximum number of requests in a time period. The concurrency limiter limits only the number of concurrent requests and doesn't cap the number of request in a time period. The cost of an endpoint should be considered when selecting a limiter. The cost of an endpoint includes the resources used, for example, time, CPU, and I/O.
+
 :::moniker-end
