@@ -270,7 +270,7 @@ public override Task<ExampleResponse> UnaryCall(ExampleRequest request, ServerCa
 
 ## Multi-threading with gRPC streaming methods
 
-There are important considerations to gRPC streaming methods that use multiple threads.
+There are important considerations to creating gRPC streaming methods that use multiple threads.
 
 ### Reader and writer thread safety
 
@@ -321,7 +321,7 @@ The preceding gRPC server streaming method:
 > [!NOTE]
 > Bidirectional streaming methods take `IAsyncStreamReader<TMessage>` and `IServerStreamWriter<TMessage>` as arguments. It's safe to use these types on separate threads from each other.
 
-### Interacting with gRPC method after call ends
+### Interacting with a gRPC method after a call ends
 
 A gRPC call ends on the server once the gRPC method exits. The following arguments passed to gRPC methods aren't safe to use after the call has ended:
 
