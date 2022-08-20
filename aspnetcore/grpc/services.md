@@ -282,32 +282,34 @@ A safe way to enable multiple threads to interact with a gRPC method is to use t
 public override async Task DownloadResults(DataRequest request,
     IServerStreamWriter<DataResult> responseStream, ServerCallContext context)
 {
-    var channel = Channel.CreateBounded<DataResult>(new BoundedChannelOptions(capacity: 5));
-
-    var producerTask = Task.Run(async () =>
+    var channel = Channel.CreateBounded<DataResult>(new BoundedChannelOptions(capacity: 5)
     {
-        var dataChunks = request.Value.Chunk(size: 10);
-
-        // Process results in multiple background tasks.
-        await Task.WhenAll(dataChunks.Select(
-            async c =>
-            {
-                // Write results to channel across different threads.
-                var message = new DataResult { BytesProcessed = c.Length };
-                await channel.Writer.WriteAsync(message);
-            }));
-
-        channel.Writer.Complete();
+        SingleReader = true,
+        SingleWriter = false
     });
 
-    // Consume results from channel.
-    await foreach (var message in channel.Reader.ReadAllAsync())
+    var consumerTask = Task.Run(async () =>
     {
-        await responseStream.WriteAsync(message);
-    }
+        // Consume results from channel and write to response stream.
+        await foreach (var message in channel.Reader.ReadAllAsync())
+        {
+            await responseStream.WriteAsync(message);
+        }
+    });
 
-    // Ensure producer has finished.
-    await producerTask;
+    // Write results to channel in multiple tasks.
+    var dataChunks = request.Value.Chunk(size: 10);
+    await Task.WhenAll(dataChunks.Select(
+        async c =>
+        {
+            // Write results to channel across different threads.
+            var message = new DataResult { BytesProcessed = c.Length };
+            await channel.Writer.WriteAsync(message);
+        }));
+
+    // Complete writing and wait for consumer to complete.
+    channel.Writer.Complete();
+    await consumerTask;
 }
 ```
 
