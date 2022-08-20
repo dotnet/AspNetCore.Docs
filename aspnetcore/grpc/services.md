@@ -297,12 +297,11 @@ public override async Task DownloadResults(DataRequest request,
         }
     });
 
-    // Write results to channel in multiple tasks.
+    // Write results to channel from multiple threads.
     var dataChunks = request.Value.Chunk(size: 10);
     await Task.WhenAll(dataChunks.Select(
         async c =>
         {
-            // Write results to channel across different threads.
             var message = new DataResult { BytesProcessed = c.Length };
             await channel.Writer.WriteAsync(message);
         }));
