@@ -28,7 +28,6 @@ Consider the following code:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_fixed":::
 
-
 The preceding code creates a fixed window limiter with a policy name of `"fixed"` and sets:
 
 * `permitLimit` to 4 and the time `window` to 12. A maximum of 4 requests per each 12 second window are allowed.
@@ -41,14 +40,15 @@ Apps should use [Configuration](xref:fundamentals/configuration/index) to set li
 
 ### Sliding window limiter
 
-The sliding window algorithm is similar to the fixed window algorithm:
+In the sliding window algorithm:
 
-* But each time window is divided in `n` segments per window.
-* Requests taken from the expired time segment `n` segments prior the previous segment (one window), are added to the current segment. Consider the following table which shows a sliding window limiter with a 30 second window, 3 segments per window and a limit of 100 requests:
+* Limits the requests for a window to `permitLimit` requests.
+* Each time window is divided in `n` segments per window.
+* Requests taken from the expired time segment one window back (`n` segments prior to the current segment), are added to the current segment. We refer to the expired ime segment one window back as the expired segment.  Consider the following table which shows a sliding window limiter with a 30 second window, 3 segments per window and a limit of 100 requests:
 
 * The top row and first column shows the time segment.
 * The second row shows the remaining requests available.
-* The third and lower rows rows show the requests made at that time segment.
+* The third and lower rows rows show the requests made at that time segment and recycled requests available from the prior expired segment.
 * From time 30 on, the request taken from the 3 times slots previous are added back to the request limit.
 
 | Time | 0  | 10  | 20 | 30 | 40 | 50 | 60 |
@@ -62,16 +62,20 @@ The sliding window algorithm is similar to the fixed window algorithm:
 |  50   |          |           | **[+40]**  |            |               | -10  | |
 |  60   |          |           |            |  **[+30]**  |    |  | -35|
 
+The follow table shows the data in the previous graph in a different format. The Available column shows the requests available from the previous segment. The first row shows 100 available because there is no previous segment:
 
-| Time | Requests available from previous segment | requests taken | requests recycled | total remaining |
+| Time | Available | Taken | Recycled from expired | Remaining |
 | ---- | ---- | ----| ----| ---- |
 | 0 | 100 | 20 | 0  | 80 |
-| 0 | 80 | 30 | 0  | 50 |
+| 10 | 80 | 30 | 0  | 50 |
 | 20 | 50  | 40 | 0  | 10 |
 | 30 | 10  | 30 | 20  | 0 |
 | 40 | 0  | 10 | 30  | 20 |
 | 50 | 20  | 10 | 40  | 50 |
 | 60 | 50  | 35 | 30  | 45 |
 
+The following code uses the sliding window rate limiter:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_slide":::
 
 :::moniker-end
