@@ -1,30 +1,32 @@
 using Data;
-using Microsoft.EntityFrameworkCore;
+using todo_group.Services;
 
 namespace todo_group;
 
 public class TodoEndpoints
 {
     // get all todos
-    public static async Task<IResult> GetAllTodos(TodoGroupDbContext database)
+    public static async Task<IResult> GetAllTodos(ITodoService todoService)
     {
-        var todos = await database.Todos.ToListAsync();
+        var todos = await todoService.GetAll();
         return TypedResults.Ok(todos);
     }
 
     // get todo by id
-    public static async Task<IResult> GetTodo(int id, TodoGroupDbContext database)
+    public static async Task<IResult> GetTodo(int id, ITodoService todoService)
     {
-        var todo = await database.Todos.FindAsync(id);
+        var todo = await todoService.Find(id);
+        
         if (todo != null)
         {
             return TypedResults.Ok(todo);
         }
+        
         return TypedResults.NotFound();
     }
 
     // create todo
-    public static async Task<IResult> CreateTodo(TodoDto todo, TodoGroupDbContext database)
+    public static async Task<IResult> CreateTodo(TodoDto todo, ITodoService todoService)
     {
         var newTodo = new Todo
         {
@@ -32,19 +34,25 @@ public class TodoEndpoints
             Description = todo.Description,
             IsDone = todo.IsDone
         };
-        await database.Todos.AddAsync(newTodo);
-        await database.SaveChangesAsync();
+        
+        await todoService.Add(newTodo);
+        
         return TypedResults.Created($"/public/todos/{newTodo.Id}", newTodo);
     }
 
     // update todo
-    public static async Task<IResult> UpdateTodo(Todo todo, TodoGroupDbContext database)
+    public static async Task<IResult> UpdateTodo(Todo todo, ITodoService todoService)
     {
-        var existingTodo = await database.Todos.FindAsync(todo.Id);
+        var existingTodo = await todoService.Find(todo.Id);
+        
         if (existingTodo != null)
         {
-            database.Update(todo);
-            await database.SaveChangesAsync();
+            existingTodo.Title = todo.Title;
+            existingTodo.Description = todo.Description;
+            existingTodo.IsDone = todo.IsDone;
+            
+            await todoService.Update(existingTodo);
+            
             return TypedResults.Created($"/public/todos/{existingTodo.Id}", existingTodo);
         }
 
@@ -52,15 +60,16 @@ public class TodoEndpoints
     }
 
     // delete todo
-    public static async Task<IResult> DeleteTodo(int id, TodoGroupDbContext database)
+    public static async Task<IResult> DeleteTodo(int id, ITodoService todoService)
     {
-        var todo = await database.Todos.FindAsync(id);
+        var todo = await todoService.Find(id);
+        
         if (todo != null)
         {
-            database.Todos.Remove(todo);
-            await database.SaveChangesAsync();
+            await todoService.Remove(todo);
             return TypedResults.NoContent();
         }
+        
         return TypedResults.NotFound();
     }
 }

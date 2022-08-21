@@ -2,11 +2,13 @@ using Data;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using todo_group;
+using todo_group.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var connection = new SqliteConnection("DataSource=:memory:");
 connection.Open();
 
+builder.Services.AddTransient<ITodoService, TodoService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<TodoGroupDbContext>(options =>
@@ -68,6 +70,7 @@ todos.MapPut("/{id}", TodoEndpoints.UpdateTodo).AddEndpointFilter(async (context
     app.Logger.LogInformation($"{context.HttpContext.Request.Path.Value} took {(end - start).TotalMilliseconds}ms");
     return result;
 });
+
 todos.MapDelete("/{id}", TodoEndpoints.DeleteTodo);
 
 app.Run();
