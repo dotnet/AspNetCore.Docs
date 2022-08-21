@@ -6,7 +6,7 @@ using todo_group.Services;
 
 namespace MinApiTests;
 
-public class TodoTests
+public class TodoUnitTestsV2
 {
     [Fact]
     public async Task GetTodoReturnsTodoFromDatabase()
@@ -26,8 +26,8 @@ public class TodoTests
             .ReturnsAsync((Todo?)null);
 
         // Act
-        var okResult = (Ok<Todo>)await TodoEndpoints.GetTodo(1, mock.Object);
-        var notFoundResult = (NotFound)await TodoEndpoints.GetTodo(404, mock.Object);
+        var okResult = (Ok<Todo>)await TodoEndpointsV2.GetTodo(1, mock.Object);
+        var notFoundResult = (NotFound)await TodoEndpointsV2.GetTodo(404, mock.Object);
 
         //Assert
         Assert.Equal(200, okResult.StatusCode);
@@ -57,7 +57,7 @@ public class TodoTests
             .Returns(Task.CompletedTask);
 
         //Act
-        var createdResult = (Created<Todo>)await TodoEndpoints.CreateTodo(newTodo, mock.Object);
+        var createdResult = (Created<Todo>)await TodoEndpointsV2.CreateTodo(newTodo, mock.Object);
 
         //Assert
         Assert.Equal(201, createdResult.StatusCode);
@@ -104,8 +104,8 @@ public class TodoTests
             .Returns(Task.CompletedTask);
 
         //Act
-        var createdResult = (Created<Todo>)await TodoEndpoints.UpdateTodo(updatedTodo, mock.Object);
-        var notFoundResult = (NotFound)await TodoEndpoints.UpdateTodo(new Todo { Id = 2, Title = "Invalid Title" }, mock.Object);
+        var createdResult = (Created<Todo>)await TodoEndpointsV2.UpdateTodo(updatedTodo, mock.Object);
+        var notFoundResult = (NotFound)await TodoEndpointsV2.UpdateTodo(new Todo { Id = 2, Title = "Invalid Title" }, mock.Object);
 
         //Assert
         Assert.Equal(201, createdResult.StatusCode);
@@ -144,8 +144,8 @@ public class TodoTests
             .Returns(Task.CompletedTask);
 
         //Act
-        var noContentResult = (NoContent)await TodoEndpoints.DeleteTodo(existingTodo.Id, mock.Object);
-        var notFoundResult = (NotFound)await TodoEndpoints.DeleteTodo(2, mock.Object);
+        var noContentResult = (NoContent)await TodoEndpointsV2.DeleteTodo(existingTodo.Id, mock.Object);
+        var notFoundResult = (NotFound)await TodoEndpointsV2.DeleteTodo(2, mock.Object);
 
         //Assert
         Assert.Equal(204, noContentResult.StatusCode);

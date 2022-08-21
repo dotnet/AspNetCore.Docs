@@ -3,7 +3,7 @@ using todo_group.Services;
 
 namespace todo_group;
 
-public class TodoEndpoints
+public class TodoEndpointsV2
 {
     // get all todos
     public static async Task<IResult> GetAllTodos(ITodoService todoService)

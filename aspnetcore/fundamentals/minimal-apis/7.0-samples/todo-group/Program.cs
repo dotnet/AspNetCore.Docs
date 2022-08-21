@@ -10,10 +10,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<TodoGroupDbContext>(options =>
 {
-    options.UseSqlite("DataSource=:memory:");
+    var path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+    options.UseSqlite($"Data Source={Path.Join(path, "todo_group.db")}");
 });
 
 var app = builder.Build();
+
+using var scope = app.Services.CreateScope();
+var db = scope.ServiceProvider.GetService<TodoGroupDbContext>();
+db?.Database.MigrateAsync();
+
 
 if (app.Environment.IsDevelopment())
 {
@@ -24,19 +30,19 @@ if (app.Environment.IsDevelopment())
 
 app.MapGet("/", () => "Hello World!");
 
-// todo endpoints
-var todos = app.MapGroup("/todos")
-                            .WithTags("Todo Endpoints")
-                            .AddEndpointFilter(async (context, next) =>
-                            {
-                                app.Logger.LogInformation("Accessing todo endpoints");
-                                return await next(context);
-                            });
+// todoV1 endpoints
+var todosV1 = app.MapGroup("/todos/v1")
+    .WithTags("Todo Endpoints")
+    .AddEndpointFilter(async (context, next) =>
+    {
+        app.Logger.LogInformation("Accessing todo endpoints");
+        return await next(context);
+    });
 
-todos.MapGet("/", TodoEndpoints.GetAllTodos);
-todos.MapGet("/{id}", TodoEndpoints.GetTodo);
+todosV1.MapGet("/", TodoEndpointsV1.GetAllTodos);
+todosV1.MapGet("/{id}", TodoEndpointsV1.GetTodo);
 
-todos.MapPost("/", TodoEndpoints.CreateTodo)
+todosV1.MapPost("/", TodoEndpointsV1.CreateTodo)
     .AddEndpointFilter(async (context, next) =>
     {
         // log time taken to process
@@ -48,9 +54,9 @@ todos.MapPost("/", TodoEndpoints.CreateTodo)
     })
     .AddEndpointFilter(async (efiContext, next) =>
     {
-        var tdparam = efiContext.GetArgument<TodoDto>(0);
+        var param = efiContext.GetArgument<TodoDto>(0);
 
-        var validationErrors = Utilities.IsValid(tdparam);
+        var validationErrors = Utilities.IsValid(param);
 
         if (validationErrors.Any())
         {
@@ -60,16 +66,66 @@ todos.MapPost("/", TodoEndpoints.CreateTodo)
         return await next(efiContext);
     });
 
-todos.MapPut("/{id}", TodoEndpoints.UpdateTodo).AddEndpointFilter(async (context, next) =>
-{
-    // log time taken to process
-    var start = DateTime.Now;
-    var result = await next(context);
-    var end = DateTime.Now;
-    app.Logger.LogInformation($"{context.HttpContext.Request.Path.Value} took {(end - start).TotalMilliseconds}ms");
-    return result;
-});
+todosV1.MapPut("/{id}", TodoEndpointsV1.UpdateTodo)
+    .AddEndpointFilter(async (context, next) =>
+    {
+        // log time taken to process
+        var start = DateTime.Now;
+        var result = await next(context);
+        var end = DateTime.Now;
+        app.Logger.LogInformation($"{context.HttpContext.Request.Path.Value} took {(end - start).TotalMilliseconds}ms");
+        return result;
+    });
 
-todos.MapDelete("/{id}", TodoEndpoints.DeleteTodo);
+todosV1.MapDelete("/{id}", TodoEndpointsV1.DeleteTodo);
+
+// todoV2 endpoints
+var todosV2 = app.MapGroup("/todos/v2")
+    .WithTags("Todo Endpoints")
+    .AddEndpointFilter(async (context, next) =>
+    {
+        app.Logger.LogInformation("Accessing todo endpoints");
+        return await next(context);
+    });
+
+todosV2.MapGet("/", TodoEndpointsV2.GetAllTodos);
+todosV2.MapGet("/{id}", TodoEndpointsV2.GetTodo);
+
+todosV2.MapPost("/", TodoEndpointsV2.CreateTodo)
+    .AddEndpointFilter(async (context, next) =>
+    {
+        // log time taken to process
+        var start = DateTime.Now;
+        var result = await next(context);
+        var end = DateTime.Now;
+        app.Logger.LogInformation($"{context.HttpContext.Request.Path.Value} took {(end - start).TotalMilliseconds}ms");
+        return result;
+    })
+    .AddEndpointFilter(async (efiContext, next) =>
+    {
+        var param = efiContext.GetArgument<TodoDto>(0);
+
+        var validationErrors = Utilities.IsValid(param);
+
+        if (validationErrors.Any())
+        {
+            return Results.ValidationProblem(validationErrors);
+        }
+
+        return await next(efiContext);
+    });
+
+todosV2.MapPut("/{id}", TodoEndpointsV2.UpdateTodo)
+    .AddEndpointFilter(async (context, next) =>
+    {
+        // log time taken to process
+        var start = DateTime.Now;
+        var result = await next(context);
+        var end = DateTime.Now;
+        app.Logger.LogInformation($"{context.HttpContext.Request.Path.Value} took {(end - start).TotalMilliseconds}ms");
+        return result;
+    });
+
+todosV2.MapDelete("/{id}", TodoEndpointsV2.DeleteTodo);
 
 app.Run();
