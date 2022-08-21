@@ -1,4 +1,4 @@
-using Data;
+using todo_group.Data;
 using todo_group.Services;
 
 namespace todo_group;
@@ -16,12 +16,12 @@ public class TodoEndpoints
     public static async Task<IResult> GetTodo(int id, ITodoService todoService)
     {
         var todo = await todoService.Find(id);
-        
+
         if (todo != null)
         {
             return TypedResults.Ok(todo);
         }
-        
+
         return TypedResults.NotFound();
     }
 
@@ -34,9 +34,9 @@ public class TodoEndpoints
             Description = todo.Description,
             IsDone = todo.IsDone
         };
-        
+
         await todoService.Add(newTodo);
-        
+
         return TypedResults.Created($"/public/todos/{newTodo.Id}", newTodo);
     }
 
@@ -44,15 +44,15 @@ public class TodoEndpoints
     public static async Task<IResult> UpdateTodo(Todo todo, ITodoService todoService)
     {
         var existingTodo = await todoService.Find(todo.Id);
-        
+
         if (existingTodo != null)
         {
             existingTodo.Title = todo.Title;
             existingTodo.Description = todo.Description;
             existingTodo.IsDone = todo.IsDone;
-            
+
             await todoService.Update(existingTodo);
-            
+
             return TypedResults.Created($"/public/todos/{existingTodo.Id}", existingTodo);
         }
 
@@ -63,13 +63,13 @@ public class TodoEndpoints
     public static async Task<IResult> DeleteTodo(int id, ITodoService todoService)
     {
         var todo = await todoService.Find(id);
-        
+
         if (todo != null)
         {
             await todoService.Remove(todo);
             return TypedResults.NoContent();
         }
-        
+
         return TypedResults.NotFound();
     }
 }

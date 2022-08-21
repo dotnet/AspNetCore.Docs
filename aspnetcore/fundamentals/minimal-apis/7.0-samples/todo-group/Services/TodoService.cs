@@ -1,5 +1,5 @@
-using Data;
 using Microsoft.EntityFrameworkCore;
+using todo_group.Data;
 
 namespace todo_group.Services
 {

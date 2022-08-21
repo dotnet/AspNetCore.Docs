@@ -1,4 +1,4 @@
-using Data;
+using todo_group.Data;
 
 namespace todo_group
 {
@@ -7,8 +7,8 @@ namespace todo_group
         public static Dictionary<string, string[]> IsValid(TodoDto td)
         {
             Dictionary<string, string[]> errors = new();
-            
-            if(string.IsNullOrEmpty(td.Title))
+
+            if (string.IsNullOrEmpty(td.Title))
             {
                 errors.Add("todo.name.errors", new[] { "Name is empty" });
             }

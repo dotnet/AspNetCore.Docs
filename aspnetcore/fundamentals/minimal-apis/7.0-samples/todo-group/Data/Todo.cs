@@ -1,8 +1,9 @@
-namespace Data;
+namespace todo_group.Data;
+
 public class Todo
 {
     public int Id { get; set; }
-    public string Title { get; set; } = String.Empty;
-    public string Description { get; set; } = String.Empty;
+    public string Title { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
     public bool IsDone { get; set; }
 }
