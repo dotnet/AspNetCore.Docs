@@ -252,9 +252,21 @@ In the `MainLayout` component (`Shared/MainLayout.razor`), add the `LoginDisplay
 
 Because Blazor Server uses Razor Pages Identity pages, the styling of the UI changes when a visitor navigates between Identity pages and components. You have two options to address the incongruous styles:
 
-#### Build Identity components
+#### Custom Identity components
 
-An approach to using components for Identity instead of pages is to build Identity components. Because `SignInManager` and `UserManager` aren't supported in Razor components, use API endpoints in the Blazor Server app to process user account actions.
+ASP.NET Core Identity is designed to work in the context of HTTP request and response communication, which isn't the primary client-server commuincation model in Blazor apps. ASP.NET Core apps that use ASP.NET Core Identity for user management should use Razor Pages instead of Razor components for Identity-related UI, such as user registration, login, logout, and other user management tasks.
+
+An approach to using components for Identity instead of pages is to build custom Identity components. Because <xref:Microsoft.AspNetCore.Identity.SignInManager%2A> and <xref:Microsoft.AspNetCore.Identity.UserManager%2A> aren't supported in Razor components, use API endpoints to manage Identity actions. For guidance on creating web APIs for Blazor apps, see <xref:blazor/call-web-api>. For an example that uses <xref:Microsoft.AspNetCore.Identity.UserManager%2A> in a hosted Blazor WebAssembly app, see <xref:blazor/security/webassembly/hosted-with-azure-active-directory#usermanager-and-signinmanager>.
+
+For additional context and further assistance, explore the following discussions and resources:
+
+* [Support Custom Login Component when using Identity (dotnet/aspnetcore #13601)](https://github.com/dotnet/aspnetcore/issues/13601)
+* [Reiteration on the `SigninManager<T>` not being supported in Razor Components (dotnet/aspnetcore #34095)](https://github.com/dotnet/aspnetcore/issues/34095)
+* [There is no info on how to actually implement custom login form for server-side blazor (dotnet/AspNetCore.Docs #16813)](https://github.com/dotnet/AspNetCore.Docs/issues/16813)
+* [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor) (Public support forum)
+* [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA) (Public support chat)
+* [Blazor Gitter](https://gitter.im/aspnet/Blazor) (Public support chat)
+* [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor) (Links to community-maintained Blazor resources)
 
 #### Use a custom layout with Blazor app styles
 
