@@ -3,8 +3,33 @@ using todo_group.Services;
 
 namespace todo_group;
 
-public class TodoEndpointsV2
+public static class TodoEndpointsV2
 {
+    public static RouteGroupBuilder MapTodosApiV2(this RouteGroupBuilder group)
+    {
+        group.MapGet("/", GetAllTodos);
+        group.MapGet("/incompleted", GetAllIncompletedTodos);
+        group.MapGet("/{id}", GetTodo);
+
+        group.MapPost("/", CreateTodo)
+            .AddEndpointFilter(async (efiContext, next) =>
+            {
+                var param = efiContext.GetArgument<TodoDto>(0);
+
+                var validationErrors = Utilities.IsValid(param);
+
+                if (validationErrors.Any())
+                {
+                    return Results.ValidationProblem(validationErrors);
+                }
+
+                return await next(efiContext);
+            });
+
+        group.MapPut("/{id}", UpdateTodo);
+        return group;
+    }
+
     // get all todos
     public static async Task<IResult> GetAllTodos(ITodoService todoService)
     {
