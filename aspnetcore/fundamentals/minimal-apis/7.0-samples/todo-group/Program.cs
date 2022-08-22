@@ -5,7 +5,12 @@ using todo_group.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddAuthorization(o => o.AddPolicy("AdminsOnly",
+                                  b => b.RequireClaim("admin", "true")));
+
 builder.Services.AddTransient<ITodoService, TodoService>();
+builder.Services.AddSingleton<IEmailService, EmailService>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<TodoGroupDbContext>(options =>
@@ -20,6 +25,7 @@ using var scope = app.Services.CreateScope();
 var db = scope.ServiceProvider.GetService<TodoGroupDbContext>();
 db?.Database.MigrateAsync();
 
+app.UseAuthorization();
 
 if (app.Environment.IsDevelopment())
 {
@@ -29,6 +35,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapGet("/", () => "Hello World!");
+app.MapGet("/admin", () => "Authorized Endpoint")
+    .RequireAuthorization("AdminsOnly"); ;
 
 // todoV1 endpoints
 var todosV1 = app.MapGroup("/todos/v1")
@@ -40,6 +48,7 @@ var todosV1 = app.MapGroup("/todos/v1")
     });
 
 todosV1.MapGet("/", TodoEndpointsV1.GetAllTodos);
+
 todosV1.MapGet("/{id}", TodoEndpointsV1.GetTodo);
 
 todosV1.MapPost("/", TodoEndpointsV1.CreateTodo)
@@ -89,6 +98,7 @@ var todosV2 = app.MapGroup("/todos/v2")
     });
 
 todosV2.MapGet("/", TodoEndpointsV2.GetAllTodos);
+todosV2.MapGet("/incompleted", TodoEndpointsV2.GetAllIncompletedTodos);
 todosV2.MapGet("/{id}", TodoEndpointsV2.GetTodo);
 
 todosV2.MapPost("/", TodoEndpointsV2.CreateTodo)
@@ -129,3 +139,6 @@ todosV2.MapPut("/{id}", TodoEndpointsV2.UpdateTodo)
 todosV2.MapDelete("/{id}", TodoEndpointsV2.DeleteTodo);
 
 app.Run();
+
+public partial class Program
+{ }

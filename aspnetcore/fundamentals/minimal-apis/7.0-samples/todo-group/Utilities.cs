@@ -10,12 +10,12 @@ namespace todo_group
 
             if (string.IsNullOrEmpty(td.Title))
             {
-                errors.Add("todo.name.errors", new[] { "Name is empty" });
+                errors.TryAdd("todo.name.errors", new[] { "Name is empty" });
             }
 
             if (td.Title!.Length < 3)
             {
-                errors.Add("todo.name.errors", new[] { "Name length < 3" });
+                errors.TryAdd("todo.name.errors", new[] { "Name length < 3" });
             }
 
             return errors;

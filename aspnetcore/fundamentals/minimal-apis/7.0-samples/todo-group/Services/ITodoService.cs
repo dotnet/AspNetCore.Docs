@@ -6,6 +6,8 @@ namespace todo_group.Services
     {
         Task<List<Todo>> GetAll();
 
+        Task<List<Todo>> GetIncompleteTodos();
+
         ValueTask<Todo?> Find(int id);
 
         Task Add(Todo todo);

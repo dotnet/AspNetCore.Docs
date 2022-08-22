@@ -1,21 +1,16 @@
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.EntityFrameworkCore;
-using todo_group.Data;
 using todo_group;
+using todo_group.Data;
 
-namespace MinApiTests
+namespace MinApiTests.UnitTests
 {
-    public class TodoUnitTestsV1
+    public class TodoInMemoryTests
     {
         [Fact]
         public async Task GetTodoReturnsTodoFromDatabase()
         {
             // Arrange
-            var options = new DbContextOptionsBuilder<TodoGroupDbContext>()
-                .UseInMemoryDatabase($"InMemoryTestDb-{DateTime.Now}")
-                .Options;
-
-            await using var context = new TodoGroupDbContext(options);
+            await using var context = new MockDb().CreateDbContext();
 
             context.Todos.Add(new Todo
             {
@@ -43,11 +38,7 @@ namespace MinApiTests
         public async Task CreateTodoCreatesTodoInDatabase()
         {
             //Arrange
-            var options = new DbContextOptionsBuilder<TodoGroupDbContext>()
-                .UseInMemoryDatabase($"InMemoryTestDb-{DateTime.Now}")
-                .Options;
-
-            await using var context = new TodoGroupDbContext(options);
+            await using var context = new MockDb().CreateDbContext();
 
             var newTodo = new TodoDto
             {
@@ -77,11 +68,7 @@ namespace MinApiTests
         public async Task UpdateTodoUpdatesTodoInDatabase()
         {
             //Arrange
-            var options = new DbContextOptionsBuilder<TodoGroupDbContext>()
-                .UseInMemoryDatabase($"InMemoryTestDb-{DateTime.Now}")
-                .Options;
-
-            await using var context = new TodoGroupDbContext(options);
+            await using var context = new MockDb().CreateDbContext();
 
             context.Todos.Add(new Todo
             {
@@ -89,16 +76,16 @@ namespace MinApiTests
                 Title = "Exiting test title",
                 IsDone = false
             });
-            
+
             await context.SaveChangesAsync();
-            
+
             var updatedTodo = new Todo
             {
                 Id = 1,
                 Title = "Updated test title",
                 IsDone = true
             };
-            
+
             //Act
             var createdResult = (Created<Todo>)await TodoEndpointsV1.UpdateTodo(updatedTodo, context);
             var notFoundResult = (NotFound)await TodoEndpointsV1.UpdateTodo(new Todo { Id = 2, Title = "Invalid Title" }, context);
@@ -128,11 +115,7 @@ namespace MinApiTests
                 IsDone = false
             };
 
-            var options = new DbContextOptionsBuilder<TodoGroupDbContext>()
-                .UseInMemoryDatabase($"InMemoryTestDb-{DateTime.Now}")
-                .Options;
-
-            await using var context = new TodoGroupDbContext(options);
+            await using var context = new MockDb().CreateDbContext();
 
             context.Todos.Add(existingTodo);
 

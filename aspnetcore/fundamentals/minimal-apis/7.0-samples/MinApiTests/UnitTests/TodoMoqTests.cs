@@ -4,9 +4,9 @@ using todo_group;
 using todo_group.Data;
 using todo_group.Services;
 
-namespace MinApiTests;
+namespace MinApiTests.UnitTests;
 
-public class TodoUnitTestsV2
+public class TodoMoqTests
 {
     [Fact]
     public async Task GetTodoReturnsTodoFromDatabase()

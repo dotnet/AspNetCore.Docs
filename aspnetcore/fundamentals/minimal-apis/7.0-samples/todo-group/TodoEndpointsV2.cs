@@ -12,6 +12,12 @@ public class TodoEndpointsV2
         return TypedResults.Ok(todos);
     }
 
+    public static async Task<IResult> GetAllIncompletedTodos(ITodoService todoService)
+    {
+        var todos = await todoService.GetIncompleteTodos();
+        return TypedResults.Ok(todos);
+    }
+
     // get todo by id
     public static async Task<IResult> GetTodo(int id, ITodoService todoService)
     {
