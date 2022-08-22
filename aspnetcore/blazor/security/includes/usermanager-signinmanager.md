@@ -1,4 +1,4 @@
-## UserManager and SignInManager
+## `UserManager` and `SignInManager`
 
 Set the user identifier claim type when a Server app requires:
 
@@ -38,10 +38,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
-using {APP NAMESPACE}.Server.Models;
-using {APP NAMESPACE}.Shared;
+using BlazorSample.Server.Models;
+using BlazorSample.Shared;
 
-namespace {APP NAMESPACE}.Server.Controllers
+namespace BlazorSample.Server.Controllers
 {
     [Authorize]
     [ApiController]
@@ -88,3 +88,8 @@ namespace {APP NAMESPACE}.Server.Controllers
     }
 }
 ```
+
+In the preceding example:
+
+* The **`Server`** project's namespace is `BlazorSample.Server`.
+* The **`Shared`** project's namespace is `BlazorSample.Shared`.

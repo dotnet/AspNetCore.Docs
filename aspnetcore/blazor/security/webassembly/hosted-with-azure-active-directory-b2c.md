@@ -389,9 +389,7 @@ Run the app from the Server project. When using Visual Studio, either:
 * Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
 * Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
-<!-- HOLD
 [!INCLUDE[](~/blazor/security/includes/usermanager-signinmanager.md)]
--->
 
 [!INCLUDE[](~/blazor/security/includes/wasm-aad-b2c-userflows.md)]
 
@@ -782,9 +780,7 @@ Run the app from the Server project. When using Visual Studio, either:
 * Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
 * Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
-<!-- HOLD
 [!INCLUDE[](~/blazor/security/includes/usermanager-signinmanager.md)]
--->
 
 [!INCLUDE[](~/blazor/security/includes/wasm-aad-b2c-userflows.md)]
 
@@ -1169,9 +1165,7 @@ Run the app from the Server project. When using Visual Studio, either:
 * Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
 * Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
-<!-- HOLD
 [!INCLUDE[](~/blazor/security/includes/usermanager-signinmanager.md)]
--->
 
 [!INCLUDE[](~/blazor/security/includes/wasm-aad-b2c-userflows.md)]
 
