@@ -365,7 +365,7 @@ If <xref:Microsoft.AspNetCore.Identity.PasswordOptions> are configured in `Start
 
 ## Disable a page
 
-This sections show how to disable the register page but the approach can be used to disable any page.
+This section shows how to disable the register page but the approach can be used to disable any page.
 
 To disable user registration:
 
@@ -829,7 +829,7 @@ If <xref:Microsoft.AspNetCore.Identity.PasswordOptions> are configured in `Start
 
 ## Disable a page
 
-This sections show how to disable the register page but the approach can be used to disable any page.
+This section shows how to disable the register page but the approach can be used to disable any page.
 
 To disable user registration:
 
