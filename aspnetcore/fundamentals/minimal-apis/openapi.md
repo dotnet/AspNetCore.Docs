@@ -16,29 +16,29 @@ An app can describe the [OpenAPI specification](https://swagger.io/specification
 
 The following code is a typical ASP.NET Core app with OpenAPI support:
 
-[!code-csharp[](samples/samples/WebMinAPIs/Program.cs?name=snippet_swag)]
+[!code-csharp[](samples/WebMinAPIs/Program.cs?name=snippet_swag)]
 
 ### Exclude Open API description
 
 In the following sample, the `/skipme` endpoint is excluded from generating an OpenAPI description:
 
-[!code-csharp[](samples/samples/WebMinAPIs/Program.cs?name=snippet_swag2)]
+[!code-csharp[](samples/WebMinAPIs/Program.cs?name=snippet_swag2)]
 
 ### Describe response types
 
 The following example uses the built-in result types to customize the response:
 
-[!code-csharp[](samples/samples/todo/Program.cs?name=snippet_getCustom)]
+[!code-csharp[](samples/todo/Program.cs?name=snippet_getCustom)]
 
 ### Add operation ids to Open API
 
-[!code-csharp[](samples/samples/todo/Program.cs?name=snippet_name)]
+[!code-csharp[](samples/todo/Program.cs?name=snippet_name)]
 
 ### Add tags to the Open API description
 
 The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specification/grouping-operations-with-tags/):
 
-[!code-csharp[](samples/samples/todo/Program.cs?name=snippet_grp)]
+[!code-csharp[](samples/todo/Program.cs?name=snippet_grp)]
 
 :::moniker-end
 
@@ -96,17 +96,17 @@ In the following sample, the `/skipme` endpoint is excluded from generating an O
 
 The following example uses the built-in result types to customize the response:
 
-[!code-csharp[](samples/samples/todo/Program.cs?name=snippet_getCustom)]
+[!code-csharp[](samples/todo/Program.cs?name=snippet_getCustom)]
 
 ### Add operation ids to Open API
 
-[!code-csharp[](samples/samples/todo/Program.cs?name=snippet_name)]
+[!code-csharp[](samples/todo/Program.cs?name=snippet_name)]
 
 ### Add tags to the Open API description
 
 The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specification/grouping-operations-with-tags/):
 
-[!code-csharp[](samples/samples/todo/Program.cs?name=snippet_grp)]
+[!code-csharp[](samples/todo/Program.cs?name=snippet_grp)]
 
 ### Add endpoint summary or description
 
