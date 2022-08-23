@@ -235,6 +235,21 @@ Configuration files are cached for offline use. With [Progressive Web Applicatio
 
 For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app#background-updates>.
 
+## Options configuration
+
+[Options configuration](xref:fundamentals/configuration/options) for Blazor WebAssembly apps requires adding a package reference for the [`Microsoft.Extensions.Options.ConfigurationExtensions`](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions) NuGet package.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+Example:
+
+```csharp
+builder.Services.Configure<MyOptions>(
+    builder.Configuration.GetSection("MyOptions"));
+```
+
+Not all of the ASP.NET Core Options features are supported in Razor components. For example, <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> and <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> configuration is supported, but recomputing option values for these interfaces aren't supported outside of reloading the app by either requesting the app in a new browser tab or selecting the browser's reload button. Merely calling [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) doesn't update snapshot or monitored option values when the underlying configuration changes.
+
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
@@ -467,6 +482,21 @@ Configuration files are cached for offline use. With [Progressive Web Applicatio
 
 For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app#background-updates>.
 
+## Options configuration
+
+[Options configuration](xref:fundamentals/configuration/options) for Blazor WebAssembly apps requires adding a package reference for the [`Microsoft.Extensions.Options.ConfigurationExtensions`](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions) NuGet package.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+Example:
+
+```csharp
+builder.Services.Configure<MyOptions>(
+    builder.Configuration.GetSection("MyOptions"));
+```
+
+Not all of the ASP.NET Core Options features are supported in Razor components. For example, <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> and <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> configuration is supported, but recomputing option values for these interfaces aren't supported outside of reloading the app by either requesting the app in a new browser tab or selecting the browser's reload button. Merely calling [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) doesn't update snapshot or monitored option values when the underlying configuration changes.
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
@@ -698,5 +728,20 @@ Configuration files are cached for offline use. With [Progressive Web Applicatio
 * The PWA's `service-worker.js` and `service-worker-assets.js` files must be rebuilt on compilation, which signal to the app on the user's next online visit that the app has been redeployed.
 
 For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app#background-updates>.
+
+## Options configuration
+
+[Options configuration](xref:fundamentals/configuration/options) for Blazor WebAssembly apps requires adding a package reference for the [`Microsoft.Extensions.Options.ConfigurationExtensions`](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions) NuGet package.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+Example:
+
+```csharp
+builder.Services.Configure<MyOptions>(
+    builder.Configuration.GetSection("MyOptions"));
+```
+
+Not all of the ASP.NET Core Options features are supported in Razor components. For example, <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> and <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> configuration is supported, but recomputing option values for these interfaces aren't supported outside of reloading the app by either requesting the app in a new browser tab or selecting the browser's reload button. Merely calling [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) doesn't update snapshot or monitored option values when the underlying configuration changes.
 
 :::moniker-end
