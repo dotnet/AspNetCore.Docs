@@ -4,15 +4,41 @@ author: rick-anderson
 description: Learn how to use OpenApi (Swagger and Swashbuckle) features of minimal APIs in ASP.NET Core.
 ms.author: riande
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 08/22/2022
+ms.date: 08/23/2022
 uid: fundamentals/minimal-apis/openapi
 ---
 
-# OpenAPI support for minimal APIs in ASP.NET Core 7
+# OpenAPI support in minimal APIs - ASP.NET Core
 
 :::moniker range="= aspnetcore-6.0"
 
-For OpenAPI features in ASP.NET Core 6.0, see [OpenAPI](xref:fundamentals/minimal-apis#openapi).
+An app can describe the [OpenAPI specification](https://swagger.io/specification/) for route handlers using [Swashbuckle](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
+
+The following code is a typical ASP.NET Core app with OpenAPI support:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_swag)]
+
+### Exclude Open API description
+
+In the following sample, the `/skipme` endpoint is excluded from generating an OpenAPI description:
+
+[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_swag2)]
+
+### Describe response types
+
+The following example uses the built-in result types to customize the response:
+
+[!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_getCustom)]
+
+### Add operation ids to Open API
+
+[!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_name)]
+
+### Add tags to the Open API description
+
+The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specification/grouping-operations-with-tags/):
+
+[!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_grp)]
 
 :::moniker-end
 
