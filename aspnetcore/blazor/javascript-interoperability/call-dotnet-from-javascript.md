@@ -537,7 +537,7 @@ In the preceding example:
 A helper class can invoke a .NET instance method as an <xref:System.Action>. Helper classes are useful in the following scenarios:
 
 * When several components of the same type are rendered on the same page.
-* In a Blazor Server apps, where multiple users concurrently use the same component.
+* In Blazor Server apps with multiple users concurrently using the same component.
 
 In the following example:
 
@@ -961,7 +961,7 @@ In the preceding example:
 A helper class can invoke a .NET instance method as an <xref:System.Action>. Helper classes are useful in the following scenarios:
 
 * When several components of the same type are rendered on the same page.
-* In a Blazor Server apps, where multiple users concurrently use the same component.
+* In Blazor Server apps with multiple users concurrently using the same component.
 
 In the following example:
 
@@ -1288,7 +1288,7 @@ In the preceding example:
 A helper class can invoke a .NET instance method as an <xref:System.Action>. Helper classes are useful in the following scenarios:
 
 * When several components of the same type are rendered on the same page.
-* In a Blazor Server apps, where multiple users concurrently use the same component.
+* In Blazor Server apps with multiple users concurrently using the same component.
 
 In the following example:
 
@@ -1889,7 +1889,7 @@ In the preceding example:
 A helper class can invoke a .NET instance method as an <xref:System.Action>. Helper classes are useful in the following scenarios:
 
 * When several components of the same type are rendered on the same page.
-* In a Blazor Server apps, where multiple users concurrently use the same component.
+* In Blazor Server apps with multiple users concurrently using the same component.
 
 In the following example:
 
