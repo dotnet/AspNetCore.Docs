@@ -4,7 +4,7 @@ author: rick-anderson
 description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 08/19/2022
+ms.date: 08/23/2022
 uid: fundamentals/minimal-apis
 ---
 
@@ -348,7 +348,7 @@ Route names are inferred from method names if specified:
 Route names:
 
 * Must be globally unique.
-* Are used as the OpenAPI operation id when OpenAPI support is enabled. See [OpenAPI ](xref:fundamentals/minimum-apis/openapi) for more details.
+* Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](#fundamentals/minimal-apis/openapi).
 
 ### Route Parameters
 
@@ -1136,7 +1136,7 @@ Route names are inferred from method names if specified:
 Route names:
 
 * Must be globally unique.
-* Are used as the OpenAPI operation id when OpenAPI support is enabled. See the [OpenAPI section](#openapi) for more details.
+* Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](#fundamentals/minimal-apis/openapi).
 
 ### Route Parameters
 
