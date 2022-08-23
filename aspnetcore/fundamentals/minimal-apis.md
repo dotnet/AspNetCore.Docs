@@ -348,7 +348,7 @@ Route names are inferred from method names if specified:
 Route names:
 
 * Must be globally unique.
-* Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](#fundamentals/minimal-apis/openapi).
+* Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](xref:fundamentals/minimal-apis/openapi).
 
 ### Route Parameters
 
@@ -1136,7 +1136,7 @@ Route names are inferred from method names if specified:
 Route names:
 
 * Must be globally unique.
-* Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](#fundamentals/minimal-apis/openapi).
+* Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](xref:fundamentals/minimal-apis/openapi).
 
 ### Route Parameters
 
