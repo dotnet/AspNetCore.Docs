@@ -20,10 +20,10 @@ The [Microsoft.AspNetCore.RateLimiting](https://www.nuget.org/packages/Microsoft
 
 The [`RateLimiterOptionsExtensions`](/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptionsextensions) class provide the following extension methods for rate limiting:
 
-* [Fixed window limiter](#fixed)
-* [Sliding window limiter](#slide)
-* [Token bucket limiter](#token)
-* [Concurrency  limiter](#concur)
+* [Fixed window](#fixed)
+* [Sliding window](#slide)
+* [Token bucket](#token)
+* [Concurrency](#concur)
 
 <a name="fixed"></a>
 
@@ -35,8 +35,9 @@ Consider the following code:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_fixed":::
 
-The preceding code creates a fixed window limiter with a policy name of `"fixed"` and sets:
-
+The preceding code:
+* Calls <xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter(IApplicationBuilder, RateLimiterOptions)> to enable rate limiting.
+* Creates a fixed window limiter with a policy name of `"fixed"` and sets:
 * `permitLimit` to 4 and the time `window` to 12. A maximum of 4 requests per each 12 second window are allowed.
 * `queueProcessingOrder` to `QueueProcessingOrder.OldestFirst`.
 * `queueLimit` to 2.
@@ -51,18 +52,19 @@ Apps should use [Configuration](xref:fundamentals/configuration/index) to set li
 
 In the sliding window algorithm:
 
+* Is similar to the fixed window limiter but adds segments per window. The window slides one segment (window)/(segments per window).
 * Limits the requests for a window to `permitLimit` requests.
 * Each time window is divided in `n` segments per window.
-* Requests taken from the expired time segment one window back (`n` segments prior to the current segment), are added to the current segment. We refer to the expired time segment one window back as the expired segment.  Consider the following table which shows a sliding window limiter with a 30 second window, 3 segments per window and a limit of 100 requests:
+* Requests taken from the expired time segment one window back (`n` segments prior to the current segment), are added to the current segment. We refer to the most expired time segment one window back as the expired segment.  Consider the following table which shows a sliding window limiter with a 30 second window, 3 segments per window and a limit of 100 requests:
 
 * The top row and first column shows the time segment.
-* The second row shows the remaining requests available.
-* The third and lower rows rows show the requests made at that time segment and recycled requests available from the prior expired segment.
+* The second row shows the remaining requests available. The remaining requests are available-requests+recycled.
+* The third and lower rows show the requests made at that time segment and recycled requests available from the prior expired segment.
 * From time 30 on, the request taken from the 3 times slots previous are added back to the request limit.
 
 | Time | 0  | 10  | 20 | 30 | 40 | 50 | 60 |
 | ---- | -- | --  | -- | -- | -- | -- | -- |
-| Remaining | 100-20+0=80 | 80-30+0=50  | 50-40+0=10 | 10-30+20=0 |0+30-10=20 | 20-10+40=50 | 50-35+30=45 |
+| Available | 100-20+0=80 | 80-30+0=50  | 50-40+0=10 | 10-30+20=0 |0+30-10=20 | 20-10+40=50 | 50-35+30=45 |
 |  0    | -20            |                                  |  |  |  |  | |
 |  10   |               | -30                             |  |  |  |  | |
 |  20   |               |            | -40                    |  |  |  | |
@@ -71,9 +73,9 @@ In the sliding window algorithm:
 |  50   |          |           | **[+40]**  |            |               | -10  | |
 |  60   |          |           |            |  **[+30]**  |    |  | -35|
 
-The follow table shows the data in the previous graph in a different format. The **Remaining** column shows the requests available from the previous segment (The **Carry over** from the previous row). The first row shows 100 available because there is no previous segment:
+The following table shows the data in the previous graph in a different format. The **Remaining** column shows the requests available from the previous segment (The **Carry over** from the previous row). The first row shows 100 available because there's no previous segment:
 
-| Time | Remaining | Taken | Recycled from expired | Carry over |
+| Time | Available | Taken | Recycled from expired | Carry over |
 | ---- | ----      | ------| ------                | ---- |
 | 0    | 100       | 20    | 0                     | 80 |
 | 10   | 80        | 30    | 0                     | 50 |
@@ -91,9 +93,9 @@ The following code uses the sliding window rate limiter:
 
 ### Token bucket limiter
 
-The token bucket limiter is similar to the sliding window limiter, but rather than adding back the requests taken from the expired segment, a fixed number of tokens are added each replenishment period. The tokens added each segment cannot increase the available tokens to a number higher than the token bucket limit. The following table shows a token bucket limiter with a limit of 100 tokens and a 10 second replenishment period:
+The token bucket limiter is similar to the sliding window limiter, but rather than adding back the requests taken from the expired segment, a fixed number of tokens are added each replenishment period. The tokens added each segment can't increase the available tokens to a number higher than the token bucket limit. The following table shows a token bucket limiter with a limit of 100 tokens and a 10 second replenishment period:
 
-| Time | Remaining | Taken | Added | Carry over |
+| Time | Available | Taken | Added | Carry over |
 | ---- | ----      | ------| ------| ---- |
 | 0    | 100       | 20    | 0     | 80 |
 | 10   | 80        | 10    | 20    | 90 |
@@ -107,11 +109,13 @@ The following code uses the token bucket limiter:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_token":::
 
+When `autoReplenishment` is set to `true`, an internal timer replenishes the tokens every `replenishmentPeriod`; when set to `false`, the app must call `TryReplenish` on the limiter.
+
 <a name="concur"></a>
 
 ### Concurrency limiter
 
-The concurrency limiter limits the number concurrent requests. Each request reduces the concurrency limit by one. When a request completes, the limit is increased by one. Unlike the other requests limiters that limit the total number of requests for a specified period, the concurrency limiter limits only the number of concurrent requests and doesn't cap the number of request in a time period.
+The concurrency limiter limits the number concurrent requests. Each request reduces the concurrency limit by one. When a request completes, the limit is increased by one. Unlike the other requests limiters that limit the total number of requests for a specified period, the concurrency limiter limits only the number of concurrent requests and doesn't cap the number of requests in a time period.
 
 The following code uses the concurrency limiter:
 
@@ -119,6 +123,26 @@ The following code uses the concurrency limiter:
 
 ## Limiter algorithm comparison
 
-The fixed, sliding, and token limiter all limit the maximum number of requests in a time period. The concurrency limiter limits only the number of concurrent requests and doesn't cap the number of request in a time period. The cost of an endpoint should be considered when selecting a limiter. The cost of an endpoint includes the resources used, for example, time, CPU, and I/O.
+The fixed, sliding, and token limiter all limit the maximum number of requests in a time period. The concurrency limiter limits only the number of concurrent requests and doesn't cap the number of requests in a time period. The cost of an endpoint should be considered when selecting a limiter. The cost of an endpoint includes the resources used, for example, data access, CPU, and I/O.
+
+## Rate limiter samples
+
+The following sample:
+
+* Creates a [RateLimiterOptions.OnRejected](xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptions.OnRejected) callback that is called when a request exceeds the specified limit. `retryAfter` can be used with the[`TokenBucketRateLimiter`](https://source.dot.net/#System.Threading.RateLimiting/System/Threading/RateLimiting/TokenBucketRateLimiter.cs), [`FixedWindowLimiter`](https://source.dot.net/#System.Threading.RateLimiting/System/Threading/RateLimiting/FixedWindowRateLimiter.cs), and [`SlidingWindowLimiter`](https://source.dot.net/#System.Threading.RateLimiting/System/Threading/RateLimiting/SlidingWindowRateLimiter.cs) because these algorithms are able to calculate when limits will be added. The [`ConcurrencyLimiter`] has no way of knowing when permits will be available.
+* Adds the following limiters:
+
+  * A `SampleRateLimiterPolicy` which implements the [`IRateLimiterPolicy<TPartitionKey>`] interface. The `SampleRateLimiterPolicy` class is shown later in this article.
+  * A `SlidingWindowLimiter`:
+    * With a partition for each authenticated user.
+    * One partition for all anonymous users.
+  * A <xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptions.GlobalLimiter> that is applied to all requests. The global limiter will be executed first, followed by the endpoint-specific limiter, if one exists. The `GlobalLimiter` creates a partition for each <xref:System.Net.IPAddress>.
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet":::
+
+> [!WARNING]
+>Creating partitions on client IP addresses makes the app vulnerable to Denial of Service Attacks which employ IP Source Address Spoofing. For more information, see [BCP 38 RFC 2827 Network Ingress Filtering: Defeating Denial of Service Attacks which employ IP Source Address Spoofing](https://www.rfc-editor.org/info/bcp38).
+
+See [the samples repository for the complete `Program.cs`](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs#L145,L281).
 
 :::moniker-end
