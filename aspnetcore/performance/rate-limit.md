@@ -18,7 +18,7 @@ The [Microsoft.AspNetCore.RateLimiting](https://www.nuget.org/packages/Microsoft
 
 ## Rate limiter algorithms
 
-The [`RateLimiterOptionsExtensions`](/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptionsextensions) class provide the following extension methods for rate limiting:
+The [`RateLimiterOptionsExtensions`](/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptionsextensions) class provides the following extension methods for rate limiting:
 
 * [Fixed window](#fixed)
 * [Sliding window](#slide)
@@ -38,7 +38,7 @@ Consider the following code:
 The preceding code:
 * Calls <xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter> to enable rate limiting.
 * Creates a fixed window limiter with a policy name of `"fixed"` and sets:
-* `permitLimit` to 4 and the time `window` to 12. A maximum of 4 requests per each 12 second window are allowed.
+* `permitLimit` to 4 and the time `window` to 12. A maximum of 4 requests per each 12-second window are allowed.
 * `queueProcessingOrder` to `QueueProcessingOrder.OldestFirst`.
 * `queueLimit` to 2.
 
@@ -55,7 +55,7 @@ In the sliding window algorithm:
 * Is similar to the fixed window limiter but adds segments per window. The window slides one segment (window)/(segments per window).
 * Limits the requests for a window to `permitLimit` requests.
 * Each time window is divided in `n` segments per window.
-* Requests taken from the expired time segment one window back (`n` segments prior to the current segment), are added to the current segment. We refer to the most expired time segment one window back as the expired segment.  Consider the following table which shows a sliding window limiter with a 30 second window, 3 segments per window and a limit of 100 requests:
+* Requests taken from the expired time segment one window back (`n` segments prior to the current segment), are added to the current segment. We refer to the most expired time segment one window back as the expired segment.  Consider the following table which shows a sliding window limiter with a 30-second window, 3 segments per window and a limit of 100 requests:
 
 * The top row and first column shows the time segment.
 * The second row shows the remaining requests available. The remaining requests are available-requests+recycled.
@@ -93,7 +93,7 @@ The following code uses the sliding window rate limiter:
 
 ### Token bucket limiter
 
-The token bucket limiter is similar to the sliding window limiter, but rather than adding back the requests taken from the expired segment, a fixed number of tokens are added each replenishment period. The tokens added each segment can't increase the available tokens to a number higher than the token bucket limit. The following table shows a token bucket limiter with a limit of 100 tokens and a 10 second replenishment period:
+The token bucket limiter is similar to the sliding window limiter, but rather than adding back the requests taken from the expired segment, a fixed number of tokens are added each replenishment period. The tokens added each segment can't increase the available tokens to a number higher than the token bucket limit. The following table shows a token bucket limiter with a limit of 100 tokens and a 10-second replenishment period:
 
 | Time | Available | Taken | Added | Carry over |
 | ---- | ----      | ------| ------| ---- |
@@ -181,6 +181,6 @@ See [the samples repository for the complete `Program.cs`](https://github.com/do
 
 Before deploying an app using rate limiting to production, it's a good idea to stress test the app to validate the rate limiters and options used. For example, create a [JMeter script](https://jmeter.apache.org/usermanual/jmeter_proxy_step_by_step.html) with a tool like [BlazeMeter](https://guide.blazemeter.com/hc/articles/207421695-Writing-your-first-JMeter-script) or [Apache JMeter HTTP(S) Test Script Recorder](https://jmeter.apache.org/usermanual/jmeter_proxy_step_by_step.html) and load the script to [Azure Load Testing](/azure/load-testing/overview-what-is-azure-load-testing).
 
-Creating partitions with user input makes the app vulnerable to [Denial of Service](https://www.cisa.gov/uscert/ncas/tips/ST04-015) (DoS) Attacks. For example, creating partitions on client IP addresses makes the app vulnerable to Denial of Service Attacks which employ IP Source Address Spoofing. For more information, see [BCP 38 RFC 2827 Network Ingress Filtering: Defeating Denial of Service Attacks which employ IP Source Address Spoofing](https://www.rfc-editor.org/info/bcp38).
+Creating partitions with user input makes the app vulnerable to [Denial of Service](https://www.cisa.gov/uscert/ncas/tips/ST04-015) (DoS) Attacks. For example, creating partitions on client IP addresses makes the app vulnerable to Denial of Service Attacks that employ IP Source Address Spoofing. For more information, see [BCP 38 RFC 2827 Network Ingress Filtering: Defeating Denial of Service Attacks that employ IP Source Address Spoofing](https://www.rfc-editor.org/info/bcp38).
 
 :::moniker-end
