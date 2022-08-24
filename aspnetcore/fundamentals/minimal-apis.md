@@ -769,6 +769,10 @@ Routes can be [CORS](xref:security/cors?view=aspnetcore-6.0) enabled using [CORS
 
 For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
+## See also
+
+[OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/openapi)
+
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
@@ -1621,10 +1625,10 @@ The types implementing `IResult` are public, allowing for type assertions when t
 # Differences between minimal APIs and APIs with controllers
 
 Moved to uid: tutorials/min-web-api
-
-## OpenAPI (.NET 7 moniker only)
-
-Moved to uid:fundamentals/minimum-apis/openapi
 -->
+
+## See also
+
+[OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/openapi)
 
 :::moniker-end
