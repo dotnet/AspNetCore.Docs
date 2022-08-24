@@ -35,9 +35,7 @@ WebSockets were originally designed for HTTP/1.1 but have since been adapted to 
 
 [ASP.NET Core SignalR](xref:signalr/introduction) is a library that simplifies adding real-time web functionality to apps. It uses WebSockets whenever possible.
 
-For most applications, we recommend SignalR rather than raw WebSockets.
-
-SignalR:
+For most applications, we recommend SignalR rather than raw WebSockets. SignalR:
 
 * Provides transport fallback for environments where WebSockets isn't available.
 * Provides a basic remote procedure call app model.
