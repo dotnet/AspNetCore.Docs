@@ -36,7 +36,7 @@ Consider the following code:
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_fixed":::
 
 The preceding code:
-* Calls <xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter> to enable rate limiting.
+* Calls [UseRateLimiter](/dotnet/api/microsoft.aspnetcore.builder.ratelimiterapplicationbuilderextensions.useratelimiter?view=aspnetcore-7.0) to enable rate limiting.
 * Creates a fixed window limiter with a policy name of `"fixed"` and sets:
 * `permitLimit` to 4 and the time `window` to 12. A maximum of 4 requests per each 12-second window are allowed.
 * `queueProcessingOrder` to `QueueProcessingOrder.OldestFirst`.
