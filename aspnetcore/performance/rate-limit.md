@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how limit requests in ASP.NET Core apps
 ms.author: riande
 ms.custom: mvc
-ms.date: 4/05/2019
+ms.date: 8/28/2022
 uid: performance/rate-limit
 ---
 
