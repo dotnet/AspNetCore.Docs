@@ -23,11 +23,11 @@ Using WebSockets over HTTP/2 takes advantage of new features such as:
 
 These supported features are available in Kestrel on all HTTP/2 enabled platforms. The version negotiation is automatic in browsers and Kestrel, so no new APIs are needed.
 
-.NET 7 introduced Websockets over HTTP/2 support for Kestrel, SignalR JavaScript client and SignalR with Blazor WebAssembly.
+.NET 7 introduced Websockets over HTTP/2 support for Kestrel, the SignalR JavaScript client, and SignalR with Blazor WebAssembly.
 
 > [!NOTE]
 > HTTP/2 WebSockets use CONNECT requests rather than GET, so your own routes and controllers may need updating.
-> Chrome and Edge have HTTP/2 WebSockets enabled by default, and you can enable it in FireFox on the about:config page with the network.http.spdy.websockets flag.
+> Chrome and Edge have HTTP/2 WebSockets enabled by default, and you can enable it in FireFox on the `about:config` page with the `network.http.spdy.websockets` flag.
 
 WebSockets were originally designed for HTTP/1.1 but have since been adapted to work over HTTP/2. 
 
@@ -35,16 +35,15 @@ WebSockets were originally designed for HTTP/1.1 but have since been adapted to 
 
 [ASP.NET Core SignalR](xref:signalr/introduction) is a library that simplifies adding real-time web functionality to apps. It uses WebSockets whenever possible.
 
-For most applications, we recommend SignalR over raw WebSockets.
+For most applications, we recommend SignalR rather than raw WebSockets.
 
-SignalR provides:
+SignalR:
 
-* Transport fallback for environments where WebSockets isn't available.
-* A basic remote procedure call app model.
+* Provides transport fallback for environments where WebSockets isn't available.
+* Provides a basic remote procedure call app model.
+* Has no significant performance disadvantage compared to using raw WebSockets in most scenarios.
 
-SignalR has no significant performance disadvantage compared to using raw WebSockets in most scenarios.
-
-WebSocket over HTTP/2 is supported for:
+WebSockets over HTTP/2 is supported for:
 
 * ASP.NET Core SignalR JavaScript client
 * ASP.NET Core SignalR with Blazor WebAssembly
