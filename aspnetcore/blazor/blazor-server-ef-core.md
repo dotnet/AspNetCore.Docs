@@ -73,6 +73,10 @@ The following recommendations are designed to provide a consistent approach to u
   ```
 
   Place operations after the `Loading = true;` line in the `try` block.
+  
+  Loading logic doesn't require locking database records because thread safety isn't a concern. The loading logic is used to disable UI controls so that users don't inadvertently select buttons or update fields while data is fetched.
+  
+  If there's any chance that multiple threads may access the same code block, [inject a factory](#scope-to-the-component-lifetime) and make a new instance per operation. Otherwise, injecting and using the context is usually sufficient.
 
 * For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
 
@@ -198,6 +202,10 @@ The following recommendations are designed to provide a consistent approach to u
   ```
 
   Place operations after the `Loading = true;` line in the `try` block.
+  
+  Loading logic doesn't require locking database records because thread safety isn't a concern. The loading logic is used to disable UI controls so that users don't inadvertently select buttons or update fields while data is fetched.
+  
+  If there's any chance that multiple threads may access the same code block, [inject a factory](#scope-to-the-component-lifetime) and make a new instance per operation. Otherwise, injecting and using the context is usually sufficient.
 
 * For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
 
@@ -323,6 +331,10 @@ The following recommendations are designed to provide a consistent approach to u
   ```
 
   Place operations after the `Loading = true;` line in the `try` block.
+  
+  Loading logic doesn't require locking database records because thread safety isn't a concern. The loading logic is used to disable UI controls so that users don't inadvertently select buttons or update fields while data is fetched.
+  
+  If there's any chance that multiple threads may access the same code block, [inject a factory](#scope-to-the-component-lifetime) and make a new instance per operation. Otherwise, injecting and using the context is usually sufficient.
 
 * For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
 
@@ -460,6 +472,10 @@ The following recommendations are designed to provide a consistent approach to u
   ```
 
   Place operations after the `Loading = true;` line in the `try` block.
+  
+  Loading logic doesn't require locking database records because thread safety isn't a concern. The loading logic is used to disable UI controls so that users don't inadvertently select buttons or update fields while data is fetched.
+  
+  If there's any chance that multiple threads may access the same code block, [inject a factory](#scope-to-the-component-lifetime) and make a new instance per operation. Otherwise, injecting and using the context is usually sufficient.
 
 * For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
 
