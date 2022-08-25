@@ -171,7 +171,7 @@ If the proxy doesn't use headers named `X-Forwarded-For` and `X-Forwarded-Proto`
 
 Apps that call <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> and <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> put a site into an infinite loop if deployed to an Azure Linux App Service, Azure Linux virtual machine (VM), or behind any other reverse proxy besides IIS. TLS is terminated by the reverse proxy, and Kestrel isn't made aware of the correct request scheme. OAuth and OIDC also fail in this configuration because they generate incorrect redirects. <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> adds and configures Forwarded Headers Middleware when running behind IIS, but there's no matching automatic configuration for Linux (Apache or Nginx integration).
 
-To forward the scheme from the proxy in non-IIS scenarios, configure the Forwarded Headers Middleware by setting the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` to `true`. Setting setting the `ASPNETCORE_FORWARDEDHEADERS_ENABLED =true` is designed for cloud environments and it doesn't enable features such as the [`KnownProxies option`](#forwarded-headers-middleware-options) to restrict which IPs forwarders are accepted from.
+To forward the scheme from the proxy in non-IIS scenarios, configure the Forwarded Headers Middleware by setting the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` to `true`. Setting setting the `ASPNETCORE_FORWARDEDHEADERS_ENABLED = true` is designed for cloud environments and it doesn't enable features such as the [`KnownProxies option`](#forwarded-headers-middleware-options) to restrict which IPs forwarders are accepted from.
 
 ## Certificate forwarding
 
