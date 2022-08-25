@@ -236,7 +236,54 @@ The Container App requires a secure connect to the storage account and key vault
 1. On the overview page of the container app, click on the **Application URL** link to launch your site in the browser again.
 1. At this point your app should load and work correctly. You can further test this by entering data into the form and clicking submit. The form relies on data protection services, which means a successful submission validates your services are connected properly.
 
-
 ## 7) Configure roles for local development
 
-The existing code and configuration of your app can also work while running locally during development. The `DefaultAzureCredential` you setup earlier is also able to pick up local environment credentials to authenticate to Azure Services. You will need to assign the same roles for your account that is logged into Visual Studio or the Azure CLI in order for the authentication to work.
+The existing code and configuration of your app can also work while running locally during development. The `DefaultAzureCredential` class you configured earlier is able to pick up local environment credentials to authenticate to Azure Services. You will need to assign the same roles to your own account that were assigned to your application's managed identity in order for the authentication to work. This should be the same account you use to log into Visual Studio or the Azure CLI.
+
+#### Sign-in to your local development environment
+
+You'll need to be signed in to the Azure CLI, Visual Studio, or Azure Powershell for your credentials to be picked up by `DefaultAzureCredential`.
+
+## [Azure CLI](#tab/azure-cli)
+
+```azurecli
+az login
+```
+
+## [Visual Studio](#tab/visual-studio)
+
+// todo
+
+## [PowerShell](#tab/powershell)
+
+```powershell
+## todo
+```
+
+---
+
+#### Assign roles to your developer account
+
+1. In the Azure Portal, navigate to the `razorscaling` storage account you created earlier.
+1. Select **Access Control (IAM)** from the left navigation.
+1. Choose **+ Add** and then **Add role assignment** from the drop down menu.
+1. On the **Add role assignment** page, search for *Storage blob data contributor*, select the matching result, and then choose **Next**.
+1. Make sure **User, group, or service principal** is select, and then choose **+ Select members**.
+1. In the **Select members** flyout, search for your own *user@domain* account and select it from the results.
+1. Choose **Next** and then choose **Review + assign**. After Azure validates your settings, select **Review + assign** again.
+
+Remember, role assignment permissions make take a minute or two to propagate, or in rare cases up to eight minutes.
+
+Next you'll need to assign a role to your account so that it can access the key vault service and secret.
+
+1. In the Azure Portal, navigate to the `razorscalingkeys` key vault you created earlier.
+1. Select **Access Control (IAM)** from the left navigation.
+1. Choose **+ Add** and then **Add role assignment** from the drop down menu.
+1. On the **Add role assignment** page, search for *Key Vault Crypto Service Encryption User*, select the matching result, and then choose **Next**.
+1. Make sure **User, group, or service principal** is select, and then choose **+ Select members**.
+1. In the **Select members** flyout, search for your own *user@domain* account and select it from the results.
+1. Choose **Next** and then choose **Review + assign**. After Azure validates your settings, select **Review + assign** again.
+
+You may need to wait again for this role assignment to propagate.
+
+You can then return to Visual Studio and run the app locally. The code should continue to function as expected. `DefaultAzureCredential` will use your existing credentials from Visual Studio or the Azure CLI
