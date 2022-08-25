@@ -20,7 +20,7 @@ Two-factor authentication does not happen using an external authentication provi
 
 These instructions use `qrcode.js` from the https://davidshimjs.github.io/qrcodejs/ repo.
 
-* Download the [qrcode.js JavaScript library](https://davidshimjs.github.io/qrcodejs/) to the `wwwroot\lib` folder in your project.
+* Download the [`qrcode.js` JavaScript library](https://davidshimjs.github.io/qrcodejs/) to the `wwwroot\lib` folder in your project.
 * Follow the instructions in [Scaffold Identity](xref:security/authentication/scaffold-identity) to generate `/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml`.
 * In `/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml`, locate the `Scripts` section at the end of the file:
 
@@ -29,17 +29,17 @@ These instructions use `qrcode.js` from the https://davidshimjs.github.io/qrcode
     @await Html.PartialAsync("_ValidationScriptsPartial")
 }
 ```
-* Create a new JavaScript file called `qr.js` in *wwwroot/js* and add the following code to generate the QR Code:
+* Create a new JavaScript file called `qr.js` in `wwwroot/js` and add the following code to generate the QR Code:
 
 ```javascript
 window.addEventListener("load", () => {
-    const uri = document.getElementById("qrCodeData").getAttribute('data-url');
-    new QRCode(document.getElementById("qrCode"),
-        {
-            text: uri,
-            width: 150,
-            height: 150
-        });
+  const uri = document.getElementById("qrCodeData").getAttribute('data-url');
+  new QRCode(document.getElementById("qrCode"),
+    {
+      text: uri,
+      width: 150,
+      height: 150
+    });
 });
 ```
 
