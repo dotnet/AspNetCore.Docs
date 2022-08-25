@@ -1513,7 +1513,7 @@ The following launch configuration options are supported for the `blazorwasm` de
 | Option    | Description |
 | --------- | ----------- |
 | `request` | Use `launch` to launch and attach a debugging session to a Blazor WebAssembly app or `attach` to attach a debugging session to an already-running app. |
-| `url`     | The URL to open in the browser when debugging. Defaults to `https://localhost:5001`. If the app is running at a different URL, an `about:blank` tab launches in the browser. |
+| `url`     | The URL to open in the browser when debugging. |
 | `browser` | The browser to launch for the debugging session. Set to `edge` or `chrome`. Defaults to `edge`. |
 | `trace`   | Used to generate logs from the JS debugger. Set to `true` to generate logs. |
 | `hosted`  | Must be set to `true` if launching and debugging a hosted Blazor WebAssembly app. |
@@ -1562,7 +1562,7 @@ For more information, see [Debugging with Visual Studio for Mac](/visualstudio/m
 
 1. Run a Debug build of the app in the Development environment.
 
-1. Launch a browser and navigate to the app's URL (for example, `https://localhost:7268`).
+1. Launch a browser and navigate to the app's URL.
 
 1. In the browser, attempt to commence remote debugging by pressing <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>d</kbd>.
 
