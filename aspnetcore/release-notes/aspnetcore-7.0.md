@@ -108,23 +108,7 @@ The request body can bind as a [`Stream`](/dotnet/api/system.io.stream) or [`Pip
 
 For example, the data might be enqueued to [Azure Queue storage](/azure/storage/queues/storage-queues-introduction) or stored in [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction).
 
-The following code implements a background queue:
-
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/BackgroundQueueService.cs)]
-
-The following code binds the request body to a `Stream`:
-
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet_1)]
-
-The following code shows the complete `Program.cs` file:
-
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet)]
-
-Limitations when binding request body to `Stream` or `PipeReader`:
-
-* When reading data, the `Stream` is the same object as `HttpRequest.Body`.
-* The request body isn't buffered by default. After the body is read, it's not rewindable. The stream can't be read multiple times.
-* The `Stream` and `PipeReader` aren't usable outside of the minimal action handler as the underlying buffers will be disposed or reused.
+For more information, see [Bind the request body as a `Stream` or `PipeReader`](xref:fundamentals/minimal-apis#rbs)
 
 ### New Results.Stream overloads
 
