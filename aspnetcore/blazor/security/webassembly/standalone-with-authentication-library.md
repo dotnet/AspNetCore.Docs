@@ -89,7 +89,7 @@ Configuration is supplied by the `wwwroot/appsettings.json` file:
 }
 ```
 
-Google OAuth 2.0 OIDC example:
+Google OAuth 2.0 OIDC example for a hypothetical app that runs in the `Development` environment on the localhost address at port 5001:
 
 ```json
 {
