@@ -14,7 +14,7 @@ By [Arvin Kahbazi](https://github.com/Kahbazi) and [Rick Anderson](https://twitt
 
 :::moniker range=">= aspnetcore-7.0"
 
-The [Microsoft.AspNetCore.RateLimiting](https://www.nuget.org/packages/Microsoft.AspNetCore.RateLimiting) NuGet package provides rate limiting middleware. Apps configure rate limiting policies and then attach the policies to endpoints. Apps using rate limiting should be carefully load tested before deploying. See [Testing endpoints with rate limiting](#test7) in this article for more information.
+The `Microsoft.AspNetCore.RateLimiting` middleware provides rate limiting middleware. Apps configure rate limiting policies and then attach the policies to endpoints. Apps using rate limiting should be carefully load tested and reviewed before deploying. See [Testing endpoints with rate limiting](#test7) in this article for more information.
 
 ## Rate limiter algorithms
 
@@ -42,7 +42,7 @@ The preceding code:
 * `queueProcessingOrder` to `QueueProcessingOrder.OldestFirst`.
 * `queueLimit` to 2.
 
-Apps should use [Configuration](xref:fundamentals/configuration/index) to set limiter options. The preceding code using Configuration:
+Apps should use [Configuration](xref:fundamentals/configuration/index) to set limiter options. The following code updates the preceding code using [`MyRateLimitOptions`](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/fundamentals/middleware/rate-limit/WebRateLimitAuth/Models/MyRateLimitOptions.cs) for configuration:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_fixed2":::
 
