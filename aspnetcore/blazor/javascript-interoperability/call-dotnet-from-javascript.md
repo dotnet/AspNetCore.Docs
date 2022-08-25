@@ -1989,7 +1989,7 @@ The following `ListItem2` component is a shared component that can be used any n
 
 Each `ListItem2` component instance invokes the `assignDotNetHelper` JS function in [`OnAfterRenderAsync`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) with an element reference (the first `<span>` element of the list item) and the component instance as a <xref:Microsoft.JSInterop.DotNetObjectReference>.
 
-When a `ListItem2` component's message `<span>` is selected, `interopCall` is invoked passing the `<span>` element as a parameter (`this`). [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) is called to update the UI when `message` is set and the `display` property of the second `<span>` is updated. If `StateHasChanged` isn't called, Blazor has no way of knowing that the UI should be updated when the method is invoked.
+When a `ListItem2` component's message `<span>` is selected, `interopCall` is invoked passing the `<span>` element as a parameter (`this`), which invokes the `UpdateMessage` .NET method. In `UpdateMessage`, [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) is called to update the UI when `message` is set and the `display` property of the second `<span>` is updated. If `StateHasChanged` isn't called, Blazor has no way of knowing that the UI should be updated when the method is invoked.
 
 The <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the component is disposed.
 
