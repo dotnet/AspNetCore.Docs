@@ -1958,8 +1958,8 @@ Similar to the approach described in the [Component instance .NET method helper 
 In the following example:
 
 * The `CallDotNetExample7` component contains several `ListItem2` components, which is a shared component in the app's `Shared` folder.
-* Each `ListItem2` component is composed of a list item message and a `<span>` with a `display` CSS property set to `inline-block` for display.
-* When a `ListItem2` component list item is selected, that `ListItem2`'s `UpdateMessage` method changes the list item text in the first `<span>` and hides the second `<span>` by setting the `display` property to `none`.
+* Each `ListItem2` component is composed of a list item message `<span>` and a second `<span>` with a `display` CSS property set to `inline-block` for display.
+* When a `ListItem2` component list item is selected, that `ListItem2`'s `UpdateMessage` method changes the list item text in the first `<span>` and hides the second `<span>` by setting its `display` property to `none`.
 
 The following `assignDotNetHelper` JS function assigns the <xref:Microsoft.JSInterop.DotNetObjectReference> to an element in a property named `dotNetHelper`:
 
