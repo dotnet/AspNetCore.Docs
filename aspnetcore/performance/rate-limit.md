@@ -29,7 +29,7 @@ The [`RateLimiterOptionsExtensions`](/dotnet/api/microsoft.aspnetcore.ratelimiti
 
 ### Fixed window limiter
 
-The [`AddFixedWindowLimiter`](/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptionsextensions.addfixedwindowlimiter#microsoft-aspnetcore-ratelimiting-ratelimiteroptionsextensions-addfixedwindowlimiter(microsoft-aspnetcore-ratelimiting-ratelimiteroptions-system-string-system-threading-ratelimiting-fixedwindowratelimiteroptions)) uses a fixed time window to limit requests. When the time window expires, a new time window starts and the request limit is reset.
+The [`AddFixedWindowLimiter`](/dotnet/api/microsoft.aspnetcore.ratelimiting.ratelimiteroptionsextensions.addfixedwindowlimiter#microsoft-aspnetcore-ratelimiting-ratelimiteroptionsextensions-addfixedwindowlimiter(microsoft-aspnetcore-ratelimiting-ratelimiteroptions-system-string-system-threading-ratelimiting-fixedwindowratelimiteroptions)) method uses a fixed time window to limit requests. When the time window expires, a new time window starts and the request limit is reset.
 
 Consider the following code:
 
@@ -50,7 +50,7 @@ Apps should use [Configuration](xref:fundamentals/configuration/index) to set li
 
 ### Sliding window limiter
 
-In the sliding window algorithm:
+A sliding window algorithm:
 
 * Is similar to the fixed window limiter but adds segments per window. The window slides one segment (window)/(segments per window).
 * Limits the requests for a window to `permitLimit` requests.
@@ -123,11 +123,11 @@ The following code uses the concurrency limiter:
 
 ## Limiter algorithm comparison
 
-The fixed, sliding, and token limiter all limit the maximum number of requests in a time period. The concurrency limiter limits only the number of concurrent requests and doesn't cap the number of requests in a time period. The cost of an endpoint should be considered when selecting a limiter. The cost of an endpoint includes the resources used, for example, data access, CPU, and I/O.
+The fixed, sliding, and token limiters all limit the maximum number of requests in a time period. The concurrency limiter limits only the number of concurrent requests and doesn't cap the number of requests in a time period. The cost of an endpoint should be considered when selecting a limiter. The cost of an endpoint includes the resources used, for example, data access, CPU, and I/O.
 
 ## Rate limiter samples
 
-The following samples aren't meant for production code but examples on how to use the limiters.
+The following samples aren't meant for production code but are examples on how to use the limiters.
 
 ### Limiter with `OnRejected`, `RetryAfter`, and `GlobalLimiter`
 
