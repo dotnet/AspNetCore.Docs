@@ -67,7 +67,6 @@ dotnet add package Microsoft.AspNetCore.DataProtection
 dotnet add package Microsoft.Extensions.Azure
 ```
 
-
 ## [Visual Studio](#tab/visual-studio)
 
 // todo
@@ -242,17 +241,17 @@ The existing code and configuration of your app can also work while running loca
 
 You'll need to be signed in to the Azure CLI, Visual Studio, or Azure Powershell for your credentials to be picked up by `DefaultAzureCredential`.
 
-## [Azure CLI](#tab/azure-cli)
+## [Azure CLI](#tab/login-azure-cli)
 
 ```azurecli
 az login
 ```
 
-## [Visual Studio](#tab/visual-studio)
+## [Visual Studio](#tab/login-visual-studio)
 
 // todo
 
-## [PowerShell](#tab/powershell)
+## [PowerShell](#tab/login-powershell)
 
 ```powershell
 ## todo
