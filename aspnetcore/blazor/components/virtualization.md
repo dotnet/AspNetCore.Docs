@@ -69,7 +69,7 @@ The `Virtualize` component:
 * Calculates the number of items to render based on the height of the container and the size of the rendered items.
 * Recalculates and rerenders the items as the user scrolls.
 * Only fetches the slice of records from an external API that correspond to the current visible region, instead of downloading all of the data from the collection.
-* Receives a generic <xref:System.Collections.Generic.ICollection%601> for <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>.Items?displayProperty=nameWithType>. If a non-generic collection supplies the items (for example, a collection of <xref:System.Data.DataRow>), follow the guidance in the [Item provider delegate](#item-provider-delegate) section to supply the items.
+* Receives a generic <xref:System.Collections.Generic.ICollection%601> for <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items?displayProperty=nameWithType>. If a non-generic collection supplies the items (for example, a collection of <xref:System.Data.DataRow>), follow the guidance in the [Item provider delegate](#item-provider-delegate) section to supply the items.
 
 The item content for the `Virtualize` component can include:
 
@@ -323,7 +323,7 @@ The `Virtualize` component:
 * Calculates the number of items to render based on the height of the container and the size of the rendered items.
 * Recalculates and rerenders the items as the user scrolls.
 * Only fetches the slice of records from an external API that correspond to the current visible region, instead of downloading all of the data from the collection.
-* Receives a generic <xref:System.Collections.Generic.ICollection%601> for <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>.Items?displayProperty=nameWithType>. If a non-generic collection supplies the items (for example, a collection of <xref:System.Data.DataRow>), follow the guidance in the [Item provider delegate](#item-provider-delegate) section to supply the items.
+* Receives a generic <xref:System.Collections.Generic.ICollection%601> for <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items?displayProperty=nameWithType>. If a non-generic collection supplies the items (for example, a collection of <xref:System.Data.DataRow>), follow the guidance in the [Item provider delegate](#item-provider-delegate) section to supply the items.
 
 The item content for the `Virtualize` component can include:
 
@@ -486,7 +486,7 @@ The `Virtualize` component:
 * Calculates the number of items to render based on the height of the container and the size of the rendered items.
 * Recalculates and rerenders the items as the user scrolls.
 * Only fetches the slice of records from an external API that correspond to the current visible region, instead of downloading all of the data from the collection.
-* Receives a generic <xref:System.Collections.Generic.ICollection%601> for <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize<TItem>.Items?displayProperty=nameWithType>. If a non-generic collection supplies the items (for example, a collection of <xref:System.Data.DataRow>), follow the guidance in the [Item provider delegate](#item-provider-delegate) section to supply the items.
+* Receives a generic <xref:System.Collections.Generic.ICollection%601> for <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items?displayProperty=nameWithType>. If a non-generic collection supplies the items (for example, a collection of <xref:System.Data.DataRow>), follow the guidance in the [Item provider delegate](#item-provider-delegate) section to supply the items.
 
 The item content for the `Virtualize` component can include:
 
