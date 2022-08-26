@@ -354,7 +354,7 @@ Build and run the app again. For the default page that loads the `Index` compone
 
 ![Index component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly isn't loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot2.png)
 
-If the `Robot` component from the RCL is requested at `https://localhost:5001/robot`, the `GrantImaharaRobotControls.dll` assembly is loaded and the `Robot` component is rendered:
+If the `Robot` component from the RCL is requested at `/robot`, the `GrantImaharaRobotControls.dll` assembly is loaded and the `Robot` component is rendered:
 
 ![Robot component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly is loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot3.png)
 
@@ -724,7 +724,7 @@ Build and run the app again. For the default page that loads the `Index` compone
 
 ![Index component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly isn't loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot2.png)
 
-If the `Robot` component from the RCL is requested at `https://localhost:5001/robot`, the `GrantImaharaRobotControls.dll` assembly is loaded and the `Robot` component is rendered:
+If the `Robot` component from the RCL is requested at `/robot`, the `GrantImaharaRobotControls.dll` assembly is loaded and the `Robot` component is rendered:
 
 ![Robot component loaded in the browser with developer tool's Network tab indicating that the GrantImaharaRobotControls.dll assembly is loaded.](~/blazor/webassembly-lazy-load-assemblies/_static/screenshot3.png)
 

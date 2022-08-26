@@ -371,9 +371,9 @@ The following policy includes configuration for:
 ```csharp
 app.UseCors(policy => 
     policy.WithOrigins("http://localhost:5000", "https://localhost:5001")
-    .AllowAnyMethod()
-    .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization, "x-custom-header")
-    .AllowCredentials());
+        .AllowAnyMethod()
+        .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization, "x-custom-header")
+        .AllowCredentials());
 ```
 
 A hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure) uses the same base address for the client and server apps. The client app's <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> is set to a URI of `builder.HostEnvironment.BaseAddress` by default. CORS configuration is **not** required in the default configuration of a hosted Blazor solution. Additional client apps that aren't hosted by the server project and don't share the server app's base address **do** require CORS configuration in the server project.
@@ -1594,9 +1594,9 @@ The following policy includes configuration for:
 ```csharp
 app.UseCors(policy => 
     policy.WithOrigins("http://localhost:5000", "https://localhost:5001")
-    .AllowAnyMethod()
-    .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization, "x-custom-header")
-    .AllowCredentials());
+        .AllowAnyMethod()
+        .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization, "x-custom-header")
+        .AllowCredentials());
 ```
 
 A hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure) uses the same base address for the client and server apps. The client app's <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> is set to a URI of `builder.HostEnvironment.BaseAddress` by default. CORS configuration is **not** required in the default configuration of a hosted Blazor solution. Additional client apps that aren't hosted by the server project and don't share the server app's base address **do** require CORS configuration in the server project.
@@ -2821,9 +2821,9 @@ The following policy includes configuration for:
 ```csharp
 app.UseCors(policy => 
     policy.WithOrigins("http://localhost:5000", "https://localhost:5001")
-    .AllowAnyMethod()
-    .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization, "x-custom-header")
-    .AllowCredentials());
+        .AllowAnyMethod()
+        .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization, "x-custom-header")
+        .AllowCredentials());
 ```
 
 A hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure) uses the same base address for the client and server apps. The client app's <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> is set to a URI of `builder.HostEnvironment.BaseAddress` by default. CORS configuration is **not** required in the default configuration of a hosted Blazor solution. Additional client apps that aren't hosted by the server project and don't share the server app's base address **do** require CORS configuration in the server project.

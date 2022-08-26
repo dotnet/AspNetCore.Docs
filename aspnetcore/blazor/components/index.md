@@ -3579,7 +3579,7 @@ Common Blazor naming conventions used throughout the Blazor documentation includ
 
 Routing in Blazor is achieved by providing a route template to each accessible component in the app with an [`@page`][9] directive. When a Razor file with an [`@page`][9] directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template. At runtime, the router searches for component classes with a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> and renders whichever component has a route template that matches the requested URL.
 
-The following `HelloWorld` component uses a route template of `/hello-world`. The rendered webpage for the component is reached at the relative URL `/hello-world`. When running a Blazor app locally with the default protocol, host, and port, the `HelloWorld` component is requested in the browser at `https://localhost:5001/hello-world`. Components that produce webpages usually reside in the `Pages` folder, but you can use any folder to hold components, including within nested folders.
+The following `HelloWorld` component uses a route template of `/hello-world`, and the rendered webpage for the component is reached at the relative URL `/hello-world`. Components that produce webpages usually reside in the `Pages` folder, but you can use any folder to hold components, including within nested folders.
 
 `Pages/HelloWorld.razor`:
 
