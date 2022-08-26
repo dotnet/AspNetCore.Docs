@@ -52,7 +52,7 @@ Apps should use [Configuration](xref:fundamentals/configuration/index) to set li
 
 A sliding window algorithm:
 
-* Is similar to the fixed window limiter but adds segments per window. The window slides one segment (window)/(segments per window).
+* Is similar to the fixed window limiter but adds segments per window. The window slides one segment each segment interval. The segment interval is (window time)/(segments per window).
 * Limits the requests for a window to `permitLimit` requests.
 * Each time window is divided in `n` segments per window.
 * Requests taken from the expired time segment one window back (`n` segments prior to the current segment), are added to the current segment. We refer to the most expired time segment one window back as the expired segment.  Consider the following table which shows a sliding window limiter with a 30-second window, 3 segments per window and a limit of 100 requests:
