@@ -1893,9 +1893,9 @@ A helper class can invoke a .NET instance method as an <xref:System.Action>. Hel
 
 In the following example:
 
-* The `CallDotNetExample6` component contains several `ListItem` components, which is a shared component in the app's `Shared` folder.
-* Each `ListItem` component is composed of a message and a button.
-* When a `ListItem` component button is selected, that `ListItem`'s `UpdateMessage` method changes the list item text and hides the button.
+* The `CallDotNetExample6` component contains several `ListItem1` components, which is a shared component in the app's `Shared` folder.
+* Each `ListItem1` component is composed of a message and a button.
+* When a `ListItem1` component button is selected, that `ListItem1`'s `UpdateMessage` method changes the list item text and hides the button.
 
 The following `MessageUpdateInvokeHelper` class maintains a JS-invokable .NET method, `UpdateMessageCaller`, to invoke the <xref:System.Action> specified when the class is instantiated. `BlazorSample` is the app's assembly name.
 
@@ -1918,17 +1918,17 @@ The following `updateMessageCaller` JS function invokes the `UpdateMessageCaller
 
 In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 
-The following `ListItem` component is a shared component that can be used any number of times in a parent component and creates list items (`<li>...</li>`) for an HTML list (`<ul>...</ul>` or `<ol>...</ol>`). Each `ListItem` component instance establishes an instance of `MessageUpdateInvokeHelper` with an <xref:System.Action> set to its `UpdateMessage` method.
+The following `ListItem1` component is a shared component that can be used any number of times in a parent component and creates list items (`<li>...</li>`) for an HTML list (`<ul>...</ul>` or `<ol>...</ol>`). Each `ListItem1` component instance establishes an instance of `MessageUpdateInvokeHelper` with an <xref:System.Action> set to its `UpdateMessage` method.
 
-When a `ListItem` component's **`InteropCall`** button is selected, `updateMessageCaller` is invoked with a created <xref:Microsoft.JSInterop.DotNetObjectReference> for the `MessageUpdateInvokeHelper` instance. This permits the framework to call `UpdateMessageCaller` on that `ListItem`'s `MessageUpdateInvokeHelper` instance. The passed <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in JS (`dotNetHelper.dispose()`).
+When a `ListItem1` component's **`InteropCall`** button is selected, `updateMessageCaller` is invoked with a created <xref:Microsoft.JSInterop.DotNetObjectReference> for the `MessageUpdateInvokeHelper` instance. This permits the framework to call `UpdateMessageCaller` on that `ListItem1`'s `MessageUpdateInvokeHelper` instance. The passed <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in JS (`dotNetHelper.dispose()`).
 
-`Shared/ListItem.razor`:
+`Shared/ListItem1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem1.razor":::
 
 [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) is called to update the UI when `message` is set in `UpdateMessage`. If `StateHasChanged` isn't called, Blazor has no way of knowing that the UI should be updated when the <xref:System.Action> is invoked.
 
-The following `CallDotNetExample6` parent component includes four list items, each an instance of the `ListItem` component.
+The following `CallDotNetExample6` parent component includes four list items, each an instance of the `ListItem1` component.
 
 `Pages/CallDotNetExample6.razor`:
 
@@ -1936,10 +1936,72 @@ The following `CallDotNetExample6` parent component includes four list items, ea
 
 The following image shows the rendered `CallDotNetExample6` parent component after the second **`InteropCall`** button is selected:
 
-* The second `ListItem` component has displayed the `UpdateMessage Called!` message.
-* The **`InteropCall`** button for the second `ListItem` component isn't visible because the button's CSS `display` property is set to `none`.
+* The second `ListItem1` component has displayed the `UpdateMessage Called!` message.
+* The **`InteropCall`** button for the second `ListItem1` component isn't visible because the button's CSS `display` property is set to `none`.
 
 ![Rendered 'CallDotNetExample6' component example](~/blazor/javascript-interoperability/call-dotnet-from-javascript/_static/component-example-6.png)
+
+## Component instance .NET method called from `DotNetObjectReference` assigned to an element property
+
+The assignment of a <xref:Microsoft.JSInterop.DotNetObjectReference> to a property of an HTML element permits calling .NET methods on a component instance:
+
+* An [element reference](xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements) is captured (<xref:Microsoft.AspNetCore.Components.ElementReference>).
+* In the component's [`OnAfterRender{Async}` method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync), a JavaScript (JS) function is invoked with the element reference and the component instance as a <xref:Microsoft.JSInterop.DotNetObjectReference>. The JS function attaches the <xref:Microsoft.JSInterop.DotNetObjectReference> to the element in a property.
+* When an element event is invoked in JS (for example, `onclick`), the element's attached <xref:Microsoft.JSInterop.DotNetObjectReference> is used to call a .NET method.
+
+Similar to the approach described in the [Component instance .NET method helper class](#component-instance-net-method-helper-class) section, this approach is useful in the following scenarios:
+
+* When several components of the same type are rendered on the same page.
+* In Blazor Server apps with multiple users concurrently using the same component.
+* The .NET method is invoked from a JS event (for example, `onclick`), not from a Blazor event (for example, `@onclick`).
+
+In the following example:
+
+* The `CallDotNetExample7` component contains several `ListItem2` components, which is a shared component in the app's `Shared` folder.
+* Each `ListItem2` component is composed of a list item message `<span>` and a second `<span>` with a `display` CSS property set to `inline-block` for display.
+* When a `ListItem2` component list item is selected, that `ListItem2`'s `UpdateMessage` method changes the list item text in the first `<span>` and hides the second `<span>` by setting its `display` property to `none`.
+
+The following `assignDotNetHelper` JS function assigns the <xref:Microsoft.JSInterop.DotNetObjectReference> to an element in a property named `dotNetHelper`:
+
+```html
+<script>
+  window.assignDotNetHelper = (element, dotNetHelper) => {
+    element.dotNetHelper = dotNetHelper;
+  }
+</script>
+```
+
+The following `interopCall` JS function uses the <xref:Microsoft.JSInterop.DotNetObjectReference> for the passed element to invoke a .NET method named `UpdateMessage`:
+
+```html
+<script>
+  window.interopCall = async (element) => {
+    await element.dotNetHelper.invokeMethodAsync('UpdateMessage');
+  }
+</script>
+```
+
+[!INCLUDE[](~/blazor/includes/js-location.md)]
+
+In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
+
+The following `ListItem2` component is a shared component that can be used any number of times in a parent component and creates list items (`<li>...</li>`) for an HTML list (`<ul>...</ul>` or `<ol>...</ol>`).
+
+Each `ListItem2` component instance invokes the `assignDotNetHelper` JS function in [`OnAfterRenderAsync`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) with an element reference (the first `<span>` element of the list item) and the component instance as a <xref:Microsoft.JSInterop.DotNetObjectReference>.
+
+When a `ListItem2` component's message `<span>` is selected, `interopCall` is invoked passing the `<span>` element as a parameter (`this`), which invokes the `UpdateMessage` .NET method. In `UpdateMessage`, [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) is called to update the UI when `message` is set and the `display` property of the second `<span>` is updated. If `StateHasChanged` isn't called, Blazor has no way of knowing that the UI should be updated when the method is invoked.
+
+The <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the component is disposed.
+
+`Shared/ListItem2.razor`:
+
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/call-dotnet-from-js/ListItem2.razor":::
+
+The following `CallDotNetExample7` parent component includes four list items, each an instance of the `ListItem2` component.
+
+`Pages/CallDotNetExample7.razor`:
+
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample7.razor" highlight="6-9":::
 
 ## Synchronous JS interop in Blazor WebAssembly apps
 
@@ -2000,13 +2062,13 @@ Provide a `sendByteArray` JS function. The function is called by a button in the
 
 [!INCLUDE[](~/blazor/includes/js-location.md)]
 
-`Pages/CallDotNetExample7.razor`:
+`Pages/CallDotNetExample8.razor`:
 
 ```razor
-@page "/call-dotnet-example-7"
+@page "/call-dotnet-example-8"
 @using System.Text
 
-<h1>Call .NET Example 7</h1>
+<h1>Call .NET Example 8</h1>
 
 <p>
     <button onclick="sendByteArray()">Send Bytes</button>
