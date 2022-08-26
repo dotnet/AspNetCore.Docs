@@ -69,6 +69,7 @@ The `Virtualize` component:
 * Calculates the number of items to render based on the height of the container and the size of the rendered items.
 * Recalculates and rerenders the items as the user scrolls.
 * Only fetches the slice of records from an external API that correspond to the current visible region, instead of downloading all of the data from the collection.
+* Receives a generic <xref:System.Collections.Generic.ICollection%601> for <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items?displayProperty=nameWithType>. If a non-generic collection supplies the items (for example, a collection of <xref:System.Data.DataRow>), follow the guidance in the [Item provider delegate](#item-provider-delegate) section to supply the items.
 
 The item content for the `Virtualize` component can include:
 
@@ -78,7 +79,7 @@ The item content for the `Virtualize` component can include:
 
 ## Item provider delegate
 
-If you don't want to load all of the items into memory, you can specify an items provider delegate method to the component's <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A?displayProperty=nameWithType> parameter that asynchronously retrieves the requested items on demand. In the following example, the `LoadEmployees` method provides the items to the `Virtualize` component:
+If you don't want to load all of the items into memory or the collection isn't a generic <xref:System.Collections.Generic.ICollection%601>, you can specify an items provider delegate method to the component's <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A?displayProperty=nameWithType> parameter that asynchronously retrieves the requested items on demand. In the following example, the `LoadEmployees` method provides the items to the `Virtualize` component:
 
 ```razor
 <Virtualize Context="employee" ItemsProvider="@LoadEmployees">
@@ -93,7 +94,7 @@ The items provider receives an <xref:Microsoft.AspNetCore.Components.Web.Virtual
 
 A `Virtualize` component can only accept **one item source** from its parameters, so don't attempt to simultaneously use an items provider and assign a collection to `Items`. If both are assigned, an <xref:System.InvalidOperationException> is thrown when the component's parameters are set at runtime.
 
-The following `LoadEmployees` method example loads employees from an `EmployeeService` (not shown):
+The following example loads employees from an `EmployeeService` (not shown):
 
 ```csharp
 private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
@@ -104,6 +105,25 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
         numEmployees, request.CancellationToken);
 
     return new ItemsProviderResult<Employee>(employees, totalEmployees);
+}
+```
+
+In the following example, a collection of <xref:System.Data.DataRow> is a non-generic collection, so an items provider delegate is used for virtualization:
+
+```razor
+<Virtualize Context="row" ItemsProvider="GetRows">
+    ...
+</Virtualize>
+
+@code{
+    ...
+
+    private ValueTask<ItemsProviderResult<DataRow>> GetRows(ItemsProviderRequest request)
+    {
+        return new(new ItemsProviderResult<DataRow>(
+            dataTable.Rows.OfType<DataRow>().Skip(request.StartIndex).Take(request.Count),
+            dataTable.Rows.Count));
+    }
 }
 ```
 
@@ -322,6 +342,7 @@ The `Virtualize` component:
 * Calculates the number of items to render based on the height of the container and the size of the rendered items.
 * Recalculates and rerenders the items as the user scrolls.
 * Only fetches the slice of records from an external API that correspond to the current visible region, instead of downloading all of the data from the collection.
+* Receives a generic <xref:System.Collections.Generic.ICollection%601> for <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items?displayProperty=nameWithType>. If a non-generic collection supplies the items (for example, a collection of <xref:System.Data.DataRow>), follow the guidance in the [Item provider delegate](#item-provider-delegate) section to supply the items.
 
 The item content for the `Virtualize` component can include:
 
@@ -331,7 +352,7 @@ The item content for the `Virtualize` component can include:
 
 ## Item provider delegate
 
-If you don't want to load all of the items into memory, you can specify an items provider delegate method to the component's <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A?displayProperty=nameWithType> parameter that asynchronously retrieves the requested items on demand. In the following example, the `LoadEmployees` method provides the items to the `Virtualize` component:
+If you don't want to load all of the items into memory or the collection isn't a generic <xref:System.Collections.Generic.ICollection%601>, you can specify an items provider delegate method to the component's <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A?displayProperty=nameWithType> parameter that asynchronously retrieves the requested items on demand. In the following example, the `LoadEmployees` method provides the items to the `Virtualize` component:
 
 ```razor
 <Virtualize Context="employee" ItemsProvider="@LoadEmployees">
@@ -346,7 +367,7 @@ The items provider receives an <xref:Microsoft.AspNetCore.Components.Web.Virtual
 
 A `Virtualize` component can only accept **one item source** from its parameters, so don't attempt to simultaneously use an items provider and assign a collection to `Items`. If both are assigned, an <xref:System.InvalidOperationException> is thrown when the component's parameters are set at runtime.
 
-The following `LoadEmployees` method example loads employees from an `EmployeeService` (not shown):
+The following example loads employees from an `EmployeeService` (not shown):
 
 ```csharp
 private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
@@ -357,6 +378,25 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
         numEmployees, request.CancellationToken);
 
     return new ItemsProviderResult<Employee>(employees, totalEmployees);
+}
+```
+
+In the following example, a collection of <xref:System.Data.DataRow> is a non-generic collection, so an items provider delegate is used for virtualization:
+
+```razor
+<Virtualize Context="row" ItemsProvider="GetRows">
+    ...
+</Virtualize>
+
+@code{
+    ...
+
+    private ValueTask<ItemsProviderResult<DataRow>> GetRows(ItemsProviderRequest request)
+    {
+        return new(new ItemsProviderResult<DataRow>(
+            dataTable.Rows.OfType<DataRow>().Skip(request.StartIndex).Take(request.Count),
+            dataTable.Rows.Count));
+    }
 }
 ```
 
@@ -484,6 +524,7 @@ The `Virtualize` component:
 * Calculates the number of items to render based on the height of the container and the size of the rendered items.
 * Recalculates and rerenders the items as the user scrolls.
 * Only fetches the slice of records from an external API that correspond to the current visible region, instead of downloading all of the data from the collection.
+* Receives a generic <xref:System.Collections.Generic.ICollection%601> for <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.Items?displayProperty=nameWithType>. If a non-generic collection supplies the items (for example, a collection of <xref:System.Data.DataRow>), follow the guidance in the [Item provider delegate](#item-provider-delegate) section to supply the items.
 
 The item content for the `Virtualize` component can include:
 
@@ -493,7 +534,7 @@ The item content for the `Virtualize` component can include:
 
 ## Item provider delegate
 
-If you don't want to load all of the items into memory, you can specify an items provider delegate method to the component's <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A?displayProperty=nameWithType> parameter that asynchronously retrieves the requested items on demand. In the following example, the `LoadEmployees` method provides the items to the `Virtualize` component:
+If you don't want to load all of the items into memory or the collection isn't a generic <xref:System.Collections.Generic.ICollection%601>, you can specify an items provider delegate method to the component's <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.ItemsProvider%2A?displayProperty=nameWithType> parameter that asynchronously retrieves the requested items on demand. In the following example, the `LoadEmployees` method provides the items to the `Virtualize` component:
 
 ```razor
 <Virtualize Context="employee" ItemsProvider="@LoadEmployees">
@@ -508,7 +549,7 @@ The items provider receives an <xref:Microsoft.AspNetCore.Components.Web.Virtual
 
 A `Virtualize` component can only accept **one item source** from its parameters, so don't attempt to simultaneously use an items provider and assign a collection to `Items`. If both are assigned, an <xref:System.InvalidOperationException> is thrown when the component's parameters are set at runtime.
 
-The following `LoadEmployees` method example loads employees from an `EmployeeService` (not shown):
+The following example loads employees from an `EmployeeService` (not shown):
 
 ```csharp
 private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
@@ -519,6 +560,25 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
         numEmployees, request.CancellationToken);
 
     return new ItemsProviderResult<Employee>(employees, totalEmployees);
+}
+```
+
+In the following example, a collection of <xref:System.Data.DataRow> is a non-generic collection, so an items provider delegate is used for virtualization:
+
+```razor
+<Virtualize Context="row" ItemsProvider="@GetRows">
+    ...
+</Virtualize>
+
+@code{
+    ...
+
+    private ValueTask<ItemsProviderResult<DataRow>> GetRows(ItemsProviderRequest request)
+    {
+        return new(new ItemsProviderResult<DataRow>(
+            dataTable.Rows.OfType<DataRow>().Skip(request.StartIndex).Take(request.Count),
+            dataTable.Rows.Count));
+    }
 }
 ```
 
