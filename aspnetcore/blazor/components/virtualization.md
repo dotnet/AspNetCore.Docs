@@ -94,7 +94,7 @@ The items provider receives an <xref:Microsoft.AspNetCore.Components.Web.Virtual
 
 A `Virtualize` component can only accept **one item source** from its parameters, so don't attempt to simultaneously use an items provider and assign a collection to `Items`. If both are assigned, an <xref:System.InvalidOperationException> is thrown when the component's parameters are set at runtime.
 
-The following `LoadEmployees` method example loads employees from an `EmployeeService` (not shown):
+The following example loads employees from an `EmployeeService` (not shown):
 
 ```csharp
 private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
@@ -105,6 +105,25 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
         numEmployees, request.CancellationToken);
 
     return new ItemsProviderResult<Employee>(employees, totalEmployees);
+}
+```
+
+In the following example, a collection of <xref:System.Data.DataRow> is a non-generic collection, so an items provider delegate is used for virtualization:
+
+```razor
+<Virtualize Context="row" ItemsProvider="GetRows">
+    ...
+</Virtualize>
+
+@code{
+    ...
+
+    private ValueTask<ItemsProviderResult<DataRow>> GetRows(ItemsProviderRequest request)
+    {
+        return new(new ItemsProviderResult<DataRow>(
+            dataTable.Rows.OfType<DataRow>().Skip(request.StartIndex).Take(request.Count),
+            dataTable.Rows.Count));
+    }
 }
 ```
 
@@ -348,7 +367,7 @@ The items provider receives an <xref:Microsoft.AspNetCore.Components.Web.Virtual
 
 A `Virtualize` component can only accept **one item source** from its parameters, so don't attempt to simultaneously use an items provider and assign a collection to `Items`. If both are assigned, an <xref:System.InvalidOperationException> is thrown when the component's parameters are set at runtime.
 
-The following `LoadEmployees` method example loads employees from an `EmployeeService` (not shown):
+The following example loads employees from an `EmployeeService` (not shown):
 
 ```csharp
 private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
@@ -359,6 +378,25 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
         numEmployees, request.CancellationToken);
 
     return new ItemsProviderResult<Employee>(employees, totalEmployees);
+}
+```
+
+In the following example, a collection of <xref:System.Data.DataRow> is a non-generic collection, so an items provider delegate is used for virtualization:
+
+```razor
+<Virtualize Context="row" ItemsProvider="GetRows">
+    ...
+</Virtualize>
+
+@code{
+    ...
+
+    private ValueTask<ItemsProviderResult<DataRow>> GetRows(ItemsProviderRequest request)
+    {
+        return new(new ItemsProviderResult<DataRow>(
+            dataTable.Rows.OfType<DataRow>().Skip(request.StartIndex).Take(request.Count),
+            dataTable.Rows.Count));
+    }
 }
 ```
 
@@ -511,7 +549,7 @@ The items provider receives an <xref:Microsoft.AspNetCore.Components.Web.Virtual
 
 A `Virtualize` component can only accept **one item source** from its parameters, so don't attempt to simultaneously use an items provider and assign a collection to `Items`. If both are assigned, an <xref:System.InvalidOperationException> is thrown when the component's parameters are set at runtime.
 
-The following `LoadEmployees` method example loads employees from an `EmployeeService` (not shown):
+The following example loads employees from an `EmployeeService` (not shown):
 
 ```csharp
 private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
@@ -522,6 +560,25 @@ private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(
         numEmployees, request.CancellationToken);
 
     return new ItemsProviderResult<Employee>(employees, totalEmployees);
+}
+```
+
+In the following example, a collection of <xref:System.Data.DataRow> is a non-generic collection, so an items provider delegate is used for virtualization:
+
+```razor
+<Virtualize Context="row" ItemsProvider="@GetRows">
+    ...
+</Virtualize>
+
+@code{
+    ...
+
+    private ValueTask<ItemsProviderResult<DataRow>> GetRows(ItemsProviderRequest request)
+    {
+        return new(new ItemsProviderResult<DataRow>(
+            dataTable.Rows.OfType<DataRow>().Skip(request.StartIndex).Take(request.Count),
+            dataTable.Rows.Count));
+    }
 }
 ```
 
