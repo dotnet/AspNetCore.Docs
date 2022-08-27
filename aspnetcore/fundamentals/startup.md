@@ -31,7 +31,7 @@ For more information on application startup, see <xref:fundamentals/index>.
 
 :::moniker-end
 
-:::moniker range="> aspnetcore-6.0"
+:::moniker range="= aspnetcore-6.0"
 
 ASP.NET Core apps created with the web templates contain the application startup code in the `Program.cs` file.
 
