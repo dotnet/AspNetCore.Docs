@@ -167,7 +167,7 @@ items:
                 uid: data/ef-mvc/inheritance
               - name: Advanced topics
                 uid: data/ef-mvc/advanced
-      - name: Microsoft Learn modules
+      - name: Learn modules
         items:
           - name: Web apps >>
             displayName: tutorial, razor, razor pages, ui
@@ -333,7 +333,7 @@ items:
                 uid: blazor/tutorials/build-a-blazor-app
               - name: SignalR with Blazor
                 uid: blazor/tutorials/signalr-blazor
-              - name: Microsoft Learn modules
+              - name: Learn modules
                 href: /learn/paths/build-web-apps-with-blazor/
           - name: Hosting models
             uid: blazor/hosting-models

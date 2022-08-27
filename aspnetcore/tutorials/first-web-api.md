@@ -1211,8 +1211,7 @@ The following diagram shows the design of the app.
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
 
-  ![macOS API template selection](first-web-api-mac/_static/5/api_template.png
-  )
+  ![macOS API template selection](first-web-api-mac/_static/5/api_template.png)
 
 * In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 3.x **Target Framework**. Select **Next**.
 
@@ -1639,4 +1638,4 @@ For more information, see the following resources:
 * <xref:web-api/action-return-types>
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
-* [Microsoft Learn: Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)
+* [Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)
