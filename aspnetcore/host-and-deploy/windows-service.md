@@ -49,7 +49,7 @@ In `Program.cs`:
 * Set `ContentRootPath`
 * Call `UseWindowsService`
 
-:::code language="csharp" source="~/host-and-deploy/windows-service/samples/6.x/WebAppServiceSample/Program.cs" highlight="7,15":::
+:::code language="csharp" source="~/host-and-deploy/windows-service/samples/6.x/WebAppServiceSample/Program.cs" highlight="7,8,16":::
 
 The following sample apps accompany this topic:
 
