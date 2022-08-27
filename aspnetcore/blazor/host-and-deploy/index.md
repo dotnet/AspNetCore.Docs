@@ -60,10 +60,10 @@ To host a Blazor app in IIS, see the following resources:
 * IIS hosting
   * <xref:tutorials/publish-to-iis>
   * <xref:host-and-deploy/iis/index>
-* <xref:blazor/host-and-deploy/server> (Blazor Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) and Azure App Service)
+* <xref:blazor/host-and-deploy/server>: Blazor Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service
 * IIS sub-application hosting
   * Follow the guidance in the [App base path](#app-base-path) section for the Blazor app prior to publishing the app. The examples use an app base path of `/CoolApp`.
-  * Follow the sub-application configuration guidance in <xref:host-and-deploy/iis/advanced#sub-applications>. The sub-app takes on a virtual path of the sub-app folder name. For an app that should be hosted with an app base path of `/CoolApp`, the Blazor app is placed in a folder named `CoolApp` under the root site in IIS Manager and the sub-app takes on a virtual path of `/CoolApp`.
+  * Follow the sub-application configuration guidance in <xref:host-and-deploy/iis/advanced#sub-applications>. The sub-app's folder path under the root site becomes the virtual path of the sub-app. For an app base path of `/CoolApp`, the Blazor app is placed in a folder named `CoolApp` under the root site and the sub-app takes on a virtual path of `/CoolApp`.
 
 Sharing an app pool among ASP.NET Core apps isn't supported, including for Blazor apps. Use one app pool per app when hosting with IIS, and avoid the use of IIS's [virtual directories](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) for hosting multiple apps.
 
@@ -299,10 +299,10 @@ To host a Blazor app in IIS, see the following resources:
 * IIS hosting
   * <xref:tutorials/publish-to-iis>
   * <xref:host-and-deploy/iis/index>
-* <xref:blazor/host-and-deploy/server> (Blazor Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) and Azure App Service)
+* <xref:blazor/host-and-deploy/server>: Blazor Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service
 * IIS sub-application hosting
   * Follow the guidance in the [App base path](#app-base-path) section for the Blazor app prior to publishing the app. The examples use an app base path of `/CoolApp`.
-  * Follow the sub-application configuration guidance in <xref:host-and-deploy/iis/advanced#sub-applications>. The sub-app takes on a virtual path of the sub-app folder name. For an app that should be hosted with an app base path of `/CoolApp`, the Blazor app is placed in a folder named `CoolApp` under the root site in IIS Manager and the sub-app takes on a virtual path of `/CoolApp`.
+  * Follow the sub-application configuration guidance in <xref:host-and-deploy/iis/advanced#sub-applications>. The sub-app's folder path under the root site becomes the virtual path of the sub-app. For an app base path of `/CoolApp`, the Blazor app is placed in a folder named `CoolApp` under the root site and the sub-app takes on a virtual path of `/CoolApp`.
 
 Sharing an app pool among ASP.NET Core apps isn't supported, including for Blazor apps. Use one app pool per app when hosting with IIS, and avoid the use of IIS's [virtual directories](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) for hosting multiple apps.
 
@@ -522,10 +522,10 @@ To host a Blazor app in IIS, see the following resources:
 * IIS hosting
   * <xref:tutorials/publish-to-iis>
   * <xref:host-and-deploy/iis/index>
-* <xref:blazor/host-and-deploy/server> (Blazor Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) and Azure App Service)
+* <xref:blazor/host-and-deploy/server>: Blazor Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service
 * IIS sub-application hosting
   * Follow the guidance in the [App base path](#app-base-path) section for the Blazor app prior to publishing the app. The examples use an app base path of `/CoolApp`.
-  * Follow the sub-application configuration guidance in <xref:host-and-deploy/iis/advanced#sub-applications>. The sub-app takes on a virtual path of the sub-app folder name. For an app that should be hosted with an app base path of `/CoolApp`, the Blazor app is placed in a folder named `CoolApp` under the root site in IIS Manager and the sub-app takes on a virtual path of `/CoolApp`.
+  * Follow the sub-application configuration guidance in <xref:host-and-deploy/iis/advanced#sub-applications>. The sub-app's folder path under the root site becomes the virtual path of the sub-app. For an app base path of `/CoolApp`, the Blazor app is placed in a folder named `CoolApp` under the root site and the sub-app takes on a virtual path of `/CoolApp`.
 
 Sharing an app pool among ASP.NET Core apps isn't supported, including for Blazor apps. Use one app pool per app when hosting with IIS, and avoid the use of IIS's [virtual directories](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) for hosting multiple apps.
 
