@@ -28,7 +28,9 @@ These supported features are available in Kestrel on all HTTP/2 enabled platform
 .NET 7 introduced Websockets over HTTP/2 support for Kestrel, the SignalR JavaScript client, and SignalR with Blazor WebAssembly.
 
 > [!NOTE]
-> HTTP/2 WebSockets use CONNECT requests rather than GET, so your own routes and controllers may need updating. For more information, see [Add HTTP/2 WebSocket support existing controllers](#Add-HTTP/2-WebSocket-support-existing-controllers) in this article.
+> HTTP/2 WebSockets use CONNECT requests rather than GET, so your own routes and controllers may need updating. 
+> For more information, see [Add HTTP/2 WebSocket support existing controllers](#Add-HTTP/2-WebSocket-support-existing-controllers) in this article.
+>
 > Chrome and Edge have HTTP/2 WebSockets enabled by default, and you can enable it in FireFox on the `about:config` page with the `network.http.spdy.websockets` flag.
 
 WebSockets were originally designed for HTTP/1.1 but have since been adapted to work over HTTP/2.
