@@ -3,9 +3,25 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebSocketsSample.Controllers;
 
-// <snippet>
+#region snippet_Controller_Get
 public class WebSocketController : ControllerBase
 {
+    [HttpGet("/ws")]
+    public async Task Get()
+    {
+        if (HttpContext.WebSockets.IsWebSocketRequest)
+        {
+            using var webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
+            await Echo(webSocket);
+        }
+        else
+        {
+            HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+        }
+    }
+    #endregion
+
+    #region snippet_Controller_Connect
     [HttpConnect("/ws")]
     public async Task Connect()
     {
@@ -19,7 +35,7 @@ public class WebSocketController : ControllerBase
             HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
         }
     }
-    // </snippet>
+    #endregion
 
     private static async Task Echo(WebSocket webSocket)
     {

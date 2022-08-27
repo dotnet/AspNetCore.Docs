@@ -14,6 +14,8 @@ uid: fundamentals/websockets
 
 This article explains how to get started with WebSockets in ASP.NET Core. [WebSocket](https://wikipedia.org/wiki/WebSocket) ([RFC 6455](https://tools.ietf.org/html/rfc6455)) is a protocol that enables two-way persistent communication channels over TCP connections. It's used in apps that benefit from fast, real-time communication, such as chat, dashboard, and game apps.
 
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/websockets/samples) ([how to download](xref:index#how-to-download-a-sample), [how to run](#sample-app)).
+
 ## Http/2 WebSockets support
 
 Using WebSockets over HTTP/2 takes advantage of new features such as:
@@ -26,10 +28,10 @@ These supported features are available in Kestrel on all HTTP/2 enabled platform
 .NET 7 introduced Websockets over HTTP/2 support for Kestrel, the SignalR JavaScript client, and SignalR with Blazor WebAssembly.
 
 > [!NOTE]
-> HTTP/2 WebSockets use CONNECT requests rather than GET, so your own routes and controllers may need updating.
+> HTTP/2 WebSockets use CONNECT requests rather than GET, so your own routes and controllers may need updating. For more information, see [Add HTTP/2 WebSocket support existing controllers](#Add-HTTP/2-WebSocket-support-existing-controllers) in this article.
 > Chrome and Edge have HTTP/2 WebSockets enabled by default, and you can enable it in FireFox on the `about:config` page with the `network.http.spdy.websockets` flag.
 
-WebSockets were originally designed for HTTP/1.1 but have since been adapted to work over HTTP/2. 
+WebSockets were originally designed for HTTP/1.1 but have since been adapted to work over HTTP/2.
 
 ## SignalR
 
@@ -48,13 +50,7 @@ WebSockets over HTTP/2 is supported for:
 
 For some apps, [gRPC on .NET](xref:grpc/index) provides an alternative to WebSockets.
 
-## Websockets without SignalR
-
-The following sections show how to configure raw Websockets in ASP.NET Core.
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/websockets/samples) ([how to download](xref:index#how-to-download-a-sample), [how to run](#sample-app)).
-
-### Prerequisites
+## Prerequisites
 
 * Any OS that supports ASP.NET Core:  
   * Windows 7 / Windows Server 2008 or later
@@ -68,7 +64,7 @@ The following sections show how to configure raw Websockets in ASP.NET Core.
   * Windows 8 / Windows Server 2012 or later
 * For supported browsers, see [Can I use](https://caniuse.com/?search=websockets).
 
-### Configure the middleware
+## Configure the middleware
 
 Add the WebSockets middleware in `Program.cs`:
 
@@ -81,7 +77,7 @@ The following settings can be configured:
 
 :::code language="csharp" source="websockets/samples/6.x/WebSocketsSample/Program.cs" id="snippet_UseWebSockets":::
 
-### Accept WebSocket requests
+## Accept WebSocket requests
 
 Somewhere later in the request life cycle (later in `Program.cs` or in an action method, for example) check if it's a WebSocket request and accept the WebSocket request.
 
@@ -93,7 +89,7 @@ A WebSocket request could come in on any URL, but this sample code only accepts 
 
 A similar approach can be taken in a controller method:
 
-:::code language="csharp" source="websockets/samples/6.x/WebSocketsSample/Controllers/WebSocketController.cs" id="snippet":::
+:::code language="csharp" source="websockets/samples/6.x/WebSocketsSample/Controllers/WebSocketController.cs" id="snippet_Controller_Get":::
 
 When using a WebSocket, you **must** keep the middleware pipeline running for the duration of the connection. If you attempt to send or receive a WebSocket message after the middleware pipeline ends, you may get an exception like the following:
 
@@ -110,12 +106,24 @@ The WebSocket closed exception can also happen when returning too soon from an a
 
 Never use `Task.Wait`, `Task.Result`, or similar blocking calls to wait for the socket to complete, as that can cause serious threading issues. Always use `await`.
 
-#### Compression
+## Add HTTP/2 WebSocket support existing controllers
+
+.NET 7 introduced Websockets over HTTP/2 support for Kestrel, the SignalR JavaScript client, and SignalR with Blazor WebAssembly. HTTP/2 WebSockets use CONNECT requests rather than GET.  The previous controller action method example can be modified to use CONNECT by defining a `HTTPConnect` attribute class and applying that attribute to the controller method.
+
+The following is an example custom attribute routing class named `HTTPConnectAttribute`:
+
+[!code-csharp[](~/websockets/samples/6.x/WebSocketsSample/Controllers/HttpConnectAttribute.cs)]
+
+The previous controller action example using the custom `[HTTPConnect]` attribute instead of [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute):
+
+[!code-csharp[](~/websockets/samples/6.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet_Controller_Connect&highlight=10)]
+
+### Compression
 
 > [!WARNING]
 > Enabling compression over encrypted connections can make an app subject to CRIME/BREACH attacks.
 > If sending sensitive information, avoid enabling compression or use `WebSocketMessageFlags.DisableCompression` when calling `WebSocket.SendAsync`.
-> This applies to both sides of the WebSocket. Note that the WebSockets API in the browser doesn't have configuration for disabling compression per send. 
+> This applies to both sides of the WebSocket. Note that the WebSockets API in the browser doesn't have configuration for disabling compression per send.
 
 If compression of messages over WebSockets is desired, then the accept code must specify that it allows compression as follows:
 
@@ -134,7 +142,7 @@ Compression is negotiated between the client and server when first establishing 
 > [!NOTE]
 > If the compression negotiation isn't accepted by either the server or client, the connection is still established. However, the connection doesn't use compression when sending and receiving messages.
 
-### Send and receive messages
+## Send and receive messages
 
 The `AcceptWebSocketAsync` method upgrades the TCP connection to a WebSocket connection and provides a <xref:System.Net.WebSockets.WebSocket> object. Use the `WebSocket` object to send and receive messages.
 
@@ -144,13 +152,13 @@ The code shown earlier that accepts the WebSocket request passes the `WebSocket`
 
 When accepting the WebSocket connection before beginning the loop, the middleware pipeline ends. Upon closing the socket, the pipeline unwinds. That is, the request stops moving forward in the pipeline when the WebSocket is accepted. When the loop is finished and the socket is closed, the request proceeds back up the pipeline.
 
-### Handle client disconnects
+## Handle client disconnects
 
 The server isn't automatically informed when the client disconnects due to loss of connectivity. The server receives a disconnect message only if the client sends it, which can't be done if the internet connection is lost. If you want to take some action when that happens, set a timeout after nothing is received from the client within a certain time window.
 
 If the client isn't always sending messages and you don't want to time out just because the connection goes idle, have the client use a timer to send a ping message every X seconds. On the server, if a message hasn't arrived within 2\*X seconds after the previous one, terminate the connection and report that the client disconnected. Wait for twice the expected time interval to leave extra time for network delays that might hold up the ping message.
 
-### WebSocket origin restriction
+## WebSocket origin restriction
 
 The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
 
@@ -173,7 +181,7 @@ Windows Server 2012 or later and Windows 8 or later with IIS/IIS Express 8 or la
 > [!NOTE]
 > WebSockets are always enabled when using IIS Express.
 
-#### Enabling WebSockets on IIS
+### Enabling WebSockets on IIS
 
 To enable support for the WebSocket protocol on Windows Server 2012 or later:
 
@@ -198,7 +206,7 @@ To enable support for the WebSocket protocol on Windows 8 or later:
 1. Open the following nodes: **Internet Information Services** > **World Wide Web Services** > **Application Development Features**.
 1. Select the **WebSocket Protocol** feature. Select **OK**.
 
-#### Disable WebSocket when using socket.io on Node.js
+### Disable WebSocket when using socket.io on Node.js
 
 If using the WebSocket support in [socket.io](https://socket.io/) on [Node.js](https://nodejs.org/), disable the default IIS WebSocket module using the `webSocket` element in *web.config* or *applicationHost.config*. If this step isn't performed, the IIS WebSocket module attempts to handle the WebSocket communication rather than Node.js and the app.
 
@@ -208,7 +216,7 @@ If using the WebSocket support in [socket.io](https://socket.io/) on [Node.js](h
 </system.webServer>
 ```
 
-### Sample app
+## Sample app
 
 The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/websockets/samples) that accompanies this article is an echo app. It has a webpage that makes WebSocket connections, and the server resends any messages it receives back to the client. The sample app supports WebSockets over HTTP/2 when using a targeted framework of .NET 7 or later.
 
