@@ -10,7 +10,7 @@ uid: fundamentals/startup
 ---
 # App startup in ASP.NET Core
 
-By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-7.0"
 
