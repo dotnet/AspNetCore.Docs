@@ -34,7 +34,7 @@ landingContent:
       url: https://github.com/dotnet/docs/blob/main/styleguide/labels-projects.md
   - linkListType: concept
     links:
-    - text: Microsoft docs contributor guide
+    - text: Contributor guide
       url: /contribute
     - text: ASP.NET Core docs contributor guide
       url: https://github.com/dotnet/AspNetCore.Docs/blob/main/CONTRIBUTING.md
