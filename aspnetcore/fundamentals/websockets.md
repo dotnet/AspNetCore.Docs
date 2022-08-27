@@ -118,7 +118,7 @@ The following is an example custom attribute routing class named `HTTPConnectAtt
 
 The previous controller action example using the custom `[HTTPConnect]` attribute instead of [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute):
 
-[!code-csharp[](~/fundamentals/websockets/samples/7.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet_Controller_Connect&highlight=10)]
+[!code-csharp[](~/fundamentals/websockets/samples/7.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet_Controller_Connect&highlight=1)]
 
 ### Compression
 
