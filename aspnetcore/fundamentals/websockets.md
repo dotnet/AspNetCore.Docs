@@ -114,11 +114,11 @@ Never use `Task.Wait`, `Task.Result`, or similar blocking calls to wait for the 
 
 The following is an example custom attribute routing class named `HTTPConnectAttribute`:
 
-[!code-csharp[](~/websockets/samples/7.x/WebSocketsSample/Controllers/HttpConnectAttribute.cs)]
+[!code-csharp[](~/fundamentals/websockets/samples/7.x/WebSocketsSample/Controllers/HttpConnectAttribute.cs)]
 
 The previous controller action example using the custom `[HTTPConnect]` attribute instead of [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute):
 
-[!code-csharp[](~/websockets/samples/7.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet_Controller_Connect&highlight=10)]
+[!code-csharp[](~/fundamentals/websockets/samples/7.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet_Controller_Connect&highlight=10)]
 
 ### Compression
 
