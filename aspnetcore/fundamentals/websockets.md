@@ -29,7 +29,7 @@ These supported features are available in Kestrel on all HTTP/2 enabled platform
 
 > [!NOTE]
 > HTTP/2 WebSockets use CONNECT requests rather than GET, so your own routes and controllers may need updating.
-> For more information, see [Add HTTP/2 WebSocket support existing controllers](##Add-HTTP%2F2-WebSocket-support-for-existing-controllers) in this article.
+> For more information, see [Add HTTP/2 WebSocket support existing controllers](##add-http-2-webSockets-support-for-existing-controllers) in this article.
 >
 > Chrome and Edge have HTTP/2 WebSockets enabled by default, and you can enable it in FireFox on the `about:config` page with the `network.http.spdy.websockets` flag.
 
@@ -108,7 +108,7 @@ The WebSocket closed exception can also happen when returning too soon from an a
 
 Never use `Task.Wait`, `Task.Result`, or similar blocking calls to wait for the socket to complete, as that can cause serious threading issues. Always use `await`.
 
-## Add HTTP/2 WebSocket support for existing controllers
+## Add HTTP/2 WebSockets support for existing controllers
 
 .NET 7 introduced Websockets over HTTP/2 support for Kestrel, the SignalR JavaScript client, and SignalR with Blazor WebAssembly. HTTP/2 WebSockets use CONNECT requests rather than GET.  The previous controller action method example can be modified to use CONNECT by defining a `HTTPConnect` attribute class and applying that attribute to the controller method.
 
