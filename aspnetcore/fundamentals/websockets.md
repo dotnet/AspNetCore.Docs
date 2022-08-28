@@ -70,14 +70,14 @@ For some apps, [gRPC on .NET](xref:grpc/index) provides an alternative to WebSoc
 
 Add the WebSockets middleware in `Program.cs`:
 
-:::code language="csharp" source="websockets/samples/6.x/WebSocketsSample/Snippets/Program.cs" id="snippet_UseWebSockets":::
+:::code language="csharp" source="websockets/samples/7.x/WebSocketsSample/Snippets/Program.cs" id="snippet_UseWebSockets":::
 
 The following settings can be configured:
 
 * <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveInterval%2A> - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
 * <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.AllowedOrigins%2A> - A list of allowed Origin header values for WebSocket requests. By default, all origins are allowed. For more information, see [WebSocket origin restriction](#websocket-origin-restriction) in this article.
 
-:::code language="csharp" source="websockets/samples/6.x/WebSocketsSample/Program.cs" id="snippet_UseWebSockets":::
+:::code language="csharp" source="websockets/samples/7.x/WebSocketsSample/Program.cs" id="snippet_UseWebSockets":::
 
 ## Accept WebSocket requests
 
@@ -85,13 +85,13 @@ Somewhere later in the request life cycle (later in `Program.cs` or in an action
 
 The following example is from later in `Program.cs`:
 
-:::code language="csharp" source="websockets/samples/6.x/WebSocketsSample/Snippets/Program.cs" id="snippet_AcceptWebSocketAsync" highlight="7":::
+:::code language="csharp" source="websockets/samples/7.x/WebSocketsSample/Snippets/Program.cs" id="snippet_AcceptWebSocketAsync" highlight="7":::
 
 A WebSocket request could come in on any URL, but this sample code only accepts requests for `/ws`.
 
 A similar approach can be taken in a controller method:
 
-:::code language="csharp" source="websockets/samples/6.x/WebSocketsSample/Controllers/WebSocketController.cs" id="snippet_Controller_Get":::
+:::code language="csharp" source="websockets/samples/7.x/WebSocketsSample/Controllers/WebSocketController.cs" id="snippet_Controller_Get":::
 
 When using a WebSocket, you **must** keep the middleware pipeline running for the duration of the connection. If you attempt to send or receive a WebSocket message after the middleware pipeline ends, you may get an exception like the following:
 
@@ -102,7 +102,7 @@ Object name: 'HttpResponseStream'.
 
 If you're using a background service to write data to a WebSocket, make sure you keep the middleware pipeline running. Do this by using a <xref:System.Threading.Tasks.TaskCompletionSource%601>. Pass the `TaskCompletionSource` to your background service and have it call <xref:System.Threading.Tasks.TaskCompletionSource%601.TrySetResult%2A> when you finish with the WebSocket. Then `await` the <xref:System.Threading.Tasks.TaskCompletionSource%601.Task> property during the request, as shown in the following example:
 
-:::code language="csharp" source="websockets/samples/6.x/WebSocketsSample/Snippets/Program.cs" id="snippet_AcceptWebSocketAsyncBackgroundSocketProcessor":::
+:::code language="csharp" source="websockets/samples/7.x/WebSocketsSample/Snippets/Program.cs" id="snippet_AcceptWebSocketAsyncBackgroundSocketProcessor":::
 
 The WebSocket closed exception can also happen when returning too soon from an action method. When accepting a socket in an action method, wait for the code that uses the socket to complete before returning from the action method.
 
