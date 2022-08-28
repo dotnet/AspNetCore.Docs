@@ -60,7 +60,8 @@ To host a Blazor app in IIS, see the following resources:
 * IIS hosting
   * <xref:tutorials/publish-to-iis>
   * <xref:host-and-deploy/iis/index>
-* <xref:blazor/host-and-deploy/server>: Blazor Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service
+* <xref:blazor/host-and-deploy/server>: Blazor Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service.
+* <xref:blazor/host-and-deploy/webassembly>: Includes additional guidance for Blazor WebAssembly apps hosted on IIS, including static site hosting, custom `web.config` files, URL rewriting, sub-apps, compression, and Azure Storage static file hosting.
 * IIS sub-application hosting
   * Follow the guidance in the [App base path](#app-base-path) section for the Blazor app prior to publishing the app. The examples use an app base path of `/CoolApp`.
   * Follow the sub-application configuration guidance in <xref:host-and-deploy/iis/advanced#sub-applications>. The sub-app's folder path under the root site becomes the virtual path of the sub-app. For an app base path of `/CoolApp`, the Blazor app is placed in a folder named `CoolApp` under the root site and the sub-app takes on a virtual path of `/CoolApp`.
@@ -68,8 +69,6 @@ To host a Blazor app in IIS, see the following resources:
 Sharing an app pool among ASP.NET Core apps isn't supported, including for Blazor apps. Use one app pool per app when hosting with IIS, and avoid the use of IIS's [virtual directories](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) for hosting multiple apps.
 
 One or more Blazor WebAssembly apps hosted by an ASP.NET Core app, known as a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly), are supported for ***one*** app pool. However, we don't recommend or support assigning a single app pool to multiple hosted Blazor WebAssembly solutions or in sub-app hosting scenarios.
-
-For more information on *solutions*, see <xref:blazor/tooling#visual-studio-solution-file-sln>.
 
 For more information on *solutions*, see <xref:blazor/tooling#visual-studio-solution-file-sln>.
 
@@ -299,7 +298,8 @@ To host a Blazor app in IIS, see the following resources:
 * IIS hosting
   * <xref:tutorials/publish-to-iis>
   * <xref:host-and-deploy/iis/index>
-* <xref:blazor/host-and-deploy/server>: Blazor Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service
+* <xref:blazor/host-and-deploy/server>: Blazor Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service.
+* <xref:blazor/host-and-deploy/webassembly>: Includes additional guidance for Blazor WebAssembly apps hosted on IIS, including static site hosting, custom `web.config` files, URL rewriting, sub-apps, compression, and Azure Storage static file hosting.
 * IIS sub-application hosting
   * Follow the guidance in the [App base path](#app-base-path) section for the Blazor app prior to publishing the app. The examples use an app base path of `/CoolApp`.
   * Follow the sub-application configuration guidance in <xref:host-and-deploy/iis/advanced#sub-applications>. The sub-app's folder path under the root site becomes the virtual path of the sub-app. For an app base path of `/CoolApp`, the Blazor app is placed in a folder named `CoolApp` under the root site and the sub-app takes on a virtual path of `/CoolApp`.
@@ -522,7 +522,8 @@ To host a Blazor app in IIS, see the following resources:
 * IIS hosting
   * <xref:tutorials/publish-to-iis>
   * <xref:host-and-deploy/iis/index>
-* <xref:blazor/host-and-deploy/server>: Blazor Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service
+* <xref:blazor/host-and-deploy/server>: Blazor Server apps running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service.
+* <xref:blazor/host-and-deploy/webassembly>: Includes additional guidance for Blazor WebAssembly apps hosted on IIS, including static site hosting, custom `web.config` files, URL rewriting, sub-apps, compression, and Azure Storage static file hosting.
 * IIS sub-application hosting
   * Follow the guidance in the [App base path](#app-base-path) section for the Blazor app prior to publishing the app. The examples use an app base path of `/CoolApp`.
   * Follow the sub-application configuration guidance in <xref:host-and-deploy/iis/advanced#sub-applications>. The sub-app's folder path under the root site becomes the virtual path of the sub-app. For an app base path of `/CoolApp`, the Blazor app is placed in a folder named `CoolApp` under the root site and the sub-app takes on a virtual path of `/CoolApp`.
