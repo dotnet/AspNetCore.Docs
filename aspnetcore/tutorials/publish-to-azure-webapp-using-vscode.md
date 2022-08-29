@@ -2,9 +2,10 @@
 title: Publish an ASP.NET Core app to Azure with Visual Studio Code
 author: rick-anderson
 description: Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio Code
+monikerRange: '>= aspnetcore-6.0'
 ms.author: riserrad
-ms.custom: "devx-track-csharp, mvc"
-ms.date: 07/10/2019
+ms.custom: "devx-track-csharp, mvc, vscode-azure-extension-update-completed"
+ms.date: 08/23/2022
 uid: tutorials/publish-to-azure-webapp-using-vscode
 ---
 
@@ -32,80 +33,71 @@ and deploy it within Visual Studio Code.
 
 ## Create an ASP.Net Core MVC project
 
-Using a terminal, navigate to the folder you want the project to be created on
-and use the following command:
+The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs).
 
-```dotnetcli
-dotnet new mvc
-```
+- Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+- Change to the directory (`cd`) that will contain the project.
+- Run the following command:
 
-You'll have a folder structure similar to the following:
+   ```dotnetcli
+   dotnet new mvc -o MyMVCapp
+   code -r MyMVCapp
+   ```
+
+  If a dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**, select **Yes**
+
+- `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
+- `code -r MvcMovie`:
+  - Loads the `MvcMovie.csproj` project file in Visual Studio Code.
+  - Visual Studio Code updates the integrated terminal to the project directory.
+
+A new ASP.NET Core MVC project is created in a *MyMVCapp* folder with a structure similar to the following:
 
 ```cmd
       appsettings.Development.json
       appsettings.json
+<DIR> bin
 <DIR> Controllers
 <DIR> Models
-      netcore-vscode.csproj
+      MyMVCapp.csproj
 <DIR> obj
       Program.cs
 <DIR> Properties
-      Startup.cs
 <DIR> Views
 <DIR> wwwroot
 ```
 
-## Open it with Visual Studio Code
+A `.vscode` folder will be created under the project structure. It will contain utility files to help you build and debug your .NET Core Web App.
 
-After your project is created, you can open it with Visual Studio Code
-by using one of the options below:
+## Test the project
 
-### Through the command line
+Before deploying the app to Azure, make sure it is running properly on your local machine.
 
-Use the following command within the folder you created the project:
+ [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-```cmd
-> code .
+- Run the following command:
+
+```dotnetcli
+dotnet run
 ```
 
-If the command below does not work, check if your installation is configured
-properly by referencing [this link](https://code.visualstudio.com/docs/setup/setup-overview#_cross-platform).
+The output shows messages similar to the following, indicating that the app is running and awaiting requests:
 
-### Through Visual Studio Code interface
-
-- Open Visual Studio Code
-- On the menu, select `File > Open Folder`
-- Select the root of the folder you created the MVC Project
-
-When you open the project folder, you'll receive a message saying that required
-assets to build and debug are missing. Accept the help to add them.
-
-![Visual Studio Code interface with project loaded](publish-to-azure-webapp-using-vscode/_static/folder-structure-restore-netcore.jpg)
-
-A `.vscode` folder will be created under the project structure. It will contain the following files:
-
-```cmd
-launch.json
-tasks.json
+```dotnetcli
+$ dotnet run
+Hosting environment: Development
+Content root path: C:/Docs/aspnetcore/tutorials/dotnet-watch/sample/WebApp
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
 ```
 
-These are utility files to help you build and debug your .NET Core Web App.
+- `dotnet run`:
+  - Starts [Kestrel](xref:fundamentals/servers/kestrel)
+  - Displays a URL to test the Web app such as ` http://localhost:<port>`, where `<port>` is the random port number set in `Properties\launchSettings.json` at project creation.
 
-## Run the app
+Select the URL to test the Web app in a browser.
 
-Before we deploy the app to Azure, make sure it is running
-properly on your local machine.
-
-- Press F5 to run the project
-
-Your web app will start running on a new tab of your default browser. You may
-notice a privacy warning as soon as it starts. This is because your app will
-start either using HTTP and HTTPS, and it navigates to the HTTPS endpoint
-by default.
-
-![Privacy warning while debugging the app locally](publish-to-azure-webapp-using-vscode/_static/run-webapp-https-warning.jpg)
-
-To keep the debugging session, click `Advanced` and then `Continue to localhost (unsafe)`.
+Press Ctrl+C on the command line to shut down the Web app after testing it.
 
 ## Generate the deployment package locally
 
