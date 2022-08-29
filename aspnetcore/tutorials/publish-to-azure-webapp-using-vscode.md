@@ -11,16 +11,13 @@ uid: tutorials/publish-to-azure-webapp-using-vscode
 
 # Publish an ASP.NET Core app to Azure with Visual Studio Code
 
-By [Ricardo Serradas](https://twitter.com/ricardoserradas)
-
 [!INCLUDE [Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
 To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azure-iis>.
 
 ## Intro
 
-With this tutorial, you'll learn how to create an ASP.Net Core MVC Application
-and deploy it within Visual Studio Code.
+With this tutorial, you'll learn how to create an ASP.Net Core MVC Application and deploy it within Visual Studio Code.
 
 ## Set up
 
@@ -67,7 +64,7 @@ A new ASP.NET Core MVC project is created in a *MyMVCapp* folder with a structur
 <DIR> wwwroot
 ```
 
-A `.vscode` folder will be created under the project structure. It will contain utility files to help you build and debug your .NET Core Web App.
+A `.vscode` folder will be created under the project structure. It will contain utility files to help you build and debug your ASP.NET Core web app.
 
 ## Test the project
 
@@ -93,11 +90,11 @@ Application started. Press Ctrl+C to shut down.
 
 - `dotnet run`:
   - Starts [Kestrel](xref:fundamentals/servers/kestrel)
-  - Displays a URL to test the Web app such as ` http://localhost:<port>`, where `<port>` is the random port number set in `Properties\launchSettings.json` at project creation.
+  - Displays a URL to test the web app such as ` http://localhost:<port>`, where `<port>` is the random port number set in `Properties\launchSettings.json` at project creation.
 
-Select the URL to test the Web app in a browser.
+Select the URL to test the web app in a browser.
 
-Press Ctrl+C on the command line to shut down the Web app after testing it.
+Press Ctrl+C on the command line to shut down the web app after testing it.
 
 ## Generate the deployment package locally
 
@@ -113,14 +110,14 @@ Press Ctrl+C on the command line to shut down the Web app after testing it.
 Leveraging the Azure App Service extension for Visual Studio Code, follow the
 steps below to publish the website directly to the Azure App Service.
 
-### If you're creating a new Web App
+### If you're creating a new web app
 
 - Right click the `publish` folder and select `Deploy to Web App...`
-- Select the subscription you want to create the Web App
+- Select the subscription you want to create the web app
 - Select `Create New Web App`
-- Enter a name for the Web App
+- Enter a name for the web app
 
-The extension will create the new Web App and will automatically start
+The extension will create the new web app and will automatically start
 deploying the package to it. Once the deployment is finished, click
 `Browse Website` to validate the deployment.
 
@@ -133,12 +130,12 @@ Once you click `Browse Website`, you'll navigate to it using your default browse
 ### If you're deploying to an existing Web App
 
 - Right click the `publish` folder and select `Deploy to Web App...`
-- Select the subscription the existing Web App resides
-- Select the Web App from the list
+- Select the subscription the existing web app resides
+- Select the web app from the list
 - Visual Studio Code will ask you if you want to overwrite the
 existing content. Click `Deploy` to confirm
 
-The extension will deploy the updated content to the Web App. Once it's done,
+The extension will deploy the updated content to the web app. Once it's done,
 click `Browse Website` to validate the deployment.
 
 ![Existing Web App successfully deployed](publish-to-azure-webapp-using-vscode/_static/existing-webapp-deployed.jpg)
