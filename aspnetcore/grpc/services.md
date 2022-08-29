@@ -328,7 +328,7 @@ A gRPC call ends on the server once the gRPC method exits. The following argumen
 
 If a gRPC method starts background tasks that use these types, it must complete the tasks before the gRPC method exits. Continuing to use the context, stream reader, or stream writer after the gRPC method exists causes errors and unpredictable behavior.
 
-The following method could write to the response stream after the method has finished:
+In the following example, the server streaming method could write to the response stream after the call has finished:
 
 ```csharp
 public override async Task StreamingFromServer(ExampleRequest request,
@@ -347,7 +347,7 @@ public override async Task StreamingFromServer(ExampleRequest request,
 }
 ```
 
-The solution is to await the write task before exiting the method:
+The solution in this example is to await the write task before exiting the method:
 
 ```csharp
 public override async Task StreamingFromServer(ExampleRequest request,
