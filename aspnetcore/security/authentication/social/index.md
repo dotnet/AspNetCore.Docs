@@ -97,9 +97,8 @@ To create a password and sign in using your email that you set during the sign i
 
 * Set a valid password and you can use this to sign in with your email.
 
-## Next steps
+## Additional information
 
+* [Sign in with Apple Example Integration](https://github.com/martincostello/SignInWithAppleSample)
 * See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/10563) for information on how to customize the login buttons.
-* This article introduced external authentication and explained the prerequisites required to add external logins to your ASP.NET Core app.
-* Reference provider-specific pages to configure logins for the providers required by your app.
-* You may want to persist additional data about the user and their access and refresh tokens. For more information, see <xref:security/authentication/social/additional-claims>.
+* Persist additional data about the user and their access and refresh tokens. For more information, see <xref:security/authentication/social/additional-claims>.
