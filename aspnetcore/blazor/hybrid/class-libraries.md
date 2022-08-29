@@ -74,7 +74,7 @@ Component namespaces are derived from the RCL's package ID or assembly name and 
 @using SharedLibrary.Data
 ```
 
-Place shared static assets in the RCL's `wwwroot` folder and update `<link>` element paths:
+Place shared static assets in the RCL's `wwwroot` folder and update static asset paths in the app to use the following path format:
 
 > :::no-loc text="_content/{PACKAGE ID/ASSEMBLY}/{PATH}/{FILENAME}":::
 
@@ -83,6 +83,8 @@ Placeholders:
 * `{PACKAGE ID/ASSEMBLY}`: The package ID or assembly name of the RCL.
 * `{PATH}`: Optional path within the RCL's `wwwroot` folder.
 * `{FILENAME}`: The filename of the static asset.
+
+The preceding path format is also used in the app for static assets supplied by a NuGet package added to the RCL.
 
 For an RCL named `SharedLibrary` and using the minified Bootstrap stylesheet as an example:
 
