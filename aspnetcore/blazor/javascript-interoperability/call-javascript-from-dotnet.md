@@ -153,7 +153,7 @@ For dynamic content generation with [BuildRenderTree](xref:blazor/advanced-scena
 IJSRuntime JS { get; set; }
 ```
 
-## Detect when a Blazor Server app is prerendering
+## Prerendering
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
 
@@ -959,7 +959,7 @@ For dynamic content generation with [BuildRenderTree](xref:blazor/advanced-scena
 IJSRuntime JS { get; set; }
 ```
 
-## Detect when a Blazor Server app is prerendering
+## Prerendering
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
 
@@ -1578,7 +1578,7 @@ For dynamic content generation with [BuildRenderTree](xref:blazor/advanced-scena
 IJSRuntime JS { get; set; }
 ```
 
-## Detect when a Blazor Server app is prerendering
+## Prerendering
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
 
@@ -1995,7 +1995,7 @@ For dynamic content generation with [BuildRenderTree](xref:blazor/advanced-scena
 IJSRuntime JS { get; set; }
 ```
 
-## Detect when a Blazor Server app is prerendering
+## Prerendering
 
 [!INCLUDE[](~/blazor/includes/prerendering.md)]
 
