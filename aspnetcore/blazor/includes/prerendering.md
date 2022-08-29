@@ -15,7 +15,7 @@ For the following example, the `setElementText1` function is placed inside the `
 > [!WARNING]
 > **The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only.** Directly modifying the DOM with JS isn't recommended in most scenarios because JS can interfere with Blazor's change tracking. For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
 
-`OnAfterRender{Async}` isn't called during the prerendering process on the server. Override the [`OnAfterRender{Async}` lifecycle event](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) to delay JS interop calls until after the component is rendered and interactive on the client after prerendering.
+The [`OnAfterRender{Async}` lifecycle event](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) isn't called during the prerendering process on the server. Override the `OnAfterRender{Async}` method to delay JS interop calls until after the component is rendered and interactive on the client after prerendering.
 
 `Pages/PrerenderedInterop1.razor`:
 
