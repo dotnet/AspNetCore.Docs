@@ -70,47 +70,18 @@ Install the following NuGet packages:
 
 ```dotnetcli
 dotnet add package Azure.Identity
-dotnet add package Microsoft.AspNetCore.DataProtection
 dotnet add package Microsoft.Extensions.Azure
+dotnet add package Azure.Extensions.AspNetCore.DataProtection.Blobs
+dotnet add package Azure.Extensions.AspNetCore.DataProtection.Keys
 ```
 
 ---
 
-Update the `Program.cs` code to match the following example:
+Update `Program.cs` with the following highlighted code:
 
-```csharp
-using Azure.Identity;
-using Microsoft.AspNetCore.DataProtection;
-using Microsoft.Extensions.Azure;
+:::code language="csharp" source="~/host-and-deploy/scaling-aspnet-apps/samples/ScalableRazor/Program.cs" highlight="1-3,8-14":::
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
-
-builder.Services.AddAzureClientsCore();
-
-// Todo: Update the placeholders with your service values
-builder.Services.AddDataProtection()
-                .PersistKeysToAzureBlobStorage(new Uri("<your-storage-account-uri>"), new DefaultAzureCredential())
-                .ProtectKeysWithAzureKeyVault(new Uri($"https://<key-vault-name>.vault.azure.net/keys/<key-name>/"), new DefaultAzureCredential());
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-}
-
-app.MapRazorPages();
-app.UseStaticFiles();
-app.UseRouting();
-app.Run();
-```
-
-The preceding example features a standard Razor Pages `Program` class with a few additional configurations to handle data protection using Azure Blob Storage and Key Vault. These changes will allow the app to manage data protection using a centralized, scalable architecture.
+The preceding example features a standard Razor Pages `Program` class with a few additional configurations to handle data protection using Azure Blob Storage and Key Vault. These changes allow the app to manage data protection using a centralized, scalable architecture.
 
 ## 3) Create the Azure Services
 
