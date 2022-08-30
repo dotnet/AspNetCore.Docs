@@ -20,6 +20,6 @@ The following tutorials are available for ASP.NET Core Blazor:
 
 * <xref:blazor/hybrid/tutorials/index>
 
-* [Microsoft Learn modules](/learn/paths/build-web-apps-with-blazor/)
+* [Learn modules](/learn/paths/build-web-apps-with-blazor/)
 
 For more information on Blazor hosting models, Blazor Server and Blazor WebAssembly, see <xref:blazor/hosting-models>.
