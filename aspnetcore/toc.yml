@@ -218,6 +218,22 @@ items:
             uid: fundamentals/middleware/index
           - name: Rate limiting middleware
             uid: performance/rate-limit
+          - name: Test middleware
+            uid: test/middleware
+          - name: Response caching middleware
+            uid: performance/caching/middleware
+          - name: Write middleware
+            uid: fundamentals/middleware/write
+          - name: Request and response operations
+            displayName: middleware
+            uid: fundamentals/middleware/request-response
+          - name: Request decompression
+            displayName: request decompression middleware
+            uid: fundamentals/middleware/request-decompression
+          - name: Factory-based middleware
+            uid: fundamentals/middleware/extensibility
+          - name: Factory-based middleware with third-party container
+            uid: fundamentals/middleware/extensibility-third-party-container
       - name: Host
         items:
           - name: Generic Host
@@ -1425,6 +1441,8 @@ items:
     items:
       - name: Overview
         uid: performance/performance-best-practices
+      - name: Rate limiting middleware
+        uid: performance/rate-limit
       - name: Memory and GC
         uid: performance/memory
       - name: Caching
