@@ -22,11 +22,10 @@ With this tutorial, you'll learn how to create an ASP.Net Core MVC Application a
 ## Set up
 
 * Open a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one.
-* Install [.NET Core SDK](https://dotnet.microsoft.com/download)
-* Install [Visual Studio Code](https://code.visualstudio.com/Download)
-  * Install the [C# Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) to Visual Studio Code
-  * Install the [Azure App Service Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice)
-  to Visual Studio Code and configure it before proceeding
+* Install [.NET Core SDK](https://dotnet.microsoft.com/download).
+* Install [Visual Studio Code](https://code.visualstudio.com/Download).
+  * Install the [C# Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) to Visual Studio Code.
+  * Install the [Azure App Service Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice) to Visual Studio Code and configure it before proceeding.
 
 ## Create an ASP.Net Core MVC project
 
