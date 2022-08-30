@@ -135,7 +135,7 @@ If you don't have an existing Azure Web App resource to publish to, you must cre
 ### Publish to Azure
 
 1. Right click the `bin\Publish` folder and select `Deploy to Web App...` and follow the prompts.
-    1. Select the subscription in which you want to publish the app.
+    1. Select the subscription where the Azure Web App resource is located.
     1. Select the Azure Web App resource to which you will publish.
     1. Select **Deploy** when prompted with a confirmation dialog.
 1. Once the deployment is finished, click `Browse Website` to validate the deployment.
