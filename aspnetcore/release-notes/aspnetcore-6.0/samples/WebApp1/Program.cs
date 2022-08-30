@@ -106,7 +106,7 @@ app.Use(async (context, next) =>
 {
     bool desiredState = GetDesiredState();
     // Check if your desired criteria is met
-    if (desiredState == true)
+    if (desiredState)
     {
         // Buffer the request body
         context.Request.EnableBuffering();
