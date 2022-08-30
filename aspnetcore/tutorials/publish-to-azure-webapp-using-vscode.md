@@ -40,10 +40,10 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
   If a dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**, select **Yes**
 
-* `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
-* `code -r MvcMovie`:
-  * Loads the `MvcMovie.csproj` project file in Visual Studio Code.
-  * Visual Studio Code updates the integrated terminal to the project directory.
+  * `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
+  * `code -r MvcMovie`:
+    * Loads the `MvcMovie.csproj` project file in Visual Studio Code.
+    * Visual Studio Code updates the integrated terminal to the project directory.
 
 A new ASP.NET Core MVC project is created in a *MyMVCapp* folder with a structure similar to the following:
 
