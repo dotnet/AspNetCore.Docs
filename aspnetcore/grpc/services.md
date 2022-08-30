@@ -347,7 +347,7 @@ public override async Task StreamingFromServer(ExampleRequest request,
 }
 ```
 
-The solution is to await the write task before exiting the method:
+For the previous example, the solution is to await the write task before exiting the method:
 
 ```csharp
 public override async Task StreamingFromServer(ExampleRequest request,
