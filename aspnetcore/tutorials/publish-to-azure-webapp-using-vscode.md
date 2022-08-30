@@ -11,7 +11,7 @@ uid: tutorials/publish-to-azure-webapp-using-vscode
 
 # Publish an ASP.NET Core app to Azure with Visual Studio Code
 
-With this tutorial, you'll learn how to create an ASP.Net Core MVC Application and deploy it within Visual Studio Code.
+With this tutorial, you'll learn how to create an ASP.Net Core MVC Application and deploy it within Visual Studio Code. The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs). This tutorial will work on Windows, macOS, or Linux environments. Be sure to use the correct path separating characters (`\` vs `/`) for your environment.
 
 [!INCLUDE [Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
@@ -27,8 +27,6 @@ To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azu
 
 ## Create an ASP.Net Core MVC project
 
-The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs).
-
 1. Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 1. Set your working directory (`cd`) to the directory that will contain the project.
 1. Run the following commands:
@@ -39,13 +37,14 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
     ```
 
     > [!NOTE]
-    > If a dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**, select **Yes**  
+    > If a dialog box appears with **Required assets to build and debug are missing from 'MyMVCapp'. Add them?**, select **Yes**  
 
     For the preceding commands:  
 
-    * `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
-    * `code -r MvcMovie`:
-      * Loads the `MvcMovie.csproj` project file in Visual Studio Code.
+    * `dotnet new mvc -o MyMVCapp` 
+      * Creates a new ASP.NET Core MVC project in the *MyMVCapp* folder.
+    * `code -r MyMVCapp`
+      * Loads the `MyMVCapp.csproj` project file in Visual Studio Code.
       * Visual Studio Code updates the integrated terminal to the project directory.
 
 A new ASP.NET Core MVC project is created in a *MyMVCapp* folder with a structure similar to the following:
@@ -83,25 +82,32 @@ Before deploying the app to Azure, make sure it is running properly on your loca
 
     The preceding command:
 
-    * Starts [Kestrel](xref:fundamentals/servers/kestrel)
+    * Starts [Kestrel](xref:fundamentals/servers/kestrel), ASP.NET Core's built-in web server.
     * Displays a URL to test the web app such as `http://localhost:<port>`, where `<port>` is the random port number set in `Properties\launchSettings.json` at project creation.
   
     The output shows messages similar to the following, indicating that the app is running and awaiting requests:
 
     ```dotnetcli
     $ dotnet run
-    Hosting environment: Development
-    Content root path: C:/Docs/aspnetcore/tutorials/dotnet-watch/sample/WebApp
-    Now listening on: http://localhost:5000
-    Application started. Press Ctrl+C to shut down.
+    Building...
+    info: Microsoft.Hosting.Lifetime[14]
+        Now listening on: https://localhost:7064
+    info: Microsoft.Hosting.Lifetime[14]
+        Now listening on: http://localhost:5119
+    info: Microsoft.Hosting.Lifetime[0]
+        Application started. Press Ctrl+C to shut down.
+    info: Microsoft.Hosting.Lifetime[0]
+        Hosting environment: Development
+    info: Microsoft.Hosting.Lifetime[0]
+        Content root path: D:\Src\MyMVCapp\
     ```
 
-1. Select the URL to test the web app in a browser.
-1. Press <kbd>Ctrl</kbd>+<kbd>C</kbd> on the command line to shut down the web app after testing it.
+1. <kbd>Ctrl</kbd>+*click* the HTTPS URL in the output to test the web app in a browser. In the example above, the URL is `https://localhost:7064`.
+1. Press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the integrated terminal to shut down the web app after testing it.
 
 ## Generate the deployment package locally
 
-1. In the integrated terminal, use the following command to generate a `Release` package to a sub folder called `bin/Publish`:
+1. In the integrated terminal, use the following command to generate a `Release` package in a folder located at `bin/Publish`:
 
     ```dotnetcli
     dotnet publish -c Release -o ./bin/Publish
@@ -109,7 +115,7 @@ Before deploying the app to Azure, make sure it is running properly on your loca
 
     A new `Publish` subfolder will be created in the `bin` folder. This folder contains the files to be deployed to Azure.
 
-    :::image type="content" source="publish-to-azure-webapp-using-vscode/_static/publish-folder.jpg" alt-text="Publish folder structure" lightbox="publish-to-azure-webapp-using-vscode/_static/publish-folder.jpg":::
+    :::image type="content" source="publish-to-azure-webapp-using-vscode/_static/publish-folder-smaller.jpg" alt-text="Publish folder structure" lightbox="publish-to-azure-webapp-using-vscode/_static/publish-folder.jpg":::
 
 ## Publish to Azure App Service
 
@@ -128,10 +134,10 @@ If you don't have an existing Azure Web App resource to publish to, you must cre
 
 ### Publish to Azure
 
-1. Right click the `bin\Publish` folder and select `Deploy to Web App...`
-1. Select the subscription in which you want to publish the app.
-1. Select the Azure Web App resource to which you will publish.
-1. Select **Deploy** when prompted with a confirmation dialog.
+1. Right click the `bin\Publish` folder and select `Deploy to Web App...` and follow the prompts.
+    1. Select the subscription in which you want to publish the app.
+    1. Select the Azure Web App resource to which you will publish.
+    1. Select **Deploy** when prompted with a confirmation dialog.
 1. Once the deployment is finished, click `Browse Website` to validate the deployment.
 
     ![Deployment succeeded message](publish-to-azure-webapp-using-vscode/_static/deployment-succeeded-message.jpg)
