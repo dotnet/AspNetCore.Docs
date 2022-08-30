@@ -90,12 +90,20 @@ The following example configures [SQLite](https://www.sqlite.org/index.html) and
 
 :::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Program.cs" id="snippet1":::
 
-The factory is injected into components and used to create new instances. For example, in `Pages/Index.razor`:
+The factory is injected into components and used to create new instances.
+
+In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
+
+```razor
+@inject IDbContextFactory<ContactContext> DbFactory
+```
+
+A `DbContext` is created using the factory (`DbFactory`) to delete a contact in the `DeleteContactAsync` method:
 
 :::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
 New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
 
@@ -219,12 +227,20 @@ The following example configures [SQLite](https://www.sqlite.org/index.html) and
 
 :::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs" id="snippet1":::
 
-The factory is injected into components and used to create new instances. For example, in `Pages/Index.razor`:
+The factory is injected into components and used to create new instances.
+
+In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
+
+```razor
+@inject IDbContextFactory<ContactContext> DbFactory
+```
+
+A `DbContext` is created using the factory (`DbFactory`) to delete a contact in the `DeleteContactAsync` method:
 
 :::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
 New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
 
@@ -355,12 +371,20 @@ The following example configures [SQLite](https://www.sqlite.org/index.html) and
 
 :::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs" id="snippet1":::
 
-The factory is injected into components and used to create new instances. For example, in `Pages/Index.razor`:
+The factory is injected into components and used to create new instances.
+
+In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
+
+```razor
+@inject IDbContextFactory<ContactContext> DbFactory
+```
+
+A `DbContext` is created using the factory (`DbFactory`) to delete a contact in the `DeleteContactAsync` method:
 
 :::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
 New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model])(xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
 
@@ -489,12 +513,20 @@ The following example configures [SQLite](https://www.sqlite.org/index.html) and
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerEFCoreSample/Program.cs" id="snippet1":::
 
-The factory is injected into components and used to create new instances. For example, in `Pages/Index.razor`:
+The factory is injected into components and used to create new instances.
+
+In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/7.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
+
+```razor
+@inject IDbContextFactory<ContactContext> DbFactory
+```
+
+A `DbContext` is created using the factory (`DbFactory`) to delete a contact in the `DeleteContactAsync` method:
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/Pages/Index.razor).
 
 New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
 
