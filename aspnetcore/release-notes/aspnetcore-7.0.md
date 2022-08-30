@@ -13,7 +13,7 @@ This article highlights the most significant changes in ASP.NET Core 7.0 with li
 
 ## Rate limiting middleware in ASP.NET Core
 
-The `Microsoft.AspNetCore.RateLimiting` middleware provides rate limiting middleware. Apps configure rate limiting policies and then attach the policies to endpoints. For more information, see <xref:performance/rate-limit>.
+The `Microsoft.AspNetCore.RateLimiting` middleware provides rate limiting middleware. Apps configure rate limiting policies and then attach the policies to endpoints. For more information, see <xref:performance/rate-limit?view=aspnetcore-7.0&preserve-view=true>.
 
 ## MVC and Razor pages
 
