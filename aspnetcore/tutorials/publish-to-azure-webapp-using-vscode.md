@@ -21,20 +21,20 @@ With this tutorial, you'll learn how to create an ASP.Net Core MVC Application a
 
 ## Set up
 
-- Open a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one.
-- Install [.NET Core SDK](https://dotnet.microsoft.com/download)
-- Install [Visual Studio Code](https://code.visualstudio.com/Download)
-  - Install the [C# Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) to Visual Studio Code
-  - Install the [Azure App Service Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice)
+* Open a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one.
+* Install [.NET Core SDK](https://dotnet.microsoft.com/download)
+* Install [Visual Studio Code](https://code.visualstudio.com/Download)
+  * Install the [C# Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) to Visual Studio Code
+  * Install the [Azure App Service Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice)
   to Visual Studio Code and configure it before proceeding
 
 ## Create an ASP.Net Core MVC project
 
 The tutorial assumes familiarity with VS Code. For more information, see [Getting started with VS Code](https://code.visualstudio.com/docs).
 
-- Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
-- Change to the directory (`cd`) that will contain the project.
-- Run the following command:
+* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Change to the directory (`cd`) that will contain the project.
+* Run the following command:
 
    ```dotnetcli
    dotnet new mvc -o MyMVCapp
@@ -43,10 +43,10 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
   If a dialog box appears with **Required assets to build and debug are missing from 'MvcMovie'. Add them?**, select **Yes**
 
-- `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
-- `code -r MvcMovie`:
-  - Loads the `MvcMovie.csproj` project file in Visual Studio Code.
-  - Visual Studio Code updates the integrated terminal to the project directory.
+* `dotnet new mvc -o MvcMovie`: Creates a new ASP.NET Core MVC project in the *MvcMovie* folder.
+* `code -r MvcMovie`:
+  * Loads the `MvcMovie.csproj` project file in Visual Studio Code.
+  * Visual Studio Code updates the integrated terminal to the project directory.
 
 A new ASP.NET Core MVC project is created in a *MyMVCapp* folder with a structure similar to the following:
 
@@ -72,7 +72,7 @@ Before deploying the app to Azure, make sure it is running properly on your loca
 
  [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-- Run the following command:
+* Run the following command:
 
 ```dotnetcli
 dotnet run
@@ -88,9 +88,10 @@ Now listening on: http://localhost:5000
 Application started. Press Ctrl+C to shut down.
 ```
 
-- `dotnet run`:
-  - Starts [Kestrel](xref:fundamentals/servers/kestrel)
-  - Displays a URL to test the web app such as ` http://localhost:<port>`, where `<port>` is the random port number set in `Properties\launchSettings.json` at project creation.
+`dotnet run`:
+
+* Starts [Kestrel](xref:fundamentals/servers/kestrel)
+* Displays a URL to test the web app such as ` http://localhost:<port>`, where `<port>` is the random port number set in `Properties\launchSettings.json` at project creation.
 
 Select the URL to test the web app in a browser.
 
@@ -98,28 +99,29 @@ Press Ctrl+C on the command line to shut down the web app after testing it.
 
 ## Generate the deployment package locally
 
-- Open Visual Studio Code terminal
-- Use the following command to generate a `Release` package to a sub folder called `publish`:
-  - `dotnet publish -c Release -o ./publish`
-- A new `publish` folder will be created under the project structure
+* Open Visual Studio Code terminal.
+* Use the following command to generate a `Release` package to a sub folder called `publish`:
+
+```dotnetcli
+dotnet publish -c Release -o ./publish
+```
+
+* A new `publish` folder will be created under the project structure.
 
 ![Publish folder structure](publish-to-azure-webapp-using-vscode/_static/publish-folder.jpg)
 
 ## Publish to Azure App Service
 
-Leveraging the Azure App Service extension for Visual Studio Code, follow the
-steps below to publish the website directly to the Azure App Service.
+Leveraging the Azure App Service extension for Visual Studio Code, follow the steps below to publish the website directly to the Azure App Service.
 
 ### If you're creating a new web app
 
-- Right click the `publish` folder and select `Deploy to Web App...`
-- Select the subscription you want to create the web app
-- Select `Create New Web App`
-- Enter a name for the web app
+* Right click the `publish` folder and select `Deploy to Web App...`
+* Select the subscription you want to create the web app.
+* Select `Create New Web App`.
+* Enter a name for the web app.
 
-The extension will create the new web app and will automatically start
-deploying the package to it. Once the deployment is finished, click
-`Browse Website` to validate the deployment.
+The extension will create the new web app and will automatically start deploying the package to it. Once the deployment is finished, click `Browse Website` to validate the deployment.
 
 ![Deployment succeeded message](publish-to-azure-webapp-using-vscode/_static/deployment-succeeded-message.jpg)
 
@@ -129,22 +131,20 @@ Once you click `Browse Website`, you'll navigate to it using your default browse
 
 ### If you're deploying to an existing Web App
 
-- Right click the `publish` folder and select `Deploy to Web App...`
-- Select the subscription the existing web app resides
-- Select the web app from the list
-- Visual Studio Code will ask you if you want to overwrite the
-existing content. Click `Deploy` to confirm
+* Right click the `publish` folder and select `Deploy to Web App...`
+* Select the subscription the existing web app resides.
+* Select the web app from the list.
+* Visual Studio Code will ask you if you want to overwrite the existing content. Click `Deploy` to confirm.
 
-The extension will deploy the updated content to the web app. Once it's done,
-click `Browse Website` to validate the deployment.
+The extension will deploy the updated content to the web app. Once it's done, click `Browse Website` to validate the deployment.
 
 ![Existing Web App successfully deployed](publish-to-azure-webapp-using-vscode/_static/existing-webapp-deployed.jpg)
 
 ## Next steps
 
-- [Create your first Azure DevOps pipeline](/azure/devops/pipelines/create-first-pipeline)
+* [Create your first Azure DevOps pipeline](/azure/devops/pipelines/create-first-pipeline)
 
 ## Additional resources
 
-- [Azure App Service](/azure/app-service/app-service-web-overview)
-- [Azure resource groups](/azure/azure-resource-manager/resource-group-overview#resource-groups)
+* [Azure App Service](/azure/app-service/app-service-web-overview)
+* [Azure resource groups](/azure/azure-resource-manager/resource-group-overview#resource-groups)
