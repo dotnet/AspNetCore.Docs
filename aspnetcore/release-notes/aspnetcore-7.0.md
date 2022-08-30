@@ -11,6 +11,10 @@ uid: aspnetcore-7
 
 This article highlights the most significant changes in ASP.NET Core 7.0 with links to relevant documentation.
 
+## Rate limiting middleware in ASP.NET Core
+
+The `Microsoft.AspNetCore.RateLimiting` middleware provides rate limiting middleware. Apps configure rate limiting policies and then attach the policies to endpoints. For more information, see <xref:performance/rate-limit>.
+
 ## MVC and Razor pages
 
 ### Support for nullable models in MVC views and Razor Pages
