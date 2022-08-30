@@ -4,6 +4,9 @@ on:
   pull_request_target:
     types: [opened, synchronize, reopened]
 
+permissions:
+  statuses: read
+
 jobs:
   status_checker_job:
     name: Look for build warnings
