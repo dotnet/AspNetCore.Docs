@@ -139,13 +139,13 @@ The following samples aren't meant for production code but are examples on how t
 
 The following sample:
 
-* Creates a [RateLimiterOptions.OnRejected](xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptions.OnRejected) callback that is called when a request exceeds the specified limit. `retryAfter` can be used with the[`TokenBucketRateLimiter`](https://source.dot.net/#System.Threading.RateLimiting/System/Threading/RateLimiting/TokenBucketRateLimiter.cs), [`FixedWindowLimiter`](https://source.dot.net/#System.Threading.RateLimiting/System/Threading/RateLimiting/FixedWindowRateLimiter.cs), and [`SlidingWindowLimiter`](https://source.dot.net/#System.Threading.RateLimiting/System/Threading/RateLimiting/SlidingWindowRateLimiter.cs) because these algorithms are able to calculate when limits will be added. The `ConcurrencyLimiter` has no way of calculating when permits will be available.
+* Creates a [RateLimiterOptions.OnRejected](xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptions.OnRejected) callback that is called when a request exceeds the specified limit. `retryAfter` can be used with the [`TokenBucketRateLimiter`](https://source.dot.net/#System.Threading.RateLimiting/System/Threading/RateLimiting/TokenBucketRateLimiter.cs), [`FixedWindowLimiter`](https://source.dot.net/#System.Threading.RateLimiting/System/Threading/RateLimiting/FixedWindowRateLimiter.cs), and [`SlidingWindowLimiter`](https://source.dot.net/#System.Threading.RateLimiting/System/Threading/RateLimiting/SlidingWindowRateLimiter.cs) because these algorithms are able to estimate when more permits will be added. The `ConcurrencyLimiter` has no way of calculating when permits will be available.
 * Adds the following limiters:
 
   * A `SampleRateLimiterPolicy` which implements the `IRateLimiterPolicy<TPartitionKey>` interface. The `SampleRateLimiterPolicy` class is shown later in this article.
   * A `SlidingWindowLimiter`:
     * With a partition for each authenticated user.
-    * One partition for all anonymous users.
+    * One shared partition for all anonymous users.
   * A <xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptions.GlobalLimiter> that is applied to all requests. The global limiter will be executed first, followed by the endpoint-specific limiter, if one exists. The `GlobalLimiter` creates a partition for each <xref:System.Net.IPAddress>.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet":::
