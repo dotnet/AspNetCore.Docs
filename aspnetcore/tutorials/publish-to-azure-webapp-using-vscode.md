@@ -115,7 +115,7 @@ Before deploying the app to Azure, make sure it is running properly on your loca
 
     A new `Publish` subfolder will be created in the `bin` folder. This folder contains the files to be deployed to Azure.
 
-    :::image type="content" source="publish-to-azure-webapp-using-vscode/_static/publish-folder-smaller.jpg" alt-text="Publish folder structure" lightbox="publish-to-azure-webapp-using-vscode/_static/publish-folder.jpg":::
+    :::image type="content" source="publish-to-azure-webapp-using-vscode/_static/publish-folder-smaller.png" alt-text="Publish folder structure" lightbox="publish-to-azure-webapp-using-vscode/_static/publish-folder.jpg":::
 
 ## Publish to Azure App Service
 
