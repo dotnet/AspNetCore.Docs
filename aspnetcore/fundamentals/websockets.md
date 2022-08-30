@@ -110,13 +110,13 @@ Never use `Task.Wait`, `Task.Result`, or similar blocking calls to wait for the 
 
 ## Add HTTP/2 WebSockets support for existing controllers
 
-.NET 7 introduced Websockets over HTTP/2 support for Kestrel, the SignalR JavaScript client, and SignalR with Blazor WebAssembly. HTTP/2 WebSockets use CONNECT requests rather than GET.  The previous controller action method example can be modified to use CONNECT by defining a `HTTPConnect` attribute class and applying that attribute to the controller method.
+.NET 7 introduced Websockets over HTTP/2 support for Kestrel, the SignalR JavaScript client, and SignalR with Blazor WebAssembly. HTTP/2 WebSockets use CONNECT requests rather than GET.  The previous controller action method example can be modified to use CONNECT by defining a `HttpConnect` attribute class and applying that attribute to the controller method.
 
-The following is an example custom attribute routing class named `HTTPConnectAttribute`:
+The following is an example custom attribute routing class named `HttpConnectAttribute`:
 
 [!code-csharp[](~/fundamentals/websockets/samples/7.x/WebSocketsSample/Controllers/HttpConnectAttribute.cs)]
 
-The previous controller action example using the custom `[HTTPConnect]` attribute instead of [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute):
+The previous controller action example using the custom `[HttpConnect]` attribute instead of [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute):
 
 [!code-csharp[](~/fundamentals/websockets/samples/7.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet_Controller_Connect&highlight=1)]
 
