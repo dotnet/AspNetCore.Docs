@@ -230,6 +230,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDirectoryBrowser();
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
