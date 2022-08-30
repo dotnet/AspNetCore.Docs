@@ -16,6 +16,20 @@ By [Fiyaz Hasan](https://twitter.com/FiyazBinHasan), [Rick Anderson](https://twi
 
 Cross-site request forgery (also known as XSRF or CSRF) is an attack against web-hosted apps whereby a malicious web app can influence the interaction between a client browser and a web app that trusts that browser. These attacks are possible because web browsers send some types of authentication tokens automatically with every request to a website. This form of exploit is also known as a *one-click attack* or *session riding* because the attack takes advantage of the user's previously authenticated session.
 
+An example of a CSRF attack:
+
+1. A user signs into `www.good-banking-site.com` using forms authentication. The server authenticates the user and issues a response that includes an authentication cookie. The site is vulnerable to attack because it trusts any request that it receives with a valid authentication cookie.
+1. The user visits a malicious site, `www.example.com`.
+
+   The malicious site, `www.example.com`, contains an HTML form similar to the following example:
+
+   :::code language="html" source="anti-request-forgery/samples_snapshot/vulnerable-form.html":::
+
+   Notice that the form's `action` posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
+
+1. The user selects the submit button. The browser makes the request and automatically includes the authentication cookie for the requested domain, `www.good-banking-site.com`.
+1. The request runs on the `www.good-banking-site.com` server with the user's authentication context and can perform any action that an authenticated user is allowed to perform.
+
 In addition to the scenario where the user selects the button to submit the form, the malicious site could:
 
 * Run a script that automatically submits the form.
