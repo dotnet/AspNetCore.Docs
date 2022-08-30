@@ -194,9 +194,9 @@ The following `ChildBind` component has a `Year` component parameter and an <xre
 
 For more information on events and <xref:Microsoft.AspNetCore.Components.EventCallback%601>, see the *EventCallback* section of the <xref:blazor/components/event-handling#eventcallback> article.
 
-In the following `Parent` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
+In the following `Parent1` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
 
-`Pages/Parent.razor`:
+`Pages/Parent1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor" highlight="9":::
 
@@ -242,7 +242,7 @@ You can bind parameters through any number of nested components, but you must re
 
 A common and recommended approach is to only store the underlying data in the parent component to avoid any confusion about what state must be updated, as shown in the following example.
 
-`Pages/Parent.razor`:
+`Pages/Parent2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/Parent2.razor":::
 
@@ -391,9 +391,9 @@ The following `ChildBind` component has a `Year` component parameter and an <xre
 
 For more information on events and <xref:Microsoft.AspNetCore.Components.EventCallback%601>, see the *EventCallback* section of the <xref:blazor/components/event-handling#eventcallback> article.
 
-In the following `Parent` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
+In the following `Parent1` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
 
-`Pages/Parent.razor`:
+`Pages/Parent1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor" highlight="9":::
 
@@ -439,7 +439,7 @@ You can bind parameters through any number of nested components, but you must re
 
 A common and recommended approach is to only store the underlying data in the parent component to avoid any confusion about what state must be updated, as shown in the following example.
 
-`Pages/Parent.razor`:
+`Pages/Parent2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/Parent2.razor":::
 
@@ -588,9 +588,9 @@ The following `ChildBind` component has a `Year` component parameter and an <xre
 
 For more information on events and <xref:Microsoft.AspNetCore.Components.EventCallback%601>, see the *EventCallback* section of the <xref:blazor/components/event-handling#eventcallback> article.
 
-In the following `Parent` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
+In the following `Parent1` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
 
-`Pages/Parent.razor`:
+`Pages/Parent1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor" highlight="9":::
 
@@ -636,7 +636,7 @@ You can bind parameters through any number of nested components, but you must re
 
 A common and recommended approach is to only store the underlying data in the parent component to avoid any confusion about what state must be updated, as shown in the following example.
 
-`Pages/Parent.razor`:
+`Pages/Parent2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/Parent2.razor":::
 
@@ -870,9 +870,9 @@ The following `ChildBind` component has a `Year` component parameter and an <xre
 
 For more information on events and <xref:Microsoft.AspNetCore.Components.EventCallback%601>, see the *EventCallback* section of the <xref:blazor/components/event-handling#eventcallback> article.
 
-In the following `Parent` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
+In the following `Parent1` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
 
-`Pages/Parent.razor`:
+`Pages/Parent1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor" highlight="9":::
 
@@ -939,7 +939,7 @@ You can bind parameters through any number of nested components, but you must re
 
 A common and recommended approach is to only store the underlying data in the parent component to avoid any confusion about what state must be updated, as shown in the following example.
 
-`Pages/Parent.razor`:
+`Pages/Parent2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/Parent2.razor":::
 
