@@ -59,9 +59,8 @@ A sliding window algorithm:
 
 * The top row and first column shows the time segment.
 * The second row shows the remaining requests available. The remaining requests are available-requests+recycled.
-* Time moves along the diagonal blue line.
-* The third and lower rows show the requests made at that time segment and recycled requests available from the prior expired segment. The red lines show recycled requests.
-* From time 30 on, the request taken from the 3 times slots previous are added back to the request limit, as shown in the red lines.
+* Requests at each time moves along the diagonal blue line.
+* From time 30 on, the request taken from the expired time segment are added back to the request limit, as shown in the red lines.
 
 ![Table showing requests, limits, and recycled slots](~/performance/rate-limit/_static/rate.png)
 
