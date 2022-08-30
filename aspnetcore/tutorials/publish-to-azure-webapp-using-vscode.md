@@ -90,9 +90,9 @@ Application started. Press Ctrl+C to shut down.
 * Starts [Kestrel](xref:fundamentals/servers/kestrel)
 * Displays a URL to test the web app such as `http://localhost:<port>`, where `<port>` is the random port number set in `Properties\launchSettings.json` at project creation.
 
-Select the URL to test the web app in a browser.
+* Select the URL to test the web app in a browser.
 
-Press Ctrl+C on the command line to shut down the web app after testing it.
+* Press Ctrl+C on the command line to shut down the web app after testing it.
 
 ## Generate the deployment package locally
 
