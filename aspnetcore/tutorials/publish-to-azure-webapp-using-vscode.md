@@ -1,9 +1,9 @@
 ---
 title: Publish an ASP.NET Core app to Azure with Visual Studio Code
-author: rick-anderson
+author: wadepickett
 description: Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio Code
 monikerRange: '>= aspnetcore-6.0'
-ms.author: riserrad
+ms.author: wpickett
 ms.custom: "devx-track-csharp, mvc, vscode-azure-extension-update-completed"
 ms.date: 08/23/2022
 uid: tutorials/publish-to-azure-webapp-using-vscode
@@ -11,13 +11,11 @@ uid: tutorials/publish-to-azure-webapp-using-vscode
 
 # Publish an ASP.NET Core app to Azure with Visual Studio Code
 
+With this tutorial, you'll learn how to create an ASP.Net Core MVC Application and deploy it within Visual Studio Code.
+
 [!INCLUDE [Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
 To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azure-iis>.
-
-## Intro
-
-With this tutorial, you'll learn how to create an ASP.Net Core MVC Application and deploy it within Visual Studio Code.
 
 ## Set up
 
@@ -90,7 +88,7 @@ Application started. Press Ctrl+C to shut down.
 `dotnet run`:
 
 * Starts [Kestrel](xref:fundamentals/servers/kestrel)
-* Displays a URL to test the web app such as ` http://localhost:<port>`, where `<port>` is the random port number set in `Properties\launchSettings.json` at project creation.
+* Displays a URL to test the web app such as `http://localhost:<port>`, where `<port>` is the random port number set in `Properties\launchSettings.json` at project creation.
 
 Select the URL to test the web app in a browser.
 
