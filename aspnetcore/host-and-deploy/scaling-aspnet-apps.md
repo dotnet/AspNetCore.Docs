@@ -4,62 +4,69 @@ author: alexwolfmsft
 description: Learn how to horizontally scale ASP.NET Core apps on Azure and address common architectural challenges
 ms.author: alexwolf
 ms.custom: mvc
-ms.date: 08/25/2022
+ms.date: 8/31/2022
 ---
 # Deploying and scaling an ASP.NET Core on Azure
 
-Applications deployed to Azure must be able to scale in order to fully leverage cloud benefits. Properly architected apps should be able to dynamically scale horizontally across any number of instances without producing errors. ASP.NET Core apps are able to meet these requirements, but developers must implement certain configurations and architectural patterns to ensure success. This tutorial will demonstrate how to deploy a scalable Razor Pages app to Azure container apps by completing the following tasks:
+Applications deployed to Azure that experience intermittent high demand benefit from scalability to meet demand. Scalable apps can scale out to ensure capacity during workload peaks and return to normal automatically when the peak drops. Horizontal scaling (scaling out) adds new instances of a resource, such as VMs or database replicas. This article demonstrate how to deploy a horizontially scalable ASP.NET Core app to [Azure container apps](/azure/container-apps/overview) by completing the following tasks:
 
 1. Create a containerized ASP.NET Core app
-1. Configure the application code
+1. Configure the apps code
 1. Create the Azure services
 1. Deploy the app to Azure Container Apps
 1. Connect the Azure Services
 1. Scale the app
 1. Configure roles for local development
 
-In some cases, simple ASP.NET Core apps are able to scale without special considerations. However, apps that utilize certain framework features or architectural patterns require additional configurations, including the following:
+This article uses Razor Pages, but most of it applies to other ASP.NET Core apps.
 
-* **Secure form submissions**: Razor Pages, MVC and Web API apps often rely on form submissions. By default these apps use cross site forgery tokens and internal data protection services to secure requests. When deployed to the cloud, these apps must be configured to use a managed data protection service concerns in a secure, centralized location.
+In some cases, basic ASP.NET Core apps are able to scale without special considerations. However, apps that utilize certain framework features or architectural patterns require additional configurations, including the following:
 
-* **SignalR circuits**: Blazor Server applications require the use of a centralized Azure SignalR service in order to scale properly and securely. These services also utilize the data protection services mentioned previously.
+* **Secure form submissions**: Razor Pages, MVC and Web API apps often rely on form submissions. By default these apps use [cross site forgery tokens](xref:security/anti-request-forgery) and internal data protection services to secure requests. When deployed to the cloud, these apps must be configured to use a managed data protection service concerns in a secure, centralized location.
 
-* **Centralized caching or state management services**: Scalable applications may use Azure Cache for Redis to provide distributed caching. Azure storage may be needed to store state for frameworks such as Orleans, which can assist in writing apps that manage state across many different app instances.
+* **SignalR circuits**: Blazor Server apps require the use of a centralized [Azure SignalR service](/azure/azure-signalr/signalr-overview) in order to securely scale. These services also utilize the data protection services mentioned previously.
 
-The steps ahead demonstrate how to properly address these concerns by deploying a scalable app to Azure Container Apps. Most of the concepts in this tutorial also apply when scaling Azure App Service instances.
+* **Centralized caching or state management services**: Scalable apps may use [Azure Cache for Redis](/azure/azure-cache-for-redis/cache-overview) to provide distributed caching. [Azure storage](/azure/storage/common/storage-introduction) may be needed to store state for frameworks such as [Microsoft Orleans](/dotnet/orleans/overview), which can assist in writing apps that manage state across many different app instances.
 
-## 1) Create a containerized ASP.NET Core app
+The steps in this article demonstrate how to properly address these concerns by deploying a scalable app to Azure Container Apps. Most of the concepts in this tutorial also apply when scaling [Azure App Service](/azure/app-service/overview) instances.
 
-This tutorial uses a Razor Pages app to demonstrate the concepts ahead. However, the same steps and concepts also apply to MVC and Web API projects.
+## Create a containerized ASP.NET Core app
 
-1. On the main navigation menu in Visual Studio, select **File > New > Project...**.
+# [Visual Studio](#tab/visual-studio)
+
+1. In Visual Studio, select **File > New > Project**.
 
 1. In the **Create a new project** dialog, search for and select the  **ASP.NET Core Web App** template, and then choose **Next**.
 
-1. For the **Project name**, enter *ScalableRazor* and choose a location for the project. Leave the rest of the settings at their default and select **Next**.
+1. For the **Project name**, enter *ScalableRazor* and choose a location for the project. Leave the default values for the rest of the settings and select **Next**.
 
-1. On the **Additional Information** dialog, make sure the following values are set:
-    * **Framework**: Select **.NET 6.0**.
+1. On the **Additional Information** dialog, use the following settings:
+    * **Framework**: Select **.NET 6.0** or later.
     * **Authentication type**: Select **None**.
-    * **Configure for HTTPS**: Make sure this checkbox is checked.
-    * **Enable Docker**: Make sure this checkbox is checked. This will generate a Dockerfile in the project that will be used to containerize the app.
-    * **Docker OS**: Choose **Linux**.
-    * **Do not use top-level statements**: Make sure this checkbox is unchecked.
+    * **Configure for HTTPS**: Keep the default checked.
+    * **Enable Docker**: This must be checked. This setting generates a Dockerfile in the project that is used to containerize the app.
+    * **Docker OS**: **Linux**.
+    * **Do not use top-level statements**: Keep the default unchecked.
 
-
-Visual Studio will generate a new Razor Pages project for you.
-
-## 2) Setup the application code and dependencies
-
-To configure and connect to the required Azure services, you'll need to install the following NuGet packages in your project:
+Install the following NuGet packages:
 
 * **Azure.Identity**: Provides classes to work with the Azure identity and access management services.
 * **Microsoft.AspNetCore.DataProtection**: Provides services to configure data protection.
 * **Microsoft.Extensions.Azure**: Provides helpful extension methods to perform core Azure configurations.
 
-## [Azure CLI](#tab/azure-cli)
+# [.NET Core CLI](#tab/netcore-cli) 
 
-You can use the dotnet add package command to add the required packages to your project:
+Run the following command to create the starter project:
+
+```dotnetcli
+dotnet new webapp --use-program-main -o ScalableRazor  --docker Linux
+```
+
+Install the following NuGet packages:
+
+* **Azure.Identity**: Provides classes to work with the Azure identity and access management services.
+* **Microsoft.AspNetCore.DataProtection**: Provides services to configure data protection.
+* **Microsoft.Extensions.Azure**: Provides helpful extension methods to perform core Azure configurations.
 
 ```dotnetcli
 dotnet add package Azure.Identity
@@ -67,13 +74,9 @@ dotnet add package Microsoft.AspNetCore.DataProtection
 dotnet add package Microsoft.Extensions.Azure
 ```
 
-## [Visual Studio](#tab/visual-studio)
-
-// todo
-
 ---
 
-Next, update the `Program.cs` code to match the following example:
+Update the `Program.cs` code to match the following example:
 
 ```csharp
 using Azure.Identity;
@@ -115,7 +118,7 @@ To host and scale a .NET app you'll need to create one or more services in Azure
 
 * **Azure Container App**: This service will host your containerized app and scale to multiple instances as needed.
 * **Azure Storage Account**: The storage service will handle storing data for the Data Protection Services of your app. This provides a centralized location to store key data as the app scales. Storage accounts can also be used to hold documents, queue data, file shares, and almost any type of blob data.
-* **Azure KeyVault**: This service will be used to store secrets for your application, and be used to help manage encryption concerns for the Data Protection Services.
+* **Azure KeyVault**: This service will be used to store secrets for your app, and be used to help manage encryption concerns for the Data Protection Services.
 
 #### Create the Container App service
 
@@ -183,7 +186,7 @@ Next you will build and deploy your app to the Azure Container app.
     1. In the new dialog, for the **Resource group** make sure the **msdocs-razor-scaling** group you created earlier is selected, and then choose **Create**. Visual Studio will create the registry in Azure and return to the previous dialog.
 1. Make sure the newly created registry is selected, and then select **Finish**.
 1. Select the **Publish** button in the upper right corner of the publishing summary. Visual Studio will begin deploying the app, which may take a few moments to complete.
-1. When the deployment finishes Visual Studio will launch the browser and open to your application. However, you should see an error page at this point. Although our app is running in Azure, the required services are not connected yet, so you'll do that next.
+1. When the deployment finishes Visual Studio will launch the browser and open to your app. However, you should see an error page at this point. Although our app is running in Azure, the required services are not connected yet, so you'll do that next.
 
 ## 5) Connect the Azure Services
 
@@ -235,7 +238,7 @@ The Container App requires a secure connect to the storage account and key vault
 
 ## 7) Configure roles for local development
 
-The existing code and configuration of your app can also work while running locally during development. The `DefaultAzureCredential` class you configured earlier is able to pick up local environment credentials to authenticate to Azure Services. You will need to assign the same roles to your own account that were assigned to your application's managed identity in order for the authentication to work. This should be the same account you use to log into Visual Studio or the Azure CLI.
+The existing code and configuration of your app can also work while running locally during development. The `DefaultAzureCredential` class you configured earlier is able to pick up local environment credentials to authenticate to Azure Services. You will need to assign the same roles to your own account that were assigned to your app's managed identity in order for the authentication to work. This should be the same account you use to log into Visual Studio or the Azure CLI.
 
 #### Sign-in to your local development environment
 
@@ -284,3 +287,8 @@ Next you'll need to assign a role to your account so that it can access the key 
 You may need to wait again for this role assignment to propagate.
 
 You can then return to Visual Studio and run the app locally. The code should continue to function as expected. `DefaultAzureCredential` will use your existing credentials from Visual Studio or the Azure CLI
+
+## Additional resources
+
+* [Design for scaling](/azure/architecture/framework/scalability/design-scale)
+* [Azure container apps](/azure/container-apps/overview)
