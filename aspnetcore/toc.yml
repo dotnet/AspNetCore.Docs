@@ -212,8 +212,12 @@ items:
         uid: fundamentals/startup
       - name: Dependency injection (services)
         uid: fundamentals/dependency-injection
-      - name: Middleware
-        uid: fundamentals/middleware/index
+      - name: Fundamentals
+        items: Middleware
+        - name: Middleware overview
+          uid: fundamentals/middleware/index
+        - name: Rate limiting middleware
+          uid: performance/rate-limit
       - name: Host
         items:
           - name: Generic Host
