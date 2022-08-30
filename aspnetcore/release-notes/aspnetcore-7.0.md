@@ -251,7 +251,7 @@ dotnet new web --use-program-main
 
 With Visual Studio, select the new **Do not use top-level statements** checkbox during project creation:
 
-![checkbox ](https://user-images.githubusercontent.com/3605364/180587645-90f7cce5-d9f8-49d2-88cf-2258960394e1.png)
+![checkbox](https://user-images.githubusercontent.com/3605364/180587645-90f7cce5-d9f8-49d2-88cf-2258960394e1.png)
 
 ### Updated Angular and React templates
 
