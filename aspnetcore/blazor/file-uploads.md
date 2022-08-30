@@ -496,6 +496,17 @@ public class FilesaveController : ControllerBase
 
 In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure filename. Never trust the filename provided by the browser, as an attacker may choose an existing filename that overwrites an existing file or send a path that attempts to write outside of the app.
 
+## Cancel a file upload
+
+A file upload component can detect when a user has cancelled an upload by using a <xref:System.Threading.CancellationToken> when calling into the <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType> or <xref:System.IO.StreamReader.ReadAsync%2A?displayProperty=nameWithType>.
+
+Create a <xref:System.Threading.CancellationTokenSource> for the `InputFile` component. At the start of the `OnInputFileChange` method, check if a previous upload is in progress.
+
+If a file upload is in progress:
+
+* Call <xref:System.Threading.CancellationTokenSource.Cancel%2A> on the previous upload.
+* Create a new <xref:System.Threading.CancellationTokenSource> for the next upload and pass the <xref:System.Threading.CancellationTokenSource.Token?displayProperty=nameWithType> to <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> or <xref:System.IO.StreamReader.ReadAsync%2A>.
+
 :::zone pivot="server"
 
 ## Upload files with progress
@@ -1052,6 +1063,17 @@ public class FilesaveController : ControllerBase
 ```
 
 :::zone-end
+
+## Cancel a file upload
+
+A file upload component can detect when a user has cancelled an upload by using a <xref:System.Threading.CancellationToken> when calling into the <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType> or <xref:System.IO.StreamReader.ReadAsync%2A?displayProperty=nameWithType>.
+
+Create a <xref:System.Threading.CancellationTokenSource> for the `InputFile` component. At the start of the `OnInputFileChange` method, check if a previous upload is in progress.
+
+If a file upload is in progress:
+
+* Call <xref:System.Threading.CancellationTokenSource.Cancel%2A> on the previous upload.
+* Create a new <xref:System.Threading.CancellationTokenSource> for the next upload and pass the <xref:System.Threading.CancellationTokenSource.Token?displayProperty=nameWithType> to <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> or <xref:System.IO.StreamReader.ReadAsync%2A>.
 
 :::zone pivot="server"
 
@@ -1613,6 +1635,17 @@ public class FilesaveController : ControllerBase
 :::zone-end
 
 In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure filename. Never trust the filename provided by the browser, as an attacker may choose an existing filename that overwrites an existing file or send a path that attempts to write outside of the app.
+
+## Cancel a file upload
+
+A file upload component can detect when a user has cancelled an upload by using a <xref:System.Threading.CancellationToken> when calling into the <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType> or <xref:System.IO.StreamReader.ReadAsync%2A?displayProperty=nameWithType>.
+
+Create a <xref:System.Threading.CancellationTokenSource> for the `InputFile` component. At the start of the `OnInputFileChange` method, check if a previous upload is in progress.
+
+If a file upload is in progress:
+
+* Call <xref:System.Threading.CancellationTokenSource.Cancel%2A> on the previous upload.
+* Create a new <xref:System.Threading.CancellationTokenSource> for the next upload and pass the <xref:System.Threading.CancellationTokenSource.Token?displayProperty=nameWithType> to <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> or <xref:System.IO.StreamReader.ReadAsync%2A>.
 
 :::zone pivot="server"
 
