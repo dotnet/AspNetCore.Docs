@@ -36,9 +36,6 @@ To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azu
     code -r MyMVCapp
     ```
 
-    > [!NOTE]
-    > If a dialog box appears with **Required assets to build and debug are missing from 'MyMVCapp'. Add them?**, select **Yes**  
-
     For the preceding commands:  
 
     * `dotnet new mvc -o MyMVCapp` 
@@ -46,6 +43,9 @@ To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azu
     * `code -r MyMVCapp`
       * Loads the `MyMVCapp.csproj` project file in Visual Studio Code.
       * Visual Studio Code updates the integrated terminal to the project directory.
+
+> [!NOTE]
+> If a dialog box appears with **Required assets to build and debug are missing from 'MyMVCapp'. Add them?**, select **Yes**.
 
 A new ASP.NET Core MVC project is created in a *MyMVCapp* folder with a structure similar to the following:
 
