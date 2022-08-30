@@ -80,7 +80,7 @@ The following recommendations are designed to provide a consistent approach to u
 
 * For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
 
-### New DbContext instances
+### New `DbContext` instances
 
 The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> instance is by using `new` to create a new instance. However, there are several scenarios that may require resolving additional dependencies. For example, you may wish to use [`DbContextOptions`](/ef/core/miscellaneous/configuring-dbcontext#configuring-dbcontextoptions) to configure the context.
 
@@ -90,7 +90,7 @@ The following example configures [SQLite](https://www.sqlite.org/index.html) and
 
 :::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Program.cs" id="snippet1":::
 
-The factory is injected into components and used to create new instances.
+The factory is injected into components and used to create new `DbContext` instances.
 
 In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
 
@@ -217,7 +217,7 @@ The following recommendations are designed to provide a consistent approach to u
 
 * For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
 
-### New DbContext instances
+### New `DbContext` instances
 
 The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> instance is by using `new` to create a new instance. However, there are several scenarios that may require resolving additional dependencies. For example, you may wish to use [`DbContextOptions`](/ef/core/miscellaneous/configuring-dbcontext#configuring-dbcontextoptions) to configure the context.
 
@@ -227,7 +227,7 @@ The following example configures [SQLite](https://www.sqlite.org/index.html) and
 
 :::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs" id="snippet1":::
 
-The factory is injected into components and used to create new instances.
+The factory is injected into components and used to create new `DbContext` instances.
 
 In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
 
@@ -354,7 +354,7 @@ The following recommendations are designed to provide a consistent approach to u
 
 * For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
 
-### New DbContext instances
+### New `DbContext` instances
 
 The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> instance is by using `new` to create a new instance. However, there are several scenarios that may require resolving additional dependencies. For example, you may wish to use [`DbContextOptions`](/ef/core/miscellaneous/configuring-dbcontext#configuring-dbcontextoptions) to configure the context.
 
@@ -371,7 +371,7 @@ The following example configures [SQLite](https://www.sqlite.org/index.html) and
 
 :::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs" id="snippet1":::
 
-The factory is injected into components and used to create new instances.
+The factory is injected into components and used to create new `DbContext` instances.
 
 In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
 
@@ -503,7 +503,7 @@ The following recommendations are designed to provide a consistent approach to u
 
 * For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
 
-### New DbContext instances
+### New `DbContext` instances
 
 The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> instance is by using `new` to create a new instance. However, there are several scenarios that may require resolving additional dependencies. For example, you may wish to use [`DbContextOptions`](/ef/core/miscellaneous/configuring-dbcontext#configuring-dbcontextoptions) to configure the context.
 
@@ -513,7 +513,7 @@ The following example configures [SQLite](https://www.sqlite.org/index.html) and
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerEFCoreSample/Program.cs" id="snippet1":::
 
-The factory is injected into components and used to create new instances.
+The factory is injected into components and used to create new `DbContext` instances.
 
 In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/7.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
 
