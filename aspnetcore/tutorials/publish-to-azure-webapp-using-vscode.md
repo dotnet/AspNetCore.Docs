@@ -129,7 +129,7 @@ If you don't have an existing Azure Web App resource to publish to, you must cre
 1. Right-click **App Services** and select **Create New Web App...**. 
 1. Follow the prompts:
     1. Enter a unique name for the web app.
-    1. Select the most recent stable .NET runtime (such as `*.NET 6 (LTS)`). Do not select the ASP.NET runtime, which is for .NET Framework apps.
+    1. Select the most recent stable .NET runtime (such as `.NET 6 (LTS)`). Do not select the ASP.NET runtime, which is for .NET Framework apps.
     1. Select your pricing tier. Free (F1) is acceptable for this tutorial.  
 
 ### Publish to Azure
