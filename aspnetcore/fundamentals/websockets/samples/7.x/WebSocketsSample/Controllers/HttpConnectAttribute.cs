@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Routing;
 
-public class HttpConnectAttribute : HttpMethodAttribute
+public sealed class HttpConnectAttribute : HttpMethodAttribute
 {
     private static readonly IEnumerable<string> _supportedMethods = new[] { "CONNECT" };
 
