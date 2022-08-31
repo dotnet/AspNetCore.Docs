@@ -80,7 +80,7 @@ The following recommendations are designed to provide a consistent approach to u
 
 * For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
 
-### New `DbContext` instances
+## New `DbContext` instances
 
 The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> instance is by using `new` to create a new instance. However, there are scenarios that require resolving additional dependencies:
 
@@ -108,7 +108,7 @@ A `DbContext` is created using the factory (`DbFactory`) to delete a contact in 
 > [!NOTE]
 > `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
-### Scope to the component lifetime
+## Scope to the component lifetime
 
 You may wish to create a <xref:Microsoft.EntityFrameworkCore.DbContext> that exists for the lifetime of a component. This allows you to use it as a [unit of work](https://martinfowler.com/eaaCatalog/unitOfWork.html) and take advantage of built-in features, such as change tracking and concurrency resolution.
 You can use the factory to create a context and track it for the lifetime of the component. First, implement <xref:System.IDisposable> and inject the factory as shown in `Pages/EditContact.razor`:
@@ -126,7 +126,7 @@ Finally, [`OnInitializedAsync`](xref:blazor/components/lifecycle) is overridden 
 
 :::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor" id="snippet2":::
 
-### Enable sensitive data logging
+## Enable sensitive data logging
 
 <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> includes application data in exception messages and framework logging. The logged data can include the values assigned to properties of entity instances and parameter values for commands sent to the database. Logging data with <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> is a **security risk**, as it may expose passwords and other personally identifiable information (PII) when it logs SQL statements executed against the database.
 
@@ -218,7 +218,7 @@ The following recommendations are designed to provide a consistent approach to u
 
 * For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
 
-### New `DbContext` instances
+## New `DbContext` instances
 
 The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> instance is by using `new` to create a new instance. However, there are scenarios that require resolving additional dependencies:
 
@@ -246,7 +246,7 @@ A `DbContext` is created using the factory (`DbFactory`) to delete a contact in 
 > [!NOTE]
 > `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
-### Scope to the component lifetime
+## Scope to the component lifetime
 
 You may wish to create a <xref:Microsoft.EntityFrameworkCore.DbContext> that exists for the lifetime of a component. This allows you to use it as a [unit of work](https://martinfowler.com/eaaCatalog/unitOfWork.html) and take advantage of built-in features, such as change tracking and concurrency resolution.
 You can use the factory to create a context and track it for the lifetime of the component. First, implement <xref:System.IDisposable> and inject the factory as shown in `Pages/EditContact.razor`:
@@ -264,7 +264,7 @@ Finally, [`OnInitializedAsync`](xref:blazor/components/lifecycle) is overridden 
 
 :::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor" id="snippet2":::
 
-### Enable sensitive data logging
+## Enable sensitive data logging
 
 <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> includes application data in exception messages and framework logging. The logged data can include the values assigned to properties of entity instances and parameter values for commands sent to the database. Logging data with <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> is a **security risk**, as it may expose passwords and other personally identifiable information (PII) when it logs SQL statements executed against the database.
 
@@ -356,7 +356,7 @@ The following recommendations are designed to provide a consistent approach to u
 
 * For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
 
-### New `DbContext` instances
+## New `DbContext` instances
 
 The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> instance is by using `new` to create a new instance. However, there are scenarios that require resolving additional dependencies:
 
@@ -391,7 +391,7 @@ A `DbContext` is created using the factory (`DbFactory`) to delete a contact in 
 > [!NOTE]
 > `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
-### Scope to the component lifetime
+## Scope to the component lifetime
 
 You may wish to create a <xref:Microsoft.EntityFrameworkCore.DbContext> that exists for the lifetime of a component. This allows you to use it as a [unit of work](https://martinfowler.com/eaaCatalog/unitOfWork.html) and take advantage of built-in features, such as change tracking and concurrency resolution.
 You can use the factory to create a context and track it for the lifetime of the component. First, implement <xref:System.IDisposable> and inject the factory as shown in `Pages/EditContact.razor`:
@@ -414,7 +414,7 @@ In the preceding example:
 * When `Busy` is set to `true`, asynchronous operations may begin. When `Busy` is set back to `false`, asynchronous operations should be finished.
 * Place additional error handling logic in a `catch` block.
 
-### Enable sensitive data logging
+## Enable sensitive data logging
 
 <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> includes application data in exception messages and framework logging. The logged data can include the values assigned to properties of entity instances and parameter values for commands sent to the database. Logging data with <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> is a **security risk**, as it may expose passwords and other personally identifiable information (PII) when it logs SQL statements executed against the database.
 
@@ -532,7 +532,7 @@ A `DbContext` is created using the factory (`DbFactory`) to delete a contact in 
 > [!NOTE]
 > `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/Pages/Index.razor).
 
-### Scope to the component lifetime
+## Scope to the component lifetime
 
 You may wish to create a <xref:Microsoft.EntityFrameworkCore.DbContext> that exists for the lifetime of a component. This allows you to use it as a [unit of work](https://martinfowler.com/eaaCatalog/unitOfWork.html) and take advantage of built-in features, such as change tracking and concurrency resolution.
 You can use the factory to create a context and track it for the lifetime of the component. First, implement <xref:System.IDisposable> and inject the factory as shown in `Pages/EditContact.razor`:
@@ -550,7 +550,7 @@ Finally, [`OnInitializedAsync`](xref:blazor/components/lifecycle) is overridden 
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet2":::
 
-### Enable sensitive data logging
+## Enable sensitive data logging
 
 <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> includes application data in exception messages and framework logging. The logged data can include the values assigned to properties of entity instances and parameter values for commands sent to the database. Logging data with <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> is a **security risk**, as it may expose passwords and other personally identifiable information (PII) when it logs SQL statements executed against the database.
 
