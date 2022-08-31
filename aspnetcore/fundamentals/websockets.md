@@ -116,7 +116,7 @@ The following is an example custom attribute routing class named `HttpConnectAtt
 
 [!code-csharp[](~/fundamentals/websockets/samples/7.x/WebSocketsSample/Controllers/HttpConnectAttribute.cs)]
 
-The `[HttpConnect]` attribute can be added to a controller action to enable Websocket support over HTTP/2:
+The custom `[HttpConnect]` attribute can be added to a controller action to enable Websocket support over HTTP/2:
 
 [!code-csharp[](~/fundamentals/websockets/samples/7.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet_Controller_Connect&highlight=3)]
 
