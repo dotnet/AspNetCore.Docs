@@ -91,7 +91,7 @@ A WebSocket request could come in on any URL, but this sample code only accepts 
 
 A similar approach can be taken in a controller method:
 
-:::code language="csharp" source="websockets/samples/7.x/WebSocketsSample/Controllers/WebSocketController.cs" id="snippet_Controller_Get":::
+:::code language="csharp" source="websockets/samples/7.x/WebSocketsSample/Controllers/WebSocketController.cs" id="snippet_Controller_Connect":::
 
 When using a WebSocket, you **must** keep the middleware pipeline running for the duration of the connection. If you attempt to send or receive a WebSocket message after the middleware pipeline ends, you may get an exception like the following:
 
@@ -116,9 +116,9 @@ The following is an example custom attribute routing class named `HttpConnectAtt
 
 [!code-csharp[](~/fundamentals/websockets/samples/7.x/WebSocketsSample/Controllers/HttpConnectAttribute.cs)]
 
-The previous controller action example using the custom `[HttpConnect]` attribute instead of [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute):
+The `[HttpConnect]` attribute can be added to a controller action to enable Websocket support over HTTP/2:
 
-[!code-csharp[](~/fundamentals/websockets/samples/7.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet_Controller_Connect&highlight=1)]
+[!code-csharp[](~/fundamentals/websockets/samples/7.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet_Controller_Connect&highlight=3)]
 
 ### Compression
 
