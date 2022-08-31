@@ -32,7 +32,7 @@ The steps in this article demonstrate how to properly address these concerns by 
 
 ## Create a containerized ASP.NET Core app
 
-# [Visual Studio](#tab/visual-studio)
+<!-- # [Visual Studio](#tab/visual-studio) -->
 
 1. In Visual Studio, select **File > New > Project**.
 
@@ -42,7 +42,7 @@ The steps in this article demonstrate how to properly address these concerns by 
 
 1. On the **Additional Information** dialog, use the following settings:
     * **Framework**: Select **.NET 6.0** or later.
-    * **Authentication type**: Select **None**.
+    * **Authentication type**: Keep the default **None**.
     * **Configure for HTTPS**: Keep the default checked.
     * **Enable Docker**: This must be checked. This setting generates a Dockerfile in the project that is used to containerize the app.
     * **Docker OS**: **Linux**.
@@ -50,16 +50,28 @@ The steps in this article demonstrate how to properly address these concerns by 
 
 Install the following NuGet packages:
 
-* **Azure.Identity**: Provides classes to work with the Azure identity and access management services.
-* **Microsoft.AspNetCore.DataProtection**: Provides services to configure data protection.
-* **Microsoft.Extensions.Azure**: Provides helpful extension methods to perform core Azure configurations.
+* [Azure.Identity](https://www.nuget.org/packages/Azure.Identity): Provides classes to work with the Azure identity and access management services.
+* [Microsoft.Extensions.Azure](https://www.nuget.org/packages/Microsoft.Extensions.Azure): Provides helpful extension methods to perform core Azure configurations.
+* [Azure.Extensions.AspNetCore.DataProtection.Blobs](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs): Allows storing ASP.NET Core DataProtection keys in Azure Blob Storage.
+* [Azure.Extensions.AspNetCore.DataProtection.Keys](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys): Allows protecting keys at rest using Azure Key Vault Key Encryption/Wrapping feature.
 
+Add the NuGet package `Azure.Identity`:
+1. From the **Tools** menu, select **NuGet Package Manager** > **Manage NuGet Packages for Solution**
+   ![NuGet Package Manager - manage](~/tutorials/razor-pages/model/_static/6/model/_static/6/nugetMP.png)
+1. Select the **Browse** tab.
+1. Enter `Azure.Identity` and select it from the list.
+1. Check **Project** and then Select **Install**
+1. Repeat the preceding steps for the additional NuGet packages.
+
+<!--
 # [.NET Core CLI](#tab/netcore-cli) 
 
 Run the following command to create the starter project:
 
 ```dotnetcli
-dotnet new webapp --use-program-main -o ScalableRazor  --docker Linux
+dotnet new webapp -o ScalableRazor
+cd ScalableRazor
+dotnet user-secrets init
 ```
 
 Install the following NuGet packages:
@@ -76,24 +88,25 @@ dotnet add package Azure.Extensions.AspNetCore.DataProtection.Keys
 ```
 
 ---
+-->
 
 Update `Program.cs` with the following highlighted code:
 
-:::code language="csharp" source="~/host-and-deploy/scaling-aspnet-apps/samples/ScalableRazor/Program.cs" highlight="1-3,8-14":::
+:::code language="csharp" source="~/host-and-deploy/scaling-aspnet-apps/samples/ScalableRazor/Program.cs" highlight="1-3,6-7,10-17":::
 
-The preceding example features a standard Razor Pages `Program` class with a few additional configurations to handle data protection using Azure Blob Storage and Key Vault. These changes allow the app to manage data protection using a centralized, scalable architecture.
+The preceding highlighted code allows the app to manage data protection using a centralized, scalable architecture.
 
-## 3) Create the Azure Services
+## Create Azure Services
 
-To host and scale a .NET app you'll need to create one or more services in Azure. These services will handle common concerns such as application hosting, storage, caching, secrets and more. For this tutorial you'll need to create the following services:
+Hosting and scaling a .NET app requires Azure services. These services handle common concerns such as app hosting, storage, caching, secrets and more. For this tutorial, the following services are required:
 
-* **Azure Container App**: This service will host your containerized app and scale to multiple instances as needed.
-* **Azure Storage Account**: The storage service will handle storing data for the Data Protection Services of your app. This provides a centralized location to store key data as the app scales. Storage accounts can also be used to hold documents, queue data, file shares, and almost any type of blob data.
-* **Azure KeyVault**: This service will be used to store secrets for your app, and be used to help manage encryption concerns for the Data Protection Services.
+* [Azure Container App](/azure/container-apps/overview): Hosts a containerized app and scales to multiple instances as needed.
+* [Azure Storage Account](/azure/storage/common/storage-account-overview): Handles storing data for the Data Protection Services. Provides a centralized location to store key data as the app scales. Storage accounts can also be used to hold documents, queue data, file shares, and almost any type of blob data.
+* [Azure KeyVault](/azure/key-vault/general/basic-concepts): This service will be used to store secrets for your app, and be used to help manage encryption concerns for the Data Protection Services.
 
 #### Create the Container App service
 
-1. In the Azure portal search bar, enter *Container Apps* and select the matching result.
+1. In the Azure portal search bar, enter `Container Apps` and select the matching result.
 1. On the Container Apps listing page, select **+ Create**.
 1. On the **Basics** tab, enter the following values:
     * **Subscription**: Select the subscription you'd like to use.

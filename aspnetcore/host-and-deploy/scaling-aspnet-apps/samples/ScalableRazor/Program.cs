@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.Azure;
 
 var builder = WebApplication.CreateBuilder(args);
+var BlobStorageUri = builder.Configuration["AzureURIs:BlobStorage"];
+var KeyVaultURI = builder.Configuration["AzureURIs:KeyVault"];
 
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
@@ -10,8 +12,10 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddAzureClientsCore();
 
 builder.Services.AddDataProtection()
-                .PersistKeysToAzureBlobStorage(new Uri("<your-storage-account-uri>"), new DefaultAzureCredential())
-                .ProtectKeysWithAzureKeyVault(new Uri($"https://<key-vault-name>.vault.azure.net/keys/<key-name>/"), new DefaultAzureCredential());
+                .PersistKeysToAzureBlobStorage(new Uri(BlobStorageUri),
+                                               new DefaultAzureCredential())
+                .ProtectKeysWithAzureKeyVault(new Uri(KeyVaultURI),
+                                              new DefaultAzureCredential());
 
 var app = builder.Build();
 
