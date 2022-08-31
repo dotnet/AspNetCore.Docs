@@ -57,7 +57,7 @@ Install the following NuGet packages:
 
 Add the NuGet package `Azure.Identity`:
 1. From the **Tools** menu, select **NuGet Package Manager** > **Manage NuGet Packages for Solution**
-   ![NuGet Package Manager - manage](~/tutorials/razor-pages/model/_static/6/model/_static/6/nugetMP.png)
+   ![NuGet Package Manager - manage](~/tutorials/razor-pages/model/_static/6/nugetMP.png)
 1. Select the **Browse** tab.
 1. Enter `Azure.Identity` and select it from the list.
 1. Check **Project** and then Select **Install**
