@@ -80,26 +80,35 @@ The following recommendations are designed to provide a consistent approach to u
 
 * For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
 
-### New DbContext instances
+## New `DbContext` instances
 
-The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> instance is by using `new` to create a new instance. However, there are several scenarios that may require resolving additional dependencies. For example, you may wish to use [`DbContextOptions`](/ef/core/miscellaneous/configuring-dbcontext#configuring-dbcontextoptions) to configure the context.
+The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> instance is by using `new` to create a new instance. However, there are scenarios that require resolving additional dependencies:
 
-The recommended solution to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> with dependencies is to use a factory. EF Core 5.0 or later provides a built-in factory for creating new contexts.
+* Using [`DbContextOptions`](/ef/core/miscellaneous/configuring-dbcontext#configuring-dbcontextoptions) to configure the context.
+* Using a connection string per <xref:Microsoft.EntityFrameworkCore.DbContext>, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
+
+The recommended approach to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> with dependencies is to use a factory. EF Core 5.0 or later provides a built-in factory for creating new contexts.
 
 The following example configures [SQLite](https://www.sqlite.org/index.html) and enables data logging. The code uses an extension method (`AddDbContextFactory`) to configure the database factory for DI and provide default options:
 
 :::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Program.cs" id="snippet1":::
 
-The factory is injected into components and used to create new instances. For example, in `Pages/Index.razor`:
+The factory is injected into components and used to create new `DbContext` instances.
+
+In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
+
+```razor
+@inject IDbContextFactory<ContactContext> DbFactory
+```
+
+A `DbContext` is created using the factory (`DbFactory`) to delete a contact in the `DeleteContactAsync` method:
 
 :::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
-New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
-
-### Scope to the component lifetime
+## Scope to the component lifetime
 
 You may wish to create a <xref:Microsoft.EntityFrameworkCore.DbContext> that exists for the lifetime of a component. This allows you to use it as a [unit of work](https://martinfowler.com/eaaCatalog/unitOfWork.html) and take advantage of built-in features, such as change tracking and concurrency resolution.
 You can use the factory to create a context and track it for the lifetime of the component. First, implement <xref:System.IDisposable> and inject the factory as shown in `Pages/EditContact.razor`:
@@ -117,7 +126,7 @@ Finally, [`OnInitializedAsync`](xref:blazor/components/lifecycle) is overridden 
 
 :::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor" id="snippet2":::
 
-### Enable sensitive data logging
+## Enable sensitive data logging
 
 <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> includes application data in exception messages and framework logging. The logged data can include the values assigned to properties of entity instances and parameter values for commands sent to the database. Logging data with <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> is a **security risk**, as it may expose passwords and other personally identifiable information (PII) when it logs SQL statements executed against the database.
 
@@ -209,26 +218,35 @@ The following recommendations are designed to provide a consistent approach to u
 
 * For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
 
-### New DbContext instances
+## New `DbContext` instances
 
-The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> instance is by using `new` to create a new instance. However, there are several scenarios that may require resolving additional dependencies. For example, you may wish to use [`DbContextOptions`](/ef/core/miscellaneous/configuring-dbcontext#configuring-dbcontextoptions) to configure the context.
+The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> instance is by using `new` to create a new instance. However, there are scenarios that require resolving additional dependencies:
 
-The recommended solution to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> with dependencies is to use a factory. EF Core 5.0 or later provides a built-in factory for creating new contexts.
+* Using [`DbContextOptions`](/ef/core/miscellaneous/configuring-dbcontext#configuring-dbcontextoptions) to configure the context.
+* Using a connection string per <xref:Microsoft.EntityFrameworkCore.DbContext>, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
+
+The recommended approach to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> with dependencies is to use a factory. EF Core 5.0 or later provides a built-in factory for creating new contexts.
 
 The following example configures [SQLite](https://www.sqlite.org/index.html) and enables data logging. The code uses an extension method (`AddDbContextFactory`) to configure the database factory for DI and provide default options:
 
 :::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs" id="snippet1":::
 
-The factory is injected into components and used to create new instances. For example, in `Pages/Index.razor`:
+The factory is injected into components and used to create new `DbContext` instances.
+
+In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
+
+```razor
+@inject IDbContextFactory<ContactContext> DbFactory
+```
+
+A `DbContext` is created using the factory (`DbFactory`) to delete a contact in the `DeleteContactAsync` method:
 
 :::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
-New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
-
-### Scope to the component lifetime
+## Scope to the component lifetime
 
 You may wish to create a <xref:Microsoft.EntityFrameworkCore.DbContext> that exists for the lifetime of a component. This allows you to use it as a [unit of work](https://martinfowler.com/eaaCatalog/unitOfWork.html) and take advantage of built-in features, such as change tracking and concurrency resolution.
 You can use the factory to create a context and track it for the lifetime of the component. First, implement <xref:System.IDisposable> and inject the factory as shown in `Pages/EditContact.razor`:
@@ -246,7 +264,7 @@ Finally, [`OnInitializedAsync`](xref:blazor/components/lifecycle) is overridden 
 
 :::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor" id="snippet2":::
 
-### Enable sensitive data logging
+## Enable sensitive data logging
 
 <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> includes application data in exception messages and framework logging. The logged data can include the values assigned to properties of entity instances and parameter values for commands sent to the database. Logging data with <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> is a **security risk**, as it may expose passwords and other personally identifiable information (PII) when it logs SQL statements executed against the database.
 
@@ -338,33 +356,42 @@ The following recommendations are designed to provide a consistent approach to u
 
 * For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
 
-### New DbContext instances
+## New `DbContext` instances
 
-The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> instance is by using `new` to create a new instance. However, there are several scenarios that may require resolving additional dependencies. For example, you may wish to use [`DbContextOptions`](/ef/core/miscellaneous/configuring-dbcontext#configuring-dbcontextoptions) to configure the context.
+The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> instance is by using `new` to create a new instance. However, there are scenarios that require resolving additional dependencies:
 
-The recommended solution to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> with dependencies is to use a factory. The sample app implements its own factory in `Data/DbContextFactory.cs`.
+* Using [`DbContextOptions`](/ef/core/miscellaneous/configuring-dbcontext#configuring-dbcontextoptions) to configure the context.
+* Using a connection string per <xref:Microsoft.EntityFrameworkCore.DbContext>, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
+
+The recommended approach to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> with dependencies is to use a factory. The sample app implements its own factory in `Data/DbContextFactory.cs`.
 
 :::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Data/DbContextFactory.cs":::
 
 In the preceding factory:
 
 * <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance%2A?displayProperty=nameWithType> satisfies any dependencies via the service provider.
-* `IDbContextFactory` is available in EF Core ASP.NET Core 5.0 or later, so the interface is [implemented in the sample app for ASP.NET Core 3.x](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Data/IDbContextFactory.cs).
+* `IDbContextFactory` is available in EF Core ASP.NET Core 5.0 or later, so the interface is [implemented in the sample app for ASP.NET Core 3.x](https://github.com/dotnet/blazor-samples/blob/main/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Data/IDbContextFactory.cs).
 
 The following example configures [SQLite](https://www.sqlite.org/index.html) and enables data logging. The code uses an extension method to configure the database factory for DI and provide default options:
 
 :::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs" id="snippet1":::
 
-The factory is injected into components and used to create new instances. For example, in `Pages/Index.razor`:
+The factory is injected into components and used to create new `DbContext` instances.
+
+In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
+
+```razor
+@inject IDbContextFactory<ContactContext> DbFactory
+```
+
+A `DbContext` is created using the factory (`DbFactory`) to delete a contact in the `DeleteContactAsync` method:
 
 :::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/blazor/samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
-New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model])(xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
-
-### Scope to the component lifetime
+## Scope to the component lifetime
 
 You may wish to create a <xref:Microsoft.EntityFrameworkCore.DbContext> that exists for the lifetime of a component. This allows you to use it as a [unit of work](https://martinfowler.com/eaaCatalog/unitOfWork.html) and take advantage of built-in features, such as change tracking and concurrency resolution.
 You can use the factory to create a context and track it for the lifetime of the component. First, implement <xref:System.IDisposable> and inject the factory as shown in `Pages/EditContact.razor`:
@@ -387,7 +414,7 @@ In the preceding example:
 * When `Busy` is set to `true`, asynchronous operations may begin. When `Busy` is set back to `false`, asynchronous operations should be finished.
 * Place additional error handling logic in a `catch` block.
 
-### Enable sensitive data logging
+## Enable sensitive data logging
 
 <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> includes application data in exception messages and framework logging. The logged data can include the values assigned to properties of entity instances and parameter values for commands sent to the database. Logging data with <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> is a **security risk**, as it may expose passwords and other personally identifiable information (PII) when it logs SQL statements executed against the database.
 
@@ -479,26 +506,33 @@ The following recommendations are designed to provide a consistent approach to u
 
 * For longer-lived operations that take advantage of EF Core's [change tracking](/ef/core/querying/tracking) or [concurrency control](/ef/core/saving/concurrency), [scope the context to the lifetime of the component](#scope-to-the-component-lifetime).
 
-### New DbContext instances
+The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> instance is by using `new` to create a new instance. However, there are scenarios that require resolving additional dependencies:
 
-The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> instance is by using `new` to create a new instance. However, there are several scenarios that may require resolving additional dependencies. For example, you may wish to use [`DbContextOptions`](/ef/core/miscellaneous/configuring-dbcontext#configuring-dbcontextoptions) to configure the context.
+* Using [`DbContextOptions`](/ef/core/miscellaneous/configuring-dbcontext#configuring-dbcontextoptions) to configure the context.
+* Using a connection string per <xref:Microsoft.EntityFrameworkCore.DbContext>, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
 
-The recommended solution to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> with dependencies is to use a factory. EF Core 5.0 or later provides a built-in factory for creating new contexts.
+The recommended approach to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> with dependencies is to use a factory. EF Core 5.0 or later provides a built-in factory for creating new contexts.
 
 The following example configures [SQLite](https://www.sqlite.org/index.html) and enables data logging. The code uses an extension method (`AddDbContextFactory`) to configure the database factory for DI and provide default options:
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerEFCoreSample/Program.cs" id="snippet1":::
 
-The factory is injected into components and used to create new instances. For example, in `Pages/Index.razor`:
+The factory is injected into components and used to create new `DbContext` instances.
+
+In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/7.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
+
+```razor
+@inject IDbContextFactory<ContactContext> DbFactory
+```
+
+A `DbContext` is created using the factory (`DbFactory`) to delete a contact in the `DeleteContactAsync` method:
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/Pages/Index.razor).
 
-New <xref:Microsoft.EntityFrameworkCore.DbContext> instances can be created with a factory that allows you to configure the connection string per `DbContext`, such as when you use [ASP.NET Core's Identity model](xref:security/authentication/customize_identity_model). For more information, see [Multi-tenancy (EF Core documentation)](/ef/core/miscellaneous/multitenancy).
-
-### Scope to the component lifetime
+## Scope to the component lifetime
 
 You may wish to create a <xref:Microsoft.EntityFrameworkCore.DbContext> that exists for the lifetime of a component. This allows you to use it as a [unit of work](https://martinfowler.com/eaaCatalog/unitOfWork.html) and take advantage of built-in features, such as change tracking and concurrency resolution.
 You can use the factory to create a context and track it for the lifetime of the component. First, implement <xref:System.IDisposable> and inject the factory as shown in `Pages/EditContact.razor`:
@@ -516,7 +550,7 @@ Finally, [`OnInitializedAsync`](xref:blazor/components/lifecycle) is overridden 
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet2":::
 
-### Enable sensitive data logging
+## Enable sensitive data logging
 
 <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> includes application data in exception messages and framework logging. The logged data can include the values assigned to properties of entity instances and parameter values for commands sent to the database. Logging data with <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> is a **security risk**, as it may expose passwords and other personally identifiable information (PII) when it logs SQL statements executed against the database.
 
