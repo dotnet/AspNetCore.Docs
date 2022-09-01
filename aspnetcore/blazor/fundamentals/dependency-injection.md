@@ -326,7 +326,7 @@ Initially navigating to the `TimeTravel` component, the time travel service is i
   
 When navigating away from the `TimeTravel` component to another component and back to the `TimeTravel` component:
 
-* `TimeTravel1` is provided the same service instance that was created when the component was first loaded, so the value of `DT` remains the same.
+* `TimeTravel1` is provided the same service instance that was created when the component first loaded, so the value of `DT` remains the same.
 * `TimeTravel2` obtains a new `ITimeTravel` service instance in `TimeTravel2` with a new DT value.
   
 > :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
@@ -809,7 +809,7 @@ Initially navigating to the `TimeTravel` component, the time travel service is i
   
 When navigating away from the `TimeTravel` component to another component and back to the `TimeTravel` component:
 
-* `TimeTravel1` is provided the same service instance that was created when the component was first loaded, so the value of `DT` remains the same.
+* `TimeTravel1` is provided the same service instance that was created when the component first loaded, so the value of `DT` remains the same.
 * `TimeTravel2` obtains a new `ITimeTravel` service instance in `TimeTravel2` with a new DT value.
   
 > :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
@@ -1304,7 +1304,7 @@ Initially navigating to the `TimeTravel` component, the time travel service is i
   
 When navigating away from the `TimeTravel` component to another component and back to the `TimeTravel` component:
 
-* `TimeTravel1` is provided the same service instance that was created when the component was first loaded, so the value of `DT` remains the same.
+* `TimeTravel1` is provided the same service instance that was created when the component first loaded, so the value of `DT` remains the same.
 * `TimeTravel2` obtains a new `ITimeTravel` service instance in `TimeTravel2` with a new DT value.
   
 > :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
@@ -1794,7 +1794,7 @@ Initially navigating to the `TimeTravel` component, the time travel service is i
   
 When navigating away from the `TimeTravel` component to another component and back to the `TimeTravel` component:
 
-* `TimeTravel1` is provided the same service instance that was created when the component was first loaded, so the value of `DT` remains the same.
+* `TimeTravel1` is provided the same service instance that was created when the component first loaded, so the value of `DT` remains the same.
 * `TimeTravel2` obtains a new `ITimeTravel` service instance in `TimeTravel2` with a new DT value.
   
 > :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
