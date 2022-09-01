@@ -307,7 +307,7 @@ To use the `CounterStateProvider` component, wrap an instance of the component a
 
 ```razor
 <CounterStateProvider>
-    <Router AppAssembly="@typeof(Program).Assembly">
+    <Router AppAssembly="@typeof(App).Assembly">
         ...
     </Router>
 </CounterStateProvider>

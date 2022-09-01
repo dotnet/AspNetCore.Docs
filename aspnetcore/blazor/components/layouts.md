@@ -140,7 +140,7 @@ To set a layout for arbitrary Razor template content, specify the layout with a 
 `App.razor`:
 
 ```razor
-<Router AppAssembly="@typeof(Program).Assembly">
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
     </Found>
@@ -790,7 +790,7 @@ To set a layout for arbitrary Razor template content, specify the layout with a 
 `App.razor`:
 
 ```razor
-<Router AppAssembly="@typeof(Program).Assembly">
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
     </Found>
