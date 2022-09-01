@@ -178,7 +178,7 @@ If you're hosting your server on "https://server.com" and hosting your client on
 
 ### IIS/IIS Express support
 
-Windows Server 2012 or later and Windows 8 or later with IIS/IIS Express 8 or later has support for the WebSocket protocol.
+Windows Server 2012 or later and Windows 8 or later with IIS/IIS Express 8 or later has support for the WebSocket protocol, but not for WebSockets over HTTP/2.
 
 > [!NOTE]
 > WebSockets are always enabled when using IIS Express.
