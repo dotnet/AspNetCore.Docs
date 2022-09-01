@@ -18,7 +18,7 @@ An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/fram
 
 ## Prerequisites
 
-* [ASP.NET Core SDK 2.1 or later](https://dotnet.microsoft.com/download)
+* [ASP.NET Core SDK 6.0 or later](https://dotnet.microsoft.com/download)
 * [PowerShell 6.2 or later](https://github.com/PowerShell/PowerShell)
 
 ## Worker Service template
@@ -44,13 +44,12 @@ The app requires a package reference for [Microsoft.Extensions.Hosting.WindowsSe
   * Override the default log level with the `Logging:EventLog:LogLevel:Default` key in `appsettings.json`/`appsettings.{Environment}.json` or other configuration provider.
   * Only administrators can create new event sources. When an event source can't be created using the application name, a warning is logged to the *Application* source and event logs are disabled.
 
-In `CreateHostBuilder` of `Program.cs`:
+In `Program.cs`:
 
-```csharp
-Host.CreateDefaultBuilder(args)
-    .UseWindowsService()
-    ...
-```
+* Set `ContentRootPath`
+* Call `UseWindowsService`
+
+:::code language="csharp" source="~/host-and-deploy/windows-service/samples/6.x/WebAppServiceSample/Program.cs" highlight="7,8,16":::
 
 The following sample apps accompany this topic:
 

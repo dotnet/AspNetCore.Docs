@@ -239,30 +239,121 @@ An approach that limits a service lifetime in Blazor apps is use of the <xref:Mi
 * Should be reused within a component, as the transient lifetime is inappropriate.
 * Shouldn't be shared across components, as the singleton lifetime is inappropriate.
 
-Two versions of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type are available:
+Two versions of <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type are available and described in the next two sections:
 
-* <xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract, disposable child of the <xref:Microsoft.AspNetCore.Components.ComponentBase> type with a protected <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property of type <xref:System.IServiceProvider>. This provider can be used to resolve services that are scoped to the lifetime of the component.
+* [`OwningComponentBase`](#owningcomponentbase)
+* [`OwningComponentBase<TService>`](#owningcomponentbasetservice)
 
-  DI services injected into the component using [`@inject`](xref:mvc/views/razor#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) aren't created in the component's scope. To use the component's scope, services must be resolved using <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> or <xref:System.IServiceProvider.GetService%2A>. Any services resolved using the <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider have their dependencies provided from that same scope.
+### `OwningComponentBase`
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/dependency-injection/Preferences.razor" highlight="3,23-24":::
+<xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract, disposable child of the <xref:Microsoft.AspNetCore.Components.ComponentBase> type with a protected <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property of type <xref:System.IServiceProvider>. The provider can be used to resolve services that are scoped to the lifetime of the component.
 
-* <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601> derives from <xref:Microsoft.AspNetCore.Components.OwningComponentBase> and adds a <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601.Service%2A> property that returns an instance of `T` from the scoped DI provider. This type is a convenient way to access scoped services without using an instance of <xref:System.IServiceProvider> when there's one primary service the app requires from the DI container using the component's scope. The <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property is available, so the app can get services of other types, if necessary.
+DI services injected into the component using [`@inject`](xref:mvc/views/razor#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) aren't created in the component's scope. To use the component's scope, services must be resolved using <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> with either <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> or <xref:System.IServiceProvider.GetService%2A>. Any services resolved using the <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider have their dependencies provided in the component's scope.
+  
+The following example demonstrates the difference between injecting a scoped service directly and resolving a service using <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> in a Blazor Server app. The following interface and implementation for a time travel class include a `DT` property to hold a <xref:System.DateTime> value. The implemention calls <xref:System.DateTime.Now?displayProperty=nameWithType> to set `DT` when the `TimeTravel` class is instantiated.
+  
+`ITimeTravel.cs`:
+  
+```csharp
+public interface ITimeTravel
+{
+    public DateTime DT { get; set; }
+}
+```
+  
+`TimeTravel.cs`:
 
-  ```razor
-  @page "/users"
-  @attribute [Authorize]
-  @inherits OwningComponentBase<AppDbContext>
+```csharp
+public class TimeTravel : ITimeTravel
+{
+    public DateTime DT { get; set; } = DateTime.Now;
+}
+```
+  
+The service is registered as scoped in `Program.cs` of a Blazor Server app. In a Blazor Server app, scoped services have a lifetime equal to the duration of the client connection, known as a [circuit](xref:blazor/hosting-models#blazor-server).
+  
+In `Program.cs`:
+  
+```csharp
+builder.Services.AddScoped<ITimeTravel, TimeTravel>();
+```
 
-  <h1>Users (@Service.Users.Count())</h1>
+In the following `TimeTravel` component:
 
-  <ul>
-      @foreach (var user in Service.Users)
-      {
-          <li>@user.UserName</li>
-      }
-  </ul>
-  ```
+* The time travel service is directly injected with `@inject` as `TimeTravel1`.
+* The service is also resolved separately with <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> as `TimeTravel2`.
+
+`Pages/TimeTravel.razor`:
+  
+```razor
+@page "/time-travel"
+@inject ITimeTravel TimeTravel1
+@inherits OwningComponentBase
+
+<h1><code>OwningComponentBase</code> Example</h1>
+
+<ul>
+    <li>TimeTravel1.DT: @TimeTravel1?.DT</li>
+    <li>TimeTravel2.DT: @TimeTravel2?.DT</li>
+</ul>
+
+@code {
+    private ITimeTravel? TimeTravel2 { get; set; }
+
+    protected override void OnInitialized()
+    {
+        TimeTravel2 = ScopedServices.GetRequiredService<ITimeTravel>();
+    }
+}
+```
+  
+If you're placing this example into a test app, add the `TimeTravel` component to the `NavMenu` component.
+  
+In `Shared/NavMenu.razor`:
+  
+```razor
+<div class="nav-item px-3">
+    <NavLink class="nav-link" href="time-travel">
+        <span class="oi oi-list-rich" aria-hidden="true"></span> Time travel
+    </NavLink>
+</div>
+```
+
+Initially navigating to the `TimeTravel` component, the time travel service is instantiated twice when the component loads, and `TimeTravel1` and `TimeTravel2` have the same initial value:
+  
+> :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
+> :::no-loc text="TimeTravel2.DT: 8/31/2022 2:54:45 PM":::
+  
+When navigating away from the `TimeTravel` component to another component and back to the `TimeTravel` component:
+
+* `TimeTravel1` is provided the same service instance that was created when the component first loaded, so the value of `DT` remains the same.
+* `TimeTravel2` obtains a new `ITimeTravel` service instance in `TimeTravel2` with a new DT value.
+  
+> :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
+> :::no-loc text="TimeTravel2.DT: 8/31/2022 2:54:48 PM":::
+  
+`TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
+
+In spite of the scoped service registration in `Program.cs` and the longevity of the user's circuit, `TimeTravel2` receives a new `ITimeTravel` service instance each time the component is initialized.
+
+### `OwningComponentBase<TService>`
+
+<xref:Microsoft.AspNetCore.Components.OwningComponentBase%601> derives from <xref:Microsoft.AspNetCore.Components.OwningComponentBase> and adds a <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601.Service%2A> property that returns an instance of `T` from the scoped DI provider. This type is a convenient way to access scoped services without using an instance of <xref:System.IServiceProvider> when there's one primary service the app requires from the DI container using the component's scope. The <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property is available, so the app can get services of other types, if necessary.
+
+```razor
+@page "/users"
+@attribute [Authorize]
+@inherits OwningComponentBase<AppDbContext>
+
+<h1>Users (@Service.Users.Count())</h1>
+
+<ul>
+    @foreach (var user in Service.Users)
+    {
+        <li>@user.UserName</li>
+    }
+</ul>
+```
 
 ## Use of an Entity Framework Core (EF Core) DbContext from DI
 
@@ -631,30 +722,121 @@ An approach that limits a service lifetime in Blazor apps is use of the <xref:Mi
 * Should be reused within a component, as the transient lifetime is inappropriate.
 * Shouldn't be shared across components, as the singleton lifetime is inappropriate.
 
-Two versions of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type are available:
+Two versions of <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type are available and described in the next two sections:
 
-* <xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract, disposable child of the <xref:Microsoft.AspNetCore.Components.ComponentBase> type with a protected <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property of type <xref:System.IServiceProvider>. This provider can be used to resolve services that are scoped to the lifetime of the component.
+* [`OwningComponentBase`](#owningcomponentbase)
+* [`OwningComponentBase<TService>`](#owningcomponentbasetservice)
 
-  DI services injected into the component using [`@inject`](xref:mvc/views/razor#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) aren't created in the component's scope. To use the component's scope, services must be resolved using <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> or <xref:System.IServiceProvider.GetService%2A>. Any services resolved using the <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider have their dependencies provided from that same scope.
+### `OwningComponentBase`
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/dependency-injection/Preferences.razor" highlight="3,20-21":::
+<xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract, disposable child of the <xref:Microsoft.AspNetCore.Components.ComponentBase> type with a protected <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property of type <xref:System.IServiceProvider>. The provider can be used to resolve services that are scoped to the lifetime of the component.
 
-* <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601> derives from <xref:Microsoft.AspNetCore.Components.OwningComponentBase> and adds a <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601.Service%2A> property that returns an instance of `T` from the scoped DI provider. This type is a convenient way to access scoped services without using an instance of <xref:System.IServiceProvider> when there's one primary service the app requires from the DI container using the component's scope. The <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property is available, so the app can get services of other types, if necessary.
+DI services injected into the component using [`@inject`](xref:mvc/views/razor#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) aren't created in the component's scope. To use the component's scope, services must be resolved using <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> with either <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> or <xref:System.IServiceProvider.GetService%2A>. Any services resolved using the <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider have their dependencies provided in the component's scope.
+  
+The following example demonstrates the difference between injecting a scoped service directly and resolving a service using <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> in a Blazor Server app. The following interface and implementation for a time travel class include a `DT` property to hold a <xref:System.DateTime> value. The implemention calls <xref:System.DateTime.Now?displayProperty=nameWithType> to set `DT` when the `TimeTravel` class is instantiated.
+  
+`ITimeTravel.cs`:
+  
+```csharp
+public interface ITimeTravel
+{
+    public DateTime DT { get; set; }
+}
+```
+  
+`TimeTravel.cs`:
 
-  ```razor
-  @page "/users"
-  @attribute [Authorize]
-  @inherits OwningComponentBase<AppDbContext>
+```csharp
+public class TimeTravel : ITimeTravel
+{
+    public DateTime DT { get; set; } = DateTime.Now;
+}
+```
+  
+The service is registered as scoped in `Program.cs` of a Blazor Server app. In a Blazor Server app, scoped services have a lifetime equal to the duration of the client connection, known as a [circuit](xref:blazor/hosting-models#blazor-server).
+  
+In `Program.cs`:
+  
+```csharp
+builder.Services.AddScoped<ITimeTravel, TimeTravel>();
+```
 
-  <h1>Users (@Service.Users.Count())</h1>
+In the following `TimeTravel` component:
 
-  <ul>
-      @foreach (var user in Service.Users)
-      {
-          <li>@user.UserName</li>
-      }
-  </ul>
-  ```
+* The time travel service is directly injected with `@inject` as `TimeTravel1`.
+* The service is also resolved separately with <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> as `TimeTravel2`.
+
+`Pages/TimeTravel.razor`:
+  
+```razor
+@page "/time-travel"
+@inject ITimeTravel TimeTravel1
+@inherits OwningComponentBase
+
+<h1><code>OwningComponentBase</code> Example</h1>
+
+<ul>
+    <li>TimeTravel1.DT: @TimeTravel1.DT</li>
+    <li>TimeTravel2.DT: @TimeTravel2.DT</li>
+</ul>
+
+@code {
+    private ITimeTravel TimeTravel2 { get; set; }
+
+    protected override void OnInitialized()
+    {
+        TimeTravel2 = ScopedServices.GetRequiredService<ITimeTravel>();
+    }
+}
+```
+  
+If you're placing this example into a test app, add the `TimeTravel` component to the `NavMenu` component.
+  
+In `Shared/NavMenu.razor`:
+  
+```razor
+<div class="nav-item px-3">
+    <NavLink class="nav-link" href="time-travel">
+        <span class="oi oi-list-rich" aria-hidden="true"></span> Time travel
+    </NavLink>
+</div>
+```
+
+Initially navigating to the `TimeTravel` component, the time travel service is instantiated twice when the component loads, and `TimeTravel1` and `TimeTravel2` have the same initial value:
+  
+> :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
+> :::no-loc text="TimeTravel2.DT: 8/31/2022 2:54:45 PM":::
+  
+When navigating away from the `TimeTravel` component to another component and back to the `TimeTravel` component:
+
+* `TimeTravel1` is provided the same service instance that was created when the component first loaded, so the value of `DT` remains the same.
+* `TimeTravel2` obtains a new `ITimeTravel` service instance in `TimeTravel2` with a new DT value.
+  
+> :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
+> :::no-loc text="TimeTravel2.DT: 8/31/2022 2:54:48 PM":::
+  
+`TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
+
+In spite of the scoped service registration in `Program.cs` and the longevity of the user's circuit, `TimeTravel2` receives a new `ITimeTravel` service instance each time the component is initialized.
+
+### `OwningComponentBase<TService>`
+
+<xref:Microsoft.AspNetCore.Components.OwningComponentBase%601> derives from <xref:Microsoft.AspNetCore.Components.OwningComponentBase> and adds a <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601.Service%2A> property that returns an instance of `T` from the scoped DI provider. This type is a convenient way to access scoped services without using an instance of <xref:System.IServiceProvider> when there's one primary service the app requires from the DI container using the component's scope. The <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property is available, so the app can get services of other types, if necessary.
+
+```razor
+@page "/users"
+@attribute [Authorize]
+@inherits OwningComponentBase<AppDbContext>
+
+<h1>Users (@Service.Users.Count())</h1>
+
+<ul>
+    @foreach (var user in Service.Users)
+    {
+        <li>@user.UserName</li>
+    }
+</ul>
+```
 
 ## Use of an Entity Framework Core (EF Core) DbContext from DI
 
@@ -1035,30 +1217,121 @@ An approach that limits a service lifetime in Blazor apps is use of the <xref:Mi
 * Should be reused within a component, as the transient lifetime is inappropriate.
 * Shouldn't be shared across components, as the singleton lifetime is inappropriate.
 
-Two versions of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type are available:
+Two versions of <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type are available and described in the next two sections:
 
-* <xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract, disposable child of the <xref:Microsoft.AspNetCore.Components.ComponentBase> type with a protected <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property of type <xref:System.IServiceProvider>. This provider can be used to resolve services that are scoped to the lifetime of the component.
+* [`OwningComponentBase`](#owningcomponentbase)
+* [`OwningComponentBase<TService>`](#owningcomponentbasetservice)
 
-  DI services injected into the component using [`@inject`](xref:mvc/views/razor#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) aren't created in the component's scope. To use the component's scope, services must be resolved using <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> or <xref:System.IServiceProvider.GetService%2A>. Any services resolved using the <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider have their dependencies provided from that same scope.
+### `OwningComponentBase`
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/dependency-injection/Preferences.razor" highlight="3,20-21":::
+<xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract, disposable child of the <xref:Microsoft.AspNetCore.Components.ComponentBase> type with a protected <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property of type <xref:System.IServiceProvider>. The provider can be used to resolve services that are scoped to the lifetime of the component.
 
-* <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601> derives from <xref:Microsoft.AspNetCore.Components.OwningComponentBase> and adds a <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601.Service%2A> property that returns an instance of `T` from the scoped DI provider. This type is a convenient way to access scoped services without using an instance of <xref:System.IServiceProvider> when there's one primary service the app requires from the DI container using the component's scope. The <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property is available, so the app can get services of other types, if necessary.
+DI services injected into the component using [`@inject`](xref:mvc/views/razor#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) aren't created in the component's scope. To use the component's scope, services must be resolved using <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> with either <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> or <xref:System.IServiceProvider.GetService%2A>. Any services resolved using the <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider have their dependencies provided in the component's scope.
+  
+The following example demonstrates the difference between injecting a scoped service directly and resolving a service using <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> in a Blazor Server app. The following interface and implementation for a time travel class include a `DT` property to hold a <xref:System.DateTime> value. The implemention calls <xref:System.DateTime.Now?displayProperty=nameWithType> to set `DT` when the `TimeTravel` class is instantiated.
+  
+`ITimeTravel.cs`:
+  
+```csharp
+public interface ITimeTravel
+{
+    public DateTime DT { get; set; }
+}
+```
+  
+`TimeTravel.cs`:
 
-  ```razor
-  @page "/users"
-  @attribute [Authorize]
-  @inherits OwningComponentBase<AppDbContext>
+```csharp
+public class TimeTravel : ITimeTravel
+{
+    public DateTime DT { get; set; } = DateTime.Now;
+}
+```
+  
+The service is registered as scoped in `Program.cs` of a Blazor Server app. In a Blazor Server app, scoped services have a lifetime equal to the duration of the client connection, known as a [circuit](xref:blazor/hosting-models#blazor-server).
+  
+In `Program.cs`:
+  
+```csharp
+builder.Services.AddScoped<ITimeTravel, TimeTravel>();
+```
 
-  <h1>Users (@Service.Users.Count())</h1>
+In the following `TimeTravel` component:
 
-  <ul>
-      @foreach (var user in Service.Users)
-      {
-          <li>@user.UserName</li>
-      }
-  </ul>
-  ```
+* The time travel service is directly injected with `@inject` as `TimeTravel1`.
+* The service is also resolved separately with <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> as `TimeTravel2`.
+
+`Pages/TimeTravel.razor`:
+  
+```razor
+@page "/time-travel"
+@inject ITimeTravel TimeTravel1
+@inherits OwningComponentBase
+
+<h1><code>OwningComponentBase</code> Example</h1>
+
+<ul>
+    <li>TimeTravel1.DT: @TimeTravel1.DT</li>
+    <li>TimeTravel2.DT: @TimeTravel2.DT</li>
+</ul>
+
+@code {
+    private ITimeTravel TimeTravel2 { get; set; }
+
+    protected override void OnInitialized()
+    {
+        TimeTravel2 = ScopedServices.GetRequiredService<ITimeTravel>();
+    }
+}
+```
+  
+If you're placing this example into a test app, add the `TimeTravel` component to the `NavMenu` component.
+  
+In `Shared/NavMenu.razor`:
+  
+```razor
+<div class="nav-item px-3">
+    <NavLink class="nav-link" href="time-travel">
+        <span class="oi oi-list-rich" aria-hidden="true"></span> Time travel
+    </NavLink>
+</div>
+```
+
+Initially navigating to the `TimeTravel` component, the time travel service is instantiated twice when the component loads, and `TimeTravel1` and `TimeTravel2` have the same initial value:
+  
+> :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
+> :::no-loc text="TimeTravel2.DT: 8/31/2022 2:54:45 PM":::
+  
+When navigating away from the `TimeTravel` component to another component and back to the `TimeTravel` component:
+
+* `TimeTravel1` is provided the same service instance that was created when the component first loaded, so the value of `DT` remains the same.
+* `TimeTravel2` obtains a new `ITimeTravel` service instance in `TimeTravel2` with a new DT value.
+  
+> :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
+> :::no-loc text="TimeTravel2.DT: 8/31/2022 2:54:48 PM":::
+  
+`TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
+
+In spite of the scoped service registration in `Program.cs` and the longevity of the user's circuit, `TimeTravel2` receives a new `ITimeTravel` service instance each time the component is initialized.
+
+### `OwningComponentBase<TService>`
+
+<xref:Microsoft.AspNetCore.Components.OwningComponentBase%601> derives from <xref:Microsoft.AspNetCore.Components.OwningComponentBase> and adds a <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601.Service%2A> property that returns an instance of `T` from the scoped DI provider. This type is a convenient way to access scoped services without using an instance of <xref:System.IServiceProvider> when there's one primary service the app requires from the DI container using the component's scope. The <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property is available, so the app can get services of other types, if necessary.
+
+```razor
+@page "/users"
+@attribute [Authorize]
+@inherits OwningComponentBase<AppDbContext>
+
+<h1>Users (@Service.Users.Count())</h1>
+
+<ul>
+    @foreach (var user in Service.Users)
+    {
+        <li>@user.UserName</li>
+    }
+</ul>
+```
 
 ## Use of an Entity Framework Core (EF Core) DbContext from DI
 
@@ -1434,30 +1707,121 @@ An approach that limits a service lifetime in Blazor apps is use of the <xref:Mi
 * Should be reused within a component, as the transient lifetime is inappropriate.
 * Shouldn't be shared across components, as the singleton lifetime is inappropriate.
 
-Two versions of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type are available:
+Two versions of <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type are available and described in the next two sections:
 
-* <xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract, disposable child of the <xref:Microsoft.AspNetCore.Components.ComponentBase> type with a protected <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property of type <xref:System.IServiceProvider>. This provider can be used to resolve services that are scoped to the lifetime of the component.
+* [`OwningComponentBase`](#owningcomponentbase)
+* [`OwningComponentBase<TService>`](#owningcomponentbasetservice)
 
-  DI services injected into the component using [`@inject`](xref:mvc/views/razor#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) aren't created in the component's scope. To use the component's scope, services must be resolved using <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> or <xref:System.IServiceProvider.GetService%2A>. Any services resolved using the <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider have their dependencies provided from that same scope.
+### `OwningComponentBase`
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/dependency-injection/Preferences.razor" highlight="3,23-24":::
+<xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract, disposable child of the <xref:Microsoft.AspNetCore.Components.ComponentBase> type with a protected <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property of type <xref:System.IServiceProvider>. The provider can be used to resolve services that are scoped to the lifetime of the component.
 
-* <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601> derives from <xref:Microsoft.AspNetCore.Components.OwningComponentBase> and adds a <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601.Service%2A> property that returns an instance of `T` from the scoped DI provider. This type is a convenient way to access scoped services without using an instance of <xref:System.IServiceProvider> when there's one primary service the app requires from the DI container using the component's scope. The <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property is available, so the app can get services of other types, if necessary.
+DI services injected into the component using [`@inject`](xref:mvc/views/razor#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) aren't created in the component's scope. To use the component's scope, services must be resolved using <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> with either <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> or <xref:System.IServiceProvider.GetService%2A>. Any services resolved using the <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider have their dependencies provided in the component's scope.
+  
+The following example demonstrates the difference between injecting a scoped service directly and resolving a service using <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> in a Blazor Server app. The following interface and implementation for a time travel class include a `DT` property to hold a <xref:System.DateTime> value. The implemention calls <xref:System.DateTime.Now?displayProperty=nameWithType> to set `DT` when the `TimeTravel` class is instantiated.
+  
+`ITimeTravel.cs`:
+  
+```csharp
+public interface ITimeTravel
+{
+    public DateTime DT { get; set; }
+}
+```
+  
+`TimeTravel.cs`:
 
-  ```razor
-  @page "/users"
-  @attribute [Authorize]
-  @inherits OwningComponentBase<AppDbContext>
+```csharp
+public class TimeTravel : ITimeTravel
+{
+    public DateTime DT { get; set; } = DateTime.Now;
+}
+```
+  
+The service is registered as scoped in `Program.cs` of a Blazor Server app. In a Blazor Server app, scoped services have a lifetime equal to the duration of the client connection, known as a [circuit](xref:blazor/hosting-models#blazor-server).
+  
+In `Program.cs`:
+  
+```csharp
+builder.Services.AddScoped<ITimeTravel, TimeTravel>();
+```
 
-  <h1>Users (@Service.Users.Count())</h1>
+In the following `TimeTravel` component:
 
-  <ul>
-      @foreach (var user in Service.Users)
-      {
-          <li>@user.UserName</li>
-      }
-  </ul>
-  ```
+* The time travel service is directly injected with `@inject` as `TimeTravel1`.
+* The service is also resolved separately with <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> as `TimeTravel2`.
+
+`Pages/TimeTravel.razor`:
+  
+```razor
+@page "/time-travel"
+@inject ITimeTravel TimeTravel1
+@inherits OwningComponentBase
+
+<h1><code>OwningComponentBase</code> Example</h1>
+
+<ul>
+    <li>TimeTravel1.DT: @TimeTravel1?.DT</li>
+    <li>TimeTravel2.DT: @TimeTravel2?.DT</li>
+</ul>
+
+@code {
+    private ITimeTravel? TimeTravel2 { get; set; }
+
+    protected override void OnInitialized()
+    {
+        TimeTravel2 = ScopedServices.GetRequiredService<ITimeTravel>();
+    }
+}
+```
+  
+If you're placing this example into a test app, add the `TimeTravel` component to the `NavMenu` component.
+  
+In `Shared/NavMenu.razor`:
+  
+```razor
+<div class="nav-item px-3">
+    <NavLink class="nav-link" href="time-travel">
+        <span class="oi oi-list-rich" aria-hidden="true"></span> Time travel
+    </NavLink>
+</div>
+```
+
+Initially navigating to the `TimeTravel` component, the time travel service is instantiated twice when the component loads, and `TimeTravel1` and `TimeTravel2` have the same initial value:
+  
+> :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
+> :::no-loc text="TimeTravel2.DT: 8/31/2022 2:54:45 PM":::
+  
+When navigating away from the `TimeTravel` component to another component and back to the `TimeTravel` component:
+
+* `TimeTravel1` is provided the same service instance that was created when the component first loaded, so the value of `DT` remains the same.
+* `TimeTravel2` obtains a new `ITimeTravel` service instance in `TimeTravel2` with a new DT value.
+  
+> :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
+> :::no-loc text="TimeTravel2.DT: 8/31/2022 2:54:48 PM":::
+  
+`TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
+
+In spite of the scoped service registration in `Program.cs` and the longevity of the user's circuit, `TimeTravel2` receives a new `ITimeTravel` service instance each time the component is initialized.
+
+### `OwningComponentBase<TService>`
+
+<xref:Microsoft.AspNetCore.Components.OwningComponentBase%601> derives from <xref:Microsoft.AspNetCore.Components.OwningComponentBase> and adds a <xref:Microsoft.AspNetCore.Components.OwningComponentBase%601.Service%2A> property that returns an instance of `T` from the scoped DI provider. This type is a convenient way to access scoped services without using an instance of <xref:System.IServiceProvider> when there's one primary service the app requires from the DI container using the component's scope. The <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property is available, so the app can get services of other types, if necessary.
+
+```razor
+@page "/users"
+@attribute [Authorize]
+@inherits OwningComponentBase<AppDbContext>
+
+<h1>Users (@Service.Users.Count())</h1>
+
+<ul>
+    @foreach (var user in Service.Users)
+    {
+        <li>@user.UserName</li>
+    }
+</ul>
+```
 
 ## Use of an Entity Framework Core (EF Core) DbContext from DI
 
