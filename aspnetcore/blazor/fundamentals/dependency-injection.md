@@ -332,7 +332,7 @@ When navigating away from the `TimeTravel` component to another component and ba
 > :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
 > :::no-loc text="TimeTravel2.DT: 8/31/2022 2:54:48 PM":::
   
-Each time the user navigates away from the `TimeTravel` component and back, `TimeTravel1` refers to the original service instance and indicates the same `DT` value. `TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
+`TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
 
 In spite of the scoped service registration in `Program.cs` and the longevity of the user's circuit, `TimeTravel2` represents a new `ITimeTravel` service instance each time the component loads.
 
@@ -815,7 +815,7 @@ When navigating away from the `TimeTravel` component to another component and ba
 > :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
 > :::no-loc text="TimeTravel2.DT: 8/31/2022 2:54:48 PM":::
   
-Each time the user navigates away from the `TimeTravel` component and back, `TimeTravel1` refers to the original service instance and indicates the same `DT` value. `TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
+`TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
 
 In spite of the scoped service registration in `Program.cs` and the longevity of the user's circuit, `TimeTravel2` represents a new `ITimeTravel` service instance each time the component loads.
 
@@ -1310,7 +1310,7 @@ When navigating away from the `TimeTravel` component to another component and ba
 > :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
 > :::no-loc text="TimeTravel2.DT: 8/31/2022 2:54:48 PM":::
   
-Each time the user navigates away from the `TimeTravel` component and back, `TimeTravel1` refers to the original service instance and indicates the same `DT` value. `TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
+`TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
 
 In spite of the scoped service registration in `Program.cs` and the longevity of the user's circuit, `TimeTravel2` represents a new `ITimeTravel` service instance each time the component loads.
 
@@ -1800,7 +1800,7 @@ When navigating away from the `TimeTravel` component to another component and ba
 > :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
 > :::no-loc text="TimeTravel2.DT: 8/31/2022 2:54:48 PM":::
   
-Each time the user navigates away from the `TimeTravel` component and back, `TimeTravel1` refers to the original service instance and indicates the same `DT` value. `TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
+`TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
 
 In spite of the scoped service registration in `Program.cs` and the longevity of the user's circuit, `TimeTravel2` represents a new `ITimeTravel` service instance each time the component loads.
 
