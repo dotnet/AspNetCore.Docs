@@ -334,7 +334,7 @@ When navigating away from the `TimeTravel` component to another component and ba
   
 `TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
 
-In spite of the scoped service registration in `Program.cs` and the longevity of the user's circuit, `TimeTravel2` represents a new `ITimeTravel` service instance each time the component loads.
+In spite of the scoped service registration in `Program.cs` and the longevity of the user's circuit, `TimeTravel2` receives a new `ITimeTravel` service instance each time the component is initialized.
 
 ### `OwningComponentBase<TService>`
 
@@ -817,7 +817,7 @@ When navigating away from the `TimeTravel` component to another component and ba
   
 `TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
 
-In spite of the scoped service registration in `Program.cs` and the longevity of the user's circuit, `TimeTravel2` represents a new `ITimeTravel` service instance each time the component loads.
+In spite of the scoped service registration in `Program.cs` and the longevity of the user's circuit, `TimeTravel2` receives a new `ITimeTravel` service instance each time the component is initialized.
 
 ### `OwningComponentBase<TService>`
 
@@ -1312,7 +1312,7 @@ When navigating away from the `TimeTravel` component to another component and ba
   
 `TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
 
-In spite of the scoped service registration in `Program.cs` and the longevity of the user's circuit, `TimeTravel2` represents a new `ITimeTravel` service instance each time the component loads.
+In spite of the scoped service registration in `Program.cs` and the longevity of the user's circuit, `TimeTravel2` receives a new `ITimeTravel` service instance each time the component is initialized.
 
 ### `OwningComponentBase<TService>`
 
@@ -1802,7 +1802,7 @@ When navigating away from the `TimeTravel` component to another component and ba
   
 `TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
 
-In spite of the scoped service registration in `Program.cs` and the longevity of the user's circuit, `TimeTravel2` represents a new `ITimeTravel` service instance each time the component loads.
+In spite of the scoped service registration in `Program.cs` and the longevity of the user's circuit, `TimeTravel2` receives a new `ITimeTravel` service instance each time the component is initialized.
 
 ### `OwningComponentBase<TService>`
 
