@@ -26,6 +26,9 @@ Find out how Docker container images are stored in an image registry for consist
 <xref:host-and-deploy/docker/building-net-docker-images>
 Learn how to build and dockerize an ASP.NET Core app. Explore Docker images maintained by Microsoft and examine use cases.
 
+[.NET Docker samples](https://github.com/dotnet/dotnet-docker/tree/main/samples)
+Samples and guidance that demonstrate how to use .NET and Docker for development, testing and production.
+
 [Visual Studio Container Tools](xref:host-and-deploy/docker/visual-studio-tools-for-docker)  
 Discover how Visual Studio supports building, debugging, and running ASP.NET Core apps targeting either .NET Framework or .NET Core on Docker for Windows. Both Windows and Linux containers are supported.
 
