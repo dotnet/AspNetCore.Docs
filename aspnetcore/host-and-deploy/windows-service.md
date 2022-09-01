@@ -30,9 +30,7 @@ The ASP.NET Core Worker Service template provides a starting point for writing l
 
 ## App configuration
 
-The app requires a package reference for .
-
-Call [`IHostBuilder.UseWindowsService`]([](xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService(IHostBuilder))). `UseWindowsService` requires the [Microsoft.Extensions.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices) NuGet package.  If the app is running as a Windows Service, the method:
+In .NET 7 and later, it's not necessary to call [`IHostBuilder.UseWindowsService`](xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService). If the app is running as a Windows Service:
 
 * Sets the host lifetime to <xref:Microsoft.Extensions.Hosting.WindowsServices.WindowsServiceLifetime>.
 * Sets the [content root](xref:fundamentals/index#content-root) to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory). For more information, see the [Current directory and content root](#current-directory-and-content-root) section.

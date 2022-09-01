@@ -5,8 +5,6 @@ builder.Services.AddRazorPages();
 builder.Services.AddHostedService<ServiceA>();
 builder.Services.AddHostedService<ServiceB>();
 
-builder.Host.UseWindowsService();
-
 var app = builder.Build();
 
 app.UseStaticFiles();
