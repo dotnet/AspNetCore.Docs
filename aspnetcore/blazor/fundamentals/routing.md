@@ -46,23 +46,13 @@ Components support multiple route templates using multiple [`@page` directives](
 
 Use the <xref:Microsoft.AspNetCore.Components.Routing.FocusOnNavigate> component to set the UI focus to an element based on a CSS selector after navigating from one page to another. You can see the <xref:Microsoft.AspNetCore.Components.Routing.FocusOnNavigate> component in use by the `App` component of an app generated from a Blazor project template.
 
-`App.razor`:
+In `App.razor`:
 
 ```razor
-<Router AppAssembly="@typeof(Program).Assembly">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
-    </Found>
-    <NotFound>
-        <LayoutView Layout="@typeof(MainLayout)">
-            <p role="alert">Sorry, there's nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
-</Router>
+<FocusOnNavigate RouteData="@routeData" Selector="h1" />
 ```
 
-When the preceding <xref:Microsoft.AspNetCore.Components.Routing.Router> component navigates to a new page, the <xref:Microsoft.AspNetCore.Components.Routing.FocusOnNavigate> component sets the focus to the page's top-level header (`<h1>`). This is a common strategy for ensuring that page navigations are announced when using a screen reader.
+When the <xref:Microsoft.AspNetCore.Components.Routing.Router> component navigates to a new page, the <xref:Microsoft.AspNetCore.Components.Routing.FocusOnNavigate> component sets the focus to the page's top-level header (`<h1>`). This is a common strategy for ensuring that page navigations are announced when using a screen reader.
 
 ## Provide custom content when content isn't found
 
@@ -509,7 +499,7 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component supports an 
 In the `App` component (`App.razor`):
 
 ```razor
-<Router AppAssembly="@typeof(Program).Assembly" 
+<Router AppAssembly="@typeof(App).Assembly" 
     OnNavigateAsync="@OnNavigateAsync">
     ...
 </Router>
@@ -548,7 +538,7 @@ In the following `App` component example:
 @inject HttpClient Http
 @inject ProductCatalog Products
 
-<Router AppAssembly="@typeof(Program).Assembly" 
+<Router AppAssembly="@typeof(App).Assembly" 
     OnNavigateAsync="@OnNavigateAsync">
     ...
 </Router>
@@ -1389,23 +1379,13 @@ Components support multiple route templates using multiple [`@page` directives](
 
 Use the <xref:Microsoft.AspNetCore.Components.Routing.FocusOnNavigate> component to set the UI focus to an element based on a CSS selector after navigating from one page to another. You can see the <xref:Microsoft.AspNetCore.Components.Routing.FocusOnNavigate> component in use by the `App` component of an app generated from a Blazor project template.
 
-`App.razor`:
+In `App.razor`:
 
 ```razor
-<Router AppAssembly="@typeof(Program).Assembly">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
-    </Found>
-    <NotFound>
-        <LayoutView Layout="@typeof(MainLayout)">
-            <p role="alert">Sorry, there's nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
-</Router>
+<FocusOnNavigate RouteData="@routeData" Selector="h1" />
 ```
 
-When the preceding <xref:Microsoft.AspNetCore.Components.Routing.Router> component navigates to a new page, the <xref:Microsoft.AspNetCore.Components.Routing.FocusOnNavigate> component sets the focus to the page's top-level header (`<h1>`). This is a common strategy for ensuring that page navigations are announced when using a screen reader.
+When the <xref:Microsoft.AspNetCore.Components.Routing.Router> component navigates to a new page, the <xref:Microsoft.AspNetCore.Components.Routing.FocusOnNavigate> component sets the focus to the page's top-level header (`<h1>`). This is a common strategy for ensuring that page navigations are announced when using a screen reader.
 
 ## Provide custom content when content isn't found
 
@@ -1427,7 +1407,7 @@ Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblie
 
 ```razor
 <Router
-    AppAssembly="@typeof(Program).Assembly"
+    AppAssembly="@typeof(App).Assembly"
     AdditionalAssemblies="new[] { typeof(Component1).Assembly }">
     @* ... Router component elements ... *@
 </Router>
@@ -1852,7 +1832,7 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component supports an 
 In the `App` component (`App.razor`):
 
 ```razor
-<Router AppAssembly="@typeof(Program).Assembly" 
+<Router AppAssembly="@typeof(App).Assembly" 
     OnNavigateAsync="@OnNavigateAsync">
     ...
 </Router>
@@ -1891,7 +1871,7 @@ In the following `App` component example:
 @inject HttpClient Http
 @inject ProductCatalog Products
 
-<Router AppAssembly="@typeof(Program).Assembly" 
+<Router AppAssembly="@typeof(App).Assembly" 
     OnNavigateAsync="@OnNavigateAsync">
     ...
 </Router>
