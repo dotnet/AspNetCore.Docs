@@ -74,7 +74,7 @@ Use the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblie
 
 ```razor
 <Router
-    AppAssembly="@typeof(Program).Assembly"
+    AppAssembly="@typeof(App).Assembly"
     AdditionalAssemblies="new[] { typeof(Component1).Assembly }">
     @* ... Router component elements ... *@
 </Router>
