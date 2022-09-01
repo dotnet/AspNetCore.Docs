@@ -224,7 +224,7 @@ The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/
 
 Run the app:
 
-* To run app in Visual Studio: Open the sample project in Visual Studio, and press "F5".
+* To run app in Visual Studio: Open the sample project in Visual Studio, and press Ctrl+F5 to run without the debugger.
 * To run the app in a command shell: Run the command [`dotnet run`](/dotnet/core/tools/dotnet-run) and navigate in a browser to `http://localhost:<port>`.
 
 The webpage shows the connection status:
