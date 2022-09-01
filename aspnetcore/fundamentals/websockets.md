@@ -33,7 +33,7 @@ These supported features are available in Kestrel on all HTTP/2 enabled platform
 >
 > Chrome and Edge have HTTP/2 WebSockets enabled by default, and you can enable it in FireFox on the `about:config` page with the `network.http.spdy.websockets` flag.
 
-WebSockets were originally designed for HTTP/1.1 but have since been adapted to work over HTTP/2.
+WebSockets were originally designed for HTTP/1.1 but have since been adapted to work over HTTP/2. ([RFC 8441](https://www.rfc-editor.org/rfc/rfc8441))
 
 ## SignalR
 
@@ -116,7 +116,7 @@ The following is an example custom attribute routing class named `HttpConnectAtt
 
 [!code-csharp[](~/fundamentals/websockets/samples/7.x/WebSocketsSample/Controllers/HttpConnectAttribute.cs)]
 
-The custom `[HttpConnect]` attribute can be added to a controller action to enable Websocket support over HTTP/2:
+The custom `[HttpConnect]` attribute is applied in addition to an [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute on a controller action. This enables Websocket support over both HTTP/2 and HTTP/1:
 
 [!code-csharp[](~/fundamentals/websockets/samples/7.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet_Controller_Connect&highlight=3)]
 
@@ -222,7 +222,12 @@ If using the WebSocket support in [socket.io](https://socket.io/) on [Node.js](h
 
 The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/websockets/samples) that accompanies this article is an echo app. It has a webpage that makes WebSocket connections, and the server resends any messages it receives back to the client. The sample app supports WebSockets over HTTP/2 when using a targeted framework of .NET 7 or later.
 
-The sample app isn't configured to run from Visual Studio with IIS Express, so run the app in a command shell with [`dotnet run`](/dotnet/core/tools/dotnet-run) and navigate in a browser to `http://localhost:<port>`. The webpage shows the connection status:
+Run the app:
+
+* To run app in Visual Studio: Open the sample project in Visual Studio, and press "F5".
+* To run the app in a command shell: Run the command [`dotnet run`](/dotnet/core/tools/dotnet-run) and navigate in a browser to `http://localhost:<port>`.
+
+The webpage shows the connection status:
 
 :::image source="websockets/_static/start.png" alt-text="Initial state of webpage before WebSockets connection":::
 
