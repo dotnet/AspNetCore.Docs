@@ -32,9 +32,6 @@ Welcome to what's new in the ASP.NET Core docs from August 1, 2022 through Augus
 
 ### Updated articles
 
-- <xref:fundamentals/websockets> - Prep: Added moniker range for 7.0: WebSockets support in ASP.NET Core
-- <xref:fundamentals/w3c-logger/index> - Add 7.0 moniker
-
 ## gRPC
 
 ### New articles
@@ -77,7 +74,6 @@ Welcome to what's new in the ASP.NET Core docs from August 1, 2022 through Augus
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham (41)
 - [GitHubPang](https://github.com/GitHubPang) (6)
 - [david-acker](https://github.com/david-acker) - David Acker (2)
 - [WeihanLi](https://github.com/WeihanLi) - Weihan Li (2)
