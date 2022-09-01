@@ -156,7 +156,7 @@ Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.Authentica
 
 ```razor
 <CascadingAuthenticationState>
-    <Router AppAssembly="@typeof(Program).Assembly">
+    <Router AppAssembly="@typeof(App).Assembly">
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" 
                 DefaultLayout="@typeof(MainLayout)" />
@@ -459,7 +459,7 @@ In the default [Blazor Server project template](xref:blazor/project-structure), 
 
 ```razor
 <CascadingAuthenticationState>
-    <Router AppAssembly="@typeof(Program).Assembly">
+    <Router AppAssembly="@typeof(App).Assembly">
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" 
                 DefaultLayout="@typeof(MainLayout)">
@@ -552,7 +552,7 @@ It's likely that the project wasn't created using a Blazor Server template with 
 
 ```razor
 <CascadingAuthenticationState>
-    <Router AppAssembly="@typeof(Program).Assembly">
+    <Router AppAssembly="@typeof(App).Assembly">
         ...
     </Router>
 </CascadingAuthenticationState>
