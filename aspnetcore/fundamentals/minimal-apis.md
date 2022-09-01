@@ -1091,6 +1091,24 @@ The following code shows the complete `Program.cs` file:
 * The request body isn't buffered by default. After the body is read, it's not rewindable. The stream can't be read multiple times.
 * The `Stream` and `PipeReader` aren't usable outside of the minimal action handler as the underlying buffers will be disposed or reused.
 
+## Parameter binding for argument lists
+
+The <xref:Microsoft.AspNetCore.Http.AsParametersAttribute> enables parameter binding to types. For example, consider the following code:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_top":::
+
+The `GET` method:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_id":::
+
+The following [`record`](/dotnet/csharp/language-reference/builtin-types/record) can be used to replace the two parameters:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoDb.cs" id="snippet_1":::
+
+The refactored `GET` method uses the preceding `record` with the [AsParameters](/dotnet/api/microsoft.aspnetcore.http.asparametersattribute?view=aspnetcore-7.0) attribute:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_ap_id":::
+
 ## Request handling
 
 The following sections cover routing, parameter binding, and responses.
