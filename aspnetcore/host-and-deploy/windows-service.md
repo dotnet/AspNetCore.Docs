@@ -30,7 +30,7 @@ The ASP.NET Core Worker Service template provides a starting point for writing l
 
 ## App configuration
 
-[WebApplication.CreateBuilder](/dotnet/api/microsoft.aspnetcore.builder.webapplication.createbuilder?view=aspnetcore-6.0) calls [AddWindowsService](https://source.dot.net/#Microsoft.Extensions.Hosting.WindowsServices/WindowsServiceLifetimeHostBuilderExtensions.cs,f8bfb38e255ef3b6,references)
+[WebApplication.CreateBuilder](/dotnet/api/microsoft.aspnetcore.builder.webapplication.createbuilder) calls [AddWindowsService](https://source.dot.net/#Microsoft.Extensions.Hosting.WindowsServices/WindowsServiceLifetimeHostBuilderExtensions.cs,f8bfb38e255ef3b6,references)
 If the app is running as a Windows Service, `AddWindowsService`:
 
 * Sets the host lifetime to `WindowsServiceLifetime`.
