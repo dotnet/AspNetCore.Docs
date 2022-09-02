@@ -203,20 +203,20 @@ blazorWebView.UrlLoading +=
 
 Register to the `ExternalNavigationStarting` event and set the `ExternalLinkNavigationEventArgs.ExternalLinkNavigationPolicy` property to change navigation behavior.
 
-The `ExternalLinkNavigationPolicy` enum sets the navigation behavior:
+The `ExternalLinkNavigationPolicy` enumeration sets the navigation behavior:
         
-* `OpenInExternalBrowser`: Allows navigation to external links using the system default browser. This is the default navigation policy.
-* `InsecureOpenInWebView`: Allows navigation to external links within the Blazor WebView. This navigation policy can introduce security concerns and shouldn't be enabled unless you can ensure that all external links are fully trusted.
-* `CancelNavigation`: Cancels the current navigation attempt to an external link.
+* `OpenInExternalBrowser`: Navigate to external links using the device's default browser. This is the default navigation policy.
+* `InsecureOpenInWebView`: Navigate to external links within the Blazor WebView. This navigation policy can introduce security concerns and shouldn't be enabled unless you can ensure that all external links are fully trusted.
+* `CancelNavigation`: Cancels the current navigation attempt.
 
 The `ExternalLinkNavigationEventArgs.Uri` property contains the destination URI.
 
 > [!WARNING]
-> By default, external links are opened in the device default browser. Opening external links within the Blazor WebView (`InsecureOpenInWebView`) is ***not recommended*** unless the content is fully trusted.
+> By default, external links are opened in the device's default browser. Opening external links within the Blazor WebView (`InsecureOpenInWebView`) is ***not recommended*** unless the content is fully trusted.
 
 :::zone pivot="maui"
 
-Add the event handler to the constructor of the page where you construct the `BlazorWebView`:
+Add the event handler to the constructor of the page where the `BlazorWebView` is constructed:
 
 ```csharp
 blazorWebView.ExternalNavigationStarting += 
