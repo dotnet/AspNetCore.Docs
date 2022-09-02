@@ -1097,7 +1097,7 @@ The <xref:Microsoft.AspNetCore.Http.AsParametersAttribute> enables parameter bin
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_top":::
 
-The `GET` method:
+Consider the following `GET` endpoint:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_id":::
 
@@ -1105,7 +1105,7 @@ The following [`record`](/dotnet/csharp/language-reference/builtin-types/record)
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoDb.cs" id="snippet_1":::
 
-The refactored `GET` method uses the preceding `record` with the [AsParameters](/dotnet/api/microsoft.aspnetcore.http.asparametersattribute?view=aspnetcore-7.0) attribute:
+The refactored `GET` method uses the preceding `record` with the [AsParameters](/dotnet/api/microsoft.aspnetcore.http.asparametersattribute?view=aspnetcore-7.0&preserve-view=true) attribute:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_ap_id":::
 
