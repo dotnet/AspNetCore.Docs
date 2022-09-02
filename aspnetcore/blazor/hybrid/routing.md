@@ -7,6 +7,7 @@ ms.author: riande
 ms.custom: "mvc"
 ms.date: 04/14/2022
 uid: blazor/hybrid/routing
+zone_pivot_groups: blazor-hybrid-frameworks
 ---
 # ASP.NET Core Blazor Hybrid routing and navigation
 
@@ -41,8 +42,8 @@ The <xref:Microsoft.AspNetCore.Components.WebView?displayProperty=fullName> name
 ```csharp
 using Microsoft.AspNetCore.Components.WebView;
 ```
-  
-## .NET MAUI
+
+:::zone pivot="maui"
 
 Add the following event handler to the constructor of the `Page` where the `BlazorWebView` is created, which is `MainPage.xaml.cs` in an app created from the .NET MAUI project template. The following example assumes an `x:Name="blazorWebView"` ([`x:Name` directive](/dotnet/desktop/xaml-services/xname-directive)) on the `BlazorWebView` within the `.xaml` file.
 
@@ -57,7 +58,9 @@ blazorWebView.UrlLoading +=
     };
 ```
 
-## WPF
+:::zone-end
+
+:::zone pivot="wpf"
 
 Add the `UrlLoading="Handle_UrlLoading"` attribute to the `BlazorWebView` control in the `.xaml` file:
 
@@ -65,7 +68,7 @@ Add the `UrlLoading="Handle_UrlLoading"` attribute to the `BlazorWebView` contro
 <blazor:BlazorWebView HostPage="wwwroot\index.html" 
     Services="{StaticResource services}" 
     x:Name="blazorWebView" 
-    UrlLoading="Handle_UrlLoading" >
+    UrlLoading="Handle_UrlLoading">
 ```
 
 Add the event handler in the `.xaml.cs` file:
@@ -81,7 +84,9 @@ private void Handle_UrlLoading(object sender,
 }
 ```
 
-## Windows Forms
+:::zone-end
+
+:::zone pivot="winforms"
 
 In the constructor of the form containing the `BlazorWebView` control, add the following event registration:
 
@@ -95,6 +100,8 @@ blazorWebView.UrlLoading +=
         }
     };
 ```
+
+:::zone-end
 
 :::moniker-end
 
@@ -127,8 +134,10 @@ The <xref:Microsoft.AspNetCore.Components.WebView?displayProperty=fullName> name
 ```csharp
 using Microsoft.AspNetCore.Components.WebView;
 ```
-  
-## .NET MAUI
+
+## Internal navigation
+
+:::zone pivot="maui"
 
 Add the following event handler to the constructor of the `Page` where the `BlazorWebView` is created, which is `MainPage.xaml.cs` in an app created from the .NET MAUI project template.
 
@@ -138,12 +147,15 @@ blazorWebView.UrlLoading +=
     {
         if (urlLoadingEventArgs.Url.Host != "0.0.0.0")
         {
-            urlLoadingEventArgs.UrlLoadingStrategy = UrlLoadingStrategy.OpenInWebView;
+            urlLoadingEventArgs.UrlLoadingStrategy = 
+                UrlLoadingStrategy.OpenInWebView;
         }
     };
 ```
 
-## WPF
+:::zone-end
+
+:::zone pivot="wpf"
 
 Add the `UrlLoading="Handle_UrlLoading"` attribute to the `BlazorWebView` control in the `.xaml` file:
 
@@ -151,7 +163,7 @@ Add the `UrlLoading="Handle_UrlLoading"` attribute to the `BlazorWebView` contro
 <blazor:BlazorWebView HostPage="wwwroot\index.html" 
     Services="{StaticResource services}" 
     x:Name="blazorWebView" 
-    UrlLoading="Handle_UrlLoading" >
+    UrlLoading="Handle_UrlLoading">
 ```
 
 Add the event handler in the `.xaml.cs` file:
@@ -167,7 +179,9 @@ private void Handle_UrlLoading(object sender,
 }
 ```
 
-## Windows Forms
+:::zone-end
+
+:::zone pivot="winforms"
 
 In the constructor of the form containing the `BlazorWebView` control, add the following event registration:
 
@@ -177,11 +191,81 @@ blazorWebView.UrlLoading +=
     {
         if (urlLoadingEventArgs.Url.Host != "0.0.0.0")
         {
-            urlLoadingEventArgs.UrlLoadingStrategy = UrlLoadingStrategy.OpenInWebView;
+            urlLoadingEventArgs.UrlLoadingStrategy = 
+                UrlLoadingStrategy.OpenInWebView;
         }
     };
 ```
 
+:::zone-end
+
+## External navigation
+
+Register to the `ExternalNavigationStarting` event and set the `ExternalLinkNavigationEventArgs.ExternalLinkNavigationPolicy` property to change navigation behavior.
+
+The `ExternalLinkNavigationPolicy` enumeration sets the navigation behavior:
+        
+* `OpenInExternalBrowser`: Navigate to external links using the device's default browser. This is the default navigation policy.
+* `InsecureOpenInWebView`: Navigate to external links within the Blazor WebView. This navigation policy can introduce security concerns and shouldn't be enabled unless you can ensure that all external links are fully trusted.
+* `CancelNavigation`: Cancels the current navigation attempt.
+
+The `ExternalLinkNavigationEventArgs.Uri` property contains the destination URI.
+
+> [!WARNING]
+> By default, external links are opened in the device's default browser. Opening external links within the Blazor WebView (`InsecureOpenInWebView`) is ***not recommended*** unless the content is fully trusted.
+
+:::zone pivot="maui"
+
+Add the event handler to the constructor of the page where the `BlazorWebView` is constructed:
+
+```csharp
+blazorWebView.ExternalNavigationStarting += 
+    (sender, externalLinkNavigationEventArgs) =>
+    {
+	    externalLinkNavigationEventArgs.ExternalLinkNavigationPolicy = 
+            ExternalLinkNavigationPolicy.OpenInExternalBrowser;
+    };
+```
+
+:::zone-end
+
+:::zone pivot="wpf"
+
+Add the `ExternalNavigationStarting="Handle_ExternalNavigationStarting"` attribute to the `BlazorWebView` control in the `.xaml` file:
+
+```xaml
+<blazor:BlazorWebView HostPage="wwwroot\index.html" 
+    Services="{StaticResource services}" 
+    x:Name="blazorWebView" 
+    ExternalNavigationStarting="Handle_ExternalNavigationStarting">
+```
+
+Add the event handler in the `.xaml.cs` file:
+
+```csharp
+private void Handle_ExternalNavigationStarting(object sender, 
+    ExternalLinkNavigationEventArgs externalLinkNavigationEventArgs)
+{
+	externalLinkNavigationEventArgs.ExternalLinkNavigationPolicy = 
+        ExternalLinkNavigationPolicy.OpenInExternalBrowser;
+}
+```
+
+:::zone-end
+
+:::zone pivot="winforms"
+
+In the contructor of the form containing the `BlazorWebView` control, add the following event registration:
+
+```csharp
+blazorWebView.ExternalNavigationStarting += 
+    (sender, externalLinkNavigationEventArgs) =>
+    {
+        externalLinkNavigationEventArgs.ExternalLinkNavigationPolicy = 
+            ExternalLinkNavigationPolicy.OpenInExternalBrowser;
+    };
+```
+
+:::zone-end
+
 :::moniker-end
-
-
