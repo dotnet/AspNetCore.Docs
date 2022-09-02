@@ -30,9 +30,10 @@ The ASP.NET Core Worker Service template provides a starting point for writing l
 
 ## App configuration
 
-In .NET 7 and later, it's not necessary to call [`IHostBuilder.UseWindowsService`](xref:Microsoft.Extensions.Hosting.WindowsServiceLifetimeHostBuilderExtensions.UseWindowsService). If the app is running as a Windows Service:
+[WebApplication.CreateBuilder](/dotnet/api/microsoft.aspnetcore.builder.webapplication.createbuilder?view=aspnetcore-6.0) calls [AddWindowsService](https://source.dot.net/#Microsoft.Extensions.Hosting.WindowsServices/WindowsServiceLifetimeHostBuilderExtensions.cs,f8bfb38e255ef3b6,references)
+If the app is running as a Windows Service, `AddWindowsService`:
 
-* Sets the host lifetime to <xref:Microsoft.Extensions.Hosting.WindowsServices.WindowsServiceLifetime>.
+* Sets the host lifetime to `WindowsServiceLifetime`.
 * Sets the [content root](xref:fundamentals/index#content-root) to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory). For more information, see the [Current directory and content root](#current-directory-and-content-root) section.
 * Enables logging to the event log:
   * The application name is used as the default source name.
@@ -40,9 +41,13 @@ In .NET 7 and later, it's not necessary to call [`IHostBuilder.UseWindowsService
   * Override the default log level with the `Logging:EventLog:LogLevel:Default` key in `appsettings.json`/`appsettings.{Environment}.json` or other configuration provider.
   * Only administrators can create new event sources. When an event source can't be created using the application name, a warning is logged to the *Application* source and event logs are disabled.
 
-Call `UseWindowsService` in `Program.cs`:
+Consider the following `ServiceA` class:
 
-:::code language="csharp" source="~/host-and-deploy/windows-service/samples/7.x/WebAppServiceSample/Program.cs" highlight="8":::
+:::code language="csharp" source="~/host-and-deploy/windows-service/samples/7.x/WebAppServiceSample/Services/ServiceA.cs" :::
+
+The following `Program.cs` calls [`AddHostedService`](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionhostedserviceextensions.addhostedservice) to register `ServiceA`:
+
+:::code language="csharp" source="~/host-and-deploy/windows-service/samples/7.x/WebAppServiceSample/Program.cs" highlight="5":::
 
 The following sample apps accompany this topic:
 
