@@ -1101,7 +1101,7 @@ Consider the following `GET` endpoint:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_id" highlight="2":::
 
-The following [`record`](/dotnet/csharp/language-reference/builtin-types/record) can be used to replace the two parameters:
+The following [`record`](/dotnet/csharp/language-reference/builtin-types/record) can be used to replace the preceding highlighted parameters:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoDb.cs" id="snippet" :::
 
@@ -1113,11 +1113,11 @@ The following code shows additional endpoints in the app:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_post_put_delete" :::
 
-The following [`record`](/dotnet/csharp/language-reference/builtin-types/record) types be used to refactor the parameter lists:
+The following [`record`](/dotnet/csharp/language-reference/builtin-types/record) types are used to refactor the parameter lists:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoDb.cs" id="snippet_1" :::
 
-The following code shows the refactored endpoints uses the preceding `record` types and `AsParameters`:
+The following code shows the refactored endpoints using `AsParameters` and the preceding `record` types:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_ap_post_put_delete" :::
 
