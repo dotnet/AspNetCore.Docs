@@ -1,4 +1,4 @@
-revision: 2
+revision: 3
 schema-version: 1
 owner-ms-alias: adegeo
 
@@ -71,6 +71,7 @@ issues:
             - labels-add: ["Blazor"]
             - projects-add: [35]
             - labels-remove: [":watch: Not Triaged"]
+            - assignee-add: ["guardrex"]
         - check:
             - type: metadata-comment
               name: content source
