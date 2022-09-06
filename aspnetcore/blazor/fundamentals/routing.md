@@ -1583,7 +1583,7 @@ NavigationManager.NavigateTo("/path", new NavigationOptions
 });
 ```
 
-For more information on the history stack, see the [Handle location changes in a component](#handle-location-changes-in-a-component) section.
+For more information on obtaining the state associated with the target history entry while handling location changes, see the [Handle location changes in a component](#handle-location-changes-in-a-component) section.
 
 ## Query strings
 
@@ -1922,7 +1922,7 @@ In the following `App` component example:
 
 ## Handle location changes in a component
 
-`RegisterLocationChangingHandler` registers a handler to process incoming navigation events. The handler's context (`LocationChangingContext`) provides the following properties:
+`RegisterLocationChangingHandler` registers a handler to process incoming navigation events. The handler's context provided by `LocationChangingContext` includes the following properties:
 
 * `TargetLocation`: Gets the target location.
 * `HistoryEntryState`: Gets the state associated with the target history entry.
@@ -1930,7 +1930,7 @@ In the following `App` component example:
 * `CancellationToken`: Gets a <xref:System.Threading.CancellationToken> to determine if the navigation was canceled, for example, to determine if the user triggered a different navigation.
 * `PreventNavigation`: Called to prevent the navigation from continuing.
 
-A component can register multiple location changing handlers, and calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> always invokes all of the registered handlers.
+A component can register multiple location changing handlers, and calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> invokes all of the registered handlers.
 
 In the following example, a location changing handler is registered for navigation events. 
 
@@ -1965,7 +1965,7 @@ In the following example, a location changing handler is registered for navigati
 }
 ```
 
-Since internal navigation can be canceled asynchronously, multiple overlapping navigations may occur. For example, multiple handler calls may occur when the user rapidly selects the back button on a page or selects multiple links before a navigation is determined. The following is a summary of the asynchronous navigation logic:
+Since internal navigation can be canceled asynchronously, multiple overlapping calls to registered handlers may occur. For example, multiple handler calls may occur when the user rapidly selects the back button on a page or selects multiple links before a navigation is executed. The following is a summary of the asynchronous navigation logic:
 
 * If any location changing handlers are registered, all navigations are initially reverted, then replayed if the navigation isn't canceled.
 * If overlapping navigation requests are made, the latest request always cancels earlier requests, which means the following:
