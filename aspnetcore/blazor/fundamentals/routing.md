@@ -1583,7 +1583,7 @@ NavigationManager.NavigateTo("/path", new NavigationOptions
 });
 ```
 
-For more information on obtaining the state associated with the target history entry while handling location changes, see the [Handle location changes in a component](#handle-location-changes-in-a-component) section.
+For more information on obtaining the state associated with the target history entry while handling location changes, see the [Handle (prevent) location changes](#handle-prevent-location-changes) section.
 
 ## Query strings
 
@@ -1920,7 +1920,7 @@ In the following `App` component example:
 > [!NOTE]
 > Not throwing if the cancellation token in <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> is canceled can result in unintended behavior, such as rendering a component from a previous navigation.
 
-## Handle location changes in a component
+## Handle (prevent) location changes
 
 `RegisterLocationChangingHandler` registers a handler to process incoming navigation events. The handler's context provided by `LocationChangingContext` includes the following properties:
 
@@ -1930,7 +1930,10 @@ In the following `App` component example:
 * `CancellationToken`: Gets a <xref:System.Threading.CancellationToken> to determine if the navigation was canceled, for example, to determine if the user triggered a different navigation.
 * `PreventNavigation`: Called to prevent the navigation from continuing.
 
-A component can register multiple location changing handlers. Navigations invoke all of the location changing handlers registered across the entire app (across multiple components), and any internal navigation executes them all in parallel. In addition to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> invoking the handlers, selecting internal links (those that point to URLs under the app's base path) and navigating using the forward/back buttons also invoke the handlers.
+A component can register multiple location changing handlers. Navigations invoke all of the location changing handlers registered across the entire app (across multiple components), and any internal navigation executes them all in parallel. In addition to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> handlers are invoked:
+
+* When selecting internal links, which are links that point to URLs under the app's base path.
+* When navigating using the forward and back buttons in a browser.
 
 Handlers are only executed for internal navigations within the app. If the user selects a link that navigates to a different site or changes the address bar to a different site manually, location changing handlers aren't executed.
 
