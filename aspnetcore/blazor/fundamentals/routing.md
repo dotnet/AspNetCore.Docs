@@ -1543,121 +1543,8 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Given a base URI (for example, a URI previously returned by <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri>), converts an absolute URI into a URI relative to the base URI prefix. |
-| `RegisterLocationChangingHandler` | Registers a handler to process incoming navigation events. |
+| [`RegisterLocationChangingHandler`](#handle-location-changes-in-a-component) | Registers a handler to process incoming navigation events. Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> always invokes the handler. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A> | Returns a URI constructed by updating <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> with a single parameter added, updated, or removed. For more information, see the [Query strings](#query-strings) section. |
-
-In the following example, a location changing handler is registered for navigation events. Note that calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> always invokes any location changing handlers that exist.
-
-`Pages/NavHandler.razor`:
-
-```razor
-@page "/nav-handler"
-@inject NavigationManager NavigationManager
-
-<p>
-    <button @onclick="NavigationManager.NavigateTo("/")">
-        Home (Allowed)
-    </button>
-    <button @onclick="NavigationManager.NavigateTo("/counter")">
-        Counter (Prevented)
-    </button>
-</p>
-
-@code {
-    protected override void OnInitialized()
-    {
-        NavigationManager.RegisterLocationChangingHandler(OnLocationChanging);
-    }
-
-    private async ValueTask OnLocationChanging(LocationChangingContext context)
-    {
-        if (context.TargetLocation == "counter")
-        {
-            context.PreventNavigation();
-        }
-    }
-}
-```
-
-`LocationChangingContext` properties:
-
-* `TargetLocation`: Obtain the target location.
-* `HistoryEntryState`: The state associated with the target history entry.
-* `IsNavigationIntercepted`: Whether the navigation was intercepted from a link.
-* `CancellationToken`: Gets a <xref:System.Threading.CancellationToken> to determine if the navigation was canceled, for example, to determine if the user triggered a different navigation.
-* `PreventNavigation`: Called to prevent the navigation from continuing.
-
-Pass `NavigationOptions` to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> to control the following behaviors:
-
-* `ForceLoad`: Bypass client-side routing and force the browser to load the new page from the server, whether or not the URI is handled by the client-side router. The default value is `false`.
-* `ReplaceHistoryEntry`: Replace the current entry in the history stack. If `false`, append the new entry to the history stack. The default value is `false`.
-* `HistoryEntryState`: Gets or sets the state to append to the history entry.
-
-```csharp
-NavigationManager.NavigateTo("/path", new NavigationOptions
-{
-    HistoryEntryState = "Navigation state",
-});
-```
-
-Since internal navigation can be canceled asynchronously, multiple overlapping navigations may occur. For example, the user is rapidly clicking the back button on a page or clicking multiple links before a navigation is determined. The following is a summary of the asynchronous navigation logic:
-
-* If any location changing handlers are registered, all navigations are initially reverted, then replayed if the navigation isn't canceled.
-* If overlapping navigation requests are made, the latest request always cancels earlier requests, which means the following:
-  * The app may treat multiple back and forward button clicks as a single click.
-  * If the user clicks multiple links before the navigation completes, the last link clicked determines the navigation.
-
-For more information, see the following components in the `BasicTestApp` (`dotnet/aspnetcore` reference source):
-
-* [`NavigationManagerComponent`](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/RouterTest/NavigationManagerComponent.razor)
-* [`ConfigurableNavigationLock`](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/RouterTest/ConfigurableNavigationLock.razor)
-
-[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
-
-## Intercept location changes in a component
-
-The `NavigationLock` component is used to intercept navigation events:
-
-* The component only takes effect after it's rendered, just like any other Razor component.
-* It's possible for the suer to bypass interception of the navigation because the user navigated away before the component had a chance to render.
-
-In the following `NavigationLockExample` component:
-
-* `OnBeforeInternalNavigation` sets a callback to be invoked when an internal navigation event occurs. `PreventNavigation` is called to prevent naviation from occurring if the user declines to confirm the navigation via a [JavaScript (JS) interop call](xref:blazor/js-interop/call-javascript-from-dotnet) that spawns the [JS `confirm` dialog](https://developer.mozilla.org/docs/Web/API/Window/confirm).
-* `ConfirmExternalNavigation` sets a browser dialog to prompt the user to either confirm or cancel the external navigation. The default value is `false`.
-
-`Pages/NavLock.razor`:
-
-```razor
-@page "/nav-lock"
-@inject IJSRuntime JSRuntime
-@inject NavigationManager NavigationManager
-
-<p>
-    <button @onclick="Navigate">Navigate</button>
-</p>
-
-<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" 
-    ConfirmExternalNavigation="true" />
-
-@code {
-    private void Navigate()
-    {
-        NavigationManager.NavigateTo("/");
-    }
-
-    private async Task OnBeforeInternalNavigation(LocationChangingContext context)
-    {
-        var isConfirmed = await JSRuntime.InvokeAsync<bool>("confirm", 
-            "Are you sure you want to navigate to the Index page?");
-
-        if (!isConfirmed)
-        {
-            context.PreventNavigation();
-        }
-    }
-}
-```
 
 ## Location changes
 
@@ -1680,6 +1567,23 @@ The following component:
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/Navigate.razor":::
 
 For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
+
+## Navigation options
+
+Pass `NavigationOptions` to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> to control the following behaviors:
+
+* `ForceLoad`: Bypass client-side routing and force the browser to load the new page from the server, whether or not the URI is handled by the client-side router. The default value is `false`.
+* `ReplaceHistoryEntry`: Replace the current entry in the history stack. If `false`, append the new entry to the history stack. The default value is `false`.
+* `HistoryEntryState`: Gets or sets the state to append to the history entry.
+
+```csharp
+NavigationManager.NavigateTo("/path", new NavigationOptions
+{
+    HistoryEntryState = "Navigation state"
+});
+```
+
+For more information on the history stack, see the [Handle location changes in a component](#handle-location-changes-in-a-component) section.
 
 ## Query strings
 
@@ -2015,6 +1919,110 @@ In the following `App` component example:
 
 > [!NOTE]
 > Not throwing if the cancellation token in <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> is canceled can result in unintended behavior, such as rendering a component from a previous navigation.
+
+## Handle location changes in a component
+
+`RegisterLocationChangingHandler` registers a handler to process incoming navigation events. The handler's context (`LocationChangingContext`) provides the following properties:
+
+* `TargetLocation`: Gets the target location.
+* `HistoryEntryState`: Gets the state associated with the target history entry.
+* `IsNavigationIntercepted`: Gets whether the navigation was intercepted from a link.
+* `CancellationToken`: Gets a <xref:System.Threading.CancellationToken> to determine if the navigation was canceled, for example, to determine if the user triggered a different navigation.
+* `PreventNavigation`: Called to prevent the navigation from continuing.
+
+A component can register multiple location changing handlers, and calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> always invokes all of the registered handlers.
+
+In the following example, a location changing handler is registered for navigation events. 
+
+`Pages/NavHandler.razor`:
+
+```razor
+@page "/nav-handler"
+@inject NavigationManager NavigationManager
+
+<p>
+    <button @onclick="NavigationManager.NavigateTo("/")">
+        Home (Allowed)
+    </button>
+    <button @onclick="NavigationManager.NavigateTo("/counter")">
+        Counter (Prevented)
+    </button>
+</p>
+
+@code {
+    protected override void OnInitialized()
+    {
+        NavigationManager.RegisterLocationChangingHandler(OnLocationChanging);
+    }
+
+    private async ValueTask OnLocationChanging(LocationChangingContext context)
+    {
+        if (context.TargetLocation == "counter")
+        {
+            context.PreventNavigation();
+        }
+    }
+}
+```
+
+Since internal navigation can be canceled asynchronously, multiple overlapping navigations may occur. For example, multiple handler calls may occur when the user rapidly selects the back button on a page or selects multiple links before a navigation is determined. The following is a summary of the asynchronous navigation logic:
+
+* If any location changing handlers are registered, all navigations are initially reverted, then replayed if the navigation isn't canceled.
+* If overlapping navigation requests are made, the latest request always cancels earlier requests, which means the following:
+  * The app may treat multiple back and forward button selections as a single selection.
+  * If the user selects multiple links before the navigation completes, the last link selected determines the navigation.
+
+For more information on passing `NavigationOptions` to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> to control entries and state of the navigation history stack, see the [Navigation options](#navigation-options) section.
+
+For additional example code, see the [`NavigationManagerComponent` in the `BasicTestApp` (`dotnet/aspnetcore` reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/RouterTest/NavigationManagerComponent.razor).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+To facilitate the control of navigation events in a Razor component, use the `NavigationLock` component. After the `NavigationLock` component is rendered, it intercepts navigation events.
+
+In the following `NavigationLockExample` component:
+
+* `ConfirmExternalNavigation` sets a browser dialog to prompt the user to either confirm or cancel the external navigation. The default value is `false`. An attempt to follow the link to Microsoft's website must be confirmed by the user before the navigation to `https://www.microsoft.com` succeeds.
+* `OnBeforeInternalNavigation` sets a callback to be invoked when an internal navigation event occurs. `PreventNavigation` is called to prevent naviation from occurring if the user declines to confirm the navigation via a [JavaScript (JS) interop call](xref:blazor/js-interop/call-javascript-from-dotnet) that spawns the [JS `confirm` dialog](https://developer.mozilla.org/docs/Web/API/Window/confirm).
+
+`Pages/NavLock.razor`:
+
+```razor
+@page "/nav-lock"
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+
+<NavigationLock ConfirmExternalNavigation="true" 
+    OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
+
+<p>
+    <button @onclick="Navigate">Navigate</button>
+</p>
+
+<p>
+    <a href="https://www.microsoft.com">Microsoft homepage</a>
+</p>
+
+@code {
+    private void Navigate()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+
+    private async Task OnBeforeInternalNavigation(LocationChangingContext context)
+    {
+        var isConfirmed = await JSRuntime.InvokeAsync<bool>("confirm", 
+            "Are you sure you want to navigate to the Index page?");
+
+        if (!isConfirmed)
+        {
+            context.PreventNavigation();
+        }
+    }
+}
+```
+
+For additional example code, see the [`ConfigurableNavigationLock` component in the `BasicTestApp` (`dotnet/aspnetcore` reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/RouterTest/ConfigurableNavigationLock.razor).
 
 ## `NavLink` and `NavMenu` components
 
