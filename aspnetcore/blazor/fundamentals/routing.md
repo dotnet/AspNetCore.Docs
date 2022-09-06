@@ -1930,7 +1930,11 @@ In the following `App` component example:
 * `CancellationToken`: Gets a <xref:System.Threading.CancellationToken> to determine if the navigation was canceled, for example, to determine if the user triggered a different navigation.
 * `PreventNavigation`: Called to prevent the navigation from continuing.
 
-A component can register multiple location changing handlers, and calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> invokes all of the registered handlers. [Dispose registered handlers](xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable) to unregister them.
+A component can register multiple location changing handlers. Navigations invoke all of the location changing handlers registered across the entire app (across multiple components), and any internal navigation executes them all in parallel. In addition to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> invoking the handlers, selecting internal links (those that point to URLs under the app's base path) and navigating using the forward/back buttons also invoke the handlers.
+
+Handlers are only executed for internal navigations within the app. If the user selects a link that navigates to a different site or changes the address bar to a different site manually, location changing handlers aren't executed.
+
+[Dispose registered handlers](xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable) to unregister them.
 
 In the following example, a location changing handler is registered for navigation events. Note that the component implements `IDisposable` and disposes the handler in its `Dispose` method.
 
