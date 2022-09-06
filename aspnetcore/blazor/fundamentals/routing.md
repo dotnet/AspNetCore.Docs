@@ -1583,7 +1583,7 @@ NavigationManager.NavigateTo("/path", new NavigationOptions
 });
 ```
 
-For more information on obtaining the state associated with the target history entry while handling location changes, see the [Handle (prevent) location changes](#handle-prevent-location-changes) section.
+For more information on obtaining the state associated with the target history entry while handling location changes, see the [Handle/prevent location changes](#handleprevent-location-changes) section.
 
 ## Query strings
 
@@ -1920,7 +1920,7 @@ In the following `App` component example:
 > [!NOTE]
 > Not throwing if the cancellation token in <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> is canceled can result in unintended behavior, such as rendering a component from a previous navigation.
 
-## Handle (prevent) location changes
+## Handle/prevent location changes
 
 `RegisterLocationChangingHandler` registers a handler to process incoming navigation events. The handler's context provided by `LocationChangingContext` includes the following properties:
 
