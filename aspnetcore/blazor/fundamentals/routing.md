@@ -1951,7 +1951,7 @@ In the following example, a location changing handler is registered for navigati
 </p>
 
 @code {
-    private 
+    private IDisposable registration;
 
     protected override void OnInitialized()
     {
