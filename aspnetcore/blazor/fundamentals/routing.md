@@ -1980,7 +1980,7 @@ For additional example code, see the [`NavigationManagerComponent` in the `Basic
 
 To facilitate the control of navigation events in a Razor component, use the `NavigationLock` component. After the `NavigationLock` component is rendered, it intercepts navigation events.
 
-In the following `NavigationLockExample` component:
+In the following `NavLock` component:
 
 * `ConfirmExternalNavigation` sets a browser dialog to prompt the user to either confirm or cancel the external navigation. The default value is `false`. An attempt to follow the link to Microsoft's website must be confirmed by the user before the navigation to `https://www.microsoft.com` succeeds.
 * `OnBeforeInternalNavigation` sets a callback to be invoked when an internal navigation event occurs. `PreventNavigation` is called to prevent naviation from occurring if the user declines to confirm the navigation via a [JavaScript (JS) interop call](xref:blazor/js-interop/call-javascript-from-dotnet) that spawns the [JS `confirm` dialog](https://developer.mozilla.org/docs/Web/API/Window/confirm).
