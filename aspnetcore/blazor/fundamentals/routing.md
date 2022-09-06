@@ -1930,15 +1930,16 @@ In the following `App` component example:
 * `CancellationToken`: Gets a <xref:System.Threading.CancellationToken> to determine if the navigation was canceled, for example, to determine if the user triggered a different navigation.
 * `PreventNavigation`: Called to prevent the navigation from continuing.
 
-A component can register multiple location changing handlers, and calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> invokes all of the registered handlers. Registered handlers are automatically disposed by the Navigation Manager when the component is disposed.
+A component can register multiple location changing handlers, and calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> invokes all of the registered handlers. [Dispose registered handlers](xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable) to avoid memory leaks.
 
-In the following example, a location changing handler is registered for navigation events. 
+In the following example, a location changing handler is registered for navigation events. Note that the component implements `IDisposable` and disposes the handler in its `Dispose` method.
 
 `Pages/NavHandler.razor`:
 
 ```razor
 @page "/nav-handler"
 @inject NavigationManager NavigationManager
+@implements IDisposable
 
 <p>
     <button @onclick="NavigationManager.NavigateTo("/")">
@@ -1950,9 +1951,12 @@ In the following example, a location changing handler is registered for navigati
 </p>
 
 @code {
+    private 
+
     protected override void OnInitialized()
     {
-        NavigationManager.RegisterLocationChangingHandler(OnLocationChanging);
+        var registration = 
+            NavigationManager.RegisterLocationChangingHandler(OnLocationChanging);
     }
 
     private async ValueTask OnLocationChanging(LocationChangingContext context)
@@ -1962,6 +1966,8 @@ In the following example, a location changing handler is registered for navigati
             context.PreventNavigation();
         }
     }
+
+    public void Dispose() => registration?.Dispose();
 }
 ```
 
