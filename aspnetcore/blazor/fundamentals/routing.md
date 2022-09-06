@@ -1955,7 +1955,7 @@ In the following example, a location changing handler is registered for navigati
 
     protected override void OnInitialized()
     {
-        var registration = 
+        registration = 
             NavigationManager.RegisterLocationChangingHandler(OnLocationChanging);
     }
 
