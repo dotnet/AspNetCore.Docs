@@ -1930,7 +1930,7 @@ In the following `App` component example:
 * `CancellationToken`: Gets a <xref:System.Threading.CancellationToken> to determine if the navigation was canceled, for example, to determine if the user triggered a different navigation.
 * `PreventNavigation`: Called to prevent the navigation from continuing.
 
-A component can register multiple location changing handlers, and calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> invokes all of the registered handlers. [Dispose registered handlers](xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable) to avoid memory leaks.
+A component can register multiple location changing handlers, and calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> invokes all of the registered handlers. [Dispose registered handlers](xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable) to unregister them.
 
 In the following example, a location changing handler is registered for navigation events. Note that the component implements `IDisposable` and disposes the handler in its `Dispose` method.
 
@@ -1984,7 +1984,7 @@ For additional example code, see the [`NavigationManagerComponent` in the `Basic
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-To facilitate the control of navigation events in a Razor component, use the `NavigationLock` component. After the `NavigationLock` component is rendered, it intercepts navigation events. Handlers associated with `NavigationLock` components are disposed automatically when the component is disposed.
+To facilitate the control of navigation events in a Razor component, use the `NavigationLock` component. As long as the `NavigationLock` component is rendered, it intercepts navigation events. Handlers associated with `NavigationLock` components are disposed automatically when the component is disposed.
 
 In the following `NavLock` component:
 
