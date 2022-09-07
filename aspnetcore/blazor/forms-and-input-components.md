@@ -15,6 +15,8 @@ The Blazor framework supports forms and provides built-in input components:
 * <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation)
 * [Built-in input components](#built-in-input-components)
 
+The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace provides classes for managing form views, state, and validation. The namespace appears by default in the `_Imports.razor` file of an app created from a Blazor project template.
+
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
 To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works with [data annotations](xref:mvc/models/validation) validation, consider the following `ExampleModel` type. The `Name` property is marked required with the <xref:System.ComponentModel.DataAnnotations.RequiredAttribute> and specifies a <xref:System.ComponentModel.DataAnnotations.StringLengthAttribute> maximum string length limit and error message.

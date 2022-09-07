@@ -34,7 +34,7 @@ Since the purposes parameter to `CreateProtector` is a string array, the above c
 >
 >For example, consider a component Contoso.Messaging.SecureMessage which is responsible for storing secure messages. If the secure messaging component were to call `CreateProtector([ username ])`, then a malicious user might create an account with username "Contoso.Security.BearerToken" in an attempt to get the component to call `CreateProtector([ "Contoso.Security.BearerToken" ])`, thus inadvertently causing the secure messaging system to mint payloads that could be perceived as authentication tokens.
 >
->A better purposes chain for the messaging component would be `CreateProtector([ "Contoso.Messaging.SecureMessage", "User: username" ])`, which provides proper isolation.
+>A better purposes chain for the messaging component would be `CreateProtector([ "Contoso.Messaging.SecureMessage", $"User: {username}" ])`, which provides proper isolation.
 
 The isolation provided by and behaviors of `IDataProtectionProvider`, `IDataProtector`, and purposes are as follows:
 

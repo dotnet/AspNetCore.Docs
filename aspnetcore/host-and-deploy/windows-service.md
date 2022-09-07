@@ -5,7 +5,7 @@ description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 3/07/2022
+ms.date: 9/3/2022
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
@@ -14,11 +14,9 @@ uid: host-and-deploy/windows-service
 
 An ASP.NET Core app can be hosted on Windows as a [Windows Service](/dotnet/framework/windows-services/introduction-to-windows-service-applications) without using IIS. When hosted as a Windows Service, the app automatically starts after server reboots.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](xref:index#how-to-download-a-sample))
-
 ## Prerequisites
 
-* [ASP.NET Core SDK 6.0 or later](https://dotnet.microsoft.com/download)
+* [ASP.NET Core SDK 7.0 or later](https://dotnet.microsoft.com/download)
 * [PowerShell 6.2 or later](https://github.com/PowerShell/PowerShell)
 
 ## Worker Service template
@@ -32,9 +30,8 @@ The ASP.NET Core Worker Service template provides a starting point for writing l
 
 ## App configuration
 
-The app requires a package reference for [Microsoft.Extensions.Hosting.WindowsServices](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices).
-
-`IHostBuilder.UseWindowsService` is called when building the host. If the app is running as a Windows Service, the method:
+[WebApplication.CreateBuilder](/dotnet/api/microsoft.aspnetcore.builder.webapplication.createbuilder) calls [AddWindowsService](https://source.dot.net/#Microsoft.Extensions.Hosting.WindowsServices/WindowsServiceLifetimeHostBuilderExtensions.cs,f8bfb38e255ef3b6,references)
+If the app is running as a Windows Service, `AddWindowsService`:
 
 * Sets the host lifetime to `WindowsServiceLifetime`.
 * Sets the [content root](xref:fundamentals/index#content-root) to [AppContext.BaseDirectory](xref:System.AppContext.BaseDirectory). For more information, see the [Current directory and content root](#current-directory-and-content-root) section.
@@ -44,12 +41,13 @@ The app requires a package reference for [Microsoft.Extensions.Hosting.WindowsSe
   * Override the default log level with the `Logging:EventLog:LogLevel:Default` key in `appsettings.json`/`appsettings.{Environment}.json` or other configuration provider.
   * Only administrators can create new event sources. When an event source can't be created using the application name, a warning is logged to the *Application* source and event logs are disabled.
 
-In `Program.cs`:
+Consider the following `ServiceA` class:
 
-* Set `ContentRootPath`
-* Call `UseWindowsService`
+:::code language="csharp" source="~/host-and-deploy/windows-service/samples/7.x/WebAppServiceSample/Services/ServiceA.cs" :::
 
-:::code language="csharp" source="~/host-and-deploy/windows-service/samples/6.x/WebAppServiceSample/Program.cs" highlight="7,8,16":::
+The following `Program.cs` calls [`AddHostedService`](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionhostedserviceextensions.addhostedservice) to register `ServiceA`:
+
+:::code language="csharp" source="~/host-and-deploy/windows-service/samples/7.x/WebAppServiceSample/Program.cs" highlight="5":::
 
 The following sample apps accompany this topic:
 
@@ -327,6 +325,7 @@ A dump can be analyzed using several approaches. For more information, see [Anal
 
 ## Additional resources
 
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](xref:index#how-to-download-a-sample))
 * [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel/endpoints) (includes HTTPS configuration and SNI support)
 * <xref:fundamentals/host/generic-host>
 * <xref:test/troubleshoot>
