@@ -66,23 +66,18 @@ namespace Tests.Server.IntegrationTests
         }
         #endregion
 
-        [Test]
+        [Fact]
         public async Task SayHelloUnaryTest_MockGreeter_Error()
         {
             // Arrange
             var client = new Tester.TesterClient(Channel);
 
             // Act
-            try
-            {
-                await client.SayHelloUnaryAsync(new HelloRequest { Name = "" });
-                Assert.Fail();
-            }
-            catch (RpcException ex)
-            {
-                // Assert
-                StringAssert.Contains("Name not provided.", ex.Status.Detail);
-            }
+            var exception = await Assert.ThrowsAsync<RpcException>(async () =>
+                await client.SayHelloUnaryAsync(new HelloRequest { Name = "" }));
+
+            // Assert
+            Assert.Contains("Name not provided.", exception.Message);
         }
     }
 }
