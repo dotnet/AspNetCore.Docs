@@ -1960,10 +1960,13 @@ In the following example, a location changing handler is registered for navigati
 @code {
     private IDisposable? registration;
 
-    protected override void OnInitialized()
+    protected override void OnAfterRender(bool firstRender)
     {
-        registration = 
-            NavigationManager.RegisterLocationChangingHandler(OnLocationChanging);
+        if (firstRender)
+        {
+            registration = 
+                NavigationManager.RegisterLocationChangingHandler(OnLocationChanging);
+        }
     }
 
     private async ValueTask OnLocationChanging(LocationChangingContext context)
