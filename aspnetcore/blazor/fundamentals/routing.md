@@ -226,7 +226,7 @@ The following component:
   * The `HandleLocationChanged` method is unhooked when `Dispose` is called by the framework. Unhooking the method permits garbage collection of the component.
   * The logger implementation logs the following information when the button is selected:
 
-    > `BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:5001/counter`
+    > :::no-loc text="BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:{PORT}/counter":::
 
 `Pages/Navigate.razor`:
 
@@ -863,7 +863,7 @@ The following component:
   * The `HandleLocationChanged` method is unhooked when `Dispose` is called by the framework. Unhooking the method permits garbage collection of the component.
   * The logger implementation logs the following information when the button is selected:
 
-    > `BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:5001/counter`
+    > :::no-loc text="BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:5001/counter":::
 
 `Pages/Navigate.razor`:
 
@@ -1247,7 +1247,7 @@ The following component:
   * The `HandleLocationChanged` method is unhooked when `Dispose` is called by the framework. Unhooking the method permits garbage collection of the component.
   * The logger implementation logs the following information when the button is selected:
 
-    > `BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:5001/counter`
+    > :::no-loc text="BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:5001/counter":::
 
 `Pages/Navigate.razor`:
 
@@ -1543,6 +1543,7 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Given a base URI (for example, a URI previously returned by <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri>), converts an absolute URI into a URI relative to the base URI prefix. |
+| [`RegisterLocationChangingHandler`](#handleprevent-location-changes) | Registers a handler to process incoming navigation events. Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> always invokes the handler. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A> | Returns a URI constructed by updating <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> with a single parameter added, updated, or removed. For more information, see the [Query strings](#query-strings) section. |
 
 ## Location changes
@@ -1559,13 +1560,30 @@ The following component:
   * The `HandleLocationChanged` method is unhooked when `Dispose` is called by the framework. Unhooking the method permits garbage collection of the component.
   * The logger implementation logs the following information when the button is selected:
 
-    > `BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:{PORT}/counter`
+    > :::no-loc text="BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:{PORT}/counter":::
 
 `Pages/Navigate.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/Navigate.razor":::
 
 For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
+
+## Navigation options
+
+Pass `NavigationOptions` to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> to control the following behaviors:
+
+* `ForceLoad`: Bypass client-side routing and force the browser to load the new page from the server, whether or not the URI is handled by the client-side router. The default value is `false`.
+* `ReplaceHistoryEntry`: Replace the current entry in the history stack. If `false`, append the new entry to the history stack. The default value is `false`.
+* `HistoryEntryState`: Gets or sets the state to append to the history entry.
+
+```csharp
+NavigationManager.NavigateTo("/path", new NavigationOptions
+{
+    HistoryEntryState = "Navigation state"
+});
+```
+
+For more information on obtaining the state associated with the target history entry while handling location changes, see the [Handle/prevent location changes](#handleprevent-location-changes) section.
 
 ## Query strings
 
@@ -1901,6 +1919,131 @@ In the following `App` component example:
 
 > [!NOTE]
 > Not throwing if the cancellation token in <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> is canceled can result in unintended behavior, such as rendering a component from a previous navigation.
+
+## Handle/prevent location changes
+
+`RegisterLocationChangingHandler` registers a handler to process incoming navigation events. The handler's context provided by `LocationChangingContext` includes the following properties:
+
+* `TargetLocation`: Gets the target location.
+* `HistoryEntryState`: Gets the state associated with the target history entry.
+* `IsNavigationIntercepted`: Gets whether the navigation was intercepted from a link.
+* `CancellationToken`: Gets a <xref:System.Threading.CancellationToken> to determine if the navigation was canceled, for example, to determine if the user triggered a different navigation.
+* `PreventNavigation`: Called to prevent the navigation from continuing.
+
+A component can register multiple location changing handlers in its [`OnAfterRender` or `OnAfterRenderAsync` methods](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). Navigations invoke all of the location changing handlers registered across the entire app (across multiple components), and any internal navigation executes them all in parallel. In addition to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> handlers are invoked:
+
+* When selecting internal links, which are links that point to URLs under the app's base path.
+* When navigating using the forward and back buttons in a browser.
+
+Handlers are only executed for internal navigations within the app. If the user selects a link that navigates to a different site or changes the address bar to a different site manually, location changing handlers aren't executed.
+
+Implement <xref:System.IDisposable> and dispose registered handlers to unregister them. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
+
+In the following example, a location changing handler is registered for navigation events.
+
+`Pages/NavHandler.razor`:
+
+```razor
+@page "/nav-handler"
+@inject NavigationManager NavigationManager
+@implements IDisposable
+
+<p>
+    <button @onclick="NavigationManager.NavigateTo("/")">
+        Home (Allowed)
+    </button>
+    <button @onclick="NavigationManager.NavigateTo("/counter")">
+        Counter (Prevented)
+    </button>
+</p>
+
+@code {
+    private IDisposable? registration;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            registration = 
+                NavigationManager.RegisterLocationChangingHandler(OnLocationChanging);
+        }
+    }
+
+    private async ValueTask OnLocationChanging(LocationChangingContext context)
+    {
+        if (context.TargetLocation == "counter")
+        {
+            context.PreventNavigation();
+        }
+    }
+
+    public void Dispose() => registration?.Dispose();
+}
+```
+
+Since internal navigation can be canceled asynchronously, multiple overlapping calls to registered handlers may occur. For example, multiple handler calls may occur when the user rapidly selects the back button on a page or selects multiple links before a navigation is executed. The following is a summary of the asynchronous navigation logic:
+
+* If any location changing handlers are registered, all navigations are initially reverted, then replayed if the navigation isn't canceled.
+* If overlapping navigation requests are made, the latest request always cancels earlier requests, which means the following:
+  * The app may treat multiple back and forward button selections as a single selection.
+  * If the user selects multiple links before the navigation completes, the last link selected determines the navigation.
+
+For more information on passing `NavigationOptions` to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> to control entries and state of the navigation history stack, see the [Navigation options](#navigation-options) section.
+
+For additional example code, see the [`NavigationManagerComponent` in the `BasicTestApp` (`dotnet/aspnetcore` reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/RouterTest/NavigationManagerComponent.razor).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+To facilitate the control of navigation events in a Razor component, use the `NavigationLock` component. As long as the `NavigationLock` component is rendered, it intercepts navigation events.
+
+`NavigationLock` parameters:
+
+* `ConfirmExternalNavigation` sets a browser dialog to prompt the user to either confirm or cancel external navigation. The default value is `false`. Displaying the confirmation dialog requires initial user interaction with the page before triggering external navigation with the URL in the browser's address bar. For more information on the interaction requirement, see [Window: `beforeunload` event (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Window/beforeunload_event).
+* `OnBeforeInternalNavigation` sets a callback for internal navigation events.
+
+In the following `NavLock` component:
+
+* An attempt to follow the link to Microsoft's website must be confirmed by the user before the navigation to `https://www.microsoft.com` succeeds.
+* `PreventNavigation` is called to prevent navigation from occurring if the user declines to confirm the navigation via a [JavaScript (JS) interop call](xref:blazor/js-interop/call-javascript-from-dotnet) that spawns the [JS `confirm` dialog](https://developer.mozilla.org/docs/Web/API/Window/confirm).
+
+`Pages/NavLock.razor`:
+
+```razor
+@page "/nav-lock"
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+
+<NavigationLock ConfirmExternalNavigation="true" 
+    OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
+
+<p>
+    <button @onclick="Navigate">Navigate</button>
+</p>
+
+<p>
+    <a href="https://www.microsoft.com">Microsoft homepage</a>
+</p>
+
+@code {
+    private void Navigate()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+
+    private async Task OnBeforeInternalNavigation(LocationChangingContext context)
+    {
+        var isConfirmed = await JSRuntime.InvokeAsync<bool>("confirm", 
+            "Are you sure you want to navigate to the Index page?");
+
+        if (!isConfirmed)
+        {
+            context.PreventNavigation();
+        }
+    }
+}
+```
+
+For additional example code, see the [`ConfigurableNavigationLock` component in the `BasicTestApp` (`dotnet/aspnetcore` reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/RouterTest/ConfigurableNavigationLock.razor).
 
 ## `NavLink` and `NavMenu` components
 
