@@ -226,7 +226,7 @@ The following component:
   * The `HandleLocationChanged` method is unhooked when `Dispose` is called by the framework. Unhooking the method permits garbage collection of the component.
   * The logger implementation logs the following information when the button is selected:
 
-    > `BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:5001/counter`
+    > :::no-loc text="BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:{PORT}/counter":::
 
 `Pages/Navigate.razor`:
 
@@ -863,7 +863,7 @@ The following component:
   * The `HandleLocationChanged` method is unhooked when `Dispose` is called by the framework. Unhooking the method permits garbage collection of the component.
   * The logger implementation logs the following information when the button is selected:
 
-    > `BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:5001/counter`
+    > :::no-loc text="BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:5001/counter":::
 
 `Pages/Navigate.razor`:
 
@@ -1247,7 +1247,7 @@ The following component:
   * The `HandleLocationChanged` method is unhooked when `Dispose` is called by the framework. Unhooking the method permits garbage collection of the component.
   * The logger implementation logs the following information when the button is selected:
 
-    > `BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:5001/counter`
+    > :::no-loc text="BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:5001/counter":::
 
 `Pages/Navigate.razor`:
 
@@ -1560,7 +1560,7 @@ The following component:
   * The `HandleLocationChanged` method is unhooked when `Dispose` is called by the framework. Unhooking the method permits garbage collection of the component.
   * The logger implementation logs the following information when the button is selected:
 
-    > `BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:{PORT}/counter`
+    > :::no-loc text="BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:{PORT}/counter":::
 
 `Pages/Navigate.razor`:
 
@@ -1939,7 +1939,7 @@ Handlers are only executed for internal navigations within the app. If the user 
 
 Implement <xref:System.IDisposable> and dispose registered handlers to unregister them. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
-In the following example, a location changing handler is registered for navigation events. Note that the component implements `IDisposable` and disposes the handler in its `Dispose` method.
+In the following example, a location changing handler is registered for navigation events.
 
 `Pages/NavHandler.razor`:
 
@@ -2004,7 +2004,7 @@ To facilitate the control of navigation events in a Razor component, use the `Na
 In the following `NavLock` component:
 
 * An attempt to follow the link to Microsoft's website must be confirmed by the user before the navigation to `https://www.microsoft.com` succeeds.
-* `PreventNavigation` is called to prevent naviation from occurring if the user declines to confirm the navigation via a [JavaScript (JS) interop call](xref:blazor/js-interop/call-javascript-from-dotnet) that spawns the [JS `confirm` dialog](https://developer.mozilla.org/docs/Web/API/Window/confirm).
+* `PreventNavigation` is called to prevent navigation from occurring if the user declines to confirm the navigation via a [JavaScript (JS) interop call](xref:blazor/js-interop/call-javascript-from-dotnet) that spawns the [JS `confirm` dialog](https://developer.mozilla.org/docs/Web/API/Window/confirm).
 
 `Pages/NavLock.razor`:
 
