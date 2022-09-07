@@ -73,11 +73,10 @@ namespace Tests.Server.IntegrationTests
             var client = new Tester.TesterClient(Channel);
 
             // Act
-            var exception = await Record.ExceptionAsync(async () =>
+            var exception = await Assert.ThrowsAsync<RpcException>(async () =>
                 await client.SayHelloUnaryAsync(new HelloRequest { Name = "" }));
 
             // Assert
-            Assert.IsType<RpcException>(exception);
             Assert.Contains("Name not provided.", exception.Message);
         }
     }
