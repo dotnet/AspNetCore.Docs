@@ -1930,14 +1930,14 @@ In the following `App` component example:
 * `CancellationToken`: Gets a <xref:System.Threading.CancellationToken> to determine if the navigation was canceled, for example, to determine if the user triggered a different navigation.
 * `PreventNavigation`: Called to prevent the navigation from continuing.
 
-A component can register multiple location changing handlers. Navigations invoke all of the location changing handlers registered across the entire app (across multiple components), and any internal navigation executes them all in parallel. In addition to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> handlers are invoked:
+A component can register multiple location changing handlers in its [`OnAfterRender` or `OnAfterRenderAsync` methods](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). Navigations invoke all of the location changing handlers registered across the entire app (across multiple components), and any internal navigation executes them all in parallel. In addition to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> handlers are invoked:
 
 * When selecting internal links, which are links that point to URLs under the app's base path.
 * When navigating using the forward and back buttons in a browser.
 
 Handlers are only executed for internal navigations within the app. If the user selects a link that navigates to a different site or changes the address bar to a different site manually, location changing handlers aren't executed.
 
-[Dispose registered handlers](xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable) to unregister them.
+Implement <xref:System.IDisposable> and dispose registered handlers to unregister them. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
 In the following example, a location changing handler is registered for navigation events. Note that the component implements `IDisposable` and disposes the handler in its `Dispose` method.
 
@@ -1994,12 +1994,17 @@ For additional example code, see the [`NavigationManagerComponent` in the `Basic
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-To facilitate the control of navigation events in a Razor component, use the `NavigationLock` component. As long as the `NavigationLock` component is rendered, it intercepts navigation events. Handlers associated with `NavigationLock` components are disposed automatically when the component is disposed.
+To facilitate the control of navigation events in a Razor component, use the `NavigationLock` component. As long as the `NavigationLock` component is rendered, it intercepts navigation events.
+
+`NavigationLock` parameters:
+
+* `ConfirmExternalNavigation` sets a browser dialog to prompt the user to either confirm or cancel external navigation. The default value is `false`. Displaying the confirmation dialog requires initial user interaction with the page before triggering external navigation with the URL in the browser's address bar. For more information on the interaction requirement, see [Window: `beforeunload` event (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Window/beforeunload_event).
+* `OnBeforeInternalNavigation` sets a callback for internal navigation events.
 
 In the following `NavLock` component:
 
-* `ConfirmExternalNavigation` sets a browser dialog to prompt the user to either confirm or cancel the external navigation. The default value is `false`. An attempt to follow the link to Microsoft's website must be confirmed by the user before the navigation to `https://www.microsoft.com` succeeds.
-* `OnBeforeInternalNavigation` sets a callback to be invoked when an internal navigation event occurs. `PreventNavigation` is called to prevent naviation from occurring if the user declines to confirm the navigation via a [JavaScript (JS) interop call](xref:blazor/js-interop/call-javascript-from-dotnet) that spawns the [JS `confirm` dialog](https://developer.mozilla.org/docs/Web/API/Window/confirm).
+* An attempt to follow the link to Microsoft's website must be confirmed by the user before the navigation to `https://www.microsoft.com` succeeds.
+* `PreventNavigation` is called to prevent naviation from occurring if the user declines to confirm the navigation via a [JavaScript (JS) interop call](xref:blazor/js-interop/call-javascript-from-dotnet) that spawns the [JS `confirm` dialog](https://developer.mozilla.org/docs/Web/API/Window/confirm).
 
 `Pages/NavLock.razor`:
 
