@@ -1,19 +1,8 @@
-using Microsoft.Extensions.Hosting.WindowsServices;
 using SampleApp.Services;
 
-var options = new WebApplicationOptions
-{
-    Args = args,
-    ContentRootPath = WindowsServiceHelpers.IsWindowsService() 
-                                     ? AppContext.BaseDirectory : default
-};
-
-var builder = WebApplication.CreateBuilder(options);
+var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddHostedService<ServiceA>();
-builder.Services.AddHostedService<ServiceB>();
-
-builder.Host.UseWindowsService();
 
 var app = builder.Build();
 
