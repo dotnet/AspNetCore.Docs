@@ -5,14 +5,14 @@ description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 9/9/2021
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
 
 :::moniker range=">= aspnetcore-6.0"
 
-By [Kirk Larkin](https://twitter.com/serpent5), [Tom Dykstra](https://github.com/tdykstra/), and [Steve Smith](https://ardalis.com/)
+By [Tom Dykstra](https://github.com/tdykstra/)
 
 This article covers common approaches to handling errors in ASP.NET Core web apps. See <xref:web-api/handle-errors> for web APIs.
 
