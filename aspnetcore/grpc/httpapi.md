@@ -93,7 +93,10 @@ Note that the `WriteIndented` JSON setting doesn't apply to server streaming met
 
 ## Experimental OpenAPI support
 
-There is *experimental* support for generating OpenAPI from gRPC transcoded RESTful APIs. The [Microsoft.AspNetCore.Grpc.Swagger](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger) package integrates with [Swashbuckle](xref:tutorials/get-started-with-swashbuckle) and is experimental in .NET 7 to give us time to explore the best way to provide OpenAPI support.
+There is *experimental* support for generating OpenAPI from gRPC transcoded RESTful APIs. The [Microsoft.AspNetCore.Grpc.Swagger](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger) package:
+
+* Integrates gRPC JSON transcoding with [Swashbuckle](xref:tutorials/get-started-with-swashbuckle).
+* Is experimental in .NET 7 to give us time to explore the best way to provide OpenAPI support.
 
 To enable OpenAPI with gRPC JSON transcoding:
 
