@@ -8,7 +8,7 @@ ms.date: 08/25/2022
 ---
 # Deploying and scaling an ASP.NET Core app on Azure Container Apps
 
-Web applications deployed to Azure should be dynamically scalable in order to leverage various benefits of the cloud, such as elasticity. ASP.NET Core apps meet these requirements, but developers must consider certain architectural patterns and configurations to ensure success. This tutorial demonstrates how to deploy a scalable Razor Pages app to Azure Container Apps by completing the following tasks:
+apps deployed to Azure that experience intermittent high demand benefit from scalability to meet demand. Scalable apps can scale out to ensure capacity during workload peaks and return to normal automatically when the peak drops. Horizontal scaling (scaling out) adds new instances of a resource, such as VMs or database replicas. This article demonstrate how to deploy a horizontally scalable ASP.NET Core app to [Azure container apps](/azure/container-apps/overview) by completing the following tasks:
 
 1. [Setup the sample project](#1-setup-the-sample-project)
 1. [Deploy the app to Azure Container Apps](#2-deploy-the-app-to-azure-container-apps)
@@ -17,20 +17,22 @@ Web applications deployed to Azure should be dynamically scalable in order to le
 1. [Connect the Azure services](#5-connect-the-azure-services)
 1. [Configure and redeploy the app](#6-configure-and-redeploy-the-app)
 
-In some cases, simple ASP.NET Core apps are able to scale without special considerations. However, some apps require additional configurations to utilize certain framework features or architectural patterns, including the following:
+This article uses Razor Pages, but most of it applies to other ASP.NET Core apps.
 
-* **Secure form submissions**: Razor Pages, MVC and Web API apps often rely on form submissions. By default these apps use cross site forgery tokens and framework data protection services to secure requests. When deployed to the cloud, these apps must be configured to use a managed data protection service in a secure, centralized location.
+In some cases, basic ASP.NET Core apps are able to scale without special considerations. However, apps that utilize certain framework features or architectural patterns require additional configurations, including the following:
 
-* **SignalR circuits**: Blazor Server applications require the use of a centralized Azure SignalR service in order to scale properly and securely. These services also utilize the data protection services mentioned previously.
+* **Secure form submissions**: Razor Pages, MVC and Web API apps often rely on form submissions. By default these apps use [cross site forgery tokens](xref:security/anti-request-forgery) and internal data protection services to secure requests. When deployed to the cloud, these apps must be configured to use a managed data protection service concerns in a secure, centralized location.
 
-* **Centralized caching or state management services**: Scalable applications may use Azure Cache for Redis to provide distributed caching. Azure storage or database services may be needed to manage state for frameworks such as Orleans, which can assist in writing stateful apps that scale across many different app instances.
+* **SignalR circuits**: Blazor Server apps require the use of a centralized [Azure SignalR service](/azure/azure-signalr/signalr-overview) in order to securely scale. These services also utilize the data protection services mentioned previously.
+
+* **Centralized caching or state management services**: Scalable apps may use [Azure Cache for Redis](/azure/azure-cache-for-redis/cache-overview) to provide distributed caching. [Azure storage](/azure/storage/common/storage-introduction) may be needed to store state for frameworks such as [Microsoft Orleans](/dotnet/orleans/overview), which can assist in writing apps that manage state across many different app instances.
 
 > [!NOTE]
-> The steps ahead demonstrate how to properly address these concerns by deploying a scalable app to Azure Container Apps. Most of the concepts in this tutorial also apply when scaling Azure App Service instances.
+> The steps in this article demonstrate how to properly address these concerns by deploying a scalable app to Azure Container Apps. Most of the concepts in this tutorial also apply when scaling [Azure App Service](/azure/app-service/overview) instances.
 
 ## 1) Setup the sample project
 
-You can use the GitHub Explorer application to follow along with this tutorial. Clone the application from GitHub using the following command:
+You can use the GitHub Explorer app to follow along with this tutorial. Clone the app from GitHub using the following command:
 
 ```dotnetcli
 git clone "https://github.com/MicrosoftDocs/mslearn-dotnet-debug-visual-studio-app-service.git"
@@ -70,18 +72,18 @@ Next you'll use Visual Studio to deploy the app to Azure Container Apps. Contain
         * Select **Ok** to close the container apps environment dialog.
     * Select **Create** to close the original container apps dialog. Visual Studio will take a moment to create the container app resource in Azure.
 1. Once the resource is created, make sure it is selected in the list of container apps, and then choose **Next**.
-1. You'll need to create an Azure Container Registry to store the published image artifact for your application. Select the green **+** icon on the container registry screen. Leave the default values, and then select **Create**.
+1. You'll need to create an Azure Container Registry to store the published image artifact for your app. Select the green **+** icon on the container registry screen. Leave the default values, and then select **Create**.
 
     :::image type="content" source="./media/scaling-new-registry-small.png" lightbox="./media/scaling-new-registry.png" alt-text="A screenshot showing Visual Studio deployment.":::
 
 1. After the container registry is created, make sure it is selected, and then choose finish. Visual Studio will close the dialog workflow and display a summary of the publishing profile.
 1. Select **Publish** in the upper right of the publishing profile summary to deploy your app to Azure.
 
-When the deployment finishes, Visual Studio will launch the browser to display your hosted application. Search for *Microsoft* in the form field, and you should see a list of repositories displayed.
+When the deployment finishes, Visual Studio will launch the browser to display your hosted app. Search for *Microsoft* in the form field, and you should see a list of repositories displayed.
 
 ## 3) Scale and troubleshoot the app
 
-Your application is currently running without any issues, but you'd like to scale the app across more instances in anticipation of high traffic volumes.
+Your app is currently running without any issues, but you'd like to scale the app across more instances in anticipation of high traffic volumes.
 
 1. In the Azure Portal, search for the GitHub Explorer container app in the top level search bar and select it from the results.
 1. On the overview page, select **Scale** from the left navigation, and then select **+ Edit and deploy**.
@@ -91,7 +93,7 @@ Your application is currently running without any issues, but you'd like to scal
 1. On the revisions page, switch to the **Scale** tab.
 1. Set both the min and max instances to **4** and then select **Create**. This configuration change will guarantee your app is scaled horizontally across several instances.
 
-Navigate back to your application in the browser. When the page loads, at first it appears everything is working correctly. However, when you enter in a search term again and hit submit, an error will occur. If you do not see the error at first, submit the form several more times.
+Navigate back to your app in the browser. When the page loads, at first it appears everything is working correctly. However, when you enter in a search term again and hit submit, an error will occur. If you do not see the error at first, submit the form several more times.
 
 #### Troubleshooting the error
 
@@ -120,7 +122,7 @@ It's not immediately apparent why the search requests are failing. If you check 
     :::image type="content" source="./media/scaling-troubleshoot-small.png" lightbox="./media/scaling-troubleshoot.png" alt-text="A screenshot showing the GitHub Explorer app.":::
 
     > [!IMPORTANT]
-    > The errors in the application are caused by the .NET data protection services. When multiple instances of the app are running, there is no guarantee that the HTTP POST request to submit the form will be routed to the same container that initially loaded the page from the HTTP GET request. If the requests are handled by different instances, the antiforgery tokens cannot be handled correctly and an exception occurs.
+    > The errors in the app are caused by the .NET data protection services. When multiple instances of the app are running, there is no guarantee that the HTTP POST request to submit the form will be routed to the same container that initially loaded the page from the HTTP GET request. If the requests are handled by different instances, the antiforgery tokens cannot be handled correctly and an exception occurs.
 
     In the steps ahead you'll resolve this issue by centralizing the data protection keys in an Azure storage service and protecting them with key vault.
 
@@ -129,7 +131,7 @@ It's not immediately apparent why the search requests are failing. If you check 
 To resolve the errors impacting the container app, you'll create the following services and connect them to your app:
 
 * **Azure Storage Account**: The storage service will handle storing data for the Data Protection Services of your app. This provides a centralized location to store key data as the app scales. Storage accounts can also be used to hold documents, queue data, file shares, and almost any type of blob data.
-* **Azure Key Vault**: This service will be used to store secrets for your application and manage encryption concerns for the data protection  keys.
+* **Azure Key Vault**: This service will be used to store secrets for your app and manage encryption concerns for the data protection  keys.
 
 #### Create the storage account service
 
@@ -237,7 +239,7 @@ The service connector will assign a role to the identity so it can perform data 
 
 ## 6) Configure and redeploy the app
 
-The necessary Azure resources have been created, so next you'll need to configure your application code to point to those services.
+The necessary Azure resources have been created, so next you'll need to configure your app code to point to those services.
 
 1. Install the following three NuGet packages that are necessary to solve the scaling challenges:
 
@@ -282,20 +284,20 @@ You'll also need to update the placeholders in the new code to include the follo
 1. Replace the `<key-vault-name>` placeholder in the key vault URI `ProtectKeysWithAzureKeyVault`method with the name of the `scalablerazorvaultXXXX` key vault you created.
 1. Replace the `<key-name>` placeholder in the key vault URI with the `razorkey` name you created earlier.
 
-#### Redeploy the application
+#### Redeploy the app
 
-Your application is now configured correctly to use the Azure services you created perviously. Next you need to redeploy the app for your code changes to be applied.
+Your app is now configured correctly to use the Azure services you created perviously. Next you need to redeploy the app for your code changes to be applied.
 
 1. Right click on the project node in the solution explorer and select **Publish**.
 1. On the publishing profile summary view, click the **Publish** button in the upper right corner.
 
-Visual Studio will redeploy the application to the container apps environment you created earlier. When the processes finished, the browser will launch to the application home page.
+Visual Studio will redeploy the app to the container apps environment you created earlier. When the processes finished, the browser will launch to the app home page.
 
-Test the application again by searching for *Microsoft* in the search field. The page should now reload with the correct results every time you submit!
+Test the app again by searching for *Microsoft* in the search field. The page should now reload with the correct results every time you submit!
 
 ## 7) Configure roles for local development
 
-The existing code and configuration of your app can also work while running locally during development. The `DefaultAzureCredential` class you configured earlier is able to pick up local environment credentials to authenticate to Azure Services. You will need to assign the same roles to your own account that were assigned to your application's managed identity in order for the authentication to work. This should be the same account you use to log into Visual Studio or the Azure CLI.
+The existing code and configuration of your app can also work while running locally during development. The `DefaultAzureCredential` class you configured earlier is able to pick up local environment credentials to authenticate to Azure Services. You will need to assign the same roles to your own account that were assigned to your app's managed identity in order for the authentication to work. This should be the same account you use to log into Visual Studio or the Azure CLI.
 
 #### Sign-in to your local development environment
 
