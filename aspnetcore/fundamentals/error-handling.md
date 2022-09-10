@@ -18,7 +18,7 @@ This article covers common approaches to handling errors in ASP.NET Core web app
 
 ## Developer exception page
 
-The *Developer Exception Page* displays detailed information about unhandled request exceptions. ASP.NET Core apps enable the developer exception page by default when running in the [Development environment](xref:fundamentals/environments).
+The *Developer Exception Page* displays detailed information about unhandled request exceptions. ASP.NET Core apps enable the developer exception page by default when running in the [Development environment](xref:fundamentals/environments) if they're created using [WebApplication.CreateBuilder](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.webapplication.createbuilder?view=aspnetcore-6.0).  Apps created using the `IHostBuilder.CreateDefaultBuilder` will still need to enable the developer exception page by calling `app.UseDeveloperExceptionPage()` during the startup class's `Configure` method.
 
 The developer exception page runs early in the middleware pipeline, so that it can catch unhandled exceptions thrown in middleware that follows.
 
