@@ -96,7 +96,7 @@ Update the `EmailTagHelper` class with the following:
 
 
   > [!TIP]
-  > You can also map a different attribute name to your property by using the [HtmlAttributeName](xref:Microsoft.AspNetCore.Razor.TagHelpers HtmlAttributeNameAttribute) attribute. For example, to map an attribute called `recipient` to our `MailTo` property:
+  > You can also map a different attribute name to your property by using the `[HtmlAttributeName]` attribute. For example, to map an attribute called `recipient` to our `MailTo` property:
   > ```csharp
   > [HtmlAttributeName("recipient")]
   > public string MailTo { get; set; }
