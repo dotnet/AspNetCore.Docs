@@ -30,7 +30,7 @@ In some cases, basic ASP.NET Core apps are able to scale without special conside
 > [!NOTE]
 > The steps in this article demonstrate how to properly address these concerns by deploying a scalable app to Azure Container Apps. Most of the concepts in this tutorial also apply when scaling [Azure App Service](/azure/app-service/overview) instances.
 
-## 1) Setup the sample project
+## Setup the sample project
 
 You can use the GitHub Explorer app to follow along with this tutorial. Clone the app from GitHub using the following command:
 
@@ -49,9 +49,9 @@ When the app launches in the browser, you can use the search form to browse for 
 
 :::image type="content" source="./media/scaling-app-screenshot.png" alt-text="A screenshot showing the GitHub Explorer app.":::
 
-## 2) Deploy the app to Azure Container Apps
+## Deploy the app to Azure Container Apps
 
-Next you'll use Visual Studio to deploy the app to Azure Container Apps. Container apps provide a managed service designed to simplify hosting containerized apps and microservices.
+You'll use Visual Studio to deploy the app to Azure Container Apps. Container apps provide a managed service designed to simplify hosting containerized apps and microservices.
 
 1. Inside the Visual Studio solution explorer, right click on the top level project node and select **Publish**.
 1. In the publishing dialog, select **Azure** as the deployment target, and then choose **Next**.
@@ -81,7 +81,7 @@ Next you'll use Visual Studio to deploy the app to Azure Container Apps. Contain
 
 When the deployment finishes, Visual Studio will launch the browser to display your hosted app. Search for *Microsoft* in the form field, and you should see a list of repositories displayed.
 
-## 3) Scale and troubleshoot the app
+## Scale and troubleshoot the app
 
 Your app is currently running without any issues, but you'd like to scale the app across more instances in anticipation of high traffic volumes.
 
@@ -126,7 +126,7 @@ It's not immediately apparent why the search requests are failing. If you check 
 
     In the steps ahead you'll resolve this issue by centralizing the data protection keys in an Azure storage service and protecting them with key vault.
 
-## 4) Create the Azure Services
+## Create the Azure Services
 
 To resolve the errors impacting the container app, you'll create the following services and connect them to your app:
 
@@ -151,7 +151,7 @@ Azure will take a moment to provision the new storage account. When the task com
 
 #### Create the storage container
 
-Next you'll need to create the Container that will be used to store your app's data protection keys.
+You'll need to create a Container that will be used to store your app's data protection keys.
 
 1. On the storage account overview page, select **Storage browser** on the left navigation.
 1. Select **Blob containers**.
@@ -162,7 +162,7 @@ You should see the new container appear on the page list.
 
 #### Create the key vault service
 
-Next you'll need to create the key vault service.
+Create a key vault service to hold the keys that will protect the data in the blob storage container.
 
 1. In the Azure Portal search bar, enter *Key Vault* and select the matching result
 1. On the key vault listing page, select **+ Create**.
@@ -180,7 +180,7 @@ Azure will take a moment to provision the new key vault. When the ask completes,
 
 #### Create the key vault key
 
-Next you need to create a secret key to protect the data in the blob storage account.
+Create a secret key to protect the data in the blob storage account.
 
 1. On the main key vault overview page, select **Keys** from the left navigation.
 1. On the **Create a key** page, select **+ Generate/Import** to open the **Create a key** flyout menu. 
@@ -188,7 +188,7 @@ Next you need to create a secret key to protect the data in the blob storage acc
 
     :::image type="content" source="./media/scaling-new-key-small.png" lightbox="./media/scaling-new-key.png" alt-text="A screenshot showing how to create a container app in the Azure Portal.":::
 
-## 5) Connect the Azure Services
+## Connect the Azure Services
 
 The Container App requires a secure connection to the storage account and key vault services in order to resolve the data protection errors and scale correctly. You can connect your services together using the following steps:
 
@@ -237,9 +237,9 @@ The service connector will enable a system-assigned managed identity on the cont
 
 The service connector will assign a role to the identity so it can perform data operations on the key vault keys.
 
-## 6) Configure and redeploy the app
+## Configure and redeploy the app
 
-The necessary Azure resources have been created, so next you'll need to configure your app code to point to those services.
+The necessary Azure resources have been created, so you'll need to configure your app code to point to those services.
 
 1. Install the following three NuGet packages that are necessary to solve the scaling challenges:
 
@@ -286,7 +286,7 @@ You'll also need to update the placeholders in the new code to include the follo
 
 #### Redeploy the app
 
-Your app is now configured correctly to use the Azure services you created perviously. Next you need to redeploy the app for your code changes to be applied.
+Your app is now configured correctly to use the Azure services you created perviously. Redeploy the app for your code changes to be applied.
 
 1. Right click on the project node in the solution explorer and select **Publish**.
 1. On the publishing profile summary view, click the **Publish** button in the upper right corner.
@@ -295,7 +295,7 @@ Visual Studio will redeploy the app to the container apps environment you create
 
 Test the app again by searching for *Microsoft* in the search field. The page should now reload with the correct results every time you submit!
 
-## 7) Configure roles for local development
+## Configure roles for local development
 
 The existing code and configuration of your app can also work while running locally during development. The `DefaultAzureCredential` class you configured earlier is able to pick up local environment credentials to authenticate to Azure Services. You will need to assign the same roles to your own account that were assigned to your app's managed identity in order for the authentication to work. This should be the same account you use to log into Visual Studio or the Azure CLI.
 
