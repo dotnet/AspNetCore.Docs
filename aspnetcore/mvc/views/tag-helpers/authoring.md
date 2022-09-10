@@ -95,7 +95,8 @@ Update the `EmailTagHelper` class with the following:
 * Pascal-cased class and property names for tag helpers are translated into their [kebab case](https://stackoverflow.com/questions/11273282/whats-the-name-for-dash-separated-case/12273101). Therefore, to use the `MailTo` attribute, you'll use `<email mail-to="value"/>` equivalent.
 
 
-  > [!TIP] You can also map a different attribute name to your property by using the [HtmlAttributeName](xref:Microsoft.AspNetCore.Razor.TagHelpers HtmlAttributeNameAttribute) attribute. For example, to map an attribute called `recipient` to our `MailTo` property:
+  > [!TIP]
+  > You can also map a different attribute name to your property by using the [HtmlAttributeName](xref:Microsoft.AspNetCore.Razor.TagHelpers HtmlAttributeNameAttribute) attribute. For example, to map an attribute called `recipient` to our `MailTo` property:
   > ```csharp
   > [HtmlAttributeName("recipient")]
   > public string MailTo { get; set; }
