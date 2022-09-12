@@ -1568,6 +1568,10 @@ The following component:
 
 For more information on component disposal, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
+## Navigation history state
+
+The <xref:Microsoft.AspNetCore.Components.NavigationManager> uses the browser's [History API](https://developer.mozilla.org/docs/Web/API/History_API) to maintain navigation history state associated with each location change made by the app. Maintaining history state is particularly useful in external redirect scenarios, such as when [authenticating users with external identity providers](xref:blazor/security/webassembly/index#customize-authorization). For more information, see the [Navigation options](#navigation-options) section.
+
 ## Navigation options
 
 Pass `NavigationOptions` to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> to control the following behaviors:
