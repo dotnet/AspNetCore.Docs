@@ -1125,7 +1125,7 @@ The following [`record`](/dotnet/csharp/language-reference/builtin-types/record)
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoRecord.cs" id="snippet_1" :::
 
-Using a `struct` type with `AsParameters` can be more performant than using a `record` type.
+Using a `struct` with `AsParameters` can be more performant than using a `record` type.
 
 The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/arg-lists) in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
 
