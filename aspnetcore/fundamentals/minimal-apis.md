@@ -1113,11 +1113,11 @@ The following code shows additional endpoints in the app:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_post_put_delete" :::
 
-The following `struct` types are used to refactor the parameter lists:
+The following classes are used to refactor the parameter lists:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoDb.cs" id="snippet_1" :::
 
-The following code shows the refactored endpoints using `AsParameters` and the preceding `struct` types:
+The following code shows the refactored endpoints using `AsParameters` and the preceding `struct` and classes:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_ap_post_put_delete" :::
 
