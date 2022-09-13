@@ -23,7 +23,7 @@ Controllers and Razor pages work with data that comes from HTTP requests. For ex
 * Converts string data to .NET types.
 * Updates properties of complex types.
 
-## Simple and complex types
+### Simple and complex types
 
 A simple type is one of the predefined `struct` types such as `int`, 'char`, `float`, `double`, and `bool`. For a complete list, see [Simple types](/dotnet/csharp/language-reference/language-specification/types#835-simple-types). A complex type is a type that is not a simple type, such as a `class` or [`record`](/dotnet/csharp/language-reference/builtin-types/record).
 
