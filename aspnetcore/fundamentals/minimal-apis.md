@@ -1091,9 +1091,13 @@ The following code shows the complete `Program.cs` file:
 * The request body isn't buffered by default. After the body is read, it's not rewindable. The stream can't be read multiple times.
 * The `Stream` and `PipeReader` aren't usable outside of the minimal action handler as the underlying buffers will be disposed or reused.
 
-## Parameter binding for argument lists
+<a name="asparam7"></a>
 
-The <xref:Microsoft.AspNetCore.Http.AsParametersAttribute> enables parameter binding to types. For example, consider the following code:
+## Parameter binding for argument lists with [AsParameters]
+
+<xref:Microsoft.AspNetCore.Http.AsParametersAttribute> enables simple parameter binding to types and not complex or recursive model binding.
+
+Consider the following code:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_top":::
 
@@ -1105,7 +1109,7 @@ The following `struct` can be used to replace the preceding highlighted paramete
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoDb.cs" id="snippet" :::
 
-The refactored `GET` endpoint uses the preceding `struct` with the [AsParameters](/dotnet/api/microsoft.aspnetcore.http.asparametersattribute?view=aspnetcore-7.0&preserve-view=true) attribute:
+The refactored `GET` endpoint uses the preceding `struct` with the [AsParameters](/dotnet/api/microsoft.aspnetcore.http.asparametersattribute?view=aspnetcore-7.0) attribute:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_ap_id" highlight="2":::
 
@@ -1449,6 +1453,7 @@ The rules for determining a binding source from a parameter:
     1. Header: [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute)
     1. Body: [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)
     1. Service: [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute)
+    1. Parameter values: [`[AsParameters]](<xref:Microsoft.AspNetCore.Http.AsParametersAttribute)
 1. Special types
     1. `HttpContext`
     1. `HttpRequest`
