@@ -18,7 +18,7 @@ For general guidance on ASP.NET Core SignalR configuration, see the topics in th
 
 ## Disable response compression for Hot Reload
 
-When using [Hot Reload](xref:test/hot-reload), disable Response Compression Middleware in the `Development` environment. The following examples use the existing `Development` environment check in a project created from a Blazor project template. Whether or not the default code from a project template is used, always call <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A> first in the request processing pipeline.
+When using [Hot Reload](xref:test/hot-reload), disable Response Compression Middleware in the `Development` environment. The following examples use the existing environment check in a project created from a Blazor project template. Whether or not the default code from a project template is used, always call <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A> first in the request processing pipeline.
 
 In `Program.cs` of a Blazor Server app:
 
@@ -996,7 +996,7 @@ For general guidance on ASP.NET Core SignalR configuration, see the topics in th
 
 ## Disable response compression for Hot Reload
 
-When using [Hot Reload](xref:test/hot-reload), disable Response Compression Middleware in the `Development` environment. The following examples use the existing `Development` environment check in a project created from a Blazor project template. Whether or not the default code from a project template is used, always call <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A> first in the request processing pipeline.
+When using [Hot Reload](xref:test/hot-reload), disable Response Compression Middleware in the `Development` environment. The following examples use the existing environment check in a project created from a Blazor project template. Whether or not the default code from a project template is used, always call <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A> first in the request processing pipeline.
 
 In `Program.cs` of a Blazor Server app:
 
