@@ -16,6 +16,36 @@ This article explains how to configure and manage SignalR connections in Blazor 
 
 For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:blazor/tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
 
+## Disable response compression for Hot Reload
+
+When using [Hot Reload](xref:test/hot-reload), disable Response Compression Middleware in the `Development` environment. The following examples use the existing environment check in a project created from a Blazor project template. Whether or not the default code from a project template is used, always call <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A> first in the request processing pipeline.
+
+In `Program.cs` of a Blazor Server app:
+
+```csharp
+if (!app.Environment.IsDevelopment())
+{
+    app.UseResponseCompression();
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+```
+
+In `Program.cs` of the **`Client`** project in a hosted Blazor WebAssembly solution:
+
+```csharp
+if (app.Environment.IsDevelopment())
+{
+    app.UseWebAssemblyDebugging();
+}
+else
+{
+    app.UseResponseCompression();
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+```
+
 ## SignalR cross-origin negotiation for authentication (Blazor WebAssembly)
 
 To configure SignalR's underlying client to send credentials, such as cookies or HTTP authentication headers:
@@ -963,6 +993,36 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 :::moniker range=">= aspnetcore-7.0"
 
 For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR [added to a hosted Blazor WebAssembly solution](xref:blazor/tutorials/signalr-blazor), see <xref:signalr/configuration#configure-server-options>.
+
+## Disable response compression for Hot Reload
+
+When using [Hot Reload](xref:test/hot-reload), disable Response Compression Middleware in the `Development` environment. The following examples use the existing environment check in a project created from a Blazor project template. Whether or not the default code from a project template is used, always call <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A> first in the request processing pipeline.
+
+In `Program.cs` of a Blazor Server app:
+
+```csharp
+if (!app.Environment.IsDevelopment())
+{
+    app.UseResponseCompression();
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+```
+
+In `Program.cs` of the **`Client`** project in a hosted Blazor WebAssembly solution:
+
+```csharp
+if (app.Environment.IsDevelopment())
+{
+    app.UseWebAssemblyDebugging();
+}
+else
+{
+    app.UseResponseCompression();
+    app.UseExceptionHandler("/Error");
+    app.UseHsts();
+}
+```
 
 ## SignalR cross-origin negotiation for authentication (Blazor WebAssembly)
 
