@@ -226,6 +226,9 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
    :::code language="razor" source="~/../blazor-samples/6.0/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor":::
 
+> [!NOTE]
+> Disable Response Compression Middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
+
 ## Run the app
 
 Follow the guidance for your tooling:
@@ -459,6 +462,9 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 1. Replace the markup with the following code:
 
    :::code language="razor" source="~/../blazor-samples/6.0/BlazorServerSignalRApp/Pages/Index.razor":::
+
+> [!NOTE]
+> Disable Response Compression Middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
 
 ## Run the app
 
@@ -1873,6 +1879,9 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
    :::code language="razor" source="~/../blazor-samples/7.0/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor":::
 
+> [!NOTE]
+> Disable Response Compression Middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
+
 ## Run the app
 
 Follow the guidance for your tooling:
@@ -2106,6 +2115,9 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 1. Replace the markup with the following code:
 
    :::code language="razor" source="~/../blazor-samples/7.0/BlazorServerSignalRApp/Pages/Index.razor":::
+
+> [!NOTE]
+> Disable Response Compression Middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
 
 ## Run the app
 

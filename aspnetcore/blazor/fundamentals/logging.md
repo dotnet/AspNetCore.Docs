@@ -477,7 +477,7 @@ builder.Logging.AddConfiguration(
 
 The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfigurationExtensions.AddConfiguration%2A?displayProperty=nameWithType> can be placed either before or after adding the custom logger provider.
 
-Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
+Run the app again. Select the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
 
 > :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::  
 > :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
@@ -847,7 +847,7 @@ builder.Logging.AddConfiguration(
 
 The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfigurationExtensions.AddConfiguration%2A?displayProperty=nameWithType> can be placed either before or after adding the custom logger provider.
 
-Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
+Run the app again. Select the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
 
 > :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::  
 > :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
@@ -1172,7 +1172,7 @@ builder.Logging.AddConfiguration(
 
 The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfigurationExtensions.AddConfiguration%2A?displayProperty=nameWithType> can be placed either before or after adding the custom logger provider.
 
-Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
+Run the app again. Select the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
 
 > :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::  
 > :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
