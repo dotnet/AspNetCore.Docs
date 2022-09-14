@@ -152,7 +152,9 @@ In the following sample, the `/skipme` endpoint is excluded from generating an O
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_swag2&highlight=20-21)]
 
-## gRPC
+## Minimal APIs and API controllers
+
+<xref:Microsoft.AspNetCore.Http.AsParametersAttribute> enables simple parameter binding to parameter types. For more information, see [Parameter binding for argument lists with `[AsParameters]`](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#asparam7) |
 
 ### JSON transcoding
 
