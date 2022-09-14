@@ -42,7 +42,7 @@ namespace MinApiTests.IntegrationTests
         }
 
         [Fact]
-        public async Task PostTodoWithValidParametes()
+        public async Task PostTodoWithValidParameters()
         {
             using (var scope = _factory.Services.CreateScope())
             {
