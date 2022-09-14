@@ -255,6 +255,8 @@ The following example uses JavaScript to make an AJAX request to obtain the toke
 
 :::code language="javascript" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Index.js" highlight="1,15":::
 
+<a name="antimin7"></a>
+
 ### Antiforgery with Minimal APIs
 
 `Minimal APIs` do not support the usage of the included filters (`ValidateAntiForgeryToken`, `AutoValidateAntiforgeryToken`, `IgnoreAntiforgeryToken`), however, <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> provides the required APIs to validate a request.
