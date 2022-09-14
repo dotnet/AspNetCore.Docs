@@ -79,6 +79,8 @@ Although `example1.contoso.net` and `example2.contoso.net` are different hosts, 
 
 Attacks that exploit trusted cookies between apps hosted on the same domain can be prevented by not sharing domains. When each app is hosted on its own domain, there's no implicit cookie trust relationship to exploit.
 
+<a name="anti7"></a>
+
 ## Antiforgery in ASP.NET Core
 
 > [!WARNING]
