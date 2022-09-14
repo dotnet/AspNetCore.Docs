@@ -930,7 +930,7 @@ Verify you can't post or get the secret field.
 
 ## Configure JSON serialization options
 
-The following example invokes `ConfigureHttpJsonOptions` to configure options that apply wherever the app serializes or deserializes JSON for HTTP requests and responses:
+The following example invokes [`ConfigureHttpJsonOptions`](https://source.dot.net/#Microsoft.AspNetCore.Http.Extensions/HttpJsonServiceExtensions.cs,496f2a8225e6c731) to configure options that apply wherever the app serializes or deserializes JSON for HTTP requests and responses:
 
 [!code-csharp[](min-web-api/samples/7.x/WebMinJson/Program.cs?name=snippet_1)]
 
