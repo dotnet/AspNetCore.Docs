@@ -261,6 +261,9 @@ The following `FileUpload2` component:
 
 The following controller in the web API project saves uploaded files from the client.
 
+> [!IMPORTANT]
+> The controller in this section is intended for use in a separate web API project from the Blazor Server app.
+
 > [!NOTE]
 > Binding form values with the [`[FromForm]` attribute](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) isn't natively supported for [Minimal APIs](xref:fundamentals/minimal-apis?view=aspnetcore-6.0#explicit-parameter-binding) in ASP.NET Core 6.0. Therefore, the following `Filesave` controller example can't be converted to use Minimal APIs. Support for binding from form values with Minimal APIs is available in ASP.NET Core 7.0 or later.
 
@@ -844,6 +847,9 @@ The following `FileUpload2` component:
 
 The following controller in the web API project saves uploaded files from the client.
 
+> [!IMPORTANT]
+> The controller in this section is intended for use in a separate web API project from the Blazor Server app.
+
 **To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment.**
 
 Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
@@ -1420,6 +1426,9 @@ The following `FileUpload2` component:
 :::zone pivot="server"
 
 The following controller in the web API project saves uploaded files from the client.
+
+> [!IMPORTANT]
+> The controller in this section is intended for use in a separate web API project from the Blazor Server app.
 
 **To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment.**
 
