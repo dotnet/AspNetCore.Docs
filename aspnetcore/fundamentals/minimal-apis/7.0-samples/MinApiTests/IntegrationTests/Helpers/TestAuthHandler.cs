@@ -4,35 +4,34 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace MinApiTests.IntegrationTests.Helpers
+namespace MinApiTests.IntegrationTests.Helpers;
+
+public class TestAuthenticationSchemeOptions : AuthenticationSchemeOptions
 {
-    public class TestAuthenticationSchemeOptions : AuthenticationSchemeOptions
+    public string IsAdmin { get; set; } = "false";
+}
+
+public class TestAuthHandler : AuthenticationHandler<TestAuthenticationSchemeOptions>
+{
+    public TestAuthHandler(IOptionsMonitor<TestAuthenticationSchemeOptions> options,
+        ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock)
+        : base(options, logger, encoder, clock)
     {
-        public string IsAdmin { get; set; } = "false";
     }
 
-    public class TestAuthHandler : AuthenticationHandler<TestAuthenticationSchemeOptions>
+    protected override Task<AuthenticateResult> HandleAuthenticateAsync()
     {
-        public TestAuthHandler(IOptionsMonitor<TestAuthenticationSchemeOptions> options,
-            ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock)
-            : base(options, logger, encoder, clock)
+        var claims = new[]
         {
-        }
+            new Claim("admin", Options.IsAdmin)
+        };
 
-        protected override Task<AuthenticateResult> HandleAuthenticateAsync()
-        {
-            var claims = new[]
-            {
-                new Claim("admin", Options.IsAdmin)
-            };
+        var identity = new ClaimsIdentity(claims, "Test");
+        var principal = new ClaimsPrincipal(identity);
+        var ticket = new AuthenticationTicket(principal, "Test");
 
-            var identity = new ClaimsIdentity(claims, "Test");
-            var principal = new ClaimsPrincipal(identity);
-            var ticket = new AuthenticationTicket(principal, "Test");
+        var result = AuthenticateResult.Success(ticket);
 
-            var result = AuthenticateResult.Success(ticket);
-
-            return Task.FromResult(result);
-        }
+        return Task.FromResult(result);
     }
 }

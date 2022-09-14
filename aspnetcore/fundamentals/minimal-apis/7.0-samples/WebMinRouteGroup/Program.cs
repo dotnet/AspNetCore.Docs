@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using todo_group;
-using todo_group.Data;
-using todo_group.Services;
+using WebMinRouteGroup;
+using WebMinRouteGroup.Data;
+using WebMinRouteGroup.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<TodoGroupDbContext>(options =>
 {
     var path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-    options.UseSqlite($"Data Source={Path.Join(path, "todo_group.db")}");
+    options.UseSqlite($"Data Source={Path.Join(path, "WebMinRouteGroup.db")}");
 });
 
 var app = builder.Build();
@@ -35,28 +35,19 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapGet("/", () => "Hello World!");
+
 app.MapGet("/admin", () => "Authorized Endpoint")
     .RequireAuthorization("AdminsOnly"); ;
 
 // todoV1 endpoints
 app.MapGroup("/todos/v1")
-   .MapTodosApiV1()
-   .WithTags("Todo Endpoints")
-   .AddEndpointFilter(async (context, next) =>
-   {
-       app.Logger.LogInformation("Accessing todo endpoints");
-       return await next(context);
-   });
+    .MapTodosApiV1()
+    .WithTags("Todo Endpoints");
 
 // todoV2 endpoints
 app.MapGroup("/todos/v2")
     .MapTodosApiV2()
-    .WithTags("Todo Endpoints")
-    .AddEndpointFilter(async (context, next) =>
-    {
-        app.Logger.LogInformation("Accessing todo endpoints");
-        return await next(context);
-    });
+    .WithTags("Todo Endpoints");
 
 app.Run();
 

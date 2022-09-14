@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\todo-group\todo-group.csproj" />
+    <ProjectReference Include="..\WebMinRouteGroup\WebMinRouteGroup.csproj" />
   </ItemGroup>
 
 </Project>

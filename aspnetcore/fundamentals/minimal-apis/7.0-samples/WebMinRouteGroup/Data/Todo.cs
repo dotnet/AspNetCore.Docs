@@ -1,4 +1,4 @@
-namespace todo_group.Data;
+namespace WebMinRouteGroup.Data;
 
 public class Todo
 {

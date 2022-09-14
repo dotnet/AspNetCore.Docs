@@ -1,7 +1,7 @@
-using todo_group.Data;
-using todo_group.Services;
+using WebMinRouteGroup.Data;
+using WebMinRouteGroup.Services;
 
-namespace todo_group;
+namespace WebMinRouteGroup;
 
 public static class TodoEndpointsV2
 {
@@ -27,6 +27,8 @@ public static class TodoEndpointsV2
             });
 
         group.MapPut("/{id}", UpdateTodo);
+        group.MapDelete("/{id}", DeleteTodo);
+
         return group;
     }
 
@@ -68,7 +70,7 @@ public static class TodoEndpointsV2
 
         await todoService.Add(newTodo);
 
-        return TypedResults.Created($"/public/todos/{newTodo.Id}", newTodo);
+        return TypedResults.Created($"/todos/v1/{newTodo.Id}", newTodo);
     }
 
     // update todo
@@ -84,7 +86,7 @@ public static class TodoEndpointsV2
 
             await todoService.Update(existingTodo);
 
-            return TypedResults.Created($"/public/todos/{existingTodo.Id}", existingTodo);
+            return TypedResults.Created($"/todos/v1/{existingTodo.Id}", existingTodo);
         }
 
         return TypedResults.NotFound();

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace todo_group.Data;
+namespace WebMinRouteGroup.Data;
 
 public class TodoGroupDbContext : DbContext
 {

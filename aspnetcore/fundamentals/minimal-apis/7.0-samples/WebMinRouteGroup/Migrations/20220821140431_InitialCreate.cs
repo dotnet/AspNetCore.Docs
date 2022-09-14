@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace todo_group.Migrations
+namespace WebMinRouteGroup.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>todo_group</RootNamespace>
+    <RootNamespace>WebMinRouteGroup</RootNamespace>
   </PropertyGroup>
   
   <ItemGroup>

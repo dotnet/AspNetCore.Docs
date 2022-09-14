@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using todo_group.Data;
+using WebMinRouteGroup.Data;
 
 #nullable disable
 
-namespace todo_group.Migrations
+namespace WebMinRouteGroup.Migrations
 {
     [DbContext(typeof(TodoGroupDbContext))]
     [Migration("20220821140431_InitialCreate")]
@@ -19,7 +19,7 @@ namespace todo_group.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0-preview.7.22376.2");
 
-            modelBuilder.Entity("todo_group.Data.Todo", b =>
+            modelBuilder.Entity("WebMinRouteGroup.Data.Todo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
