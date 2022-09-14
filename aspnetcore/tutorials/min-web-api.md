@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal web API with ASP.NET Core"
 author: rick-anderson
 description: Learn how to build a minimal web API with ASP.NET Core.
 ms.author: riande
-ms.date: 05/28/2022
+ms.date: 09/21/2022
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
 ---
@@ -37,17 +37,17 @@ This tutorial creates the following API:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
 
 ![VS22 installer workloads](min-web-api/_static/asp-net-web-dev.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
 
 ---
 
@@ -597,13 +597,13 @@ Select **Create**.
 
 The `Program.cs` file contains the following code:
 
-[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_default)]
+[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_default)]
 
 The project template creates a `WeatherForecast` API with support for [Swagger](xref:tutorials/web-api-help-pages-using-swagger). Swagger is used to generate useful documentation and help pages for web APIs.
 
 The following highlighted code adds support for Swagger:
 
-[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_swagger&highlight=5-6,13-14)]
+[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_swagger&highlight=5-6,13-14)]
 
 ### Run the app
 
@@ -678,11 +678,11 @@ Copy and paste the **Request URL** in the browser: `https://localhost:<port>/Wea
 
 This tutorial focuses on creating a web API, so we'll delete the Swagger code and the `WeatherForecast` code. Replace the contents of the `Program.cs` file with the following:
 
-[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_min)]
+[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_min)]
 
 The following highlighted code creates a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and a <xref:Microsoft.AspNetCore.Builder.WebApplication> with preconfigured defaults:
 
-[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_min&highlight=1-2)]
+[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_min&highlight=1-2)]
 
 The following code creates an HTTP GET endpoint `/` which returns `Hello World!`:
 
@@ -731,31 +731,31 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 Replace the contents of the `Program.cs` file with the following code:
 
-[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_all)]
+[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_all)]
 
 ## The model and database context classes
 
 The sample app contains the following model:
 
-[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_model)]
+[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_model)]
 
 A *model* is a class that represents data that the app manages. The model for this app is the `Todo` class.
 
 The sample app also contains the following database context class:
 
-[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_cntx)]
+[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_cntx)]
 
 The *database context* is the main class that coordinates [Entity Framework](/ef/core/) functionality for a data model. This class is created by deriving from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
 
 The following highlighted code adds the database context to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container and enables displaying database-related exceptions:
 
-[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_DI&highlight=2-3)]
+[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_DI&highlight=2-3)]
 
 The DI container provides access to the database context and other services.
 
 The following code creates an HTTP POST endpoint `/todoitems` to add data to the in-memory database:
 
-[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_post)]
+[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_post)]
 
 ## Install Postman to test the app
 
@@ -804,7 +804,7 @@ The sample app implements several GET endpoints using calls to `MapGet`:
 |`GET /todoitems/complete` | Get all completed to-do items | None | Array of to-do items|
 |`GET /todoitems/{id}` | Get an item by ID | None | To-do item|
 
-[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_get)]
+[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_get)]
 
 ## Test the GET endpoints
 
@@ -847,7 +847,7 @@ The return types can represent a wide range of HTTP status codes. For example, `
 
 The sample app implements a single PUT endpoint using `MapPut`:
 
-[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_put)]
+[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_put)]
 
 This method is similar to the `MapPost` method, except it uses HTTP PUT. A successful response returns [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
@@ -875,13 +875,61 @@ The following image shows the Postman update:
 
 The sample app implements a single DELETE endpoint using `MapDelete`:
 
-[!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_delete)]
+[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_delete)]
 
 Use Postman to delete a to-do item:
 
 * Set the method to `DELETE`.
 * Set the URI of the object to delete (for example `https://localhost:5001/todoitems/1`).
 * Select **Send**.
+
+## Use the MapGroup API
+
+The sample app code repeats the `todoitems` URL node each time it sets up an endpoint. Groups of endpoints with a common prefix are common in web API apps, and the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> method is available to help organize such groups. It reduces repetitive code and allows for customizing entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A>.
+
+Replace the code in Program.cs with the following code:
+
+:::code language="csharp" source="min-web-api/samples/7.x/todoGroup/Program.cs" id="snippet_all":::
+
+Notice that a `MapGroup()` call sets up the group, and the endpoints omit the `todoitems` prefix:
+
+:::code language="csharp" source="min-web-api/samples/7.x/todoGroup/Program.cs" id="snippet_group":::
+
+Test the endpoints to verify that they work the same.
+
+## Use the TypedResults API
+
+The `Map<HttpVerb>` methods can call route handler methods instead of using lambdas. To see an example, replace the code in *Program.cs* with the following code:
+
+:::code language="csharp" source="min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_all":::
+
+Notice that the `Map<HttpVerb>` code now calls methods instead of lambdas:
+
+:::code language="csharp" source="min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_group":::
+
+The method signature returns <xref:Microsoft.AspNetCore.Http.IResult>. The methods return objects that implement `IResult` and are defined by <xref:Microsoft.AspNetCore.Http.TypedResults>:
+
+:::code language="csharp" source="min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_handlers":::
+
+Unit tests can call these methods and test that they return the correct type. For example, if the method is `GetAllTodos`:
+
+:::code language="csharp" source="min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_getalltodos":::
+
+Unit test code can verify that an object of type [Ok\<Todo[]>](xref:Microsoft.AspNetCore.Http.HttpResults.Ok%60.Value) is returned from the handler method. For example:
+
+```csharp
+public async Task GetAllTodos_ReturnsOkOfTodosResult()
+{
+    // Arrange
+    var db = CreateDbContext();
+
+    // Act
+    var result = await TodosApi.GetAllTodos(db);
+
+    // Assert: Check for the correct returned type
+    Assert.IsType<Ok<Todo[]>>(result);
+}
+```
 
 <a name="over-post-v6"></a>
 
@@ -898,7 +946,7 @@ A DTO may be used to:
 
 To demonstrate the DTO approach, update the `Todo` class to include a secret field:
 
-[!code-csharp[](min-web-api/samples/6.x/todoDTO/Program.cs?name=snippet_secret&highlight=6)]
+:::code language="csharp" source="min-web-api/samples/7.x/todoDTO/Program.cs" id="snippet_secret" highlight="6":::
 
 The secret field needs to be hidden from this app, but an administrative app could choose to expose it.
 
@@ -906,21 +954,24 @@ Verify you can post and get the secret field.
 
 Create a DTO model:
 
-[!code-csharp[](min-web-api/samples/6.x/todoDTO/Program.cs?name=snippet_DTO)]
+:::code language="csharp" source="min-web-api/samples/7.x/todoDTO/Program.cs" id="snippet_DTO":::
 
 Update the code to use `TodoItemDTO`:
 
+:::code language="csharp" source="min-web-api/samples/7.x/todoDTO/Program.cs" id="snippet_all":::
 [!code-csharp[](min-web-api/samples/6.x/todoDTO/Program.cs?name=snippet_all)]
 
-Verify you can't post or get the secret field.
+Verify you can post and get all fields except the secret field.
 
 <a name="diff-v6"></a>
 
 ## Differences between minimal APIs and APIs with controllers
 
-- No support for filters: For example, no support for  <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncAuthorizationFilter>, <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter>, <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter>, <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResultFilter>,  and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncResourceFilter>.
-- No support for model binding, i.e. <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider>, <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder>. Support can be added with a custom binding shim.
-  - No support for binding from forms. This includes binding <xref:Microsoft.AspNetCore.Http.IFormFile>. We plan to add support for `IFormFile` in the future.
+Minimal APIs have:
+
+- Different support for filters. For more information, see [Filters in Minimal API apps](../fundamentals/minimal-apis/min-api-filters.md)
+- No support for model binding, for example: <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider>, <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder>. Support can be added with a custom binding shim.
+  - No support for binding from forms, except for <xref:Microsoft.AspNetCore.Http.IFormFile>. For more information, see [File uploads using IFormFile and IFormFileCollection](xref:aspnetcore-7#file-uploads-using-iformfile-and-iformfilecollection).
 - No built-in support for validation, i.e. <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidator>
 - No support for [application parts](xref:mvc/extensibility/app-parts) or the [application model](xref:mvc/controllers/application-model). There's no way to apply or build your own conventions.
 - No built-in view rendering support. We recommend using [Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for rendering views.
@@ -940,17 +991,27 @@ To make more localized changes to the serialization options, pass modified versi
 
 [!code-csharp[](min-web-api/samples/7.x/WebMinJson/Program.cs?name=snippet_2)]
 
+## Next steps
 
-## Test minimal API
+### Handle errors and exceptions
 
-For an example of testing a minimal API app, see [this GitHub sample](https://github.com/davidfowl/CommunityStandUpMinimalAPI/blob/main/TodoApi.Tests/TodoTests.cs).
+The [developer exception page](xref:web-api/handle-errors#developer-exception-page) is enabled by default in the development environment for minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core web APIs](fundamentals/error-handling).
 
-## Publish to Azure
+### Test minimal API apps
 
-For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore).
+For an example of testing a minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/minimal-apis/7.0-samples/MinApiTestsSample).
+<!-- When available, link to -->
 
-## Additional resources
+### Use OpenAPI (Swagger)
 
-* <xref:fundamentals/minimal-apis>
+For information on how to use OpenAPI with minimal API apps, see [OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/openapi).
+
+### Publish to Azure
+
+For information on how to deploy to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore).
+
+### Learn more
+
+For more information about minimal API apps, see <xref:fundamentals/minimal-apis>.
 
 :::moniker-end
