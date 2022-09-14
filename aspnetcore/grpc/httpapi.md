@@ -30,7 +30,7 @@ gRPC can still be used to call services.
 > [!NOTE]
 > gRPC JSON transcoding replaces [gRPC HTTP API](https://github.com/aspnet/AspLabs/tree/main/src/GrpcHttpApi), an alternative experimental extension.
 
-### Usage
+## Usage
 
 1. Add a package reference to [`Microsoft.AspNetCore.Grpc.JsonTranscoding`](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.JsonTranscoding).
 1. Register transcoding in server startup code by adding `AddJsonTranscoding`. For example, `services.AddGrpc().AddJsonTranscoding()`.
@@ -61,7 +61,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 This is a basic example. See [HttpRule](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule) for more customization options.
 
-### Streaming support
+## Streaming support
 
 Traditional gRPC over HTTP/2 supports streaming in all directions. Transcoding is limited to server streaming only. Client streaming and bidirectional streaming methods aren't supported.
 
@@ -91,11 +91,68 @@ The client receives three line-delimited JSON objects:
 
 Note that the `WriteIndented` JSON setting doesn't apply to server streaming methods. Pretty printing adds new lines and whitespace to JSON, which can't be used with line-delimited JSON.
 
-### OpenAPI support
+## Experimental OpenAPI support
 
-Transcoding currently doesn't support OpenAPI. During the development of .NET 7, the .NET team will investigate the best way to support OpenAPI.
+There is *experimental* support for generating OpenAPI from gRPC transcoded RESTful APIs. The [Microsoft.AspNetCore.Grpc.Swagger](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger) package:
 
-### HTTP protocol
+* Integrates gRPC JSON transcoding with [Swashbuckle](xref:tutorials/get-started-with-swashbuckle).
+* Is experimental in .NET 7 to give us time to explore the best way to provide OpenAPI support.
+
+To enable OpenAPI with gRPC JSON transcoding:
+
+1. Add a package reference to [Microsoft.AspNetCore.Grpc.Swagger](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger). The version must be 0.3.0-xxx or greater.
+2. Configure Swashbuckle in startup. The `AddGrpcSwagger` method configures Swashbuckle to include gRPC endpoints.
+
+[!code-csharp[](~/grpc/httpapi/Program.cs?name=snippet_1&highlight=3-8,11-15)]
+
+### Include descriptions from `.proto` comments
+
+Comments from the `.proto` contract can be added to generated OpenAPI descriptions.
+
+```protobuf
+// My amazing greeter service.
+service Greeter {
+  // Sends a greeting.
+  rpc SayHello (HelloRequest) returns (HelloReply) {
+    option (google.api.http) = {
+      get: "/v1/greeter/{name}"
+    };
+  }
+}
+
+message HelloRequest {
+  // Name to say hello to.
+  string name = 1;
+}
+
+message HelloReply {
+  // Hello reply message.
+  string message = 1;
+}
+```
+
+To enable gRPC OpenAPI comments:
+
+1. Enable the XML documentation file in the server project with `<GenerateDocumentationFile>true</GenerateDocumentationFile>`.
+2. Configure `AddSwaggerGen` to read the generated XML file. Pass the XML file path to `IncludeXmlComments` and `IncludeGrpcXmlComments`.
+
+```csharp
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1",
+        new OpenApiInfo { Title = "gRPC transcoding", Version = "v1" });
+
+    var filePath = Path.Combine(System.AppContext.BaseDirectory, "Server.xml");
+    c.IncludeXmlComments(filePath);
+    c.IncludeGrpcXmlComments(filePath, includeControllerXmlComments: true);
+});
+```
+
+To confirm that Swashbuckle is generating OpenAPI with comments for the RESTful gRPC services, start the app and navigate to the Swagger UI page:
+
+![Swagger UI](~/grpc/httpapi/static/swaggerui.png)
+
+## HTTP protocol
 
 The ASP.NET Core gRPC service template, included in the .NET SDK, creates an app that's only configured for HTTP/2. This is a good default when an app only supports traditional gRPC over HTTP/2. Transcoding, however, works with both HTTP/1.1 and HTTP/2. Some platforms, such as UWP or Unity, can't use HTTP/2. To support all client apps, configure the server to enable HTTP/1.1 and HTTP/2.
 
@@ -115,7 +172,7 @@ Alternatively, [configure Kestrel endpoints in startup code](xref:fundamentals/s
 
 Enabling HTTP/1.1 and HTTP/2 on the same port requires TLS for protocol negotiation. For more information about configuring HTTP protocols in a gRPC app, see [ASP.NET Core gRPC protocol negotiation](xref:grpc/aspnetcore#protocol-negotiation).
 
-### gRPC JSON transcoding vs gRPC-Web
+## gRPC JSON transcoding vs gRPC-Web
 
 Both transcoding and gRPC-Web allow gRPC services to be called from a browser. However, the way each does this is different:
 
