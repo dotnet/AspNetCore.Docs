@@ -936,7 +936,7 @@ The following example invokes `ConfigureHttpJsonOptions` to configure options th
 
 Options that you specify by using `ConfigureHttpJsonOptions` will apply whenever your app calls extension methods defined in <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions> and <xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions>.
 
-To make more localized changes to the serialization options, you can pass modified versions of <xref:System.Text.Json.JsonSerializerOptions> directly into the responses that are being sent from your endpoint, as shown in the following example:
+To make more localized changes to the serialization options, pass modified versions of <xref:System.Text.Json.JsonSerializerOptions> directly into the responses that are being sent from endpoints, as shown in the following example:
 
 [!code-csharp[](min-web-api/samples/7.x/WebMinJson/Program.cs?name=snippet_2)]
 
