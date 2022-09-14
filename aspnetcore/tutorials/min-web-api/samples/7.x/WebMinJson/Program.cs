@@ -31,7 +31,11 @@ using System.Text.Json;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-var options = new JsonSerializerOptions(JsonSerializerDefaults.Web);
+var options = new JsonSerializerOptions
+{
+  PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+  WriteIndented = true
+}
 
 app.MapGet("/", () => Results.Json(new Todo {
                       Name = "Walk dog", IsComplete = false }, options));
