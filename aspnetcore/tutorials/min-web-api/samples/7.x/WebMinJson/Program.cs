@@ -3,7 +3,6 @@
 // <snippet_1>
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure JSON options
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
     options.SerializerOptions.IncludeFields = true;
