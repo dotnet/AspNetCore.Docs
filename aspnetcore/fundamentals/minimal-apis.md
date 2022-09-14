@@ -1091,6 +1091,58 @@ The following code shows the complete `Program.cs` file:
 * The request body isn't buffered by default. After the body is read, it's not rewindable. The stream can't be read multiple times.
 * The `Stream` and `PipeReader` aren't usable outside of the minimal action handler as the underlying buffers will be disposed or reused.
 
+<a name="asparam7"></a>
+
+## Parameter binding for argument lists with [AsParameters]
+
+<xref:Microsoft.AspNetCore.Http.AsParametersAttribute> enables simple parameter binding to types and not complex or recursive model binding.
+
+Consider the following code:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_top":::
+
+Consider the following `GET` endpoint:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_id" highlight="2":::
+
+The following `struct` can be used to replace the preceding highlighted parameters:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoDb.cs" id="snippet" :::
+
+The refactored `GET` endpoint uses the preceding `struct` with the [AsParameters](/dotnet/api/microsoft.aspnetcore.http.asparametersattribute?view=aspnetcore-7.0&preserve-view=true) attribute:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_ap_id" highlight="2":::
+
+The following code shows additional endpoints in the app:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_post_put_delete" :::
+
+The following classes are used to refactor the parameter lists:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoDb.cs" id="snippet_1" :::
+
+The following code shows the refactored endpoints using `AsParameters` and the preceding `struct` and classes:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_ap_post_put_delete" :::
+
+The following [`record`](/dotnet/csharp/language-reference/builtin-types/record) types can be used to replace the preceding parameters:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoRecord.cs" id="snippet_1" :::
+
+Using a `struct` with `AsParameters` can be more performant than using a `record` type.
+
+The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/arg-lists) in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
+
+## File uploads using IFormFile and IFormFileCollection
+
+The following code uses <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> to upload file:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/7.0-samples/MinimalApi/Program.cs" :::
+
+Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](/aspnet/core/security/authentication/certauth), or a cookie header.
+
+There is no built-in support for [antiforgery](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#anti7). However, it can be implemented using the [`IAntiforgery` service](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#antimin7).
+
 ## Request handling
 
 The following sections cover routing, parameter binding, and responses.
@@ -1411,6 +1463,7 @@ The rules for determining a binding source from a parameter:
     1. Header: [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute)
     1. Body: [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)
     1. Service: [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute)
+    1. Parameter values: [`[AsParameters]](<xref:Microsoft.AspNetCore.Http.AsParametersAttribute)
 1. Special types
     1. `HttpContext`
     1. `HttpRequest`

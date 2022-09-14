@@ -352,7 +352,7 @@ services.Configure<RequestLocalizationOptions>(options =>
     options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async context =>
     {
         // My custom request culture logic
-        return new ProviderCultureResult("en");
+        return await Task.FromResult(new ProviderCultureResult("en"));
     }));
 });
 ```
@@ -723,7 +723,7 @@ services.Configure<RequestLocalizationOptions>(options =>
     options.AddInitialRequestCultureProvider(new CustomRequestCultureProvider(async context =>
     {
         // My custom request culture logic
-        return new ProviderCultureResult("en");
+        return await Task.FromResult(new ProviderCultureResult("en"));
     }));
 });
 ```
