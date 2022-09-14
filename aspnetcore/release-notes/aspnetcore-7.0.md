@@ -162,9 +162,9 @@ Authenticated file upload requests are supported using an [Authorization header]
 
 There is no built-in support for [antiforgery](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#anti7). However, it can be implemented using the [`IAntiforgery` service](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#antimin7).
 
-## Minimal APIs and API controllers
+### `[AsParameters]` attribute enables parameter binding for argument lists
 
-The [`[AsParameters]` Attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) enables parameter binding for argument lists . For more information, see [Parameter binding for argument lists with `[AsParameters]`](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#asparam7).
+The [`[AsParameters]` attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) enables parameter binding for argument lists . For more information, see [Parameter binding for argument lists with `[AsParameters]`](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#asparam7).
 
 ## gRPC
 
