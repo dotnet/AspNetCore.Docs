@@ -927,15 +927,18 @@ Verify you can't post or get the secret field.
 - No support for [JsonPatch](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch/)
 - No support for [OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/)
 - No support for [ApiVersioning](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Versioning/). See [this issue](https://github.com/dotnet/aspnet-api-versioning/issues/751) for more details.
-## Use JsonOptions
 
-The following code uses <xref:Microsoft.AspNetCore.Http.Json.JsonOptions>:
+## Configure JSON serialization options
 
-[!code-csharp[](min-web-api/samples/6.x/WebMinJson/Program.cs?name=snippet_1)]
+The following example invokes `ConfigureHttpJsonOptions` to configure options that apply wherever the app serializes or deserializes JSON for HTTP requests and responses:
 
-The following code uses <xref:System.Text.Json.JsonSerializerOptions>:
+[!code-csharp[](min-web-api/samples/7.x/WebMinJson/Program.cs?name=snippet_1)]
 
-[!code-csharp[](min-web-api/samples/6.x/WebMinJson/Program.cs?name=snippet_2)]
+Options that you specify by using `ConfigureHttpJsonOptions` will apply whenever your app calls extension methods defined in <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions> and <xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions>.
+
+To make more localized changes to the serialization options, you can pass modified versions of <xref:System.Text.Json.JsonSerializerOptions> directly into the responses that are being sent from your endpoint, as shown in the following example:
+
+[!code-csharp[](min-web-api/samples/7.x/WebMinJson/Program.cs?name=snippet_2)]
 
 The preceding code uses [web defaults](/dotnet/standard/serialization/system-text-json-configure-options#web-defaults-for-jsonserializeroptions), which converts property names to camel case.
 
