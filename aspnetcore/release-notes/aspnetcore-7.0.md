@@ -154,7 +154,9 @@ In the following sample, the `/skipme` endpoint is excluded from generating an O
 
 ## Minimal APIs and API controllers
 
-<xref:Microsoft.AspNetCore.Http.AsParametersAttribute> enables simple parameter binding to parameter types. For more information, see [Parameter binding for argument lists with `[AsParameters]`](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#asparam7) |
+<xref:Microsoft.AspNetCore.Http.AsParametersAttribute> enables simple parameter binding to parameter types. For more information, see [Parameter binding for argument lists with `[AsParameters]`](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#asparam7).
+
+## gRPC
 
 ### JSON transcoding
 
