@@ -940,7 +940,6 @@ To make more localized changes to the serialization options, you can pass modifi
 
 [!code-csharp[](min-web-api/samples/7.x/WebMinJson/Program.cs?name=snippet_2)]
 
-The preceding code uses [web defaults](/dotnet/standard/serialization/system-text-json-configure-options#web-defaults-for-jsonserializeroptions), which converts property names to camel case.
 
 ## Test minimal API
 
