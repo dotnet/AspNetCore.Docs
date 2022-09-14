@@ -17,7 +17,6 @@ app.Run();
 
 class Todo
 {
-    // These are public fields instead of properties.
     public string? Name;
     public bool IsComplete;
 }
