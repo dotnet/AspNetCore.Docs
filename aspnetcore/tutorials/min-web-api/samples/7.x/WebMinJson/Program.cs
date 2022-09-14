@@ -1,8 +1,6 @@
-#define Second
+#define First
 #if First
-#region snippet_1
-using Microsoft.AspNetCore.Http.Json;
-
+// <snippet_1>
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure JSON options
@@ -23,9 +21,9 @@ class Todo
     public string? Name;
     public bool IsComplete;
 }
-#endregion
+// </snippet_1>
 #else
-#region snippet_2
+// <snippet_2>
 using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,5 +45,5 @@ class Todo
     public string? Name { get; set; }
     public bool IsComplete { get; set; }
 }
-#endregion
+// </snippet_2>
 #endif
