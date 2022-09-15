@@ -4,11 +4,11 @@ author: alexwolfmsft
 description: Learn how to horizontally scale ASP.NET Core apps on Azure and address common architectural challenges
 ms.author: alexwolf
 ms.custom: mvc
-ms.date: 08/25/2022
+ms.date: 8/31/2022
 ---
 # Deploying and scaling an ASP.NET Core app on Azure Container Apps
 
-apps deployed to Azure that experience intermittent high demand benefit from scalability to meet demand. Scalable apps can scale out to ensure capacity during workload peaks and return to normal automatically when the peak drops. Horizontal scaling (scaling out) adds new instances of a resource, such as VMs or database replicas. This article demonstrate how to deploy a horizontally scalable ASP.NET Core app to [Azure container apps](/azure/container-apps/overview) by completing the following tasks:
+Apps deployed to Azure that experience intermittent high demand benefit from scalability to meet demand. Scalable apps can scale out to ensure capacity during workload peaks and return to normal automatically when the peak drops. Horizontal scaling (scaling out) adds new instances of a resource, such as VMs or database replicas. This article demonstrate how to deploy a horizontally scalable ASP.NET Core app to [Azure container apps](/azure/container-apps/overview) by completing the following tasks:
 
 1. [Setup the sample project](#1-setup-the-sample-project)
 1. [Deploy the app to Azure Container Apps](#2-deploy-the-app-to-azure-container-apps)
@@ -58,7 +58,7 @@ You'll use Visual Studio to deploy the app to Azure Container Apps. Container ap
 1. For the specific target, select **Azure Container Apps (Linux)**, and then choose **Next**.
 1. You'll need to create a new container app to deploy to. Select the green **+** icon to open a new dialog and enter the following values:
 
-    :::image type="content" source="./media/scaling-deploy-visual-studio-small.png" lightbox="./media/scaling-deploy-visual-studio.png" alt-text="A screenshot showing Visual Studio deployment.":::
+    :::image type="content" source="./media/scaling-deploy-visual-studio.png" alt-text="A screenshot showing Visual Studio deployment.":::
 
     * **Container app name**: Leave the default value or enter a name of your choosing.
     * **Subscription name**: Select the subscription you'd like to deploy to.
@@ -74,7 +74,7 @@ You'll use Visual Studio to deploy the app to Azure Container Apps. Container ap
 1. Once the resource is created, make sure it is selected in the list of container apps, and then choose **Next**.
 1. You'll need to create an Azure Container Registry to store the published image artifact for your app. Select the green **+** icon on the container registry screen. Leave the default values, and then select **Create**.
 
-    :::image type="content" source="./media/scaling-new-registry-small.png" lightbox="./media/scaling-new-registry.png" alt-text="A screenshot showing Visual Studio deployment.":::
+    :::image type="content" source="./media/scaling-new-registry.png" alt-text="A screenshot showing Visual Studio deployment.":::
 
 1. After the container registry is created, make sure it is selected, and then choose finish. Visual Studio will close the dialog workflow and display a summary of the publishing profile.
 1. Select **Publish** in the upper right of the publishing profile summary to deploy your app to Azure.
@@ -87,9 +87,6 @@ Your app is currently running without any issues, but you'd like to scale the ap
 
 1. In the Azure Portal, search for the GitHub Explorer container app in the top level search bar and select it from the results.
 1. On the overview page, select **Scale** from the left navigation, and then select **+ Edit and deploy**.
-
-    :::image type="content" source="./media/scaling-edit-deploy-small.png" lightbox="./media/scaling-edit-deploy.png" alt-text="A screenshot showing the GitHub Explorer app.":::
-
 1. On the revisions page, switch to the **Scale** tab.
 1. Set both the min and max instances to **4** and then select **Create**. This configuration change will guarantee your app is scaled horizontally across several instances.
 
@@ -97,7 +94,7 @@ Navigate back to your app in the browser. When the page loads, at first it appea
 
 #### Troubleshooting the error
 
-It's not immediately apparent why the search requests are failing. If you check the browser tools, you'll see a 400 Bad Request response was sent back. You can use the various logging features of container apps to diagnose the error occurring in your environment.
+It's not immediately apparent why the search requests are failing. If you check the browser tools, you'll see a 400 Bad Request response was sent back. You can use the logging features of container apps to diagnose the error occurring in your environment.
 
 1. On the overview page of your container app, select **Logs** from the left navigation.
 1. On the **Logs** page, close the pop up that opens and navigate to the **Tables** tab.
@@ -124,27 +121,24 @@ It's not immediately apparent why the search requests are failing. If you check 
     > [!IMPORTANT]
     > The errors in the app are caused by the .NET data protection services. When multiple instances of the app are running, there is no guarantee that the HTTP POST request to submit the form will be routed to the same container that initially loaded the page from the HTTP GET request. If the requests are handled by different instances, the antiforgery tokens cannot be handled correctly and an exception occurs.
 
-    In the steps ahead you'll resolve this issue by centralizing the data protection keys in an Azure storage service and protecting them with key vault.
+    In the steps ahead you'll resolve this issue by centralizing the data protection keys in an Azure storage service and protecting them with Key Vault.
 
 ## Create the Azure Services
 
 To resolve the errors impacting the container app, you'll create the following services and connect them to your app:
 
-* **Azure Storage Account**: The storage service will handle storing data for the Data Protection Services of your app. This provides a centralized location to store key data as the app scales. Storage accounts can also be used to hold documents, queue data, file shares, and almost any type of blob data.
-* **Azure Key Vault**: This service will be used to store secrets for your app and manage encryption concerns for the data protection  keys.
+* [Azure Storage Account](/azure/storage/common/storage-account-overview): Handles storing data for the Data Protection Services. Provides a centralized location to store key data as the app scales. Storage accounts can also be used to hold documents, queue data, file shares, and almost any type of blob data.
+* [Azure KeyVault](/azure/key-vault/general/basic-concepts): This service will be used to store secrets for your app, and be used to help manage encryption concerns for the Data Protection Services.
 
 #### Create the storage account service
 
-1. In the Azure Portal search bar, enter *Storage accounts* and select the matching result.
+1. In the Azure Portal search bar, enter `Storage accounts` and select the matching result.
 1. On the storage accounts listing page, select **+ Create**.
 1. On the **Basics** tab, enter the following values:
     * **Subscription**: Select the same subscription that chose for you Container App.
     * **Resource Group**: Select the *msdocs-scalable-razor* resource group you created previously.
     * **Storage account name**: Name the account *scalablerazorstorageXXXX* where the X's are random numbers of your choosing. This name must be unique across all of Azure.
     * **Region**: Select a region that is close to you.
-
-        :::image type="content" source="./media/scaling-new-storage-small.png" lightbox="./media/scaling-new-storage.png" alt-text="A screenshot showing how to create the storage account.":::
-
 1. Leave the rest of the values at their default and select **Review**. After Azure validates your inputs, select **Create**.
 
 Azure will take a moment to provision the new storage account. When the task completes, choose **Go to resource** to view the new service.
@@ -162,35 +156,30 @@ You should see the new container appear on the page list.
 
 #### Create the key vault service
 
-Create a key vault service to hold the keys that will protect the data in the blob storage container.
+Create a key vault to hold the keys that will protect the data in the blob storage container.
 
-1. In the Azure Portal search bar, enter *Key Vault* and select the matching result
+1. In the Azure Portal search bar, enter `Key Vault` and select the matching result
 1. On the key vault listing page, select **+ Create**.
 1. On the **Basics** tab, enter the following values:
     * **Subscription**: Select the same subscription that chose for you Container App.
     * **Resource Group**: Select the *msdocs-scalable-razor* resource group you created previously.
     * **Key Vault name**: Enter the name *scalablerazorvaultXXXX*.
     * **Region**: Select a region near your location.
-
-        :::image type="content" source="./media/scaling-new-keyvault-small.png" lightbox="./media/scaling-new-keyvault.png" alt-text="A screenshot showing how to create a key vault service in the Azure Portal.":::
-
 1. Leave the rest of the settings at their default, and then select **Review + create**. Wait for Azure to validate your settings, and then choose **Create**.
 
 Azure will take a moment to provision the new key vault. When the ask completes, click **Go to resource** to view the new service.
 
-#### Create the key vault key
+#### Create the key
 
 Create a secret key to protect the data in the blob storage account.
 
-1. On the main key vault overview page, select **Keys** from the left navigation.
+1. On the main overview page of the key vault, select **Keys** from the left navigation.
 1. On the **Create a key** page, select **+ Generate/Import** to open the **Create a key** flyout menu. 
 1. Enter *razorkey* in the **Name** field. Leave the rest of the settings at their default values and then choose **Create**. A new key should appear on the key list page.
 
-    :::image type="content" source="./media/scaling-new-key-small.png" lightbox="./media/scaling-new-key.png" alt-text="A screenshot showing how to create a container app in the Azure Portal.":::
-
 ## Connect the Azure Services
 
-The Container App requires a secure connection to the storage account and key vault services in order to resolve the data protection errors and scale correctly. You can connect your services together using the following steps:
+The Container App requires a secure connection to the storage account and the key vault services in order to resolve the data protection errors and scale correctly. You can connect your services together using the following steps:
 
 > [!IMPORTANT]
 > Security role assignments through Service Connector and other tools generally take a minute or two to propagate, and in some rare cases can take up to eight minutes.
@@ -206,9 +195,6 @@ The Container App requires a secure connection to the storage account and key va
     * **Connection name**: Leave the default value or enter a name of your choosing.
     * **Storage account**: Select the storage account you created earlier.
     * **Client type**: Select **.NET**.
-
-        :::image type="content" source="./media/scaling-connect-storage.png" alt-text="A screenshot showing how to create a container app in the Azure Portal.":::
-
 1. Select **Next: Authentication** to progress to the next step.
 1. Select **System assigned managed identity** and choose **Next: Networking**.
 1. Leave the default networking options selected, and then choose **Review + Create**.
@@ -227,9 +213,6 @@ The service connector will enable a system-assigned managed identity on the cont
     * **Connection name**: Leave the default value or enter a name of your choosing.
     * **Key vault**: Select the key vault you created earlier.
     * **Client type**: Select **.NET**.
-
-        :::image type="content" source="./media/scaling-connect-keyvault.png" alt-text="A screenshot showing how to create a container app in the Azure Portal.":::
-
 1. Select **Next: Authentication** to progress to the next step.
 1. Select **System assigned managed identity** and choose **Next: Networking**.
 1. Leave the default networking options selected, and then choose **Review + Create**.
@@ -241,25 +224,17 @@ The service connector will assign a role to the identity so it can perform data 
 
 The necessary Azure resources have been created, so you'll need to configure your app code to point to those services.
 
-1. Install the following three NuGet packages that are necessary to solve the scaling challenges:
+1. Install the following NuGet packages:
 
     * **Azure.Identity**: Provides classes to work with the Azure identity and access management services.
     * **Microsoft.AspNetCore.DataProtection**: Provides services to configure data protection.
     * **Microsoft.Extensions.Azure**: Provides helpful extension methods to perform core Azure configurations.
 
-    ## [.NET CLI](#tab/cli)
-
     ```dotnetcli
     dotnet add package Azure.Identity
-    dotnet add package Azure.Extensions.AspNetCore.DataProtection.Blobs
-    dotnet add package Azure.Extensions.AspNetCore.DataProtection.Keys
+    dotnet add package Microsoft.AspNetCore.DataProtection
+    dotnet add package Microsoft.Extensions.Azure
     ```
-
-    ## [Visual Studio](#tab/visual-studio)
-
-    Todo
-
-    ---
 
 1. Update the `Program.cs` file to include the following `using` statements and code:
 

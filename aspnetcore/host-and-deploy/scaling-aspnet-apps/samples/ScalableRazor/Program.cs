@@ -7,6 +7,7 @@ var BlobStorageUri = builder.Configuration["AzureURIs:BlobStorage"];
 var KeyVaultURI = builder.Configuration["AzureURIs:KeyVault"];
 
 builder.Services.AddRazorPages();
+builder.Services.AddHttpClient();
 builder.Services.AddServerSideBlazor();
 
 builder.Services.AddAzureClientsCore();
