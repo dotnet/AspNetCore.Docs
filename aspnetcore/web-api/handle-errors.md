@@ -144,8 +144,17 @@ An *error result* is defined as a result with an HTTP status code of 400 or high
 
 The error response can be configured in one of the following ways:
 
+<xref:Microsoft.AspNetCore.Http.IProblemDetailsService>
+
+1. Use the [problem details service](#pds7) based on the IProblemDetailsService interface.
 1. [Implement ProblemDetailsFactory](#implement-problemdetailsfactory)
 1. [Use ApiBehaviorOptions.ClientErrorMapping](#use-apibehavioroptionsclienterrormapping)
+
+<a name="pds7"></a>
+
+### Problem details service
+
+The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface.
 
 ### Implement `ProblemDetailsFactory`
 
