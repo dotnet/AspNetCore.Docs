@@ -548,7 +548,7 @@ The state stored by the History API provides the following benefits for remote a
 
 * The state passed to the secured app endpoint is tied to the navigation performed to authenticate the user at the `authentication/login` endpoint.
 * Extra work encoding and decoding data is avoided.
-* The surface attack area is reduced. Unlike using the query string to store navigation state, the state stored by the History API can't be set via a top-level navigation nor be influenced from a different origin.
+* The attack surface area is reduced. Unlike using the query string to store navigation state, the state stored by the History API can't be set via a top-level navigation nor be influenced from a different origin.
 * The history entry is replaced upon successful authentication, so the state attached to the history entry is removed and doesn't require clean up.
 
 `InteractiveRequestOptions` represents the request to the identity provider for logging in or provisioning an access token.

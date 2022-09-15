@@ -246,7 +246,7 @@ Apps created from a [Blazor project template](xref:blazor/project-structure) tha
 @using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-@inject NavigationManager Navigation
+@inject NavigationManager NavigationManager
 @inject SignOutSessionStateManager SignOutManager
 
 <AuthorizeView>
@@ -263,7 +263,7 @@ Apps created from a [Blazor project template](xref:blazor/project-structure) tha
     private async Task BeginLogout(MouseEventArgs args)
     {
         await SignOutManager.SetSignOutState();
-        Navigation.NavigateTo("authentication/logout");
+        NavigationManager.NavigateTo("authentication/logout");
     }
 }
 ```
@@ -807,7 +807,7 @@ Apps created from a [Blazor project template](xref:blazor/project-structure) tha
 @using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-@inject NavigationManager Navigation
+@inject NavigationManager NavigationManager
 @inject SignOutSessionStateManager SignOutManager
 
 <AuthorizeView>
@@ -824,7 +824,7 @@ Apps created from a [Blazor project template](xref:blazor/project-structure) tha
     private async Task BeginLogout(MouseEventArgs args)
     {
         await SignOutManager.SetSignOutState();
-        Navigation.NavigateTo("authentication/logout");
+        NavigationManager.NavigateTo("authentication/logout");
     }
 }
 ```
@@ -1369,7 +1369,7 @@ Apps created from a [Blazor project template](xref:blazor/project-structure) tha
 @using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
-@inject NavigationManager Navigation
+@inject NavigationManager NavigationManager
 @inject SignOutSessionStateManager SignOutManager
 
 <AuthorizeView>
@@ -1386,7 +1386,7 @@ Apps created from a [Blazor project template](xref:blazor/project-structure) tha
     private async Task BeginLogout(MouseEventArgs args)
     {
         await SignOutManager.SetSignOutState();
-        Navigation.NavigateTo("authentication/logout");
+        NavigationManager.NavigateTo("authentication/logout");
     }
 }
 ```
@@ -1847,7 +1847,7 @@ Apps created from a [Blazor project template](xref:blazor/project-structure) tha
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@inject NavigationManager Navigation
+@inject NavigationManager NavigationManager
 
 <AuthorizeView>
     <Authorized>
@@ -1862,7 +1862,7 @@ Apps created from a [Blazor project template](xref:blazor/project-structure) tha
 @code{
     public void BeginLogOut()
     {
-        Navigation.NavigateToLogout("authentication/logout");
+        NavigationManager.NavigateToLogout("authentication/logout");
     }
 }
 ```

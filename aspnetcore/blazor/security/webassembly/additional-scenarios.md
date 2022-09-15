@@ -3752,18 +3752,18 @@ protected override async Task OnInitializedAsync()
 
 ## Custom authentication request scenarios
 
-The following scenarios demonstrate how to customize authentication requests.
+The following scenarios demonstrate how to customize authentication requests and how to obtain the login path from authentication options.
 
 ### Customize the login process
 
 Add additional parameters to a login request by calling `TryAddAdditionalParameter` one or more times on a new instance of `InteractiveRequestOptions`:
 
 ```csharp
-var requestOptions = 
-    new InteractiveRequestOptions
+InteractiveRequestOptions requestOptions = 
+    new()
     {
-        Interaction = InteractionType.SignIn, 
-        ReturnUrl = Navigation.Uri
+        Interaction = InteractionType.SignIn,
+        ReturnUrl = NavigationManager.Uri,
     };
 
 requestOptions.TryAddAdditionalParameter("prompt", "login");
@@ -3772,7 +3772,10 @@ requestOptions.TryAddAdditionalParameter("login_hint", "peter@example.com");
 Navigation.NavigateToLogin("authentication/login", requestOptions);
 ```
 
-The preceding example assumes the presence of an `@using`/`using` statement for API in the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace.
+The preceding example assumes:
+
+* The presence of an `@using`/`using` statement for API in the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace.
+* <xref:Microsoft.AspNetCore.Components.NavigationManager> injected as `NavigationManager`.
 
 Obtain an additional parameter by calling `TryGetAdditionalParameter` with the name of the parameter. Remove an additional parameter by calling `TryRemoveAdditionalParameter` with the name of the parameter.
 
@@ -3818,7 +3821,7 @@ The preceding example assumes that:
 If obtaining a token fails when using an <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider>, attach additional parameters for the new identity provider access token request by calling `TryAddAdditionalParameter` one or more times:
 
 ```csharp
-var accessTokenResult = await AuthorizationService.RequestAccessToken(
+var accessTokenResult = await TokenProvider.RequestAccessToken(
     new AccessTokenRequestOptions
     {
         Scopes = new[] { ... }
@@ -3826,19 +3829,20 @@ var accessTokenResult = await AuthorizationService.RequestAccessToken(
 
 if (!accessTokenResult.TryGetToken(out var token))
 {
-    var requestOptions = result.InteractiveRequest;
+    accessTokenResult.InteractionOptions
+        .TryAddAdditionalParameter("prompt", "login");
+    accessTokenResult.InteractionOptions
+        .TryAddAdditionalParameter("login_hint", "peter@example.com");
 
-    requestOptions.TryAddAdditionalParameter("prompt", "login");
-    requestOptions.TryAddAdditionalParameter("login_hint", "peter@example.com");
-
-    Navigation.NavigateToLogin(result.InteractiveRequestUrl, requestOptions);
+    Navigation.NavigateToLogin(accessTokenResult.InteractiveRequestUrl, 
+        accessTokenResult.InteractionOptions);
 }
 ```
 
 The preceding example assumes:
 
 * The presence of an `@using`/`using` statement for API in the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace.
-* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider> injected as `AuthorizationService`.
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider> injected as `TokenProvider`.
 
 <!-- For more information, see <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>. -->
 
