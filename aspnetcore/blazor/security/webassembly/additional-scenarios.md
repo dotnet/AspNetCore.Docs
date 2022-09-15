@@ -851,7 +851,7 @@ ConfigureCommonServices(builder.Services);
 await builder.Build().RunAsync();
 ```
 
-In the **`Server`** project's `Program.cs` file, register the following additional services and call `ConfigureCommonServices`:
+In the **`Server`** project's `Program.cs` file, add register the following additional services and call `ConfigureCommonServices`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -867,6 +867,10 @@ builder.Services.AddScoped<SignOutSessionStateManager>();
 
 Client.Program.ConfigureCommonServices(services);
 ```
+
+For more information on the Blazor framework server authentication provider (`ServerAuthenticationStateProvider`), see [`ServerAuthenticationStateProvider` (API documentation)](xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider) and [`ServerAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/ServerAuthenticationStateProvider.cs).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 In the **`Server`** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
@@ -2096,6 +2100,10 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
+For more information on the \ provider (`ServerAuthenticationStateProvider`), see [`ServerAuthenticationStateProvider` (API documentation)](xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider) and [`ServerAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/ServerAuthenticationStateProvider.cs).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 In the **`Server`** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
 ```cshtml
@@ -3322,6 +3330,10 @@ public void ConfigureServices(IServiceCollection services)
     Client.Program.ConfigureCommonServices(services);
 }
 ```
+
+For more information on the Blazor framework server authentication provider (`ServerAuthenticationStateProvider`), see [`ServerAuthenticationStateProvider` (API documentation)](xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider) and [`ServerAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/ServerAuthenticationStateProvider.cs).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 In the **`Server`** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
