@@ -166,6 +166,9 @@ builder.Services.AddServerSideBlazor()
     });
 ```
 
+> [!WARNING]
+> We recommend setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> to a small value in order to limit the risk of [Denial of service (DoS) attacks](xref:blazor/security/server/threat-mitigation#denial-of-service-dos-attacks). The default value is 32 KB (32,768 bytes).
+
 ## Blazor Hub endpoint route configuration (Blazor Server)
 
 In `Program.cs`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> to map the Blazor <xref:Microsoft.AspNetCore.SignalR.Hub> to the app's default path. The Blazor Server script (`blazor.server.js`) automatically points to the endpoint created by <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>.
@@ -489,6 +492,9 @@ services.AddServerSideBlazor()
     });
 ```
 
+> [!WARNING]
+> We recommend setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> to a small value in order to limit the risk of [Denial of service (DoS) attacks](xref:blazor/security/server/threat-mitigation#denial-of-service-dos-attacks). The default value is 32 KB (32,768 bytes).
+
 ## Blazor Hub endpoint route configuration (Blazor Server)
 
 In `Startup.Configure`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> on the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder> of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> to map the Blazor <xref:Microsoft.AspNetCore.SignalR.Hub> to the app's default path. The Blazor Server script (`blazor.server.js`) automatically points to the endpoint created by <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>.
@@ -808,6 +814,9 @@ services.AddServerSideBlazor()
         options.StreamBufferCapacity = 10;
     });
 ```
+
+> [!WARNING]
+> We recommend setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> to a small value in order to limit the risk of [Denial of service (DoS) attacks](xref:blazor/security/server/threat-mitigation#denial-of-service-dos-attacks). The default value is 32 KB (32,768 bytes).
 
 ## Blazor Hub endpoint route configuration (Blazor Server)
 
@@ -1140,6 +1149,9 @@ builder.Services.AddServerSideBlazor()
         options.StreamBufferCapacity = 10;
     });
 ```
+
+> [!WARNING]
+> We recommend setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> to a small value in order to limit the risk of [Denial of service (DoS) attacks](xref:blazor/security/server/threat-mitigation#denial-of-service-dos-attacks). The default value is 32 KB (32,768 bytes).
 
 ## Blazor Hub endpoint route configuration (Blazor Server)
 
