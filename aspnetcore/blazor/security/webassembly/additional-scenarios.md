@@ -851,7 +851,7 @@ ConfigureCommonServices(builder.Services);
 await builder.Build().RunAsync();
 ```
 
-In the **`Server`** project's `Program.cs` file, add register the following additional services and call `ConfigureCommonServices`:
+In the **`Server`** project's `Program.cs` file, register the following additional services and call `ConfigureCommonServices`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
