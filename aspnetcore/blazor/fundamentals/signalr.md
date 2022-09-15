@@ -184,7 +184,7 @@ To customize the UI, define a single element with an `id` of `components-reconne
 </div>
 ```
 
-> ![NOTE]
+> [!NOTE]
 > If more than one element with an `id` of `components-reconnect-modal` are rendered by the app, only the first rendered element receives CSS class changes to display or hide the element. 
 
 Add the following CSS styles to the site's stylesheet.
@@ -507,7 +507,7 @@ To customize the UI, define a single element with an `id` of `components-reconne
 </div>
 ```
 
-> ![NOTE]
+> [!NOTE]
 > If more than one element with an `id` of `components-reconnect-modal` are rendered by the app, only the first rendered element receives CSS class changes to display or hide the element. 
 
 Add the following CSS styles to the site's stylesheet.
@@ -827,7 +827,7 @@ To customize the UI, define a single element with an `id` of `components-reconne
 </div>
 ```
 
-> ![NOTE]
+> [!NOTE]
 > If more than one element with an `id` of `components-reconnect-modal` are rendered by the app, only the first rendered element receives CSS class changes to display or hide the element. 
 
 Add the following CSS styles to the site's stylesheet.
@@ -1159,7 +1159,7 @@ To customize the UI, define a single element with an `id` of `components-reconne
 </div>
 ```
 
-> ![NOTE]
+> [!NOTE]
 > If more than one element with an `id` of `components-reconnect-modal` are rendered by the app, only the first rendered element receives CSS class changes to display or hide the element. 
 
 Add the following CSS styles to the site's stylesheet.
