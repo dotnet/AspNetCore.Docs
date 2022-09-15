@@ -146,7 +146,7 @@ The error response can be configured in one of the following ways:
 
 <xref:Microsoft.AspNetCore.Http.IProblemDetailsService>
 
-1. Use the [problem details service](#pds7) based on the IProblemDetailsService interface.
+1. Use the [problem details service](#pds7) based on the `IProblemDetailsService` interface.
 1. [Implement ProblemDetailsFactory](#implement-problemdetailsfactory)
 1. [Use ApiBehaviorOptions.ClientErrorMapping](#use-apibehavioroptionsclienterrormapping)
 
