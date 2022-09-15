@@ -32,11 +32,13 @@ In some cases, basic ASP.NET Core apps are able to scale without special conside
 
 ## Setup the sample project
 
-You can use the GitHub Explorer app to follow along with this tutorial. Clone the app from GitHub using the following command:
+You can use the GitHub Explorer sample app to follow along with this tutorial. Clone the app from GitHub using the following command:
 
 ```dotnetcli
-git clone "https://github.com/MicrosoftDocs/mslearn-dotnet-debug-visual-studio-app-service.git"
+git clone "https://github.com/dotnet/AspNetCore.Docs.Samples.git"
 ```
+
+Navigate to the `/tutorials/scalable-apps` folder and double click the `ScalableRazor.csproj` file to open the project in Visual Studio.
 
 The sample app uses a search form to browse GitHub repositories by name. The form relies on the built-in ASP.NET Core data protection services to handle anti-forgery concerns. By default, when the app scales horizontally on Container Apps, the data protection service will throw an exception. You'll explore and solve this issue in the steps ahead.
 
@@ -238,25 +240,14 @@ The necessary Azure resources have been created, so you'll need to configure you
 
 1. Update the `Program.cs` file to include the following `using` statements and code:
 
-    ```csharp
-    using Azure.Identity;
-    using Microsoft.AspNetCore.DataProtection;
-    using Microsoft.Extensions.Azure;
-    
-    builder.Services.AddAzureClientsCore();
-    
-    // Todo: Update the placeholders with your service values
-    builder.Services.AddDataProtection()
-                    .PersistKeysToAzureBlobStorage(new Uri("<your-storage-account-uri>"), new DefaultAzureCredential())
-                    .ProtectKeysWithAzureKeyVault(new Uri($"https://<key-vault-name>.vault.azure.net/keys/<key-name>/"), new DefaultAzureCredential());
-    ```
+    [!code-csharp[](samples/ScalableRazor/Program.cs?name=snippet_Example&highlight=1-3,13-19)]
 
 These changes will allow the app to manage data protection using a centralized, scalable architecture. `DefaultAzureCredential` will discover the managed identity configurations you enabled earlier when the app is redeployed to Azure.
 
-You'll also need to update the placeholders in the new code to include the following:
+You'll also need to update the placeholders in `AzureURIs` section of the `appsettings.json` file to include the following:
 
-1. Replace the storage account name placeholder in the URI of the `PersistKeystoAzureBlobStorage` method with the name of the `scalablerazorstorageXXXX` account you created.
-1. Replace the `<key-vault-name>` placeholder in the key vault URI `ProtectKeysWithAzureKeyVault`method with the name of the `scalablerazorvaultXXXX` key vault you created.
+1. Replace the `<storage-account-name>` placeholder with the name of the `scalablerazorstorageXXXX` account you created.
+1. Replace the `<key-vault-name>` placeholder with the name of the `scalablerazorvaultXXXX` key vault you created.
 1. Replace the `<key-name>` placeholder in the key vault URI with the `razorkey` name you created earlier.
 
 #### Redeploy the app
