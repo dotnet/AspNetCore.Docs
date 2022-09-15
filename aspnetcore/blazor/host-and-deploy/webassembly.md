@@ -2084,6 +2084,10 @@ For more information, see [`mod_mime`](https://httpd.apache.org/docs/2.4/mod/mod
 
 ### GitHub Pages
 
+The default GitHub Action which deploys pages skips deployment of directories starting with underscore, for example `_framework/` directory. It could be fixed by adding empty file `.nojekyll` to the git branch.
+
+Git treats JavaScript files like `blazor.webassembly.js` as text and will convert CRLF in it to just LF on deployment pipeline. That would change it's hash and prevent it from matching the integrity check. Easy solution is to add `.gitattributes` file with `*.js binary` line in it, before adding the assets to the git branch. That would treat the file as binary and keep it's integrity valid.
+
 To handle URL rewrites, add a `wwwroot/404.html` file with a script that handles redirecting the request to the `index.html` page. For an example, see the [SteveSandersonMS/BlazorOnGitHubPages GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages):
 
 * [`wwwroot/404.html`](https://github.com/SteveSandersonMS/BlazorOnGitHubPages/blob/master/wwwroot/404.html)
