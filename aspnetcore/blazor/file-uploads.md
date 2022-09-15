@@ -261,13 +261,18 @@ The following `FileUpload2` component:
 
 The following controller in the web API project saves uploaded files from the client.
 
+> [!IMPORTANT]
+> The controller in this section is intended for use in a separate web API project from the Blazor Server app.
+
 > [!NOTE]
 > Binding form values with the [`[FromForm]` attribute](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) isn't natively supported for [Minimal APIs](xref:fundamentals/minimal-apis?view=aspnetcore-6.0#explicit-parameter-binding) in ASP.NET Core 6.0. Therefore, the following `Filesave` controller example can't be converted to use Minimal APIs. Support for binding from form values with Minimal APIs is available in ASP.NET Core 7.0 or later.
 
-To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
+**To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment.**
+
+Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
 > [!WARNING]
-> The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
+> The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
 `Controllers/FilesaveController.cs`:
 
@@ -382,10 +387,12 @@ The following controller in the **`Server`** project saves uploaded files from t
 > [!NOTE]
 > Binding form values with the [`[FromForm]` attribute](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) isn't natively supported for [Minimal APIs](xref:fundamentals/minimal-apis?view=aspnetcore-6.0#explicit-parameter-binding) in ASP.NET Core 6.0. Therefore, the following `Filesave` controller example can't be converted to use Minimal APIs. Support for binding from form values with Minimal APIs is available in ASP.NET Core 7.0 or later.
 
-To use the following code, create a `Development/unsafe_uploads` folder at the root of the **`Server`** project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
+**To use the following code, create a `Development/unsafe_uploads` folder at the root of the `Server` project for the app running in the `Development` environment.**
+
+Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
 > [!WARNING]
-> The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
+> The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
 `Controllers/FilesaveController.cs`:
 
@@ -515,9 +522,12 @@ The following example demonstrates how to upload files in a Blazor Server app wi
 
 To use the following example in a test app:
 
-* Create a folder to save uploaded files for the `Development` environment: `Development/unsafe_uploads`.
+* **Create a folder to save uploaded files for the `Development` environment: `Development/unsafe_uploads`.**
 * Configure the maximum file size (`maxFileSize`, 15 KB in the following example) and maximum number of allowed files (`maxAllowedFiles`, 3 in the following example).
 * Set the buffer to a different value (10 KB in the following example), if desired, for increased granularity in progress reporting. We don't recommended using a buffer larger than 30 KB due to performance and security concerns.
+
+> [!WARNING]
+> The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
 `Pages/FileUpload3.razor`:
 
@@ -837,10 +847,15 @@ The following `FileUpload2` component:
 
 The following controller in the web API project saves uploaded files from the client.
 
-To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
+> [!IMPORTANT]
+> The controller in this section is intended for use in a separate web API project from the Blazor Server app.
+
+**To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment.**
+
+Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
 > [!WARNING]
-> The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
+> The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
 `Controllers/FilesaveController.cs`:
 
@@ -952,10 +967,12 @@ public class FilesaveController : ControllerBase
 
 The following controller in the **`Server`** project saves uploaded files from the client.
 
-To use the following code, create a `Development/unsafe_uploads` folder at the root of the **`Server`** project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
+**To use the following code, create a `Development/unsafe_uploads` folder at the root of the `Server` project for the app running in the `Development` environment.**
+
+Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
 > [!WARNING]
-> The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
+> The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
 `Controllers/FilesaveController.cs`:
 
@@ -1083,9 +1100,12 @@ The following example demonstrates how to upload files in a Blazor Server app wi
 
 To use the following example in a test app:
 
-* Create a folder to save uploaded files for the `Development` environment: `Development/unsafe_uploads`.
+* **Create a folder to save uploaded files for the `Development` environment: `Development/unsafe_uploads`.**
 * Configure the maximum file size (`maxFileSize`, 15 KB in the following example) and maximum number of allowed files (`maxAllowedFiles`, 3 in the following example).
 * Set the buffer to a different value (10 KB in the following example), if desired, for increased granularity in progress reporting. We don't recommended using a buffer larger than 30 KB due to performance and security concerns.
+
+> [!WARNING]
+> The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
 `Pages/FileUpload3.razor`:
 
@@ -1407,10 +1427,15 @@ The following `FileUpload2` component:
 
 The following controller in the web API project saves uploaded files from the client.
 
-To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
+> [!IMPORTANT]
+> The controller in this section is intended for use in a separate web API project from the Blazor Server app.
+
+**To use the following code, create a `Development/unsafe_uploads` folder at the root of the web API project for the app running in the `Development` environment.**
+
+Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
 > [!WARNING]
-> The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
+> The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
 `Controllers/FilesaveController.cs`:
 
@@ -1522,10 +1547,12 @@ public class FilesaveController : ControllerBase
 
 The following controller in the **`Server`** project saves uploaded files from the client.
 
-To use the following code, create a `Development/unsafe_uploads` folder at the root of the **`Server`** project for the app running in the `Development` environment. Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
+**To use the following code, create a `Development/unsafe_uploads` folder at the root of the `Server` project for the app running in the `Development` environment.**
+
+Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
 > [!WARNING]
-> The example saves files without scanning their contents. In production scenarios, use an anti-virus/anti-malware scanner API on uploaded files before making them available for download or for use by other systems. For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
+> The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
 `Controllers/FilesaveController.cs`:
 
@@ -1655,9 +1682,12 @@ The following example demonstrates how to upload files in a Blazor Server app wi
 
 To use the following example in a test app:
 
-* Create a folder to save uploaded files for the `Development` environment: `Development/unsafe_uploads`.
+* **Create a folder to save uploaded files for the `Development` environment: `Development/unsafe_uploads`.**
 * Configure the maximum file size (`maxFileSize`, 15 KB in the following example) and maximum number of allowed files (`maxAllowedFiles`, 3 in the following example).
 * Set the buffer to a different value (10 KB in the following example), if desired, for increased granularity in progress reporting. We don't recommended using a buffer larger than 30 KB due to performance and security concerns.
+
+> [!WARNING]
+> The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
 
 `Pages/FileUpload3.razor`:
 

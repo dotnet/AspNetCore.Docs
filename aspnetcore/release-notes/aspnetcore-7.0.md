@@ -152,6 +152,20 @@ In the following sample, the `/skipme` endpoint is excluded from generating an O
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_swag2&highlight=20-21)]
 
+### File uploads using IFormFile and IFormFileCollection
+
+Minimal APIs now support file upload with `IFormFile` and `IFormFileCollection`. The following code uses <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> to upload file:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/7.0-samples/MinimalApi/Program.cs" :::
+
+Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](/aspnet/core/security/authentication/certauth), or a cookie header.
+
+There is no built-in support for [antiforgery](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#anti7). However, it can be implemented using the [`IAntiforgery` service](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#antimin7).
+
+### `[AsParameters]` attribute enables parameter binding for argument lists
+
+The [`[AsParameters]` attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) enables parameter binding for argument lists . For more information, see [Parameter binding for argument lists with `[AsParameters]`](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#asparam7).
+
 ## gRPC
 
 ### JSON transcoding
