@@ -2100,7 +2100,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-For more information on the \ provider (`ServerAuthenticationStateProvider`), see [`ServerAuthenticationStateProvider` (API documentation)](xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider) and [`ServerAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/ServerAuthenticationStateProvider.cs).
+For more information on the Blazor framework server authentication provider (`ServerAuthenticationStateProvider`), see [`ServerAuthenticationStateProvider` (API documentation)](xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider) and [`ServerAuthenticationStateProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/ServerAuthenticationStateProvider.cs).
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
