@@ -38,7 +38,7 @@ You can use the GitHub Explorer sample app to follow along with this tutorial. C
 git clone "https://github.com/dotnet/AspNetCore.Docs.Samples.git"
 ```
 
-Navigate to the `/tutorials/scalable-apps` folder and double click the `ScalableRazor.csproj` file to open the project in Visual Studio.
+Navigate to the `/tutorials/scalable-razor-apps/start` folder and double click the `ScalableRazor.csproj` file to open the project in Visual Studio.
 
 The sample app uses a search form to browse GitHub repositories by name. The form relies on the built-in ASP.NET Core data protection services to handle anti-forgery concerns. By default, when the app scales horizontally on Container Apps, the data protection service will throw an exception. You'll explore and solve this issue in the steps ahead.
 
@@ -240,7 +240,7 @@ The necessary Azure resources have been created, so you'll need to configure you
 
 1. Update the `Program.cs` file to include the following `using` statements and code:
 
-    [!code-csharp[](samples/ScalableRazor/Program.cs?name=snippet_Example&highlight=1-3,13-19)]
+    :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/scalable-razor-apps/start/Program.cs" id="snippet_Scalable" highlight="1-3,13-19":::
 
 These changes will allow the app to manage data protection using a centralized, scalable architecture. `DefaultAzureCredential` will discover the managed identity configurations you enabled earlier when the app is redeployed to Azure.
 
