@@ -289,7 +289,7 @@ az login
 Sign in to Azure using the account settings dialog, which can be accessed in the upper right of the Visual Studio interface.
 
 
-:::image type="content" source="./media/scaling-visual-studio-account.png" alt-text="A screenshot showing the GitHub Explorer app.":::
+:::image type="content" source="./media/scaling-visual-studio-account.png" alt-text="A screenshot showing the Visual Studio account sign in.":::
 
 
 ## [PowerShell](#tab/login-powershell)
