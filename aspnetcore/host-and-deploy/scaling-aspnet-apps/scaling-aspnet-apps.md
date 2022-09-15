@@ -79,13 +79,13 @@ You'll use Visual Studio to deploy the app to Azure Container Apps. Container ap
 1. After the container registry is created, make sure it is selected, and then choose finish. Visual Studio will close the dialog workflow and display a summary of the publishing profile.
 1. Select **Publish** in the upper right of the publishing profile summary to deploy your app to Azure.
 
-When the deployment finishes, Visual Studio will launch the browser to display your hosted app. Search for *Microsoft* in the form field, and you should see a list of repositories displayed.
+When the deployment finishes, Visual Studio will launch the browser to display your hosted app. Search for `Microsoft` in the form field, and you should see a list of repositories displayed.
 
 ## Scale and troubleshoot the app
 
 Your app is currently running without any issues, but you'd like to scale the app across more instances in anticipation of high traffic volumes.
 
-1. In the Azure Portal, search for the GitHub Explorer container app in the top level search bar and select it from the results.
+1. In the Azure Portal, search for the `razorscaling-app-****` container app in the top level search bar and select it from the results.
 1. On the overview page, select **Scale** from the left navigation, and then select **+ Edit and deploy**.
 1. On the revisions page, switch to the **Scale** tab.
 1. Set both the min and max instances to **4** and then select **Create**. This configuration change will guarantee your app is scaled horizontally across several instances.
@@ -94,7 +94,7 @@ Navigate back to your app in the browser. When the page loads, at first it appea
 
 #### Troubleshooting the error
 
-It's not immediately apparent why the search requests are failing. If you check the browser tools, you'll see a 400 Bad Request response was sent back. You can use the logging features of container apps to diagnose the error occurring in your environment.
+It's not immediately apparent why the search requests are failing. The browser tools will indicate a 400 Bad Request response was sent back. However, you can use the logging features of container apps to diagnose errors occurring in your environment.
 
 1. On the overview page of your container app, select **Logs** from the left navigation.
 1. On the **Logs** page, close the pop up that opens and navigate to the **Tables** tab.
@@ -135,7 +135,7 @@ To resolve the errors impacting the container app, you'll create the following s
 1. In the Azure Portal search bar, enter `Storage accounts` and select the matching result.
 1. On the storage accounts listing page, select **+ Create**.
 1. On the **Basics** tab, enter the following values:
-    * **Subscription**: Select the same subscription that chose for you Container App.
+    * **Subscription**: Select the same subscription that chose for the container app.
     * **Resource Group**: Select the *msdocs-scalable-razor* resource group you created previously.
     * **Storage account name**: Name the account *scalablerazorstorageXXXX* where the X's are random numbers of your choosing. This name must be unique across all of Azure.
     * **Region**: Select a region that is close to you.
@@ -147,7 +147,7 @@ Azure will take a moment to provision the new storage account. When the task com
 
 You'll need to create a Container that will be used to store your app's data protection keys.
 
-1. On the storage account overview page, select **Storage browser** on the left navigation.
+1. On the overview page for the new storage account, select **Storage browser** on the left navigation.
 1. Select **Blob containers**.
 1. Select **+ Add container** to open the **New container** flyout menu.
 1. Enter a name of *scalablerazorkeys*, leave the rest of the settings at their defaults, and then choose **Create**.
@@ -158,7 +158,7 @@ You should see the new container appear on the page list.
 
 Create a key vault to hold the keys that will protect the data in the blob storage container.
 
-1. In the Azure Portal search bar, enter `Key Vault` and select the matching result
+1. In the Azure Portal search bar, enter `Key Vault` and select the matching result.
 1. On the key vault listing page, select **+ Create**.
 1. On the **Basics** tab, enter the following values:
     * **Subscription**: Select the same subscription that chose for you Container App.
@@ -205,9 +205,9 @@ The service connector will enable a system-assigned managed identity on the cont
 #### Connect the key vault
 
 1. In the Azure portal, navigate to your Container App overview page.
-1. On the left navigation, select **Service connector**
+1. On the left navigation, select **Service connector**.
 1. On the Service Connector page, choose **+ Create** to open the **Creation Connection** flyout panel and enter the following values:
-    * **Container**: Select the Container App you created previously.
+    * **Container**: Select the container app you created previously.
     * **Service type**: Choose **Key Vault**.
     * **Subscription**: Select the subscription you used previously.
     * **Connection name**: Leave the default value or enter a name of your choosing.
@@ -305,7 +305,7 @@ Connect-AzAccount
 1. In the Azure Portal, navigate to the `scalablerazor****` storage account you created earlier.
 1. Select **Access Control (IAM)** from the left navigation.
 1. Choose **+ Add** and then **Add role assignment** from the drop down menu.
-1. On the **Add role assignment** page, search for *Storage blob data contributor*, select the matching result, and then choose **Next**.
+1. On the **Add role assignment** page, search for `Storage blob data contributor`, select the matching result, and then choose **Next**.
 1. Make sure **User, group, or service principal** is select, and then choose **+ Select members**.
 1. In the **Select members** flyout, search for your own *user@domain* account and select it from the results.
 1. Choose **Next** and then choose **Review + assign**. After Azure validates your settings, select **Review + assign** again.
@@ -317,7 +317,7 @@ You'll also need to repeat the previous steps to assign a role to your account s
 1. In the Azure Portal, navigate to the `razorscalingkeys` key vault you created earlier.
 1. Select **Access Control (IAM)** from the left navigation.
 1. Choose **+ Add** and then **Add role assignment** from the drop down menu.
-1. On the **Add role assignment** page, search for *Key Vault Crypto Service Encryption User*, select the matching result, and then choose **Next**.
+1. On the **Add role assignment** page, search for `Key Vault Crypto Service Encryption User`, select the matching result, and then choose **Next**.
 1. Make sure **User, group, or service principal** is select, and then choose **+ Select members**.
 1. In the **Select members** flyout, search for your own *user@domain* account and select it from the results.
 1. Choose **Next** and then choose **Review + assign**. After Azure validates your settings, select **Review + assign** again.
