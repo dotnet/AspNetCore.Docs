@@ -58,7 +58,7 @@ You'll use Visual Studio to deploy the app to Azure Container Apps. Container ap
 1. For the specific target, select **Azure Container Apps (Linux)**, and then choose **Next**.
 1. You'll need to create a new container app to deploy to. Select the green **+** icon to open a new dialog and enter the following values:
 
-    :::image type="content" source="./media/scaling-deploy-visual-studio.png" alt-text="A screenshot showing Visual Studio deployment.":::
+    :::image type="content" source="./media/scaling-deploy-visual-studio-small.png" lightbox="./media/scaling-deploy-visual-studio.png" alt-text="A screenshot showing Visual Studio deployment.":::
 
     * **Container app name**: Leave the default value or enter a name of your choosing.
     * **Subscription name**: Select the subscription you'd like to deploy to.
@@ -74,7 +74,7 @@ You'll use Visual Studio to deploy the app to Azure Container Apps. Container ap
 1. Once the resource is created, make sure it is selected in the list of container apps, and then choose **Next**.
 1. You'll need to create an Azure Container Registry to store the published image artifact for your app. Select the green **+** icon on the container registry screen. Leave the default values, and then select **Create**.
 
-    :::image type="content" source="./media/scaling-new-registry.png" alt-text="A screenshot showing how to create a new container registry.":::
+    :::image type="content" source="./media/scaling-new-registry-small.png" lightbox="./media/scaling-new-registry.png" alt-text="A screenshot showing how to create a new container registry.":::
 
 1. After the container registry is created, make sure it is selected, and then choose finish. Visual Studio will close the dialog workflow and display a summary of the publishing profile.
 1. Select **Publish** in the upper right of the publishing profile summary to deploy your app to Azure.
@@ -286,12 +286,16 @@ az login
 
 ## [Visual Studio](#tab/login-visual-studio)
 
-// todo
+Sign in to Azure using the account settings dialog, which can be accessed in the upper right of the Visual Studio interface.
+
+
+:::image type="content" source="./media/scaling-visual-studio-account.png" alt-text="A screenshot showing the GitHub Explorer app.":::
+
 
 ## [PowerShell](#tab/login-powershell)
 
 ```powershell
-## todo
+Connect-AzAccount
 ```
 
 ---
