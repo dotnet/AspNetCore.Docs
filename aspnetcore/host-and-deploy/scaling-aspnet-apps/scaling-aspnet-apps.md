@@ -10,12 +10,12 @@ ms.date: 8/31/2022
 
 Apps deployed to Azure that experience intermittent high demand benefit from scalability to meet demand. Scalable apps can scale out to ensure capacity during workload peaks and return to normal automatically when the peak drops. Horizontal scaling (scaling out) adds new instances of a resource, such as VMs or database replicas. This article demonstrate how to deploy a horizontally scalable ASP.NET Core app to [Azure container apps](/azure/container-apps/overview) by completing the following tasks:
 
-1. [Setup the sample project](#1-setup-the-sample-project)
-1. [Deploy the app to Azure Container Apps](#2-deploy-the-app-to-azure-container-apps)
-1. [Scale and troubleshoot the app](#3-scale-and-troubleshoot-the-app)
-1. [Create the Azure Services](#4-create-the-azure-services)
-1. [Connect the Azure services](#5-connect-the-azure-services)
-1. [Configure and redeploy the app](#6-configure-and-redeploy-the-app)
+1. [Setup the sample project](setup-the-sample-project)
+1. [Deploy the app to Azure Container Apps](deploy-the-app-to-azure-container-apps)
+1. [Scale and troubleshoot the app](scale-and-troubleshoot-the-app)
+1. [Create the Azure Services](create-the-azure-services)
+1. [Connect the Azure services](connect-the-azure-services)
+1. [Configure and redeploy the app](configure-and-redeploy-the-app)
 
 This article uses Razor Pages, but most of it applies to other ASP.NET Core apps.
 
@@ -74,7 +74,7 @@ You'll use Visual Studio to deploy the app to Azure Container Apps. Container ap
 1. Once the resource is created, make sure it is selected in the list of container apps, and then choose **Next**.
 1. You'll need to create an Azure Container Registry to store the published image artifact for your app. Select the green **+** icon on the container registry screen. Leave the default values, and then select **Create**.
 
-    :::image type="content" source="./media/scaling-new-registry.png" alt-text="A screenshot showing Visual Studio deployment.":::
+    :::image type="content" source="./media/scaling-new-registry.png" alt-text="A screenshot showing how to create a new container registry.":::
 
 1. After the container registry is created, make sure it is selected, and then choose finish. Visual Studio will close the dialog workflow and display a summary of the publishing profile.
 1. Select **Publish** in the upper right of the publishing profile summary to deploy your app to Azure.
@@ -100,7 +100,7 @@ It's not immediately apparent why the search requests are failing. If you check 
 1. On the **Logs** page, close the pop up that opens and navigate to the **Tables** tab.
 1. Expand the **Custom Logs** item to reveal the **ContainerAppConsoleLogs_CL** node. This table holds various logs for the container app that you can query to troubleshoot issues or questions.
 
-    :::image type="content" source="./media/scaling-logs-small.png" lightbox="./media/scaling-logs.png" alt-text="A screenshot showing the GitHub Explorer app.":::
+    :::image type="content" source="./media/scaling-logs-small.png" lightbox="./media/scaling-logs.png" alt-text="A screenshot showing the container app logs.":::
 
 1. In the query editor, compose a basic query to search the **ContainerAppConsoleLogs_CL Logs** table for recent exceptions, such as the following script:
 
@@ -116,7 +116,7 @@ It's not immediately apparent why the search requests are failing. If you check 
 
 1. Select **Run**, and you should see a list of results printed out. Read through the logs and note that most of them are related to antiforgery tokens and cryptography.
 
-    :::image type="content" source="./media/scaling-troubleshoot-small.png" lightbox="./media/scaling-troubleshoot.png" alt-text="A screenshot showing the GitHub Explorer app.":::
+    :::image type="content" source="./media/scaling-troubleshoot-small.png" lightbox="./media/scaling-troubleshoot.png" alt-text="A screenshot showing the logs query.":::
 
     > [!IMPORTANT]
     > The errors in the app are caused by the .NET data protection services. When multiple instances of the app are running, there is no guarantee that the HTTP POST request to submit the form will be routed to the same container that initially loaded the page from the HTTP GET request. If the requests are handled by different instances, the antiforgery tokens cannot be handled correctly and an exception occurs.
@@ -301,14 +301,8 @@ az login
 1. In the Azure Portal, navigate to the `scalablerazor****` storage account you created earlier.
 1. Select **Access Control (IAM)** from the left navigation.
 1. Choose **+ Add** and then **Add role assignment** from the drop down menu.
-
-    :::image type="content" source="./media/scaling-storage-add-role.png" alt-text="A screenshot showing how to create a container app in the Azure Portal.":::
-
 1. On the **Add role assignment** page, search for *Storage blob data contributor*, select the matching result, and then choose **Next**.
 1. Make sure **User, group, or service principal** is select, and then choose **+ Select members**.
-
-    :::image type="content" source="./media/scaling-storage-assign-role.png" alt-text="A screenshot showing how to create a container app in the Azure Portal.":::
-
 1. In the **Select members** flyout, search for your own *user@domain* account and select it from the results.
 1. Choose **Next** and then choose **Review + assign**. After Azure validates your settings, select **Review + assign** again.
 
