@@ -38,7 +38,7 @@ public class TodoIntegrationTestsV2 : IClassFixture<TestWebApplicationFactory<Pr
         var problemResult = await response.Content.ReadFromJsonAsync<HttpValidationProblemDetails>();
 
         Assert.NotNull(problemResult?.Errors);
-        Assert.Collection(problemResult?.Errors, (error) => Assert.Equal(errorMessage, error.Value.First()));
+        Assert.Collection(problemResult.Errors, (error) => Assert.Equal(errorMessage, error.Value.First()));
     }
 
     [Fact]
@@ -50,7 +50,7 @@ public class TodoIntegrationTestsV2 : IClassFixture<TestWebApplicationFactory<Pr
             if (db != null && db.Todos.Any())
             {
                 db.Todos.RemoveRange(db.Todos);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
         }
 

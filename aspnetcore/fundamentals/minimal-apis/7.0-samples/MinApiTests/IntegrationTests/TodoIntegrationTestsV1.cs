@@ -36,7 +36,7 @@ public class TodoIntegrationTestsV1 : IClassFixture<TestWebApplicationFactory<Pr
         var problemResult = await response.Content.ReadFromJsonAsync<HttpValidationProblemDetails>();
 
         Assert.NotNull(problemResult?.Errors);
-        Assert.Collection(problemResult?.Errors, (error) => Assert.Equal(errorMessage, error.Value.First()));
+        Assert.Collection(problemResult.Errors, (error) => Assert.Equal(errorMessage, error.Value.First()));
     }
 
     [Fact]
