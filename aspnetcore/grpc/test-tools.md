@@ -1,27 +1,29 @@
 ---
-title: Test gRPC services with gRPCurl in ASP.NET Core
+title: Test gRPC services with Postman or gRPCurl in ASP.NET Core
 author: jamesnk
-description: Learn how to test services with gRPC tools. gRPCurl a command-line tool for interacting with gRPC services. gRPCui is an interactive web UI.
+description: Learn how to test services with gRPC tools. Postman is an interactive web UI. gRPCurl a command-line tool for interacting with gRPC services. gRPCui is an interactive web UI.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.date: 03/31/2022
 uid: grpc/test-tools
 ---
-# Test gRPC services with gRPCurl in ASP.NET Core
+# Test gRPC services with Postman or gRPCurl in ASP.NET Core
 
 By [James Newton-King](https://twitter.com/jamesnk)
 :::moniker range=">= aspnetcore-6.0"
 Tooling is available for gRPC that allows developers to test services without building client apps:
 
-* [gRPCurl](https://github.com/fullstorydev/grpcurl) is a command-line tool that provides interaction with gRPC services.
-* [gRPCui](https://github.com/fullstorydev/grpcui) builds on top of gRPCurl and adds an interactive web UI for gRPC, similar to tools such as Postman and Swagger UI.
+* [Postman](https://www.postman.com/) is an API platform with an interactive UI for calling APIs. Postman can run in the browser or be downloaded and run locally. Postman supports calling gRPC services.
+* [gRPCurl](https://github.com/fullstorydev/grpcurl) is an open-source command-line tool that provides interaction with gRPC services.
+* [gRPCui](https://github.com/fullstorydev/grpcui) builds on top of gRPCurl and adds an open-source interactive web UI for gRPC.
 
 This article discusses how to:
 
 * Set up gRPC reflection with a gRPC ASP.NET Core app.
-* Download and install gRPCurl and gRPCui.
-* Discover and test gRPC services with `grpcurl`.
-* Interact with gRPC services via a browser using `grpcui`.
+* Interact with gRPC using test tools:
+  * Call gRPC services in Postman.
+  * Discover and test gRPC services with `grpcurl`.
+  * Interact with gRPC services via a browser using `grpcui`.
 
 > [!NOTE]
 > To learn how to unit test gRPC services, see <xref:grpc/test-services>.
@@ -49,6 +51,25 @@ When gRPC reflection is set up:
 * A gRPC reflection service is added to the server app.
 * Client apps that support gRPC reflection can call the reflection service to discover services hosted by the server.
 * gRPC services are still called from the client. Reflection only enables service discovery and doesn't bypass server-side security. Endpoints protected by [authentication and authorization](xref:grpc/authn-and-authz) require the caller to pass credentials for the endpoint to be called successfully.
+
+## Postman
+
+Postman is an API platform with many features. It supports calling gRPC services with an interactive UI.
+
+For information about downloading and installing Postman, see the [Download Postman page](https://www.postman.com/downloads/).
+
+### Use Postman
+
+Postman has an interactive UI for calling gRPC services. To call a gRPC service using Postman:
+
+1. Click the *New* button and choose *gRPC Request*.
+2. Enter the gRPC server's hostname and port in the server URL. For example, `localhost:5000`. Don't include the `http` or `https` scheme. If the port is using TLS then select the padlock next to the server URL to enable TLS in Postman.
+3. In the service definition section, either choose server reflection or import the app's proto file. When complete, the dropdown list next to the server URL textbox has a list of gRPC methods available.
+4. To call a gRPC method, select it in the dropdown, click *Generate Example Message*, then *Invoke* to send the gRPC call to the server.
+
+![Postman](~/grpc/test-tools/static/postman.png)
+
+There is also a short video available that [walks through using Postman with gRPC](https://youtu.be/gfYGqMb81GQ).
 
 ## gRPCurl
 
@@ -172,9 +193,10 @@ Tooling is available for gRPC that allows developers to test services without bu
 This article discusses how to:
 
 * Set up gRPC reflection with a gRPC ASP.NET Core app.
-* Download and install gRPCurl and gRPCui.
-* Discover and test gRPC services with `grpcurl`.
-* Interact with gRPC services via a browser using `grpcui`.
+* Interact with gRPC using test tools:
+  * Call gRPC services in Postman.
+  * Discover and test gRPC services with `grpcurl`.
+  * Interact with gRPC services via a browser using `grpcui`.
 
 > [!NOTE]
 > To learn how to unit test gRPC services, see <xref:grpc/test-services>.
@@ -202,6 +224,25 @@ When gRPC reflection is set up:
 * A gRPC reflection service is added to the server app.
 * Client apps that support gRPC reflection can call the reflection service to discover services hosted by the server.
 * gRPC services are still called from the client. Reflection only enables service discovery and doesn't bypass server-side security. Endpoints protected by [authentication and authorization](xref:grpc/authn-and-authz) require the caller to pass credentials for the endpoint to be called successfully.
+
+## Postman
+
+Postman is an API platform with many features. It supports calling gRPC services with an interactive UI.
+
+For information about downloading and installing Postman, see the [Download Postman page](https://www.postman.com/downloads/).
+
+### Use Postman
+
+Postman has an interactive UI for calling gRPC services. To call a gRPC service using Postman:
+
+1. Click the *New* button and choose *gRPC Request*.
+2. Enter the gRPC server's hostname and port in the server URL. For example, `localhost:5000`. Don't include the `http` or `https` scheme. If the port is using TLS then select the padlock next to the server URL to enable TLS in Postman.
+3. In the service definition section, either choose server reflection or import the app's proto file. When complete, the dropdown list next to the server URL textbox has a list of gRPC methods available.
+4. To call a gRPC method, select it in the dropdown, click *Generate Example Message*, then *Invoke* to send the gRPC call to the server.
+
+![Postman](~/grpc/test-tools/static/postman.png)
+
+There is also a short video available that [walks through using Postman with gRPC](https://youtu.be/gfYGqMb81GQ).
 
 ## gRPCurl
 
