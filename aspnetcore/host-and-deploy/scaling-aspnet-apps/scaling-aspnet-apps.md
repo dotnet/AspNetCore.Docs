@@ -238,7 +238,7 @@ The necessary Azure resources have been created, so you'll need to configure you
     dotnet add package Microsoft.Extensions.Azure
     ```
 
-1. Update the `Program.cs` file to include the following `using` statements and code:
+1. Update `Program.cs` with the following highlighted code:
 
     :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/scalable-razor-apps/end/Program.cs" id="snippet_ProgramConfigurations" highlight="1-4,13-19":::
 
