@@ -242,7 +242,7 @@ The necessary Azure resources have been created, so you'll need to configure you
 
 1. Update `Program.cs` with the following highlighted code:
 
-    :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/scalable-razor-apps/end/Program.cs" id="snippet_ProgramConfigurations" highlight="1-4,13-19":::
+    :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/scalable-razor-apps/end/Program.cs" id="snippet_ProgramConfigurations" highlight="1-4,6-7,13-19":::
 
 These changes will allow the app to manage data protection using a centralized, scalable architecture. `DefaultAzureCredential` will discover the managed identity configurations you enabled earlier when the app is redeployed to Azure.
 
@@ -251,6 +251,8 @@ You'll also need to update the placeholders in `AzureURIs` section of the `appse
 1. Replace the `<storage-account-name>` placeholder with the name of the `scalablerazorstorageXXXX` account you created.
 1. Replace the `<key-vault-name>` placeholder with the name of the `scalablerazorvaultXXXX` key vault you created.
 1. Replace the `<key-name>` placeholder in the key vault URI with the `razorkey` name you created earlier.
+
+    :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/scalable-razor-apps/end/appsettings.json" highlight="9-12":::
 
 #### Redeploy the app
 
