@@ -240,7 +240,7 @@ The necessary Azure resources have been created, so you'll need to configure you
 
 1. Update the `Program.cs` file to include the following `using` statements and code:
 
-    :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/scalable-razor-apps/start/Program.cs" id="snippet_Scalable" highlight="1-3,13-19":::
+    :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/scalable-razor-apps/start/Program.cs" id="snippet_ProgramConfigurations" highlight="2-4,14-20":::
 
 These changes will allow the app to manage data protection using a centralized, scalable architecture. `DefaultAzureCredential` will discover the managed identity configurations you enabled earlier when the app is redeployed to Azure.
 
