@@ -82,7 +82,7 @@ The preceding code configures:
     app.UseAuthentication();
     ```
 
-  * The IdentityServer middleware that exposes the OpenID Connect endpoints:
+* The IdentityServer middleware that exposes the OpenID Connect endpoints:
 
     ```csharp
     app.UseIdentityServer();
