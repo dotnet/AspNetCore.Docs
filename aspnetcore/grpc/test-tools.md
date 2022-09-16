@@ -56,20 +56,20 @@ When gRPC reflection is set up:
 
 Postman is an API platform with many features. It supports calling gRPC services with an interactive UI.
 
-For information about downloading and installing Postman, see the [Download Postman page](https://www.postman.com/downloads/).
+To download and install Postman, see the [Download Postman page](https://www.postman.com/downloads/).
 
 ### Use Postman
 
 Postman has an interactive UI for calling gRPC services. To call a gRPC service using Postman:
 
 1. Click the *New* button and choose *gRPC Request*.
-2. Enter the gRPC server's hostname and port in the server URL. For example, `localhost:5000`. Don't include the `http` or `https` scheme. If the port is using TLS then select the padlock next to the server URL to enable TLS in Postman.
-3. In the service definition section, either choose server reflection or import the app's proto file. When complete, the dropdown list next to the server URL textbox has a list of gRPC methods available.
+2. Enter the gRPC server's hostname and port in the server URL. For example, `localhost:5000`. Don't include the `http` or `https` scheme in the URL. If the server uses TLS, select the padlock next to the server URL to enable TLS in Postman.
+3. Select server reflection or import the app's proto file in the service definition section. When complete, the dropdown list next to the server URL textbox has a list of gRPC methods available.
 4. To call a gRPC method, select it in the dropdown, click *Generate Example Message*, then *Invoke* to send the gRPC call to the server.
 
 ![gRPC in Postman](~/grpc/test-tools/static/postman.png)
 
-There is also a short video available that [walks through using Postman with gRPC](https://youtu.be/gfYGqMb81GQ).
+A short video is also available that [walks through using Postman with gRPC](https://youtu.be/gfYGqMb81GQ).
 
 ## gRPCurl
 
@@ -231,20 +231,20 @@ When gRPC reflection is set up:
 
 Postman is an API platform with many features. It supports calling gRPC services with an interactive UI.
 
-For information about downloading and installing Postman, see the [Download Postman page](https://www.postman.com/downloads/).
+To download and install Postman, see the [Download Postman page](https://www.postman.com/downloads/).
 
 ### Use Postman
 
 Postman has an interactive UI for calling gRPC services. To call a gRPC service using Postman:
 
 1. Click the *New* button and choose *gRPC Request*.
-2. Enter the gRPC server's hostname and port in the server URL. For example, `localhost:5000`. Don't include the `http` or `https` scheme. If the port is using TLS then select the padlock next to the server URL to enable TLS in Postman.
-3. In the service definition section, either choose server reflection or import the app's proto file. When complete, the dropdown list next to the server URL textbox has a list of gRPC methods available.
+2. Enter the gRPC server's hostname and port in the server URL. For example, `localhost:5000`. Don't include the `http` or `https` scheme in the URL. If the server uses TLS, select the padlock next to the server URL to enable TLS in Postman.
+3. Select server reflection or import the app's proto file in the service definition section. When complete, the dropdown list next to the server URL textbox has a list of gRPC methods available.
 4. To call a gRPC method, select it in the dropdown, click *Generate Example Message*, then *Invoke* to send the gRPC call to the server.
 
 ![gRPC in Postman](~/grpc/test-tools/static/postman.png)
 
-There is also a short video available that [walks through using Postman with gRPC](https://youtu.be/gfYGqMb81GQ).
+A short video is also available that [walks through using Postman with gRPC](https://youtu.be/gfYGqMb81GQ).
 
 ## gRPCurl
 
