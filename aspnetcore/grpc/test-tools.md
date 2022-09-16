@@ -67,7 +67,7 @@ Postman has an interactive UI for calling gRPC services. To call a gRPC service 
 3. In the service definition section, either choose server reflection or import the app's proto file. When complete, the dropdown list next to the server URL textbox has a list of gRPC methods available.
 4. To call a gRPC method, select it in the dropdown, click *Generate Example Message*, then *Invoke* to send the gRPC call to the server.
 
-![Postman](~/grpc/test-tools/static/postman.png)
+![gRPC in Postman](~/grpc/test-tools/static/postman.png)
 
 There is also a short video available that [walks through using Postman with gRPC](https://youtu.be/gfYGqMb81GQ).
 
@@ -242,7 +242,7 @@ Postman has an interactive UI for calling gRPC services. To call a gRPC service 
 3. In the service definition section, either choose server reflection or import the app's proto file. When complete, the dropdown list next to the server URL textbox has a list of gRPC methods available.
 4. To call a gRPC method, select it in the dropdown, click *Generate Example Message*, then *Invoke* to send the gRPC call to the server.
 
-![Postman](~/grpc/test-tools/static/postman.png)
+![gRPC in Postman](~/grpc/test-tools/static/postman.png)
 
 There is also a short video available that [walks through using Postman with gRPC](https://youtu.be/gfYGqMb81GQ).
 
