@@ -57,7 +57,7 @@ In `Program.cs`:
 * gRPC is enabled with the `AddGrpc` method.
 * Each gRPC service is added to the routing pipeline through the `MapGrpcService` method.
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample6/GrpcGreeter/Program.cs?name=snippet&highlight=9,14)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample6/GrpcGreeter/Program.cs?highlight=9,14)]
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 ASP.NET Core middleware and features share the routing pipeline, therefore an app can be configured to serve additional request handlers. The additional request handlers, such as MVC controllers, work in parallel with the configured gRPC services.
