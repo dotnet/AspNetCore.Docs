@@ -1,6 +1,7 @@
 #define FINAL // DEFAULT MINIMAL FINAL
 #if DEFAULT
-// <snippet_default> // Manual fix
+// Manual fix
+// <snippet_default> 
 // <snippet_swagger>
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,7 +59,8 @@ app.MapGet("/", () => "Hello World!");
 app.Run();
 // </snippet_min>
 #elif FINAL
-// <snippet_all>    // Manual fix
+// Manual fix
+// <snippet_all>
 using Microsoft.EntityFrameworkCore;
 
 // <snippet_DI>
@@ -68,7 +70,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 var app = builder.Build();
 // </snippet_DI>
 
-// <snippet_get>    // manual fix
+// manual fix
+// <snippet_get>  
 app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/todoitems", async (TodoDb db) =>
