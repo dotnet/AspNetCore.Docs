@@ -29,7 +29,6 @@ app.UseAuthorization();
 
 if (app.Environment.IsDevelopment())
 {
-    // localhost:{port}/swagger
     app.UseSwagger();
     app.UseSwaggerUI();
 }
@@ -37,7 +36,7 @@ if (app.Environment.IsDevelopment())
 app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/admin", () => "Authorized Endpoint")
-    .RequireAuthorization("AdminsOnly"); ;
+    .RequireAuthorization("AdminsOnly");
 
 // todoV1 endpoints
 app.MapGroup("/todos/v1")
