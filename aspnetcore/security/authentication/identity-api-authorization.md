@@ -58,7 +58,7 @@ The preceding code configures:
       options.UseSqlite(connectionString));
   builder.Services.AddDatabaseDeveloperPageExceptionFilter();
   
-  builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.  RequireConfirmedAccount = true)
+  builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
       .AddEntityFrameworkStores<ApplicationDbContext>();
   ```
 
@@ -82,7 +82,7 @@ The preceding code configures:
     app.UseAuthentication();
     ```
 
-  * The IdentityServer middleware that exposes the OpenID Connect endpoints:
+* The IdentityServer middleware that exposes the OpenID Connect endpoints:
 
     ```csharp
     app.UseIdentityServer();
