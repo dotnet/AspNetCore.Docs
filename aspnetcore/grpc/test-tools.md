@@ -176,6 +176,7 @@ The tool launches a browser window with the interactive web UI. gRPC services ar
 
 ## Additional resources
 
+* [Postman homepage](https://www.postman.com/)
 * [gRPCurl GitHub homepage](https://github.com/fullstorydev/grpcurl)
 * [gRPCui GitHub homepage](https://github.com/fullstorydev/grpcui)
 * [`Grpc.AspNetCore.Server.Reflection`](https://www.nuget.org/packages/Grpc.AspNetCore.Server.Reflection)
@@ -187,8 +188,9 @@ The tool launches a browser window with the interactive web UI. gRPC services ar
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 Tooling is available for gRPC that allows developers to test services without building client apps:
 
-* [gRPCurl](https://github.com/fullstorydev/grpcurl) is a command-line tool that provides interaction with gRPC services.
-* [gRPCui](https://github.com/fullstorydev/grpcui) builds on top of gRPCurl and adds an interactive web UI for gRPC, similar to tools such as Postman and Swagger UI.
+* [Postman](https://www.postman.com/) is an API platform with an interactive UI for calling APIs. Postman can run in the browser or be downloaded and run locally. Postman supports calling gRPC services.
+* [gRPCurl](https://github.com/fullstorydev/grpcurl) is an open-source command-line tool that provides interaction with gRPC services.
+* [gRPCui](https://github.com/fullstorydev/grpcui) builds on top of gRPCurl and adds an open-source interactive web UI for gRPC.
 
 This article discusses how to:
 
@@ -346,6 +348,7 @@ The tool launches a browser window with the interactive web UI. gRPC services ar
 
 ## Additional resources
 
+* [Postman homepage](https://www.postman.com/)
 * [gRPCurl GitHub homepage](https://github.com/fullstorydev/grpcurl)
 * [gRPCui GitHub homepage](https://github.com/fullstorydev/grpcui)
 * [`Grpc.AspNetCore.Server.Reflection`](https://www.nuget.org/packages/Grpc.AspNetCore.Server.Reflection)
