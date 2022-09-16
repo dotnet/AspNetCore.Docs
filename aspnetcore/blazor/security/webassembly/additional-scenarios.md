@@ -1235,7 +1235,6 @@ The preceding example sets redirect URIs with regular string literals. The follo
     "RedirectUri": "https://localhost:5001/authentication/login-callback"
   }
   ```
-  
 
 ## Additional resources
 
@@ -4662,7 +4661,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 ...
 
 builder.Services.AddRazorPages();
-builder.Services.AddScoped<AuthenticationStateProvider, 
+builder.Services.TryAddScoped<AuthenticationStateProvider, 
     ServerAuthenticationStateProvider>();
 
 Client.Program.ConfigureCommonServices(services);
@@ -5031,7 +5030,6 @@ The preceding example sets redirect URIs with regular string literals. The follo
     "RedirectUri": "https://localhost:5001/authentication/login-callback"
   }
   ```
-  
 
 ## Additional resources
 
