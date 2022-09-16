@@ -9,6 +9,22 @@ namespace MinApiTests.UnitTests;
 public class TodoMoqTests
 {
     [Fact]
+    public async Task GetTodoReturnsNotFoundIfNotExists()
+    {
+        // Arrange
+        var mock = new Mock<ITodoService>(); 
+        
+        mock.Setup(m => m.Find(It.Is<int>(id => id == 404)))
+            .ReturnsAsync((Todo?)null);
+
+        // Act
+        var notFoundResult = (NotFound)await TodoEndpointsV2.GetTodo(404, mock.Object);
+
+        //Assert
+        Assert.Equal(404, notFoundResult.StatusCode);
+    }
+
+    [Fact]
     public async Task GetTodoReturnsTodoFromDatabase()
     {
         // Arrange
@@ -22,19 +38,13 @@ public class TodoMoqTests
                 IsDone = false
             });
 
-        mock.Setup(m => m.Find(It.Is<int>(id => id == 2)))
-            .ReturnsAsync((Todo?)null);
-
         // Act
         var okResult = (Ok<Todo>)await TodoEndpointsV2.GetTodo(1, mock.Object);
-        var notFoundResult = (NotFound)await TodoEndpointsV2.GetTodo(404, mock.Object);
 
         //Assert
         Assert.Equal(200, okResult.StatusCode);
         var foundTodo = Assert.IsAssignableFrom<Todo>(okResult.Value);
         Assert.Equal(1, foundTodo.Id);
-
-        Assert.Equal(404, notFoundResult.StatusCode);
     }
 
     [Fact]
@@ -96,16 +106,12 @@ public class TodoMoqTests
         mock.Setup(m => m.Find(It.Is<int>(id => id == 1)))
             .ReturnsAsync(existingTodo);
 
-        mock.Setup(m => m.Find(It.Is<int>(id => id == 2)))
-            .ReturnsAsync((Todo?)null);
-
         mock.Setup(m => m.Update(It.Is<Todo>(t => t.Id == updatedTodo.Id && t.Description == updatedTodo.Description && t.IsDone == updatedTodo.IsDone)))
-            .Callback<Todo>((todo) => existingTodo = todo)
+            .Callback<Todo>(todo => existingTodo = todo)
             .Returns(Task.CompletedTask);
 
         //Act
         var createdResult = (Created<Todo>)await TodoEndpointsV2.UpdateTodo(updatedTodo, mock.Object);
-        var notFoundResult = (NotFound)await TodoEndpointsV2.UpdateTodo(new Todo { Id = 2, Title = "Invalid Title" }, mock.Object);
 
         //Assert
         Assert.Equal(201, createdResult.StatusCode);
@@ -114,8 +120,6 @@ public class TodoMoqTests
 
         Assert.Equal("Updated test title", existingTodo.Title);
         Assert.True(existingTodo.IsDone);
-
-        Assert.Equal(404, notFoundResult.StatusCode);
     }
 
     [Fact]
@@ -136,21 +140,15 @@ public class TodoMoqTests
         mock.Setup(m => m.Find(It.Is<int>(id => id == existingTodo.Id)))
             .ReturnsAsync(existingTodo);
 
-        mock.Setup(m => m.Find(It.Is<int>(id => id == 2)))
-            .ReturnsAsync((Todo?)null);
-
         mock.Setup(m => m.Remove(It.Is<Todo>(t => t.Id == 1)))
             .Callback<Todo>(t => todos.Remove(t))
             .Returns(Task.CompletedTask);
 
         //Act
         var noContentResult = (NoContent)await TodoEndpointsV2.DeleteTodo(existingTodo.Id, mock.Object);
-        var notFoundResult = (NotFound)await TodoEndpointsV2.DeleteTodo(2, mock.Object);
 
         //Assert
         Assert.Equal(204, noContentResult.StatusCode);
         Assert.Empty(todos);
-
-        Assert.Equal(404, notFoundResult.StatusCode);
     }
 }

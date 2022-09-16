@@ -8,6 +8,19 @@ namespace MinApiTests.UnitTests;
 public class TodoInMemoryTests
 {
     [Fact]
+    public async Task GetTodoReturnsNotFoundIfNotExists()
+    {
+        // Arrange
+        await using var context = new MockDb().CreateDbContext();
+
+        // Act
+        var notFoundResult = (NotFound)await TodoEndpointsV1.GetTodo(404, context);
+
+        //Assert
+        Assert.Equal(404, notFoundResult.StatusCode);
+    }
+
+    [Fact]
     public async Task GetTodoReturnsTodoFromDatabase()
     {
         // Arrange
@@ -25,14 +38,11 @@ public class TodoInMemoryTests
 
         // Act
         var okResult = (Ok<Todo>)await TodoEndpointsV1.GetTodo(1, context);
-        var notFoundResult = (NotFound)await TodoEndpointsV1.GetTodo(404, context);
 
         //Assert
         Assert.Equal(200, okResult.StatusCode);
         var foundTodo = Assert.IsAssignableFrom<Todo>(okResult.Value);
         Assert.Equal(1, foundTodo.Id);
-
-        Assert.Equal(404, notFoundResult.StatusCode);
     }
 
     [Fact]
@@ -89,14 +99,11 @@ public class TodoInMemoryTests
 
         //Act
         var createdResult = (Created<Todo>)await TodoEndpointsV1.UpdateTodo(updatedTodo, context);
-        var notFoundResult = (NotFound)await TodoEndpointsV1.UpdateTodo(new Todo { Id = 2, Title = "Invalid Title" }, context);
 
         //Assert
         Assert.Equal(201, createdResult.StatusCode);
         Assert.NotNull(createdResult.Location);
         Assert.IsAssignableFrom<Todo>(createdResult.Value);
-
-        Assert.Equal(404, notFoundResult.StatusCode);
 
         var todoInDb = await context.Todos.FindAsync(1);
 
@@ -109,14 +116,14 @@ public class TodoInMemoryTests
     public async Task DeleteTodoDeletesTodoInDatabase()
     {
         //Arrange
-        var existingTodo = new Todo()
+        await using var context = new MockDb().CreateDbContext();
+
+        var existingTodo = new Todo
         {
             Id = 1,
             Title = "Exiting test title",
             IsDone = false
         };
-
-        await using var context = new MockDb().CreateDbContext();
 
         context.Todos.Add(existingTodo);
 
@@ -124,12 +131,9 @@ public class TodoInMemoryTests
 
         //Act
         var noContentResult = (NoContent)await TodoEndpointsV1.DeleteTodo(existingTodo.Id, context);
-        var notFoundResult = (NotFound)await TodoEndpointsV1.DeleteTodo(2, context);
 
         //Assert
         Assert.Equal(204, noContentResult.StatusCode);
         Assert.Empty(context.Todos);
-
-        Assert.Equal(404, notFoundResult.StatusCode);
     }
 }
