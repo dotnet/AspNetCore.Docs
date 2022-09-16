@@ -1,7 +1,7 @@
 #define FINAL // DEFAULT MINIMAL FINAL
 #if DEFAULT
-#region snippet_default
-#region snippet_swagger
+// <snippet_default> // Manual fix
+// <snippet_swagger>
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -17,7 +17,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-#endregion
+// </snippet_swagger>
 
 app.UseHttpsRedirection();
 
@@ -46,28 +46,29 @@ internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }
+// </snippet_default>
 #endregion
 #elif MINIMAL
-#region snippet_min
+// <snippet_min>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
-#endregion
+// </snippet_min>
 #elif FINAL
-#region snippet_all
+// <snippet_all>    // Manual fix
 using Microsoft.EntityFrameworkCore;
 
-#region snippet_DI
+// <snippet_DI>
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 var app = builder.Build();
-#endregion
+// </snippet_DI>
 
-#region snippet_get
+// <snippet_get>    // manual fix
 app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/todoitems", async (TodoDb db) =>
@@ -76,16 +77,16 @@ app.MapGet("/todoitems", async (TodoDb db) =>
 app.MapGet("/todoitems/complete", async (TodoDb db) =>
     await db.Todos.Where(t => t.IsComplete).ToListAsync());
 
-#region snippet_getCustom
+// <snippet_getCustom>
 app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
     await db.Todos.FindAsync(id)
         is Todo todo
             ? Results.Ok(todo)
             : Results.NotFound());
-#endregion
-#endregion
+// </snippet_getCustom>
+// </snippet_get>
 
-#region snippet_post
+// <snippet_post>
 app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
 {
     db.Todos.Add(todo);
@@ -93,9 +94,9 @@ app.MapPost("/todoitems", async (Todo todo, TodoDb db) =>
 
     return Results.Created($"/todoitems/{todo.Id}", todo);
 });
-#endregion
+// </snippet_post>
 
-#region snippet_put
+// <snippet_put>
 app.MapPut("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
 {
     var todo = await db.Todos.FindAsync(id);
@@ -109,9 +110,9 @@ app.MapPut("/todoitems/{id}", async (int id, Todo inputTodo, TodoDb db) =>
 
     return Results.NoContent();
 });
-#endregion
+// </snippet_put>
 
-#region snippet_delete
+// <snippet_delete>
 app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 {
     if (await db.Todos.FindAsync(id) is Todo todo)
@@ -123,20 +124,20 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 
     return Results.NotFound();
 });
-#endregion
+// </snippet_delete>
 
 app.Run();
 
-#region snippet_model
+// <snippet_model>
 class Todo
 {
     public int Id { get; set; }
     public string? Name { get; set; }
     public bool IsComplete { get; set; }
 }
-#endregion
+// </snippet_model>
 
-#region snippet_cntx
+// <snippet_cntx>
 class TodoDb : DbContext
 {
     public TodoDb(DbContextOptions<TodoDb> options)
@@ -144,6 +145,6 @@ class TodoDb : DbContext
 
     public DbSet<Todo> Todos => Set<Todo>();
 }
-#endregion
-#endregion
+// </snippet_cntx>
+// </snippet_all>
 #endif
