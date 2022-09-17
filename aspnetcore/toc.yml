@@ -869,7 +869,7 @@ items:
         uid: grpc/health-checks
       - name: Manage Protobuf references with dotnet-grpc
         uid: grpc/dotnet-grpc
-      - name: Test services with gRPCurl
+      - name: Test services with Postman and gRPCurl
         uid: grpc/test-tools
       - name: Migrate from C-core to gRPC for .NET
         uid: grpc/migration
