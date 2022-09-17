@@ -19,7 +19,7 @@ Tooling is available for gRPC that allows developers to test services without bu
 
 This article discusses how to:
 
-* Set up gRPC reflection with a gRPC ASP.NET Core app.
+* Set up gRPC server reflection with a gRPC ASP.NET Core app.
 * Interact with gRPC using test tools:
   * Call gRPC services in Postman.
   * Discover and test gRPC services with `grpcurl`.
@@ -54,7 +54,7 @@ When gRPC reflection is set up:
 
 ## Postman
 
-Postman is an API platform with many features. It supports calling gRPC services with an interactive UI.
+Postman is an API platform. It supports calling gRPC services with an interactive UI, among its many features.
 
 To download and install Postman, see the [Download Postman page](https://www.postman.com/downloads/).
 
@@ -62,10 +62,10 @@ To download and install Postman, see the [Download Postman page](https://www.pos
 
 Postman has an interactive UI for calling gRPC services. To call a gRPC service using Postman:
 
-1. Click the *New* button and choose *gRPC Request*.
-2. Enter the gRPC server's hostname and port in the server URL. For example, `localhost:5000`. Don't include the `http` or `https` scheme in the URL. If the server uses TLS, select the padlock next to the server URL to enable TLS in Postman.
-3. Select server reflection or import the app's proto file in the service definition section. When complete, the dropdown list next to the server URL textbox has a list of gRPC methods available.
-4. To call a gRPC method, select it in the dropdown, click *Generate Example Message*, then *Invoke* to send the gRPC call to the server.
+1. Select the **New** button and choose **gRPC Request**.
+2. Enter the gRPC server's hostname and port in the server URL. For example, `localhost:5000`. Don't include the `http` or `https` scheme in the URL. If the server uses [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246), select the padlock next to the server URL to enable TLS in Postman.
+3. Navigate to the **Service definition** section, then select server reflection or import the app's proto file. When complete, the dropdown list next to the server URL textbox has a list of gRPC methods available.
+4. To call a gRPC method, select it in the dropdown, select **Generate Example Message**, then select **Invoke** to send the gRPC call to the server.
 
 ![gRPC in Postman](~/grpc/test-tools/static/postman.png)
 
@@ -194,7 +194,7 @@ Tooling is available for gRPC that allows developers to test services without bu
 
 This article discusses how to:
 
-* Set up gRPC reflection with a gRPC ASP.NET Core app.
+* Set up gRPC server reflection with a gRPC ASP.NET Core app.
 * Interact with gRPC using test tools:
   * Call gRPC services in Postman.
   * Discover and test gRPC services with `grpcurl`.
@@ -229,7 +229,7 @@ When gRPC reflection is set up:
 
 ## Postman
 
-Postman is an API platform with many features. It supports calling gRPC services with an interactive UI.
+Postman is an API platform. It supports calling gRPC services with an interactive UI, among its many features.
 
 To download and install Postman, see the [Download Postman page](https://www.postman.com/downloads/).
 
@@ -237,10 +237,10 @@ To download and install Postman, see the [Download Postman page](https://www.pos
 
 Postman has an interactive UI for calling gRPC services. To call a gRPC service using Postman:
 
-1. Click the *New* button and choose *gRPC Request*.
-2. Enter the gRPC server's hostname and port in the server URL. For example, `localhost:5000`. Don't include the `http` or `https` scheme in the URL. If the server uses TLS, select the padlock next to the server URL to enable TLS in Postman.
-3. Select server reflection or import the app's proto file in the service definition section. When complete, the dropdown list next to the server URL textbox has a list of gRPC methods available.
-4. To call a gRPC method, select it in the dropdown, click *Generate Example Message*, then *Invoke* to send the gRPC call to the server.
+1. Select the **New** button and choose **gRPC Request**.
+2. Enter the gRPC server's hostname and port in the server URL. For example, `localhost:5000`. Don't include the `http` or `https` scheme in the URL. If the server uses [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246), select the padlock next to the server URL to enable TLS in Postman.
+3. Navigate to the **Service definition** section, then select server reflection or import the app's proto file. When complete, the dropdown list next to the server URL textbox has a list of gRPC methods available.
+4. To call a gRPC method, select it in the dropdown, select **Generate Example Message**, then select **Invoke** to send the gRPC call to the server.
 
 ![gRPC in Postman](~/grpc/test-tools/static/postman.png)
 
