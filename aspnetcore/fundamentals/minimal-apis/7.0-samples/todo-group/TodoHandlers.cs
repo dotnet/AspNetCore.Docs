@@ -1,8 +1,38 @@
 using Data;
 using Microsoft.EntityFrameworkCore;
 
-public class RouteHandlers
+public static class TodosApi
 {
+    public static RouteGroupBuilder MapTodosApi(this RouteGroupBuilder group)
+    {
+        group.MapGet("/", GetAllTodos);
+
+        group.MapGet("/{id}", GetTodo);
+
+        group.MapPost("/", CreateTodo).AddEndpointFilter(async (context, next) =>
+        {
+            // log time taken to process
+            var start = DateTime.Now;
+            var result = await next(context);
+            var end = DateTime.Now;
+            context.HttpContext.RequestServices.GetRequiredService<ILogger>().LogInformation($"{context.HttpContext.Request.Path.Value} took {(end - start).TotalMilliseconds}ms");
+            return result;
+        });
+
+        group.MapPut("/{id}", UpdateTodo).AddEndpointFilter(async (context, next) =>
+        {
+            // log time taken to process
+            var start = DateTime.Now;
+            var result = await next(context);
+            var end = DateTime.Now;
+            context.HttpContext.RequestServices.GetRequiredService<ILogger>().LogInformation($"{context.HttpContext.Request.Path.Value} took {(end - start).TotalMilliseconds}ms");
+            return result;
+        });
+
+        group.MapDelete("/{id}", DeleteTodo);
+        return group;
+    }
+
     // get all todos
     public static async Task<IResult> GetAllTodos(TodoGroupDbContext database)
     {
