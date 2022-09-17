@@ -12,8 +12,8 @@ public class TodoMoqTests
     public async Task GetTodoReturnsNotFoundIfNotExists()
     {
         // Arrange
-        var mock = new Mock<ITodoService>(); 
-        
+        var mock = new Mock<ITodoService>();
+
         mock.Setup(m => m.Find(It.Is<int>(id => id == 404)))
             .ReturnsAsync((Todo?)null);
 
@@ -22,6 +22,92 @@ public class TodoMoqTests
 
         //Assert
         Assert.Equal(404, notFoundResult.StatusCode);
+    }
+
+    [Fact]
+    public async Task GetAllReturnsTodosFromDatabase()
+    {
+        // Arrange
+        var mock = new Mock<ITodoService>();
+
+        mock.Setup(m => m.GetAll())
+            .ReturnsAsync(new List<Todo> {
+                new Todo
+                {
+                    Id = 1,
+                    Title = "Test title 1",
+                    IsDone = false
+                },
+                new Todo
+                {
+                    Id = 2,
+                    Title = "Test title 2",
+                    IsDone = true
+                }
+            });
+
+        // Act
+        var okResult = (Ok<List<Todo>>)await TodoEndpointsV2.GetAllTodos(mock.Object);
+
+        //Assert
+        Assert.Equal(200, okResult.StatusCode);
+        var foundTodos = Assert.IsAssignableFrom<List<Todo>>(okResult.Value);
+
+        Assert.NotEmpty(foundTodos);
+        Assert.Collection(foundTodos, todo1 =>
+        {
+            Assert.Equal(1, todo1.Id);
+            Assert.Equal("Test title 1", todo1.Title);
+            Assert.False(todo1.IsDone);
+        }, todo2 =>
+        {
+            Assert.Equal(2, todo2.Id);
+            Assert.Equal("Test title 2", todo2.Title);
+            Assert.True(todo2.IsDone);
+        });
+    }
+
+    [Fact]
+    public async Task GetAllIncompletedReturnsIncompletedTodosFromDatabase()
+    {
+        // Arrange
+        var mock = new Mock<ITodoService>();
+
+        mock.Setup(m => m.GetIncompleteTodos())
+            .ReturnsAsync(new List<Todo> {
+                new Todo
+                {
+                    Id = 1,
+                    Title = "Test title 1",
+                    IsDone = false
+                },
+                new Todo
+                {
+                    Id = 2,
+                    Title = "Test title 2",
+                    IsDone = false
+                }
+            });
+
+        // Act
+        var okResult = (Ok<List<Todo>>)await TodoEndpointsV2.GetAllIncompletedTodos(mock.Object);
+
+        //Assert
+        Assert.Equal(200, okResult.StatusCode);
+        var foundTodos = Assert.IsAssignableFrom<List<Todo>>(okResult.Value);
+
+        Assert.NotEmpty(foundTodos);
+        Assert.Collection(foundTodos, todo1 =>
+        {
+            Assert.Equal(1, todo1.Id);
+            Assert.Equal("Test title 1", todo1.Title);
+            Assert.False(todo1.IsDone);
+        }, todo2 =>
+        {
+            Assert.Equal(2, todo2.Id);
+            Assert.Equal("Test title 2", todo2.Title);
+            Assert.False(todo2.IsDone);
+        });
     }
 
     [Fact]

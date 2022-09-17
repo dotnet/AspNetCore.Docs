@@ -21,6 +21,51 @@ public class TodoInMemoryTests
     }
 
     [Fact]
+    public async Task GetAllReturnsTodosFromDatabase()
+    {
+        // Arrange
+        await using var context = new MockDb().CreateDbContext();
+
+        context.Todos.Add(new Todo
+        {
+            Id = 1,
+            Title = "Test title 1",
+            Description = "Test description 1",
+            IsDone = false
+        });
+
+        context.Todos.Add(new Todo
+        {
+            Id = 2,
+            Title = "Test title 2",
+            Description = "Test description 2",
+            IsDone = true
+        });
+
+        await context.SaveChangesAsync();
+
+        // Act
+        var okResult = (Ok<List<Todo>>)await TodoEndpointsV1.GetAllTodos(context);
+
+        //Assert
+        Assert.Equal(200, okResult.StatusCode);
+        var foundTodos = Assert.IsAssignableFrom<List<Todo>>(okResult.Value);
+
+        Assert.NotEmpty(foundTodos);
+        Assert.Collection(foundTodos, todo1 =>
+        {
+            Assert.Equal("Test title 1", todo1.Title);
+            Assert.Equal("Test description 1", todo1.Description);
+            Assert.False(todo1.IsDone);
+        }, todo2 =>
+        {
+            Assert.Equal("Test title 2", todo2.Title);
+            Assert.Equal("Test description 2", todo2.Description);
+            Assert.True(todo2.IsDone);
+        });
+    }
+
+    [Fact]
     public async Task GetTodoReturnsTodoFromDatabase()
     {
         // Arrange
