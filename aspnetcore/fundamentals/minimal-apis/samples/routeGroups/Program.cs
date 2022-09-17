@@ -25,7 +25,7 @@ if (app.Environment.IsDevelopment())
 app.MapGet("/", () => "Hello World!");
 
 // todo endpoints
-app.MapGroup("/todos").MapTodosApi().WithTags("Todo Endpoints").AddEndpointFilter(async (context, next) =>
+app.MapGroup("public/todos").MapTodosApi().WithTags("Todo Endpoints").AddEndpointFilter(async (context, next) =>
 {
     app.Logger.LogInformation("Accessing todo endpoints");
     return await next(context);
