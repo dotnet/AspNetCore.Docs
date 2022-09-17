@@ -13,7 +13,7 @@ public static class Utilities
             errors.TryAdd("todo.name.errors", new[] { "Name is empty" });
         }
 
-        if (td.Title!.Length < 3)
+        if (td.Title.Length < 3)
         {
             errors.TryAdd("todo.name.errors", new[] { "Name length < 3" });
         }
