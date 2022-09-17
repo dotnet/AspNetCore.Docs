@@ -165,7 +165,7 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Slect **File** > **New Solution** > **Web and Console** > **App** from the sidebar.
+1. Select **File** > **New Solution** > **Web and Console** > **App** from the sidebar.
 1. Select the **ASP.NET Core** > **API** C# project template, and select **Next**.
 1. Select **.NET 6.0** from the **Target Framework** drop-down list, and select **Next**.
 1. Enter *BookStoreApi* for the **Project Name**, and select **Create**.
@@ -334,7 +334,7 @@ To satisfy the preceding requirements, make the following changes:
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples) ([how to download](xref:index#how-to-download-a-sample))
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>
-* [Microsoft Learn: Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)
+* [Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)
 
 :::moniker-end
 
@@ -697,6 +697,6 @@ For more information on building ASP.NET Core web APIs, see the following resour
 * [YouTube version of this article](https://www.youtube.com/watch?v=7uJt_sOenyo&feature=youtu.be)
 * <xref:web-api/index>
 * <xref:web-api/action-return-types>
-* [Microsoft Learn: Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)
+* [Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)
 
 :::moniker-end

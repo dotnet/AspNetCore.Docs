@@ -42,13 +42,13 @@ The following example:
 * [Injects](xref:blazor/fundamentals/dependency-injection) an <xref:Microsoft.Extensions.Logging.ILogger> (`ILogger<Counter>`) object to create a logger. The log's *category* is the fully qualified name of the component's type, `Counter`.
 * Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> to log at the <xref:Microsoft.Extensions.Logging.LogLevel.Warning> level.
 
-`Pages/Counter.razor`:
+`Pages/Counter1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/logging/Counter1.razor" highlight="2,15":::
 
 The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILoggerFactory> in components.
 
-`Pages/Counter.razor`:
+`Pages/Counter2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/logging/Counter2.razor" highlight="2,15-16":::
 
@@ -477,7 +477,7 @@ builder.Logging.AddConfiguration(
 
 The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfigurationExtensions.AddConfiguration%2A?displayProperty=nameWithType> can be placed either before or after adding the custom logger provider.
 
-Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
+Run the app again. Select the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
 
 > :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::  
 > :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
@@ -581,13 +581,13 @@ The following example:
 * Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> to log at the <xref:Microsoft.Extensions.Logging.LogLevel.Warning> level.
 * Doesn't require additional setup in the app in order to log to the browser's [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) console.
 
-`Pages/Counter.razor`:
+`Pages/Counter1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/logging/Counter1.razor" highlight="3,16":::
 
 The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILoggerFactory> in components.
 
-`Pages/Counter.razor`:
+`Pages/Counter2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/logging/Counter2.razor" highlight="3,16-17":::
 
@@ -847,7 +847,7 @@ builder.Logging.AddConfiguration(
 
 The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfigurationExtensions.AddConfiguration%2A?displayProperty=nameWithType> can be placed either before or after adding the custom logger provider.
 
-Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
+Run the app again. Select the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
 
 > :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::  
 > :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
@@ -906,13 +906,13 @@ The following example:
 * Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> to log at the <xref:Microsoft.Extensions.Logging.LogLevel.Warning> level.
 * Doesn't require additional setup in the app in order to log to the browser's [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) console.
 
-`Pages/Counter.razor`:
+`Pages/Counter1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/logging/Counter1.razor" highlight="3,16":::
 
 The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILoggerFactory> in components.
 
-`Pages/Counter.razor`:
+`Pages/Counter2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/logging/Counter2.razor" highlight="3,16-17":::
 
@@ -1172,7 +1172,7 @@ builder.Logging.AddConfiguration(
 
 The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfigurationExtensions.AddConfiguration%2A?displayProperty=nameWithType> can be placed either before or after adding the custom logger provider.
 
-Run the app again. Select the the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
+Run the app again. Select the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
 
 > :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::  
 > :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
@@ -1237,13 +1237,13 @@ The following example:
 * [Injects](xref:blazor/fundamentals/dependency-injection) an <xref:Microsoft.Extensions.Logging.ILogger> (`ILogger<Counter>`) object to create a logger. The log's *category* is the fully qualified name of the component's type, `Counter`.
 * Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> to log at the <xref:Microsoft.Extensions.Logging.LogLevel.Warning> level.
 
-`Pages/Counter.razor`:
+`Pages/Counter1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/logging/Counter1.razor" highlight="2,15":::
 
 The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILoggerFactory> in components.
 
-`Pages/Counter.razor`:
+`Pages/Counter2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/logging/Counter2.razor" highlight="2,15-16":::
 

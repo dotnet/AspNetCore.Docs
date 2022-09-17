@@ -18,17 +18,17 @@ Cross-site request forgery (also known as XSRF or CSRF) is an attack against web
 
 An example of a CSRF attack:
 
-1. A user signs into `www.good-banking-site.com` using forms authentication. The server authenticates the user and issues a response that includes an authentication cookie. The site is vulnerable to attack because it trusts any request that it receives with a valid authentication cookie.
-1. The user visits a malicious site, `www.bad-crook-site.com`.
+1. A user signs into `www.good-banking-site.example.com` using forms authentication. The server authenticates the user and issues a response that includes an authentication cookie. The site is vulnerable to attack because it trusts any request that it receives with a valid authentication cookie.
+1. The user visits a malicious site, `www.bad-crook-site.example.com`.
 
-   The malicious site, `www.bad-crook-site.com`, contains an HTML form similar to the following example:
+   The malicious site, `www.bad-crook-site.example.com`, contains an HTML form similar to the following example:
 
    :::code language="html" source="anti-request-forgery/samples_snapshot/vulnerable-form.html":::
 
    Notice that the form's `action` posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
 
-1. The user selects the submit button. The browser makes the request and automatically includes the authentication cookie for the requested domain, `www.good-banking-site.com`.
-1. The request runs on the `www.good-banking-site.com` server with the user's authentication context and can perform any action that an authenticated user is allowed to perform.
+1. The user selects the submit button. The browser makes the request and automatically includes the authentication cookie for the requested domain, `www.good-banking-site.example.com`.
+1. The request runs on the `www.good-banking-site.example.com` server with the user's authentication context and can perform any action that an authenticated user is allowed to perform.
 
 In addition to the scenario where the user selects the button to submit the form, the malicious site could:
 
@@ -78,6 +78,8 @@ Shared hosting environments are vulnerable to session hijacking, login CSRF, and
 Although `example1.contoso.net` and `example2.contoso.net` are different hosts, there's an implicit trust relationship between hosts under the `*.contoso.net` domain. This implicit trust relationship allows potentially untrusted hosts to affect each other's cookies (the same-origin policies that govern AJAX requests don't necessarily apply to HTTP cookies).
 
 Attacks that exploit trusted cookies between apps hosted on the same domain can be prevented by not sharing domains. When each app is hosted on its own domain, there's no implicit cookie trust relationship to exploit.
+
+<a name="anti7"></a>
 
 ## Antiforgery in ASP.NET Core
 
@@ -253,6 +255,8 @@ The following example uses JavaScript to make an AJAX request to obtain the toke
 
 :::code language="javascript" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Index.js" highlight="1,15":::
 
+<a name="antimin7"></a>
+
 ### Antiforgery with Minimal APIs
 
 `Minimal APIs` do not support the usage of the included filters (`ValidateAntiForgeryToken`, `AutoValidateAntiforgeryToken`, `IgnoreAntiforgeryToken`), however, <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> provides the required APIs to validate a request.
@@ -285,17 +289,17 @@ Cross-site request forgery (also known as XSRF or CSRF) is an attack against web
 
 An example of a CSRF attack:
 
-1. A user signs into `www.good-banking-site.com` using forms authentication. The server authenticates the user and issues a response that includes an authentication cookie. The site is vulnerable to attack because it trusts any request that it receives with a valid authentication cookie.
-1. The user visits a malicious site, `www.bad-crook-site.com`.
+1. A user signs into `www.good-banking-site.example.com` using forms authentication. The server authenticates the user and issues a response that includes an authentication cookie. The site is vulnerable to attack because it trusts any request that it receives with a valid authentication cookie.
+1. The user visits a malicious site, `www.bad-crook-site.example.com`.
 
-   The malicious site, `www.bad-crook-site.com`, contains an HTML form similar to the following example:
+   The malicious site, `www.bad-crook-site.example.com`, contains an HTML form similar to the following example:
 
    :::code language="html" source="anti-request-forgery/samples_snapshot/vulnerable-form.html":::
 
    Notice that the form's `action` posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
 
-1. The user selects the submit button. The browser makes the request and automatically includes the authentication cookie for the requested domain, `www.good-banking-site.com`.
-1. The request runs on the `www.good-banking-site.com` server with the user's authentication context and can perform any action that an authenticated user is allowed to perform.
+1. The user selects the submit button. The browser makes the request and automatically includes the authentication cookie for the requested domain, `www.good-banking-site.example.com`.
+1. The request runs on the `www.good-banking-site.example.com` server with the user's authentication context and can perform any action that an authenticated user is allowed to perform.
 
 In addition to the scenario where the user selects the button to submit the form, the malicious site could:
 
@@ -515,7 +519,7 @@ The following example adds a protected endpoint that will write the request toke
 
 The following example uses JavaScript to make an AJAX request to obtain the token and make another request with the appropriate header:
 
-:::code language="csharp" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Index.js" highlight="1,15":::
+:::code language="javascript" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Index.js" highlight="1,15":::
 
 ## Windows authentication and antiforgery cookies
 
@@ -537,17 +541,17 @@ Cross-site request forgery (also known as XSRF or CSRF) is an attack against web
 
 An example of a CSRF attack:
 
-1. A user signs into `www.good-banking-site.com` using forms authentication. The server authenticates the user and issues a response that includes an authentication cookie. The site is vulnerable to attack because it trusts any request that it receives with a valid authentication cookie.
-1. The user visits a malicious site, `www.bad-crook-site.com`.
+1. A user signs into `www.good-banking-site.example.com` using forms authentication. The server authenticates the user and issues a response that includes an authentication cookie. The site is vulnerable to attack because it trusts any request that it receives with a valid authentication cookie.
+1. The user visits a malicious site, `www.bad-crook-site.example.com`.
 
-   The malicious site, `www.bad-crook-site.com`, contains an HTML form similar to the following example:
+   The malicious site, `www.bad-crook-site.example.com`, contains an HTML form similar to the following example:
 
    :::code language="html" source="anti-request-forgery/samples_snapshot/vulnerable-form.html":::
 
    Notice that the form's `action` posts to the vulnerable site, not to the malicious site. This is the "cross-site" part of CSRF.
 
-1. The user selects the submit button. The browser makes the request and automatically includes the authentication cookie for the requested domain, `www.good-banking-site.com`.
-1. The request runs on the `www.good-banking-site.com` server with the user's authentication context and can perform any action that an authenticated user is allowed to perform.
+1. The user selects the submit button. The browser makes the request and automatically includes the authentication cookie for the requested domain, `www.good-banking-site.example.com`.
+1. The request runs on the `www.good-banking-site.example.com` server with the user's authentication context and can perform any action that an authenticated user is allowed to perform.
 
 In addition to the scenario where the user selects the button to submit the form, the malicious site could:
 

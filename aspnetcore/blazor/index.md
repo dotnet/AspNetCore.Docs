@@ -191,5 +191,5 @@ APIs that aren't applicable inside of a web browser (for example, accessing the 
 * [C# Guide](/dotnet/csharp/)
 * <xref:mvc/views/razor>
 * [HTML](https://www.w3.org/html/)
-* [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor) community links
+* [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor) (Links to community-maintained Blazor resources)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)

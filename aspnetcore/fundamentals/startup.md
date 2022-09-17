@@ -10,9 +10,28 @@ uid: fundamentals/startup
 ---
 # App startup in ASP.NET Core
 
-By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-7.0"
+
+ASP.NET Core apps created with the web templates contain the application startup code in the `Program.cs` file.
+
+The following app startup code supports:
+
+* [Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+* [MVC controllers with views](xref:tutorials/first-mvc-app/start-mvc)
+* [Web API with controllers](xref:tutorials/first-web-api)
+* [Minimal APIs](xref:tutorials/min-web-api)
+
+[!code-csharp[](~/fundamentals/startup/6.0_samples/WebAll/Program.cs?name=snippet)]
+
+Apps using [EventSource](/dotnet/api/system.diagnostics.tracing.eventsource) can measure the startup time to understand and optimize startup performance. The [`ServerReady`](https://source.dot.net/#Microsoft.AspNetCore.Hosting/Internal/HostingEventSource.cs,76) event in <xref:Microsoft.AspNetCore.Hosting?displayProperty=fullName> represents the point where the server is ready to respond to requests.
+
+For more information on application startup, see <xref:fundamentals/index>.
+
+:::moniker-end
+
+:::moniker range="= aspnetcore-6.0"
 
 ASP.NET Core apps created with the web templates contain the application startup code in the `Program.cs` file.
 

@@ -237,7 +237,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ## Custom dependency injection (DI) container
 
-The following .NET 5 and .NET 6 samples use [Autofac](https://autofac.readthedocs.io/latest/integration/aspnetcore.html)
+The following .NET 5 and .NET 6 samples use [Autofac](https://docs.autofac.org/en/latest/integration/aspnetcore.html)
 
 ### ASP.NET Core 5
 

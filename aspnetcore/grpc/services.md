@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to create gRPC services and methods.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 08/25/2020
+ms.date: 08/18/2022
 uid: grpc/services
 ---
 # Create gRPC services and methods
@@ -123,7 +123,7 @@ Each call type has a different method signature. Overriding generated methods fr
 
 ### Unary method
 
-A unary method gets the request message as a parameter, and returns the response. A unary call is complete when the response is returned.
+A unary method has the request message as a parameter, and returns the response. A unary call is complete when the response is returned.
 
 ```csharp
 public override Task<ExampleResponse> UnaryCall(ExampleRequest request,
@@ -146,7 +146,7 @@ message ExampleRequest {
 
 ### Server streaming method
 
-A server streaming method gets the request message as a parameter. Because multiple messages can be streamed back to the caller, `responseStream.WriteAsync` is used to send response messages. A server streaming call is complete when the method returns.
+A server streaming method has the request message as a parameter. Because multiple messages can be streamed back to the caller, `responseStream.WriteAsync` is used to send response messages. A server streaming call is complete when the method returns.
 
 ```csharp
 public override async Task StreamingFromServer(ExampleRequest request,
@@ -265,6 +265,106 @@ public override Task<ExampleResponse> UnaryCall(ExampleRequest request, ServerCa
     // ...
 
     return Task.FromResult(new ExampleResponse());
+}
+```
+
+## Multi-threading with gRPC streaming methods
+
+There are important considerations to implementing gRPC streaming methods that use multiple threads.
+
+### Reader and writer thread safety
+
+`IAsyncStreamReader<TMessage>` and `IServerStreamWriter<TMessage>` can each be used by only one thread at a time. For a streaming gRPC method, multiple threads can't read new messages with `requestStream.MoveNext()` simultaneously. And multiple threads can't write new messages with `responseStream.WriteAsync(message)` simultaneously.
+
+A safe way to enable multiple threads to interact with a gRPC method is to use the producer-consumer pattern with [System.Threading.Channels](/dotnet/core/extensions/channels).
+
+```csharp
+public override async Task DownloadResults(DataRequest request,
+    IServerStreamWriter<DataResult> responseStream, ServerCallContext context)
+{
+    var channel = Channel.CreateBounded<DataResult>(new BoundedChannelOptions(capacity: 5));
+
+    var consumerTask = Task.Run(async () =>
+    {
+        // Consume messages from channel and write to response stream.
+        await foreach (var message in channel.Reader.ReadAllAsync())
+        {
+            await responseStream.WriteAsync(message);
+        }
+    });
+
+    var dataChunks = request.Value.Chunk(size: 10);
+
+    // Write messages to channel from multiple threads.
+    await Task.WhenAll(dataChunks.Select(
+        async c =>
+        {
+            var message = new DataResult { BytesProcessed = c.Length };
+            await channel.Writer.WriteAsync(message);
+        }));
+
+    // Complete writing and wait for consumer to complete.
+    channel.Writer.Complete();
+    await consumerTask;
+}
+```
+
+The preceding gRPC server streaming method:
+
+* Creates a bounded channel for producing and consuming `DataResult` messages.
+* Starts a task to read messages from the channel and write them to the response stream.
+* Writes messages to the channel from multiple threads.
+
+> [!NOTE]
+> Bidirectional streaming methods take `IAsyncStreamReader<TMessage>` and `IServerStreamWriter<TMessage>` as arguments. It's safe to use these types on separate threads from each other.
+
+### Interacting with a gRPC method after a call ends
+
+A gRPC call ends on the server once the gRPC method exits. The following arguments passed to gRPC methods aren't safe to use after the call has ended:
+
+* `ServerCallContext`
+* `IAsyncStreamReader<TMessage>`
+* `IServerStreamWriter<TMessage>`
+
+If a gRPC method starts background tasks that use these types, it must complete the tasks before the gRPC method exits. Continuing to use the context, stream reader, or stream writer after the gRPC method exists causes errors and unpredictable behavior.
+
+In the following example, the server streaming method could write to the response stream after the call has finished:
+
+```csharp
+public override async Task StreamingFromServer(ExampleRequest request,
+    IServerStreamWriter<ExampleResponse> responseStream, ServerCallContext context)
+{
+    _ = Task.Run(async () =>
+    {
+        for (var i = 0; i < 5; i++)
+        {
+            await responseStream.WriteAsync(new ExampleResponse());
+            await Task.Delay(TimeSpan.FromSeconds(1));
+        }
+    });
+
+    await PerformLongRunningWorkAsync();
+}
+```
+
+For the previous example, the solution is to await the write task before exiting the method:
+
+```csharp
+public override async Task StreamingFromServer(ExampleRequest request,
+    IServerStreamWriter<ExampleResponse> responseStream, ServerCallContext context)
+{
+    var writeTask = Task.Run(async () =>
+    {
+        for (var i = 0; i < 5; i++)
+        {
+            await responseStream.WriteAsync(new ExampleResponse());
+            await Task.Delay(TimeSpan.FromSeconds(1));
+        }
+    });
+
+    await PerformLongRunningWorkAsync();
+
+    await writeTask;
 }
 ```
 

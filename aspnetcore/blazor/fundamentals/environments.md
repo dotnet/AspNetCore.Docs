@@ -16,6 +16,8 @@ This article explains [ASP.NET Core environments](xref:fundamentals/environments
 
 > [!IMPORTANT]
 > This topic applies to Blazor WebAssembly. For general guidance on ASP.NET Core app configuration, which describes the approaches to use for Blazor Server apps, see <xref:fundamentals/environments>.
+>
+> For Blazor Server app configuration for static files in environments other than the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment during development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), see <xref:blazor/fundamentals/static-files#static-files-in-non-development-environments-for-blazor-server-apps>.
 
 When running an app locally, the environment defaults to `Development`. When the app is published, the environment defaults to `Production`.
 
@@ -25,7 +27,7 @@ The environment is set using any of the following approaches:
 * [`Blazor-Environment` header](#set-the-environment-via-header)
 * [Azure App Service](#set-the-environment-for-azure-app-service)
 
-The client-side Blazor app (**`Client`**) of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) determines the environment from the **`Server`** app of the solution via a middleware that communicates the environment to the browser. The **`Server`** app adds a header named `Blazor-Environment` with the environment as the value of the header. The **`Client`** app reads the header. The **`Server`** app of the solution is an ASP.NET Core app, so more information on how to configure the environment is found in <xref:fundamentals/environments>.
+The client-side Blazor app (**`Client`**) of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) determines the environment from the **`Server`** app of the solution via a middleware that communicates the environment to the browser. The **`Server`** app adds a header named `Blazor-Environment` with the environment as the value of the header. The **`Client`** app reads the header and sets the environment when the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost> is created in `Program.cs` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>). The **`Server`** app of the solution is an ASP.NET Core app, so more information on how to configure the environment is found in <xref:fundamentals/environments>.
 
 For a standalone Blazor WebAssembly app running locally, the development server adds the `Blazor-Environment` header to specify the `Development` environment.
 
@@ -154,6 +156,8 @@ The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEn
 
 > [!NOTE]
 > This topic applies to Blazor WebAssembly. For general guidance on ASP.NET Core app configuration, which describes the approaches to use for Blazor Server apps, see <xref:fundamentals/environments>.
+>
+> For Blazor Server app configuration for static files in environments other than the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment during development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), see <xref:blazor/fundamentals/static-files#static-files-in-non-development-environments-for-blazor-server-apps>.
 
 When running an app locally, the environment defaults to `Development`. When the app is published, the environment defaults to `Production`.
 
@@ -163,7 +167,7 @@ The environment is set using any of the following approaches:
 * [`Blazor-Environment` header](#set-the-environment-via-header)
 * [Azure App Service](#set-the-environment-for-azure-app-service)
 
-The client-side Blazor app (**`Client`**) of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) determines the environment from the **`Server`** app of the solution via a middleware that communicates the environment to the browser. The **`Server`** app adds a header named `Blazor-Environment` with the environment as the value of the header. The **`Client`** app reads the header. The **`Server`** app of the solution is an ASP.NET Core app, so more information on how to configure the environment is found in <xref:fundamentals/environments>.
+The client-side Blazor app (**`Client`**) of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) determines the environment from the **`Server`** app of the solution via a middleware that communicates the environment to the browser. The **`Server`** app adds a header named `Blazor-Environment` with the environment as the value of the header. The **`Client`** app reads the header and sets the environment when the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost> is created in `Program.cs` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>). The **`Server`** app of the solution is an ASP.NET Core app, so more information on how to configure the environment is found in <xref:fundamentals/environments>.
 
 For a standalone Blazor WebAssembly app running locally, the development server adds the `Blazor-Environment` header to specify the `Development` environment.
 
@@ -295,7 +299,7 @@ The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEn
 
 When running an app locally, the environment defaults to `Development`. When the app is published, the environment defaults to `Production`.
 
-The client-side Blazor app (**`Client`**) of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) determines the environment from the **`Server`** app of the solution via a middleware that communicates the environment to the browser. The **`Server`** app adds a header named `Blazor-Environment` with the environment as the value of the header. The **`Client`** app reads the header. The **`Server`** app of the solution is an ASP.NET Core app, so more information on how to configure the environment is found in <xref:fundamentals/environments>.
+The client-side Blazor app (**`Client`**) of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) determines the environment from the **`Server`** app of the solution via a middleware that communicates the environment to the browser. The **`Server`** app adds a header named `Blazor-Environment` with the environment as the value of the header. The **`Client`** app reads the header and sets the environment when the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost> is created in `Program.cs` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>). The **`Server`** app of the solution is an ASP.NET Core app, so more information on how to configure the environment is found in <xref:fundamentals/environments>.
 
 For a standalone Blazor WebAssembly app running locally, the development server adds the `Blazor-Environment` header to specify the `Development` environment.
 
@@ -403,6 +407,8 @@ The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEn
 
 > [!IMPORTANT]
 > This topic applies to Blazor WebAssembly. For general guidance on ASP.NET Core app configuration, which describes the approaches to use for Blazor Server apps, see <xref:fundamentals/environments>.
+>
+> For Blazor Server app configuration for static files in environments other than the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment during development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), see <xref:blazor/fundamentals/static-files#static-files-in-non-development-environments-for-blazor-server-apps>.
 
 When running an app locally, the environment defaults to `Development`. When the app is published, the environment defaults to `Production`.
 
@@ -412,7 +418,7 @@ The environment is set using any of the following approaches:
 * [`Blazor-Environment` header](#set-the-environment-via-header)
 * [Azure App Service](#set-the-environment-for-azure-app-service)
 
-The client-side Blazor app (**`Client`**) of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) determines the environment from the **`Server`** app of the solution via a middleware that communicates the environment to the browser. The **`Server`** app adds a header named `Blazor-Environment` with the environment as the value of the header. The **`Client`** app reads the header. The **`Server`** app of the solution is an ASP.NET Core app, so more information on how to configure the environment is found in <xref:fundamentals/environments>.
+The client-side Blazor app (**`Client`**) of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) determines the environment from the **`Server`** app of the solution via a middleware that communicates the environment to the browser. The **`Server`** app adds a header named `Blazor-Environment` with the environment as the value of the header. The **`Client`** app reads the header and sets the environment when the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost> is created in `Program.cs` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.CreateDefault%2A?displayProperty=nameWithType>). The **`Server`** app of the solution is an ASP.NET Core app, so more information on how to configure the environment is found in <xref:fundamentals/environments>.
 
 For a standalone Blazor WebAssembly app running locally, the development server adds the `Blazor-Environment` header to specify the `Development` environment.
 

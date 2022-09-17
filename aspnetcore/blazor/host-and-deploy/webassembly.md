@@ -175,6 +175,73 @@ For more information, see the following articles:
 * Deployment to Azure App Service: <xref:tutorials/publish-to-azure-webapp-using-vs>
 * Blazor project templates: <xref:blazor/project-structure>
 
+## Hosted deployment of a framework-dependent executable for a specific platform
+
+To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained) use the following guidance based on the tooling in use.
+
+### Visual Studio
+
+By default, a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment is configured for a generated publish profile (`.pubxml`). Confirm that the **`Server`** project's publish profile contains the `<SelfContained>` MSBuild property set to `false`.
+
+In the `.pubxml` publish profile file in the **`Server`** project's `Properties` folder:
+
+```xml
+<SelfContained>false</SelfContained>
+```
+
+Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using the **Target Runtime** setting in the **Settings** area of the **Publish** UI, which generates the `<RuntimeIdentifier>` MSBuild property in the publish profile:
+  
+```xml
+<RuntimeIdentifier>{RID}</RuntimeIdentifier>
+```
+
+In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
+
+Publish the **`Server`** project in the **Release** configuration.
+
+> [!NOTE]
+> It's possible to publish an app with publish profile settings using the .NET CLI by passing `/p:PublishProfile={PROFILE}` to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish), where the `{PROFILE}` placeholder is the profile. For more information, see the *Publish profiles* and *Folder publish example* sections in the <xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles> article. If you pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) and not in the publish profile, use the MSBuild property (`/p:RuntimeIdentifier`) with the command, ***not*** with the `-r|--runtime` option.
+
+### .NET CLI
+
+Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in a `<PropertyGroup>` in the **`Server`** project's project file set to `false`:
+
+```xml
+<SelfContained>false</SelfContained>
+```
+
+> [!IMPORTANT]
+> The `SelfContained` property must be placed in the **`Server`** project's project file. The property can't be set correctly with the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) using the `--no-self-contained` option or the MSBuild property `/p:SelfContained=false`.
+  
+Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** of the following approaches:
+
+* Option 1: Set the RID in a `<PropertyGroup>` in the **`Server`** project's project file:
+  
+  ```xml
+  <RuntimeIdentifier>{RID}</RuntimeIdentifier>
+  ```
+    
+  In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
+  
+  Publish the app in the Release configuration from the **`Server`** project:
+    
+  ```dotnetcli
+   dotnet publish -c Release
+  ```
+
+* Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option:
+  
+  ```dotnetcli
+  dotnet publish -c Release /p:RuntimeIdentifier={RID}
+  ```
+    
+  In the preceding command, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
+
+For more information, see the following articles:
+
+* [.NET application publishing overview](/dotnet/core/deploying/)
+* <xref:host-and-deploy/index>
+
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
 For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
@@ -397,10 +464,14 @@ For more information, see [`mod_mime`](https://httpd.apache.org/docs/2.4/mod/mod
 
 ### GitHub Pages
 
+The default GitHub Action, which deploys pages, skips deployment of folders starting with underscore, for example, the `_framework` folder. To deploy folders starting with underscore, add an empty `.nojekyll` file to the Git branch.
+
+Git treats JavaScript (JS) files, such as `blazor.webassembly.js`, as text and converts line endings from CRLF (carriage return-line feed) to LF (line feed) in the deployment pipeline. These changes to JS files produce different file hashes than Blazor sends to the client in the `blazor.boot.json` file. The mismatches result in integrity check failures on the client. One approach to solving this problem is to add a `.gitattributes` file with `*.js binary` line before adding the app's assets to the Git branch. The `*.js binary` line configures Git to treat JS files as binary files, which avoids processing the files in the deployment pipeline. The file hashes of the unprocessed files match the entries in the `blazor.boot.json` file, and client-side integrity checks pass. For more information, see the [Resolve integrity check failures](#resolve-integrity-check-failures) section.
+
 To handle URL rewrites, add a `wwwroot/404.html` file with a script that handles redirecting the request to the `index.html` page. For an example, see the [SteveSandersonMS/BlazorOnGitHubPages GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages):
 
 * [`wwwroot/404.html`](https://github.com/SteveSandersonMS/BlazorOnGitHubPages/blob/master/wwwroot/404.html)
-* [Live site](https://stevesandersonms.github.io/BlazorOnGitHubPages/))
+* [Live site](https://stevesandersonms.github.io/BlazorOnGitHubPages/)
 
 When using a project site instead of an organization site, update the `<base>` tag in `wwwroot/index.html`. Set the `href` attribute value to the GitHub repository name with a trailing slash (for example, `/my-repository/`). In the [SteveSandersonMS/BlazorOnGitHubPages GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages), the base `href` is updated at publish by the [`.github/workflows/main.yml` configuration file](https://github.com/SteveSandersonMS/BlazorOnGitHubPages/blob/master/.github/workflows/main.yml).
 
@@ -975,6 +1046,73 @@ For more information, see the following articles:
 * Deployment to Azure App Service: <xref:tutorials/publish-to-azure-webapp-using-vs>
 * Blazor project templates: <xref:blazor/project-structure>
 
+## Hosted deployment of a framework-dependent executable for a specific platform
+
+To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained) use the following guidance based on the tooling in use.
+
+### Visual Studio
+
+By default, a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment is configured for a generated publish profile (`.pubxml`). Confirm that the **`Server`** project's publish profile contains the `<SelfContained>` MSBuild property set to `false`.
+
+In the `.pubxml` publish profile file in the **`Server`** project's `Properties` folder:
+
+```xml
+<SelfContained>false</SelfContained>
+```
+
+Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using the **Target Runtime** setting in the **Settings** area of the **Publish** UI, which generates the `<RuntimeIdentifier>` MSBuild property in the publish profile:
+  
+```xml
+<RuntimeIdentifier>{RID}</RuntimeIdentifier>
+```
+
+In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
+
+Publish the **`Server`** project in the **Release** configuration.
+
+> [!NOTE]
+> It's possible to publish an app with publish profile settings using the .NET CLI by passing `/p:PublishProfile={PROFILE}` to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish), where the `{PROFILE}` placeholder is the profile. For more information, see the *Publish profiles* and *Folder publish example* sections in the <xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles> article. If you pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) and not in the publish profile, use the MSBuild property (`/p:RuntimeIdentifier`) with the command, ***not*** with the `-r|--runtime` option.
+
+### .NET CLI
+
+Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in a `<PropertyGroup>` in the **`Server`** project's project file set to `false`:
+
+```xml
+<SelfContained>false</SelfContained>
+```
+
+> [!IMPORTANT]
+> The `SelfContained` property must be placed in the **`Server`** project's project file. The property can't be set correctly with the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) using the `--no-self-contained` option or the MSBuild property `/p:SelfContained=false`.
+  
+Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** of the following approaches:
+
+* Option 1: Set the RID in a `<PropertyGroup>` in the **`Server`** project's project file:
+  
+  ```xml
+  <RuntimeIdentifier>{RID}</RuntimeIdentifier>
+  ```
+    
+  In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
+  
+  Publish the app in the Release configuration from the **`Server`** project:
+    
+  ```dotnetcli
+   dotnet publish -c Release
+  ```
+
+* Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option:
+  
+  ```dotnetcli
+  dotnet publish -c Release /p:RuntimeIdentifier={RID}
+  ```
+    
+  In the preceding command, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
+
+For more information, see the following articles:
+
+* [.NET application publishing overview](/dotnet/core/deploying/)
+* <xref:host-and-deploy/index>
+
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
 For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
@@ -1204,6 +1342,10 @@ To deploy a Blazor WebAssembly app to CentOS 7 or later:
 For more information, see [`mod_mime`](https://httpd.apache.org/docs/2.4/mod/mod_mime.html) and [`mod_deflate`](https://httpd.apache.org/docs/current/mod/mod_deflate.html).
 
 ### GitHub Pages
+
+The default GitHub Action, which deploys pages, skips deployment of folders starting with underscore, for example, the `_framework` folder. To deploy folders starting with underscore, add an empty `.nojekyll` file to the Git branch.
+
+Git treats JavaScript (JS) files, such as `blazor.webassembly.js`, as text and converts line endings from CRLF (carriage return-line feed) to LF (line feed) in the deployment pipeline. These changes to JS files produce different file hashes than Blazor sends to the client in the `blazor.boot.json` file. The mismatches result in integrity check failures on the client. One approach to solving this problem is to add a `.gitattributes` file with `*.js binary` line before adding the app's assets to the Git branch. The `*.js binary` line configures Git to treat JS files as binary files, which avoids processing the files in the deployment pipeline. The file hashes of the unprocessed files match the entries in the `blazor.boot.json` file, and client-side integrity checks pass. For more information, see the [Resolve integrity check failures](#resolve-integrity-check-failures) section.
 
 To handle URL rewrites, add a `wwwroot/404.html` file with a script that handles redirecting the request to the `index.html` page. For an example, see the [SteveSandersonMS/BlazorOnGitHubPages GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages):
 
@@ -1653,6 +1795,73 @@ For more information, see the following articles:
 * Deployment to Azure App Service: <xref:tutorials/publish-to-azure-webapp-using-vs>
 * Blazor project templates: <xref:blazor/project-structure>
 
+## Hosted deployment of a framework-dependent executable for a specific platform
+
+To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable for a specific platform](/dotnet/core/deploying/#publish-framework-dependent) (not self-contained) use the following guidance based on the tooling in use.
+
+### Visual Studio
+
+By default, a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment is configured for a generated publish profile (`.pubxml`). Confirm that the **`Server`** project's publish profile contains the `<SelfContained>` MSBuild property set to `false`.
+
+In the `.pubxml` publish profile file in the **`Server`** project's `Properties` folder:
+
+```xml
+<SelfContained>false</SelfContained>
+```
+
+Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using the **Target Runtime** setting in the **Settings** area of the **Publish** UI, which generates the `<RuntimeIdentifier>` MSBuild property in the publish profile:
+  
+```xml
+<RuntimeIdentifier>{RID}</RuntimeIdentifier>
+```
+
+In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
+
+Publish the **`Server`** project in the **Release** configuration.
+
+> [!NOTE]
+> It's possible to publish an app with publish profile settings using the .NET CLI by passing `/p:PublishProfile={PROFILE}` to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish), where the `{PROFILE}` placeholder is the profile. For more information, see the *Publish profiles* and *Folder publish example* sections in the <xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles> article. If you pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) and not in the publish profile, use the MSBuild property (`/p:RuntimeIdentifier`) with the command, ***not*** with the `-r|--runtime` option.
+
+### .NET CLI
+
+Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in a `<PropertyGroup>` in the **`Server`** project's project file set to `false`:
+
+```xml
+<SelfContained>false</SelfContained>
+```
+
+> [!IMPORTANT]
+> The `SelfContained` property must be placed in the **`Server`** project's project file. The property can't be set correctly with the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) using the `--no-self-contained` option or the MSBuild property `/p:SelfContained=false`.
+  
+Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** of the following approaches:
+
+* Option 1: Set the RID in a `<PropertyGroup>` in the **`Server`** project's project file:
+  
+  ```xml
+  <RuntimeIdentifier>{RID}</RuntimeIdentifier>
+  ```
+    
+  In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
+  
+  Publish the app in the Release configuration from the **`Server`** project:
+    
+  ```dotnetcli
+   dotnet publish -c Release
+  ```
+
+* Option 2: Pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) as the MSBuild property (`/p:RuntimeIdentifier`), ***not*** with the `-r|--runtime` option:
+  
+  ```dotnetcli
+  dotnet publish -c Release /p:RuntimeIdentifier={RID}
+  ```
+    
+  In the preceding command, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
+
+For more information, see the following articles:
+
+* [.NET application publishing overview](/dotnet/core/deploying/)
+* <xref:host-and-deploy/index>
+
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
 For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
@@ -1882,6 +2091,10 @@ To deploy a Blazor WebAssembly app to CentOS 7 or later:
 For more information, see [`mod_mime`](https://httpd.apache.org/docs/2.4/mod/mod_mime.html) and [`mod_deflate`](https://httpd.apache.org/docs/current/mod/mod_deflate.html).
 
 ### GitHub Pages
+
+The default GitHub Action, which deploys pages, skips deployment of folders starting with underscore, for example, the `_framework` folder. To deploy folders starting with underscore, add an empty `.nojekyll` file to the Git branch.
+
+Git treats JavaScript (JS) files, such as `blazor.webassembly.js`, as text and converts line endings from CRLF (carriage return-line feed) to LF (line feed) in the deployment pipeline. These changes to JS files produce different file hashes than Blazor sends to the client in the `blazor.boot.json` file. The mismatches result in integrity check failures on the client. One approach to solving this problem is to add a `.gitattributes` file with `*.js binary` line before adding the app's assets to the Git branch. The `*.js binary` line configures Git to treat JS files as binary files, which avoids processing the files in the deployment pipeline. The file hashes of the unprocessed files match the entries in the `blazor.boot.json` file, and client-side integrity checks pass. For more information, see the [Resolve integrity check failures](#resolve-integrity-check-failures) section.
 
 To handle URL rewrites, add a `wwwroot/404.html` file with a script that handles redirecting the request to the `index.html` page. For an example, see the [SteveSandersonMS/BlazorOnGitHubPages GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages):
 

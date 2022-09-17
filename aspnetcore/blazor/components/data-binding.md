@@ -29,7 +29,7 @@ When an `<input>` element loses focus, its bound field or property is updated.
 
 The text box is updated in the UI only when the component is rendered, not in response to changing the field's or property's value. Since components render themselves after event handler code executes, field and property updates are usually reflected in the UI immediately after an event handler is triggered.
 
-As a demonstration of how data binding composes in HTML, the following example binds the `InputValue` property to the second `<input>` element's `value` and [`onchange`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange) attributes. *The second `<input>` element in the following example is a concept demonstration and isn't meant to suggest how you should bind data in Razor components.*
+As a demonstration of how data binding composes in HTML, the following example binds the `InputValue` property to the second `<input>` element's `value` and `onchange` attributes ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)). *The second `<input>` element in the following example is a concept demonstration and isn't meant to suggest how you should bind data in Razor components.*
 
 `Pages/BindTheory.razor`:
 
@@ -37,7 +37,7 @@ As a demonstration of how data binding composes in HTML, the following example b
 
 When the `BindTheory` component is rendered, the `value` of the HTML demonstration `<input>` element comes from the `InputValue` property. When the user enters a value in the text box and changes element focus, the `onchange` event is fired and the `InputValue` property is set to the changed value. In reality, code execution is more complex because [`@bind`](xref:mvc/views/razor#bind) handles cases where type conversions are performed. In general, [`@bind`](xref:mvc/views/razor#bind) associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
-Bind a property or field on other [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) events by including an `@bind:event="{EVENT}"` attribute with a DOM event for the `{EVENT}` placeholder. The following example binds the `InputValue` property to the `<input>` element's value when the element's [`oninput` event](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) is triggered. Unlike the [`onchange` event](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange), which fires when the element loses focus, [`oninput`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) fires when the value of the text box changes.
+Bind a property or field on other [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) events by including an `@bind:event="{EVENT}"` attribute with a DOM event for the `{EVENT}` placeholder. The following example binds the `InputValue` property to the `<input>` element's value when the element's `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) is triggered. Unlike the `onchange` event ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)), which fires when the element loses focus, `oninput` ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) fires when the value of the text box changes.
 
 `Page/BindEvent.razor`:
 
@@ -48,9 +48,9 @@ Razor attribute binding is case sensitive:
 * `@bind` and `@bind:event` are valid.
 * `@Bind`/`@Bind:Event` (capital letters `B` and `E`) or `@BIND`/`@BIND:EVENT` (all capital letters) **are invalid**.
 
-## Multiple option selection with `<input>` elements
+## Multiple option selection with `<select>` elements
 
-Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with `<input>` elements. The [`@onchange`](xref:mvc/views/razor#onevent) event provides an array of the selected elements via [event arguments (`ChangeEventArgs`)](xref:blazor/components/event-handling#event-arguments). The value must be bound to an array type.
+Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with `<select>` elements. The [`@onchange`](xref:mvc/views/razor#onevent) event provides an array of the selected elements via [event arguments (`ChangeEventArgs`)](xref:blazor/components/event-handling#event-arguments). The value must be bound to an array type.
 
 `Pages/BindMultipleInput.razor`:
 
@@ -139,7 +139,7 @@ For the `oninput` event (`@bind:event="oninput"`), a value reversion occurs afte
 
 * Don't use the `oninput` event. Use the default `onchange` event, where an invalid value isn't reverted until the element loses focus.
 * Bind to a nullable type, such as `int?` or `string` and provide [custom `get` and `set` accessor logic](#custom-binding-formats) to handle invalid entries.
-* Use a [form validation component](xref:blazor/forms-validation), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
+* Use a [form validation component](xref:blazor/forms-and-input-components), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
   * Permit the user to provide invalid input and receive validation errors on the associated <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
   * Display validation errors in the UI without interfering with the user entering additional webform data.
 
@@ -194,9 +194,9 @@ The following `ChildBind` component has a `Year` component parameter and an <xre
 
 For more information on events and <xref:Microsoft.AspNetCore.Components.EventCallback%601>, see the *EventCallback* section of the <xref:blazor/components/event-handling#eventcallback> article.
 
-In the following `Parent` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
+In the following `Parent1` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
 
-`Pages/Parent.razor`:
+`Pages/Parent1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor" highlight="9":::
 
@@ -242,7 +242,7 @@ You can bind parameters through any number of nested components, but you must re
 
 A common and recommended approach is to only store the underlying data in the parent component to avoid any confusion about what state must be updated, as shown in the following example.
 
-`Pages/Parent.razor`:
+`Pages/Parent2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/Parent2.razor":::
 
@@ -262,9 +262,9 @@ For an alternative approach suited to sharing data in memory and across componen
 ## Additional resources
 
 * [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
-* <xref:blazor/forms-validation>
-* [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
-* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-validation#binding-inputselect-options-to-c-object-null-values)
+* <xref:blazor/forms-and-input-components>
+* [Binding to radio buttons in a form](xref:blazor/forms-and-input-components#radio-buttons)
+* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-and-input-components#binding-inputselect-options-to-c-object-null-values)
 * [ASP.NET Core Blazor event handling: `EventCallback` section](xref:blazor/components/event-handling#eventcallback)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
@@ -287,7 +287,7 @@ When an `<input>` element loses focus, its bound field or property is updated.
 
 The text box is updated in the UI only when the component is rendered, not in response to changing the field's or property's value. Since components render themselves after event handler code executes, field and property updates are usually reflected in the UI immediately after an event handler is triggered.
 
-As a demonstration of how data binding composes in HTML, the following example binds the `InputValue` property to the second `<input>` element's `value` and [`onchange`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange) attributes. *The second `<input>` element in the following example is a concept demonstration and isn't meant to suggest how you should bind data in Razor components.*
+As a demonstration of how data binding composes in HTML, the following example binds the `InputValue` property to the second `<input>` element's `value` and `onchange` attributes ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)). *The second `<input>` element in the following example is a concept demonstration and isn't meant to suggest how you should bind data in Razor components.*
 
 `Pages/BindTheory.razor`:
 
@@ -295,7 +295,7 @@ As a demonstration of how data binding composes in HTML, the following example b
 
 When the `BindTheory` component is rendered, the `value` of the HTML demonstration `<input>` element comes from the `InputValue` property. When the user enters a value in the text box and changes element focus, the `onchange` event is fired and the `InputValue` property is set to the changed value. In reality, code execution is more complex because [`@bind`](xref:mvc/views/razor#bind) handles cases where type conversions are performed. In general, [`@bind`](xref:mvc/views/razor#bind) associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
-Bind a property or field on other [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) events by including an `@bind:event="{EVENT}"` attribute with a DOM event for the `{EVENT}` placeholder. The following example binds the `InputValue` property to the `<input>` element's value when the element's [`oninput` event](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) is triggered. Unlike the [`onchange` event](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange), which fires when the element loses focus, [`oninput`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) fires when the value of the text box changes.
+Bind a property or field on other [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) events by including an `@bind:event="{EVENT}"` attribute with a DOM event for the `{EVENT}` placeholder. The following example binds the `InputValue` property to the `<input>` element's value when the element's `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) is triggered. Unlike the `onchange` event ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)), which fires when the element loses focus, `oninput` ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) fires when the value of the text box changes.
 
 `Page/BindEvent.razor`:
 
@@ -336,7 +336,7 @@ For the `oninput` event (`@bind:event="oninput"`), a value reversion occurs afte
 
 * Don't use the `oninput` event. Use the default `onchange` event, where an invalid value isn't reverted until the element loses focus.
 * Bind to a nullable type, such as `int?` or `string` and provide [custom `get` and `set` accessor logic](#custom-binding-formats) to handle invalid entries.
-* Use a [form validation component](xref:blazor/forms-validation), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
+* Use a [form validation component](xref:blazor/forms-and-input-components), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
   * Permit the user to provide invalid input and receive validation errors on the associated <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
   * Display validation errors in the UI without interfering with the user entering additional webform data.
 
@@ -391,9 +391,9 @@ The following `ChildBind` component has a `Year` component parameter and an <xre
 
 For more information on events and <xref:Microsoft.AspNetCore.Components.EventCallback%601>, see the *EventCallback* section of the <xref:blazor/components/event-handling#eventcallback> article.
 
-In the following `Parent` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
+In the following `Parent1` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
 
-`Pages/Parent.razor`:
+`Pages/Parent1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor" highlight="9":::
 
@@ -439,7 +439,7 @@ You can bind parameters through any number of nested components, but you must re
 
 A common and recommended approach is to only store the underlying data in the parent component to avoid any confusion about what state must be updated, as shown in the following example.
 
-`Pages/Parent.razor`:
+`Pages/Parent2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/Parent2.razor":::
 
@@ -459,9 +459,9 @@ For an alternative approach suited to sharing data in memory and across componen
 ## Additional resources
 
 * [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
-* <xref:blazor/forms-validation>
-* [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
-* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-validation#binding-inputselect-options-to-c-object-null-values)
+* <xref:blazor/forms-and-input-components>
+* [Binding to radio buttons in a form](xref:blazor/forms-and-input-components#radio-buttons)
+* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-and-input-components#binding-inputselect-options-to-c-object-null-values)
 * [ASP.NET Core Blazor event handling: `EventCallback` section](xref:blazor/components/event-handling#eventcallback)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
@@ -484,7 +484,7 @@ When an `<input>` element loses focus, its bound field or property is updated.
 
 The text box is updated in the UI only when the component is rendered, not in response to changing the field's or property's value. Since components render themselves after event handler code executes, field and property updates are usually reflected in the UI immediately after an event handler is triggered.
 
-As a demonstration of how data binding composes in HTML, the following example binds the `InputValue` property to the second `<input>` element's `value` and [`onchange`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange) attributes. *The second `<input>` element in the following example is a concept demonstration and isn't meant to suggest how you should bind data in Razor components.*
+As a demonstration of how data binding composes in HTML, the following example binds the `InputValue` property to the second `<input>` element's `value` and `onchange` attributes ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)). *The second `<input>` element in the following example is a concept demonstration and isn't meant to suggest how you should bind data in Razor components.*
 
 `Pages/BindTheory.razor`:
 
@@ -492,7 +492,7 @@ As a demonstration of how data binding composes in HTML, the following example b
 
 When the `BindTheory` component is rendered, the `value` of the HTML demonstration `<input>` element comes from the `InputValue` property. When the user enters a value in the text box and changes element focus, the `onchange` event is fired and the `InputValue` property is set to the changed value. In reality, code execution is more complex because [`@bind`](xref:mvc/views/razor#bind) handles cases where type conversions are performed. In general, [`@bind`](xref:mvc/views/razor#bind) associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
-Bind a property or field on other [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) events by including an `@bind:event="{EVENT}"` attribute with a DOM event for the `{EVENT}` placeholder. The following example binds the `InputValue` property to the `<input>` element's value when the element's [`oninput` event](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) is triggered. Unlike the [`onchange` event](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange), which fires when the element loses focus, [`oninput`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) fires when the value of the text box changes.
+Bind a property or field on other [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) events by including an `@bind:event="{EVENT}"` attribute with a DOM event for the `{EVENT}` placeholder. The following example binds the `InputValue` property to the `<input>` element's value when the element's `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) is triggered. Unlike the `onchange` event ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)), which fires when the element loses focus, `oninput` ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) fires when the value of the text box changes.
 
 `Page/BindEvent.razor`:
 
@@ -533,7 +533,7 @@ For the `oninput` event (`@bind:event="oninput"`), a value reversion occurs afte
 
 * Don't use the `oninput` event. Use the default `onchange` event, where an invalid value isn't reverted until the element loses focus.
 * Bind to a nullable type, such as `int?` or `string` and provide [custom `get` and `set` accessor logic](#custom-binding-formats) to handle invalid entries.
-* Use a [form validation component](xref:blazor/forms-validation), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
+* Use a [form validation component](xref:blazor/forms-and-input-components), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
   * Permit the user to provide invalid input and receive validation errors on the associated <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
   * Display validation errors in the UI without interfering with the user entering additional webform data.
 
@@ -588,9 +588,9 @@ The following `ChildBind` component has a `Year` component parameter and an <xre
 
 For more information on events and <xref:Microsoft.AspNetCore.Components.EventCallback%601>, see the *EventCallback* section of the <xref:blazor/components/event-handling#eventcallback> article.
 
-In the following `Parent` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
+In the following `Parent1` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
 
-`Pages/Parent.razor`:
+`Pages/Parent1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor" highlight="9":::
 
@@ -636,7 +636,7 @@ You can bind parameters through any number of nested components, but you must re
 
 A common and recommended approach is to only store the underlying data in the parent component to avoid any confusion about what state must be updated, as shown in the following example.
 
-`Pages/Parent.razor`:
+`Pages/Parent2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/Parent2.razor":::
 
@@ -656,9 +656,9 @@ For an alternative approach suited to sharing data in memory and across componen
 ## Additional resources
 
 * [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
-* <xref:blazor/forms-validation>
-* [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
-* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-validation#binding-inputselect-options-to-c-object-null-values)
+* <xref:blazor/forms-and-input-components>
+* [Binding to radio buttons in a form](xref:blazor/forms-and-input-components#radio-buttons)
+* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-and-input-components#binding-inputselect-options-to-c-object-null-values)
 * [ASP.NET Core Blazor event handling: `EventCallback` section](xref:blazor/components/event-handling#eventcallback)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
@@ -681,7 +681,7 @@ When an `<input>` element loses focus, its bound field or property is updated.
 
 The text box is updated in the UI only when the component is rendered, not in response to changing the field's or property's value. Since components render themselves after event handler code executes, field and property updates are usually reflected in the UI immediately after an event handler is triggered.
 
-As a demonstration of how data binding composes in HTML, the following example binds the `InputValue` property to the second `<input>` element's `value` and [`onchange`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange) attributes. *The second `<input>` element in the following example is a concept demonstration and isn't meant to suggest how you should bind data in Razor components.*
+As a demonstration of how data binding composes in HTML, the following example binds the `InputValue` property to the second `<input>` element's `value` and `onchange` attributes ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)). *The second `<input>` element in the following example is a concept demonstration and isn't meant to suggest how you should bind data in Razor components.*
 
 `Pages/BindTheory.razor`:
 
@@ -689,20 +689,44 @@ As a demonstration of how data binding composes in HTML, the following example b
 
 When the `BindTheory` component is rendered, the `value` of the HTML demonstration `<input>` element comes from the `InputValue` property. When the user enters a value in the text box and changes element focus, the `onchange` event is fired and the `InputValue` property is set to the changed value. In reality, code execution is more complex because [`@bind`](xref:mvc/views/razor#bind) handles cases where type conversions are performed. In general, [`@bind`](xref:mvc/views/razor#bind) associates the current value of an expression with a `value` attribute and handles changes using the registered handler.
 
-Bind a property or field on other [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) events by including an `@bind:event="{EVENT}"` attribute with a DOM event for the `{EVENT}` placeholder. The following example binds the `InputValue` property to the `<input>` element's value when the element's [`oninput` event](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) is triggered. Unlike the [`onchange` event](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onchange), which fires when the element loses focus, [`oninput`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/oninput) fires when the value of the text box changes.
+Bind a property or field on other [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) events by including an `@bind:event="{EVENT}"` attribute with a DOM event for the `{EVENT}` placeholder. The following example binds the `InputValue` property to the `<input>` element's value when the element's `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) is triggered. Unlike the `onchange` event ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)), which fires when the element loses focus, `oninput` ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) fires when the value of the text box changes.
 
 `Page/BindEvent.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor" highlight="4":::
 
+To execute asynchronous logic after binding, use `@bind:after="{EVENT}"` with a DOM event for the `{EVENT}` placeholder. An assigned C# method isn't executed until the bound value is assigned synchronously.
+
+In the following example:
+
+* The `<input>` element's `value` is bound to the value of `searchText` synchronously.
+* After each keystroke (`onchange` event) in the field, the `PerformSearch` method executes asychronously.
+* `PerformSearch` calls a service with an asychronous method (`FetchAsync`) to return search results.
+
+```razor
+@inject ISearchService SearchService
+
+<input @bind="searchText" @bind:after="PerformSearch" />
+
+@code {
+    private string? searchText;
+    private string[]? searchResult;
+
+    private async Task PerformSearch()
+    {
+        searchResult = await SearchService.FetchAsync(searchText);
+    }
+}
+```
+
 Razor attribute binding is case sensitive:
 
-* `@bind` and `@bind:event` are valid.
-* `@Bind`/`@Bind:Event` (capital letters `B` and `E`) or `@BIND`/`@BIND:EVENT` (all capital letters) **are invalid**.
+* `@bind`, `@bind:event`, and `@bind:after` are valid.
+* `@Bind`/`@bind:Event`/`@bind:aftEr` (capital letters) or `@BIND`/`@BIND:EVENT`/`@BIND:AFTER` (all capital letters) **are invalid**.
 
-## Multiple option selection with `<input>` elements
+## Multiple option selection with `<select>` elements
 
-Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with `<input>` elements. The [`@onchange`](xref:mvc/views/razor#onevent) event provides an array of the selected elements via [event arguments (`ChangeEventArgs`)](xref:blazor/components/event-handling#event-arguments). The value must be bound to an array type.
+Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with `<select>` elements. The [`@onchange`](xref:mvc/views/razor#onevent) event provides an array of the selected elements via [event arguments (`ChangeEventArgs`)](xref:blazor/components/event-handling#event-arguments). The value must be bound to an array type.
 
 `Pages/BindMultipleInput.razor`:
 
@@ -791,7 +815,7 @@ For the `oninput` event (`@bind:event="oninput"`), a value reversion occurs afte
 
 * Don't use the `oninput` event. Use the default `onchange` event, where an invalid value isn't reverted until the element loses focus.
 * Bind to a nullable type, such as `int?` or `string` and provide [custom `get` and `set` accessor logic](#custom-binding-formats) to handle invalid entries.
-* Use a [form validation component](xref:blazor/forms-validation), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
+* Use a [form validation component](xref:blazor/forms-and-input-components), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>. Form validation components provide built-in support to manage invalid inputs. Form validation components:
   * Permit the user to provide invalid input and receive validation errors on the associated <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
   * Display validation errors in the UI without interfering with the user entering additional webform data.
 
@@ -846,11 +870,26 @@ The following `ChildBind` component has a `Year` component parameter and an <xre
 
 For more information on events and <xref:Microsoft.AspNetCore.Components.EventCallback%601>, see the *EventCallback* section of the <xref:blazor/components/event-handling#eventcallback> article.
 
-In the following `Parent` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
+In the following `Parent1` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
 
-`Pages/Parent.razor`:
+`Pages/Parent1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor" highlight="9":::
+
+Component parameter binding can also trigger `@bind:after` events. In the following example, the `YearUpdated` method executes asychronously after binding the `Year` component parameter.
+
+```razor
+<ChildBind @bind-Year="year" @bind-Year:after="YearUpdated" />
+
+@code {
+    ...
+
+    private async Task YearUpdated()
+    {
+        ... = await ...;
+    }
+}
+```
 
 By convention, a property can be bound to a corresponding event handler by including an `@bind-{PROPERTY}:event` attribute assigned to the handler, where the `{PROPERTY}` placeholder is the property. `<ChildBind @bind-Year="year" />` is equivalent to writing:
 
@@ -885,6 +924,12 @@ Perform checks or trap errors in the handler. The following revised `PasswordEnt
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry2.razor" highlight="35-46":::
 
+In the following example, the `PasswordUpdated` method executes asychronously after binding the `Password` component parameter:
+
+```razor
+<PasswordEntry @bind-Password="password" @bind-Password:after="PasswordUpdated" />
+```
+
 ## Bind across more than two components
 
 You can bind parameters through any number of nested components, but you must respect the one-way flow of data:
@@ -894,16 +939,18 @@ You can bind parameters through any number of nested components, but you must re
 
 A common and recommended approach is to only store the underlying data in the parent component to avoid any confusion about what state must be updated, as shown in the following example.
 
-`Pages/Parent.razor`:
+`Pages/Parent2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/Parent2.razor":::
+
+In the following `NestedChild` component, the `NestedGrandchild` component:
+
+* Assigns the value of `ChildMessage` to `GrandchildMessage` with `@bind:get` syntax.
+* Updates `GrandchildMessage` when `ChildMessageChanged` executes with `@bind:set` syntax.
 
 `Shared/NestedChild.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/data-binding/NestedChild.razor":::
-
-> [!WARNING]
-> Generally, avoid creating components that write directly to their own component parameters. The preceding `NestedChild` component makes use of a `BoundValue` property instead of writing directly to its `ChildMessage` parameter. For more information, see <xref:blazor/components/index#overwritten-parameters>.
 
 `Shared/NestedGrandchild.razor`:
 
@@ -914,9 +961,9 @@ For an alternative approach suited to sharing data in memory and across componen
 ## Additional resources
 
 * [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
-* <xref:blazor/forms-validation>
-* [Binding to radio buttons in a form](xref:blazor/forms-validation#radio-buttons)
-* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-validation#binding-inputselect-options-to-c-object-null-values)
+* <xref:blazor/forms-and-input-components>
+* [Binding to radio buttons in a form](xref:blazor/forms-and-input-components#radio-buttons)
+* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms-and-input-components#binding-inputselect-options-to-c-object-null-values)
 * [ASP.NET Core Blazor event handling: `EventCallback` section](xref:blazor/components/event-handling#eventcallback)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 

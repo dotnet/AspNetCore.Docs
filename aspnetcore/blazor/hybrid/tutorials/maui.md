@@ -39,9 +39,6 @@ In the **Create a new project** window, use the **Project type** drop-down to fi
 
 :::image type="content" source="maui/_static/new-project-1.png" alt-text="Filter templates to .NET MAUI.":::
 
-> [!NOTE]
-> If the **.NET MAUI Blazor App** project template isn't present, execute `dotnet new -i Microsoft.Maui.Templates` from a command shell to install the templates. This is a temporary workaround during preview for a known issue. For more information, see [.NET MAUI templates do not appear in Visual Studio (`dotnet/maui` GitHub repository)](https://github.com/dotnet/maui/wiki/Known-Issues#net-maui-templates-do-not-appear-in-visual-studio).
-
 Select the **.NET MAUI Blazor App** template and then select the **Next** button:
 
 :::image type="content" source="maui/_static/new-project-2.png" alt-text="Choose a template.":::

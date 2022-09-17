@@ -243,7 +243,7 @@ At the end of the series, you'll have an app that manages and displays movie dat
   * **ASP.NET Core Web App (Model-View-Controller)**.
   * **Create**.
 
-![Create a new ASP.NET Core web application ](start-mvc/_static/mvcVS19v16.9.png)
+![Create a new ASP.NET Core web application](start-mvc/_static/mvcVS19v16.9.png)
 
 For alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
@@ -426,7 +426,7 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 * Select **Web Application(Model-View-Controller)**. From the dropdown boxes, select **.NET Core** and **ASP.NET Core 3.1**, then select **Create**.
 
-  ![New project dialog, .NET Core in left pane, ASP.NET Core web ](start-mvc/_static/new_project30.png)
+  ![New project dialog, .NET Core in left pane, ASP.NET Core web](start-mvc/_static/new_project30.png)
 
 Visual Studio used the default project template for the created MVC project. The created project:
 

@@ -4,12 +4,16 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 7.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/29/2021
+ms.date: 08/19/2022
 uid: aspnetcore-7
 ---
 # What's new in ASP.NET Core 7.0 preview
 
 This article highlights the most significant changes in ASP.NET Core 7.0 with links to relevant documentation.
+
+## Rate limiting middleware in ASP.NET Core
+
+The `Microsoft.AspNetCore.RateLimiting` middleware provides rate limiting middleware. Apps configure rate limiting policies and then attach the policies to endpoints. For more information, see <xref:performance/rate-limit?view=aspnetcore-7.0&preserve-view=true>.
 
 ## MVC and Razor pages
 
@@ -25,15 +29,23 @@ Nullable page or view models are supported to improve the experience when using 
 
 The [`IParsable<TSelf>.TryParse`](/dotnet/api/system.iparsable-1.tryparse#system-iparsable-1-tryparse(system-string-system-iformatprovider-0@)) API supports binding controller action parameter values. For more information, see [Bind with `IParsable<T>.TryParse`](xref:mvc/models/model-binding#itp7).
 
+### Customize the cookie consent value
+
+In ASP.NET Core versions earlier than 7, the cookie consent validation uses the cookie value `yes` to indicate consent. Now you can specify the value that represents consent. For example, you could use `true` instead of `yes`:
+
+[!code-csharp[Main](~/security/gdpr/sample/RP6.0/WebGDPR/Program.cs?name=snippet_2&highlight=8)]
+
+For more information, see [Customize the cookie consent value](xref:security/gdpr#customize-the-cookie-consent-value).
+
 ## API controllers
 
 ### Parameter binding with DI in API controllers
 
-Parameter binding for API controller actions binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. This means it’s no longer required to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
+Parameter binding for API controller actions binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. This means it's no longer required to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Controllers/MyController.cs?name=snippet)]
 
-In rare cases, automatic DI can break apps that have a type in DI that is also accepted in an API controllers action methods. It's not common to have a type in DI and as an argument in an API controller action. To disable automatic binding of parameters, set [DisableImplicitFromServicesParameters](/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.disableimplicitfromservicesparameters)
+In rare cases, automatic DI can break apps that have a type in DI that is also accepted in an API controllers action method. It's not common to have a type in DI and as an argument in an API controller action. To disable automatic binding of parameters, set [DisableImplicitFromServicesParameters](/dotnet/api/microsoft.aspnetcore.mvc.apibehavioroptions.disableimplicitfromservicesparameters)
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Program.cs?name=snippet_dis&highlight=8-11)]
 
@@ -49,7 +61,7 @@ The new mechanism to infer binding source of API Controller action parameters us
 
 ### JSON property names in validation errors
 
-By default, when an validation error occurs, model validation produces a <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary> with the property name as the error key. Some apps, such as single page apps, benefit from using JSON property names for validation errors generated from Web APIs. The following code configures validation to use the [`SystemTextJsonValidationMetadataProvider`](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.metadata.systemtextjsonvalidationmetadataprovider) to use JSON property names:
+By default, when a validation error occurs, model validation produces a <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary> with the property name as the error key. Some apps, such as single page apps, benefit from using JSON property names for validation errors generated from Web APIs. The following code configures validation to use the [`SystemTextJsonValidationMetadataProvider`](/dotnet/api/microsoft.aspnetcore.mvc.modelbinding.metadata.systemtextjsonvalidationmetadataprovider) to use JSON property names:
 
 :::code language="csharp" source="~/mvc/models/validation/samples/7.x/ValidationJSON/Program.cs" id="snippet_1" highlight="5-8":::
 
@@ -85,6 +97,12 @@ In ASP.NET 7, binding query strings to an array of primitive types, string array
 
 Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented. For more information, see [Bind arrays and string values from headers and query strings](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#bindar).
 
+### Provide endpoint descriptions and summaries
+
+Minimal APIs now support annotating operations with descriptions and summaries for OpenAPI spec generation. You can call extension methods <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A> or use attributes [[EndpointDescription]](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) and [[EndpointSummary]](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute)).
+
+For more information, see [Add endpoint summary or description](xref:fundamentals/minimal-apis#add-endpoint-summary-or-description).
+
 ## Bind the request body as a `Stream` or `PipeReader`
 
 The request body can bind as a [`Stream`](/dotnet/api/system.io.stream) or [`PipeReader`](/dotnet/api/system.io.pipelines.pipereader) to efficiently support scenarios where the user has to process data and:
@@ -94,23 +112,7 @@ The request body can bind as a [`Stream`](/dotnet/api/system.io.stream) or [`Pip
 
 For example, the data might be enqueued to [Azure Queue storage](/azure/storage/queues/storage-queues-introduction) or stored in [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction).
 
-The following code implements a background queue:
-
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/BackgroundQueueService.cs)]
-
-The following code binds the request body to a `Stream`:
-
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet_1)]
-
-The following code shows the complete `Program.cs` file:
-
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet)]
-
-Limitations when binding request body to `Stream` or `PipeReader`:
-
-* When reading data, the `Stream` is the same object as `HttpRequest.Body`.
-* The request body isn’t buffered by default. After the body is read, it’s not rewindable. The stream can't be read multiple times.
-* The `Stream` and `PipeReader` aren't usable outside of the minimal action handler as the underlying buffers will be disposed or reused.
+For more information, see [Bind the request body as a `Stream` or `PipeReader`](xref:fundamentals/minimal-apis#rbs)
 
 ### New Results.Stream overloads
 
@@ -122,7 +124,7 @@ For more information, see [Stream examples](xref:fundamentals/minimal-apis?view=
 
 ### Typed results for minimal APIs
 
-In .NET 6, the <xref:Microsoft.AspNetCore.Http.IResult> interface was introduced to represent values returned from minimal APIs that don’t utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL. The `IResult` implementing framework types returned from these methods were internal however, making it difficult to verify the specific `IResult` type being returned from methods in a unit test.
+In .NET 6, the <xref:Microsoft.AspNetCore.Http.IResult> interface was introduced to represent values returned from minimal APIs that don't utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL. The `IResult` implementing framework types returned from these methods were internal however, making it difficult to verify the specific `IResult` type being returned from methods in a unit test.
 
 In .NET 7 the types implementing `IResult` are public, allowing for type assertions when testing. For example:
 
@@ -150,7 +152,38 @@ In the following sample, the `/skipme` endpoint is excluded from generating an O
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_swag2&highlight=20-21)]
 
-## Signal R
+### File uploads using IFormFile and IFormFileCollection
+
+Minimal APIs now support file upload with `IFormFile` and `IFormFileCollection`. The following code uses <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> to upload file:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/7.0-samples/MinimalApi/Program.cs" :::
+
+Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](/aspnet/core/security/authentication/certauth), or a cookie header.
+
+There is no built-in support for [antiforgery](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#anti7). However, it can be implemented using the [`IAntiforgery` service](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#antimin7).
+
+### `[AsParameters]` attribute enables parameter binding for argument lists
+
+The [`[AsParameters]` attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) enables parameter binding for argument lists . For more information, see [Parameter binding for argument lists with `[AsParameters]`](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#asparam7).
+
+## gRPC
+
+### JSON transcoding
+
+gRPC JSON transcoding is an extension for ASP.NET Core that creates RESTful JSON APIs for gRPC services. gRPC JSON transcoding allows:
+
+* Apps to call gRPC services with familiar HTTP concepts.
+* ASP.NET Core gRPC apps to support both gRPC and RESTful JSON APIs without replicating functionality.
+
+For more information, see [gRPC JSON transcoding in ASP.NET Core gRPC apps](xref:grpc/httpapi?view=aspnetcore-7.0)
+
+## SignalR
+
+### Client results
+
+The server now supports requesting a result from a client. This requires the server to use `ISingleClientProxy.InvokeAsync` and the client to return a result from its `.On` handler. Strongly-typed hubs can also return values from interface methods.
+
+For more information, see [Client results](xref:signalr/hubs?view=aspnetcore-7.0#client-results)
 
 ### Dependency injection for SignalR hub methods
 
@@ -169,6 +202,18 @@ Previously, the HTTP/2 multiplexing implementation relied on a [lock](/dotnet/cs
 One place where these improvements can be noticed is in gRPC, a popular RPC framework that uses HTTP/2. Kestrel + gRPC benchmarks show a dramatic improvement:
 
 ![Entity diagram](https://user-images.githubusercontent.com/219224/177910504-e93579b4-02e4-4079-8a8c-d9d24857aabf.png)
+
+### Kestrel performance improvements on high core machines
+
+Kestrel uses <xref:System.Collections.Concurrent.ConcurrentQueue%601> for many purposes. One purpose is scheduling I/O operations in Kestrel's default Socket transport. Partitioning the `ConcurrentQueue` based on the associated socket reduces contention and increases throughput on machines with many CPU cores.
+
+Profiling on high core machines on .NET 6 showed significant contention in one of Kestrel's other `ConcurrentQueue` instances, the `PinnedMemoryPool` that Kestrel uses to cache byte buffers.
+
+In .NET 7, Kestrel's memory pool is partitioned the same way as its I/O queue, which leads to much lower contention and higher throughput on high core machines. On the 80 core ARM64 VMs, we're seeing over 500% improvement in responses per second (RPS) in the TechEmpower plaintext benchmark.  On 48 Core AMD VMs, the improvement is nearly 100% in our HTTPS JSON benchmark.
+
+### `ServerReady` event to measure startup time
+
+Apps using [EventSource](/dotnet/api/system.diagnostics.tracing.eventsource) can measure the startup time to understand and optimize startup performance. The new [`ServerReady`](https://source.dot.net/#Microsoft.AspNetCore.Hosting/Internal/HostingEventSource.cs,76) event in <xref:Microsoft.AspNetCore.Hosting?displayProperty=fullName> represents the point where the server is ready to respond to requests.
 
 ## Server
 
@@ -192,7 +237,7 @@ For more information, see [Shadow copying in IIS](xref:host-and-deploy/iis/advan
 
 The console output from dotnet watch has been improved to better align with the logging of ASP.NET Core and to stand out with 😮emojis😍.
 
-Here’s an example of what the new output looks like:
+Here's an example of what the new output looks like:
 
 ![output for dotnet watch](~/release-notes/aspnetcore-7/static/dnwatch.png)
 
@@ -200,7 +245,7 @@ See [this GitHub pull request](https://github.com/dotnet/sdk/pull/23318) for mor
 
 ### Configure dotnet watch to always restart for rude edits
 
-Rude edits are edits that  can’t be hot reloaded. To configure dotnet watch to always restart without a prompt for rude edits, set the `DOTNET_WATCH_RESTART_ON_RUDE_EDIT` environment variable to `true`.
+Rude edits are edits that  can't be hot reloaded. To configure dotnet watch to always restart without a prompt for rude edits, set the `DOTNET_WATCH_RESTART_ON_RUDE_EDIT` environment variable to `true`.
 
 ### Developer exception page dark mode
 
@@ -224,4 +269,36 @@ dotnet new web --use-program-main
 
 With Visual Studio, select the new **Do not use top-level statements** checkbox during project creation:
 
-![checkbox ](https://user-images.githubusercontent.com/3605364/180587645-90f7cce5-d9f8-49d2-88cf-2258960394e1.png)
+![checkbox](https://user-images.githubusercontent.com/3605364/180587645-90f7cce5-d9f8-49d2-88cf-2258960394e1.png)
+
+### Updated Angular and React templates
+
+The Angular project template has been updated to Angular 14. The React project template has been updated to React 18.2.
+
+### Manage JSON Web Tokens in development with dotnet user-jwts
+
+The new `dotnet user-jwts` command line tool can create and manage app specific local [JSON Web Tokens](https://jwt.io/introduction) (JWTs). For more information, see [Manage JSON Web Tokens in development with dotnet user-jwts](xref:security/authentication/jwt?view=aspnetcore-7.0&preserve-view=true).
+
+### Support for additional request headers in W3CLogger
+
+You can now specify additional request headers to log when using the W3C logger by calling `AdditionalRequestHeaders()` on <xref:Microsoft.AspNetCore.HttpLogging.W3CLoggerOptions>:
+
+```csharp
+services.AddW3CLogging(logging =>
+{
+    logging.AdditionalRequestHeaders.Add("x-forwarded-for");
+    logging.AdditionalRequestHeaders.Add("x-client-ssl-protocol");
+});
+```
+
+For more information,see [W3CLogger options](xref:fundamentals/w3c-logger/index#w3clogger-options-1).
+
+### Request decompression
+
+The new [Request decompression middleware](xref:fundamentals/middleware/request-decompression?view=aspnetcore-7.0&preserve-view=true):
+
+* Enables API endpoints to accept requests with compressed content.
+* Uses the [`Content-Encoding`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Encoding) HTTP header to automatically identify and decompress requests which contain compressed content.
+* Eliminates the need to write code to handle compressed requests.
+
+For more information, see [Request decompression middleware](xref:fundamentals/middleware/request-decompression?view=aspnetcore-7.0&preserve-view=true).

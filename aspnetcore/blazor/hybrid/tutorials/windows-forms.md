@@ -189,7 +189,7 @@ In **Solution Explorer**, double-click on the `Form1.cs` file to open the design
 
 :::image type="content" source="windows-forms/_static/solution-explorer-1.png" alt-text="The Form1.cs file in Solution Explorer.":::
 
-Open the **Toolbox** by either selecting the **Toolbox** button along the left edge of the Visual Studio window or selecting the **View** > **Toolbox** menu item.
+Open the **Toolbox** by either selecting the **Toolbox** button along the left edge of the Visual Studio window or selecting the **View** > **Toolbox** menu command.
 
 Locate the `BlazorWebView` control under `Microsoft.AspNetCore.Components.WebView.WindowsForms`. Drag the `BlazorWebView` from the **Toolbox** into the `Form1` designer. Be careful not to accidentally drag a `WebView2` control into the form.
 

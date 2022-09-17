@@ -24,7 +24,7 @@ namespace Server
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddGrpc();
+            services.AddGrpc(o => o.EnableDetailedErrors = true);
             services.AddSingleton<IGreeter, Greeter>();
         }
 

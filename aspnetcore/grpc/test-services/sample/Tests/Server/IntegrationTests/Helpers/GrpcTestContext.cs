@@ -40,7 +40,12 @@ namespace Tests.Server.IntegrationTests.Helpers
 
         private void WriteMessage(LogLevel logLevel, string category, EventId eventId, string message, Exception? exception)
         {
-            _outputHelper.WriteLine($"{_stopwatch.Elapsed.TotalSeconds:N3}s {category} - {logLevel}: {message}");
+            var log = $"{_stopwatch.Elapsed.TotalSeconds:N3}s {category} - {logLevel}: {message}";
+            if (exception != null)
+            {
+                log += Environment.NewLine + exception.ToString();
+            }
+            _outputHelper.WriteLine(log);
         }
 
         public void Dispose()

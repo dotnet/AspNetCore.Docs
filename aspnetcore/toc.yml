@@ -167,7 +167,7 @@ items:
                 uid: data/ef-mvc/inheritance
               - name: Advanced topics
                 uid: data/ef-mvc/advanced
-      - name: Microsoft Learn modules
+      - name: Learn modules
         items:
           - name: Web apps >>
             displayName: tutorial, razor, razor pages, ui
@@ -213,7 +213,27 @@ items:
       - name: Dependency injection (services)
         uid: fundamentals/dependency-injection
       - name: Middleware
-        uid: fundamentals/middleware/index
+        items: 
+          - name: Middleware overview
+            uid: fundamentals/middleware/index
+          - name: Rate limiting middleware
+            uid: performance/rate-limit
+          - name: Test middleware
+            uid: test/middleware
+          - name: Response caching middleware
+            uid: performance/caching/middleware
+          - name: Write middleware
+            uid: fundamentals/middleware/write
+          - name: Request and response operations
+            displayName: middleware
+            uid: fundamentals/middleware/request-response
+          - name: Request decompression
+            displayName: request decompression middleware
+            uid: fundamentals/middleware/request-decompression
+          - name: Factory-based middleware
+            uid: fundamentals/middleware/extensibility
+          - name: Factory-based middleware with third-party container
+            uid: fundamentals/middleware/extensibility-third-party-container
       - name: Host
         items:
           - name: Generic Host
@@ -333,7 +353,7 @@ items:
                 uid: blazor/tutorials/build-a-blazor-app
               - name: SignalR with Blazor
                 uid: blazor/tutorials/signalr-blazor
-              - name: Microsoft Learn modules
+              - name: Learn modules
                 href: /learn/paths/build-web-apps-with-blazor/
           - name: Hosting models
             uid: blazor/hosting-models
@@ -423,8 +443,8 @@ items:
                 uid: blazor/components/built-in-components
           - name: Globalization and localization
             uid: blazor/globalization-localization
-          - name: Forms and validation
-            uid: blazor/forms-validation
+          - name: Forms and input components
+            uid: blazor/forms-and-input-components
           - name: File uploads
             uid: blazor/file-uploads
           - name: File downloads
@@ -668,6 +688,8 @@ items:
     items:
       - name: Minimal APIs overview
         uid: fundamentals/minimal-apis
+      - name: OpenAPI in Minimal API apps
+        uid: fundamentals/minimal-apis/openapi
       - name: Filters in Minimal API apps
         uid: fundamentals/minimal-apis/min-api-filters
   - name: Real-time apps
@@ -847,7 +869,7 @@ items:
         uid: grpc/health-checks
       - name: Manage Protobuf references with dotnet-grpc
         uid: grpc/dotnet-grpc
-      - name: Test services with gRPCurl
+      - name: Test services with Postman and gRPCurl
         uid: grpc/test-tools
       - name: Migrate from C-core to gRPC for .NET
         uid: grpc/migration
@@ -1030,7 +1052,7 @@ items:
             href: /dotnet/architecture/devops-for-aspnet-developers
           - name: Tools and downloads
             displayName: azure, deploy, publish
-            href: /dotnet/architecture/devops-for-aspnet-developers/tool-and-downloads
+            href: /dotnet/architecture/devops-for-aspnet-developers/tools-and-downloads
           - name: Deploy to App Service
             displayName: azure, deploy, publish
             href: /dotnet/architecture/devops-for-aspnet-developers/deploying-to-app-service
@@ -1232,6 +1254,9 @@ items:
             uid: security/authentication/cookie
           - name: Use social authentication without Identity
             uid: security/authentication/social/social-without-identity
+          - name: Manage JWTs in development
+            displayName: jwt, JSON WEB Token
+            uid: security/authentication/jwt
           - name: Azure Active Directory
             items:
               - name: Overview
@@ -1255,7 +1280,7 @@ items:
                   - name: Sign-in users and call web APIs using Azure AD V2
                     href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/enable-webapp-signin/
                   - name: Calling an ASP.NET Core 2.0 Web API from a WPF application using Azure AD V2
-                    href: /samples/azure-samples/active-directory-dotnet-native-aspnetcore-v2/calling-an-aspnet-core-web-api-from-a-wpf-application-using-azure-ad-v2/
+                    href: https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2/tree/master/1.%20Desktop%20app%20calls%20Web%20API
                   - name: Web API with Azure AD B2C
                     href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/how-to-secure-a-web-api-built-with-aspnet-core-using-the-azure-ad-b2c/
           - name: Secure ASP.NET Core apps with Duende Identity Server
@@ -1374,6 +1399,9 @@ items:
           - name: Protect secrets in development
             displayName: password, connection string, API key
             uid: security/app-secrets
+          - name: Manage JWTs in development
+            displayName: jwt, JSON WEB Token
+            uid: security/authentication/jwt
           - name: Azure Key Vault Configuration Provider
             displayName: password, connection string, API key, secrets
             uid: security/key-vault-configuration
@@ -1410,9 +1438,12 @@ items:
       - name: Application security - OWASP
         href: https://cheatsheetseries.owasp.org/cheatsheets/DotNet_Security_Cheat_Sheet.html
   - name: Performance
+    displayName: Performance Best Practices
     items:
       - name: Overview
         uid: performance/performance-best-practices
+      - name: Rate limiting middleware
+        uid: performance/rate-limit
       - name: Memory and GC
         uid: performance/memory
       - name: Caching
@@ -1465,6 +1496,9 @@ items:
       - name: Request and response operations
         displayName: middleware
         uid: fundamentals/middleware/request-response
+      - name: Request decompression
+        displayName: request decompression middleware
+        uid: fundamentals/middleware/request-decompression
       - name: URL rewriting
         uid: fundamentals/url-rewriting
       - name: File providers

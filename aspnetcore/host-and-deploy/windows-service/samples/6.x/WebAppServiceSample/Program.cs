@@ -4,7 +4,8 @@ using SampleApp.Services;
 var options = new WebApplicationOptions
 {
     Args = args,
-    ContentRootPath = WindowsServiceHelpers.IsWindowsService() ? AppContext.BaseDirectory : default
+    ContentRootPath = WindowsServiceHelpers.IsWindowsService() 
+                                     ? AppContext.BaseDirectory : default
 };
 
 var builder = WebApplication.CreateBuilder(options);

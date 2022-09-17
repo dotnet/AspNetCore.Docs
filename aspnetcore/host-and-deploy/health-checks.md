@@ -44,7 +44,7 @@ The following example creates a health check endpoint at `/healthz`:
 HEALTHCHECK CMD curl --fail http://localhost:5000/healthz || exit
 ```
 
-The preceding example uses `curl` to make a HTTP request to the health check endpoint at `/healthz`. `curl` isn't included in the .NET Linux container images, but it can be added by installing the required package in the Dockerfile. Containers that use images based on Alpine Linux can use the included `wget` in place of `curl`.
+The preceding example uses `curl` to make an HTTP request to the health check endpoint at `/healthz`. `curl` isn't included in the .NET Linux container images, but it can be added by installing the required package in the Dockerfile. Containers that use images based on Alpine Linux can use the included `wget` in place of `curl`.
 
 ## Create health checks
 
@@ -108,7 +108,7 @@ Call <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderEx
 
 ### Enable Cross-Origin Requests (CORS)
 
-Although running health checks manually from a browser isn't a common use scenario, CORS Middleware can be enabled by calling `RequireCors` on health checks endpoints. A `RequireCors` overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. If a policy isn't provided, the default CORS policy is used. For more information, see <xref:security/cors>.
+Although running health checks manually from a browser isn't a common scenario, CORS Middleware can be enabled by calling [`RequireCors`](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/CORS/src/Infrastructure/CorsEndpointConventionBuilderExtensions.cs#L20-#L40) on the health checks endpoints. The [`RequireCors`](/dotnet/api/microsoft.aspnetcore.builder.corsendpointconventionbuilderextensions.requirecors) overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. For more information, see <xref:security/cors>.
 
 ## Health check options
 
@@ -213,7 +213,7 @@ To create two different health check endpoints, call `MapHealthChecks` twice:
 The preceding example creates the following health check endpoints:
 
 * `/healthz/ready` for the readiness check. The readiness check filters health checks to those tagged with `ready`.
-* `/healthz/live` for the liveness check. The liveness check filters out all health checks by returning `false` in the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Predicate%2A?displayProperty=nameWithType> delegate. For more information on filtering health checks, see [Filter health checks](#filter-health-checks)) in this article.
+* `/healthz/live` for the liveness check. The liveness check filters out all health checks by returning `false` in the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.Predicate%2A?displayProperty=nameWithType> delegate. For more information on filtering health checks, see [Filter health checks](#filter-health-checks) in this article.
 
 Before the startup task completes, the `/healthz/ready` endpoint reports an `Unhealthy` status. Once the startup task completes, this endpoint reports a `Healthy` status. The `/healthz/live` endpoint excludes all checks and reports a `Healthy` status for all calls.
 

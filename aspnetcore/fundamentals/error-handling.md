@@ -5,20 +5,23 @@ description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 9/9/2021
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
 
 :::moniker range=">= aspnetcore-6.0"
 
-By [Kirk Larkin](https://twitter.com/serpent5), [Tom Dykstra](https://github.com/tdykstra/), and [Steve Smith](https://ardalis.com/)
+By [Tom Dykstra](https://github.com/tdykstra/)
 
 This article covers common approaches to handling errors in ASP.NET Core web apps. See <xref:web-api/handle-errors> for web APIs.
 
 ## Developer exception page
 
-The *Developer Exception Page* displays detailed information about unhandled request exceptions. ASP.NET Core apps enable the developer exception page by default when running in the [Development environment](xref:fundamentals/environments).
+The *Developer Exception Page* displays detailed information about unhandled request exceptions. ASP.NET Core apps enable the developer exception page by default when both:
+
+* Running in the [Development environment](xref:fundamentals/environments).
+* App created with the current templates, that is, using [WebApplication.CreateBuilder](/dotnet/api/microsoft.aspnetcore.builder.webapplication.createbuilder).  Apps created using the [`WebHost.CreateDefaultBuilder`](xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder) must enable the developer exception page by calling `app.UseDeveloperExceptionPage` in `Configure`.
 
 The developer exception page runs early in the middleware pipeline, so that it can catch unhandled exceptions thrown in middleware that follows.
 

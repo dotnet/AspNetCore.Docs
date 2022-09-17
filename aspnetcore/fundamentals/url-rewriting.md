@@ -83,6 +83,8 @@ Establish URL rewrite and redirect rules by creating an instance of the [Rewrite
 
 [!code-csharp[](url-rewriting/samples/6.x/SampleApp/Program.cs?name=snippet1&highlight=7-24)]
 
+In the preceding code, [`MethodRules`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/fundamentals/url-rewriting/samples/6.x/SampleApp/RewriteRules.cs) is a user defined class. See [`RewriteRules.cs`](#rrr) in this article for more information.
+
 ### Redirect non-www to www
 
 Three options permit the app to redirect non-`www` requests to `www`:
@@ -299,6 +301,8 @@ The sample app demonstrates a method that redirects requests for paths that end 
 
 * The request is redirected to `/xmlfiles/file.xml`
 * The status code is set to `301 - Moved Permanently`. When the browser makes a new request for `/xmlfiles/file.xml`, Static File Middleware serves the file to the client from the *wwwroot/xmlfiles* folder. For a redirect, explicitly set the status code of the response. Otherwise, a *200 - OK* status code is returned, and the redirect doesn't occur on the client.
+
+<a name="rrr"></a>
 
 `RewriteRules.cs`:
 

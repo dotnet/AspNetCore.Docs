@@ -4,7 +4,7 @@ author: rick-anderson
 description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 7/13/2022
+ms.date: 08/23/2022
 uid: fundamentals/minimal-apis
 ---
 
@@ -348,7 +348,7 @@ Route names are inferred from method names if specified:
 Route names:
 
 * Must be globally unique.
-* Are used as the OpenAPI operation id when OpenAPI support is enabled. See the [OpenAPI section](#openapi) for more details.
+* Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](xref:fundamentals/minimal-apis/openapi).
 
 ### Route Parameters
 
@@ -769,35 +769,9 @@ Routes can be [CORS](xref:security/cors?view=aspnetcore-6.0) enabled using [CORS
 
 For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
-## OpenAPI
+## See also
 
-An app can describe the [OpenAPI specification](https://swagger.io/specification/) for route handlers using [Swashbuckle](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
-
-The following code is a typical ASP.NET Core app with OpenAPI support:
-
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_swag)]
-
-### Exclude Open API description
-
-In the following sample, the `/skipme` endpoint is excluded from generating an OpenAPI description:
-
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_swag2)]
-
-### Describe response types
-
-The following example uses the built-in result types to customize the response:
-
-[!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_getCustom)]
-
-### Add operation ids to Open API
-
-[!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_name)]
-
-### Add tags to the Open API description
-
-The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specification/grouping-operations-with-tags/):
-
-[!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_grp)]
+[OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/openapi)
 
 :::moniker-end
 
@@ -1114,8 +1088,60 @@ The following code shows the complete `Program.cs` file:
 [!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet)]
 
 * When reading data, the `Stream` is the same object as `HttpRequest.Body`.
-* The request body isn’t buffered by default. After the body is read, it’s not rewindable. The stream can't be read multiple times.
+* The request body isn't buffered by default. After the body is read, it's not rewindable. The stream can't be read multiple times.
 * The `Stream` and `PipeReader` aren't usable outside of the minimal action handler as the underlying buffers will be disposed or reused.
+
+<a name="asparam7"></a>
+
+## Parameter binding for argument lists with [AsParameters]
+
+<xref:Microsoft.AspNetCore.Http.AsParametersAttribute> enables simple parameter binding to types and not complex or recursive model binding.
+
+Consider the following code:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_top":::
+
+Consider the following `GET` endpoint:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_id" highlight="2":::
+
+The following `struct` can be used to replace the preceding highlighted parameters:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoDb.cs" id="snippet" :::
+
+The refactored `GET` endpoint uses the preceding `struct` with the [AsParameters](/dotnet/api/microsoft.aspnetcore.http.asparametersattribute?view=aspnetcore-7.0&preserve-view=true) attribute:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_ap_id" highlight="2":::
+
+The following code shows additional endpoints in the app:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_post_put_delete" :::
+
+The following classes are used to refactor the parameter lists:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoDb.cs" id="snippet_1" :::
+
+The following code shows the refactored endpoints using `AsParameters` and the preceding `struct` and classes:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_ap_post_put_delete" :::
+
+The following [`record`](/dotnet/csharp/language-reference/builtin-types/record) types can be used to replace the preceding parameters:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoRecord.cs" id="snippet_1" :::
+
+Using a `struct` with `AsParameters` can be more performant than using a `record` type.
+
+The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/arg-lists) in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
+
+## File uploads using IFormFile and IFormFileCollection
+
+The following code uses <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> to upload file:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/7.0-samples/MinimalApi/Program.cs" :::
+
+Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](/aspnet/core/security/authentication/certauth), or a cookie header.
+
+There is no built-in support for [antiforgery](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#anti7). However, it can be implemented using the [`IAntiforgery` service](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#antimin7).
 
 ## Request handling
 
@@ -1166,7 +1192,7 @@ Route names are inferred from method names if specified:
 Route names:
 
 * Must be globally unique.
-* Are used as the OpenAPI operation id when OpenAPI support is enabled. See the [OpenAPI section](#openapi) for more details.
+* Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](xref:fundamentals/minimal-apis/openapi).
 
 ### Route Parameters
 
@@ -1437,6 +1463,7 @@ The rules for determining a binding source from a parameter:
     1. Header: [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute)
     1. Body: [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)
     1. Service: [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute)
+    1. Parameter values: [`[AsParameters]](<xref:Microsoft.AspNetCore.Http.AsParametersAttribute)
 1. Special types
     1. `HttpContext`
     1. `HttpRequest`
@@ -1641,77 +1668,11 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
 ## Typed results
 
-The <xref:Microsoft.AspNetCore.Http.IResult> interface can represent values returned from minimal APIs that don’t utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL.
+The <xref:Microsoft.AspNetCore.Http.IResult> interface can represent values returned from minimal APIs that don't utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL.
 
 The types implementing `IResult` are public, allowing for type assertions when testing. For example:
 
 [!code-csharp[](~/fundamentals/minimal-apis/misc-samples/typedResults/TypedResultsApiWithTest/Test/WeatherApiTest.cs?name=snippet_1&highlight=7-8)]
-
-## OpenAPI
-
-An app can describe the [OpenAPI specification](https://swagger.io/specification/) for route handlers using [Swashbuckle](https://www.nuget.org/packages/Swashbuckle.AspNetCore/). The OpenAPI specification defines a standard for documenting RESTful APIs so that end users and other services can examine the capabilities of an API service.
-
-The following code is generated by the ASP.NET Core minimal web API template and uses OpenAPI:
-
-[!code-csharp[](minimal-apis/7.0-samples/WebMinOpenApi/Program.cs?name=snippet&highlight=1,5-6,12-13,35-36)]
-
-In the preceding highlighted code:
-
-* `Microsoft.AspNetCore.OpenApi` is explained in the next section.
-* <xref:Microsoft.Extensions.DependencyInjection.EndpointMetadataApiExplorerServiceCollectionExtensions.AddEndpointsApiExplorer%2A> : Configures the app to use the API Explorer to discover and describe endpoints with default annotations. `WithOpenApi` overrides matching, default annotations generated by the API Explorer with those produced from the `Microsoft.AspNetCore.OpenApi` package.
-* `UseSwagger`adds the [Swagger middleware](xref:tutorials/get-started-with-swashbuckle#add-and-configure-swagger-middleware).
-* `UseSwaggerUI` enables the [Static File Middleware](xref:fundamentals/static-files).
-* <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithName%2A>: The <xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata> on the endpoint is used for link generation and is treated as the operation ID in the given endpoint's OpenAPI specification.
-* [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs) is explained later in this article.
-
-<a name="openapinuget"></a>
-
-### `Microsoft.AspNetCore.OpenApi` NuGet package
-
-ASP.NET Core provides the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi/) package to interact with OpenAPI specifications for endpoints. The package acts as a link between the OpenAPI models that are defined in the `Microsoft.AspNetCore.OpenApi` package and the endpoints that are defined in Minimal APIs. The package provides an API that examines an endpoint's parameters, responses, and metadata to construct an OpenAPI annotation type that is used to describe an endpoint.
-
-`Microsoft.AspNetCore.OpenApi` is added as a PackageReference to a project file:
-
-[!code-xml[](minimal-apis/7.0-samples/WebMinOpenApi/projectFile.xml?highlight=10)]
-
-When using [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) with `Microsoft.AspNetCore.OpenApi`, `Swashbuckle.AspNetCore` 6.3.1 and later must be used.
-
-### `WithOpenApi` call on endpoints adds an OpenAPI annotation
-
-Calling [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs) on an endpoint without parameters adds an [OpenAPI annotation](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs#L65-L82) to the endpoints metadata. This metadata can be:
-
-* Consumed in third-party packages like [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
-* Displayed in the Swagger user interface or in YAML or JSON generated to define the file.
-
-[!code-csharp[](minimal-apis/7.0-samples/todo/Program.cs?name=snippet_withopenapi&highlight=9)]
-
-#### Call `WithOpenApi` with parameters
-
-The [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs#L49) method accepts a function that can be used to modify the OpenAPI annotation. For example, in the following code, a description is added to the first parameter of the endpoint:
-
-[!code-csharp[](minimal-apis/7.0-samples/todo/Program.cs?name=snippet_withopenapi2&highlight=9-99)]
-
-### Exclude Open API description
-
-In the following sample, the `/skipme` endpoint is excluded from generating an OpenAPI description:
-
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_swag2&highlight=20-21)]
-
-### Describe response types
-
-The following example uses the built-in result types to customize the response:
-
-[!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_getCustom)]
-
-### Add operation ids to Open API
-
-[!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_name)]
-
-### Add tags to the Open API description
-
-The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specification/grouping-operations-with-tags/):
-
-[!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_grp)]
 
 <!-- 
 # Differences between minimal APIs and APIs with controllers
@@ -1719,9 +1680,8 @@ The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specif
 Moved to uid: tutorials/min-web-api
 -->
 
-### ASP.NET Core OpenAPI source code on GitHub
+## See also
 
-* [WithOpenApi](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs)
-* [OpenApiGenerator](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/src/OpenApiGenerator.cs)
+[OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/openapi)
 
 :::moniker-end

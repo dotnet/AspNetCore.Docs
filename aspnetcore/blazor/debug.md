@@ -54,8 +54,7 @@ After opening a project in VS Code, you may receive a notification that addition
 
 Visual Studio for Mac requires version 8.8 (build 1532) or later:
 
-1. Install the latest release of Visual Studio for Mac by selecting the **Download Visual Studio for Mac** button at [Microsoft: Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
-1. Select the *Preview* channel from within Visual Studio. For more information, see [Install a preview version of Visual Studio for Mac](/visualstudio/mac/install-preview).
+Install the latest release of Visual Studio for Mac by selecting the **Download Visual Studio for Mac** button at [Microsoft: Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
 
 > [!NOTE]
 > Apple Safari on macOS isn't currently supported.
@@ -108,7 +107,7 @@ To debug a Blazor WebAssembly app in Visual Studio:
    > [!NOTE]
    > **Start Without Debugging** [<kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS)] isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
 
-1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>F5</kbd> to continue execution.
@@ -199,14 +198,14 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    }
    ```
 
-1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu item.
+1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu command.
 
    > [!NOTE]
    > **Start Without Debugging** [<kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS)] isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
 
 1. The standalone app is launched, and a debugging browser is opened.
 
-1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 
@@ -280,7 +279,7 @@ To debug a Blazor WebAssembly app in Visual Studio for Mac:
    > [!IMPORTANT]
    > Google Chrome or Microsoft Edge must be the selected browser for the debugging session.
 
-1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint:
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to continue execution.
@@ -426,7 +425,7 @@ For now, you *can't*:
 * Break on unhandled exceptions.
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.cs` and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](/visualstudio/devinit/devinit-and-codespaces)).
-* Automatically rebuild the backend `*Server*` app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+* Automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
 ## Prerequisites
 
@@ -446,8 +445,7 @@ After opening a project in VS Code, you may receive a notification that addition
 
 Visual Studio for Mac requires version 8.8 (build 1532) or later:
 
-1. Install the latest release of Visual Studio for Mac by selecting the **Download Visual Studio for Mac** button at [Microsoft: Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
-1. Select the *Preview* channel from within Visual Studio. For more information, see [Install a preview version of Visual Studio for Mac](/visualstudio/mac/install-preview).
+Install the latest release of Visual Studio for Mac by selecting the **Download Visual Studio for Mac** button at [Microsoft: Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
 
 > [!NOTE]
 > Apple Safari on macOS isn't currently supported.
@@ -500,7 +498,7 @@ To debug a Blazor WebAssembly app in Visual Studio:
    > [!NOTE]
    > **Start Without Debugging** [<kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS)] isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
 
-1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>F5</kbd> to continue execution.
@@ -591,14 +589,14 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    }
    ```
 
-1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu item.
+1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu command.
 
    > [!NOTE]
    > **Start Without Debugging** [<kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS)] isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
 
 1. The standalone app is launched, and a debugging browser is opened.
 
-1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 
@@ -720,7 +718,7 @@ To debug a Blazor WebAssembly app in Visual Studio for Mac:
    > [!IMPORTANT]
    > Google Chrome or Microsoft Edge must be the selected browser for the debugging session.
 
-1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint:
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to continue execution.
@@ -866,7 +864,7 @@ For now, you *can't*:
 * Break on unhandled exceptions.
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.cs` and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](/visualstudio/devinit/devinit-and-codespaces)).
-* Automatically rebuild the backend `*Server*` app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+* Automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
 ## Prerequisites
 
@@ -886,8 +884,7 @@ After opening a project in VS Code, you may receive a notification that addition
 
 Visual Studio for Mac requires version 8.8 (build 1532) or later:
 
-1. Install the latest release of Visual Studio for Mac by selecting the **Download Visual Studio for Mac** button at [Microsoft: Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
-1. Select the *Preview* channel from within Visual Studio. For more information, see [Install a preview version of Visual Studio for Mac](/visualstudio/mac/install-preview).
+Install the latest release of Visual Studio for Mac by selecting the **Download Visual Studio for Mac** button at [Microsoft: Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
 
 > [!NOTE]
 > Apple Safari on macOS isn't currently supported.
@@ -940,7 +937,7 @@ To debug a Blazor WebAssembly app in Visual Studio:
    > [!NOTE]
    > **Start Without Debugging** [<kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS)] isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
 
-1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>F5</kbd> to continue execution.
@@ -1031,14 +1028,14 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    }
    ```
 
-1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu item.
+1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu command.
 
    > [!NOTE]
    > **Start Without Debugging** [<kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS)] isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
 
 1. The standalone app is launched, and a debugging browser is opened.
 
-1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 
@@ -1148,7 +1145,7 @@ To debug a Blazor WebAssembly app in Visual Studio for Mac:
    > [!IMPORTANT]
    > Google Chrome or Microsoft Edge must be the selected browser for the debugging session.
 
-1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint:
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to continue execution.
@@ -1314,8 +1311,7 @@ After opening a project in VS Code, you may receive a notification that addition
 
 Visual Studio for Mac requires version 8.8 (build 1532) or later:
 
-1. Install the latest release of Visual Studio for Mac by selecting the **Download Visual Studio for Mac** button at [Microsoft: Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
-1. Select the *Preview* channel from within Visual Studio. For more information, see [Install a preview version of Visual Studio for Mac](/visualstudio/mac/install-preview).
+Install the latest release of Visual Studio for Mac by selecting the **Download Visual Studio for Mac** button at [Microsoft: Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
 
 > [!NOTE]
 > Apple Safari on macOS isn't currently supported.
@@ -1368,7 +1364,7 @@ To debug a Blazor WebAssembly app in Visual Studio:
    > [!NOTE]
    > **Start Without Debugging** [<kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS)] isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
 
-1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>F5</kbd> to continue execution.
@@ -1459,14 +1455,14 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    }
    ```
 
-1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu item.
+1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu command.
 
    > [!NOTE]
    > **Start Without Debugging** [<kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS)] isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
 
 1. The standalone app is launched, and a debugging browser is opened.
 
-1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 
@@ -1517,7 +1513,7 @@ The following launch configuration options are supported for the `blazorwasm` de
 | Option    | Description |
 | --------- | ----------- |
 | `request` | Use `launch` to launch and attach a debugging session to a Blazor WebAssembly app or `attach` to attach a debugging session to an already-running app. |
-| `url`     | The URL to open in the browser when debugging. Defaults to `https://localhost:5001`. If the app is running at a different URL, an `about:blank` tab launches in the browser. |
+| `url`     | The URL to open in the browser when debugging. |
 | `browser` | The browser to launch for the debugging session. Set to `edge` or `chrome`. Defaults to `edge`. |
 | `trace`   | Used to generate logs from the JS debugger. Set to `true` to generate logs. |
 | `hosted`  | Must be set to `true` if launching and debugging a hosted Blazor WebAssembly app. |
@@ -1540,7 +1536,7 @@ To debug a Blazor WebAssembly app in Visual Studio for Mac:
    > [!IMPORTANT]
    > Google Chrome or Microsoft Edge must be the selected browser for the debugging session.
 
-1. In the `*Client*` app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint:
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to continue execution.
@@ -1566,7 +1562,7 @@ For more information, see [Debugging with Visual Studio for Mac](/visualstudio/m
 
 1. Run a Debug build of the app in the Development environment.
 
-1. Launch a browser and navigate to the app's URL (for example, `https://localhost:7268`).
+1. Launch a browser and navigate to the app's URL.
 
 1. In the browser, attempt to commence remote debugging by pressing <kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>d</kbd>.
 

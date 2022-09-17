@@ -165,7 +165,7 @@ Blazor Server apps generally execute on the server quickly. However, Blazor Serv
 
 Blazor Hybrid apps run using the .NET runtime natively on the target platform, which offers the best possible speed.
 
-Blazor WebAssembly, including Progressive Web Apps (PWAs), apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform, even for apps that are [ahead-of-time (AOT) compiled](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) for WebAssembly in the broswer.
+Blazor WebAssembly, including Progressive Web Apps (PWAs), apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform, even for apps that are [ahead-of-time (AOT) compiled](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) for WebAssembly in the browser.
 
 ### App code secure and private on the server
 
@@ -314,7 +314,7 @@ Static site hosting is possible with Blazor WebAssembly apps because they're dow
 
 ### Offloads processing to clients
 
-Blazor WebAssembly apps execute on clients and thus offload processing to clients. Blazor Server apps execute on a server, so server resource demand typically increases with the number of users and the amount of processing required per user. When it's possible to offload most or all of an app's processing to clients and the app processes a significant amount of data, Blazor WebAssembly  is the best choice.
+Blazor WebAssembly apps execute on clients and thus offload processing to clients. Blazor Server apps execute on a server, so server resource demand typically increases with the number of users and the amount of processing required per user. When it's possible to offload most or all of an app's processing to clients and the app processes a significant amount of data, Blazor WebAssembly is the best choice.
 
 ## Additional resources
 
@@ -473,7 +473,7 @@ Blazor Server apps generally execute on the server quickly. However, Blazor Serv
 
 Blazor Hybrid apps run using the .NET runtime natively on the target platform, which offers the best possible speed.
 
-Blazor WebAssembly, including Progressive Web Apps (PWAs), apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform, even for apps that are [ahead-of-time (AOT) compiled](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) for WebAssembly in the broswer.
+Blazor WebAssembly, including Progressive Web Apps (PWAs), apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform, even for apps that are [ahead-of-time (AOT) compiled](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) for WebAssembly in the browser.
 
 ### App code secure and private on the server
 

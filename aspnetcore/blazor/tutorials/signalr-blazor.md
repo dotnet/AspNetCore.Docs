@@ -39,7 +39,7 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* [Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/): Select the *Preview* channel from within Visual Studio. For more information, see [Install a preview version of Visual Studio for Mac](/visualstudio/mac/install-preview).
+* [Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/)
 * [!INCLUDE [.NET Core 6.0 SDK](~/includes/6.0-SDK.md)]
 
 # [.NET Core CLI](#tab/netcore-cli/)
@@ -71,11 +71,11 @@ Follow the guidance for your choice of tooling:
 
 1. Type `BlazorWebAssemblySignalRApp` in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Next**.
 
-1. In the **Additional information** dialog, select the **ASP.NET Core hosted** checkbox.
+1. In the **Additional information** dialog, select the **ASP.NET Core Hosted** checkbox.
 
 1. Select **Create**.
 
-1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **`Client`** project and a **`Server`** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core hosted** checkbox before selecting **Create**.
+1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **`Client`** project and a **`Server`** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core Hosted** checkbox before selecting **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -100,25 +100,23 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) and perform the following steps.
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
-   Select the *Preview* channel from within Visual Studio. For more information, see [Install a preview version of Visual Studio for Mac](/visualstudio/mac/install-preview).
-
-1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+1. Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 
 1. In the sidebar, select **Web and Console** > **App**.
 
-1. Choose the **Blazor WebAssembly App** template. Select **Next**.
+1. Choose the **Blazor WebAssembly App** template. Select **Continue**.
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core Hosted** checkbox. Select **Next**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core hosted** checkbox. Select **Continue**.
 
-1. In the **Project Name** field, name the app `BlazorWebAssemblySignalRApp`. Select **Create**.
+1. In the **Project name** field, name the app `BlazorWebAssemblySignalRApp`. Select **Create**.
 
    If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
 1. Open the project by navigating to the project folder and opening the project's [solution](xref:blazor/tooling#visual-studio-solution-file-sln) file (`.sln`).
 
-1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **`Client`** project and a **`Server`** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core Hosted** checkbox before selecting **Create**.
+1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **`Client`** project and a **`Server`** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core hosted** checkbox before selecting **Create**.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -166,7 +164,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 1. In the **Solution** sidebar, right-click the `BlazorWebAssemblySignalRApp.Client` project and select **Manage NuGet Packages**.
 
-1. In the **Manage NuGet Packages** dialog, confirm that the source drop-down is set to `nuget.org`.
+1. In the **Manage NuGet Packages** dialog, confirm that the **Package source** dropdown list is set to `nuget.org`.
 
 1. With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
 
@@ -228,6 +226,9 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
    :::code language="razor" source="~/../blazor-samples/6.0/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor":::
 
+> [!NOTE]
+> Disable Response Compression Middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
+
 ## Run the app
 
 Follow the guidance for your tooling:
@@ -238,6 +239,8 @@ Follow the guidance for your tooling:
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   >
+   > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -255,6 +258,8 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   >
+   > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -270,6 +275,8 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   >
+   > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -338,17 +345,17 @@ Follow the guidance for your choice of tooling:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) and perform the following steps:
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
-1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+1. Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 
 1. In the sidebar, select **Web and Console** > **App**.
 
-1. Choose the **Blazor Server App** template. Select **Next**.
+1. Choose the **Blazor Server App** template. Select **Continue**.
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select **Next**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select **Continue**.
 
-1. In the **Project Name** field, name the app `BlazorServerSignalRApp`. Select **Create**.
+1. In the **Project name** field, name the app `BlazorServerSignalRApp`. Select **Create**.
 
    If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
@@ -396,7 +403,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 1. In the **Solution** sidebar, right-click the `BlazorServerSignalRApp` project and select **Manage NuGet Packages**.
 
-1. In the **Manage NuGet Packages** dialog, confirm that the source drop-down is set to `nuget.org`.
+1. In the **Manage NuGet Packages** dialog, confirm that the **Package source** dropdown list is set to `nuget.org`.
 
 1. With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
 
@@ -456,6 +463,9 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
    :::code language="razor" source="~/../blazor-samples/6.0/BlazorServerSignalRApp/Pages/Index.razor":::
 
+> [!NOTE]
+> Disable Response Compression Middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
+
 ## Run the app
 
 Follow the guidance for your tooling:
@@ -487,6 +497,9 @@ Follow the guidance for your tooling:
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
+
+   > [!IMPORTANT]
+   > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -535,6 +548,7 @@ To learn more about building Blazor apps, see the Blazor documentation:
 
 ## Additional resources
 
+* [Secure SignalR hubs in hosted Blazor WebAssembly apps](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * <xref:signalr/introduction>
 * [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#signalr-cross-origin-negotiation-for-authentication-blazor-webassembly)
 * [SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
@@ -602,7 +616,7 @@ Follow the guidance for your choice of tooling:
 
 1. Type `BlazorWebAssemblySignalRApp` in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Next**.
 
-1. In the **Additional information** dialog, select the **ASP.NET Core hosted** checkbox.
+1. In the **Additional information** dialog, select the **ASP.NET Core Hosted** checkbox.
 
 1. Select **Create**.
 
@@ -627,17 +641,17 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) and perform the following steps:
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
-1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+1. Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 
 1. In the sidebar, select **Web and Console** > **App**.
 
-1. Choose the **Blazor WebAssembly App** template. Select **Next**.
+1. Choose the **Blazor WebAssembly App** template. Select **Continue**.
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core Hosted** checkbox. Select **Next**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core hosted** checkbox. Select **Continue**.
 
-1. In the **Project Name** field, name the app `BlazorWebAssemblySignalRApp`. Select **Create**.
+1. In the **Project name** field, name the app `BlazorWebAssemblySignalRApp`. Select **Create**.
 
    If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
@@ -687,7 +701,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 1. In the **Solution** sidebar, right-click the `BlazorWebAssemblySignalRApp.Client` project and select **Manage NuGet Packages**.
 
-1. In the **Manage NuGet Packages** dialog, confirm that the source drop-down is set to `nuget.org`.
+1. In the **Manage NuGet Packages** dialog, confirm that the **Package source** dropdown list is set to `nuget.org`.
 
 1. With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
 
@@ -759,6 +773,8 @@ Follow the guidance for your tooling:
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   >
+   > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -776,6 +792,8 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   >
+   > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -789,10 +807,12 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. In the **Solution** sidebar, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
 
-1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
-
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   >
+   > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+
+1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
 
@@ -859,17 +879,17 @@ Follow the guidance for your choice of tooling:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) and perform the following steps:
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
-1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+1. Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 
 1. In the sidebar, select **Web and Console** > **App**.
 
-1. Choose the **Blazor Server App** template. Select **Next**.
+1. Choose the **Blazor Server App** template. Select **Continue**.
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select **Next**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select **Continue**.
 
-1. In the **Project Name** field, name the app `BlazorServerSignalRApp`. Select **Create**.
+1. In the **Project name** field, name the app `BlazorServerSignalRApp`. Select **Create**.
 
    If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
@@ -917,7 +937,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 1. In the **Solution** sidebar, right-click the `BlazorServerSignalRApp` project and select **Manage NuGet Packages**.
 
-1. In the **Manage NuGet Packages** dialog, confirm that the source drop-down is set to `nuget.org`.
+1. In the **Manage NuGet Packages** dialog, confirm that the **Package source** dropdown list is set to `nuget.org`.
 
 1. With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
 
@@ -1005,6 +1025,9 @@ Follow the guidance for your tooling:
 
 1. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
 
+   > [!IMPORTANT]
+   > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
@@ -1052,6 +1075,7 @@ To learn more about building Blazor apps, see the Blazor documentation:
 
 ## Additional resources
 
+* [Secure SignalR hubs in hosted Blazor WebAssembly apps](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * <xref:signalr/introduction>
 * [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#signalr-cross-origin-negotiation-for-authentication-blazor-webassembly)
 * [SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
@@ -1118,7 +1142,7 @@ Follow the guidance for your choice of tooling:
 
 1. Type `BlazorWebAssemblySignalRApp` in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Next**.
 
-1. In the **Additional information** dialog, select the **ASP.NET Core hosted** checkbox.
+1. In the **Additional information** dialog, select the **ASP.NET Core Hosted** checkbox.
 
 1. Select **Create**.
 
@@ -1143,17 +1167,17 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) and perform the following steps:
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
-1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+1. Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 
 1. In the sidebar, select **Web and Console** > **App**.
 
-1. Choose the **Blazor WebAssembly App** template. Select **Next**.
+1. Choose the **Blazor WebAssembly App** template. Select **Continue**.
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core Hosted** checkbox. Select **Next**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core hosted** checkbox. Select **Continue**.
 
-1. In the **Project Name** field, name the app `BlazorWebAssemblySignalRApp`. Select **Create**.
+1. In the **Project name** field, name the app `BlazorWebAssemblySignalRApp`. Select **Create**.
 
    If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
@@ -1203,7 +1227,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 1. In the **Solution** sidebar, right-click the `BlazorWebAssemblySignalRApp.Client` project and select **Manage NuGet Packages**.
 
-1. In the **Manage NuGet Packages** dialog, confirm that the source drop-down is set to `nuget.org`.
+1. In the **Manage NuGet Packages** dialog, confirm that the **Package source** dropdown list is set to `nuget.org`.
 
 1. With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
 
@@ -1275,6 +1299,8 @@ Follow the guidance for your tooling:
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   >
+   > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1292,6 +1318,8 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   >
+   > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1307,6 +1335,8 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   >
+   > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1375,17 +1405,17 @@ Follow the guidance for your choice of tooling:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) and perform the following steps:
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
-1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+1. Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 
 1. In the sidebar, select **Web and Console** > **App**.
 
-1. Choose the **Blazor Server App** template. Select **Next**.
+1. Choose the **Blazor Server App** template. Select **Continue**.
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select **Next**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select **Continue**.
 
-1. In the **Project Name** field, name the app `BlazorServerSignalRApp`. Select **Create**.
+1. In the **Project name** field, name the app `BlazorServerSignalRApp`. Select **Create**.
 
    If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
@@ -1433,7 +1463,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 1. In the **Solution** sidebar, right-click the `BlazorServerSignalRApp` project and select **Manage NuGet Packages**.
 
-1. In the **Manage NuGet Packages** dialog, confirm that the source drop-down is set to `nuget.org`.
+1. In the **Manage NuGet Packages** dialog, confirm that the **Package source** dropdown list is set to `nuget.org`.
 
 1. With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
 
@@ -1489,7 +1519,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 1. In the **Solution** sidebar, right-click the `BlazorServerSignalRApp` project and select **Manage NuGet Packages**.
 
-1. In the **Manage NuGet Packages** dialog, confirm that the source drop-down is set to `nuget.org`.
+1. In the **Manage NuGet Packages** dialog, confirm that the **Package source** dropdown list is set to `nuget.org`.
 
 1. With **Browse** selected, type `System.Text.Encodings.Web` in the search box.
 
@@ -1577,6 +1607,9 @@ Follow the guidance for your tooling:
 
 1. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
 
+   > [!IMPORTANT]
+   > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
 1. Choose either browser, enter a name and message, and select the button to send the message. The name and message are displayed on both pages instantly:
@@ -1624,6 +1657,7 @@ To learn more about building Blazor apps, see the Blazor documentation:
 
 ## Additional resources
 
+* [Secure SignalR hubs in hosted Blazor WebAssembly apps](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * <xref:signalr/introduction>
 * [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#signalr-cross-origin-negotiation-for-authentication-blazor-webassembly)
 * [SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
@@ -1658,7 +1692,7 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* [Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/): Select the *Preview* channel from within Visual Studio. For more information, see [Install a preview version of Visual Studio for Mac](/visualstudio/mac/install-preview).
+* [Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/)
 * [!INCLUDE [.NET Core 6.0 SDK](~/includes/6.0-SDK.md)]
 
 # [.NET Core CLI](#tab/netcore-cli/)
@@ -1690,11 +1724,11 @@ Follow the guidance for your choice of tooling:
 
 1. Type `BlazorWebAssemblySignalRApp` in the **Project name** field. Confirm the **Location** entry is correct or provide a location for the project. Select **Next**.
 
-1. In the **Additional information** dialog, select the **ASP.NET Core hosted** checkbox.
+1. In the **Additional information** dialog, select the **ASP.NET Core Hosted** checkbox.
 
 1. Select **Create**.
 
-1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **`Client`** project and a **`Server`** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core hosted** checkbox before selecting **Create**.
+1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **`Client`** project and a **`Server`** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core Hosted** checkbox before selecting **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -1719,25 +1753,23 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) and perform the following steps.
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
-   Select the *Preview* channel from within Visual Studio. For more information, see [Install a preview version of Visual Studio for Mac](/visualstudio/mac/install-preview).
-
-1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+1. Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 
 1. In the sidebar, select **Web and Console** > **App**.
 
-1. Choose the **Blazor WebAssembly App** template. Select **Next**.
+1. Choose the **Blazor WebAssembly App** template. Select **Continue**.
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core Hosted** checkbox. Select **Next**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core hosted** checkbox. Select **Continue**.
 
-1. In the **Project Name** field, name the app `BlazorWebAssemblySignalRApp`. Select **Create**.
+1. In the **Project name** field, name the app `BlazorWebAssemblySignalRApp`. Select **Create**.
 
    If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
 1. Open the project by navigating to the project folder and opening the project's [solution](xref:blazor/tooling#visual-studio-solution-file-sln) file (`.sln`).
 
-1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **`Client`** project and a **`Server`** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core Hosted** checkbox before selecting **Create**.
+1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **`Client`** project and a **`Server`** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core hosted** checkbox before selecting **Create**.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -1785,7 +1817,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 1. In the **Solution** sidebar, right-click the `BlazorWebAssemblySignalRApp.Client` project and select **Manage NuGet Packages**.
 
-1. In the **Manage NuGet Packages** dialog, confirm that the source drop-down is set to `nuget.org`.
+1. In the **Manage NuGet Packages** dialog, confirm that the **Package source** dropdown list is set to `nuget.org`.
 
 1. With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
 
@@ -1847,6 +1879,9 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
    :::code language="razor" source="~/../blazor-samples/7.0/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor":::
 
+> [!NOTE]
+> Disable Response Compression Middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
+
 ## Run the app
 
 Follow the guidance for your tooling:
@@ -1857,6 +1892,8 @@ Follow the guidance for your tooling:
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   >
+   > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1874,6 +1911,8 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   >
+   > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1889,6 +1928,8 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   >
+   > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1957,17 +1998,17 @@ Follow the guidance for your choice of tooling:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) and perform the following steps:
+1. Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
-1. Select **File** > **New Solution** or create a **New** project from the **Start Window**.
+1. Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 
 1. In the sidebar, select **Web and Console** > **App**.
 
-1. Choose the **Blazor Server App** template. Select **Next**.
+1. Choose the **Blazor Server App** template. Select **Continue**.
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select **Next**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select **Continue**.
 
-1. In the **Project Name** field, name the app `BlazorServerSignalRApp`. Select **Create**.
+1. In the **Project name** field, name the app `BlazorServerSignalRApp`. Select **Create**.
 
    If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate.
 
@@ -2015,7 +2056,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 1. In the **Solution** sidebar, right-click the `BlazorServerSignalRApp` project and select **Manage NuGet Packages**.
 
-1. In the **Manage NuGet Packages** dialog, confirm that the source drop-down is set to `nuget.org`.
+1. In the **Manage NuGet Packages** dialog, confirm that the **Package source** dropdown list is set to `nuget.org`.
 
 1. With **Browse** selected, type `Microsoft.AspNetCore.SignalR.Client` in the search box.
 
@@ -2075,6 +2116,9 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
    :::code language="razor" source="~/../blazor-samples/7.0/BlazorServerSignalRApp/Pages/Index.razor":::
 
+> [!NOTE]
+> Disable Response Compression Middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
+
 ## Run the app
 
 Follow the guidance for your tooling:
@@ -2106,6 +2150,9 @@ Follow the guidance for your tooling:
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
+
+   > [!IMPORTANT]
+   > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -2154,6 +2201,7 @@ To learn more about building Blazor apps, see the Blazor documentation:
 
 ## Additional resources
 
+* [Secure SignalR hubs for hosted Blazor WebAssembly apps](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * <xref:signalr/introduction>
 * [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#signalr-cross-origin-negotiation-for-authentication-blazor-webassembly)
 * [SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)

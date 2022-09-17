@@ -35,7 +35,14 @@ namespace Tests.Server.IntegrationTests
         {
             var mockGreeter = new Mock<IGreeter>();
             mockGreeter.Setup(
-                m => m.Greet(It.IsAny<string>())).Returns((string s) => $"Test {s}");
+                m => m.Greet(It.IsAny<string>())).Returns((string s) =>
+                {
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        throw new ArgumentException("Name not provided.");
+                    }
+                    return $"Test {s}";
+                });
 
             Fixture.ConfigureWebHost(builder =>
             {
@@ -45,7 +52,7 @@ namespace Tests.Server.IntegrationTests
         }
 
         [Fact]
-        public async Task SayHelloUnaryTest_MockGreeter()
+        public async Task SayHelloUnaryTest_MockGreeter_Success()
         {
             // Arrange
             var client = new Tester.TesterClient(Channel);
@@ -58,5 +65,19 @@ namespace Tests.Server.IntegrationTests
             Assert.Equal("Test Joe", response.Message);
         }
         #endregion
+
+        [Fact]
+        public async Task SayHelloUnaryTest_MockGreeter_Error()
+        {
+            // Arrange
+            var client = new Tester.TesterClient(Channel);
+
+            // Act
+            var exception = await Assert.ThrowsAsync<RpcException>(async () =>
+                await client.SayHelloUnaryAsync(new HelloRequest { Name = "" }));
+
+            // Assert
+            Assert.Contains("Name not provided.", exception.Message);
+        }
     }
 }
