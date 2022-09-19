@@ -8,7 +8,7 @@ ms.date: 8/31/2022
 ---
 # Deploying and scaling an ASP.NET Core app on Azure Container Apps
 
-Apps deployed to Azure that experience intermittent high demand benefit from scalability to meet demand. Scalable apps can scale out to ensure capacity during workload peaks and return to normal automatically when the peak drops. Horizontal scaling (scaling out) adds new instances of a resource, such as VMs or database replicas. This article demonstrates how to deploy a horizontally scalable ASP.NET Core app to [Azure container apps](/azure/container-apps/overview) by completing the following tasks:
+Apps deployed to Azure that experience intermittent high demand benefit from scalability to meet demand. Scalable apps can scale out to ensure capacity during workload peaks and then scale down automatically when the peak drops, which can lower costs. Horizontal scaling (scaling out) adds new instances of a resource, such as VMs or database replicas. This article demonstrates how to deploy a horizontally scalable ASP.NET Core app to [Azure container apps](/azure/container-apps/overview) by completing the following tasks:
 
 1. [Setup the sample project](#set-up-the-sample-project)
 1. [Deploy the app to Azure Container Apps](#deploy-the-app-to-azure-container-apps)
@@ -53,9 +53,12 @@ Use the search form to browse for GitHub repositories by name.
 
 Visual Studio is used to deploy the app to Azure Container Apps. Container apps provide a managed service designed to simplify hosting containerized apps and microservices.
 
+> [!NOTE]
+> Many of the resources created for the app require a location. For this app, location isn't important. A real app should select a location closest to the clients. You may want to select a location near you.
+
 1. In Visual Studio solution explorer, right click on the top level project node and select **Publish**.
-1. In the publishing dialog, select **Azure** as the deployment target, and then choose **Next**.
-1. For the specific target, select **Azure Container Apps (Linux)**, and then choose **Next**.
+1. In the publishing dialog, select **Azure** as the deployment target, and then select **Next**.
+1. For the specific target, select **Azure Container Apps (Linux)**, and then select **Next**.
 1. Create a new container app to deploy to. Select the green **+** icon to open a new dialog and enter the following values:
 
     :::image type="content" source="./media/scaling-deploy-visual-studio-small.png" lightbox="./media/scaling-deploy-visual-studio.png" alt-text="A screenshot showing Visual Studio deployment.":::
@@ -64,19 +67,22 @@ Visual Studio is used to deploy the app to Azure Container Apps. Container apps 
     * **Subscription name**: Select the subscription you'd like to deploy to.
     * **Resource group**: Select **New** and create a new resource group called *msdocs-scalable-razor*.
     * **Container apps environment**: Select **New** to open the container apps environment dialog and enter the following values:
-        * **Environment name**: Keep the default value .
+        * **Environment name**: Keep the default value.
         * **Location**: Select a location near you.
         * **Azure Log Analytics Workspace**: Select **New** to open the log analytics workspace dialog.
-            * **Name**: Leave the default value or enter a name of your choosing.
-            * **Location**: Select a location near you and then choose **Ok** to close the dialog.
+            * **Name**: Leave the default value.
+            * **Location**: Select a location near you and then select **Ok** to close the dialog.
         * Select **Ok** to close the container apps environment dialog.
     * Select **Create** to close the original container apps dialog. Visual Studio creates the container app resource in Azure.
-1. Once the resource is created, make sure it's selected in the list of container apps, and then choose **Next**.
+1. Once the resource is created, make sure it's selected in the list of container apps, and then select **Next**.
 1. You'll need to create an Azure Container Registry to store the published image artifact for your app. Select the green **+** icon on the container registry screen. Leave the default values, and then select **Create**.
 
     :::image type="content" source="./media/scaling-new-registry-small.png" lightbox="./media/scaling-new-registry.png" alt-text="A screenshot showing how to create a new container registry.":::
 
-1. After the container registry is created, make sure it's selected, and then choose finish to close the dialog workflow and display a summary of the publishing profile.
+1. After the container registry is created, make sure it's selected, and then select finish to close the dialog workflow and display a summary of the publishing profile.
+    
+    If Visual Studio prompts you to enable the Admin user to access the published docker container, select **Yes**.
+
 1. Select **Publish** in the upper right of the publishing profile summary to deploy the app to Azure.
 
 When the deployment finishes, Visual Studio launches the browser to display the hosted app. Search for `Microsoft` in the form field, and a list of repositories is displayed.
@@ -88,9 +94,9 @@ The app is currently working without any issues, but we'd like to scale the app 
 1. In the Azure portal, search for the `razorscaling-app-****` container app in the top level search bar and select it from the results.
 1. On the overview page, select **Scale** from the left navigation, and then select **+ Edit and deploy**.
 1. On the revisions page, switch to the **Scale** tab.
-1. Set both the min and max instances to **4** and then select **Create**. This configuration change guarantees your app is scaled horizontally across several instances.
+1. Set both the min and max instances to **4** and then select **Create**. This configuration change guarantees your app is scaled horizontally across four instances.
 
-Navigate back to your app in the browser. When the page loads, at first it appears everything is working correctly. However, when you enter in a search term again and hit submit, an error occurs. If you don't see the error at first, submit the form several more times.
+Navigate back to the app. When the page loads, at first it appears everything is working correctly. However, when a search term is entered and submitted, an error may occur. If an error is not displayed, submit the form several more times.
 
 #### Troubleshooting the error
 
@@ -150,7 +156,7 @@ Create a Container to store the app's data protection keys.
 1. On the overview page for the new storage account, select **Storage browser** on the left navigation.
 1. Select **Blob containers**.
 1. Select **+ Add container** to open the **New container** flyout menu.
-1. Enter a name of *scalablerazorkeys*, leave the rest of the settings at their defaults, and then choose **Create**.
+1. Enter a name of *scalablerazorkeys*, leave the rest of the settings at their defaults, and then select **Create**.
 
 The new containers appear on the page list.
 
@@ -165,7 +171,7 @@ Create a key vault to hold the keys that protect the data in the blob storage co
     * **Resource Group**: Select the *msdocs-scalable-razor* resource group previously created .
     * **Key Vault name**: Enter the name *scalablerazorvaultXXXX*.
     * **Region**: Select a region near your location.
-1. Leave the rest of the settings at their default, and then select **Review + create**. Wait for Azure to validate your settings, and then choose **Create**.
+1. Leave the rest of the settings at their default, and then select **Review + create**. Wait for Azure to validate your settings, and then select **Create**.
 
 Azure provisions the new key vault. When the task completes, select **Go to resource** to view the new service.
 
@@ -175,7 +181,7 @@ Create a secret key to protect the data in the blob storage account.
 
 1. On the main overview page of the key vault, select **Keys** from the left navigation.
 1. On the **Create a key** page, select **+ Generate/Import** to open the **Create a key** flyout menu. 
-1. Enter *razorkey* in the **Name** field. Leave the rest of the settings at their default values and then choose **Create**. A new key appears on the key list page.
+1. Enter *razorkey* in the **Name** field. Leave the rest of the settings at their default values and then select **Create**. A new key appears on the key list page.
 
 ## Connect the Azure Services
 
@@ -192,12 +198,12 @@ The Container App requires a secure connection to the storage account and the ke
     * **Container**: Select the Container App created previously.
     * **Service type**: Choose **Storage - blob**.
     * **Subscription**: Select the subscription previously used .
-    * **Connection name**: Leave the default value or enter a name of your choosing.
+    * **Connection name**: Leave the default value.
     * **Storage account**: Select the storage account created previously.
     * **Client type**: Select **.NET**.
 1. Select **Next: Authentication** to progress to the next step.
 1. Select **System assigned managed identity** and choose **Next: Networking**.
-1. Leave the default networking options selected, and then choose **Review + Create**.
+1. Leave the default networking options selected, and then select **Review + Create**.
 1. After Azure validates the settings, select **Create**.
 
 The service connector enables a system-assigned managed identity on the container app. It also assigns a role of **Storage Blob Data Contributor** to the identity so it can perform data operations on the storage containers.
@@ -210,12 +216,12 @@ The service connector enables a system-assigned managed identity on the containe
     * **Container**: Select the container app created previously.
     * **Service type**: Choose **Key Vault**.
     * **Subscription**: Select the subscription you used previously.
-    * **Connection name**: Leave the default value or enter a name of your choosing.
+    * **Connection name**: Leave the default value.
     * **Key vault**: Select the key vault created previously.
     * **Client type**: Select **.NET**.
 1. Select **Next: Authentication** to progress to the next step.
 1. Select **System assigned managed identity** and choose **Next: Networking**.
-1. Leave the default networking options selected, and then choose **Review + Create**.
+1. Leave the default networking options selected, and then select **Review + Create**.
 1. After Azure validates the settings, select **Create**.
 
 The service connector assigns a role to the identity so it can perform data operations on the key vault keys.
@@ -296,10 +302,10 @@ Connect-AzAccount
 1. In the Azure portal, navigate to the `scalablerazor****` storage account created previously.
 1. Select **Access Control (IAM)** from the left navigation.
 1. Choose **+ Add** and then **Add role assignment** from the drop-down menu.
-1. On the **Add role assignment** page, search for `Storage blob data contributor`, select the matching result, and then choose **Next**.
-1. Make sure **User, group, or service principal** is selected, and then choose **+ Select members**.
+1. On the **Add role assignment** page, search for `Storage blob data contributor`, select the matching result, and then select **Next**.
+1. Make sure **User, group, or service principal** is selected, and then select **+ Select members**.
 1. In the **Select members** flyout, search for your own *user@domain* account and select it from the results.
-1. Choose **Next** and then choose **Review + assign**. After Azure validates the settings, select **Review + assign** again.
+1. Choose **Next** and then select **Review + assign**. After Azure validates the settings, select **Review + assign** again.
 
 As previously stated, role assignment permissions might take a minute or two to propagate, or in rare cases up to eight minutes.
 
@@ -308,10 +314,10 @@ Repeat the previous steps to assign a role to your account so that it can access
 1. In the Azure portal, navigate to the `razorscalingkeys` key vault created previously.
 1. Select **Access Control (IAM)** from the left navigation.
 1. Choose **+ Add** and then **Add role assignment** from the drop-down menu.
-1. On the **Add role assignment** page, search for `Key Vault Crypto Service Encryption User`, select the matching result, and then choose **Next**.
-1. Make sure **User, group, or service principal** is selected, and then choose **+ Select members**.
+1. On the **Add role assignment** page, search for `Key Vault Crypto Service Encryption User`, select the matching result, and then select **Next**.
+1. Make sure **User, group, or service principal** is selected, and then select **+ Select members**.
 1. In the **Select members** flyout, search for your own *user@domain* account and select it from the results.
-1. Choose **Next** and then choose **Review + assign**. After Azure validates your settings, select **Review + assign** again.
+1. Choose **Next** and then select **Review + assign**. After Azure validates your settings, select **Review + assign** again.
 
 You may need to wait again for this role assignment to propagate.
 
