@@ -1638,4 +1638,4 @@ For more information, see the following resources:
 * <xref:web-api/action-return-types>
 * <xref:host-and-deploy/azure-apps/index>
 * <xref:host-and-deploy/index>
-* [Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)
+* [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)

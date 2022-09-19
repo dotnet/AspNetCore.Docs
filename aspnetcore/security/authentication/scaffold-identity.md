@@ -244,7 +244,7 @@ In the `MainLayout` component (`Shared/MainLayout.razor`), add the `LoginDisplay
 ```razor
 <div class="top-row px-4 auth">
     <LoginDisplay />
-    <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+    <a href="https://learn.microsoft.com/aspnet/" target="_blank">About</a>
 </div>
 ```
 
@@ -318,7 +318,7 @@ In the `Pages/Shared/Layout.cshtml` file, make the following changes:
               throw new InvalidOperationException("The default Identity UI " +
                   "layout requires a partial view '_LoginPartial'.");
           }
-          <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+          <a href="https://learn.microsoft.com/aspnet/" target="_blank">About</a>
       </div>
 
       <div class="content px-4">
@@ -696,7 +696,7 @@ In the `MainLayout` component (`Shared/MainLayout.razor`), add the `LoginDisplay
 ```razor
 <div class="top-row px-4 auth">
     <LoginDisplay />
-    <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+    <a href="https://learn.microsoft.com/aspnet/" target="_blank">About</a>
 </div>
 ```
 
@@ -758,7 +758,7 @@ In the `Pages/Shared/Layout.cshtml` file, make the following changes:
               throw new InvalidOperationException("The default Identity UI " +
                   "layout requires a partial view '_LoginPartial'.");
           }
-          <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+          <a href="https://learn.microsoft.com/aspnet/" target="_blank">About</a>
       </div>
 
       <div class="content px-4">

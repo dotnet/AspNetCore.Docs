@@ -171,39 +171,39 @@ items:
         items:
           - name: Web apps >>
             displayName: tutorial, razor, razor pages, ui
-            href: /learn/modules/create-razor-pages-aspnet-core/
+            href: /training/modules/create-razor-pages-aspnet-core/
           - name: Web API apps >>
             displayName: tutorial
-            href: /learn/modules/build-web-api-aspnet-core/
+            href: /training/modules/build-web-api-aspnet-core/
           - name: Cloud-native microservices
             items:
               - name: Create and deploy >>
                 displayName: tutorial, kubernetes, aks, acr, docker
-                href: /learn/modules/microservices-aspnet-core/
+                href: /training/modules/microservices-aspnet-core/
               - name: Implement resiliency >>
                 displayName: tutorial, kubernetes, aks, acr, docker
-                href: /learn/modules/microservices-resiliency-aspnet-core/
+                href: /training/modules/microservices-resiliency-aspnet-core/
               - name: Deploy with GitHub Actions >>
                 displayName: tutorial, kubernetes, aks, acr, docker, devops
-                href: /learn/modules/microservices-devops-aspnet-core/
+                href: /training/modules/microservices-devops-aspnet-core/
               - name: Log and monitor >>
                 displayName: tutorial, kubernetes, aks, acr, docker, serilog
-                href: /learn/modules/microservices-logging-aspnet-core/
+                href: /training/modules/microservices-logging-aspnet-core/
               - name: Implement feature flags >>
                 displayName: tutorial, kubernetes, aks, acr, docker
-                href: /learn/modules/microservices-configuration-aspnet-core/
+                href: /training/modules/microservices-configuration-aspnet-core/
               - name: Use managed data stores >>
                 displayName: tutorial, kubernetes, aks, acr, docker
-                href: /learn/modules/microservices-data-aspnet-core/
+                href: /training/modules/microservices-data-aspnet-core/
               - name: Implement API gateways >>
                 displayName: tutorial, kubernetes, aks, acr, docker
-                href: /learn/modules/microservices-apigateway-aspnet-core/
+                href: /training/modules/microservices-apigateway-aspnet-core/
           - name: Data access >>
             displayName: tutorial, ef, entity framework
-            href: /learn/modules/persist-data-ef-core/
+            href: /training/modules/persist-data-ef-core/
           - name: Web app security >>
             displayName: tutorial, identity
-            href: /learn/modules/secure-aspnet-core-identity/
+            href: /training/modules/secure-aspnet-core-identity/
   - name: Fundamentals
     items:
       - name: Overview
@@ -354,7 +354,7 @@ items:
               - name: SignalR with Blazor
                 uid: blazor/tutorials/signalr-blazor
               - name: Learn modules
-                href: /learn/paths/build-web-apps-with-blazor/
+                href: /training/paths/build-web-apps-with-blazor/
           - name: Hosting models
             uid: blazor/hosting-models
           - name: Blazor Hybrid

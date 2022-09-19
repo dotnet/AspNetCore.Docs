@@ -258,7 +258,7 @@ To inject additional CSS stylesheets, add them to the project's *wwwroot* folder
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](xref:index#how-to-download-a-sample))
 * [Swagger doesn't recognize comments or attributes on records](https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/1920)
-* [Improve the developer experience of an API with Swagger documentation](/learn/modules/improve-api-developer-experience-with-swagger/)
+* [Improve the developer experience of an API with Swagger documentation](/training/modules/improve-api-developer-experience-with-swagger/)
 
 :::moniker-end
 
@@ -581,6 +581,6 @@ app.UseSwaggerUI(c =>
 
 ## Additional resources
 
-* [Improve the developer experience of an API with Swagger documentation](/learn/modules/improve-api-developer-experience-with-swagger/)
+* [Improve the developer experience of an API with Swagger documentation](/training/modules/improve-api-developer-experience-with-swagger/)
 
 :::moniker-end
