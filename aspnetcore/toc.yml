@@ -869,7 +869,7 @@ items:
         uid: grpc/health-checks
       - name: Manage Protobuf references with dotnet-grpc
         uid: grpc/dotnet-grpc
-      - name: Test services with Postman and gRPCurl
+      - name: Test services with gRPCurl
         uid: grpc/test-tools
       - name: Migrate from C-core to gRPC for .NET
         uid: grpc/migration
@@ -1024,6 +1024,9 @@ items:
           - name: Overview
             displayName: azure, deploy, publish
             uid: host-and-deploy/azure-apps/index
+          - name: Scaling apps on Azure
+            displayName: azure, deploy, publish, scale
+            uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
           - name: Publish with Visual Studio
             displayName: azure, deploy, publish
             uid: tutorials/publish-to-azure-webapp-using-vs
@@ -1446,6 +1449,9 @@ items:
         uid: performance/rate-limit
       - name: Memory and GC
         uid: performance/memory
+      - name: Scaling apps on Azure
+        displayName: azure, deploy, publish, scale
+        uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
       - name: Caching
         items:
           - name: Overview
