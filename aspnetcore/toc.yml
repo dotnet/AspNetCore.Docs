@@ -1024,9 +1024,6 @@ items:
           - name: Overview
             displayName: azure, deploy, publish
             uid: host-and-deploy/azure-apps/index
-          - name: Scaling apps on Azure
-            displayName: azure, deploy, publish, scale
-            uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
           - name: Publish with Visual Studio
             displayName: azure, deploy, publish
             uid: tutorials/publish-to-azure-webapp-using-vs
@@ -1181,6 +1178,9 @@ items:
       - name: Proxy and load balancer configuration
         displayName: deploy, publish
         uid: host-and-deploy/proxy-load-balancer
+      - name: Scaling apps on Azure
+        displayName: azure, deploy, publish, scale
+        uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
       - name: Web farm
         displayName: deploy, publish
         uid: host-and-deploy/web-farm
