@@ -2100,6 +2100,11 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 1. In `Program.cs`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
+
+     ```csharp
+     app.UseResponseCompression();
+     ```
+     
    * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub:
 
      ```csharp
