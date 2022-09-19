@@ -64,7 +64,7 @@ Visual Studio is used to deploy the app to Azure Container Apps. Container apps 
     :::image type="content" source="./media/scaling-deploy-visual-studio-small.png" lightbox="./media/scaling-deploy-visual-studio.png" alt-text="A screenshot showing Visual Studio deployment.":::
 
     * **Container app name**: Leave the default value or enter a name.
-    * **Subscription name**: Select the subscription you'd like to deploy to.
+    * **Subscription name**: Select the subscription to deploy to.
     * **Resource group**: Select **New** and create a new resource group called *msdocs-scalable-razor*.
     * **Container apps environment**: Select **New** to open the container apps environment dialog and enter the following values:
         * **Environment name**: Keep the default value.
@@ -197,7 +197,7 @@ The Container App requires a secure connection to the storage account and the ke
 1. On the Service Connector page, choose **+ Create** to open the **Creation Connection** flyout panel and enter the following values:
     * **Container**: Select the Container App created previously.
     * **Service type**: Choose **Storage - blob**.
-    * **Subscription**: Select the subscription previously used .
+    * **Subscription**: Select the subscription previously used.
     * **Connection name**: Leave the default value.
     * **Storage account**: Select the storage account created previously.
     * **Client type**: Select **.NET**.
@@ -215,7 +215,7 @@ The service connector enables a system-assigned managed identity on the containe
 1. On the Service Connector page, choose **+ Create** to open the **Creation Connection** flyout panel and enter the following values:
     * **Container**: Select the container app created previously.
     * **Service type**: Choose **Key Vault**.
-    * **Subscription**: Select the subscription you used previously.
+    * **Subscription**: Select the subscription previously used.
     * **Connection name**: Leave the default value.
     * **Key vault**: Select the key vault created previously.
     * **Client type**: Select **.NET**.
