@@ -174,7 +174,7 @@ A problem details response is generated when any of the conditions apply:
 * The `Squareroot` endpoint is called with a radicand less than zero.
 * The URI has no matching endpoint.
 
-The following code calls <xref:Microsoft.Extensions.DependencyInjection.ProblemDetailsServiceCollectionExtensions.AddProblemDetails>
+The following code calls `AddProblemDetails`:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_1":::
 
