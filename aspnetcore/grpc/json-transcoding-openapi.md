@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to configure gRPC JSON transcoding to generate OpenAPI.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: jamesnk
-ms.date: 05/20/2022
+ms.date: 09/20/2022
 uid: grpc/json-transcoding-openapi
 ---
 # gRPC JSON transcoding documentation with Swagger / OpenAPI
@@ -27,7 +27,7 @@ To enable OpenAPI with gRPC JSON transcoding:
 
 ## Add OpenAPI descriptions from `.proto` comments
 
-Generate OpenAPI descriptions from comments in the `.proto` contract.
+Generate OpenAPI descriptions from comments in the `.proto` contract, as in the following example:
 
 ```protobuf
 // My amazing greeter service.
@@ -54,7 +54,7 @@ message HelloReply {
 To enable gRPC OpenAPI comments:
 
 1. Enable the XML documentation file in the server project with `<GenerateDocumentationFile>true</GenerateDocumentationFile>`.
-2. Configure `AddSwaggerGen` to read the generated XML file. Pass the XML file path to `IncludeXmlComments` and `IncludeGrpcXmlComments`.
+2. Configure `AddSwaggerGen` to read the generated XML file. Pass the XML file path to `IncludeXmlComments` and `IncludeGrpcXmlComments`, as in the following example:
 
 ```csharp
 builder.Services.AddSwaggerGen(c =>

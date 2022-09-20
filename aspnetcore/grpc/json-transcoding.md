@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to create JSON HTTP APIs for gRPC services using gRPC JSON transcoding.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: jamesnk
-ms.date: 05/20/2022
+ms.date: 09/20/2022
 uid: grpc/json-transcoding
 ---
 # gRPC JSON transcoding in ASP.NET Core gRPC apps
@@ -75,7 +75,7 @@ service Greeter {
 
 The proceeding example:
 
-* Defines a `Greeter` service with a `SayHello` method. The method has a HTTP rule specified using the name `google.api.http`.
+* Defines a `Greeter` service with a `SayHello` method. The method has an HTTP rule specified using the name `google.api.http`.
 * The method is accessible with `GET` requests and the `/v1/greeter/{name}` route.
 * The `name` field on the request message is bound to a route parameter.
 

@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to configure HTTP rules for gRPC JSON transcoding in ASP.NET Core gRPC apps.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: jamesnk
-ms.date: 05/20/2022
+ms.date: 09/20/2022
 uid: grpc/json-transcoding-binding
 ---
 # Configure HTTP and JSON for gRPC JSON transcoding
@@ -187,7 +187,7 @@ However, gRPC JSON transcoding offers some limited options for customizing JSON 
 | `IgnoreDefaultValues` | false | If set to `true`, fields with default values are ignored during serialization. |
 | `WriteEnumsAsIntegers` | false | If set to `true`, enum values are written as integers instead of strings. |
 | `WriteInt64sAsStrings` | false | If set to `true`, `Int64` and `UInt64` values are written as strings instead of numbers. |
-| `WriteIndented` | false | If set to `true`, JSON is written using pretty printing. Note that this option doesn't affect streaming methods, which write line delimited JSON messages and can't use pretty printing. |
+| `WriteIndented` | false | If set to `true`, JSON is written using pretty printing. This option doesn't affect streaming methods, which write line delimited JSON messages and can't use pretty printing. |
 
 ```csharp
 builder.Services.AddGrpc().AddJsonTranscoding(o =>
@@ -196,7 +196,7 @@ builder.Services.AddGrpc().AddJsonTranscoding(o =>
 });
 ```
 
-In the `.proto` file, the `json_name` field option customizes a field's name when it's serialized as JSON:
+In the `.proto` file, the `json_name` field option customizes a field's name when it's serialized as JSON, as in the following example:
 
 ```protobuf
 message TestMessage {
