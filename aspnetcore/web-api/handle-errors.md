@@ -176,6 +176,10 @@ A problem details response is generated with the previous code when any of the f
 * The `Squareroot` endpoint is called with a radicand less than zero.
 * The URI has no matching endpoint.
 
+<a name="cpd7"></a>
+
+#### Customize problem details with `CustomizeProblemDetails`
+
 The following code uses <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> to set <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails>:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_api_controller" highlight="7-29":::
