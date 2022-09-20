@@ -29,23 +29,25 @@ service Greeter {
 }
 ```
 
-The proceeding example:
+An HTTP rule is:
 
-* Defines a `Greeter` service with a `SayHello` method. The method has an HTTP rule specified using the name `google.api.http`.
-* The method is accessible with `GET` requests and the `/v1/greeter/{name}` route.
-* The `name` field on the request message is bound to a route parameter.
-
-This is a basic example. The following sections discuss the options available with HTTP rules.
+* An annotation on gRPC methods.
+* Identified by the name `google.api.http`.
+* Imported from the `google/api/annotations.proto` file.
 
 ### HTTP method
 
-Specify the HTTP method by setting the route to the matching HTTP method field name:
+The HTTP method is specified by setting the route to the matching HTTP method field name:
 
 * `get`
 * `put`
 * `post`
 * `delete`
 * `patch`
+
+The `custom` field allows for other HTTP methods.
+
+In the following example, the `CreateAddress` method is accessible with `POST /v1/address HTTP/1.1`.
 
 ```protobuf
 service Address {
@@ -57,8 +59,6 @@ service Address {
   }
 }
 ```
-
-The `custom` field allows for other HTTP methods.
 
 ### Route
 
@@ -90,7 +90,7 @@ Note that ASP.NET Core features such as route constraints, default values, and o
 
 ### Request body
 
-Transcoding supports converting JSON sent in the HTTP request body to the request message. The `body` field specifies how the HTTP request body maps to the request message. The value is either the name of the request field whose value is mapped to the HTTP request body, or `*` for mapping all request fields.
+Transcoding converts JSON sent in the HTTP request body to the request message. The `body` field specifies how the HTTP request body maps to the request message. The value is either the name of the request field whose value is mapped to the HTTP request body, or `*` for mapping all request fields.
 
 In the following example, the HTTP request body is bound to the `address` field:
 
