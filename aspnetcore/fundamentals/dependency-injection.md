@@ -59,7 +59,7 @@ The sample app registers the `IMyDependency` service with the concrete type `MyD
 
 [!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Program.cs?name=snippet1)]
 
-In the sample app, the `IMyDependency` service is requested and used to call the `WriteMessage` method:
+In the sample app, the `IMyDependency` type is requested and used to call the `WriteMessage` method:
 
 [!code-csharp[](dependency-injection/samples/6.x/DependencyInjectionSample/Pages/Index2.cshtml.cs?name=snippet1)]
 
