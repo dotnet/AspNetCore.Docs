@@ -94,7 +94,7 @@ gRPC on ASP.NET Core offers two browser-compatible solutions:
 
 * **gRPC JSON transcoding** allows browser apps to call gRPC services as if they were RESTful APIs with JSON. The browser app doesn't need to generate a gRPC client or know anything about gRPC. RESTful APIs can be automatically created from gRPC services by annotating the `.proto` file with HTTP metadata. Transcoding allows an app to support both gRPC and JSON web APIs without duplicating the effort of building separate services for both.
 
-  .NET has built-in support for creating JSON web APIs from gRPC services. For more information, see <xref:grpc/httpapi>.
+  .NET has built-in support for creating JSON web APIs from gRPC services. For more information, see <xref:grpc/json-transcoding>.
 
 > [!NOTE]
 > gRPC JSON transcoding requires .NET 7 or later.

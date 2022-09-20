@@ -5,7 +5,7 @@ description: Learn how to create JSON HTTP APIs for gRPC services using gRPC JSO
 monikerRange: '>= aspnetcore-7.0'
 ms.author: jamesnk
 ms.date: 05/20/2022
-uid: grpc/httpapi
+uid: grpc/json-transcoding
 ---
 # gRPC JSON transcoding in ASP.NET Core gRPC apps
 
@@ -59,9 +59,29 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
       Request finished in 1.996ms 200 application/json
 ```
 
-This is a basic example. See [HttpRule](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule) for more customization options.
+### Annotate gRPC methods
 
-## Streaming support
+gRPC methods must be annotated with an HTTP rule before they support transcoding. The HTTP rule includes information about how to call the gRPC method, such as the HTTP method and route.
+
+```protobuf
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply) {
+    option (google.api.http) = {
+      get: "/v1/greeter/{name}"
+    };
+  }
+}
+```
+
+The proceeding example:
+
+* Defines a `Greeter` service with a `SayHello` method. The method has a HTTP rule specified using the name `google.api.http`.
+* The method is accessible with `GET` requests and the `/v1/greeter/{name}` route.
+* The `name` field on the request message is bound to a route parameter.
+
+There are many options are available for customizing how a gRPC method binds to a RESTful API. For more information about annotating gRPC methods and customizing JSON, see [Configure HTTP and JSON for gRPC JSON transcoding](xref:grpc/json-transcoding-binding).
+
+### Streaming methods
 
 Traditional gRPC over HTTP/2 supports streaming in all directions. Transcoding is limited to server streaming only. Client streaming and bidirectional streaming methods aren't supported.
 
@@ -90,67 +110,6 @@ The client receives three line-delimited JSON objects:
 ```
 
 Note that the `WriteIndented` JSON setting doesn't apply to server streaming methods. Pretty printing adds new lines and whitespace to JSON, which can't be used with line-delimited JSON.
-
-## Experimental OpenAPI support
-
-There is *experimental* support for generating OpenAPI from gRPC transcoded RESTful APIs. The [Microsoft.AspNetCore.Grpc.Swagger](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger) package:
-
-* Integrates gRPC JSON transcoding with [Swashbuckle](xref:tutorials/get-started-with-swashbuckle).
-* Is experimental in .NET 7 to give us time to explore the best way to provide OpenAPI support.
-
-To enable OpenAPI with gRPC JSON transcoding:
-
-1. Add a package reference to [Microsoft.AspNetCore.Grpc.Swagger](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger). The version must be 0.3.0-xxx or greater.
-2. Configure Swashbuckle in startup. The `AddGrpcSwagger` method configures Swashbuckle to include gRPC endpoints.
-
-[!code-csharp[](~/grpc/httpapi/Program.cs?name=snippet_1&highlight=3-8,11-15)]
-
-### Include descriptions from `.proto` comments
-
-Comments from the `.proto` contract can be added to generated OpenAPI descriptions.
-
-```protobuf
-// My amazing greeter service.
-service Greeter {
-  // Sends a greeting.
-  rpc SayHello (HelloRequest) returns (HelloReply) {
-    option (google.api.http) = {
-      get: "/v1/greeter/{name}"
-    };
-  }
-}
-
-message HelloRequest {
-  // Name to say hello to.
-  string name = 1;
-}
-
-message HelloReply {
-  // Hello reply message.
-  string message = 1;
-}
-```
-
-To enable gRPC OpenAPI comments:
-
-1. Enable the XML documentation file in the server project with `<GenerateDocumentationFile>true</GenerateDocumentationFile>`.
-2. Configure `AddSwaggerGen` to read the generated XML file. Pass the XML file path to `IncludeXmlComments` and `IncludeGrpcXmlComments`.
-
-```csharp
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1",
-        new OpenApiInfo { Title = "gRPC transcoding", Version = "v1" });
-
-    var filePath = Path.Combine(System.AppContext.BaseDirectory, "Server.xml");
-    c.IncludeXmlComments(filePath);
-    c.IncludeGrpcXmlComments(filePath, includeControllerXmlComments: true);
-});
-```
-
-To confirm that Swashbuckle is generating OpenAPI with comments for the RESTful gRPC services, start the app and navigate to the Swagger UI page:
-
-![Swagger UI](~/grpc/httpapi/static/swaggerui.png)
 
 ## HTTP protocol
 
