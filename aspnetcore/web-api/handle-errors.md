@@ -168,7 +168,7 @@ The following code configures the app to generate a problem details response for
 
 Consider the following controller:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" highlight="13-18,28-33"::::::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" highlight="13-19,29-35"::::::
 
 A problem details response is generated with the previous code when any of the following conditions apply:
 
@@ -182,9 +182,21 @@ The following code uses <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> t
 
 #### Problem details with Minimal APIs
 
-The following code calls `AddProblemDetails` and sets the <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions>:
+The following code uses <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> to set <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails>:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_1":::
+
+A problem details response is generated with the previous code when any of the following conditions apply:
+
+* The `/divide` endpoint is called with a zero denominator.
+* The `/squareroot` endpoint is called with a radicand less than zero.
+* The URI has no matching endpoint.
+
+#### Generate problem details from Middleware
+
+When `AddProblemDetails` has been called, a problem details response can be written from any layer in an app by calling [IProblemDetailsService.WriteAsync](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true). For example, the following code generates a problem details response from middleware:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_middleware" highlight="5,19-48":::
 
 <!-- END of Problem Details -->
 ### Implement `ProblemDetailsFactory`
