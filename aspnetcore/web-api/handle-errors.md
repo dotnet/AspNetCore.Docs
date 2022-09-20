@@ -159,25 +159,34 @@ The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProb
 The following middleware generates problem details HTTP responses when [`AddProblemDetails`](/dotnet/api/microsoft.extensions.dependencyinjection.problemdetailsservicecollectionextensions.addproblemdetails?view=aspnetcore-7.0&preserve-view=true) is called, except when not accepted by the client:
 
 * <xref:Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware>: Generates a problem details response when a custom handler is not defined.
-* <xref:Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware>: enerates a problem details response by default.
-* [DeveloperExceptionPageMiddleware](#dep7):Generate a problem details response in development when `text/html` is not accepted.
+* <xref:Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware>: Generates a problem details response by default.
+* [DeveloperExceptionPageMiddleware](#dep7): Generates a problem details response in development when `text/html` is not accepted.
 
 The following code configures the app to generate a problem details response for all HTTP client and server error responses that do not have a body content yet:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_apishort" highlight="4,9":::
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs":::
+Consider the following controller:
 
-A problem details response is generated when any of the conditions apply:
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" highlight="13-18,28-33"::::::
+
+A problem details response is generated with the previous code when any of the following conditions apply:
 
 * The `Divide` endpoint is called with a zero denominator.
 * The `Squareroot` endpoint is called with a radicand less than zero.
 * The URI has no matching endpoint.
 
-The following code calls `AddProblemDetails`:
+The following code uses <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> to set <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails>:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_api_controller" highlight="7-29":::
+
+#### Problem details with Minimal APIs
+
+The following code calls `AddProblemDetails` and sets the <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions>:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_1":::
 
+<!-- END of Problem Details -->
 ### Implement `ProblemDetailsFactory`
 
 MVC uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory?displayProperty=fullName> to produce all instances of <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> and <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. This factory is used for:
