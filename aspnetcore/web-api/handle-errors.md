@@ -14,6 +14,8 @@ uid: web-api/handle-errors
 
 This article describes how to handle errors and customize error handling with ASP.NET Core web APIs.
 
+<a name="dep7"></a>
+
 ## Developer Exception Page
 
 The [Developer Exception Page](xref:fundamentals/error-handling) shows detailed stack traces for server errors. It uses <xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware> to capture synchronous and asynchronous exceptions from the HTTP pipeline and to generate error responses. For example, consider the following controller action, which throws an exception:
@@ -144,9 +146,7 @@ An *error result* is defined as a result with an HTTP status code of 400 or high
 
 The error response can be configured in one of the following ways:
 
-<xref:Microsoft.AspNetCore.Http.IProblemDetailsService>
-
-1. Use the [problem details service](#pds7) based on the `IProblemDetailsService` interface.
+1. Use the [problem details service](#pds7)
 1. [Implement ProblemDetailsFactory](#implement-problemdetailsfactory)
 1. [Use ApiBehaviorOptions.ClientErrorMapping](#use-apibehavioroptionsclienterrormapping)
 
@@ -154,7 +154,29 @@ The error response can be configured in one of the following ways:
 
 ### Problem details service
 
-The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface.
+The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface which supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html).
+
+The following middleware generates problem details HTTP responses when <xref:Microsoft.Extensions.DependencyInjection.ProblemDetailsServiceCollectionExtensions.AddProblemDetails(IServiceCollection)> is called, except when not accepted by the client:
+
+* <xref:Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware>: Generates a problem details response when a custom handler is not defined.
+* <xref:Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware>: enerates a problem details response by default.
+* [DeveloperExceptionPageMiddleware](#dep7):Generate a problem details response in development when `text/html` is not accepted.
+
+The following code configures the app to generate a problem details response for all HTTP client and server error responses that do not have a body content yet:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_apishort" highlight="4,9":::
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs":::
+
+A problem details response is generated when any of the conditions apply:
+
+* The `Divide` endpoint is called with a zero denominator.
+* The `Squareroot` endpoint is called with a radicand less than zero.
+* The URI has no matching endpoint.
+
+The following code calls <xref:Microsoft.Extensions.DependencyInjection.ProblemDetailsServiceCollectionExtensions.AddProblemDetails(IServiceCollection)>
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_1":::
 
 ### Implement `ProblemDetailsFactory`
 
