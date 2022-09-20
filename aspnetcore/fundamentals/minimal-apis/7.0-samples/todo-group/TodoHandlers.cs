@@ -60,6 +60,7 @@ public static class TodosApi
             Description = todo.Description,
             IsDone = todo.IsDone
         };
+
         await database.Todos.AddAsync(newTodo);
         await database.SaveChangesAsync();
         return TypedResults.Created($"/public/todos/{newTodo.Id}", newTodo);
