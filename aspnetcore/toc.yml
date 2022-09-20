@@ -1178,6 +1178,9 @@ items:
       - name: Proxy and load balancer configuration
         displayName: deploy, publish
         uid: host-and-deploy/proxy-load-balancer
+      - name: Scaling apps on Azure
+        displayName: azure, deploy, publish, scale
+        uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
       - name: Web farm
         displayName: deploy, publish
         uid: host-and-deploy/web-farm
@@ -1446,6 +1449,9 @@ items:
         uid: performance/rate-limit
       - name: Memory and GC
         uid: performance/memory
+      - name: Scaling apps on Azure
+        displayName: azure, deploy, publish, scale
+        uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
       - name: Caching
         items:
           - name: Overview
