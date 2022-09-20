@@ -184,7 +184,7 @@ The following code uses <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> t
 
 The following code uses <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> to set <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails>:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_1":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_1" highlight="5-27":::
 
 A problem details response is generated with the previous code when any of the following conditions apply:
 
@@ -194,7 +194,7 @@ A problem details response is generated with the previous code when any of the f
 
 #### Generate problem details from Middleware
 
-When `AddProblemDetails` has been called, a problem details response can be written from any layer in an app by calling [IProblemDetailsService.WriteAsync](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true). For example, the following code generates a problem details response from middleware:
+When `AddProblemDetails` has been called, a problem details response can be written from any layer in an app by calling [IProblemDetailsService.WriteAsync](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true). For example, the following code generates a problem details response from middleware:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_middleware" highlight="5,19-48":::
 
