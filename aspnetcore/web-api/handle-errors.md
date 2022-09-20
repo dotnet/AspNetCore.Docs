@@ -198,9 +198,9 @@ A problem details response is generated with the previous code when any of the f
 
 #### Generate problem details from Middleware
 
-When `AddProblemDetails` has been called, a problem details response can be written from any layer in an app by calling [IProblemDetailsService.WriteAsync](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true). For example, the following code generates a problem details response from middleware:
+An alternative approach to using <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> to set <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails> is to set the <xref:Microsoft.AspNetCore.Http.ProblemDetailsContext.ProblemDetails> in middleware. A problem details response can be written from any layer in an app by calling [IProblemDetailsService.WriteAsync](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true):
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_middleware" highlight="5,19-48":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_middleware" highlight="6,19-48":::
 
 <!-- END of Problem Details -->
 ### Implement `ProblemDetailsFactory`
