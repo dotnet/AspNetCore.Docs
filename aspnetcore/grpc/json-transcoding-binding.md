@@ -47,7 +47,7 @@ The HTTP method is specified by setting the route to the matching HTTP method fi
 
 The `custom` field allows for other HTTP methods.
 
-In the following example, the `CreateAddress` method is accessible with `POST /v1/address HTTP/1.1`.
+In the following example, the `CreateAddress` method is mapped to `POST` with the specified route.
 
 ```protobuf
 service Address {
@@ -90,9 +90,9 @@ Note that ASP.NET Core features such as route constraints, default values, and o
 
 ### Request body
 
-Transcoding converts JSON sent in the HTTP request body to the request message. The `body` field specifies how the HTTP request body maps to the request message. The value is either the name of the request field whose value is mapped to the HTTP request body, or `*` for mapping all request fields.
+Transcoding deserializes the request body JSON to the request message. The `body` field specifies how the HTTP request body maps to the request message. The value is either the name of the request field whose value is mapped to the HTTP request body, or `*` for mapping all request fields.
 
-In the following example, the HTTP request body is bound to the `address` field:
+In the following example, the HTTP request body is deserialized to the `address` field's message:
 
 ```protobuf
 service Address {
@@ -147,7 +147,7 @@ In the preceding example:
 
 ### Response body
 
-By default, transcoding serializes the entire return message as JSON to the response. The `response_body` field customizes this behavior.
+By default, transcoding serializes the entire response message as JSON. The `response_body` field allows a subset of the response message to be serialized.
 
 ```protobuf
 service Address {
@@ -170,7 +170,7 @@ message Address {
 }
 ```
 
-In the preceding example, the `address` field is serialized to the response body as JSON.
+In the preceding example, the `address` field's message is serialized to the response body as JSON.
 
 ### Specification
 
