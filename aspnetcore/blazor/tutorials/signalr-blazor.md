@@ -447,13 +447,9 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 1. In `Program.cs`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
-   * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub:
+   * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub.
 
-     ```csharp
-     app.MapHub<ChatHub>("/chathub");
-     ```
-
-   :::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerSignalRApp/Program.cs" id="snippet_Configure":::
+   :::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerSignalRApp/Program.cs" id="snippet_Configure" highlight="1,17":::
 
 ## Add Razor component code for chat
 
@@ -2100,13 +2096,9 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 1. In `Program.cs`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
-   * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub:
+   * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub.
 
-     ```csharp
-     app.MapHub<ChatHub>("/chathub");
-     ```
-
-   :::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerSignalRApp/Program.cs" id="snippet_Configure":::
+   :::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerSignalRApp/Program.cs" id="snippet_Configure" highlight="1,16":::
 
 ## Add Razor component code for chat
 
