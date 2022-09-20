@@ -13,7 +13,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 [gRPC](https://grpc.io) is a high-performance Remote Procedure Call (RPC) framework. gRPC uses HTTP/2, streaming, Protobuf, and message contracts to create high-performance, real-time services.
 
-One limitation with gRPC is not every platform can use it. Browsers don't fully support HTTP/2, making [REST APIs](https://www.redhat.com/topics/api/what-is-a-rest-api) and JSON the primary way to get data into browser apps. Even with the benefits that gRPC brings, REST APIs and JSON have an important place in modern apps. Building gRPC ***and*** JSON Web APIs adds unwanted overhead to app development.
+One limitation with gRPC is not every platform can use it. Browsers don't fully support HTTP/2, making [REST APIs](https://www.redhat.com/topics/api/what-is-a-rest-api) and JSON the primary way to get data into browser apps. Despite the benefits that gRPC brings, REST APIs and JSON have an important place in modern apps. Building gRPC ***and*** JSON Web APIs adds unwanted overhead to app development.
 
 This document discusses how to create JSON Web APIs using gRPC services.
 
@@ -44,7 +44,7 @@ The `SayHello` gRPC method can now be invoked as gRPC and as a JSON Web API:
 * Request: `HTTP/1.1 GET /v1/greeter/world`
 * Response: `{ "message": "Hello world" }`
 
-If the server is configured to write logs for each request, server logs show that the HTTP call is executed by a gRPC service. Transcoding maps the incoming HTTP request to a gRPC message and then converts the response message to JSON.
+If the server is configured to write logs for each request, server logs show that a gRPC service executes the HTTP call. Transcoding maps the incoming HTTP request to a gRPC message and converts the response message to JSON.
 
 ```
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
@@ -79,7 +79,7 @@ The proceeding example:
 * The method is accessible with `GET` requests and the `/v1/greeter/{name}` route.
 * The `name` field on the request message is bound to a route parameter.
 
-There are many options are available for customizing how a gRPC method binds to a RESTful API. For more information about annotating gRPC methods and customizing JSON, see [Configure HTTP and JSON for gRPC JSON transcoding](xref:grpc/json-transcoding-binding).
+Many options are available for customizing how a gRPC method binds to a RESTful API. For more information about annotating gRPC methods and customizing JSON, see [Configure HTTP and JSON for gRPC JSON transcoding](xref:grpc/json-transcoding-binding).
 
 ### Streaming methods
 
@@ -113,7 +113,7 @@ Note that the `WriteIndented` JSON setting doesn't apply to server streaming met
 
 ## HTTP protocol
 
-The ASP.NET Core gRPC service template, included in the .NET SDK, creates an app that's only configured for HTTP/2. This is a good default when an app only supports traditional gRPC over HTTP/2. Transcoding, however, works with both HTTP/1.1 and HTTP/2. Some platforms, such as UWP or Unity, can't use HTTP/2. To support all client apps, configure the server to enable HTTP/1.1 and HTTP/2.
+The ASP.NET Core gRPC service template, included in the .NET SDK, creates an app that's only configured for HTTP/2. HTTP/2 is a good default when an app only supports traditional gRPC over HTTP/2. Transcoding, however, works with both HTTP/1.1 and HTTP/2. Some platforms, such as UWP or Unity, can't use HTTP/2. To support all client apps, configure the server to enable HTTP/1.1 and HTTP/2.
 
 Update the default protocol in `appsettings.json`:
 
@@ -135,10 +135,10 @@ Enabling HTTP/1.1 and HTTP/2 on the same port requires TLS for protocol negotiat
 
 Both transcoding and gRPC-Web allow gRPC services to be called from a browser. However, the way each does this is different:
 
-* gRPC-Web lets browser apps call gRPC services from the browser with the gRPC-Web client and Protobuf. gRPC-Web requires the browser app generate a gRPC client, and has the advantage of sending small, fast Protobuf messages.
+* gRPC-Web lets browser apps call gRPC services from the browser with the gRPC-Web client and Protobuf. gRPC-Web requires the browser app to generate a gRPC client and has the advantage of sending small, fast Protobuf messages.
 * Transcoding allows browser apps to call gRPC services as if they were RESTful APIs with JSON. The browser app doesn't need to generate a gRPC client or know anything about gRPC.
 
-No generated client is created for transcoding. The previous `Greeter` service can be called using browser JavaScript APIs:
+The previous `Greeter` service can be called using browser JavaScript APIs:
 
 ```javascript
 var name = nameInput.value;
