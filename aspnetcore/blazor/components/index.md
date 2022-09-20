@@ -768,9 +768,11 @@ In the preceding example:
 
 ## Use `@key` to control the preservation of elements and components
 
-When rendering a list of elements or components and the elements or components subsequently change, Blazor must decide which of the previous elements or components can be retained and how model objects should map to them. Normally, this process is automatic and can be ignored, but there are cases where you may want to control the process.
+When rendering a list of elements or components and the elements or components subsequently change, Blazor must decide which of the previous elements or components are retained and how model objects should map to them. Normally, this process is automatic and sufficient for general rendering, but there are often cases where controlling the process using the [`@key`][5] directive attribute is required.
 
-Consider the following `Details` and `People` components:
+Consider the following example that demonstrates a collection mapping problem that's solved by using [`@key`][5].
+
+The following `Details` and `People` components:
 
 * The `Details` component receives data (`Data`) from the parent `People` component, which is displayed in an `<input>` element. Any given displayed `<input>` element can receive the focus of the page from the user when they select one of the `<input>` elements.
 * The `People` component creates a list of person objects for display using the `Details` component. Every three seconds, a new person is added to the collection.
@@ -2219,9 +2221,11 @@ In the preceding example:
 
 ## Use `@key` to control the preservation of elements and components
 
-When rendering a list of elements or components and the elements or components subsequently change, Blazor must decide which of the previous elements or components can be retained and how model objects should map to them. Normally, this process is automatic and can be ignored, but there are cases where you may want to control the process.
+When rendering a list of elements or components and the elements or components subsequently change, Blazor must decide which of the previous elements or components are retained and how model objects should map to them. Normally, this process is automatic and sufficient for general rendering, but there are often cases where controlling the process using the [`@key`][5] directive attribute is required.
 
-Consider the following `Details` and `People` components:
+Consider the following example that demonstrates a collection mapping problem that's solved by using [`@key`][5].
+
+The following `Details` and `People` components:
 
 * The `Details` component receives data (`Data`) from the parent `People` component, which is displayed in an `<input>` element. Any given displayed `<input>` element can receive the focus of the page from the user when they select one of the `<input>` elements.
 * The `People` component creates a list of person objects for display using the `Details` component. Every three seconds, a new person is added to the collection.
@@ -3222,9 +3226,11 @@ In the preceding example:
 
 ## Use `@key` to control the preservation of elements and components
 
-When rendering a list of elements or components and the elements or components subsequently change, Blazor must decide which of the previous elements or components can be retained and how model objects should map to them. Normally, this process is automatic and can be ignored, but there are cases where you may want to control the process.
+When rendering a list of elements or components and the elements or components subsequently change, Blazor must decide which of the previous elements or components are retained and how model objects should map to them. Normally, this process is automatic and sufficient for general rendering, but there are often cases where controlling the process using the [`@key`][5] directive attribute is required.
 
-Consider the following `Details` and `People` components:
+Consider the following example that demonstrates a collection mapping problem that's solved by using [`@key`][5].
+
+The following `Details` and `People` components:
 
 * The `Details` component receives data (`Data`) from the parent `People` component, which is displayed in an `<input>` element. Any given displayed `<input>` element can receive the focus of the page from the user when they select one of the `<input>` elements.
 * The `People` component creates a list of person objects for display using the `Details` component. Every three seconds, a new person is added to the collection.
@@ -4300,9 +4306,11 @@ In the preceding example:
 
 ## Use `@key` to control the preservation of elements and components
 
-When rendering a list of elements or components and the elements or components subsequently change, Blazor must decide which of the previous elements or components can be retained and how model objects should map to them. Normally, this process is automatic and can be ignored, but there are cases where you may want to control the process.
+When rendering a list of elements or components and the elements or components subsequently change, Blazor must decide which of the previous elements or components are retained and how model objects should map to them. Normally, this process is automatic and sufficient for general rendering, but there are often cases where controlling the process using the [`@key`][5] directive attribute is required.
 
-Consider the following `Details` and `People` components:
+Consider the following example that demonstrates a collection mapping problem that's solved by using [`@key`][5].
+
+The following `Details` and `People` components:
 
 * The `Details` component receives data (`Data`) from the parent `People` component, which is displayed in an `<input>` element. Any given displayed `<input>` element can receive the focus of the page from the user when they select one of the `<input>` elements.
 * The `People` component creates a list of person objects for display using the `Details` component. Every three seconds, a new person is added to the collection.
