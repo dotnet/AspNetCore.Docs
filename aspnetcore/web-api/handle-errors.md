@@ -156,7 +156,7 @@ The error response can be configured in one of the following ways:
 
 The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface which supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html).
 
-The following middleware generates problem details HTTP responses when <xref:Microsoft.Extensions.DependencyInjection.ProblemDetailsServiceCollectionExtensions.AddProblemDetails(IServiceCollection)> is called, except when not accepted by the client:
+The following middleware generates problem details HTTP responses when <xref:Microsoft.Extensions.DependencyInjection.ProblemDetailsServiceCollectionExtensions.AddProblemDetails> is called, except when not accepted by the client:
 
 * <xref:Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware>: Generates a problem details response when a custom handler is not defined.
 * <xref:Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware>: enerates a problem details response by default.
@@ -174,7 +174,7 @@ A problem details response is generated when any of the conditions apply:
 * The `Squareroot` endpoint is called with a radicand less than zero.
 * The URI has no matching endpoint.
 
-The following code calls <xref:Microsoft.Extensions.DependencyInjection.ProblemDetailsServiceCollectionExtensions.AddProblemDetails(IServiceCollection)>
+The following code calls <xref:Microsoft.Extensions.DependencyInjection.ProblemDetailsServiceCollectionExtensions.AddProblemDetails>
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_1":::
 
