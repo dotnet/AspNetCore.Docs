@@ -995,7 +995,7 @@ To make more localized changes to the serialization options, pass modified versi
 
 ### Handle errors and exceptions
 
-The [developer exception page](xref:web-api/handle-errors#developer-exception-page) is enabled by default in the development environment for minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core web APIs](web-api/handle-errors).
+The [developer exception page](xref:web-api/handle-errors#developer-exception-page) is enabled by default in the development environment for minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core web APIs](xref:web-api/handle-errors).
 
 ### Test minimal API apps
 
