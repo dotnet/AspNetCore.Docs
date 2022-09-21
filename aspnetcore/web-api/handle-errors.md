@@ -168,7 +168,7 @@ The following code configures the app to generate a problem details response for
 
 Consider the following controller:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet_1" highlight="13-19,29-35":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet_1":::
 
 A problem details response is generated with the previous code when any of the following conditions apply:
 
@@ -176,7 +176,7 @@ A problem details response is generated with the previous code when any of the f
 * The `/api/values2/squareroot` endpoint is called with a radicand less than zero.
 * The URI has no matching endpoint.
 
-The problem details response body contains the following
+The problem details response body is similar to the following
 
 ```json
 {
@@ -199,7 +199,7 @@ The following code uses <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> t
 
 The updated API controller:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet"  highlight="13-19,29-35":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet"  highlight="13-22,32-41":::
 
 A problem details response is generated with the previous code when any of the following conditions apply:
 
@@ -207,7 +207,7 @@ A problem details response is generated with the previous code when any of the f
 * The `/api/values/squareroot` or the `/squareroot` endpoint is called with a radicand less than zero.
 * The URI has no matching endpoint.
 
-The problem details response body contains the following when a `squareroot` endpoint is called with a radicand less than zero:
+The problem details response body contains the following when either `squareroot` endpoint is called with a radicand less than zero:
 
 ```json
 {
@@ -218,23 +218,13 @@ The problem details response body contains the following when a `squareroot` end
 }
 ```
 
-#### Problem details with Minimal APIs
-
-The following code uses <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> to set <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails>:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_1" highlight="5-27":::
-
-A problem details response is generated with the previous code when any of the following conditions apply:
-
-* The `/divide` endpoint is called with a zero denominator.
-* The `/squareroot` endpoint is called with a radicand less than zero.
-* The URI has no matching endpoint.
-
 #### Generate problem details from Middleware
 
-An alternative approach to using <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> to set <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails> is to set the <xref:Microsoft.AspNetCore.Http.ProblemDetailsContext.ProblemDetails> in middleware. A problem details response can be written from any layer in an app by calling [IProblemDetailsService.WriteAsync](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true):
+An alternative approach to using <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> to set <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails> is to set the <xref:Microsoft.AspNetCore.Http.ProblemDetailsContext.ProblemDetails> in middleware. A problem details response can be written by calling [`IProblemDetailsService.WriteAsync`](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true):
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_middleware" highlight="6,19-48":::
+
+In the preceding code, the minimal API endpoints `/divide` and `/squareroot` return the expected custom problem response on error input. The API controllers endpoints return the default problem response on error input, not the custom problem response. The detault problem response is returned because the API controller has written to the response stream before [`IProblemDetailsService.WriteAsync`](https://github.com/dotnet/aspnetcore/blob/ce2db7ea0b161fc5eb35710fca6feeafeeac37bc/src/Http/Http.Extensions/src/ProblemDetailsService.cs#L24) is called. The [`IProblemDetailsService.WriteAsync` source code](https://github.com/dotnet/aspnetcore/blob/ce2db7ea0b161fc5eb35710fca6feeafeeac37bc/src/Http/Http.Extensions/src/ProblemDetailsService.cs#L24) shows that if the HTTP response has started, the custom problem details are not written.
 
 <!-- END of Problem Details -->
 ### Implement `ProblemDetailsFactory`
