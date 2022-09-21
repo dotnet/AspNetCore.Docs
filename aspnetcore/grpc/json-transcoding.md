@@ -37,7 +37,7 @@ gRPC can still be used to call services.
 1. Add [`google/api/http.proto`](https://github.com/dotnet/aspnetcore/blob/8b601c3a73ba66de4e6ca35530b5d32a48c76c5b/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/http.proto) and [`google/api/annotations.proto`](https://github.com/dotnet/aspnetcore/blob/main/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/annotations.proto) files to the project.
 1. Annotate gRPC methods in your `.proto` files with HTTP bindings and routes:
 
-[!code-protobuf[](~/grpc/httpapi/greet.proto?highlight=3,9-11)]
+[!code-protobuf[](~/grpc/json-transcoding/greet.proto?highlight=3,9-11)]
 
 The `SayHello` gRPC method can now be invoked as gRPC and as a JSON Web API:
 
@@ -167,6 +167,7 @@ For installation and usage of grpc-gateway, see the [grpc-gateway README](https:
 
 ## Additional resources
 
-* [google.api.HttpRule documentation](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule)
+* <xref:grpc/json-transcoding-binding>
+* <xref:grpc/json-transcoding-openapi>
 * <xref:grpc/browser>
 * <xref:grpc/grpcweb>

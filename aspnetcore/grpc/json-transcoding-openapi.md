@@ -23,7 +23,7 @@ To enable OpenAPI with gRPC JSON transcoding:
 1. Add a package reference to [Microsoft.AspNetCore.Grpc.Swagger](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger). The version must be 0.3.0-xxx or greater.
 2. Configure Swashbuckle in startup. The `AddGrpcSwagger` method configures Swashbuckle to include gRPC endpoints.
 
-[!code-csharp[](~/grpc/httpapi/Program.cs?name=snippet_1&highlight=3-8,11-15)]
+[!code-csharp[](~/grpc/json-transcoding-openapi/Program.cs?name=snippet_1&highlight=3-8,11-15)]
 
 ## Add OpenAPI descriptions from `.proto` comments
 
@@ -56,21 +56,11 @@ To enable gRPC OpenAPI comments:
 1. Enable the XML documentation file in the server project with `<GenerateDocumentationFile>true</GenerateDocumentationFile>`.
 2. Configure `AddSwaggerGen` to read the generated XML file. Pass the XML file path to `IncludeXmlComments` and `IncludeGrpcXmlComments`, as in the following example:
 
-```csharp
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1",
-        new OpenApiInfo { Title = "gRPC transcoding", Version = "v1" });
-
-    var filePath = Path.Combine(System.AppContext.BaseDirectory, "Server.xml");
-    c.IncludeXmlComments(filePath);
-    c.IncludeGrpcXmlComments(filePath, includeControllerXmlComments: true);
-});
-```
+[!code-csharp[](~/grpc/json-transcoding-openapi/Program2.cs?name=snippet_1&highlight=6-8)]
 
 To confirm that Swashbuckle is generating OpenAPI with descriptions for the RESTful gRPC services, start the app and navigate to the Swagger UI page:
 
-![Swagger UI](~/grpc/httpapi/static/swaggerui.png)
+![Swagger UI](~/grpc/json-transcoding-openapi/static/swaggerui.png)
 
 ## Additional resources
 

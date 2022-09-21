@@ -17,23 +17,13 @@ gRPC JSON transcoding creates RESTful JSON web APIs from gRPC methods. It uses a
 
 gRPC methods must be annotated with an HTTP rule before they support transcoding. The HTTP rule includes information about calling the gRPC method as a RESTful API, such as the HTTP method and route.
 
-```protobuf
-import "google/api/annotations.proto";
-
-service Greeter {
-  rpc SayHello (HelloRequest) returns (HelloReply) {
-    option (google.api.http) = {
-      get: "/v1/greeter/{name}"
-    };
-  }
-}
-```
+[!code-protobuf[](~/grpc/json-transcoding-binding/basic.proto?highlight=1,3-9)]
 
 An HTTP rule is:
 
 * An annotation on gRPC methods.
 * Identified by the name `google.api.http`.
-* Imported from the `google/api/annotations.proto` file.
+* Imported from the `google/api/annotations.proto` file. The [`google/api/http.proto`](https://github.com/dotnet/aspnetcore/blob/8b601c3a73ba66de4e6ca35530b5d32a48c76c5b/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/http.proto) and [`google/api/annotations.proto`](https://github.com/dotnet/aspnetcore/blob/main/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/annotations.proto) files need to be in the project.
 
 ### HTTP method
 
@@ -49,16 +39,7 @@ The `custom` field allows for other HTTP methods.
 
 In the following example, the `CreateAddress` method is mapped to `POST` with the specified route.
 
-```protobuf
-service Address {
-  rpc CreateAddress (CreateAddressRequest) returns (CreateAddressReply) {
-    option (google.api.http) = {
-      post: "/v1/address",
-      body: "*"
-    };
-  }
-}
-```
+[!code-protobuf[](~/grpc/json-transcoding-binding/httpmethod.proto?highlight=4)]
 
 ### Route
 
@@ -66,25 +47,7 @@ gRPC JSON transcoding routes support route parameters. For example, `{name}` in 
 
 Fields on nested messages can be bound by specifying the path to the field. In the example below, `{filter.org}` binds to the `org` field on the `IssueParams` message.
 
-```protobuf
-service Repository {
-  rpc GetIssue (GetIssueRequest) returns (GetIssueReply) {
-    option (google.api.http) = {
-      get: "/{apiVersion}/{params.org}/{params.repo}/issue/{params.issueId}"
-    };
-  }
-}
-
-message GetIssueRequest {
-  int32 api_version = 1;
-  IssueParams params = 2;
-}
-message IssueParams {
-  string org = 1;
-  string repo = 2;
-  int32 issueId = 3;
-}
-```
+[!code-protobuf[](~/grpc/json-transcoding-binding/route.proto?highlight=4,11)]
 
 Note that ASP.NET Core features such as route constraints, default values, and optional parameters aren't supported by transcoding.
 
@@ -94,51 +57,13 @@ Transcoding deserializes the request body JSON to the request message. The `body
 
 In the following example, the HTTP request body is deserialized to the `address` field's message:
 
-```protobuf
-service Address {
-  rpc AddAddress (AddAddressRequest) returns (AddAddressReply) {
-    option (google.api.http) = {
-      post: "/{apiVersion}/address",
-      body: "address"
-    };
-  }
-}
-
-message AddAddressRequest {
-  int32 api_version = 1;
-  Address address = 2;
-}
-message Address {
-  string street = 1;
-  string city = 2;
-  string country = 3;
-}
-```
+[!code-protobuf[](~/grpc/json-transcoding-binding/requestbody.proto?highlight=5,12)]
 
 ### Query parameters
 
 Any fields in the request message that are not bound by route parameters or request body can be set using HTTP query parameters.
 
-```protobuf
-service Repository {
-  rpc GetIssues (GetIssuesRequest) returns (GetIssuesReply) {
-    option (google.api.http) = {
-      get: "/v1/{org}/{repo}/issue"
-    };
-  }
-}
-
-message GetIssuesRequest {
-  string org = 1;
-  string repo = 2;
-  string text = 3;
-  PageParams page = 4;
-}
-message PageParams {
-  int32 index = 1;
-  int32 size = 2;
-}
-```
+[!code-protobuf[](~/grpc/json-transcoding-binding/queryparameters.proto?highlight=12-13)]
 
 In the preceding example:
 
@@ -149,26 +74,7 @@ In the preceding example:
 
 By default, transcoding serializes the entire response message as JSON. The `response_body` field allows a subset of the response message to be serialized.
 
-```protobuf
-service Address {
-  rpc GetAddress (GetAddressRequest) returns (GetAddressReply) {
-    option (google.api.http) = {
-      get: "/v1/address/{id}",
-      response_body: "address"
-    };
-  }
-}
-
-message GetAddressReply {
-  int32 version = 1;
-  Address address = 2;
-}
-message Address {
-  string street = 1;
-  string city = 2;
-  string country = 3;
-}
-```
+[!code-protobuf[](~/grpc/json-transcoding-binding/responsebody.proto?highlight=5,12)]
 
 In the preceding example, the `address` field's message is serialized to the response body as JSON.
 
