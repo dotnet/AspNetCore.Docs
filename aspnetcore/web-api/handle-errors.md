@@ -168,13 +168,26 @@ The following code configures the app to generate a problem details response for
 
 Consider the following controller:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" highlight="13-19,29-35"::::::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs ../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_1" " highlight="13-19,29-35"::::::
 
 A problem details response is generated with the previous code when any of the following conditions apply:
 
-* The `Divide` endpoint is called with a zero denominator.
-* The `Squareroot` endpoint is called with a radicand less than zero.
+* The `/api/values2/divide` endpoint is called with a zero denominator.
+* The `/api/values2/squareroot` endpoint is called with a radicand less than zero.
 * The URI has no matching endpoint.
+
+The problem details response body contains the following
+
+```json
+{
+  "type": "https://tools.ietf.org/html/rfc7231#section-6.5.1",
+  "title": "Bad Request",
+  "status": 400,
+  "traceId": "00-84c1fd4063c38d9f3900d06e56542d48-85d1d4-00"
+}
+```
+
+The next section shows how to customize the problem details response body to return a more helpful response.
 
 <a name="cpd7"></a>
 
@@ -183,6 +196,27 @@ A problem details response is generated with the previous code when any of the f
 The following code uses <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> to set <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails>:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_api_controller" highlight="7-29":::
+
+The updated API controller:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs ../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet" " highlight="13-19,29-35"::::::
+
+A problem details response is generated with the previous code when any of the following conditions apply:
+
+* The `/api/values/divide` or the `/divide` endpoint is called with a zero denominator.
+* The `/api/values/squareroot` or the `/squareroot` endpoint is called with a radicand less than zero.
+* The URI has no matching endpoint.
+
+The problem details response body contains the following when a `squareroot` endpoint is called with a radicand less than zero:
+
+```json
+{
+  "type": "https://en.wikipedia.org/wiki/Square_root",
+  "title": "Wrong Input",
+  "status": 400,
+  "detail": "Negative or complex numbers are not handled"
+}
+```
 
 #### Problem details with Minimal APIs
 
