@@ -55,7 +55,7 @@ Note that ASP.NET Core features such as route constraints, default values, and o
 
 Transcoding deserializes the request body JSON to the request message. The `body` field specifies how the HTTP request body maps to the request message. The value is either the name of the request field whose value is mapped to the HTTP request body, or `*` for mapping all request fields.
 
-In the following example, the HTTP request body is deserialized to the `address` field's message:
+In the following example, the HTTP request body is deserialized to the `address` field:
 
 [!code-protobuf[](~/grpc/json-transcoding-binding/requestbody.proto?highlight=5,12)]
 
@@ -68,7 +68,7 @@ Any fields in the request message that are not bound by route parameters or requ
 In the preceding example:
 
 * `org` and `repo` fields are bound from route parameters.
-* Other fields, including nested fields, can be bound from the query string: `?text=value&page.index=0&page.size=10`
+* Other fields, such as `text` and the nested fields from `page`, can be bound from the query string: `?text=value&page.index=0&page.size=10`
 
 ### Response body
 
@@ -76,7 +76,7 @@ By default, transcoding serializes the entire response message as JSON. The `res
 
 [!code-protobuf[](~/grpc/json-transcoding-binding/responsebody.proto?highlight=5,12)]
 
-In the preceding example, the `address` field's message is serialized to the response body as JSON.
+In the preceding example, the `address` field is serialized to the response body as JSON.
 
 ### Specification
 
