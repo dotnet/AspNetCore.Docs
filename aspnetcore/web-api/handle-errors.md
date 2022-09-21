@@ -170,13 +170,17 @@ Consider the following controller:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet_1":::
 
+The following code contains the `MathErrorFeature` and `MathErrorType`, which is used with the preceding code:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/MathErrorFeature.cs" :::
+
 A problem details response is generated with the previous code when any of the following conditions apply:
 
 * The `/api/values2/divide` endpoint is called with a zero denominator.
 * The `/api/values2/squareroot` endpoint is called with a radicand less than zero.
 * The URI has no matching endpoint.
 
-The problem details response body is similar to the following
+The default problem details response body has the following `type`, `title`, and `status` values:
 
 ```json
 {
@@ -224,7 +228,7 @@ An alternative approach to using <xref:Microsoft.AspNetCore.Http.ProblemDetailsO
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_middleware" highlight="6,19-48":::
 
-In the preceding code, the minimal API endpoints `/divide` and `/squareroot` return the expected custom problem response on error input. The API controllers endpoints return the default problem response on error input, not the custom problem response. The detault problem response is returned because the API controller has written to the response stream before [`IProblemDetailsService.WriteAsync`](https://github.com/dotnet/aspnetcore/blob/ce2db7ea0b161fc5eb35710fca6feeafeeac37bc/src/Http/Http.Extensions/src/ProblemDetailsService.cs#L24) is called. The [`IProblemDetailsService.WriteAsync` source code](https://github.com/dotnet/aspnetcore/blob/ce2db7ea0b161fc5eb35710fca6feeafeeac37bc/src/Http/Http.Extensions/src/ProblemDetailsService.cs#L24) shows that if the HTTP response has started, the custom problem details are not written.
+In the preceding code, the minimal API endpoints `/divide` and `/squareroot` return the expected custom problem response on error input. The API controller endpoints return the default problem response on error input, not the custom problem response. The default problem response is returned because the API controller has written to the response stream before [`IProblemDetailsService.WriteAsync`](https://github.com/dotnet/aspnetcore/blob/ce2db7ea0b161fc5eb35710fca6feeafeeac37bc/src/Http/Http.Extensions/src/ProblemDetailsService.cs#L24) is called. The [`IProblemDetailsService.WriteAsync` source code](https://github.com/dotnet/aspnetcore/blob/ce2db7ea0b161fc5eb35710fca6feeafeeac37bc/src/Http/Http.Extensions/src/ProblemDetailsService.cs#L24) shows that if the HTTP response has started, the custom problem details are not written.
 
 <!-- END of Problem Details -->
 ### Implement `ProblemDetailsFactory`
