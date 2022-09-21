@@ -30,7 +30,7 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio](#tab/visual-studio)
 
-* [Visual Studio 2022 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
+* [Visual Studio 2022 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
 * [!INCLUDE [.NET Core 6.0 SDK](~/includes/6.0-SDK.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -447,13 +447,9 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 1. In `Program.cs`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
-   * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub:
+   * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub.
 
-     ```csharp
-     app.MapHub<ChatHub>("/chathub");
-     ```
-
-   :::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerSignalRApp/Program.cs" id="snippet_Configure":::
+   :::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerSignalRApp/Program.cs" id="snippet_Configure" highlight="1,17":::
 
 ## Add Razor component code for chat
 
@@ -575,7 +571,7 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio](#tab/visual-studio)
 
-* [Visual Studio 2019 16.10 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
+* [Visual Studio 2019 16.10 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
 * [!INCLUDE [.NET Core 5.0 SDK](~/includes/5.0-SDK.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -1101,7 +1097,7 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio](#tab/visual-studio)
 
-* [Visual Studio 2019 16.6 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
+* [Visual Studio 2019 16.6 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
 * [!INCLUDE [.NET Core 3.1 SDK](~/includes/3.1-SDK.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -1683,7 +1679,7 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio](#tab/visual-studio)
 
-* [Visual Studio 2022 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
+* [Visual Studio 2022 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
 * [!INCLUDE [.NET Core 6.0 SDK](~/includes/6.0-SDK.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -2100,13 +2096,9 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 1. In `Program.cs`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
-   * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub:
+   * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub.
 
-     ```csharp
-     app.MapHub<ChatHub>("/chathub");
-     ```
-
-   :::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerSignalRApp/Program.cs" id="snippet_Configure":::
+   :::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerSignalRApp/Program.cs" id="snippet_Configure" highlight="1,16":::
 
 ## Add Razor component code for chat
 

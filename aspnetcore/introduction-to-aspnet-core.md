@@ -84,7 +84,7 @@ We recommend the following sequence of tutorials for an introduction to developi
 
 1. Browse the table of contents for other topics of interest.
 
-&dagger;There's also an [interactive web API tutorial](/learn/modules/build-web-api-net-core). No local installation of development tools is required. The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/) in your browser, and [curl](https://curl.haxx.se/) is used for testing.
+&dagger;There's also an [interactive web API tutorial](/training/modules/build-web-api-net-core). No local installation of development tools is required. The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/) in your browser, and [curl](https://curl.haxx.se/) is used for testing.
 
 ## Migrate from .NET Framework
 
@@ -170,7 +170,7 @@ We recommend the following sequence of tutorials and articles for an introductio
 
 1. Browse the Table of Contents for other topics of interest.
 
-&dagger;There's also a [web API tutorial that you follow entirely in the browser](/learn/modules/build-web-api-net-core), no local IDE installation required. The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), and [curl](https://curl.haxx.se/) is used for testing.
+&dagger;There's also a [web API tutorial that you follow entirely in the browser](/training/modules/build-web-api-net-core), no local IDE installation required. The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), and [curl](https://curl.haxx.se/) is used for testing.
 
 ## Migrate from .NET Framework
 

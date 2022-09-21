@@ -244,7 +244,7 @@ In the `MainLayout` component (`Shared/MainLayout.razor`), add the `LoginDisplay
 ```razor
 <div class="top-row px-4 auth">
     <LoginDisplay />
-    <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+    <a href="https://learn.microsoft.com/aspnet/" target="_blank">About</a>
 </div>
 ```
 
@@ -318,7 +318,7 @@ In the `Pages/Shared/Layout.cshtml` file, make the following changes:
               throw new InvalidOperationException("The default Identity UI " +
                   "layout requires a partial view '_LoginPartial'.");
           }
-          <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+          <a href="https://learn.microsoft.com/aspnet/" target="_blank">About</a>
       </div>
 
       <div class="content px-4">
@@ -365,7 +365,7 @@ If <xref:Microsoft.AspNetCore.Identity.PasswordOptions> are configured in `Start
 
 ## Disable a page
 
-This sections show how to disable the register page but the approach can be used to disable any page.
+This section shows how to disable the register page but the approach can be used to disable any page.
 
 To disable user registration:
 
@@ -696,7 +696,7 @@ In the `MainLayout` component (`Shared/MainLayout.razor`), add the `LoginDisplay
 ```razor
 <div class="top-row px-4 auth">
     <LoginDisplay />
-    <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+    <a href="https://learn.microsoft.com/aspnet/" target="_blank">About</a>
 </div>
 ```
 
@@ -758,7 +758,7 @@ In the `Pages/Shared/Layout.cshtml` file, make the following changes:
               throw new InvalidOperationException("The default Identity UI " +
                   "layout requires a partial view '_LoginPartial'.");
           }
-          <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+          <a href="https://learn.microsoft.com/aspnet/" target="_blank">About</a>
       </div>
 
       <div class="content px-4">
@@ -829,7 +829,7 @@ If <xref:Microsoft.AspNetCore.Identity.PasswordOptions> are configured in `Start
 
 ## Disable a page
 
-This sections show how to disable the register page but the approach can be used to disable any page.
+This section shows how to disable the register page but the approach can be used to disable any page.
 
 To disable user registration:
 
