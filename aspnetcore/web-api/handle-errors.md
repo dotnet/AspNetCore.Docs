@@ -234,7 +234,7 @@ The preceding `Values` Controller returns <xref:Microsoft.AspNetCore.Mvc.BadRequ
 
 The following `Values3` Controller returns [`ControllerBase.Problem`](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.problem) so the expected custom problem result is returned:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet3"  highlight="13-22,32-41":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet3"  highlight="16-21":::
 
 <!-- END of Problem Details -->
 ### Implement `ProblemDetailsFactory`
