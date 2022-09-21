@@ -77,7 +77,7 @@ static async Task<IResult> DeleteTodo(int id, TodoDb db)
 
     return TypedResults.NotFound();
 }
-// <snippet_handlers>
+// </snippet_handlers>
 
 class Todo
 {
@@ -94,3 +94,4 @@ class TodoDb : DbContext
     public DbSet<Todo> Todos => Set<Todo>();
 }
 #endif
+// </snippet_all>

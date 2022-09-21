@@ -77,3 +77,4 @@ class TodoDb : DbContext
     public DbSet<Todo> Todos => Set<Todo>();
 }
 #endif
+// </snippet_all>

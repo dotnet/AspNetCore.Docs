@@ -915,7 +915,7 @@ Unit tests can call these methods and test that they return the correct type. Fo
 
 :::code language="csharp" source="min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_getalltodos":::
 
-Unit test code can verify that an object of type [Ok\<Todo[]>](xref:Microsoft.AspNetCore.Http.HttpResults.Ok%60.Value) is returned from the handler method. For example:
+Unit test code can verify that an object of type [Ok\<Todo[]>](xref:Microsoft.AspNetCore.Http.HttpResults.Ok%601.Value) is returned from the handler method. For example:
 
 ```csharp
 public async Task GetAllTodos_ReturnsOkOfTodosResult()
@@ -931,7 +931,7 @@ public async Task GetAllTodos_ReturnsOkOfTodosResult()
 }
 ```
 
-<a name="over-post-v6"></a>
+<a name="over-post-v7"></a>
 
 ## Prevent over-posting
 
@@ -963,7 +963,7 @@ Update the code to use `TodoItemDTO`:
 
 Verify you can post and get all fields except the secret field.
 
-<a name="diff-v6"></a>
+<a name="diff-v7"></a>
 
 ## Differences between minimal APIs and APIs with controllers
 
@@ -995,7 +995,7 @@ To make more localized changes to the serialization options, pass modified versi
 
 ### Handle errors and exceptions
 
-The [developer exception page](xref:web-api/handle-errors#developer-exception-page) is enabled by default in the development environment for minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core web APIs](fundamentals/error-handling).
+The [developer exception page](xref:web-api/handle-errors#developer-exception-page) is enabled by default in the development environment for minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core web APIs](web-api/handle-errors).
 
 ### Test minimal API apps
 
