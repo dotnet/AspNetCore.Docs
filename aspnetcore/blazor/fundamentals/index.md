@@ -89,6 +89,16 @@ The ASP.NET Core repository's Basic Test App is also a helpful set of samples fo
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
+## Byte multiples
+
+.NET byte sizes use metric prefixes for non-decimal multiples of bytes based on powers of 1024.
+
+| Name (abbreviation) | Size                    | Example                    |
+| ------------------- | ----------------------- | -------------------------- |
+| Kibobyte (KB)       | 1,024 bytes             | 1 KB = 1,024 bytes         |
+| Megabyte (MB)       | 1,024<sup>2</sup> bytes | 1 MB = 1,048,576 bytes     |
+| Gigabyte (GB)       | 1,024<sup>3</sup> bytes | 1 GB = 1,073,741,824 bytes |
+
 ## Support requests
 
 Only documentation-related issues are appropriate for the `dotnet/AspNetCore.Docs` repository. ***For product support, don't open a documentation issue.*** Seek assistance through one or more of the following support channels:

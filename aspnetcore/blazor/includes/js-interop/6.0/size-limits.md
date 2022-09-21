@@ -28,7 +28,7 @@ Error:
 
 > System.IO.InvalidDataException: The maximum message size of 32768B was exceeded. The message size can be configured in AddHubOptions.
 
-Increase the limit by setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> in `Program.cs`. The following example sets the maximum receive message size to 64 KB (64 * 1024):
+Increase the limit by setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> in `Program.cs`. The following example sets the maximum receive message size to 64 KB:
 
 ```csharp
 builder.Services.AddServerSideBlazor()
