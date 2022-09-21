@@ -742,7 +742,7 @@ Similar to a regular component parameter, components accepting a cascading param
 ```razor
 <main>
     <div class="top-row px-4">
-        <a href="https://learn.microsoft.com/aspnet/" target="_blank">About</a>
+        <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
     </div>
 
     <CascadingValue Value="@theme">
