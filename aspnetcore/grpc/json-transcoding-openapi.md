@@ -11,7 +11,7 @@ uid: grpc/json-transcoding-openapi
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-[OpenAPI (Swagger)](https://swagger.io/specification/) is a language-agnostic specification for describing REST APIs. gRPC JSON transcoding supports generating OpenAPI from transcoded RESTful APIs. The [Microsoft.AspNetCore.Grpc.Swagger](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger) package:
+[OpenAPI (Swagger)](https://swagger.io/specification/) is a language-agnostic specification for describing REST APIs. gRPC JSON transcoding supports generating OpenAPI from transcoded RESTful APIs. The [`Microsoft.AspNetCore.Grpc.Swagger`](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger) package:
 
 * Integrates gRPC JSON transcoding with [Swashbuckle](xref:tutorials/get-started-with-swashbuckle).
 * Is experimental in .NET 7 to allow us to explore the best way to provide OpenAPI support.
@@ -20,10 +20,12 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 To enable OpenAPI with gRPC JSON transcoding:
 
-1. Add a package reference to [Microsoft.AspNetCore.Grpc.Swagger](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger). The version must be 0.3.0-xxx or greater.
+1. Add a package reference to [`Microsoft.AspNetCore.Grpc.Swagger`](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger). The version must be 0.3.0-xxx or later.
 2. Configure Swashbuckle in startup. The `AddGrpcSwagger` method configures Swashbuckle to include gRPC endpoints.
 
 [!code-csharp[](~/grpc/json-transcoding-openapi/Program.cs?name=snippet_1&highlight=3-8,11-15)]
+
+[!INCLUDE[](~/includes/package-reference.md)]
 
 ## Add OpenAPI descriptions from `.proto` comments
 
@@ -44,7 +46,6 @@ message HelloRequest {
   // Name to say hello to.
   string name = 1;
 }
-
 message HelloReply {
   // Hello reply message.
   string message = 1;
@@ -66,4 +67,4 @@ To confirm that Swashbuckle is generating OpenAPI with descriptions for the REST
 
 * <xref:grpc/json-transcoding>
 * [OpenAPI homepage](https://www.openapis.org/)
-* [Swashbuckle.AspNetCore GitHub repository](https://github.com/domaindrivendev/Swashbuckle.AspNetCore)
+* [`Swashbuckle.AspNetCore` GitHub repository](https://github.com/domaindrivendev/Swashbuckle.AspNetCore)

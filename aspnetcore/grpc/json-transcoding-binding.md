@@ -37,7 +37,7 @@ The HTTP method is specified by setting the route to the matching HTTP method fi
 
 The `custom` field allows for other HTTP methods.
 
-In the following example, the `CreateAddress` method is mapped to `POST` with the specified route.
+In the following example, the `CreateAddress` method is mapped to `POST` with the specified route:
 
 [!code-protobuf[](~/grpc/json-transcoding-binding/httpmethod.proto?highlight=4)]
 
@@ -45,15 +45,15 @@ In the following example, the `CreateAddress` method is mapped to `POST` with th
 
 gRPC JSON transcoding routes support route parameters. For example, `{name}` in a route binds to the `name` field on the request message.
 
-Fields on nested messages can be bound by specifying the path to the field. In the example below, `{params.org}` binds to the `org` field on the `IssueParams` message.
+To bind a field on a nested message, specify the path to the field. In the following example, `{params.org}` binds to the `org` field on the `IssueParams` message:
 
 [!code-protobuf[](~/grpc/json-transcoding-binding/route.proto?highlight=4,11)]
 
-Note that ASP.NET Core features such as route constraints, default values, and optional parameters aren't supported by transcoding.
+Route constraints, default values, and optional parameters aren't supported by transcoding.
 
 ### Request body
 
-Transcoding deserializes the request body JSON to the request message. The `body` field specifies how the HTTP request body maps to the request message. The value is either the name of the request field whose value is mapped to the HTTP request body, or `*` for mapping all request fields.
+Transcoding deserializes the request body JSON to the request message. The `body` field specifies how the HTTP request body maps to the request message. The value is either the name of the request field whose value is mapped to the HTTP request body or `*` for mapping all request fields.
 
 In the following example, the HTTP request body is deserialized to the `address` field:
 
@@ -61,7 +61,7 @@ In the following example, the HTTP request body is deserialized to the `address`
 
 ### Query parameters
 
-Any fields in the request message that are not bound by route parameters or request body can be set using HTTP query parameters.
+Any fields in the request message that aren't bound by route parameters or the request body can be set using HTTP query parameters.
 
 [!code-protobuf[](~/grpc/json-transcoding-binding/queryparameters.proto?highlight=12-13)]
 
@@ -72,7 +72,7 @@ In the preceding example:
 
 ### Response body
 
-By default, transcoding serializes the entire response message as JSON. The `response_body` field allows a subset of the response message to be serialized.
+By default, transcoding serializes the entire response message as JSON. The `response_body` field allows serialization of a subset of the response message.
 
 [!code-protobuf[](~/grpc/json-transcoding-binding/responsebody.proto?highlight=5,12)]
 
@@ -86,14 +86,14 @@ For more information about customizing gRPC transcoding, see the [HttpRule speci
 
 Messages are converted to and from JSON using the [JSON mapping in the Protobuf specification](https://developers.google.com/protocol-buffers/docs/proto3#json). Protobuf's JSON mapping is a standardized way to convert between JSON and Protobuf, and all serialization follows these rules.
 
-However, gRPC JSON transcoding offers some limited options for customizing JSON with <xref:Microsoft.AspNetCore.Grpc.JsonTranscoding.GrpcJsonSettings>:
+However, gRPC JSON transcoding offers some limited options for customizing JSON with <xref:Microsoft.AspNetCore.Grpc.JsonTranscoding.GrpcJsonSettings>, as shown in the following table.
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
-| `IgnoreDefaultValues` | false | If set to `true`, fields with default values are ignored during serialization. |
-| `WriteEnumsAsIntegers` | false | If set to `true`, enum values are written as integers instead of strings. |
-| `WriteInt64sAsStrings` | false | If set to `true`, `Int64` and `UInt64` values are written as strings instead of numbers. |
-| `WriteIndented` | false | If set to `true`, JSON is written using pretty printing. This option doesn't affect streaming methods, which write line delimited JSON messages and can't use pretty printing. |
+| <xref:Microsoft.AspNetCore.Grpc.JsonTranscoding.GrpcJsonSettings.IgnoreDefaultValues> | `false` | If set to `true`, fields with default values are ignored during serialization. |
+| <xref:Microsoft.AspNetCore.Grpc.JsonTranscoding.GrpcJsonSettings.WriteEnumsAsIntegers> | `false` | If set to `true`, enum values are written as integers instead of strings. |
+| <xref:Microsoft.AspNetCore.Grpc.JsonTranscoding.GrpcJsonSettings.WriteInt64sAsStrings> | `false` | If set to `true`, `Int64` and `UInt64` values are written as strings instead of numbers. |
+| <xref:Microsoft.AspNetCore.Grpc.JsonTranscoding.GrpcJsonSettings.WriteIndented> | `false` | If set to `true`, JSON is written using pretty printing. This option doesn't affect streaming methods, which write line-delimited JSON messages and can't use pretty printing. |
 
 ```csharp
 builder.Services.AddGrpc().AddJsonTranscoding(o =>
@@ -115,4 +115,4 @@ Transcoding doesn't support advanced JSON customization. Apps requiring precise 
 ## Additional resources
 
 * <xref:grpc/json-transcoding>
-* [google.api.HttpRule documentation](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule)
+* [HttpRule specification](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule)
