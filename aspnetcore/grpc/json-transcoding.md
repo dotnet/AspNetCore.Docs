@@ -34,7 +34,7 @@ gRPC can still be used to call services.
 
 1. Add a package reference to [`Microsoft.AspNetCore.Grpc.JsonTranscoding`](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.JsonTranscoding).
 1. Register transcoding in server startup code by adding `AddJsonTranscoding`. For example, `services.AddGrpc().AddJsonTranscoding()`.
-1. Add [`google/api/http.proto`](https://github.com/dotnet/aspnetcore/blob/8b601c3a73ba66de4e6ca35530b5d32a48c76c5b/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/http.proto) and [`google/api/annotations.proto`](https://github.com/dotnet/aspnetcore/blob/main/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/annotations.proto) files to the project.
+1. Add [`google/api/http.proto`](https://github.com/dotnet/aspnetcore/blob/main/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/http.proto) and [`google/api/annotations.proto`](https://github.com/dotnet/aspnetcore/blob/main/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/annotations.proto) files to the project.
 1. Annotate gRPC methods in your `.proto` files with HTTP bindings and routes:
 
 [!code-protobuf[](~/grpc/json-transcoding/greet.proto?highlight=3,9-11)]
