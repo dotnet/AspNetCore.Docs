@@ -41,7 +41,7 @@ gRPC can still be used to call services.
 
 The `SayHello` gRPC method can now be invoked as gRPC and as a JSON Web API:
 
-* Request: `HTTP/1.1 GET /v1/greeter/world`
+* Request: `GET /v1/greeter/world`
 * Response: `{ "message": "Hello world" }`
 
 If the server is configured to write logs for each request, server logs show that a gRPC service executes the HTTP call. Transcoding maps the incoming HTTP request to a gRPC message and converts the response message to JSON.
@@ -63,15 +63,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 gRPC methods must be annotated with an HTTP rule before they support transcoding. The HTTP rule includes information about how to call the gRPC method, such as the HTTP method and route.
 
-```protobuf
-service Greeter {
-  rpc SayHello (HelloRequest) returns (HelloReply) {
-    option (google.api.http) = {
-      get: "/v1/greeter/{name}"
-    };
-  }
-}
-```
+[!code-protobuf[](~/grpc/json-transcoding/httprule.proto?highlight=3-5)]
 
 The proceeding example:
 

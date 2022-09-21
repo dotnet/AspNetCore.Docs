@@ -1,7 +1,7 @@
 ---
-title: Configure HTTP rules for gRPC JSON transcoding in ASP.NET Core gRPC apps
+title: Configure HTTP and JSON for gRPC JSON transcoding ASP.NET Core apps
 author: jamesnk
-description: Learn how to configure HTTP rules for gRPC JSON transcoding in ASP.NET Core gRPC apps.
+description: Learn how to configure HTTP and JSON for gRPC JSON transcoding apps.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: jamesnk
 ms.date: 09/20/2022
@@ -17,7 +17,7 @@ gRPC JSON transcoding creates RESTful JSON web APIs from gRPC methods. It uses a
 
 gRPC methods must be annotated with an HTTP rule before they support transcoding. The HTTP rule includes information about calling the gRPC method as a RESTful API, such as the HTTP method and route.
 
-[!code-protobuf[](~/grpc/json-transcoding-binding/basic.proto?highlight=1,3-9)]
+[!code-protobuf[](~/grpc/json-transcoding-binding/basic.proto?highlight=1,5-7)]
 
 An HTTP rule is:
 
@@ -45,7 +45,7 @@ In the following example, the `CreateAddress` method is mapped to `POST` with th
 
 gRPC JSON transcoding routes support route parameters. For example, `{name}` in a route binds to the `name` field on the request message.
 
-Fields on nested messages can be bound by specifying the path to the field. In the example below, `{filter.org}` binds to the `org` field on the `IssueParams` message.
+Fields on nested messages can be bound by specifying the path to the field. In the example below, `{params.org}` binds to the `org` field on the `IssueParams` message.
 
 [!code-protobuf[](~/grpc/json-transcoding-binding/route.proto?highlight=4,11)]
 
