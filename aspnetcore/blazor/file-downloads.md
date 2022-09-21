@@ -144,7 +144,7 @@ For more information on CORS with ASP.NET Core apps and other Microsoft products
 * <xref:security/cors>
 * [Using Azure CDN with CORS (Azure documentation)](/azure/cdn/cdn-cors)
 * [Cross-Origin Resource Sharing (CORS) support for Azure Storage (REST documentation)](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services)
-* [Core Cloud Services - Set up CORS for your website and storage assets (Learn Module)](/learn/modules/set-up-cors-website-storage/)
+* [Core Cloud Services - Set up CORS for your website and storage assets (Learn module)](/training/modules/set-up-cors-website-storage/)
 * [IIS CORS module Configuration Reference (IIS documentation)](/iis/extensions/cors-module/cors-module-configuration-reference)
 
 ## Additional resources
@@ -289,7 +289,7 @@ For more information on CORS with ASP.NET Core apps and other Microsoft products
 * <xref:security/cors>
 * [Using Azure CDN with CORS (Azure documentation)](/azure/cdn/cdn-cors)
 * [Cross-Origin Resource Sharing (CORS) support for Azure Storage (REST documentation)](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services)
-* [Core Cloud Services - Set up CORS for your website and storage assets (Learn Module)](/learn/modules/set-up-cors-website-storage/)
+* [Core Cloud Services - Set up CORS for your website and storage assets (Learn module)](/training/modules/set-up-cors-website-storage/)
 * [IIS CORS module Configuration Reference (IIS documentation)](/iis/extensions/cors-module/cors-module-configuration-reference)
 
 ## Additional resources
