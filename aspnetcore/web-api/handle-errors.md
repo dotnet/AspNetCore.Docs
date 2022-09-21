@@ -168,7 +168,7 @@ The following code configures the app to generate a problem details response for
 
 Consider the following controller:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs ../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_1" " highlight="13-19,29-35"::::::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet_1" highlight="13-19,29-35":::
 
 A problem details response is generated with the previous code when any of the following conditions apply:
 
@@ -199,7 +199,7 @@ The following code uses <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> t
 
 The updated API controller:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs ../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet" " highlight="13-19,29-35"::::::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet"  highlight="13-19,29-35":::
 
 A problem details response is generated with the previous code when any of the following conditions apply:
 
