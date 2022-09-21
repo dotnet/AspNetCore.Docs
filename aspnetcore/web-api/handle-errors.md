@@ -5,7 +5,7 @@ description: Learn about error handling with ASP.NET Core web APIs.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 9/09/2022
+ms.date: 9/23/2022
 uid: web-api/handle-errors
 ---
 # Handle errors in ASP.NET Core web APIs
@@ -142,7 +142,7 @@ For web API controllers, MVC responds with a <xref:Microsoft.AspNetCore.Mvc.Vali
 
 ## Client error response
 
-An *error result* is defined as a result with an HTTP status code of 400 or higher. For web API controllers, MVC transforms an error result to a produce a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>.
+An *error result* is defined as a result with an HTTP status code of 400 or higher. For web API controllers, MVC transforms an error result to produce a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>.
 
 The error response can be configured in one of the following ways:
 
@@ -162,7 +162,7 @@ The following middleware generates problem details HTTP responses when [`AddProb
 * <xref:Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware>: Generates a problem details response by default.
 * [DeveloperExceptionPageMiddleware](#dep7): Generates a problem details response in development when `text/html` is not accepted.
 
-The following code configures the app to generate a problem details response for all HTTP client and server error responses that do not have a body content yet:
+The following code configures the app to generate a problem details response for all HTTP client and server error responses that don't have a body content yet:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_apishort" highlight="4,9":::
 
@@ -230,9 +230,9 @@ An alternative approach to using <xref:Microsoft.AspNetCore.Http.ProblemDetailsO
 
 In the preceding code, the minimal API endpoints `/divide` and `/squareroot` return the expected custom problem response on error input. The API controller endpoints return the default problem response on error input, not the custom problem response. The default problem response is returned because the API controller has written to the response stream before [`IProblemDetailsService.WriteAsync`](https://github.com/dotnet/aspnetcore/blob/ce2db7ea0b161fc5eb35710fca6feeafeeac37bc/src/Http/Http.Extensions/src/ProblemDetailsService.cs#L24) is called. The [`IProblemDetailsService.WriteAsync` source code](https://github.com/dotnet/aspnetcore/blob/ce2db7ea0b161fc5eb35710fca6feeafeeac37bc/src/Http/Http.Extensions/src/ProblemDetailsService.cs#L24) shows that if the HTTP response has started, the custom problem details are not written.
 
-The preceding `Values` Controller returns <xref:Microsoft.AspNetCore.Mvc.BadRequestResult>, which writes to the response stream and therefore prevents the custom problem response from being returned.
+The preceding `ValuesController` returns <xref:Microsoft.AspNetCore.Mvc.BadRequestResult>, which writes to the response stream and therefore prevents the custom problem response from being returned.
 
-The following `Values3` Controller returns [`ControllerBase.Problem`](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.problem) so the expected custom problem result is returned:
+The following `Values3Controller` returns [`ControllerBase.Problem`](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.problem) so the expected custom problem result is returned:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet3"  highlight="16-21":::
 
@@ -400,7 +400,7 @@ For web API controllers, MVC responds with a <xref:Microsoft.AspNetCore.Mvc.Vali
 
 ## Client error response
 
-An *error result* is defined as a result with an HTTP status code of 400 or higher. For web API controllers, MVC transforms an error result to a produce a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>.
+An *error result* is defined as a result with an HTTP status code of 400 or higher. For web API controllers, MVC transforms an error result to produce a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>.
 
 The error response can be configured in one of the following ways:
 
