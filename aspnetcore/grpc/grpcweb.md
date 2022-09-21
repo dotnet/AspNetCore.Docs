@@ -161,4 +161,4 @@ For more information, see <xref:grpc/clientfactory>.
 
 * [gRPC for Web Clients GitHub project](https://github.com/grpc/grpc-web)
 * <xref:security/cors>
-* <xref:grpc/httpapi>
+* <xref:grpc/json-transcoding>

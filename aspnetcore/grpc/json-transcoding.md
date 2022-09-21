@@ -4,8 +4,8 @@ author: jamesnk
 description: Learn how to create JSON HTTP APIs for gRPC services using gRPC JSON transcoding.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: jamesnk
-ms.date: 05/20/2022
-uid: grpc/httpapi
+ms.date: 09/20/2022
+uid: grpc/json-transcoding
 ---
 # gRPC JSON transcoding in ASP.NET Core gRPC apps
 
@@ -13,7 +13,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 [gRPC](https://grpc.io) is a high-performance Remote Procedure Call (RPC) framework. gRPC uses HTTP/2, streaming, Protobuf, and message contracts to create high-performance, real-time services.
 
-One limitation with gRPC is not every platform can use it. Browsers don't fully support HTTP/2, making [REST APIs](https://www.redhat.com/topics/api/what-is-a-rest-api) and JSON the primary way to get data into browser apps. Even with the benefits that gRPC brings, REST APIs and JSON have an important place in modern apps. Building gRPC ***and*** JSON Web APIs adds unwanted overhead to app development.
+One limitation with gRPC is not every platform can use it. Browsers don't fully support HTTP/2, making [REST APIs](https://www.redhat.com/topics/api/what-is-a-rest-api) and JSON the primary way to get data into browser apps. Despite the benefits that gRPC brings, REST APIs and JSON have an important place in modern apps. Building gRPC ***and*** JSON Web APIs adds unwanted overhead to app development.
 
 This document discusses how to create JSON Web APIs using gRPC services.
 
@@ -34,17 +34,17 @@ gRPC can still be used to call services.
 
 1. Add a package reference to [`Microsoft.AspNetCore.Grpc.JsonTranscoding`](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.JsonTranscoding).
 1. Register transcoding in server startup code by adding `AddJsonTranscoding`. For example, `services.AddGrpc().AddJsonTranscoding()`.
-1. Add [`google/api/http.proto`](https://github.com/dotnet/aspnetcore/blob/8b601c3a73ba66de4e6ca35530b5d32a48c76c5b/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/http.proto) and [`google/api/annotations.proto`](https://github.com/dotnet/aspnetcore/blob/main/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/annotations.proto) files to the project.
+1. Add [`google/api/http.proto`](https://github.com/dotnet/aspnetcore/blob/main/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/http.proto) and [`google/api/annotations.proto`](https://github.com/dotnet/aspnetcore/blob/main/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/annotations.proto) files to the project.
 1. Annotate gRPC methods in your `.proto` files with HTTP bindings and routes:
 
-[!code-protobuf[](~/grpc/httpapi/greet.proto?highlight=3,9-11)]
+[!code-protobuf[](~/grpc/json-transcoding/greet.proto?highlight=3,9-11)]
 
 The `SayHello` gRPC method can now be invoked as gRPC and as a JSON Web API:
 
-* Request: `HTTP/1.1 GET /v1/greeter/world`
+* Request: `GET /v1/greeter/world`
 * Response: `{ "message": "Hello world" }`
 
-If the server is configured to write logs for each request, server logs show that the HTTP call is executed by a gRPC service. Transcoding maps the incoming HTTP request to a gRPC message and then converts the response message to JSON.
+If the server is configured to write logs for each request, server logs show that a gRPC service executes the HTTP call. Transcoding maps the incoming HTTP request to a gRPC message and converts the response message to JSON.
 
 ```
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
@@ -59,9 +59,21 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
       Request finished in 1.996ms 200 application/json
 ```
 
-This is a basic example. See [HttpRule](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule) for more customization options.
+### Annotate gRPC methods
 
-## Streaming support
+gRPC methods must be annotated with an HTTP rule before they support transcoding. The HTTP rule includes information about how to call the gRPC method, such as the HTTP method and route.
+
+[!code-protobuf[](~/grpc/json-transcoding/httprule.proto?highlight=3-5)]
+
+The proceeding example:
+
+* Defines a `Greeter` service with a `SayHello` method. The method has an HTTP rule specified using the name `google.api.http`.
+* The method is accessible with `GET` requests and the `/v1/greeter/{name}` route.
+* The `name` field on the request message is bound to a route parameter.
+
+Many options are available for customizing how a gRPC method binds to a RESTful API. For more information about annotating gRPC methods and customizing JSON, see [Configure HTTP and JSON for gRPC JSON transcoding](xref:grpc/json-transcoding-binding).
+
+### Streaming methods
 
 Traditional gRPC over HTTP/2 supports streaming in all directions. Transcoding is limited to server streaming only. Client streaming and bidirectional streaming methods aren't supported.
 
@@ -91,70 +103,9 @@ The client receives three line-delimited JSON objects:
 
 Note that the `WriteIndented` JSON setting doesn't apply to server streaming methods. Pretty printing adds new lines and whitespace to JSON, which can't be used with line-delimited JSON.
 
-## Experimental OpenAPI support
-
-There is *experimental* support for generating OpenAPI from gRPC transcoded RESTful APIs. The [Microsoft.AspNetCore.Grpc.Swagger](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger) package:
-
-* Integrates gRPC JSON transcoding with [Swashbuckle](xref:tutorials/get-started-with-swashbuckle).
-* Is experimental in .NET 7 to give us time to explore the best way to provide OpenAPI support.
-
-To enable OpenAPI with gRPC JSON transcoding:
-
-1. Add a package reference to [Microsoft.AspNetCore.Grpc.Swagger](https://www.nuget.org/packages/Microsoft.AspNetCore.Grpc.Swagger). The version must be 0.3.0-xxx or greater.
-2. Configure Swashbuckle in startup. The `AddGrpcSwagger` method configures Swashbuckle to include gRPC endpoints.
-
-[!code-csharp[](~/grpc/httpapi/Program.cs?name=snippet_1&highlight=3-8,11-15)]
-
-### Include descriptions from `.proto` comments
-
-Comments from the `.proto` contract can be added to generated OpenAPI descriptions.
-
-```protobuf
-// My amazing greeter service.
-service Greeter {
-  // Sends a greeting.
-  rpc SayHello (HelloRequest) returns (HelloReply) {
-    option (google.api.http) = {
-      get: "/v1/greeter/{name}"
-    };
-  }
-}
-
-message HelloRequest {
-  // Name to say hello to.
-  string name = 1;
-}
-
-message HelloReply {
-  // Hello reply message.
-  string message = 1;
-}
-```
-
-To enable gRPC OpenAPI comments:
-
-1. Enable the XML documentation file in the server project with `<GenerateDocumentationFile>true</GenerateDocumentationFile>`.
-2. Configure `AddSwaggerGen` to read the generated XML file. Pass the XML file path to `IncludeXmlComments` and `IncludeGrpcXmlComments`.
-
-```csharp
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1",
-        new OpenApiInfo { Title = "gRPC transcoding", Version = "v1" });
-
-    var filePath = Path.Combine(System.AppContext.BaseDirectory, "Server.xml");
-    c.IncludeXmlComments(filePath);
-    c.IncludeGrpcXmlComments(filePath, includeControllerXmlComments: true);
-});
-```
-
-To confirm that Swashbuckle is generating OpenAPI with comments for the RESTful gRPC services, start the app and navigate to the Swagger UI page:
-
-![Swagger UI](~/grpc/httpapi/static/swaggerui.png)
-
 ## HTTP protocol
 
-The ASP.NET Core gRPC service template, included in the .NET SDK, creates an app that's only configured for HTTP/2. This is a good default when an app only supports traditional gRPC over HTTP/2. Transcoding, however, works with both HTTP/1.1 and HTTP/2. Some platforms, such as UWP or Unity, can't use HTTP/2. To support all client apps, configure the server to enable HTTP/1.1 and HTTP/2.
+The ASP.NET Core gRPC service template, included in the .NET SDK, creates an app that's only configured for HTTP/2. HTTP/2 is a good default when an app only supports traditional gRPC over HTTP/2. Transcoding, however, works with both HTTP/1.1 and HTTP/2. Some platforms, such as UWP or Unity, can't use HTTP/2. To support all client apps, configure the server to enable HTTP/1.1 and HTTP/2.
 
 Update the default protocol in `appsettings.json`:
 
@@ -176,10 +127,10 @@ Enabling HTTP/1.1 and HTTP/2 on the same port requires TLS for protocol negotiat
 
 Both transcoding and gRPC-Web allow gRPC services to be called from a browser. However, the way each does this is different:
 
-* gRPC-Web lets browser apps call gRPC services from the browser with the gRPC-Web client and Protobuf. gRPC-Web requires the browser app generate a gRPC client, and has the advantage of sending small, fast Protobuf messages.
+* gRPC-Web lets browser apps call gRPC services from the browser with the gRPC-Web client and Protobuf. gRPC-Web requires the browser app to generate a gRPC client and has the advantage of sending small, fast Protobuf messages.
 * Transcoding allows browser apps to call gRPC services as if they were RESTful APIs with JSON. The browser app doesn't need to generate a gRPC client or know anything about gRPC.
 
-No generated client is created for transcoding. The previous `Greeter` service can be called using browser JavaScript APIs:
+The previous `Greeter` service can be called using browser JavaScript APIs:
 
 ```javascript
 var name = nameInput.value;
@@ -208,6 +159,7 @@ For installation and usage of grpc-gateway, see the [grpc-gateway README](https:
 
 ## Additional resources
 
-* [google.api.HttpRule documentation](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule)
+* <xref:grpc/json-transcoding-binding>
+* <xref:grpc/json-transcoding-openapi>
 * <xref:grpc/browser>
 * <xref:grpc/grpcweb>
