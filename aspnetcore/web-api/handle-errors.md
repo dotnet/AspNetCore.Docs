@@ -170,7 +170,7 @@ Consider the following controller:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet_1":::
 
-The following code contains the `MathErrorFeature` and `MathErrorType`, which is used with the preceding code:
+The following code contains the `MathErrorFeature` and `MathErrorType`, which is used with the preceding sample:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/MathErrorFeature.cs" :::
 
@@ -203,7 +203,7 @@ The following code uses <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> t
 
 The updated API controller:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet"  highlight="13-22,32-41":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet"  highlight="9-17,27-35":::
 
 A problem details response is generated with the previous code when any of the following conditions apply:
 
