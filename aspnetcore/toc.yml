@@ -895,12 +895,10 @@ items:
         uid: test/debug-aspnetcore-source
       - name: Razor Pages unit tests
         uid: test/razor-pages-tests
-      - name: Unit test MVC controllers
+      - name: MVC controllers unit tests
         uid: mvc/controllers/testing
       - name: Integration tests
         uid: test/integration-tests
-      - name: Test controllers
-        uid: mvc/controllers/testing
       - name: Test middleware
         uid: test/middleware
       - name: Remote debugging
