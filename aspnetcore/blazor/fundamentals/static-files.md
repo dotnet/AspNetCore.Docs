@@ -18,7 +18,7 @@ For more information on *solutions* in sections that apply to hosted Blazor WebA
 
 ## Static File Middleware
 
-*This section applies to Blazor Server apps and the `**Server**` app of a hosted Blazor WebAssembly solution.*
+*This section applies to Blazor Server apps and the **Server** app of a hosted Blazor WebAssembly solution.*
 
 Configure Static File Middleware to serve static assets to clients by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in the app's request processing pipeline. For more information, see <xref:fundamentals/static-files>.
 
