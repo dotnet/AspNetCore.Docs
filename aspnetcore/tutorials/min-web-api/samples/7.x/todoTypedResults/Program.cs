@@ -1,5 +1,3 @@
-#define FIRST // FIRST FINAL
-#if FIRST
 // <snippet_all>
 using Microsoft.EntityFrameworkCore;
 
@@ -11,7 +9,7 @@ var app = builder.Build();
 app.MapGet("/", () => "Hello World!");
 
 // <snippet_group>
-RouteGroupBuilder group = app.MapGroup("todoitems");
+RouteGroupBuilder group = app.MapGroup("/todoitems");
 
 group.MapGet("/", GetAllTodos);
 group.MapGet("/complete", GetCompleteTodos);
@@ -93,5 +91,4 @@ class TodoDb : DbContext
 
     public DbSet<Todo> Todos => Set<Todo>();
 }
-#endif
 // </snippet_all>

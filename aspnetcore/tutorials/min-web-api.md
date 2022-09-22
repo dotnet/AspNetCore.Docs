@@ -487,7 +487,7 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a minimal web API with ASP.NET Core. For a tutorial on creating a web API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api). For a comparison, see [Differences between minimal APIs and APIs with controllers](#diff-v6) in this document.
+This tutorial teaches the basics of building a minimal web API with ASP.NET Core. For a tutorial on creating a web API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api). For a comparison, see [Differences between minimal APIs and APIs with controllers](#diff-v7) in this tutorial.
 
 ## Overview
 
@@ -533,15 +533,13 @@ This tutorial creates the following API:
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
 
-  * Select **.NET 6.0 (Long-term support)**
-  * Remove **Use controllers (uncheck to use minimal APIs)**
+  * Select **.NET 7.0 (Preview)**
+  * Uncheck **Use controllers (uncheck to use minimal APIs)**
+  * Select **Enable OpenAPI support**
+  * Uncheck **Do not use top-level statements**
   * Select **Create**
 
- ![Additional information](min-web-api/_static/add-info2.png)
-
-<!-- 
-![VS new project dialog](min-web-api/_static/5/vs.png)
--->
+ ![Additional information](min-web-api/_static/add-info7.png)
 
 <!-- Move this later since we don't need it now -->
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -637,7 +635,7 @@ The Swagger page `/swagger/index.html` is displayed. Select **`GET > Try it out>
 * The response code, body, and headers.
 * A drop down list box with media types and the example value and schema.
 
-Copy and paste the **Request URL** in the browser: `https://localhost:<port>/WeatherForecast`. JSON similar to the following is returned:
+Copy and paste the **Request URL** in the browser: `https://localhost:<port>/WeatherForecast`. JSON similar to the following example is returned:
 
 ```json
 [
@@ -676,7 +674,7 @@ Copy and paste the **Request URL** in the browser: `https://localhost:<port>/Wea
 
 ## Update the generated code
 
-This tutorial focuses on creating a web API, so we'll delete the Swagger code and the `WeatherForecast` code. Replace the contents of the `Program.cs` file with the following:
+This tutorial focuses on creating a web API and uses a different sample app, so the Swagger code and the `WeatherForecast` code aren't needed. Replace the contents of the `Program.cs` file with the following code:
 
 [!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_min)]
 
@@ -684,7 +682,7 @@ The following highlighted code creates a <xref:Microsoft.AspNetCore.Builder.WebA
 
 [!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_min&highlight=1-2)]
 
-The following code creates an HTTP GET endpoint `/` which returns `Hello World!`:
+The following code creates an HTTP GET endpoint `/` that returns `Hello World!`:
 
 ```csharp
 app.MapGet("/", () => "Hello World!");
@@ -692,7 +690,7 @@ app.MapGet("/", () => "Hello World!");
 
 `app.Run();` runs the app.
 
-Remove the two `"launchUrl": "swagger",` lines from the `Properties/launchSettings.json` file. When the `launchUrl` isn't specified, the web browser requests the `/` endpoint.
+Remove the three `"launchUrl": "swagger",` lines from the `Properties/launchSettings.json` file. When the `launchUrl` isn't specified, the web browser requests the `/` endpoint.
 
 Run the app. `Hello World!` is displayed. The updated `Program.cs` file contains a minimal but complete app.
 
@@ -703,6 +701,8 @@ NuGet packages must be added to support the database and diagnostics used in thi
 # [Visual Studio](#tab/visual-studio)
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
+* Select the **Browse** tab.
+* Select **Include prerelease**.
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane and then select **Install**.
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
@@ -767,7 +767,7 @@ This tutorial uses Postman to test the API.
 * Disable **SSL certificate verification**
   * From **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
     > [!WARNING]
-    > Re-enable SSL certificate verification after testing the controller.
+    > Re-enable SSL certificate verification after testing the sample app.
 
 <a name="post"></a>
 
@@ -885,7 +885,7 @@ Use Postman to delete a to-do item:
 
 ## Use the MapGroup API
 
-The sample app code repeats the `todoitems` URL node each time it sets up an endpoint. Groups of endpoints with a common prefix are common in web API apps, and the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> method is available to help organize such groups. It reduces repetitive code and allows for customizing entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A>.
+The sample app code repeats the `todoitems` URL node each time it sets up an endpoint. Web APIs often have groups of endpoints with a common URL node, and the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> method is available to help organize such groups. It reduces repetitive code and allows for customizing entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A>.
 
 Replace the code in Program.cs with the following code:
 

@@ -11,7 +11,7 @@ var app = builder.Build();
 app.MapGet("/", () => "Hello World!");
 
 // <snippet_group>
-RouteGroupBuilder group = app.MapGroup("todoitems");
+RouteGroupBuilder group = app.MapGroup("/todoitems");
 
 group.MapGet("/", GetAllTodos);
 group.MapGet("/{id}", GetTodo);
@@ -49,7 +49,7 @@ static async Task<IResult> CreateTodo(TodoItemDTO todoItemDTO, TodoDb db)
     db.Todos.Add(todoItem);
     await db.SaveChangesAsync();
 
-    return TypedResults.Created($"/todoitems/{todoItem.Id}", todoItem);
+    return TypedResults.Created($"/todoitems/{todoItem.Id}", todoItemDTO);
 }
 
 static async Task<IResult> UpdateTodo(int id, TodoItemDTO todoItemDTO, TodoDb db)
