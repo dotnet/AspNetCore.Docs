@@ -154,7 +154,7 @@ The error response can be configured in one of the following ways:
 
 ### Problem details service
 
-The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface which supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html).
+The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface, which supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html).
 
 The following middleware generates problem details HTTP responses when [`AddProblemDetails`](/dotnet/api/microsoft.extensions.dependencyinjection.problemdetailsservicecollectionextensions.addproblemdetails?view=aspnetcore-7.0&preserve-view=true) is called, except when not accepted by the client:
 
@@ -170,7 +170,7 @@ Consider the following controller:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet_1":::
 
-The following code contains the `MathErrorFeature` and `MathErrorType`, which is used with the preceding sample:
+The following code contains the `MathErrorFeature` and `MathErrorType`, which are used with the preceding sample:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/MathErrorFeature.cs" :::
 
