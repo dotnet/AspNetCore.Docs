@@ -895,8 +895,10 @@ items:
         uid: test/debug-aspnetcore-source
       - name: Razor Pages unit tests
         uid: test/razor-pages-tests
-      - name: Test controllers
+      - name: MVC controllers unit tests
         uid: mvc/controllers/testing
+      - name: Integration tests
+        uid: test/integration-tests
       - name: Test middleware
         uid: test/middleware
       - name: Remote debugging
@@ -905,8 +907,6 @@ items:
         href: /azure/azure-monitor/app/snapshot-debugger?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
       - name: Snapshot debugging in Visual Studio
         href: /visualstudio/debugger/debug-live-azure-applications
-      - name: Integration tests
-        uid: test/integration-tests
       - name: Load and stress testing
         uid: test/loadtests
       - name: Troubleshoot and debug
