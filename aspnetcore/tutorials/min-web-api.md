@@ -902,11 +902,11 @@ The `Map<HttpVerb>` methods can call route handler methods instead of using lamb
 
 :::code language="csharp" source="min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_all":::
 
-Notice that the `Map<HttpVerb>` code now calls methods instead of lambdas:
+The `Map<HttpVerb>` code now calls methods instead of lambdas:
 
 :::code language="csharp" source="min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_group":::
 
-The method signature returns <xref:Microsoft.AspNetCore.Http.IResult>. The methods return objects that implement `IResult` and are defined by <xref:Microsoft.AspNetCore.Http.TypedResults>:
+These methods return objects that implement <xref:Microsoft.AspNetCore.Http.IResult> and are defined by <xref:Microsoft.AspNetCore.Http.TypedResults>:
 
 :::code language="csharp" source="min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_handlers":::
 
@@ -945,7 +945,7 @@ A DTO may be used to:
 
 To demonstrate the DTO approach, update the `Todo` class to include a secret field:
 
-:::code language="csharp" source="min-web-api/samples/7.x/todoGroup/Todo.cs":::
+:::code language="csharp" source="min-web-api/samples/7.x/todoDTO/Todo.cs":::
 
 The secret field needs to be hidden from this app, but an administrative app could choose to expose it.
 
