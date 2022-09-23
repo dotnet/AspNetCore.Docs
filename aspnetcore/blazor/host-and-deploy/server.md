@@ -99,6 +99,32 @@ To provision the Azure SignalR Service for an app in Visual Studio:
 
 Provisioning the Azure SignalR Service in Visual Studio automatically [enables *sticky sessions*](#configuration) and adds the SignalR connection string to the app service's configuration.
 
+### Scaling on Azure Container Apps
+
+Scaling Blazor Server apps on Azure Container Apps requires specific considerations in addition to using the Azure SignalR Service. Due to the way request routing is handled, the data protection service of ASP.NET Core must be configured to persist keys in a centralized location that all container instances can access. The keys can be stored in Azure Blob Storage and protected with Azure Key Vault. The data protection service uses these keys to deserialize Blazor components.
+
+For a deeper explanation of this scenario, reference the [Scaling Apps on Azure](/aspnet/core/host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps?view=aspnetcore-7.0&tabs=login-azure-cli) tutorial.
+
+1. To configure the data protection service to use Blob Storage and Key Vault, install the following NuGet packages:
+
+    * **Azure.Identity**: Provides classes to work with the Azure identity and access management services.
+    * **Microsoft.Extensions.Azure**: Provides helpful extension methods to perform core Azure configurations.
+    * **Azure.Extensions.AspNetCore.DataProtection.Blobs**: Allows storing ASP.NET Core DataProtection keys in Azure Blob Storage so that keys can be shared across several instances of a web app.
+    * **Azure.Extensions.AspNetCore.DataProtection.Keys**: Enables protecting keys at rest using the Azure Key Vault Key Encryption/Wrapping feature.
+
+    ```dotnetcli
+    dotnet add package Azure.Identity
+    dotnet add package Microsoft.Extensions.Azure
+    dotnet add package Azure.Extensions.AspNetCore.DataProtection.Blobs
+    dotnet add package Azure.Extensions.AspNetCore.DataProtection.Keys
+    ```
+
+1. Update `Program.cs` with the following highlighted code:
+
+    :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/scalable-razor-apps/end/Program.cs" id="snippet_ProgramConfigurations" highlight="1-4,6-7,13-19":::
+
+The preceding changes allow the app to manage data protection using a centralized, scalable architecture. `DefaultAzureCredential` discovers the managed identity configurations enabled earlier when the app is redeployed.
+
 ## Azure App Service
 
 *This section only applies to apps not using the [Azure SignalR Service](#azure-signalr-service).*
