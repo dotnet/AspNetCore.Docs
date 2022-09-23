@@ -899,7 +899,7 @@ Test the endpoints to verify that they work the same.
 
 ## Use the TypedResults API
 
-The `Map<HttpVerb>` methods can call route handler methods instead of using lambdas. To see an example, replace the code in *Program.cs* with the following code:
+The `Map<HttpVerb>` methods can call route handler methods instead of using lambdas. To see an example, update *Program.cs* with the following code:
 
 :::code language="csharp" source="min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_all":::
 
@@ -999,7 +999,7 @@ The [developer exception page](xref:web-api/handle-errors#developer-exception-pa
 
 ### Test minimal API apps
 
-For an example of testing a minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/minimal-apis/7.0-samples/MinApiTestsSample).
+For an example of testing a minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample/MinApiTests).
 <!-- When available, link to -->
 
 ### Use OpenAPI (Swagger)
