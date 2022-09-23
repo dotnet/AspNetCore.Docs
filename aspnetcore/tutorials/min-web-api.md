@@ -887,7 +887,7 @@ Use Postman to delete a to-do item:
 
 The sample app code repeats the `todoitems` URL node each time it sets up an endpoint. Web APIs often have groups of endpoints with a common URL node, and the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> method is available to help organize such groups. It reduces repetitive code and allows for customizing entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A>.
 
-Replace the code in Program.cs with the following code:
+Replace the contents of `Program.cs` with the following code:
 
 :::code language="csharp" source="min-web-api/samples/7.x/todoGroup/Program.cs" id="snippet_all":::
 
