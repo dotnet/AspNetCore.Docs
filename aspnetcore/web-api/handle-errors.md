@@ -260,6 +260,8 @@ The following `Values3Controller` returns [`ControllerBase.Problem`](/dotnet/api
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet3"  highlight="16-21":::
 
+#### Generate problem details for Minimal API endpoints
+
 <!-- END of Problem Details -->
 ### Implement `ProblemDetailsFactory`
 
@@ -279,13 +281,11 @@ Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping%2A>
 
 :::code language="csharp" source="handle-errors/samples/6.x/HandleErrorsSample/Snippets/Program.cs" id="snippet_ClientErrorMapping":::
 
-## Custom Middleware to handle exceptions
-
-The defaults in the exception handling middleware work well for most apps. For apps that require specialized exception handling, consider [customizing the exception handling middleware](xref:fundamentals/error-handling#exception-handler-lambda).
-
 ### Produce a ProblemDetails payload for exceptions
 
 ASP.NET Core doesn't produce a standardized error payload when an unhandled exception occurs. For scenarios where it's desirable to return a standardized [ProblemDetails response](https://datatracker.ietf.org/doc/html/rfc7807) to the client, the [ProblemDetails middleware](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) can be used to map exceptions and 404 responses to a [ProblemDetails](xref:web-api/handle-errors#pd) payload. The exception handling middleware can also be used to return a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> payload for unhandled exceptions.
+
+<!-- TODO UPDATE •	Update Produce a ProblemDetails payload for exceptions to keep mentioning the community middleware as an addition to what we have now.-->
 
 ## Additional resources
 
