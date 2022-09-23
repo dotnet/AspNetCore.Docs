@@ -538,7 +538,7 @@ This tutorial creates the following API:
   * Uncheck **Do not use top-level statements**
   * Select **Create**
 
- ![Additional information](min-web-api/_static/add-info7.png)
+  ![Additional information](min-web-api/_static/add-info7.png)
 
 <!-- Move this later since we don't need it now -->
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -736,7 +736,7 @@ The preceding code creates the model for this app. A *model* is a class that rep
 
 Create a file named `TodoDb.cs` with the following code:
 
-[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_cntx)]
+:::code language="csharp" source="min-web-api/samples/7.x/todoGroup/TodoDb.cs":::
 
 The preceding code defines the *database context*, which is the main class that coordinates [Entity Framework](/ef/core/) functionality for a data model. This class derives from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
 
