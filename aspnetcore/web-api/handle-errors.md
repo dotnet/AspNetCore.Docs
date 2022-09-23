@@ -144,7 +144,7 @@ For web API controllers, MVC responds with a <xref:Microsoft.AspNetCore.Mvc.Vali
 
 An *error result* is defined as a result with an HTTP status code of 400 or higher. For web API controllers, MVC transforms an error result to produce a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>.
 
-Error responses are enabled by default, but can be configured in one of the following ways:
+The automatic creation of a `ProblemDetails` for error status codes is enabled by default, but error responses can be configured in one of the following ways:
 
 1. Use the [problem details service](#pds7)
 1. [Implement ProblemDetailsFactory](#implement-problemdetailsfactory)
@@ -188,9 +188,11 @@ The following middleware generates problem details HTTP responses when [`AddProb
 * <xref:Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware>: Generates a problem details response by default.
 * [DeveloperExceptionPageMiddleware](#dep7): Generates a problem details response in development when `text/html` is not accepted.
 
-The following code configures the app to generate a problem details response for all HTTP client and server error responses that don't have a body content yet:
+The following code configures the app to generate a problem details response for all HTTP client and server error responses that ***don't have a body content yet***:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_apishort" highlight="4,9":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_apishort" highlight="4,9,8,13":::
+
+In the [Generate problem details from Middleware](#gpdm7) section of this article, an example is provided where the response has started and the problem details response is not returned.
 
 Consider the API controller from the previous section, which returns <xref:Microsoft.AspNetCore.Http.HttpResults.BadRequest> when the input is invalid:
 
@@ -201,6 +203,12 @@ A problem details response is generated with the previous code when any of the f
 * An invalid input is supplied.
 * The URI has no matching endpoint.
 
+The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors%2A> property is set to `true`:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_disable" highlight="4,9":::
+
+Using the preceding code, when an API controller returns `BadRequest`, an [HTTP 400](https://developer.mozilla.org/docs/Web/HTTP/Status/400) response status is returned with no response body. `SuppressMapClientErrors` prevents a `ProblemDetails` response from being created, even when calling `WriteAsync` for an API Controller endpoint. `WriteAsync` is explained later in this article.
+
 The next section shows how to customize the problem details response body to return a more helpful response.
 
 <a name="cpd7"></a>
@@ -209,7 +217,7 @@ The next section shows how to customize the problem details response body to ret
 
 The following code uses <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> to set <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails>:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_api_controller" highlight="7-29":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_api_controller" highlight="6":::
 
 The updated API controller:
 
@@ -235,6 +243,8 @@ The problem details response body contains the following when either `squareroot
   "detail": "Negative or complex numbers are not allowed."
 }
 ```
+
+<a name="gpdm7"></a>
 
 #### Generate problem details from Middleware
 
