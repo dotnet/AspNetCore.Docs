@@ -271,7 +271,7 @@ The sample app contains the following model:
 
 A *model* is a class that represents data that the app manages. The model for this app is the `Todo` class.
 
-The sample app also contains the following database context class:
+The sample app contains the following database context class:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_cntx)]
 
