@@ -68,8 +68,6 @@ var app = builder.Build();
 // </snippet_DI>
 
 // <snippet_get>
-app.MapGet("/", () => "Hello World!");
-
 app.MapGet("/todoitems", async (TodoDb db) =>
     await db.Todos.ToListAsync());
 
@@ -126,24 +124,5 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 // </snippet_delete>
 
 app.Run();
-
-// <snippet_model>
-class Todo
-{
-    public int Id { get; set; }
-    public string? Name { get; set; }
-    public bool IsComplete { get; set; }
-}
-// </snippet_model>
-
-// <snippet_cntx>
-class TodoDb : DbContext
-{
-    public TodoDb(DbContextOptions<TodoDb> options)
-        : base(options) { }
-
-    public DbSet<Todo> Todos => Set<Todo>();
-}
-// </snippet_cntx>
 // </snippet_all>
 #endif

@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal web API with ASP.NET Core"
 author: rick-anderson
 description: Learn how to build a minimal web API with ASP.NET Core.
 ms.author: riande
-ms.date: 09/21/2022
+ms.date: 09/23/2022
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
 ---
@@ -495,7 +495,6 @@ This tutorial creates the following API:
 
 |API | Description | Request body | Response body |
 |--- | ---- | ---- | ---- |
-|`GET /` | Browser test, "Hello World" | None | Hello World!|
 |`GET /todoitems` | Get all to-do items | None | Array of to-do items|
 |`GET /todoitems/complete` | Get completed to-do items | None | Array of to-do items|
 |`GET /todoitems/{id}` | Get an item by ID | None | To-do item|
@@ -727,32 +726,31 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 ---
 
+## The model and database context classes
+
+Create a file named `Todo.cs` with the following code:
+
+:::code language="csharp" source="min-web-api/samples/7.x/todoGroup/Todo.cs":::
+
+The preceding code creates the model for this app. A *model* is a class that represents data that the app manages. 
+
+Create a file named `TodoDb.cs` with the following code:
+
+[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_cntx)]
+
+The preceding code defines the *database context*, which is the main class that coordinates [Entity Framework](/ef/core/) functionality for a data model. This class derives from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
+
 ## Add the API code
 
 Replace the contents of the `Program.cs` file with the following code:
 
 [!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_all)]
 
-## The model and database context classes
-
-The sample app contains the following model:
-
-[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_model)]
-
-A *model* is a class that represents data that the app manages. The model for this app is the `Todo` class.
-
-The sample app also contains the following database context class:
-
-[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_cntx)]
-
-The *database context* is the main class that coordinates [Entity Framework](/ef/core/) functionality for a data model. This class is created by deriving from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
-
 The following highlighted code adds the database context to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container and enables displaying database-related exceptions:
 
 [!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_DI&highlight=2-3)]
 
 The DI container provides access to the database context and other services.
-
 The following code creates an HTTP POST endpoint `/todoitems` to add data to the in-memory database:
 
 [!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_post)]
@@ -799,7 +797,6 @@ The sample app implements several GET endpoints using calls to `MapGet`:
 
 |API | Description | Request body | Response body |
 |--- | ---- | ---- | ---- |
-|`GET /` | Browser test, "Hello World" | None | `Hello World!`|
 |`GET /todoitems` | Get all to-do items | None | Array of to-do items|
 |`GET /todoitems/complete` | Get all completed to-do items | None | Array of to-do items|
 |`GET /todoitems/{id}` | Get an item by ID | None | To-do item|
@@ -891,9 +888,11 @@ Replace the contents of `Program.cs` with the following code:
 
 :::code language="csharp" source="min-web-api/samples/7.x/todoGroup/Program.cs" id="snippet_all":::
 
-Notice that a `MapGroup()` call sets up the group, and the endpoints omit the `todoitems` prefix:
+The preceding code has the following changes:
 
-:::code language="csharp" source="min-web-api/samples/7.x/todoGroup/Program.cs" id="snippet_group":::
+* Adds `RouteGroupBuilder group = app.MapGroup("/todoitems");` to set up the group using the URL prefix `/todoitems`.
+* Changes all the `app.Map<HttpVerb>` methods to `group.Map<HttpVerb>`.
+* Removes the URL prefix `/todoitems` from the `Map<HttpVerb>` method calls.
 
 Test the endpoints to verify that they work the same.
 
@@ -946,20 +945,19 @@ A DTO may be used to:
 
 To demonstrate the DTO approach, update the `Todo` class to include a secret field:
 
-:::code language="csharp" source="min-web-api/samples/7.x/todoDTO/Program.cs" id="snippet_secret" highlight="6":::
+:::code language="csharp" source="min-web-api/samples/7.x/todoGroup/Todo.cs":::
 
 The secret field needs to be hidden from this app, but an administrative app could choose to expose it.
 
 Verify you can post and get the secret field.
 
-Create a DTO model:
+Create a file named `TodoItemDTO.cs` with the following code:
 
-:::code language="csharp" source="min-web-api/samples/7.x/todoDTO/Program.cs" id="snippet_DTO":::
+:::code language="csharp" source="min-web-api/samples/7.x/todoDTO/TodoItemDTO.cs":::
 
-Update the code to use `TodoItemDTO`:
+Update the code in `Program.cs` to use this DTO model:
 
 :::code language="csharp" source="min-web-api/samples/7.x/todoDTO/Program.cs" id="snippet_all":::
-[!code-csharp[](min-web-api/samples/6.x/todoDTO/Program.cs?name=snippet_all)]
 
 Verify you can post and get all fields except the secret field.
 
@@ -977,7 +975,6 @@ Minimal APIs have:
 - No built-in view rendering support. We recommend using [Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for rendering views.
 - No support for [JsonPatch](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch/)
 - No support for [OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/)
-- No support for [ApiVersioning](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Versioning/). See [this issue](https://github.com/dotnet/aspnet-api-versioning/issues/751) for more details.
 
 ## Configure JSON serialization options
 

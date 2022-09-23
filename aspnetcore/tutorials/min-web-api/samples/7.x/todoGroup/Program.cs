@@ -6,8 +6,6 @@ builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList")
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
-
 // <snippet_group>
 RouteGroupBuilder group = app.MapGroup("/todoitems");
 
@@ -59,19 +57,4 @@ group.MapDelete("/{id}", async (int id, TodoDb db) =>
 // </snippet_group>
 
 app.Run();
-
-class Todo
-{
-    public int Id { get; set; }
-    public string? Name { get; set; }
-    public bool IsComplete { get; set; }
-}
-
-class TodoDb : DbContext
-{
-    public TodoDb(DbContextOptions<TodoDb> options)
-        : base(options) { }
-
-    public DbSet<Todo> Todos => Set<Todo>();
-}
 // </snippet_all>
