@@ -201,13 +201,6 @@ A problem details response is generated with the previous code when any of the f
 * An invalid input is supplied.
 * The URI has no matching endpoint.
 
-<!-- 
-The following code contains the `MathErrorFeature` and `MathErrorType`, which are used with the preceding sample:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/MathErrorFeature.cs" :::
-
--->
-
 The next section shows how to customize the problem details response body to return a more helpful response.
 
 <a name="cpd7"></a>
@@ -222,10 +215,14 @@ The updated API controller:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet"  highlight="9-17,27-35":::
 
+The following code contains the `MathErrorFeature` and `MathErrorType`, which are used with the preceding sample:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/MathErrorFeature.cs" :::
+
 A problem details response is generated with the previous code when any of the following conditions apply:
 
-* The `/api/values/divide` or the `/divide` endpoint is called with a zero denominator.
-* The `/api/values/squareroot` or the `/squareroot` endpoint is called with a radicand less than zero.
+* The `/divide` endpoint is called with a zero denominator.
+* The `/squareroot` endpoint is called with a radicand less than zero.
 * The URI has no matching endpoint.
 
 The problem details response body contains the following when either `squareroot` endpoint is called with a radicand less than zero:
