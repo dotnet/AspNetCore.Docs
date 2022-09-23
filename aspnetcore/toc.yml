@@ -457,6 +457,8 @@ items:
                 uid: blazor/js-interop/call-javascript-from-dotnet
               - name: Call .NET from JavaScript
                 uid: blazor/js-interop/call-dotnet-from-javascript
+              - name: .NET JS [JSImport]/[JSExport] interop
+                uid: blazor/js-interop/import-export-interop
           - name: Call a web API
             uid: blazor/call-web-api
           - name: Images

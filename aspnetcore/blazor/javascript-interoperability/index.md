@@ -636,7 +636,6 @@ The `{webassembly|server}` placeholder in the preceding markup is either `webass
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
-
 ## Cached JavaScript files
 
 JavaScript (JS) files and other static assets aren't generally cached on clients during development in the [`Development` environment](xref:fundamentals/index#environments). During development, static asset requests include the [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) with a value of [`no-cache`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#cacheability) or [`max-age`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#expiration) with a value of zero (`0`).
@@ -666,6 +665,11 @@ Further JS interop guidance is provided in the following articles:
 
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
+
+> [!NOTE]
+> .NET JavaScript `[JSImport]`/`[JSExport]` interop API is available for Blazor WebAssembly apps in ASP.NET Core 7.0 or later.
+>
+> For more information, see <xref:blazor/js-interop/import-export-interop>.
 
 ## Interaction with the Document Object Model (DOM)
 
@@ -706,8 +710,6 @@ For more information, see the following resources in the .NET documentation:
 JSON serializer support for <xref:System.DateOnly?displayProperty=fullName> and <xref:System.TimeOnly?displayProperty=fullName> is planned for ASP.NET Core 7.0, which is scheduled for release by the end of 2022. For more information, see [Support `DateOnly` and `TimeOnly` in `JsonSerializer` (dotnet/runtime #53539)](https://github.com/dotnet/runtime/issues/53539).
 
 Blazor supports optimized byte array JS interop that avoids encoding/decoding byte arrays into Base64. The app can apply custom serialization and pass the resulting bytes. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#byte-array-support>.
-
-Blazor supports unmarshalled JS interop when a high volume of .NET objects are rapidly serialized or when large .NET objects or many .NET objects must be serialized. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#unmarshalled-javascript-interop>.
 
 ## JavaScript initializers
 
