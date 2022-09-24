@@ -190,7 +190,7 @@ The following middleware generates problem details HTTP responses when [`AddProb
 
 The following code configures the app to generate a problem details response for all HTTP client and server error responses that ***don't have a body content yet***:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_apishort" highlight="4,9,8,13":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_apishort" highlight="4,8-9,13":::
 
 In the [Generate problem details from Middleware](#gpdm7) section of this article, an example is provided where the response has started and the problem details response is not returned.
 
@@ -431,7 +431,7 @@ An *error result* is defined as a result with an HTTP status code of 400 or high
 The error response can be configured in one of the following ways:
 
 1. [Implement ProblemDetailsFactory](#implement-problemdetailsfactory)
-1. [Use ApiBehaviorOptions.ClientErrorMapping](#use-apibehavioroptionsclienterrormapping)
+1. Use [ApiBehaviorOptions.ClientErrorMapping](#use-apibehavioroptionsclienterrormapping)
 
 ### Implement `ProblemDetailsFactory`
 
