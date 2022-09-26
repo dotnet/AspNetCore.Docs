@@ -65,19 +65,19 @@ The module name in the `[JSImport]` attribute and the call to load the module in
 
 If the JS function doesn't directly interact with the rendered Document Object Model (DOM), import the module in [`OnInitializedAsync`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). Call the imported JS function with the .NET interop method.
 
-In the following `CallJavaScript` component:
+In the following `CallJavaScript1` component:
 
 * The `Interop1` module is imported asychronously from the [collocated JS file](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component).
 * The imported `getMessage` JS function is called with `Interop.GetWelcomeMessage()`.
 * The returned welcome string is displayed in the UI via the `message` field.
 
-`Pages/CallJavaScript.razor`:
+`Pages/CallJavaScript1.razor`:
 
 ```razor
-@page "/call-javascript"
+@page "/call-javascript-1"
 @using System.Runtime.InteropServices.JavaScript
 
-<h1>.NET JS <code>[JSImport]</code>/<code>[JSExport]</code> interop (Call JS)</h1>
+<h1>.NET JS <code>[JSImport]</code>/<code>[JSExport]</code> Interop 1 (Call JS)</h1>
 
 @(message is not null ? message : string.Empty)
 
@@ -88,7 +88,8 @@ In the following `CallJavaScript` component:
     {
         if (OperatingSystem.IsBrowser())
         {
-            await JSHost.ImportAsync("Interop1", "../Pages/CallJavaScript.razor.js");
+            await JSHost.ImportAsync("Interop1", 
+                "../Pages/CallJavaScript1.razor.js");
 
             message = Interop1.GetWelcomeMessage();
         }
@@ -109,7 +110,7 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
 {
     if (OperatingSystem.IsBrowser() && firstRender)
     {
-        await JSHost.ImportAsync("Interop1", "../Pages/CallJavaScript.razor.js");
+        await JSHost.ImportAsync("Interop1", "../Pages/CallJavaScript1.razor.js");
 
         Interop1.DoSomething();
     }
@@ -129,7 +130,8 @@ If the code holds a reference to the <xref:System.Runtime.InteropServices.JavaSc
 
     ...
 
-    module = await JSHost.ImportAsync("Interop1", "../Pages/CallJavaScript.razor.js");
+    module = await JSHost.ImportAsync("Interop1", 
+        "../Pages/CallJavaScript1.razor.js");
 
     ...
 
@@ -141,7 +143,7 @@ Export scripts from a standard [JavaScript ES6 module](xref:blazor/js-interop/in
 
 In the following example, a JS function named `getMessage` is exported from a collocated JS file that returns a welcome message string, "Hello from Blazor!" in Portuguese:
 
-`Pages/CallJavaScript.razor.js`:
+`Pages/CallJavaScript1.razor.js`:
 
 ```javascript
 export function getMessage() {
@@ -186,7 +188,7 @@ public partial class Interop2
 > [!NOTE]
 > For demonstration purposes, the `Interop2` class doesn't include a namespace declaration. In production apps, using namespaces for JS interop C# classes is recommended.
 
-The following `CallDotNet` component calls JS that directly interacts with the DOM to render the welcome message:
+The following `CallDotNet1` component calls JS that directly interacts with the DOM to render the welcome message:
 
 * The `Interop2` [JS module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules) is imported asychronously from the collocated JS file for this component.
 * The imported `setMessage` JS function is called with `Interop.SetWelcomeMessage()`.
@@ -195,11 +197,15 @@ The following `CallDotNet` component calls JS that directly interacts with the D
 > [!IMPORTANT]
 > In this section's example, JS interop is used to mutate a DOM element *purely for demonstration purposes* after the component is rendered in [`OnAfterRenderAsync`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). Typically, you should only mutate the DOM with JS when the object doesn't interact with Blazor. The approach shown in this section is similar to cases where a third-party JS library is used in a Razor component, where the component interacts with the JS library via JS interop, the third-party JS library interacts with part of the DOM, and Blazor isn't involved directly with the DOM updates to that part of the DOM. For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
 
+`Pages/CallDotNet1.razor`:
+
 ```razor
-@page "/call-dotnet"
+@page "/call-dotnet-1"
 @using System.Runtime.InteropServices.JavaScript
 
-<h1>.NET JS <code>[JSImport]</code>/<code>[JSExport]</code> (Call .NET)</h1>
+<h1>
+    .NET JS <code>[JSImport]</code>/<code>[JSExport]</code> Interop 1 (Call .NET)
+</h1>
 
 <p>
     <span id="result">.NET method not executed yet</span>
@@ -210,7 +216,7 @@ The following `CallDotNet` component calls JS that directly interacts with the D
     {
         if (OperatingSystem.IsBrowser() && firstRender)
         {
-            await JSHost.ImportAsync("Interop2", "../Pages/CallDotNet.razor.js");
+            await JSHost.ImportAsync("Interop2", "../Pages/CallDotNet1.razor.js");
 
             Interop2.SetWelcomeMessage();
         }
@@ -233,6 +239,8 @@ The `setMessage` method:
 * Obtains the app assembly's JS exports. The name of the app's assembly in the following example is `BlazorSample`.
 * Calls the `Interop2.GetMessageFromDotnet()` method from the exports (`exports`). The returned value, which is the welcome string, is assigned to the preceding `<span>`'s inner text.
 
+`Pages/CallDotNet1.razor.js`:
+
 ```javascript
 export async function setMessage() {
   const { getAssemblyExports } = await globalThis.getDotnetRuntime(0);
@@ -249,6 +257,109 @@ export async function setMessage() {
 > ```javascript
 > exports.BlazorSample.UserMessages.Interop2.GetMessageFromDotnet();
 > ```
+
+## Use of a single JavaScript module across components
+
+<!--
+
+NOTE FOR REVIEW:
+
+I'll add some explanation to this tomorrow (Tuesday) morning.
+
+For now, let's just look at the setup to see if this makes any sense! :)
+
+-->
+
+`Interop3.cs`:
+
+```csharp
+using System.Runtime.InteropServices.JavaScript;
+using System.Runtime.Versioning;
+
+[SupportedOSPlatform("browser")]
+public partial class Interop3
+{
+    [JSImport("getMessage", "Interop3")]
+    internal static partial string GetWelcomeMessage();
+
+    [JSImport("setMessage", "Interop3")]
+    internal static partial void SetWelcomeMessage();
+
+    [JSExport]
+    internal static string GetMessageFromDotnet()
+    {
+        return "¡Hola desde Blazor!";
+    }
+}
+```
+
+`wwwroot/js/interop3.js`:
+
+```javascript
+export function getMessage() {
+  return '¡Hola desde Blazor!';
+}
+
+export async function setMessage() {
+  const { getAssemblyExports } = await globalThis.getDotnetRuntime(0);
+  var exports = await getAssemblyExports("BlazorWASM70UnmarshalledJS.dll");
+
+  document.getElementById("result").innerText =
+    exports.Interop3.GetMessageFromDotnet();
+}
+```
+
+`Pages/CallJavaScript2.razor`:
+
+```razor
+@page "/call-javascript-2"
+@using System.Runtime.InteropServices.JavaScript
+
+<h1>.NET JS <code>[JSImport]</code>/<code>[JSExport]</code> Interop 2 (Call JS)</h1>
+
+@(message is not null ? message : string.Empty)
+
+@code {
+    private string? message;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (OperatingSystem.IsBrowser())
+        {
+            await JSHost.ImportAsync("Interop3", "../js/interop3.js");
+
+            message = Interop3.GetWelcomeMessage();
+        }
+    }
+}
+```
+
+`Pages/CallDotNet.razor`:
+
+```razor
+@page "/call-dotnet-2"
+@using System.Runtime.InteropServices.JavaScript
+
+<h1>
+    .NET JS <code>[JSImport]</code>/<code>[JSExport]</code> Interop 2 (Call .NET)
+</h1>
+
+<p>
+    <span id="result">.NET method not executed</span>
+</p>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (OperatingSystem.IsBrowser() && firstRender)
+        {
+            await JSHost.ImportAsync("Interop3", "../js/interop3.js");
+
+            Interop3.SetWelcomeMessage();
+        }
+    }
+}
+```
 
 ## Additional example
 
