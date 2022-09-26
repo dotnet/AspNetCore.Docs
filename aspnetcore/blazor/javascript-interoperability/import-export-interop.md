@@ -32,7 +32,7 @@ Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> 
 This section explains how to call JS functions from .NET.
 
 > [!NOTE]
-> Add the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property to the app's project file. Setting this property to `true` permits the code generator in the Roslyn compiler to use pointers and isn't a security concern.
+> Add the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property to the app's project file. Setting this property to `true` permits the code generator in the Roslyn compiler to use pointers.
 
 To import a JS function to call it from C#, use the `[JSImport]` attribute on a C# method signature that matches the JS function's signature. The first parameter to the `[JSImport]` attribute is the name of the JS function to import, and the second parameter is the name of the [JS module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules).
 
@@ -52,12 +52,15 @@ public partial class Interop
 }
 ```
 
+> [!NOTE]
+> For demonstration purposes, the `Interop` class doesn't include a namespace declaration. In production apps, using namespaces for JS interop C# classes is recommended.
+
 In the imported method signature, you can use .NET types for parameters and return values, which are marshalled automatically by the runtime. Use `JSMarshalAsAttribute<T>` to control how the imported method parameters are marshalled. For example, you might choose to marshal a `long` as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>. You can pass <xref:System.Action>/<xref:System.Func%601> callbacks as parameters, which are marshalled as callable JS functions. You can pass both JS and managed object references, and they are marshaled as proxy objects, keeping the object alive across the boundary until the proxy is garbage collected. You can also import and export asynchronous methods with a <xref:System.Threading.Tasks.Task> result, which are marshaled as [JS promises](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods. Exported methods are covered in the [Call .NET from JavaScript](#call-net-from-javascript) section.
 
-The module name in the `[JSImport]` attribute and the call to load the module in the component, which is covered next with `JSHost.ImportAsync` syntax, should match. The module name must also be unique in the app. When authoring a library for deployment in a NuGet package, we recommend using the NuGet package namespace as a prefix in module names. In the following example, the module name reflects the `Contoso.InteropServices.JavaScript` package:
+The module name in the `[JSImport]` attribute and the call to load the module in the component, which is covered next with `JSHost.ImportAsync` syntax, should match. The module name must also be unique in the app. When authoring a library for deployment in a NuGet package, we recommend using the NuGet package namespace as a prefix in module names. In the following example, the module name reflects the `Contoso.InteropServices.JavaScript` package and a folder of user message interop classes (`UserMessages`):
 
 ```csharp
-[JSImport("getMessage", "Contoso.InteropServices.JavaScript.Interop")]
+[JSImport("getMessage", "Contoso.InteropServices.JavaScript.UserMessages.Interop")]
 ```
 
 If the JS function doesn't directly interact with the rendered Document Object Model (DOM), import the module in [`OnInitializedAsync`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). Call the imported JS function with the .NET interop method.
@@ -95,6 +98,9 @@ In the following `CallJavaScript` component:
 
 > [!NOTE]
 > The conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> in the preceding example ensures that the code is only called in Blazor WebAssembly apps running on the client. This is important for library code deployed as NuGet packages that might be referenced by developers of Blazor Server apps, where the preceding code can't execute. If you know for sure that the code is only implemented in Blazor WebAssembly apps, you can remove the check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>.
+
+> [!NOTE]
+> For demonstration purposes, the `Interop` class doesn't include a namespace declaration. In production apps, using namespaces for JS interop C# classes is recommended.
 
 If the JS module interacts directly with the component's rendered UI, import the module in [`OnAfterRenderAsync`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) and call the imported JS function:
 
@@ -148,14 +154,14 @@ export function getMessage() {
 This section explains how to call .NET methods from JS.
 
 > [!NOTE]
-> Add the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property to the app's project file. Setting this property to `true` permits the code generator in the Roslyn compiler to use pointers and isn't a security concern.
+> Add the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property to the app's project file. Setting this property to `true` permits the code generator in the Roslyn compiler to use pointers.
 
 To export a .NET method so that it can be called from JS, use the `[JSExport]` attribute.
 
 In the following example:
 
-* `DotNetInteropCall` is a .NET method with the `[JSExport]` attribute that returns a welcome message string, "Hello from Blazor!" in Portuguese.
-* `SetWelcomeMessage` calls a JS function named `setmessage`. The JS function calls into .NET to receive the welcome string from `DotNetInteropCall` and displays the welcome string in the UI.
+* `GetMessageFromDotnet` is a .NET method with the `[JSExport]` attribute that returns a welcome message string, "Hello from Blazor!" in Portuguese.
+* `SetWelcomeMessage` calls a JS function named `setMessage`. The JS function calls into .NET to receive the welcome string from `GetMessageFromDotnet` and displays the welcome string in the UI.
 
 `Interop.cs`:
 
@@ -167,7 +173,7 @@ using System.Runtime.Versioning;
 public partial class Interop
 {
     [JSExport]
-    internal static string DotNetInteropCall()
+    internal static string GetMessageFromDotnet()
     {
         return "Olá do Blazor!";
     }
@@ -176,6 +182,9 @@ public partial class Interop
     internal static partial void SetWelcomeMessage();
 }
 ```
+
+> [!NOTE]
+> For demonstration purposes, the `Interop` class doesn't include a namespace declaration. In production apps, using namespaces for JS interop C# classes is recommended.
 
 The following `CallDotNet` component calls JS that directly interacts with the DOM to render the welcome message:
 
@@ -211,9 +220,10 @@ The following `CallDotNet` component calls JS that directly interacts with the D
 
 > [!NOTE]
 > As demonstrated in the [Call JavaScript from .NET](#call-javascript-from-net) section, call <xref:System.Runtime.InteropServices.JavaScript.JSObject.Dispose%2A?displayProperty=nameWithType> in a `Dispose` method if the component holds a reference to the <xref:System.Runtime.InteropServices.JavaScript.JSObject> returned by `JSHost.ImportAsync`.
-
-> [!NOTE]
+>
 > The conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> in the preceding example ensures that the code is only called in Blazor WebAssembly apps running on the client. This is important for library code deployed as NuGet packages that might be referenced by developers of Blazor Server apps, where the preceding code can't execute. If you know for sure that the code is only implemented in Blazor WebAssembly apps, you can remove the check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>.
+>
+> For demonstration purposes, the `Interop` class doesn't include a namespace declaration. In production apps, using namespaces for JS interop C# classes is recommended.
 
 In the following example, a JS function named `setMessage` is exported from a collocated JS file.
 
@@ -221,7 +231,7 @@ The `setMessage` method:
 
 * Calls `globalThis.getDotnetRuntime(0)` to expose the WebAssembly .NET runtime instance for calling exported .NET methods.
 * Obtains the app assembly's JS exports. The name of the app's assembly in the following example is `BlazorSample`.
-* Calls the `Interop.DotNetInteropCall()` method from the exports (`exports`). The returned value, which is the welcome string, is assigned to the preceding `<span>`'s inner text.
+* Calls the `Interop.GetMessageFromDotnet()` method from the exports (`exports`). The returned value, which is the welcome string, is assigned to the preceding `<span>`'s inner text.
 
 ```javascript
 export async function setMessage() {
@@ -229,9 +239,16 @@ export async function setMessage() {
   var exports = await getAssemblyExports("BlazorSample.dll");
 
   document.getElementById("result").innerText = 
-    exports.Interop.DotNetInteropCall();
+    exports.Interop.GetMessageFromDotnet();
 }
 ```
+
+> [!NOTE]
+> For demonstration purposes, the example in this section doesn't declare a namespace for the `Interop` class. In production apps, using namespaces for JS interop C# classes is recommended. When a namespace is used, include the namespace in the exported C# method call. For example, call the `GetMessageFromDotnet` method in an `Interop` class with a namespace of `BlazorSample.UserMessages` with the following code:
+>
+> ```javascript
+> exports.BlazorSample.UserMessages.Interop.GetMessageFromDotnet();
+> ```
 
 ## Additional example
 
@@ -241,6 +258,6 @@ For an additional example of the JS interop techniques described in this article
 * [Live demonstration](https://pavelsavara.github.io/blazor-wasm-hands-pose/)
 
 > [!NOTE]
-> The [`pavelsavara/blazor-wasm-hands-pose` GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages) isn't owned, maintained, or supported by the .NET foundation or Microsoft.
+> The [`pavelsavara/blazor-wasm-hands-pose` GitHub repository](https://github.com/pavelsavara/blazor-wasm-hands-pose) isn't owned, maintained, or supported by the .NET foundation or Microsoft.
 >
 > The *Blazor WASM demo of new JSInterop* sample app uses a public JS library from [MediaPipe](https://www.mediapipe.dev/), which isn't owned, maintained, or supported by the .NET foundation or Microsoft.
