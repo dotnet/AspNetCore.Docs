@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal web API with ASP.NET Core"
 author: rick-anderson
 description: Learn how to build a minimal web API with ASP.NET Core.
 ms.author: riande
-ms.date: 09/23/2022
+ms.date: 09/26/2022
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
 ---
@@ -487,20 +487,20 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a minimal web API with ASP.NET Core. For a tutorial on creating a web API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api). For a comparison, see [Differences between minimal APIs and APIs with controllers](#diff-v7) in this tutorial.
+This tutorial teaches the basics of building a minimal web API with ASP.NET Core. For a tutorial on creating a web API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api). For a comparison, see [Differences between minimal APIs and APIs with controllers](#diff-v7) later in this tutorial.
 
 ## Overview
 
 This tutorial creates the following API:
 
-|API | Description | Request body | Response body |
-|--- | ---- | ---- | ---- |
-|`GET /todoitems` | Get all to-do items | None | Array of to-do items|
-|`GET /todoitems/complete` | Get completed to-do items | None | Array of to-do items|
-|`GET /todoitems/{id}` | Get an item by ID | None | To-do item|
-|`POST /todoitems` | Add a new item | To-do item | To-do item |
-|`PUT /todoitems/{id}` | Update an existing item &nbsp; | To-do item | None |
-|`DELETE /todoitems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
+| API                                    | Description                    | Request body | Response body        |
+|----------------------------------------|--------------------------------|--------------|----------------------|
+| `GET /todoitems`                       | Get all to-do items            | None         | Array of to-do items |
+| `GET /todoitems/complete`              | Get completed to-do items      | None         | Array of to-do items |
+| `GET /todoitems/{id}`                  | Get an item by ID              | None         | To-do item           |
+| `POST /todoitems`                      | Add a new item                 | To-do item   | To-do item           |
+| `PUT /todoitems/{id}`                  | Update an existing item &nbsp; | To-do item   | None                 |
+| `DELETE /todoitems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp;   | None         | None                 |
 
 ## Prerequisites
 
@@ -526,15 +526,13 @@ This tutorial creates the following API:
 
 * Start Visual Studio 2022 and select **Create a new project**.
 * In the **Create a new project** dialog:
-  * Enter `API` in the **Search for templates** search box.
-  * Select the **ASP.NET Core Web API** template and select **Next**.
+  * Enter `Empty` in the **Search for templates** search box.
+  * Select the **ASP.NET Core Empty** template and select **Next**.
   ![Visual Studio Create a new project](min-web-api/_static/empty.png)
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
 
   * Select **.NET 7.0 (Preview)**
-  * Uncheck **Use controllers (uncheck to use minimal APIs)**
-  * Select **Enable OpenAPI support**
   * Uncheck **Do not use top-level statements**
   * Select **Create**
 
@@ -548,7 +546,7 @@ This tutorial creates the following API:
 * Run the following commands:
 
    ```dotnetcli
-   dotnet new webapi -minimal -o TodoApi
+   dotnet new web -o TodoApi
    cd TodoApi
    code -r ../TodoApi
    ```
@@ -564,25 +562,22 @@ This tutorial creates the following API:
 
 ![macOS New solution](first-web-api-mac/_static/6/sln.png)
 
-* In Visual Studio for Mac 2022, select **Web and Console** > **App** > **API** > **Next**.
+* In Visual Studio for Mac 2022, select **Web and Console** > **App** > **Empty** > **Continue**.
 
 ![macOS API template selection](first-web-api-mac/_static/6/api_template.png)
 
-In the **Configure your new API** dialog, make the following selections:
-- **Target framework:** .NET 6.x (or more recent). 
+In the first **Configure your new API** dialog, make the following selections:
+- **Target framework:** .NET 7.x (or more recent). 
 - **Configure for HTTPS**: Check
-- **Use Controllers (uncheck to use minimal APIs)**: Uncheck
-- **Enable OpenAPI Support**: Check
 
-Select **Next**.
+Select **Continue**.
 
-![Configure Your New API Window 1](first-web-api-mac/_static/6/configure_your_new_api.png)
+* In the second **Configure your new API** dialog, enter the following:
 
-* In the **Configure our new API** window, enter the following:
-- **Project name:** TodoApi
-- **Solution name:** TodoApi
+  * **Project name:** TodoApi
+  * **Solution name:** TodoApi
 
-Select **Create**.
+* Select **Create**.
 
 ![Configure Your New API Window 2](first-web-api-mac/_static/6/configure_your_new_api2.png)
 
@@ -594,13 +589,7 @@ Select **Create**.
 
 The `Program.cs` file contains the following code:
 
-[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_default)]
 
-The project template creates a `WeatherForecast` API with support for [Swagger](xref:tutorials/web-api-help-pages-using-swagger). Swagger is used to generate useful documentation and help pages for web APIs.
-
-The following highlighted code adds support for Swagger:
-
-[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_swagger&highlight=5-6,13-14)]
 
 ### Run the app
 
@@ -618,80 +607,25 @@ Visual Studio launches the [Kestrel web server](xref:fundamentals/servers/kestre
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-Press Ctrl+F5 to run the app. A browser window is opened. Append `/swagger` to the URL in the browser, for example `https://localhost:7122/swagger`.
+Press Ctrl+F5 to run the app. A browser window is opened.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. 
 
-
 ---
 
-The Swagger page `/swagger/index.html` is displayed. Select **`GET > Try it out> Execute`**. The page displays:
-
-* The [Curl](https://curl.haxx.se/) command to test the WeatherForecast API.
-* The URL to test the WeatherForecast API.
-* The response code, body, and headers.
-* A drop down list box with media types and the example value and schema.
-
-Copy and paste the **Request URL** in the browser: `https://localhost:<port>/WeatherForecast`. JSON similar to the following example is returned:
-
-```json
-[
-  {
-    "date": "2021-10-19T14:12:50.3079024-10:00",
-    "temperatureC": 13,
-    "summary": "Bracing",
-    "temperatureF": 55
-  },
-  {
-    "date": "2021-10-20T14:12:50.3080559-10:00",
-    "temperatureC": -8,
-    "summary": "Bracing",
-    "temperatureF": 18
-  },
-  {
-    "date": "2021-10-21T14:12:50.3080601-10:00",
-    "temperatureC": 12,
-    "summary": "Hot",
-    "temperatureF": 53
-  },
-  {
-    "date": "2021-10-22T14:12:50.3080603-10:00",
-    "temperatureC": 10,
-    "summary": "Sweltering",
-    "temperatureF": 49
-  },
-  {
-    "date": "2021-10-23T14:12:50.3080604-10:00",
-    "temperatureC": 36,
-    "summary": "Warm",
-    "temperatureF": 96
-  }
-]
-```
-
-## Update the generated code
-
-This tutorial focuses on creating a web API and uses a different sample app, so the Swagger code and the `WeatherForecast` code aren't needed. Replace the contents of the `Program.cs` file with the following code:
-
-[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_min)]
+## Examine and run the generated code
 
 The following highlighted code creates a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and a <xref:Microsoft.AspNetCore.Builder.WebApplication> with preconfigured defaults:
 
-[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_min&highlight=1-2)]
+:::code language="csharp" source="min-web-api/samples/7.x/todo/Program.cs" id="snippet_min" highlight="1-2":::
 
-The following code creates an HTTP GET endpoint `/` that returns `Hello World!`:
+The following highlighted code creates an HTTP GET endpoint `/` that returns `Hello World!`:
 
-```csharp
-app.MapGet("/", () => "Hello World!");
-```
+:::code language="csharp" source="min-web-api/samples/7.x/todo/Program.cs" id="snippet_min" highlight="4":::
 
-`app.Run();` runs the app.
-
-Remove the three `"launchUrl": "swagger",` lines from the `Properties/launchSettings.json` file. When the `launchUrl` isn't specified, the web browser requests the `/` endpoint.
-
-Run the app. `Hello World!` is displayed. The updated `Program.cs` file contains a minimal but complete app.
+Run the app. `Hello World!` is displayed. The `Program.cs` file contains a minimal but complete app.
 
 ## Add NuGet packages
 
@@ -751,9 +685,6 @@ The following highlighted code adds the database context to the [dependency inje
 [!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_DI&highlight=2-3)]
 
 The DI container provides access to the database context and other services.
-The following code creates an HTTP POST endpoint `/todoitems` to add data to the in-memory database:
-
-[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_post)]
 
 ## Install Postman to test the app
 
@@ -770,6 +701,10 @@ This tutorial uses Postman to test the API.
 <a name="post"></a>
 
 ### Test posting data
+
+The following code creates an HTTP POST endpoint `/todoitems` to add data to the in-memory database:
+
+[!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_post)]
 
 The following instructions post data to the app:
 
