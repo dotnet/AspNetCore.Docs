@@ -101,10 +101,10 @@ Provisioning the Azure SignalR Service in Visual Studio automatically [enables *
 
 ### Scaling on Azure Container Apps
 
-Scaling Blazor Server apps on Azure Container Apps requires specific considerations in addition to using [Azure SignalR Service](/#azure-signalR-service). Due to the way request routing is handled, the ASP.NET Core data protection service must be configured to persist keys in a centralized location that all container instances can access. The keys can be stored in Azure Blob Storage and protected with Azure Key Vault. The data protection service uses the keys to deserialize Blazor components.
+Scaling Blazor Server apps on Azure Container Apps requires specific considerations in addition to using an [Azure SignalR Service](/#azure-signalR-service). Due to the way request routing is handled, the ASP.NET Core data protection service must be configured to persist keys in a centralized location that all container instances can access. The keys can be stored in Azure Blob Storage and protected with Azure Key Vault. The data protection service uses the keys to deserialize Blazor components.
 
 > [!NOTE]
-> For a deeper exploration of this scenario and scaling on container apps, refer to the [Scaling Apps on Azure](/aspnet/core/host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps?view=aspnetcore-7.0&tabs=login-azure-cli) tutorial. This tutorial explains how to create the necessary services and connect them together in detail. Basic steps are also provided below.
+> For a deeper exploration of this scenario and scaling container apps, refer to the [Scaling Apps on Azure](/aspnet/core/host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps?view=aspnetcore-7.0&tabs=login-azure-cli) tutorial. This article explains how to create the necessary services and connect them together in detail. Basic steps are also provided below.
 
 1. To configure the data protection service to use Blob Storage and Key Vault, install the following NuGet packages:
 
@@ -126,9 +126,9 @@ Scaling Blazor Server apps on Azure Container Apps requires specific considerati
 
 The preceding changes allow the app to manage data protection using a centralized, scalable architecture. `DefaultAzureCredential` discovers the container app managed identity once the code is deployed to Azure and uses it to connect to blob storage and key vault.
 
-To create the managed identity for the container app and grant it access to blob storage and key vault, complete the following steps:
+To create the container app managed identity and grant it access to blob storage and key vault, complete the following steps:
 
-1. In the Azure Portal, navigate to the overview page of the Container App.
+1. In the Azure Portal, navigate to the overview page of the container app.
 1. Select **Service Connector** from the left navigation.
 1. Select **+ Create** from the top navigation.
 1. In the **Create connection** flyout menu, enter the following values:
@@ -140,7 +140,8 @@ To create the managed identity for the container app and grant it access to blob
 1. Select **System assigned managed identity** and select **Next**.
 1. Leave the default network settings and select **Next**.
 1. After Azure validates the settings, select **Create**.
-1. Repeat these settings for the key vault. Select the appropriate key vault service and key in the **Basics** tab.
+
+Repeat these settings for the key vault. Select the appropriate key vault service and key in the **Basics** tab.
 
 ## Azure App Service
 
