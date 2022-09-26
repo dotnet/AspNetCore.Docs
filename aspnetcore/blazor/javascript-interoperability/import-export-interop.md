@@ -68,7 +68,7 @@ If the JS function doesn't directly interact with the rendered Document Object M
 In the following `CallJavaScript1` component:
 
 * The `Interop1` module is imported asychronously from the [collocated JS file](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component).
-* The imported `getMessage` JS function is called with `Interop.GetWelcomeMessage()`.
+* The imported `getMessage` JS function is called with `Interop1.GetWelcomeMessage()`.
 * The returned welcome string is displayed in the UI via the `message` field.
 
 `Pages/CallJavaScript1.razor`:
@@ -191,7 +191,7 @@ public partial class Interop2
 The following `CallDotNet1` component calls JS that directly interacts with the DOM to render the welcome message:
 
 * The `Interop2` [JS module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules) is imported asychronously from the collocated JS file for this component.
-* The imported `setMessage` JS function is called with `Interop.SetWelcomeMessage()`.
+* The imported `setMessage` JS function is called with `Interop2.SetWelcomeMessage()`.
 * The returned welcome string is displayed by `setMessage` in the UI via the `message` field.
 
 > [!IMPORTANT]
