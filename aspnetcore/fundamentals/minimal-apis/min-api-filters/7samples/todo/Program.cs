@@ -95,6 +95,41 @@ app.MapPost("/todoitemsUC", async (Todo todo, TodoDb db) =>
 }).AddEndpointFilter<TodoIsValidUcFilter>();
 #endregion
 
+#region snippet_filterfactory1
+app.MapPut("/todoitems/{id}", async (Todo inputTodo, int id, TodoDb db) =>
+{
+    var todo = await db.Todos.FindAsync(id);
+
+    if (todo is null) return Results.NotFound();
+
+    todo.Name = inputTodo.Name;
+    todo.IsComplete = inputTodo.IsComplete;
+    
+    await db.SaveChangesAsync();
+
+    return Results.NoContent();
+}).AddEndpointFilterFactory(async (filterFactoryContext, next) =>
+{
+    var parameters = context.MethodInfo.GetParameters();
+    if (parameters.Length >= 1 && parameters[0].ParameterType == typeof(Todo))
+    {
+        return async invocationContext =>
+        {
+            var todoParam = invocationContext.GetArgument<Todo>(0);
+
+            var validationError = Utilities.IsValid(tdparam);
+
+            if (!string.IsNullOrEmpty(validationError))
+            {
+                return Results.Problem(validationError);
+            }
+            return await next(invocationContextContext);
+        }
+    }
+    return invocationContext => next(invocationContext); 
+});
+#endregion
+
 app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 {
     if (await db.Todos.FindAsync(id) is Todo todo)
