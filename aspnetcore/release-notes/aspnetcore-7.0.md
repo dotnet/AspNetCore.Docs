@@ -164,7 +164,7 @@ There is no built-in support for [antiforgery](/aspnet/core/security/anti-reques
 
 ### `[AsParameters]` attribute enables parameter binding for argument lists
 
-The [`[AsParameters]` attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) enables parameter binding for argument lists . For more information, see [Parameter binding for argument lists with `[AsParameters]`](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#asparam7).
+The [`[AsParameters]` attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) enables parameter binding for argument lists. For more information, see [Parameter binding for argument lists with `[AsParameters]`](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#asparam7).
 
 ## gRPC
 
@@ -291,7 +291,7 @@ services.AddW3CLogging(logging =>
 });
 ```
 
-For more information,see [W3CLogger options](xref:fundamentals/w3c-logger/index#w3clogger-options-1).
+For more information, see [W3CLogger options](xref:fundamentals/w3c-logger/index#w3clogger-options-1).
 
 ### Request decompression
 
