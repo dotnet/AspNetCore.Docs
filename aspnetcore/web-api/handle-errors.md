@@ -310,6 +310,7 @@ The following code uses a lambda for exception handling:
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
 
 <!--
+
 When  standardized error payload when an unhandled exception occurs. For scenarios where it's desirable to return a standardized [ProblemDetails response](https://datatracker.ietf.org/doc/html/rfc7807) to the client, the [ProblemDetails middleware](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) can be used to map exceptions to a [ProblemDetails](xref:web-api/handle-errors#pd) payload. The exception handling middleware can also be used to return a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> payload for unhandled exceptions.
 -->
 
