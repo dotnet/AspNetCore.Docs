@@ -151,6 +151,12 @@ export function getMessage() {
 }
 ```
 
+If you need to iteratively make code changes in JS files and force a browser to reload the files (cache busting), we recommend using browser [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) with static asset caching disabled. For more information, access the documentation for the developer tools associated with your browser:
+
+* [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
+* [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools)
+* [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
+
 ## Call .NET from JavaScript
 
 This section explains how to call .NET methods from JS.
@@ -251,6 +257,12 @@ export async function setMessage() {
     exports.BlazorSample.Pages.CallDotNet1.GetMessageFromDotnet();
 }
 ```
+
+If you need to iteratively make code changes in JS files and force a browser to reload the files (cache busting), we recommend using browser [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) with static asset caching disabled. For more information, access the documentation for the developer tools associated with your browser:
+
+* [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
+* [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools)
+* [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
 
 ## Use of a single JavaScript module across components
 
@@ -387,3 +399,7 @@ For an additional example of the JS interop techniques described in this article
 > The [`pavelsavara/blazor-wasm-hands-pose` GitHub repository](https://github.com/pavelsavara/blazor-wasm-hands-pose) isn't owned, maintained, or supported by the .NET foundation or Microsoft.
 >
 > The *Blazor WASM demo of new JSInterop* sample app uses a public JS library from [MediaPipe](https://www.mediapipe.dev/), which isn't owned, maintained, or supported by the .NET foundation or Microsoft.
+
+## Additional resources
+
+* [Use .NET from any JavaScript app in .NET 7](https://devblogs.microsoft.com/dotnet/use-net-7-from-any-javascript-app-in-net-7/)
