@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal web API with ASP.NET Core"
 author: rick-anderson
 description: Learn how to build a minimal web API with ASP.NET Core.
 ms.author: riande
-ms.date: 09/26/2022
+ms.date: 09/27/2022
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
 ---
@@ -611,9 +611,11 @@ Visual Studio launches the [Kestrel web server](xref:fundamentals/servers/kestre
 
 Press Ctrl+F5 to run the app. A browser window is opened.
 
+<!-- Temporarily commenting out Mac instructions.>
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. 
+-->
 
 ---
 
@@ -641,6 +643,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
    dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
      ```
 
+<!--
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**
@@ -650,6 +653,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
 * In the **Select Projects** window, select **Ok**
 * In the **License Agreement** window, select **Agree**
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
+-->
 
 ---
 
