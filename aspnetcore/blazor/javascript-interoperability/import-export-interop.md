@@ -37,7 +37,7 @@ This section explains how to call JS functions from .NET.
 In the following `CallJavaScript1` component:
 
 * The `CallJavaScript1` module is imported asychronously from the [collocated JS file](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component).
-* The imported `getMessage` JS function is called with `CallJavaScript1.GetWelcomeMessage()`.
+* The imported `getMessage` JS function is called by `GetWelcomeMessage`.
 * The returned welcome string is displayed in the UI via the `message` field.
 
 `Pages/CallJavaScript1.razor`:
@@ -60,7 +60,7 @@ In the following `CallJavaScript1` component:
             await JSHost.ImportAsync("CallJavaScript1", 
                 "../Pages/CallJavaScript1.razor.js");
 
-            message = CallJavaScript1.GetWelcomeMessage();
+            message = GetWelcomeMessage();
         }
     }
 }
@@ -69,8 +69,39 @@ In the following `CallJavaScript1` component:
 > [!NOTE]
 > The conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> in the preceding example ensures that the code is only called in Blazor WebAssembly apps running on the client. This is important for library code deployed as NuGet packages that might be referenced by developers of Blazor Server apps, where the preceding code can't execute. If you know for sure that the code is only implemented in Blazor WebAssembly apps, you can remove the check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>.
 
-> [!NOTE]
-> For demonstration purposes, the `CallJavaScript1` class doesn't include a namespace declaration. In production apps, using namespaces for JS interop C# classes is recommended.
+To import a JS function to call it from C#, use the `[JSImport]` attribute on a C# method signature that matches the JS function's signature. The first parameter to the `[JSImport]` attribute is the name of the JS function to import, and the second parameter is the name of the [JS module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules).
+
+In the following example, `getMessage` is a JS function that returns a `string` for a module named `CallJavaScript1`. The C# method signature matches: No parameters are passed to the JS function, and the JS function returns a `string`. The JS function is called by `GetWelcomeMessage`.
+
+`Pages/CallJavaScript1.razor.cs`:
+
+```csharp
+using System.Runtime.InteropServices.JavaScript;
+using System.Runtime.Versioning;
+
+namespace BlazorSample.Pages
+{
+    [SupportedOSPlatform("browser")]
+    public partial class CallJavaScript1
+    {
+        [JSImport("getMessage", "CallJavaScript1")]
+        internal static partial string GetWelcomeMessage();
+    }
+}
+```
+
+The app's namespace for the preceding `CallJavaScript1` partial class is `BlazorServer`. The component's namespace is `BlazorSample.Pages`. If using the preceding component in a local test app, update the namespace to match the app. For example, `ContosoApp.Pages` if the app's namespace is `ContosoApp`. For more information, see <xref:blazor/components/index#partial-class-support>.
+
+In the imported method signature, you can use .NET types for parameters and return values, which are marshalled automatically by the runtime. Use `JSMarshalAsAttribute<T>` to control how the imported method parameters are marshalled. For example, you might choose to marshal a `long` as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>. You can pass <xref:System.Action>/<xref:System.Func%601> callbacks as parameters, which are marshalled as callable JS functions. You can pass both JS and managed object references, and they are marshaled as proxy objects, keeping the object alive across the boundary until the proxy is garbage collected. You can also import and export asynchronous methods with a <xref:System.Threading.Tasks.Task> result, which are marshaled as [JS promises](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods. Exported methods are covered in the [Call .NET from JavaScript](#call-net-from-javascript) section.
+
+The module name in the `[JSImport]` attribute and the call to load the module in the component, which is covered next with `JSHost.ImportAsync` syntax, should match. The module name must also be unique in the app. When authoring a library for deployment in a NuGet package, we recommend using the NuGet package namespace as a prefix in module names. In the following example, the module name reflects the `Contoso.InteropServices.JavaScript` package and a folder of user message interop classes (`UserMessages`):
+
+```csharp
+[JSImport("getMessage", 
+    "Contoso.InteropServices.JavaScript.UserMessages.CallJavaScript1")]
+```
+
+If the JS function doesn't directly interact with the rendered Document Object Model (DOM), import the module in [`OnInitializedAsync`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). Call the imported JS function with the .NET interop method.
 
 If the JS module interacts directly with the component's rendered UI, import the module in [`OnAfterRenderAsync`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) and call the imported JS function:
 
@@ -81,7 +112,7 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await JSHost.ImportAsync("CallJavaScript1", "../Pages/CallJavaScript1.razor.js");
 
-        CallJavaScript1.DoSomething();
+        DoSomething();
     }
 }
 ```
@@ -108,38 +139,6 @@ If the code holds a reference to the <xref:System.Runtime.InteropServices.JavaSc
 }
 ```
 
-To import a JS function to call it from C#, use the `[JSImport]` attribute on a C# method signature that matches the JS function's signature. The first parameter to the `[JSImport]` attribute is the name of the JS function to import, and the second parameter is the name of the [JS module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules).
-
-In the following example, `getMessage` is a JS function that returns a `string` for a module named `CallJavaScript1`. The C# method signature matches: No parameters are passed to the JS function, and the JS function returns a `string`. The JS function is called in C# using standard syntax, `CallJavaScript1.GetWelcomeMessage()`.
-
-`Pages/CallJavaScript1.razor.cs`:
-
-```csharp
-using System.Runtime.InteropServices.JavaScript;
-using System.Runtime.Versioning;
-
-[SupportedOSPlatform("browser")]
-public partial class CallJavaScript1
-{
-    [JSImport("getMessage", "CallJavaScript1")]
-    internal static partial string GetWelcomeMessage();
-}
-```
-
-> [!NOTE]
-> For demonstration purposes, the `CallJavaScript1` class doesn't include a namespace declaration. In production apps, using namespaces for JS interop C# classes is recommended.
-
-In the imported method signature, you can use .NET types for parameters and return values, which are marshalled automatically by the runtime. Use `JSMarshalAsAttribute<T>` to control how the imported method parameters are marshalled. For example, you might choose to marshal a `long` as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>. You can pass <xref:System.Action>/<xref:System.Func%601> callbacks as parameters, which are marshalled as callable JS functions. You can pass both JS and managed object references, and they are marshaled as proxy objects, keeping the object alive across the boundary until the proxy is garbage collected. You can also import and export asynchronous methods with a <xref:System.Threading.Tasks.Task> result, which are marshaled as [JS promises](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods. Exported methods are covered in the [Call .NET from JavaScript](#call-net-from-javascript) section.
-
-The module name in the `[JSImport]` attribute and the call to load the module in the component, which is covered next with `JSHost.ImportAsync` syntax, should match. The module name must also be unique in the app. When authoring a library for deployment in a NuGet package, we recommend using the NuGet package namespace as a prefix in module names. In the following example, the module name reflects the `Contoso.InteropServices.JavaScript` package and a folder of user message interop classes (`UserMessages`):
-
-```csharp
-[JSImport("getMessage", 
-    "Contoso.InteropServices.JavaScript.UserMessages.CallJavaScript1")]
-```
-
-If the JS function doesn't directly interact with the rendered Document Object Model (DOM), import the module in [`OnInitializedAsync`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). Call the imported JS function with the .NET interop method.
-
 Export scripts from a standard [JavaScript ES6 module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules) collocated with a component, which is covered in the <xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component> article or placed with other JavaScript static assets.
 
 In the following example, a JS function named `getMessage` is exported from a collocated JS file that returns a welcome message string, "Hello from Blazor!" in Portuguese:
@@ -162,7 +161,7 @@ This section explains how to call .NET methods from JS.
 The following `CallDotNet1` component calls JS that directly interacts with the DOM to render the welcome message:
 
 * The `CallDotNet` [JS module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules) is imported asychronously from the collocated JS file for this component.
-* The imported `setMessage` JS function is called with `CallDotNet1.SetWelcomeMessage()`.
+* The imported `setMessage` JS function is called by `SetWelcomeMessage`.
 * The returned welcome string is displayed by `setMessage` in the UI via the `message` field.
 
 > [!IMPORTANT]
@@ -190,7 +189,7 @@ The following `CallDotNet1` component calls JS that directly interacts with the 
             await JSHost.ImportAsync("CallDotNet1", 
                 "../Pages/CallDotNet1.razor.js");
 
-            CallDotNet1.SetWelcomeMessage();
+            SetWelcomeMessage();
         }
     }  
 }
@@ -200,8 +199,6 @@ The following `CallDotNet1` component calls JS that directly interacts with the 
 > As demonstrated in the [Call JavaScript from .NET](#call-javascript-from-net) section, call <xref:System.Runtime.InteropServices.JavaScript.JSObject.Dispose%2A?displayProperty=nameWithType> in a `Dispose` method if the component holds a reference to the <xref:System.Runtime.InteropServices.JavaScript.JSObject> returned by `JSHost.ImportAsync`.
 >
 > The conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> in the preceding example ensures that the code is only called in Blazor WebAssembly apps running on the client. This is important for library code deployed as NuGet packages that might be referenced by developers of Blazor Server apps, where the preceding code can't execute. If you know for sure that the code is only implemented in Blazor WebAssembly apps, you can remove the check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>.
->
-> For demonstration purposes, the `CallDotNet1` class doesn't include a namespace declaration. In production apps, using namespaces for JS interop C# classes is recommended.
 
 To export a .NET method so that it can be called from JS, use the `[JSExport]` attribute.
 
@@ -216,22 +213,24 @@ In the following example:
 using System.Runtime.InteropServices.JavaScript;
 using System.Runtime.Versioning;
 
-[SupportedOSPlatform("browser")]
-public partial class CallDotNet1
+namespace BlazorSample.Pages
 {
-    [JSExport]
-    internal static string GetMessageFromDotnet()
+    [SupportedOSPlatform("browser")]
+    public partial class CallDotNet1
     {
-        return "Olá do Blazor!";
-    }
+        [JSExport]
+        internal static string GetMessageFromDotnet()
+        {
+            return "Olá do Blazor!";
+        }
 
-    [JSImport("setMessage", "CallDotNet1")]
-    internal static partial void SetWelcomeMessage();
+        [JSImport("setMessage", "CallDotNet1")]
+        internal static partial void SetWelcomeMessage();
+    }
 }
 ```
 
-> [!NOTE]
-> For demonstration purposes, the `CallDotNet1` class doesn't include a namespace declaration. In production apps, using namespaces for JS interop C# classes is recommended.
+The app's namespace for the preceding `CallDotNet1` partial class is `BlazorServer`. The component's namespace is `BlazorSample.Pages`. If using the preceding component in a local test app, update the app's namespace to match the app. For example, `ContosoApp.Pages` if the app's namespace is `ContosoApp`. For more information, see <xref:blazor/components/index#partial-class-support>.
 
 In the following example, a JS function named `setMessage` is exported from a collocated JS file.
 
@@ -239,7 +238,7 @@ The `setMessage` method:
 
 * Calls `globalThis.getDotnetRuntime(0)` to expose the WebAssembly .NET runtime instance for calling exported .NET methods.
 * Obtains the app assembly's JS exports. The name of the app's assembly in the following example is `BlazorSample`.
-* Calls the `CallDotNet1.GetMessageFromDotnet()` method from the exports (`exports`). The returned value, which is the welcome string, is assigned to the preceding `<span>`'s inner text.
+* Calls the `BlazorSample.Pages.CallDotNet1.GetMessageFromDotnet` method from the exports (`exports`). The returned value, which is the welcome string, is assigned to the preceding `<span>`'s inner text. The app's namespace is `BlazorSample`, and the `CallDotNet1` component's namespace is `BlazorSample.Pages`.
 
 `Pages/CallDotNet1.razor.js`:
 
@@ -249,16 +248,9 @@ export async function setMessage() {
   var exports = await getAssemblyExports("BlazorSample.dll");
 
   document.getElementById("result").innerText = 
-    exports.CallDotNet1.GetMessageFromDotnet();
+    exports.BlazorSample.Pages.CallDotNet1.GetMessageFromDotnet();
 }
 ```
-
-> [!NOTE]
-> For demonstration purposes, the example in this section doesn't declare a namespace for the `CallDotNet1` class. In production apps, using namespaces for JS interop C# classes is recommended. When a namespace is used, include the namespace in the exported C# method call. For example, call the `GetMessageFromDotnet` method in an `CallDotNet1` class with a namespace of `BlazorSample.UserMessages` with the following code:
->
-> ```javascript
-> exports.BlazorSample.UserMessages.CallDotNet1.GetMessageFromDotnet();
-> ```
 
 ## Use of a single JavaScript module across components
 
@@ -278,22 +270,27 @@ For now, let's just look at the setup to see if this makes any sense! :)
 using System.Runtime.InteropServices.JavaScript;
 using System.Runtime.Versioning;
 
-[SupportedOSPlatform("browser")]
-public partial class Interop3
+namespace BlazorSample.JavaScriptInterop
 {
-    [JSImport("getMessage", "Interop3")]
-    internal static partial string GetWelcomeMessage();
-
-    [JSImport("setMessage", "Interop3")]
-    internal static partial void SetWelcomeMessage();
-
-    [JSExport]
-    internal static string GetMessageFromDotnet()
+    [SupportedOSPlatform("browser")]
+    public partial class Interop3
     {
-        return "¡Hola desde Blazor!";
+        [JSImport("getMessage", "Interop3")]
+        internal static partial string GetWelcomeMessage();
+
+        [JSImport("setMessage", "Interop3")]
+        internal static partial void SetWelcomeMessage();
+
+        [JSExport]
+        internal static string GetMessageFromDotnet()
+        {
+            return "¡Hola desde Blazor!";
+        }
     }
 }
 ```
+
+In the preceding example, the app's namespace is `BlazorSample`, and the full namespace for C# JS interop classes is `BlazorSample.JavaScriptInterop`.
 
 `wwwroot/js/interop3.js`:
 
@@ -304,10 +301,30 @@ export function getMessage() {
 
 export async function setMessage() {
   const { getAssemblyExports } = await globalThis.getDotnetRuntime(0);
-  var exports = await getAssemblyExports("BlazorWASM70UnmarshalledJS.dll");
+  var exports = await getAssemblyExports("BlazorSample.dll");
 
   document.getElementById("result").innerText =
-    exports.Interop3.GetMessageFromDotnet();
+    exports.BlazorSample.JavaScriptInterop.Interop3.GetMessageFromDotnet();
+}
+```
+
+In `App.razor`:
+
+```razor
+@using System.Runtime.InteropServices.JavaScript
+
+<Router ...>
+    ...
+</Router>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        if (OperatingSystem.IsBrowser())
+        {
+            await JSHost.ImportAsync("Interop3", "../js/interop3.js");
+        }
+    }
 }
 ```
 
@@ -315,7 +332,7 @@ export async function setMessage() {
 
 ```razor
 @page "/call-javascript-2"
-@using System.Runtime.InteropServices.JavaScript
+@using BlazorSample.JavaScriptInterop
 
 <h1>.NET JS <code>[JSImport]</code>/<code>[JSExport]</code> Interop 2 (Call JS)</h1>
 
@@ -324,23 +341,21 @@ export async function setMessage() {
 @code {
     private string? message;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitializedAsync()
     {
         if (OperatingSystem.IsBrowser())
         {
-            await JSHost.ImportAsync("Interop3", "../js/interop3.js");
-
             message = Interop3.GetWelcomeMessage();
         }
     }
 }
 ```
 
-`Pages/CallDotNet.razor`:
+`Pages/CallDotNet2.razor`:
 
 ```razor
 @page "/call-dotnet-2"
-@using System.Runtime.InteropServices.JavaScript
+@using BlazorSample.JavaScriptInterop
 
 <h1>
     .NET JS <code>[JSImport]</code>/<code>[JSExport]</code> Interop 2 (Call .NET)
@@ -351,12 +366,10 @@ export async function setMessage() {
 </p>
 
 @code {
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override void OnAfterRender(bool firstRender)
     {
         if (OperatingSystem.IsBrowser() && firstRender)
         {
-            await JSHost.ImportAsync("Interop3", "../js/interop3.js");
-
             Interop3.SetWelcomeMessage();
         }
     }
