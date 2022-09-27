@@ -528,58 +528,55 @@ This tutorial creates the following API:
 * In the **Create a new project** dialog:
   * Enter `Empty` in the **Search for templates** search box.
   * Select the **ASP.NET Core Empty** template and select **Next**.
+
   ![Visual Studio Create a new project](min-web-api/_static/empty.png)
+
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-
   * Select **.NET 7.0 (Preview)**
   * Uncheck **Do not use top-level statements**
   * Select **Create**
 
   ![Additional information](min-web-api/_static/add-info7.png)
 
-<!-- Move this later since we don't need it now -->
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 * Change directories (`cd`) to the folder that will contain the project folder.
 * Run the following commands:
 
-   ```dotnetcli
-   dotnet new web -o TodoApi
-   cd TodoApi
-   code -r ../TodoApi
-   ```
+  ```dotnetcli
+  dotnet new web -o TodoApi
+  cd TodoApi
+  code -r ../TodoApi
+  ```
 
 * When a dialog box asks if you want to trust the authors, select **Yes**.
 * When a dialog box asks if you want to add required assets to the project, select **Yes**.
 
-  The preceding command creates a new web minimal API project and opens it in Visual Studio Code.
+  The preceding commands create a new web minimal API project and open it in Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Select **File** > **New Project...**.
+* In Visual Studio for Mac 2022, select **File** > **New Project...**.
 
-![macOS New solution](first-web-api-mac/_static/6/sln.png)
+  ![macOS New solution](first-web-api-mac/_static/6/sln.png)
 
-* In Visual Studio for Mac 2022, select **Web and Console** > **App** > **Empty** > **Continue**.
+* Select **Web and Console** > **App** > **Empty** > **Continue**.
 
-![macOS API template selection](first-web-api-mac/_static/6/api_template.png)
+  ![macOS API template selection](first-web-api-mac/_static/6/api_template.png)
 
-In the first **Configure your new API** dialog, make the following selections:
-- **Target framework:** .NET 7.x (or more recent). 
-- **Configure for HTTPS**: Check
-
-Select **Continue**.
+* In the first **Configure your new API** dialog, make the following selections:
+  * **Target framework:** .NET 7.x (or more recent). 
+  * **Configure for HTTPS**: Check
+  * Select **Continue**.
 
 * In the second **Configure your new API** dialog, enter the following:
-
   * **Project name:** TodoApi
   * **Solution name:** TodoApi
+  * Select **Create**.
 
-* Select **Create**.
-
-![Configure Your New API Window 2](first-web-api-mac/_static/6/configure_your_new_api2.png)
+  ![Configure Your New API Window 2](first-web-api-mac/_static/6/configure_your_new_api2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -589,7 +586,12 @@ Select **Continue**.
 
 The `Program.cs` file contains the following code:
 
+:::code language="csharp" source="min-web-api/samples/7.x/todo/Program.cs" id="snippet_min":::
 
+The preceding code:
+
+* Creates a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and a <xref:Microsoft.AspNetCore.Builder.WebApplication> with preconfigured defaults.
+* Creates an HTTP GET endpoint `/` that returns `Hello World!`:
 
 ### Run the app
 
@@ -601,7 +603,7 @@ Press Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVS22.md)]
 
-Visual Studio launches the [Kestrel web server](xref:fundamentals/servers/kestrel).
+Visual Studio launches the [Kestrel web server](xref:fundamentals/servers/kestrel) and opens a browser window.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -615,17 +617,7 @@ Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac 
 
 ---
 
-## Examine and run the generated code
-
-The following highlighted code creates a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and a <xref:Microsoft.AspNetCore.Builder.WebApplication> with preconfigured defaults:
-
-:::code language="csharp" source="min-web-api/samples/7.x/todo/Program.cs" id="snippet_min" highlight="1-2":::
-
-The following highlighted code creates an HTTP GET endpoint `/` that returns `Hello World!`:
-
-:::code language="csharp" source="min-web-api/samples/7.x/todo/Program.cs" id="snippet_min" highlight="4":::
-
-Run the app. `Hello World!` is displayed. The `Program.cs` file contains a minimal but complete app.
+`Hello World!` is displayed in the browser. The `Program.cs` file contains a minimal but complete app.
 
 ## Add NuGet packages
 
@@ -657,6 +649,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
 * Select **Add Package**
 * In the **Select Projects** window, select **Ok**
 * In the **License Agreement** window, select **Agree**
+* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
 
 ---
 
@@ -706,29 +699,30 @@ The following code creates an HTTP POST endpoint `/todoitems` to add data to the
 
 [!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_post)]
 
-The following instructions post data to the app:
+Use the POST endpoint to add data to the app:
 
-  * Create a new request.
-  * Set the HTTP method to `POST`.
-  * Set the URI to `https://localhost:<port>/todoitems`. For example: `https://localhost:5001/todoitems`
-  * Select the **Body** tab.
-  * Select **raw**.
-  * Set the type to **JSON**.
-  * In the request body enter JSON for a to-do item:
+* Create a new request.
+* Set the HTTP method to `POST`.
+* Set the URI to `https://localhost:<port>/todoitems`. For example: `https://localhost:5001/todoitems`
+* Select the **Body** tab.
+* Select **raw**.
+* Set the type to **JSON**.
+* In the request body enter JSON for a to-do item:
   
-      ```json
-      {
-        "name":"walk dog",
-        "isComplete":true
-      }
-      ```
-  
-  * Select **Send**.
-    ![Postman with Post request details](min-web-api/_static/post2.png)
+  ```json
+  {
+    "name":"walk dog",
+    "isComplete":true
+  }
+  ```
+
+* Select **Send**.
+
+  ![Postman with Post request details](min-web-api/_static/post2.png)
 
 ## Examine the GET endpoints
 
-The sample app implements several GET endpoints using calls to `MapGet`:
+The sample app implements several GET endpoints by calling `MapGet`:
 
 |API | Description | Request body | Response body |
 |--- | ---- | ---- | ---- |
@@ -740,10 +734,13 @@ The sample app implements several GET endpoints using calls to `MapGet`:
 
 ## Test the GET endpoints
 
-Test the app by calling the two endpoints from a browser or Postman. For example:
+Test the app by calling the endpoints from a browser or Postman. The following steps are for Postman.
 
-* `GET https://localhost:5001/todoitems`
-* `GET https://localhost:5001/todoitems/1`
+* Create a new request.
+* Set the HTTP method to **GET**.
+* Set the request URI to `https://localhost:<port>/todoitems`. For example, `https://localhost:5001/todoitems`.
+* Select **Send**.
+* Set the request URI to `https://localhost:<port>/todoitems/1`. For example, `https://localhost:5001/todoitems/1`.
 
 The call to `GET /todoitems` produces a response similar to the following:
 
@@ -757,14 +754,7 @@ The call to `GET /todoitems` produces a response similar to the following:
 ]
 ```
 
-### Test the GET endpoints with Postman
-
-* Create a new request.
-* Set the HTTP method to **GET**.
-* Set the request URI to `https://localhost:<port>/todoitems`. For example, `https://localhost:5001/todoitems`.
-* Select **Send**.
-
-This app uses an in-memory database. If the app is restarted, the GET request doesn't return any data. If no data is returned, first [POST](#post) data to the app.
+This app uses an in-memory database. If the app is restarted, the GET request doesn't return any data. If no data is returned, [POST](#post) data to the app and try the GET request again.
 
 ## Return values
 
@@ -783,7 +773,7 @@ The sample app implements a single PUT endpoint using `MapPut`:
 
 This method is similar to the `MapPost` method, except it uses HTTP PUT. A successful response returns [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
-### Test the PUT endpoint
+## Test the PUT endpoint
 
 This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PUT call. Call GET to ensure there's an item in the database before making a PUT call.
 
@@ -803,7 +793,7 @@ The following image shows the Postman update:
 `![Postman console showing 204 (No Content) response](min-web-api/_static/3/pmcput.png)`
 -->
 
-## Examine the DELETE endpoint
+## Examine and test the DELETE endpoint
 
 The sample app implements a single DELETE endpoint using `MapDelete`:
 
@@ -817,7 +807,7 @@ Use Postman to delete a to-do item:
 
 ## Use the MapGroup API
 
-The sample app code repeats the `todoitems` URL node each time it sets up an endpoint. Web APIs often have groups of endpoints with a common URL node, and the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> method is available to help organize such groups. It reduces repetitive code and allows for customizing entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A>.
+The sample app code repeats the `todoitems` URL prefix each time it sets up an endpoint. Web APIs often have groups of endpoints with a common URL prefix, and the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> method is available to help organize such groups. It reduces repetitive code and allows for customizing entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A>.
 
 Replace the contents of `Program.cs` with the following code:
 
@@ -825,8 +815,8 @@ Replace the contents of `Program.cs` with the following code:
 
 The preceding code has the following changes:
 
-* Adds `RouteGroupBuilder group = app.MapGroup("/todoitems");` to set up the group using the URL prefix `/todoitems`.
-* Changes all the `app.Map<HttpVerb>` methods to `group.Map<HttpVerb>`.
+* Adds `var todoItems = app.MapGroup("/todoitems");` to set up the group using the URL prefix `/todoitems`.
+* Changes all the `app.Map<HttpVerb>` methods to `todoItems.Map<HttpVerb>`.
 * Removes the URL prefix `/todoitems` from the `Map<HttpVerb>` method calls.
 
 Test the endpoints to verify that they work the same.
