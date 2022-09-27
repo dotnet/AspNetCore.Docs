@@ -99,6 +99,45 @@ To provision the Azure SignalR Service for an app in Visual Studio:
 
 Provisioning the Azure SignalR Service in Visual Studio automatically [enables *sticky sessions*](#configuration) and adds the SignalR connection string to the app service's configuration.
 
+### Scalability on Azure Container Apps
+
+Scaling Blazor Server apps on Azure Container Apps requires specific considerations in addition to using the [Azure SignalR Service](#azure-signalr-service). Due to the way request routing is handled, the ASP.NET Core data protection service must be configured to persist keys in a centralized location that all container instances can access. The keys can be stored in Azure Blob Storage and protected with Azure Key Vault. The data protection service uses the keys to deserialize Razor components.
+
+> [!NOTE]
+> For a deeper exploration of this scenario and scaling container apps, see <xref:host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps>. The tutorial explains how to create and integrate the services required to host apps on Azure Container Apps. Basic steps are also provided in this section.
+
+1. To configure the data protection service to use Azure Blob Storage and Azure Key Vault, reference the following NuGet packages:
+
+   * [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity): Provides classes to work with the Azure identity and access management services.
+   * [`Microsoft.Extensions.Azure`](https://www.nuget.org/packages/Microsoft.Extensions.Azure): Provides helpful extension methods to perform core Azure configurations.
+   * [`Azure.Extensions.AspNetCore.DataProtection.Blobs`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs): Allows storing ASP.NET Core Data Protection keys in Azure Blob Storage so that keys can be shared across several instances of a web app.
+   * [`Azure.Extensions.AspNetCore.DataProtection.Keys`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys): Enables protecting keys at rest using the Azure Key Vault Key Encryption/Wrapping feature.
+
+   [!INCLUDE[](~/includes/package-reference.md)]
+
+1. Update `Program.cs` with the following highlighted code:
+
+   :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/scalable-razor-apps/end/Program.cs" id="snippet_ProgramConfigurations" highlight="1-4,6-7,13-19":::    
+
+   The preceding changes allow the app to manage data protection using a centralized, scalable architecture. <xref:Azure.Identity.DefaultAzureCredential> discovers the container app managed identity after the code is deployed to Azure and uses it to connect to blob storage and the app's key vault.
+
+1. To create the container app managed identity and grant it access to blob storage and a key vault, complete the following steps:
+
+   1. In the Azure Portal, navigate to the overview page of the container app.
+   1. Select **Service Connector** from the left navigation.
+   1. Select **+ Create** from the top navigation.
+   1. In the **Create connection** flyout menu, enter the following values:
+      * **Container**: Select the container app you created to host your Blazor Server app.
+      * **Service type**: Select **Blob Storage**.
+      * **Subscription**: Select the subscription that owns the container app.
+      * **Connection name**: Enter a name of `scalablerazorstorage`.
+      * **Client type**: Select **.NET** and then select **Next**.
+   1. Select **System assigned managed identity** and select **Next**.
+   1. Use the default network settings and select **Next**.
+   1. After Azure validates the settings, select **Create**.
+
+   Repeat the preceding settings for the key vault. Select the appropriate key vault service and key in the **Basics** tab.
+
 ## Azure App Service
 
 *This section only applies to apps not using the [Azure SignalR Service](#azure-signalr-service).*
@@ -765,6 +804,45 @@ To provision the Azure SignalR Service for an app in Visual Studio:
 1. Publish the app to Azure.
 
 Provisioning the Azure SignalR Service in Visual Studio automatically [enables *sticky sessions*](#configuration) and adds the SignalR connection string to the app service's configuration.
+
+### Scalability on Azure Container Apps
+
+Scaling Blazor Server apps on Azure Container Apps requires specific considerations in addition to using the [Azure SignalR Service](#azure-signalr-service). Due to the way request routing is handled, the ASP.NET Core data protection service must be configured to persist keys in a centralized location that all container instances can access. The keys can be stored in Azure Blob Storage and protected with Azure Key Vault. The data protection service uses the keys to deserialize Razor components.
+
+> [!NOTE]
+> For a deeper exploration of this scenario and scaling container apps, see <xref:host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps>. The tutorial explains how to create and integrate the services required to host apps on Azure Container Apps. Basic steps are also provided in this section.
+
+1. To configure the data protection service to use Azure Blob Storage and Azure Key Vault, reference the following NuGet packages:
+
+   * [`Azure.Identity`](https://www.nuget.org/packages/Azure.Identity): Provides classes to work with the Azure identity and access management services.
+   * [`Microsoft.Extensions.Azure`](https://www.nuget.org/packages/Microsoft.Extensions.Azure): Provides helpful extension methods to perform core Azure configurations.
+   * [`Azure.Extensions.AspNetCore.DataProtection.Blobs`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Blobs): Allows storing ASP.NET Core Data Protection keys in Azure Blob Storage so that keys can be shared across several instances of a web app.
+   * [`Azure.Extensions.AspNetCore.DataProtection.Keys`](https://www.nuget.org/packages/Azure.Extensions.AspNetCore.DataProtection.Keys): Enables protecting keys at rest using the Azure Key Vault Key Encryption/Wrapping feature.
+
+   [!INCLUDE[](~/includes/package-reference.md)]
+
+1. Update `Program.cs` with the following highlighted code:
+
+   :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/scalable-razor-apps/end/Program.cs" id="snippet_ProgramConfigurations" highlight="1-4,6-7,13-19":::    
+
+   The preceding changes allow the app to manage data protection using a centralized, scalable architecture. <xref:Azure.Identity.DefaultAzureCredential> discovers the container app managed identity after the code is deployed to Azure and uses it to connect to blob storage and the app's key vault.
+
+1. To create the container app managed identity and grant it access to blob storage and a key vault, complete the following steps:
+
+   1. In the Azure Portal, navigate to the overview page of the container app.
+   1. Select **Service Connector** from the left navigation.
+   1. Select **+ Create** from the top navigation.
+   1. In the **Create connection** flyout menu, enter the following values:
+      * **Container**: Select the container app you created to host your Blazor Server app.
+      * **Service type**: Select **Blob Storage**.
+      * **Subscription**: Select the subscription that owns the container app.
+      * **Connection name**: Enter a name of `scalablerazorstorage`.
+      * **Client type**: Select **.NET** and then select **Next**.
+   1. Select **System assigned managed identity** and select **Next**.
+   1. Use the default network settings and select **Next**.
+   1. After Azure validates the settings, select **Create**.
+
+   Repeat the preceding settings for the key vault. Select the appropriate key vault service and key in the **Basics** tab.
 
 ## Azure App Service
 
