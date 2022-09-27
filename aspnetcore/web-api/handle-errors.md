@@ -288,7 +288,7 @@ An alternative to a [custom exception handler page](xref:fundamentals/error-hand
 > [!WARNING]
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
 
-[Hellang.Middleware.ProblemDetails]](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) is a 3rd party problem details middleware Nuget package.
+[Hellang.Middleware.ProblemDetails](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) is a 3rd party problem details middleware Nuget package.
 
 ### Implement `ProblemDetailsFactory`
 
