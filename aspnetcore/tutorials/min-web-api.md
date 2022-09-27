@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal web API with ASP.NET Core"
 author: rick-anderson
 description: Learn how to build a minimal web API with ASP.NET Core.
 ms.author: riande
-ms.date: 09/27/2022
+ms.date: 09/26/2022
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
 ---
@@ -45,11 +45,9 @@ This tutorial creates the following API:
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
 
-<!-- Temporarily commenting out Mac instructions.>
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 [!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
--->
 
 ---
 
@@ -71,6 +69,11 @@ This tutorial creates the following API:
 
  ![Additional information](min-web-api/_static/add-info2.png)
 
+<!-- 
+![VS new project dialog](min-web-api/_static/5/vs.png)
+-->
+
+<!-- Move this later since we don't need it now -->
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
@@ -88,7 +91,6 @@ This tutorial creates the following API:
 
   The preceding command creates a new web minimal API project and opens it in Visual Studio Code.
 
-<!-- Temporarily commenting out Mac instructions.>
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Select **File** > **New Project...**.
@@ -118,7 +120,6 @@ Select **Create**.
 ![Configure Your New API Window 2](first-web-api-mac/_static/6/configure_your_new_api2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
--->
 
 ---
 
@@ -610,11 +611,9 @@ Visual Studio launches the [Kestrel web server](xref:fundamentals/servers/kestre
 
 Press Ctrl+F5 to run the app. A browser window is opened.
 
-<!-- Temporarily commenting out Mac instructions.>
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. 
--->
 
 ---
 
@@ -642,7 +641,6 @@ NuGet packages must be added to support the database and diagnostics used in thi
    dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
      ```
 
-<!-- Temporarily commenting out Mac instructions.>
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**
@@ -652,7 +650,6 @@ NuGet packages must be added to support the database and diagnostics used in thi
 * In the **Select Projects** window, select **Ok**
 * In the **License Agreement** window, select **Agree**
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
--->
 
 ---
 
