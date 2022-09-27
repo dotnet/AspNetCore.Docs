@@ -101,7 +101,7 @@ Provisioning the Azure SignalR Service in Visual Studio automatically [enables *
 
 ### Scalability on Azure Container Apps
 
-Scaling Blazor Server apps on Azure Container Apps requires specific considerations in addition to using an [Azure SignalR Service](#azure-signalr-service). Due to the way request routing is handled, the ASP.NET Core data protection service must be configured to persist keys in a centralized location that all container instances can access. The keys can be stored in Azure Blob Storage and protected with Azure Key Vault. The data protection service uses the keys to deserialize Razor components.
+Scaling Blazor Server apps on Azure Container Apps requires specific considerations in addition to using the [Azure SignalR Service](#azure-signalr-service). Due to the way request routing is handled, the ASP.NET Core data protection service must be configured to persist keys in a centralized location that all container instances can access. The keys can be stored in Azure Blob Storage and protected with Azure Key Vault. The data protection service uses the keys to deserialize Razor components.
 
 > [!NOTE]
 > For a deeper exploration of this scenario and scaling container apps, see <xref:host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps>. The tutorial explains how to create and integrate the services required to host apps on Azure Container Apps. Basic steps are also provided in this section.
@@ -807,7 +807,7 @@ Provisioning the Azure SignalR Service in Visual Studio automatically [enables *
 
 ### Scalability on Azure Container Apps
 
-Scaling Blazor Server apps on Azure Container Apps requires specific considerations in addition to using an [Azure SignalR Service](#azure-signalr-service). Due to the way request routing is handled, the ASP.NET Core data protection service must be configured to persist keys in a centralized location that all container instances can access. The keys can be stored in Azure Blob Storage and protected with Azure Key Vault. The data protection service uses the keys to deserialize Razor components.
+Scaling Blazor Server apps on Azure Container Apps requires specific considerations in addition to using the [Azure SignalR Service](#azure-signalr-service). Due to the way request routing is handled, the ASP.NET Core data protection service must be configured to persist keys in a centralized location that all container instances can access. The keys can be stored in Azure Blob Storage and protected with Azure Key Vault. The data protection service uses the keys to deserialize Razor components.
 
 > [!NOTE]
 > For a deeper exploration of this scenario and scaling container apps, see <xref:host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps>. The tutorial explains how to create and integrate the services required to host apps on Azure Container Apps. Basic steps are also provided in this section.
