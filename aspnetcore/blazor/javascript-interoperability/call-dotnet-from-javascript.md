@@ -167,7 +167,7 @@ For the following `CallDotNetExample2` component:
 
 `Pages/CallDotNetExample2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor" highlight="30-31,34-35":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor":::
 
 In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 
@@ -189,7 +189,7 @@ To pass arguments to an instance method:
 
    `Pages/CallDotNetExample3.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor" highlight="31,35":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor":::
 
    In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 
@@ -400,6 +400,7 @@ In the following `GenericsExample` component:
 @page "/generics-example"
 @using System.Runtime.InteropServices
 @inject IJSRuntime JS
+@implements IDisposable
 
 <p>
     <button @onclick="InvokeInterop">Invoke Interop</button>
@@ -413,17 +414,28 @@ In the following `GenericsExample` component:
 @code {
     private GenericType<string> genericType1 = new() { Value = "string 0" };
     private GenericType<int> genericType2 = new() { Value = 0 };
+    private DotNetObjectReference<GenericType<string>>? objRef1;
+    private DotNetObjectReference<GenericType<int>>? objRef2;
+
+    protected override void OnInitialized()
+    {
+        objRef1 = DotNetObjectReference.Create(genericType1);
+        objRef2 = DotNetObjectReference.Create(genericType2);
+    }
 
     public async Task InvokeInterop()
     {
-        var syncInterop = 
+        var syncInterop =
             RuntimeInformation.IsOSPlatform(OSPlatform.Create("BROWSER"));
 
         await JS.InvokeVoidAsync(
-            "invokeMethodsAsync",
-            syncInterop,
-            DotNetObjectReference.Create(genericType1),
-            DotNetObjectReference.Create(genericType2));
+            "invokeMethodsAsync", syncInterop, objRef1, objRef2);
+    }
+
+    public void Dispose()
+    {
+        objRef1?.Dispose();
+        objRef2?.Dispose();
     }
 }
 ```
@@ -489,7 +501,7 @@ The `CallHelloHelperGetHelloMessage` method in the following `JsInteropClasses3`
 
 `JsInteropClasses3.cs`:
 
-:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/JsInteropClasses3.cs" highlight="15-19":::
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/JsInteropClasses3.cs":::
 
 In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 
@@ -871,7 +883,7 @@ For the following `CallDotNetExample2` component:
 
 `Pages/CallDotNetExample2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor" highlight="30-31,34-35":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor":::
 
 To pass arguments to an instance method:
 
@@ -889,7 +901,7 @@ To pass arguments to an instance method:
 
    `Pages/CallDotNetExample3.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor" highlight="31,35":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor":::
 
 ## Class instance examples
 
@@ -918,7 +930,7 @@ The `CallHelloHelperGetHelloMessage` method in the following `JsInteropClasses3`
 
 `JsInteropClasses3.cs`:
 
-:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/JsInteropClasses3.cs" highlight="15-20":::
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/JsInteropClasses3.cs":::
 
 To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
 
@@ -1198,7 +1210,7 @@ For the following `CallDotNetExample2` component:
 
 `Pages/CallDotNetExample2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor" highlight="30-31,34-35":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor":::
 
 To pass arguments to an instance method:
 
@@ -1216,7 +1228,7 @@ To pass arguments to an instance method:
 
    `Pages/CallDotNetExample3.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor" highlight="31,35":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor":::
 
 ## Class instance examples
 
@@ -1245,7 +1257,7 @@ The `CallHelloHelperGetHelloMessage` method in the following `JsInteropClasses3`
 
 `JsInteropClasses3.cs`:
 
-:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/JsInteropClasses3.cs" highlight="15-20":::
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/JsInteropClasses3.cs":::
 
 To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
 
@@ -1519,7 +1531,7 @@ For the following `CallDotNetExample2` component:
 
 `Pages/CallDotNetExample2.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor" highlight="30-31,34-35":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample2.razor":::
 
 In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 
@@ -1541,7 +1553,7 @@ To pass arguments to an instance method:
 
    `Pages/CallDotNetExample3.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor" highlight="31,35":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample3.razor":::
 
    In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 
@@ -1752,6 +1764,7 @@ In the following `GenericsExample` component:
 @page "/generics-example"
 @using System.Runtime.InteropServices
 @inject IJSRuntime JS
+@implements IDisposable
 
 <p>
     <button @onclick="InvokeInterop">Invoke Interop</button>
@@ -1765,17 +1778,28 @@ In the following `GenericsExample` component:
 @code {
     private GenericType<string> genericType1 = new() { Value = "string 0" };
     private GenericType<int> genericType2 = new() { Value = 0 };
+    private DotNetObjectReference<GenericType<string>>? objRef1;
+    private DotNetObjectReference<GenericType<int>>? objRef2;
+
+    protected override void OnInitialized()
+    {
+        objRef1 = DotNetObjectReference.Create(genericType1);
+        objRef2 = DotNetObjectReference.Create(genericType2);
+    }
 
     public async Task InvokeInterop()
     {
-        var syncInterop = 
+        var syncInterop =
             RuntimeInformation.IsOSPlatform(OSPlatform.Create("BROWSER"));
 
         await JS.InvokeVoidAsync(
-            "invokeMethodsAsync",
-            syncInterop,
-            DotNetObjectReference.Create(genericType1),
-            DotNetObjectReference.Create(genericType2));
+            "invokeMethodsAsync", syncInterop, objRef1, objRef2);
+    }
+
+    public void Dispose()
+    {
+        objRef1?.Dispose();
+        objRef2?.Dispose();
     }
 }
 ```
@@ -1841,7 +1865,7 @@ The `CallHelloHelperGetHelloMessage` method in the following `JsInteropClasses3`
 
 `JsInteropClasses3.cs`:
 
-:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/JsInteropClasses3.cs" highlight="15-19":::
+:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/JsInteropClasses3.cs":::
 
 In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 
