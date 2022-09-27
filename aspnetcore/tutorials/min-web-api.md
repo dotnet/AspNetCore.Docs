@@ -533,7 +533,7 @@ This tutorial creates the following API:
 
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-  * Select **.NET 7.0 (Preview)**
+  * Select **.NET 7.0**
   * Uncheck **Do not use top-level statements**
   * Select **Create**
 
@@ -563,8 +563,6 @@ This tutorial creates the following API:
   ![macOS New solution](first-web-api-mac/_static/6/sln.png)
 
 * Select **Web and Console** > **App** > **Empty** > **Continue**.
-
-  ![macOS API template selection](first-web-api-mac/_static/6/api_template.png)
 
 * Make the following selections:
   * **Target framework:** .NET 7.x (or more recent). 
@@ -651,7 +649,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 ## The model and database context classes
 
-Create a file named `Todo.cs` with the following code:
+In the project folder, create a file named `Todo.cs` with the following code:
 
 :::code language="csharp" source="min-web-api/samples/7.x/todoGroup/Todo.cs":::
 
@@ -691,9 +689,11 @@ This tutorial uses Postman to test the API.
 
 ### Test posting data
 
-The following code creates an HTTP POST endpoint `/todoitems` to add data to the in-memory database:
+The following code in `Program.cs` creates an HTTP POST endpoint `/todoitems` that adds data to the in-memory database:
 
 [!code-csharp[](min-web-api/samples/7.x/todo/Program.cs?name=snippet_post)]
+
+Run the app. The browser displays a 404 error because there is no longer a `/` endpoint.
 
 Use the POST endpoint to add data to the app:
 
@@ -704,16 +704,13 @@ Use the POST endpoint to add data to the app:
 * Select **raw**.
 * Set the type to **JSON**.
 * In the request body enter JSON for a to-do item:
-  
   ```json
   {
     "name":"walk dog",
     "isComplete":true
   }
   ```
-
 * Select **Send**.
-
   ![Postman with Post request details](min-web-api/_static/post2.png)
 
 ## Examine the GET endpoints
@@ -736,7 +733,6 @@ Test the app by calling the endpoints from a browser or Postman. The following s
 * Set the HTTP method to **GET**.
 * Set the request URI to `https://localhost:<port>/todoitems`. For example, `https://localhost:5001/todoitems`.
 * Select **Send**.
-* Set the request URI to `https://localhost:<port>/todoitems/1`. For example, `https://localhost:5001/todoitems/1`.
 
 The call to `GET /todoitems` produces a response similar to the following:
 
@@ -744,11 +740,22 @@ The call to `GET /todoitems` produces a response similar to the following:
 [
   {
     "id": 1,
-    "name": "Item1",
+    "name": "walk dog",
     "isComplete": false
   }
 ]
 ```
+
+* Set the request URI to `https://localhost:<port>/todoitems/1`. For example, `https://localhost:5001/todoitems/1`.
+* Select **Send**.
+* The response is similar to the following:
+  ```json
+  {
+    "id": 1,
+    "name": "walk dog",
+    "isComplete": false
+  }
+  ```
 
 This app uses an in-memory database. If the app is restarted, the GET request doesn't return any data. If no data is returned, [POST](#post) data to the app and try the GET request again.
 

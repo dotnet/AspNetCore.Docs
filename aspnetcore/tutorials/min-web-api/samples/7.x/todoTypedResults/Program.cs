@@ -7,14 +7,14 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 var app = builder.Build();
 
 // <snippet_group>
-RouteGroupBuilder group = app.MapGroup("/todoitems");
+var todoItems = app.MapGroup("/todoitems");
 
-group.MapGet("/", GetAllTodos);
-group.MapGet("/complete", GetCompleteTodos);
-group.MapGet("/{id}", GetTodo);
-group.MapPost("/", CreateTodo);
-group.MapPut("/{id}", UpdateTodo);
-group.MapDelete("/{id}", DeleteTodo);
+todoItems.MapGet("/", GetAllTodos);
+todoItems.MapGet("/complete", GetCompleteTodos);
+todoItems.MapGet("/{id}", GetTodo);
+todoItems.MapPost("/", CreateTodo);
+todoItems.MapPut("/{id}", UpdateTodo);
+todoItems.MapDelete("/{id}", DeleteTodo);
 // </snippet_group>
 
 app.Run();
