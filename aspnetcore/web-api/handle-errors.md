@@ -286,9 +286,32 @@ Use the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.ClientErrorMapping%2A>
 
 ### Produce a ProblemDetails payload for exceptions
 
-ASP.NET Core doesn't produce a standardized error payload when an unhandled exception occurs. For scenarios where it's desirable to return a standardized [ProblemDetails response](https://datatracker.ietf.org/doc/html/rfc7807) to the client, the [ProblemDetails middleware](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) can be used to map exceptions and 404 responses to a [ProblemDetails](xref:web-api/handle-errors#pd) payload. The exception handling middleware can also be used to return a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> payload for unhandled exceptions.
+Consider the following app:
 
-<!-- TODO UPDATE •	Update Produce a ProblemDetails payload for exceptions to keep mentioning the community middleware as an addition to what we have now.-->
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_apishort" highlight="4,8-9,13":::
+
+In non-development environments, when an exception occurs, the following a standardized [ProblemDetails response](https://datatracker.ietf.org/doc/html/rfc7807) is returned to the client:
+
+```json
+{
+"type":"https://tools.ietf.org/html/rfc7231#section-6.6.1",
+"title":"An error occurred while processing your request.",
+"status":500,"traceId":"00-b644<snip>-00"
+}
+```
+
+An alternative to a [custom exception handler page](xref:fundamentals/error-handling#exception-handler-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. Using a lambda allows access to the error before returning the response.
+
+The following code uses a lambda for exception handling:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_lambda" :::
+
+> [!WARNING]
+> Do **not** serve sensitive error information to clients. Serving errors is a security risk.
+
+<!--
+When  standardized error payload when an unhandled exception occurs. For scenarios where it's desirable to return a standardized [ProblemDetails response](https://datatracker.ietf.org/doc/html/rfc7807) to the client, the [ProblemDetails middleware](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) can be used to map exceptions to a [ProblemDetails](xref:web-api/handle-errors#pd) payload. The exception handling middleware can also be used to return a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> payload for unhandled exceptions.
+-->
 
 ## Additional resources
 
