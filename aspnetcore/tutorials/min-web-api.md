@@ -566,19 +566,15 @@ This tutorial creates the following API:
 
   ![macOS API template selection](first-web-api-mac/_static/6/api_template.png)
 
-* In the first **Configure your new API** dialog, make the following selections:
+* Make the following selections:
   * **Target framework:** .NET 7.x (or more recent). 
   * **Configure for HTTPS**: Check
-  * Select **Continue**.
+  * Select **Next**.
 
-* In the second **Configure your new API** dialog, enter the following:
+* Enter the following:
   * **Project name:** TodoApi
   * **Solution name:** TodoApi
   * Select **Create**.
-
-  ![Configure Your New API Window 2](first-web-api-mac/_static/6/configure_your_new_api2.png)
-
-[!INCLUDE[](~/includes/mac-terminal-access.md)]
 
 ---
 
