@@ -187,7 +187,7 @@ Note that the `Handle` method in the [handler example](#security-authorization-h
 If a handler calls `context.Succeed` or `context.Fail`, all other handlers are still called. This allows requirements to produce side effects, such as logging, which takes place even if another handler has successfully validated or failed a requirement. When set to `false`, the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.InvokeHandlersAfterFailure%2A> property short-circuits the execution of handlers when `context.Fail` is called. `InvokeHandlersAfterFailure` defaults to `true`, in which case all handlers are called.
 
 > [!NOTE]
-> Authorization handlers are called even if authentication fails.
+> Authorization handlers are called even if authentication fails. Also handlers can execute in any order, so do ***not*** depend on them being called in any particular order.
 
 <a name="security-authorization-policies-based-multiple-handlers"></a>
 
