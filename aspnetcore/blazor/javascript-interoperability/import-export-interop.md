@@ -237,7 +237,9 @@ If you need to iteratively make code changes in JS files and force a browser to 
 
 *Before following the guidance in this section, read the [Call JavaScript from .NET](#call-javascript-from-net) and [Call .NET from JavaScript](#call-net-from-javascript) sections of this article, which provide general guidance on .NET JS `[JSImport]`/`[JSExport]` interop.*
 
-The example in this section shows how to use JS interop from a shared JS module. The following components, classes, C# methods, and JS functions are used:
+The example in this section shows how to use JS interop from a shared JS module in a Blazor WebAssembly app. The guidance in this section isn't applicable to Razor class libraries (RCLs).
+
+The following components, classes, C# methods, and JS functions are used:
 
 * `Interop` class (`Interop.cs`): Sets up import and export JS interop with the `[JSImport]` and `[JSExport]` attributes for a module named `Interop`.
   * `GetWelcomeMessage`: .NET method that calls the imported `getMessage` JS function.
@@ -246,7 +248,7 @@ The example in this section shows how to use JS interop from a shared JS module.
 * `wwwroot/js/interop.js` file: Contains the JS functions.
   * `getMessage`: Returns a welcome message when called by C# code in a component.
   * `setMessage`: Calls the `GetMessageFromDotnet` C# method and assigns the returned welcome message to a DOM `<span>` element.
-* Either `Program.cs` or the `App` component (`App.razor`) can call `JSHost.ImportAsync` to load the module from `wwwroot/js/interop.js`.
+* `Program.cs` calls `JSHost.ImportAsync` to load the module from `wwwroot/js/interop.js`.
 * `CallJavaScript2` component (`Pages/CallJavaScript2.razor`): Calls `GetWelcomeMessage` and displays the returned welcome message in the component's UI.
 * `CallDotNet2` component (`Pages/CallDotNet2.razor`): Calls `SetWelcomeMessage`.
 
@@ -294,39 +296,17 @@ export async function setMessage() {
 }
 ```
 
-There are two options for loading the module:
+Make the `System.Runtime.InteropServices.JavaScript` namespace available at the top of the `Program.cs` file:
 
-* In `Program.cs`:
+```csharp
+using System.Runtime.InteropServices.JavaScript;
+```
 
-  ```csharp
-  using System.Runtime.InteropServices.JavaScript;
+Load the module in `Program.cs` before <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost.RunAsync%2A?displayProperty=nameWithType> is called:
 
-  ...
-
-  await JSHost.ImportAsync("Interop", "../js/interop.js");
-  ```
-
-* An `App` component (`App.razor`) lifecycle event, typically the [`OnInitializedAsync` event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync):
-
-  ```razor
-  @using System.Runtime.InteropServices.JavaScript
-
-  <Router ...>
-      ...
-  </Router>
-
-  @code {
-      protected override async Task OnInitializedAsync()
-      {
-          if (OperatingSystem.IsBrowser())
-          {
-              await JSHost.ImportAsync("Interop", "../js/interop.js");
-          }
-      }
-  }
-  ```
-
-The conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> in the preceding example ensures that the code is only called in a Blazor WebAssembly app running on the client in a browser. If you know for sure that the code is only implemented in a Blazor WebAssembly app, you can remove the check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>.
+```csharp
+await JSHost.ImportAsync("Interop", "../js/interop.js");
+```
 
 `Pages/CallJavaScript2.razor`:
 
@@ -343,10 +323,7 @@ The conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayPrope
 
     protected override void OnInitializedAsync()
     {
-        if (OperatingSystem.IsBrowser())
-        {
-            message = Interop.GetWelcomeMessage();
-        }
+        message = Interop.GetWelcomeMessage();
     }
 }
 ```
@@ -368,10 +345,7 @@ The conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayPrope
 @code {
     protected override void OnAfterRender(bool firstRender)
     {
-        if (OperatingSystem.IsBrowser() && firstRender)
-        {
-            Interop.SetWelcomeMessage();
-        }
+        Interop.SetWelcomeMessage();
     }
 }
 ```
