@@ -1,4 +1,4 @@
-#define Default // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG #i REB 
+#define NR2 // Default CREATE P1 PM PE I1 I0 IP CERT CERT2 CERT3 RE CONFIG LOG #i REB 
 // CONFIGB LOGB IWHB DEP R1 LE LF IM SM NR NR2 RP WILD PBG PBP EPB OP1 OP2 OP3 OP4
 // CB BA CJSON MULTI STREAM XTN AUTH1 AUTH2 AUTH3 AUTH4 CORS CORS2 SWAG SWAG2 
 // FIL2 IHB CHNGR ADDMID
@@ -391,11 +391,11 @@ app.Run();
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-string Hi() => "Hello there";
-app.MapGet("/hello", Hi);
+app.MapGet("/hello", () => "Hello named route")
+   .WithName("hi");
 
-app.MapGet("/", (LinkGenerator linker) => 
-        $"The link to the hello route is {linker.GetPathByName("Hi", values: null)}");
+app.MapGet("/", (LinkGenerator linker) =>
+        $"The link to the hello route is {linker.GetPathByName("hi", values: null)}");
 
 app.Run();
 #endregion
