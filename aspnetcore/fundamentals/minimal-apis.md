@@ -1680,6 +1680,10 @@ The types implementing `IResult` are public, allowing for type assertions when t
 Moved to uid: tutorials/min-web-api
 -->
 
+## Minimal API versioning
+
+The [ASP.NET API Versioning](https://github.com/dotnet/aspnet-api-versioning) repository contains samples of Minimal API versioning.
+
 ## See also
 
 [OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/openapi)
