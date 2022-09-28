@@ -337,7 +337,7 @@ Routes can be given names in order to generate URLs to the route. Using a named 
 
 The preceding code displays `The link to the hello route is /hello` from the `/` endpoint.
 
-Route names are inferred from method names if specified:
+Route names are inferred from method names when `WithName` is used:
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_nr2)]
 
