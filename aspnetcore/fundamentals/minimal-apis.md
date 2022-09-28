@@ -341,13 +341,10 @@ Route names are inferred from method names if specified:
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_nr2)]
 
-**REVIEW**: `{linker.GetPathByName("Hi", values: null)}` is null in the preceding code.
-
-**NOTE**: Route names are case sensitive.
-
 Route names:
 
 * Must be globally unique.
+* Are ***not*** case sensitive.
 * Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](xref:fundamentals/minimal-apis/openapi).
 
 ### Route Parameters
