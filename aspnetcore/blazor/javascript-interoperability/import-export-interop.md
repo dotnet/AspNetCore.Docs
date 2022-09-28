@@ -91,7 +91,7 @@ namespace BlazorSample.Pages
 }
 ```
 
-The app's namespace for the preceding `CallJavaScript1` partial class is `BlazorServer`. The component's namespace is `BlazorSample.Pages`. If using the preceding component in a local test app, update the namespace to match the app. For example, the namespace is `ContosoApp.Pages` if the app's namespace is `ContosoApp`. For more information, see <xref:blazor/components/index#partial-class-support>.
+The app's namespace for the preceding `CallJavaScript1` partial class is `BlazorSample`. The component's namespace is `BlazorSample.Pages`. If using the preceding component in a local test app, update the namespace to match the app. For example, the namespace is `ContosoApp.Pages` if the app's namespace is `ContosoApp`. For more information, see <xref:blazor/components/index#partial-class-support>.
 
 In the imported method signature, you can use .NET types for parameters and return values, which are marshalled automatically by the runtime. Use `JSMarshalAsAttribute<T>` to control how the imported method parameters are marshalled. For example, you might choose to marshal a `long` as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>. You can pass <xref:System.Action>/<xref:System.Func%601> callbacks as parameters, which are marshalled as callable JS functions. You can pass both JS and managed object references, and they are marshaled as proxy objects, keeping the object alive across the boundary until the proxy is garbage collected. You can also import and export asynchronous methods with a <xref:System.Threading.Tasks.Task> result, which are marshaled as [JS promises](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods, which are covered in the [Call .NET from JavaScript](#call-net-from-javascript) section later in this article.
 
@@ -100,44 +100,6 @@ The module name in the `[JSImport]` attribute and the call to load the module in
 ```csharp
 [JSImport("getMessage", 
     "Contoso.InteropServices.JavaScript.UserMessages.CallJavaScript1")]
-```
-
-If the JS function doesn't directly interact with the rendered Document Object Model (DOM), import the module in [`OnInitializedAsync`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). Call the imported JS function with the .NET interop method.
-
-If the JS module interacts directly with the component's rendered UI, import the module in [`OnAfterRenderAsync`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) and call the imported JS function:
-
-```csharp
-protected override async Task OnAfterRenderAsync(bool firstRender)
-{
-    if (OperatingSystem.IsBrowser() && firstRender)
-    {
-        await JSHost.ImportAsync("CallJavaScript1", "../Pages/CallJavaScript1.razor.js");
-
-        ...
-    }
-}
-```
-
-If the code holds a reference to the <xref:System.Runtime.InteropServices.JavaScript.JSObject> returned by `JSHost.ImportAsync`, call <xref:System.Runtime.InteropServices.JavaScript.JSObject.Dispose%2A?displayProperty=nameWithType> when the component is disposed:
-
-```razor
-...
-@implements IDisposable
-
-...
-
-@code {
-    private JSObject? module;
-
-    ...
-
-    module = await JSHost.ImportAsync("CallJavaScript1", 
-        "../Pages/CallJavaScript1.razor.js");
-
-    ...
-
-    public void Dispose() => module?.Dispose();
-}
 ```
 
 Export scripts from a standard [JavaScript ES6 module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules) [collocated with a component](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) or placed with other JavaScript static assets.
@@ -172,7 +134,7 @@ The following `CallDotNet1` component calls JS that directly interacts with the 
 * The returned welcome message is displayed by `setMessage` in the UI via the `message` field.
 
 > [!IMPORTANT]
-> In this section's example, JS interop is used to mutate a DOM element *purely for demonstration purposes* after the component is rendered in [`OnAfterRenderAsync`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). Typically, you should only mutate the DOM with JS when the object doesn't interact with Blazor. The approach shown in this section is similar to cases where a third-party JS library is used in a Razor component, where the component interacts with the JS library via JS interop, the third-party JS library interacts with part of the DOM, and Blazor isn't involved directly with the DOM updates to that part of the DOM. For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
+> In this section's example, JS interop is used to mutate a DOM element *purely for demonstration purposes* after the component is rendered in [`OnAfterRender`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). Typically, you should only mutate the DOM with JS when the object doesn't interact with Blazor. The approach shown in this section is similar to cases where a third-party JS library is used in a Razor component, where the component interacts with the JS library via JS interop, the third-party JS library interacts with part of the DOM, and Blazor isn't involved directly with the DOM updates to that part of the DOM. For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
 
 `Pages/CallDotNet1.razor`:
 
@@ -189,23 +151,26 @@ The following `CallDotNet1` component calls JS that directly interacts with the 
 </p>
 
 @code {
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnInitializedAsync()
     {
-        if (OperatingSystem.IsBrowser() && firstRender)
+        if (OperatingSystem.IsBrowser())
         {
             await JSHost.ImportAsync("CallDotNet1", 
                 "../Pages/CallDotNet1.razor.js");
+        }
+    }
 
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (OperatingSystem.IsBrowser() && firstRender)
+        {
             SetWelcomeMessage();
         }
-    }  
+    }
 }
 ```
 
-> [!NOTE]
-> As demonstrated in the [Call JavaScript from .NET](#call-javascript-from-net) section, call <xref:System.Runtime.InteropServices.JavaScript.JSObject.Dispose%2A?displayProperty=nameWithType> in a `Dispose` method if the component holds a reference to the <xref:System.Runtime.InteropServices.JavaScript.JSObject> returned by `JSHost.ImportAsync`.
->
-> The conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> in the preceding example ensures that the code is only called in Blazor WebAssembly apps running on the client in a browser. This is important for library code deployed as NuGet packages that might be referenced by developers of Blazor Server apps, where the preceding code can't execute. If you know for sure that the code is only implemented in Blazor WebAssembly apps, you can remove the check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>.
+The conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> in the preceding example ensures that the code is only called in Blazor WebAssembly apps running on the client in a browser. This is important for library code deployed as NuGet packages that might be referenced by developers of Blazor Server apps, where the preceding code can't execute. If you know for sure that the code is only implemented in Blazor WebAssembly apps, you can remove the check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>.
 
 To export a .NET method so that it can be called from JS, use the `[JSExport]` attribute.
 
@@ -237,7 +202,7 @@ namespace BlazorSample.Pages
 }
 ```
 
-The app's namespace for the preceding `CallDotNet1` partial class is `BlazorServer`. The component's namespace is `BlazorSample.Pages`. If using the preceding component in a local test app, update the app's namespace to match the app. For example, the component namespace is `ContosoApp.Pages` if the app's namespace is `ContosoApp`. For more information, see <xref:blazor/components/index#partial-class-support>.
+The app's namespace for the preceding `CallDotNet1` partial class is `BlazorSample`. The component's namespace is `BlazorSample.Pages`. If using the preceding component in a local test app, update the app's namespace to match the app. For example, the component namespace is `ContosoApp.Pages` if the app's namespace is `ContosoApp`. For more information, see <xref:blazor/components/index#partial-class-support>.
 
 In the following example, a JS function named `setMessage` is imported from a collocated JS file.
 
@@ -259,6 +224,9 @@ export async function setMessage() {
 }
 ```
 
+> [!NOTE]
+> Calling `globalThis.getDotnetRuntime(0)` to obtain the exports can occur in a [JavaScript initializer](xref:blazor/js-interop/index#javascript-initializers) for availability across the app.
+
 If you need to iteratively make code changes in JS files and force a browser to reload the files (cache busting), we recommend using browser [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) with static asset caching disabled. For more information, access the documentation for the developer tools associated with your browser:
 
 * [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
@@ -278,7 +246,7 @@ The example in this section shows how to use JS interop from a shared JS module.
 * `wwwroot/js/interop.js` file: Contains the JS functions.
   * `getMessage`: Returns a welcome message when called by C# code in a component.
   * `setMessage`: Calls the `GetMessageFromDotnet` C# method and assigns the returned welcome message to a DOM `<span>` element.
-* `App` component (`App.razor`): Loads the module from `wwwroot/js/interop.js` by calling `JSHost.ImportAsync` in the [`OnInitializedAsync` event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync).
+* Either `Program.cs` or the `App` component (`App.razor`) can call `JSHost.ImportAsync` to load the module from `wwwroot/js/interop.js`.
 * `CallJavaScript2` component (`Pages/CallJavaScript2.razor`): Calls `GetWelcomeMessage` and displays the returned welcome message in the component's UI.
 * `CallDotNet2` component (`Pages/CallDotNet2.razor`): Calls `SetWelcomeMessage`.
 
@@ -326,28 +294,39 @@ export async function setMessage() {
 }
 ```
 
-`App.razor`:
+There are two options for loading the module:
 
-```razor
-@using System.Runtime.InteropServices.JavaScript
+* In `Program.cs`:
 
-<Router ...>
-    ...
-</Router>
+  ```csharp
+  using System.Runtime.InteropServices.JavaScript;
 
-@code {
-    protected override async Task OnInitializedAsync()
-    {
-        if (OperatingSystem.IsBrowser())
-        {
-            await JSHost.ImportAsync("Interop", "../js/interop.js");
-        }
-    }
-}
-```
+  ...
 
-> [!NOTE]
-> The conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> in the preceding example ensures that the code is only called in a Blazor WebAssembly app running on the client in a browser. If you know for sure that the code is only implemented in a Blazor WebAssembly app, you can remove the check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>.
+  await JSHost.ImportAsync("Interop", "../js/interop.js");
+  ```
+
+* An `App` component (`App.razor`) lifecycle event, typically the [`OnInitializedAsync` event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync):
+
+  ```razor
+  @using System.Runtime.InteropServices.JavaScript
+
+  <Router ...>
+      ...
+  </Router>
+
+  @code {
+      protected override async Task OnInitializedAsync()
+      {
+          if (OperatingSystem.IsBrowser())
+          {
+              await JSHost.ImportAsync("Interop", "../js/interop.js");
+          }
+      }
+  }
+  ```
+
+The conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> in the preceding example ensures that the code is only called in a Blazor WebAssembly app running on the client in a browser. If you know for sure that the code is only implemented in a Blazor WebAssembly app, you can remove the check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>.
 
 `Pages/CallJavaScript2.razor`:
 
