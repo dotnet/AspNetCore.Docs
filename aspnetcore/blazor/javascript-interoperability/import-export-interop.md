@@ -225,7 +225,7 @@ export async function setMessage() {
 ```
 
 > [!NOTE]
-> Calling `globalThis.getDotnetRuntime(0)` to obtain the exports can occur in a [JavaScript initializer](xref:blazor/js-interop/index#javascript-initializers) for availability across the app.
+> Calling `getAssemblyExports` to obtain the exports can occur in a [JavaScript initializer](xref:blazor/js-interop/index#javascript-initializers) for availability across the app.
 
 If you need to iteratively make code changes in JS files and force a browser to reload the files (cache busting), we recommend using browser [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) with static asset caching disabled. For more information, access the documentation for the developer tools associated with your browser:
 
