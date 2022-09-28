@@ -23,6 +23,10 @@ uid: diagnostics/code-analysis
 | [ASP0008](xref:diagnostics/asp0008) | Non-breaking             | Do not use ConfigureWebHost with WebApplicationBuilder.Host                  |
 | [ASP0009](xref:diagnostics/asp0009) | Non-breaking             | Do not use Configure with WebApplicationBuilder.WebHost                      |
 | [ASP0010](xref:diagnostics/asp0010) | Non-breaking             | Do not use UseStartup with WebApplicationBuilder.WebHost                     |
+| [ASP0011](xref:diagnostics/asp0011) | Non-breaking             | Suggest using builder.Logging over Host.ConfigureLogging or WebHost.ConfigureLogging                     |
+| [ASP0012](xref:diagnostics/asp0012) | Non-breaking             | Suggest using builder.Services over Host.ConfigureServices or WebHost.ConfigureServices                    |
+| [ASP0013](xref:diagnostics/asp0013) | Non-breaking             | Suggest switching from using Configure methods to WebApplicationBuilder.Configuration                     |
+| [ASP0014](xref:diagnostics/asp0014) | Non-breaking             | Suggest using top level route registrations                                  |
 | [BL0001](xref:diagnostics/bl0001)   | Breaking                 | Component parameter should have public setters                               |
 | [BL0002](xref:diagnostics/bl0002)   | Non-breaking             | Component has multiple CaptureUnmatchedValues parameters                     |
 | [BL0003](xref:diagnostics/bl0003)   | Breaking                 | Component parameter with CaptureUnmatchedValues has the wrong type           |

@@ -92,7 +92,7 @@ By default, there's no limit on the number of connections per user for a Blazor 
 
 ## Denial of service (DoS) attacks
 
-Denial of service (DoS) attacks involve a client causing the server to exhaust one or more of its resources making the app unavailable. Blazor Server apps include default limits and rely on other ASP.NET Core and SignalR limits to protect against DoS attacks that are set on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions>:
+[Denial of service (DoS) attacks](https://developer.mozilla.org/docs/Glossary/DOS_attack) involve a client causing the server to exhaust one or more of its resources making the app unavailable. Blazor Server apps include default limits and rely on other ASP.NET Core and SignalR limits that are set on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions> to protect against DoS attacks:
 
 * <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitMaxRetained?displayProperty=nameWithType>
 * <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod?displayProperty=nameWithType>
@@ -483,7 +483,7 @@ By default, there's no limit on the number of connections per user for a Blazor 
 
 ## Denial of service (DoS) attacks
 
-Denial of service (DoS) attacks involve a client causing the server to exhaust one or more of its resources making the app unavailable. Blazor Server apps include default limits and rely on other ASP.NET Core and SignalR limits to protect against DoS attacks that are set on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions>:
+[Denial of service (DoS) attacks](https://developer.mozilla.org/docs/Glossary/DOS_attack) involve a client causing the server to exhaust one or more of its resources making the app unavailable. Blazor Server apps include default limits and rely on other ASP.NET Core and SignalR limits that are set on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions> to protect against DoS attacks:
 
 * <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitMaxRetained?displayProperty=nameWithType>
 * <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod?displayProperty=nameWithType>
@@ -874,7 +874,7 @@ By default, there's no limit on the number of connections per user for a Blazor 
 
 ## Denial of service (DoS) attacks
 
-Denial of service (DoS) attacks involve a client causing the server to exhaust one or more of its resources making the app unavailable. Blazor Server apps include default limits and rely on other ASP.NET Core and SignalR limits to protect against DoS attacks that are set on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions>:
+[Denial of service (DoS) attacks](https://developer.mozilla.org/docs/Glossary/DOS_attack) involve a client causing the server to exhaust one or more of its resources making the app unavailable. Blazor Server apps include default limits and rely on other ASP.NET Core and SignalR limits that are set on <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions> to protect against DoS attacks:
 
 * <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitMaxRetained?displayProperty=nameWithType>
 * <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod?displayProperty=nameWithType>
