@@ -17,6 +17,7 @@ The [sample code on GitHub](https://github.com/dotnet/AspNetCore.Docs.Samples/tr
 
 ## Additional Resources
 
+* [Basic authentication tests](https://github.com/blowdart/idunno.Authentication/tree/dev/test/idunno.Authentication.Basic.Test) is not a .NET repository but was written by a member of the .NET team. It provides examples of basic authentication testing.
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample)
 * <xref:mvc/controllers/testing>
 * <xref:test/razor-pages-tests>
