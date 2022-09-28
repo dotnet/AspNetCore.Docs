@@ -57,18 +57,16 @@ In the following `CallJavaScript1` component:
 
     protected override async Task OnInitializedAsync()
     {
-        if (OperatingSystem.IsBrowser())
-        {
-            await JSHost.ImportAsync("CallJavaScript1", 
-                "../Pages/CallJavaScript1.razor.js");
+        await JSHost.ImportAsync("CallJavaScript1", 
+            "../Pages/CallJavaScript1.razor.js");
 
-            message = GetWelcomeMessage();
-        }
+        message = GetWelcomeMessage();
     }
 }
 ```
 
-The conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> in the preceding example ensures that the code is only called in Blazor WebAssembly apps running on the client in a browser. This is important for libraries deployed as NuGet packages that might be referenced by developers of Blazor Server apps, where the preceding code can't execute. If you know for sure that the code is only implemented in a Blazor WebAssembly app, you can remove the check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>.
+> [!NOTE]
+> Code can include a conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> to ensure that the JS interop is only called in Blazor WebAssembly apps running on the client in a browser. This is important for libraries/NuGet packages that target Blazor WebAssembly and Blazor Server apps.
 
 To import a JS function to call it from C#, use the `[JSImport]` attribute on a C# method signature that matches the JS function's signature. The first parameter to the `[JSImport]` attribute is the name of the JS function to import, and the second parameter is the name of the [JS module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules).
 
@@ -153,24 +151,16 @@ The following `CallDotNet1` component calls JS that directly interacts with the 
 @code {
     protected override async Task OnInitializedAsync()
     {
-        if (OperatingSystem.IsBrowser())
-        {
-            await JSHost.ImportAsync("CallDotNet1", 
-                "../Pages/CallDotNet1.razor.js");
-        }
+        await JSHost.ImportAsync("CallDotNet1", 
+            "../Pages/CallDotNet1.razor.js");
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
-        if (OperatingSystem.IsBrowser() && firstRender)
-        {
-            SetWelcomeMessage();
-        }
+        SetWelcomeMessage();
     }
 }
 ```
-
-The conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> in the preceding example ensures that the code is only called in Blazor WebAssembly apps running on the client in a browser. This is important for library code deployed as NuGet packages that might be referenced by developers of Blazor Server apps, where the preceding code can't execute. If you know for sure that the code is only implemented in Blazor WebAssembly apps, you can remove the check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>.
 
 To export a .NET method so that it can be called from JS, use the `[JSExport]` attribute.
 
