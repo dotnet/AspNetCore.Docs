@@ -375,6 +375,8 @@ Additional configuration of the example `web.config` file might be required in t
   * Serving compressed files configured by the example `web.config` file in an uncompressed format.
 * The server's IIS configuration (for example, `applicationHost.config`) provides server-level IIS defaults. Depending on the server-level configuration, the app might require a different IIS configuration than what the example `web.config` file contains.
 
+For more information on custom `web.config` files, see the [Use a custom `web.config`](#use-a-custom-webconfig) section.
+
 #### Troubleshooting
 
 If a *500 - Internal Server Error* is received and IIS Manager throws errors when attempting to access the website's configuration, confirm that the URL Rewrite Module is installed. When the module isn't installed, the `web.config` file can't be parsed by IIS. This prevents the IIS Manager from loading the website's configuration and the website from serving Blazor's static files.
@@ -1271,6 +1273,8 @@ Additional configuration of the example `web.config` file might be required in t
   * Serving compressed files configured by the example `web.config` file in an uncompressed format.
 * The server's IIS configuration (for example, `applicationHost.config`) provides server-level IIS defaults. Depending on the server-level configuration, the app might require a different IIS configuration than what the example `web.config` file contains.
 
+For more information on custom `web.config` files, see the [Use a custom `web.config`](#use-a-custom-webconfig) section.
+
 #### Troubleshooting
 
 If a *500 - Internal Server Error* is received and IIS Manager throws errors when attempting to access the website's configuration, confirm that the URL Rewrite Module is installed. When the module isn't installed, the `web.config` file can't be parsed by IIS. This prevents the IIS Manager from loading the website's configuration and the website from serving Blazor's static files.
@@ -2037,6 +2041,8 @@ Additional configuration of the example `web.config` file might be required in t
   * Serving compressed files that aren't configured by the example `web.config` file.
   * Serving compressed files configured by the example `web.config` file in an uncompressed format.
 * The server's IIS configuration (for example, `applicationHost.config`) provides server-level IIS defaults. Depending on the server-level configuration, the app might require a different IIS configuration than what the example `web.config` file contains.
+
+For more information on custom `web.config` files, see the [Use a custom `web.config`](#use-a-custom-webconfig) section.
 
 #### Troubleshooting
 
