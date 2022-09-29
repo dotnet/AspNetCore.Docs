@@ -266,7 +266,7 @@ For more information, see [Tutorial: Building a static web app with Blazor in Az
 
 IIS is a capable static file server for Blazor apps. To configure IIS to host Blazor, see [Build a Static Website on IIS](/iis/manage/creating-websites/scenario-build-a-static-website-on-iis).
 
-Published assets are created in the `/bin/Release/{TARGET FRAMEWORK}/publish` folder. Host the contents of the `publish` folder on the web server or hosting service.
+Published assets are created in the `/bin/Release/{TARGET FRAMEWORK}/publish` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish` folder, depending on which version of the SDK is used and where the the `{TARGET FRAMEWORK}` placeholder is the target framework. Host the contents of the `publish` folder on the web server or hosting service.
 
 #### web.config
 
@@ -289,7 +289,7 @@ To use a custom `web.config` file:
 
 If the SDK's `web.config` generation or transformation during publish either doesn't move the file to published assets in the `publish` folder or modifies the custom configuration in your custom `web.config` file, use any of the following approaches as needed to take full control of the process:
 
-* If the SDK doesn't generate the file, for example, in a standalone Blazor WebAssembly app at `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish`, where the `{TARGET FRAMEWORK}` placeholder is the target framework, set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). Usually for standalone WebAsssembly apps, this is the only required setting to move a custom `web.config` file and prevent transformation of the file by the SDK.
+* If the SDK doesn't generate the file, for example, in a standalone Blazor WebAssembly app at `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish`, depending on which version of the SDK is used and where the `{TARGET FRAMEWORK}` placeholder is the target framework, set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). Usually for standalone WebAsssembly apps, this is the only required setting to move a custom `web.config` file and prevent transformation of the file by the SDK.
 
   ```xml
   <PropertyGroup>
@@ -1165,7 +1165,7 @@ For more information, see [Tutorial: Building a static web app with Blazor in Az
 
 IIS is a capable static file server for Blazor apps. To configure IIS to host Blazor, see [Build a Static Website on IIS](/iis/manage/creating-websites/scenario-build-a-static-website-on-iis).
 
-Published assets are created in the `/bin/Release/{TARGET FRAMEWORK}/publish` folder. Host the contents of the `publish` folder on the web server or hosting service.
+Published assets are created in the `/bin/Release/{TARGET FRAMEWORK}/publish` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish` folder, depending on which version of the SDK is used and where the the `{TARGET FRAMEWORK}` placeholder is the target framework. Host the contents of the `publish` folder on the web server or hosting service.
 
 #### web.config
 
@@ -1188,7 +1188,7 @@ To use a custom `web.config` file:
 
 If the SDK's `web.config` generation or transformation during publish either doesn't move the file to published assets in the `publish` folder or modifies the custom configuration in your custom `web.config` file, use any of the following approaches as needed to take full control of the process:
 
-* If the SDK doesn't generate the file, for example, in a standalone Blazor WebAssembly app at `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish`, where the `{TARGET FRAMEWORK}` placeholder is the target framework, set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). Usually for standalone WebAsssembly apps, this is the only required setting to move a custom `web.config` file and prevent transformation of the file by the SDK.
+* If the SDK doesn't generate the file, for example, in a standalone Blazor WebAssembly app at `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish`, depending on which version of the SDK is used and where the `{TARGET FRAMEWORK}` placeholder is the target framework, set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). Usually for standalone WebAsssembly apps, this is the only required setting to move a custom `web.config` file and prevent transformation of the file by the SDK.
 
   ```xml
   <PropertyGroup>
@@ -1933,7 +1933,7 @@ For more information, see [Tutorial: Building a static web app with Blazor in Az
 
 IIS is a capable static file server for Blazor apps. To configure IIS to host Blazor, see [Build a Static Website on IIS](/iis/manage/creating-websites/scenario-build-a-static-website-on-iis).
 
-Published assets are created in the `/bin/Release/{TARGET FRAMEWORK}/publish` folder. Host the contents of the `publish` folder on the web server or hosting service.
+Published assets are created in the `/bin/Release/{TARGET FRAMEWORK}/publish` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish` folder, depending on which version of the SDK is used and where the the `{TARGET FRAMEWORK}` placeholder is the target framework. Host the contents of the `publish` folder on the web server or hosting service.
 
 #### web.config
 
@@ -1956,7 +1956,7 @@ To use a custom `web.config` file:
 
 If the SDK's `web.config` generation or transformation during publish either doesn't move the file to published assets in the `publish` folder or modifies the custom configuration in your custom `web.config` file, use any of the following approaches as needed to take full control of the process:
 
-* If the SDK doesn't generate the file, for example, in a standalone Blazor WebAssembly app at `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish`, where the `{TARGET FRAMEWORK}` placeholder is the target framework, set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). Usually for standalone WebAsssembly apps, this is the only required setting to move a custom `web.config` file and prevent transformation of the file by the SDK.
+* If the SDK doesn't generate the file, for example, in a standalone Blazor WebAssembly app at `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish`, depending on which version of the SDK is used and where the `{TARGET FRAMEWORK}` placeholder is the target framework, set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). Usually for standalone WebAsssembly apps, this is the only required setting to move a custom `web.config` file and prevent transformation of the file by the SDK.
 
   ```xml
   <PropertyGroup>
