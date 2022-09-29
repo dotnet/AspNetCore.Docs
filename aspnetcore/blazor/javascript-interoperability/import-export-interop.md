@@ -38,7 +38,7 @@ This section explains how to call JS functions from .NET.
 
 In the following `CallJavaScript1` component:
 
-* The `CallJavaScript1` module is imported asynchronously from the [collocated JS file](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component).
+* The `CallJavaScript1` module is imported asynchronously from the [collocated JS file](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) with `JSHost.ImportAsync`.
 * The imported `getMessage` JS function is called by `GetWelcomeMessage`.
 * The returned welcome message string is displayed in the UI via the `message` field.
 
@@ -66,7 +66,7 @@ In the following `CallJavaScript1` component:
 ```
 
 > [!NOTE]
-> Code can include a conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> to ensure that the JS interop is only called in Blazor WebAssembly apps running on the client in a browser. This is important for libraries/NuGet packages that target Blazor WebAssembly and Blazor Server apps.
+> Code can include a conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> to ensure that the JS interop is only called in Blazor WebAssembly apps running on the client in a browser. This is important for libraries/NuGet packages that target Blazor WebAssembly and Blazor Server apps because Blazor Server apps can't execute the code provided by this JS interop API.
 
 To import a JS function to call it from C#, use the `[JSImport]` attribute on a C# method signature that matches the JS function's signature. The first parameter to the `[JSImport]` attribute is the name of the JS function to import, and the second parameter is the name of the [JS module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules).
 
@@ -93,14 +93,14 @@ The app's namespace for the preceding `CallJavaScript1` partial class is `Blazor
 
 In the imported method signature, you can use .NET types for parameters and return values, which are marshalled automatically by the runtime. Use `JSMarshalAsAttribute<T>` to control how the imported method parameters are marshalled. For example, you might choose to marshal a `long` as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>. You can pass <xref:System.Action>/<xref:System.Func%601> callbacks as parameters, which are marshalled as callable JS functions. You can pass both JS and managed object references, and they are marshaled as proxy objects, keeping the object alive across the boundary until the proxy is garbage collected. You can also import and export asynchronous methods with a <xref:System.Threading.Tasks.Task> result, which are marshaled as [JS promises](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods, which are covered in the [Call .NET from JavaScript](#call-net-from-javascript) section later in this article.
 
-The module name in the `[JSImport]` attribute and the call to load the module in the component, which is covered next with `JSHost.ImportAsync` syntax, should match. The module name must also be unique in the app. When authoring a library for deployment in a NuGet package, we recommend using the NuGet package namespace as a prefix in module names. In the following example, the module name reflects the `Contoso.InteropServices.JavaScript` package and a folder of user message interop classes (`UserMessages`):
+The module name in the `[JSImport]` attribute and the call to load the module in the component with `JSHost.ImportAsync` syntax should match. The module name must also be unique in the app. When authoring a library for deployment in a NuGet package, we recommend using the NuGet package namespace as a prefix in module names. In the following example, the module name reflects the `Contoso.InteropServices.JavaScript` package and a folder of user message interop classes (`UserMessages`):
 
 ```csharp
 [JSImport("getMessage", 
     "Contoso.InteropServices.JavaScript.UserMessages.CallJavaScript1")]
 ```
 
-Export scripts from a standard [JavaScript ES6 module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules) [collocated with a component](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) or placed with other JavaScript static assets.
+Export scripts from a standard [JavaScript ES6 module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules) either [collocated with a component](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) or placed with other JavaScript static assets in a JS file (for example, `wwwroot/js/{FILENAME}.js`, where JS static assets are maintained in a folder named `js` in the app's `wwwroot` folder and the `{FILENAME}` placeholder is the filename).
 
 In the following example, a JS function named `getMessage` is exported from a collocated JS file that returns a welcome message, "Hello from Blazor!" in Portuguese:
 
@@ -111,6 +111,8 @@ export function getMessage() {
   return 'Olá do Blazor!';
 }
 ```
+
+After the JS module is loaded, the module's JS functions are available to the app's components and classes as long as the app is running in the browser window or browser tab without the user manually reloading the app. `JSHost.ImportAsync` can be called multiple times when the component is revisted by the user or the same scripts are used by different compoennts from the same JS module. There's no significant performance penalty in these cases, so you don't need to use `IJSRuntime`-based JS interop to check that a module is loaded in order to avoid calling `JSHost.ImportAsync` on an already-loaded module.
 
 If you need to iteratively make code changes in JS files and force a browser to reload the files (cache busting), we recommend using browser [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) with static asset caching disabled. For more information, access the documentation for the developer tools associated with your browser:
 
