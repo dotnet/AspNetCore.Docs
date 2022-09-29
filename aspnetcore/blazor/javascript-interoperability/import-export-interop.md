@@ -112,7 +112,12 @@ export function getMessage() {
 }
 ```
 
-After the JS module is loaded, the module's JS functions are available to the app's components and classes as long as the app is running in the browser window or browser tab without the user manually reloading the app. `JSHost.ImportAsync` can be called multiple times when the component is revisted by the user or the same scripts are used by different compoennts from the same JS module. There's no significant performance penalty in these cases, so you don't need to use `IJSRuntime`-based JS interop to check that a module is loaded in order to avoid calling `JSHost.ImportAsync` on an already-loaded module.
+After the JS module is loaded, the module's JS functions are available to the app's components and classes as long as the app is running in the browser window or browser tab without the user manually reloading the app. `JSHost.ImportAsync` can be called multiple times in the following cases:
+
+* The user visits a component that calls `JSHost.ImportAsync` to import a module, navigates away from that component, and then returns to that component where `JSHost.ImportAsync` is called again for the same module import.
+* The same scripts are used by different components from the same JS module loaded by `JSHost.ImportAsync` in each of the components.
+
+There's no significant performance penalty in these cases, so you don't need to use `IJSRuntime`-based JS interop to check that a module is loaded in order to avoid calling `JSHost.ImportAsync` on an already-loaded module.
 
 If you need to iteratively make code changes in JS files and force a browser to reload the files (cache busting), we recommend using browser [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) with static asset caching disabled. For more information, access the documentation for the developer tools associated with your browser:
 
