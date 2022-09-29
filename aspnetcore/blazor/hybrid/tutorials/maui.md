@@ -5,7 +5,7 @@ description: Build a .NET MAUI Blazor app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/23/2022
+ms.date: 09/29/2022
 uid: blazor/hybrid/tutorials/maui
 ---
 # Build a .NET MAUI Blazor app
@@ -20,16 +20,16 @@ This tutorial shows you how to build and run a .NET MAUI Blazor app. You learn h
 ## Prerequisites
 
 * [Supported platforms (.NET MAUI documentation)](/dotnet/maui/supported-platforms)
-* [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **.NET Multi-platform App UI development** workload.
+* [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) with the **.NET Multi-platform App UI development** workload.
 * [Microsoft Edge `WebView2`](https://developer.microsoft.com/microsoft-edge/webview2/): `WebView2` is required on Windows when running a native app. When developing .NET MAUI Blazor apps and only running them in Visual Studio's emulators, `WebView2` isn't required.
 * [Enable hardware acceleration](/dotnet/maui/android/emulator/hardware-acceleration) to improve the performance of the Android emulator.
 
 > [!NOTE]
-> Blazor Hybrid has reached General Availability (GA) and is fully supported for production workloads. Visual Studio and Visual Studio for Mac are in prerelease for working on Blazor Hybrid apps and may be modified before final release. We recommend keeping Visual Studio 2022 Preview updated for the best tooling experience.
+> Blazor Hybrid has reached General Availability (GA) and is fully supported for production workloads. Visual Studio for Mac is in prerelease for working on Blazor Hybrid apps and may be modified before final release. We recommend keeping Visual Studio 2022 updated for the best tooling experience.
 
 ## Create a .NET MAUI Blazor app
 
-Launch Visual Studio 2022 Preview.
+Launch Visual Studio 2022.
 
 In the Start Window, select **Create a new project**:
 

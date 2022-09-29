@@ -19,10 +19,10 @@ This tutorial shows you how to build and run a Windows Forms Blazor app. You lea
 ## Prerequisites
 
 * [Supported platforms (Windows Forms documentation)](/dotnet/desktop/winforms/overview/)
-* [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **.NET desktop development** workload
+* [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) with the **.NET desktop development** workload
 
 > [!NOTE]
-> Blazor Hybrid has reached General Availability (GA) and is fully supported for production workloads. Visual Studio and Visual Studio for Mac are in prerelease for working on Blazor Hybrid apps and may be modified before final release. We recommend keeping Visual Studio 2022 Preview updated for the best tooling experience.
+> Blazor Hybrid has reached General Availability (GA) and is fully supported for production workloads. Visual Studio for Mac is in prerelease for working on Blazor Hybrid apps and may be modified before final release. We recommend keeping Visual Studio 2022 updated for the best tooling experience.
 
 ## Visual Studio workload
 
@@ -32,7 +32,7 @@ If the **.NET desktop development** workload isn't installed, use the Visual Stu
 
 ## Create a Windows Forms Blazor project
 
-Start Visual Studio 2022 Preview.
+Start Visual Studio 2022.
 
 In the Start Window, select **Create a new project**:
 
