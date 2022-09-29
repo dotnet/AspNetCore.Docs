@@ -22,7 +22,7 @@ This tutorial shows you how to build and run a Windows Forms Blazor app. You lea
 * [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) with the **.NET desktop development** workload
 
 > [!NOTE]
-> Blazor Hybrid has reached General Availability (GA) and is fully supported for production workloads. Visual Studio for Mac are in prerelease for working on Blazor Hybrid apps and may be modified before final release. We recommend keeping Visual Studio 2022 updated for the best tooling experience.
+> Blazor Hybrid has reached General Availability (GA) and is fully supported for production workloads. Visual Studio for Mac is in prerelease for working on Blazor Hybrid apps and may be modified before final release. We recommend keeping Visual Studio 2022 updated for the best tooling experience.
 
 ## Visual Studio workload
 
