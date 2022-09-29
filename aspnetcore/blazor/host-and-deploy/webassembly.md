@@ -287,6 +287,32 @@ To use a custom `web.config` file:
 1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), place the file in the **`Server`** project's folder.
 1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **`Server`** project. For more information, see <xref:blazor/host-and-deploy/index>.
 
+If the SDK's `web.config` generation or transformation during publish either doesn't move the file to published assets in the `publish` folder or modifies the custom configuration in your custom `web.config` file, use any of the following approaches as needed to take full control of the process:
+
+* If the SDK doesn't generate the file, for example, in a standalone Blazor WebAssembly app at `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish`, where the `{TARGET FRAMEWORK}` placeholder is the target framework, set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). Usually for standalone WebAsssembly apps, this is the only required setting to move a custom `web.config` file and prevent transformation of the file by the SDK.
+
+  ```xml
+  <PropertyGroup>
+    <PublishIISAssets>true</PublishIISAssets>
+  </PropertyGroup>
+  ```
+
+* Disable the SDK's `web.config` transformation in the project file (`.csproj`):
+
+  ```xml
+  <PropertyGroup>
+    <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
+  </PropertyGroup>
+  ```
+
+* Add a custom target to the the project file (`.csproj`) to move a custom `web.config` file. In the following example, the custom `web.config` file is placed by the developer at the root of the project. If the `web.config` file resides elsewhere, specify the path to the file in `SourceFiles`. The following example specifies the `publish` folder with `$(PublishDir)`, but provide a path to `DestinationFolder` for a custom output location.
+
+  ```xml
+  <Target Name="CopyWebConfig" AfterTargets="Publish">
+    <Copy SourceFiles="web.config" DestinationFolder="$(PublishDir)" />
+  </Target>
+  ```
+
 #### Install the URL Rewrite Module
 
 The [URL Rewrite Module](https://www.iis.net/downloads/microsoft/url-rewrite) is required to rewrite URLs. The module isn't installed by default, and it isn't available for install as a Web Server (IIS) role service feature. The module must be downloaded from the IIS website. Use the Web Platform Installer to install the module:
@@ -1156,16 +1182,33 @@ When a Blazor project is published, a `web.config` file is created with the foll
 To use a custom `web.config` file:
 
 1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), place the file in the **`Server`** project's folder.
-1. Set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). For a hosted Blazor WebAssembly solution, set the property in the **`Server`** project's project file.
-
-   ```xml
-   <PropertyGroup>
-     <PublishIISAssets>true</PublishIISAssets>
-   </PropertyGroup>
-   ```
-
 1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **`Server`** project. For more information, see <xref:blazor/host-and-deploy/index>.
 
+If the SDK's `web.config` generation or transformation during publish either doesn't move the file to published assets in the `publish` folder or modifies the custom configuration in your custom `web.config` file, use any of the following approaches as needed to take full control of the process:
+
+* If the SDK doesn't generate the file, for example, in a standalone Blazor WebAssembly app at `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish`, where the `{TARGET FRAMEWORK}` placeholder is the target framework, set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). Usually for standalone WebAsssembly apps, this is the only required setting to move a custom `web.config` file and prevent transformation of the file by the SDK.
+
+  ```xml
+  <PropertyGroup>
+    <PublishIISAssets>true</PublishIISAssets>
+  </PropertyGroup>
+  ```
+
+* Disable the SDK's `web.config` transformation in the project file (`.csproj`):
+
+  ```xml
+  <PropertyGroup>
+    <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
+  </PropertyGroup>
+  ```
+
+* Add a custom target to the the project file (`.csproj`) to move a custom `web.config` file. In the following example, the custom `web.config` file is placed by the developer at the root of the project. If the `web.config` file resides elsewhere, specify the path to the file in `SourceFiles`. The following example specifies the `publish` folder with `$(PublishDir)`, but provide a path to `DestinationFolder` for a custom output location.
+
+  ```xml
+  <Target Name="CopyWebConfig" AfterTargets="Publish">
+    <Copy SourceFiles="web.config" DestinationFolder="$(PublishDir)" />
+  </Target>
+  ```
 #### Install the URL Rewrite Module
 
 The [URL Rewrite Module](https://www.iis.net/downloads/microsoft/url-rewrite) is required to rewrite URLs. The module isn't installed by default, and it isn't available for install as a Web Server (IIS) role service feature. The module must be downloaded from the IIS website. Use the Web Platform Installer to install the module:
@@ -1905,15 +1948,33 @@ When a Blazor project is published, a `web.config` file is created with the foll
 To use a custom `web.config` file:
 
 1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), place the file in the **`Server`** project's folder.
-1. Set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). For a hosted Blazor WebAssembly solution, set the property in the **`Server`** project's project file.
-
-   ```xml
-   <PropertyGroup>
-     <PublishIISAssets>true</PublishIISAssets>
-   </PropertyGroup>
-   ```
-
 1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **`Server`** project. For more information, see <xref:blazor/host-and-deploy/index>.
+
+If the SDK's `web.config` generation or transformation during publish either doesn't move the file to published assets in the `publish` folder or modifies the custom configuration in your custom `web.config` file, use any of the following approaches as needed to take full control of the process:
+
+* If the SDK doesn't generate the file, for example, in a standalone Blazor WebAssembly app at `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish`, where the `{TARGET FRAMEWORK}` placeholder is the target framework, set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). Usually for standalone WebAsssembly apps, this is the only required setting to move a custom `web.config` file and prevent transformation of the file by the SDK.
+
+  ```xml
+  <PropertyGroup>
+    <PublishIISAssets>true</PublishIISAssets>
+  </PropertyGroup>
+  ```
+
+* Disable the SDK's `web.config` transformation in the project file (`.csproj`):
+
+  ```xml
+  <PropertyGroup>
+    <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
+  </PropertyGroup>
+  ```
+
+* Add a custom target to the the project file (`.csproj`) to move a custom `web.config` file. In the following example, the custom `web.config` file is placed by the developer at the root of the project. If the `web.config` file resides elsewhere, specify the path to the file in `SourceFiles`. The following example specifies the `publish` folder with `$(PublishDir)`, but provide a path to `DestinationFolder` for a custom output location.
+
+  ```xml
+  <Target Name="CopyWebConfig" AfterTargets="Publish">
+    <Copy SourceFiles="web.config" DestinationFolder="$(PublishDir)" />
+  </Target>
+  ```
 
 #### Install the URL Rewrite Module
 
