@@ -5,13 +5,13 @@ monikerRange: '>= aspnetcore-7.0'
 description: Learn how limit requests in ASP.NET Core apps
 ms.author: riande
 ms.custom: mvc
-ms.date: 8/28/2022
+ms.date: 9/28/2022
 uid: performance/rate-limit
 ---
 
 # Rate limiting middleware in ASP.NET Core
 
-By [Arvin Kahbazi](https://github.com/Kahbazi) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Arvin Kahbazi](https://github.com/Kahbazi), [Maarten Balliauw](https://github.com/maartenba), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-7.0"
 
