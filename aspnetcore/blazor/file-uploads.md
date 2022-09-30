@@ -167,10 +167,10 @@ For testing, the preceding URLs are configured in the projects' `Properties/laun
 
 :::zone pivot="webassembly"
 
-The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
+The following example demonstrates uploading files to a web API controller in the **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 
 > [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
 :::zone-end
 
@@ -213,7 +213,7 @@ namespace BlazorSample.Shared
 }
 ```
 
-To make the `UploadResult` class available to the **`Client`** project, add an import to the **`Client`** project's `_Imports.razor` file for the **`Shared`** project:
+To make the `UploadResult` class available to the **:::no-loc text="Client":::** project, add an import to the **:::no-loc text="Client":::** project's `_Imports.razor` file for the **`Shared`** project:
 
 ```razor
 @using BlazorSample.Shared
@@ -249,7 +249,7 @@ The following `FileUpload2` component:
 
 :::zone pivot="webassembly"
 
-`Pages/FileUpload2.razor` in the **`Client`** project:
+`Pages/FileUpload2.razor` in the **:::no-loc text="Client":::** project:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor":::
 
@@ -382,12 +382,12 @@ public class FilesaveController : ControllerBase
 
 :::zone pivot="webassembly"
 
-The following controller in the **`Server`** project saves uploaded files from the client.
+The following controller in the **:::no-loc text="Server":::** project saves uploaded files from the client.
 
 > [!NOTE]
 > Binding form values with the [`[FromForm]` attribute](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) isn't natively supported for [Minimal APIs](xref:fundamentals/minimal-apis?view=aspnetcore-6.0#explicit-parameter-binding) in ASP.NET Core 6.0. Therefore, the following `Filesave` controller example can't be converted to use Minimal APIs. Support for binding from form values with Minimal APIs is available in ASP.NET Core 7.0 or later.
 
-**To use the following code, create a `Development/unsafe_uploads` folder at the root of the `Server` project for the app running in the `Development` environment.**
+**To use the following code, create a `Development/unsafe_uploads` folder at the root of the :::no-loc text="Server"::: project for the app running in the `Development` environment.**
 
 Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
@@ -753,10 +753,10 @@ For testing, the preceding URLs are configured in the projects' `Properties/laun
 
 :::zone pivot="webassembly"
 
-The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
+The following example demonstrates uploading files to a web API controller in the **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 
 > [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
 :::zone-end
 
@@ -799,7 +799,7 @@ namespace BlazorSample.Shared
 }
 ```
 
-To make the `UploadResult` class available to the **`Client`** project, add an import to the **`Client`** project's `_Imports.razor` file for the **`Shared`** project:
+To make the `UploadResult` class available to the **:::no-loc text="Client":::** project, add an import to the **:::no-loc text="Client":::** project's `_Imports.razor` file for the **`Shared`** project:
 
 ```razor
 @using BlazorSample.Shared
@@ -835,7 +835,7 @@ The following `FileUpload2` component:
 
 :::zone pivot="webassembly"
 
-`Pages/FileUpload2.razor` in the **`Client`** project:
+`Pages/FileUpload2.razor` in the **:::no-loc text="Client":::** project:
 
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor":::
 
@@ -965,9 +965,9 @@ public class FilesaveController : ControllerBase
 
 :::zone pivot="webassembly"
 
-The following controller in the **`Server`** project saves uploaded files from the client.
+The following controller in the **:::no-loc text="Server":::** project saves uploaded files from the client.
 
-**To use the following code, create a `Development/unsafe_uploads` folder at the root of the `Server` project for the app running in the `Development` environment.**
+**To use the following code, create a `Development/unsafe_uploads` folder at the root of the :::no-loc text="Server"::: project for the app running in the `Development` environment.**
 
 Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
@@ -1333,10 +1333,10 @@ For testing, the preceding URLs are configured in the projects' `Properties/laun
 
 :::zone pivot="webassembly"
 
-The following example demonstrates uploading files to a web API controller in the **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
+The following example demonstrates uploading files to a web API controller in the **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 
 > [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
 :::zone-end
 
@@ -1379,7 +1379,7 @@ namespace BlazorSample.Shared
 }
 ```
 
-To make the `UploadResult` class available to the **`Client`** project, add an import to the **`Client`** project's `_Imports.razor` file for the **`Shared`** project:
+To make the `UploadResult` class available to the **:::no-loc text="Client":::** project, add an import to the **:::no-loc text="Client":::** project's `_Imports.razor` file for the **`Shared`** project:
 
 ```razor
 @using BlazorSample.Shared
@@ -1415,7 +1415,7 @@ The following `FileUpload2` component:
 
 :::zone pivot="webassembly"
 
-`Pages/FileUpload2.razor` in the **`Client`** project:
+`Pages/FileUpload2.razor` in the **:::no-loc text="Client":::** project:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/file-uploads/FileUpload2.razor":::
 
@@ -1545,9 +1545,9 @@ public class FilesaveController : ControllerBase
 
 :::zone pivot="webassembly"
 
-The following controller in the **`Server`** project saves uploaded files from the client.
+The following controller in the **:::no-loc text="Server":::** project saves uploaded files from the client.
 
-**To use the following code, create a `Development/unsafe_uploads` folder at the root of the `Server` project for the app running in the `Development` environment.**
+**To use the following code, create a `Development/unsafe_uploads` folder at the root of the :::no-loc text="Server"::: project for the app running in the `Development` environment.**
 
 Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 

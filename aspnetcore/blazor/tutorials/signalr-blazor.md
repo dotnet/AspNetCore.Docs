@@ -75,7 +75,7 @@ Follow the guidance for your choice of tooling:
 
 1. Select **Create**.
 
-1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **`Client`** project and a **`Server`** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core Hosted** checkbox before selecting **Create**.
+1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **:::no-loc text="Client":::** project and a **:::no-loc text="Server":::** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core Hosted** checkbox before selecting **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -91,7 +91,7 @@ Follow the guidance for your choice of tooling:
 
 1. In Visual Studio Code, open the app's project folder.
 
-1. Confirm that a hosted Blazor WebAssembly app was created: Confirm the presence of a **`Client`** project and a **`Server`** project in the app's solution folder. If the two projects aren't present, start over and confirm passing the `-ho` or `--hosted` option to the `dotnet new` command when creating the solution.
+1. Confirm that a hosted Blazor WebAssembly app was created: Confirm the presence of a **:::no-loc text="Client":::** project and a **:::no-loc text="Server":::** project in the app's solution folder. If the two projects aren't present, start over and confirm passing the `-ho` or `--hosted` option to the `dotnet new` command when creating the solution.
 
 To configure Visual Studio Code assets in the `.vscode` folder for debugging, see:
 
@@ -116,7 +116,7 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 1. Open the project by navigating to the project folder and opening the project's [solution](xref:blazor/tooling#visual-studio-solution-file-sln) file (`.sln`).
 
-1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **`Client`** project and a **`Server`** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core hosted** checkbox before selecting **Create**.
+1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **:::no-loc text="Client":::** project and a **:::no-loc text="Server":::** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core hosted** checkbox before selecting **Create**.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -130,7 +130,7 @@ The `-ho|--hosted` option creates a hosted Blazor WebAssembly [solution](xref:bl
 
 The `-o|--output` option creates a folder for the solution. If you've created a folder for the solution and the command shell is open in that folder, omit the `-o|--output` option and value to create the solution.
 
-Confirm that a hosted Blazor WebAssembly app was created: Confirm the presence of a **`Client`** project and a **`Server`** project in the app's solution folder. If the two projects aren't present, start over and confirm passing the `-ho` or `--hosted` option to the `dotnet new` command when creating the solution.
+Confirm that a hosted Blazor WebAssembly app was created: Confirm the presence of a **:::no-loc text="Client":::** project and a **:::no-loc text="Server":::** project in the app's solution folder. If the two projects aren't present, start over and confirm passing the `-ho` or `--hosted` option to the `dotnet new` command when creating the solution.
 
 ---
 
@@ -238,7 +238,7 @@ Follow the guidance for your tooling:
 1. In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
@@ -257,7 +257,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 1. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
@@ -274,7 +274,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 1. In the **Solution** sidebar, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
@@ -296,7 +296,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    ```
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -768,7 +768,7 @@ Follow the guidance for your tooling:
 1. In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
@@ -787,7 +787,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 1. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
@@ -804,7 +804,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 1. In the **Solution** sidebar, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
@@ -826,7 +826,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    ```
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1294,7 +1294,7 @@ Follow the guidance for your tooling:
 1. In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
@@ -1313,7 +1313,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 1. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
@@ -1330,7 +1330,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 1. In the **Solution** sidebar, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
@@ -1352,7 +1352,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    ```
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1724,7 +1724,7 @@ Follow the guidance for your choice of tooling:
 
 1. Select **Create**.
 
-1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **`Client`** project and a **`Server`** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core Hosted** checkbox before selecting **Create**.
+1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **:::no-loc text="Client":::** project and a **:::no-loc text="Server":::** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core Hosted** checkbox before selecting **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -1740,7 +1740,7 @@ Follow the guidance for your choice of tooling:
 
 1. In Visual Studio Code, open the app's project folder.
 
-1. Confirm that a hosted Blazor WebAssembly app was created: Confirm the presence of a **`Client`** project and a **`Server`** project in the app's solution folder. If the two projects aren't present, start over and confirm passing the `-ho` or `--hosted` option to the `dotnet new` command when creating the solution.
+1. Confirm that a hosted Blazor WebAssembly app was created: Confirm the presence of a **:::no-loc text="Client":::** project and a **:::no-loc text="Server":::** project in the app's solution folder. If the two projects aren't present, start over and confirm passing the `-ho` or `--hosted` option to the `dotnet new` command when creating the solution.
 
 To configure Visual Studio Code assets in the `.vscode` folder for debugging, see:
 
@@ -1765,7 +1765,7 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 1. Open the project by navigating to the project folder and opening the project's [solution](xref:blazor/tooling#visual-studio-solution-file-sln) file (`.sln`).
 
-1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **`Client`** project and a **`Server`** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core hosted** checkbox before selecting **Create**.
+1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **:::no-loc text="Client":::** project and a **:::no-loc text="Server":::** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core hosted** checkbox before selecting **Create**.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -1779,7 +1779,7 @@ The `-ho|--hosted` option creates a hosted Blazor WebAssembly [solution](xref:bl
 
 The `-o|--output` option creates a folder for the solution. If you've created a folder for the solution and the command shell is open in that folder, omit the `-o|--output` option and value to create the solution.
 
-Confirm that a hosted Blazor WebAssembly app was created: Confirm the presence of a **`Client`** project and a **`Server`** project in the app's solution folder. If the two projects aren't present, start over and confirm passing the `-ho` or `--hosted` option to the `dotnet new` command when creating the solution.
+Confirm that a hosted Blazor WebAssembly app was created: Confirm the presence of a **:::no-loc text="Client":::** project and a **:::no-loc text="Server":::** project in the app's solution folder. If the two projects aren't present, start over and confirm passing the `-ho` or `--hosted` option to the `dotnet new` command when creating the solution.
 
 ---
 
@@ -1887,7 +1887,7 @@ Follow the guidance for your tooling:
 1. In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
@@ -1906,7 +1906,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 1. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows)/<kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
@@ -1923,7 +1923,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 1. In the **Solution** sidebar, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>⌘</kbd>+<kbd>↩</kbd> to run the app with debugging or <kbd>⌥</kbd>+<kbd>⌘</kbd>+<kbd>↩</kbd> to run the app without debugging.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 
@@ -1945,7 +1945,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    ```
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
