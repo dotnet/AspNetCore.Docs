@@ -503,15 +503,13 @@ The `CallHelloHelperGetHelloMessage` method in the following `JsInteropClasses3`
 
 :::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/JsInteropClasses3.cs":::
 
-In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
-
-To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
+To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the object reference goes out of scope with [`using var` syntax](/dotnet/csharp/language-reference/keywords/using-statement).
 
 When the **`Trigger .NET instance method`** button is selected in the following `CallDotNetExample4` component, `JsInteropClasses3.CallHelloHelperGetHelloMessage` is called with the value of `name`.
 
 `Pages/CallDotNetExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor" highlight="28-32":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor":::
 
 The following image shows the rendered component with the name `Amy Pond` in the `Name` field. After the button is selected, `Hello, Amy Pond!` is displayed in the UI:
 
@@ -523,16 +521,14 @@ The preceding pattern shown in the `JsInteropClasses3` class can also be impleme
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor":::
 
-In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
+To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the object reference goes out of scope with [`using var` syntax](/dotnet/csharp/language-reference/keywords/using-statement).
 
-To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
-
-The output displayed by the `CallDotNetExample5` component is `Hello, Amy Pond!` when the name `Amy Pond` is provided in the `Name` field.
+The output displayed by the `CallDotNetExample5` component is `Hello, Amy Pond!` when the name `Amy Pond` is provided in the `name` field.
 
 In the preceding `CallDotNetExample5` component, the .NET object reference is disposed. If a class or component doesn't dispose the <xref:Microsoft.JSInterop.DotNetObjectReference>, dispose it from the client by calling `dispose` on the passed <xref:Microsoft.JSInterop.DotNetObjectReference>:
 
 ```javascript
-window.jsFunction = (dotNetHelper) => {
+window.{JS FUNCTION NAME} = (dotNetHelper) => {
   dotNetHelper.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD ID}');
   dotNetHelper.dispose();
 }
@@ -540,6 +536,7 @@ window.jsFunction = (dotNetHelper) => {
 
 In the preceding example:
 
+* The `{JS FUNCTION NAME}` placeholder is the JS function's name.
 * The variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 * The `{ASSEMBLY NAME}` placeholder is the app's assembly name.
 * The `{.NET METHOD ID}` placeholder is the .NET method identifier.
@@ -932,13 +929,13 @@ The `CallHelloHelperGetHelloMessage` method in the following `JsInteropClasses3`
 
 :::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/JsInteropClasses3.cs":::
 
-To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
+To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the object reference goes out of scope with [`using var` syntax](/dotnet/csharp/language-reference/keywords/using-statement).
 
 When the **`Trigger .NET instance method`** button is selected in the following `CallDotNetExample4` component, `JsInteropClasses3.CallHelloHelperGetHelloMessage` is called with the value of `name`.
 
 `Pages/CallDotNetExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor" highlight="28-32":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor":::
 
 The following image shows the rendered component with the name `Amy Pond` in the `Name` field. After the button is selected, `Hello, Amy Pond!` is displayed in the UI:
 
@@ -950,14 +947,14 @@ The preceding pattern shown in the `JsInteropClasses3` class can also be impleme
 
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor":::
 
-To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
+To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the object reference goes out of scope with [`using var` syntax](/dotnet/csharp/language-reference/keywords/using-statement).
 
-The output displayed by the `CallDotNetExample5` component is `Hello, Amy Pond!` when the name `Amy Pond` is provided in the `Name` field.
+The output displayed by the `CallDotNetExample5` component is `Hello, Amy Pond!` when the name `Amy Pond` is provided in the `name` field.
 
 In the preceding `CallDotNetExample5` component, the .NET object reference is disposed. If a class or component doesn't dispose the <xref:Microsoft.JSInterop.DotNetObjectReference>, dispose it from the client by calling `dispose` on the passed <xref:Microsoft.JSInterop.DotNetObjectReference>:
 
 ```javascript
-window.jsFunction = (dotNetHelper) => {
+window.{JS FUNCTION NAME} = (dotNetHelper) => {
   dotNetHelper.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD ID}');
   dotNetHelper.dispose();
 }
@@ -965,6 +962,8 @@ window.jsFunction = (dotNetHelper) => {
 
 In the preceding example:
 
+* The `{JS FUNCTION NAME}` placeholder is the JS function's name.
+* The variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 * The `{ASSEMBLY NAME}` placeholder is the app's assembly name.
 * The `{.NET METHOD ID}` placeholder is the .NET method identifier.
 
@@ -1259,13 +1258,13 @@ The `CallHelloHelperGetHelloMessage` method in the following `JsInteropClasses3`
 
 :::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/JsInteropClasses3.cs":::
 
-To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
+To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the object reference goes out of scope with [`using var` syntax](/dotnet/csharp/language-reference/keywords/using-statement).
 
 When the **`Trigger .NET instance method`** button is selected in the following `CallDotNetExample4` component, `JsInteropClasses3.CallHelloHelperGetHelloMessage` is called with the value of `name`.
 
 `Pages/CallDotNetExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor" highlight="28-32":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor":::
 
 The following image shows the rendered component with the name `Amy Pond` in the `Name` field. After the button is selected, `Hello, Amy Pond!` is displayed in the UI:
 
@@ -1277,14 +1276,14 @@ The preceding pattern shown in the `JsInteropClasses3` class can also be impleme
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor":::
 
-To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
+To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the object reference goes out of scope with [`using var` syntax](/dotnet/csharp/language-reference/keywords/using-statement).
 
-The output displayed by the `CallDotNetExample5` component is `Hello, Amy Pond!` when the name `Amy Pond` is provided in the `Name` field.
+The output displayed by the `CallDotNetExample5` component is `Hello, Amy Pond!` when the name `Amy Pond` is provided in the `name` field.
 
 In the preceding `CallDotNetExample5` component, the .NET object reference is disposed. If a class or component doesn't dispose the <xref:Microsoft.JSInterop.DotNetObjectReference>, dispose it from the client by calling `dispose` on the passed <xref:Microsoft.JSInterop.DotNetObjectReference>:
 
 ```javascript
-window.jsFunction = (dotNetHelper) => {
+window.{JS FUNCTION NAME} = (dotNetHelper) => {
   dotNetHelper.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD ID}');
   dotNetHelper.dispose();
 }
@@ -1292,6 +1291,8 @@ window.jsFunction = (dotNetHelper) => {
 
 In the preceding example:
 
+* The `{JS FUNCTION NAME}` placeholder is the JS function's name.
+* The variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 * The `{ASSEMBLY NAME}` placeholder is the app's assembly name.
 * The `{.NET METHOD ID}` placeholder is the .NET method identifier.
 
@@ -1867,15 +1868,13 @@ The `CallHelloHelperGetHelloMessage` method in the following `JsInteropClasses3`
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/JsInteropClasses3.cs":::
 
-In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
-
-To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
+To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the object reference goes out of scope with [`using var` syntax](/dotnet/csharp/language-reference/keywords/using-statement).
 
 When the **`Trigger .NET instance method`** button is selected in the following `CallDotNetExample4` component, `JsInteropClasses3.CallHelloHelperGetHelloMessage` is called with the value of `name`.
 
 `Pages/CallDotNetExample4.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor" highlight="28-32":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample4.razor":::
 
 The following image shows the rendered component with the name `Amy Pond` in the `Name` field. After the button is selected, `Hello, Amy Pond!` is displayed in the UI:
 
@@ -1887,16 +1886,14 @@ The preceding pattern shown in the `JsInteropClasses3` class can also be impleme
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-dotnet-from-js/CallDotNetExample5.razor":::
 
-In the preceding example, the variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
+To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the object reference goes out of scope with [`using var` syntax](/dotnet/csharp/language-reference/keywords/using-statement).
 
-To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed in the `Dispose` method.
-
-The output displayed by the `CallDotNetExample5` component is `Hello, Amy Pond!` when the name `Amy Pond` is provided in the `Name` field.
+The output displayed by the `CallDotNetExample5` component is `Hello, Amy Pond!` when the name `Amy Pond` is provided in the `name` field.
 
 In the preceding `CallDotNetExample5` component, the .NET object reference is disposed. If a class or component doesn't dispose the <xref:Microsoft.JSInterop.DotNetObjectReference>, dispose it from the client by calling `dispose` on the passed <xref:Microsoft.JSInterop.DotNetObjectReference>:
 
 ```javascript
-window.jsFunction = (dotNetHelper) => {
+window.{JS FUNCTION NAME} = (dotNetHelper) => {
   dotNetHelper.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD ID}');
   dotNetHelper.dispose();
 }
@@ -1904,6 +1901,7 @@ window.jsFunction = (dotNetHelper) => {
 
 In the preceding example:
 
+* The `{JS FUNCTION NAME}` placeholder is the JS function's name.
 * The variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
 * The `{ASSEMBLY NAME}` placeholder is the app's assembly name.
 * The `{.NET METHOD ID}` placeholder is the .NET method identifier.
