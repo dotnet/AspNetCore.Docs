@@ -954,7 +954,7 @@ The [Razor SDK](xref:razor-pages/sdk) handles compilation of Razor files. By def
 
 ```xml
 <PropertyGroup>
-    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+  <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
 </PropertyGroup>
 ```
 
