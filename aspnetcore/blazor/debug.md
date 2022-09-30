@@ -34,7 +34,7 @@ For now, you *can't*:
 * Break on unhandled exceptions.
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.cs` and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](/visualstudio/devinit/devinit-and-codespaces)).
-* Automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+* Automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
 ## Prerequisites
 
@@ -67,8 +67,8 @@ Standalone Blazor WebAssembly:
 
 Hosted Blazor WebAssembly:
 
-* **`Client`** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
-* **`Server`** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
+* **:::no-loc text="Client":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+* **:::no-loc text="Server":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -96,7 +96,7 @@ The placeholder values for the WebSocket protocol (`wsProtocol`), host (`url.hos
 To debug a Blazor WebAssembly app in Visual Studio:
 
 1. Create a new hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
-1. With the **`Server`** project selected in **Solution Explorer**, press <kbd>F5</kbd> to run the app in the debugger.
+1. With the **:::no-loc text="Server":::** project selected in **Solution Explorer**, press <kbd>F5</kbd> to run the app in the debugger.
 
    > [!NOTE]
    > When debugging with a Chromium-based browser, such as Google Chrome or Microsoft Edge, a new browser window might open with a separate profile for the debugging session instead of opening a tab in an existing browser window with the user's profile. If debugging with the user's profile is a requirement, adopt **one** of the following approaches:
@@ -107,7 +107,7 @@ To debug a Blazor WebAssembly app in Visual Studio:
    > [!NOTE]
    > **Start Without Debugging** [<kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS)] isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
 
-1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **:::no-loc text="Client":::** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>F5</kbd> to continue execution.
@@ -205,7 +205,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. The standalone app is launched, and a debugging browser is opened.
 
-1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **:::no-loc text="Client":::** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 
@@ -219,9 +219,9 @@ For guidance on configuring VS Code assets in the `.vscode` folder and where to 
 > [!NOTE]
 > Only [browser debugging](#debug-in-the-browser) is supported at this time.
 >
-> You can't automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+> You can't automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
-To debug a **published**, hosted Blazor WebAssembly app, configure debugger support (`DebuggerSupport`) and copy output symbols to the `publish` directory (`CopyOutputSymbolsToPublishDirectory`) in the **`Client`** app's project file:
+To debug a **published**, hosted Blazor WebAssembly app, configure debugger support (`DebuggerSupport`) and copy output symbols to the `publish` directory (`CopyOutputSymbolsToPublishDirectory`) in the **:::no-loc text="Client":::** app's project file:
 
 ```xml
 <DebuggerSupport>true</DebuggerSupport>
@@ -279,7 +279,7 @@ To debug a Blazor WebAssembly app in Visual Studio for Mac:
    > [!IMPORTANT]
    > Google Chrome or Microsoft Edge must be the selected browser for the debugging session.
 
-1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **:::no-loc text="Client":::** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint:
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to continue execution.
@@ -425,7 +425,7 @@ For now, you *can't*:
 * Break on unhandled exceptions.
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.cs` and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](/visualstudio/devinit/devinit-and-codespaces)).
-* Automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+* Automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
 ## Prerequisites
 
@@ -458,8 +458,8 @@ Standalone Blazor WebAssembly:
 
 Hosted Blazor WebAssembly:
 
-* **`Client`** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
-* **`Server`** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
+* **:::no-loc text="Client":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+* **:::no-loc text="Server":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -487,7 +487,7 @@ The placeholder values for the WebSocket protocol (`wsProtocol`), host (`url.hos
 To debug a Blazor WebAssembly app in Visual Studio:
 
 1. Create a new hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
-1. With the **`Server`** project selected in **Solution Explorer**, press <kbd>F5</kbd> to run the app in the debugger.
+1. With the **:::no-loc text="Server":::** project selected in **Solution Explorer**, press <kbd>F5</kbd> to run the app in the debugger.
 
    > [!NOTE]
    > When debugging with a Chromium-based browser, such as Google Chrome or Microsoft Edge, a new browser window might open with a separate profile for the debugging session instead of opening a tab in an existing browser window with the user's profile. If debugging with the user's profile is a requirement, adopt **one** of the following approaches:
@@ -498,7 +498,7 @@ To debug a Blazor WebAssembly app in Visual Studio:
    > [!NOTE]
    > **Start Without Debugging** [<kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS)] isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
 
-1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **:::no-loc text="Client":::** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>F5</kbd> to continue execution.
@@ -596,7 +596,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. The standalone app is launched, and a debugging browser is opened.
 
-1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **:::no-loc text="Client":::** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 
@@ -607,7 +607,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 For guidance on configuring VS Code assets in the `.vscode` folder and where to place the `.vscode` folder in the [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see the **Linux** operating system guidance in <xref:blazor/tooling?pivots=linux>.
 
-The `.vscode/launch.json` file sets the current working directory to the **`Server`** project's folder, typically `Server` for a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln):
+The `.vscode/launch.json` file sets the current working directory to the **:::no-loc text="Server":::** project's folder, typically :::no-loc text="Server"::: for a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln):
 
 ```json
 "cwd": "${workspaceFolder}/Server"
@@ -619,7 +619,7 @@ If Microsoft Edge is used for debugging instead of Google Chrome, the `.vscode/l
 "browser": "edge"
 ```
 
-The `.vscode/tasks.json` file adds the **`Server`** app's project file path to the `dotnet build` arguments under `args`. The **`Server`** project's folder is typically named `Server` in a [solution](xref:blazor/tooling#visual-studio-solution-file-sln) based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **`Server`** app of the [Blazor-SignalR tutorial](xref:blazor/tutorials/signalr-blazor), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
+The `.vscode/tasks.json` file adds the **:::no-loc text="Server":::** app's project file path to the `dotnet build` arguments under `args`. The **:::no-loc text="Server":::** project's folder is typically named :::no-loc text="Server"::: in a [solution](xref:blazor/tooling#visual-studio-solution-file-sln) based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **:::no-loc text="Server":::** app of the [Blazor-SignalR tutorial](xref:blazor/tutorials/signalr-blazor), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
 
 ```json
 {
@@ -640,7 +640,7 @@ The `.vscode/tasks.json` file adds the **`Server`** app's project file path to t
 }
 ```
 
-The **`Server`** project's `Properties/launchSettings.json` file includes the `inspectUri` property for the debugging proxy. The following example names the launch profile for the **`Server`** app of the [Blazor-SignalR tutorial](xref:blazor/tutorials/signalr-blazor), which is `BlazorWebAssemblySignalRApp.Server`:
+The **:::no-loc text="Server":::** project's `Properties/launchSettings.json` file includes the `inspectUri` property for the debugging proxy. The following example names the launch profile for the **:::no-loc text="Server":::** app of the [Blazor-SignalR tutorial](xref:blazor/tutorials/signalr-blazor), which is `BlazorWebAssemblySignalRApp.Server`:
 
 ```json
 {
@@ -660,7 +660,7 @@ The **`Server`** project's `Properties/launchSettings.json` file includes the `i
 }
 ```
 
-To debug a **published**, hosted Blazor WebAssembly app, configure debugger support (`DebuggerSupport`) and copy output symbols to the `publish` directory (`CopyOutputSymbolsToPublishDirectory`) in the **`Client`** app's project file:
+To debug a **published**, hosted Blazor WebAssembly app, configure debugger support (`DebuggerSupport`) and copy output symbols to the `publish` directory (`CopyOutputSymbolsToPublishDirectory`) in the **:::no-loc text="Client":::** app's project file:
 
 ```xml
 <DebuggerSupport>true</DebuggerSupport>
@@ -718,7 +718,7 @@ To debug a Blazor WebAssembly app in Visual Studio for Mac:
    > [!IMPORTANT]
    > Google Chrome or Microsoft Edge must be the selected browser for the debugging session.
 
-1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **:::no-loc text="Client":::** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint:
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to continue execution.
@@ -864,7 +864,7 @@ For now, you *can't*:
 * Break on unhandled exceptions.
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.cs` and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](/visualstudio/devinit/devinit-and-codespaces)).
-* Automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+* Automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
 ## Prerequisites
 
@@ -897,8 +897,8 @@ Standalone Blazor WebAssembly:
 
 Hosted Blazor WebAssembly:
 
-* **`Client`** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
-* **`Server`** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
+* **:::no-loc text="Client":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+* **:::no-loc text="Server":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -926,7 +926,7 @@ The placeholder values for the WebSocket protocol (`wsProtocol`), host (`url.hos
 To debug a Blazor WebAssembly app in Visual Studio:
 
 1. Create a new hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
-1. With the **`Server`** project selected in **Solution Explorer**, press <kbd>F5</kbd> to run the app in the debugger.
+1. With the **:::no-loc text="Server":::** project selected in **Solution Explorer**, press <kbd>F5</kbd> to run the app in the debugger.
 
    > [!NOTE]
    > When debugging with a Chromium-based browser, such as Google Chrome or Microsoft Edge, a new browser window might open with a separate profile for the debugging session instead of opening a tab in an existing browser window with the user's profile. If debugging with the user's profile is a requirement, adopt **one** of the following approaches:
@@ -937,7 +937,7 @@ To debug a Blazor WebAssembly app in Visual Studio:
    > [!NOTE]
    > **Start Without Debugging** [<kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS)] isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
 
-1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **:::no-loc text="Client":::** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>F5</kbd> to continue execution.
@@ -1035,7 +1035,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. The standalone app is launched, and a debugging browser is opened.
 
-1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **:::no-loc text="Client":::** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 
@@ -1046,7 +1046,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 For guidance on configuring VS Code assets in the `.vscode` folder and where to place the `.vscode` folder in the [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see the **Linux** operating system guidance in <xref:blazor/tooling?pivots=linux>.
 
-The `.vscode/launch.json` file sets the current working directory to the **`Server`** project's folder, typically `Server` for a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln):
+The `.vscode/launch.json` file sets the current working directory to the **:::no-loc text="Server":::** project's folder, typically :::no-loc text="Server"::: for a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln):
 
 ```json
 "cwd": "${workspaceFolder}/Server"
@@ -1058,7 +1058,7 @@ If Microsoft Edge is used for debugging instead of Google Chrome, the `.vscode/l
 "browser": "edge"
 ```
 
-The `.vscode/tasks.json` file adds the **`Server`** app's project file path to the `dotnet build` arguments under `args`. The **`Server`** project's folder is typically named `Server` in a [solution](xref:blazor/tooling#visual-studio-solution-file-sln) based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **`Server`** app of the [Blazor-SignalR tutorial](xref:blazor/tutorials/signalr-blazor), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
+The `.vscode/tasks.json` file adds the **:::no-loc text="Server":::** app's project file path to the `dotnet build` arguments under `args`. The **:::no-loc text="Server":::** project's folder is typically named :::no-loc text="Server"::: in a [solution](xref:blazor/tooling#visual-studio-solution-file-sln) based on the hosted Blazor WebAssembly project template. The following example uses the project file for the **:::no-loc text="Server":::** app of the [Blazor-SignalR tutorial](xref:blazor/tutorials/signalr-blazor), which has a project file named `BlazorWebAssemblySignalRApp.Server.csproj`:
 
 ```json
 {
@@ -1079,7 +1079,7 @@ The `.vscode/tasks.json` file adds the **`Server`** app's project file path to t
 }
 ```
 
-The **`Server`** project's `Properties/launchSettings.json` file includes the `inspectUri` property for the debugging proxy. The following example names the launch profile for the **`Server`** app of the [Blazor-SignalR tutorial](xref:blazor/tutorials/signalr-blazor), which is `BlazorWebAssemblySignalRApp.Server`:
+The **:::no-loc text="Server":::** project's `Properties/launchSettings.json` file includes the `inspectUri` property for the debugging proxy. The following example names the launch profile for the **:::no-loc text="Server":::** app of the [Blazor-SignalR tutorial](xref:blazor/tutorials/signalr-blazor), which is `BlazorWebAssemblySignalRApp.Server`:
 
 ```json
 {
@@ -1145,7 +1145,7 @@ To debug a Blazor WebAssembly app in Visual Studio for Mac:
    > [!IMPORTANT]
    > Google Chrome or Microsoft Edge must be the selected browser for the debugging session.
 
-1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **:::no-loc text="Client":::** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint:
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to continue execution.
@@ -1291,7 +1291,7 @@ For now, you *can't*:
 * Break on unhandled exceptions.
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.cs` and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](/visualstudio/devinit/devinit-and-codespaces)).
-* Automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+* Automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
 ## Prerequisites
 
@@ -1324,8 +1324,8 @@ Standalone Blazor WebAssembly:
 
 Hosted Blazor WebAssembly:
 
-* **`Client`** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
-* **`Server`** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
+* **:::no-loc text="Client":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A?displayProperty=nameWithType> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+* **:::no-loc text="Server":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -1353,7 +1353,7 @@ The placeholder values for the WebSocket protocol (`wsProtocol`), host (`url.hos
 To debug a Blazor WebAssembly app in Visual Studio:
 
 1. Create a new hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
-1. With the **`Server`** project selected in **Solution Explorer**, press <kbd>F5</kbd> to run the app in the debugger.
+1. With the **:::no-loc text="Server":::** project selected in **Solution Explorer**, press <kbd>F5</kbd> to run the app in the debugger.
 
    > [!NOTE]
    > When debugging with a Chromium-based browser, such as Google Chrome or Microsoft Edge, a new browser window might open with a separate profile for the debugging session instead of opening a tab in an existing browser window with the user's profile. If debugging with the user's profile is a requirement, adopt **one** of the following approaches:
@@ -1364,7 +1364,7 @@ To debug a Blazor WebAssembly app in Visual Studio:
    > [!NOTE]
    > **Start Without Debugging** [<kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS)] isn't supported. When the app is run in Debug configuration, debugging overhead always results in a small performance reduction.
 
-1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **:::no-loc text="Client":::** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>F5</kbd> to continue execution.
@@ -1462,7 +1462,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
 1. The standalone app is launched, and a debugging browser is opened.
 
-1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **:::no-loc text="Client":::** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint.
 
@@ -1476,9 +1476,9 @@ For guidance on configuring VS Code assets in the `.vscode` folder and where to 
 > [!NOTE]
 > Only [browser debugging](#debug-in-the-browser) is supported at this time.
 >
-> You can't automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+> You can't automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
-To debug a **published**, hosted Blazor WebAssembly app, configure debugger support (`DebuggerSupport`) and copy output symbols to the `publish` directory (`CopyOutputSymbolsToPublishDirectory`) in the **`Client`** app's project file:
+To debug a **published**, hosted Blazor WebAssembly app, configure debugger support (`DebuggerSupport`) and copy output symbols to the `publish` directory (`CopyOutputSymbolsToPublishDirectory`) in the **:::no-loc text="Client":::** app's project file:
 
 ```xml
 <DebuggerSupport>true</DebuggerSupport>
@@ -1536,7 +1536,7 @@ To debug a Blazor WebAssembly app in Visual Studio for Mac:
    > [!IMPORTANT]
    > Google Chrome or Microsoft Edge must be the selected browser for the debugging session.
 
-1. In the **`Client`** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
+1. In the **:::no-loc text="Client":::** app, set a breakpoint on the `currentCount++;` line in `Pages/Counter.razor`.
 1. In the browser, navigate to `Counter` page and select the **Click me** button to hit the breakpoint:
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>&#8984;</kbd>+<kbd>&#8617;</kbd> to continue execution.

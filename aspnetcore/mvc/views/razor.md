@@ -948,9 +948,25 @@ C# Razor keywords must be double-escaped with `@(@C# Razor Keyword)` (for exampl
 
 ## Inspect the Razor C# class generated for a view
 
-The [Razor SDK](xref:razor-pages/sdk) handles compilation of Razor files. When building a project, the Razor SDK generates an `obj/<build_configuration>/<target_framework_moniker>/Razor` directory in the project root. The directory structure within the `Razor` directory mirrors the project's directory structure.
+::: moniker range=">= aspnetcore-5.0"
 
-Consider the following directory structure in an ASP.NET Core Razor Pages project:
+The [Razor SDK](xref:razor-pages/sdk) handles compilation of Razor files. By default, the generated code files aren't emitted. To enable emitting the code files, set the `EmitCompilerGeneratedFiles` directive in the project file (`.csproj`) to `true`:
+
+```xml
+<PropertyGroup>
+  <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+</PropertyGroup>
+```
+
+When building a 6.0 project (`net6.0`) in the `Debug` build configuration, the Razor SDK generates an `obj/Debug/net6.0/generated/` directory in the project root. Its subdirectory contains the emitted Razor page code files.
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-5.0"
+
+The [Razor SDK](xref:razor-pages/sdk) handles compilation of Razor files. When building a project, the Razor SDK generates an `obj/{BUILD CONFIGURATION}/{TARGET FRAMEWORK MONIKER}/Razor` directory in the project root. The directory structure within the `Razor` directory mirrors the project's directory structure.
+
+Consider the following directory structure in an ASP.NET Core Razor Pages 2.1 project:
 
 ```
  Areas/
@@ -965,9 +981,9 @@ Consider the following directory structure in an ASP.NET Core Razor Pages projec
    _ViewStart.cshtml
    Index.cshtml
    Index.cshtml.cs
-  ```
+```
 
-Building the project in *Debug* configuration yields the following `obj` directory:
+Building the project in `Debug` configuration yields the following `obj` directory:
 
 ```
  obj/
@@ -987,6 +1003,8 @@ Building the project in *Debug* configuration yields the following `obj` directo
 ```
 
 To view the generated class for `Pages/Index.cshtml`, open `obj/Debug/netcoreapp2.1/Razor/Pages/Index.g.cshtml.cs`.
+
+::: moniker-end
 
 ## View lookups and case sensitivity
 

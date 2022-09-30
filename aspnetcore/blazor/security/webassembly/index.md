@@ -122,9 +122,9 @@ For more information, see <xref:security/anti-request-forgery>.
 
 To secure a SignalR hub:
 
-* In the **`Server`** project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class that you want to secure.
+* In the **:::no-loc text="Server":::** project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class that you want to secure.
 
-* In the **`Client`** project's component, supply an access token to the hub connection:
+* In the **:::no-loc text="Client":::** project's component, supply an access token to the hub connection:
 
   ```razor
   @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
@@ -137,13 +137,16 @@ To secure a SignalR hub:
   if (tokenResult.TryGetToken(out var token))
   {
       hubConnection = new HubConnectionBuilder()
-          .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"), 
+          .WithUrl(Navigation.ToAbsoluteUri("/chathub"), 
               options => { options.AccessTokenProvider = () => Task.FromResult(token?.Value); })
           .Build();
 
     ...
   }
   ```
+
+  > [!NOTE]
+  > `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
   
 For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
 
@@ -283,9 +286,9 @@ For more information, see <xref:security/anti-request-forgery>.
 
 To secure a SignalR hub:
 
-* In the **`Server`** project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class that you want to secure.
+* In the **:::no-loc text="Server":::** project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class that you want to secure.
 
-* In the **`Client`** project's component, supply an access token to the hub connection:
+* In the **:::no-loc text="Client":::** project's component, supply an access token to the hub connection:
 
   ```razor
   @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
@@ -298,13 +301,16 @@ To secure a SignalR hub:
   if (tokenResult.TryGetToken(out var token))
   {
       hubConnection = new HubConnectionBuilder()
-          .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"), 
+          .WithUrl(Navigation.ToAbsoluteUri("/chathub"), 
               options => { options.AccessTokenProvider = () => Task.FromResult(token?.Value); })
           .Build();
 
     ...
   }
   ```
+
+  > [!NOTE]
+  > `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
   
 For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
 
@@ -444,9 +450,9 @@ For more information, see <xref:security/anti-request-forgery>.
 
 To secure a SignalR hub:
 
-* In the **`Server`** project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class that you want to secure.
+* In the **:::no-loc text="Server":::** project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class that you want to secure.
 
-* In the **`Client`** project's component, supply an access token to the hub connection:
+* In the **:::no-loc text="Client":::** project's component, supply an access token to the hub connection:
 
   ```razor
   @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
@@ -459,13 +465,16 @@ To secure a SignalR hub:
   if (tokenResult.TryGetToken(out var token))
   {
       hubConnection = new HubConnectionBuilder()
-          .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"), 
+          .WithUrl(Navigation.ToAbsoluteUri("/chathub"), 
               options => { options.AccessTokenProvider = () => Task.FromResult(token?.Value); })
           .Build();
 
     ...
   }
   ```
+
+  > [!NOTE]
+  > `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
   
 For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
 
@@ -640,9 +649,9 @@ For more information, see <xref:security/anti-request-forgery>.
 
 To secure a SignalR hub:
 
-* In the **`Server`** project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class that you want to secure.
+* In the **:::no-loc text="Server":::** project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class that you want to secure.
 
-* In the **`Client`** project's component, supply an access token to the hub connection:
+* In the **:::no-loc text="Client":::** project's component, supply an access token to the hub connection:
 
   ```razor
   @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
@@ -655,13 +664,16 @@ To secure a SignalR hub:
   if (tokenResult.TryGetToken(out var token))
   {
       hubConnection = new HubConnectionBuilder()
-          .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"), 
+          .WithUrl(Navigation.ToAbsoluteUri("/chathub"), 
               options => { options.AccessTokenProvider = () => Task.FromResult(token?.Value); })
           .Build();
 
     ...
   }
   ```
+
+  > [!NOTE]
+  > `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
   
 For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
 

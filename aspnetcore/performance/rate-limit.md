@@ -5,7 +5,7 @@ monikerRange: '>= aspnetcore-7.0'
 description: Learn how limit requests in ASP.NET Core apps
 ms.author: riande
 ms.custom: mvc
-ms.date: 9/28/2022
+ms.date: 9/30/2022
 uid: performance/rate-limit
 ---
 

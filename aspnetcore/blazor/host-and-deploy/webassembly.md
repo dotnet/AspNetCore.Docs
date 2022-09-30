@@ -181,9 +181,9 @@ To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable f
 
 ### Visual Studio
 
-By default, a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment is configured for a generated publish profile (`.pubxml`). Confirm that the **`Server`** project's publish profile contains the `<SelfContained>` MSBuild property set to `false`.
+By default, a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment is configured for a generated publish profile (`.pubxml`). Confirm that the **:::no-loc text="Server":::** project's publish profile contains the `<SelfContained>` MSBuild property set to `false`.
 
-In the `.pubxml` publish profile file in the **`Server`** project's `Properties` folder:
+In the `.pubxml` publish profile file in the **:::no-loc text="Server":::** project's `Properties` folder:
 
 ```xml
 <SelfContained>false</SelfContained>
@@ -197,25 +197,25 @@ Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using the **Target 
 
 In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
 
-Publish the **`Server`** project in the **Release** configuration.
+Publish the **:::no-loc text="Server":::** project in the **Release** configuration.
 
 > [!NOTE]
 > It's possible to publish an app with publish profile settings using the .NET CLI by passing `/p:PublishProfile={PROFILE}` to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish), where the `{PROFILE}` placeholder is the profile. For more information, see the *Publish profiles* and *Folder publish example* sections in the <xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles> article. If you pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) and not in the publish profile, use the MSBuild property (`/p:RuntimeIdentifier`) with the command, ***not*** with the `-r|--runtime` option.
 
 ### .NET CLI
 
-Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in a `<PropertyGroup>` in the **`Server`** project's project file set to `false`:
+Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in a `<PropertyGroup>` in the **:::no-loc text="Server":::** project's project file set to `false`:
 
 ```xml
 <SelfContained>false</SelfContained>
 ```
 
 > [!IMPORTANT]
-> The `SelfContained` property must be placed in the **`Server`** project's project file. The property can't be set correctly with the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) using the `--no-self-contained` option or the MSBuild property `/p:SelfContained=false`.
+> The `SelfContained` property must be placed in the **:::no-loc text="Server":::** project's project file. The property can't be set correctly with the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) using the `--no-self-contained` option or the MSBuild property `/p:SelfContained=false`.
   
 Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** of the following approaches:
 
-* Option 1: Set the RID in a `<PropertyGroup>` in the **`Server`** project's project file:
+* Option 1: Set the RID in a `<PropertyGroup>` in the **:::no-loc text="Server":::** project's project file:
   
   ```xml
   <RuntimeIdentifier>{RID}</RuntimeIdentifier>
@@ -223,7 +223,7 @@ Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** 
     
   In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
   
-  Publish the app in the Release configuration from the **`Server`** project:
+  Publish the app in the Release configuration from the **:::no-loc text="Server":::** project:
     
   ```dotnetcli
    dotnet publish -c Release
@@ -284,8 +284,8 @@ When a Blazor project is published, a `web.config` file is created with the foll
 
 To use a custom `web.config` file:
 
-1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), place the file in the **`Server`** project's folder.
-1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **`Server`** project. For more information, see <xref:blazor/host-and-deploy/index>.
+1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), place the file in the **:::no-loc text="Server":::** project's folder.
+1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **:::no-loc text="Server":::** project. For more information, see <xref:blazor/host-and-deploy/index>.
 
 If the SDK's `web.config` generation or transformation during publish either doesn't move the file to published assets in the `publish` folder or modifies the custom configuration in your custom `web.config` file, use any of the following approaches as needed to take full control of the process:
 
@@ -1080,9 +1080,9 @@ To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable f
 
 ### Visual Studio
 
-By default, a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment is configured for a generated publish profile (`.pubxml`). Confirm that the **`Server`** project's publish profile contains the `<SelfContained>` MSBuild property set to `false`.
+By default, a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment is configured for a generated publish profile (`.pubxml`). Confirm that the **:::no-loc text="Server":::** project's publish profile contains the `<SelfContained>` MSBuild property set to `false`.
 
-In the `.pubxml` publish profile file in the **`Server`** project's `Properties` folder:
+In the `.pubxml` publish profile file in the **:::no-loc text="Server":::** project's `Properties` folder:
 
 ```xml
 <SelfContained>false</SelfContained>
@@ -1096,25 +1096,25 @@ Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using the **Target 
 
 In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
 
-Publish the **`Server`** project in the **Release** configuration.
+Publish the **:::no-loc text="Server":::** project in the **Release** configuration.
 
 > [!NOTE]
 > It's possible to publish an app with publish profile settings using the .NET CLI by passing `/p:PublishProfile={PROFILE}` to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish), where the `{PROFILE}` placeholder is the profile. For more information, see the *Publish profiles* and *Folder publish example* sections in the <xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles> article. If you pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) and not in the publish profile, use the MSBuild property (`/p:RuntimeIdentifier`) with the command, ***not*** with the `-r|--runtime` option.
 
 ### .NET CLI
 
-Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in a `<PropertyGroup>` in the **`Server`** project's project file set to `false`:
+Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in a `<PropertyGroup>` in the **:::no-loc text="Server":::** project's project file set to `false`:
 
 ```xml
 <SelfContained>false</SelfContained>
 ```
 
 > [!IMPORTANT]
-> The `SelfContained` property must be placed in the **`Server`** project's project file. The property can't be set correctly with the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) using the `--no-self-contained` option or the MSBuild property `/p:SelfContained=false`.
+> The `SelfContained` property must be placed in the **:::no-loc text="Server":::** project's project file. The property can't be set correctly with the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) using the `--no-self-contained` option or the MSBuild property `/p:SelfContained=false`.
   
 Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** of the following approaches:
 
-* Option 1: Set the RID in a `<PropertyGroup>` in the **`Server`** project's project file:
+* Option 1: Set the RID in a `<PropertyGroup>` in the **:::no-loc text="Server":::** project's project file:
   
   ```xml
   <RuntimeIdentifier>{RID}</RuntimeIdentifier>
@@ -1122,7 +1122,7 @@ Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** 
     
   In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
   
-  Publish the app in the Release configuration from the **`Server`** project:
+  Publish the app in the Release configuration from the **:::no-loc text="Server":::** project:
     
   ```dotnetcli
    dotnet publish -c Release
@@ -1183,8 +1183,8 @@ When a Blazor project is published, a `web.config` file is created with the foll
 
 To use a custom `web.config` file:
 
-1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), place the file in the **`Server`** project's folder.
-1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **`Server`** project. For more information, see <xref:blazor/host-and-deploy/index>.
+1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), place the file in the **:::no-loc text="Server":::** project's folder.
+1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **:::no-loc text="Server":::** project. For more information, see <xref:blazor/host-and-deploy/index>.
 
 If the SDK's `web.config` generation or transformation during publish either doesn't move the file to published assets in the `publish` folder or modifies the custom configuration in your custom `web.config` file, use any of the following approaches as needed to take full control of the process:
 
@@ -1848,9 +1848,9 @@ To deploy a hosted Blazor WebAssembly app as a [framework-dependent executable f
 
 ### Visual Studio
 
-By default, a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment is configured for a generated publish profile (`.pubxml`). Confirm that the **`Server`** project's publish profile contains the `<SelfContained>` MSBuild property set to `false`.
+By default, a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment is configured for a generated publish profile (`.pubxml`). Confirm that the **:::no-loc text="Server":::** project's publish profile contains the `<SelfContained>` MSBuild property set to `false`.
 
-In the `.pubxml` publish profile file in the **`Server`** project's `Properties` folder:
+In the `.pubxml` publish profile file in the **:::no-loc text="Server":::** project's `Properties` folder:
 
 ```xml
 <SelfContained>false</SelfContained>
@@ -1864,25 +1864,25 @@ Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using the **Target 
 
 In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
 
-Publish the **`Server`** project in the **Release** configuration.
+Publish the **:::no-loc text="Server":::** project in the **Release** configuration.
 
 > [!NOTE]
 > It's possible to publish an app with publish profile settings using the .NET CLI by passing `/p:PublishProfile={PROFILE}` to the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish), where the `{PROFILE}` placeholder is the profile. For more information, see the *Publish profiles* and *Folder publish example* sections in the <xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles> article. If you pass the RID in the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) and not in the publish profile, use the MSBuild property (`/p:RuntimeIdentifier`) with the command, ***not*** with the `-r|--runtime` option.
 
 ### .NET CLI
 
-Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in a `<PropertyGroup>` in the **`Server`** project's project file set to `false`:
+Configure a [self-contained](/dotnet/core/deploying/#publish-self-contained) deployment by placing the `<SelfContained>` MSBuild property in a `<PropertyGroup>` in the **:::no-loc text="Server":::** project's project file set to `false`:
 
 ```xml
 <SelfContained>false</SelfContained>
 ```
 
 > [!IMPORTANT]
-> The `SelfContained` property must be placed in the **`Server`** project's project file. The property can't be set correctly with the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) using the `--no-self-contained` option or the MSBuild property `/p:SelfContained=false`.
+> The `SelfContained` property must be placed in the **:::no-loc text="Server":::** project's project file. The property can't be set correctly with the [`dotnet publish` command](/dotnet/core/tools/dotnet-publish) using the `--no-self-contained` option or the MSBuild property `/p:SelfContained=false`.
   
 Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** of the following approaches:
 
-* Option 1: Set the RID in a `<PropertyGroup>` in the **`Server`** project's project file:
+* Option 1: Set the RID in a `<PropertyGroup>` in the **:::no-loc text="Server":::** project's project file:
   
   ```xml
   <RuntimeIdentifier>{RID}</RuntimeIdentifier>
@@ -1890,7 +1890,7 @@ Set the [Runtime Identifier (RID)](/dotnet/core/rid-catalog) using ***either*** 
     
   In the preceding configuration, the `{RID}` placeholder is the [Runtime Identifier (RID)](/dotnet/core/rid-catalog).
   
-  Publish the app in the Release configuration from the **`Server`** project:
+  Publish the app in the Release configuration from the **:::no-loc text="Server":::** project:
     
   ```dotnetcli
    dotnet publish -c Release
@@ -1951,8 +1951,8 @@ When a Blazor project is published, a `web.config` file is created with the foll
 
 To use a custom `web.config` file:
 
-1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), place the file in the **`Server`** project's folder.
-1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **`Server`** project. For more information, see <xref:blazor/host-and-deploy/index>.
+1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), place the file in the **:::no-loc text="Server":::** project's folder.
+1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **:::no-loc text="Server":::** project. For more information, see <xref:blazor/host-and-deploy/index>.
 
 If the SDK's `web.config` generation or transformation during publish either doesn't move the file to published assets in the `publish` folder or modifies the custom configuration in your custom `web.config` file, use any of the following approaches as needed to take full control of the process:
 

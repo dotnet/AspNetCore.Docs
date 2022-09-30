@@ -541,11 +541,11 @@ Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullNam
 @inject ILoggerProvider LoggerProvider
 ```
 
-In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType>:
+In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType> (`Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>):
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
+    .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
     .ConfigureLogging(logging => logging.AddProvider(LoggerProvider))
     .Build();
 ```
@@ -871,11 +871,11 @@ Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullNam
 @inject ILoggerProvider LoggerProvider
 ```
 
-In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType>:
+In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType> (`Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>):
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
+    .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
     .ConfigureLogging(logging => logging.AddProvider(LoggerProvider))
     .Build();
 ```
@@ -1196,11 +1196,11 @@ Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullNam
 @inject ILoggerProvider LoggerProvider
 ```
 
-In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType>:
+In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType> (`Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>):
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
+    .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
     .ConfigureLogging(logging => logging.AddProvider(LoggerProvider))
     .Build();
 ```
@@ -1736,11 +1736,11 @@ Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullNam
 @inject ILoggerProvider LoggerProvider
 ```
 
-In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType>:
+In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType> (`Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>):
 
 ```csharp
 var connection = new HubConnectionBuilder()
-    .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"))
+    .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
     .ConfigureLogging(logging => logging.AddProvider(LoggerProvider))
     .Build();
 ```

@@ -85,8 +85,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 {
     public CustomAuthorizationMessageHandler(IAccessTokenProvider provider, 
-        NavigationManager navigationManager)
-        : base(provider, navigationManager)
+        NavigationManager navigation)
+        : base(provider, navigation)
     {
         ConfigureHandler(
             authorizedUrls: new[] { "https://www.example.com/base" },
@@ -744,7 +744,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 public class CustomAccountFactory 
     : AccountClaimsPrincipalFactory<CustomUserAccount>
 {
-    public CustomAccountFactory(NavigationManager navigationManager, 
+    public CustomAccountFactory(NavigationManager navigation, 
         IAccessTokenProviderAccessor accessor) : base(accessor)
     {
     }
@@ -829,7 +829,7 @@ Prerendering content that requires authentication and authorization isn't curren
 * Prerenders paths for which authorization isn't required.
 * Doesn't prerender paths for which authorization is required.
 
-For the **`Client`** project's `Program.cs` file, factor common service registrations into a separate method (for example, create a `ConfigureCommonServices` method in the **`Client`** project). Common services are those that the developer registers for use by both the client and server projects.
+For the **:::no-loc text="Client":::** project's `Program.cs` file, factor common service registrations into a separate method (for example, create a `ConfigureCommonServices` method in the **:::no-loc text="Client":::** project). Common services are those that the developer registers for use by both the client and server projects.
 
 ```csharp
 public static void ConfigureCommonServices(IServiceCollection services)
@@ -851,7 +851,7 @@ ConfigureCommonServices(builder.Services);
 await builder.Build().RunAsync();
 ```
 
-In the **`Server`** project's `Program.cs` file, register the following additional services and call `ConfigureCommonServices`:
+In the **:::no-loc text="Server":::** project's `Program.cs` file, register the following additional services and call `ConfigureCommonServices`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -872,7 +872,7 @@ For more information on the Blazor framework server authentication provider (`Se
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-In the **`Server`** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
+In the **:::no-loc text="Server":::** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
 ```cshtml
 <div id="app">
@@ -1315,8 +1315,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 {
     public CustomAuthorizationMessageHandler(IAccessTokenProvider provider, 
-        NavigationManager navigationManager)
-        : base(provider, navigationManager)
+        NavigationManager navigation)
+        : base(provider, navigation)
     {
         ConfigureHandler(
             authorizedUrls: new[] { "https://www.example.com/base" },
@@ -1968,7 +1968,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 public class CustomAccountFactory 
     : AccountClaimsPrincipalFactory<CustomUserAccount>
 {
-    public CustomAccountFactory(NavigationManager navigationManager, 
+    public CustomAccountFactory(NavigationManager navigation, 
         IAccessTokenProviderAccessor accessor) : base(accessor)
     {
     }
@@ -2053,7 +2053,7 @@ Prerendering content that requires authentication and authorization isn't curren
 * Prerenders paths for which authorization isn't required.
 * Doesn't prerender paths for which authorization is required.
 
-In the **`Client`** project's `Program` class (`Program.cs`), factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server projects.
+In the **:::no-loc text="Client":::** project's `Program` class (`Program.cs`), factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server projects.
 
 ```csharp
 public class Program
@@ -2079,7 +2079,7 @@ public class Program
 }
 ```
 
-In the **`Server`** project's `Startup.ConfigureServices` method, register the following additional services and call `ConfigureCommonServices`:
+In the **:::no-loc text="Server":::** project's `Startup.ConfigureServices` method, register the following additional services and call `ConfigureCommonServices`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -2103,7 +2103,7 @@ For more information on the Blazor framework server authentication provider (`Se
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-In the **`Server`** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
+In the **:::no-loc text="Server":::** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
 ```cshtml
 <div id="app">
@@ -2546,8 +2546,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 {
     public CustomAuthorizationMessageHandler(IAccessTokenProvider provider, 
-        NavigationManager navigationManager)
-        : base(provider, navigationManager)
+        NavigationManager navigation)
+        : base(provider, navigation)
     {
         ConfigureHandler(
             authorizedUrls: new[] { "https://www.example.com/base" },
@@ -3199,7 +3199,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 public class CustomAccountFactory 
     : AccountClaimsPrincipalFactory<CustomUserAccount>
 {
-    public CustomAccountFactory(NavigationManager navigationManager, 
+    public CustomAccountFactory(NavigationManager navigation, 
         IAccessTokenProviderAccessor accessor) : base(accessor)
     {
     }
@@ -3284,7 +3284,7 @@ Prerendering content that requires authentication and authorization isn't curren
 * Prerenders paths for which authorization isn't required.
 * Doesn't prerender paths for which authorization is required.
 
-In the **`Client`** project's `Program` class (`Program.cs`), factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server projects.
+In the **:::no-loc text="Client":::** project's `Program` class (`Program.cs`), factor common service registrations into a separate method (for example, `ConfigureCommonServices`). Common services are those that the developer registers for use by both the client and server projects.
 
 ```csharp
 public class Program
@@ -3310,7 +3310,7 @@ public class Program
 }
 ```
 
-In the **`Server`** project's `Startup.ConfigureServices` method, register the following additional services and call `ConfigureCommonServices`:
+In the **:::no-loc text="Server":::** project's `Startup.ConfigureServices` method, register the following additional services and call `ConfigureCommonServices`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -3334,7 +3334,7 @@ For more information on the Blazor framework server authentication provider (`Se
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-In the **`Server`** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
+In the **:::no-loc text="Server":::** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
 ```cshtml
 <div id="app">
@@ -3774,7 +3774,7 @@ InteractiveRequestOptions requestOptions =
     new()
     {
         Interaction = InteractionType.SignIn,
-        ReturnUrl = NavigationManager.Uri,
+        ReturnUrl = Navigation.Uri,
     };
 
 requestOptions.TryAddAdditionalParameter("prompt", "login");
@@ -3786,7 +3786,7 @@ Navigation.NavigateToLogin("authentication/login", requestOptions);
 The preceding example assumes:
 
 * The presence of an `@using`/`using` statement for API in the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace.
-* <xref:Microsoft.AspNetCore.Components.NavigationManager> injected as `NavigationManager`.
+* <xref:Microsoft.AspNetCore.Components.NavigationManager> injected as `Navigation`.
 
 Obtain an additional parameter by calling `TryGetAdditionalParameter` with the name of the parameter. Remove an additional parameter by calling `TryRemoveAdditionalParameter` with the name of the parameter.
 
@@ -3885,8 +3885,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 {
     public CustomAuthorizationMessageHandler(IAccessTokenProvider provider, 
-        NavigationManager navigationManager)
-        : base(provider, navigationManager)
+        NavigationManager navigation)
+        : base(provider, navigation)
     {
         ConfigureHandler(
             authorizedUrls: new[] { "https://www.example.com/base" },
@@ -4544,7 +4544,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 public class CustomAccountFactory 
     : AccountClaimsPrincipalFactory<CustomUserAccount>
 {
-    public CustomAccountFactory(NavigationManager navigationManager, 
+    public CustomAccountFactory(NavigationManager navigation, 
         IAccessTokenProviderAccessor accessor) : base(accessor)
     {
     }
@@ -4629,7 +4629,7 @@ Prerendering content that requires authentication and authorization isn't curren
 * Prerenders paths for which authorization isn't required.
 * Doesn't prerender paths for which authorization is required.
 
-For the **`Client`** project's `Program.cs` file, factor common service registrations into a separate method (for example, create a `ConfigureCommonServices` method in the **`Client`** project). Common services are those that the developer registers for use by both the client and server projects.
+For the **:::no-loc text="Client":::** project's `Program.cs` file, factor common service registrations into a separate method (for example, create a `ConfigureCommonServices` method in the **:::no-loc text="Client":::** project). Common services are those that the developer registers for use by both the client and server projects.
 
 ```csharp
 public static void ConfigureCommonServices(IServiceCollection services)
@@ -4651,7 +4651,7 @@ ConfigureCommonServices(builder.Services);
 await builder.Build().RunAsync();
 ```
 
-In the **`Server`** project's `Program.cs` file, register the following additional services and call `ConfigureCommonServices`:
+In the **:::no-loc text="Server":::** project's `Program.cs` file, register the following additional services and call `ConfigureCommonServices`:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -4667,7 +4667,7 @@ builder.Services.TryAddScoped<AuthenticationStateProvider,
 Client.Program.ConfigureCommonServices(services);
 ```
 
-In the **`Server`** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
+In the **:::no-loc text="Server":::** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
 ```cshtml
 <div id="app">

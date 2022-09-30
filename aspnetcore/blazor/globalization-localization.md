@@ -377,7 +377,7 @@ The `CultureSelector` component is placed in the `Shared` folder for use through
 ```razor
 @using  System.Globalization
 @inject IJSRuntime JS
-@inject NavigationManager Nav
+@inject NavigationManager Navigation
 
 <p>
     <label>
@@ -409,7 +409,7 @@ The `CultureSelector` component is placed in the `Shared` folder for use through
                 var js = (IJSInProcessRuntime)JS;
                 js.InvokeVoid("blazorCulture.set", value.Name);
 
-                Nav.NavigateTo(Nav.Uri, forceLoad: true);
+                Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
             }
         }
     }
@@ -550,7 +550,7 @@ The following `CultureSelector` component shows how to call the `Set` method of 
 
 ```razor
 @using  System.Globalization
-@inject NavigationManager Nav
+@inject NavigationManager Navigation
 
 <p>
     <label>
@@ -584,12 +584,12 @@ The following `CultureSelector` component shows how to call the `Set` method of 
         {
             if (CultureInfo.CurrentCulture != value)
             {
-                var uri = new Uri(Nav.Uri)
+                var uri = new Uri(Navigation.Uri)
                     .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
                 var cultureEscaped = Uri.EscapeDataString(value.Name);
                 var uriEscaped = Uri.EscapeDataString(uri);
 
-                Nav.NavigateTo(
+                Navigation.NavigateTo(
                     $"Culture/Set?culture={cultureEscaped}&redirectUri={uriEscaped}",
                     forceLoad: true);
             }
@@ -1248,7 +1248,7 @@ The following `CultureSelector` component shows how to set the user's culture se
 ```razor
 @using  System.Globalization
 @inject IJSRuntime JS
-@inject NavigationManager Nav
+@inject NavigationManager Navigation
 
 <p>
     <label>
@@ -1280,7 +1280,7 @@ The following `CultureSelector` component shows how to set the user's culture se
                 var js = (IJSInProcessRuntime)JS;
                 js.InvokeVoid("blazorCulture.set", value.Name);
 
-                Nav.NavigateTo(Nav.Uri, forceLoad: true);
+                Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
             }
         }
     }
@@ -1416,7 +1416,7 @@ The following `CultureSelector` component shows how to perform the initial redir
 
 ```razor
 @using  System.Globalization
-@inject NavigationManager Nav
+@inject NavigationManager Navigation
 
 <p>
     <label>
@@ -1450,12 +1450,12 @@ The following `CultureSelector` component shows how to perform the initial redir
         {
             if (CultureInfo.CurrentCulture != value)
             {
-                var uri = new Uri(Nav.Uri)
+                var uri = new Uri(Navigation.Uri)
                     .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
                 var cultureEscaped = Uri.EscapeDataString(value.Name);
                 var uriEscaped = Uri.EscapeDataString(uri);
 
-                Nav.NavigateTo(
+                Navigation.NavigateTo(
                     $"Culture/Set?culture={cultureEscaped}&redirectUri={uriEscaped}",
                     forceLoad: true);
             }
@@ -2044,7 +2044,7 @@ The following `CultureSelector` component shows how to set the user's culture se
 ```razor
 @using  System.Globalization
 @inject IJSRuntime JS
-@inject NavigationManager Nav
+@inject NavigationManager Navigation
 
 <p>
     <label>
@@ -2076,7 +2076,7 @@ The following `CultureSelector` component shows how to set the user's culture se
                 var js = (IJSInProcessRuntime)JS;
                 js.InvokeVoid("blazorCulture.set", value.Name);
 
-                Nav.NavigateTo(Nav.Uri, forceLoad: true);
+                Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
             }
         }
     }
@@ -2212,7 +2212,7 @@ The following `CultureSelector` component shows how to perform the initial redir
 
 ```razor
 @using  System.Globalization
-@inject NavigationManager Nav
+@inject NavigationManager Navigation
 
 <p>
     <label>
@@ -2246,12 +2246,12 @@ The following `CultureSelector` component shows how to perform the initial redir
         {
             if (CultureInfo.CurrentCulture != value)
             {
-                var uri = new Uri(Nav.Uri)
+                var uri = new Uri(Navigation.Uri)
                     .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
                 var cultureEscaped = Uri.EscapeDataString(value.Name);
                 var uriEscaped = Uri.EscapeDataString(uri);
 
-                Nav.NavigateTo(
+                Navigation.NavigateTo(
                     $"Culture/Set?culture={cultureEscaped}&redirectUri={uriEscaped}",
                     forceLoad: true);
             }
@@ -2899,7 +2899,7 @@ The `CultureSelector` component is placed in the `Shared` folder for use through
 ```razor
 @using  System.Globalization
 @inject IJSRuntime JS
-@inject NavigationManager Nav
+@inject NavigationManager Navigation
 
 <p>
     <label>
@@ -2931,7 +2931,7 @@ The `CultureSelector` component is placed in the `Shared` folder for use through
                 var js = (IJSInProcessRuntime)JS;
                 js.InvokeVoid("blazorCulture.set", value.Name);
 
-                Nav.NavigateTo(Nav.Uri, forceLoad: true);
+                Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
             }
         }
     }
@@ -3064,7 +3064,7 @@ The following `CultureSelector` component shows how to call the `Set` method of 
 
 ```razor
 @using  System.Globalization
-@inject NavigationManager Nav
+@inject NavigationManager Navigation
 
 <p>
     <label>
@@ -3098,12 +3098,12 @@ The following `CultureSelector` component shows how to call the `Set` method of 
         {
             if (CultureInfo.CurrentCulture != value)
             {
-                var uri = new Uri(Nav.Uri)
+                var uri = new Uri(Navigation.Uri)
                     .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
                 var cultureEscaped = Uri.EscapeDataString(value.Name);
                 var uriEscaped = Uri.EscapeDataString(uri);
 
-                Nav.NavigateTo(
+                Navigation.NavigateTo(
                     $"Culture/Set?culture={cultureEscaped}&redirectUri={uriEscaped}",
                     forceLoad: true);
             }

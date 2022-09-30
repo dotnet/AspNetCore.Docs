@@ -104,9 +104,9 @@ builder.Services.AddSingleton<IDataAccess, DataAccess>();
 
 ## Register common services in a hosted Blazor WebAssembly solution
 
-If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
+If one or more common services are required by the **:::no-loc text="Server":::** and **:::no-loc text="Client":::** projects of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), you can place the common service registrations in a method in the **:::no-loc text="Client":::** project and call the method to register the services in both projects.
 
-First, factor common service registrations into a separate method. For example, create a `ConfigureCommonServices` method in the **`Client`** project:
+First, factor common service registrations into a separate method. For example, create a `ConfigureCommonServices` method in the **:::no-loc text="Client":::** project:
 
 ```csharp
 public static void ConfigureCommonServices(IServiceCollection services)
@@ -115,7 +115,7 @@ public static void ConfigureCommonServices(IServiceCollection services)
 }
 ```
 
-In the **`Client`** project's `Program.cs` file, call `ConfigureCommonServices` to register the common services:
+In the **:::no-loc text="Client":::** project's `Program.cs` file, call `ConfigureCommonServices` to register the common services:
 
 ```csharp
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -125,7 +125,7 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 ConfigureCommonServices(builder.Services);
 ```
 
-In the **`Server`** project's `Program.cs` file, call `ConfigureCommonServices` to register the common services for the **`Server`** project:
+In the **:::no-loc text="Server":::** project's `Program.cs` file, call `ConfigureCommonServices` to register the common services for the **:::no-loc text="Server":::** project:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -606,9 +606,9 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Register common services in a hosted Blazor WebAssembly solution
 
-If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
+If one or more common services are required by the **:::no-loc text="Server":::** and **:::no-loc text="Client":::** projects of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), you can place the common service registrations in a method in the **:::no-loc text="Client":::** project and call the method to register the services in both projects.
 
-First, factor common service registrations into a separate method. For example, create a `ConfigureCommonServices` method in the **`Client`** project:
+First, factor common service registrations into a separate method. For example, create a `ConfigureCommonServices` method in the **:::no-loc text="Client":::** project:
 
 ```csharp
 public static void ConfigureCommonServices(IServiceCollection services)
@@ -617,7 +617,7 @@ public static void ConfigureCommonServices(IServiceCollection services)
 }
 ```
 
-In the client (**`Client`**) project's `Program.cs` file, call `ConfigureCommonServices` to register the common services:
+In the client (**:::no-loc text="Client":::**) project's `Program.cs` file, call `ConfigureCommonServices` to register the common services:
 
 ```csharp
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -627,7 +627,7 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 ConfigureCommonServices(builder.Services);
 ```
 
-In the **`Server`** project's `ConfigureServices` method of `Startup.cs`, call `ConfigureCommonServices` to register the common services for the **`Server`** project:
+In the **:::no-loc text="Server":::** project's `ConfigureServices` method of `Startup.cs`, call `ConfigureCommonServices` to register the common services for the **:::no-loc text="Server":::** project:
 
 ```csharp
 Client.Program.ConfigureCommonServices(services);
@@ -1101,9 +1101,9 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Register common services in a hosted Blazor WebAssembly solution
 
-If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
+If one or more common services are required by the **:::no-loc text="Server":::** and **:::no-loc text="Client":::** projects of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), you can place the common service registrations in a method in the **:::no-loc text="Client":::** project and call the method to register the services in both projects.
 
-First, factor common service registrations into a separate method. For example, create a `ConfigureCommonServices` method in the **`Client`** project:
+First, factor common service registrations into a separate method. For example, create a `ConfigureCommonServices` method in the **:::no-loc text="Client":::** project:
 
 ```csharp
 public static void ConfigureCommonServices(IServiceCollection services)
@@ -1112,7 +1112,7 @@ public static void ConfigureCommonServices(IServiceCollection services)
 }
 ```
 
-In the **`Client`** project's `Program.cs` file, call `ConfigureCommonServices` to register the common services:
+In the **:::no-loc text="Client":::** project's `Program.cs` file, call `ConfigureCommonServices` to register the common services:
 
 ```csharp
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -1122,7 +1122,7 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 ConfigureCommonServices(builder.Services);
 ```
 
-In the **`Server`** project's `ConfigureServices` method of `Startup.cs`, call `ConfigureCommonServices` to register the common services for the **`Server`** project:
+In the **:::no-loc text="Server":::** project's `ConfigureServices` method of `Startup.cs`, call `ConfigureCommonServices` to register the common services for the **:::no-loc text="Server":::** project:
 
 ```csharp
 Client.Program.ConfigureCommonServices(services);
@@ -1572,9 +1572,9 @@ builder.Services.AddSingleton<IDataAccess, DataAccess>();
 
 ## Register common services in a hosted Blazor WebAssembly solution
 
-If one or more common services are required by the **`Server`** and **`Client`** projects of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), you can place the common service registrations in a method in the **`Client`** project and call the method to register the services in both projects.
+If one or more common services are required by the **:::no-loc text="Server":::** and **:::no-loc text="Client":::** projects of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), you can place the common service registrations in a method in the **:::no-loc text="Client":::** project and call the method to register the services in both projects.
 
-First, factor common service registrations into a separate method. For example, create a `ConfigureCommonServices` method in the **`Client`** project:
+First, factor common service registrations into a separate method. For example, create a `ConfigureCommonServices` method in the **:::no-loc text="Client":::** project:
 
 ```csharp
 public static void ConfigureCommonServices(IServiceCollection services)
@@ -1583,7 +1583,7 @@ public static void ConfigureCommonServices(IServiceCollection services)
 }
 ```
 
-In the **`Client`** project's `Program.cs` file, call `ConfigureCommonServices` to register the common services:
+In the **:::no-loc text="Client":::** project's `Program.cs` file, call `ConfigureCommonServices` to register the common services:
 
 ```csharp
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -1593,7 +1593,7 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 ConfigureCommonServices(builder.Services);
 ```
 
-In the **`Server`** project's `Program.cs` file, call `ConfigureCommonServices` to register the common services for the **`Server`** project:
+In the **:::no-loc text="Server":::** project's `Program.cs` file, call `ConfigureCommonServices` to register the common services for the **:::no-loc text="Server":::** project:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);

@@ -19,7 +19,7 @@ This article explains how to host and deploy Blazor apps.
 Apps are published for deployment in Release configuration.
 
 > [!NOTE]
-> Publish a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) from the **`Server`** project.
+> Publish a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) from the **:::no-loc text="Server":::** project.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -110,7 +110,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
 * Hosted Blazor WebAssembly:
 
-  In the **`Client`** project, `wwwroot/index.html`:
+  In the **:::no-loc text="Client":::** project, `wwwroot/index.html`:
 
   ```html
   <base href="/CoolApp/">
@@ -118,7 +118,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
   **The trailing slash is required.**
 
-  In the **`Server`** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`) to configure the base path for any following middleware that interacts with the request path:
+  In the **:::no-loc text="Server":::** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`) to configure the base path for any following middleware that interacts with the request path:
 
   ```csharp
   app.UsePathBase("/CoolApp");
@@ -176,11 +176,11 @@ In [Blazor WebAssembly web API requests with the `HttpClient` service](xref:blaz
 * ❌ Incorrect: `var rsp = await client.GetFromJsonAsync("/api/Account");`
 * ✔️ Correct: `var rsp = await client.GetFromJsonAsync("api/Account");`
 
-Do ***not*** prefix [Navigation Manager](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers) relative links with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
+Do ***not*** prefix [Navigation Manager](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers) relative links with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation (`Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>):
 
-* ❌ Incorrect: `NavigationManager.NavigateTo("/other");`
-* ✔️ Correct: `NavigationManager.NavigateTo("other");`
-* ✔️ Correct: `NavigationManager.NavigateTo("./other");`
+* ❌ Incorrect: `Navigation.NavigateTo("/other");`
+* ✔️ Correct: `Navigation.NavigateTo("other");`
+* ✔️ Correct: `Navigation.NavigateTo("./other");`
 
 In typical configurations for Azure/IIS hosting, additional configuration usually isn't required. In some non-IIS hosting and reverse proxy hosting scenarios, additional Static File Middleware configuration might be required to serve static files correctly (for example, `app.UseStaticFiles("/CoolApp");`). The required configuration might require further configuration to serve the Blazor script (`_framework/blazor.server.js` or `_framework/blazor.webassembly.js`). For more information, see <xref:blazor/fundamentals/static-files>.
 
@@ -346,7 +346,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
 * Hosted Blazor WebAssembly:
 
-  In the **`Client`** project, `wwwroot/index.html`:
+  In the **:::no-loc text="Client":::** project, `wwwroot/index.html`:
 
   ```html
   <base href="/CoolApp/">
@@ -354,7 +354,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
   **The trailing slash is required.**
 
-  In the **`Server`** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (the `Configure` method of `Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
+  In the **:::no-loc text="Server":::** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (the `Configure` method of `Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
 
   ```csharp
   app.UsePathBase("/CoolApp");
@@ -570,7 +570,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
 * Hosted Blazor WebAssembly:
 
-  In the **`Client`** project, `wwwroot/index.html`:
+  In the **:::no-loc text="Client":::** project, `wwwroot/index.html`:
 
   ```html
   <base href="/CoolApp/">
@@ -578,7 +578,7 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
 
   **The trailing slash is required.**
 
-  In the **`Server`** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (the `Configure` method of `Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
+  In the **:::no-loc text="Server":::** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (the `Configure` method of `Startup.cs`) to configure the base path for any following middleware that interacts with the request path:
 
   ```csharp
   app.UsePathBase("/CoolApp");
