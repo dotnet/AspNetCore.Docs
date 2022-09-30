@@ -176,11 +176,11 @@ In [Blazor WebAssembly web API requests with the `HttpClient` service](xref:blaz
 * ❌ Incorrect: `var rsp = await client.GetFromJsonAsync("/api/Account");`
 * ✔️ Correct: `var rsp = await client.GetFromJsonAsync("api/Account");`
 
-Do ***not*** prefix [Navigation Manager](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers) relative links with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
+Do ***not*** prefix [Navigation Manager](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers) relative links with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation (`Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>):
 
-* ❌ Incorrect: `NavigationManager.NavigateTo("/other");`
-* ✔️ Correct: `NavigationManager.NavigateTo("other");`
-* ✔️ Correct: `NavigationManager.NavigateTo("./other");`
+* ❌ Incorrect: `Navigation.NavigateTo("/other");`
+* ✔️ Correct: `Navigation.NavigateTo("other");`
+* ✔️ Correct: `Navigation.NavigateTo("./other");`
 
 In typical configurations for Azure/IIS hosting, additional configuration usually isn't required. In some non-IIS hosting and reverse proxy hosting scenarios, additional Static File Middleware configuration might be required to serve static files correctly (for example, `app.UseStaticFiles("/CoolApp");`). The required configuration might require further configuration to serve the Blazor script (`_framework/blazor.server.js` or `_framework/blazor.webassembly.js`). For more information, see <xref:blazor/fundamentals/static-files>.
 

@@ -137,13 +137,16 @@ To secure a SignalR hub:
   if (tokenResult.TryGetToken(out var token))
   {
       hubConnection = new HubConnectionBuilder()
-          .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"), 
+          .WithUrl(Navigation.ToAbsoluteUri("/chathub"), 
               options => { options.AccessTokenProvider = () => Task.FromResult(token?.Value); })
           .Build();
 
     ...
   }
   ```
+
+  > [!NOTE]
+  > `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
   
 For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
 
@@ -298,13 +301,16 @@ To secure a SignalR hub:
   if (tokenResult.TryGetToken(out var token))
   {
       hubConnection = new HubConnectionBuilder()
-          .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"), 
+          .WithUrl(Navigation.ToAbsoluteUri("/chathub"), 
               options => { options.AccessTokenProvider = () => Task.FromResult(token?.Value); })
           .Build();
 
     ...
   }
   ```
+
+  > [!NOTE]
+  > `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
   
 For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
 
@@ -459,13 +465,16 @@ To secure a SignalR hub:
   if (tokenResult.TryGetToken(out var token))
   {
       hubConnection = new HubConnectionBuilder()
-          .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"), 
+          .WithUrl(Navigation.ToAbsoluteUri("/chathub"), 
               options => { options.AccessTokenProvider = () => Task.FromResult(token?.Value); })
           .Build();
 
     ...
   }
   ```
+
+  > [!NOTE]
+  > `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
   
 For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
 
@@ -655,13 +664,16 @@ To secure a SignalR hub:
   if (tokenResult.TryGetToken(out var token))
   {
       hubConnection = new HubConnectionBuilder()
-          .WithUrl(NavigationManager.ToAbsoluteUri("/chathub"), 
+          .WithUrl(Navigation.ToAbsoluteUri("/chathub"), 
               options => { options.AccessTokenProvider = () => Task.FromResult(token?.Value); })
           .Build();
 
     ...
   }
   ```
+
+  > [!NOTE]
+  > `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
   
 For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
 
