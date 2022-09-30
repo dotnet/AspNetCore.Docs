@@ -12,7 +12,7 @@ uid: web-api/action-return-types
 
 :::moniker range=">= aspnetcore-7.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/aspnetcore/mvc/action-return-types/7.x) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/mvc/action-return-types/7.x/WebApiSample) ([how to download](xref:index#how-to-download-a-sample))
 
 ASP.NET Core offers the following options for web API controller action return types:
 
@@ -56,7 +56,7 @@ Because there are multiple return types and paths in this type of action, libera
 
 Consider the following synchronous action in which there are two possible return types:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/ActionResultProductsController.cs" id="snippet_GetByIdIActionResult" highlight="8,11":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/ActionResultProductsController.cs" id="snippet_GetByIdIActionResult" highlight="7":::
 
 In the preceding action:
 
@@ -67,7 +67,7 @@ In the preceding action:
 
 Consider the following asynchronous action in which there are two possible return types:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/ActionResultProductsController.cs" id="snippet_CreateAsyncIActionResult" highlight="9,14":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/ActionResultProductsController.cs" id="snippet_CreateAsyncIActionResult" highlight="9,15":::
 
 In the preceding action:
 
@@ -107,7 +107,7 @@ Most actions have a specific return type. Unexpected conditions can occur during
 
 Consider a synchronous action in which there are two possible return types:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/ActionResultOfTProductsController.cs" id="snippet_GetByIdActionResultOfT" highlight="8,11":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/ActionResultOfTProductsController.cs" id="snippet_GetByIdActionResultOfT" highlight="7":::
 
 In the preceding action:
 
@@ -118,7 +118,7 @@ In the preceding action:
 
 Consider an asynchronous action in which there are two possible return types:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/ActionResultOfTProductsController.cs" id="snippet_CreateAsyncActionResultOfT" highlight="9,14":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/ActionResultOfTProductsController.cs" id="snippet_CreateAsyncActionResultOfT" highlight="9,15":::
 
 In the preceding action:
 
@@ -146,7 +146,7 @@ In the preceding action:
 
 Consider an asynchronous action in which there are two possible return types:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/IResultProductsController.cs" id="snippet_CreateAsyncIResult" highlight="9,14":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/IResultProductsController.cs" id="snippet_CreateAsyncIResult" highlight="9,15":::
 
 In the preceding action:
 
@@ -173,7 +173,7 @@ In the preceding action:
 
 Consider an asynchronous action in which there are two possible return types:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/ResultsOfTProductsController.cs" id="snippet_CreateAsyncResultsOfT" highlight="6,11":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/ResultsOfTProductsController.cs" id="snippet_CreateAsyncResultsOfT" highlight="6,13":::
 
 In the preceding action:
 
