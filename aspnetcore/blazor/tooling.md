@@ -31,12 +31,12 @@ This article describes tools for building Blazor apps on various platforms.
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
-   When running a hosted Blazor WebAssembly [solution](#visual-studio-solution-file-sln) in Visual Studio, the startup project of the solution is the **`Server`** project.
+   When running a hosted Blazor WebAssembly [solution](#visual-studio-solution-file-sln) in Visual Studio, the startup project of the solution is the **:::no-loc text="Server":::** project.
 
 For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
 > [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
 :::zone-end
 
@@ -130,16 +130,16 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
    **Hosted Blazor WebAssembly launch and task configuration**
 
-   For hosted Blazor WebAssembly [solutions](#visual-studio-solution-file-sln), add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: `Client`, `Server`, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **`Server`** project.
+   For hosted Blazor WebAssembly [solutions](#visual-studio-solution-file-sln), add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: :::no-loc text="Client":::, :::no-loc text="Server":::, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **:::no-loc text="Server":::** project.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
    Examine the `Properties/launchSettings.json` file and determine the URL of the app from the `applicationUrl` property (for example, `https://localhost:7268`). Note this value for use in the `launch.json` file.
 
    In the launch configuration of the `.vscode/launch.json` file:
 
-   * Set the current working directory (`cwd`) to the **`Server`** project folder.
+   * Set the current working directory (`cwd`) to the **:::no-loc text="Server":::** project folder.
    * Indicate the app's URL with the `url` property. Use the value recorded earlier from the `Properties/launchSettings.json` file.
 
    ```json
@@ -149,14 +149,14 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
    In the preceding configuration:
 
-   * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically `Server`.
+   * The `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically :::no-loc text="Server":::.
    * The `{URL}` placeholder is the app's URL, which is specified in the app's `Properties/launchSettings.json` file in the `applicationUrl` property.
 
    If Microsoft Edge is used and Google Chrome isn't installed on the system, add an additional property of `"browser": "edge"` to the configuration.
 
    The following example `.vscode/launch.json` file:
 
-   * Sets the current working directory to the `Server` folder.
+   * Sets the current working directory to the :::no-loc text="Server"::: folder.
    * Sets the URL for the app to `https://localhost:7268`.
    * Changes the default browser from Google Chrome to Microsoft Edge.
 
@@ -184,7 +184,7 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
    }
    ```
 
-   In `.vscode/tasks.json`, add a `build` argument that specifies the path to the **`Server`** app's project file:
+   In `.vscode/tasks.json`, add a `build` argument that specifies the path to the **:::no-loc text="Server":::** app's project file:
 
    ```json
    "${workspaceFolder}/{SERVER APP FOLDER}/{PROJECT NAME}.csproj",
@@ -192,10 +192,10 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
    In the preceding argument:
 
-   * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically `Server`.
+   * The `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically :::no-loc text="Server":::.
    * The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by `.Server` in an app generated from the Blazor WebAssembly project template.
 
-   An example `.vscode/tasks.json` file with a **`Server`** project named `BlazorHosted` in the `Server` folder of the solution:
+   An example `.vscode/tasks.json` file with a **:::no-loc text="Server":::** project named `BlazorHosted` in the :::no-loc text="Server"::: folder of the solution:
 
    ```json
    {
@@ -226,7 +226,7 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 > [!NOTE]
 > Only [browser debugging](xref:blazor/debug#debug-in-the-browser) is supported at this time.
 >
-> You can't automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+> You can't automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
 ## Trust a development certificate
 
@@ -257,7 +257,7 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
 > [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
 :::zone-end
 
@@ -352,12 +352,12 @@ For more information, see the following resources:
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
-   When running a hosted Blazor WebAssembly [solution](#visual-studio-solution-file-sln) in Visual Studio, the startup project of the solution is the **`Server`** project.
+   When running a hosted Blazor WebAssembly [solution](#visual-studio-solution-file-sln) in Visual Studio, the startup project of the solution is the **:::no-loc text="Server":::** project.
 
 For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
 > [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
 :::zone-end
 
@@ -450,10 +450,10 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
 
    **Hosted Blazor WebAssembly launch and task configuration**
 
-   For hosted Blazor WebAssembly [solutions](#visual-studio-solution-file-sln), add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: `Client`, `Server`, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **`Server`** project.
+   For hosted Blazor WebAssembly [solutions](#visual-studio-solution-file-sln), add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: :::no-loc text="Client":::, :::no-loc text="Server":::, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **:::no-loc text="Server":::** project.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
    **`.vscode/launch.json`** (`launch` configuration):
 
@@ -463,11 +463,11 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
    ...
    ```
 
-   In the preceding configuration for the current working directory (`cwd`), the `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically "`Server`".
+   In the preceding configuration for the current working directory (`cwd`), the `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically ":::no-loc text="Server":::".
 
    If Microsoft Edge is used and Google Chrome isn't installed on the system, add an additional property of `"browser": "edge"` to the configuration.
 
-   Example for a project folder of `Server` and that spawns Microsoft Edge as the browser for debug runs instead of the default browser Google Chrome:
+   Example for a project folder of :::no-loc text="Server"::: and that spawns Microsoft Edge as the browser for debug runs instead of the default browser Google Chrome:
 
    ```json
    ...
@@ -486,10 +486,10 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
 
    In the preceding argument:
 
-   * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically "`Server`".
+   * The `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically ":::no-loc text="Server":::".
    * The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by "`.Server`" in an app generated from the [Blazor project template](xref:blazor/project-structure).
 
-   The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](xref:blazor/tutorials/signalr-blazor) uses a project folder name of `Server` and a project name of `BlazorWebAssemblySignalRApp.Server`:
+   The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](xref:blazor/tutorials/signalr-blazor) uses a project folder name of :::no-loc text="Server"::: and a project name of `BlazorWebAssemblySignalRApp.Server`:
 
    ```json
    ...
@@ -532,7 +532,7 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
 > [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
 :::zone-end
 
@@ -609,11 +609,11 @@ dotnet new blazorserver -h
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
-   When running a hosted Blazor WebAssembly [solution](#visual-studio-solution-file-sln) in Visual Studio, the startup project of the solution is the **`Server`** project.
+   When running a hosted Blazor WebAssembly [solution](#visual-studio-solution-file-sln) in Visual Studio, the startup project of the solution is the **:::no-loc text="Server":::** project.
 
 For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
-When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
 :::zone-end
 
@@ -706,7 +706,7 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
 
    **Hosted Blazor WebAssembly launch and task configuration**
 
-   For hosted Blazor WebAssembly [solutions](#visual-studio-solution-file-sln), add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: `Client`, `Server`, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **`Server`** project.
+   For hosted Blazor WebAssembly [solutions](#visual-studio-solution-file-sln), add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: :::no-loc text="Client":::, :::no-loc text="Server":::, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **:::no-loc text="Server":::** project.
 
    **`.vscode/launch.json`** (`launch` configuration):
 
@@ -716,11 +716,11 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
    ...
    ```
 
-   In the preceding configuration for the current working directory (`cwd`), the `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically "`Server`".
+   In the preceding configuration for the current working directory (`cwd`), the `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically ":::no-loc text="Server":::".
 
    If Microsoft Edge is used and Google Chrome isn't installed on the system, add an additional property of `"browser": "edge"` to the configuration.
 
-   Example for a project folder of `Server` and that spawns Microsoft Edge as the browser for debug runs instead of the default browser Google Chrome:
+   Example for a project folder of :::no-loc text="Server"::: and that spawns Microsoft Edge as the browser for debug runs instead of the default browser Google Chrome:
 
    ```json
    ...
@@ -739,10 +739,10 @@ When executing a hosted Blazor WebAssembly app, run the app from the solution's 
 
    In the preceding argument:
 
-   * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically "`Server`".
+   * The `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically ":::no-loc text="Server":::".
    * The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by "`.Server`" in an app generated from the [Blazor project template](xref:blazor/project-structure).
 
-   The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](xref:blazor/tutorials/signalr-blazor) uses a project folder name of `Server` and a project name of `BlazorWebAssemblySignalRApp.Server`:
+   The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](xref:blazor/tutorials/signalr-blazor) uses a project folder name of :::no-loc text="Server"::: and a project name of `BlazorWebAssemblySignalRApp.Server`:
 
    ```json
    ...
@@ -785,7 +785,7 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
 > [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
 :::zone-end
 
@@ -864,12 +864,12 @@ dotnet new blazorserver -h
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
-   When running a hosted Blazor WebAssembly [solution](#visual-studio-solution-file-sln) in Visual Studio, the startup project of the solution is the **`Server`** project.
+   When running a hosted Blazor WebAssembly [solution](#visual-studio-solution-file-sln) in Visual Studio, the startup project of the solution is the **:::no-loc text="Server":::** project.
 
 For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
 > [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
 :::zone-end
 
@@ -981,16 +981,16 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
    **Hosted Blazor WebAssembly launch and task configuration**
 
-   For hosted Blazor WebAssembly [solutions](#visual-studio-solution-file-sln), add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: `Client`, `Server`, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **`Server`** project.
+   For hosted Blazor WebAssembly [solutions](#visual-studio-solution-file-sln), add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: :::no-loc text="Client":::, :::no-loc text="Server":::, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **:::no-loc text="Server":::** project.
 
    > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
    Examine the `Properties/launchSettings.json` file and determine the URL of the app from the `applicationUrl` property (for example, `https://localhost:7268`). Note this value for use in the `launch.json` file.
 
    In the launch configuration of the `.vscode/launch.json` file:
 
-   * Set the current working directory (`cwd`) to the **`Server`** project folder.
+   * Set the current working directory (`cwd`) to the **:::no-loc text="Server":::** project folder.
    * Indicate the app's URL with the `url` property. Use the value recorded earlier from the `Properties/launchSettings.json` file.
 
    ```json
@@ -1000,14 +1000,14 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
    In the preceding configuration:
 
-   * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically `Server`.
+   * The `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically :::no-loc text="Server":::.
    * The `{URL}` placeholder is the app's URL, which is specified in the app's `Properties/launchSettings.json` file in the `applicationUrl` property.
 
    If Google Chrome is preferred over Microsoft Edge, update or add an additional property of `"browser": "chrome"` to the configuration.
 
    The following example `.vscode/launch.json` file:
 
-   * Sets the current working directory to the `Server` folder.
+   * Sets the current working directory to the :::no-loc text="Server"::: folder.
    * Sets the URL for the app to `https://localhost:7268`.
    * Changes the default browser from Microsoft Edge to Google Chrome.
 
@@ -1035,7 +1035,7 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
    }
    ```
 
-   In `.vscode/tasks.json`, add a `build` argument that specifies the path to the **`Server`** app's project file:
+   In `.vscode/tasks.json`, add a `build` argument that specifies the path to the **:::no-loc text="Server":::** app's project file:
 
    ```json
    "${workspaceFolder}/{SERVER APP FOLDER}/{PROJECT NAME}.csproj",
@@ -1043,10 +1043,10 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
    In the preceding argument:
 
-   * The `{SERVER APP FOLDER}` placeholder is the **`Server`** project's folder, typically `Server`.
+   * The `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically :::no-loc text="Server":::.
    * The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by `.Server` in an app generated from the Blazor WebAssembly project template.
 
-   An example `.vscode/tasks.json` file with a **`Server`** project named `BlazorHosted` in the `Server` folder of the solution:
+   An example `.vscode/tasks.json` file with a **:::no-loc text="Server":::** project named `BlazorHosted` in the :::no-loc text="Server"::: folder of the solution:
 
    ```json
    {
@@ -1077,7 +1077,7 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 > [!NOTE]
 > Only [browser debugging](xref:blazor/debug#debug-in-the-browser) is supported at this time.
 >
-> You can't automatically rebuild the backend **`Server`** app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+> You can't automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 
 ## Trust a development certificate
 
@@ -1110,7 +1110,7 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
 > [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the solution's **`Server`** project.
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
 
 :::zone-end
 

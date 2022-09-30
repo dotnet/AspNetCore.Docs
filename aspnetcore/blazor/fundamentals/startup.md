@@ -40,7 +40,7 @@ The following example starts Blazor when the document is ready:
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
+The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
 
 ## Chain to the `Promise` that results from a manual start
 
@@ -59,7 +59,7 @@ To perform additional tasks, such as JS interop initialization, use [`then`](htt
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
+The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
 
 ## Load boot resources
 
@@ -160,7 +160,7 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
 
 * In hosted Blazor WebAssembly apps that aren't prerendered, pass <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A> that specifies response headers at the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> stage.
 
-  In `Program.cs` of the **`Server`** project:
+  In `Program.cs` of the **:::no-loc text="Server":::** project:
 
   ```csharp
   var staticFileOptions = new StaticFileOptions
@@ -218,7 +218,7 @@ The following example starts Blazor when the document is ready:
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
+The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
 
 ## Chain to the `Promise` that results from a manual start
 
@@ -237,7 +237,7 @@ To perform additional tasks, such as JS interop initialization, use [`then`](htt
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
+The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
 
 ## Load boot resources
 
@@ -338,7 +338,7 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
 
 * In hosted Blazor WebAssembly apps that aren't prerendered, pass <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A> that specifies response headers at the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> stage.
 
-  In `Startup.Configure` (`Startup.cs`) of the **`Server`** project:
+  In `Startup.Configure` (`Startup.cs`) of the **:::no-loc text="Server":::** project:
 
   ```csharp
   var staticFileOptions = new StaticFileOptions
@@ -396,7 +396,7 @@ The following example starts Blazor when the document is ready:
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
+The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
 
 ## Chain to the `Promise` that results from a manual start
 
@@ -415,7 +415,7 @@ To perform additional tasks, such as JS interop initialization, use [`then`](htt
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
+The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
 
 ## Load boot resources
 
@@ -516,7 +516,7 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
 
 * In hosted Blazor WebAssembly apps, pass <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A> that specifies response headers at the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> stage.
 
-  In `Startup.Configure` (`Startup.cs`) of the **`Server`** project:
+  In `Startup.Configure` (`Startup.cs`) of the **:::no-loc text="Server":::** project:
 
   ```csharp
   var staticFileOptions = new StaticFileOptions
@@ -575,7 +575,7 @@ The following example starts Blazor when the document is ready:
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
+The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
 
 ## Chain to the `Promise` that results from a manual start
 
@@ -594,7 +594,7 @@ To perform additional tasks, such as JS interop initialization, use [`then`](htt
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
+The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
 
 ## Load boot resources
 
@@ -695,7 +695,7 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
 
 * In hosted Blazor WebAssembly apps that aren't prerendered, pass <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A> that specifies response headers at the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> stage.
 
-  In `Program.cs` of the **`Server`** project:
+  In `Program.cs` of the **:::no-loc text="Server":::** project:
 
   ```csharp
   var staticFileOptions = new StaticFileOptions

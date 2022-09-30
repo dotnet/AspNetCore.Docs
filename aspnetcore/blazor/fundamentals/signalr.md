@@ -31,7 +31,7 @@ if (!app.Environment.IsDevelopment())
 }
 ```
 
-In `Program.cs` of the **`Client`** project in a hosted Blazor WebAssembly solution:
+In `Program.cs` of the **:::no-loc text="Client":::** project in a hosted Blazor WebAssembly solution:
 
 ```csharp
 if (app.Environment.IsDevelopment())
@@ -1018,7 +1018,7 @@ if (!app.Environment.IsDevelopment())
 }
 ```
 
-In `Program.cs` of the **`Client`** project in a hosted Blazor WebAssembly solution:
+In `Program.cs` of the **:::no-loc text="Client":::** project in a hosted Blazor WebAssembly solution:
 
 ```csharp
 if (app.Environment.IsDevelopment())
