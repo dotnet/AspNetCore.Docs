@@ -41,6 +41,10 @@ The preceding action documents the HTTP 200 success return type but doesn't docu
 
 ![analyzer reporting a warning](conventions/_static/Analyzer.gif)
 
+## Analyzers require Microsoft.NET.Sdk.Web
+
+Analyzers don't work with library projects or projects referencing `Sdk="Microsoft.NET.Sdk"`.
+
 ## Additional resources
 
 * <xref:web-api/advanced/conventions>
