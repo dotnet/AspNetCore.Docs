@@ -958,7 +958,7 @@ The [Razor SDK](xref:razor-pages/sdk) handles compilation of Razor files. By def
 </PropertyGroup>
 ```
 
-When building the project, the Razor SDK generates an `obj/<build_configuration>/net6.0/generated/` directory in the project root. Its subdirectory contains the emitted Razor page code files.
+When building a 6.0 project (`net6.0`) in the `Debug` build configuration, the Razor SDK generates an `obj/Debug/net6.0/generated/` directory in the project root. Its subdirectory contains the emitted Razor page code files.
 
 ::: moniker-end
 
