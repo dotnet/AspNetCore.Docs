@@ -43,7 +43,7 @@ The preceding action documents the HTTP 200 success return type but doesn't docu
 
 ## Analyzers require Microsoft.NET.Sdk.Web
 
-Analyzers don't work with library projects or projects referencing `Sdk="Microsoft.NET.Sdk"` in the project.
+Analyzers don't work with library projects or projects referencing `Sdk="Microsoft.NET.Sdk"`.
 
 ## Additional resources
 
