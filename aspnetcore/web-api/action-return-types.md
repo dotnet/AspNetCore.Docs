@@ -146,7 +146,7 @@ In the preceding action:
 
 Consider an asynchronous action in which there are two possible return types:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/IResultProductsController.cs" id="snippet_CreateAsyncIResult" highlight="9,15":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/IResultProductsController.cs" id="snippet_CreateAsyncIResult" highlight="9,16":::
 
 In the preceding action:
 
