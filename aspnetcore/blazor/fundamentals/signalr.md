@@ -79,14 +79,14 @@ To configure SignalR's underlying client to send credentials, such as cookies or
   ...
 
   hubConnection = new HubConnectionBuilder()
-      .WithUrl(new Uri(NavigationManager.ToAbsoluteUri("/chathub")), options =>
+      .WithUrl(new Uri(Navigation.ToAbsoluteUri("/chathub")), options =>
       {
           options.HttpMessageHandlerFactory = innerHandler => 
               new IncludeRequestCredentialsMessageHandler { InnerHandler = innerHandler };
       }).Build();
   ```
 
-  The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration).
+  The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration). `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
   
 > [!NOTE]
 > To authenticate users for SignalR hubs, see <xref:blazor/security/webassembly/index#secure-a-signalr-hub>.
@@ -405,14 +405,14 @@ To configure SignalR's underlying client to send credentials, such as cookies or
   ...
 
   hubConnection = new HubConnectionBuilder()
-      .WithUrl(new Uri(NavigationManager.ToAbsoluteUri("/chathub")), options =>
+      .WithUrl(new Uri(Navigation.ToAbsoluteUri("/chathub")), options =>
       {
           options.HttpMessageHandlerFactory = innerHandler => 
               new IncludeRequestCredentialsMessageHandler { InnerHandler = innerHandler };
       }).Build();
   ```
 
-  The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration).
+  The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration). `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
   
 > [!NOTE]
 > To authenticate users for SignalR hubs, see <xref:blazor/security/webassembly/index#secure-a-signalr-hub>.
@@ -735,14 +735,14 @@ To configure SignalR's underlying client to send credentials, such as cookies or
   ...
 
   hubConnection = new HubConnectionBuilder()
-      .WithUrl(new Uri(NavigationManager.ToAbsoluteUri("/chathub")), options =>
+      .WithUrl(new Uri(Navigation.ToAbsoluteUri("/chathub")), options =>
       {
           options.HttpMessageHandlerFactory = innerHandler => 
               new IncludeRequestCredentialsMessageHandler { InnerHandler = innerHandler };
       }).Build();
   ```
 
-  The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration).
+  The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration). `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
   
 > [!NOTE]
 > To authenticate users for SignalR hubs, see <xref:blazor/security/webassembly/index#secure-a-signalr-hub>.
@@ -1066,14 +1066,14 @@ To configure SignalR's underlying client to send credentials, such as cookies or
   ...
 
   hubConnection = new HubConnectionBuilder()
-      .WithUrl(new Uri(NavigationManager.ToAbsoluteUri("/chathub")), options =>
+      .WithUrl(new Uri(Navigation.ToAbsoluteUri("/chathub")), options =>
       {
           options.HttpMessageHandlerFactory = innerHandler => 
               new IncludeRequestCredentialsMessageHandler { InnerHandler = innerHandler };
       }).Build();
   ```
 
-  The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration).
+  The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration). `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
 
 For more information, see <xref:signalr/configuration#configure-additional-options>.
 

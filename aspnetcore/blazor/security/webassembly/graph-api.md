@@ -293,8 +293,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 public class GraphAPIAuthorizationMessageHandler : AuthorizationMessageHandler
 {
     public GraphAPIAuthorizationMessageHandler(IAccessTokenProvider provider,
-        NavigationManager navigationManager)
-        : base(provider, navigationManager)
+        NavigationManager navigation)
+        : base(provider, navigation)
     {
         ConfigureHandler(
             authorizedUrls: new[] { "https://graph.microsoft.com" },
@@ -792,8 +792,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 public class GraphAPIAuthorizationMessageHandler : AuthorizationMessageHandler
 {
     public GraphAPIAuthorizationMessageHandler(IAccessTokenProvider provider,
-        NavigationManager navigationManager)
-        : base(provider, navigationManager)
+        NavigationManager navigation)
+        : base(provider, navigation)
     {
         ConfigureHandler(
             authorizedUrls: new[] { "https://graph.microsoft.com" },
@@ -1036,8 +1036,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 public class GraphAPIAuthorizationMessageHandler : AuthorizationMessageHandler
 {
     public GraphAPIAuthorizationMessageHandler(IAccessTokenProvider provider,
-        NavigationManager navigationManager)
-        : base(provider, navigationManager)
+        NavigationManager navigation)
+        : base(provider, navigation)
     {
         ConfigureHandler(
             authorizedUrls: new[] { "https://graph.microsoft.com" },

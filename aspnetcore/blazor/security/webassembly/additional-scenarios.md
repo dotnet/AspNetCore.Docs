@@ -85,8 +85,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 {
     public CustomAuthorizationMessageHandler(IAccessTokenProvider provider, 
-        NavigationManager navigationManager)
-        : base(provider, navigationManager)
+        NavigationManager navigation)
+        : base(provider, navigation)
     {
         ConfigureHandler(
             authorizedUrls: new[] { "https://www.example.com/base" },
@@ -744,7 +744,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 public class CustomAccountFactory 
     : AccountClaimsPrincipalFactory<CustomUserAccount>
 {
-    public CustomAccountFactory(NavigationManager navigationManager, 
+    public CustomAccountFactory(NavigationManager navigation, 
         IAccessTokenProviderAccessor accessor) : base(accessor)
     {
     }
@@ -1315,8 +1315,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 {
     public CustomAuthorizationMessageHandler(IAccessTokenProvider provider, 
-        NavigationManager navigationManager)
-        : base(provider, navigationManager)
+        NavigationManager navigation)
+        : base(provider, navigation)
     {
         ConfigureHandler(
             authorizedUrls: new[] { "https://www.example.com/base" },
@@ -1968,7 +1968,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 public class CustomAccountFactory 
     : AccountClaimsPrincipalFactory<CustomUserAccount>
 {
-    public CustomAccountFactory(NavigationManager navigationManager, 
+    public CustomAccountFactory(NavigationManager navigation, 
         IAccessTokenProviderAccessor accessor) : base(accessor)
     {
     }
@@ -2546,8 +2546,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 {
     public CustomAuthorizationMessageHandler(IAccessTokenProvider provider, 
-        NavigationManager navigationManager)
-        : base(provider, navigationManager)
+        NavigationManager navigation)
+        : base(provider, navigation)
     {
         ConfigureHandler(
             authorizedUrls: new[] { "https://www.example.com/base" },
@@ -3199,7 +3199,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 public class CustomAccountFactory 
     : AccountClaimsPrincipalFactory<CustomUserAccount>
 {
-    public CustomAccountFactory(NavigationManager navigationManager, 
+    public CustomAccountFactory(NavigationManager navigation, 
         IAccessTokenProviderAccessor accessor) : base(accessor)
     {
     }
@@ -3774,7 +3774,7 @@ InteractiveRequestOptions requestOptions =
     new()
     {
         Interaction = InteractionType.SignIn,
-        ReturnUrl = NavigationManager.Uri,
+        ReturnUrl = Navigation.Uri,
     };
 
 requestOptions.TryAddAdditionalParameter("prompt", "login");
@@ -3786,7 +3786,7 @@ Navigation.NavigateToLogin("authentication/login", requestOptions);
 The preceding example assumes:
 
 * The presence of an `@using`/`using` statement for API in the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace.
-* <xref:Microsoft.AspNetCore.Components.NavigationManager> injected as `NavigationManager`.
+* <xref:Microsoft.AspNetCore.Components.NavigationManager> injected as `Navigation`.
 
 Obtain an additional parameter by calling `TryGetAdditionalParameter` with the name of the parameter. Remove an additional parameter by calling `TryRemoveAdditionalParameter` with the name of the parameter.
 
@@ -3885,8 +3885,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 {
     public CustomAuthorizationMessageHandler(IAccessTokenProvider provider, 
-        NavigationManager navigationManager)
-        : base(provider, navigationManager)
+        NavigationManager navigation)
+        : base(provider, navigation)
     {
         ConfigureHandler(
             authorizedUrls: new[] { "https://www.example.com/base" },
@@ -4544,7 +4544,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
 public class CustomAccountFactory 
     : AccountClaimsPrincipalFactory<CustomUserAccount>
 {
-    public CustomAccountFactory(NavigationManager navigationManager, 
+    public CustomAccountFactory(NavigationManager navigation, 
         IAccessTokenProviderAccessor accessor) : base(accessor)
     {
     }

@@ -12,6 +12,9 @@ uid: blazor/fundamentals/routing
 
 This article explains how to manage request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create navigation links in Blazor apps.
 
+> [!IMPORTANT]
+> Code examples throughout this article show methods called on `Navigation`, which is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager> in classes and components.
+
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
 ## Route templates
@@ -304,11 +307,11 @@ In the following example with a URL of `/search?filter=scifi%20stars&page=3&star
 Use [`NavigationManager.GetUriWithQueryParameter`](xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A) to add, change, or remove one or more query parameters on the current URL:
 
 ```razor
-@inject NavigationManager NavigationManager
+@inject NavigationManager Navigation
 
 ...
 
-NavigationManager.GetUriWithQueryParameter("{NAME}", {VALUE})
+Navigation.GetUriWithQueryParameter("{NAME}", {VALUE})
 ```
 
 For the preceding example:
@@ -325,11 +328,11 @@ For the preceding example:
 Call [`NavigationManager.GetUriWithQueryParameters`](xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameters%2A) to create a URI constructed from <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> with multiple parameters added, updated, or removed. For each value, the framework uses `value?.GetType()` to determine the runtime type for each query parameter and selects the correct culture-invariant formatting. The framework throws an error for unsupported types.
 
 ```razor
-@inject NavigationManager NavigationManager
+@inject NavigationManager Navigation
 
 ...
 
-NavigationManager.GetUriWithQueryParameters({PARAMETERS})
+Navigation.GetUriWithQueryParameters({PARAMETERS})
 ```
 
 The `{PARAMETERS}` placeholder is an `IReadOnlyDictionary<string, object>`.
@@ -337,11 +340,11 @@ The `{PARAMETERS}` placeholder is an `IReadOnlyDictionary<string, object>`.
 Pass a URI string to <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameters%2A> to generate a new URI from a provided URI with multiple parameters added, updated, or removed. For each value, the framework uses `value?.GetType()` to determine the runtime type for each query parameter and selects the correct culture-invariant formatting. The framework throws an error for unsupported types. Supported types are listed later in this section.
 
 ```razor
-@inject NavigationManager NavigationManager
+@inject NavigationManager Navigation
 
 ...
 
-NavigationManager.GetUriWithQueryParameters("{URI}", {PARAMETERS})
+Navigation.GetUriWithQueryParameters("{URI}", {PARAMETERS})
 ```
 
 * The `{URI}` placeholder is the URI with or without a query string.
@@ -367,7 +370,7 @@ Supported types include:
 ### Replace a query parameter value when the parameter exists
 
 ```csharp
-NavigationManager.GetUriWithQueryParameter("full name", "Morena Baccarin")
+Navigation.GetUriWithQueryParameter("full name", "Morena Baccarin")
 ```
 
 | Current URL | Generated URL |
@@ -381,7 +384,7 @@ NavigationManager.GetUriWithQueryParameter("full name", "Morena Baccarin")
 ### Append a query parameter and value when the parameter doesn't exist
 
 ```csharp
-NavigationManager.GetUriWithQueryParameter("name", "Morena Baccarin")
+Navigation.GetUriWithQueryParameter("name", "Morena Baccarin")
 ```
 
 | Current URL | Generated URL |
@@ -393,7 +396,7 @@ NavigationManager.GetUriWithQueryParameter("name", "Morena Baccarin")
 ### Remove a query parameter when the parameter value is `null`
 
 ```csharp
-NavigationManager.GetUriWithQueryParameter("full name", (string)null)
+Navigation.GetUriWithQueryParameter("full name", (string)null)
 ```
 
 | Current URL | Generated URL |
@@ -413,7 +416,7 @@ In the following example:
 * `eye color` is added or updated to a value of `green`.
 
 ```csharp
-NavigationManager.GetUriWithQueryParameters(
+Navigation.GetUriWithQueryParameters(
     new Dictionary<string, object>
     {
         ["name"] = null,
@@ -439,7 +442,7 @@ In the following example:
 * `ping` parameters are added or replaced with `35`, `16`, `87` and `240`.
 
 ```csharp
-NavigationManager.GetUriWithQueryParameters(
+Navigation.GetUriWithQueryParameters(
     new Dictionary<string, object>
     {
         ["full name"] = "Morena Baccarin",
@@ -463,8 +466,8 @@ The following example calls:
 * Calls <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> to trigger navigation to the new URL.
 
 ```csharp
-NavigationManager.NavigateTo(
-    NavigationManager.GetUriWithQueryParameter("name", "Morena Baccarin"));
+Navigation.NavigateTo(
+    Navigation.GetUriWithQueryParameter("name", "Morena Baccarin"));
 ```
 
 ## User interaction with `<Navigating>` content
@@ -876,11 +879,11 @@ For more information on component disposal, see <xref:blazor/components/lifecycl
 The query string of a request is obtained from the <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> property:
 
 ```razor
-@inject NavigationManager NavigationManager
+@inject NavigationManager Navigation
 
 ...
 
-var query = new Uri(NavigationManager.Uri).Query;
+var query = new Uri(Navigation.Uri).Query;
 ```
 
 To parse a query string's parameters, one approach is to use [`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) with [JavaScript (JS) interop](xref:blazor/js-interop/call-javascript-from-dotnet):
@@ -1260,11 +1263,11 @@ For more information on component disposal, see <xref:blazor/components/lifecycl
 The query string of a request is obtained from the <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> property:
 
 ```razor
-@inject NavigationManager NavigationManager
+@inject NavigationManager Navigation
 
 ...
 
-var query = new Uri(NavigationManager.Uri).Query;
+var query = new Uri(Navigation.Uri).Query;
 ```
 
 To parse a query string's parameters, one approach is to use [`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) with [JavaScript (JS) interop](xref:blazor/js-interop/call-javascript-from-dotnet):
@@ -1581,7 +1584,7 @@ Pass `NavigationOptions` to <xref:Microsoft.AspNetCore.Components.NavigationMana
 * `HistoryEntryState`: Gets or sets the state to append to the history entry.
 
 ```csharp
-NavigationManager.NavigateTo("/path", new NavigationOptions
+Navigation.NavigateTo("/path", new NavigationOptions
 {
     HistoryEntryState = "Navigation state"
 });
@@ -1659,11 +1662,11 @@ In the following example with a URL of `/search?filter=scifi%20stars&page=3&star
 Use [`NavigationManager.GetUriWithQueryParameter`](xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A) to add, change, or remove one or more query parameters on the current URL:
 
 ```razor
-@inject NavigationManager NavigationManager
+@inject NavigationManager Navigation
 
 ...
 
-NavigationManager.GetUriWithQueryParameter("{NAME}", {VALUE})
+Navigation.GetUriWithQueryParameter("{NAME}", {VALUE})
 ```
 
 For the preceding example:
@@ -1680,11 +1683,11 @@ For the preceding example:
 Call [`NavigationManager.GetUriWithQueryParameters`](xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameters%2A) to create a URI constructed from <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> with multiple parameters added, updated, or removed. For each value, the framework uses `value?.GetType()` to determine the runtime type for each query parameter and selects the correct culture-invariant formatting. The framework throws an error for unsupported types.
 
 ```razor
-@inject NavigationManager NavigationManager
+@inject NavigationManager Navigation
 
 ...
 
-NavigationManager.GetUriWithQueryParameters({PARAMETERS})
+Navigation.GetUriWithQueryParameters({PARAMETERS})
 ```
 
 The `{PARAMETERS}` placeholder is an `IReadOnlyDictionary<string, object>`.
@@ -1692,11 +1695,11 @@ The `{PARAMETERS}` placeholder is an `IReadOnlyDictionary<string, object>`.
 Pass a URI string to <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameters%2A> to generate a new URI from a provided URI with multiple parameters added, updated, or removed. For each value, the framework uses `value?.GetType()` to determine the runtime type for each query parameter and selects the correct culture-invariant formatting. The framework throws an error for unsupported types. Supported types are listed later in this section.
 
 ```razor
-@inject NavigationManager NavigationManager
+@inject NavigationManager Navigation
 
 ...
 
-NavigationManager.GetUriWithQueryParameters("{URI}", {PARAMETERS})
+Navigation.GetUriWithQueryParameters("{URI}", {PARAMETERS})
 ```
 
 * The `{URI}` placeholder is the URI with or without a query string.
@@ -1722,7 +1725,7 @@ Supported types include:
 ### Replace a query parameter value when the parameter exists
 
 ```csharp
-NavigationManager.GetUriWithQueryParameter("full name", "Morena Baccarin")
+Navigation.GetUriWithQueryParameter("full name", "Morena Baccarin")
 ```
 
 | Current URL | Generated URL |
@@ -1736,7 +1739,7 @@ NavigationManager.GetUriWithQueryParameter("full name", "Morena Baccarin")
 ### Append a query parameter and value when the parameter doesn't exist
 
 ```csharp
-NavigationManager.GetUriWithQueryParameter("name", "Morena Baccarin")
+Navigation.GetUriWithQueryParameter("name", "Morena Baccarin")
 ```
 
 | Current URL | Generated URL |
@@ -1748,7 +1751,7 @@ NavigationManager.GetUriWithQueryParameter("name", "Morena Baccarin")
 ### Remove a query parameter when the parameter value is `null`
 
 ```csharp
-NavigationManager.GetUriWithQueryParameter("full name", (string)null)
+Navigation.GetUriWithQueryParameter("full name", (string)null)
 ```
 
 | Current URL | Generated URL |
@@ -1768,7 +1771,7 @@ In the following example:
 * `eye color` is added or updated to a value of `green`.
 
 ```csharp
-NavigationManager.GetUriWithQueryParameters(
+Navigation.GetUriWithQueryParameters(
     new Dictionary<string, object>
     {
         ["name"] = null,
@@ -1794,7 +1797,7 @@ In the following example:
 * `ping` parameters are added or replaced with `35`, `16`, `87` and `240`.
 
 ```csharp
-NavigationManager.GetUriWithQueryParameters(
+Navigation.GetUriWithQueryParameters(
     new Dictionary<string, object>
     {
         ["full name"] = "Morena Baccarin",
@@ -1818,8 +1821,8 @@ The following example calls:
 * Calls <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> to trigger navigation to the new URL.
 
 ```csharp
-NavigationManager.NavigateTo(
-    NavigationManager.GetUriWithQueryParameter("name", "Morena Baccarin"));
+Navigation.NavigateTo(
+    Navigation.GetUriWithQueryParameter("name", "Morena Baccarin"));
 ```
 
 ## User interaction with `<Navigating>` content
@@ -1949,14 +1952,14 @@ In the following example, a location changing handler is registered for navigati
 
 ```razor
 @page "/nav-handler"
-@inject NavigationManager NavigationManager
+@inject NavigationManager Navigation
 @implements IDisposable
 
 <p>
-    <button @onclick="NavigationManager.NavigateTo("/")">
+    <button @onclick="Navigation.NavigateTo("/")">
         Home (Allowed)
     </button>
-    <button @onclick="NavigationManager.NavigateTo("/counter")">
+    <button @onclick="Navigation.NavigateTo("/counter")">
         Counter (Prevented)
     </button>
 </p>
@@ -1969,7 +1972,7 @@ In the following example, a location changing handler is registered for navigati
         if (firstRender)
         {
             registration = 
-                NavigationManager.RegisterLocationChangingHandler(OnLocationChanging);
+                Navigation.RegisterLocationChangingHandler(OnLocationChanging);
         }
     }
 
@@ -2015,7 +2018,7 @@ In the following `NavLock` component:
 ```razor
 @page "/nav-lock"
 @inject IJSRuntime JSRuntime
-@inject NavigationManager NavigationManager
+@inject NavigationManager Navigation
 
 <NavigationLock ConfirmExternalNavigation="true" 
     OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
@@ -2031,7 +2034,7 @@ In the following `NavLock` component:
 @code {
     private void Navigate()
     {
-        NavigationManager.NavigateTo("/");
+        Navigation.NavigateTo("/");
     }
 
     private async Task OnBeforeInternalNavigation(LocationChangingContext context)
