@@ -503,7 +503,7 @@ The `CallHelloHelperGetHelloMessage` method in the following `JsInteropClasses3`
 
 :::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/JsInteropClasses3.cs":::
 
-To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the object reference goes out of scope when the method returns with [`using var` syntax](/dotnet/csharp/language-reference/keywords/using-statement).
+To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the object reference goes out of scope with [`using var` syntax](/dotnet/csharp/language-reference/keywords/using-statement).
 
 When the **`Trigger .NET instance method`** button is selected in the following `CallDotNetExample4` component, `JsInteropClasses3.CallHelloHelperGetHelloMessage` is called with the value of `name`.
 
@@ -930,7 +930,7 @@ The `CallHelloHelperGetHelloMessage` method in the following `JsInteropClasses3`
 
 :::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/JsInteropClasses3.cs":::
 
-To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the object reference goes out of scope when the method returns with [`using var` syntax](/dotnet/csharp/language-reference/keywords/using-statement).
+To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the object reference goes out of scope with [`using var` syntax](/dotnet/csharp/language-reference/keywords/using-statement).
 
 When the **`Trigger .NET instance method`** button is selected in the following `CallDotNetExample4` component, `JsInteropClasses3.CallHelloHelperGetHelloMessage` is called with the value of `name`.
 
@@ -1257,7 +1257,7 @@ The `CallHelloHelperGetHelloMessage` method in the following `JsInteropClasses3`
 
 :::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/JsInteropClasses3.cs":::
 
-To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the object reference goes out of scope when the method returns with [`using var` syntax](/dotnet/csharp/language-reference/keywords/using-statement).
+To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the object reference goes out of scope with [`using var` syntax](/dotnet/csharp/language-reference/keywords/using-statement).
 
 When the **`Trigger .NET instance method`** button is selected in the following `CallDotNetExample4` component, `JsInteropClasses3.CallHelloHelperGetHelloMessage` is called with the value of `name`.
 
@@ -1865,7 +1865,7 @@ The `CallHelloHelperGetHelloMessage` method in the following `JsInteropClasses3`
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/JsInteropClasses3.cs":::
 
-To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the object reference goes out of scope when the method returns with [`using var` syntax](/dotnet/csharp/language-reference/keywords/using-statement).
+To avoid a memory leak and allow garbage collection, the .NET object reference created by <xref:Microsoft.JSInterop.DotNetObjectReference> is disposed when the object reference goes out of scope with [`using var` syntax](/dotnet/csharp/language-reference/keywords/using-statement).
 
 When the **`Trigger .NET instance method`** button is selected in the following `CallDotNetExample4` component, `JsInteropClasses3.CallHelloHelperGetHelloMessage` is called with the value of `name`.
 
