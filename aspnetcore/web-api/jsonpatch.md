@@ -248,7 +248,7 @@ To test the sample, run the app and send HTTP requests with the following settin
 
 * [IETF RFC 5789 PATCH method specification](https://tools.ietf.org/html/rfc5789)
 * [IETF RFC 6902 JSON Patch specification](https://tools.ietf.org/html/rfc6902)
-* [IETF RFC 6901 JSON Patch path format spec](https://tools.ietf.org/html/rfc6901)
+* [IETF RFC 6901 JSON Pointer](https://tools.ietf.org/html/rfc6901)
 * [JSON Patch documentation](https://jsonpatch.com/). Includes links to resources for creating JSON Patch documents.
 * [ASP.NET Core JSON Patch source code](https://github.com/dotnet/AspNetCore/tree/main/src/Features/JsonPatch/src)
 
