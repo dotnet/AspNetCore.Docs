@@ -692,6 +692,8 @@ items:
         uid: fundamentals/minimal-apis/openapi
       - name: Filters in Minimal API apps
         uid: fundamentals/minimal-apis/min-api-filters
+      - name: Unit and integration tests
+        uid: fundamentals/minimal-apis/test-min-api
   - name: Real-time apps
     displayName: signalr
     items:
@@ -899,6 +901,8 @@ items:
         uid: mvc/controllers/testing
       - name: Integration tests
         uid: test/integration-tests
+      - name: Testing Minimal API
+        uid: fundamentals/minimal-apis/test-min-api
       - name: Test middleware
         uid: test/middleware
       - name: Remote debugging
