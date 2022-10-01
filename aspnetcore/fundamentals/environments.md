@@ -78,7 +78,7 @@ The preceding command sets the environment to `Production` and displays output s
 
 ### Development and launchSettings.json
 
-The development environment can enable features that shouldn't be exposed in production. For example, the ASP.NET Core project templates enable the [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page) in the development environment.
+The development environment can enable features that shouldn't be exposed in production. For example, the ASP.NET Core project templates enable the [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page) in the development environment. Because of the performance cost, scope validation and dependency validation only happens in development. <!--https://github.com/dotnet/AspNetCore.Docs/issues/22626-->
 
 The environment for local machine development can be set in the *Properties\launchSettings.json* file of the project. Environment values set in `launchSettings.json` override values set in the system environment.
 
