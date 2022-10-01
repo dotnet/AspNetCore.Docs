@@ -33,8 +33,16 @@ Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> 
 
 This section explains how to call JS functions from .NET.
 
-> [!NOTE]
-> Add the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property to the app's project file. Setting this property to `true` permits the code generator in the Roslyn compiler to use pointers.
+Enable the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property in app's project file, which permits the code generator in the Roslyn compiler to use pointers:
+
+```xml
+<PropertyGroup>
+  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+</PropertyGroup>
+```
+
+> [!WARNING]
+> The JS interop API requires enabling <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks>. Be careful when implementing your own unsafe code in .NET apps, which can introduce security and stability risks. For more information, see [Unsafe code, pointer types, and function pointers](/dotnet/csharp/language-reference/unsafe-code).
 
 In the following `CallJavaScript1` component:
 
@@ -129,8 +137,16 @@ If you need to iteratively make code changes in JS files and force a browser to 
 
 This section explains how to call .NET methods from JS.
 
-> [!NOTE]
-> Add the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property to the app's project file. Setting this property to `true` permits the code generator in the Roslyn compiler to use pointers.
+Enable the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property in app's project file, which permits the code generator in the Roslyn compiler to use pointers:
+
+```xml
+<PropertyGroup>
+  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+</PropertyGroup>
+```
+
+> [!WARNING]
+> The JS interop API requires enabling <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks>. Be careful when implementing your own unsafe code in .NET apps, which can introduce security and stability risks. For more information, see [Unsafe code, pointer types, and function pointers](/dotnet/csharp/language-reference/unsafe-code).
 
 The following `CallDotNet1` component calls JS that directly interacts with the DOM to render the welcome message string:
 
