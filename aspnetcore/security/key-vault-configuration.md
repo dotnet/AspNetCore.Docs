@@ -336,7 +336,29 @@ To reload secrets periodically, at a specified interval, set the <xref:Azure.Ext
 
 ## Disabled and expired secrets
 
-Disabled and expired secrets are excluded from the configuration provider. To include values for these secrets in app configuration, provide the configuration using a different configuration provider or update the disabled or expired secret.
+Disabled and expired secrets are included by default in the configuration provider. To exclude values for these secrets in app configuration, update the disabled or expired secret or provide the configuration using a custom configuration provider:
+
+```csharp
+class SampleKeyVaultSecretManager : KeyVaultSecretManager
+{
+  public override bool Load(SecretProperties properties) =>
+    properties.Enabled.HasValue &&
+    properties.Enabled.Value &&
+    properties.ExpiresOn.Hasvalue &&
+    properties.ExpiresOn.Value > DateTimeOffset.Now;
+}
+```
+
+Pass this custom `KeyVaultSecretManager` to `AddAzureKeyVault`:
+
+```csharp
+// using Azure.Extensions.AspNetCore.Configuration.Secrets;
+
+builder.Configuration.AddAzureKeyVault(
+    new Uri($"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/"),
+    new DefaultAzureCredential(),
+    new SampleKeyVaultSecretManager());
+```
 
 ## Troubleshoot
 
