@@ -313,7 +313,7 @@ For more information on template options, see the following resources:
 
 ## .NET WebAssembly build tools
 
-The **.NET WebAssembly build tools** are based on [Emscripten](https://emscripten.org/), a compiler toolchain for the web platform. To install the **.NET WebAssembly build tools**, use ***either*** of the following approaches:
+The .NET WebAssembly build tools are based on [Emscripten](https://emscripten.org/), a compiler toolchain for the web platform. To install the build tools, use ***either*** of the following approaches:
 
 * For the **ASP.NET and web development** workload in the Visual Studio installer, select the **.NET WebAssembly build tools** option from the list of optional components.
 * Run `dotnet workload install wasm-tools` in a command shell.
@@ -1166,10 +1166,21 @@ For more information on template options, see the following resources:
 
 ## .NET WebAssembly build tools
 
-The **.NET WebAssembly build tools** are based on [Emscripten](https://emscripten.org/), a compiler toolchain for the web platform. To install the **.NET WebAssembly build tools**, use ***either*** of the following approaches:
+The .NET WebAssembly build tools are based on [Emscripten](https://emscripten.org/), a compiler toolchain for the web platform. To install the build tools, use ***either*** of the following approaches:
 
 * For the **ASP.NET and web development** workload in the Visual Studio installer, select the **.NET WebAssembly build tools** option from the list of optional components.
-* Run `dotnet workload install wasm-tools` in a command shell.
+* Execute `dotnet workload install wasm-tools` in an administrative command shell.
+
+> [!NOTE]
+> .NET WebAssembly build tools for .NET 6 projects
+>
+> The `wasm-tools` workload installs the build tools for .NET 7 projects. However, the .NET 7 version of the build tools are incompatible with existing projects built with .NET 6. Projects using the build tools that must support both .NET 6 and .NET 7 must use multi-targeting.
+>
+> Use the `wasm-tools-net6` workload for .NET 6 projects when developing apps with the .NET 7 SDK. To install the `wasm-tools-net6` workload, execute the following command from an administrative command shell:
+>
+> ```dotnetcli
+> dotnet workload install wasm-tools-net6
+> ```
 
 For more information, see the following resources:
 
