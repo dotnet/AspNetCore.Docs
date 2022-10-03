@@ -128,9 +128,9 @@ In the preceding action:
 
 ## HttpResults type
 
-In addition to the MVC-specific built-in result types (<xref:Microsoft.AspNetCore.Mvc.IActionResult> and [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult%601)), ASP.NET Core includes the [HttpResults](xref:Microsoft.AspNetCore.Http.HttpResults) types that can be used in both [Minimal APIs](https://learn.microsoft.com/aspnet/core/fundamentals/minimal-apis) and Web API.
+In addition to the MVC-specific built-in result types (<xref:Microsoft.AspNetCore.Mvc.IActionResult> and [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult%601)), ASP.NET Core includes the [HttpResults](xref:Microsoft.AspNetCore.Http.HttpResults) types that can be used in both [Minimal APIs](/aspnet/core/fundamentals/minimal-apis) and Web API.
 
-Differently than the MVC-specific result types, the `HttpResults` will processed by a call to [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A) and ***will not*** leverage the configured [Formatters](https://learn.microsoft.com/aspnet/core/web-api/advanced/formatting#format-specific-action-results), that means, some features are not available like `Content negotiation` where the produced `Content-Type` will be decided by the `HttpResults` implementation.
+Differently than the MVC-specific result types, the `HttpResults` will processed by a call to [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A) and ***will not*** leverage the configured [Formatters](/aspnet/core/web-api/advanced/formatting#format-specific-action-results), that means, some features are not available like `Content negotiation` where the produced `Content-Type` will be decided by the `HttpResults` implementation.
 
 The `HttpResults` can be useful when sharing code between both frameworks (Minimal APIs and Web API). 
 
@@ -138,7 +138,7 @@ The `HttpResults` can be useful when sharing code between both frameworks (Minim
 
 The `HttpResults` are a implementation of the <xref:Microsoft.AspNetCore.Http.IResult> interface, that defines a contract that represents the result of an HTTP endpoint, and the static [Results](<xref:Microsoft.AspNetCore.Http.Results>) class is used to create varying `IResult` objects that represent different types of responses.
 
-This table shows the common result helpers available: [Built-in results](https://learn.microsoft.com/aspnet/core/fundamentals/minimal-apis#built-in-results-1)
+This table shows the common result helpers available: [Built-in results](/aspnet/core/fundamentals/minimal-apis#built-in-results-1)
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/IResultProductsController.cs" id="snippet_GetByIdIResult" highlight="7":::
 
