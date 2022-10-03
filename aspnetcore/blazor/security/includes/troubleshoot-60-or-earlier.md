@@ -1,9 +1,5 @@
 ## Troubleshoot
 
-### Logging
-
-To enable debug or trace logging for Blazor WebAssembly authentication, see <xref:blazor/fundamentals/logging#blazor-webassembly-authentication-logging>.
-
 ### Common errors
 
 * Misconfiguration of the app or Identity Provider (IP)
