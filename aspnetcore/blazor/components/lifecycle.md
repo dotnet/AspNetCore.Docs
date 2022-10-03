@@ -55,7 +55,7 @@ The `Render` lifecycle:
 
 Developer calls to [`StateHasChanged`](#state-changes-statehaschanged) result in a render. For more information, see <xref:blazor/components/rendering>.
 
-This article and its diagrams simplify some aspects of component lifecycle event processing in order to clarify complex framework logic. You may need to access the [`ComponentBase` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs) to integrate custom event processing with Blazor's lifecycle event processing. Code comments in the reference source include additional remarks about lifecycle event processing that don't appear in this article or in the [API documentation](/dotnet/api/). Note that Blazor's lifecycle event processing has changed over time and is subject to change without notice each release.
+This article simplifies some aspects of component lifecycle event processing in order to clarify complex framework logic. You may need to access the [`ComponentBase` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs) to integrate custom event processing with Blazor's lifecycle event processing. Code comments in the reference source include additional remarks about lifecycle event processing that don't appear in this article or in the [API documentation](/dotnet/api/). Note that Blazor's lifecycle event processing has changed over time and is subject to change without notice each release.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -517,7 +517,7 @@ The `Render` lifecycle:
 
 Developer calls to [`StateHasChanged`](#state-changes-statehaschanged) result in a render. For more information, see <xref:blazor/components/rendering>.
 
-This article and its diagrams simplify some aspects of component lifecycle event processing in order to clarify complex framework logic. You may need to access the [`ComponentBase` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs) to integrate custom event processing with Blazor's lifecycle event processing. Code comments in the reference source include additional remarks about lifecycle event processing that don't appear in this article or in the [API documentation](/dotnet/api/). Note that Blazor's lifecycle event processing has changed over time and is subject to change without notice each release.
+This article simplifies some aspects of component lifecycle event processing in order to clarify complex framework logic. You may need to access the [`ComponentBase` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs) to integrate custom event processing with Blazor's lifecycle event processing. Code comments in the reference source include additional remarks about lifecycle event processing that don't appear in this article or in the [API documentation](/dotnet/api/). Note that Blazor's lifecycle event processing has changed over time and is subject to change without notice each release.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -978,7 +978,7 @@ The `Render` lifecycle:
 
 Developer calls to [`StateHasChanged`](#state-changes-statehaschanged) result in a render. For more information, see <xref:blazor/components/rendering>.
 
-This article and its diagrams simplify some aspects of component lifecycle event processing in order to clarify complex framework logic. You may need to access the [`ComponentBase` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs) to integrate custom event processing with Blazor's lifecycle event processing. Code comments in the reference source include additional remarks about lifecycle event processing that don't appear in this article or in the [API documentation](/dotnet/api/). Note that Blazor's lifecycle event processing has changed over time and is subject to change without notice each release.
+This article simplifies some aspects of component lifecycle event processing in order to clarify complex framework logic. You may need to access the [`ComponentBase` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs) to integrate custom event processing with Blazor's lifecycle event processing. Code comments in the reference source include additional remarks about lifecycle event processing that don't appear in this article or in the [API documentation](/dotnet/api/). Note that Blazor's lifecycle event processing has changed over time and is subject to change without notice each release.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -1436,7 +1436,7 @@ The `Render` lifecycle:
 
 Developer calls to [`StateHasChanged`](#state-changes-statehaschanged) result in a render. For more information, see <xref:blazor/components/rendering>.
 
-This article and its diagrams simplify some aspects of component lifecycle event processing in order to clarify complex framework logic. You may need to access the [`ComponentBase` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs) to integrate custom event processing with Blazor's lifecycle event processing. Code comments in the reference source include additional remarks about lifecycle event processing that don't appear in this article or in the [API documentation](/dotnet/api/). Note that Blazor's lifecycle event processing has changed over time and is subject to change without notice each release.
+This article simplifies some aspects of component lifecycle event processing in order to clarify complex framework logic. You may need to access the [`ComponentBase` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs) to integrate custom event processing with Blazor's lifecycle event processing. Code comments in the reference source include additional remarks about lifecycle event processing that don't appear in this article or in the [API documentation](/dotnet/api/). Note that Blazor's lifecycle event processing has changed over time and is subject to change without notice each release.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
