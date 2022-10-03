@@ -170,6 +170,9 @@ The WPF application can use the gRPC generated types from the new class library 
 
 ## Calling gRPC services hosted in a sub-directory
 
+> [!WARNING]
+> Many third-party gRPC tools don't support services hosted in subdirectories. Consider finding a way to host gRPC as the root directory.
+
 The path component of a gRPC channel's address is ignored when making gRPC calls. For example, `GrpcChannel.ForAddress("https://localhost:5001/ignored_path")` won't use `ignored_path` when routing gRPC calls for the service.
 
 The address path is ignored because gRPC has a standardized, prescriptive address structure. A gRPC address combines the package, service and method names: `https://localhost:5001/PackageName.ServiceName/MethodName`.
@@ -435,6 +438,9 @@ The WPF application can use the gRPC generated types from the new class library 
 
 ## Calling gRPC services hosted in a sub-directory
 
+> [!WARNING]
+> Many third-party gRPC tools don't support services hosted in subdirectories. Consider finding a way to host gRPC as the root directory.
+
 The path component of a gRPC channel's address is ignored when making gRPC calls. For example, `GrpcChannel.ForAddress("https://localhost:5001/ignored_path")` won't use `ignored_path` when routing gRPC calls for the service.
 
 The address path is ignored because gRPC has a standardized, prescriptive address structure. A gRPC address combines the package, service and method names: `https://localhost:5001/PackageName.ServiceName/MethodName`.
@@ -649,6 +655,9 @@ You can workaround this issue by:
 The WPF application can use the gRPC generated types from the new class library project.
 
 ## Calling gRPC services hosted in a sub-directory
+
+> [!WARNING]
+> Many third-party gRPC tools don't support services hosted in subdirectories. Consider finding a way to host gRPC as the root directory.
 
 The path component of a gRPC channel's address is ignored when making gRPC calls. For example, `GrpcChannel.ForAddress("https://localhost:5001/ignored_path")` won't use `ignored_path` when routing gRPC calls for the service.
 

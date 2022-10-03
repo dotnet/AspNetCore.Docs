@@ -677,6 +677,10 @@ To secure a SignalR hub:
   
 For more information, see <xref:signalr/authn-and-authz#bearer-token-authentication>.
 
+## Logging
+
+To enable debug or trace logging for Blazor WebAssembly authentication, see <xref:blazor/fundamentals/logging#blazor-webassembly-authentication-logging>.
+
 ## Implementation guidance
 
 Articles under this *Overview* provide information on authenticating users in Blazor WebAssembly apps against specific providers.
