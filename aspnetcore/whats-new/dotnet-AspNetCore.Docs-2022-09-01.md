@@ -41,7 +41,7 @@ Welcome to what's new in the ASP.NET Core docs from September 1, 2022 through Se
 ### Updated articles
 
 - <xref:grpc/test-tools> - Add Postman to gRPC testing page
-- <xref:grpc/aspnetcore> - Update grpc/aspnetcore with modern startup code <!--
+- <xref:grpc/aspnetcore> - Update grpc/aspnetcore with modern startup code
 
 ## Hosting and deployment
 
