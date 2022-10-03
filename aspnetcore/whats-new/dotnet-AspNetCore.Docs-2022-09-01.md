@@ -41,18 +41,14 @@ Welcome to what's new in the ASP.NET Core docs from September 1, 2022 through Se
 ### Updated articles
 
 - <xref:grpc/test-tools> - Add Postman to gRPC testing page
-- <xref:grpc/aspnetcore> - Update grpc/aspnetcore with modern startup code
-- [Title not found in: #26944](grpc/httpapi.md) - Add OpenAPI instructions to gRPC JSON transcoding
+- <xref:grpc/aspnetcore> - Update grpc/aspnetcore with modern startup code <!--
+- [Title not found in: #26944](grpc/httpapi.md) - Add OpenAPI instructions to gRPC JSON transcoding -->
 
 ## Hosting and deployment
 
 ### New articles
 
 - <xref:host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps>
-
-### Updated articles
-
-- <xref:host-and-deploy/windows-service> - Moniker prep
 
 ## Migration
 
@@ -64,9 +60,7 @@ Welcome to what's new in the ASP.NET Core docs from September 1, 2022 through Se
 
 ### Updated articles
 
-- <xref:tutorials/min-web-api>
-  - Update Minimal API tutorial for .NET 7
-  - Add .NET 7 moniker section
+- <xref:tutorials/min-web-api> Update Minimal API tutorial for .NET 7
 
 ## Web API
 
@@ -74,13 +68,12 @@ Welcome to what's new in the ASP.NET Core docs from September 1, 2022 through Se
 
 - <xref:web-api/handle-errors>
   - Problem details /2
-  - moniker prep
+  - More PD
 
 ## Community contributors
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham (30)
 - [GitHubPang](https://github.com/GitHubPang) (11)
 - [weijiechai](https://github.com/weijiechai) - Chai Wei Jie (3)
 - [Ducki](https://github.com/Ducki) - Alexander Wicht (2)
