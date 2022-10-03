@@ -128,7 +128,7 @@ In the preceding action:
 
 ## HttpResults type
 
-In addition to the MVC-specific built-in result types (<xref:Microsoft.AspNetCore.Mvc.IActionResult> and [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult%601)), ASP.NET Core includes the [HttpResult](xref:Microsoft.AspNetCore.Http.HttpResults) type that can be used in both [Minimal APIs](https://review.learn.microsoft.com/aspnet/core/fundamentals/minimal-apis) and Web API.
+In addition to the MVC-specific built-in result types (<xref:Microsoft.AspNetCore.Mvc.IActionResult> and [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult%601)), ASP.NET Core includes the [HttpResult](xref:Microsoft.AspNetCore.Http.HttpResults) type that can be used in both [Minimal APIs](https://learn.microsoft.com/aspnet/core/fundamentals/minimal-apis) and Web API.
 
 Differently than the MVC-specific result types, the `HttpResults` are results implementation that will be processed by a call to [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A) and *will not* leverage the configured [Formatters](https://learn.microsoft.com/aspnet/core/web-api/advanced/formatting#format-specific-action-results), that means, some features like `Content negotiation` are not available and the produced `Content-Type` will be decided by the `HttpResults` implementation.
 
@@ -138,7 +138,7 @@ The `HttpResults` can be useful when sharing code between both frameworks (Minim
 
 The `HttpResults` are a implementation of the <xref:Microsoft.AspNetCore.Http.IResult> interface, that defines a contract that represents the result of an HTTP endpoint, and the static [Results](<xref:Microsoft.AspNetCore.Http.Results>) class is used to create varying `IResult` objects that represent different types of responses.
 
-This table shows the common result helpers available: [Built-in results](https://review.learn.microsoft.com/aspnet/core/fundamentals/minimal-apis#built-in-results-1)
+This table shows the common result helpers available: [Built-in results](https://learn.microsoft.com/aspnet/core/fundamentals/minimal-apis#built-in-results-1)
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/IResultProductsController.cs" id="snippet_GetByIdIResult" highlight="7":::
 
@@ -158,11 +158,11 @@ In the preceding action:
 
 ### Result\<T> type
 
-ASP.NET Core also includes the static [TypedResults](<xref:Microsoft.AspNetCore.Http.TypedResults>) class that returns the concrete `IResult` implementation, that allows using it as return type. The usage of the concrete `IResult` implementation offers the following benefits over the [IResult type](#iresult-type):
+ASP.NET Core also includes the static [TypedResults](<xref:Microsoft.AspNetCore.Http.TypedResults>) class that returns the concrete `IResult` implementation, that allows using it as return type. The usage of the concrete `IResult` implementation offers the following benefit over the [IResult type](#iresult-type):
 
 * All the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute's can be excluded, since the `HttpResult` implementation will contribute automatically to the endpoint metadata.
 
-When multiple `IResult` return types are possible, while still possible use `IResult` interface as return type is better use the [`Result\<T>`](/dotnet/api/microsoft.aspnetcore.http.httpresults.Result) generic union types that will keep the automatic endpoint metadata benefit.
+When multiple `IResult` return types are possible, while still possible use `IResult` interface as return type is better use the [`Result<TResult1, TResultN>`](/dotnet/api/microsoft.aspnetcore.http.httpresults.Result) generic union types that will keep the automatic endpoint metadata benefit.
 
 The `Results<TResult1, TResultN>` union types implement implicit cast operators so that the compiler can automatically convert the types specified in the generic arguments to an instance of the union type. This has the added benefit of providing compile-time checking that a route handler actually only returns the results that it declares it does. Attempting to return a type that isn’t declared as one of the generic arguments to `Results<>` will result in a compilation error.
 
