@@ -110,7 +110,7 @@ Configure Azure AD, Azure Key Vault, and the app to use an Azure AD Application 
 
 The sample app uses an Application ID and X.509 certificate when the `#define` preprocessor directive at the top of `Program.cs` is set to `Certificate`.
 
-1. Create a PKCS#12 archive (*.pfx*) certificate. Options for creating certificates include [MakeCert on Windows](/windows/desktop/seccrypto/makecert) and [OpenSSL](https://www.openssl.org/).
+1. Create a PKCS#12 archive (*.pfx*) certificate. Options for creating certificates include [New-SelfSignedCertificate on Windows](/powershell/module/pki/new-selfsignedcertificate) and [OpenSSL](https://www.openssl.org/).
 1. Install the certificate into the current user's personal certificate store. Marking the key as exportable is optional. Note the certificate's thumbprint, which is used later in this process.
 1. Export the PKCS#12 archive (*.pfx*) certificate as a DER-encoded certificate (*.cer*).
 1. Register the app with Azure AD (**App registrations**).
@@ -460,7 +460,7 @@ Configure Azure AD, Azure Key Vault, and the app to use an Azure AD Application 
 
 The sample app uses an Application ID and X.509 certificate when the `#define` preprocessor directive at the top of `Program.cs` is set to `Certificate`.
 
-1. Create a PKCS#12 archive (*.pfx*) certificate. Options for creating certificates include [MakeCert on Windows](/windows/desktop/seccrypto/makecert) and [OpenSSL](https://www.openssl.org/).
+1. Create a PKCS#12 archive (*.pfx*) certificate. Options for creating certificates include [New-SelfSignedCertificate on Windows](/powershell/module/pki/new-selfsignedcertificate) and [OpenSSL](https://www.openssl.org/).
 1. Install the certificate into the current user's personal certificate store. Marking the key as exportable is optional. Note the certificate's thumbprint, which is used later in this process.
 1. Export the PKCS#12 archive (*.pfx*) certificate as a DER-encoded certificate (*.cer*).
 1. Register the app with Azure AD (**App registrations**).
