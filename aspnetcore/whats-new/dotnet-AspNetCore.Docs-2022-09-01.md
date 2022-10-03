@@ -42,7 +42,6 @@ Welcome to what's new in the ASP.NET Core docs from September 1, 2022 through Se
 
 - <xref:grpc/test-tools> - Add Postman to gRPC testing page
 - <xref:grpc/aspnetcore> - Update grpc/aspnetcore with modern startup code <!--
-- [Title not found in: #26944](grpc/httpapi.md) - Add OpenAPI instructions to gRPC JSON transcoding -->
 
 ## Hosting and deployment
 
