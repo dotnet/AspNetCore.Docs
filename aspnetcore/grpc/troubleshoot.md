@@ -171,7 +171,7 @@ The WPF application can use the gRPC generated types from the new class library 
 ## Calling gRPC services hosted in a sub-directory
 
 > [!WARNING]
-> Third-party gRPC tools don't support services hosted in subdomains. Consider finding a way to host gRPC as the root directory.
+> Many third-party gRPC tools don't support services hosted in subdomains. Consider finding a way to host gRPC as the root directory.
 
 The path component of a gRPC channel's address is ignored when making gRPC calls. For example, `GrpcChannel.ForAddress("https://localhost:5001/ignored_path")` won't use `ignored_path` when routing gRPC calls for the service.
 
@@ -439,7 +439,7 @@ The WPF application can use the gRPC generated types from the new class library 
 ## Calling gRPC services hosted in a sub-directory
 
 > [!WARNING]
-> Third-party gRPC tools don't support services hosted in subdomains. Consider finding a way to host gRPC as the root directory.
+> Many third-party gRPC tools don't support services hosted in subdomains. Consider finding a way to host gRPC as the root directory.
 
 The path component of a gRPC channel's address is ignored when making gRPC calls. For example, `GrpcChannel.ForAddress("https://localhost:5001/ignored_path")` won't use `ignored_path` when routing gRPC calls for the service.
 
@@ -657,7 +657,7 @@ The WPF application can use the gRPC generated types from the new class library 
 ## Calling gRPC services hosted in a sub-directory
 
 > [!WARNING]
-> Third-party gRPC tools don't support services hosted in subdomains. Consider finding a way to host gRPC as the root directory.
+> Many third-party gRPC tools don't support services hosted in subdomains. Consider finding a way to host gRPC as the root directory.
 
 The path component of a gRPC channel's address is ignored when making gRPC calls. For example, `GrpcChannel.ForAddress("https://localhost:5001/ignored_path")` won't use `ignored_path` when routing gRPC calls for the service.
 
