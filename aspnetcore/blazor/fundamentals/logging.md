@@ -1753,7 +1753,7 @@ Log Blazor authentication messages at the <xref:Microsoft.Extensions.Logging.Log
 
 The following example:
 
-* Activates logging for the `Debug` build configuration with a [C# preprocessor directive](/dotnet/csharp/language-reference/preprocessor-directives).
+* Activates logging for the `Debug` build configuration using a [C# preprocessor directive](/dotnet/csharp/language-reference/preprocessor-directives).
 * Logs Blazor authentication messages at the <xref:Microsoft.Extensions.Logging.LogLevel.Debug> log level.
 
 ```csharp
