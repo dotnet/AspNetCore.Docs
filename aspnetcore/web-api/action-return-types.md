@@ -162,7 +162,7 @@ ASP.NET Core also includes the static [TypedResults](<xref:Microsoft.AspNetCore.
 
 * All the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute's can be excluded, since the `HttpResult` implementation will contribute automatically to the endpoint metadata.
 
-When multiple `IResult` return types are needed, while still possible use `IResult` interface as return type is better use the [`Result<TResult1, TResultN>`](/dotnet/api/microsoft.aspnetcore.http.httpresults.Result) generic union types that will keep the automatic endpoint metadata benefit.
+When multiple `IResult` return types are needed, while still possible use `IResult` interface as return type is better use the [`Result<TResult1, TResultN>`](/dotnet/api/microsoft.aspnetcore.http.httpresults.results-2) generic union types that will keep the automatic endpoint metadata benefit.
 
 The `Results<TResult1, TResultN>` union types implement implicit cast operators so that the compiler can automatically convert the types specified in the generic arguments to an instance of the union type. This has the added benefit of providing compile-time checking that a route handler actually only returns the results that it declares it does. Attempting to return a type that isn’t declared as one of the generic arguments to `Results<>` will result in a compilation error.
 
