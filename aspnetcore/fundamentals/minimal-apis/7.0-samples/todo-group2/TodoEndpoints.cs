@@ -35,7 +35,7 @@ public static class TodoEndpoints
     }
 
     // create todo
-    public static async Task<Created<Todo>> CreateTodo(Todo todo, TodoGroupDbContext database, HttpContext context, LinkGenerator linkGenerator)
+    public static async Task<Created<Todo>> CreateTodo(Todo todo, TodoGroupDbContext database)
     {
         await database.Todos.AddAsync(todo);
         await database.SaveChangesAsync();
