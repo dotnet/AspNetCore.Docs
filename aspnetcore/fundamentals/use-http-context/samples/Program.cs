@@ -115,27 +115,16 @@ app.Run();
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-var httpClient = new HttpClient();
-app.MapPost("/", async (HttpContext context) =>
+app.Use(async (context, next) =>
 {
-    var task = context.Request.ReadFromJsonAsync<CustomType>(); 
-    
-    var cts = new CancellationTokenSource();
-    var timeoutTask = Task.Delay(TimeSpan.FromSeconds(10), cts.Token);
-    
-    var completedTask = await Task.WhenAny(task, timeoutTask);
-    if (completedTask == task)
+    if (RequestAppearsMalicious(context.Request))
     {
-        cts.Cancel();
-
-        var requestMessage = await task;
-        // Use request message.
-    }
-    else
-    {
-        // Abort the request.
+        // Malicious requests don't even deserve an error response (e.g. 400).
         context.Abort();
+        return;
     }
+
+    await next.Invoke();
 });
 
 app.Run();

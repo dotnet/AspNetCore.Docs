@@ -32,7 +32,7 @@ Commonly used properties on `HttpRequest` include:
 <xref:Microsoft.AspNetCore.Http.HttpRequest.Headers?displayProperty=nameWithType> provides access to the request headers sent with the HTTP request. There are two ways to access headers using this collection:
 
 * Provide the header name to the indexer on the header collection. The header name isn't case-sensitive. The indexer can access any header value.
-* The header collection also has properties for getting and setting commonly used HTTP headers. The properties provide a fast, strongly typed way to access headers.
+* The header collection also has properties for getting and setting commonly used HTTP headers. The properties provide a fast, IntelliSense driven way to access headers.
 
 [!code-csharp[](use-http-context/samples/Program.cs?name=snippet_RequestHeaders&highlight=6-7)]
 
@@ -86,11 +86,11 @@ Commonly used properties on `HttpResponse` include:
 <xref:Microsoft.AspNetCore.Http.HttpResponse.Headers?displayProperty=nameWithType> provides access to the response headers sent with the HTTP response. There are two ways to access headers using this collection:
 
 * Provide the header name to the indexer on the header collection. The header name isn't case-sensitive. The indexer can access any header value.
-* The header collection also has properties for getting and setting commonly used HTTP headers. The properties provide a fast, strongly typed way to access headers.
+* The header collection also has properties for getting and setting commonly used HTTP headers. The properties provide a fast, IntelliSense driven way to access headers.
 
 [!code-csharp[](use-http-context/samples/Program.cs?name=snippet_ResponseHeaders&highlight=6-7)]
 
-An app can't modify headers after the response has started, which sends the headers to the client. A response is started by flushing the response body or calling <xref:Microsoft.AspNetCore.Http.HttpResponse.StartAsync(System.Threading.CancellationToken)?displayProperty=nameWithType>. An error is thrown when attempting to modify headers after the response has started.
+An app can't modify headers after the response has started, which sends the headers to the client. A response is started by flushing the response body or calling <xref:Microsoft.AspNetCore.Http.HttpResponse.StartAsync(System.Threading.CancellationToken)?displayProperty=nameWithType>. The <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted?displayProperty=nameWithType> property indicates whether the response has started. An error is thrown when attempting to modify headers after the response has started.
 
 ### Set response trailers
 
@@ -133,10 +133,10 @@ The `RequestAborted` cancellation token doesn't need to be used with asynchronou
 
 The <xref:Microsoft.AspNetCore.Http.HttpContext.Abort?displayProperty=nameWithType> method can be used to abort an HTTP request from the server. Aborting the HTTP request immediately triggers the <xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted?displayProperty=nameWithType> cancellation token and sends a notification to the client that the server has aborted the request.
 
-The following example:
+The middleware in the following example:
 
-* Adds a 10-second timeout to reading the incoming request message.
-* Aborts the HTTP request if the timeout is exceeded.
+* Adds a custom check for malicious requests.
+* Aborts the HTTP request if the request is malicious.
 
 [!code-csharp[](use-http-context/samples/Program.cs?name=snippet_Abort&highlight=23)]
 
