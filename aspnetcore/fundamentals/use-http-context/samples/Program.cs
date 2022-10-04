@@ -148,7 +148,6 @@ var app = builder.Build();
 app.MapGet("/user/current", [Authorize] async (HttpContext context) =>
 {
     var user = await GetUserAsync(context.User.Identify.Name);
-
     return Results.Ok(user);
 });
 

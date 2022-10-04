@@ -46,7 +46,7 @@ An HTTP request can include a request body. The request body is data associated 
 
 `HttpRequest.Body` can be read directly or used with other APIs that accept stream.
 
-#### Enabling request body buffering
+#### Enable request body buffering
 
 The request body can only be read once, from beginning to end. Forward-only reading of the request body is designed to avoid the overhead of buffering the entire request body and reduce memory usage. However, in some scenarios, there's a need to read the request body multiple times. For example, middleware might need to read the request body and then rewind it so it's available for the endpoint.
 
@@ -54,11 +54,11 @@ The <xref:Microsoft.AspNetCore.Http.HttpRequestRewindExtensions.EnableBuffering%
 
 The middleware in the following example:
 
-* Enables multiple reads with `EnableBuffering`. Must be called before reading the request body.
+* Enables multiple reads with `EnableBuffering`. It must be called before reading the request body.
 * Reads the request body.
 * Rewinds the request body to the start so other middleware or the endpoint can read it.
 
-[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_RequestBuffering&highlight=6-8)]
+[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_RequestBuffering&highlight=6)]
 
 #### BodyReader
 
