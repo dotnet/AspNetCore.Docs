@@ -2,20 +2,17 @@
 title: Publish an ASP.NET Core app to Azure with Visual Studio
 author: rick-anderson
 description: Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
+monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 07/10/2019
+ms.date: 09/25/2022
 uid: tutorials/publish-to-azure-webapp-using-vs
 ---
 # Publish an ASP.NET Core app to Azure with Visual Studio
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
-:::moniker range=">= aspnetcore-3.0"
 
 [!INCLUDE [Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
-
-:::moniker-end
-
 
 If you're working on macOS, see [Publish a Web app to Azure App Service using Visual Studio for Mac](/visualstudio/mac/publish-app-svc).
 
@@ -23,34 +20,30 @@ To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azu
 
 ## Set up
 
-* Open a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one. 
+Open a [free Azure account](https://azure.microsoft.com/free/dotnet/) if you don't have one.
 
 ## Create a web app
 
-In the Visual Studio Start Page, select **File** > **New** > **Project**.
+Start Visual Studio 2022 and select **Create a new project**.
 
-![File menu](publish-to-azure-webapp-using-vs/_static/file_new_project.png)
+![Create a new project from the start window](publish-to-azure-webapp-using-vs/_static/start-window-create-new-project.png)
 
-Complete the **New Project** dialog:
+In the **Create a new project** dialog, select **ASP.NET Core Web App**, and then select **Next**.
 
-* Select **ASP.NET Core Web Application**.
-* Select **Next**.
+![Create an ASP.NET Core Web App](publish-to-azure-webapp-using-vs/_static/np.png)
 
-![New Project dialog](publish-to-azure-webapp-using-vs/_static/new_prj.png)
+In the **Configure your new project** dialog, name your project, and then select **Next**.
 
-In the **New ASP.NET Core Web Application** dialog:
+In the **Additional information** dialog:
 
-* Select **Web Application**.
-* Select **Change** under Authentication.
+* In the **Framework** input, select **.NET 6.0 (Long-term support)**.
+* In the **Authentication type** input, select **Individual Accounts**, and then select **Create**.
 
-![New ASP.NET Core Web dialog](publish-to-azure-webapp-using-vs/_static/new_prj_2.png)
+![Additional information](publish-to-azure-webapp-using-vs/_static/additional-info.png)
 
-The **Change Authentication** dialog appears. 
+The following starter project is created:
 
-* Select **Individual User Accounts**.
-* Select **OK** to return to the **New ASP.NET Core Web Application**, then select **Create**.
-
-![New ASP.NET Core Web authentication dialog](publish-to-azure-webapp-using-vs/_static/new_prj_auth.png) 
+![Solution Explorer](razor-pages-start/_static/6/se.png)
 
 Visual Studio creates the solution.
 
@@ -65,14 +58,16 @@ Visual Studio creates the solution.
 
 * Select **Register** and register a new user. You can use a fictitious email address. When you submit, the page displays the following error:
 
-    *"A database operation failed while processing the request. Applying existing migrations for Application DB context may resolve this issue."*
+    *"A database operation failed while processing the request. Applying existing migrations may resolve this issue"*
 * Select **Apply Migrations** and, once the page updates, refresh the page.
 
-![A database operation failed while processing the request. Applying existing migrations for Application DB context may resolve this issue.](publish-to-azure-webapp-using-vs/_static/mig.png)
+![A database operation failed while processing the request](publish-to-azure-webapp-using-vs/_static/mig.png)
+
+* Login as the new user.
 
 The app displays the email used to register the new user and a **Logout** link.
 
-![Web application open in Microsoft Edge. The Register link is replaced by the text Hello user1@example.com!](publish-to-azure-webapp-using-vs/_static/hello.png)
+![Web application open in Microsoft Edge. The Register link is replaced by the text Hello user@example.com!](publish-to-azure-webapp-using-vs/_static/hello.png)
 
 ## Deploy the app to Azure
 
@@ -94,7 +89,7 @@ In the **Publish** dialog:
 
 ![Publish Dialog: select Azure Service](publish-to-azure-webapp-using-vs/_static/maas2.png)
 
-In the **Publish** dialog, select **Create a new Azure App Service**.
+In the **Publish** dialog, in the **App Service** pane, select **Create new**.
 
 ![Publish dialog: select Azure Service instance](publish-to-azure-webapp-using-vs/_static/maas3.png)
 
@@ -176,7 +171,7 @@ Click **Publish**. Visual Studio publishes your app to Azure. When the deploymen
 
 ![Publish profile summary page](publish-to-azure-webapp-using-vs/_static/pp_publish.png)
 
-* After the app is published, verify the changes you made are available on Azure.
+* After the app is published, refresh the page and verify the changes you made are available on Azure.
 
 ![Verify task is complete](publish-to-azure-webapp-using-vs/_static/final.png)
 
