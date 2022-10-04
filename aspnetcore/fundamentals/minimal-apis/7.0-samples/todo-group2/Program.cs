@@ -22,7 +22,7 @@ db?.Database.MigrateAsync();
 
 app.MapGroup("/public/todos")
     .MapTodosApi()
-    .WithTags("Todo Endpoints");
+    .WithTags("Public Todo Endpoints");
 
 app.MapGroup("/private/todos")
     .MapTodosApi()
