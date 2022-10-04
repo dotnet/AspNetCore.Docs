@@ -140,7 +140,7 @@ The middleware in the following example:
 * Adds a custom check for malicious requests.
 * Aborts the HTTP request if the request is malicious.
 
-[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_Abort&highlight=23)]
+[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_Abort&highlight=9)]
 
 ## `User`
 
