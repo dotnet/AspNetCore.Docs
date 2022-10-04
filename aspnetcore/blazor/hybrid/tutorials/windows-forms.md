@@ -203,7 +203,7 @@ In `Form1`, select the `BlazorWebView` (`WebView2`) with a single click.
 
 In the `BlazorWebView`'s **Properties**, confirm that the control is named `blazorWebView1`. If the name isn't `blazorWebView1`, the wrong control was dragged from the **Toolbox**. Delete the `WebView2` control in `Form1` and drag the **`BlazorWebView` control** into the form.
 
-:::image type="content" source="windows-forms/_static/control-properties.png" alt-text="The BlazorWebView is automatically named 'blazorWebView1' by Visual Studio." :::
+:::image type="content" source="windows-forms/_static/control-properties.png" alt-text="The BlazorWebView is automatically named 'blazorWebView1' by Visual Studio.":::
 
 In the control's properties, change the `BlazorWebView`'s **Dock** value to **Fill**:
 
