@@ -139,7 +139,7 @@ In addition to the MVC-specific built-in result types (<xref:Microsoft.AspNetCor
 Different than the MVC-specific result types, the `HttpResults`:
 
 * Are a results implementation that is processed by a call to [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A).
-* Does ***not*** leverage the configured [Formatters](https://learn.microsoft.com/aspnet/core/web-api/advanced/formatting#format-specific-action-results). Not leveraging the configured formatters means:
+* Does ***not*** leverage the configured [Formatters](/aspnet/core/web-api/advanced/formatting#format-specific-action-results). Not leveraging the configured formatters means:
 
   * Some features like `Content negotiation` aren't available.
   * The produced `Content-Type` is decided by the `HttpResults` implementation.
