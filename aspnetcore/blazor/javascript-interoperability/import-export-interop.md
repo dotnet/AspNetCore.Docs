@@ -29,6 +29,14 @@ Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> 
 
 [!INCLUDE[](~/includes/7.0-SDK.md)]
 
+## Cache busting during development
+
+When implementing JS interop, browser caching of JS files during development can interfere with writing and testing JS interop code. To force a browser to reload JS files (cache busting) during development, we recommend using browser [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) with static asset caching disabled. For more information, access the documentation for the developer tools associated with your browser:
+
+* [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
+* [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools)
+* [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
+
 ## Enable unsafe blocks
 
 Enable the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property in app's project file, which permits the code generator in the Roslyn compiler to use pointers for JS interop:
@@ -121,19 +129,6 @@ export function getMessage() {
   return 'Olá do Blazor!';
 }
 ```
-
-After the JS module is loaded, the module's JS functions are available to the app's components and classes as long as the app is running in the browser window or browser tab without the user manually reloading the app. `JSHost.ImportAsync` can be called multiple times in the following cases:
-
-* The user visits a component that calls `JSHost.ImportAsync` to import a module, navigates away from that component, and then returns to that component where `JSHost.ImportAsync` is called again for the same module import.
-* The same scripts are used by different components from the same JS module loaded by `JSHost.ImportAsync` in each of the components.
-
-There's no significant performance penalty in these cases, so you don't need to use `IJSRuntime`-based JS interop to check that a module is loaded in order to avoid calling `JSHost.ImportAsync` on an already-loaded module.
-
-If you need to iteratively make code changes in JS files and force a browser to reload the files (cache busting), we recommend using browser [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) with static asset caching disabled. For more information, access the documentation for the developer tools associated with your browser:
-
-* [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
-* [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools)
-* [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
 
 ## Call .NET from JavaScript
 
@@ -231,11 +226,12 @@ export async function setMessage() {
 > [!NOTE]
 > Calling `getAssemblyExports` to obtain the exports can occur in a [JavaScript initializer](xref:blazor/js-interop/index#javascript-initializers) for availability across the app.
 
-If you need to iteratively make code changes in JS files and force a browser to reload the files (cache busting), we recommend using browser [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) with static asset caching disabled. For more information, access the documentation for the developer tools associated with your browser:
+## Multiple module import calls
 
-* [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
-* [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools)
-* [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
+After a JS module is loaded, the module's JS functions are available to the app's components and classes as long as the app is running in the browser window or tab without the user manually reloading the app. `JSHost.ImportAsync` can be called multiple times on the same module in the following cases without a significant performance penalty:
+
+* The user visits a component that calls `JSHost.ImportAsync` to import a module, navigates away from the component, and then returns to the component where `JSHost.ImportAsync` is called again for the same module import.
+* The same module is used by different components loaded by `JSHost.ImportAsync` in each of the components.
 
 ## Use of a single JavaScript module across components
 
