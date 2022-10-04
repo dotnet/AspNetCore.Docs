@@ -726,7 +726,7 @@ Press Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVSC.md)]
 
-Press Ctrl+F5 to run the app. In a browser, go to following URL: [https://localhost:5001/swagger](https://localhost:5001/swagger)
+Press Ctrl+F5 to run the app. In a browser, go to following URL: `https://localhost:5001/swagger`
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

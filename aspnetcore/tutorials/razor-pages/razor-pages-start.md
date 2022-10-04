@@ -150,7 +150,7 @@ Visual Studio:
 
 In Visual Studio Code, press Ctrl+F5 to run the app. At the **Select environment** prompt, select **.NET Core**.
 
-The default browser launched with the following URL: [https://localhost:5001](https://localhost:5001)
+The default browser launched with the following URL: `https://localhost:5001`
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
