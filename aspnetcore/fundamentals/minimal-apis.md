@@ -1598,6 +1598,8 @@ app.MapGet("/old-path", () => Results.Redirect("/new-path"));
 app.MapGet("/download", () => Results.File("myfile.text"));
 ```
 
+<a name="binr7"></a>
+
 ### Built-in results
 
 Common result helpers exist in the `Microsoft.AspNetCore.Http.Results` static class.
