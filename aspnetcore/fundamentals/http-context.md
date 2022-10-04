@@ -54,7 +54,7 @@ The application also includes `PeriodicBranchesLoggerService`, which logs the op
 
 [!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=8&range=1-11)]
 
-## Use HttpContext from Razor Pages
+## Access HttpContext from Razor Pages
 
 The Razor Pages <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> exposes the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext?displayProperty=nameWithType> property:
 
@@ -83,7 +83,7 @@ The same property can be used in the corresponding Razor Page View:
 }
 ```
 
-## Use HttpContext from a Razor view in MVC
+## Access HttpContext from a Razor view in MVC
 
 Razor views in the MVC pattern expose the `HttpContext` via the <xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context%2A?displayProperty=nameWithType> property on the view. The following example retrieves the current username in an intranet app using Windows Authentication:
 
@@ -95,7 +95,7 @@ Razor views in the MVC pattern expose the `HttpContext` via the <xref:Microsoft.
 }
 ```
 
-## Use HttpContext from a controller
+## Access HttpContext from a controller
 
 Controllers expose the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.HttpContext%2A?displayProperty=nameWithType> property:
 
@@ -113,7 +113,7 @@ public class HomeController : Controller
 }
 ```
 
-## Use HttpContext from minimal APIs
+## Access HttpContext from minimal APIs
 
 To use `HttpContext` from minimal APIs, add a `HttpContext` parameter:
 
@@ -121,7 +121,7 @@ To use `HttpContext` from minimal APIs, add a `HttpContext` parameter:
 app.MapGet("/", (HttpContext context) => context.Response.WriteAsync("Hello World"));
 ```
 
-## Use HttpContext from middleware
+## Access HttpContext from middleware
 
 To use `HttpContext` from custom middleware components, use the `HttpContext` parameter passed into the `Invoke` or `InvokeAsync` method:
 
@@ -137,7 +137,7 @@ public class MyCustomMiddleware
 }
 ```
 
-## Use HttpContext from SignalR
+## Access HttpContext from SignalR
 
 To use `HttpContext` from SignalR, call the <xref:Microsoft.AspNetCore.SignalR.GetHttpContextExtensions.GetHttpContext%2A> method on <xref:Microsoft.AspNetCore.SignalR.Hub.Context%2A?displayProperty=nameWithType>:
 
@@ -153,11 +153,11 @@ public class MyHub : Hub
 }
 ```
 
-## Use HttpContext from gRPC methods
+## Access HttpContext from gRPC methods
 
 To use `HttpContext` from gRPC methods, see [Resolve HttpContext in gRPC methods](xref:grpc/aspnetcore#resolve-httpcontext-in-grpc-methods).
 
-## Use HttpContext from custom components
+## Access HttpContext from custom components
 
 For other framework and custom components that require access to `HttpContext`, the recommended approach is to register a dependency using the built-in [Dependency Injection (DI)](xref:fundamentals/dependency-injection) container. The DI container supplies the `IHttpContextAccessor` to any classes that declare it as a dependency in their constructors:
 
@@ -235,7 +235,7 @@ public class EmailController : Controller
     
 ASP.NET Core apps access `HttpContext` through the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> interface and its default implementation <xref:Microsoft.AspNetCore.Http.HttpContextAccessor>. It's only necessary to use `IHttpContextAccessor` when you need access to the `HttpContext` inside a service.
 
-## Use HttpContext from Razor Pages
+## Access HttpContext from Razor Pages
 
 The Razor Pages <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> exposes the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.HttpContext?displayProperty=nameWithType> property:
 
@@ -264,7 +264,7 @@ The same property can be used in the corresponding Razor Page View:
 }
 ```
 
-## Use HttpContext from a Razor view in MVC
+## Access HttpContext from a Razor view in MVC
 
 Razor views in the MVC pattern expose the `HttpContext` via the <xref:Microsoft.AspNetCore.Mvc.Razor.RazorPage.Context%2A?displayProperty=nameWithType> property on the view. The following example retrieves the current username in an intranet app using Windows Authentication:
 
@@ -276,7 +276,7 @@ Razor views in the MVC pattern expose the `HttpContext` via the <xref:Microsoft.
 }
 ```
 
-## Use HttpContext from a controller
+## Access HttpContext from a controller
 
 Controllers expose the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.HttpContext%2A?displayProperty=nameWithType> property:
 
@@ -294,7 +294,7 @@ public class HomeController : Controller
 }
 ```
 
-## Use HttpContext from middleware
+## Access HttpContext from middleware
 
 When working with custom middleware components, `HttpContext` is passed into the `Invoke` or `InvokeAsync` method:
 
@@ -308,7 +308,7 @@ public class MyCustomMiddleware
 }
 ```
 
-## Use HttpContext from custom components
+## Access HttpContext from custom components
 
 For other framework and custom components that require access to `HttpContext`, the recommended approach is to register a dependency using the built-in [Dependency Injection (DI)](xref:fundamentals/dependency-injection) container. The DI container supplies the `IHttpContextAccessor` to any classes that declare it as a dependency in their constructors:
 
