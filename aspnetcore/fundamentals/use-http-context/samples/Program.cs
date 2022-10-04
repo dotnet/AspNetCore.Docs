@@ -79,7 +79,7 @@ app.MapGet("/", (HttpResponse response) =>
 app.Run();
 #endregion
 #elif ResposeBody
-#region snippet_ResposeBody
+#region snippet_ResponseBody
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
