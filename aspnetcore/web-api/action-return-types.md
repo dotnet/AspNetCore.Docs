@@ -14,24 +14,24 @@ uid: web-api/action-return-types
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/mvc/action-return-types/7.x/WebApiSample) ([how to download](xref:index#how-to-download-a-sample))
 
-ASP.NET Core offers the following options for web API controller action return types:
+ASP.NET Core provides the following options for web API controller action return types:
 
 * [Specific type](#specific-type)
 * [IActionResult](#iactionresult-type)
 * [ActionResult\<T>](#actionresultt-type)
 * [HttpResults](#httpresults-type)
 
-This document explains when it's most appropriate to use each return type.
+This article explains when it's most appropriate to use each return type.
 
 ## Specific type
 
-The simplest action returns a primitive or complex data type (for example, `string` or a custom object type). Consider the following action, which returns a collection of custom `Product` objects:
+The most basic action returns a primitive or complex data type, for example, `string` or a custom object. Consider the following action, which returns a collection of custom `Product` objects:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/ProductsController.cs" id="snippet_Get":::
 
-Without known conditions to safeguard against during action execution, returning a specific type could suffice. The preceding action accepts no parameters, so parameter constraints validation isn't needed.
+Without known conditions to safeguard against, returning a specific type could suffice. The preceding action accepts no parameters, so parameter constraints validation isn't needed.
 
-When multiple return types are possible, it's common to mix an <xref:Microsoft.AspNetCore.Mvc.ActionResult> return type with the primitive or complex return type. Either [IActionResult](#iactionresult-type) or [ActionResult\<T>](#actionresultt-type) are necessary to accommodate this type of action. Several samples of multiple return types are provided in this document.
+When multiple return types are possible, it's common to mix an <xref:Microsoft.AspNetCore.Mvc.ActionResult> return type with the primitive or complex return type. Either [IActionResult](#iactionresult-type) or [ActionResult\<T>](#actionresultt-type) are necessary to accommodate this type of action. Several samples of multiple return types are provided in this article.
 
 ### Return IEnumerable\<T> or IAsyncEnumerable\<T>
 
@@ -85,9 +85,9 @@ The following section compares `ActionResult` to  `IActionResult`
 
 ### ActionResult\<T> type
 
-ASP.NET Core includes the [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult%601) return type for web API controller actions. It enables you to return a type deriving from <xref:Microsoft.AspNetCore.Mvc.ActionResult> or return a [specific type](#specific-type). `ActionResult<T>` offers the following benefits over the [IActionResult type](#iactionresult-type):
+ASP.NET Core includes the [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult%601) return type for web API controller actions. It enables returning a type deriving from <xref:Microsoft.AspNetCore.Mvc.ActionResult> or return a [specific type](#specific-type). `ActionResult<T>` offers the following benefits over the [IActionResult type](#iactionresult-type):
 
-* The [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute's `Type` property can be excluded. For example, `[ProducesResponseType(200, Type = typeof(Product))]` is simplified to `[ProducesResponseType(200)]`. The action's expected return type is instead inferred from the `T` in `ActionResult<T>`.
+* The [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute's `Type` property can be excluded. For example, `[ProducesResponseType(200, Type = typeof(Product))]` is simplified to `[ProducesResponseType(200)]`. The action's expected return type is inferred from the `T` in `ActionResult<T>`.
 * [Implicit cast operators](/dotnet/csharp/language-reference/keywords/implicit) support the conversion of both `T` and `ActionResult` to `ActionResult<T>`. `T` converts to <xref:Microsoft.AspNetCore.Mvc.ObjectResult>, which means `return new ObjectResult(T);` is simplified to `return T;`.
 
 C# doesn't support implicit cast operators on interfaces. Consequently, conversion of the interface to a concrete type is necessary to use `ActionResult<T>`. For example, use of `IEnumerable` in the following example doesn't work:
@@ -132,13 +132,15 @@ In addition to the MVC-specific built-in result types (<xref:Microsoft.AspNetCor
 
 Differently than the MVC-specific result types, the `HttpResults` will processed by a call to [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A) and ***will not*** leverage the configured [Formatters](/aspnet/core/web-api/advanced/formatting#format-specific-action-results), that means, some features are not available like `Content negotiation` where the produced `Content-Type` will be decided by the `HttpResults` implementation.
 
-The `HttpResults` can be useful when sharing code between both frameworks (Minimal APIs and Web API). 
+The `HttpResults` can be useful when sharing code between Minimal APIs and Web API. 
 
 ### IResult type
 
-The `HttpResults` are a implementation of the <xref:Microsoft.AspNetCore.Http.IResult> interface, that defines a contract that represents the result of an HTTP endpoint, and the static [Results](<xref:Microsoft.AspNetCore.Http.Results>) class is used to create varying `IResult` objects that represent different types of responses.
+The <xref:Microsoft.AspNetCore.Http.HttpResults> namespace contains classes that implement the <xref:Microsoft.AspNetCore.Http.IResult> interface. The `IResult` interface defines a contract that represents the result of an HTTP endpoint. The static [Results](<xref:Microsoft.AspNetCore.Http.Results>) class is used to create varying `IResult` objects that represent different types of responses.
 
-This table shows the common result helpers available: [Built-in results](/aspnet/core/fundamentals/minimal-apis#built-in-results-1)
+The [Built-in results](/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#bimr7) table shows the common result helpers.
+
+Consider the following code:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/IResultProductsController.cs" id="snippet_GetByIdIResult" highlight="7":::
 
@@ -147,38 +149,43 @@ In the preceding action:
 * A 404 status code is returned when the product doesn't exist in the database.
 * A 200 status code is returned with the corresponding `Product` object when the product does exist, generated by the [Results.Ok\<T>()](/dotnet/api/microsoft.aspnetcore.http.results.ok).
 
+Consider the following code:
+
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/IResultProductsController.cs" id="snippet_CreateAsyncIResult" highlight="9,16":::
 
 In the preceding action:
 
-* A 400 status code is returned by the ASP.NET Core runtime when:
+* A 400 status code is returned when:
   * The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute has been applied and model validation fails.
   * The product description contains "XYZ Widget".
 * A 201 status code is generated by the [`Results.Create`](/dotnet/api/microsoft.aspnetcore.http.results.created) method when a product is created. In this code path, the `Product` object is provided in the response body. A `Location` response header containing the newly created product's URL is provided.
 
 ### Result\<T> type
 
-ASP.NET Core also includes the static [TypedResults](<xref:Microsoft.AspNetCore.Http.TypedResults>) class that returns the concrete `IResult` implementation, that allows using it as return type. The usage of the concrete `IResult` implementation offers the following benefit over the [IResult type](#iresult-type):
+The static [TypedResults](<xref:Microsoft.AspNetCore.Http.TypedResults>) class returns the concrete `IResult` implementation that allows using `IResult` as return type. The usage of the concrete `IResult` implementation offers the following benefit over the [IResult type](#iresult-type):
 
-* All the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute's can be excluded, since the `HttpResult` implementation will contribute automatically to the endpoint metadata.
+* All the [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute's can be excluded, since the `HttpResult` implementation contributes automatically to the endpoint metadata.
 
-When multiple `IResult` return types are needed, while still possible use `IResult` interface as return type is better use the [`Result<TResult1, TResultN>`](/dotnet/api/microsoft.aspnetcore.http.httpresults.results-2) generic union types that will keep the automatic endpoint metadata benefit.
+When multiple `IResult` return types are needed, returning [`Result<TResult1, TResultN>`](/dotnet/api/microsoft.aspnetcore.http.httpresults.results-2) is preferred over returning `IResult`. Returning `Result<TResult1, TResultN>` is preferred because generic union types automatically retain the endpoint metadata.
 
-The `Results<TResult1, TResultN>` union types implement implicit cast operators so that the compiler can automatically convert the types specified in the generic arguments to an instance of the union type. This has the added benefit of providing compile-time checking that a route handler actually only returns the results that it declares it does. Attempting to return a type that isn’t declared as one of the generic arguments to `Results<>` will result in a compilation error.
+The `Results<TResult1, TResultN>` union types implement implicit cast operators so that the compiler can automatically convert the types specified in the generic arguments to an instance of the union type. This has the added benefit of providing compile-time checking that a route handler actually only returns the results that it declares it does. Attempting to return a type that isn’t declared as one of the generic arguments to `Results<>` results in a compilation error.
+
+Consider the following code:
+
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/ResultsOfTProductsController.cs" id="snippet_GetByIdResultsOfT" highlight="5":::
 
 In the preceding action:
 
 * A 404 status code is returned when the product doesn't exist in the database.
-* A 200 status code is returned with the corresponding `Product` object when the product does exist, generated by the [TypedResults.Ok\<T>()](<xref:Microsoft.AspNetCore.Http.TypedResults.Ok>).
+* A 200 status code is returned with the corresponding `Product` object when the product does exist, generated by the [TypedResults.Ok\<T>](<xref:Microsoft.AspNetCore.Http.TypedResults.Ok>).
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/ResultsOfTProductsController.cs" id="snippet_CreateAsyncResultsOfT" highlight="6,13":::
 
 In the preceding action:
 
-* A 400 status code is returned by the ASP.NET Core runtime when:
-  * The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute has been applied and model validation fails.
+* A 400 status code is returned when:
+  * The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute was applied and model validation fails.
   * The product description contains "XYZ Widget".
 * A 201 status code is generated by the [`TypedResults.Create`](/dotnet/api/microsoft.aspnetcore.http.typedresults.created) method when a product is created. In this code path, the `Product` object is provided in the response body. A `Location` response header containing the newly created product's URL is provided.
 
