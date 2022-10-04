@@ -41,10 +41,6 @@ In the **Additional information** dialog:
 
 ![Additional information](publish-to-azure-webapp-using-vs/_static/additional-info.png)
 
-The following starter project is created:
-
-![Solution Explorer](razor-pages-start/_static/6/se.png)
-
 Visual Studio creates the solution.
 
 ## Run the app
@@ -183,7 +179,7 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 
 ![Azure Portal: Resource Groups in sidebar menu](publish-to-azure-webapp-using-vs/_static/portalrg.png)
 
-* In the **Resource groups** page, select **Delete**.
+* In the **Resource groups** page, select **Delete resource group**.
 
 ![Azure Portal: Resource Groups page](publish-to-azure-webapp-using-vs/_static/rgd.png)
 
