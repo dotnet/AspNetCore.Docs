@@ -184,7 +184,6 @@ The `Results<TResult1, TResultN>` union types implement implicit cast operators 
 
 Consider the following code:
 
-
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/action-return-types/7.x/WebApiSample/Controllers/ResultsOfTProductsController.cs" id="snippet_GetByIdResultsOfT" highlight="5":::
 
 In the preceding action:
