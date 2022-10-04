@@ -34,7 +34,7 @@ Commonly used properties on `HttpRequest` include:
 * Provide the header name to the indexer on the header collection. The header name isn't case-sensitive. The indexer can access any header value.
 * The header collection also has properties for getting and setting commonly used HTTP headers. The properties provide a fast, strongly typed way to access headers.
 
-[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_requestheaders?highlight=6-7)]
+[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_RequestHeaders&highlight=6-7)]
 
 ### Read request body
 
@@ -42,7 +42,7 @@ An HTTP request can include a request body. The request body is data associated 
 
 <xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType> allows the request body to be read with <xref:System.IO.Stream>:
 
-[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_RequestBody?highlight=9)]
+[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_RequestBody&highlight=9)]
 
 `HttpRequest.Body` can be read directly or used with other APIs that accept stream.
 
@@ -58,7 +58,7 @@ The middleware in the following example:
 * Reads the request body.
 * Rewinds the request body to the start so other middleware or the endpoint can read it.
 
-[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_RequestBuffering?highlight=6-8)]
+[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_RequestBuffering&highlight=6-8)]
 
 #### BodyReader
 
@@ -88,7 +88,7 @@ Commonly used properties on `HttpResponse` include:
 * Provide the header name to the indexer on the header collection. The header name isn't case-sensitive. The indexer can access any header value.
 * The header collection also has properties for getting and setting commonly used HTTP headers. The properties provide a fast, strongly typed way to access headers.
 
-[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_ResponseHeaders?highlight=6-7)]
+[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_ResponseHeaders&highlight=6-7)]
 
 An app can't modify headers after the response has started, which sends the headers to the client. A response is started by flushing the response body or calling <xref:Microsoft.AspNetCore.Http.HttpResponse.StartAsync(System.Threading.CancellationToken)?displayProperty=nameWithType>. An error is thrown when attempting to modify headers after the response has started.
 
@@ -98,7 +98,7 @@ HTTP/2 and HTTP/3 support response trailers. Trailers are headers sent with the 
 
 Set trailers using <xref:Microsoft.AspNetCore.Http.ResponseTrailerExtensions.AppendTrailer%2A>:
 
-[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_ResponseTrailers?highlight=8)]
+[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_ResponseTrailers&highlight=8)]
 
 ### Write response body
 
@@ -106,7 +106,7 @@ An HTTP response can include a response body. The response body is data associat
 
 <xref:Microsoft.AspNetCore.Http.HttpResponse.Body?displayProperty=nameWithType> allows the response body to be written with <xref:System.IO.Stream>:
 
-[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_ResponseBody?highlight=9)]
+[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_ResponseBody&highlight=9)]
 
 `HttpResponse.Body` can be written directly or used with other APIs that write to a stream.
 
@@ -122,7 +122,7 @@ For information on how to read content from `BodyWriter`, see [I/O pipelines Pip
 
 The <xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted?displayProperty=nameWithType> cancellation token can be used to notify that the HTTP request has been aborted. The cancellation token should be passed to long-running tasks so they can be canceled if the request is aborted. For example, aborting a database query or HTTP request to get data to return in the response.
 
-[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_RequestAborted?highlight=7-8)]
+[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_RequestAborted&highlight=7-8)]
 
 The `RequestAborted` cancellation token doesn't need to be used with asynchronous operations when reading the request body or writing to the response body. They immediately exit if the HTTP request is aborted.
 
@@ -138,13 +138,13 @@ The following example:
 * Adds a 10-second timeout to reading the incoming request message.
 * Aborts the HTTP request if the timeout is exceeded.
 
-[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_Abort?highlight=23)]
+[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_Abort&highlight=23)]
 
 ## `User`
 
 The <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property is used to get or set the user, represented by <xref:System.Security.Claims.ClaimsPrincipal>, for the request. The <xref:System.Security.Claims.ClaimsPrincipal> is typically set by [ASP.NET Core authentication](xref:security/authentication/index).
 
-[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_User?highlight=6)]
+[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_User&highlight=6)]
 
 > [!NOTE]
 > [Minimal APIs](xref:fundamentals/minimal-apis) supports binding <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> directly to a <xref:System.Security.Claims.ClaimsPrincipal> parameter.
@@ -158,6 +158,6 @@ The following example:
 * Gets <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinRequestBodyDataRateFeature> from the features collection.
 * Sets `MinDataRate` to null. This removes the minimum data rate that the request body must be sent by the client for this HTTP request.
 
-[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_Features?highlight=6)]
+[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_Features&highlight=6)]
 
 For more information about using request features and `HttpContext`, see <xref:fundamentals/request-features>.

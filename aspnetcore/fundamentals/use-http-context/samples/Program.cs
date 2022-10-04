@@ -4,7 +4,7 @@
 // FIL2 IHB CHNGR ADDMID
 #if NEVER
 #elif RequestHeaders
-#region snippet_requestheaders
+#region snippet_RequestHeaders
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
