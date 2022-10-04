@@ -25,8 +25,8 @@ Commonly used properties on `HttpRequest` include:
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Method?displayProperty=nameWithType>|The request method.|`GET`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Headers?displayProperty=nameWithType>|A collection of request headers.|`user-agent=Edge`<br />`x-custom-header=MyValue`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues?displayProperty=nameWithType>|A collection of route values. The collection is set when the request is matched to a route.|`language=en-us`<br />`article=get-started`|
-|<xref:Microsoft.AspNetCore.Http.HttpRequest.Query?displayProperty=nameWithType>|A collection of query-string name/values.|`filter=hello`<br />`page=1`|
-|<xref:Microsoft.AspNetCore.Http.HttpRequest.Form?displayProperty=nameWithType>|A collection of form name/values.|`email=user@contoso.com`<br />`password=TNkt4taM`|
+|<xref:Microsoft.AspNetCore.Http.HttpRequest.Query?displayProperty=nameWithType>|A collection of query values parsed from <xref:Microsoft.AspNetCore.Http.HttpRequest.QueryString>.|`filter=hello`<br />`page=1`|
+|<xref:Microsoft.AspNetCore.Http.HttpRequest.Form?displayProperty=nameWithType>|The request body as a form values collection. Should only be used when form data is posted with the request and <xref:Microsoft.AspNetCore.Http.HttpRequest.HasFormContentType> is true.|`email=user@contoso.com`<br />`password=TNkt4taM`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType>|A <xref:System.IO.Stream> for reading the request body.|UTF-8 JSON payload|
 
 ### Get request headers
