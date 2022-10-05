@@ -9,7 +9,7 @@ uid: fundamentals/use-httpcontext
 ---
 # Use HttpContext in ASP.NET Core
 
-<xref:Microsoft.AspNetCore.Http.HttpContext> encapsulates all information about an individual HTTP request and response. An `HttpContext` instance is initialized when ASP.NET Core receives an HTTP request and is accessible by middleware and app frameworks such as Web API controllers, Razor Pages, SignalR, gRPC, and more.
+<xref:Microsoft.AspNetCore.Http.HttpContext> encapsulates all information about an individual HTTP request and response. An `HttpContext` instance is initialized when an HTTP request is received. The `HttpContext` instance is accessible by middleware and app frameworks such as Web API controllers, Razor Pages, SignalR, gRPC, and more.
 
 For more information about accessing the `HttpContext`, see <xref:fundamentals/httpcontext>.
 
@@ -26,7 +26,7 @@ Commonly used members on `HttpRequest` include:
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Headers?displayProperty=nameWithType>|A collection of request headers.|`user-agent=Edge`<br />`x-custom-header=MyValue`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues?displayProperty=nameWithType>|A collection of route values. The collection is set when the request is matched to a route.|`language=en-us`<br />`article=get-started`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Query?displayProperty=nameWithType>|A collection of query values parsed from <xref:Microsoft.AspNetCore.Http.HttpRequest.QueryString>.|`filter=hello`<br />`page=1`|
-|[HttpRequest.ReadFormAsync()](xref:Microsoft.AspNetCore.Http.HttpRequest.ReadFormAsync(System.Threading.CancellationToken)>|A method that reads the request body as a form and returns a form values collection. For information about why `ReadFormAsync` should be used to access form data, see [Prefer ReadFormAsync over Request.Form](xref:performance/performance-best-practices#prefer-readformasync-over-requestform).|`email=user@contoso.com`<br />`password=TNkt4taM`|
+|[HttpRequest.ReadFormAsync()](xref:Microsoft.AspNetCore.Http.HttpRequest.ReadFormAsync(System.Threading.CancellationToken))>|A method that reads the request body as a form and returns a form values collection. For information about why `ReadFormAsync` should be used to access form data, see [Prefer ReadFormAsync over Request.Form](xref:performance/performance-best-practices#prefer-readformasync-over-requestform).|`email=user@contoso.com`<br />`password=TNkt4taM`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType>|A <xref:System.IO.Stream> for reading the request body.|UTF-8 JSON payload|
 
 ### Get request headers
@@ -53,7 +53,7 @@ An HTTP request can include a request body. The request body is data associated 
 
 #### Enable request body buffering
 
-The request body can only be read once, from beginning to end. Forward-only reading of the request body is designed to avoid the overhead of buffering the entire request body and reduce memory usage. However, in some scenarios, there's a need to read the request body multiple times. For example, middleware might need to read the request body and then rewind it so it's available for the endpoint.
+The request body can only be read once, from beginning to end. Forward-only reading of the request body avoids the overhead of buffering the entire request body and reduces memory usage. However, in some scenarios, there's a need to read the request body multiple times. For example, middleware might need to read the request body and then rewind it so it's available for the endpoint.
 
 The <xref:Microsoft.AspNetCore.Http.HttpRequestRewindExtensions.EnableBuffering%2A> extension method enables buffering of the HTTP request body and is the recommended way to enable multiple reads. Because a request can be any size, `EnableBuffering` supports options for buffering large request bodies to disk, or rejecting them entirely.
 
@@ -95,7 +95,7 @@ Commonly used members on `HttpResponse` include:
 
 [!code-csharp[](use-http-context/samples/Program.cs?name=snippet_ResponseHeaders&highlight=6-7)]
 
-An app can't modify headers after the response has started, which sends the headers to the client. A response is started by flushing the response body or calling <xref:Microsoft.AspNetCore.Http.HttpResponse.StartAsync(System.Threading.CancellationToken)?displayProperty=nameWithType>. The <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted?displayProperty=nameWithType> property indicates whether the response has started. An error is thrown when attempting to modify headers after the response has started.
+An app can't modify headers after the response has started. Once the response starts, the headers are sent to the client. A response is started by flushing the response body or calling <xref:Microsoft.AspNetCore.Http.HttpResponse.StartAsync(System.Threading.CancellationToken)?displayProperty=nameWithType>. The <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted?displayProperty=nameWithType> property indicates whether the response has started. An error is thrown when attempting to modify headers after the response has started.
 
 ### Write response body
 
@@ -111,7 +111,7 @@ An HTTP response can include a response body. The response body is data associat
 
 An alternative way to read the request body is to use the <xref:Microsoft.AspNetCore.Http.HttpResponse.BodyWriter?displayProperty=nameWithType> property. The `BodyWriter` property exposes the response body as a <xref:System.IO.Pipelines.PipeWriter>. This API is from [I/O pipelines](/dotnet/standard/io/pipelines), and it's an advanced, high-performance way to write the response.
 
-The writer provides direct access to the response body and manages memory on the caller's behalf. Unlike `HttpResponse.Body`, the write doesn't copy request data into a buffer. However, a writer is more complicated to use than a stream and should be used with caution.
+The writer provides direct access to the response body and manages memory on the caller's behalf. Unlike `HttpResponse.Body`, the write doesn't copy request data into a buffer. However, a writer is more complicated to use than a stream and writer code should be thoroughly tested.
 
 For information on how to write content to `BodyWriter`, see [I/O pipelines PipeWriter](/dotnet/standard/io/pipelines#pipewriter).
 
@@ -119,7 +119,7 @@ For information on how to write content to `BodyWriter`, see [I/O pipelines Pipe
 
 HTTP/2 and HTTP/3 support response trailers. Trailers are headers sent with the response after the response body is complete. Because trailers are sent after the response body, trailers can be added to the response at any time.
 
-Set trailers using <xref:Microsoft.AspNetCore.Http.ResponseTrailerExtensions.AppendTrailer%2A>:
+The following code sets trailers using <xref:Microsoft.AspNetCore.Http.ResponseTrailerExtensions.AppendTrailer%2A>:
 
 [!code-csharp[](use-http-context/samples/Program.cs?name=snippet_ResponseTrailers&highlight=11)]
 
