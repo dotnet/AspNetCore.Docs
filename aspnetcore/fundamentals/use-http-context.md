@@ -49,7 +49,7 @@ An HTTP request can include a request body. The request body is data associated 
 `HttpRequest.Body` can be read directly or used with other APIs that accept stream.
 
 > [!NOTE]
-> [Minimal APIs](xref:fundamentals/minimal-apis) supports binding <xref:Microsoft.AspNetCore.Http.HttpContext.Request.Body?displayProperty=nameWithType> directly to a <xref:System.IO.Stream> parameter.
+> [Minimal APIs](xref:fundamentals/minimal-apis) supports binding <xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType> directly to a <xref:System.IO.Stream> parameter.
 
 #### Enable request body buffering
 
