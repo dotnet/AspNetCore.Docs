@@ -26,11 +26,8 @@ Commonly used properties on `HttpRequest` include:
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Headers?displayProperty=nameWithType>|A collection of request headers.|`user-agent=Edge`<br />`x-custom-header=MyValue`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues?displayProperty=nameWithType>|A collection of route values. The collection is set when the request is matched to a route.|`language=en-us`<br />`article=get-started`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Query?displayProperty=nameWithType>|A collection of query values parsed from <xref:Microsoft.AspNetCore.Http.HttpRequest.QueryString>.|`filter=hello`<br />`page=1`|
-|<xref:Microsoft.AspNetCore.Http.HttpRequest.Form?displayProperty=nameWithType>|The request body as a form values collection. Should only be used when form data is posted with the request and <xref:Microsoft.AspNetCore.Http.HttpRequest.HasFormContentType> is true after first calling <xref:Microsoft.AspNetCore.Http.HttpRequest.ReadFormAsync>.|`email=user@contoso.com`<br />`password=TNkt4taM`|
+|<xref:Microsoft.AspNetCore.Http.HttpRequest.Form?displayProperty=nameWithType>|The request body as a form values collection. Should only be used when form data is posted with the request, <xref:Microsoft.AspNetCore.Http.HttpRequest.HasFormContentType> is true, and after first calling <xref:Microsoft.AspNetCore.Http.HttpRequest.ReadFormAsync>.|`email=user@contoso.com`<br />`password=TNkt4taM`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType>|A <xref:System.IO.Stream> for reading the request body.|UTF-8 JSON payload|
-
-> [!NOTE]
-> [Minimal APIs](xref:fundamentals/minimal-apis) supports binding <xref:Microsoft.AspNetCore.Http.HttpContext.Request?displayProperty=nameWithType> directly to a <xref:Microsoft.AspNetCore.Http.HttpRequest> parameter.
 
 ### Get request headers
 
@@ -76,9 +73,6 @@ The reader directly accesses the request body and manages memory on the caller's
 
 For information on how to read content from `BodyReader`, see [I/O pipelines PipeReader](/dotnet/standard/io/pipelines#pipereader).
 
-> [!NOTE]
-> [Minimal APIs](xref:fundamentals/minimal-apis) supports binding <xref:Microsoft.AspNetCore.Http.HttpContext.Request.BodyReader?displayProperty=nameWithType> directly to a <xref:System.IO.Pipelines.PipeReader> parameter.
-
 ## `HttpResponse`
 
 <xref:Microsoft.AspNetCore.Http.HttpContext.Response?displayProperty=nameWithType> provides access to <xref:Microsoft.AspNetCore.Http.HttpResponse>. `HttpResponse` is used to set information on the HTTP response sent back to the client.
@@ -91,9 +85,6 @@ Commonly used properties on `HttpResponse` include:
 |<xref:Microsoft.AspNetCore.Http.HttpResponse.ContentType?displayProperty=nameWithType>|The response `content-type` header. Must be set before writing to the response body.|`application/json`|
 |<xref:Microsoft.AspNetCore.Http.HttpResponse.Headers?displayProperty=nameWithType>|A collection of response headers. Must be set before writing to the response body.|`server=Kestrel`<br />`x-custom-header=MyValue`|
 |<xref:Microsoft.AspNetCore.Http.HttpResponse.Body?displayProperty=nameWithType>|A <xref:System.IO.Stream> for writing the response body.|Generated web page|
-
-> [!NOTE]
-> [Minimal APIs](xref:fundamentals/minimal-apis) supports binding <xref:Microsoft.AspNetCore.Http.HttpContext.Response?displayProperty=nameWithType> directly to a <xref:Microsoft.AspNetCore.Http.HttpResponse> parameter.
 
 ### Set response headers
 
