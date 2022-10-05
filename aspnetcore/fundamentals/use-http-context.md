@@ -106,14 +106,6 @@ Commonly used properties on `HttpResponse` include:
 
 An app can't modify headers after the response has started, which sends the headers to the client. A response is started by flushing the response body or calling <xref:Microsoft.AspNetCore.Http.HttpResponse.StartAsync(System.Threading.CancellationToken)?displayProperty=nameWithType>. The <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted?displayProperty=nameWithType> property indicates whether the response has started. An error is thrown when attempting to modify headers after the response has started.
 
-### Set response trailers
-
-HTTP/2 and HTTP/3 support response trailers. Trailers are headers sent with the response after the response body is complete. Because trailers are sent after the response body, trailers can be added to the response at any time.
-
-Set trailers using <xref:Microsoft.AspNetCore.Http.ResponseTrailerExtensions.AppendTrailer%2A>:
-
-[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_ResponseTrailers&highlight=8)]
-
 ### Write response body
 
 An HTTP response can include a response body. The response body is data associated with the response, such as generated web page content, UTF-8 JSON payload, or a file.
@@ -132,13 +124,21 @@ The writer provides direct access to the response body and manages memory on the
 
 For information on how to write content to `BodyWriter`, see [I/O pipelines PipeWriter](/dotnet/standard/io/pipelines#pipewriter).
 
+### Set response trailers
+
+HTTP/2 and HTTP/3 support response trailers. Trailers are headers sent with the response after the response body is complete. Because trailers are sent after the response body, trailers can be added to the response at any time.
+
+Set trailers using <xref:Microsoft.AspNetCore.Http.ResponseTrailerExtensions.AppendTrailer%2A>:
+
+[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_ResponseTrailers&highlight=10)]
+
 ## `RequestAborted`
 
 The <xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted?displayProperty=nameWithType> cancellation token can be used to notify that the HTTP request has been aborted by the client or server. The cancellation token should be passed to long-running tasks so they can be canceled if the request is aborted. For example, aborting a database query or HTTP request to get data to return in the response.
 
 [!code-csharp[](use-http-context/samples/Program.cs?name=snippet_RequestAborted&highlight=7-8)]
 
-The `RequestAborted` cancellation token doesn't need to be used for request body read operations because reads always throw immediately when request is aborted. The `RequestAborted` token is also usually unnecessary when writing response bodies, because writes immediately no-op when the request is aborted.
+The `RequestAborted` cancellation token doesn't need to be used for request body read operations because reads always throw immediately when the request is aborted. The `RequestAborted` token is also usually unnecessary when writing response bodies, because writes immediately no-op when the request is aborted.
 
 In some cases, passing the `RequestAborted` token to write operations can be a convenient way to force a write loop to exit early with an <xref:System.OperationCanceledException>. However, it's typically better to pass the `RequestAborted` token into any asynchronous operations responsible for retrieving the response body content instead.
 
