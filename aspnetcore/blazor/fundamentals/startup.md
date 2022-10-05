@@ -183,7 +183,8 @@ For more information on CSPs, see <xref:blazor/security/content-security-policy>
 
 * [Environments: Set the app's environment](xref:blazor/fundamentals/environments)
 * SignalR
-  * [Blazor startup](xref:blazor/fundamentals/signalr#blazor-startup-blazor-server)
+  * [Blazor startup](xref:blazor/fundamentals/signalr#blazor-startup)
+  * [Configure SignalR server timeout and keep alive on the client](xref:blazor/fundamentals/signalr#configure-signalr-server-timeout-and-keep-alive-on-the-client)
   * [Configure SignalR client logging](xref:blazor/fundamentals/signalr#configure-signalr-client-logging-blazor-server)
   * [Modify the reconnection handler](xref:blazor/fundamentals/signalr#modify-the-reconnection-handler-blazor-server)
   * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval-blazor-server)
@@ -361,7 +362,8 @@ For more information on CSPs, see <xref:blazor/security/content-security-policy>
 
 * [Environments: Set the app's environment](xref:blazor/fundamentals/environments)
 * SignalR
-  * [Blazor startup](xref:blazor/fundamentals/signalr#blazor-startup-blazor-server)
+  * [Blazor startup](xref:blazor/fundamentals/signalr#blazor-startup)
+  * [Configure SignalR server timeout and keep alive on the client](xref:blazor/fundamentals/signalr#configure-signalr-server-timeout-and-keep-alive-on-the-client)
   * [Configure SignalR client logging](xref:blazor/fundamentals/signalr#configure-signalr-client-logging-blazor-server)
   * [Modify the reconnection handler](xref:blazor/fundamentals/signalr#modify-the-reconnection-handler-blazor-server)
   * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval-blazor-server)
@@ -538,7 +540,8 @@ For more information on CSPs, see <xref:blazor/security/content-security-policy>
 ## Additional resources
 
 * SignalR
-  * [Blazor startup](xref:blazor/fundamentals/signalr#blazor-startup-blazor-server)
+  * [Blazor startup](xref:blazor/fundamentals/signalr#blazor-startup)
+  * [Configure SignalR server timeout and keep alive on the client](xref:blazor/fundamentals/signalr#configure-signalr-server-timeout-and-keep-alive-on-the-client)
   * [Configure SignalR client logging](xref:blazor/fundamentals/signalr#configure-signalr-client-logging-blazor-server)
   * [Modify the reconnection handler](xref:blazor/fundamentals/signalr#modify-the-reconnection-handler-blazor-server)
   * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval-blazor-server)
@@ -761,7 +764,8 @@ To review the Blazor WebAssembly project template markup and styling for the def
 
 * [Environments: Set the app's environment](xref:blazor/fundamentals/environments)
 * SignalR
-  * [Blazor startup](xref:blazor/fundamentals/signalr#blazor-startup-blazor-server)
+  * [Blazor startup](xref:blazor/fundamentals/signalr#blazor-startup)
+  * [Configure SignalR server timeout and keep alive on the client](xref:blazor/fundamentals/signalr#configure-signalr-server-timeout-and-keep-alive-on-the-client)
   * [Configure SignalR client logging](xref:blazor/fundamentals/signalr#configure-signalr-client-logging-blazor-server)
   * [Modify the reconnection handler](xref:blazor/fundamentals/signalr#modify-the-reconnection-handler-blazor-server)
   * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval-blazor-server)
