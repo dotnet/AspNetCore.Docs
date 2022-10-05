@@ -14,7 +14,7 @@ uid: fundamentals/httpcontext
 
 <xref:Microsoft.AspNetCore.Http.HttpContext> encapsulates all information about an individual HTTP request and response. An `HttpContext` instance is initialized when an HTTP request is received. The `HttpContext` instance is accessible by middleware and app frameworks such as Web API controllers, Razor Pages, SignalR, gRPC, and more.
 
-For information about using the `HttpContext` with a HTTP request and response, see <xref:fundamentals/use-httpcontext>.
+For information about using `HttpContext` with a HTTP request and response, see <xref:fundamentals/use-httpcontext>.
 
 ## Access HttpContext from Razor Pages
 
@@ -197,7 +197,7 @@ public class EmailController : Controller
     
 <xref:Microsoft.AspNetCore.Http.HttpContext> encapsulates all information about an individual HTTP request and response. An `HttpContext` instance is initialized when an HTTP request is received. The `HttpContext` instance is accessible by middleware and app frameworks such as Web API controllers, Razor Pages, SignalR, gRPC, and more.
 
-For information about using the `HttpContext` with a HTTP request and response, see <xref:fundamentals/use-httpcontext>.
+For information about using `HttpContext` with a HTTP request and response, see <xref:fundamentals/use-httpcontext>.
 
 ## Access HttpContext from Razor Pages
 
