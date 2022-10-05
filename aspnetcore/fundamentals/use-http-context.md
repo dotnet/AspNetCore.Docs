@@ -9,7 +9,7 @@ uid: fundamentals/use-httpcontext
 ---
 # Use HttpContext in ASP.NET Core
 
-<xref:Microsoft.AspNetCore.Http.HttpContext> encapsulates all HTTP-specific information about an individual HTTP request. An `HttpContext` instance is initialized when ASP.NET Core receives an HTTP request and is accessible by middleware and app frameworks such as Web API controllers, Razor Pages, SignalR, gRPC, and more.
+<xref:Microsoft.AspNetCore.Http.HttpContext> encapsulates all information about an individual HTTP request and response. An `HttpContext` instance is initialized when ASP.NET Core receives an HTTP request and is accessible by middleware and app frameworks such as Web API controllers, Razor Pages, SignalR, gRPC, and more.
 
 For more information about accessing the `HttpContext`, see <xref:fundamentals/httpcontext>.
 
@@ -26,8 +26,11 @@ Commonly used properties on `HttpRequest` include:
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Headers?displayProperty=nameWithType>|A collection of request headers.|`user-agent=Edge`<br />`x-custom-header=MyValue`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues?displayProperty=nameWithType>|A collection of route values. The collection is set when the request is matched to a route.|`language=en-us`<br />`article=get-started`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Query?displayProperty=nameWithType>|A collection of query values parsed from <xref:Microsoft.AspNetCore.Http.HttpRequest.QueryString>.|`filter=hello`<br />`page=1`|
-|<xref:Microsoft.AspNetCore.Http.HttpRequest.Form?displayProperty=nameWithType>|The request body as a form values collection. Should only be used when form data is posted with the request and <xref:Microsoft.AspNetCore.Http.HttpRequest.HasFormContentType> is true.|`email=user@contoso.com`<br />`password=TNkt4taM`|
+|<xref:Microsoft.AspNetCore.Http.HttpRequest.Form?displayProperty=nameWithType>|The request body as a form values collection. Should only be used when form data is posted with the request and <xref:Microsoft.AspNetCore.Http.HttpRequest.HasFormContentType> is true after first calling <xref:Microsoft.AspNetCore.Http.HttpRequest.ReadFormAsync>.|`email=user@contoso.com`<br />`password=TNkt4taM`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType>|A <xref:System.IO.Stream> for reading the request body.|UTF-8 JSON payload|
+
+> [!NOTE]
+> [Minimal APIs](xref:fundamentals/minimal-apis) supports binding <xref:Microsoft.AspNetCore.Http.HttpContext.Request?displayProperty=nameWithType> directly to a <xref:Microsoft.AspNetCore.Http.HttpRequest> parameter.
 
 ### Get request headers
 
@@ -47,6 +50,9 @@ An HTTP request can include a request body. The request body is data associated 
 [!code-csharp[](use-http-context/samples/Program.cs?name=snippet_RequestBody&highlight=9)]
 
 `HttpRequest.Body` can be read directly or used with other APIs that accept stream.
+
+> [!NOTE]
+> [Minimal APIs](xref:fundamentals/minimal-apis) supports binding <xref:Microsoft.AspNetCore.Http.HttpContext.Request.Body?displayProperty=nameWithType> directly to a <xref:System.IO.Stream> parameter.
 
 #### Enable request body buffering
 
@@ -70,6 +76,9 @@ The reader directly accesses the request body and manages memory on the caller's
 
 For information on how to read content from `BodyReader`, see [I/O pipelines PipeReader](/dotnet/standard/io/pipelines#pipereader).
 
+> [!NOTE]
+> [Minimal APIs](xref:fundamentals/minimal-apis) supports binding <xref:Microsoft.AspNetCore.Http.HttpContext.Request.BodyReader?displayProperty=nameWithType> directly to a <xref:System.IO.Pipelines.PipeReader> parameter.
+
 ## `HttpResponse`
 
 <xref:Microsoft.AspNetCore.Http.HttpContext.Response?displayProperty=nameWithType> provides access to <xref:Microsoft.AspNetCore.Http.HttpResponse>. `HttpResponse` is used to set information on the HTTP response sent back to the client.
@@ -82,6 +91,9 @@ Commonly used properties on `HttpResponse` include:
 |<xref:Microsoft.AspNetCore.Http.HttpResponse.ContentType?displayProperty=nameWithType>|The response `content-type` header. Must be set before writing to the response body.|`application/json`|
 |<xref:Microsoft.AspNetCore.Http.HttpResponse.Headers?displayProperty=nameWithType>|A collection of response headers. Must be set before writing to the response body.|`server=Kestrel`<br />`x-custom-header=MyValue`|
 |<xref:Microsoft.AspNetCore.Http.HttpResponse.Body?displayProperty=nameWithType>|A <xref:System.IO.Stream> for writing the response body.|Generated web page|
+
+> [!NOTE]
+> [Minimal APIs](xref:fundamentals/minimal-apis) supports binding <xref:Microsoft.AspNetCore.Http.HttpContext.Response?displayProperty=nameWithType> directly to a <xref:Microsoft.AspNetCore.Http.HttpResponse> parameter.
 
 ### Set response headers
 
@@ -122,11 +134,13 @@ For information on how to write content to `BodyWriter`, see [I/O pipelines Pipe
 
 ## `RequestAborted`
 
-The <xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted?displayProperty=nameWithType> cancellation token can be used to notify that the HTTP request has been aborted. The cancellation token should be passed to long-running tasks so they can be canceled if the request is aborted. For example, aborting a database query or HTTP request to get data to return in the response.
+The <xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted?displayProperty=nameWithType> cancellation token can be used to notify that the HTTP request has been aborted by the client or server. The cancellation token should be passed to long-running tasks so they can be canceled if the request is aborted. For example, aborting a database query or HTTP request to get data to return in the response.
 
 [!code-csharp[](use-http-context/samples/Program.cs?name=snippet_RequestAborted&highlight=7-8)]
 
-The `RequestAborted` cancellation token doesn't need to be used with asynchronous operations when reading the request body or writing to the response body. They immediately exit if the HTTP request is aborted.
+The `RequestAborted` cancellation token doesn't need to be used for request body read operations because reads always throw immediately when request is aborted. The `RequestAborted` token is also usually unnecessary when writing response bodies, because writes immediately no-op when the request is aborted.
+
+In some cases, passing the `RequestAborted` token to write operations can be a convenient way to force a write loop to exit early with an <xref:System.OperationCanceledException>. However, it's typically better to pass the `RequestAborted` token into any asynchronous operations responsible for retrieving the response body content instead.
 
 > [!NOTE]
 > [Minimal APIs](xref:fundamentals/minimal-apis) supports binding <xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted?displayProperty=nameWithType> directly to a <xref:System.Threading.CancellationToken> parameter.
