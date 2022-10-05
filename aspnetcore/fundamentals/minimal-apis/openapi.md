@@ -79,7 +79,7 @@ When using [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle
 
 ### Add OpenAPI annotations to endpoints via `WithOpenApi`
 
-Calling [WithOpenApi](/dotnet/api/microsoft.aspnetcore.builder.openapiendpointconventionbuilderextensions.withopenapi)to the endpoints metadata. This metadata can be:
+Calling [WithOpenApi](/dotnet/api/microsoft.aspnetcore.builder.openapiendpointconventionbuilderextensions.withopenapi) on the endpoint to the endpoints metadata. This metadata can be:
 
 * Consumed in third-party packages like [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
 * Displayed in the Swagger user interface or in YAML or JSON generated to define the file.
@@ -94,7 +94,7 @@ The [WithOpenApi](/dotnet/api/microsoft.aspnetcore.builder.openapiendpointconven
 
 ### Add operation IDs to Open API
 
-Operation IDs are used to uniquely identify a given endpoints in OpenAPI. The `WithName` extension method can be used to set the operation ID used for a method.
+Operation IDs are used to uniquely identify a given endpoint in OpenAPI. The [`WithName`](/dotnet/api/microsoft.aspnetcore.builder.routingendpointconventionbuilderextensions.withname) extension method can be used to set the operation ID used for a method.
 
 [!code-csharp[](samples/todo/Program.cs?name=snippet_name)]
 
@@ -114,7 +114,7 @@ OpenAPI supports using [tag objects](https://swagger.io/docs/specification/group
 
 [!code-csharp[](samples/todo/Program.cs?name=snippet_grp)]
 
-Alternatively, the list of `OpenApiTags` can be set on the OpenAPI annotation via the `WithOpenApi` extension method. d
+Alternatively, the list of `OpenApiTags` can be set on the OpenAPI annotation via the `WithOpenApi` extension method.
 
 ```csharp
 app.MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
@@ -151,7 +151,7 @@ In the following sample, the `/skipme` endpoint is excluded from generating an O
 
 ### Mark an API as obsolete
 
-To mark an endpoint as obsolete, set the `Depercated` property on the OpenAPI annotation.
+To mark an endpoint as obsolete, set the `Deprecated` property on the OpenAPI annotation.
 
 ```csharp
 app.MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
@@ -163,7 +163,7 @@ app.MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
 
 ### Describe response types
 
-OpenAPI supports providing an description of the responses returned from an API. Minimal APIs supports three strategies for setting the response type of an endpoint:
+OpenAPI supports providing a description of the responses returned from an API. Minimal APIs supports three strategies for setting the response type of an endpoint:
 
 * Via the `Produces` extension method
 * Via the `ProducesResponseType` attribute
@@ -189,7 +189,7 @@ app.MapGet("/todos", async (TodoDb db) =>
 
 #### Set responses for ProblemDetails
 
-When setting the response type for endpoints that may return a ProblemDetails response, the `ProducesProblem` extension method can be used to provide the annotation or the `TypedResults.Problem` return type.
+When setting the response type for endpoints that may return a ProblemDetails response, the [`ProducesProblem`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.producesproblem) extension method or [`TypeResults.Problem`](dotnet/api/microsoft.aspnetcore.http.typedresults.problem?) can be used to add the appropriate annotation to the endpoint's metadata.
 
 When there are no explicit annotations provided by one of the strategies above, the framework will attempt to determine a default response type by examining the signature of the response. This default response will be populated under the `200` status code in the OpenAPI definition.
 
