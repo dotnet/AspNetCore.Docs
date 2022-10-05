@@ -21,7 +21,7 @@ Commonly used members on `HttpRequest` include:
 
 |Property|Description|Example|
 |--|--|--|--|
-|<xref:Microsoft.AspNetCore.Http.HttpRequest.Path?displayProperty=nameWithType>|The request path.|`/en-us/article/get-started`|
+|<xref:Microsoft.AspNetCore.Http.HttpRequest.Path?displayProperty=nameWithType>|The request path.|`/en/article/getstarted`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Method?displayProperty=nameWithType>|The request method.|`GET`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Headers?displayProperty=nameWithType>|A collection of request headers.|`user-agent=Edge`<br />`x-custom-header=MyValue`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues?displayProperty=nameWithType>|A collection of route values. The collection is set when the request is matched to a route.|`language=en-us`<br />`article=get-started`|
