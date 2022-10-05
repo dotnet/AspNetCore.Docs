@@ -95,7 +95,9 @@ Commonly used members on `HttpResponse` include:
 
 [!code-csharp[](use-http-context/samples/Program.cs?name=snippet_ResponseHeaders&highlight=6-7)]
 
-An app can't modify headers after the response has started. Once the response starts, the headers are sent to the client. A response is started by flushing the response body or calling <xref:Microsoft.AspNetCore.Http.HttpResponse.StartAsync(System.Threading.CancellationToken)?displayProperty=nameWithType>. The <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted?displayProperty=nameWithType> property indicates whether the response has started. An error is thrown when attempting to modify headers after the response has started.
+An app can't modify headers after the response has started. Once the response starts, the headers are sent to the client. A response is started by flushing the response body or calling <xref:Microsoft.AspNetCore.Http.HttpResponse.StartAsync(System.Threading.CancellationToken)?displayProperty=nameWithType>. The <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted?displayProperty=nameWithType> property indicates whether the response has started. An error is thrown when attempting to modify headers after the response has started:
+
+> System.InvalidOperationException: Headers are read-only, response has already started.
 
 ### Write response body
 
@@ -163,7 +165,7 @@ The <xref:Microsoft.AspNetCore.Http.HttpContext.Features?displayProperty=nameWit
 The following example:
 
 * Gets <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinRequestBodyDataRateFeature> from the features collection.
-* Sets `MinDataRate` to null. This removes the minimum data rate that the request body must be sent by the client for this HTTP request.
+* Sets <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinResponseDataRateFeature.MinDataRate> to null. This removes the minimum data rate that the request body must be sent by the client for this HTTP request.
 
 [!code-csharp[](use-http-context/samples/Program.cs?name=snippet_Features&highlight=6)]
 
