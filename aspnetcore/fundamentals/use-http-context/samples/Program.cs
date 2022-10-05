@@ -73,6 +73,7 @@ app.MapGet("/", (HttpResponse response) =>
 {
     // Write body
     response.WriteAsync("Hello world");
+
     if (response.SupportsTrailers())
     {
         response.AppendTrailer("trailername", "TrailerValue");
