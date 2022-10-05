@@ -121,7 +121,7 @@ HTTP/2 and HTTP/3 support response trailers. Trailers are headers sent with the 
 
 Set trailers using <xref:Microsoft.AspNetCore.Http.ResponseTrailerExtensions.AppendTrailer%2A>:
 
-[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_ResponseTrailers&highlight=10)]
+[!code-csharp[](use-http-context/samples/Program.cs?name=snippet_ResponseTrailers&highlight=11)]
 
 ## `RequestAborted`
 
