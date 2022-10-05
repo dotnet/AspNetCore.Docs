@@ -102,6 +102,7 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 
 ## Additional resources for Blazor WebAssembly apps
 
+<!-- * <xref:blazor/host-and-deploy/webassembly#signalr-configuration> -->
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
@@ -390,16 +391,6 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 * <xref:signalr/publish-to-azure-web-app>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
-## Additional resources for Blazor WebAssembly apps
-
-<!-- * <xref:blazor/host-and-deploy/webassembly#signalr-configuration> -->
-* <xref:signalr/introduction>
-* <xref:signalr/configuration>
-* [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
-* [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
-* <xref:signalr/publish-to-azure-web-app>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
@@ -462,6 +453,7 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 
 ## Additional resources for Blazor WebAssembly apps
 
+<!-- * <xref:blazor/host-and-deploy/webassembly#signalr-configuration> -->
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
@@ -753,16 +745,6 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 * <xref:signalr/publish-to-azure-web-app>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
-## Additional resources for Blazor WebAssembly apps
-
-<!-- * <xref:blazor/host-and-deploy/webassembly#signalr-configuration> -->
-* <xref:signalr/introduction>
-* <xref:signalr/configuration>
-* [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
-* [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
-* <xref:signalr/publish-to-azure-web-app>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
@@ -818,6 +800,7 @@ For more information, see <xref:signalr/configuration#configure-additional-optio
 
 ## Additional resources for Blazor WebAssembly apps
 
+<!-- * <xref:blazor/host-and-deploy/webassembly#signalr-configuration> -->
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
@@ -1087,16 +1070,6 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 * <xref:signalr/publish-to-azure-web-app>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
-## Additional resources for Blazor WebAssembly apps
-
-<!-- * <xref:blazor/host-and-deploy/webassembly#signalr-configuration> -->
-* <xref:signalr/introduction>
-* <xref:signalr/configuration>
-* [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
-* [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
-* <xref:signalr/publish-to-azure-web-app>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
@@ -1186,6 +1159,7 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 
 ## Additional resources for Blazor WebAssembly apps
 
+<!-- * <xref:blazor/host-and-deploy/webassembly#signalr-configuration> -->
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
@@ -1468,16 +1442,6 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 * <xref:signalr/configuration>
 * <xref:blazor/security/server/threat-mitigation>
 * [Blazor Server reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
-* [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
-* [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
-* <xref:signalr/publish-to-azure-web-app>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-
-## Additional resources for Blazor WebAssembly apps
-
-<!-- * <xref:blazor/host-and-deploy/webassembly#signalr-configuration> -->
-* <xref:signalr/introduction>
-* <xref:signalr/configuration>
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
 * <xref:signalr/publish-to-azure-web-app>

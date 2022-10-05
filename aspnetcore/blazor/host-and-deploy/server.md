@@ -771,7 +771,7 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
 
 * **Server**
 
-  At least double the maxiumum roundtrip time expected between the client and the server. Test, monitor, and revise the timeouts as needed. For the SignalR hub, set the <xref:Microsoft.AspNetCore.SignalR.HubOptions.ClientTimeoutInterval> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.HubOptions.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> (default: 15 seconds).
+  At least double the maximum roundtrip time expected between the client and the server. Test, monitor, and revise the timeouts as needed. For the SignalR hub, set the <xref:Microsoft.AspNetCore.SignalR.HubOptions.ClientTimeoutInterval> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.HubOptions.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> (default: 15 seconds).
 
   For a Blazor Server app in `Program.cs`:
 
@@ -816,7 +816,7 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
         builder.serverTimeoutInMilliseconds = 60000;
         builder.keepAliveIntervalInMilliseconds = 30000;
       }
-  });
+    });
   </script>
   ```
 
