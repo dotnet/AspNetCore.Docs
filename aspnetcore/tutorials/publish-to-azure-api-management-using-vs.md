@@ -23,19 +23,19 @@ To complete the tutorial you'll need an Azure account.
 
 Visual Studio allows you to easily create a new ASP.NET Core web API project from a template. Follow these directions to create a new ASP.NET Core web API project:
 
-* From the File menu, select New > Project.
-* Enter Web API in the search box.
-* Select the ASP.NET Core Web API template and select Next.
-* In the Configure your new project dialog, name the project WeatherAPI and select Next.
-* In the Additional information dialog:
-* Confirm the Framework is .NET 6.0 (Long-term support).
-* Confirm the checkbox for Use controllers (uncheck to use minimal APIs) is checked.
-* Confirm the checkbox for Enable OpenAPI support is checked.
-* Select Create.
+* From the File menu, select **New** > **Project**.
+* Enter **Web API** in the search box.
+* Select the **ASP.NET Core Web API** template and select **Next**.
+* In the **Configure your new project dialog**, name the project **WeatherAPI** and select **Next**.
+* In the **Additional information** dialog:
+* Confirm the Framework is **.NET 6.0 (Long-term support)**.
+* Confirm the checkbox for **Use controllers (uncheck to use minimal APIs)** is checked.
+* Confirm the checkbox for **Enable OpenAPI support** is checked.
+* Select **Create**.
 
 ## Explore the code
 
-Swagger definitions allow Azure API Management to read the app's API definitions. By checking the _Enable OpenAPI support_ checkbox during app creation, Visual Studio will automatically add the code to create the Swagger definitions. Open up the `Program.cs` file and you'll see the following code:
+Swagger definitions allow Azure API Management to read the app's API definitions. By checking the **Enable OpenAPI support** checkbox during app creation, Visual Studio automatically adds the code to create the Swagger definitions. Open up the `Program.cs` file which shows the following code:
 
 ```csharp
 
@@ -59,7 +59,7 @@ if (app.Environment.IsDevelopment())
 
 Azure API Management needs the Swagger definitions to always be present, regardless of the application's environment. To ensure they are always generated, move `app.UseSwagger();` outside of the `if (app.Environment.IsDevelopment())` block. In addition, you can 
 
-The code should now look like this:
+The updated code:
 
 ```csharp
 
@@ -78,10 +78,10 @@ if (app.Environment.IsDevelopment())
 
 ### Change the API routing
 
-Next, you'll change the URL structure needed to access the `Get` action of the `WeatherForecastController`. Complete the following steps:
+Change the URL structure needed to access the `Get` action of the `WeatherForecastController`. Complete the following steps:
 
 1. Open the `WeatherForecastController.cs` file.
-1. Replace the `[Route("[controller]")]` class-level attribute with `[Route("/")]`. The class definition will look like the following:
+1. Replace the `[Route("[controller]")]` class-level attribute with `[Route("/")]`. The updated class definition :
 
     ```csharp
     [ApiController]
@@ -119,7 +119,7 @@ Complete the following steps to publish the ASP.NET Core web API to Azure API Ma
 1. When that completes, select the **Finish** button.
 1. The dialog closes and a summary screen appears with information about the publish. Select the **Publish** button.
 
-    The web API will publish to both Azure App Service and Azure API Management. A new browser window will appear and show the API running in Azure App Service. You can close that window.
+    The web API publishs to both Azure App Service and Azure API Management. A new browser window will appear and show the API running in Azure App Service. You can close that window.
 
 1. Open up the Azure portal in a web browser and navigate to the API Management instance you created.
 1. Select the **APIs** option from the left-hand menu.
