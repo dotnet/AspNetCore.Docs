@@ -2583,7 +2583,7 @@ longRunningFn aborted!
 
 *This section applies to Blazor WebAssembly apps.*
 
-As an alternative to interacting with JavaScript (JS) in Blazor WebAssembly apps using Blazor's JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface, a .NET JS `[JSImport]`/`[JSExport]` interop API is available to apps targeting ASP.NET Core 7.0 or later.
+As an alternative to interacting with JavaScript (JS) in Blazor WebAssembly apps using Blazor's JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface, a .NET JS `[JSImport]`/`[JSExport]` interop API is available to apps targeting .NET 7 or later.
 
 For more information, see <xref:blazor/js-interop/import-export-interop>. 
 
@@ -2591,7 +2591,7 @@ For more information, see <xref:blazor/js-interop/import-export-interop>.
 
 *This section applies to Blazor WebAssembly apps.*
 
-Unmarshalled interop is obsolete and should be replaced with .NET JavaScript `[JSImport]`/`[JSExport]` interop.
+Unmarshalled interop using the <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> interface is obsolete and should be replaced with .NET JavaScript `[JSImport]`/`[JSExport]` interop.
 
 For more information, see <xref:blazor/js-interop/import-export-interop>. 
 
