@@ -82,7 +82,7 @@ When using [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle
 Calling [`WithOpenApi`](/dotnet/api/microsoft.aspnetcore.builder.openapiendpointconventionbuilderextensions.withopenapi) on the endpoint adds to the endpoint's metadata. This metadata can be:
 
 * Consumed in third-party packages like [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
-* Displayed in the Swagger user interface or in YAML or JSON generated to define the file.
+* Displayed in the Swagger user interface or in YAML or JSON generated to define the API.
 
 [!code-csharp[](7.0-samples/todo/Program.cs?name=snippet_withopenapi&highlight=9)]
 
@@ -182,7 +182,7 @@ app
     .Produces<IList<Todo>>();
 ```
 
-Leveraging `TypedResults` in the implementation of an endpoint's route handler automatically includes the response type metadata for the endpoint. For example, the code below will automatically annotate the endpoint with a response under the `200` status code with an `application/json` content type.
+Leveraging `TypedResults` in the implementation of an endpoint's route handler automatically includes the response type metadata for the endpoint. For example, the code below automatically annotates the endpoint with a response under the `200` status code with an `application/json` content type.
 
 ```csharp
 app.MapGet("/todos", async (TodoDb db) =>
