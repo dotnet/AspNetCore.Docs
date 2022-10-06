@@ -115,7 +115,7 @@ It's not immediately apparent why the search requests are failing. The browser t
 
 1. In the query editor, compose a basic query to search the **ContainerAppConsoleLogs_CL Logs** table for recent exceptions, such as the following script:
 
-    ```sql
+    ```KQL
     ContainerAppConsoleLogs_CL
     | where Log_s contains "exception"
     | sort by TimeGenerated desc

@@ -26,7 +26,7 @@ A web server capable of hosting an ASP.NET Core app is required. Visual Studio i
 
 ## Scalability
 
-When considering the scalability of a single server (scale up), the memory available to an app is likely the first resource that the app will exhaust as user demands increase. The available memory on the server affects the:
+When considering the scalability of a single server (scale up), the memory available to an app is likely the first resource that the app exhausts as user demands increase. The available memory on the server affects the:
 
 * Number of active circuits that a server can support.
 * UI latency on the client.
@@ -260,7 +260,7 @@ A web server capable of hosting an ASP.NET Core app is required. Visual Studio i
 
 ## Scalability
 
-When considering the scalability of a single server (scale up), the memory available to an app is likely the first resource that the app will exhaust as user demands increase. The available memory on the server affects the:
+When considering the scalability of a single server (scale up), the memory available to an app is likely the first resource that the app exhausts as user demands increase. The available memory on the server affects the:
 
 * Number of active circuits that a server can support.
 * UI latency on the client.
@@ -506,7 +506,7 @@ A web server capable of hosting an ASP.NET Core app is required. Visual Studio i
 
 ## Scalability
 
-When considering the scalability of a single server (scale up), the memory available to an app is likely the first resource that the app will exhaust as user demands increase. The available memory on the server affects the:
+When considering the scalability of a single server (scale up), the memory available to an app is likely the first resource that the app exhausts as user demands increase. The available memory on the server affects the:
 
 * Number of active circuits that a server can support.
 * UI latency on the client.
@@ -732,7 +732,7 @@ A web server capable of hosting an ASP.NET Core app is required. Visual Studio i
 
 ## Scalability
 
-When considering the scalability of a single server (scale up), the memory available to an app is likely the first resource that the app will exhaust as user demands increase. The available memory on the server affects the:
+When considering the scalability of a single server (scale up), the memory available to an app is likely the first resource that the app exhausts as user demands increase. The available memory on the server affects the:
 
 * Number of active circuits that a server can support.
 * UI latency on the client.
