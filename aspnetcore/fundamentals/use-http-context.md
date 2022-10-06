@@ -111,7 +111,7 @@ An HTTP response can include a response body. The response body is data associat
 
 #### BodyWriter
 
-An alternative way to read the request body is to use the <xref:Microsoft.AspNetCore.Http.HttpResponse.BodyWriter?displayProperty=nameWithType> property. The `BodyWriter` property exposes the response body as a <xref:System.IO.Pipelines.PipeWriter>. This API is from [I/O pipelines](/dotnet/standard/io/pipelines), and it's an advanced, high-performance way to write the response.
+An alternative way to write the response body is to use the <xref:Microsoft.AspNetCore.Http.HttpResponse.BodyWriter?displayProperty=nameWithType> property. The `BodyWriter` property exposes the response body as a <xref:System.IO.Pipelines.PipeWriter>. This API is from [I/O pipelines](/dotnet/standard/io/pipelines), and it's an advanced, high-performance way to write the response.
 
 The writer provides direct access to the response body and manages memory on the caller's behalf. Unlike `HttpResponse.Body`, the write doesn't copy request data into a buffer. However, a writer is more complicated to use than a stream and writer code should be thoroughly tested.
 
