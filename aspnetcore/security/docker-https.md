@@ -52,23 +52,22 @@ Use the following instructions for your operating system configuration.
 Generate certificate and configure local machine:
 
 ```dotnetcli
-dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p <password>
+dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p <$CREDENTIAL_PLACEHOLDER$>
 dotnet dev-certs https --trust
 ```
 
-In the preceding commands, replace `<password>` with a password.
+In the preceding commands, replace `<$CREDENTIAL_PLACEHOLDER$>` with a password.
 
 Run the container image with ASP.NET Core configured for HTTPS in a command shell:
 
 ```console
 docker pull mcr.microsoft.com/dotnet/core/samples:aspnetapp
-docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_Kestrel__Certificates__Default__Password="password" -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx -v %USERPROFILE%\.aspnet\https:/https/ mcr.microsoft.com/dotnet/core/samples:aspnetapp
+docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_Kestrel__Certificates__Default__Password="$CREDENTIAL_PLACEHOLDER$" -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx -v %USERPROFILE%\.aspnet\https:/https/ mcr.microsoft.com/dotnet/core/samples:aspnetapp
 ```
 
+In the preceding code, replace `$CREDENTIAL_PLACEHOLDER$` with the password. The password must match the password used for the certificate.
+
 When using [PowerShell](/powershell/scripting/overview), replace `%USERPROFILE%` with `$env:USERPROFILE`.
-
-The password must match the password used for the certificate.
-
 
 Note: The certificate in this case must be a `.pfx` file.  Utilizing a `.crt` or `.key` file with or without the password isn't supported with the sample container.  For example, when specifying a `.crt` file, the container may return error messages such as 'The server mode SSL must use a certificate with the associated private key.'. When using [WSL](/windows/wsl/about), validate the mount path to ensure that the certificate loads correctly.
 
@@ -77,33 +76,33 @@ Note: The certificate in this case must be a `.pfx` file.  Utilizing a `.crt` or
 Generate certificate and configure local machine:
 
 ```dotnetcli
-dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p { password here }
+dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p <$CREDENTIAL_PLACEHOLDER$>
 dotnet dev-certs https --trust
 ```
 
 `dotnet dev-certs https --trust` is only supported on macOS and Windows. You need to trust certs on Linux in the way that is supported by your distribution. It is likely that you need to trust the certificate in your browser.
 
-In the preceding commands, replace `{ password here }` with a password.
+In the preceding commands, replace `<$CREDENTIAL_PLACEHOLDER$>` with a password.
 
 Run the container image with ASP.NET Core configured for HTTPS:
 
 ```console
 docker pull mcr.microsoft.com/dotnet/core/samples:aspnetapp
-docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_Kestrel__Certificates__Default__Password="password" -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx -v ${HOME}/.aspnet/https:/https/ mcr.microsoft.com/dotnet/core/samples:aspnetapp
+docker run --rm -it -p 8000:80 -p 8001:443 -e ASPNETCORE_URLS="https://+;http://+" -e ASPNETCORE_HTTPS_PORT=8001 -e ASPNETCORE_Kestrel__Certificates__Default__Password="$CREDENTIAL_PLACEHOLDER$" -e ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx -v ${HOME}/.aspnet/https:/https/ mcr.microsoft.com/dotnet/core/samples:aspnetapp
 ```
 
-The password must match the password used for the certificate.
+In the preceding code, replace `$CREDENTIAL_PLACEHOLDER$` with the password. The password must match the password used for the certificate.
 
 ### Windows using Windows containers
 
 Generate certificate and configure local machine:
 
 ```dotnetcli
-dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
+dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p <$CREDENTIAL_PLACEHOLDER$>
 dotnet dev-certs https --trust
 ```
 
-In the preceding commands, replace `{ password here }` with a password. When using [PowerShell](/powershell/scripting/overview), replace `%USERPROFILE%` with `$env:USERPROFILE`.
+In the preceding commands, replace `<$CREDENTIAL_PLACEHOLDER$>` with a password. When using [PowerShell](/powershell/scripting/overview), replace `%USERPROFILE%` with `$env:USERPROFILE`.
 
 Run the container image with ASP.NET Core configured for HTTPS:
 
