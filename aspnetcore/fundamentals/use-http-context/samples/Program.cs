@@ -4,7 +4,7 @@
 // FIL2 IHB CHNGR ADDMID
 #if NEVER
 #elif RequestHeaders
-#region snippet_RequestHeaders
+// <snippet_RequestHeaders>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -17,9 +17,9 @@ app.MapGet("/", (HttpRequest request) =>
 });
 
 app.Run();
-#endregion
+// </snippet_RequestHeaders>
 #elif RequestBody
-#region snippet_RequestBody
+// <snippet_RequestBody>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -32,9 +32,9 @@ app.MapPost("/uploadstream", async (IConfiguration config, HttpContext context) 
 });
 
 app.Run();
-#endregion
+// </snippet_RequestBody>
 #elif RequestBuffering
-#region snippet_RequestBuffering
+// <snippet_RequestBuffering>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -48,9 +48,9 @@ app.Use(async (context, next) =>
 });
 
 app.Run();
-#endregion
+// </snippet_RequestBuffering>
 #elif ResponseHeaders
-#region snippet_ResponseHeaders
+// <snippet_ResponseHeaders>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -63,9 +63,9 @@ app.MapGet("/", (HttpResponse response) =>
 });
 
 app.Run();
-#endregion
+// </snippet_ResponseHeaders>
 #elif ResponseTrailers
-#region snippet_ResponseTrailers
+// <snippet_ResponseTrailers>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -81,9 +81,9 @@ app.MapGet("/", (HttpResponse response) =>
 });
 
 app.Run();
-#endregion
+// </snippet_ResponseTrailers>
 #elif ResposeBody
-#region snippet_ResponseBody
+// <snippet_ResponseBody>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -96,9 +96,9 @@ app.MapPost("/downloadfile", async (IConfiguration config, HttpContext context) 
 });
 
 app.Run();
-#endregion
+// </snippet_ResponseBody>
 #elif RequestAborted
-#region snippet_RequestAborted
+// <snippet_RequestAborted>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -113,9 +113,9 @@ app.MapPost("/books/{bookId}", async (int bookId, HttpContext context) =>
 });
 
 app.Run();
-#endregion
+// </snippet_RequestAborted>
 #elif Abort
-#region snippet_Abort
+// <snippet_Abort>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -132,9 +132,9 @@ app.Use(async (context, next) =>
 });
 
 app.Run();
-#endregion
+// </snippet_Abort>
 #elif User
-#region snippet_User
+// <snippet_User>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -145,9 +145,9 @@ app.MapGet("/user/current", [Authorize] async (HttpContext context) =>
 });
 
 app.Run();
-#endregion
+// </snippet_User>
 #elif Features
-#region snippet_Features
+// <snippet_Features>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -163,5 +163,5 @@ app.MapGet("/long-running-stream", async (HttpContext context) =>
 });
 
 app.Run();
-#endregion
+// </snippet_Features>
 #endif
