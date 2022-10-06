@@ -39,8 +39,8 @@ For production certs:
 
 The instructions contained in the following section volume mount certificates into containers using Docker's `-v` command-line option. You could add certificates into container images with a `COPY` command in a *Dockerfile*, but it's not recommended. Copying certificates into an image isn't recommended for the following reasons:
 
-* It makes difficult to use the same image for testing with developer certificates.
-* It makes difficult to use the same image for Hosting with production certificates.
+* It's difficult to use the same image for testing with developer certificates.
+* It's difficult to use the same image for Hosting with production certificates.
 * There is significant risk of certificate disclosure.
 
 ## Running pre-built container images with HTTPS

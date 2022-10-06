@@ -136,7 +136,7 @@ The support for authenticating and authorizing calls to ASP.NET Core web APIs wi
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-The **:::no-loc text="Server":::** app of a hosted Blazor solution created from the Blazor WebAssembly template includes the [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web) package by default. The package adds UI for user authentication in web apps and isn't used by the Blazor framework. If the **:::no-loc text="Server":::** app will never be used to authenticate users directly, it's safe to remove the package reference from the **:::no-loc text="Server":::** app's project file.
+The **:::no-loc text="Server":::** app of a hosted Blazor solution created from the Blazor WebAssembly template includes the [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web) package by default. The package adds UI for user authentication in web apps and isn't used by the Blazor framework. If the **:::no-loc text="Server":::** app won't be used to authenticate users directly, it's safe to remove the package reference from the **:::no-loc text="Server":::** app's project file.
 
 ### Authentication service support
 
@@ -529,7 +529,7 @@ The support for authenticating and authorizing calls to ASP.NET Core web APIs wi
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-The **:::no-loc text="Server":::** app of a hosted Blazor solution created from the Blazor WebAssembly template includes the [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web) package by default. The package adds UI for user authentication in web apps and isn't used by the Blazor framework. If the **:::no-loc text="Server":::** app will never be used to authenticate users directly, it's safe to remove the package reference from the **:::no-loc text="Server":::** app's project file.
+The **:::no-loc text="Server":::** app of a hosted Blazor solution created from the Blazor WebAssembly template includes the [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web) package by default. The package adds UI for user authentication in web apps and isn't used by the Blazor framework. If the **:::no-loc text="Server":::** app won't be used to authenticate users directly, it's safe to remove the package reference from the **:::no-loc text="Server":::** app's project file.
 
 ### Authentication service support
 
@@ -1305,7 +1305,7 @@ The support for authenticating and authorizing calls to ASP.NET Core web APIs wi
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-The **:::no-loc text="Server":::** app of a hosted Blazor solution created from the Blazor WebAssembly template includes the [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web) package by default. The package adds UI for user authentication in web apps and isn't used by the Blazor framework. If the **:::no-loc text="Server":::** app will never be used to authenticate users directly, it's safe to remove the package reference from the **:::no-loc text="Server":::** app's project file.
+The **:::no-loc text="Server":::** app of a hosted Blazor solution created from the Blazor WebAssembly template includes the [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web) package by default. The package adds UI for user authentication in web apps and isn't used by the Blazor framework. If the **:::no-loc text="Server":::** app won't be used to authenticate users directly, it's safe to remove the package reference from the **:::no-loc text="Server":::** app's project file.
 
 ### Authentication service support
 

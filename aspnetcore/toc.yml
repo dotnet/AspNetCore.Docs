@@ -254,6 +254,8 @@ items:
         uid: fundamentals/http-logging/index
       - name: W3C Logger
         uid: fundamentals/w3c-logger/index
+      - name: HttpContext
+        uid: fundamentals/use-httpcontext
       - name: Routing
         uid: fundamentals/routing
       - name: Handle errors
@@ -678,6 +680,8 @@ items:
         uid: web-api/advanced/conventions
       - name: Handle errors
         uid: web-api/handle-errors
+      - name: Port tunneling in VS to debug web APIs
+        href: /connectors/custom-connectors/port-tunneling
       - name: Test with HttpRepl
         items:
           - name: Overview
@@ -690,6 +694,8 @@ items:
         uid: fundamentals/minimal-apis
       - name: OpenAPI in Minimal API apps
         uid: fundamentals/minimal-apis/openapi
+      - name: Port tunneling in VS to debug web APIs
+        href: /connectors/custom-connectors/port-tunneling
       - name: Filters in Minimal API apps
         uid: fundamentals/minimal-apis/min-api-filters
       - name: Unit and integration tests
@@ -911,6 +917,8 @@ items:
         href: /azure/azure-monitor/app/snapshot-debugger?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
       - name: Snapshot debugging in Visual Studio
         href: /visualstudio/debugger/debug-live-azure-applications
+      - name: Port tunneling in VS to debug web APIs
+        href: /connectors/custom-connectors/port-tunneling
       - name: Load and stress testing
         uid: test/loadtests
       - name: Troubleshoot and debug

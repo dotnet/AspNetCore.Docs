@@ -48,7 +48,7 @@ ASP.NET Core integrates seamlessly with popular client-side frameworks and libra
 
 ## ASP.NET Core target frameworks
 
-ASP.NET Core 3.x and later can only target .NET Core. Generally, ASP.NET Core is composed of [.NET Standard](/dotnet/standard/net-standard) libraries. Libraries written with .NET Standard 2.0 run on any [.NET platform that implements .NET Standard 2.0](/dotnet/standard/net-standard#net-implementation-support).
+ASP.NET Core 3.x or later can only target .NET Core. Generally, ASP.NET Core is composed of [.NET Standard](/dotnet/standard/net-standard) libraries. Libraries written with .NET Standard 2.0 run on any [.NET platform that implements .NET Standard 2.0](/dotnet/standard/net-standard#net-implementation-support).
 
 There are several advantages to targeting .NET Core, and these advantages increase with each release. Some advantages of .NET Core over .NET Framework include:
 
@@ -132,9 +132,9 @@ ASP.NET Core 2.x can target .NET Core or .NET Framework. ASP.NET Core apps targe
 ASP.NET Core 2.x is supported on .NET Framework versions that implement .NET Standard 2.0:
 
 * .NET Framework latest version is recommended.
-* .NET Framework 4.6.1 and later.
+* .NET Framework 4.6.1 or later.
 
-ASP.NET Core 3.0 and later will only run on .NET Core. For more details regarding this change, see [A first look at changes coming in ASP.NET Core 3.0](https://blogs.msdn.microsoft.com/webdev/2018/10/29/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
+ASP.NET Core 3.0 or later only run on .NET Core. For more details regarding this change, see [A first look at changes coming in ASP.NET Core 3.0](https://blogs.msdn.microsoft.com/webdev/2018/10/29/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
 
 There are several advantages to targeting .NET Core, and these advantages increase with each release. Some advantages of .NET Core over .NET Framework include:
 

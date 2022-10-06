@@ -142,7 +142,7 @@ By default, apps created using the PWA template option have support for running 
 > Development support would interfere with the usual development cycle of making changes and testing them. Therefore, offline support is only enabled for *published* apps. 
 
 > [!WARNING]
-> If you intend to distribute an offline-enabled PWA, there are [several important warnings and caveats](#caveats-for-offline-pwas). These scenarios are inherent to offline PWAs and not specific to Blazor. Be sure to read and understand these caveats before making assumptions about how your offline-enabled app will work.
+> If you intend to distribute an offline-enabled PWA, there are [several important warnings and caveats](#caveats-for-offline-pwas). These scenarios are inherent to offline PWAs and not specific to Blazor. Be sure to read and understand these caveats before making assumptions about how your offline-enabled app works.
 
 To see how offline support works:
 
@@ -497,7 +497,7 @@ By default, apps created using the PWA template option have support for running 
 > Development support would interfere with the usual development cycle of making changes and testing them. Therefore, offline support is only enabled for *published* apps. 
 
 > [!WARNING]
-> If you intend to distribute an offline-enabled PWA, there are [several important warnings and caveats](#caveats-for-offline-pwas). These scenarios are inherent to offline PWAs and not specific to Blazor. Be sure to read and understand these caveats before making assumptions about how your offline-enabled app will work.
+> If you intend to distribute an offline-enabled PWA, there are [several important warnings and caveats](#caveats-for-offline-pwas). These scenarios are inherent to offline PWAs and not specific to Blazor. Be sure to read and understand these caveats before making assumptions about how your offline-enabled app works.
 
 To see how offline support works:
 
@@ -851,7 +851,7 @@ By default, apps created using the PWA template option have support for running 
 > Development support would interfere with the usual development cycle of making changes and testing them. Therefore, offline support is only enabled for *published* apps. 
 
 > [!WARNING]
-> If you intend to distribute an offline-enabled PWA, there are [several important warnings and caveats](#caveats-for-offline-pwas). These scenarios are inherent to offline PWAs and not specific to Blazor. Be sure to read and understand these caveats before making assumptions about how your offline-enabled app will work.
+> If you intend to distribute an offline-enabled PWA, there are [several important warnings and caveats](#caveats-for-offline-pwas). These scenarios are inherent to offline PWAs and not specific to Blazor. Be sure to read and understand these caveats before making assumptions about how your offline-enabled app works.
 
 To see how offline support works:
 
