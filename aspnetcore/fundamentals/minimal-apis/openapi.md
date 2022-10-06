@@ -170,9 +170,9 @@ app.MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
 
 OpenAPI supports providing a description of the responses returned from an API. Minimal APIs supports three strategies for setting the response type of an endpoint:
 
-* Via the `Produces` extension method on the endpoint
-* Via the `ProducesResponseType` attribute on the route handler
-* By returning `TypedResults` from the route handler
+* Via the [`Produces`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.produces) extension method on the endpoint
+* Via the [`ProducesResponseType`](/dotnet/api/microsoft.aspnetcore.mvc.producesresponsetypeattribute) attribute on the route handler
+* By returning [`TypedResults`](/dotnet/api/microsoft.aspnetcore.http.typedresults) from the route handler
 
 The `Produces` extension method can be used to add `Produces` metadata to an endpoint. When no parameters are provided, the extension method populates metadata for the targeted type under a `200` status code and an `application/json` content type.
 
@@ -182,7 +182,7 @@ app
     .Produces<IList<Todo>>();
 ```
 
-Leveraging `TypedResults` in the implementation of an endpoint's route handler automatically includes the response type metadata for the endpoint. For example, the code below automatically annotates the endpoint with a response under the `200` status code with an `application/json` content type.
+Leveraging [`TypedResults`](/dotnet/api/microsoft.aspnetcore.http.typedresults) in the implementation of an endpoint's route handler automatically includes the response type metadata for the endpoint. For example, the code below automatically annotates the endpoint with a response under the `200` status code with an `application/json` content type.
 
 ```csharp
 app.MapGet("/todos", async (TodoDb db) =>
@@ -207,14 +207,14 @@ In addition to describing the types that are returned by an endpoint, OpenAPI al
 
 The framework infers the types for request parameters in the path, query, and header string automatically based on the signature of the route handler.
 
-To define the type of inputs transmitted as the request body, configure the properties by using the `Accepts` extension method to define the object type and content type that are expected by the request handler. In the example below, the endpoint accepts a `Todo` object in the request body with an expected content-type of `application/xml`.
+To define the type of inputs transmitted as the request body, configure the properties by using the [`Accepts`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.accepts) extension method to define the object type and content type that are expected by the request handler. In the example below, the endpoint accepts a `Todo` object in the request body with an expected content-type of `application/xml`.
 
 ```csharp
 app.MapPost("/todos/{id}", (int id, Todo todo) => ...)
   .Accepts<Todo>("application/xml");
 ```
 
-In addition the `Accepts` extension method, it is possible for a parameter type to describe its own annotation by implementing the `IEndpointParameterMetadataProvider` interface. For example, the following `Todo` type adds an annotation that requires a request body with an `application/xml` content-type. 
+In addition the [`Accepts`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.accepts) extension method, it is possible for a parameter type to describe its own annotation by implementing the [`IEndpointParameterMetadataProvider`](/dotnet/api/microsoft.aspnetcore.http.metadata.iendpointparametermetadataprovider) interface. For example, the following `Todo` type adds an annotation that requires a request body with an `application/xml` content-type. 
 
 ```csharp
 public class Todo : IEndpointParameterMetadataProvider
