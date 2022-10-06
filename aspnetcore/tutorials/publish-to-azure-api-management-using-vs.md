@@ -57,7 +57,7 @@ if (app.Environment.IsDevelopment())
 
 ### Ensure the Swagger definitions are always generated
 
-Azure API Management needs the Swagger definitions to always be present, regardless of the application's environment. To ensure they are always generated, move `app.UseSwagger();` outside of the `if (app.Environment.IsDevelopment())` block. In addition, you can 
+Azure API Management needs the Swagger definitions to always be present, regardless of the application's environment. To ensure they are always generated, move `app.UseSwagger();` outside of the `if (app.Environment.IsDevelopment())` block.
 
 The updated code:
 
