@@ -254,6 +254,8 @@ items:
         uid: fundamentals/http-logging/index
       - name: W3C Logger
         uid: fundamentals/w3c-logger/index
+      - name: HttpContext
+        uid: fundamentals/use-httpcontext
       - name: Routing
         uid: fundamentals/routing
       - name: Handle errors
