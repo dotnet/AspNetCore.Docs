@@ -955,6 +955,8 @@ Again, disabling integrity checking means that you lose the safety guarantees of
 
 ## SignalR configuration
 
+*This section applies to hosted Blazor WebAssembly apps where the developer has implemented SignalR communication on their own.*
+
 When a developer has implemented [ASP.NET Core SignalR](xref:signalr/introduction) in a hosted Blazor WebAssembly app, [SignalR's hosting and scaling conditions](xref:signalr/publish-to-azure-web-app) apply.
 
 Blazor works best when using [WebSockets](xref:fundamentals/websockets) as the SignalR transport due to lower latency, better reliability, and improved [security](xref:signalr/security). [Long Polling](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md#long-polling-server-to-client-only) is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling. When deploying to Azure App Service, configure the app to use WebSockets in the Azure portal settings for the service. For details on configuring the app for Azure App Service, see the [SignalR publishing guidelines](xref:signalr/publish-to-azure-web-app).
@@ -3414,6 +3416,8 @@ To disable integrity checking, remove the `integrity` parameter by changing the 
 Again, disabling integrity checking means that you lose the safety guarantees offered by integrity checking. For example, there is a risk that if the user's browser is caching the app at the exact moment that you deploy a new version, it could cache some files from the old deployment and some from the new deployment. If that happens, the app becomes stuck in a broken state until you deploy a further update.
 
 ## SignalR configuration
+
+*This section applies to hosted Blazor WebAssembly apps where the developer has implemented SignalR communication on their own.*
 
 When a developer has implemented [ASP.NET Core SignalR](xref:signalr/introduction) in a hosted Blazor WebAssembly app, [SignalR's hosting and scaling conditions](xref:signalr/publish-to-azure-web-app) apply.
 
