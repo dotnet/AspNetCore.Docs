@@ -102,7 +102,7 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 
 ## Additional resources for Blazor WebAssembly apps
 
-<!-- * <xref:blazor/host-and-deploy/webassembly#signalr-configuration> -->
+* <xref:blazor/host-and-deploy/webassembly#signalr-configuration>
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
@@ -453,7 +453,6 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 
 ## Additional resources for Blazor WebAssembly apps
 
-<!-- * <xref:blazor/host-and-deploy/webassembly#signalr-configuration> -->
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
@@ -800,7 +799,6 @@ For more information, see <xref:signalr/configuration#configure-additional-optio
 
 ## Additional resources for Blazor WebAssembly apps
 
-<!-- * <xref:blazor/host-and-deploy/webassembly#signalr-configuration> -->
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
@@ -1159,7 +1157,7 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 
 ## Additional resources for Blazor WebAssembly apps
 
-<!-- * <xref:blazor/host-and-deploy/webassembly#signalr-configuration> -->
+* <xref:blazor/host-and-deploy/webassembly#signalr-configuration>
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
@@ -1438,6 +1436,7 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 
 ## Additional resources for Blazor Server apps
 
+* <xref:blazor/host-and-deploy/server#signalr-configuration>
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 * <xref:blazor/security/server/threat-mitigation>
