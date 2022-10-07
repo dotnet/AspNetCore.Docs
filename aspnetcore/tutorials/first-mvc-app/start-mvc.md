@@ -31,11 +31,11 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -55,10 +55,12 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 * In the **Create a new project** dialog, select **ASP.NET Core Web App (Model-View-Controller)** > **Next**.
 * In the **Configure your new project** dialog, enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` when code is copied.
 * Select **Next**.
-* In the **Additional information** dialog, select **.NET 6.0 (Long-term support)**.
+* In the **Additional information** dialog:
+  * Select **.NET 7.0**.
+  * Uncheck **Do not use top-level statements**
 * Select **Create**.
 
-![Additional info dialog](start-mvc/_static/net6-additional-info.png)
+![Additional info dialog](start-mvc/_static/net7-additional-info.png)
 
 For alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
@@ -133,7 +135,7 @@ You can launch the app in debug or non-debug mode from the **Debug** menu:
 
 ![Debug menu](start-mvc/_static/debug_menu50.png)
 
-You can debug the app by selecting the **MvcMovie** button in the toolbar:
+You can debug the app by selecting the **https** button in the toolbar:
 
 ![MvcMovie debug button](start-mvc/_static/net6-debug-button.png)
 
