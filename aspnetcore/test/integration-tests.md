@@ -14,20 +14,19 @@ By [Jos van der Til](https://jvandertil.nl) and [Javier Calvarro Nelson](https:/
 
 Integration tests ensure that an app's components function correctly at a level that includes the app's supporting infrastructure, such as the database, file system, and network. ASP.NET Core supports integration tests using a unit test framework with a test web host and an in-memory test server.
 
-:::moniker range="= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-7.0"
 
 This topic assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Unit Testing in .NET Core and .NET Standard](/dotnet/core/testing/) topic and its linked content.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/IntegrationTestsSample) ([how to download](xref:index#how-to-download-a-sample))
 
-The sample app is a Razor Pages app and assumes a basic understanding of Razor Pages. If unfamiliar with Razor Pages, see the following topics:
+The sample app is a Razor Pages app and assumes a basic understanding of Razor Pages. If you're unfamiliar with Razor Pages, see the following topics:
 
 * [Introduction to Razor Pages](xref:razor-pages/index)
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [Razor Pages unit tests](xref:test/razor-pages-tests)
 
-> [!NOTE]
-> For testing SPAs, we recommend a tool such as [Playwright for .NET](https://playwright.dev/dotnet/), which can automate a browser.
+**For testing SPAs**, we recommend a tool such as [Playwright for .NET](https://playwright.dev/dotnet/), which can automate a browser.
 
 [!INCLUDE[](~/includes/integrationTests.md)]
 
@@ -40,7 +39,7 @@ The test project must:
 * Reference the [`Microsoft.AspNetCore.Mvc.Testing`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Testing) package.
 * Specify the Web SDK in the project file (`<Project Sdk="Microsoft.NET.Sdk.Web">`).
 
-These prerequisites can be seen in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples/). Inspect the `tests/RazorPagesProject.Tests/RazorPagesProject.Tests.csproj` file. The sample app uses the [xUnit](https://xunit.net/) test framework and the [AngleSharp](https://anglesharp.github.io/) parser library, so the sample app also references:
+These prerequisites can be seen in the [sample app](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/IntegrationTestsSample). Inspect the `tests/RazorPagesProject.Tests/RazorPagesProject.Tests.csproj` file. The sample app uses the [xUnit](https://xunit.net/) test framework and the [AngleSharp](https://anglesharp.github.io/) parser library, so the sample app also references:
 
 * [`AngleSharp`](https://www.nuget.org/packages/AngleSharp)
 * [`xunit`](https://www.nuget.org/packages/xunit)
@@ -48,13 +47,7 @@ These prerequisites can be seen in the [sample app](https://github.com/dotnet/As
 
 In apps that use [`xunit.runner.visualstudio`](https://www.nuget.org/packages/xunit.runner.visualstudio) version 2.4.2 or later, the test project must reference the [`Microsoft.NET.Test.Sdk`](https://www.nuget.org/packages/Microsoft.NET.Test.Sdk) package.
 
-Entity Framework Core is also used in the tests. The app references:
-
-* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore)
-* [`Microsoft.AspNetCore.Identity.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity.EntityFrameworkCore)
-* [`Microsoft.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore)
-* [`Microsoft.EntityFrameworkCore.InMemory`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory)
-* [`Microsoft.EntityFrameworkCore.Tools`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools)
+Entity Framework Core is also used in the tests. See the [project file in GitHub](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/test/integration-tests/IntegrationTestsSample/src/RazorPagesProject/RazorPagesProject.csproj).
 
 ## SUT environment
 
@@ -62,14 +55,14 @@ If the SUT's [environment](xref:fundamentals/environments) isn't set, the enviro
 
 ## Basic tests with the default WebApplicationFactory
 
-Apps needs to expose the implicitly defined `Program` class to the test project by doing one of the following:
+<!--Apps needs to expose the implicitly defined `Program` class to the test project by doing one of the following:
 
 * Expose internal types from the web app to the test project. This can be done in the project file (`.csproj`):
   ```xml
   <ItemGroup>
        <InternalsVisibleTo Include="MyTestProject" />
   </ItemGroup>
-  ```
+  ``` -->
 * Make the [`Program` class public using a partial class](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/test/integration-tests/IntegrationTestsSample/src/RazorPagesProject/Program.cs) declaration:
   ```diff
   var builder = WebApplication.CreateBuilder(args);
@@ -102,6 +95,13 @@ Test classes implement a *class fixture* interface ([`IClassFixture`](https://xu
 The following test class, `BasicTests`, uses the `WebApplicationFactory` to bootstrap the SUT and provide an <xref:System.Net.Http.HttpClient> to a test method, `Get_EndpointsReturnSuccessAndCorrectContentType`. The method checks if the response status code is successful (status codes in the range 200-299) and the `Content-Type` header is `text/html; charset=utf-8` for several app pages.
 
 <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.CreateClient> creates an instance of `HttpClient` that automatically follows redirects and handles cookies.
+
+https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main
+
+<!--
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample" id="snippet_OnDisconnectedAsync"::: -->
+
+[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
 
 [!code-csharp[](integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
 
