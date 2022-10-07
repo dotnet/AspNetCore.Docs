@@ -273,7 +273,7 @@ The `Virtualize` component supports using the document itself as the scroll root
 
 You can reproduce this problem by creating a large virtualized list (for example, 100,000 items) and attempt to use the document as the scroll root with `html { overflow-y: scroll }` in the page CSS styles. Although it may work correctly at times, the browser attempts to render all 100,000 items at least once at the start of rendering, which may cause a browser tab lockup.
 
-To work around this problem prior to the relase of .NET 7, either avoid styling `<html>`/`<body>` elements with `overflow-y: scroll` or adopt an alternative approach. In the following example, the height of the `<html>` element is set to just over 100% of the viewport height:
+To work around this problem prior to the release of .NET 7, either avoid styling `<html>`/`<body>` elements with `overflow-y: scroll` or adopt an alternative approach. In the following example, the height of the `<html>` element is set to just over 100% of the viewport height:
 
 ```razor
 <HeadContent>
@@ -457,7 +457,7 @@ The `Virtualize` component supports using the document itself as the scroll root
 
 You can reproduce this problem by creating a large virtualized list (for example, 100,000 items) and attempt to use the document as the scroll root with `html { overflow-y: scroll }` in the page CSS styles. Although it may work correctly at times, the browser attempts to render all 100,000 items at least once at the start of rendering, which may cause a browser tab lockup.
 
-To work around this problem prior to the relase of .NET 7, either avoid styling `<html>`/`<body>` elements with `overflow-y: scroll` or adopt an alternative approach. In the following example, the height of the `<html>` element is set to just over 100% of the viewport height:
+To work around this problem prior to the release of .NET 7, either avoid styling `<html>`/`<body>` elements with `overflow-y: scroll` or adopt an alternative approach. In the following example, the height of the `<html>` element is set to just over 100% of the viewport height:
 
 ```razor
 <style>

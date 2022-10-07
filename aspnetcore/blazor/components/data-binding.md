@@ -700,8 +700,8 @@ To execute asynchronous logic after binding, use `@bind:after="{EVENT}"` with a 
 In the following example:
 
 * The `<input>` element's `value` is bound to the value of `searchText` synchronously.
-* After each keystroke (`onchange` event) in the field, the `PerformSearch` method executes asychronously.
-* `PerformSearch` calls a service with an asychronous method (`FetchAsync`) to return search results.
+* After each keystroke (`onchange` event) in the field, the `PerformSearch` method executes asynchronously.
+* `PerformSearch` calls a service with an asynchronous method (`FetchAsync`) to return search results.
 
 ```razor
 @inject ISearchService SearchService
@@ -876,7 +876,7 @@ In the following `Parent1` component, the `year` field is bound to the `Year` pa
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/Parent1.razor" highlight="9":::
 
-Component parameter binding can also trigger `@bind:after` events. In the following example, the `YearUpdated` method executes asychronously after binding the `Year` component parameter.
+Component parameter binding can also trigger `@bind:after` events. In the following example, the `YearUpdated` method executes asynchronously after binding the `Year` component parameter.
 
 ```razor
 <ChildBind @bind-Year="year" @bind-Year:after="YearUpdated" />
@@ -924,7 +924,7 @@ Perform checks or trap errors in the handler. The following revised `PasswordEnt
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/data-binding/PasswordEntry2.razor" highlight="35-46":::
 
-In the following example, the `PasswordUpdated` method executes asychronously after binding the `Password` component parameter:
+In the following example, the `PasswordUpdated` method executes asynchronously after binding the `Password` component parameter:
 
 ```razor
 <PasswordEntry @bind-Password="password" @bind-Password:after="PasswordUpdated" />
