@@ -967,7 +967,7 @@ Recommendations for global deployments to geographical data centers:
 
 * Deploy the app to the regions where most of the users reside.
 * Take into consideration the increased latency for traffic across continents.
-* For Azure hosting, use the [Azure SignalR Service](#azure-signalr-service).
+* For Azure hosting, use the [Azure SignalR Service](/azure/azure-signalr/signalr-overview).
 
 If a deployed app frequently displays the reconnection UI due to ping timeouts caused by Internet latency, lengthen the server and client timeouts:
 
@@ -3427,7 +3427,7 @@ Recommendations for global deployments to geographical data centers:
 
 * Deploy the app to the regions where most of the users reside.
 * Take into consideration the increased latency for traffic across continents.
-* For Azure hosting, use the [Azure SignalR Service](#azure-signalr-service).
+* For Azure hosting, use the [Azure SignalR Service](/azure/azure-signalr/signalr-overview).
 
 If a deployed app frequently displays the reconnection UI due to ping timeouts caused by Internet latency, lengthen the server and client timeouts:
 
