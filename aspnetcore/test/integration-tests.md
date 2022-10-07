@@ -10,7 +10,7 @@ uid: test/integration-tests
 ---
 # Integration tests in ASP.NET Core
 
-By [Jos van der Til](https://jvandertil.nl) and [Javier Calvarro Nelson](https://github.com/javiercn).
+By [Jos van der Til](https://jvandertil.nl), [Martin Costello](https://martincostello.com/), and [Javier Calvarro Nelson](https://github.com/javiercn).
 
 Integration tests ensure that an app's components function correctly at a level that includes the app's supporting infrastructure, such as the database, file system, and network. ASP.NET Core supports integration tests using a unit test framework with a test web host and an in-memory test server.
 
@@ -101,6 +101,10 @@ The following test class, `BasicTests`, uses the `WebApplicationFactory` to boot
 
 By default, non-essential cookies aren't preserved across requests when the [GDPR consent policy](xref:security/gdpr) is enabled. To preserve non-essential cookies, such as those used by the TempData provider, mark them as essential in your tests. For instructions on marking a cookie as essential, see [Essential cookies](xref:security/gdpr#essential-cookies).
 
+## AngleSharp vs `Application Parts` for antiforgery checks
+
+This article uses the [AngleSharp](https://anglesharp.github.io/) parser to handle the antiforgery checks by  loading pages and parsing the HTML. An alternative approach uses [Application Parts](xref:mvc/extensibility/app-parts) to inject a controller or Razor Page into the app that can be used to make JSON requests to get the required values. For more information, see the blog [Integration Testing ASP.NET Core Resources Protected with Antiforgery Using Application Parts](https://blog.martincostello.com/integration-testing-antiforgery-with-application-parts/) and [associated GitHub repo](https://github.com/martincostello/antiforgery-testing-application-part) by [Martin Costello](https://github.com/martincostello).
+
 ## Customize WebApplicationFactory
 
 Web host configuration can be created independently of the test classes by inheriting from `WebApplicationFactory` to create one or more custom factories:
@@ -152,11 +156,9 @@ The `SendAsync` helper extension methods (`Helpers/HttpClientExtensions.cs`) and
   * Form values collection (`IEnumerable<KeyValuePair<string, string>>`)
   * Submit button (`IHtmlElement`) and form values (`IEnumerable<KeyValuePair<string, string>>`)
 
-> [!NOTE]
-> [AngleSharp](https://anglesharp.github.io/) is a third-party parsing library used for demonstration purposes in this topic and the sample app. AngleSharp isn't supported or required for integration testing of ASP.NET Core apps. Other parsers can be used, such as the [Html Agility Pack (HAP)](https://html-agility-pack.net/). Another approach is to write code to handle the antiforgery system's request verification token and antiforgery cookie directly.
+[AngleSharp](https://anglesharp.github.io/) is a **third-party parsing library used for demonstration purposes*** in this topic and the sample app. AngleSharp isn't supported or required for integration testing of ASP.NET Core apps. Other parsers can be used, such as the [Html Agility Pack (HAP)](https://html-agility-pack.net/). Another approach is to write code to handle the antiforgery system's request verification token and antiforgery cookie directly.
 
-> [!NOTE]
-> The [EF-Core in-memory database provider](/ef/core/testing/choosing-a-testing-strategy#in-memory-as-a-database-fake) can be used for limited and basic testing, however the [SQLite provider](/ef/core/testing/choosing-a-testing-strategy#sqlite-as-a-database-fake) is the recommended choice for in-memory testing.
+The [EF-Core in-memory database provider](/ef/core/testing/choosing-a-testing-strategy#in-memory-as-a-database-fake) can be used for limited and basic testing, however the ***[SQLite provider](/ef/core/testing/choosing-a-testing-strategy#sqlite-as-a-database-fake) is the recommended choice for in-memory testing***.
 
 ## Customize the client with WithWebHostBuilder
 
@@ -194,7 +196,7 @@ _client = _factory.CreateClient(clientOptions);
 
 ## Inject mock services
 
-Services can be overridden in a test with a call to <xref:Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.ConfigureTestServices%2A> on the host builder. **To inject mock services, the SUT must have a `Startup` class with a `Startup.ConfigureServices` method.**
+Services can be overridden in a test with a call to <xref:Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.ConfigureTestServices%2A> on the host builder.
 
 The sample SUT includes a scoped service that returns a quote. The quote is embedded in a hidden field on the Index page when the Index page is requested.
 
@@ -474,7 +476,7 @@ By default, non-essential cookies aren't preserved across requests when the [GDP
 
 ## Customize WebApplicationFactory
 
-Web host configuration can be created independently of the test classes by inheriting from `WebApplicationFactory` to create one or more custom factories:
+Web host configuration can be created independently of the test classes by inheriting from <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> to create one or more custom factories:
 
 1. Inherit from `WebApplicationFactory` and override <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.ConfigureWebHost%2A>. The <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> allows the configuration of the service collection with <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices%2A>:
 
@@ -486,20 +488,14 @@ Web host configuration can be created independently of the test classes by inher
 
    For SUTs that still use the [Web Host](xref:fundamentals/host/web-host), the test app's `builder.ConfigureServices` callback is executed *before* the SUT's `Startup.ConfigureServices` code. The test app's `builder.ConfigureTestServices` callback is executed *after*.
 
-   The sample app finds the service descriptor for the database context and uses the descriptor to remove the service registration. Next, the factory adds a new `ApplicationDbContext` that uses an in-memory database for the tests.
+   The sample app finds the service descriptor for the database context and uses the descriptor to remove the service registration. The factory then adds a new `ApplicationDbContext` that uses an in-memory database for the tests.
 
    To connect to a different database than the in-memory database, change the `UseInMemoryDatabase` call to connect the context to a different database. To use a SQL Server test database:
 
    * Reference the [`Microsoft.EntityFrameworkCore.SqlServer`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/) NuGet package in the project file.
-   * Call `UseSqlServer` with a connection string to the database.
+   * Call `UseInMemoryDatabase`:
 
-   ```csharp
-   services.AddDbContext<ApplicationDbContext>((options, context) => 
-   {
-       context.UseSqlServer(
-           Configuration.GetConnectionString("TestingDbConnectionString"));
-   });
-   ```
+    [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1)]
 
 2. Use the custom `CustomWebApplicationFactory` in test classes. The following example uses the factory in the `IndexPageTests` class:
 
