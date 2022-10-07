@@ -63,15 +63,16 @@ If the SUT's [environment](xref:fundamentals/environments) isn't set, the enviro
        <InternalsVisibleTo Include="MyTestProject" />
   </ItemGroup>
   ``` -->
-* Make the [`Program` class public using a partial class](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/test/integration-tests/IntegrationTestsSample/src/RazorPagesProject/Program.cs) declaration:
-  ```diff
-  var builder = WebApplication.CreateBuilder(args);
-  // ... Configure services, routes, etc.
-  app.Run();
-  + public partial class Program { }
-  ```
+Make the [`Program` class public using a partial class](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/test/integration-tests/IntegrationTestsSample/src/RazorPagesProject/Program.cs) declaration:
 
-After making the changes in the web application, the test project now can use the `Program` class for the `WebApplicationFactory`.
+```diff
+var builder = WebApplication.CreateBuilder(args);
+// ... Configure services, routes, etc.
+app.Run();
++ public partial class Program { }
+```
+
+the test project now can use the `Program` class for the `WebApplicationFactory`.
 
 ```csharp
 [Fact]
@@ -88,15 +89,13 @@ public async Task HelloWorldTest()
 }
 ```
 
-<xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> is used to create a <xref:Microsoft.AspNetCore.TestHost.TestServer> for the integration tests. `TEntryPoint` is the entry point class of the SUT, usually the `Startup` class.
+<xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> is used to create a <xref:Microsoft.AspNetCore.TestHost.TestServer> for the integration tests. `TEntryPoint` is the entry point class of the SUT, usually `Program.cs`.
 
 Test classes implement a *class fixture* interface ([`IClassFixture`](https://xunit.net/docs/shared-context#class-fixture)) to indicate the class contains tests and provide shared object instances across the tests in the class.
 
-The following test class, `BasicTests`, uses the `WebApplicationFactory` to bootstrap the SUT and provide an <xref:System.Net.Http.HttpClient> to a test method, `Get_EndpointsReturnSuccessAndCorrectContentType`. The method checks if the response status code is successful (status codes in the range 200-299) and the `Content-Type` header is `text/html; charset=utf-8` for several app pages.
+The following test class, `BasicTests`, uses the `WebApplicationFactory` to bootstrap the SUT and provide an <xref:System.Net.Http.HttpClient> to a test method, `Get_EndpointsReturnSuccessAndCorrectContentType`. The method verifies the response status code is successful (200-299) and the `Content-Type` header is `text/html; charset=utf-8` for several app pages.
 
 <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.CreateClient> creates an instance of `HttpClient` that automatically follows redirects and handles cookies.
-
-https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main
 
 [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
 
@@ -209,9 +208,9 @@ The sample SUT includes a scoped service that returns a quote. The quote is embe
 
 [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/src/RazorPagesProject/Services/QuoteService.cs?name=snippet1)]
 
-`Startup.cs`:
+`Program.cs`:
 
-[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet2)]
+[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/src/RazorPagesProject/Program.cs?name=snippet2)]
 
 `Pages/Index.cshtml.cs`:
 
@@ -254,7 +253,7 @@ Tests in the `AuthTests` class check that a secure endpoint:
 
 In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage%2A> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization#require-authorization-to-access-a-page).
 
-[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet1)]
+[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/src/RazorPagesProject/Program.cs?name=snippet1)]
 
 In the `Get_SecurePageRedirectsAnUnauthenticatedUser` test, a <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions> is set to disallow redirects by setting <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions.AllowAutoRedirect> to `false`:
 
