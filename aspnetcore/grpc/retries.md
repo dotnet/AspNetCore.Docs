@@ -114,7 +114,7 @@ The backoff delay between retry attempts is configured with `InitialBackoff`, `M
 
 The actual delay between retry attempts is randomized. A randomized delay between 0 and the current backoff determines when the next retry attempt is made. Consider that even with exponential backoff configured, increasing the current backoff between attempts, the actual delay between attempts isn't always larger. The delay is randomized to prevent retries from multiple calls from clustering together and potentially overloading the server.
 
-### Detect retried calls with metadata
+### Detect retries with metadata
 
 Retried gRPC calls can be detected by the `grpc-previous-rpc-attempts` metadata. The metadata value is:
 
