@@ -57,10 +57,10 @@ If the SUT's [environment](xref:fundamentals/environments) isn't set, the enviro
 
 Expose the implicitly defined `Program` class to the test project by doing one of the following:
 
-* Expose internal types from the web app to the test project. This can be done in the test project's file (`.csproj`):
+* Expose internal types from the web app to the test project. This can be done in the main project's file (`.csproj`):
   ```xml
   <ItemGroup>
-       <InternalsVisibleTo Include="MyMainProject" />
+       <InternalsVisibleTo Include="MyTestProject" />
   </ItemGroup>
   ```
 * Make the [`Program` class public using a partial class](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/test/integration-tests/IntegrationTestsSample/src/RazorPagesProject/Program.cs) declaration:
