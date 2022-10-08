@@ -72,7 +72,7 @@ Expose the implicitly defined `Program` class to the test project by doing one o
   + public partial class Program { }
   ```
   
-  [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/  RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
+  [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
 
   The [sample app](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/IntegrationTestsSample) uses the `Program` partial class approach.
 
