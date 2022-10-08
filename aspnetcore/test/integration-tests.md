@@ -16,11 +16,11 @@ Integration tests ensure that an app's components function correctly at a level 
 
 :::moniker range=">= aspnetcore-7.0"
 
-This topic assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Unit Testing in .NET Core and .NET Standard](/dotnet/core/testing/) topic and its linked content.
+This article assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Unit Testing in .NET Core and .NET Standard](/dotnet/core/testing/) article and its linked content.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/IntegrationTestsSample) ([how to download](xref:index#how-to-download-a-sample))
 
-The sample app is a Razor Pages app and assumes a basic understanding of Razor Pages. If you're unfamiliar with Razor Pages, see the following topics:
+The sample app is a Razor Pages app and assumes a basic understanding of Razor Pages. If you're unfamiliar with Razor Pages, see the following articles:
 
 * [Introduction to Razor Pages](xref:razor-pages/index)
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
@@ -99,7 +99,7 @@ The following test class, `BasicTests`, uses the `WebApplicationFactory` to boot
 
 [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
 
-By default, non-essential cookies aren't preserved across requests when the [GDPR consent policy](xref:security/gdpr) is enabled. To preserve non-essential cookies, such as those used by the TempData provider, mark them as essential in your tests. For instructions on marking a cookie as essential, see [Essential cookies](xref:security/gdpr#essential-cookies).
+By default, non-essential cookies aren't preserved across requests when the [General Data Protection Regulation consent policy](xref:security/gdpr) is enabled. To preserve non-essential cookies, such as those used by the TempData provider, mark them as essential in your tests. For instructions on marking a cookie as essential, see [Essential cookies](xref:security/gdpr#essential-cookies).
 
 ## AngleSharp vs `Application Parts` for antiforgery checks
 
@@ -156,7 +156,7 @@ The `SendAsync` helper extension methods (`Helpers/HttpClientExtensions.cs`) and
   * Form values collection (`IEnumerable<KeyValuePair<string, string>>`)
   * Submit button (`IHtmlElement`) and form values (`IEnumerable<KeyValuePair<string, string>>`)
 
-[AngleSharp](https://anglesharp.github.io/) is a **third-party parsing library used for demonstration purposes*** in this topic and the sample app. AngleSharp isn't supported or required for integration testing of ASP.NET Core apps. Other parsers can be used, such as the [Html Agility Pack (HAP)](https://html-agility-pack.net/). Another approach is to write code to handle the antiforgery system's request verification token and antiforgery cookie directly.
+[AngleSharp](https://anglesharp.github.io/) is a **third-party parsing library used for demonstration purposes*** in this article and the sample app. AngleSharp isn't supported or required for integration testing of ASP.NET Core apps. Other parsers can be used, such as the [Html Agility Pack (HAP)](https://html-agility-pack.net/). Another approach is to write code to handle the antiforgery system's request verification token and antiforgery cookie directly.
 
 The [EF-Core in-memory database provider](/ef/core/testing/choosing-a-testing-strategy#in-memory-as-a-database-fake) can be used for limited and basic testing, however the ***[SQLite provider](/ef/core/testing/choosing-a-testing-strategy#sqlite-as-a-database-fake) is the recommended choice for in-memory testing***.
 
@@ -248,7 +248,7 @@ The markup produced during the test's execution reflects the quote text supplied
 
 Tests in the `AuthTests` class check that a secure endpoint:
 
-* Redirects an unauthenticated user to the app's Login page.
+* Redirects an unauthenticated user to the app's sign in page.
 * Returns content for an authenticated user.
 
 In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage%2A> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization#require-authorization-to-access-a-page).
@@ -261,8 +261,8 @@ In the `Get_SecurePageRedirectsAnUnauthenticatedUser` test, a <xref:Microsoft.As
 
 By disallowing the client to follow the redirect, the following checks can be made:
 
-* The status code returned by the SUT can be checked against the expected <xref:System.Net.HttpStatusCode.Redirect?displayProperty=nameWithType> result, not the final status code after the redirect to the Login page, which would be <xref:System.Net.HttpStatusCode.OK?displayProperty=nameWithType>.
-* The `Location` header value in the response headers is checked to confirm that it starts with `http://localhost/Identity/Account/Login`, not the final Login page response, where the `Location` header wouldn't be present.
+* The status code returned by the SUT can be checked against the expected <xref:System.Net.HttpStatusCode.Redirect?displayProperty=nameWithType> result, not the final status code after the redirect to the sign in page, which would be <xref:System.Net.HttpStatusCode.OK?displayProperty=nameWithType>.
+* The `Location` header value in the response headers is checked to confirm that it starts with `http://localhost/Identity/Account/Login`, not the final sign in page response, where the `Location` header wouldn't be present.
 
 The test app can mock an <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler%601> in <xref:Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.ConfigureTestServices%2A> in order to test aspects of authentication and authorization. A minimal scenario returns an <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.Success%2A?displayProperty=nameWithType>:
 
@@ -345,7 +345,7 @@ The SUT is a Razor Pages message system with the following characteristics:
 * If the database is empty on app startup, the message store is initialized with three messages.
 * The app includes a `/SecurePage` that can only be accessed by an authenticated user.
 
-&#8224;The EF topic, [Test with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for tests with MSTest. This topic uses the [xUnit](https://xunit.net/) test framework. Test concepts and test implementations across different test frameworks are similar but not identical.
+&#8224;The EF article, [Test with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for tests with MSTest. This topic uses the [xUnit](https://xunit.net/) test framework. Test concepts and test implementations across different test frameworks are similar but not identical.
 
 Although the app doesn't use the repository pattern and isn't an effective example of the [Unit of Work (UoW) pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages supports these patterns of development. For more information, see [Designing the infrastructure persistence layer](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) and [Test controller logic](../mvc/controllers/testing.md) (the sample implements the repository pattern).
 
