@@ -107,7 +107,7 @@ This article uses the [AngleSharp](https://anglesharp.github.io/) parser to hand
 
 ## Customize WebApplicationFactory
 
-Web host configuration can be created independently of the test classes by inheriting from `WebApplicationFactory` to create one or more custom factories:
+Web host configuration can be created independently of the test classes by inheriting from <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> to create one or more custom factories:
 
 1. Inherit from `WebApplicationFactory` and override <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.ConfigureWebHost%2A>. The <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> allows the configuration of the service collection with [`IWebHostBuilder.ConfigureServices`](xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder.ConfigureServices%2A)
 
@@ -117,20 +117,14 @@ Web host configuration can be created independently of the test classes by inher
 
    The SUT's database context is registered in `Program.cs`. The test app's `builder.ConfigureServices` callback is executed *after* the app's `Program.cs` code is executed. To use a different database for the tests than the app's database, the app's database context must be replaced in `builder.ConfigureServices`.
 
-   The sample app finds the service descriptor for the database context and uses the descriptor to remove the service registration. Next, the factory adds a new `ApplicationDbContext` that uses an in-memory database for the tests.
+   The sample app finds the service descriptor for the database context and uses the descriptor to remove the service registration. The factory then adds a new `ApplicationDbContext` that uses an in-memory database for the tests..
 
    To connect to a different database than the in-memory database, change the `UseInMemoryDatabase` call to connect the context to a different database. To use a SQL Server test database:
 
    * Reference the [`Microsoft.EntityFrameworkCore.SqlServer`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/) NuGet package in the project file.
-   * Call `UseSqlServer` with a connection string to the database.
+   * Call `UseInMemoryDatabase`:
 
-   ```csharp
-   services.AddDbContext<ApplicationDbContext>((options, context) => 
-   {
-       context.UseSqlServer(
-           Configuration.GetConnectionString("TestingDbConnectionString"));
-   });
-   ```
+    [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1)]
 
 2. Use the custom `CustomWebApplicationFactory` in test classes. The following example uses the factory in the `IndexPageTests` class:
 
@@ -466,7 +460,7 @@ By default, non-essential cookies aren't preserved across requests when the [GDP
 
 ## Customize WebApplicationFactory
 
-Web host configuration can be created independently of the test classes by inheriting from <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> to create one or more custom factories:
+Web host configuration can be created independently of the test classes by inheriting from `WebApplicationFactory` to create one or more custom factories:
 
 1. Inherit from `WebApplicationFactory` and override <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.ConfigureWebHost%2A>. The <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> allows the configuration of the service collection with <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices%2A>:
 
@@ -478,14 +472,20 @@ Web host configuration can be created independently of the test classes by inher
 
    For SUTs that still use the [Web Host](xref:fundamentals/host/web-host), the test app's `builder.ConfigureServices` callback is executed *before* the SUT's `Startup.ConfigureServices` code. The test app's `builder.ConfigureTestServices` callback is executed *after*.
 
-   The sample app finds the service descriptor for the database context and uses the descriptor to remove the service registration. The factory then adds a new `ApplicationDbContext` that uses an in-memory database for the tests.
+   The sample app finds the service descriptor for the database context and uses the descriptor to remove the service registration. Next, the factory adds a new `ApplicationDbContext` that uses an in-memory database for the tests.
 
    To connect to a different database than the in-memory database, change the `UseInMemoryDatabase` call to connect the context to a different database. To use a SQL Server test database:
 
    * Reference the [`Microsoft.EntityFrameworkCore.SqlServer`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/) NuGet package in the project file.
-   * Call `UseInMemoryDatabase`:
+   * Call `UseSqlServer` with a connection string to the database.
 
-    [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1)]
+   ```csharp
+   services.AddDbContext<ApplicationDbContext>((options, context) => 
+   {
+       context.UseSqlServer(
+           Configuration.GetConnectionString("TestingDbConnectionString"));
+   });
+   ```
 
 2. Use the custom `CustomWebApplicationFactory` in test classes. The following example uses the factory in the `IndexPageTests` class:
 
