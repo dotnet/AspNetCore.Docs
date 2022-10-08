@@ -103,7 +103,7 @@ By default, non-essential cookies aren't preserved across requests when the [GDP
 
 ## AngleSharp vs `Application Parts` for antiforgery checks
 
-This article uses the [AngleSharp](https://anglesharp.github.io/) parser to handle the antiforgery checks by  loading pages and parsing the HTML. For testing the endpoints of controller and Razor Pages views at a lower-level, without caring about how they render in the browser, consider using `Application Parts`. The[Application Parts](xref:mvc/extensibility/app-parts) approach injects a controller or Razor Page into the app that can be used to make JSON requests to get the required values. For more information, see the blog [Integration Testing ASP.NET Core Resources Protected with Antiforgery Using Application Parts](https://blog.martincostello.com/integration-testing-antiforgery-with-application-parts/) and [associated GitHub repo](https://github.com/martincostello/antiforgery-testing-application-part) by [Martin Costello](https://github.com/martincostello).
+This article uses the [AngleSharp](https://anglesharp.github.io/) parser to handle the antiforgery checks by  loading pages and parsing the HTML. For testing the endpoints of controller and Razor Pages views at a lower-level, without caring about how they render in the browser, consider using `Application Parts`. The[Application Parts](xref:mvc/extensibility/app-parts) approach injects a controller or Razor Page into the app that can be used to make JSON requests to get the required values. For more information, see the blog [Integration Testing ASP.NET Core Resources Protected with Antiforgery Using Application Parts](https://blog.martincostello.com/integration-testing-antiforgery-with-application-parts/) and [associated GitHub repo](https://github.com/martincostello/antiforgery-testing-application-part) by [Martin Costello](https://github.com/martincostello). <!--See https://github.com/dotnet/AspNetCore.Docs/issues/18860 -->
 
 ## Customize WebApplicationFactory
 
@@ -274,6 +274,10 @@ The `TestAuthHandler` is called to authenticate a user when the authentication s
 
 For more information on `WebApplicationFactoryClientOptions`, see the [Client options](#client-options) section.
 
+### Basic tests for authentication middleware
+
+See [this GitHub repository](https://github.com/blowdart/idunno.Authentication/tree/dev/test/idunno.Authentication.Basic.Test) for basic tests of authentication middleware. It contains a [test server](https://github.com/blowdart/idunno.Authentication/blob/dev/test/idunno.Authentication.Basic.Test/BasicAuthenticationTests.cs#L331) that’s specific to the test scenario.
+
 ## Set the environment
 
 By default, the SUT's host and app environment is configured to use the Development environment. To override the SUT's environment when using `IHostBuilder`:
@@ -372,6 +376,7 @@ The SUT's database context is registered in `Program.cs`. The test app's `builde
 * <xref:test/razor-pages-tests>
 * <xref:fundamentals/middleware/index>
 * <xref:mvc/controllers/testing>
+* [Basic tests for authentication middleware](https://github.com/blowdart/idunno.Authentication/tree/dev/test/idunno.Authentication.Basic.Test)
 
 :::moniker-end
 
@@ -643,24 +648,9 @@ For more information on `WebApplicationFactoryClientOptions`, see the [Client op
 
 ## Set the environment
 
-By default, the SUT's host and app environment is configured to use the Development environment. To override the SUT's environment when using `IHostBuilder`:
+Set the [environment](xref:fundamentals/environments) in the custom application factory:
 
-* Set the `ASPNETCORE_ENVIRONMENT` environment variable (for example, `Staging`, `Production`, or other custom value, such as `Testing`).
-* Override `CreateHostBuilder` in the test app to read environment variables prefixed with `ASPNETCORE`.
-
-```csharp
-protected override IHostBuilder CreateHostBuilder() =>
-    base.CreateHostBuilder()
-        .ConfigureHostConfiguration(
-            config => config.AddEnvironmentVariables("ASPNETCORE"));
-```
-
-If the SUT uses the Web Host (`IWebHostBuilder`), override `CreateWebHostBuilder`:
-
-```csharp
-protected override IWebHostBuilder CreateWebHostBuilder() =>
-    base.CreateWebHostBuilder().UseEnvironment("Testing");
-```
+[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet1&highlight=20)]
 
 ## How the test infrastructure infers the app content root path
 
