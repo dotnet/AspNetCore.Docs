@@ -55,39 +55,26 @@ If the SUT's [environment](xref:fundamentals/environments) isn't set, the enviro
 
 ## Basic tests with the default WebApplicationFactory
 
-<!--Apps needs to expose the implicitly defined `Program` class to the test project by doing one of the following:
+Expose the implicitly defined `Program` class to the test project by doing one of the following:
 
-* Expose internal types from the web app to the test project. This can be done in the project file (`.csproj`):
+* Expose internal types from the web app to the test project. This can be done in the test project's file (`.csproj`):
   ```xml
   <ItemGroup>
-       <InternalsVisibleTo Include="MyTestProject" />
+       <InternalsVisibleTo Include="MyMainProject" />
   </ItemGroup>
-  ``` -->
-Make the [`Program` class public using a partial class](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/test/integration-tests/IntegrationTestsSample/src/RazorPagesProject/Program.cs) declaration:
+  ```
+* Make the [`Program` class public using a partial class](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/test/integration-tests/IntegrationTestsSample/src/RazorPagesProject/Program.cs) declaration:
 
-```diff
-var builder = WebApplication.CreateBuilder(args);
-// ... Configure services, routes, etc.
-app.Run();
-+ public partial class Program { }
-```
+  ```diff
+  var builder = WebApplication.CreateBuilder(args);
+  // ... Configure services, routes, etc.
+  app.Run();
+  + public partial class Program { }
+  ```
+  
+  [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/  RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
 
-the test project now can use the `Program` class for the `WebApplicationFactory`.
-
-```csharp
-[Fact]
-public async Task HelloWorldTest()
-{
-    var application = new WebApplicationFactory<Program>()
-        .WithWebHostBuilder(builder =>
-        {
-            // ... Configure test services
-        });
-        
-    var client = application.CreateClient();
-    //...
-}
-```
+  The [sample app](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/IntegrationTestsSample) uses the `Program` partial class approach.
 
 <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> is used to create a <xref:Microsoft.AspNetCore.TestHost.TestServer> for the integration tests. `TEntryPoint` is the entry point class of the SUT, usually `Program.cs`.
 
@@ -101,9 +88,11 @@ The following test class, `BasicTests`, uses the `WebApplicationFactory` to boot
 
 By default, non-essential cookies aren't preserved across requests when the [General Data Protection Regulation consent policy](xref:security/gdpr) is enabled. To preserve non-essential cookies, such as those used by the TempData provider, mark them as essential in your tests. For instructions on marking a cookie as essential, see [Essential cookies](xref:security/gdpr#essential-cookies).
 
+<a name="asap7"></a>
+
 ## AngleSharp vs `Application Parts` for antiforgery checks
 
-This article uses the [AngleSharp](https://anglesharp.github.io/) parser to handle the antiforgery checks by  loading pages and parsing the HTML. For testing the endpoints of controller and Razor Pages views at a lower-level, without caring about how they render in the browser, consider using `Application Parts`. The[Application Parts](xref:mvc/extensibility/app-parts) approach injects a controller or Razor Page into the app that can be used to make JSON requests to get the required values. For more information, see the blog [Integration Testing ASP.NET Core Resources Protected with Antiforgery Using Application Parts](https://blog.martincostello.com/integration-testing-antiforgery-with-application-parts/) and [associated GitHub repo](https://github.com/martincostello/antiforgery-testing-application-part) by [Martin Costello](https://github.com/martincostello). <!--See https://github.com/dotnet/AspNetCore.Docs/issues/18860 -->
+This article uses the [AngleSharp](https://anglesharp.github.io/) parser to handle the antiforgery checks by  loading pages and parsing the HTML. For testing the endpoints of controller and Razor Pages views at a lower-level, without caring about how they render in the browser, consider using `Application Parts`. The [Application Parts](xref:mvc/extensibility/app-parts) approach injects a controller or Razor Page into the app that can be used to make JSON requests to get the required values. For more information, see the blog [Integration Testing ASP.NET Core Resources Protected with Antiforgery Using Application Parts](https://blog.martincostello.com/integration-testing-antiforgery-with-application-parts/) and [associated GitHub repo](https://github.com/martincostello/antiforgery-testing-application-part) by [Martin Costello](https://github.com/martincostello). <!--See https://github.com/dotnet/AspNetCore.Docs/issues/18860 -->
 
 ## Customize WebApplicationFactory
 
@@ -150,7 +139,7 @@ The `SendAsync` helper extension methods (`Helpers/HttpClientExtensions.cs`) and
   * Form values collection (`IEnumerable<KeyValuePair<string, string>>`)
   * Submit button (`IHtmlElement`) and form values (`IEnumerable<KeyValuePair<string, string>>`)
 
-[AngleSharp](https://anglesharp.github.io/) is a **third-party parsing library used for demonstration purposes*** in this article and the sample app. AngleSharp isn't supported or required for integration testing of ASP.NET Core apps. Other parsers can be used, such as the [Html Agility Pack (HAP)](https://html-agility-pack.net/). Another approach is to write code to handle the antiforgery system's request verification token and antiforgery cookie directly.
+[AngleSharp](https://anglesharp.github.io/) is a **third-party parsing library used for demonstration purposes** in this article and the sample app. AngleSharp isn't supported or required for integration testing of ASP.NET Core apps. Other parsers can be used, such as the [Html Agility Pack (HAP)](https://html-agility-pack.net/). Another approach is to write code to handle the antiforgery system's request verification token and antiforgery cookie directly. See [AngleSharp vs `Application Parts` for antiforgery checks](#asap7) in this article for more information.
 
 The [EF-Core in-memory database provider](/ef/core/testing/choosing-a-testing-strategy#in-memory-as-a-database-fake) can be used for limited and basic testing, however the ***[SQLite provider](/ef/core/testing/choosing-a-testing-strategy#sqlite-as-a-database-fake) is the recommended choice for in-memory testing***.
 
@@ -166,27 +155,11 @@ Because another test in the `IndexPageTests` class performs an operation that de
 
 ## Client options
 
-The following table shows the default <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions> available when creating `HttpClient` instances.
+See the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions> page for defaults and available options when creating `HttpClient` instances.
 
-| Option | Description | Default |
-|--|--|--|
-| <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions.AllowAutoRedirect> | Gets or sets whether or not `HttpClient` instances should automatically follow redirect responses. | `true` |
-| <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions.BaseAddress> | Gets or sets the base address of `HttpClient` instances. | `http://localhost` |
-| <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions.HandleCookies> | Gets or sets whether `HttpClient` instances should handle cookies. | `true` |
-| <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions.MaxAutomaticRedirections> | Gets or sets the maximum number of redirect responses that `HttpClient` instances should follow. | 7 |
+Create the `WebApplicationFactoryClientOptions` class and pass it to the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.CreateClient> method:
 
-Create the `WebApplicationFactoryClientOptions` class and pass it to the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.CreateClient> method (default values are shown in the code example):
-
-```csharp
-// Default client option values are shown
-var clientOptions = new WebApplicationFactoryClientOptions();
-clientOptions.AllowAutoRedirect = true;
-clientOptions.BaseAddress = new Uri("http://localhost");
-clientOptions.HandleCookies = true;
-clientOptions.MaxAutomaticRedirections = 7;
-
-_client = _factory.CreateClient(clientOptions);
-```
+[!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet1)]
 
 ## Inject mock services
 
