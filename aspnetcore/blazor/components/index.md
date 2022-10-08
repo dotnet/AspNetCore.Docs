@@ -572,7 +572,7 @@ If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is ca
 
 For the `ExpanderExample` component:
 
-* The first `Expander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `Expanded` to its intitial value of `true`.
+* The first `Expander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `Expanded` to its initial value of `true`.
 * The second `Expander` component doesn't set child content. Therefore, a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment> doesn't exist. A call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component doesn't automatically rerender the child component, so the component's `Expanded` value isn't overwritten.
 
 To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
@@ -592,7 +592,7 @@ The following revised `Expander` component:
 
 For two-way parent-child binding examples, see <xref:blazor/components/data-binding#binding-with-component-parameters>. For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
 
-For more information on change detection, inlcuding information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
+For more information on change detection, including information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
 ## Attribute splatting and arbitrary parameters
 
@@ -2025,7 +2025,7 @@ If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is ca
 
 For the `ExpanderExample` component:
 
-* The first `Expander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `Expanded` to its intitial value of `true`.
+* The first `Expander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `Expanded` to its initial value of `true`.
 * The second `Expander` component doesn't set child content. Therefore, a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment> doesn't exist. A call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component doesn't automatically rerender the child component, so the component's `Expanded` value isn't overwritten.
 
 To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
@@ -2045,7 +2045,7 @@ The following revised `Expander` component:
 
 For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
 
-For more information on change detection, inlcuding information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
+For more information on change detection, including information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
 ## Attribute splatting and arbitrary parameters
 
@@ -3030,7 +3030,7 @@ If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is ca
 
 For the `ExpanderExample` component:
 
-* The first `Expander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `Expanded` to its intitial value of `true`.
+* The first `Expander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `Expanded` to its initial value of `true`.
 * The second `Expander` component doesn't set child content. Therefore, a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment> doesn't exist. A call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component doesn't automatically rerender the child component, so the component's `Expanded` value isn't overwritten.
 
 To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
@@ -3050,7 +3050,7 @@ The following revised `Expander` component:
 
 For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
 
-For more information on change detection, inlcuding information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
+For more information on change detection, including information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
 ## Attribute splatting and arbitrary parameters
 
@@ -4110,7 +4110,7 @@ If <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is ca
 
 For the `ExpanderExample` component:
 
-* The first `Expander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `Expanded` to its intitial value of `true`.
+* The first `Expander` component sets child content in a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment>, so a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component automatically rerenders the component and potentially overwrites the value of `Expanded` to its initial value of `true`.
 * The second `Expander` component doesn't set child content. Therefore, a potentially mutable <xref:Microsoft.AspNetCore.Components.RenderFragment> doesn't exist. A call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in the parent component doesn't automatically rerender the child component, so the component's `Expanded` value isn't overwritten.
 
 To maintain state in the preceding scenario, use a *private field* in the `Expander` component to maintain its toggled state.
@@ -4130,7 +4130,7 @@ The following revised `Expander` component:
 
 For two-way parent-child binding examples, see <xref:blazor/components/data-binding#binding-with-component-parameters>. For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
 
-For more information on change detection, inlcuding information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
+For more information on change detection, including information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
 
 ## Attribute splatting and arbitrary parameters
 
