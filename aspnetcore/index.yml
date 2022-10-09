@@ -220,7 +220,7 @@ conceptualContent:
         - url: data/ef-mvc/intro.md
           itemType: tutorial
           text: "Entity Framework Core with ASP.NET Core MVC"
-        - url: /visualstudio/azure/azure/vs-azure-tools-connected-services-storage?view=vs-2022
+        - url: /visualstudio/azure/vs-azure-tools-connected-services-storage?view=vs-2022
           itemType: tutorial
           text: "Azure Storage"
         - url: /azure/storage/blobs/storage-quickstart-blobs-dotnet
