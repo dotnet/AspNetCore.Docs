@@ -95,7 +95,7 @@ The ASP.NET Core repository's Basic Test App is also a helpful set of samples fo
 
 | Name (abbreviation) | Size                    | Example                    |
 | ------------------- | ----------------------- | -------------------------- |
-| Kibobyte (KB)       | 1,024 bytes             | 1 KB = 1,024 bytes         |
+| Kilobyte (KB)       | 1,024 bytes             | 1 KB = 1,024 bytes         |
 | Megabyte (MB)       | 1,024<sup>2</sup> bytes | 1 MB = 1,048,576 bytes     |
 | Gigabyte (GB)       | 1,024<sup>3</sup> bytes | 1 GB = 1,073,741,824 bytes |
 
