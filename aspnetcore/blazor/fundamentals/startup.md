@@ -84,7 +84,7 @@ Customize how these boot resources are loaded using the `loadBootResource` API. 
 
 | Parameter    | Description |
 | ------------ | ----------- |
-| `type`       | The type of the resource. Permissable types include: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, and `timezonedata`. You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors. |
+| `type`       | The type of the resource. Permissible types include: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, and `timezonedata`. You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors. |
 | `name`       | The name of the resource. |
 | `defaultUri` | The relative or absolute URI of the resource. |
 | `integrity`  | The integrity string representing the expected content in the response. |
@@ -262,7 +262,7 @@ Customize how these boot resources are loaded using the `loadBootResource` API. 
 
 | Parameter    | Description |
 | ------------ | ----------- |
-| `type`       | The type of the resource. Permissable types include: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, and `timezonedata`. You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors. |
+| `type`       | The type of the resource. Permissible types include: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, and `timezonedata`. You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors. |
 | `name`       | The name of the resource. |
 | `defaultUri` | The relative or absolute URI of the resource. |
 | `integrity`  | The integrity string representing the expected content in the response. |
@@ -440,7 +440,7 @@ Customize how these boot resources are loaded using the `loadBootResource` API. 
 
 | Parameter    | Description |
 | ------------ | ----------- |
-| `type`       | The type of the resource. Permissable types include: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, and `timezonedata`. You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors. |
+| `type`       | The type of the resource. Permissible types include: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, and `timezonedata`. You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors. |
 | `name`       | The name of the resource. |
 | `defaultUri` | The relative or absolute URI of the resource. |
 | `integrity`  | The integrity string representing the expected content in the response. |
@@ -619,7 +619,7 @@ Customize how these boot resources are loaded using the `loadBootResource` API. 
 
 | Parameter    | Description |
 | ------------ | ----------- |
-| `type`       | The type of the resource. Permissable types include: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, and `timezonedata`. You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors. |
+| `type`       | The type of the resource. Permissible types include: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, and `timezonedata`. You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors. |
 | `name`       | The name of the resource. |
 | `defaultUri` | The relative or absolute URI of the resource. |
 | `integrity`  | The integrity string representing the expected content in the response. |
