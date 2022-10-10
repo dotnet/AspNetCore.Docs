@@ -924,8 +924,7 @@ The [developer exception page](xref:web-api/handle-errors#developer-exception-pa
 
 ### Test minimal API apps
 
-For an example of testing a minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample/MinApiTests).
-<!-- When available, link to -->
+For an example of testing a minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample).
 
 ### Use OpenAPI (Swagger)
 
