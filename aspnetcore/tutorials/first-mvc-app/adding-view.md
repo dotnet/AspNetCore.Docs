@@ -3,7 +3,7 @@ title: Part 3, add a view to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 3 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 10/07/2022
+ms.date: 10/10/2022
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-view
 ms.custom: contperf-fy21q3
@@ -537,7 +537,7 @@ Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the view-
 
 Replace the content of the `Views/Shared/_Layout.cshtml` file with the following markup. The changes are highlighted:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Shared/_Layout.cshtml?highlight=6,14,40)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Views/Shared/_Layout.cshtml?highlight=6,14,40)]
 
 The preceding markup made the following changes:
 
