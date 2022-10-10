@@ -116,9 +116,9 @@ The actual delay between retry attempts is randomized. A randomized delay betwee
 
 ### Detect retries with metadata
 
-gRPC retries can be detected by the presence of `grpc-previous-rpc-attempts` metadata. The `grpc-previous-rpc-attempts` metadata is:
+gRPC retries can be detected by the presence of `grpc-previous-rpc-attempts` metadata. The `grpc-previous-rpc-attempts` metadata:
 
-* Automatically added to retried calls and sent to the server.
+* Is automatically added to retried calls and sent to the server.
 * Value represents the number of preceding retry attempts.
 * Value is always an integer.
 
@@ -126,7 +126,7 @@ Consider the following retry scenario:
 
 1. Client makes a gRPC call to the server.
 2. Server fails and returns a retriable status code response.
-3. Client retries the gRPC call. Because there was one previous attempt, `grpc-previous-rpc-attempts` metadata has a value of `1`. It is sent to the server with the retry.
+3. Client retries the gRPC call. Because there was one previous attempt, `grpc-previous-rpc-attempts` metadata has a value of `1`. Metadata is sent to the server with the retry.
 4. Server succeeds and returns OK.
 5. Client reports success. `grpc-previous-rpc-attempts` is in the response metadata and has a value of `1`.
 
