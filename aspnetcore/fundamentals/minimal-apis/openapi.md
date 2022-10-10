@@ -168,7 +168,7 @@ app.MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
 
 ### Describe response types
 
-OpenAPI supports providing a description of the responses returned from an API. Minimal APIs supports three strategies for setting the response type of an endpoint:
+OpenAPI supports providing a description of the responses returned from an API. Minimal APIs support three strategies for setting the response type of an endpoint:
 
 * Via the [`Produces`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.produces) extension method on the endpoint
 * Via the [`ProducesResponseType`](/dotnet/api/microsoft.aspnetcore.mvc.producesresponsetypeattribute) attribute on the route handler
@@ -214,7 +214,7 @@ app.MapPost("/todos/{id}", (int id, Todo todo) => ...)
   .Accepts<Todo>("application/xml");
 ```
 
-In addition the [`Accepts`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.accepts) extension method, it is possible for a parameter type to describe its own annotation by implementing the [`IEndpointParameterMetadataProvider`](/dotnet/api/microsoft.aspnetcore.http.metadata.iendpointparametermetadataprovider) interface. For example, the following `Todo` type adds an annotation that requires a request body with an `application/xml` content-type. 
+In addition to the [`Accepts`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.accepts) extension method, it is possible for a parameter type to describe its own annotation by implementing the [`IEndpointParameterMetadataProvider`](/dotnet/api/microsoft.aspnetcore.http.metadata.iendpointparametermetadataprovider) interface. For example, the following `Todo` type adds an annotation that requires a request body with an `application/xml` content-type. 
 
 ```csharp
 public class Todo : IEndpointParameterMetadataProvider
@@ -226,7 +226,7 @@ public class Todo : IEndpointParameterMetadataProvider
 }
 ```
 
-When there is no explicit annotation provide, the framework attempts to determine the default request type if there exists a request body parameter in the endpoint handler. The inference uses the following heuristics to produce the annotation:
+When no explicit annotation is provided, the framework attempts to determine the default request type if there is a request body parameter in the endpoint handler. The inference uses the following heuristics to produce the annotation:
 
 * Request body parameters that are read from a form via the [`[FromForm]`](/dotnet/api/microsoft.aspnetcore.mvc.fromformattribute) attribute are described with the `multipart/form-data` content-type.
 * All other request body parameters are described with the `application/json` content-type.
