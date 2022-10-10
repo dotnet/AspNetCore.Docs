@@ -44,7 +44,7 @@ The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specif
 
 :::moniker range=">= aspnetcore-7.0"
 
-The [OpenAPI specification](https://spec.openapis.org/oas/latest.html)) is a programming language-agnostic standard for documenting HTTP APIs. This standard is supported in minimal APIs through a combination of built-in APIs and open-source libraries. There are three key aspects to OpenAPI integration in an application:
+The [OpenAPI specification](https://spec.openapis.org/oas/latest.html) is a programming language-agnostic standard for documenting HTTP APIs. This standard is supported in minimal APIs through a combination of built-in APIs and open-source libraries. There are three key aspects to OpenAPI integration in an application:
 
 * Generating information about the endpoints in the app.
 * Gathering the information into a format that matches the OpenAPI schema.
@@ -63,7 +63,7 @@ In the preceding highlighted code:
 * `UseSwagger`adds the [Swagger middleware](xref:tutorials/get-started-with-swashbuckle#add-and-configure-swagger-middleware).
 * `UseSwaggerUI` enables the [Static File Middleware](xref:fundamentals/static-files).
 * <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithName%2A>: The <xref:Microsoft.AspNetCore.Routing.IEndpointNameMetadata> on the endpoint is used for link generation and is treated as the operation ID in the given endpoint's OpenAPI specification.
-* [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs) is explained later in this article.
+* [`WithOpenApi`](/dotnet/api/microsoft.aspnetcore.builder.openapiendpointconventionbuilderextensions.withopenapi) is explained later in this article.
 
 <a name="openapinuget"></a>
 
@@ -77,52 +77,164 @@ ASP.NET Core provides the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org
 
 When using [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) with `Microsoft.AspNetCore.OpenApi`, `Swashbuckle.AspNetCore` 6.3.1 and later must be used. Version 6.4.0 or later is required if you want to [provide endpoint summary or description text](#add-endpoint-summary-or-description).
 
-### `WithOpenApi` call on endpoints adds an OpenAPI annotation
+### Add OpenAPI annotations to endpoints via `WithOpenApi`
 
-Calling [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs) on an endpoint without parameters adds an [OpenAPI annotation](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs#L65-L82) to the endpoints metadata. This metadata can be:
+Calling [`WithOpenApi`](/dotnet/api/microsoft.aspnetcore.builder.openapiendpointconventionbuilderextensions.withopenapi) on the endpoint adds to the endpoint's metadata. This metadata can be:
 
 * Consumed in third-party packages like [Swashbuckle.AspNetCore](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
-* Displayed in the Swagger user interface or in YAML or JSON generated to define the file.
+* Displayed in the Swagger user interface or in YAML or JSON generated to define the API.
 
 [!code-csharp[](7.0-samples/todo/Program.cs?name=snippet_withopenapi&highlight=9)]
 
-#### Call `WithOpenApi` with parameters
+#### Modify the OpenAPI annotation in `WithOpenApi`
 
-The [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs#L49) method accepts a function that can be used to modify the OpenAPI annotation. For example, in the following code, a description is added to the first parameter of the endpoint:
+The [`WithOpenApi`](/dotnet/api/microsoft.aspnetcore.builder.openapiendpointconventionbuilderextensions.withopenapi) method accepts a function that can be used to modify the OpenAPI annotation. For example, in the following code, a description is added to the first parameter of the endpoint:
 
 [!code-csharp[](7.0-samples/todo/Program.cs?name=snippet_withopenapi2&highlight=9-99)]
 
-### Exclude Open API description
+### Add operation IDs to OpenAPI
 
-In the following sample, the `/skipme` endpoint is excluded from generating an OpenAPI description:
-
-[!code-csharp[](7.0-samples/WebMinAPIs/Program.cs?name=snippet_swag2&highlight=20-21)]
-
-### Describe response types
-
-The following example uses the built-in result types to customize the response:
-
-[!code-csharp[](samples/todo/Program.cs?name=snippet_getCustom)]
-
-### Add operation IDs to Open API
+Operation IDs are used to uniquely identify a given endpoint in OpenAPI. The [`WithName`](/dotnet/api/microsoft.aspnetcore.builder.routingendpointconventionbuilderextensions.withname) extension method can be used to set the operation ID used for a method.
 
 [!code-csharp[](samples/todo/Program.cs?name=snippet_name)]
 
-### Add tags to the Open API description
+Alternatively, the `OperationId` property can be set directly on the OpenApi annotation.
 
-The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specification/grouping-operations-with-tags/):
+```csharp
+app.MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
+    .WithOpenApi(operation => new(operation)
+    {
+        OperationId = "GetTodos"
+    });
+```
+
+### Add tags to the OpenAPI description
+
+OpenAPI supports using [tag objects](https://swagger.io/docs/specification/grouping-operations-with-tags/) to categorize operations. These tags are typically used to group operations in the Swagger UI. These tags can be added to an operation by invoking the [WithTags](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.withtags) extension method on the endpoint with the desired tags.
 
 [!code-csharp[](samples/todo/Program.cs?name=snippet_grp)]
 
+Alternatively, the list of `OpenApiTags` can be set on the OpenAPI annotation via the `WithOpenApi` extension method.
+
+```csharp
+app.MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
+    .WithOpenApi(operation => new(operation)
+    {
+        Tags = new List<OpenApiTag> { new() { Name = "Todos" } }
+    });
+```
+
 ### Add endpoint summary or description
 
-The following highlighted code provides summary and description text for OpenAPI spec generation. You can call extension methods or use attributes:
+The endpoint summary and description can be added by any of the following approaches:
+* Calling the extension methods `WithSummary` and `WithDescription`.
+* Using the [`[EndpointSummary]](<xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute>) and [`[EndpointDescription]`](<xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute>) attributes.
+* Setting directly on the OpenAPI annotation.
+
+The following highlighted code provides summary and description text for OpenAPI specification generation using extension methods:
 
 :::code language="csharp" source="endpoint-description-summary/7.0-samples/OpenAPISummary/Program.cs" id="summary_and_description" highlight="13-14":::
 
 :::code language="csharp" source="endpoint-description-summary/7.0-samples/OpenAPISummary/Program.cs" id="summary_and_description2" highlight="2-3":::
 
-The preceding highlighted code is supported by [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) 6.4.0 and later.
+In the following code, the summaries are set directly on the OpenAPI annotation.
+
+```csharp
+app.MapGet("/todoitems2", async (TodoDb db) => await db.Todos.ToListAsync())
+    .WithOpenApi(operation => new(operation)
+    {
+        Summary = "This is a summary",
+        Description = "This is a description"
+    });
+```
+
+### Exclude OpenAPI description
+
+In the following sample, the `/skipme` endpoint is excluded from generating an OpenAPI description:
+
+[!code-csharp[](7.0-samples/WebMinAPIs/Program.cs?name=snippet_swag2&highlight=20-21)]
+
+### Mark an API as obsolete
+
+To mark an endpoint as obsolete, set the `Deprecated` property on the OpenAPI annotation.
+
+```csharp
+app.MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
+    .WithOpenApi(operation => new(operation)
+    {
+        Deprecated = true
+    });
+```
+
+### Describe response types
+
+OpenAPI supports providing a description of the responses returned from an API. Minimal APIs support three strategies for setting the response type of an endpoint:
+
+* Via the [`Produces`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.produces) extension method on the endpoint
+* Via the [`ProducesResponseType`](/dotnet/api/microsoft.aspnetcore.mvc.producesresponsetypeattribute) attribute on the route handler
+* By returning [`TypedResults`](/dotnet/api/microsoft.aspnetcore.http.typedresults) from the route handler
+
+The `Produces` extension method can be used to add `Produces` metadata to an endpoint. When no parameters are provided, the extension method populates metadata for the targeted type under a `200` status code and an `application/json` content type.
+
+```csharp
+app
+    .MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
+    .Produces<IList<Todo>>();
+```
+
+Leveraging [`TypedResults`](/dotnet/api/microsoft.aspnetcore.http.typedresults) in the implementation of an endpoint's route handler automatically includes the response type metadata for the endpoint. For example, the code below automatically annotates the endpoint with a response under the `200` status code with an `application/json` content type.
+
+```csharp
+app.MapGet("/todos", async (TodoDb db) =>
+{
+    var todos = await db.Todos.ToListAsync());
+    return TypedResults.Ok(todos);
+});
+```
+
+#### Set responses for `ProblemDetails`
+
+When setting the response type for endpoints that may return a ProblemDetails response, the [`ProducesProblem`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.producesproblem) extension method or [`TypedResults.Problem`](/dotnet/api/microsoft.aspnetcore.http.typedresults.problem?) can be used to add the appropriate annotation to the endpoint's metadata.
+
+When there are no explicit annotations provided by one of the strategies above, the framework attempts to determine a default response type by examining the signature of the response. This default response is populated under the `200` status code in the OpenAPI definition.
+
+### Describe request body and parameters
+
+In addition to describing the types that are returned by an endpoint, OpenAPI also supports annotating the inputs that are consumed by an API. These inputs fall into two categories:
+
+* Parameters that appear in the path, query string, headers, or cookies
+* Data transmitted as part of the request body
+
+The framework infers the types for request parameters in the path, query, and header string automatically based on the signature of the route handler.
+
+To define the type of inputs transmitted as the request body, configure the properties by using the [`Accepts`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.accepts) extension method to define the object type and content type that are expected by the request handler. In the example below, the endpoint accepts a `Todo` object in the request body with an expected content-type of `application/xml`.
+
+```csharp
+app.MapPost("/todos/{id}", (int id, Todo todo) => ...)
+  .Accepts<Todo>("application/xml");
+```
+
+In addition to the [`Accepts`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.accepts) extension method, it is possible for a parameter type to describe its own annotation by implementing the [`IEndpointParameterMetadataProvider`](/dotnet/api/microsoft.aspnetcore.http.metadata.iendpointparametermetadataprovider) interface. For example, the following `Todo` type adds an annotation that requires a request body with an `application/xml` content-type. 
+
+```csharp
+public class Todo : IEndpointParameterMetadataProvider
+{
+    public static void PopulateMetadata(ParameterInfo parameter, EndpointBuilder builder)
+    {
+        builder.Metadata.Add(new AcceptsMetadata(typeof(Todo), isOptional: false, "application/xml"));
+    }
+}
+```
+
+When no explicit annotation is provided, the framework attempts to determine the default request type if there is a request body parameter in the endpoint handler. The inference uses the following heuristics to produce the annotation:
+
+* Request body parameters that are read from a form via the [`[FromForm]`](/dotnet/api/microsoft.aspnetcore.mvc.fromformattribute) attribute are described with the `multipart/form-data` content-type.
+* All other request body parameters are described with the `application/json` content-type.
+* The request body is treated as optional if it is nullable or if the [`AllowEmpty`](/dotnet/api/microsoft.aspnetcore.mvc.frombodyattribute.microsoft-aspnetcore-http-metadata-ifrombodymetadata-allowempty) property is set on the [`FromBody`](/dotnet/api/microsoft.aspnetcore.mvc.frombodyattribute) attribute.
+
+### Support API versioning
+
+Minimal APIs supports API versioning via the [Asp.Versioning.Http package](https://www.nuget.org/packages/Asp.Versioning.Http). Examples of configuring versioning with minimal APIs can be found in [the API versioning repo](https://github.com/dotnet/aspnet-api-versioning/tree/3857a332057d970ad11bac0edfdbff8a559a215d/examples/AspNetCore/WebApi).
 
 <!-- 
 # Differences between minimal APIs and APIs with controllers
@@ -132,7 +244,7 @@ Moved to uid: tutorials/min-web-api
 
 ### ASP.NET Core OpenAPI source code on GitHub
 
-* [WithOpenApi](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs)
+* [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs)
 * [OpenApiGenerator](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/src/OpenApiGenerator.cs)
 
 :::moniker-end
