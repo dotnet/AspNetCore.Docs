@@ -3,7 +3,7 @@ title: Part 4, add a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 10/07/2022
+ms.date: 10/10/2022
 uid: tutorials/first-mvc-app/adding-model
 ms.custom: contperf-fy21q3
 ---
@@ -1349,11 +1349,12 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 
 <!-- When https://dev.azure.com/devdiv/DevDiv/_workitems/edit/1320544 is fixed, we can remove the following install package instruction for Microsoft.EntityFrameworkCore.Design  -->
 
-In the PMC, run the following command:
+In the PMC, run the following commands:
 
 ```powershell
-Install-Package Microsoft.EntityFrameworkCore.Design
-Install-Package Microsoft.EntityFrameworkCore.SqlServer
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -IncludePrerelease
+Install-Package Microsoft.EntityFrameworkCore.Design -IncludePrerelease
+Install-Package Microsoft.EntityFrameworkCore.SqlServer -IncludePrerelease
 ```
 
 The preceding commands add:
@@ -1413,7 +1414,7 @@ In **Solution Explorer**, right-click the *Controllers* folder and select **Add 
 
 ![view of above step](adding-model/_static/add_controller5.png)
 
-In the **Add Scaffold** dialog, select **MVC Controller with views, using Entity Framework > Add**.
+In the **Add New Scaffolded Item** dialog, select **MVC Controller with views, using Entity Framework > Add**.
 
 ![Add Scaffold dialog](adding-model/_static/add_scaffold5.png)
 
@@ -1527,14 +1528,6 @@ The scaffolded pages can't be used yet because the database doesn't exist. Runni
 ## Build the app
 
 Build the app. The compiler generates several warnings about how `null` values are handled. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594) and [Nullable reference types](/dotnet/csharp/nullable-references) for more information.
-
-To eliminate the warnings from nullable reference types, remove the following line from the `MvcMovie.csproj` file:
-
-```xml
-<Nullable>enable</Nullable>
-```
-
-We hope to fix this issue in the next release.
 
 ## Initial migration
 

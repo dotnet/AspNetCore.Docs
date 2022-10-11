@@ -3,7 +3,7 @@ title: Part 6, controller methods and views in ASP.NET Core
 author: rick-anderson
 description: Part 6, add a model to an ASP.NET Core MVC app
 ms.author: riande
-ms.date: 10/07/2022
+ms.date: 10/10/2022
 uid: tutorials/first-mvc-app/controller-methods-views
 ---
 
@@ -49,7 +49,7 @@ Recall the format for [routing](xref:mvc/controllers/routing) set in the `Progra
 
 ASP.NET Core translates `https://localhost:5001/Movies/Edit/4` into a request to the `Edit` action method of the `Movies` controller with the parameter `Id` of 4. (Controller methods are also known as action methods.)
 
-[Tag Helpers](xref:mvc/views/tag-helpers/intro) are one of the most popular new features in ASP.NET Core. For more information, see [Additional resources](#additional-resources).
+The preceding code shows [Tag Helpers](xref:mvc/views/tag-helpers/intro). For more information about them, see [Additional resources](#additional-resources).
 
 <a name="get-post"></a>
 
@@ -167,7 +167,7 @@ Recall the format for [routing](xref:mvc/controllers/routing) set in the `Startu
 
 ASP.NET Core translates `https://localhost:5001/Movies/Edit/4` into a request to the `Edit` action method of the `Movies` controller with the parameter `Id` of 4. (Controller methods are also known as action methods.)
 
-[Tag Helpers](xref:mvc/views/tag-helpers/intro) are one of the most popular new features in ASP.NET Core. For more information, see [Additional resources](#additional-resources).
+For more information about [Tag Helpers](xref:mvc/views/tag-helpers/intro), see [Additional resources](#additional-resources).
 
 <a name="get-post"></a>
 
