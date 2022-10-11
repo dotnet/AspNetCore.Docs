@@ -18,27 +18,71 @@ Route handlers support the following types of return values:
 1. `string` - This includes `Task<string>` and `ValueTask<string>`
 1. `T` (Any other type) - This includes `Task<T>` and `ValueTask<T>`
 
-|Return value|Behavior|Content-Type|
-|--|--|--|
-|`IResult` | The framework calls [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A)| Decided by the `IResult` implementation
-|`string` | The framework writes the string directly to the response | `text/plain`
-| `T` (Any other type) | The framework will JSON serialize the response| `application/json`
 
-### Example return values
+## `string` values
 
-#### string return values
+|Behavior|Content-Type|
+|--|--|
+| The framework writes the string directly to the response | `text/plain`
+
+Consider the following route handler, which returns a `Hello world` text. 
 
 ```csharp
 app.MapGet("/hello", () => "Hello World");
 ```
 
-#### JSON return values
+The `200` status code is returned with `text/plain` Content-Type header and the following content.
+
+```text
+Hello World
+```
+
+## `T` (Any other type) values
+
+|Behavior|Content-Type|
+|--|--|
+| The framework will JSON serialize the response| `application/json`
+
+Consider the following route handler, which returns an anonymous type containing a `Message` string text.
 
 ```csharp
 app.MapGet("/hello", () => new { Message = "Hello World" });
 ```
 
-#### IResult return values
+The `200` status code is returned with `application/json` Content-Type header and the following content.
+
+```json
+{"message":"Hello World"}
+```
+
+## `IResult` values
+
+|Behavior|Content-Type|
+|--|--|
+| The framework calls [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A)| Decided by the `IResult` implementation
+
+<a name="binr7"></a>
+
+### Built-in results
+
+Common result helpers exist in the `Microsoft.AspNetCore.Http.Results` static class.
+
+|Description|Response type|Status Code|API|
+|--|--|--|--|
+Write a JSON response with advanced options |application/json |200|[Results.Json](xref:Microsoft.AspNetCore.Http.Results.Json%2A)|
+|Write a JSON response |application/json |200|[Results.Ok](xref:Microsoft.AspNetCore.Http.Results.Ok%2A)|
+|Write a text response |text/plain (default), configurable |200|[Results.Text](xref:Microsoft.AspNetCore.Http.Results.Text%2A)|
+|Write the response as bytes |application/octet-stream (default), configurable |200|[Results.Bytes](xref:Microsoft.AspNetCore.Http.Results.Bytes%2A)|
+|Write a stream of bytes to the response |application/octet-stream (default), configurable |200|[Results.Stream](xref:Microsoft.AspNetCore.Http.Results.Stream%2A)|
+|Stream a file to the response for download with the content-disposition header |application/octet-stream (default), configurable |200|[Results.File](xref:Microsoft.AspNetCore.Http.Results.File%2A)|
+|Set the status code to 404, with an optional JSON response | N/A |404|[Results.NotFound](xref:Microsoft.AspNetCore.Http.Results.NotFound%2A)|
+|Set the status code to 204 | N/A |204|[Results.NoContent](xref:Microsoft.AspNetCore.Http.Results.NoContent%2A)|
+|Set the status code to 422, with an optional JSON response | N/A |422|[Results.UnprocessableEntity](xref:Microsoft.AspNetCore.Http.Results.UnprocessableEntity%2A)|
+|Set the status code to 400, with an optional JSON response | N/A |400|[Results.BadRequest](xref:Microsoft.AspNetCore.Http.Results.BadRequest%2A)|
+|Set the status code to 409, with an optional JSON response | N/A |409|[Results.Conflict](xref:Microsoft.AspNetCore.Http.Results.Conflict%2A)|
+|Write a problem details JSON object to the response | N/A |500 (default), configurable|[Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem%2A)|
+|Write a problem details JSON object to the response with validation errors | N/A | N/A, configurable|[Results.ValidationProblem](xref:Microsoft.AspNetCore.Http.Results.ValidationProblem%2A)|
+
 
 ```csharp
 app.MapGet("/hello", () => Results.Ok(new { Message = "Hello World" }));
@@ -96,27 +140,7 @@ app.MapGet("/old-path", () => Results.Redirect("/new-path"));
 app.MapGet("/download", () => Results.File("myfile.text"));
 ```
 
-<a name="binr7"></a>
 
-### Built-in results
-
-Common result helpers exist in the `Microsoft.AspNetCore.Http.Results` static class.
-
-|Description|Response type|Status Code|API|
-|--|--|--|--|
-Write a JSON response with advanced options |application/json |200|[Results.Json](xref:Microsoft.AspNetCore.Http.Results.Json%2A)|
-|Write a JSON response |application/json |200|[Results.Ok](xref:Microsoft.AspNetCore.Http.Results.Ok%2A)|
-|Write a text response |text/plain (default), configurable |200|[Results.Text](xref:Microsoft.AspNetCore.Http.Results.Text%2A)|
-|Write the response as bytes |application/octet-stream (default), configurable |200|[Results.Bytes](xref:Microsoft.AspNetCore.Http.Results.Bytes%2A)|
-|Write a stream of bytes to the response |application/octet-stream (default), configurable |200|[Results.Stream](xref:Microsoft.AspNetCore.Http.Results.Stream%2A)|
-|Stream a file to the response for download with the content-disposition header |application/octet-stream (default), configurable |200|[Results.File](xref:Microsoft.AspNetCore.Http.Results.File%2A)|
-|Set the status code to 404, with an optional JSON response | N/A |404|[Results.NotFound](xref:Microsoft.AspNetCore.Http.Results.NotFound%2A)|
-|Set the status code to 204 | N/A |204|[Results.NoContent](xref:Microsoft.AspNetCore.Http.Results.NoContent%2A)|
-|Set the status code to 422, with an optional JSON response | N/A |422|[Results.UnprocessableEntity](xref:Microsoft.AspNetCore.Http.Results.UnprocessableEntity%2A)|
-|Set the status code to 400, with an optional JSON response | N/A |400|[Results.BadRequest](xref:Microsoft.AspNetCore.Http.Results.BadRequest%2A)|
-|Set the status code to 409, with an optional JSON response | N/A |409|[Results.Conflict](xref:Microsoft.AspNetCore.Http.Results.Conflict%2A)|
-|Write a problem details JSON object to the response | N/A |500 (default), configurable|[Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem%2A)|
-|Write a problem details JSON object to the response with validation errors | N/A | N/A, configurable|[Results.ValidationProblem](xref:Microsoft.AspNetCore.Http.Results.ValidationProblem%2A)|
 
 ### Customizing results
 
