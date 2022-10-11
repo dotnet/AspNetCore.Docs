@@ -601,6 +601,10 @@ Verify you can't post or get the secret field.
 
 See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-api-javascript).
 
+## Web API video series
+
+See [Video: Beginner's Series to: Web APIs](https://learn.microsoft.com/en-us/shows/beginners-series-to-web-apis/).
+
 :::moniker-end
 
 :::moniker range="= aspnetcore-5.0"
