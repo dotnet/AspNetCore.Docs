@@ -21,7 +21,7 @@ namespace CustomModelBindingSample.Controllers
         #endregion
 
         #region snippet_Get
-        [HttpGet("get/{authorId}")]
+        [HttpGet("get/{author}")]
         public IActionResult Get(Author author)
         {
             if (author == null)
