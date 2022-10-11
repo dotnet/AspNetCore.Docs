@@ -158,7 +158,7 @@ In the following example:
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample3.razor" highlight="5,39,44":::
 
 > [!NOTE]
-> Changing the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> after its assigned is **not** supported.
+> Changing the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> after it's assigned is **not** supported.
 
 <!--
 
