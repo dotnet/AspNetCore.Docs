@@ -190,7 +190,7 @@ The cache-first strategy is valuable because:
 
 * **It ensures correctness.** When building a cache of offline resources, the service worker uses content hashing to guarantee it has fetched a complete and self-consistent snapshot of resources at a single instant in time. This cache is then used as an atomic unit. There's no point asking the network for newer resources, since the only versions required are the ones already cached. Anything else risks inconsistency and incompatibility (for example, trying to use versions of .NET assemblies that weren't compiled together).
 
-If you must prevent disk caching of the service worker assets, for example to resolve temporary integrity check failures when deploying a new version of the service worker, update the service worker registration in `wwwroot/index.html` with [`updateViaCache`](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/updateViaCache) set to 'none':
+If you must prevent the browser from fetching `service-worker-assets.js` from its HTTP cache, for example to resolve temporary integrity check failures when deploying a new version of the service worker, update the service worker registration in `wwwroot/index.html` with [`updateViaCache`](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/updateViaCache) set to 'none':
 
 ```html
 <script>
@@ -553,7 +553,7 @@ The cache-first strategy is valuable because:
 
 * **It ensures correctness.** When building a cache of offline resources, the service worker uses content hashing to guarantee it has fetched a complete and self-consistent snapshot of resources at a single instant in time. This cache is then used as an atomic unit. There's no point asking the network for newer resources, since the only versions required are the ones already cached. Anything else risks inconsistency and incompatibility (for example, trying to use versions of .NET assemblies that weren't compiled together).
 
-If you must prevent disk caching of the service worker assets, for example to resolve temporary integrity check failures when deploying a new version of the service worker, update the service worker registration in `wwwroot/index.html` with [`updateViaCache`](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/updateViaCache) set to 'none':
+If you must prevent the browser from fetching `service-worker-assets.js` from its HTTP cache, for example to resolve temporary integrity check failures when deploying a new version of the service worker, update the service worker registration in `wwwroot/index.html` with [`updateViaCache`](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/updateViaCache) set to 'none':
 
 ```html
 <script>
@@ -915,7 +915,7 @@ The cache-first strategy is valuable because:
 
 * **It ensures correctness.** When building a cache of offline resources, the service worker uses content hashing to guarantee it has fetched a complete and self-consistent snapshot of resources at a single instant in time. This cache is then used as an atomic unit. There's no point asking the network for newer resources, since the only versions required are the ones already cached. Anything else risks inconsistency and incompatibility (for example, trying to use versions of .NET assemblies that weren't compiled together).
 
-If you must prevent disk caching of the service worker assets, for example to resolve temporary integrity check failures when deploying a new version of the service worker, update the service worker registration in `wwwroot/index.html` with [`updateViaCache`](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/updateViaCache) set to 'none':
+If you must prevent the browser from fetching `service-worker-assets.js` from its HTTP cache, for example to resolve temporary integrity check failures when deploying a new version of the service worker, update the service worker registration in `wwwroot/index.html` with [`updateViaCache`](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/updateViaCache) set to 'none':
 
 ```html
 <script>
