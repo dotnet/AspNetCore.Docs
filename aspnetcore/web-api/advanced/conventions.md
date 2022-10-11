@@ -108,5 +108,7 @@ In the preceding example:
 
 ## Additional resources
 
+* [Video: Create metadata for NSwagClient](/shows/beginners-series-to-web-apis/generating-api-clients-17-of-18--beginners-series-to-web-apis)
+* [Video: Beginner's Series to: Web APIs](/shows/beginners-series-to-web-apis/)
 * <xref:web-api/advanced/analyzers>
 * <xref:tutorials/web-api-help-pages-using-swagger>
