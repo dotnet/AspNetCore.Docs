@@ -41,18 +41,76 @@ Blazor Server apps use [ASP.NET Core SignalR](xref:signalr/introduction) to comm
 
 Blazor works best when using [WebSockets](xref:fundamentals/websockets) as the SignalR transport due to lower latency, better reliability, and improved [security](xref:signalr/security). [Long Polling](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md#long-polling-server-to-client-only) is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling. When deploying to Azure App Service, configure the app to use WebSockets in the Azure portal settings for the service. For details on configuring the app for Azure App Service, see the [SignalR publishing guidelines](xref:signalr/publish-to-azure-web-app).
 
-Blazor Server emits a console warning if it detects Long Polling is utilized:
+A console warning appears if Long Polling is utilized:
 
-> Failed to connect via WebSockets, using the Long Polling fallback transport. This may be due to a VPN or proxy blocking the connection.
+> :::no-loc text="Failed to connect via WebSockets, using the Long Polling fallback transport. This may be due to a VPN or proxy blocking the connection.":::
+
+Recommendations for global deployments to geographical data centers:
+
+* Deploy the app to the regions where most of the users reside.
+* Take into consideration the increased latency for traffic across continents.
+* For Azure hosting, use the [Azure SignalR Service](#azure-signalr-service).
+
+If a deployed app frequently displays the reconnection UI due to ping timeouts caused by Internet latency, lengthen the server and client timeouts:
+
+* **Server**
+
+  At least double the maximum roundtrip time expected between the client and the server. Test, monitor, and revise the timeouts as needed. For the SignalR hub, set the <xref:Microsoft.AspNetCore.SignalR.HubOptions.ClientTimeoutInterval> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.HubOptions.HandshakeTimeout> (default: 15 seconds). The following example assumes that <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> uses the default value of 15 seconds.
+
+  > [!IMPORTANT]
+  > The <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> isn't directly related to the reconnection UI appearing. The <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> doesn't necessarily need to be changed. If the reconnection UI appearance issue is due to timeouts, the <xref:Microsoft.AspNetCore.SignalR.HubOptions.ClientTimeoutInterval> and <xref:Microsoft.AspNetCore.SignalR.HubOptions.HandshakeTimeout> can be increased and the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> can remain the same. The important consideration is that if you change the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval>, make sure that the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> value is 50% or less of the timeout values and that the `keepAliveIntervalInMilliseconds` on the client matches the server setting.
+  >
+  > In the following example, <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> is set to the default value of 15 seconds and shown for demonstration purposes in case you need to change the value.
+
+  For a Blazor Server app in `Program.cs`:
+
+  ```csharp
+  builder.Services.AddServerSideBlazor()
+      .AddHubOptions(options =>
+      {
+          options.ClientTimeoutInterval = TimeSpan.FromSeconds(60);
+          options.HandshakeTimeout = TimeSpan.FromSeconds(30);
+          options.KeepAliveInterval = TimeSpan.FromSeconds(15);
+      });
+  ```
+
+  For more information, see <xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps>.
+
+* **Client**
+
+  Typically, double the value used for the server's <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> to set the timeout for the client's server timeout (`serverTimeoutInMilliseconds`, default: 30,000 milliseconds). To configure the client, set the Blazor script's `autostart` attribute to `false` and configure the SignalR options in [`Blazor.start`](xref:blazor/fundamentals/startup).
+
+  > [!IMPORTANT]
+  > The `keepAliveIntervalInMilliseconds` isn't directly related to the reconnection UI appearing. The `keepAliveIntervalInMilliseconds` doesn't necessarily need to be changed. If the reconnection UI appearance issue is due to timeouts, the `serverTimeoutInMilliseconds` can be increased and the `keepAliveIntervalInMilliseconds` can remain the same. The important consideration is that if you change the `keepAliveIntervalInMilliseconds`, make sure that the `keepAliveIntervalInMilliseconds` value is 50% or less of the timeout value and that the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> on the server matches the client setting.
+  >
+  > In the following example, `keepAliveIntervalInMilliseconds` is set to the default value of 15 seconds and shown for demonstration purposes in case you need to change the value.
+
+  For a Blazor Server app in `Pages/_Layout.cshtml`:
+
+  ```html
+  <script src="_framework/blazor.server.js" autostart="false"></script>
+  <script>
+    Blazor.start({
+      configureSignalR: function (builder) {
+        builder.serverTimeoutInMilliseconds = 60000;
+        builder.keepAliveIntervalInMilliseconds = 15000;
+      }
+    });
+  </script>
+  ```
+
+  For more information, see <xref:blazor/fundamentals/signalr#configure-signalr-server-timeout-and-keep-alive-on-the-client>.
+
+For more information on SignalR configuration, see <xref:blazor/fundamentals/signalr>.
 
 ## Azure SignalR Service
 
 We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
 
 > [!IMPORTANT]
-> When [WebSockets](https://wikipedia.org/wiki/WebSocket) are disabled, Azure App Service simulates a real-time connection using HTTP Long Polling. HTTP Long Polling is noticeably slower than running with WebSockets enabled, which doesn't use polling to simulate a client-server connection.
+> When [WebSockets](https://wikipedia.org/wiki/WebSocket) are disabled, Azure App Service simulates a real-time connection using HTTP Long Polling. HTTP Long Polling is noticeably slower than running with WebSockets enabled, which doesn't use polling to simulate a client-server connection. In the event that Long Polling must be used, you may need to configure the maximum poll interval (`MaxPollIntervalInSeconds`), which defines the maximum poll interval allowed for Long Polling connections in [Azure SignalR Service](#azure-signalr-service) if the service ever falls back from WebSockets to Long Polling. If the next poll request does not come in within `MaxPollIntervalInSeconds`, Azure SignalR Service cleans up the client connection. Note that Azure SignalR Service also cleans up connections when cached waiting to write buffer size is greater than 1 MB to ensure service performance. Default value for `MaxPollIntervalInSeconds` is 5 seconds. The setting is limited to 1-300 seconds.
 >
-> We recommend using WebSockets for Blazor Server apps deployed to Azure App Service. The [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) uses WebSockets by default. If the app doesn't use the Azure SignalR Service, see <xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service>.
+> **We recommend using WebSockets for Blazor Server apps deployed to Azure App Service.** The [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) uses WebSockets by default. If the app doesn't use the Azure SignalR Service, see <xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service>.
 >
 > For more information, see:
 >
@@ -280,9 +338,9 @@ Blazor works best when using WebSockets as the SignalR transport due to lower la
 We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
 
 > [!IMPORTANT]
-> When [WebSockets](https://wikipedia.org/wiki/WebSocket) are disabled, Azure App Service simulates a real-time connection using HTTP Long Polling. HTTP Long Polling is noticeably slower than running with WebSockets enabled, which doesn't use polling to simulate a client-server connection.
+> When [WebSockets](https://wikipedia.org/wiki/WebSocket) are disabled, Azure App Service simulates a real-time connection using HTTP Long Polling. HTTP Long Polling is noticeably slower than running with WebSockets enabled, which doesn't use polling to simulate a client-server connection. In the event that Long Polling must be used, you may need to configure the maximum poll interval (`MaxPollIntervalInSeconds`), which defines the maximum poll interval allowed for Long Polling connections in [Azure SignalR Service](#azure-signalr-service) if the service ever falls back from WebSockets to Long Polling. If the next poll request does not come in within `MaxPollIntervalInSeconds`, Azure SignalR Service cleans up the client connection. Note that Azure SignalR Service also cleans up connections when cached waiting to write buffer size is greater than 1 MB to ensure service performance. Default value for `MaxPollIntervalInSeconds` is 5 seconds. The setting is limited to 1-300 seconds.
 >
-> We recommend using WebSockets for Blazor Server apps deployed to Azure App Service. The [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) uses WebSockets by default. If the app doesn't use the Azure SignalR Service, see <xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service>.
+> **We recommend using WebSockets for Blazor Server apps deployed to Azure App Service.** The [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) uses WebSockets by default. If the app doesn't use the Azure SignalR Service, see <xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service>.
 >
 > For more information, see:
 >
@@ -526,9 +584,9 @@ Blazor works best when using WebSockets as the SignalR transport due to lower la
 We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
 
 > [!IMPORTANT]
-> When [WebSockets](https://wikipedia.org/wiki/WebSocket) are disabled, Azure App Service simulates a real-time connection using HTTP Long Polling. HTTP Long Polling is noticeably slower than running with WebSockets enabled, which doesn't use polling to simulate a client-server connection.
+> When [WebSockets](https://wikipedia.org/wiki/WebSocket) are disabled, Azure App Service simulates a real-time connection using HTTP Long Polling. HTTP Long Polling is noticeably slower than running with WebSockets enabled, which doesn't use polling to simulate a client-server connection. In the event that Long Polling must be used, you may need to configure the maximum poll interval (`MaxPollIntervalInSeconds`), which defines the maximum poll interval allowed for Long Polling connections in [Azure SignalR Service](#azure-signalr-service) if the service ever falls back from WebSockets to Long Polling. If the next poll request does not come in within `MaxPollIntervalInSeconds`, Azure SignalR Service cleans up the client connection. Note that Azure SignalR Service also cleans up connections when cached waiting to write buffer size is greater than 1 MB to ensure service performance. Default value for `MaxPollIntervalInSeconds` is 5 seconds. The setting is limited to 1-300 seconds.
 >
-> We recommend using WebSockets for Blazor Server apps deployed to Azure App Service. The [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) uses WebSockets by default. If the app doesn't use the Azure SignalR Service, see <xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service>.
+> **We recommend using WebSockets for Blazor Server apps deployed to Azure App Service.** The [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) uses WebSockets by default. If the app doesn't use the Azure SignalR Service, see <xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service>.
 >
 > For more information, see:
 >
@@ -747,18 +805,76 @@ Blazor Server apps use [ASP.NET Core SignalR](xref:signalr/introduction) to comm
 
 Blazor works best when using [WebSockets](xref:fundamentals/websockets) as the SignalR transport due to lower latency, better reliability, and improved [security](xref:signalr/security). [Long Polling](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md#long-polling-server-to-client-only) is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling. When deploying to Azure App Service, configure the app to use WebSockets in the Azure portal settings for the service. For details on configuring the app for Azure App Service, see the [SignalR publishing guidelines](xref:signalr/publish-to-azure-web-app).
 
-Blazor Server emits a console warning if it detects Long Polling is utilized:
+A console warning appears if Long Polling is utilized:
 
-> Failed to connect via WebSockets, using the Long Polling fallback transport. This may be due to a VPN or proxy blocking the connection.
+> :::no-loc text="Failed to connect via WebSockets, using the Long Polling fallback transport. This may be due to a VPN or proxy blocking the connection.":::
+
+Recommendations for global deployments to geographical data centers:
+
+* Deploy the app to the regions where most of the users reside.
+* Take into consideration the increased latency for traffic across continents.
+* For Azure hosting, use the [Azure SignalR Service](#azure-signalr-service).
+
+If a deployed app frequently displays the reconnection UI due to ping timeouts caused by Internet latency, lengthen the server and client timeouts:
+
+* **Server**
+
+  At least double the maximum roundtrip time expected between the client and the server. Test, monitor, and revise the timeouts as needed. For the SignalR hub, set the <xref:Microsoft.AspNetCore.SignalR.HubOptions.ClientTimeoutInterval> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.HubOptions.HandshakeTimeout> (default: 15 seconds). The following example assumes that <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> uses the default value of 15 seconds.
+
+  > [!IMPORTANT]
+  > The <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> isn't directly related to the reconnection UI appearing. The <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> doesn't necessarily need to be changed. If the reconnection UI appearance issue is due to timeouts, the <xref:Microsoft.AspNetCore.SignalR.HubOptions.ClientTimeoutInterval> and <xref:Microsoft.AspNetCore.SignalR.HubOptions.HandshakeTimeout> can be increased and the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> can remain the same. The important consideration is that if you change the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval>, make sure that the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> value is 50% or less of the timeout values and that the `keepAliveIntervalInMilliseconds` on the client matches the server setting.
+  >
+  > In the following example, <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> is set to the default value of 15 seconds and shown for demonstration purposes in case you need to change the value.
+
+  For a Blazor Server app in `Program.cs`:
+
+  ```csharp
+  builder.Services.AddServerSideBlazor()
+      .AddHubOptions(options =>
+      {
+          options.ClientTimeoutInterval = TimeSpan.FromSeconds(60);
+          options.HandshakeTimeout = TimeSpan.FromSeconds(30);
+          options.KeepAliveInterval = TimeSpan.FromSeconds(15);
+      });
+  ```
+
+  For more information, see <xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps>.
+
+* **Client**
+
+  Typically, double the value used for the server's <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> to set the timeout for the client's server timeout (`serverTimeoutInMilliseconds`, default: 30,000 milliseconds). To configure the client, set the Blazor script's `autostart` attribute to `false` and configure the SignalR options in [`Blazor.start`](xref:blazor/fundamentals/startup).
+
+  > [!IMPORTANT]
+  > The `keepAliveIntervalInMilliseconds` isn't directly related to the reconnection UI appearing. The `keepAliveIntervalInMilliseconds` doesn't necessarily need to be changed. If the reconnection UI appearance issue is due to timeouts, the `serverTimeoutInMilliseconds` can be increased and the `keepAliveIntervalInMilliseconds` can remain the same. The important consideration is that if you change the `keepAliveIntervalInMilliseconds`, make sure that the `keepAliveIntervalInMilliseconds` value is 50% or less of the timeout value and that the <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> on the server matches the client setting.
+  >
+  > In the following example, `keepAliveIntervalInMilliseconds` is set to the default value of 15 seconds and shown for demonstration purposes in case you need to change the value.
+
+  For a Blazor Server app in `Pages/_Host.cshtml`:
+
+  ```html
+  <script src="_framework/blazor.server.js" autostart="false"></script>
+  <script>
+    Blazor.start({
+      configureSignalR: function (builder) {
+        builder.serverTimeoutInMilliseconds = 60000;
+        builder.keepAliveIntervalInMilliseconds = 15000;
+      }
+    });
+  </script>
+  ```
+
+  For more information, see <xref:blazor/fundamentals/signalr#configure-signalr-server-timeout-and-keep-alive-on-the-client>.
+
+For more information on SignalR configuration, see <xref:blazor/fundamentals/signalr>.
 
 ## Azure SignalR Service
 
 We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for Blazor Server apps. The service works in conjunction with the app's Blazor Hub for scaling up a Blazor Server app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
 
 > [!IMPORTANT]
-> When [WebSockets](https://wikipedia.org/wiki/WebSocket) are disabled, Azure App Service simulates a real-time connection using HTTP Long Polling. HTTP Long Polling is noticeably slower than running with WebSockets enabled, which doesn't use polling to simulate a client-server connection.
+> When [WebSockets](https://wikipedia.org/wiki/WebSocket) are disabled, Azure App Service simulates a real-time connection using HTTP Long Polling. HTTP Long Polling is noticeably slower than running with WebSockets enabled, which doesn't use polling to simulate a client-server connection. In the event that Long Polling must be used, you may need to configure the maximum poll interval (`MaxPollIntervalInSeconds`), which defines the maximum poll interval allowed for Long Polling connections in [Azure SignalR Service](#azure-signalr-service) if the service ever falls back from WebSockets to Long Polling. If the next poll request does not come in within `MaxPollIntervalInSeconds`, Azure SignalR Service cleans up the client connection. Note that Azure SignalR Service also cleans up connections when cached waiting to write buffer size is greater than 1 MB to ensure service performance. Default value for `MaxPollIntervalInSeconds` is 5 seconds. The setting is limited to 1-300 seconds.
 >
-> We recommend using WebSockets for Blazor Server apps deployed to Azure App Service. The [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) uses WebSockets by default. If the app doesn't use the Azure SignalR Service, see <xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service>.
+> **We recommend using WebSockets for Blazor Server apps deployed to Azure App Service.** The [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) uses WebSockets by default. If the app doesn't use the Azure SignalR Service, see <xref:signalr/publish-to-azure-web-app#configure-the-app-in-azure-app-service>.
 >
 > For more information, see:
 >
