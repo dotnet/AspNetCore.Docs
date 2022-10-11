@@ -5,12 +5,15 @@ description: Learn how to interact with JavaScript in Blazor WebAssembly apps us
 monikerRange: '= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 09/28/2022
+ms.date: 10/10/2022
 uid: blazor/js-interop/import-export-interop
 ---
 # .NET JavaScript `[JSImport]`/`[JSExport]` interop with ASP.NET Core Blazor
 
 This article explains how to interact with JavaScript (JS) in Blazor WebAssembly apps using .NET JS `[JSImport]`/`[JSExport]` interop API released with .NET 7.
+
+> [!NOTE]
+> This article focuses on JS interop in Blazor WebAssembly apps. For guidance on using .NET JS `[JSImport]`/`[JSExport]` interop API in JavaScript apps, see <xref:client-side/import-export-interop>.
 
 Blazor provides its own JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface, which is uniformly supported across Blazor hosting models and described in the following articles:
 
@@ -19,7 +22,7 @@ Blazor provides its own JS interop mechanism based on the <xref:Microsoft.JSInte
 
 <xref:Microsoft.JSInterop.IJSRuntime> enables library authors to build JS interop libraries that can be shared across the Blazor ecosystem and remains the recommended approach for JS interop in Blazor.
 
-This article describes an alternative JS interop approach specific to WebAssembly-based apps available for the first time with the release of .NET 7. These approaches are appropriate when you only expect to run on WebAssembly and not in the other Blazor hosting models. Library authors can use these approaches to optimize JS interop on WebAssembly by checking at runtime if the app is running on WebAssembly (<xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>). The approaches described in this article should be used to replace obsolete unmarshalled JS interop API when migrating to .NET 7.
+This article describes an alternative JS interop approach specific to WebAssembly-based apps available for the first time with the release of .NET 7. These approaches are appropriate when you only expect to run on client-side WebAssembly and not in the other Blazor hosting models. Library authors can use these approaches to optimize JS interop by checking at runtime if the app is running on WebAssembly in a browser (<xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>). The approaches described in this article should be used to replace obsolete unmarshalled JS interop API when migrating to .NET 7.
 
 ## Obsolete JavaScript interop API
 
@@ -29,13 +32,17 @@ Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> 
 
 [!INCLUDE[](~/includes/7.0-SDK.md)]
 
+## Namespace
+
+.NET JS `[JSImport]`/`[JSExport]` interop API is controlled by attributes from the `System.Runtime.InteropServices.JavaScript` namespace.
+
 ## Cache busting during development
 
-When implementing JS interop, browser caching of JS files during development can interfere with writing and testing JS interop code. To force a browser to reload JS files (cache busting) during development, we recommend using browser [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) with static asset caching disabled. For more information, access the documentation for the developer tools associated with your browser:
+<!--
 
-* [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
-* [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools)
-* [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
+    TBD ... In discussion on the PR.
+
+-->
 
 ## Enable unsafe blocks
 
@@ -235,7 +242,7 @@ export async function setMessage() {
 After a JS module is loaded, the module's JS functions are available to the app's components and classes as long as the app is running in the browser window or tab without the user manually reloading the app. `JSHost.ImportAsync` can be called multiple times on the same module without a significant performance penalty when:
 
 * The user visits a component that calls `JSHost.ImportAsync` to import a module, navigates away from the component, and then returns to the component where `JSHost.ImportAsync` is called again for the same module import.
-* The same module is used by different components loaded by `JSHost.ImportAsync` in each of the components.
+* The same module is used by different components and loaded by `JSHost.ImportAsync` in each of the components.
 
 ## Use of a single JavaScript module across components
 
@@ -375,4 +382,5 @@ For an additional example of the JS interop techniques described in this article
 
 ## Additional resources
 
+* <xref:client-side/import-export-interop>
 * [Use .NET from any JavaScript app in .NET 7](https://devblogs.microsoft.com/dotnet/use-net-7-from-any-javascript-app-in-net-7/)
