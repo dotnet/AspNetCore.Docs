@@ -103,7 +103,7 @@ Minimal APIs now support annotating operations with descriptions and summaries f
 
 For more information, see [Add endpoint summary or description](xref:fundamentals/minimal-apis#add-endpoint-summary-or-description).
 
-## Bind the request body as a `Stream` or `PipeReader`
+### Bind the request body as a `Stream` or `PipeReader`
 
 The request body can bind as a [`Stream`](/dotnet/api/system.io.stream) or [`PipeReader`](/dotnet/api/system.io.pipelines.pipereader) to efficiently support scenarios where the user has to process data and:
 
@@ -165,6 +165,14 @@ There is no built-in support for [antiforgery](/aspnet/core/security/anti-reques
 ### `[AsParameters]` attribute enables parameter binding for argument lists
 
 The [`[AsParameters]` attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) enables parameter binding for argument lists. For more information, see [Parameter binding for argument lists with `[AsParameters]`](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#asparam7).
+
+## Minimal APIs and API controllers
+
+### New problem details service
+
+The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface, which supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html).
+
+For more information, see [Problem details service](xref:web-api/handle-errors##pds7)
 
 ## gRPC
 
