@@ -603,7 +603,7 @@ See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-
 
 ## Web API video series
 
-See [Video: Beginner's Series to: Web APIs](https://learn.microsoft.com/en-us/shows/beginners-series-to-web-apis/).
+See [Video: Beginner's Series to: Web APIs](/shows/beginners-series-to-web-apis/).
 
 :::moniker-end
 
