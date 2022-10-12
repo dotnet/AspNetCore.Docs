@@ -70,8 +70,6 @@ The `Results` and `TypedResults` static classes provide a similar set of results
 
 An advantage of using `TypedResults` is that the implementation type automatically includes the response type metadata for the endpoint.
 
-More information about describing a response type can be found in [OpenAPI support in minimal APIs](/aspnet/core/fundamentals/minimal-apis/openapi#describe-response-types-1))
-
 Consider the follow endpoint, which a `200 OK` status code with the expected JSON response.
 
 ```csharp
@@ -84,6 +82,8 @@ In order to document this endpoint correctly the extensions method `Produces` wa
 ```csharp
 app.MapGet("/hello", () => TypedResults.Ok(new Message() {  Text = "Hello World!" }));
 ```
+
+More information about describing a response type can be found in [OpenAPI support in minimal APIs](/aspnet/core/fundamentals/minimal-apis/openapi#describe-response-types-1))
 
 ### Results<TResult1, TResultN>
 
