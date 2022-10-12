@@ -158,7 +158,23 @@ This is server-side validation that you get by default; in a later tutorial you'
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Create&highlight=8)]
 
-Change the date to a valid value and click **Create** to see the new student appear in the **Index** page.
+Change the date to a valid value and click **Create** showing that we still cannot not create the new object. We need to disable the setting in our project template for this. 
+
+Please open csproj and change this settings:
+
+```xml
+<Nullable>enable</Nullable>
+```
+
+To the **disable** value.
+
+```xml
+<Nullable>disable</Nullable>
+```
+
+This will be addressed by our team in future.
+
+You should now be able to click **Create** to see the new student appear in the **Index** page.
 
 ## Update the Edit page
 
