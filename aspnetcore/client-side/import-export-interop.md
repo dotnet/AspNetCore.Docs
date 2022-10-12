@@ -43,7 +43,7 @@ To demonstrate the JS interop functionality and obtain JS interop project templa
 dotnet workload install wasm-experimental
 ```
 
-The `wasm-experimental` workload contains two project templates: `browser` and `console`. These templates are experimental at this time, which means the developer workflow for the templates hasn't been fully designed. For example, these templates don't run in Visual Studio at this time. The .NET and JS APIs used in the templates are supported in .NET 7 and provide a foundation for using .NET on :::no-loc text="WASM"::: from JS.
+The `wasm-experimental` workload contains two project templates: `wasmbrowser` and `wasmconsole`. These templates are experimental at this time, which means the developer workflow for the templates hasn't been fully designed. For example, these templates don't run in Visual Studio at this time. The .NET and JS APIs used in the templates are supported in .NET 7 and provide a foundation for using .NET on :::no-loc text="WASM"::: from JS.
 
 The templates can be examined in reference source:
 
@@ -54,7 +54,7 @@ The templates can be examined in reference source:
 
 ### Browser app
 
-You can create a `browser` app by running the following command:
+You can create a browser app by running the following command:
 
 ```dotnetcli
 dotnet new wasmbrowser
@@ -86,7 +86,7 @@ dotnet serve -d:bin/$(Configuration)/net7.0/browser-wasm/AppBundle
 
 ### Node.js console app
 
-You can create a `console` app by running the following command:
+You can create a console app by running the following command:
 
 ```dotnetcli
 dotnet new wasmconsole
