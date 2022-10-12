@@ -62,9 +62,9 @@ The `IResult` interface defines a contract that represents the result of an HTTP
 
 The following example uses the built-in result types to customize the response:
 
-[!code-csharp[](minimal-apis/7.0-samples/todo/Program.cs?name=snippet_getCustom)]
+[!code-csharp[](7.0-samples/todo/Program.cs?name=snippet_getCustom)]
 
-### TypedResults X Results
+### TypedResults x Results
 
 The `Results` and `TypedResults` static classes provide a similar set of results helpers, however, the `Results` static class helpers return type is `IResult`, that means that a conversion is needed when the concrete type is needed, eg.: unit testing, while `TypedResults` return type is one of the `IResult` implementation types (<xref:Microsoft.AspNetCore.Http.HttpResults> namespace).
 
@@ -85,7 +85,7 @@ In order to document this endpoint correctly the extensions method `Produces` wa
 app.MapGet("/hello", () => TypedResults.Ok(new Message() {  Text = "Hello World!" }));
 ```
 
-### Results</T1, Tn/>
+### Results<TResult1, TResultN>
 
 When using the static `TypedResult` class to create the `IResult` objects and multiple `IResult` return types are needed, returning [`Result<TResult1, TResultN>`](/dotnet/api/microsoft.aspnetcore.http.httpresults.results-2) union type from a Minimal endpoint handler is an alternative over returning `IResult` because the generic union types automatically retain the endpoint metadata and, since the `Results<TResult1, TResultN>` union types implement implicit cast operators, the compiler can automatically convert the types specified in the generic arguments to an instance of the union type. 
 
@@ -156,19 +156,19 @@ app.MapGet("/text", () => Results.Text("This is some text"));
 
 #### Stream
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_stream)]
+[!code-csharp[](7.0-samples/WebMinAPIs/Program.cs?name=snippet_stream)]
 
 [`Results.Stream`](/dotnet/api/microsoft.aspnetcore.http.results.stream?view=aspnetcore-7.0&preserve-view=true) overloads allow access to the underlying HTTP response stream without buffering. The following example uses [ImageSharp](https://sixlabors.com/products/imagesharp) to return a reduced size of the specified image:
 
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet)]
+[!code-csharp[](resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet)]
 
 The following example streams an image from [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction):
 
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_abs)]
+[!code-csharp[](resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_abs)]
 
 The following example streams a video from an Azure Blob:
 
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_video)]
+[!code-csharp[](resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_video)]
 
 #### Redirect
 
@@ -186,8 +186,8 @@ app.MapGet("/download", () => Results.File("myfile.text"));
 
 Applications can control responses by implementing a custom <xref:Microsoft.AspNetCore.Http.IResult> type. The following code is an example of an HTML result type:
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/ResultsExtensions.cs)]
+[!code-csharp[](7.0-samples/WebMinAPIs/ResultsExtensions.cs)]
 
 We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResultExtensions?displayProperty=fullName> to make these custom results more discoverable.
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
+[!code-csharp[](7.0-samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
