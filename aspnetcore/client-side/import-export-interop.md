@@ -226,14 +226,14 @@ In the `index.html` file of an app generated from the `wasmbrowser` template, th
 <html>
 
 <head>
-  ...
-  <link rel="modulepreload" href="./main.js" />
-  <link rel="modulepreload" href="./dotnet.js" />
+    ...
+    <link rel="modulepreload" href="./main.js" />
+    <link rel="modulepreload" href="./dotnet.js" />
 </head>
 
 <body>
-  ...
-  <script type='module' src="./main.js"></script>
+    ...
+    <script type='module' src="./main.js"></script>
 </body>
 
 </html>
