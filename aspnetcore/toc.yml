@@ -700,10 +700,8 @@ items:
         uid: fundamentals/minimal-apis/min-api-filters
       - name: Unit and integration tests
         uid: fundamentals/minimal-apis/test-min-api
-      - name: Minimal Basics
-        items:
-          - name: Creating responses
-            uid: fundamentals/minimal-apis/responses
+      - name: Creating responses in minimal APIs
+        uid: fundamentals/minimal-apis/responses
   - name: Real-time apps
     displayName: signalr
     items:
