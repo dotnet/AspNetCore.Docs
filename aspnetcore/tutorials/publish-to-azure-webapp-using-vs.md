@@ -91,7 +91,7 @@ In the **Publish** dialog, in the **App Service** pane, select **Create new**.
 
 The **Create App Service** dialog appears:
 
-* The **App Name**, **Resource Group**, and **App Service Plan** entry fields are populated. You can keep these names or change them.
+* The **Name**, **Resource Group**, and **Hosting Plan** entry fields are populated. You can keep these names or change them.
 * Select **Create**.
 
 ![Create App Service dialog](publish-to-azure-webapp-using-vs/_static/newrg1.png)
