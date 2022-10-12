@@ -45,6 +45,15 @@ Components support multiple route templates using multiple [`@page` directives](
 > [!IMPORTANT]
 > For URLs to resolve correctly, the app must include a `<base>` tag ([location of `<head>` content](xref:blazor/project-structure#location-of-head-content)) with the app base path specified in the `href` attribute. For more information, see <xref:blazor/host-and-deploy/index#app-base-path>.
 
+As an alternative to specifying the route template as a string literal with the `@page` directive, constant-based route templates can be specified with the [`@attribute` directive](xref:mvc/views/razor#attribute).
+
+In the following example, the `@page` directive in a component is replaced with the `@attribute` directive and the constant-based route template in `Constants.CounterRoute`, which is set elsewhere in the app to "`/counter`":
+
+```diff
+- @page "/counter"
++ @attribute [Route(Constants.CounterRoute)]
+```
+
 ## Focus an element on navigation
 
 Use the <xref:Microsoft.AspNetCore.Components.Routing.FocusOnNavigate> component to set the UI focus to an element based on a CSS selector after navigating from one page to another. You can see the <xref:Microsoft.AspNetCore.Components.Routing.FocusOnNavigate> component in use by the `App` component of an app generated from a Blazor project template.
@@ -683,6 +692,15 @@ Components support multiple route templates using multiple [`@page` directives](
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> doesn't interact with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
 
+As an alternative to specifying the route template as a string literal with the `@page` directive, constant-based route templates can be specified with the [`@attribute` directive](xref:mvc/views/razor#attribute).
+
+In the following example, the `@page` directive in a component is replaced with the `@attribute` directive and the constant-based route template in `Constants.CounterRoute`, which is set elsewhere in the app to "`/counter`":
+
+```diff
+- @page "/counter"
++ @attribute [Route(Constants.CounterRoute)]
+```
+
 ## Provide custom content when content isn't found
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component allows the app to specify custom content if content isn't found for the requested route.
@@ -1108,6 +1126,15 @@ Components support multiple route templates using multiple [`@page` directives](
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> doesn't interact with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
 
+As an alternative to specifying the route template as a string literal with the `@page` directive, constant-based route templates can be specified with the [`@attribute` directive](xref:mvc/views/razor#attribute).
+
+In the following example, the `@page` directive in a component is replaced with the `@attribute` directive and the constant-based route template in `Constants.CounterRoute`, which is set elsewhere in the app to "`/counter`":
+
+```diff
+- @page "/counter"
++ @attribute [Route(Constants.CounterRoute)]
+```
+
 ## Provide custom content when content isn't found
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component allows the app to specify custom content if content isn't found for the requested route.
@@ -1377,6 +1404,15 @@ Components support multiple route templates using multiple [`@page` directives](
 
 > [!IMPORTANT]
 > For URLs to resolve correctly, the app must include a `<base>` tag ([location of `<head>` content](xref:blazor/project-structure#location-of-head-content)) with the app base path specified in the `href` attribute. For more information, see <xref:blazor/host-and-deploy/index#app-base-path>.
+
+As an alternative to specifying the route template as a string literal with the `@page` directive, constant-based route templates can be specified with the [`@attribute` directive](xref:mvc/views/razor#attribute).
+
+In the following example, the `@page` directive in a component is replaced with the `@attribute` directive and the constant-based route template in `Constants.CounterRoute`, which is set elsewhere in the app to "`/counter`":
+
+```diff
+- @page "/counter"
++ @attribute [Route(Constants.CounterRoute)]
+```
 
 ## Focus an element on navigation
 

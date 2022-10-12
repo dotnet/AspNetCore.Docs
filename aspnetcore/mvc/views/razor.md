@@ -466,6 +466,13 @@ The `@attribute` directive adds the given attribute to the class of the generate
 @attribute [Authorize]
 ```
 
+The `@attribute` directive can also be used to supply a constant-based route template in a Razor component. In the following example, the `@page` directive in a component is replaced with the `@attribute` directive and the constant-based route template in `Constants.CounterRoute`, which is set elsewhere in the app to "`/counter`":
+
+```diff
+- @page "/counter"
++ @attribute [Route(Constants.CounterRoute)]
+```
+
 ### `@code`
 
 *This scenario only applies to Razor components (`.razor`).*
