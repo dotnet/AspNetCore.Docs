@@ -70,7 +70,7 @@ The `Results` and `TypedResults` static classes provide a similar set of results
 
 An advantage of using `TypedResults` is that the implementation type automatically includes the response type metadata for the endpoint.
 
-Consider the follow endpoint, which a `200 OK` status code with the expected JSON response.
+Consider the follow endpoint, which a `200 OK` status code with the expected JSON response is produced.
 
 ```csharp
 app.MapGet("/hello", () => Results.Ok(new Message() {  Text = "Hello World!" }))
