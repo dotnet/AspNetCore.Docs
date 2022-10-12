@@ -1,5 +1,5 @@
 ---
-title: Creating responses with minimal APIs
+title: Creating responses in Minimal API apps
 author: brunolins16
 description: Learn how to use XXXX of minimal APIs in ASP.NET Core.
 ms.author: brolivei
@@ -8,7 +8,7 @@ ms.date: 10/11/2022
 uid: fundamentals/minimal-apis/responses
 ---
 
-# Creating responses with minimal APIs
+# Creating responses in Minimal API apps
 
 Minimal endpoints support the following types of return values:
 
