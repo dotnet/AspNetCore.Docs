@@ -1,20 +1,20 @@
 ---
-title: Creating responses in Minimal API apps
+title: Create responses in Minimal API apps
 author: brunolins16
-description: Learn how to use XXXX of minimal APIs in ASP.NET Core.
+description: Learn how to create responses for minimal APIs in ASP.NET Core.
 ms.author: brolivei
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 10/11/2022
 uid: fundamentals/minimal-apis/responses
 ---
 
-# Creating responses in Minimal API apps
+# How to create responses in Minimal API apps
 
 Minimal endpoints support the following types of return values:
 
-1. `IResult` based - This includes `Task<IResult>` and `ValueTask<IResult>`
-1. `string` - This includes `Task<string>` and `ValueTask<string>`
-1. `T` (Any other type) - This includes `Task<T>` and `ValueTask<T>`
+1. `string` - This includes `Task<string>` and `ValueTask<string>`.
+1. `T` (Any other type) - This includes `Task<T>` and `ValueTask<T>`.
+1. `IResult` based - This includes `Task<IResult>` and `ValueTask<IResult>`.
 
 ## `string` return values
 
@@ -38,7 +38,7 @@ Hello World
 
 |Behavior|Content-Type|
 |--|--|
-| The framework will JSON serialize the response| `application/json`
+| The framework will JSON serialize the response.| `application/json`
 
 Consider the following route handler, which returns an anonymous type containing a `Message` string property.
 
@@ -56,28 +56,24 @@ The `200` status code is returned with `application/json` Content-Type header an
 
 |Behavior|Content-Type|
 |--|--|
-| The framework calls [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A)| Decided by the `IResult` implementation
+| The framework calls [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A).| Decided by the `IResult` implementation.
 
-The `IResult` interface defines a contract that represents the result of an HTTP endpoint. The static [Results](<xref:Microsoft.AspNetCore.Http.Results>) class and the static [TypedResults](<xref:Microsoft.AspNetCore.Http.TypedResults>) are used to create varying `IResult` objects that represent different types of responses.
+The `IResult` interface defines a contract that represents the result of an HTTP endpoint. The static [Results](<xref:Microsoft.AspNetCore.Http.Results>) class and the static [TypedResults](<xref:Microsoft.AspNetCore.Http.TypedResults>) are used to create various `IResult` objects that represent different types of responses.
 
-The following example uses the built-in result types to customize the response:
+### TypedResults vs Results
 
-[!code-csharp[](7.0-samples/todo/Program.cs?name=snippet_getCustom)]
-
-### TypedResults x Results
-
-The `Results` and `TypedResults` static classes provide a similar set of results helpers, however, the `Results` static class helpers return type is `IResult`, that means that a conversion is needed when the concrete type is needed, eg.: unit testing, while `TypedResults` return type is one of the `IResult` implementation types (<xref:Microsoft.AspNetCore.Http.HttpResults> namespace).
+The `Results` and `TypedResults` static classes provide similar sets of results helpers. However, the `Results` helpers' return type is `IResult`, while each `TypedResults` helper's return type is one of the `IResult` implementation types. The difference means that for `Results` helpers a conversion is needed when the concrete type is needed, for example, for unit testing. The implementation types are defined in the <xref:Microsoft.AspNetCore.Http.HttpResults> namespace.
 
 An advantage of using `TypedResults` is that the implementation type automatically includes the response type metadata for the endpoint.
 
-Consider the follow endpoint, which a `200 OK` status code with the expected JSON response is produced.
+Consider the follow endpoint, for which a `200 OK` status code with the expected JSON response is produced.
 
 ```csharp
 app.MapGet("/hello", () => Results.Ok(new Message() {  Text = "Hello World!" }))
     .Produces<Message>();
 ```
 
-In order to document this endpoint correctly the extensions method `Produces` was called. However, using `TypedResults` automatically includes the metadata for the endpoint as shown in the following code.
+In order to document this endpoint correctly the extensions method `Produces` is called. However, it's not necessary to call `Produces` if `TypedResults` is used instead of `Results`, as shown in the following code. `TypedResults` automatically includes the metadata for the endpoint.
 
 ```csharp
 app.MapGet("/hello", () => TypedResults.Ok(new Message() {  Text = "Hello World!" }));
@@ -87,11 +83,11 @@ More information about describing a response type can be found in [OpenAPI suppo
 
 ### Results<TResult1, TResultN>
 
-When using the static `TypedResult` class to create the `IResult` objects and multiple `IResult` return types are needed, returning [`Result<TResult1, TResultN>`](/dotnet/api/microsoft.aspnetcore.http.httpresults.results-2) union type from a Minimal endpoint handler is an alternative over returning `IResult` because the generic union types automatically retain the endpoint metadata and, since the `Results<TResult1, TResultN>` union types implement implicit cast operators, the compiler can automatically convert the types specified in the generic arguments to an instance of the union type. 
+When the static `TypedResult` class is used to create the `IResult` objects, and multiple `IResult` implementation types are returned from an endpoint handler, use [`Results<TResult1, TResultN>`](/dotnet/api/microsoft.aspnetcore.http.httpresults.results-2) as the endpoint handler return type. This alternative is better than returning `IResult` because the generic union types automatically retain the endpoint metadata. And since the `Results<TResult1, TResultN>` union types implement implicit cast operators, the compiler can automatically convert the types specified in the generic arguments to an instance of the union type. 
 
 This has the added benefit of providing compile-time checking that a route handler actually only returns the results that it declares it does. Attempting to return a type that isn’t declared as one of the generic arguments to `Results<>` results in a compilation error.
 
-Consider the follow endpoint, which a `400 BadRequest` status code is returned when the `orderId` it greater than `999` otherwise will produce a `200 OK` with the expected content.
+Consider the following endpoint, for which a `400 BadRequest` status code is returned when the `orderId` is greater than `999`. Otherwise, it produces a `200 OK` with the expected content.
 
 ```csharp
 app.MapGet("/orders/{orderId}", IResult (int orderId)
@@ -100,7 +96,7 @@ app.MapGet("/orders/{orderId}", IResult (int orderId)
     .Produces<Order>();
 ```
 
-In order to document this endpoint correctly the extensions method `Produces` was called. However, since the `TypedResults` automatically includes the metadata for the endpoint you can change to return the `Result<T1,TN>` union type as shown in the following code.
+In order to document this endpoint correctly the extension method `Produces` is called. However, since the `TypedResults` helper automatically includes the metadata for the endpoint, you return the `Results<T1, Tn>` union type instead, as shown in the following code.
 
 ```csharp
 app.MapGet("/orders/{orderId}", Results<BadRequest, Ok<Order>> (int orderId) 
