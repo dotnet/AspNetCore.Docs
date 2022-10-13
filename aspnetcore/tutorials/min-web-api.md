@@ -906,9 +906,9 @@ Minimal APIs have:
 
 ## Next steps
 
-## Configure JSON serialization options
+### Configure JSON serialization options
 
-For information on how to configure JSON serialization in your Minimal API apps, see [OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/responses#configure-json-serialization-options).
+For information on how to configure JSON serialization in your Minimal API apps, see [Configure JSON serialization options](xref:fundamentals/minimal-apis/responses#configure-json-serialization-options).
 
 ### Handle errors and exceptions
 
