@@ -384,7 +384,24 @@ Run the app from the Server project. When using Visual Studio, either:
 * Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
 * Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
+<!-- 
+
+    HOLD FOR ADDITIONAL WORK TO FULLY FLESH OUT THE SCENARIO FOR HOSTED WASM APPS
+
+    Place a dedicated INCLUDE for this because the existing INCLUDE is really written
+    for the Identity Server-based hosted WASM topic.
+
+    In the *Custom Identity components* section of the scaffold identity topic at ...
+
+    \security\authentication\scaffold-identity.md
+
+    ... there's a commented-out remark on Identity components for hsoted WASM apps.
+    That statement can be brought back (with perhaps a revised heading bookmark)
+    after this content is resolved.
+
 [!INCLUDE[](~/blazor/security/includes/usermanager-signinmanager.md)]
+
+-->
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-60-or-earlier.md)]
 
@@ -770,7 +787,24 @@ Run the app from the Server project. When using Visual Studio, either:
 * Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
 * Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
+<!-- 
+
+    HOLD FOR ADDITIONAL WORK TO FULLY FLESH OUT THE SCENARIO FOR HOSTED WASM APPS
+
+    Place a dedicated INCLUDE for this because the existing INCLUDE is really written
+    for the Identity Server-based hosted WASM topic.
+
+    In the *Custom Identity components* section of the scaffold identity topic at ...
+
+    \security\authentication\scaffold-identity.md
+
+    ... there's a commented-out remark on Identity components for hsoted WASM apps.
+    That statement can be brought back (with perhaps a revised heading bookmark)
+    after this content is resolved.
+
 [!INCLUDE[](~/blazor/security/includes/usermanager-signinmanager.md)]
+
+-->
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-60-or-earlier.md)]
 
@@ -1148,7 +1182,24 @@ Run the app from the Server project. When using Visual Studio, either:
 * Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
 * Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
+<!-- 
+
+    HOLD FOR ADDITIONAL WORK TO FULLY FLESH OUT THE SCENARIO FOR HOSTED WASM APPS
+
+    Place a dedicated INCLUDE for this because the existing INCLUDE is really written
+    for the Identity Server-based hosted WASM topic.
+
+    In the *Custom Identity components* section of the scaffold identity topic at ...
+
+    \security\authentication\scaffold-identity.md
+
+    ... there's a commented-out remark on Identity components for hsoted WASM apps.
+    That statement can be brought back (with perhaps a revised heading bookmark)
+    after this content is resolved.
+
 [!INCLUDE[](~/blazor/security/includes/usermanager-signinmanager.md)]
+
+-->
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot-60-or-earlier.md)]
 
@@ -1534,7 +1585,24 @@ Run the app from the Server project. When using Visual Studio, either:
 * Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
 * Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
+<!-- 
+
+    HOLD FOR ADDITIONAL WORK TO FULLY FLESH OUT THE SCENARIO FOR HOSTED WASM APPS
+
+    Place a dedicated INCLUDE for this because the existing INCLUDE is really written
+    for the Identity Server-based hosted WASM topic.
+
+    In the *Custom Identity components* section of the scaffold identity topic at ...
+
+    \security\authentication\scaffold-identity.md
+
+    ... there's a commented-out remark on Identity components for hsoted WASM apps.
+    That statement can be brought back (with perhaps a revised heading bookmark)
+    after this content is resolved.
+
 [!INCLUDE[](~/blazor/security/includes/usermanager-signinmanager.md)]
+
+-->
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
