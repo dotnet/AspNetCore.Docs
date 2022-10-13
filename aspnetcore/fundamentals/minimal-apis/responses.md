@@ -159,7 +159,7 @@ app.MapGet("/old-path", () => Results.Redirect("/new-path"));
 app.MapGet("/download", () => Results.File("myfile.text"));
 ```
 
-## Customizing results
+## Customizing responses
 
 Applications can control responses by implementing a custom <xref:Microsoft.AspNetCore.Http.IResult> type. The following code is an example of an HTML result type:
 
@@ -188,14 +188,16 @@ public static void PopulateMetadata(MethodInfo method, EndpointBuilder builder)
 
 ## Configure JSON serialization options
 
+By default, Minimal API apps use [`Web defaults`](dotnet/standard/serialization/system-text-json/configure-options#web-defaults-for-jsonserializeroptions) options during JSON serialization and deserialization.
+
+Options can be configured by invoking `ConfigureHttpJsonOptions` and the configured options are applied when the app calls extension methods defined in <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions> or <xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions>.
+ 
 The following example invokes [`ConfigureHttpJsonOptions`](https://source.dot.net/#Microsoft.AspNetCore.Http.Extensions/HttpJsonServiceExtensions.cs,496f2a8225e6c731) to configure options that apply wherever the app serializes or deserializes JSON for HTTP requests and responses:
 
 [!code-csharp[](7.0-samples/WebMinJson/Program.cs?name=snippet_1)]
 
-Options that you configure by invoking `ConfigureHttpJsonOptions` apply when the app calls extension methods defined in <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions> or <xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions>.
-
 To make more localized changes to the serialization options, pass modified versions of <xref:System.Text.Json.JsonSerializerOptions> directly into the responses that are being sent from endpoints, as shown in the following example:
 
-[!code-csharp[](7.0-samples/WebMinJson/Program.cs?name=snippet_2)]
+[!code-csharp[](7.0-samples/WebMinJson/Program.cs?name=snippet_2&highlight=12,13)]
 
 
