@@ -904,19 +904,11 @@ Minimal APIs have:
 - No support for [JsonPatch](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch/)
 - No support for [OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/)
 
+## Next steps
+
 ## Configure JSON serialization options
 
-The following example invokes [`ConfigureHttpJsonOptions`](https://source.dot.net/#Microsoft.AspNetCore.Http.Extensions/HttpJsonServiceExtensions.cs,496f2a8225e6c731) to configure options that apply wherever the app serializes or deserializes JSON for HTTP requests and responses:
-
-[!code-csharp[](min-web-api/samples/7.x/WebMinJson/Program.cs?name=snippet_1)]
-
-Options that you configure by invoking `ConfigureHttpJsonOptions` apply when the app calls extension methods defined in <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions> or <xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions>.
-
-To make more localized changes to the serialization options, pass modified versions of <xref:System.Text.Json.JsonSerializerOptions> directly into the responses that are being sent from endpoints, as shown in the following example:
-
-[!code-csharp[](min-web-api/samples/7.x/WebMinJson/Program.cs?name=snippet_2)]
-
-## Next steps
+For information on how to configure JSON serialization in your Minimal API apps, see [OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/responses#configure-json-serialization-options).
 
 ### Handle errors and exceptions
 
