@@ -168,3 +168,22 @@ Applications can control responses by implementing a custom <xref:Microsoft.AspN
 We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResultExtensions?displayProperty=fullName> to make these custom results more discoverable.
 
 [!code-csharp[](7.0-samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
+
+A custom `IResult` type can describe its own annotation by implementing the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> interface. For example, the following code adds an annotation, to the previous `HtmlResult` type, that describe the response produced by the endpoint.
+
+[!code-csharp[](7.0-samples/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_IEndpointMetadataProvider&highlight=1,14-18)]
+
+The `ProducesHtmlMetadata` is an implementation of <xref:Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata> that define the produced response content type `text/html` and the status code `200 OK`.
+
+[!code-csharp[](7.0-samples/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_ProducesHtmlMetadata)]
+
+An alternative approach is using the <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute?displayProperty=fullName> to describe the produced response. The follow code change the `PopulateMetadata` method to use `ProducesAttribute`.
+
+```csharp
+public static void PopulateMetadata(MethodInfo method, EndpointBuilder builder)
+{
+    builder.Metadata.Add(new ProducesAttribute(MediaTypeNames.Text.Html));
+}
+```
+
+
