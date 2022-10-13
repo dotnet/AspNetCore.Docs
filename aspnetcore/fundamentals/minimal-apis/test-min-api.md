@@ -15,9 +15,11 @@ By [Fiyaz Bin Hasan](https://github.com/fiyazbinhasan), and [Rick Anderson](http
 
 The [sample code on GitHub](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample) provides an example of unit and integration tests on a Minimal API app.
 
+<a name="iit7"></a>
+
 ## IResult implementation types
 
-Public <xref:Microsoft.AspNetCore.Http.IResult> implementation types in the <xref:Microsoft.AspNetCore.Http.HttpResults?displayProperty=fullName> namespace can be used to unit test your minimal route handlers when using named methods instead of lambdas.
+Public <xref:Microsoft.AspNetCore.Http.IResult> implementation types in the <xref:Microsoft.AspNetCore.Http.HttpResults?displayProperty=fullName> namespace can be used to unit test minimal route handlers when using named methods instead of lambdas.
 
 The following code uses the [`Ok<TValue>`](/dotnet/api/microsoft.aspnetcore.http.httpresults.ok-1) class:
 

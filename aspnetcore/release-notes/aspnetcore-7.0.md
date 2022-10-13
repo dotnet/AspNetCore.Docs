@@ -130,6 +130,16 @@ In .NET 7 the types implementing `IResult` are public, allowing for type asserti
 
 [!code-csharp[](~/fundamentals/minimal-apis/misc-samples/typedResults/TypedResultsApiWithTest/Test/WeatherApiTest.cs?name=snippet_1&highlight=7-8)]
 
+### Improved unit testability for minimal route handlers
+
+<xref:Microsoft.AspNetCore.Http.IResult> implementation types are now publicly available in the <xref:Microsoft.AspNetCore.Http.HttpResults?displayProperty=fullName> namespace. The `IResult` implementation types can be used to unit test minimal route handlers when using named methods instead of lambdas.
+
+The following code uses the [`Ok<TValue>`](/dotnet/api/microsoft.aspnetcore.http.httpresults.ok-1) class:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_" highlight="18":::
+
+For more information, see [`IResult` implementation types](xref:fundamentals/minimal-apis/test-min-api#iit7).
+
 ### OpenAPI improvements for minimal APIs
 
 <a name="openapinuget"></a>
