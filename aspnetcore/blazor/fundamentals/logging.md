@@ -1751,7 +1751,7 @@ var connection = new HubConnectionBuilder()
 
 Log Blazor authentication messages at the <xref:Microsoft.Extensions.Logging.LogLevel.Debug?displayProperty=nameWithType> or <xref:Microsoft.Extensions.Logging.LogLevel.Trace?displayProperty=nameWithType> logging levels with a logging configuration in app settings or by using a log filter for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> in `Program.cs`.
 
-In an app settings file (for example, `wwwroot/appsettings.Developoment.json`):
+In an app settings file (for example, `wwwroot/appsettings.Development.json`):
 
 ```json
 "Logging": {
