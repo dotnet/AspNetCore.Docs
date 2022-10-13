@@ -21,7 +21,7 @@ Public <xref:Microsoft.AspNetCore.Http.IResult> implementation types in the <xre
 
 The following code uses the [`Ok<TValue>`](/dotnet/api/microsoft.aspnetcore.http.httpresults.ok-1) class:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_" highlight="18:::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_" highlight="18":::
 
 ## Additional Resources
 
