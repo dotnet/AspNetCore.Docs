@@ -171,13 +171,13 @@ We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResu
 
 Also, a custom `IResult` type can describe its own annotation by implementing the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> interface. For example, the following code adds an annotation, to the previous `HtmlResult` type, that describe the response produced by the endpoint.
 
-[!code-csharp[](7.0-samples/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_IEndpointMetadataProvider&highlight=1,17-21)]
+[!code-csharp[](7.0-samples/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_IEndpointMetadataProvider&highlight=1,17-20)]
 
 The `ProducesHtmlMetadata` is an implementation of <xref:Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata> that define the produced response content type `text/html` and the status code `200 OK`.
 
 [!code-csharp[](7.0-samples/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_ProducesHtmlMetadata&highlight=5,7)]
 
-An alternative approach is using the <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute?displayProperty=fullName> to describe the produced response. The follow code change the `PopulateMetadata` method to use `ProducesAttribute`.
+An alternative approach is using the <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute?displayProperty=fullName> to describe the produced response. The following code changes the `PopulateMetadata` method to use `ProducesAttribute`.
 
 ```csharp
 public static void PopulateMetadata(MethodInfo method, EndpointBuilder builder)
