@@ -1602,7 +1602,7 @@ app.MapGet("/download", () => Results.File("myfile.text"));
 
 ### Built-in results
 
-* [!INCLUDE [results-helpers](minimal-apis/includes/results-helpers.md)]
+[!INCLUDE [results-helpers](minimal-apis/includes/results-helpers.md)]
 
 ### Customizing results
 
