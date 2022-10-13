@@ -30,7 +30,7 @@ class HtmlResult : IResult, IEndpointMetadataProvider
         builder.Metadata.Add(new ProducesHtmlMetadata());
     }
 }
-// <snippet_IEndpointMetadataProvider>
+// </snippet_IEndpointMetadataProvider>
 
 // <snippet_ProducesHtmlMetadata>
 internal sealed class ProducesHtmlMetadata : IProducesResponseTypeMetadata
@@ -41,4 +41,4 @@ internal sealed class ProducesHtmlMetadata : IProducesResponseTypeMetadata
 
     public IEnumerable<string> ContentTypes { get; } = new[] { MediaTypeNames.Text.Html };
 }
-// <snippet_ProducesHtmlMetadata>
+// </snippet_ProducesHtmlMetadata>
