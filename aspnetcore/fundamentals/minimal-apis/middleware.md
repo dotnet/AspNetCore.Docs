@@ -10,7 +10,7 @@ uid: fundamentals/minimal-apis/middleware
 # Middleware in Minimal API apps
 
 `WebApplication` will automatically add the following middleware depending on certain conditions.
-* [`UseDeveloperExceptionPage`](/dotnet/api/microsoft.aspnetcore.diagnostics.developerexceptionpagemiddleware) will be added first if the [`HostingEnvironment`](~/fundamentals/environments) is `"Development"`.
+* [`UseDeveloperExceptionPage`](/dotnet/api/microsoft.aspnetcore.diagnostics.developerexceptionpagemiddleware) will be added first if the [`HostingEnvironment`](xref:fundamentals/environments) is `"Development"`.
 * [`UseRouting`](/dotnet/api/microsoft.aspnetcore.builder.endpointroutingapplicationbuilderextensions.userouting) will be added second if user code didn't already call `UseRouting` and if there are endpoints configured, for example `app.MapGet`.
 * [`UseEndpoints`](/dotnet/api/microsoft.aspnetcore.builder.endpointroutingapplicationbuilderextensions.useendpoints) will be added at the end of the middleware pipeline if any endpoints are configured.
 * [`UseAuthentication`](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication) will be added immediately after `UseRouting` if [`IAuthenticationSchemeProvider`](/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationschemeprovider) can be detected in the service provider. `IAuthenticationSchemeProvider` is added by default when using [`AddAuthentication`](/dotnet/api/microsoft.extensions.dependencyinjection.authenticationservicecollectionextensions.addauthentication), and services are detected using [`IServiceProviderIsService`](/dotnet/api/microsoft.extensions.dependencyinjection.iserviceproviderisservice).
@@ -78,4 +78,4 @@ app.Run(context =>
 });
 ```
 
-For more information about middleware see [ASP.NET Core Middleware](~/fundamentals/middleware/index), and the [list of built-in middleware](~/fundamentals/middleware/index#built-in-middleware) that can be added to applications.
+For more information about middleware see [ASP.NET Core Middleware](xref:fundamentals/middleware/index), and the [list of built-in middleware](xref:fundamentals/middleware/index#built-in-middleware) that can be added to applications.
