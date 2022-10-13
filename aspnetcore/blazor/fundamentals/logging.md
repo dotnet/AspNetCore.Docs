@@ -1751,30 +1751,32 @@ var connection = new HubConnectionBuilder()
 
 Log Blazor authentication messages at the <xref:Microsoft.Extensions.Logging.LogLevel.Debug?displayProperty=nameWithType> or <xref:Microsoft.Extensions.Logging.LogLevel.Trace?displayProperty=nameWithType> logging levels with a logging configuration in app settings or by using a log filter for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> in `Program.cs`.
 
-In an app settings file (for example, `wwwroot/appsettings.Development.json`):
+Use ***either** of the following approaches:
 
-```json
-"Logging": {
-  "LogLevel": {
-    "Microsoft.AspNetCore.Components.WebAssembly.Authentication": "Debug"
+* In an app settings file (for example, `wwwroot/appsettings.Development.json`):
+
+  ```json
+  "Logging": {
+    "LogLevel": {
+      "Microsoft.AspNetCore.Components.WebAssembly.Authentication": "Debug"
+    }
   }
-}
-```
+  ```
 
-For more information on how to enable a Blazor WebAssembly app to read app settings files, see <xref:blazor/fundamentals/configuration#logging-configuration>.
+  For more information on how to enable a Blazor WebAssembly app to read app settings files, see <xref:blazor/fundamentals/configuration#logging-configuration>.
 
-Using a log filter, the following example:
+* Using a log filter, the following example:
 
-* Activates logging for the `Debug` build configuration using a [C# preprocessor directive](/dotnet/csharp/language-reference/preprocessor-directives).
-* Logs Blazor authentication messages at the <xref:Microsoft.Extensions.Logging.LogLevel.Debug> log level.
+  * Activates logging for the `Debug` build configuration using a [C# preprocessor directive](/dotnet/csharp/language-reference/preprocessor-directives).
+  * Logs Blazor authentication messages at the <xref:Microsoft.Extensions.Logging.LogLevel.Debug> log level.
 
-```csharp
-#if DEBUG
-    builder.Logging.AddFilter(
-        "Microsoft.AspNetCore.Components.WebAssembly.Authentication", 
-        LogLevel.Debug);
-#endif
-```
+  ```csharp
+  #if DEBUG
+      builder.Logging.AddFilter(
+          "Microsoft.AspNetCore.Components.WebAssembly.Authentication", 
+          LogLevel.Debug);
+  #endif
+  ```
 
 > [!NOTE]
 > Blazor WebAssembly apps only log to the client-side [browser developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) console.
