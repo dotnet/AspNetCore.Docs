@@ -111,7 +111,7 @@ app.MapGet("/orders/{orderId}", Results<BadRequest, Ok<Order>> (int orderId)
 
 ### Built-in results
 
-* [!INCLUDE [results-helpers](results-helpers.md)]
+* [!INCLUDE [results-helpers](includes/results-helpers.md)]
 
 The following code demonstrate the usage of the common result helpers.
 
