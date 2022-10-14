@@ -209,6 +209,299 @@ SignalR hub methods now support injecting services through dependency injection 
 
 Hub constructors can accept services from DI as parameters, which can be stored in properties on the class for use in a hub method. For more information, see [Inject services into a hub](xref:signalr/hubs?view=aspnetcore-7.0&preserve-view=true#inject-services-into-a-hub)
 
+## Blazor
+
+### Handle location changing events
+
+Blazor in .NET 7 now has support for handling location changing events. This allows you to warn users about unsaved work or to perform related actions when the user performs a page navigation.
+
+For more information, see the following sections of the *Routing and navigation* article:
+
+* [Navigation options](xref:blazor/fundamentals/routing?view=aspnetcore-7.0#navigation-options)
+* [Handle/prevent location changes](xref:blazor/fundamentals/routing?view=aspnetcore-7.0#handleprevent-location-changes)
+
+### Calling `InvokeAsync(StateHasChanged)` causes page to fallback to the default culture
+
+If a Razor component defines an event that's triggered from a background thread, the component might be required to capture and restore the execution context (`ExecutionContext`) at the time the handler is registered.
+
+For more information, see the following resources:
+
+* [Calling `InvokeAsync(StateHasChanged)` causes page to fallback to default culture (dotnet/aspnetcore #28521)](https://github.com/dotnet/aspnetcore/issues/28521)
+* <xref:blazor/components/index?view=aspnetcore-7.0#invoke-component-methods-externally-to-update-state>
+
+#26574
+
+[28521](https://github.com/dotnet/aspnetcore/issues/28521)
+
+### Empty Blazor project templates
+
+Blazor has two new project templates for starting from a blank slate. The new **Blazor Server App Empty** and **Blazor WebAssembly App Empty** project templates are just like their non-empty counterparts but without any extra demonstration code. These empty templates include only a basic home page, and we've also removed Bootstrap so that you can start with whatever CSS framework you prefer.
+
+For more information, see the following articles:
+
+* <xref:blazor/tooling?view=aspnetcore-7.0>
+* <xref:blazor/project-structure?view=aspnetcore-7.0>
+
+### Blazor custom elements no longer experimental
+
+The [`Microsoft.AspNetCore.Components.CustomElements`](https://www.nuget.org/packages/microsoft.aspnetcore.components.customelements) package for building [standards based custom elements](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements) is no longer experimental.
+
+For more information, see <xref:blazor/components/index?view=aspnetcore-7.0#blazor-custom-elements>.
+
+<!--
+
+    IN PROGRESS
+
+### Improve prerendering and authentication experience in Blazor
+
+[27592](https://github.com/dotnet/aspnetcore/issues/27592)
+
+-->
+
+### Bind get/set/after modifiers
+
+Provides ways of customizing how Blazor's @bind reads and writes a value
+
+<!--
+
+NOTE: `@bind:get` / `@bind:set` are only covered in an example for binding across more than two components. There isn't textual coverage outside of that section or dedicated examples for these.
+
+-->
+
+For more information, see the following:
+
+* [`@bind:after="{EVENT}"` content at the end of the article's introductory guidance](xref:blazor/components/data-binding?view=aspnetcore-7.0)
+* [*Bind across more than two components* section demonstrates the use of `@bind:get`/`@bind:set` syntax](xref:blazor/components/data-binding?view=aspnetcore-7.0#bind-across-more-than-two-components)
+
+Additional information:
+
+* [Design proposal: Bind get/set/after modifiers (dotnet/aspnetcore #39837)](https://github.com/dotnet/aspnetcore/issues/39837)
+* [Support `@bind:get`, `@bind:set`, `@bind:after` (dotnet/razor-compiler #70)](https://github.com/dotnet/razor-compiler/pull/70)
+
+> [!WARNING]
+> Final design changes prior to the general release might not be reflected in the initial design described by the product unit's GitHub issue and pull request. For the latest information on this feature, see the preceding cross-links to the ***official Blazor documentation***, which is kept updated with the latest guidance from the product unit.
+
+<!--
+
+    IN PROGRESS
+
+### Enable integration with 3rd party assets management solutions
+
+[38445](https://github.com/dotnet/aspnetcore/issues/38445)
+
+-->
+
+<!--
+
+    HOLD
+    
+    This is a tooling update for what Steve says is a rare situation.
+    No doc updates were made to cover it, but we could include something here on it.
+    I'm floating a draft section for this here.
+    
+### Components don't reset their received parameters during Hot Reload updates
+
+When using Hot Reload, removing a parameter value that's passed to a child component, the prior refresh mechanism didn't account for the change.
+
+Example:
+
+In the default project template under .NET 6, if the `SurveyPrompt` component's `Title` parameter value in the `Index` component is changed:
+
+```diff
+- <SurveyPrompt Title="How is Blazor working for you?" />
++ <SurveyPrompt />
+```
+
+The change wasn't reflected in the UI. This is because the existing `SurveyPrompt` instance already has a value for its `Title` property. The prior value isn't overwritten. In .NET 7, `SetParametersAsync` determines if a hot reload is in progress. If a hot reload occurs, `[Parameter]` properties are reset to their default values before receiving the new set from the component's parent.
+
+-->
+
+### Dynamic authentication requests with MSAL in Blazor WebAssembly
+
+Blazor provides out-of-the-box support for authentication using OpenID Connect and a variety of identity providers including Azure Active Directory (Azure AD) and Azure AD B2C. In .NET 7, Blazor WebAssembly supports creating dynamic authentication requests at runtime with custom parameters to handle advanced authentication scenarios.
+
+For more information, see the following articles:
+
+* <xref:blazor/security/webassembly/index?view=aspnetcore-7.0#customize-authentication>
+* <xref:blazor/security/webassembly/additional-scenarios?view=aspnetcore-7.0#custom-authentication-request-scenarios>
+
+### Blazor WebAssembly debugging improvements
+
+Blazor WebAssembly debugging has the following improvements:
+
+* Support for the **Just My Code** setting to show or hide type members not from user code.
+* Support for inspecting multidimensional arrays.
+* **Call Stack** now shows the correct name for async methods.
+* Improved expression evaluation.
+* Correct handling of the `new` keyword on derived members.
+* Support for debugger related attributes in `System.Diagnostics`.
+
+### System.Security.Cryptography support on WebAssembly
+
+.NET 6 supported the SHA family of hashing algorithms when running on WebAssembly. .NET 7 enables more cryptographic algorithms by taking advantage of [:::no-loc text="SubtleCrypto":::](https://developer.mozilla.org/docs/Web/API/SubtleCrypto), when possible, and falling back to a .NET implementation when :::no-loc text="SubtleCrypto"::: can't be used. The following algorithms are supported on WebAssembly:
+
+* SHA1
+* SHA256
+* SHA384
+* SHA512
+* HMACSHA1
+* HMACSHA256
+* HMACSHA384
+* HMACSHA512
+* AES-CBC
+* PBKDF2
+* HKDF
+
+For more information, see [Developers targeting browser-wasm can use Web Crypto APIs (dotnet/runtime #40074)](https://github.com/dotnet/runtime/issues/40074).
+
+<!-- 
+
+    🪲 fix ... not addressed in docs
+
+### Generic Blazor component can't correctly infer it's type when type has an additional constraint
+
+https://github.com/dotnet/aspnetcore/issues/25588
+
+-->
+
+<!--
+
+    🪲 fix ... not addressed in docs
+
+### CascadingTypeParameter problem
+
+https://github.com/dotnet/aspnetcore/issues/38479
+
+-->
+
+### Inject services into custom validation attributes in Blazor
+
+Inject services into custom validation attributes. Blazor sets up the `ValidationContext` so that it can be used as a service provider.
+
+For more information, see <xref:blazor/forms-validation?view=aspnetcore-7.0#custom-validation-attributes>.
+
+### Blazor WebAssembly default browser for debugging adopts Microsoft Edge
+
+In release versions prior to .NET 7, the default browser for debugging is Google Chrome. In .NET 7, the default browser for debugging is Microsoft Edge.
+
+### `Input*` components outside of an `EditContext`/`EditForm`
+
+The built-in input components are now supported outside of a form in Razor component markup.
+
+For more information, see <xref:blazor/forms-and-input-components?view=aspnetcore-7.0#built-in-input-components>.
+
+### Project template changes
+
+When .NET 6 was released last year, the HTML markup of the `_Host` page (`Pages/_Host.chstml`) was split between the `_Host` page and a new `_Layout` page (`Pages/_Layout.chstml`) in the .NET 6 Blazor Server project template. In .NET 7, the HTML markup has been moved back to the `_Host` page (`Pages/_Host.chstml`) in project templates.
+
+Several additional changes were made to the .NET 7 Blazor project templates. It isn't feasible to list every change to the templates in the documentation. To migrate an app to .NET 7 in order to adopt all of the changes, see <xref:migration/60-to-70#blazor>.
+
+### Experimental `QuickGrid` component
+
+The new `QuickGrid` component provides a convenient data grid component for most common requirements and as a reference architecture and performance baseline for anyone building Blazor data grid components.
+
+For more information, see <xref:blazor/components/index?view=aspnetcore-7.0#quickgrid-component>.
+
+Live demo: [QuickGrid for Blazor sample app](https://aspnet.github.io/quickgridsamples/)
+
+<!--
+
+    HOLD
+
+    It looks like this is an impl detail that only pertains to browser nav history state.
+
+### `NavigationManager` supports state
+
+https://github.com/dotnet/aspnetcore/pull/42534
+
+-->
+
+### Virtualization enhancements
+
+Virtualization enhancements in .NET 7:
+
+* The `Virtualize` component supports using the document itself as the scroll root, as an alternative to having some other element with `overflow-y: scroll`.
+* If the `Virtualize` component is placed inside an element that requires a specific child tag name, `SpacerElement` allows you to obtain or set the virtualization spacer tag name.
+
+For more information, see the following sections of the *Virtualization* article:
+
+* [Root-level virtualization](xref:blazor/components/virtualization?view=aspnetcore-7.0#root-level-virtualization)
+* [Control the spacer element tag name](xref:blazor/components/virtualization?view=aspnetcore-7.0#control-the-spacer-element-tag-name)
+
+<!--
+
+    HOLD
+    
+    This is covered via the existing ref source link in the article.
+    I don't think we need to remark on it in the article, but you may wish to say something here.
+    I'll float some draft language here.
+
+### `MouseEventArgs` updates
+
+`MovementX` and `MovementY` have been added to `MouseEventArgs`.
+
+For more information, see <xref:blazor/components/event-handling?view=aspnetcore-7.0#built-in-event-arguments>.
+
+-->
+
+### New Blazor loading page
+
+The Blazor WebAssembly project template has a new loading UI that shows the progress of loading the app.
+
+For more information, see <xref:blazor/fundamentals/startup?view=aspnetcore-7.0#loading-progress-indicators>.
+
+### Improved diagnostics for authentication in Blazor WebAssembly
+
+To help diagnose authentication issues in Blazor WebAssembly apps we added detailed logging that you can enable using the following logging configuration.
+
+For more information, see <xref:blazor/fundamentals/logging?view=aspnetcore-7.0#blazor-webassembly-authentication-logging>.
+
+<!--
+
+    IN PROGRESS
+
+### .NET JavaScript interop on WebAssembly
+
+.NET JavaScript `[JSImport]`/`[JSExport]` interop API is a new low-level mechanism for using .NET in Blazor WebAssembly and JavaScript-based apps. With this new JavaScript interop capability, you can invoke .NET code from JavaScript using the .NET WebAssembly runtime and call into JavaScript functionality from .NET without any dependency on the Blazor UI component model.
+
+For more information, see <xref:blazor/js-interop/import-export-interop>.
+
+Under consideration for docs ...
+
+[Blog Post (WebAssembly multithreading experimental)](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-7-rc-2/#webassembly-multithreading-experimental)
+
+-->
+
+### Conditional registration of the authentication state provider
+
+Prior to the release of .NET 7, `AuthenticationStateProvider` was registered with the DI container with `AddScoped`. This made it difficult to debug applications, as it forced a specific order of service registrations when providing a custom implementation. Due to internal framework changes, it's no longer necessary to register `AuthenticationStateProvider` with `AddScoped`:
+
+```diff
+- builder.Services.AddScoped<AuthenticationStateProvider, ExternalAuthStateProvider>();
++ builder.Services.TryAddScoped<AuthenticationStateProvider, ExternalAuthStateProvider>();
+```
+
+### .NET WebAssembly build tools for .NET 6 projects
+
+You can now use the .NET WebAssembly build tools with a .NET 6 project when working with the .NET 7 SDK. The new wasm-tools-net6 workload includes the .NET WebAssembly build tools for .NET 6 projects so that they can be used with the .NET 7 SDK. The existing wasm-tools workload installs the .NET WebAssembly build tools for .NET 7 projects. However, the .NET 7 version of the .NET WebAssembly build tools are incompatible with existing projects built with .NET 6. Projects using the .NET WebAssembly build tools that need to support both .NET 6 and .NET 7 will need to use multi-targeting.
+
+For more information, see <xref:blazor/tooling?view=aspnetcore-7.0#net-webassembly-build-tools>.
+
+## Blazor Hybrid
+
+### External URLs
+
+An explicit option has been added that permits opening external webpages in the browser.
+
+For more information, see <xref:blazor/hybrid/routing?view=aspnetcore-7.0#external-navigation>.
+
+### Security
+
+New guidance is available for Blazor Hybrid security scenarios. For more information, see the following articles:
+
+* <xref:blazor/hybrid/security/index?view=aspnetcore-7.0>
+* <xref:blazor/hybrid/security/security-considerations?view=aspnetcore-7.0>
+
 ## Performance
 
 ### HTTP/2 Performance improvements
