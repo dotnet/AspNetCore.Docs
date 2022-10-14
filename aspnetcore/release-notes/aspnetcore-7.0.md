@@ -238,9 +238,9 @@ For more information, see the following articles:
 * <xref:blazor/tooling?view=aspnetcore-7.0>
 * <xref:blazor/project-structure?view=aspnetcore-7.0>
 
-### Blazor custom elements no longer experimental
+### Blazor custom elements
 
-The [`Microsoft.AspNetCore.Components.CustomElements`](https://www.nuget.org/packages/microsoft.aspnetcore.components.customelements) package for building [standards based custom elements](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements) is no longer experimental.
+The [`Microsoft.AspNetCore.Components.CustomElements`](https://www.nuget.org/packages/microsoft.aspnetcore.components.customelements) package enables building [standards based custom elements](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements) using Blazor.
 
 For more information, see <xref:blazor/components/index?view=aspnetcore-7.0#blazor-custom-elements>.
 
