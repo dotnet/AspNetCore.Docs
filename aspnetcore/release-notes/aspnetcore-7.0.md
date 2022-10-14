@@ -378,7 +378,7 @@ https://github.com/dotnet/aspnetcore/issues/38479
 
 Inject services into custom validation attributes. Blazor sets up the `ValidationContext` so that it can be used as a service provider.
 
-For more information, see <xref:blazor/forms-validation?view=aspnetcore-7.0#custom-validation-attributes>.
+For more information, see <xref:blazor/forms-and-input-components?view=aspnetcore-7.0#custom-validation-attributes>.
 
 ### Blazor WebAssembly default browser for debugging adopts Microsoft Edge
 
