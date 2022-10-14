@@ -1843,7 +1843,7 @@ The following example shows a sample Health Check that retrieves a configuration
 
 The used `SampleHealthCheckWithDiConfig` needs to be added to the service container as well as the actual Health Check:
 
-:::code language="csharp" source="health-checks/samples/7.x/HealthChecksSample/Snippets/Startup.cs" id="snippet_MapHealthChecksUsingDependencyInjection":::
+:::code language="csharp" source="health-checks/samples/7.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksUsingDependencyInjection":::
 
 
 
