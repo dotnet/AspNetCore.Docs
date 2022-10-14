@@ -79,7 +79,7 @@ In order to document this endpoint correctly the extensions method `Produces` is
 app.MapGet("/hello", () => TypedResults.Ok(new Message() {  Text = "Hello World!" }));
 ```
 
-For more information about describing a response type, see [OpenAPI support in minimal APIs](/aspnet/core/fundamentals/minimal-apis/openapi#describe-response-types-1)).
+For more information about describing a response type, see [OpenAPI support in minimal APIs](/aspnet/core/fundamentals/minimal-apis/openapi#describe-response-types-1).
 
 ### Results<TResult1, TResultN>
 
