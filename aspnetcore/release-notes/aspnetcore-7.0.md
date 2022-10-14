@@ -211,9 +211,9 @@ Hub constructors can accept services from DI as parameters, which can be stored 
 
 ## Blazor
 
-### Handle location changing events
+### Handle location changing events and navigation state
 
-In .NET 7, Blazor supports location changing events. This allows you to warn users about unsaved work or to perform related actions when the user performs a page navigation.
+In .NET 7, Blazor supports location changing events and maintaining navigation state. This allows you to warn users about unsaved work or to perform related actions when the user performs a page navigation.
 
 For more information, see the following sections of the *Routing and navigation* article:
 
@@ -235,16 +235,6 @@ The [`Microsoft.AspNetCore.Components.CustomElements`](https://www.nuget.org/pac
 
 For more information, see <xref:blazor/components/index?view=aspnetcore-7.0#blazor-custom-elements>.
 
-<!--
-
-    IN PROGRESS
-
-### Improve prerendering and authentication experience in Blazor
-
-[27592](https://github.com/dotnet/aspnetcore/issues/27592)
-
--->
-
 ### Bind get/set/after modifiers
 
 New modifiers, `@bind:get`/`@bind:set`/`@bind:after`, allow you to customize how Blazor's `@bind` attribute directive reads and writes bound values.
@@ -262,14 +252,6 @@ For more information, see the following content in the *Data binding* article:
 
 * [`@bind:after="{EVENT}"` content](xref:blazor/components/data-binding?view=aspnetcore-7.0) at the end of the article's introductory guidance.
 * The [Bind across more than two components](xref:blazor/components/data-binding?view=aspnetcore-7.0#bind-across-more-than-two-components) section demonstrates the use of `@bind:get`/`@bind:set` syntax.
-
-Additional information:
-
-* [Design proposal: Bind get/set/after modifiers (dotnet/aspnetcore #39837)](https://github.com/dotnet/aspnetcore/issues/39837)
-* [Support `@bind:get`, `@bind:set`, `@bind:after` (dotnet/razor-compiler #70)](https://github.com/dotnet/razor-compiler/pull/70)
-
-> [!WARNING]
-> Final design changes prior to the general release might not be reflected in the initial design described by the product unit's GitHub issue and pull request. For the latest information on this feature, see the preceding cross-links to the official Blazor documentation.
 
 ### Hot Reload improvements
 
@@ -322,30 +304,6 @@ Blazor WebAssembly debugging has the following improvements:
 
 For more information, see [Developers targeting browser-wasm can use Web Crypto APIs (dotnet/runtime #40074)](https://github.com/dotnet/runtime/issues/40074).
 
-<!-- 
-
-    HOLD
-
-    🪲 fix ... not addressed in docs
-
-### Generic Blazor component can't correctly infer it's type when type has an additional constraint
-
-https://github.com/dotnet/aspnetcore/issues/25588
-
--->
-
-<!--
-
-    HOLD
-
-    🪲 fix ... not addressed in docs
-
-### `CascadingTypeParameter` problem
-
-https://github.com/dotnet/aspnetcore/issues/38479
-
--->
-
 ### Inject services into custom validation attributes
 
 You can now inject services into custom validation attributes. Blazor sets up the `ValidationContext` so that it can be used as a service provider.
@@ -374,18 +332,6 @@ For more information, see <xref:blazor/components/index?view=aspnetcore-7.0#quic
 
 Live demo: [QuickGrid for Blazor sample app](https://aspnet.github.io/quickgridsamples/)
 
-<!--
-
-    HOLD
-
-    It looks like this is an impl detail that only pertains to browser nav history state.
-
-### `NavigationManager` supports state
-
-https://github.com/dotnet/aspnetcore/pull/42534
-
--->
-
 ### Virtualization enhancements
 
 Virtualization enhancements in .NET 7:
@@ -398,21 +344,11 @@ For more information, see the following sections of the *Virtualization* article
 * [Root-level virtualization](xref:blazor/components/virtualization?view=aspnetcore-7.0#root-level-virtualization)
 * [Control the spacer element tag name](xref:blazor/components/virtualization?view=aspnetcore-7.0#control-the-spacer-element-tag-name)
 
-<!--
-
-    HOLD
-    
-    This is covered via the existing ref source link in the article.
-    I don't think we need to remark on it in the article, but you may wish to say something here.
-    I'll float some draft language.
-
 ### `MouseEventArgs` updates
 
 `MovementX` and `MovementY` have been added to `MouseEventArgs`.
 
 For more information, see <xref:blazor/components/event-handling?view=aspnetcore-7.0#built-in-event-arguments>.
-
--->
 
 ### New Blazor loading page
 
