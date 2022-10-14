@@ -64,7 +64,7 @@ The `IResult` interface defines a contract that represents the result of an HTTP
 
 The `Results` and `TypedResults` static classes provide similar sets of results helpers. However, the `Results` helpers' return type is `IResult`, while each `TypedResults` helper's return type is one of the `IResult` implementation types. The difference means that for `Results` helpers a conversion is needed when the concrete type is needed, for example, for unit testing. The implementation types are defined in the <xref:Microsoft.AspNetCore.Http.HttpResults> namespace.
 
-An advantage of using `TypedResults` is that the implementation type automatically includes the response type metadata for the endpoint.
+An advantage of using `TypedResults` is that the implementation type automatically provides the response type metadata for OpenAPI to describe the endpoint.
 
 Consider the follow endpoint, for which a `200 OK` status code with the expected JSON response is produced.
 
@@ -73,17 +73,22 @@ app.MapGet("/hello", () => Results.Ok(new Message() {  Text = "Hello World!" }))
     .Produces<Message>();
 ```
 
-In order to document this endpoint correctly the extensions method `Produces` is called. However, it's not necessary to call `Produces` if `TypedResults` is used instead of `Results`, as shown in the following code. `TypedResults` automatically includes the metadata for the endpoint.
+In order to document this endpoint correctly the extensions method `Produces` is called. However, it's not necessary to call `Produces` if `TypedResults` is used instead of `Results`, as shown in the following code. `TypedResults` automatically provides the metadata for the endpoint.
 
 ```csharp
 app.MapGet("/hello", () => TypedResults.Ok(new Message() {  Text = "Hello World!" }));
 ```
 
-For more information about describing a response type, see [OpenAPI support in minimal APIs](/aspnet/core/fundamentals/minimal-apis/openapi#describe-response-types-1))
+For more information about describing a response type, see [OpenAPI support in minimal APIs](/aspnet/core/fundamentals/minimal-apis/openapi#describe-response-types-1)).
 
 ### Results<TResult1, TResultN>
 
-When the static `TypedResult` class is used to create the `IResult` objects, and multiple `IResult` implementation types are returned from an endpoint handler, use [`Results<TResult1, TResultN>`](/dotnet/api/microsoft.aspnetcore.http.httpresults.results-2) as the endpoint handler return type. This alternative is better than returning `IResult` because the generic union types automatically retain the endpoint metadata. And since the `Results<TResult1, TResultN>` union types implement implicit cast operators, the compiler can automatically convert the types specified in the generic arguments to an instance of the union type. 
+Use [`Results<TResult1, TResultN>`](/dotnet/api/microsoft.aspnetcore.http.httpresults.results-2) as the endpoint handler return type instead of `IResult` when:
+
+* Multiple `IResult` implementation types are returned from the endpoint handler. 
+* The static `TypedResult` class is used to create the `IResult` objects.
+
+This alternative is better than returning `IResult` because the generic union types automatically retain the endpoint metadata. And since the `Results<TResult1, TResultN>` union types implement implicit cast operators, the compiler can automatically convert the types specified in the generic arguments to an instance of the union type. 
 
 This has the added benefit of providing compile-time checking that a route handler actually only returns the results that it declares it does. Attempting to return a type that isn’t declared as one of the generic arguments to `Results<>` results in a compilation error.
 
@@ -96,7 +101,7 @@ app.MapGet("/orders/{orderId}", IResult (int orderId)
     .Produces<Order>();
 ```
 
-In order to document this endpoint correctly the extension method `Produces` is called. However, since the `TypedResults` helper automatically includes the metadata for the endpoint, you return the `Results<T1, Tn>` union type instead, as shown in the following code.
+In order to document this endpoint correctly the extension method `Produces` is called. However, since the `TypedResults` helper automatically includes the metadata for the endpoint, you can return the `Results<T1, Tn>` union type instead, as shown in the following code.
 
 ```csharp
 app.MapGet("/orders/{orderId}", Results<BadRequest, Ok<Order>> (int orderId) 
@@ -109,7 +114,7 @@ app.MapGet("/orders/{orderId}", Results<BadRequest, Ok<Order>> (int orderId)
 
 [!INCLUDE [results-helpers](includes/results-helpers.md)]
 
-The following code demonstrate the usage of the common result helpers.
+The following sections demonstrate the usage of the common result helpers.
 
 #### JSON
 
@@ -169,11 +174,11 @@ We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResu
 
 [!code-csharp[](7.0-samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
 
-Also, a custom `IResult` type can describe its own annotation by implementing the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> interface. For example, the following code adds an annotation, to the previous `HtmlResult` type, that describe the response produced by the endpoint.
+Also, a custom `IResult` type can provide its own annotation by implementing the <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointMetadataProvider> interface. For example, the following code adds an annotation to the preceding `HtmlResult` type that describe the response produced by the endpoint.
 
 [!code-csharp[](7.0-samples/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_IEndpointMetadataProvider&highlight=1,17-20)]
 
-The `ProducesHtmlMetadata` is an implementation of <xref:Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata> that define the produced response content type `text/html` and the status code `200 OK`.
+The `ProducesHtmlMetadata` is an implementation of <xref:Microsoft.AspNetCore.Http.Metadata.IProducesResponseTypeMetadata> that defines the produced response content type `text/html` and the status code `200 OK`.
 
 [!code-csharp[](7.0-samples/WebMinAPIs/Snippets/ResultsExtensions.cs?name=snippet_ProducesHtmlMetadata&highlight=5,7)]
 
@@ -190,9 +195,9 @@ public static void PopulateMetadata(MethodInfo method, EndpointBuilder builder)
 
 By default, Minimal API apps use [`Web defaults`](/dotnet/standard/serialization/system-text-json-configure-options#web-defaults-for-jsonserializeroptions) options during JSON serialization and deserialization.
 
-Options can be configured by invoking `ConfigureHttpJsonOptions` and the configured options are applied when the app calls extension methods defined in <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions> or <xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions>.
+Options can be configured by invoking <xref:Microsoft.Extensions.DependencyInjection.HttpJsonServiceExtensions.ConfigureHttpJsonOptions%2A>, and the configured options are applied when the app calls extension methods defined in <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions> or <xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions>.
  
-The following example invokes [`ConfigureHttpJsonOptions`](https://source.dot.net/#Microsoft.AspNetCore.Http.Extensions/HttpJsonServiceExtensions.cs,496f2a8225e6c731) to configure options that apply wherever the app serializes or deserializes JSON for HTTP requests and responses:
+The following example invokes `ConfigureHttpJsonOptions` to configure options that apply wherever the app serializes or deserializes JSON for HTTP requests and responses:
 
 [!code-csharp[](7.0-samples/WebMinJson/Program.cs?name=snippet_1)]
 
