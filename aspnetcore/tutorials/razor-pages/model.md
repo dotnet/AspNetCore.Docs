@@ -132,7 +132,7 @@ The `appsettings.json` file is updated with the connection string used to connec
 * Open a command shell to the project directory, which contains the `Program.cs` and `.csproj` files. Run the following command:
 
   ```dotnetcli
-  dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries -sqlite
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries -sqlite
   ```
 
 <a name="codegenerator"></a>
@@ -146,10 +146,10 @@ The following table details the ASP.NET Core code generator options.
 | `-outDir` | The relative output folder path to create the views. |
 | `--referenceScriptLibraries` | Adds `_ValidationScriptsPartial` to Edit and Create pages |
 
-Use the `-h` option to get help on the `dotnet-aspnet-codegenerator razorpage` command:
+Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorpage` command:
 
 ```dotnetcli
-dotnet-aspnet-codegenerator razorpage -h
+dotnet aspnet-codegenerator razorpage -h
 ```
 
 For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
@@ -435,7 +435,7 @@ The `appsettings.json` file is updated with the connection string used to connec
 * Open a command shell to the project directory, which contains the `Program.cs`, `Startup.cs`, and `.csproj` files. Run the following command:
 
   ```dotnetcli
-  dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries -sqlite
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries -sqlite
   ```
 
 <a name="codegenerator"></a>
@@ -449,10 +449,10 @@ The following table details the ASP.NET Core code generator options.
 | `-outDir` | The relative output folder path to create the views. |
 | `--referenceScriptLibraries` | Adds `_ValidationScriptsPartial` to Edit and Create pages |
 
-Use the `-h` option to get help on the `dotnet-aspnet-codegenerator razorpage` command:
+Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorpage` command:
 
 ```dotnetcli
-dotnet-aspnet-codegenerator razorpage -h
+dotnet aspnet-codegenerator razorpage -h
 ```
 
 For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
@@ -765,13 +765,13 @@ The `appsettings.json` file is updated with the connection string used to connec
 * **For Windows**: Run the following command:
 
   ```dotnetcli
-  dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries
   ```
 
 * **For macOS and Linux**: Run the following command:
 
   ```dotnetcli
-  dotnet-aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries
   ```
 
 <a name="codegenerator"></a>
@@ -785,10 +785,10 @@ The following table details the ASP.NET Core code generator options:
 | `-outDir` | The relative output folder path to create the views. |
 | `--referenceScriptLibraries` | Adds `_ValidationScriptsPartial` to Edit and Create pages |
 
-Use the `-h` option to get help on the `dotnet-aspnet-codegenerator razorpage` command:
+Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorpage` command:
 
 ```dotnetcli
-dotnet-aspnet-codegenerator razorpage -h
+dotnet aspnet-codegenerator razorpage -h
 ```
 
 For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
