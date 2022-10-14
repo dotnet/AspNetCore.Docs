@@ -496,7 +496,8 @@ The preceding code calls the method with a null product if no request body is se
 | --------- | -------------- |
 | `/products?pageNumber=3` | `3` returned |
 | `/products` | `1` returned |
-| `/products/two` | `BadHttpRequestException`: Failed to bind parameter `"Nullable<int> pageNumber"` from "two".|
+| `/products?pageNumber=two` | `BadHttpRequestException`: Failed to bind parameter `"Nullable<int> pageNumber"` from "two". |
+| `/products/two` | HTTP 404 error, no matching route |
 
 See the [Binding Failures](#bf) section for more information.
 
@@ -1340,7 +1341,8 @@ The preceding code calls the method with a null product if no request body is se
 | --------- | -------------- |
 | `/products?pageNumber=3` | `3` returned |
 | `/products` | `1` returned |
-| `/products/two` | `BadHttpRequestException`: Failed to bind parameter `"Nullable<int> pageNumber"` from "two".|
+| `/products?pageNumber=two` | `BadHttpRequestException`: Failed to bind parameter `"Nullable<int> pageNumber"` from "two". |
+| `/products/two` | HTTP 404 error, no matching route |
 
 See the [Binding Failures](#bf) section for more information.
 
