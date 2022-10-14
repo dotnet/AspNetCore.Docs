@@ -987,11 +987,11 @@ To distribute a health check as a library:
    ```csharp
    using System.Collections.Generic;
    using Microsoft.Extensions.Diagnostics.HealthChecks;
-
+   
    public static class ExampleHealthCheckBuilderExtensions
    {
        const string DefaultName = "example_health_check";
-
+   
        public static IHealthChecksBuilder AddExampleHealthCheck(
            this IHealthChecksBuilder builder,
            string name = default,
@@ -1756,11 +1756,11 @@ To distribute a health check as a library:
    ```csharp
    using System.Collections.Generic;
    using Microsoft.Extensions.Diagnostics.HealthChecks;
-
+   
    public static class ExampleHealthCheckBuilderExtensions
    {
        const string DefaultName = "example_health_check";
-
+   
        public static IHealthChecksBuilder AddExampleHealthCheck(
            this IHealthChecksBuilder builder,
            string name = default,
@@ -1831,4 +1831,24 @@ app.UseEndpoints(endpoints =>
 
 For more information, see <xref:fundamentals/middleware/index#branch-the-middleware-pipeline>.
 
+## Dependency Injection and Health Checks
+
+It is possible to use dependency injection to consume an instance of a specific Type inside a Health Check class. This can be useful to inject options or a global configuration to a Health Check.
+
+> Using dependency injection is not a common scenario to configure Health Checks. Usually, each Health Check is quite specific to the actual test and is configured using `IHealthChecksBuilder` extension methods.
+
+The following example shows a sample Health Check that retrieves a configuration object via dependency injection:
+
+:::code language="csharp" source="health-checks/samples/7.x/HealthChecksSample/HealthChecks/SampleHealthCheckWithDI.cs" id="snippet_Class":::
+
+The used `SampleHealthCheckWithDiConfig` needs to be added to the service container as well as the actual Health Check:
+
+:::code language="csharp" source="health-checks/samples/7.x/HealthChecksSample/Snippets/Startup.cs" id="snippet_MapHealthChecksUsingDependencyInjection":::
+
+
+
+
+
 :::moniker-end
+
+ 
