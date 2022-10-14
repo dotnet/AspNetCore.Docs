@@ -496,7 +496,8 @@ The preceding code calls the method with a null product if no request body is se
 | --------- | -------------- |
 | `/products?pageNumber=3` | `3` returned |
 | `/products` | `1` returned |
-| `/products/two` | `BadHttpRequestException`: Failed to bind parameter `"Nullable<int> pageNumber"` from "two".|
+| `/products?pageNumber=two` | `BadHttpRequestException`: Failed to bind parameter `"Nullable<int> pageNumber"` from "two". |
+| `/products/two` | HTTP 404 error, no matching route |
 
 See the [Binding Failures](#bf) section for more information.
 
@@ -1340,7 +1341,8 @@ The preceding code calls the method with a null product if no request body is se
 | --------- | -------------- |
 | `/products?pageNumber=3` | `3` returned |
 | `/products` | `1` returned |
-| `/products/two` | `BadHttpRequestException`: Failed to bind parameter `"Nullable<int> pageNumber"` from "two".|
+| `/products?pageNumber=two` | `BadHttpRequestException`: Failed to bind parameter `"Nullable<int> pageNumber"` from "two". |
+| `/products/two` | HTTP 404 error, no matching route |
 
 See the [Binding Failures](#bf) section for more information.
 
@@ -1602,23 +1604,7 @@ app.MapGet("/download", () => Results.File("myfile.text"));
 
 ### Built-in results
 
-Common result helpers exist in the `Microsoft.AspNetCore.Http.Results` static class.
-
-|Description|Response type|Status Code|API|
-|--|--|--|--|
-Write a JSON response with advanced options |application/json |200|[Results.Json](xref:Microsoft.AspNetCore.Http.Results.Json%2A)|
-|Write a JSON response |application/json |200|[Results.Ok](xref:Microsoft.AspNetCore.Http.Results.Ok%2A)|
-|Write a text response |text/plain (default), configurable |200|[Results.Text](xref:Microsoft.AspNetCore.Http.Results.Text%2A)|
-|Write the response as bytes |application/octet-stream (default), configurable |200|[Results.Bytes](xref:Microsoft.AspNetCore.Http.Results.Bytes%2A)|
-|Write a stream of bytes to the response |application/octet-stream (default), configurable |200|[Results.Stream](xref:Microsoft.AspNetCore.Http.Results.Stream%2A)|
-|Stream a file to the response for download with the content-disposition header |application/octet-stream (default), configurable |200|[Results.File](xref:Microsoft.AspNetCore.Http.Results.File%2A)|
-|Set the status code to 404, with an optional JSON response | N/A |404|[Results.NotFound](xref:Microsoft.AspNetCore.Http.Results.NotFound%2A)|
-|Set the status code to 204 | N/A |204|[Results.NoContent](xref:Microsoft.AspNetCore.Http.Results.NoContent%2A)|
-|Set the status code to 422, with an optional JSON response | N/A |422|[Results.UnprocessableEntity](xref:Microsoft.AspNetCore.Http.Results.UnprocessableEntity%2A)|
-|Set the status code to 400, with an optional JSON response | N/A |400|[Results.BadRequest](xref:Microsoft.AspNetCore.Http.Results.BadRequest%2A)|
-|Set the status code to 409, with an optional JSON response | N/A |409|[Results.Conflict](xref:Microsoft.AspNetCore.Http.Results.Conflict%2A)|
-|Write a problem details JSON object to the response | N/A |500 (default), configurable|[Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem%2A)|
-|Write a problem details JSON object to the response with validation errors | N/A | N/A, configurable|[Results.ValidationProblem](xref:Microsoft.AspNetCore.Http.Results.ValidationProblem%2A)|
+[!INCLUDE [results-helpers](minimal-apis/includes/results-helpers.md)]
 
 ### Customizing results
 
