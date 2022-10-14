@@ -26,8 +26,6 @@ These benefits make gRPC ideal for:
 * Polyglot systems where multiple languages are required for development.
 * Point-to-point real-time services that need to handle streaming requests or responses.
 
-[!INCLUDE[](~/includes/gRPCazure.md)]
-
 ## C# Tooling support for `.proto` files
 
 gRPC uses a contract-first approach to API development. Services and messages are defined in `.proto` files:
@@ -145,8 +143,6 @@ These benefits make gRPC ideal for:
 * Lightweight microservices where efficiency is critical.
 * Polyglot systems where multiple languages are required for development.
 * Point-to-point real-time services that need to handle streaming requests or responses.
-
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## C# Tooling support for `.proto` files
 

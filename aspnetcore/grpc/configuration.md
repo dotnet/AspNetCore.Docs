@@ -96,8 +96,6 @@ For more information about the different handlers and their configuration option
 * <xref:System.Net.Http.SocketsHttpHandler?displayProperty=fullName>
 * <xref:System.Net.Http.WinHttpHandler?displayProperty=fullName>
 
-[!INCLUDE[](~/includes/gRPCazure.md)]
-
 ## Additional resources
 
 * <xref:grpc/aspnetcore>
