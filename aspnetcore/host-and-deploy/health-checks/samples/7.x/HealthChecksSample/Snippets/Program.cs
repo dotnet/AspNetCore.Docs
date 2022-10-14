@@ -140,6 +140,20 @@ public static class Program
         // </snippet_MapHealthChecksResponseWriter>
     }
 
+    public static void AddHealthChecksUsingDependencyInjection(WebApplicationBuilder builder)
+    {
+        // <snippet_MapHealthChecksUsingDependencyInjection>
+        builder.Services.AddSingleton<SampleHealthCheckWithDiConfig>(new SampleHealthCheckWithDiConfig
+        {
+            BaseUriToCheck = new Uri("https://sample.contoso.com/api/")
+        });
+        builder.Services.AddHealthChecks()
+            .AddCheck<SampleHealthCheckWithDI>(
+                "With Dependency Injection",
+                tags: new[] { "inject" });
+        // </snippet_MapHealthChecksUsingDependencyInjection>
+    }
+
     public static void AddHealthChecksSqlServer(WebApplicationBuilder builder)
     {
         // <snippet_AddHealthChecksSqlServer>
