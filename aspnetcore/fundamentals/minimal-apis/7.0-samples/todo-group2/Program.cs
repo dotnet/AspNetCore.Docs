@@ -16,6 +16,13 @@ builder.Services.AddDbContext<TodoGroupDbContext>(options =>
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 using var scope = app.Services.CreateScope();
 var db = scope.ServiceProvider.GetService<TodoGroupDbContext>();
 db?.Database.MigrateAsync();
@@ -27,12 +34,5 @@ app.MapGroup("/public/todos")
 app.MapGroup("/private/todos")
     .MapTodosApi()
     .RequireAuthorization();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 app.Run();
