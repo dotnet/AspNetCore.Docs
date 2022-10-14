@@ -383,12 +383,25 @@ Under consideration for docs ...
 
 ### Conditional registration of the authentication state provider
 
-Prior to the release of .NET 7, `AuthenticationStateProvider` was registered in the service container with `AddScoped`. This made it difficult to debug apps, as it forced a specific order of service registrations when providing a custom implementation. Due to internal framework changes over time, it's no longer necessary to register `AuthenticationStateProvider` with `AddScoped`:
+Prior to the release of .NET 7, `AuthenticationStateProvider` was registered in the service container with `AddScoped`. This made it difficult to debug apps, as it forced a specific order of service registrations when providing a custom implementation. Due to internal framework changes over time, it's no longer necessary to register `AuthenticationStateProvider` with `AddScoped`.
+
+In developer code, make the following change to the authentication state provider service registration:
 
 ```diff
 - builder.Services.AddScoped<AuthenticationStateProvider, ExternalAuthStateProvider>();
 + builder.Services.TryAddScoped<AuthenticationStateProvider, ExternalAuthStateProvider>();
 ```
+
+In the preceding example, `ExternalAuthStateProvider` is the developer's service implementation.
+
+### Improvements to the .NET WebAssembly build tools
+
+New features in the `wasm-tools` workload for .NET 7 that help improve performance:
+
+* WebAssembly SIMD support (should only be used with AOT, not supported by Apple Safari): `WasmEnableSIMD`
+* WebAssembly exception handling support: `WasmEnableExceptionHandling`
+
+For more information, see <xref:blazor/tooling?view=aspnetcore-7.0#net-webassembly-build-tools>.
 
 ## Blazor Hybrid
 
