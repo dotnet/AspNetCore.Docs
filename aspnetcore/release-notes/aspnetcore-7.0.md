@@ -220,15 +220,6 @@ For more information, see the following sections of the *Routing and navigation*
 * [Navigation options](xref:blazor/fundamentals/routing?view=aspnetcore-7.0#navigation-options)
 * [Handle/prevent location changes](xref:blazor/fundamentals/routing?view=aspnetcore-7.0#handleprevent-location-changes)
 
-### Calling `InvokeAsync(StateHasChanged)` causes page to fallback to the default culture
-
-If a Razor component defines an event that's triggered from a background thread, the component might be required to capture and restore the execution context (`ExecutionContext`) at the time the handler is registered.
-
-For more information, see the following resources:
-
-* [Calling `InvokeAsync(StateHasChanged)` causes page to fallback to default culture (dotnet/aspnetcore #28521)](https://github.com/dotnet/aspnetcore/issues/28521)
-* <xref:blazor/components/index?view=aspnetcore-7.0#invoke-component-methods-externally-to-update-state>
-
 ### Empty Blazor project templates
 
 Blazor has two new project templates for starting from a blank slate. The new **Blazor Server App Empty** and **Blazor WebAssembly App Empty** project templates are just like their non-empty counterparts but without demonstration code. These empty templates only include a basic home page, and we've removed Bootstrap so that you can start with a different CSS framework.
@@ -280,42 +271,18 @@ Additional information:
 > [!WARNING]
 > Final design changes prior to the general release might not be reflected in the initial design described by the product unit's GitHub issue and pull request. For the latest information on this feature, see the preceding cross-links to the official Blazor documentation.
 
-<!--
+### Hot Reload improvements
 
-    IN PROGRESS
+In .NET 7, Hot Reload support includes the following:
 
-### Enable integration with third-party assets management solutions
-
-[38445](https://github.com/dotnet/aspnetcore/issues/38445)
-
--->
-
-<!--
-
-    HOLD
-    
-    This is a tooling update for what Steve says is a rare situation.
-    No doc updates were made to cover this, but we could include something here on it.
-    The following is a bit draft content for it.
-    
-### Components don't reset their received parameters during Hot Reload updates
-
-When using Hot Reload and removing a parameter value that's passed to a child component, the prior Hot Reload refresh mechanism didn't account for the change.
-
-Example:
-
-For the default project template under .NET 6 using Hot Reload, change the `SurveyPrompt` component's `Title` parameter value in the `Index` component:
-
-```diff
-- <SurveyPrompt Title="How is Blazor working for you?" />
-+ <SurveyPrompt />
-```
-
-The change isn't reflected in the UI. This is because the existing `SurveyPrompt` instance already has a value for its `Title` property. The prior value isn't overwritten.
-
-In .NET 7, `SetParametersAsync` determines if a Hot Reload refresh is in progress. If a refresh occurs, `[Parameter]` properties are reset to their default values before receiving the new set of values from the component's parent.
-
--->
+* Components reset their parameters to their default values when a value is removed.
+* Blazor WebAssembly:
+  * Add new types.
+  * Add nested classes.
+  * Add static and instance methods to existing types.
+  * Add static fields and methods to existing types.
+  * Add static lambdas to existing methods.
+  * Add lambdas that capture `this` to existing methods that already captured `this` previously.
 
 ### Dynamic authentication requests with MSAL in Blazor WebAssembly
 
@@ -384,10 +351,6 @@ https://github.com/dotnet/aspnetcore/issues/38479
 You can now inject services into custom validation attributes. Blazor sets up the `ValidationContext` so that it can be used as a service provider.
 
 For more information, see <xref:blazor/forms-and-input-components?view=aspnetcore-7.0#custom-validation-attributes>.
-
-### Blazor WebAssembly's default browser for debugging adopts Microsoft Edge
-
-In release versions prior to .NET 7, the default browser for debugging is Google Chrome. In .NET 7, the default browser for debugging is Microsoft Edge.
 
 ### `Input*` components outside of an `EditContext`/`EditForm`
 
@@ -490,12 +453,6 @@ Prior to the release of .NET 7, `AuthenticationStateProvider` was registered in 
 - builder.Services.AddScoped<AuthenticationStateProvider, ExternalAuthStateProvider>();
 + builder.Services.TryAddScoped<AuthenticationStateProvider, ExternalAuthStateProvider>();
 ```
-
-### .NET WebAssembly build tools for .NET 6 projects
-
-You can now use the .NET WebAssembly build tools with a .NET 6 project when working with the .NET 7 SDK. The new `wasm-tools-net6` workload includes the .NET WebAssembly build tools for .NET 6 projects so that they can be used with the .NET 7 SDK. The existing `wasm-tools` workload installs the .NET WebAssembly build tools for .NET 7 projects. However, the .NET 7 version of the .NET WebAssembly build tools are incompatible with existing projects built with .NET 6. Projects using the .NET WebAssembly build tools that need to support both .NET 6 and .NET 7 must use multi-targeting.
-
-For more information, see <xref:blazor/tooling?view=aspnetcore-7.0#net-webassembly-build-tools>.
 
 ## Blazor Hybrid
 
