@@ -75,7 +75,7 @@ ASP.NET Core provides the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org
 
 [!code-xml[](7.0-samples/WebMinOpenApi/projectFile.xml?highlight=10)]
 
-When using [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) with `Microsoft.AspNetCore.OpenApi`, `Swashbuckle.AspNetCore` 6.4.0 or later must be used.
+When using [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) with `Microsoft.AspNetCore.OpenApi`, `Swashbuckle.AspNetCore` 6.4.0 or later must be used. [`Microsoft.OpenApi`](https://www.nuget.org/packages/Microsoft.OpenApi/) 1.4.3 or later must be used to leverage copy constructors in `WithOpenApi` invocations.
 
 ## Add OpenAPI annotations to endpoints via `WithOpenApi`
 
