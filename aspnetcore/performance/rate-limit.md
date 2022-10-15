@@ -37,11 +37,13 @@ Consider the following code:
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_fixed":::
 
 The preceding code:
+
+* Calls <xref:Microsoft.AspNetCore.Builder.RateLimiterServiceCollectionExtensions.AddRateLimiter%2A> to add a rate limiting service to the service collection.
+* Calls `AddFixedWindowLimiter` to create a fixed window limiter with a policy name of `"fixed"` and sets:
+* <xref:System.Threading.RateLimiting.FixedWindowRateLimiterOptions.PermitLimit> to 4 and the time <xref:System.Threading.RateLimiting.FixedWindowRateLimiterOptions.Window> to 12. A maximum of 4 requests per each 12-second window are allowed.
+* <xref:System.Threading.RateLimiting.FixedWindowRateLimiterOptions.QueueProcessingOrder> to <xref:System.Threading.RateLimiting.QueueProcessingOrder.OldestFirst>.
+* <xref:System.Threading.RateLimiting.FixedWindowRateLimiterOptions.QueueLimit> to 2.
 * Calls [UseRateLimiter](/dotnet/api/microsoft.aspnetcore.builder.ratelimiterapplicationbuilderextensions.useratelimiter) to enable rate limiting.
-* Creates a fixed window limiter with a policy name of `"fixed"` and sets:
-* `permitLimit` to 4 and the time `window` to 12. A maximum of 4 requests per each 12-second window are allowed.
-* `queueProcessingOrder` to `QueueProcessingOrder.OldestFirst`.
-* `queueLimit` to 2.
 
 Apps should use [Configuration](xref:fundamentals/configuration/index) to set limiter options. The following code updates the preceding code using [`MyRateLimitOptions`](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/fundamentals/middleware/rate-limit/WebRateLimitAuth/Models/MyRateLimitOptions.cs) for configuration:
 
@@ -115,7 +117,7 @@ The following code uses the token bucket limiter:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_token":::
 
-When `autoReplenishment` is set to `true`, an internal timer replenishes the tokens every `replenishmentPeriod`; when set to `false`, the app must call `TryReplenish` on the limiter.
+When <xref:System.Threading.RateLimiting.TokenBucketRateLimiterOptions.AutoReplenishment%2A> is set to `true`, an internal timer replenishes the tokens every <xref:System.Threading.RateLimiting.TokenBucketRateLimiter.ReplenishmentPeriod%2A>; when set to `false`, the app must call <xref:System.Threading.RateLimiting.TokenBucketRateLimiter.TryReplenish%2A> on the limiter.
 
 <a name="concur"></a>
 
