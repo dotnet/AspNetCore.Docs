@@ -75,7 +75,7 @@ ASP.NET Core provides the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org
 
 [!code-xml[](7.0-samples/WebMinOpenApi/projectFile.xml?highlight=10)]
 
-When using [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) with `Microsoft.AspNetCore.OpenApi`, `Swashbuckle.AspNetCore` 6.3.1 and later must be used. Version 6.4.0 or later is required if you want to [provide endpoint summary or description text](#add-endpoint-summary-or-description).
+When using [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) with `Microsoft.AspNetCore.OpenApi`, `Swashbuckle.AspNetCore` 6.4.0 or later must be used.
 
 ## Add OpenAPI annotations to endpoints via `WithOpenApi`
 
