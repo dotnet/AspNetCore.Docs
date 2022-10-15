@@ -222,7 +222,7 @@ For more information, see the following sections of the *Routing and navigation*
 
 ### Empty Blazor project templates
 
-Blazor has two new project templates for starting from a blank slate. The new **Blazor Server App Empty** and **Blazor WebAssembly App Empty** project templates are just like their non-empty counterparts but without demonstration code. These empty templates only include a basic home page, and we've removed Bootstrap so that you can start with a different CSS framework.
+Blazor has two new project templates for starting from a blank slate. The new **Blazor Server App Empty** and **Blazor WebAssembly App Empty** project templates are just like their non-empty counterparts but without example code. These empty templates only include a basic home page, and we've removed Bootstrap so that you can start with a different CSS framework.
 
 For more information, see the following articles:
 
