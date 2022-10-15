@@ -275,9 +275,6 @@ var reply = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
 
 Alternatively, a client factory can be configured with `Http3Handler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
 
-
-[!INCLUDE[](~/includes/gRPCazure.md)]
-
 :::moniker-end
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
@@ -494,8 +491,6 @@ The preceding code:
 
 Alternatively, a client factory can be configured with `SubdirectoryHandler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
 
-[!INCLUDE[](~/includes/gRPCazure.md)]
-
 :::moniker-end
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
@@ -711,7 +706,5 @@ The preceding code:
 * Calls the gRPC service with `SayHelloAsync`. The gRPC call is sent to `https://localhost:5001/MyApp/greet.Greeter/SayHello`.
 
 Alternatively, a client factory can be configured with `SubdirectoryHandler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
-
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 :::moniker-end
