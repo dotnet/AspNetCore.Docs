@@ -231,7 +231,7 @@ For more information, see the following articles:
 
 ### Blazor custom elements
 
-The [`Microsoft.AspNetCore.Components.CustomElements`](https://www.nuget.org/packages/microsoft.aspnetcore.components.customelements) package enables building [standards based custom elements](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements) using Blazor.
+The [`Microsoft.AspNetCore.Components.CustomElements`](https://www.nuget.org/packages/microsoft.aspnetcore.components.customelements) package enables building [standards based custom DOM elements](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements) using Blazor.
 
 For more information, see <xref:blazor/components/index?view=aspnetcore-7.0#blazor-custom-elements>.
 
