@@ -155,6 +155,8 @@ In the preceding controller:
 * Applies the `"sliding"` policy rate limiter to the `Privacy` action.
 * Disables rate limiting to the `NoLimit` action method.
 
+The same rules apply to Razor Pages. The `DisableRateLimiting` attribute disables rate limiting on a Razor Page. `EnableRateLimiting` is only applied to a Razor Page if `MapRazorPages().RequireRateLimiting(Policy)` has ***not*** been called.
+
 ## Limiter algorithm comparison
 
 The fixed, sliding, and token limiters all limit the maximum number of requests in a time period. The concurrency limiter limits only the number of concurrent requests and doesn't cap the number of requests in a time period. The cost of an endpoint should be considered when selecting a limiter. The cost of an endpoint includes the resources used, for example, time, data access, CPU, and I/O.
