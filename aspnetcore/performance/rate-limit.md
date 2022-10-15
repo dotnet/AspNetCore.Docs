@@ -139,13 +139,13 @@ The `[DisableRateLimiting]` ***disables*** rate limiting to the Controller, acti
 
 In the following code, `[DisableRateLimiting]` disables rate limiting and overrides `[EnableRateLimiting("fixed")]` applied to the `Home2Controller` and `app.MapDefaultControllerRoute().RequireRateLimiting(fixedPolicy)` called in `Program.cs`:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRate2/Controllers/Home2Controller.cs" id="snippet_1" highlight="16,22":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRate2/Controllers/Home2Controller.cs" id="snippet_1" highlight="1,16,22":::
 
-In the preceding code, the `[EnableRateLimiting("sliding")]` is ***not*** applied to the `Privacy` endpoint because `Program.cs` called `app.MapDefaultControllerRoute().RequireRateLimiting(fixedPolicy)`.
+In the preceding code, the `[EnableRateLimiting("sliding")]` is ***not*** applied to the `Privacy` action method because `Program.cs` called `app.MapDefaultControllerRoute().RequireRateLimiting(fixedPolicy)`.
 
 Consider the following code which doesn't call `RequireRateLimiting` on `MapRazorPages` or `MapDefaultControllerRoute`:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRate2/Program.cs" id="snippet_2" highlight="50-51":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRate2/Program.cs" id="snippet_2" highlight="52,51":::
 
 Consider the following controller:
 
@@ -154,8 +154,8 @@ Consider the following controller:
 In the preceding controller:
 
 * The `"fixed"` policy rate limiter is applied to all action methods that don't have `EnableRateLimiting` and `DisableRateLimiting` attributes.
-* Applies the `"sliding"` policy rate limiter to the `Privacy` action.
-* Disables rate limiting to the `NoLimit` action method.
+* The `"sliding"` policy rate limiter is applied to the `Privacy` action.
+* Rate limiting is disabled on the `NoLimit` action method.
 
 The same rules apply to Razor Pages. The `DisableRateLimiting` attribute disables rate limiting on a Razor Page. `EnableRateLimiting` is only applied to a Razor Page if `MapRazorPages().RequireRateLimiting(Policy)` has ***not*** been called.
 
@@ -180,7 +180,7 @@ The following sample:
     * One shared partition for all anonymous users.
   * A <xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptions.GlobalLimiter> that is applied to all requests. The global limiter will be executed first, followed by the endpoint-specific limiter, if one exists. The `GlobalLimiter` creates a partition for each <xref:System.Net.IPAddress>.
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_1":::
 
 > [!WARNING]
 >Creating partitions on client IP addresses makes the app vulnerable to Denial of Service Attacks which employ IP Source Address Spoofing. For more information, see [BCP 38 RFC 2827 Network Ingress Filtering: Defeating Denial of Service Attacks which employ IP Source Address Spoofing](https://www.rfc-editor.org/info/bcp38).
