@@ -235,23 +235,48 @@ The [`Microsoft.AspNetCore.Components.CustomElements`](https://www.nuget.org/pac
 
 For more information, see <xref:blazor/components/index?view=aspnetcore-7.0#blazor-custom-elements>.
 
-### Bind get/set/after modifiers
+### Bind modifiers (`@bind:after`, `@bind:get`, `@bind:set`)
 
-New modifiers, `@bind:get`/`@bind:set`/`@bind:after`, allow you to customize how Blazor's `@bind` attribute directive reads and writes bound values.
+In .NET 7, you can run asynchronous logic after a binding event has completed using the new `@bind:after` modifier. In the following example, the `PerformSearch` asynchronous method runs automatically after any changes to the search text are detected:
 
-<!--
+```razor
+<input @bind="searchText" @bind:after="PerformSearch" />
 
-    NOTE
-    
-    `@bind:get`/`@bind:set` are only covered in an example for binding across more than two components. 
-    There isn't textual coverage outside of that section or dedicated examples for these.
+@code {
+    private string searchText;
 
--->
+    private async Task PerformSearch()
+    {
+        ...
+    }
+}
+```
+
+In .NET 7, it's also easier to set up binding for component parameters. Components can support two-way data binding by defining a pair of parameters:
+
+* `@bind:get`: Specifies the value to bind.
+* `@bind:set`: Specifies a callback for when the value changes.
+
+The `@bind:get` and `@bind:set` modifiers are always used together.
+
+Example:
+
+```razor
+<input @bind:get="Value" @bind:set="ValueChanged" />
+
+@code {
+    [Parameter]
+    public TValue? Value { get; set; }
+
+    [Parameter]
+    public EventCallback<TValue> ValueChanged { get; set; }
+}
+```
 
 For more information, see the following content in the *Data binding* article:
 
-* [`@bind:after="{EVENT}"` content](xref:blazor/components/data-binding?view=aspnetcore-7.0) at the end of the article's introductory guidance.
-* The [Bind across more than two components](xref:blazor/components/data-binding?view=aspnetcore-7.0#bind-across-more-than-two-components) section demonstrates the use of `@bind:get`/`@bind:set` syntax.
+* [Introduction](xref:blazor/components/data-binding?view=aspnetcore-7.0)
+* [Bind across more than two components](xref:blazor/components/data-binding?view=aspnetcore-7.0#bind-across-more-than-two-components)
 
 ### Hot Reload improvements
 
