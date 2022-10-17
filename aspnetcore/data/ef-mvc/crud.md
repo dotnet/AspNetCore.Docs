@@ -158,21 +158,26 @@ This is server-side validation that you get by default; in a later tutorial you'
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Create&highlight=8)]
 
-Change the date to a valid value and click **Create** showing that we still cannot not create the new object. We need to disable the setting in our project template for this. 
+Change the date to a valid value and click **Create** showing that we still cannot not create the new object. To resolve this we must do 2 things.
 
-Please open csproj and change this settings:
+1. We meed to change the value of the asp-validation-summary property. We are not showing the error message for this. 
+2. We have to declare our Enrollment Navigation property as Nullable. We are not yet creating any new enrollments for the student and have the navigation property or foreign key as implicitly required for creation of the object.
 
-```xml
-<Nullable>enable</Nullable>
+That is the reason why we are getting errors.
+
+Firstly in our `Student` class simply change navigation property from this: 
+
+```csharp
+public ICollection<Enrollment> Enrollments { get; set; } 
 ```
 
-To the **disable** value.
+To this:
 
-```xml
-<Nullable>disable</Nullable>
+```csharp
+public ICollection<Enrollment> Enrollments { get; set; }
 ```
 
-This will be addressed by our team in future.
+Also in *Views/Students/Student.cs* create this. 
 
 You should now be able to click **Create** to see the new student appear in the **Index** page.
 
