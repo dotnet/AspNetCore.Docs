@@ -719,6 +719,29 @@ In the following example:
 }
 ```
 
+Components support two-way data binding by defining a pair of parameters:
+
+* `@bind:get`: Specifies the value to bind.
+* `@bind:set`: Specifies a callback for when the value changes.
+
+The `@bind:get` and `@bind:set` modifiers are always used together.
+
+Example:
+
+```razor
+<input @bind:get="Value" @bind:set="ValueChanged" />
+
+@code {
+    [Parameter]
+    public string? Value { get; set; }
+
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+}
+```
+
+For another example use of `@bind:get` and `@bind:set`, see the [Bind across more than two components](#bind-across-more-than-two-components) section later in this article.
+
 Razor attribute binding is case sensitive:
 
 * `@bind`, `@bind:event`, and `@bind:after` are valid.
