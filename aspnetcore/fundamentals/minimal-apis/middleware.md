@@ -72,7 +72,7 @@ app.UseRouting();
 
 app.MapGet("/", () => "hello world");
 
-app.UseEndpoint(e => {});
+app.UseEndpoints(e => {});
 
 app.Run(context =>
 {
