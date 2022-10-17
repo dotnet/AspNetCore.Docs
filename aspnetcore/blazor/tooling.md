@@ -1171,6 +1171,23 @@ The .NET WebAssembly build tools are based on [Emscripten](https://emscripten.or
 * For the **ASP.NET and web development** workload in the Visual Studio installer, select the **.NET WebAssembly build tools** option from the list of optional components.
 * Execute `dotnet workload install wasm-tools` in an administrative command shell.
 
+When [Ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) is used, [WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) is supported, **except for Apple Safari at this time**. Use the `<WasmEnableSIMD>` property in the app's project file (`.csproj`) with a value of `true`:
+
+```xml
+<PropertyGroup>
+  <WasmEnableSIMD>true</WasmEnableSIMD>
+  <RunAOTCompilation>true</RunAOTCompilation>
+</PropertyGroup>
+```
+
+To enable WebAssembly exception handling, use the `<WasmEnableExceptionHandling>` property in the app's project file (`.csproj`) with a value of `true`:
+
+```xml
+<PropertyGroup>
+  <WasmEnableExceptionHandling>true</WasmEnableExceptionHandling>
+</PropertyGroup>
+```
+
 > [!NOTE]
 > .NET WebAssembly build tools for .NET 6 projects
 >
