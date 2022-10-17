@@ -44,14 +44,14 @@ app.MapGet("/", () => "hello world");
 app.UseEndpoints(e => {});
 ```
 
-In some cases, this default middleware configuration will not be entirely correct for the application. In which case specific sections can be replaced. For example, CORS should run before auth, in order to do that call `UseAuthentication` and `UseAuthorization` manually after `UseCors`.
+In some cases, the default middleware configuration is not correct for the app and requires modification. For example, `UseCors` should be called before `UseAuthentication` and `UseAuthorization`. The app needs to call `UseAuthentication` and `UseAuthorization` in that case.
 ```csharp
 app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 ```
 
-If middleware should be run before route matching occurs, `UseRouting` can be called manually and the middleware should be placed before the call to `UseRouting`. `UseEndpoints` isn't required in this case as it will still be automatically added as described above.
+If middleware should be run before route matching occurs, `UseRouting` should be called and the middleware should be placed before the call to `UseRouting`. `UseEndpoints` isn't required in this case as it is automatically added as described above.
 ```csharp
 app.Use((context, next) =>
 {
