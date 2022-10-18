@@ -64,7 +64,7 @@ issues:
             - projects-add: [35]
             - labels-remove: [":watch: Not Triaged"]
             - assignee-add: ["guardrex"]
-
+        
         # If the word appears anywhere in the file name path, add the label
         - check:
             - type: metadata-comment
