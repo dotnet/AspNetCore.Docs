@@ -10,7 +10,7 @@ uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
 
-By [Glenn Condron](https://github.com/glennc)
+By [Glenn Condron](https://github.com/glennc) and [Juergen Gutsch](https://twitter.com/sharpcms)
 
 :::moniker range=">= aspnetcore-6.0"
 
