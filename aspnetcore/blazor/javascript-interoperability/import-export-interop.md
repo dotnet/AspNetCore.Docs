@@ -5,7 +5,7 @@ description: Learn how to interact with JavaScript in Blazor WebAssembly apps us
 monikerRange: '= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/10/2022
+ms.date: 10/18/2022
 uid: blazor/js-interop/import-export-interop
 ---
 # .NET JavaScript `[JSImport]`/`[JSExport]` interop with ASP.NET Core Blazor
@@ -21,6 +21,15 @@ Blazor provides its own JS interop mechanism based on the <xref:Microsoft.JSInte
 
 This article describes an alternative JS interop approach specific to WebAssembly-based apps available for the first time with the release of .NET 7. These approaches are appropriate when you only expect to run on client-side WebAssembly and not in the other Blazor hosting models. Library authors can use these approaches to optimize JS interop by checking at runtime if the app is running on WebAssembly in a browser (<xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>). The approaches described in this article should be used to replace the obsolete unmarshalled JS interop API when migrating to .NET 7.
 
+<!--
+
+    HOLD: WAIT FOR CLIENT-SIDE ARTICLE TO MERGE
+    
+    > [!NOTE]
+    > This article focuses on JS interop in Blazor WebAssembly apps. For guidance on using JS `[JSImport]`/`[JSExport]` interop in JavaScript apps, see <xref:client-side/import-export-interop>.
+    
+-->
+
 ## Obsolete JavaScript interop API
 
 Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> API is obsolete in ASP.NET Core 7.0. Follow the guidance in this article to replace the obsolete API.
@@ -31,13 +40,15 @@ Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> 
 
 ## Namespace
 
-.NET JS `[JSImport]`/`[JSExport]` interop API is controlled by attributes from the `System.Runtime.InteropServices.JavaScript` namespace.
-
-## Cache busting during development
+The JS interop API described in this article is controlled by attributes in the <xref:System.Runtime.InteropServices.JavaScript?displayProperty=fullName> namespace.
 
 <!--
 
-    TBD ... In discussion on the PR.
+    HOLD: IN DISCUSSION ON THE PR
+
+    ## Cache busting during development
+
+    ...
 
 -->
 
@@ -378,5 +389,13 @@ For an additional example of the JS interop techniques described in this article
 > The *Blazor WASM demo of new JSInterop* sample app uses a public JS library from [MediaPipe](https://www.mediapipe.dev/), which isn't owned, maintained, or supported by the .NET foundation or Microsoft.
 
 ## Additional resources
+
+<!--
+
+    HOLD: WAIT FOR CLIENT-SIDE ARTICLE TO MERGE
+    
+    * <xref:client-side/import-export-interop>
+
+-->
 
 * [Use .NET from any JavaScript app in .NET 7](https://devblogs.microsoft.com/dotnet/use-net-7-from-any-javascript-app-in-net-7/)
