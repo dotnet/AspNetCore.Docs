@@ -1,5 +1,5 @@
 ---
-title: Client-side development with .NET JavaScript `[JSImport]`/`[JSExport]` interop
+title: Run .NET from JavaScript using `[JSImport]`/`[JSExport]` interop
 author: pavelsavara
 description: Learn how to perform JavaScript interop in client-side JavaScript apps using .NET JavaScript `[JSImport]`/`[JSExport]` interop.
 monikerRange: '>= aspnetcore-7.0'
