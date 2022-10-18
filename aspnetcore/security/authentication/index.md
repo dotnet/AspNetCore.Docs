@@ -48,12 +48,21 @@ The Authentication middleware is added in `Program.cs` by calling <xref:Microsof
 Authentication is responsible for providing the <xref:System.Security.Claims.ClaimsPrincipal> for authorization to make permission decisions against. There are multiple authentication scheme approaches to select which authentication handler is responsible for generating the correct set of claims:
 
 * [Authentication scheme](#authentication-scheme)
-* The default authentication scheme, discussed in the next section.
+* The default authentication scheme, discussed in the next two sections.
 * Directly set <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>.
 
-There's no automatic probing of schemes. If the default scheme isn't specified, the scheme must be specified in the authorize attribute, otherwise, the following error is thrown:
+When there is only a single authentication scheme registered, it becomes the default scheme. If multiple schemes are registered and the default scheme isn't specified, a scheme must be specified in the authorize attribute, otherwise, the following error is thrown:
 
 > InvalidOperationException: No authenticationScheme was specified, and there was no DefaultAuthenticateScheme found. The default schemes can be set using either AddAuthentication(string defaultScheme) or AddAuthentication(Action\<AuthenticationOptions> configureOptions).
+
+### `DefaultScheme`
+
+When there is only a single authentication scheme registered, the single authentication scheme:
+
+* Is automatically is used as the `DefaultScheme`.
+* Eliminates the need to specify the `DefaultScheme` in `AddAuthentication`.
+
+The single authentication scheme being automatically used as the `DefaultScheme` can be disabled via `AppContext.SetSwitch("Microsoft.AspNetCore.Authentication.SuppressAutoDefaultScheme")`.
 
 ### Authentication scheme
 
