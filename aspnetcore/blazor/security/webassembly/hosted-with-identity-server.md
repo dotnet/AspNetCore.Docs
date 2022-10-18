@@ -1893,6 +1893,8 @@ The `Startup` class has the following additions.
         .AddIdentityServerJwt();
     ```
 
+    [!INCLUDE[](~/blazor/includes/default-scheme.md)]
+
 * In `Program.cs`:
 
   * The IdentityServer middleware exposes the OpenID Connect (OIDC) endpoints:
