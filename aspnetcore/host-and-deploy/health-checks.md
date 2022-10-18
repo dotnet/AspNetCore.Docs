@@ -5,12 +5,12 @@ description: Learn how to set up health checks for ASP.NET Core infrastructure, 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 10/19/2022
 uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
 
-By [Glenn Condron](https://github.com/glennc)
+By [Glenn Condron](https://github.com/glennc) and [Juergen Gutsch](https://twitter.com/sharpcms)
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -285,6 +285,18 @@ The following example registers a health check publisher as a singleton and conf
 > [`AspNetCore.Diagnostics.HealthChecks`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks) includes publishers for several systems, including [Application Insights](/azure/application-insights/app-insights-overview).
 >
 > [`AspNetCore.Diagnostics.HealthChecks`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks) isn't maintained or supported by Microsoft.
+
+## Dependency Injection and Health Checks
+
+It's possible to use dependency injection to consume an instance of a specific `Type` inside a Health Check class. Dependency injection can be useful to inject options or a global configuration to a Health Check. Using dependency injection is ***not*** a common scenario to configure Health Checks. Usually, each Health Check is quite specific to the actual test and is configured using `IHealthChecksBuilder` extension methods.
+
+The following example shows a sample Health Check that retrieves a configuration object via dependency injection:
+
+:::code language="csharp" source="health-checks/samples/7.x/HealthChecksSample/HealthChecks/SampleHealthCheckWithDI.cs" id="snippet_Class":::
+
+The `SampleHealthCheckWithDiConfig` and the Health check needs to be added to the service container :
+
+:::code language="csharp" source="health-checks/samples/7.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksUsingDependencyInjection":::
 
 ## Additional resources
 
