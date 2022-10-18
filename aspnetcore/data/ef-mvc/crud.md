@@ -160,26 +160,28 @@ This is server-side validation that you get by default; in a later tutorial you'
 
 Change the date to a valid value and click **Create** showing that we still cannot not create the new object. To resolve this we must do 2 things.
 
-1. We meed to change the value of the asp-validation-summary property. We are not showing the error message for this. 
-2. We have to declare our Enrollment Navigation property as Nullable. We are not yet creating any new enrollments for the student and have the navigation property or foreign key as implicitly required for creation of the object.
+1. We meed to change the value of the asp-validation-summary helper tag. This is so we can enable errors messages in the UI. 
+2. 
+3. We have to declare our Enrollment Navigation property as Nullable. We are not yet creating any new enrollments for the student and have the navigation property or foreign key as implicitly required for creation of the object.
 
 That is the reason why we are getting errors.
 
-Firstly in our `Student` class simply change navigation property from this: 
+Firstly in our `Student` class simply change navigation property to be nullable with a question mark symbol: 
 
-```csharp
-public ICollection<Enrollment> Enrollments { get; set; } 
-```
+[!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_NullableEnrollments&highlight=11)]
 
-To this:
+Also in *Views/Students/Create.cshtml* you will notice the `asp-validation-summary` property is set to `ModelOnly` we need to change the value to `All` as shown here.
 
-```csharp
-public ICollection<Enrollment> Enrollments { get; set; }
-```
-
-Also in *Views/Students/Student.cs* create this. 
+[!code-cshtml[](intro/samples/cu/Views/Students/Create.cshtml?range=1-14&highlight=13)]
 
 You should now be able to click **Create** to see the new student appear in the **Index** page.
+
+One last thing to keep in mind is if you are having the same problem on multiple pages and these steps did not work then worst case scenario would be to go into `ContosoUniversity.csproj` and comment out the following line.   
+
+```xml
+<Nullable>disable</Nullable>
+```
+But for simplicity we will leave it alone in this tutorial.
 
 ## Update the Edit page
 
@@ -240,6 +242,10 @@ Run the app, select the **Students** tab, then click an **Edit** hyperlink.
 ![Students edit page](crud/_static/student-edit.png)
 
 Change some of the data and click **Save**. The **Index** page opens and you see the changed data.
+
+If you get problems please go to `Views/Students/Edit.cshtml` and ensure the  `asp-validation-summary` property is set to to the value `All` just like we did in the previous `Create.cshtml` page.
+
+[!code-cshtml[](intro/samples/cu/Views/Students/Edit.cshtml?range=1-14&highlight=13)]
 
 ## Update the Delete page
 
