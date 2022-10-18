@@ -1,16 +1,16 @@
 ---
 title: Run .NET from JavaScript using `[JSImport]`/`[JSExport]` interop
 author: pavelsavara
-description: Learn how to perform JavaScript interop in client-side JavaScript apps using .NET JavaScript `[JSImport]`/`[JSExport]` interop.
+description: Learn how to run .NET from JavaScript using `[JSImport]`/`[JSExport]` interop.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/11/2022
+ms.date: 10/18/2022
 uid: client-side/import-export-interop
 ---
-# Client-side development with .NET JavaScript `[JSImport]`/`[JSExport]` interop
+# Run .NET from JavaScript using `[JSImport]`/`[JSExport]` interop
 
-This article explains how perform JavaScript (JS) interop in client-side JS apps using .NET JS `[JSImport]`/`[JSExport]` interop API.
+This article explains how to run .NET from JavaScript (JS) using `[JSImport]`/`[JSExport]` interop.
 
 Existing JS apps can use the expanded client-side WebAssembly support in .NET 7 to reuse .NET libraries from JS or to build novel .NET-based apps and frameworks.
 
@@ -18,14 +18,8 @@ Existing JS apps can use the expanded client-side WebAssembly support in .NET 7 
 > This article focuses on JS interop in JS apps without any dependency on the [Blazor UI component model](xref:blazor/index). To distinguish Blazor WebAssembly from [client-side WebAssembly](https://webassembly.org), this article uses "*<:::no-loc text="WASM":::*" when referring to client-side WebAssembly.
 >
 > For guidance on using .NET JS `[JSImport]`/`[JSExport]` interop API in Blazor WebAssembly apps, see <xref:blazor/js-interop/import-export-interop>.
->
-> Additional guidance for the scenarios covered by this article can be found in the [Use .NET from any JavaScript app in .NET 7](https://devblogs.microsoft.com/dotnet/use-net-7-from-any-javascript-app-in-net-7/) Microsoft .NET Blog post, including additional information for the following subjects:
->
-> * Information on the *Port of famous Todo-MVC to .NET on WASM* sample app based on [TodoMVC](https://todomvc.com/) and [Playwright for .NET](https://playwright.dev/dotnet/). For more information, see the [Additional example](#additional-example) section later in this article.
-> * App optimization.
-> * Performance.
 
-These approaches are appropriate when you only expect to run on :::no-loc text="WASM":::. Libraries can make a runtime check to determine if the app is running on :::no-loc text="WASM"::: by calling <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>.
+These approaches are appropriate when you only expect to run on WebAssembly (:::no-loc text="WASM":::). Libraries can make a runtime check to determine if the app is running on :::no-loc text="WASM"::: by calling <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>.
 
 ## Prerequisites
 
