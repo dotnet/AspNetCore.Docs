@@ -598,7 +598,7 @@ See [Video: Beginner's Series to: Web APIs](/shows/beginners-series-to-web-apis/
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range="= aspnetcore-6.0"
 
 In this tutorial, you learn how to:
 
