@@ -1573,6 +1573,9 @@ Run the following .NET CLI commands:
 
 ```dotnetcli
 dotnet ef migrations add InitialCreate
+```
+
+```dotnetcli
 dotnet ef database update
 ```
 
@@ -1587,7 +1590,7 @@ dotnet ef database update
 
 Run the app and select the **Movie App** link.
 
-If you get an exception similar to the following, you may have missed the [migrations step](#migration):
+If you get an exception similar to the following, you may have missed the `dotnet ef database update` command in the [migrations step](#migration):
 
 # [Visual Studio](#tab/visual-studio)
 
