@@ -36,15 +36,15 @@ The following diagram shows the design of the app.
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
 
 ---
 
@@ -57,7 +57,7 @@ The following diagram shows the design of the app.
 * Select the **ASP.NET Core Web API** template and select **Next**.
 * In the **Configure your new project dialog**, name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-  * Confirm the **Framework** is **.NET 6.0 (Long-term support)**.
+  * Confirm the **Framework** is **.NET 7.0
   * Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
   * Select **Create**.
 
@@ -131,7 +131,7 @@ Run the app:
 * At the **Select environment** prompt, choose **.NET Core**.
 * Select **Add Configuration** > **.NET: Launch a local .NET Core Console App**.
 * In the configuration JSON:
-  * Replace `<target-framework>` with `net6.0`.
+  * Replace `<target-framework>` with `net7.0`.
   * Replace  `<project-name.dll>` with `TodoApi.dll`.
 * Press Ctrl+F5.
 * In the **Could not find the task 'build'** dialog, select **Configure Task**.
