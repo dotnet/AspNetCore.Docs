@@ -590,10 +590,10 @@ The rules for determining a binding source from a parameter:
     1. Service: [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute)
 1. Special types
     1. [`HttpContext`](xref:Microsoft.AspNetCore.Http.HttpContext)
-    1. [`HttpRequest`](xref:Microsoft.AspNetCore.Http.HttpContext.Request%2A)
-    1. [`HttpResponse`](xref:Microsoft.AspNetCore.Http.HttpContext.Response%2A)
-    1. [`ClaimsPrincipal`](xref:Microsoft.AspNetCore.Http.HttpContext.User%2A)
-    1. [`CancellationToken`](xref:Micrsoft.AspNetCore.Http.HttpContext.RequestAborted%2A)
+    1. [`HttpRequest`](xref:Microsoft.AspNetCore.Http.HttpContext.Request)
+    1. [`HttpResponse`](xref:Microsoft.AspNetCore.Http.HttpContext.Response)
+    1. [`ClaimsPrincipal`](xref:Microsoft.AspNetCore.Http.HttpContext.User)
+    1. [`CancellationToken`](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted)
 1. Parameter type has a valid `BindAsync` method.
 1. Parameter type is a string or has a valid `TryParse` method.
    1. If the parameter name exists in the route template e.g. `app.Map("/todo/{id}", (int id) => {});`, then it's bound from the route.
@@ -1468,14 +1468,14 @@ The rules for determining a binding source from a parameter:
     1. Parameter values: [`[AsParameters]`](<xref:Microsoft.AspNetCore.Http.AsParametersAttribute)
 1. Special types
     1. [`HttpContext`](xref:Microsoft.AspNetCore.Http.HttpContext)
-    1. [`HttpRequest`](xref:Microsoft.AspNetCore.Http.HttpContext.Request%2A)
-    1. [`HttpResponse`](xref:Microsoft.AspNetCore.Http.HttpContext.Response%2A)
-    1. [`ClaimsPrincipal`](xref:Microsoft.AspNetCore.Http.HttpContext.User%2A)
-    1. [`CancellationToken`](xref:Micrsoft.AspNetCore.Http.HttpContext.RequestAborted%2A)
-    1. [`IFormFileCollection`](xref:Microsoft.AspNetCore.Http.IFormFileCollection.Files%2A)
+    1. [`HttpRequest`](xref:Microsoft.AspNetCore.Http.HttpContext.Request)
+    1. [`HttpResponse`](xref:Microsoft.AspNetCore.Http.HttpContext.Response)
+    1. [`ClaimsPrincipal`](xref:Microsoft.AspNetCore.Http.HttpContext.User)
+    1. [`CancellationToken`](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted)
+    1. [`IFormFileCollection`](xref:Microsoft.AspNetCore.Http.IFormCollection.Files)
     1. [`IFormFile`](xref:Microsoft.AspNetCore.Http.IFormFile)
-    1. [`Stream`](xref:Microsoft.AspNetCore.HttpRequest.Body%2A)
-    1. [`PipeReader`](xref:Microsoft.AspNetCore.HttpRequest.BodyReader%2A)
+    1. [`Stream`](xref:Microsoft.AspNetCore.Http.HttpRequest.Body)
+    1. [`PipeReader`](xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader)
 1. Parameter type has a valid `BindAsync` method.
 1. Parameter type is a string or has a valid `TryParse` method.
    1. If the parameter name exists in the route template e.g. `app.Map("/todo/{id}", (int id) => {});`, then it's bound from the route.
