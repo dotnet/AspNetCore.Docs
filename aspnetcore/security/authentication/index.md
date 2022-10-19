@@ -60,7 +60,7 @@ When there is only a single authentication scheme registered, it becomes the def
 When there is only a single authentication scheme registered, the single authentication scheme:
 
 * Is automatically is used as the `DefaultScheme`.
-* Eliminates the need to specify the `DefaultScheme` in `AddAuthentication`.
+* Eliminates the need to specify the `DefaultScheme` in `AddAuthentication` or [`AddAuthentication(IServiceCollection, Action<AuthenticationOptions>)`](/dotnet/api/microsoft.extensions.dependencyinjection.authenticationservicecollectionextensions.addauthentication#microsoft-extensions-dependencyinjection-authenticationservicecollectionextensions-addauthentication(microsoft-extensions-dependencyinjection-iservicecollection-system-action((microsoft-aspnetcore-authentication-authenticationoptions))))
 
 The single authentication scheme being automatically used as the `DefaultScheme` can be disabled via `AppContext.SetSwitch("Microsoft.AspNetCore.Authentication.SuppressAutoDefaultScheme")`.
 
