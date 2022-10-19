@@ -190,6 +190,14 @@ The cache-first strategy is valuable because:
 
 * **It ensures correctness.** When building a cache of offline resources, the service worker uses content hashing to guarantee it has fetched a complete and self-consistent snapshot of resources at a single instant in time. This cache is then used as an atomic unit. There's no point asking the network for newer resources, since the only versions required are the ones already cached. Anything else risks inconsistency and incompatibility (for example, trying to use versions of .NET assemblies that weren't compiled together).
 
+If you must prevent the browser from fetching `service-worker-assets.js` from its HTTP cache, for example to resolve temporary integrity check failures when deploying a new version of the service worker, update the service worker registration in `wwwroot/index.html` with [`updateViaCache`](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/updateViaCache) set to 'none':
+
+```html
+<script>
+  navigator.serviceWorker.register('/service-worker.js', {updateViaCache: 'none'});
+</script>
+```
+
 ### Background updates
 
 As a mental model, you can think of an offline-first PWA as behaving like a mobile app that can be installed. The app starts up immediately regardless of network connectivity, but the installed app logic comes from a point-in-time snapshot that might not be the latest version.
@@ -545,6 +553,14 @@ The cache-first strategy is valuable because:
 
 * **It ensures correctness.** When building a cache of offline resources, the service worker uses content hashing to guarantee it has fetched a complete and self-consistent snapshot of resources at a single instant in time. This cache is then used as an atomic unit. There's no point asking the network for newer resources, since the only versions required are the ones already cached. Anything else risks inconsistency and incompatibility (for example, trying to use versions of .NET assemblies that weren't compiled together).
 
+If you must prevent the browser from fetching `service-worker-assets.js` from its HTTP cache, for example to resolve temporary integrity check failures when deploying a new version of the service worker, update the service worker registration in `wwwroot/index.html` with [`updateViaCache`](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/updateViaCache) set to 'none':
+
+```html
+<script>
+  navigator.serviceWorker.register('/service-worker.js', {updateViaCache: 'none'});
+</script>
+```
+
 ### Background updates
 
 As a mental model, you can think of an offline-first PWA as behaving like a mobile app that can be installed. The app starts up immediately regardless of network connectivity, but the installed app logic comes from a point-in-time snapshot that might not be the latest version.
@@ -898,6 +914,14 @@ The cache-first strategy is valuable because:
   This is why the browser's `navigator.onLine` API isn't reliable and shouldn't be depended upon.
 
 * **It ensures correctness.** When building a cache of offline resources, the service worker uses content hashing to guarantee it has fetched a complete and self-consistent snapshot of resources at a single instant in time. This cache is then used as an atomic unit. There's no point asking the network for newer resources, since the only versions required are the ones already cached. Anything else risks inconsistency and incompatibility (for example, trying to use versions of .NET assemblies that weren't compiled together).
+
+If you must prevent the browser from fetching `service-worker-assets.js` from its HTTP cache, for example to resolve temporary integrity check failures when deploying a new version of the service worker, update the service worker registration in `wwwroot/index.html` with [`updateViaCache`](https://developer.mozilla.org/docs/Web/API/ServiceWorkerRegistration/updateViaCache) set to 'none':
+
+```html
+<script>
+  navigator.serviceWorker.register('/service-worker.js', {updateViaCache: 'none'});
+</script>
+```
 
 ### Background updates
 
