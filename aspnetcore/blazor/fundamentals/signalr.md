@@ -241,6 +241,8 @@ When `autostart` is disabled, any aspect of the app that doesn't depend on the c
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
+<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
+
 ## Configure SignalR server timeout and Keep-Alive on the client
 
 Configure the following values for the client:
@@ -263,6 +265,8 @@ The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwr
 ```
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
+
+-->
 
 ## Configure SignalR client logging (Blazor Server)
 
@@ -591,6 +595,8 @@ When `autostart` is disabled, any aspect of the app that doesn't depend on the c
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
+<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
+
 ## Configure SignalR server timeout and Keep-Alive on the client
 
 Configure the following values for the client:
@@ -613,6 +619,8 @@ The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroo
 ```
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
+
+-->
 
 ## Configure SignalR client logging (Blazor Server)
 
@@ -927,6 +935,8 @@ When `autostart` is disabled, any aspect of the app that doesn't depend on the c
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
+<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
+
 ## Configure SignalR server timeout and Keep-Alive on the client
 
 Configure the following values for the client:
@@ -949,6 +959,8 @@ The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroo
 ```
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
+
+-->
 
 ## Configure SignalR client logging (Blazor Server)
 
@@ -1296,6 +1308,8 @@ When `autostart` is disabled, any aspect of the app that doesn't depend on the c
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
+<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
+
 ## Configure SignalR server timeout and Keep-Alive on the client
 
 Configure the following values for the client:
@@ -1318,6 +1332,8 @@ The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroo
 ```
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
+
+-->
 
 ## Configure SignalR client logging (Blazor Server)
 
