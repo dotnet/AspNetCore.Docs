@@ -21,3 +21,4 @@ dotnet whatsnew \
     --owner $OWNER \
     --repo $REPO \
     --savedir $SAVEDIR
+    
