@@ -3,7 +3,7 @@ title: Part 4, add a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 10/11/2022
+ms.date: 10/19/2022
 uid: tutorials/first-mvc-app/adding-model
 ms.custom: contperf-fy21q3
 ---
@@ -1364,7 +1364,7 @@ The preceding commands add:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-6.md)]
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-7.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
