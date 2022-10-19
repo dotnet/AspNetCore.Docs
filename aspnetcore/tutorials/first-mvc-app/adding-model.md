@@ -1527,15 +1527,13 @@ The scaffolded pages can't be used yet because the database doesn't exist. Runni
 
 ## Build the app
 
-Build the app. The compiler generates several warnings about how `null` values are handled. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594) and [Nullable reference types](/dotnet/csharp/nullable-references) for more information.
+Build the app. The compiler might generate warnings about how `null` values are handled. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594) and [Nullable reference types](/dotnet/csharp/nullable-references) for more information.
 
 To eliminate the warnings from nullable reference types, remove the following line from the `MvcMovie.csproj` file:
 
 ```xml
 <Nullable>enable</Nullable>
 ```
-
-We hope to fix this issue in the next release.
 
 ## Initial migration
 
