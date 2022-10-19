@@ -45,6 +45,8 @@ A console warning appears if Long Polling is utilized:
 
 > :::no-loc text="Failed to connect via WebSockets, using the Long Polling fallback transport. This may be due to a VPN or proxy blocking the connection.":::
 
+<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
+
 Recommendations for global deployments to geographical data centers:
 
 * Deploy the app to the regions where most of the users reside.
@@ -100,6 +102,8 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
   ```
 
   For more information, see <xref:blazor/fundamentals/signalr#configure-signalr-server-timeout-and-keep-alive-on-the-client>.
+
+-->
 
 For more information on SignalR configuration, see <xref:blazor/fundamentals/signalr>.
 
@@ -809,6 +813,8 @@ A console warning appears if Long Polling is utilized:
 
 > :::no-loc text="Failed to connect via WebSockets, using the Long Polling fallback transport. This may be due to a VPN or proxy blocking the connection.":::
 
+<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
+
 Recommendations for global deployments to geographical data centers:
 
 * Deploy the app to the regions where most of the users reside.
@@ -864,6 +870,8 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
   ```
 
   For more information, see <xref:blazor/fundamentals/signalr#configure-signalr-server-timeout-and-keep-alive-on-the-client>.
+
+-->
 
 For more information on SignalR configuration, see <xref:blazor/fundamentals/signalr>.
 

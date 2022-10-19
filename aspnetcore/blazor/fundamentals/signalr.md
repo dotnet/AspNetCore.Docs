@@ -232,14 +232,25 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 ## Blazor startup
 
+Configure the manual start of a Blazor Server app's SignalR circuit in the `Pages/_Layout.cshtml` file:
+
+* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
+* Place a script that calls `Blazor.start` after the `blazor.server.js` script's `<script>` tag and inside the closing `</body>` tag.
+
+<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
+
 Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Layout.cshtml` file (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` or `blazor.webassembly.js` script.
 * Place a script that calls `Blazor.start` after the Blazor script is loaded and inside the closing `</body>` tag.
 
+-->
+
 When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
+
+<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
 
 ## Configure SignalR server timeout and Keep-Alive on the client
 
@@ -263,6 +274,8 @@ The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwr
 ```
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
+
+-->
 
 ## Configure SignalR client logging (Blazor Server)
 
@@ -582,14 +595,25 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 ## Blazor startup
 
+Configure the manual start of a Blazor Server app's SignalR circuit in the `Pages/_Host.cshtml` file:
+
+* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
+* Place a script that calls `Blazor.start` after the `blazor.server.js` script's `<script>` tag and inside the closing `</body>` tag.
+
+<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
+
 Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` or `blazor.webassembly.js` script.
 * Place a script that calls `Blazor.start` after the Blazor script is loaded and inside the closing `</body>` tag.
 
+-->
+
 When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
+
+<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
 
 ## Configure SignalR server timeout and Keep-Alive on the client
 
@@ -613,6 +637,8 @@ The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroo
 ```
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
+
+-->
 
 ## Configure SignalR client logging (Blazor Server)
 
@@ -918,14 +944,25 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 ## Blazor startup
 
+Configure the manual start of a Blazor Server app's SignalR circuit in the `Pages/_Host.cshtml` file:
+
+* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
+* Place a script that calls `Blazor.start` after the `blazor.server.js` script's `<script>` tag and inside the closing `</body>` tag.
+
+<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
+
 Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` or `blazor.webassembly.js` script.
 * Place a script that calls `Blazor.start` after the Blazor script is loaded and inside the closing `</body>` tag.
 
+-->
+
 When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
+
+<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
 
 ## Configure SignalR server timeout and Keep-Alive on the client
 
@@ -949,6 +986,8 @@ The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroo
 ```
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
+
+-->
 
 ## Configure SignalR client logging (Blazor Server)
 
@@ -1287,14 +1326,25 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 ## Blazor startup
 
+Configure the manual start of a Blazor Server app's SignalR circuit in the `Pages/_Host.cshtml` file:
+
+* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
+* Place a script that calls `Blazor.start` after the `blazor.server.js` script's `<script>` tag and inside the closing `</body>` tag.
+
+<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
+
 Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` or `blazor.webassembly.js` script.
 * Place a script that calls `Blazor.start` after the Blazor script is loaded and inside the closing `</body>` tag.
 
+-->
+
 When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
+
+<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
 
 ## Configure SignalR server timeout and Keep-Alive on the client
 
@@ -1318,6 +1368,8 @@ The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroo
 ```
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
+
+-->
 
 ## Configure SignalR client logging (Blazor Server)
 
