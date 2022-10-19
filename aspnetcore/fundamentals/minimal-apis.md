@@ -674,35 +674,35 @@ The following example uses the built-in result types to customize the response:
 
 [!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_getCustom)]
 
-### JSON
+##### JSON
 
 ```csharp
 app.MapGet("/hello", () => Results.Json(new { Message = "Hello World" }));
 ```
 
-### Custom Status Code
+##### Custom Status Code
 
 ```csharp
 app.MapGet("/405", () => Results.StatusCode(405));
 ```
 
-### Text
+##### Text
 
 ```csharp
 app.MapGet("/text", () => Results.Text("This is some text"));
 ```
 
-### Stream
+##### Stream
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_stream)]
 
-### Redirect
+##### Redirect
 
 ```csharp
 app.MapGet("/old-path", () => Results.Redirect("/new-path"));
 ```
 
-### File
+##### File
 
 ```csharp
 app.MapGet("/download", () => Results.File("myfile.text"));
@@ -1557,27 +1557,26 @@ The following example uses the built-in result types to customize the response:
 
 [!code-csharp[](minimal-apis/7.0-samples/todo/Program.cs?name=snippet_getCustom)]
 
-### JSON
+##### JSON
 
 ```csharp
 app.MapGet("/hello", () => Results.Json(new { Message = "Hello World" }));
 ```
 
-### Custom Status Code
+##### Custom Status Code
 
 ```csharp
 app.MapGet("/405", () => Results.StatusCode(405));
 ```
 
-### Text
+##### Text
 
 ```csharp
 app.MapGet("/text", () => Results.Text("This is some text"));
 ```
-
 <a name="stream7"></a>
 
-### Stream
+##### Stream
 
 [!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_stream)]
 
@@ -1593,13 +1592,13 @@ The following example streams a video from an Azure Blob:
 
 [!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_video)]
 
-### Redirect
+##### Redirect
 
 ```csharp
 app.MapGet("/old-path", () => Results.Redirect("/new-path"));
 ```
 
-### File
+##### File
 
 ```csharp
 app.MapGet("/download", () => Results.File("myfile.text"));
@@ -1620,6 +1619,14 @@ Applications can control responses by implementing a custom <xref:Microsoft.AspN
 We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResultExtensions?displayProperty=fullName> to make these custom results more discoverable.
 
 [!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
+
+### Typed results
+
+The <xref:Microsoft.AspNetCore.Http.IResult> interface can represent values returned from minimal APIs that don't utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL.
+
+The types implementing `IResult` are public, allowing for type assertions when testing. For example:
+
+[!code-csharp[](~/fundamentals/minimal-apis/misc-samples/typedResults/TypedResultsApiWithTest/Test/WeatherApiTest.cs?name=snippet_1&highlight=7-8)]
 
 ## Filters
 
@@ -1658,14 +1665,6 @@ Routes can be [CORS](xref:security/cors?view=aspnetcore-6.0) enabled using [CORS
 For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
 <a name="openapi7"></a>
-
-## Typed results
-
-The <xref:Microsoft.AspNetCore.Http.IResult> interface can represent values returned from minimal APIs that don't utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL.
-
-The types implementing `IResult` are public, allowing for type assertions when testing. For example:
-
-[!code-csharp[](~/fundamentals/minimal-apis/misc-samples/typedResults/TypedResultsApiWithTest/Test/WeatherApiTest.cs?name=snippet_1&highlight=7-8)]
 
 <!-- 
 # Differences between minimal APIs and APIs with controllers
