@@ -12,11 +12,9 @@ uid: tutorials/first-web-api
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
-This tutorial teaches the basics of building a web API with ASP.NET Core.
+This tutorial teaches the basics of building a web API using a database.
 
 :::moniker range=">= aspnetcore-7.0"
-
-This tutorial shows how to create a Web API project using a database.
 
 ## Overview
 
