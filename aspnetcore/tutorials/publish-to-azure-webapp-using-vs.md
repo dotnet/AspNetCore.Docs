@@ -103,18 +103,18 @@ After creation is completed the dialog is automatically closed and the **Publish
 
 ![Publish dialog: select App Service instance](publish-to-azure-webapp-using-vs/_static/select_as.png)
 
-Next you see the **Publish Profile summary** page. Visual Studio has detected that this application requires a SQL Server database and it's asking you to configure it. Select **Configure**.
+Next you see the **Publish Profile summary** page. Visual Studio has detected that this application requires a SQL Server database which it has listed in the Service Dependencies pane. Select **...** and then **Connect**.
 
 ![Publish Profile summary page: configure SQL Server dependency](publish-to-azure-webapp-using-vs/_static/sql.png)
 
-The **Configure dependency** dialog appears:
+The **Connect to dependency** dialog appears:
 
 * Select **Azure SQL Database**.
 * Select **Next**.
 
 ![Configure SQL Server Dependency dialog](publish-to-azure-webapp-using-vs/_static/sql1.png)
 
-In the **Configure Azure SQL database** dialog, select **Create a SQL Database**.
+In the **Connect to Azure SQL database** dialog, select **Create new**.
 
 ![Select Create a SQL DB](publish-to-azure-webapp-using-vs/_static/sql2.png)
 
@@ -126,14 +126,14 @@ The **Create Azure SQL Database** appears:
 
 ![New Azure SQL Database dialog](publish-to-azure-webapp-using-vs/_static/sql_create.png)
 
-After creation is completed the dialog is automatically closed and the **Configure Azure SQL Database** dialog gets focus again:
+After creation is completed the dialog is automatically closed and the **Connect to Azure SQL Database** dialog gets focus again:
 
 * The new instance that was just created is automatically selected.
 * Select **Next**.
 
 ![Select Next](publish-to-azure-webapp-using-vs/_static/sql_select.png)
 
-In the next step of the **Configure Azure SQL Database** dialog:
+In the next step of the **Connect to Azure SQL Database** dialog:
 
 * Enter the **Database connection user name** and **Database connection password** fields. These are the details your application will use to connect to the database at runtime. Best practice is to avoid using the same details as the admin username & password used in the previous step.
 * Select **Finish**.
@@ -149,7 +149,7 @@ On the **Settings** page of the **Publish** dialog:
 * Expand **Databases** and check **Use this connection string at runtime**.
 * Expand **Entity Framework Migrations** and check **Apply this migration on publish**.
 
-* Select **Save**. Visual Studio returns to the **Publish** dialog. 
+* Select **Save**. Visual Studio returns to the **Publish** dialog.
 
 ![Publish dialog: Settings panel:Save](publish-to-azure-webapp-using-vs/_static/pp_settings.png)
 
