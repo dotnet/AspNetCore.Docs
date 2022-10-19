@@ -1628,6 +1628,8 @@ The types implementing `IResult` are public, allowing for type assertions when t
 
 [!code-csharp[](~/fundamentals/minimal-apis/misc-samples/typedResults/TypedResultsApiWithTest/Test/WeatherApiTest.cs?name=snippet_1&highlight=7-8)]
 
+You can look at the return types of the corresponding methods on the static [TypedResults](/dotnet/api/microsoft.aspnetcore.http.typedresults) class to find the correct public `IResult` type to cast to.
+
 ## Filters
 
 See <xref:fundamentals/minimal-apis/min-api-filters>
