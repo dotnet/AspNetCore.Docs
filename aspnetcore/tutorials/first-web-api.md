@@ -57,7 +57,7 @@ The following diagram shows the design of the app.
 * Select the **ASP.NET Core Web API** template and select **Next**.
 * In the **Configure your new project dialog**, name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-  * Confirm the **Framework** is **.NET 7.0
+  * Confirm the **Framework** is **.NET 7.0**
   * Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
   * Select **Create**.
 
@@ -145,10 +145,6 @@ In a browser, navigate to `https://localhost:<port>/swagger`, where `<port>` is 
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
-<!--
-Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/swagger` to the URL (change the URL to `https://localhost:<port>/swagger`).
--->
-
 ---
 
 The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it out** > **Execute**. The page displays:
@@ -209,7 +205,7 @@ In *Properties\launchSettings.json*, update `launchUrl` from `"swagger"` to `"ap
 "launchUrl": "api/todoitems",
 ```
 
-Because Swagger will be removed, the preceding markup changes the URL that is launched to the GET method of the controller added in the following sections.
+Because Swagger is removed in the next section, the preceding markup changes the URL that is launched to the `GET` method of the new controller.
 
 ## Add a model class
 
@@ -247,7 +243,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 ---
 
-  [!code-csharp[](first-web-api/samples/6.0/TodoApi/Models/TodoItem.cs)]
+  [!code-csharp[](first-web-api/samples/7.0/TodoApi/Models/TodoItem.cs)]
 
 The `Id` property functions as the unique key in a relational database.
 
@@ -288,7 +284,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 * Enter the following code:
 
-  [!code-csharp[](first-web-api/samples/6.0/TodoApi/Models/TodoContext.cs)]
+  [!code-csharp[](first-web-api/samples/7.0/TodoApi/Models/TodoContext.cs)]
 
 ## Register the database context
 
