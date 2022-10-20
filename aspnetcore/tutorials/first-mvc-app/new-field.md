@@ -478,7 +478,17 @@ If all the records in the DB are deleted, the initialize method will seed the DB
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-See [Resetting all migrations](/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli#resetting-all-migrations) to remove all migrations and start over. 
+Delete the Migrations folder and the database file, and then run the following .NET CLI commands:
+
+```dotnetcli
+dotnet ef migrations add InitialCreate
+```
+
+```dotnetcli
+dotnet ef database update
+```
+
+For more information, see [Resetting all migrations](/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli#resetting-all-migrations).
 
 ---
 <!-- End of VS tabs -->

@@ -241,6 +241,7 @@ public async Task<IActionResult> Index(string id)
         public async Task<IActionResult> Delete(int? id)
         {
             #endregion
+
             if (id == null)
             {
                 return NotFound();
@@ -263,6 +264,11 @@ public async Task<IActionResult> Index(string id)
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             #endregion
+            if (_context.Movie == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+            }
+
             var movie = await _context.Movie.FindAsync(id);
             _context.Movie.Remove(movie);
             await _context.SaveChangesAsync();
