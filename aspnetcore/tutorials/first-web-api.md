@@ -290,10 +290,11 @@ In ASP.NET Core, services such as the DB context must be registered with the [de
 
 Update `Program.cs` with the following highlighted code:
 
-[!code-csharp[](first-web-api/samples/7.0/TodoApi/Program.cs?highlight=1-2,10-15,23-24)]
+[!code-csharp[](first-web-api/samples/7.0/TodoApi/Program.cs?highlight=1-2,7-8)]
 
 The preceding code:
 
+* Adds `using` directives.
 * Adds the database context to the DI container.
 * Specifies that the database context will use an in-memory database.
 
@@ -349,7 +350,7 @@ The ASP.NET Core templates for:
 * Controllers with views include `[action]` in the route template.
 * API controllers don't include `[action]` in the route template.
 
-When the `[action]` token isn't in the route template, the [action](xref:mvc/controllers/routing#action) name is excluded from the route. That is, the action's associated method name isn't used in the matching route.
+When the `[action]` token isn't in the route template, the [action](xref:mvc/controllers/routing#action) name (method name) isn't included in the endpoint. That is, the action's associated method name isn't used in the matching route.
 
 ## Update the PostTodoItem create method
 
