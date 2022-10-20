@@ -5,7 +5,7 @@ description: Learn how to interact with JavaScript in Blazor WebAssembly apps us
 monikerRange: '= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/18/2022
+ms.date: 10/20/2022
 uid: blazor/js-interop/import-export-interop
 ---
 # .NET JavaScript `[JSImport]`/`[JSExport]` interop with ASP.NET Core Blazor
@@ -41,16 +41,6 @@ Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> 
 ## Namespace
 
 The JS interop API described in this article is controlled by attributes in the <xref:System.Runtime.InteropServices.JavaScript?displayProperty=fullName> namespace.
-
-<!--
-
-    HOLD: IN DISCUSSION ON THE PR
-
-    ## Cache busting during development
-
-    ...
-
--->
 
 ## Enable unsafe blocks
 
@@ -376,12 +366,12 @@ await JSHost.ImportAsync("Interop", "../js/interop.js");
 > [!IMPORTANT]
 > In this section's example, JS interop is used to mutate a DOM element *purely for demonstration purposes* after the component is rendered in [`OnAfterRender`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). Typically, you should only mutate the DOM with JS when the object doesn't interact with Blazor. The approach shown in this section is similar to cases where a third-party JS library is used in a Razor component, where the component interacts with the JS library via JS interop, the third-party JS library interacts with part of the DOM, and Blazor isn't involved directly with the DOM updates to that part of the DOM. For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
 
-## Additional resources
-
 <!--
 
     HOLD: WAIT FOR CLIENT-SIDE ARTICLE TO MERGE
-    
-    * <xref:client-side/import-export-interop>
+
+## Additional resources
+
+* <xref:client-side/import-export-interop>
 
 -->
