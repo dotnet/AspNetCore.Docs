@@ -292,7 +292,7 @@ In ASP.NET Core, services such as the DB context must be registered with the [de
 
 Update `Program.cs` with the following code:
 
-[!code-csharp[](first-web-api/samples/6.0/TodoApi/Program.cs?highlight=1-2,10-15,23-24)]
+[!code-csharp[](first-web-api/samples/6.0/TodoApi/Program.cs?name=snippet_clean)]
 
 The preceding code:
 
@@ -300,6 +300,10 @@ The preceding code:
 * Removes unused `using` directives.
 * Adds the database context to the DI container.
 * Specifies that the database context will use an in-memory database.
+
+The following highlighted code shows the changes made:
+
+[!code-csharp[](first-web-api/samples/6.0/TodoApi/Program.cs?name=snippet_full&highlight=1-2,10-15,23-24)]
 
 ## Scaffold a controller
 
