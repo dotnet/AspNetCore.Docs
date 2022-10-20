@@ -26,6 +26,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.MapControllers().WithOpenApi();
 
 app.Run();

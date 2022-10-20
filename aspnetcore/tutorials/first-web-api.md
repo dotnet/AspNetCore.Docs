@@ -359,9 +359,9 @@ When the `[action]` token isn't in the route template, the [action](xref:mvc/con
 
 Update the return statement in the `PostTodoItem` to use the [nameof](/dotnet/csharp/language-reference/operators/nameof) operator:
 
-[!code-csharp[](first-web-api/samples/6.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
+[!code-csharp[](first-web-api/samples/7.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
-The preceding code is an HTTP POST method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the to-do item from the body of the HTTP request.
+The preceding code is an `HTTP POST` method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the to-do item from the body of the HTTP request.
 
 For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#verb).
 
@@ -381,7 +381,7 @@ This tutorial uses [http-repl](xref:web-api/http-repl) to test the web API.
   dotnet tool install -g Microsoft.dotnet-httprepl
   ```
 
-* If you don't have the .NET 6.0 SDK or runtime installed, install the [.NET 6.0 runtime](https://dotnet.microsoft.com/download/dotnet/6.0/runtime).
+* If you don't have the .NET 7.0 SDK or runtime installed, install the [.NET 7.0 runtime](https://dotnet.microsoft.com/download/dotnet/7.0/runtime).
   
 <a name="post"></a>
 
@@ -389,7 +389,7 @@ This tutorial uses [http-repl](xref:web-api/http-repl) to test the web API.
 
 * Press Ctrl+F5 to run the app.
 
-* Open a new terminal window, and run the following commands. If your app uses a different port number, replace 5001 in the httprepl command with your port number.
+* Open a new terminal window, and run the following commands. Replace 5001 in the `httprepl` command with the port number in your app.
 
   ```dotnetcli
   httprepl https://localhost:5001/api/todoitems
