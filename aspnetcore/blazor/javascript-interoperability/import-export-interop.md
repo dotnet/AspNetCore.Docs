@@ -102,7 +102,7 @@ In the following `CallJavaScript1` component:
 ```
 
 > [!NOTE]
-> Code can include a conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> to ensure that the JS interop is only called in Blazor WebAssembly apps running on the client in a browser. This is important for libraries/NuGet packages that target Blazor WebAssembly and Blazor Server apps because Blazor Server apps can't execute the code provided by this JS interop API.
+> Code can include a conditional check for <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> to ensure that the JS interop is only called in Blazor WebAssembly apps running on the client in a browser. This is important for libraries/NuGet packages that target Blazor hosting models that aren't based on WebAssembly, such as Blazor Server and Blazor Hybrid, which can't execute the code provided by this JS interop API.
 
 To import a JS function to call it from C#, use the `[JSImport]` attribute on a C# method signature that matches the JS function's signature. The first parameter to the `[JSImport]` attribute is the name of the JS function to import, and the second parameter is the name of the [JS module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules).
 
@@ -376,18 +376,6 @@ await JSHost.ImportAsync("Interop", "../js/interop.js");
 > [!IMPORTANT]
 > In this section's example, JS interop is used to mutate a DOM element *purely for demonstration purposes* after the component is rendered in [`OnAfterRender`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). Typically, you should only mutate the DOM with JS when the object doesn't interact with Blazor. The approach shown in this section is similar to cases where a third-party JS library is used in a Razor component, where the component interacts with the JS library via JS interop, the third-party JS library interacts with part of the DOM, and Blazor isn't involved directly with the DOM updates to that part of the DOM. For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
 
-## Additional example
-
-For an additional example of the JS interop techniques described in this article, see the *Blazor WASM demo of new JSInterop* sample app:
-
-* [Reference source (`pavelsavara/blazor-wasm-hands-pose` GitHub repository)](https://github.com/pavelsavara/blazor-wasm-hands-pose)
-* [Live demonstration](https://pavelsavara.github.io/blazor-wasm-hands-pose/)
-
-> [!NOTE]
-> The [`pavelsavara/blazor-wasm-hands-pose` GitHub repository](https://github.com/pavelsavara/blazor-wasm-hands-pose) isn't owned, maintained, or supported by the .NET foundation or Microsoft.
->
-> The *Blazor WASM demo of new JSInterop* sample app uses a public JS library from [MediaPipe](https://www.mediapipe.dev/), which isn't owned, maintained, or supported by the .NET foundation or Microsoft.
-
 ## Additional resources
 
 <!--
@@ -397,5 +385,3 @@ For an additional example of the JS interop techniques described in this article
     * <xref:client-side/import-export-interop>
 
 -->
-
-* [Use .NET from any JavaScript app in .NET 7](https://devblogs.microsoft.com/dotnet/use-net-7-from-any-javascript-app-in-net-7/)
