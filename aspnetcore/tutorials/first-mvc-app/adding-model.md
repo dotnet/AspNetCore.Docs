@@ -1733,7 +1733,9 @@ This `@model` directive allows access to the movie that the controller passed to
 
 Examine the `Index.cshtml` view and the `Index` method in the Movies controller. Notice how the code creates a `List` object when it calls the `View` method. The code passes this `Movies` list from the `Index` action method to the view:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?name=FirstIndex)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Controllers/MoviesController.cs?name=FirstIndex)]
+
+The code returns [problem details](xref:web-api/handle-errors#problem-details-service) if the `Movie` property of the data context is null.
 
 When the movies controller was created, scaffolding included the following `@model` statement at the top of the `Index.cshtml` file:
 
