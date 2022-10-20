@@ -1,7 +1,3 @@
-#define FULL // FULL CLEAN
-#if NEVER
-#elif FULL
-// <snippet_full>
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
 
@@ -21,7 +17,6 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
@@ -30,35 +25,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers().WithOpenApi();
+app.MapControllers();
 
 app.Run();
-// </snippet_full>
-#elif CLEAN
-// <snippet_clean>
-using Microsoft.EntityFrameworkCore;
-using TodoApi.Models;
-
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddControllers();
-builder.Services.AddDbContext<TodoContext>(opt =>
-    opt.UseInMemoryDatabase("TodoList"));
-builder.Services.AddEndpointsApiExplorer();
-
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers().WithOpenApi();
-
-app.Run();
-// </snippet_clean>
-#endif

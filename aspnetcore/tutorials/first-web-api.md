@@ -197,6 +197,7 @@ JSON similar to the following example is returned:
 ]
 ```
 
+<!--
 ### Update the launchUrl
 
 In *Properties\launchSettings.json*, update `launchUrl` from `"swagger"` to `"api/todoitems"`:
@@ -205,24 +206,21 @@ In *Properties\launchSettings.json*, update `launchUrl` from `"swagger"` to `"ap
 "launchUrl": "api/todoitems",
 ```
 
-Because Swagger is removed in the next section, the preceding markup changes the URL that is launched to the `GET` method of the new controller.
+Because Swagger is removed in the next section, the preceding markup changes the URL that is launched to the `GET` method of the new controller. -->
 
 ## Add a model class
 
-A *model* is a set of classes that represent the data that the app manages. The model for this app is a single `TodoItem` class.
+A *model* is a set of classes that represent the data that the app manages. The model for this app is the `TodoItem` class.
 
 # [Visual Studio](#tab/visual-studio)
 
 * In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
-
 * Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
-
 * Replace the template code with the following:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Add a folder named `Models`.
-
 * Add a `TodoItem.cs` file to the `Models` folder with the following code:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -268,7 +266,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a `TodoContext.cs` file to the `Models` folder. 
+* Add a `TodoContext.cs` file to the `Models` folder.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -290,20 +288,14 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 In ASP.NET Core, services such as the DB context must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) container. The container provides the service to controllers.
 
-Update `Program.cs` with the following code:
+Update `Program.cs` with the following highlighted code:
 
-[!code-csharp[](first-web-api/samples/6.0/TodoApi/Program.cs?name=snippet_clean)]
+[!code-csharp[](first-web-api/samples/7.0/TodoApi/Program.cs?highlight=1-2,10-15,23-24)]
 
 The preceding code:
 
-* Removes the Swagger calls.
-* Removes unused `using` directives.
 * Adds the database context to the DI container.
 * Specifies that the database context will use an in-memory database.
-
-The following highlighted code shows the changes made:
-
-[!code-csharp[](first-web-api/samples/6.0/TodoApi/Program.cs?name=snippet_full&highlight=1-2,10-15,23-24)]
 
 ## Scaffold a controller
 
