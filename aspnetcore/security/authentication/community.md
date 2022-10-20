@@ -16,7 +16,7 @@ This page contains community-provided, open source authentication options for AS
 | ---- | ----------- |
 | [IdentityServer](https://duendesoftware.com/products/identityserver) | IdentityServer is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core. |
 | [Gluu Server](https://gluu.org/) | Enterprise ready, open source software for identity, access management (IAM), and single sign-on (SSO). For more information, see the [Gluu Product Documentation](https://gluu.org/docs/). |
-| [OpenIddict](https://github.com/openiddict/openiddict-core) | Versatile OpenID Connect stack for ASP.NET Core 2.1/3.1/5.0 and Microsoft.Owin 4.1 (compatible with ASP.NET 4.6.1). |
+| [OpenIddict](https://github.com/openiddict/openiddict-core) | Versatile OpenID Connect stack for ASP.NET Core 2.1/3.1/5.0/6.0 and Microsoft.Owin 4.1 (compatible with ASP.NET 4.6.1). |
 | [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers)  | A collection of security middleware for ASP.NET Core apps to support social authentication  |
 | [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers) | A collection of security middleware for ASP.NET Core apps to support OpenID 2.0 authentication providers like [Steam](https://steampowered.com/) |
 
