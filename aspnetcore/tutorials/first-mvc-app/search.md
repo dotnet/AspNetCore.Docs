@@ -407,11 +407,11 @@ When the user searches for the item, the search value is retained in the search 
 
 Update `Index.cshtml` found in *Views/Movies/* as follows:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/IndexFormGenreNoRating.cshtml?highlight=1,15,16,17,19,28,31,34,37,43)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Views/Movies/IndexFormGenreNoRating.cshtml?highlight=1,15,16,17,19,28,31,34,37,43)]
 
 Examine the lambda expression used in the following HTML Helper:
 
-`@Html.DisplayNameFor(model => model.Movies[0].Title)`
+`@Html.DisplayNameFor(model => model.Movies![0].Title)`
 
 In the preceding code, the `DisplayNameFor` HTML Helper inspects the `Title` property referenced in the lambda expression to determine the display name. Since the lambda expression is inspected rather than evaluated, you don't receive an access violation when `model`, `model.Movies`, or `model.Movies[0]` are `null` or empty. When the lambda expression is evaluated (for example, `@Html.DisplayFor(modelItem => item.Title)`), the model's property values are evaluated.
 
