@@ -2157,6 +2157,14 @@ In the preceding example:
 
 [!INCLUDE[](~/blazor/includes/js-interop/6.0/size-limits.md)]
 
+## JavaScript `[JSImport]`/`[JSExport]` interop
+
+*This section applies to Blazor WebAssembly apps.*
+
+As an alternative to interacting with JavaScript (JS) in Blazor WebAssembly apps using Blazor's JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface, a JS `[JSImport]`/`[JSExport]` interop API is available to apps targeting .NET 7 or later.
+
+For more information, see <xref:blazor/js-interop/import-export-interop>. 
+
 ## Additional resources
 
 * <xref:blazor/js-interop/call-javascript-from-dotnet>

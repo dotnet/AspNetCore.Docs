@@ -2772,32 +2772,11 @@ For Blazor WebAssembly apps, rolling individual JS interop calls into a single c
 
 [!INCLUDE[](~/blazor/includes/js-interop/synchronous-js-interop-call-dotnet.md)]
 
-### Consider the use of unmarshalled calls
+### Use JavaScript `[JSImport]`/`[JSExport]` interop
 
-*This section only applies to Blazor WebAssembly apps.*
+JavaScript `[JSImport]`/`[JSExport]` interop for Blazor WebAssembly apps offers improved performance and stability over the JS interop API in framework releases prior to ASP.NET Core 7.0.
 
-When running on Blazor WebAssembly, it's possible to make unmarshalled calls from .NET to JavaScript. These are synchronous calls that don't perform JSON serialization of arguments or return values. All aspects of memory management and translations between .NET and JavaScript representations are left up to the developer.
-
-> [!WARNING]
-> While using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> has the least overhead of the JS interop approaches, the JavaScript APIs required to interact with these APIs are currently undocumented and subject to breaking changes in future releases.
-
-```javascript
-function jsInteropCall() {
-  return BINDING.js_to_mono_obj("Hello world");
-}
-```
-
-```razor
-@inject IJSRuntime JS
-
-@code {
-    protected override void OnInitialized()
-    {
-        var unmarshalledJs = (IJSUnmarshalledRuntime)JS;
-        var value = unmarshalledJs.InvokeUnmarshalled<string>("jsInteropCall");
-    }
-}
-```
+For more information, see <xref:blazor/js-interop/import-export-interop>.
 
 ## Ahead-of-time (AOT) compilation
 
