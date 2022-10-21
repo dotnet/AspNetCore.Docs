@@ -33,7 +33,7 @@ These approaches are appropriate when you only expect to run on WebAssembly (:::
 
 Install the latest version of the [.NET SDK](https://dotnet.microsoft.com/download/dotnet/).
 
-Install the `wasm-tools` workload, which brings in the related MSBuild targets. Note: You only need the `wasm-experimental` workload if you want to use the project templates.
+Install the `wasm-tools` workload, which brings in the related MSBuild targets.
 
 ```dotnetcli
 dotnet workload install wasm-tools
@@ -82,9 +82,7 @@ To configure a project (`.csproj`) to enable JS interop:
   > [!WARNING]
   > The JS interop API requires enabling <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks>. Be careful when implementing your own unsafe code in .NET apps, which can introduce security and stability risks. For more information, see [Unsafe code, pointer types, and function pointers](/dotnet/csharp/language-reference/unsafe-code).
 
-  In apps generated from the `wasmbrowser` or `wasmconsole` templates, the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property is set in the project file (`.csproj`).
-
-* For the .NET 7 release, you must specify `WasmMainJSPath` to point to a file on disk. This file is published with the app, but use of the file isn't required if you're integrating .NET into an existing JS app.
+* Specify `WasmMainJSPath` to point to a file on disk. This file is published with the app, but use of the file isn't required if you're integrating .NET into an existing JS app.
 
   In the following example, the JS file on disk is `main.js`, but any JS filename is permissable:
 
@@ -122,7 +120,7 @@ APIs in the following example are imported from `dotnet.js`. These APIs enable y
 Function calls in the following example:
 
 * `dotnet.create()` sets up the .NET WebAssembly runtime.
-* `setModuleImports` associates a name with a module of JS functions for import into .NET. In the example, the `main.js` module contains a `window.location.href` function, which returns the current page address (URL). The name of the module can be any string (it doesn't need to be a file name), but it must match the name used with the `JSImportAttribute` (explained later in this article). The `window.location.href` function is imported into C# and called by the C# method `GetHRef`. The `GetHRef` method is shown later in this section.
+* `setModuleImports` associates a name with a module of JS functions for import into .NET. The JS module contains a `window.location.href` function, which returns the current page address (URL). The name of the module can be any string (it doesn't need to be a file name), but it must match the name used with the `JSImportAttribute` (explained later in this article). The `window.location.href` function is imported into C# and called by the C# method `GetHRef`. The `GetHRef` method is shown later in this section.
 * `exports.MyClass.Greeting()` calls into .NET (`MyClass.Greeting`) from JS. The `Greeting` C# method returns a string that includes the result of calling the `window.location.href` function. The `Greeting` method is shown later in this section.
 * `runMainAndExit` runs `Program.Main`.
 
@@ -138,7 +136,7 @@ Function calls in the following example:
     
 -->
 
-`main.js` of an app created from the `wasmbrowser` project template:
+JS module:
 
 ```javascript
 import { dotnet } from './dotnet.js'
@@ -166,10 +164,6 @@ document.getElementById("out").innerHTML = `${text}`;
 await runMainAndExit(config.mainAssemblyName, ["dotnet", "is", "great!"]);
 ```
 
-> [!NOTE]
->
-> The preceding link to the .NET reference source loads the repository's default branch (`main`), which represents the current development for the next release of .NET. To select a tag for a specific release, use the **Switch branches or tags** dropdown list.
-
 To import a JS function so it can be called from C#, use the new `JSImportAttribute` on a matching method signature. The first parameter to the `JSImportAttribute` is the name of the JS function to import and the second parameter is the name of the module.
 
 In the following example, the `window.location.href` function is called from the `main.js` module when `GetHRef` method is called:
@@ -180,14 +174,6 @@ internal static partial string GetHRef();
 ```
 
 In the imported method signature, you can use .NET types for parameters and return values, which are marshalled automatically by the runtime. Use `JSMarshalAsAttribute<T>` to control how the imported method parameters are marshalled. For example, you might choose to marshal a `long` as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>. You can pass <xref:System.Action>/<xref:System.Func%601> callbacks as parameters, which are marshalled as callable JS functions. You can pass both JS and managed object references, and they are marshaled as proxy objects, keeping the object alive across the boundary until the proxy is garbage collected. You can also import and export asynchronous methods with a <xref:System.Threading.Tasks.Task> result, which are marshaled as [JS promises](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods.
-
-<!--
-    NOTE
-
-    I'll leave it in this plain format for reviews, which is easier to inspect.
-    Before merging, I'll make the table WCAG compliant. 
-
--->
 
 The following table indicates the supported type mappings.
 
@@ -357,6 +343,6 @@ In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the target fra
 -->
 
 * In the `dotnet/runtime` GitHub repository:
-  * [.NET host builder API](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/runtime/)
-  * [`dotnet.d.ts` file (runtime configuration)](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/runtime/dotnet.d.ts)
+  * [.NET WebAssembly runtime](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/runtime/)
+  * [`dotnet.d.ts` file (.NET WebAssembly runtime configuration)](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/runtime/dotnet.d.ts)
 * [Use .NET from any JavaScript app in .NET 7](https://devblogs.microsoft.com/dotnet/use-net-7-from-any-javascript-app-in-net-7/)
