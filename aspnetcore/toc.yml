@@ -381,6 +381,8 @@ items:
                 uid: blazor/hybrid/developer-tools
               - name: Reuse Razor components
                 uid: blazor/hybrid/reuse-razor-components
+              - name: Class libraries
+                uid: blazor/hybrid/class-libraries
               - name: Security and Identity
                 items:
                   - name: Overview
