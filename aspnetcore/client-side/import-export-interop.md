@@ -356,4 +356,7 @@ In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the target fra
 
 -->
 
+* In the `dotnet/runtime` GitHub repository:
+  * [.NET host builder API](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/runtime/)
+  * [`dotnet.d.ts` file (runtime configuration)](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/runtime/dotnet.d.ts)
 * [Use .NET from any JavaScript app in .NET 7](https://devblogs.microsoft.com/dotnet/use-net-7-from-any-javascript-app-in-net-7/)
