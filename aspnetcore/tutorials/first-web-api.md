@@ -492,11 +492,11 @@ Verify you can post and get the secret field.
 
 Create a DTO model:
 
-[!code-csharp[](first-web-api/samples/6.0/TodoApiDTO/Models/TodoItemDTO.cs)]
+[!code-csharp[](first-web-api/samples/7.0/TodoApiDTO/Models/TodoItemDTO.cs)]
 
 Update the `TodoItemsController` to use `TodoItemDTO`:
 
-[!code-csharp[](first-web-api/samples/6.0/TodoApiDTO/Controllers/TodoItemsController.cs)]
+[!code-csharp[](first-web-api/samples/7.0/TodoApiDTO/Controllers/TodoItemsController.cs)]
 
 Verify you can't post or get the secret field.
 
@@ -2136,6 +2136,7 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 For more information, see the following resources:
 
 * <xref:web-api/index>
+* <xref:tutorials/min-web-api>
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:data/ef-rp/intro>
 * <xref:mvc/controllers/routing>
