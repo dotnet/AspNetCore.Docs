@@ -95,13 +95,13 @@ For additional information on how to share static assets across projects, see th
 * <xref:blazor/components/class-libraries>
 * <xref:razor-pages/ui-class>
 
-The root `index.html` file is specific to the app and should remain in the Blazor Hybrid app or the Blazor WebAssembly app. Do ***not*** attempt to share the `index.html` file via an RCL.
+The root `index.html` file is usually specific to the app and should remain in the Blazor Hybrid app or the Blazor WebAssembly app. The `index.html` file typically isn't shared.
 
 The root Razor Component (`App.razor` or `Main.razor`) can be shared, but often might need to be specific to the hosting app. For example, `App.razor` is different in the Blazor Server and Blazor WebAssembly project templates when authentication is enabled. You can add the [`AdditionalAssemblies` parameter](xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies) to specify the location of any shared routable components, and you can specify a [shared default layout component for the router](xref:blazor/fundamentals/routing#route-templates) by type name.
 
 ## Provide code and services independent of hosting model
 
-When code must differ for across hosting models or target platforms, abstract the code as interfaces stored in the RCL and inject the service implementations in each project.
+When code must differ across hosting models or target platforms, abstract the code as interfaces and inject the service implementations in each project.
 
 The following weather data example abstracts different weather forecast service implementations:
 
