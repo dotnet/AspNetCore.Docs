@@ -2579,7 +2579,7 @@ longRunningFn: 3
 longRunningFn aborted!
 ```
 
-## .NET JavaScript `[JSImport]`/`[JSExport]` interop
+## JavaScript `[JSImport]`/`[JSExport]` interop
 
 *This section applies to Blazor WebAssembly apps.*
 
@@ -2591,7 +2591,7 @@ For more information, see <xref:blazor/js-interop/import-export-interop>.
 
 *This section applies to Blazor WebAssembly apps.*
 
-Unmarshalled interop using the <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> interface is obsolete and should be replaced with .NET JavaScript `[JSImport]`/`[JSExport]` interop.
+Unmarshalled interop using the <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> interface is obsolete and should be replaced with JavaScript `[JSImport]`/`[JSExport]` interop.
 
 For more information, see <xref:blazor/js-interop/import-export-interop>. 
 

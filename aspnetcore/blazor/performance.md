@@ -2772,9 +2772,9 @@ For Blazor WebAssembly apps, rolling individual JS interop calls into a single c
 
 [!INCLUDE[](~/blazor/includes/js-interop/synchronous-js-interop-call-dotnet.md)]
 
-### Use .NET JavaScript `[JSImport]`/`[JSExport]` interop
+### Use JavaScript `[JSImport]`/`[JSExport]` interop
 
-.NET JavaScript `[JSImport]`/`[JSExport]` interop for Blazor WebAssembly apps offers improved performance and stability over the JS interop API in framework releases prior to ASP.NET Core 7.0.
+JavaScript `[JSImport]`/`[JSExport]` interop for Blazor WebAssembly apps offers improved performance and stability over the JS interop API in framework releases prior to ASP.NET Core 7.0.
 
 For more information, see <xref:blazor/js-interop/import-export-interop>.
 

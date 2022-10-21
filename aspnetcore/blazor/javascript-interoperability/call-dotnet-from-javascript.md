@@ -2135,7 +2135,7 @@ In the preceding example:
 
 [!INCLUDE[](~/blazor/includes/js-interop/6.0/size-limits.md)]
 
-## .NET JavaScript `[JSImport]`/`[JSExport]` interop
+## JavaScript `[JSImport]`/`[JSExport]` interop
 
 *This section applies to Blazor WebAssembly apps.*
 

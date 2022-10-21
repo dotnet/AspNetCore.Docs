@@ -667,7 +667,7 @@ Further JS interop guidance is provided in the following articles:
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 
 > [!NOTE]
-> .NET JavaScript `[JSImport]`/`[JSExport]` interop API is available for Blazor WebAssembly apps in ASP.NET Core 7.0 or later.
+> JavaScript `[JSImport]`/`[JSExport]` interop API is available for Blazor WebAssembly apps in ASP.NET Core 7.0 or later.
 >
 > For more information, see <xref:blazor/js-interop/import-export-interop>.
 
