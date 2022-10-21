@@ -397,32 +397,18 @@ This tutorial uses [http-repl](xref:web-api/http-repl) to test the web API.
   ```
 * Select **Execute**
 
+  ![Swagger POST](first-web-api-mac/_static/7/post.png)
+
 ### Test the location header URI
 
-To test the location header, copy and paste it into an httprepl `get` command.
+In the preceding POST, the Swagger UI shows the [location header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) under **Response headers**. For example, `location: https://localhost:7260/api/TodoItems/1`. The location header shows the URI to the created resource.
 
-The following example assumes that you're still in an httprepl session. If you ended the previous httprepl session, replace `connect` with `httprepl` in the following commands:
+To test the location header:
 
-```dotnetcli
-connect https://localhost:5001/api/todoitems/1
-get
-```
+* In the Swagger browser window, select **GET /api/TodoItems/{id}**, and then select **Try it out**.
+* Enter `1` in the `id` input box, and then select **Execute**.
 
-Here's an example of the output from the command:
-
-```output
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-Date: Tue, 07 Sep 2021 20:48:10 GMT
-Server: Kestrel
-Transfer-Encoding: chunked
-
-{
-  "id": 1,
-  "name": "walk dog",
-  "isComplete": true
-}
-```
+  ![Swagger GET](first-web-api-mac/_static/7/get.png)
 
 ## Examine the GET methods
 
@@ -431,32 +417,9 @@ Two GET endpoints are implemented:
 * `GET /api/todoitems`
 * `GET /api/todoitems/{id}`
 
-You just saw an example of the `/api/todoitems/{id}` route. Test the `/api/todoitems` route:
+The previous section showed an example of the `/api/todoitems/{id}` route.
 
-```dotnetcli
-connect https://localhost:5001/api/todoitems
-get
-```
-
-Here's an example of the output from the command:
-
-```output
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-Date: Tue, 07 Sep 2021 20:59:21 GMT
-Server: Kestrel
-Transfer-Encoding: chunked
-
-[
-  {
-    "id": 1,
-    "name": "walk dog",
-    "isComplete": true
-  }
-]
-```
-
-This time, the JSON returned is an array of one item.
+Follow the [POST](#post7) instructions to add another todo item, and then test the `/api/todoitems` route using Swagger.
 
 This app uses an in-memory database. If the app is stopped and started, the preceding GET request will not return any data. If no data is returned, [POST](#post7) data to the app.
 
@@ -473,7 +436,7 @@ The [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute deno
 
 In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetTodoItem` is invoked, the value of `"{id}"` in the URL is provided to the method in its `id` parameter.
 
-[!code-csharp[](first-web-api/samples/6.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_GetByID&highlight=1-2)]
+[!code-csharp[](first-web-api/samples/7.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_GetByID&highlight=1-2)]
 
 ## Return values
 
