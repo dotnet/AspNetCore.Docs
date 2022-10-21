@@ -388,22 +388,22 @@ To help diagnose authentication issues in Blazor WebAssembly apps, detailed logg
 
 For more information, see <xref:blazor/fundamentals/logging?view=aspnetcore-7.0#blazor-webassembly-authentication-logging>.
 
+### JavaScript interop on WebAssembly
+
+JavaScript `[JSImport]`/`[JSExport]` interop API is a new low-level mechanism for using .NET in Blazor WebAssembly and JavaScript-based apps. With this new JavaScript interop capability, you can invoke .NET code from JavaScript using the .NET WebAssembly runtime and call into JavaScript functionality from .NET without any dependency on the Blazor UI component model.
+
+For more information:
+
+* <xref:blazor/js-interop/import-export-interop>: Pertains only to Blazor WebAssebmly apps.
+* Preview coverage is *coming soon* for running .NET code from JS apps that don't depend on the Blazor UI component model.
+
 <!--
 
     IN PROGRESS
 
-### .NET JavaScript interop on WebAssembly
+, see the following articles
 
-.NET JavaScript `[JSImport]`/`[JSExport]` interop API is a new low-level mechanism for using .NET in Blazor WebAssembly and JavaScript-based apps. With this new JavaScript interop capability, you can invoke .NET code from JavaScript using the .NET WebAssembly runtime and call into JavaScript functionality from .NET without any dependency on the Blazor UI component model.
-
-For more information, see the following articles:
-
-* <xref:blazor/js-interop/import-export-interop>: Pertains only to Blazor WebAssebmly apps.
 * <xref:client-side/import-export-interop>: Pertains only to JavaScript apps that don't depend on the Blazor UI component model.
-
-Under consideration for docs ...
-
-[Blog Post (WebAssembly multithreading experimental)](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-7-rc-2/#webassembly-multithreading-experimental)
 
 -->
 
