@@ -53,9 +53,9 @@ dotnet workload install wasm-experimental
 
 For more information, see the [Experimental workload and project templates](#experimental-workload-and-project-templates) section.
 
-## App configuration
+## Project configuration
 
-To configure the app's project file (`.csproj`):
+To configure a project (`.csproj`) to enable JS interop:
 
 * Target `net7.0` or later:
 
@@ -75,9 +75,6 @@ To configure the app's project file (`.csproj`):
   <OutputType>Exe</OutputType>
   ```
   
-  > [!NOTE]
-  > The framework may support library projects without an entry point in a future release of .NET.
-
 * Enable the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property, which permits the code generator in the Roslyn compiler to use pointers for JS interop:
 
   ```xml
@@ -89,28 +86,12 @@ To configure the app's project file (`.csproj`):
 
   In apps generated from the `wasmbrowser` or `wasmconsole` templates, the <xref:Microsoft.Build.Tasks.Csc.AllowUnsafeBlocks> property is set in the project file (`.csproj`).
 
-* For the .NET 7 release, you must specify `WasmMainJSPath` to point to a file on disk. This file is published with the app, but use of the file isn't required if you're integrating .NET into an existing JS app. We might make this property optional in the future. For more information, see [Smooth out support for running .NET from JS via WebAssembly (dotnet/runtime #77191)](https://github.com/dotnet/runtime/issues/77191).
+* For the .NET 7 release, you must specify `WasmMainJSPath` to point to a file on disk. This file is published with the app, but use of the file isn't required if you're integrating .NET into an existing JS app.
 
   In the following example, the JS file on disk is `main.js`, but any JS filename is permissable:
 
   ```xml
   <WasmMainJSPath>main.js</WasmMainJSPath>
-  ```
-
-* During preview, set the C# language version:
-
-  ```xml
-  <LangVersion>preview</LangVersion>
-  ```
-
-* Deploy JS files (`.js`) and CSS files (`.css`):
-
-  ```xml
-  <ItemGroup>
-    <WasmExtraFilesToDeploy Include="index.html" />
-    <WasmExtraFilesToDeploy Include="*.js" />
-    <WasmExtraFilesToDeploy Include="*.css" />
-  </ItemGroup>
   ```
 
 Example .NET 7 preview release project file (`.csproj`) after configuration:
@@ -124,15 +105,8 @@ Example .NET 7 preview release project file (`.csproj`) after configuration:
     <OutputType>Exe</OutputType>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <WasmMainJSPath>main.js</WasmMainJSPath>
-    <LangVersion>preview</LangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <WasmExtraFilesToDeploy Include="index.html" />
-    <WasmExtraFilesToDeploy Include="*.js" />
-    <WasmExtraFilesToDeploy Include="*.css" />
-  </ItemGroup>
 
 </Project>
 ```
@@ -150,7 +124,7 @@ APIs in the following example are imported from `dotnet.js`. These APIs enable y
 Function calls in the following example:
 
 * `dotnet.create()` sets up the .NET WebAssembly runtime.
-* `setModuleImports` creates the `window.location.href` function, which returns the current page address (URL). The import designates a module name, which must match the name used with the `JSImportAttribute` (explained later in this article). The following example uses the module name `main.js`, which is merely a convention for the example based on the filename `main.js`. The `window.location.href` function is imported into C# and called by the C# method `GetHRef`. The `GetHRef` method is shown later in this section.
+* `setModuleImports` associates a name with a module of JS functions for import into .NET. In the example, the `main.js` module contains a `window.location.href` function, which returns the current page address (URL). The name of the module can be any string (it doesn't need to be a file name), but it must match the name used with the `JSImportAttribute` (explained later in this article). The `window.location.href` function is imported into C# and called by the C# method `GetHRef`. The `GetHRef` method is shown later in this section.
 * `exports.MyClass.Greeting()` calls into .NET (`MyClass.Greeting`) from JS. The `Greeting` C# method returns a string that includes the result of calling the `window.location.href` function. The `Greeting` method is shown later in this section.
 * `runMainAndExit` runs `Program.Main`.
 
@@ -195,13 +169,12 @@ await runMainAndExit(config.mainAssemblyName, ["dotnet", "is", "great!"]);
 ```
 
 > [!NOTE]
-> You can inspect the .NET host builder APIs at the [`dotnet/runtime` GitHub repository](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/runtime/). The runtime configuration is in the [`dotnet.d.ts` file](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/runtime/dotnet.d.ts).
 >
 > The preceding link to the .NET reference source loads the repository's default branch (`main`), which represents the current development for the next release of .NET. To select a tag for a specific release, use the **Switch branches or tags** dropdown list.
 
 To import a JS function so it can be called from C#, use the new `JSImportAttribute` on a matching method signature. The first parameter to the `JSImportAttribute` is the name of the JS function to import and the second parameter is the name of the module.
 
-In the following example, the `window.location.href` function is called from the `main.js` module when `GetHRef` method is called. In an app generated from either the `wasmbrowser` or `wasmconsole` templates, `GetHRef` is in `Program.cs` with the partial class namespace `MyClass`:
+In the following example, the `window.location.href` function is called from the `main.js` module when `GetHRef` method is called:
 
 ```csharp
 [JSImport("window.location.href", "main.js")]
@@ -268,11 +241,9 @@ The following conditions apply to type mapping and marshalled values:
 * It's not possible to export a .NET method that returns a `Span`. The `Span` is allocated on the call stack and has GC implications. When calling from JS to .NET, there's no C# stack after the call.
 * For an exported method that returns an `ArraySegment`, calling `dispose()` in `try-finally` block disposes the proxy and unpins the underlying C# byte array. We recommend calling `dispose()` on the object in developer JS code. If developer code doesn't dispose of the object, the JS GC eventually disposes the object. You can also marshal a byte array (`byte[]`) instead of an `ArraySegment`, which copies the bytes.
 
-&dagger;The link to the `dotnet.d.ts` file in the .NET reference source loads the repository's default branch (`main`), which represents the current development for the next release of .NET. To select a tag for a specific release, use the **Switch branches or tags** dropdown list.
-
 To export a .NET method so it can be called from JS, use the `JSExportAttribute`.
 
-In the following example, the `Greeting` method returns a string that includes the result of calling the `GetHRef` method. As shown earlier, the `GetHref` C# method calls into JS for the `window.location.href` function from the `main.js` module. `window.location.href` returns the current page address (URL). In an app generated from either the `wasmbrowser` or `wasmconsole` templates, `Greeting` is in the `Program.cs` file with the partial class namespace `MyClass`:
+In the following example, the `Greeting` method returns a string that includes the result of calling the `GetHRef` method. As shown earlier, the `GetHref` C# method calls into JS for the `window.location.href` function from the `main.js` module. `window.location.href` returns the current page address (URL):
 
 ```csharp
 [JSExport]
@@ -308,14 +279,7 @@ To demonstrate the JS interop functionality and obtain JS interop project templa
 dotnet workload install wasm-experimental
 ```
 
-The `wasm-experimental` workload contains two project templates: `wasmbrowser` and `wasmconsole`. These templates are experimental at this time, which means the developer workflow for the templates hasn't been fully designed. For example, these templates don't run in Visual Studio at this time. The .NET and JS APIs used in the templates are supported in .NET 7 and provide a foundation for using .NET on :::no-loc text="WASM"::: from JS.
-
-The templates can be examined in reference source:
-
-[`templates` assets in the `dotnet/runtime` GitHub repository](https://github.com/dotnet/runtime/tree/main/src/mono/wasm/templates/templates).
-
-> [!NOTE]
-> The preceding link to the .NET reference source loads the repository's default branch (`main`), which represents the current development for the next release of .NET. To select a tag for a specific release, use the **Switch branches or tags** dropdown list.
+The `wasm-experimental` workload contains two project templates: `wasmbrowser` and `wasmconsole`. These templates are experimental at this time, which means the developer workflow for the templates is still evolving. But the .NET and JS APIs used in the templates are supported in .NET 7 and provide a foundation for using .NET on :::no-loc text="WASM"::: from JS.
 
 ### Browser app
 
