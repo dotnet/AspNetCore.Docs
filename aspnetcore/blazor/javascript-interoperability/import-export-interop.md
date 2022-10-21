@@ -1,16 +1,16 @@
 ---
-title: .NET JavaScript `[JSImport]`/`[JSExport]` interop with ASP.NET Core Blazor WebAssembly
+title: JavaScript `[JSImport]`/`[JSExport]` interop with ASP.NET Core Blazor WebAssembly
 author: guardrex
-description: Learn how to interact with JavaScript in Blazor WebAssembly apps using .NET JavaScript `[JSImport]`/`[JSExport]` interop.
+description: Learn how to interact with JavaScript in Blazor WebAssembly apps using JavaScript `[JSImport]`/`[JSExport]` interop.
 monikerRange: '= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/20/2022
+ms.date: 10/21/2022
 uid: blazor/js-interop/import-export-interop
 ---
-# .NET JavaScript `[JSImport]`/`[JSExport]` interop with ASP.NET Core Blazor
+# JavaScript `[JSImport]`/`[JSExport]` interop with ASP.NET Core Blazor
 
-This article explains how to interact with JavaScript (JS) in Blazor WebAssembly apps using .NET JS `[JSImport]`/`[JSExport]` interop API released with .NET 7.
+This article explains how to interact with JavaScript (JS) in Blazor WebAssembly apps using JavaScript (JS) `[JSImport]`/`[JSExport]` interop API released with .NET 7.
 
 Blazor provides its own JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface, which is uniformly supported across Blazor hosting models and described in the following articles:
 
@@ -26,7 +26,7 @@ This article describes an alternative JS interop approach specific to WebAssembl
     HOLD: WAIT FOR CLIENT-SIDE ARTICLE TO MERGE
     
     > [!NOTE]
-    > This article focuses on JS interop in Blazor WebAssembly apps. For guidance on using JS `[JSImport]`/`[JSExport]` interop in JavaScript apps, see <xref:client-side/import-export-interop>.
+    > This article focuses on JS interop in Blazor WebAssembly apps. For guidance on calling .NET in JavaScript apps, see <xref:client-side/import-export-interop>.
     
 -->
 
@@ -72,7 +72,7 @@ In the following `CallJavaScript1` component:
 @using System.Runtime.InteropServices.JavaScript
 
 <h1>
-    .NET JS <code>[JSImport]</code>/<code>[JSExport]</code> Interop 
+    JS <code>[JSImport]</code>/<code>[JSExport]</code> Interop 
     (Call JS Example 1)
 </h1>
 
@@ -104,14 +104,13 @@ In the following example, `getMessage` is a JS function that returns a `string` 
 using System.Runtime.InteropServices.JavaScript;
 using System.Runtime.Versioning;
 
-namespace BlazorSample.Pages
+namespace BlazorSample.Pages;
+
+[SupportedOSPlatform("browser")]
+public partial class CallJavaScript1
 {
-    [SupportedOSPlatform("browser")]
-    public partial class CallJavaScript1
-    {
-        [JSImport("getMessage", "CallJavaScript1")]
-        internal static partial string GetWelcomeMessage();
-    }
+    [JSImport("getMessage", "CallJavaScript1")]
+    internal static partial string GetWelcomeMessage();
 }
 ```
 
@@ -158,7 +157,7 @@ The following `CallDotNet1` component calls JS that directly interacts with the 
 @using System.Runtime.InteropServices.JavaScript
 
 <h1>
-    .NET JS <code>[JSImport]</code>/<code>[JSExport]</code> Interop 
+    JS <code>[JSImport]</code>/<code>[JSExport]</code> Interop 
     (Call .NET Example 1)
 </h1>
 
@@ -193,19 +192,18 @@ In the following example:
 using System.Runtime.InteropServices.JavaScript;
 using System.Runtime.Versioning;
 
-namespace BlazorSample.Pages
-{
-    [SupportedOSPlatform("browser")]
-    public partial class CallDotNet1
-    {
-        [JSImport("setMessage", "CallDotNet1")]
-        internal static partial void SetWelcomeMessage();
+namespace BlazorSample.Pages;
 
-        [JSExport]
-        internal static string GetMessageFromDotnet()
-        {
-            return "Olá do Blazor!";
-        }
+[SupportedOSPlatform("browser")]
+public partial class CallDotNet1
+{
+    [JSImport("setMessage", "CallDotNet1")]
+    internal static partial void SetWelcomeMessage();
+
+    [JSExport]
+    internal static string GetMessageFromDotnet()
+    {
+        return "Olá do Blazor!";
     }
 }
 ```
@@ -244,7 +242,7 @@ After a JS module is loaded, the module's JS functions are available to the app'
 
 ## Use of a single JavaScript module across components
 
-*Before following the guidance in this section, read the [Call JavaScript from .NET](#call-javascript-from-net) and [Call .NET from JavaScript](#call-net-from-javascript) sections of this article, which provide general guidance on .NET JS `[JSImport]`/`[JSExport]` interop.*
+*Before following the guidance in this section, read the [Call JavaScript from .NET](#call-javascript-from-net) and [Call .NET from JavaScript](#call-net-from-javascript) sections of this article, which provide general guidance on `[JSImport]`/`[JSExport]` interop.*
 
 The example in this section shows how to use JS interop from a shared JS module in a Blazor WebAssembly app. The guidance in this section isn't applicable to Razor class libraries (RCLs).
 
@@ -267,22 +265,21 @@ The following components, classes, C# methods, and JS functions are used:
 using System.Runtime.InteropServices.JavaScript;
 using System.Runtime.Versioning;
 
-namespace BlazorSample.JavaScriptInterop
+namespace BlazorSample.JavaScriptInterop;
+
+[SupportedOSPlatform("browser")]
+public partial class Interop
 {
-    [SupportedOSPlatform("browser")]
-    public partial class Interop
+    [JSImport("getMessage", "Interop")]
+    internal static partial string GetWelcomeMessage();
+
+    [JSImport("setMessage", "Interop")]
+    internal static partial void SetWelcomeMessage();
+
+    [JSExport]
+    internal static string GetMessageFromDotnet()
     {
-        [JSImport("getMessage", "Interop")]
-        internal static partial string GetWelcomeMessage();
-
-        [JSImport("setMessage", "Interop")]
-        internal static partial void SetWelcomeMessage();
-
-        [JSExport]
-        internal static string GetMessageFromDotnet()
-        {
-            return "Olá do Blazor!";
-        }
+        return "Olá do Blazor!";
     }
 }
 ```
@@ -324,7 +321,7 @@ await JSHost.ImportAsync("Interop", "../js/interop.js");
 @using BlazorSample.JavaScriptInterop
 
 <h1>
-    .NET JS <code>[JSImport]</code>/<code>[JSExport]</code> Interop 
+    JS <code>[JSImport]</code>/<code>[JSExport]</code> Interop 
     (Call JS Example 2)
 </h1>
 
@@ -347,7 +344,7 @@ await JSHost.ImportAsync("Interop", "../js/interop.js");
 @using BlazorSample.JavaScriptInterop
 
 <h1>
-    .NET JS <code>[JSImport]</code>/<code>[JSExport]</code> Interop  
+    JS <code>[JSImport]</code>/<code>[JSExport]</code> Interop  
     (Call .NET Example 2)
 </h1>
 
