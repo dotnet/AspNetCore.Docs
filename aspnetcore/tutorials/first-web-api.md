@@ -368,18 +368,6 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 * Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.rfc-editor.org/rfc/rfc9110.html#section-10.2.2).
 * References the `GetTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
 
-### Install http-repl
-
-This tutorial uses [http-repl](xref:web-api/http-repl) to test the web API.
-
-* Run the following command at a command prompt:
-
-  ```dotnetcli
-  dotnet tool install -g Microsoft.dotnet-httprepl
-  ```
-
-* If you don't have the .NET 7.0 SDK or runtime installed, install the [.NET 7.0 runtime](https://dotnet.microsoft.com/download/dotnet/7.0/runtime).
-  
 <a name="post7"></a>
 
 ### Test PostTodoItem
