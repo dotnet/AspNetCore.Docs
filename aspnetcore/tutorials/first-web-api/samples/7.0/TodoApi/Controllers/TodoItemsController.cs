@@ -23,6 +23,7 @@ namespace TodoApi.Controllers
         }
 
         // GET: api/TodoItems/5
+        // <snippet_GetByID>
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
         {
@@ -35,6 +36,7 @@ namespace TodoApi.Controllers
 
             return todoItem;
         }
+        // </snippet_GetByID>
 
         // PUT: api/TodoItems/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
