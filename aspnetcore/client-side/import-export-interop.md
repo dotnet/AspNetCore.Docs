@@ -1,16 +1,16 @@
 ---
-title: Run .NET from JavaScript using `[JSImport]`/`[JSExport]` interop
+title: Run .NET from JavaScript using JavaScript `[JSImport]`/`[JSExport]` interop
 author: pavelsavara
-description: Learn how to run .NET from JavaScript using `[JSImport]`/`[JSExport]` interop.
+description: Learn how to run .NET from JavaScript using JavaScript `[JSImport]`/`[JSExport]` interop.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/20/2022
+ms.date: 10/21/2022
 uid: client-side/import-export-interop
 ---
-# Run .NET from JavaScript using `[JSImport]`/`[JSExport]` interop
+# Run .NET from JavaScript using JavaScript `[JSImport]`/`[JSExport]` interop
 
-This article explains how to run .NET from JavaScript (JS) using `[JSImport]`/`[JSExport]` interop.
+This article explains how to run .NET from JavaScript (JS) using JS `[JSImport]`/`[JSExport]` interop.
 
 Existing JS apps can use the expanded client-side WebAssembly support in .NET 7 to reuse .NET libraries from JS or to build novel .NET-based apps and frameworks.
 
@@ -21,7 +21,7 @@ Existing JS apps can use the expanded client-side WebAssembly support in .NET 7 
 
     HOLD: ADD TO NOTE AFTER BLAZOR ARTICLE IS MERGED ...
 
-    For guidance on using `[JSImport]`/`[JSExport]` interop in Blazor WebAssembly apps, see <xref:blazor/js-interop/import-export-interop>.
+    For guidance on using JS `[JSImport]`/`[JSExport]` interop in Blazor WebAssembly apps, see <xref:blazor/js-interop/import-export-interop>.
 
 -->
 
@@ -31,12 +31,6 @@ These approaches are appropriate when you only expect to run on WebAssembly (:::
 
 [!INCLUDE[](~/includes/7.0-SDK.md)]
 
-## Namespace
-
-The JS interop API described in this article is controlled by attributes in the <xref:System.Runtime.InteropServices.JavaScript?displayProperty=fullName> namespace.
-
-## .NET SDK and WebAssembly workloads
-
 Install the latest version of the [.NET SDK](https://dotnet.microsoft.com/download/dotnet/).
 
 Install the `wasm-tools` workload, which brings in the related MSBuild targets. Note: You only need the `wasm-experimental` workload if you want to use the project templates.
@@ -45,13 +39,17 @@ Install the `wasm-tools` workload, which brings in the related MSBuild targets. 
 dotnet workload install wasm-tools
 ```
 
-Optionally, install the `wasm-experimental` workload, which contains experimental project templates for getting started with .NET on WebAssembly in a browser app (WebAssembly Browser App) or in a Node.js-based console app (WebAssembly Console App). This workload isn't required if you plan to integrate `[JSImport]`/`[JSExport]` interop into an existing JS app.
+Optionally, install the `wasm-experimental` workload, which contains experimental project templates for getting started with .NET on WebAssembly in a browser app (WebAssembly Browser App) or in a Node.js-based console app (WebAssembly Console App). This workload isn't required if you plan to integrate JS `[JSImport]`/`[JSExport]` interop into an existing JS app.
 
 ```dotnetcli
 dotnet workload install wasm-experimental
 ```
 
 For more information, see the [Experimental workload and project templates](#experimental-workload-and-project-templates) section.
+
+## Namespace
+
+The JS interop API described in this article is controlled by attributes in the <xref:System.Runtime.InteropServices.JavaScript?displayProperty=fullName> namespace.
 
 ## Project configuration
 
@@ -111,7 +109,7 @@ Example .NET 7 preview release project file (`.csproj`) after configuration:
 </Project>
 ```
 
-## .NET JavaScript interop on :::no-loc text="WASM":::
+## JavaScript interop on :::no-loc text="WASM":::
 
 APIs in the following example are imported from `dotnet.js`. These APIs enable you to set up named modules that can be imported into your C# code and call into methods exposed by your .NET code, including `Program.Main`.
 
@@ -232,14 +230,17 @@ The following conditions apply to type mapping and marshalled values:
 * The :::no-loc text="Array of"::: column indicates if the .NET type can be marshalled as a JS [`Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array). Example: C# `int[]` (`Int32`) mapped to JS `Array` of `Number`s.
 * When passing a JS value to C# with a value of the wrong type, the framework throws an exception in most cases. The framework doesn't perform compile-time type checking in JS.
 * `JSObject`, `Exception`, `Task` and `ArraySegment` create `GCHandle` and a proxy. You can trigger disposal in developer code or allow [.NET garbage collection (GC)](/dotnet/standard/garbage-collection/) to dispose of the objects later. These types carry significant performance overhead.
-* `MemoryView`
-  * `MemoryView` is a .NET type, not a native JS type. It's API is described in the [`dotnet.d.ts` file (`dotnet/runtime` GitHub repository)&dagger;](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/runtime/dotnet.d.ts).
+* [`IMemoryView`](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/runtime/marshal.ts)
+  * `MemoryView` is a .NET type, not a native JS type.
   * Bytes aren't copied during marshalling.
   * `MemoryView` created for a `Span` is only valid for the duration of the interop call.
   * `MemoryView` created for an `ArraySegment` survives after the interop call and is useful for sharing a buffer.
   * `MemoryView` doesn't have an analogous JS type, so marshalling a JS object to a .NET `MemoryView` isn't possible.
 * It's not possible to export a .NET method that returns a `Span`. The `Span` is allocated on the call stack and has GC implications. When calling from JS to .NET, there's no C# stack after the call.
 * For an exported method that returns an `ArraySegment`, calling `dispose()` in `try-finally` block disposes the proxy and unpins the underlying C# byte array. We recommend calling `dispose()` on the object in developer JS code. If developer code doesn't dispose of the object, the JS GC eventually disposes the object. You can also marshal a byte array (`byte[]`) instead of an `ArraySegment`, which copies the bytes.
+
+> [!NOTE]
+> The link to `IMemoryView` in .NET reference source loads the repository's default branch (`main`), which represents the current development for the next release of .NET. To select a tag for a specific release, use the **Switch branches or tags** dropdown list.
 
 To export a .NET method so it can be called from JS, use the `JSExportAttribute`.
 
@@ -291,27 +292,27 @@ dotnet new wasmbrowser
 
 The `wasmbrowser` template creates a web app that demonstrates using .NET and JS together in a browser.
 
-Build the app from Visual Studio or by using the .NET CLI passing the [`-c/--configuration`](/dotnet/core/tools/dotnet-build#options) build configuration option:
+Build the app from Visual Studio or by using the .NET CLI:
 
 ```dotnetcli
-dotnet build -c {BUILD CONFIGURATION}
+dotnet build
 ```
 
-In the preceding command, the `{BUILD CONFIGURATION}` placeholder is the build configuration: `Debug`, `Release`, or a custom configuration.
+The built app is in the `bin/{BUILD CONFIGURATION}/{TARGET FRAMEWORK}/browser-wasm/AppBundle` directory. The `{BUILD CONFIGURATION}` placeholder is the build configuration (for example, `Debug`, `Release`). The `{TARGET FRAMEWORK}` placeholder is the target framework moniker (for example, `net7.0`).
 
-The built app is in the `bin/$(Configuration)/net7.0/browser-wasm/AppBundle` directory.
-
-Build and run the app from Visual Studio or by using the .NET CLI passing the [`-c/--configuration`](/dotnet/core/tools/dotnet-run#options) build configuration option:
+Build and run the app from Visual Studio or by using the .NET CLI:
 
 ```dotnetcli
-dotnet run -c {BUILD CONFIGURATION}
+dotnet run
 ```
 
 Alternatively, start any static file server from the `AppBundle` directory:
 
 ```dotnetcli
-dotnet serve -d:bin/$(Configuration)/net7.0/browser-wasm/AppBundle
+dotnet serve -d:bin/$(Configuration)/{TARGET FRAMEWORK}/browser-wasm/AppBundle
 ```
+
+In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the target framework moniker (for example, `net7.0`).
 
 ### Node.js console app
 
@@ -323,27 +324,27 @@ dotnet new wasmconsole
 
 The `wasmconsole` template creates a app that runs under :::no-loc text="WASM"::: as a [Node.js](https://nodejs.org/) or [V8](https://developers.google.com/apps-script/guides/v8-runtime) console app.
 
-Build the app from Visual Studio or by using the .NET CLI passing the [`-c/--configuration`](/dotnet/core/tools/dotnet-build#options) build configuration option:
+Build the app from Visual Studio or by using the .NET CLI:
 
 ```dotnetcli
-dotnet build -c {BUILD CONFIGURATION}
+dotnet build
 ```
 
-In the preceding command, the `{BUILD CONFIGURATION}` placeholder is the build configuration: `Debug`, `Release`, or a custom configuration.
+The built app is in the `bin/{BUILD CONFIGURATION}/{TARGET FRAMEWORK}/browser-wasm/AppBundle` directory. The `{BUILD CONFIGURATION}` placeholder is the build configuration (for example, `Debug`, `Release`). The `{TARGET FRAMEWORK}` placeholder is the target framework moniker (for example, `net7.0`).
 
-The built app is in the `bin/$(Configuration)/net7.0/browser-wasm/AppBundle` directory.
-
-Build and run the app from Visual Studio or by using the .NET CLI passing the [`-c/--configuration`](/dotnet/core/tools/dotnet-run#options) build configuration option::
+Build and run the app from Visual Studio or by using the .NET CLI:
 
 ```dotnetcli
-dotnet run -c {BUILD CONFIGURATION}
+dotnet run
 ```
 
 Alternatively, start any static file server from the `AppBundle` directory:
 
 ```
-node bin/$(Configuration)/net7.0/browser-wasm/AppBundle/main.mjs
+node bin/$(Configuration)/{TARGET FRAMEWORK}/browser-wasm/AppBundle/main.mjs
 ```
+
+In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the target framework moniker (for example, `net7.0`).
 
 ## Additional resources
 
