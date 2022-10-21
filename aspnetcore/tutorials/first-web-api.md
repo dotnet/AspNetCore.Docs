@@ -388,16 +388,17 @@ This tutorial uses [http-repl](xref:web-api/http-repl) to test the web API.
 * In the Swagger browser window, select **POST /api/TodoItems**, and then select **Try it out**.
 * In the **Request body** input window, update the JSON. For example,
   
-  ```JSON 
+  ```JSON
   {
     "id": 1,
     "name": "walk dog",
     "isComplete": true
   }
   ```
+
 * Select **Execute**
 
-  ![Swagger POST](first-web-api-mac/_static/7/post.png)
+  ![Swagger POST](first-web-api/_static/7/post.png) zz
 
 ### Test the location header URI
 
@@ -408,7 +409,7 @@ To test the location header:
 * In the Swagger browser window, select **GET /api/TodoItems/{id}**, and then select **Try it out**.
 * Enter `1` in the `id` input box, and then select **Execute**.
 
-  ![Swagger GET](first-web-api-mac/_static/7/get.png)
+  ![Swagger GET](first-web-api/_static/7/get.png)
 
 ## Examine the GET methods
 
@@ -505,8 +506,8 @@ Server: Kestrel
 
 For instructions on these tool, see the following links:
 
-* [Test APIs with Postman](#post5?view=aspnetcore-5.0&preserve-view=true)
-* [Install and test APIs with `http-repl`](#ihr6?view=aspnetcore-6.0&preserve-view=true)
+* [Test APIs with Postman](xref:tutorials/first-web-api#post5?view=aspnetcore-5.0&preserve-view=true)
+* [Install and test APIs with `http-repl`](xref:tutorials/first-web-api#ihr6?view=aspnetcore-6.0&preserve-view=true)
 * [Test APIs with curl](https://terminalcheatsheet.com/guides/curl-rest-api)
 
 For more information on `http-repl`, see <xref:web-api/http-repl>.
