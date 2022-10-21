@@ -358,7 +358,7 @@ Update the return statement in the `PostTodoItem` to use the [nameof](/dotnet/cs
 
 [!code-csharp[](first-web-api/samples/7.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
-The preceding code is an `HTTP POST` method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the to-do item from the body of the HTTP request.
+The preceding code is an `HTTP POST` method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the `TodoItem`from the body of the HTTP request.
 
 For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#verb).
 
@@ -386,7 +386,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 
 * Select **Execute**
 
-  ![Swagger POST](first-web-api/_static/7/post.png) zz
+  ![Swagger POST](first-web-api/_static/7/post.png)
 
 ### Test the location header URI
 
@@ -440,30 +440,15 @@ The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult
 
 Examine the `PutTodoItem` method:
 
-[!code-csharp[](first-web-api/samples/6.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
+[!code-csharp[](first-web-api/samples/7.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
 
-`PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
-
-If you get an error calling `PutTodoItem` in the following section, call `GET` to ensure there's an item in the database.
+`PutTodoItem` is similar to `PostTodoItem`, except it uses `HTTP PUT`. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a `PUT` request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
 ### Test the PutTodoItem method
 
 This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PUT call. Call GET to ensure there's an item in the database before making a PUT call.
 
-Update the to-do item that has Id = 1 and set its name to `"feed fish"`:
-
-```dotnetcli
-connect https://localhost:5001/api/todoitems/1
-put -h Content-Type=application/json -c "{"id":1,"name":"feed fish","isComplete":true}"
-```
-
-Here's an example of the output from the command:
-
-```output
-HTTP/1.1 204 No Content
-Date: Tue, 07 Sep 2021 21:20:47 GMT
-Server: Kestrel
-```
+Using the Swagger UI, use the PUT button to update the `TodoItem` that has Id = 1 and set its name to `"feed fish"`. Note the response is [`HTTP 204 No Content`](https://developer.mozilla.org/docs/Web/HTTP/Status/204).
 
 ## The DeleteTodoItem method
 
@@ -473,34 +458,19 @@ Examine the `DeleteTodoItem` method:
 
 ### Test the DeleteTodoItem method
 
-Delete the to-do item that has Id = 1:
-
-```dotnetcli
-connect https://localhost:5001/api/todoitems/1
-delete
-```
-
-Here's an example of the output from the command:
-
-```output
-HTTP/1.1 204 No Content
-Date: Tue, 07 Sep 2021 21:43:00 GMT
-Server: Kestrel
-```
+Use the Swagger UI to delete the `TodoItem`that has Id = 1. Note the response is [`HTTP 204 No Content`](https://developer.mozilla.org/docs/Web/HTTP/Status/204).
 
 ## Test with http-repl, Postman, or curl
 
-[http-repl](xref:web-api/http-repl), [Postman](https://www.postman.com/), and [curl](https://terminalcheatsheet.com/guides/curl-rest-api) are often used to test API's.
+[http-repl](xref:web-api/http-repl), [Postman](https://www.postman.com/), and [curl](https://terminalcheatsheet.com/guides/curl-rest-api) are often used to test API's. Swagger uses `curl` and shows the `curl` command it submitted.
 
-For instructions on these tool, see the following links:
+For instructions on these tools, see the following links:
 
 * [Test APIs with Postman](xref:tutorials/first-web-api#post5?view=aspnetcore-5.0&preserve-view=true)
 * [Install and test APIs with `http-repl`](xref:tutorials/first-web-api#ihr6?view=aspnetcore-6.0&preserve-view=true)
-* [Test APIs with curl](https://terminalcheatsheet.com/guides/curl-rest-api)
 
 For more information on `http-repl`, see <xref:web-api/http-repl>.
 
-<a name="over-post"></a>
 ## Prevent over-posting
 
 Currently the sample app exposes the entire `TodoItem` object. Production apps typically limit the data that's input and returned using a subset of the model. There are multiple reasons behind this, and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this tutorial.
