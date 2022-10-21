@@ -455,11 +455,11 @@ items:
             items:
               - name: Overview
                 uid: blazor/js-interop/index
-              - name: Call JavaScript from .NET
+              - name: Call JS from .NET
                 uid: blazor/js-interop/call-javascript-from-dotnet
-              - name: Call .NET from JavaScript
+              - name: Call .NET from JS
                 uid: blazor/js-interop/call-dotnet-from-javascript
-              - name: JS [JSImport]/[JSExport] interop
+              - name: \[JSImport]/[JSExport] interop
                 uid: blazor/js-interop/import-export-interop
           - name: Call a web API
             uid: blazor/call-web-api
