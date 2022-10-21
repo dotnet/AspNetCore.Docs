@@ -240,7 +240,7 @@ The following conditions apply to type mapping and marshalled values:
 * For an exported method that returns an `ArraySegment`, calling `dispose()` in `try-finally` block disposes the proxy and unpins the underlying C# byte array. We recommend calling `dispose()` on the object in developer JS code. If developer code doesn't dispose of the object, the JS GC eventually disposes the object. You can also marshal a byte array (`byte[]`) instead of an `ArraySegment`, which copies the bytes.
 
 > [!NOTE]
-> The link to `IMemoryView` in .NET reference source loads the repository's default branch (`main`), which represents the current development for the next release of .NET. To select a tag for a specific release, use the **Switch branches or tags** dropdown list.
+> The link to `IMemoryView` in the .NET reference source loads the repository's default branch (`main`), which represents the current development for the next release of .NET. To select a tag for a specific release, use the **Switch branches or tags** dropdown list.
 
 To export a .NET method so it can be called from JS, use the `JSExportAttribute`.
 
