@@ -2436,79 +2436,6 @@ For information on using a byte array when calling .NET from JavaScript, see <xr
 
 [!INCLUDE[](~/blazor/includes/js-interop/6.0/size-limits.md)]
 
-## Unmarshalled JavaScript interop
-
-Blazor WebAssembly components may experience poor performance when .NET objects are serialized for JavaScript (JS) interop and either of the following are true:
-
-* A high volume of .NET objects are rapidly serialized. For example, poor performance may result when JS interop calls are made on the basis of moving an input device, such as spinning a mouse wheel.
-* Large .NET objects or many .NET objects must be serialized for JS interop. For example, poor performance may result when JS interop calls require serializing dozens of files.
-
-<xref:Microsoft.JSInterop.IJSUnmarshalledObjectReference> represents a reference to an JS object whose functions can be invoked without the overhead of serializing .NET data.
-
-In the following example:
-
-* A [struct](/dotnet/csharp/language-reference/builtin-types/struct) containing a string and an integer is passed unserialized to JS.
-* JS functions process the data and return either a boolean or string to the caller.
-* A JS string isn't directly convertible into a .NET `string` object. The `unmarshalledFunctionReturnString` function calls `BINDING.js_string_to_mono_string` to manage the conversion of a JS string.
-
-> [!NOTE]
-> The following examples aren't typical use cases for this scenario because the [struct](/dotnet/csharp/language-reference/builtin-types/struct) passed to JS doesn't result in poor component performance. The example uses a small object merely to demonstrate the concepts for passing unserialized .NET data.
-
-```javascript
-<script>
-  window.returnObjectReference = () => {
-    return {
-      unmarshalledFunctionReturnBoolean: function (fields) {
-        const name = Blazor.platform.readStringField(fields, 0);
-        const year = Blazor.platform.readInt32Field(fields, 8);
-    
-        return name === "Brigadier Alistair Gordon Lethbridge-Stewart" &&
-            year === 1968;
-      },
-      unmarshalledFunctionReturnString: function (fields) {
-        const name = Blazor.platform.readStringField(fields, 0);
-        const year = Blazor.platform.readInt32Field(fields, 8);
-
-        return BINDING.js_string_to_mono_string(`Hello, ${name} (${year})!`);
-      }
-    };
-  }
-</script>
-```
-
-[!INCLUDE[](~/blazor/includes/js-location.md)]
-
-> [!WARNING]
-> The `js_string_to_mono_string` function name, behavior, and existence is subject to change in a future release of .NET. For example:
->
-> * The function is likely to be renamed.
-> * The function itself might be removed in favor of automatic conversion of strings by the framework.
-
-`Pages/CallJsExample10.razor`:
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample10.razor":::
-
-If an <xref:Microsoft.JSInterop.IJSUnmarshalledObjectReference> instance isn't disposed in C# code, it can be disposed in JS. The following `dispose` function disposes the object reference when called from JS:
-
-```javascript
-window.exampleJSObjectReferenceNotDisposedInCSharp = () => {
-  return {
-    dispose: function () {
-      DotNet.disposeJSObjectReference(this);
-    },
-
-    ...
-  };
-}
-```
-
-Array types can be converted from JS objects into .NET objects using `js_typed_array_to_array`, but the JS array must be a typed array. Arrays from JS can be read in C# code as a .NET object array (`object[]`).
-
-Other data types, such as string arrays, can be converted but require creating a new Mono array object (`mono_obj_array_new`) and setting its value (`mono_obj_array_set`).
-
-> [!WARNING]
-> JS functions provided by the Blazor framework, such as `js_typed_array_to_array`, `mono_obj_array_new`, and `mono_obj_array_set`, are subject to name changes, behavioral changes, or removal in future releases of .NET.
-
 ## Stream from .NET to JavaScript
 
 Blazor supports streaming data directly from .NET to JavaScript. Streams are created using a <xref:Microsoft.JSInterop.DotNetStreamReference>.
@@ -2651,6 +2578,22 @@ longRunningFn: 2
 longRunningFn: 3
 longRunningFn aborted!
 ```
+
+## JavaScript `[JSImport]`/`[JSExport]` interop
+
+*This section applies to Blazor WebAssembly apps.*
+
+As an alternative to interacting with JavaScript (JS) in Blazor WebAssembly apps using Blazor's JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface, a JS `[JSImport]`/`[JSExport]` interop API is available to apps targeting .NET 7 or later.
+
+For more information, see <xref:blazor/js-interop/import-export-interop>. 
+
+## Unmarshalled JavaScript interop
+
+*This section applies to Blazor WebAssembly apps.*
+
+Unmarshalled interop using the <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> interface is obsolete and should be replaced with JavaScript `[JSImport]`/`[JSExport]` interop.
+
+For more information, see <xref:blazor/js-interop/import-export-interop>. 
 
 ## Additional resources
 
