@@ -380,36 +380,23 @@ This tutorial uses [http-repl](xref:web-api/http-repl) to test the web API.
 
 * If you don't have the .NET 7.0 SDK or runtime installed, install the [.NET 7.0 runtime](https://dotnet.microsoft.com/download/dotnet/7.0/runtime).
   
-<a name="post"></a>
+<a name="post7"></a>
 
 ### Test PostTodoItem
 
 * Press Ctrl+F5 to run the app.
-
-* Open a new terminal window, and run the following commands. Replace 5001 in the `httprepl` command with the port number in your app.
-
-  ```dotnetcli
-  httprepl https://localhost:5001/api/todoitems
-  post -h Content-Type=application/json -c "{"name":"walk dog","isComplete":true}"
-  ```
+* In the Swagger browser window, select **POST /api/TodoItems**, and then select **Try it out**.
+* In the **Request body** input window, update the JSON. For example,
   
-  Here's an example of the output from the command:
-  
-  ```output
-  HTTP/1.1 201 Created
-  Content-Type: application/json; charset=utf-8
-  Date: Tue, 07 Sep 2021 20:39:47 GMT
-  Location: https://localhost:5001/api/TodoItems/1
-  Server: Kestrel
-  Transfer-Encoding: chunked
-  
+  ```JSON 
   {
     "id": 1,
     "name": "walk dog",
     "isComplete": true
   }
   ```
-  
+* Select **Execute**
+
 ### Test the location header URI
 
 To test the location header, copy and paste it into an httprepl `get` command.
@@ -471,7 +458,7 @@ Transfer-Encoding: chunked
 
 This time, the JSON returned is an array of one item.
 
-This app uses an in-memory database. If the app is stopped and started, the preceding GET request will not return any data. If no data is returned, [POST](#post) data to the app.
+This app uses an in-memory database. If the app is stopped and started, the preceding GET request will not return any data. If no data is returned, [POST](#post7) data to the app.
 
 ## Routing and URL paths
 
@@ -548,6 +535,18 @@ HTTP/1.1 204 No Content
 Date: Tue, 07 Sep 2021 21:43:00 GMT
 Server: Kestrel
 ```
+
+## Test with http-repl, Postman, or curl
+
+[http-repl](xref:web-api/http-repl), [Postman](https://www.postman.com/), and [curl](https://terminalcheatsheet.com/guides/curl-rest-api) are often used to test API's.
+
+For instructions on these tool, see the following links:
+
+* [Test APIs with Postman](#post5?view=aspnetcore-5.0&preserve-view=true)
+* [Install and test APIs with `http-repl`](#ihr6?view=aspnetcore-6.0&preserve-view=true)
+* [Test APIs with curl](https://terminalcheatsheet.com/guides/curl-rest-api)
+
+For more information on `http-repl`, see <xref:web-api/http-repl>.
 
 <a name="over-post"></a>
 ## Prevent over-posting
@@ -960,6 +959,8 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 * Returns an [HTTP 201 status code](https://developer.mozilla.org/docs/Web/HTTP/Status/201) if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
 * Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.rfc-editor.org/rfc/rfc9110.html#section-10.2.2).
 * References the `GetTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
+
+<a name="ihr6"></a>
 
 ### Install http-repl
 
@@ -1517,6 +1518,8 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 * Returns an [HTTP 201 status code](https://developer.mozilla.org/docs/Web/HTTP/Status/201) if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
 * Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 * References the `GetTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
+
+<a name="post5"></a>
 
 ### Install Postman
 
