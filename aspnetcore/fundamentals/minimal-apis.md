@@ -589,11 +589,11 @@ The rules for determining a binding source from a parameter:
     1. Body: [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)
     1. Service: [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute)
 1. Special types
-    1. `HttpContext`
-    1. `HttpRequest`
-    1. `HttpResponse`
-    1. `ClaimsPrincipal`
-    1. `CancellationToken`
+    1. [`HttpContext`](xref:Microsoft.AspNetCore.Http.HttpContext)
+    1. [`HttpRequest`](xref:Microsoft.AspNetCore.Http.HttpRequest) ([`HttpContext.Request`](xref:Microsoft.AspNetCore.Http.HttpContext.Request))
+    1. [`HttpResponse`](xref:Microsoft.AspNetCore.Http.HttpResponse) ([`HttpContext.Response`](xref:Microsoft.AspNetCore.Http.HttpContext.Response))
+    1. [`ClaimsPrincipal`](xref:System.Security.Claims.ClaimsPrincipal) ([`HttpContext.User`](xref:Microsoft.AspNetCore.Http.HttpContext.User))
+    1. [`CancellationToken`](xref:System.Threading.CancellationToken) ([`HttpContext.RequestAborted`](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted))
 1. Parameter type has a valid `BindAsync` method.
 1. Parameter type is a string or has a valid `TryParse` method.
    1. If the parameter name exists in the route template e.g. `app.Map("/todo/{id}", (int id) => {});`, then it's bound from the route.
@@ -674,35 +674,35 @@ The following example uses the built-in result types to customize the response:
 
 [!code-csharp[](minimal-apis/samples/todo/Program.cs?name=snippet_getCustom)]
 
-### JSON
+##### JSON
 
 ```csharp
 app.MapGet("/hello", () => Results.Json(new { Message = "Hello World" }));
 ```
 
-### Custom Status Code
+##### Custom Status Code
 
 ```csharp
 app.MapGet("/405", () => Results.StatusCode(405));
 ```
 
-### Text
+##### Text
 
 ```csharp
 app.MapGet("/text", () => Results.Text("This is some text"));
 ```
 
-### Stream
+##### Stream
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_stream)]
 
-### Redirect
+##### Redirect
 
 ```csharp
 app.MapGet("/old-path", () => Results.Redirect("/new-path"));
 ```
 
-### File
+##### File
 
 ```csharp
 app.MapGet("/download", () => Results.File("myfile.text"));
@@ -1065,85 +1065,6 @@ The following table lists some of the middleware frequently used with minimal AP
 | [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer%2A> |
 | [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | <xref:Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions.UseWebSockets%2A> |
 
-<a name="rbs"></a>
-
-## Bind the request body as a `Stream` or `PipeReader`
-
-The request body can bind as a [`Stream`](/dotnet/api/system.io.stream) or [`PipeReader`](/dotnet/api/system.io.pipelines.pipereader) to efficiently support scenarios where the user has to process data and:
-
-* Store the data to blob storage or enqueue the data to a queue provider.
-* Process the stored data with a worker process or cloud function.
-
-For example, the data might be enqueued to [Azure Queue storage](/azure/storage/queues/storage-queues-introduction) or stored in [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction).
-
-The following code implements a background queue:
-
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/BackgroundQueueService.cs)]
-
-The following code binds the request body to a `Stream`:
-
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet_1)]
-
-The following code shows the complete `Program.cs` file:
-
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet)]
-
-* When reading data, the `Stream` is the same object as `HttpRequest.Body`.
-* The request body isn't buffered by default. After the body is read, it's not rewindable. The stream can't be read multiple times.
-* The `Stream` and `PipeReader` aren't usable outside of the minimal action handler as the underlying buffers will be disposed or reused.
-
-<a name="asparam7"></a>
-
-## Parameter binding for argument lists with [AsParameters]
-
-<xref:Microsoft.AspNetCore.Http.AsParametersAttribute> enables simple parameter binding to types and not complex or recursive model binding.
-
-Consider the following code:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_top":::
-
-Consider the following `GET` endpoint:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_id" highlight="2":::
-
-The following `struct` can be used to replace the preceding highlighted parameters:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoDb.cs" id="snippet" :::
-
-The refactored `GET` endpoint uses the preceding `struct` with the [AsParameters](/dotnet/api/microsoft.aspnetcore.http.asparametersattribute?view=aspnetcore-7.0&preserve-view=true) attribute:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_ap_id" highlight="2":::
-
-The following code shows additional endpoints in the app:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_post_put_delete" :::
-
-The following classes are used to refactor the parameter lists:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoDb.cs" id="snippet_1" :::
-
-The following code shows the refactored endpoints using `AsParameters` and the preceding `struct` and classes:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_ap_post_put_delete" :::
-
-The following [`record`](/dotnet/csharp/language-reference/builtin-types/record) types can be used to replace the preceding parameters:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoRecord.cs" id="snippet_1" :::
-
-Using a `struct` with `AsParameters` can be more performant than using a `record` type.
-
-The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/arg-lists) in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
-
-## File uploads using IFormFile and IFormFileCollection
-
-The following code uses <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> to upload file:
-
-:::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/7.0-samples/MinimalApi/Program.cs" :::
-
-Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](/aspnet/core/security/authentication/certauth), or a cookie header.
-
-There is no built-in support for [antiforgery](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#anti7). However, it can be implemented using the [`IAntiforgery` service](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#antimin7).
-
 ## Request handling
 
 The following sections cover routing, parameter binding, and responses.
@@ -1376,6 +1297,44 @@ The following types are bound without explicit attributes:
   app.MapGet("/", (ClaimsPrincipal user) => user.Identity.Name);
   ```
 
+<a name="rbs"></a>
+
+#### Bind the request body as a `Stream` or `PipeReader`
+
+The request body can bind as a [`Stream`](/dotnet/api/system.io.stream) or [`PipeReader`](/dotnet/api/system.io.pipelines.pipereader) to efficiently support scenarios where the user has to process data and:
+
+* Store the data to blob storage or enqueue the data to a queue provider.
+* Process the stored data with a worker process or cloud function.
+
+For example, the data might be enqueued to [Azure Queue storage](/azure/storage/queues/storage-queues-introduction) or stored in [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction).
+
+The following code implements a background queue:
+
+[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/BackgroundQueueService.cs)]
+
+The following code binds the request body to a `Stream`:
+
+[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet_1)]
+
+The following code shows the complete `Program.cs` file:
+
+[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/7.0-samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet)]
+
+* When reading data, the `Stream` is the same object as `HttpRequest.Body`.
+* The request body isn't buffered by default. After the body is read, it's not rewindable. The stream can't be read multiple times.
+* The `Stream` and `PipeReader` aren't usable outside of the minimal action handler as the underlying buffers will be disposed or reused.
+
+
+#### File uploads using IFormFile and IFormFileCollection
+
+The following code uses <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> to upload file:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/7.0-samples/MinimalApi/Program.cs" :::
+
+Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](/aspnet/core/security/authentication/certauth), or a cookie header.
+
+There is no built-in support for [antiforgery](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#anti7). However, it can be implemented using the [`IAntiforgery` service](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#antimin7).
+
 <a name="bindar"></a>
 
 ### Bind arrays and string values from headers and query strings
@@ -1407,6 +1366,48 @@ Use a tool like Postman to pass the following data to the previous endpoint:
 The following code binds to the header key `X-Todo-Id` and returns the `Todo` items with matching `Id` values:
 
 [!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_getHeader)]
+
+<a name="asparam7"></a>
+
+### Parameter binding for argument lists with [AsParameters]
+
+<xref:Microsoft.AspNetCore.Http.AsParametersAttribute> enables simple parameter binding to types and not complex or recursive model binding.
+
+Consider the following code:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_top":::
+
+Consider the following `GET` endpoint:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_id" highlight="2":::
+
+The following `struct` can be used to replace the preceding highlighted parameters:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoDb.cs" id="snippet" :::
+
+The refactored `GET` endpoint uses the preceding `struct` with the [AsParameters](/dotnet/api/microsoft.aspnetcore.http.asparametersattribute?view=aspnetcore-7.0&preserve-view=true) attribute:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_ap_id" highlight="2":::
+
+The following code shows additional endpoints in the app:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_post_put_delete" :::
+
+The following classes are used to refactor the parameter lists:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoDb.cs" id="snippet_1" :::
+
+The following code shows the refactored endpoints using `AsParameters` and the preceding `struct` and classes:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Program.cs" id="snippet_ap_post_put_delete" :::
+
+The following [`record`](/dotnet/csharp/language-reference/builtin-types/record) types can be used to replace the preceding parameters:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/arg-lists/Models/TodoRecord.cs" id="snippet_1" :::
+
+Using a `struct` with `AsParameters` can be more performant than using a `record` type.
+
+The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/arg-lists) in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
 
 ### Custom Binding
 
@@ -1465,15 +1466,19 @@ The rules for determining a binding source from a parameter:
     1. Header: [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute)
     1. Body: [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)
     1. Service: [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute)
-    1. Parameter values: [`[AsParameters]](<xref:Microsoft.AspNetCore.Http.AsParametersAttribute)
+    1. Parameter values: [`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute)
 1. Special types
-    1. `HttpContext`
-    1. `HttpRequest`
-    1. `HttpResponse`
-    1. `ClaimsPrincipal`
-    1. `CancellationToken`
-1. Parameter type has a valid `BindAsync` method.
-1. Parameter type is a string or has a valid `TryParse` method.
+    1. [`HttpContext`](xref:Microsoft.AspNetCore.Http.HttpContext)
+    1. [`HttpRequest`](xref:Microsoft.AspNetCore.Http.HttpRequest) ([`HttpContext.Request`](xref:Microsoft.AspNetCore.Http.HttpContext.Request))
+    1. [`HttpResponse`](xref:Microsoft.AspNetCore.Http.HttpResponse) ([`HttpContext.Response`](xref:Microsoft.AspNetCore.Http.HttpContext.Response))
+    1. [`ClaimsPrincipal`](xref:System.Security.Claims.ClaimsPrincipal) ([`HttpContext.User`](xref:Microsoft.AspNetCore.Http.HttpContext.User))
+    1. [`CancellationToken`](xref:System.Threading.CancellationToken) ([`HttpContext.RequestAborted`](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted))
+    1. [`IFormFileCollection`](xref:Microsoft.AspNetCore.Http.IFormFileCollection) ([`HttpContext.Request.Form.Files`](xref:Microsoft.AspNetCore.Http.IFormCollection.Files))
+    1. [`IFormFile`](xref:Microsoft.AspNetCore.Http.IFormFile) ([`HttpContext.Request.Form.Files[paramName]`](xref:Microsoft.AspNetCore.Http.IFormFileCollection.Item(System.String)))
+    1. [`Stream`](xref:System.IO.Stream) ([`HttpContext.Request.Body`](xref:Microsoft.AspNetCore.Http.HttpRequest.Body))
+    1. [`PipeReader`](xref:System.IO.Pipelines.PipeReader) ([`HttpContext.Request.BodyReader`](xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader))
+1. Parameter type has a valid static [`BindAsync`](xref:Microsoft.AspNetCore.Http.IBindableFromHttpContext%601.BindAsync%2A) method.
+1. Parameter type is a string or has a valid static [`TryParse`](xref:System.IParsable%601.TryParse%2A) method.
    1. If the parameter name exists in the route template e.g. `app.Map("/todo/{id}", (int id) => {});`, then it's bound from the route.
    1. Bound from the query string.
 1. If the parameter type is a service provided by dependency injection, it uses that service as the source.
@@ -1552,27 +1557,26 @@ The following example uses the built-in result types to customize the response:
 
 [!code-csharp[](minimal-apis/7.0-samples/todo/Program.cs?name=snippet_getCustom)]
 
-### JSON
+##### JSON
 
 ```csharp
 app.MapGet("/hello", () => Results.Json(new { Message = "Hello World" }));
 ```
 
-### Custom Status Code
+##### Custom Status Code
 
 ```csharp
 app.MapGet("/405", () => Results.StatusCode(405));
 ```
 
-### Text
+##### Text
 
 ```csharp
 app.MapGet("/text", () => Results.Text("This is some text"));
 ```
-
 <a name="stream7"></a>
 
-### Stream
+##### Stream
 
 [!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_stream)]
 
@@ -1588,13 +1592,13 @@ The following example streams a video from an Azure Blob:
 
 [!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_video)]
 
-### Redirect
+##### Redirect
 
 ```csharp
 app.MapGet("/old-path", () => Results.Redirect("/new-path"));
 ```
 
-### File
+##### File
 
 ```csharp
 app.MapGet("/download", () => Results.File("myfile.text"));
@@ -1615,6 +1619,16 @@ Applications can control responses by implementing a custom <xref:Microsoft.AspN
 We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResultExtensions?displayProperty=fullName> to make these custom results more discoverable.
 
 [!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
+
+### Typed results
+
+The <xref:Microsoft.AspNetCore.Http.IResult> interface can represent values returned from minimal APIs that don't utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL.
+
+The types implementing `IResult` are public, allowing for type assertions when testing. For example:
+
+[!code-csharp[](~/fundamentals/minimal-apis/misc-samples/typedResults/TypedResultsApiWithTest/Test/WeatherApiTest.cs?name=snippet_1&highlight=7-8)]
+
+You can look at the return types of the corresponding methods on the static [TypedResults](/dotnet/api/microsoft.aspnetcore.http.typedresults) class to find the correct public `IResult` type to cast to.
 
 ## Filters
 
@@ -1653,14 +1667,6 @@ Routes can be [CORS](xref:security/cors?view=aspnetcore-6.0) enabled using [CORS
 For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
 <a name="openapi7"></a>
-
-## Typed results
-
-The <xref:Microsoft.AspNetCore.Http.IResult> interface can represent values returned from minimal APIs that don't utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL.
-
-The types implementing `IResult` are public, allowing for type assertions when testing. For example:
-
-[!code-csharp[](~/fundamentals/minimal-apis/misc-samples/typedResults/TypedResultsApiWithTest/Test/WeatherApiTest.cs?name=snippet_1&highlight=7-8)]
 
 <!-- 
 # Differences between minimal APIs and APIs with controllers
