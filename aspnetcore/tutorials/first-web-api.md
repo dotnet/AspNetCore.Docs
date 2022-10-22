@@ -443,8 +443,12 @@ Use the Swagger UI to delete the `TodoItem`that has Id = 1. Note the response is
 
 For instructions on these tools, see the following links:
 
-* [Test APIs with Postman](xref:tutorials/first-web-api#post5?view=aspnetcore-5.0&preserve-view=true)
-* [Install and test APIs with `http-repl`](xref:tutorials/first-web-api#ihr6?view=aspnetcore-6.0&preserve-view=true)
+* [Test APIs with Postman](xref:tutorials/first-web-api?view=aspnetcore-5.0&preserve-view=true#post5)
+* [Install and test APIs with `http-repl`](xref:tutorials/first-web-api?view=aspnetcore-6.0&preserve-view=true#ihr6)
+
+* [2Test APIs with Postman](xref:tutorials/first-web-api?view=aspnetcore-5.0&preserve-view=true#post5)
+* [Install and test APIs with `http-repl`](xref:tutorials/first-web-api?view=aspnetcore-6.0&preserve-view=true#install-http-repl)
+
 
 For more information on `http-repl`, see <xref:web-api/http-repl>.
 
