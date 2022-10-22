@@ -449,6 +449,7 @@ For instructions on these tools, see the following links:
 * [2Test APIs with Postman](xref:tutorials/first-web-api?view=aspnetcore-5.0&preserve-view=true#post5)
 * [Install and test APIs with `http-repl`](xref:tutorials/first-web-api?view=aspnetcore-6.0&preserve-view=true#install-http-repl)
 
+* [3Install and test APIs with `http-repl`](https://review.learn.microsoft.com/aspnet/core/tutorials/first-web-api?view=aspnetcore-6.0&tabs=visual-studio#install-http-repl)
 
 For more information on `http-repl`, see <xref:web-api/http-repl>.
 
