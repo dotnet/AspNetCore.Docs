@@ -36,15 +36,15 @@ The following diagram shows the design of the app.
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
 
 ---
 
@@ -57,7 +57,7 @@ The following diagram shows the design of the app.
 * Select the **ASP.NET Core Web API** template and select **Next**.
 * In the **Configure your new project dialog**, name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-  * Confirm the **Framework** is **.NET 6.0 (Long-term support)**.
+  * Confirm the **Framework** is **.NET 7.0**
   * Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
   * Select **Create**.
 
@@ -127,27 +127,12 @@ Visual Studio launches the default browser and navigates to `https://localhost:<
 
 Run the app:
 
-* Press Ctrl+F5.
-* At the **Select environment** prompt, choose **.NET Core**.
-* Select **Add Configuration** > **.NET: Launch a local .NET Core Console App**.
-* In the configuration JSON:
-  * Replace `<target-framework>` with `net6.0`.
-  * Replace  `<project-name.dll>` with `TodoApi.dll`.
-* Press Ctrl+F5.
-* In the **Could not find the task 'build'** dialog, select **Configure Task**.
-* Select **Create `tasks.json` file from template**.
-* Select the **.NET Core** task template.
-* Press Ctrl+F5.
-
-In a browser, navigate to `https://localhost:<port>/swagger`, where `<port>` is the randomly chosen port number displayed in the output.
+* Press Ctrl+F5 to run the app.
+* Visual Studio Code launches the default browser to `https://localhost:<port>`, where `<port>` is the randomly chosen port number displayed in the output. There is no endpoint at `https://localhost:<port>` so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
-
-<!--
-Select **Run** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. An HTTP 404 (Not Found) error is returned. Append `/swagger` to the URL (change the URL to `https://localhost:<port>/swagger`).
--->
 
 ---
 
@@ -201,32 +186,19 @@ JSON similar to the following example is returned:
 ]
 ```
 
-### Update the launchUrl
-
-In *Properties\launchSettings.json*, update `launchUrl` from `"swagger"` to `"api/todoitems"`:
-
-```json
-"launchUrl": "api/todoitems",
-```
-
-Because Swagger will be removed, the preceding markup changes the URL that is launched to the GET method of the controller added in the following sections.
-
 ## Add a model class
 
-A *model* is a set of classes that represent the data that the app manages. The model for this app is a single `TodoItem` class.
+A *model* is a set of classes that represent the data that the app manages. The model for this app is the `TodoItem` class.
 
 # [Visual Studio](#tab/visual-studio)
 
 * In **Solution Explorer**, right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
-
 * Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoItem* and select **Add**.
-
 * Replace the template code with the following:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Add a folder named `Models`.
-
 * Add a `TodoItem.cs` file to the `Models` folder with the following code:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
@@ -247,7 +219,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 ---
 
-  [!code-csharp[](first-web-api/samples/6.0/TodoApi/Models/TodoItem.cs)]
+  [!code-csharp[](first-web-api/samples/7.0/TodoApi/Models/TodoItem.cs)]
 
 The `Id` property functions as the unique key in a relational database.
 
@@ -272,7 +244,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Add a `TodoContext.cs` file to the `Models` folder. 
+* Add a `TodoContext.cs` file to the `Models` folder.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -288,20 +260,19 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 * Enter the following code:
 
-  [!code-csharp[](first-web-api/samples/6.0/TodoApi/Models/TodoContext.cs)]
+  [!code-csharp[](first-web-api/samples/7.0/TodoApi/Models/TodoContext.cs)]
 
 ## Register the database context
 
 In ASP.NET Core, services such as the DB context must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) container. The container provides the service to controllers.
 
-Update `Program.cs` with the following code:
+Update `Program.cs` with the following highlighted code:
 
-[!code-csharp[](first-web-api/samples/6.0/TodoApi/Program.cs?highlight=1-2,10-15,23-24)]
+[!code-csharp[](first-web-api/samples/7.0/TodoApi/Program.cs?highlight=1-2,7-8)]
 
 The preceding code:
 
-* Removes the Swagger calls.
-* Removes unused `using` directives.
+* Adds `using` directives.
 * Adds the database context to the DI container.
 * Specifies that the database context will use an in-memory database.
 
@@ -357,92 +328,53 @@ The ASP.NET Core templates for:
 * Controllers with views include `[action]` in the route template.
 * API controllers don't include `[action]` in the route template.
 
-When the `[action]` token isn't in the route template, the [action](xref:mvc/controllers/routing#action) name is excluded from the route. That is, the action's associated method name isn't used in the matching route.
+When the `[action]` token isn't in the route template, the [action](xref:mvc/controllers/routing#action) name (method name) isn't included in the endpoint. That is, the action's associated method name isn't used in the matching route.
 
 ## Update the PostTodoItem create method
 
 Update the return statement in the `PostTodoItem` to use the [nameof](/dotnet/csharp/language-reference/operators/nameof) operator:
 
-[!code-csharp[](first-web-api/samples/6.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
+[!code-csharp[](first-web-api/samples/7.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
-The preceding code is an HTTP POST method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the to-do item from the body of the HTTP request.
+The preceding code is an `HTTP POST` method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the `TodoItem`from the body of the HTTP request.
 
 For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#verb).
 
 The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 
-* Returns an [HTTP 201 status code](https://developer.mozilla.org/docs/Web/HTTP/Status/201) if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
+* Returns an [HTTP 201 status code](https://developer.mozilla.org/docs/Web/HTTP/Status/201) if successful. `HTTP 201` is the standard response for an `HTTP POST` method that creates a new resource on the server.
 * Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.rfc-editor.org/rfc/rfc9110.html#section-10.2.2).
 * References the `GetTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
 
-### Install http-repl
-
-This tutorial uses [http-repl](xref:web-api/http-repl) to test the web API.
-
-* Run the following command at a command prompt:
-
-  ```dotnetcli
-  dotnet tool install -g Microsoft.dotnet-httprepl
-  ```
-
-* If you don't have the .NET 6.0 SDK or runtime installed, install the [.NET 6.0 runtime](https://dotnet.microsoft.com/download/dotnet/6.0/runtime).
-  
-<a name="post"></a>
+<a name="post7"></a>
 
 ### Test PostTodoItem
 
 * Press Ctrl+F5 to run the app.
-
-* Open a new terminal window, and run the following commands. If your app uses a different port number, replace 5001 in the httprepl command with your port number.
-
-  ```dotnetcli
-  httprepl https://localhost:5001/api/todoitems
-  post -h Content-Type=application/json -c "{"name":"walk dog","isComplete":true}"
-  ```
+* In the Swagger browser window, select **POST /api/TodoItems**, and then select **Try it out**.
+* In the **Request body** input window, update the JSON. For example,
   
-  Here's an example of the output from the command:
-  
-  ```output
-  HTTP/1.1 201 Created
-  Content-Type: application/json; charset=utf-8
-  Date: Tue, 07 Sep 2021 20:39:47 GMT
-  Location: https://localhost:5001/api/TodoItems/1
-  Server: Kestrel
-  Transfer-Encoding: chunked
-  
+  ```JSON
   {
-    "id": 1,
     "name": "walk dog",
     "isComplete": true
   }
   ```
-  
+
+* Select **Execute**
+
+  ![Swagger POST](first-web-api/_static/7/post.png)
+
 ### Test the location header URI
 
-To test the location header, copy and paste it into an httprepl `get` command.
+In the preceding POST, the Swagger UI shows the [location header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) under **Response headers**. For example, `location: https://localhost:7260/api/TodoItems/1`. The location header shows the URI to the created resource.
 
-The following example assumes that you're still in an httprepl session. If you ended the previous httprepl session, replace `connect` with `httprepl` in the following commands:
+To test the location header:
 
-```dotnetcli
-connect https://localhost:5001/api/todoitems/1
-get
-```
+* In the Swagger browser window, select **GET /api/TodoItems/{id}**, and then select **Try it out**.
+* Enter `1` in the `id` input box, and then select **Execute**.
 
-Here's an example of the output from the command:
-
-```output
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-Date: Tue, 07 Sep 2021 20:48:10 GMT
-Server: Kestrel
-Transfer-Encoding: chunked
-
-{
-  "id": 1,
-  "name": "walk dog",
-  "isComplete": true
-}
-```
+  ![Swagger GET](first-web-api/_static/7/get.png)
 
 ## Examine the GET methods
 
@@ -451,38 +383,15 @@ Two GET endpoints are implemented:
 * `GET /api/todoitems`
 * `GET /api/todoitems/{id}`
 
-You just saw an example of the `/api/todoitems/{id}` route. Test the `/api/todoitems` route:
+The previous section showed an example of the `/api/todoitems/{id}` route.
 
-```dotnetcli
-connect https://localhost:5001/api/todoitems
-get
-```
+Follow the [POST](#post7) instructions to add another todo item, and then test the `/api/todoitems` route using Swagger.
 
-Here's an example of the output from the command:
-
-```output
-HTTP/1.1 200 OK
-Content-Type: application/json; charset=utf-8
-Date: Tue, 07 Sep 2021 20:59:21 GMT
-Server: Kestrel
-Transfer-Encoding: chunked
-
-[
-  {
-    "id": 1,
-    "name": "walk dog",
-    "isComplete": true
-  }
-]
-```
-
-This time, the JSON returned is an array of one item.
-
-This app uses an in-memory database. If the app is stopped and started, the preceding GET request will not return any data. If no data is returned, [POST](#post) data to the app.
+This app uses an in-memory database. If the app is stopped and started, the preceding GET request will not return any data. If no data is returned, [POST](#post7) data to the app.
 
 ## Routing and URL paths
 
-The [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute denotes a method that responds to an HTTP GET request. The URL path for each method is constructed as follows:
+The [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute denotes a method that responds to an `HTTP GET` request. The URL path for each method is constructed as follows:
 
 * Start with the template string in the controller's `Route` attribute:
 
@@ -493,7 +402,7 @@ The [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute deno
 
 In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetTodoItem` is invoked, the value of `"{id}"` in the URL is provided to the method in its `id` parameter.
 
-[!code-csharp[](first-web-api/samples/6.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_GetByID&highlight=1-2)]
+[!code-csharp[](first-web-api/samples/7.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_GetByID&highlight=1-2)]
 
 ## Return values
 
@@ -502,36 +411,21 @@ The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult
 `ActionResult` return types can represent a wide range of HTTP status codes. For example, `GetTodoItem` can return two different status values:
 
 * If no item matches the requested ID, the method returns a [404 status](https://developer.mozilla.org/docs/Web/HTTP/Status/404) <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound%2A> error code.
-* Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
+* Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an `HTTP 200` response.
 
 ## The PutTodoItem method
 
 Examine the `PutTodoItem` method:
 
-[!code-csharp[](first-web-api/samples/6.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
+[!code-csharp[](first-web-api/samples/7.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
 
-`PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
-
-If you get an error calling `PutTodoItem` in the following section, call `GET` to ensure there's an item in the database.
+`PutTodoItem` is similar to `PostTodoItem`, except it uses `HTTP PUT`. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a `PUT` request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
 ### Test the PutTodoItem method
 
 This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PUT call. Call GET to ensure there's an item in the database before making a PUT call.
 
-Update the to-do item that has Id = 1 and set its name to `"feed fish"`:
-
-```dotnetcli
-connect https://localhost:5001/api/todoitems/1
-put -h Content-Type=application/json -c "{"id":1,"name":"feed fish","isComplete":true}"
-```
-
-Here's an example of the output from the command:
-
-```output
-HTTP/1.1 204 No Content
-Date: Tue, 07 Sep 2021 21:20:47 GMT
-Server: Kestrel
-```
+Using the Swagger UI, use the PUT button to update the `TodoItem` that has Id = 1 and set its name to `"feed fish"`. Note the response is [`HTTP 204 No Content`](https://developer.mozilla.org/docs/Web/HTTP/Status/204).
 
 ## The DeleteTodoItem method
 
@@ -541,22 +435,19 @@ Examine the `DeleteTodoItem` method:
 
 ### Test the DeleteTodoItem method
 
-Delete the to-do item that has Id = 1:
+Use the Swagger UI to delete the `TodoItem`that has Id = 1. Note the response is [`HTTP 204 No Content`](https://developer.mozilla.org/docs/Web/HTTP/Status/204).
 
-```dotnetcli
-connect https://localhost:5001/api/todoitems/1
-delete
-```
+## Test with http-repl, Postman, or curl
 
-Here's an example of the output from the command:
+[http-repl](xref:web-api/http-repl), [Postman](https://www.postman.com/), and [curl](https://terminalcheatsheet.com/guides/curl-rest-api) are often used to test API's. Swagger uses `curl` and shows the `curl` command it submitted.
 
-```output
-HTTP/1.1 204 No Content
-Date: Tue, 07 Sep 2021 21:43:00 GMT
-Server: Kestrel
-```
+For instructions on these tools, see the following links:
 
-<a name="over-post"></a>
+* [Test APIs with Postman](xref:tutorials/first-web-api?view=aspnetcore-5.0&preserve-view=true#post5)
+* [Install and test APIs with `http-repl`](xref:tutorials/first-web-api?view=aspnetcore-6.0&preserve-view=true#ihr6)
+
+For more information on `http-repl`, see <xref:web-api/http-repl>.
+
 ## Prevent over-posting
 
 Currently the sample app exposes the entire `TodoItem` object. Production apps typically limit the data that's input and returned using a subset of the model. There are multiple reasons behind this, and security is a major one. The subset of a model is usually referred to as a Data Transfer Object (DTO), input model, or view model. **DTO** is used in this tutorial.
@@ -578,11 +469,11 @@ Verify you can post and get the secret field.
 
 Create a DTO model:
 
-[!code-csharp[](first-web-api/samples/6.0/TodoApiDTO/Models/TodoItemDTO.cs)]
+[!code-csharp[](first-web-api/samples/7.0/TodoApiDTO/Models/TodoItemDTO.cs)]
 
 Update the `TodoItemsController` to use `TodoItemDTO`:
 
-[!code-csharp[](first-web-api/samples/6.0/TodoApiDTO/Controllers/TodoItemsController.cs)]
+[!code-csharp[](first-web-api/samples/7.0/TodoApiDTO/Controllers/TodoItemsController.cs)]
 
 Verify you can't post or get the secret field.
 
@@ -967,6 +858,8 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 * Returns an [HTTP 201 status code](https://developer.mozilla.org/docs/Web/HTTP/Status/201) if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
 * Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.rfc-editor.org/rfc/rfc9110.html#section-10.2.2).
 * References the `GetTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
+
+<a name="ihr6"></a>
 
 ### Install http-repl
 
@@ -1524,6 +1417,8 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 * Returns an [HTTP 201 status code](https://developer.mozilla.org/docs/Web/HTTP/Status/201) if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
 * Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
 * References the `GetTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
+
+<a name="post5"></a>
 
 ### Install Postman
 
@@ -2218,6 +2113,7 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 For more information, see the following resources:
 
 * <xref:web-api/index>
+* <xref:tutorials/min-web-api>
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:data/ef-rp/intro>
 * <xref:mvc/controllers/routing>

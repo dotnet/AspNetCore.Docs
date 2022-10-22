@@ -57,9 +57,7 @@ In the Visual Studio toolbar, select the **Windows Machine** button to build and
 
 :::image type="content" source="maui/_static/windows-machine-button.png" alt-text="Windows Machine button.":::
 
-If Developer Mode isn't enabled, you're prompted to enable it in **Settings** > **For developers** > **Developer Mode**. Set the switch to **On**:
-
-:::image type="content" source="maui/_static/windows-developer-mode.png" alt-text="Windows Developer Mode enabled.":::
+If Developer Mode isn't enabled, you're prompted to enable it in **Settings** > **For developers** > **Developer Mode** (Windows 10) or **Settings** > **Privacy & security** > **For developers** > **Developer Mode** (Windows 11). Set the switch to **On**.
 
 The app running as a Windows desktop app:
 
