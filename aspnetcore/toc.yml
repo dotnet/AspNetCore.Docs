@@ -218,6 +218,8 @@ items:
             uid: fundamentals/middleware/index
           - name: Rate limiting middleware
             uid: performance/rate-limit
+          - name: Middleware in Minimal API apps
+            uid: fundamentals/minimal-apis/middleware
           - name: Test middleware
             uid: test/middleware
           - name: Response caching middleware
@@ -706,6 +708,8 @@ items:
         uid: fundamentals/minimal-apis/test-min-api
       - name: Create responses in Minimal API apps
         uid: fundamentals/minimal-apis/responses
+      - name: Middleware in Minimal API apps
+        uid: fundamentals/minimal-apis/middleware
   - name: Real-time apps
     displayName: signalr
     items:
