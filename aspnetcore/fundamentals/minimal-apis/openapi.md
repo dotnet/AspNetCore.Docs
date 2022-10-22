@@ -206,11 +206,13 @@ If an endpoint can return different response types in different scenarios, you c
 
   [!code-csharp[](samples/todo/Program.cs?name=snippet_getCustom)]
 
-* Use [`Results<TResult1,TResult2,TResultN>`](xref:Microsoft.AspNetCore.Http.HttpResults.Results%606) in the signature, as shown in the following example:
+* Use [`Results<TResult1,TResult2,TResultN>`](xref:Microsoft.AspNetCore.Http.HttpResults.Results%606) in the signature and [`TypedResults`](/dotnet/api/microsoft.aspnetcore.http.typedresults) in the body of the handler, as shown in the following example:
 
   :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MultipleResultTypes/Program.cs" id="snippet_multiple_result_types":::
 
-  The `Results<TResult1,TResult2,TResultN>` union types implement implicit cast operators. These operators enable the compiler to automatically convert the types specified in the generic arguments to an instance of the union type. This capability has the added benefit of providing compile-time checking that a route handler only returns the results that it declares it does. Attempting to return a type that isn't declared as one of the generic arguments to `Results<TResult1,TResult2,TResultN>` results in a compilation error.
+  The `Results<TResult1,TResult2,TResultN>` union types declare that a route handler returns multiple `IResult`-implementing concrete types, and any of those types that implement `IEndpointMetadataProvider` will contribute to the endpoint’s metadata,
+
+  The union types implement implicit cast operators. These operators enable the compiler to automatically convert the types specified in the generic arguments to an instance of the union type. This capability has the added benefit of providing compile-time checking that a route handler only returns the results that it declares it does. Attempting to return a type that isn't declared as one of the generic arguments to `Results<TResult1,TResult2,TResultN>` results in a compilation error.
 
 ## Describe request body and parameters
 
