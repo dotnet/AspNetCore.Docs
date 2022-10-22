@@ -127,19 +127,8 @@ Visual Studio launches the default browser and navigates to `https://localhost:<
 
 Run the app:
 
-* Press Ctrl+F5.
-* At the **Select environment** prompt, choose **.NET Core**.
-* Select **Add Configuration** > **.NET: Launch a local .NET Core Console App**.
-* In the configuration JSON:
-  * Replace `<target-framework>` with `net7.0`.
-  * Replace  `<project-name.dll>` with `TodoApi.dll`.
-* Press Ctrl+F5.
-* In the **Could not find the task 'build'** dialog, select **Configure Task**.
-* Select **Create `tasks.json` file from template**.
-* Select the **.NET Core** task template.
-* Press Ctrl+F5.
-
-In a browser, navigate to `https://localhost:<port>/swagger`, where `<port>` is the randomly chosen port number displayed in the output.
+* Press Ctrl+F5 to run the app.
+* Visual Studio Code launches the default browser to `https://localhost:<port>`, where `<port>` is the randomly chosen port number displayed in the output. There is no endpoint at `https://localhost:<port>` so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -196,17 +185,6 @@ JSON similar to the following example is returned:
     }
 ]
 ```
-
-<!--
-### Update the launchUrl
-
-In *Properties\launchSettings.json*, update `launchUrl` from `"swagger"` to `"api/todoitems"`:
-
-```json
-"launchUrl": "api/todoitems",
-```
-
-Because Swagger is removed in the next section, the preceding markup changes the URL that is launched to the `GET` method of the new controller. -->
 
 ## Add a model class
 
