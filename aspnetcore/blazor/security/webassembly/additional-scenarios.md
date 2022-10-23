@@ -603,7 +603,7 @@ In the preceding example, `JS` is an injected <xref:Microsoft.JSInterop.IJSRunti
 
 This example uses Azure Active Directory (AAD) for authentication. In `Program.cs`:
 
-* The `ApplicationAuthenticationState` is configured as the Microsoft Autentication Library (MSAL) `RemoteAuthenticationState` type.
+* The `ApplicationAuthenticationState` is configured as the Microsoft Authentication Library (MSAL) `RemoteAuthenticationState` type.
 * The state container is registered in the service container.
 
 ```csharp
@@ -1827,7 +1827,7 @@ The `Authentication` component (`Pages/Authentication.razor`) saves and restores
 
 This example uses Azure Active Directory (AAD) for authentication. In `Program.cs`:
 
-* The `ApplicationAuthenticationState` is configured as the Microsoft Autentication Library (MSAL) `RemoteAuthenticationState` type.
+* The `ApplicationAuthenticationState` is configured as the Microsoft Authentication Library (MSAL) `RemoteAuthenticationState` type.
 * The state container is registered in the service container.
 
 ```csharp
@@ -3058,7 +3058,7 @@ The `Authentication` component (`Pages/Authentication.razor`) saves and restores
 
 This example uses Azure Active Directory (AAD) for authentication. In `Program.cs`:
 
-* The `ApplicationAuthenticationState` is configured as the Microsoft Autentication Library (MSAL) `RemoteAuthenticationState` type.
+* The `ApplicationAuthenticationState` is configured as the Microsoft Authentication Library (MSAL) `RemoteAuthenticationState` type.
 * The state container is registered in the service container.
 
 ```csharp
@@ -4403,7 +4403,7 @@ In the preceding example, `JS` is an injected <xref:Microsoft.JSInterop.IJSRunti
 
 This example uses Azure Active Directory (AAD) for authentication. In `Program.cs`:
 
-* The `ApplicationAuthenticationState` is configured as the Microsoft Autentication Library (MSAL) `RemoteAuthenticationState` type.
+* The `ApplicationAuthenticationState` is configured as the Microsoft Authentication Library (MSAL) `RemoteAuthenticationState` type.
 * The state container is registered in the service container.
 
 ```csharp
