@@ -4,7 +4,7 @@ author: rick-anderson
 description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 08/23/2022
+ms.date: 10/24/2022
 uid: fundamentals/minimal-apis
 ---
 
@@ -1160,6 +1160,22 @@ The following table demonstrates the preceding route templates and their behavio
 | `/posts/{slug:regex(^[a-z0-9_-]+$)}` | `/posts/mypost` |
 
 For more information, see [Route constraint reference](xref:fundamentals/routing) in <xref:fundamentals/routing>.
+
+### Route groups
+
+The <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> extension method helps organize groups of endpoints with a common prefix. It reduces repetitive code and allows for customizing entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A>.
+
+For example, the following code creates two similar groups of endpoints:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group2/Program.cs" id="mapgroup":::
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group2/TodoEndpoints.cs" id="todoendpoints":::
+
+Use a relative address for the `Location` header in the `201 Created` result:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group2/TodoEndpoints.cs" id="create":::
+
+Route groups also support nested groups and complex prefix patterns with route parameters and constraints. For information about present route group capabilities and plans for future enhancements, see GitHub issue [dotnet/aspnetcore #41433](https://github.com/dotnet/aspnetcore/issues/41433).
 
 ### Parameter Binding
 
