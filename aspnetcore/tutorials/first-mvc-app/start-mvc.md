@@ -3,7 +3,7 @@ title: Get started with ASP.NET Core MVC
 author: rick-anderson
 description: Learn how to get started with ASP.NET Core MVC.
 ms.author: riande
-ms.date: 10/10/2022
+ms.date: 10/24/2022
 uid: tutorials/first-mvc-app/start-mvc
 ms.custom: contperf-fy21q3
 ---
@@ -667,7 +667,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 Visual Studio runs the app and opens the default browser.
 
-The address bar shows `localhost:port#` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
+The address bar shows `localhost:<port#>` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
 
 Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
@@ -697,9 +697,9 @@ The following image shows the app:
 
   * Starts [Kestrel](xref:fundamentals/servers/kestrel)
   * Launches a browser.
-  * Navigates to `https://localhost:5001`.
+  * Navigates to `https://localhost:<port#>`.
 
-  The address bar shows `localhost:port:5001` and not something like `example.com`. The standard hostname for your local computer is `localhost`. Localhost only serves web requests from the local computer.
+  The address bar shows `localhost:<port#>` and not something like `example.com`. The standard hostname for your local computer is `localhost`. Localhost only serves web requests from the local computer.
 
 Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
