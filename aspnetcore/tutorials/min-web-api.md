@@ -560,8 +560,6 @@ This tutorial creates the following API:
 
 * In Visual Studio for Mac 2022, select **File** > **New Project...**.
 
-  ![macOS New solution](min-web-api/_static/new-project-vsmac2022.png)
-
 * In the **Choose a template for your new project** dialog:
   * Select **Web and Console** > **App** > **Empty**.
   * Select **Continue**.
