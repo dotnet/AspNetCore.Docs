@@ -457,6 +457,7 @@ Verify you can't post or get the secret field.
 - No support for [JsonPatch](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch/)
 - No support for [OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/)
 - No support for [ApiVersioning](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Versioning/). See [this issue](https://github.com/dotnet/aspnet-api-versioning/issues/751) for more details.
+
 ## Use JsonOptions
 
 The following code uses <xref:Microsoft.AspNetCore.Http.Json.JsonOptions>:
@@ -612,7 +613,7 @@ Press Ctrl+F5 to run the app. A browser window is opened.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. 
+Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
 
 ---
 
@@ -643,7 +644,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**
-* In the search box, enter **Microsoft.EntityFrameworkCore.InMemory** 
+* In the search box, enter **Microsoft.EntityFrameworkCore.InMemory**
 * In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
 * Select **Add Package**
 * In the **Select Projects** window, select **Ok**
@@ -710,13 +711,16 @@ Use the POST endpoint to add data to the app:
 * Select **raw**.
 * Set the type to **JSON**.
 * In the request body enter JSON for a to-do item:
+
   ```json
   {
     "name":"walk dog",
     "isComplete":true
   }
   ```
+
 * Select **Send**.
+
   ![Postman with Post request details](min-web-api/_static/post2.png)
 
 ## Examine the GET endpoints
