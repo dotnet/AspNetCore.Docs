@@ -1,5 +1,5 @@
 ---
-title: Generate tokens with `dotnet user-jwts`
+title: Generate tokens with dotnet user-jwts
 author: rick-anderson
 description: Learn how to set up manage JSON Web Tokens in development with dotnet user-jwts
 monikerRange: '>= aspnetcore-7.0'
