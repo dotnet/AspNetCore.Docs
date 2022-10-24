@@ -564,11 +564,15 @@ This tutorial creates the following API:
   * Select **Web and Console** > **App** > **Empty**.
   * Select **Continue**.
 
+  ![Visual Studio for Mac Create a new project](min-web-api/_static/empty-vsmac-2022.png)
+
 * Make the following selections:
   * **Target framework:** .NET 7.x (or more recent).
   * **Configure for HTTPS**: Check
   * **Do not use top-level statements**: Uncheck
   * Select **Continue**.
+
+  ![Additional information](min-web-api/_static/add-info7-vsmac-2022.png)
 
 * Enter the following:
   * **Project name:** TodoApi
