@@ -203,7 +203,7 @@ Copy and paste the **Request URL** in the browser: `https://localhost:<port>/Wea
   }
 ]
 ```
-
+box
 ## Update the generated code
 
 This tutorial focuses on creating a web API, so we'll delete the Swagger code and the `WeatherForecast` code. Replace the contents of the `Program.cs` file with the following:
@@ -249,7 +249,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**
-* In the searchbox, enter **Microsoft.EntityFrameworkCore.InMemory** 
+* In the search box, enter **Microsoft.EntityFrameworkCore.InMemory** 
 * In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
 * Select **Add Package**
 * In the **Select Projects** window, select **Ok**
@@ -560,7 +560,7 @@ This tutorial creates the following API:
 
 * In Visual Studio for Mac 2022, select **File** > **New Project...**.
 
-  ![macOS New solution](first-web-api-mac/_static/6/sln.png)
+  ![macOS New solution](min-web-api/_static/new-project-vsmac2022.png)
 
 * In the **Choose a template for your new project** dialog:
   * Select **Web and Console** > **App** > **Empty**.
@@ -641,7 +641,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**
-* In the searchbox, enter **Microsoft.EntityFrameworkCore.InMemory** 
+* In the search box, enter **Microsoft.EntityFrameworkCore.InMemory** 
 * In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
 * Select **Add Package**
 * In the **Select Projects** window, select **Ok**
