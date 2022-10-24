@@ -232,25 +232,14 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 ## Blazor startup
 
-Configure the manual start of a Blazor Server app's SignalR circuit in the `Pages/_Layout.cshtml` file:
-
-* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
-* Place a script that calls `Blazor.start` after the `blazor.server.js` script's `<script>` tag and inside the closing `</body>` tag.
-
-<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
-
 Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Layout.cshtml` file (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` or `blazor.webassembly.js` script.
 * Place a script that calls `Blazor.start` after the Blazor script is loaded and inside the closing `</body>` tag.
 
--->
-
 When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
-
-<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
 
 ## Configure SignalR server timeout and Keep-Alive on the client
 
@@ -266,16 +255,18 @@ The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwr
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
-      builder.serverTimeoutInMilliseconds = 30000;
-      builder.keepAliveIntervalInMilliseconds = 15000;
+      let c = builder.build();
+      c.serverTimeoutInMilliseconds = 30000;
+      c.keepAliveIntervalInMilliseconds = 15000;
+      builder.build = () => {
+        return c;
+      };
     }
-});
+  });
 </script>
 ```
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
-
--->
 
 ## Configure SignalR client logging (Blazor Server)
 
@@ -595,25 +586,14 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 ## Blazor startup
 
-Configure the manual start of a Blazor Server app's SignalR circuit in the `Pages/_Host.cshtml` file:
-
-* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
-* Place a script that calls `Blazor.start` after the `blazor.server.js` script's `<script>` tag and inside the closing `</body>` tag.
-
-<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
-
 Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` or `blazor.webassembly.js` script.
 * Place a script that calls `Blazor.start` after the Blazor script is loaded and inside the closing `</body>` tag.
 
--->
-
 When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
-
-<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
 
 ## Configure SignalR server timeout and Keep-Alive on the client
 
@@ -622,23 +602,25 @@ Configure the following values for the client:
 * `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30,000 milliseconds (30 seconds).
 * `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15,000 milliseconds (15 seconds).
 
-The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
+The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
 
 ```html
 <script src="_framework/blazor.{HOSTING MODEL}.js" autostart="false"></script>
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
-      builder.serverTimeoutInMilliseconds = 30000;
-      builder.keepAliveIntervalInMilliseconds = 15000;
+      let c = builder.build();
+      c.serverTimeoutInMilliseconds = 30000;
+      c.keepAliveIntervalInMilliseconds = 15000;
+      builder.build = () => {
+        return c;
+      };
     }
-});
+  });
 </script>
 ```
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
-
--->
 
 ## Configure SignalR client logging (Blazor Server)
 
@@ -944,25 +926,14 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 ## Blazor startup
 
-Configure the manual start of a Blazor Server app's SignalR circuit in the `Pages/_Host.cshtml` file:
-
-* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
-* Place a script that calls `Blazor.start` after the `blazor.server.js` script's `<script>` tag and inside the closing `</body>` tag.
-
-<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
-
 Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` or `blazor.webassembly.js` script.
 * Place a script that calls `Blazor.start` after the Blazor script is loaded and inside the closing `</body>` tag.
 
--->
-
 When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
-
-<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
 
 ## Configure SignalR server timeout and Keep-Alive on the client
 
@@ -971,23 +942,25 @@ Configure the following values for the client:
 * `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30,000 milliseconds (30 seconds).
 * `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15,000 milliseconds (15 seconds).
 
-The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
+The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
 
 ```html
 <script src="_framework/blazor.{HOSTING MODEL}.js" autostart="false"></script>
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
-      builder.serverTimeoutInMilliseconds = 30000;
-      builder.keepAliveIntervalInMilliseconds = 15000;
+      let c = builder.build();
+      c.serverTimeoutInMilliseconds = 30000;
+      c.keepAliveIntervalInMilliseconds = 15000;
+      builder.build = () => {
+        return c;
+      };
     }
-});
+  });
 </script>
 ```
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
-
--->
 
 ## Configure SignalR client logging (Blazor Server)
 
@@ -1326,25 +1299,14 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 ## Blazor startup
 
-Configure the manual start of a Blazor Server app's SignalR circuit in the `Pages/_Host.cshtml` file:
-
-* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` script.
-* Place a script that calls `Blazor.start` after the `blazor.server.js` script's `<script>` tag and inside the closing `</body>` tag.
-
-<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
-
 Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
 
 * Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` or `blazor.webassembly.js` script.
 * Place a script that calls `Blazor.start` after the Blazor script is loaded and inside the closing `</body>` tag.
 
--->
-
 When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
-
-<!-- HOLD: WORKING ON https://github.com/dotnet/AspNetCore.Docs/issues/27320
 
 ## Configure SignalR server timeout and Keep-Alive on the client
 
@@ -1353,23 +1315,25 @@ Configure the following values for the client:
 * `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30,000 milliseconds (30 seconds).
 * `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15,000 milliseconds (15 seconds).
 
-The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
+The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
 
 ```html
 <script src="_framework/blazor.{HOSTING MODEL}.js" autostart="false"></script>
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
-      builder.serverTimeoutInMilliseconds = 30000;
-      builder.keepAliveIntervalInMilliseconds = 15000;
+      let c = builder.build();
+      c.serverTimeoutInMilliseconds = 30000;
+      c.keepAliveIntervalInMilliseconds = 15000;
+      builder.build = () => {
+        return c;
+      };
     }
-});
+  });
 </script>
 ```
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
-
--->
 
 ## Configure SignalR client logging (Blazor Server)
 
