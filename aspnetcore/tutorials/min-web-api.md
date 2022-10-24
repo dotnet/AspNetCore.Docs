@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal web API with ASP.NET Core"
 author: rick-anderson
 description: Learn how to build a minimal web API with ASP.NET Core.
 ms.author: riande
-ms.date: 09/26/2022
+ms.date: 10/23/2022
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
 ---
@@ -305,7 +305,7 @@ This tutorial uses Postman to test the API.
 
 The following instructions post data to the app:
 
-  * Create a new request.
+  * Create a new HTTP request.
   * Set the HTTP method to `POST`.
   * Set the URI to `https://localhost:<port>/todoitems`. For example: `https://localhost:5001/todoitems`
   * Select the **Body** tab.
@@ -357,7 +357,7 @@ The call to `GET /todoitems` produces a response similar to the following:
 
 ### Test the GET endpoints with Postman
 
-* Create a new request.
+* Create a new HTTP request.
 * Set the HTTP method to **GET**.
 * Set the request URI to `https://localhost:<port>/todoitems`. For example, `https://localhost:5001/todoitems`.
 * Select **Send**.
@@ -562,12 +562,15 @@ This tutorial creates the following API:
 
   ![macOS New solution](first-web-api-mac/_static/6/sln.png)
 
-* Select **Web and Console** > **App** > **Empty** > **Continue**.
+* In the **Choose a template for your new project** dialog:
+  * Select **Web and Console** > **App** > **Empty**.
+  * Select **Continue**.
 
 * Make the following selections:
-  * **Target framework:** .NET 7.x (or more recent). 
+  * **Target framework:** .NET 7.x (or more recent).
   * **Configure for HTTPS**: Check
-  * Select **Next**.
+  * **Do not use top-level statements**: Uncheck
+  * Select **Continue**.
 
 * Enter the following:
   * **Project name:** TodoApi
@@ -681,7 +684,8 @@ This tutorial uses Postman to test the API.
 * Start the web app.
 * Start Postman.
 * Disable **SSL certificate verification**
-  * From **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
+  * For Postman for Windows, Select **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
+  * For Postman for macOS, Select **Postman** > **Preferences** (**General** tab), disable **SSL certificate verification**.
     > [!WARNING]
     > Re-enable SSL certificate verification after testing the sample app.
 
@@ -697,7 +701,7 @@ Run the app. The browser displays a 404 error because there is no longer a `/` e
 
 Use the POST endpoint to add data to the app:
 
-* Create a new request.
+* Create a new HTTP request.
 * Set the HTTP method to `POST`.
 * Set the URI to `https://localhost:<port>/todoitems`. For example: `https://localhost:5001/todoitems`
 * Select the **Body** tab.
@@ -729,7 +733,7 @@ The sample app implements several GET endpoints by calling `MapGet`:
 
 Test the app by calling the endpoints from a browser or Postman. The following steps are for Postman.
 
-* Create a new request.
+* Create a new HTTP request.
 * Set the HTTP method to **GET**.
 * Set the request URI to `https://localhost:<port>/todoitems`. For example, `https://localhost:5001/todoitems`.
 * Select **Send**.
