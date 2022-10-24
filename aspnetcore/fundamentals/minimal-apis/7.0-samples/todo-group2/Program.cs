@@ -26,6 +26,7 @@ using var scope = app.Services.CreateScope();
 var db = scope.ServiceProvider.GetService<TodoGroupDbContext>();
 db?.Database.MigrateAsync();
 
+// <mapgroup>
 app.MapGroup("/public/todos")
     .MapTodosApi()
     .WithTags("Public Todo Endpoints");
@@ -33,5 +34,5 @@ app.MapGroup("/public/todos")
 app.MapGroup("/private/todos")
     .MapTodosApi()
     .RequireAuthorization();
-
+// </mapgroup>
 app.Run();
