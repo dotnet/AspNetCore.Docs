@@ -427,7 +427,8 @@ services
     })
     .AddCallCredentials(async (context, metadata, serviceProvider) =>
     {
-        var provider = serviceProvider.GetRequiredService<ITokenProvider>();
+        var scope = serviceProvider.CreateScope();
+        var provider = scope.ServiceProvider.GetRequiredService<ITokenProvider>();
         var token = await provider.GetTokenAsync();
         metadata.Add("Authorization", $"Bearer {token}");
     }));
