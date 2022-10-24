@@ -203,7 +203,7 @@ Copy and paste the **Request URL** in the browser: `https://localhost:<port>/Wea
   }
 ]
 ```
-box
+
 ## Update the generated code
 
 This tutorial focuses on creating a web API, so we'll delete the Swagger code and the `WeatherForecast` code. Replace the contents of the `Program.cs` file with the following:
