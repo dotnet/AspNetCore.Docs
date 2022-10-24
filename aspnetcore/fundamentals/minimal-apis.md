@@ -1171,7 +1171,7 @@ For example, the following code creates two similar groups of endpoints:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group2/TodoEndpoints.cs" id="todoendpoints":::
 
-Use a relative address for the `Location` header in the `201 Created` result:
+In this scenario, you can use a relative address for the `Location` header in the `201 Created` result:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group2/TodoEndpoints.cs" id="create":::
 
