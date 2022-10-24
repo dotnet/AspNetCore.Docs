@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use OpenAPI (Swagger and Swashbuckle) features of minimal APIs in ASP.NET Core.
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 10/11/2022
+ms.date: 10/24/2022
 uid: fundamentals/minimal-apis/openapi
 ---
 
@@ -210,7 +210,7 @@ If an endpoint can return different response types in different scenarios, you c
 
   :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MultipleResultTypes/Program.cs" id="snippet_multiple_result_types":::
 
-  The `Results<TResult1,TResult2,TResultN>` union types declare that a route handler returns multiple `IResult`-implementing concrete types, and any of those types that implement `IEndpointMetadataProvider` will contribute to the endpoint’s metadata.
+  The `Results<TResult1,TResult2,TResultN>` *union types* declare that a route handler returns multiple `IResult`-implementing concrete types, and any of those types that implement `IEndpointMetadataProvider` will contribute to the endpoint’s metadata.
 
   The union types implement implicit cast operators. These operators enable the compiler to automatically convert the types specified in the generic arguments to an instance of the union type. This capability has the added benefit of providing compile-time checking that a route handler only returns the results that it declares it does. Attempting to return a type that isn't declared as one of the generic arguments to `Results<TResult1,TResult2,TResultN>` results in a compilation error.
 
