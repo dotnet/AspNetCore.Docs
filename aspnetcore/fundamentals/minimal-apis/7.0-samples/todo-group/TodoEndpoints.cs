@@ -6,13 +6,27 @@ namespace MinApiRouteGroupSample;
 public static class TodoEndpoints
 {
     // <snippet_TodoEndpoints>
-    public static RouteGroupBuilder MapTodosApi(this RouteGroupBuilder group)
+    public static RouteGroupBuilder MapTodosApi(this RouteGroupBuilder group, bool isPrivate)
     {
         group.MapGet("/", GetAllTodos);
         group.MapGet("/{id}", GetTodo);
         group.MapPost("/", CreateTodo);
         group.MapPut("/{id}", UpdateTodo);
         group.MapDelete("/{id}", DeleteTodo);
+
+        // create todo
+        // <snippet_Create>
+        async Task<Created<Todo>> CreateTodo(Todo todo, TodoGroupDbContext database)
+        {
+            // IsPrivate is always set for /private/todos and never for /public/todos
+            todo.IsPrivate = isPrivate;
+
+            await database.Todos.AddAsync(todo);
+            await database.SaveChangesAsync();
+
+            return TypedResults.Created($"{todo.Id}", todo);
+        }
+        // </snippet_Create>
 
         return group;
     }
@@ -35,18 +49,6 @@ public static class TodoEndpoints
 
         return TypedResults.Ok(todo);
     }
-
-    // create todo
-    // <snippet_Create>
-    public static async Task<Created<Todo>> CreateTodo(Todo todo, TodoGroupDbContext database)
-    {
-        await database.Todos.AddAsync(todo);
-        await database.SaveChangesAsync();
-
-        return TypedResults.Created($"{todo.Id}", todo);
-    }
-    // </snippet_Create>
-
     // update todo
     public static async Task<Results<NoContent, NotFound>> UpdateTodo(Todo todo, TodoGroupDbContext database)
     {

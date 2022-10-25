@@ -10,14 +10,14 @@ using MinApiRouteGroupSample;
 namespace MinApiRouteGroupSample.Migrations
 {
     [DbContext(typeof(TodoGroupDbContext))]
-    [Migration("20221011191807_Initial")]
+    [Migration("20221025210428_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.0-rc.1.22426.7");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.0-rc.2.22472.11");
 
             modelBuilder.Entity("MinApiRouteGroupSample.Todo", b =>
                 {
@@ -30,6 +30,9 @@ namespace MinApiRouteGroupSample.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsDone")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsPrivate")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Title")
