@@ -216,14 +216,13 @@ The following conditions apply to type mapping and marshalled values:
 * The :::no-loc text="Array of"::: column indicates if the .NET type can be marshalled as a JS [`Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array). Example: C# `int[]` (`Int32`) mapped to JS `Array` of `Number`s.
 * When passing a JS value to C# with a value of the wrong type, the framework throws an exception in most cases. The framework doesn't perform compile-time type checking in JS.
 * `JSObject`, `Exception`, `Task` and `ArraySegment` create `GCHandle` and a proxy. You can trigger disposal in developer code or allow [.NET garbage collection (GC)](/dotnet/standard/garbage-collection/) to dispose of the objects later. These types carry significant performance overhead.
-* `IMemoryView`
-  * `IMemoryView` is a JS type of .NET interop, not a primitive JS type.
-  * Bytes aren't copied during marshalling.
-  * `IMemoryView` created for a `Span` is only valid for the duration of the interop call.
-  * `IMemoryView` created for an `ArraySegment` survives after the interop call and is useful for sharing a buffer.
-  * `IMemoryView` doesn't have an analogous JS type, so marshalling a JS object to a .NET `IMemoryView` isn't possible.
-* It's not possible to export a .NET method that returns a `Span`. The `Span` is allocated on the call stack and has GC implications. When calling from JS to .NET, there's no C# stack after the call.
-* For an exported method that returns an `ArraySegment`, calling `dispose()` in `try-finally` block disposes the proxy and unpins the underlying C# byte array. We recommend calling `dispose()` on the object in developer JS code. If developer code doesn't dispose of the object, the JS GC eventually disposes the object. You can also marshal a byte array (`byte[]`) instead of an `ArraySegment`, which copies the bytes.
+* `Array`: Marshaling an array creates a copy of the array in JS or .NET.
+* `MemoryView`
+  * `MemoryView` is a JS class for the .NET WebAssembly runtime to marshal `Span` and `ArraySegment`.
+  * Unlike marshaling an array, marshaling a `Span` or `ArraySegment` doesn't create a copy of the underlying memory.
+  * `MemoryView` can only be properly instantiated by the .NET WebAssembly runtime. Therefore, it isn't possible to import a JS function as a .NET method that has a parameter of `Span` or `ArraySegment`.
+  * `MemoryView` created for a `Span` is only valid for the duration of the interop call. As `Span` is allocated on the call stack, which doesn't persist after the interop call, it isn't possible to export a .NET method that returns a `Span`.
+  * `MemoryView` created for an `ArraySegment` survives after the interop call and is useful for sharing a buffer. Calling `dispose()` on a `MemoryView` created for an `ArraySegment` disposes the proxy and unpins the underlying .NET array. We recommend calling `dispose()` in a `try-finally` block for `MemoryView`.
 
 <!--
 
