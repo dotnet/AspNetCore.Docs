@@ -268,6 +268,25 @@ The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwr
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
 
+When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>, <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout>, and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example based on the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) uses default values:
+
+```csharp
+protected override async Task OnInitializedAsync()
+{
+    hubConnection = new HubConnectionBuilder()
+        .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+        .Build();
+
+    hubConnection.ServerTimeout = TimeSpan.FromSeconds(30);
+    hubConnection.HandshakeTimeout = TimeSpan.FromSeconds(15);
+    hubConnection.KeepAliveInterval = TimeSpan.FromSeconds(15);
+
+    hubConnection.On<string, string>("ReceiveMessage", (user, message) => ...
+
+    await hubConnection.StartAsync();
+}
+```
+
 ## Configure SignalR client logging (Blazor Server)
 
 On the client builder, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
@@ -622,6 +641,25 @@ The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwr
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
 
+When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>, <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout>, and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example based on the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) uses default values:
+
+```csharp
+protected override async Task OnInitializedAsync()
+{
+    hubConnection = new HubConnectionBuilder()
+        .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+        .Build();
+
+    hubConnection.ServerTimeout = TimeSpan.FromSeconds(30);
+    hubConnection.HandshakeTimeout = TimeSpan.FromSeconds(15);
+    hubConnection.KeepAliveInterval = TimeSpan.FromSeconds(15);
+
+    hubConnection.On<string, string>("ReceiveMessage", (user, message) => ...
+
+    await hubConnection.StartAsync();
+}
+```
+
 ## Configure SignalR client logging (Blazor Server)
 
 On the client builder, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
@@ -961,6 +999,25 @@ The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwr
 ```
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
+
+When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>, <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout>, and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example based on the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) uses default values:
+
+```csharp
+protected override async Task OnInitializedAsync()
+{
+    hubConnection = new HubConnectionBuilder()
+        .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+        .Build();
+
+    hubConnection.ServerTimeout = TimeSpan.FromSeconds(30);
+    hubConnection.HandshakeTimeout = TimeSpan.FromSeconds(15);
+    hubConnection.KeepAliveInterval = TimeSpan.FromSeconds(15);
+
+    hubConnection.On<string, string>("ReceiveMessage", (user, message) => ...
+
+    await hubConnection.StartAsync();
+}
+```
 
 ## Configure SignalR client logging (Blazor Server)
 
@@ -1334,6 +1391,25 @@ The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwr
 ```
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
+
+When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>, <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout>, and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example based on the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) uses default values:
+
+```csharp
+protected override async Task OnInitializedAsync()
+{
+    hubConnection = new HubConnectionBuilder()
+        .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+        .Build();
+
+    hubConnection.ServerTimeout = TimeSpan.FromSeconds(30);
+    hubConnection.HandshakeTimeout = TimeSpan.FromSeconds(15);
+    hubConnection.KeepAliveInterval = TimeSpan.FromSeconds(15);
+
+    hubConnection.On<string, string>("ReceiveMessage", (user, message) => ...
+
+    await hubConnection.StartAsync();
+}
+```
 
 ## Configure SignalR client logging (Blazor Server)
 

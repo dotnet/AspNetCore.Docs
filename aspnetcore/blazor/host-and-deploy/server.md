@@ -85,12 +85,43 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
   >
   > In the following example, <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> is set to the default value of 15 seconds and shown for demonstration purposes in case you need to change the value.
 
-  In a Razor component after the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection> (`hubConnection`) is created:
+  In `Pages/_Layout.cshtml` of a Blazor Server app:
+
+  ```html
+  <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+  <script>
+    Blazor.start({
+      configureSignalR: function (builder) {
+        let c = builder.build();
+        c.serverTimeoutInMilliseconds = 60000;
+        c.keepAliveIntervalInMilliseconds = 15000;
+        builder.build = () => {
+          return c;
+        };
+      }
+    });
+  </script>
+  ```
+
+  When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>.
+  
+  The following example based on the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) uses default values for the handshake timeout and keep-alive interval with a custom value of 60 seconds for the server timeout:
 
   ```csharp
-  hubConnection.ServerTimeout = TimeSpan.FromSeconds(60);
-  hubConnection.HandshakeTimeout = TimeSpan.FromSeconds(30);
-  hubConnection.KeepAliveInterval = TimeSpan.FromSeconds(15);
+  protected override async Task OnInitializedAsync()
+  {
+      hubConnection = new HubConnectionBuilder()
+          .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+          .Build();
+
+      hubConnection.ServerTimeout = TimeSpan.FromSeconds(60);
+      hubConnection.HandshakeTimeout = TimeSpan.FromSeconds(15);
+      hubConnection.KeepAliveInterval = TimeSpan.FromSeconds(15);
+
+      hubConnection.On<string, string>("ReceiveMessage", (user, message) => ...
+
+      await hubConnection.StartAsync();
+  }
   ```
 
   For more information, see <xref:blazor/fundamentals/signalr#configure-signalr-server-timeout-and-keep-alive-on-the-client>.
@@ -843,12 +874,43 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
   >
   > In the following example, <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> is set to the default value of 15 seconds and shown for demonstration purposes in case you need to change the value.
 
-  In a Razor component after the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection> (`hubConnection`) is created:
+  In `Pages/_Host.cshtml` of a Blazor Server app:
+
+  ```html
+  <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+  <script>
+    Blazor.start({
+      configureSignalR: function (builder) {
+        let c = builder.build();
+        c.serverTimeoutInMilliseconds = 60000;
+        c.keepAliveIntervalInMilliseconds = 15000;
+        builder.build = () => {
+          return c;
+        };
+      }
+    });
+  </script>
+  ```
+
+  When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>.
+  
+  The following example based on the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) uses default values for the handshake timeout and keep-alive interval with a custom value of 60 seconds for the server timeout:
 
   ```csharp
-  hubConnection.ServerTimeout = TimeSpan.FromSeconds(60);
-  hubConnection.HandshakeTimeout = TimeSpan.FromSeconds(30);
-  hubConnection.KeepAliveInterval = TimeSpan.FromSeconds(15);
+  protected override async Task OnInitializedAsync()
+  {
+      hubConnection = new HubConnectionBuilder()
+          .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+          .Build();
+
+      hubConnection.ServerTimeout = TimeSpan.FromSeconds(60);
+      hubConnection.HandshakeTimeout = TimeSpan.FromSeconds(15);
+      hubConnection.KeepAliveInterval = TimeSpan.FromSeconds(15);
+
+      hubConnection.On<string, string>("ReceiveMessage", (user, message) => ...
+
+      await hubConnection.StartAsync();
+  }
   ```
 
   For more information, see <xref:blazor/fundamentals/signalr#configure-signalr-server-timeout-and-keep-alive-on-the-client>.
