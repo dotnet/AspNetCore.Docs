@@ -30,13 +30,14 @@ var db = scope.ServiceProvider.GetRequiredService<TodoGroupDbContext>();
 
 // <snippet_MapGroup>
 app.MapGroup("/public/todos")
-    .MapTodosApi(isPrivate: false)
+    .MapTodosApi()
     .WithTags("Public");
 
-app.MapGroup("/private/todos")
+var privateGroup = app.MapGroup("/private/todos")
     .MapTodosApi(isPrivate: true)
     .WithTags("Private")
-    .RequireAuthorization();
+    .RequireAuthorization()
+;
 // </snippet_MapGroup>
 
 app.Run();
