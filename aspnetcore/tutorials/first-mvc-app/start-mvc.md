@@ -3,7 +3,7 @@ title: Get started with ASP.NET Core MVC
 author: rick-anderson
 description: Learn how to get started with ASP.NET Core MVC.
 ms.author: riande
-ms.date: 10/07/2022
+ms.date: 10/24/2022
 uid: tutorials/first-mvc-app/start-mvc
 ms.custom: contperf-fy21q3
 ---
@@ -31,11 +31,11 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -121,7 +121,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 Visual Studio runs the app and opens the default browser.
 
-The address bar shows `localhost:port#` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
+The address bar shows `localhost:<port#>` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
 
 Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
@@ -151,9 +151,9 @@ The following image shows the app:
 
   * Starts [Kestrel](xref:fundamentals/servers/kestrel)
   * Launches a browser.
-  * Navigates to `https://localhost:5001`.
+  * Navigates to `https://localhost:<port#>`.
 
-  The address bar shows `localhost:port:5001` and not something like `example.com`. The standard hostname for your local computer is `localhost`. Localhost only serves web requests from the local computer.
+  The address bar shows `localhost:<port#>` and not something like `example.com`. The standard hostname for your local computer is `localhost`. Localhost only serves web requests from the local computer.
 
 Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
@@ -599,12 +599,14 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 * In the **Create a new project** dialog, select **ASP.NET Core Web App (Model-View-Controller)** > **Next**.
 * In the **Configure your new project** dialog, enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` when code is copied.
 * Select **Next**.
-* In the **Additional information** dialog, select **.NET 6.0 (Long-term support)**.
+* In the **Additional information** dialog:
+  * Select **.NET 7.0**.
+  * Verify that **Do not use top-level statements** is unchecked.
 * Select **Create**.
 
-![Additional info dialog](start-mvc/_static/net6-additional-info.png)
+![Additional info dialog](start-mvc/_static/net7-additional-info.png)
 
-For alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
+For more information, including alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
 Visual Studio uses the default project template for the created MVC project. The created project:
 
@@ -665,7 +667,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 Visual Studio runs the app and opens the default browser.
 
-The address bar shows `localhost:port#` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
+The address bar shows `localhost:<port#>` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
 
 Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
@@ -677,9 +679,9 @@ You can launch the app in debug or non-debug mode from the **Debug** menu:
 
 ![Debug menu](start-mvc/_static/debug_menu50.png)
 
-You can debug the app by selecting the **MvcMovie** button in the toolbar:
+You can debug the app by selecting the **https** button in the toolbar:
 
-![MvcMovie debug button](start-mvc/_static/net6-debug-button.png)
+![MvcMovie debug button](start-mvc/_static/net7-debug-button.png)
 
 The following image shows the app:
 
@@ -695,9 +697,9 @@ The following image shows the app:
 
   * Starts [Kestrel](xref:fundamentals/servers/kestrel)
   * Launches a browser.
-  * Navigates to `https://localhost:5001`.
+  * Navigates to `https://localhost:<port#>`.
 
-  The address bar shows `localhost:port:5001` and not something like `example.com`. The standard hostname for your local computer is `localhost`. Localhost only serves web requests from the local computer.
+  The address bar shows `localhost:<port#>` and not something like `example.com`. The standard hostname for your local computer is `localhost`. Localhost only serves web requests from the local computer.
 
 Launching the app without debugging by selecting Ctrl+F5 allows you to:
 

@@ -3,7 +3,7 @@ title: Part 4, add a model to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 10/07/2022
+ms.date: 10/20/2022
 uid: tutorials/first-mvc-app/adding-model
 ms.custom: contperf-fy21q3
 ---
@@ -1326,7 +1326,7 @@ Control-click the *Models* folder > **Add** > **New Class** > **Empty Class**. N
 
 Update the `Models/Movie.cs` file with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=First)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/Movie.cs?name=First)]
 
 The `Movie` class contains an `Id` field, which is required by the database for the primary key.
 
@@ -1349,11 +1349,12 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 
 <!-- When https://dev.azure.com/devdiv/DevDiv/_workitems/edit/1320544 is fixed, we can remove the following install package instruction for Microsoft.EntityFrameworkCore.Design  -->
 
-In the PMC, run the following command:
+In the PMC, run the following commands:
 
 ```powershell
-Install-Package Microsoft.EntityFrameworkCore.Design
-Install-Package Microsoft.EntityFrameworkCore.SqlServer
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -IncludePrerelease
+Install-Package Microsoft.EntityFrameworkCore.Design -IncludePrerelease
+Install-Package Microsoft.EntityFrameworkCore.SqlServer -IncludePrerelease
 ```
 
 The preceding commands add:
@@ -1363,7 +1364,7 @@ The preceding commands add:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-6.md)]
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-7.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -1413,7 +1414,7 @@ In **Solution Explorer**, right-click the *Controllers* folder and select **Add 
 
 ![view of above step](adding-model/_static/add_controller5.png)
 
-In the **Add Scaffold** dialog, select **MVC Controller with views, using Entity Framework > Add**.
+In the **Add New Scaffolded Item** dialog, select **MVC Controller with views, using Entity Framework > Add**.
 
 ![Add Scaffold dialog](adding-model/_static/add_scaffold5.png)
 
@@ -1451,7 +1452,7 @@ export PATH=$HOME/.dotnet/tools:$PATH
 Run the following command:
 
 ```dotnetcli
-dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovie.Data.MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
 ```
 
 [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
@@ -1487,7 +1488,7 @@ export PATH=$HOME/.dotnet/tools:$PATH
 Run the following command:
 
 ```dotnetcli
-dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+dotnet aspnet-codegenerator controller -name MvcMovie.Data.MvcMovieContext -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
 ```
 
 [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
@@ -1522,19 +1523,9 @@ The automatic creation of these files and file updates is known as *scaffolding*
 
 The scaffolded pages can't be used yet because the database doesn't exist. Running the app and selecting the **Movie App** link results in a *Cannot open database* or *no such table: Movie* error message.
 
+Build the app to verify that there are no errors.
+
 <a name="migration"></a>
-
-## Build the app
-
-Build the app. The compiler generates several warnings about how `null` values are handled. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594) and [Nullable reference types](/dotnet/csharp/nullable-references) for more information.
-
-To eliminate the warnings from nullable reference types, remove the following line from the `MvcMovie.csproj` file:
-
-```xml
-<Nullable>enable</Nullable>
-```
-
-We hope to fix this issue in the next release.
 
 ## Initial migration
 
@@ -1572,6 +1563,9 @@ Run the following .NET CLI commands:
 
 ```dotnetcli
 dotnet ef migrations add InitialCreate
+```
+
+```dotnetcli
 dotnet ef database update
 ```
 
@@ -1586,7 +1580,7 @@ dotnet ef database update
 
 Run the app and select the **Movie App** link.
 
-If you get an exception similar to the following, you may have missed the [migrations step](#migration):
+If you get an exception similar to the following, you may have missed the `dotnet ef database update` command in the [migrations step](#migration):
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -1739,7 +1733,9 @@ This `@model` directive allows access to the movie that the controller passed to
 
 Examine the `Index.cshtml` view and the `Index` method in the Movies controller. Notice how the code creates a `List` object when it calls the `View` method. The code passes this `Movies` list from the `Index` action method to the view:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?name=FirstIndex)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Controllers/MoviesController.cs?name=FirstIndex)]
+
+The code returns [problem details](xref:web-api/handle-errors#problem-details-service) if the `Movie` property of the data context is null.
 
 When the movies controller was created, scaffolding included the following `@model` statement at the top of the `Index.cshtml` file:
 
