@@ -606,7 +606,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
 ![Additional info dialog](start-mvc/_static/net7-additional-info.png)
 
-For alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
+For more information, including alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
 Visual Studio uses the default project template for the created MVC project. The created project:
 
