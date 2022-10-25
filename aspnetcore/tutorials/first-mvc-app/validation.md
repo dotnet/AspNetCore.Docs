@@ -3,7 +3,7 @@ title: Part 9, add validation to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 9 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 10/07/2022
+ms.date: 10/25/2022
 uid: tutorials/first-mvc-app/validation
 ---
 
@@ -262,7 +262,7 @@ One of the design tenets of MVC is [DRY](https://wikipedia.org/wiki/Don%27t_repe
 
 The validation support provided by MVC and Entity Framework Core Code First is a good example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the app.
 
-[!INCLUDE[](~/includes/RP-MVC/validation-net6.md)]
+[!INCLUDE[](~/includes/RP-MVC/validation-net7.md)]
 
 ## Validation Error UI
 
