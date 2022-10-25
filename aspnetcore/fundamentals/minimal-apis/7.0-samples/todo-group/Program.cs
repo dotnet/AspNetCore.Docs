@@ -34,10 +34,47 @@ app.MapGroup("/public/todos")
     .WithTags("Public");
 
 var privateGroup = app.MapGroup("/private/todos")
-    .MapTodosApi(isPrivate: true)
+    .MapTodosApi()
     .WithTags("Private")
+    .AddEndpointFilterFactory(QueryPrivateTodos)
     .RequireAuthorization()
 ;
 // </snippet_MapGroup>
 
 app.Run();
+
+EndpointFilterDelegate QueryPrivateTodos(EndpointFilterFactoryContext factoryContext, EndpointFilterDelegate next)
+{
+    var dbContextIndex = -1;
+    
+    foreach (var argument in factoryContext.MethodInfo.GetParameters())
+    {
+        if (argument.ParameterType == typeof(TodoGroupDbContext))
+        {
+            dbContextIndex = argument.Position;
+            break;
+        }
+    }
+
+    // Skip filter if the method doesn't have a TodoGroupDbContext parameter
+    if (dbContextIndex < 0)
+    {
+        return next;
+    }
+
+    return async invocationContext =>
+    {
+        var dbContext = invocationContext.GetArgument<TodoGroupDbContext>(dbContextIndex);
+        dbContext.IsPrivate = true;
+
+        try
+        {
+            return await next(invocationContext);
+        }
+        finally
+        {
+            // This should only be relevant if you're pooling or otherwise reusing the DbContext instance.
+            dbContext.IsPrivate = false;
+        }
+    };
+}

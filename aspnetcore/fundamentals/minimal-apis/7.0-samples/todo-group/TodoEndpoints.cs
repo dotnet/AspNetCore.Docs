@@ -6,18 +6,13 @@ namespace MinApiRouteGroupSample;
 public static class TodoEndpoints
 {
     // <snippet_TodoEndpoints>
-    public static RouteGroupBuilder MapTodosApi(this RouteGroupBuilder group, bool isPrivate = false)
+    public static RouteGroupBuilder MapTodosApi(this RouteGroupBuilder group)
     {
         group.MapGet("/", GetAllTodos);
         group.MapGet("/{id}", GetTodo);
         group.MapPost("/", CreateTodo);
         group.MapPut("/{id}", UpdateTodo);
         group.MapDelete("/{id}", DeleteTodo);
-
-        if (isPrivate)
-        {
-            group.AddEndpointFilterFactory(MakeDbContextParameterPrivate);
-        }
 
         return group;
     }
@@ -81,41 +76,5 @@ public static class TodoEndpoints
         await database.SaveChangesAsync();
 
         return TypedResults.NoContent();
-    }
-
-    private static EndpointFilterDelegate (EndpointFilterFactoryContext factoryContext, EndpointFilterDelegate next)
-    {
-        var dbContextIndex = -1;
-        
-        foreach (var argument in factoryContext.MethodInfo.GetParameters())
-        {
-            if (argument.ParameterType == typeof(TodoGroupDbContext))
-            {
-                dbContextIndex = argument.Position;
-                break;
-            }
-        }
-
-        // Skip filter if the method doesn't have a TodoGroupDbContext parameter
-        if (dbContextIndex < 0)
-        {
-            return next;
-        }
-
-        return async invocationContext =>
-        {
-            var dbContext = invocationContext.GetArgument<TodoGroupDbContext>(dbContextIndex);
-            dbContext.IsPrivate = true;
-
-            try
-            {
-                return await next(invocationContext);
-            }
-            finally
-            {
-                // This should only be relevant if you're pooling or otherwise reusing the DbContext instance.
-                dbContext.IsPrivate = false;
-            }
-        };
     }
 }
