@@ -137,7 +137,7 @@ Visual Studio:
 
 In Visual Studio Code, press Ctrl+F5 to run the app. At the **Select environment** prompt, select **.NET Core**.
 
-The default browser launched with the following URL: `https://localhost:5001`
+The default browser launched with the following URL: `https://localhost:<port>` where `<port>` is the randomly generated port number.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -172,7 +172,7 @@ Contains the following code:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program1Snip.cs?name=snippet_all)]
 
-The following lines of code in this file create a `WebApplicationBuilder` with preconfigured defaults, add Razor Pages support to the [Dependency Injection (DI) container](xref:fundamentals/dependency-injection), and build the app:
+The following lines of code in this file create a `WebApplicationBuilder` with preconfigured defaults, add Razor Pages support to the [Dependency Injection (DI) container](xref:fundamentals/dependency-injection), and builds the app:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program1Snip.cs?name=snippet_di)]
 

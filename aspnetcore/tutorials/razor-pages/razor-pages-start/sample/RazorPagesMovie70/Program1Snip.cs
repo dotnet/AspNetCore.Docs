@@ -30,3 +30,4 @@ app.MapRazorPages();
 
 app.Run();
 // </snippet_all>
+#endif
