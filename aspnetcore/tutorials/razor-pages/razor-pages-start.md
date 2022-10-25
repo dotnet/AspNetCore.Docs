@@ -4,7 +4,7 @@ author: rick-anderson
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 06/28/2022
+ms.date: 10/25/2022
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/razor-pages-start
 ---
@@ -29,15 +29,15 @@ At the end of this tutorial, you'll have a Razor Pages web app that manages a da
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
 
 ---
 
@@ -59,7 +59,7 @@ At the end of this tutorial, you'll have a Razor Pages web app that manages a da
 
 1. Select **Next**.
 
-1. In the **Additional information** dialog, select **.NET 6.0 (Long-term support)** and then select **Create**.
+1. In the **Additional information** dialog, select **.NET 6.0 (** and then select **Create**.
 
    ![Additional information](razor-pages-start/_static/6/additional-info.png)
 
