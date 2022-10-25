@@ -9,5 +9,6 @@ public class TodoGroupDbContext : DbContext
     public TodoGroupDbContext(DbContextOptions<TodoGroupDbContext> options)
         : base(options)
     {
+        Database.EnsureCreated();
     }
 }
