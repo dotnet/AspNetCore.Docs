@@ -228,7 +228,10 @@ Run the app. `Hello World!` is displayed. The updated `Program.cs` file contains
 
 ## Add NuGet packages
 
-NuGet packages must be added to support the database and diagnostics used in this tutorial.
+NuGet packages must be added to support the database and diagnostics used in this tutorial:
+
+* [`Microsoft.EntityFrameworkCore.InMemory`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory)
+* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore)
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -615,7 +618,10 @@ Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac 
 
 ## Add NuGet packages
 
-NuGet packages must be added to support the database and diagnostics used in this tutorial.
+NuGet packages must be added to support the database and diagnostics used in this tutorial:
+
+* [`Microsoft.EntityFrameworkCore.InMemory`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.InMemory)
+* [`Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore`](https://www.nuget.org/packages/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore)
 
 # [Visual Studio](#tab/visual-studio)
 
