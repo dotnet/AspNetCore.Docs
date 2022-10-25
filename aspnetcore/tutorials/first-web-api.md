@@ -89,10 +89,10 @@ The following diagram shows the design of the app.
   * Select **Web and Console** > **App** > **API**.
   * Select **Continue**.
 
-* Make the following selections:
-  * **Target framework:** .NET 7.x (or more recent).
-  * **Configure for HTTPS**: Check
-  * **Do not use top-level statements**: Uncheck
+* In the **Configure your new API** dialog, make the following selections:
+  * Confirm the **Target framework** is **.NET 7.0**
+  * Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
+  * Confirm the checkbox for **Enable OpenAPI support** is checked.
   * Select **Continue**.
 
 * Enter the following:
