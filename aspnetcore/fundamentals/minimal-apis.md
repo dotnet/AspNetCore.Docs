@@ -1549,6 +1549,8 @@ Route handlers support the following types of return values:
 |`string` | The framework writes the string directly to the response | `text/plain`
 | `T` (Any other type) | The framework will JSON serialize the response| `application/json`
 
+For a more in-depth guide to route handler return values see <xref:fundamentals/minimal-apis/responses>
+
 ### Example return values
 
 #### string return values
@@ -1594,19 +1596,17 @@ app.MapGet("/text", () => Results.Text("This is some text"));
 
 ##### Stream
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_stream)]
+```csharp
+var proxyClient = new HttpClient();
+app.MapGet("/pokemon", async () => 
+{
+    var stream = await proxyClient.GetStreamAsync("http://consoto/pokedex.json");
+    // Proxy the response as JSON
+    return Results.Stream(stream, "application/json");
+});
+```
 
-[`Results.Stream`](/dotnet/api/microsoft.aspnetcore.http.results.stream?view=aspnetcore-7.0&preserve-view=true) overloads allow access to the underlying HTTP response stream without buffering. The following example uses [ImageSharp](https://sixlabors.com/products/imagesharp) to return a reduced size of the specified image:
-
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet)]
-
-The following example streams an image from [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction):
-
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_abs)]
-
-The following example streams a video from an Azure Blob:
-
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/7.0-samples/ResultsStreamSample/Program.cs?name=snippet_video)]
+See <xref:fundamentals/minimal-apis/responses#stream7> for mor examples.
 
 ##### Redirect
 
@@ -1645,6 +1645,8 @@ The types implementing `IResult` are public, allowing for type assertions when t
 [!code-csharp[](~/fundamentals/minimal-apis/misc-samples/typedResults/TypedResultsApiWithTest/Test/WeatherApiTest.cs?name=snippet_1&highlight=7-8)]
 
 You can look at the return types of the corresponding methods on the static [TypedResults](/dotnet/api/microsoft.aspnetcore.http.typedresults) class to find the correct public `IResult` type to cast to.
+
+See <xref:fundamentals/minimal-apis/responses> for mor examples.
 
 ## Filters
 
