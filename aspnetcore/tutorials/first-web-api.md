@@ -57,7 +57,7 @@ The following diagram shows the design of the app.
 * Select the **ASP.NET Core Web API** template and select **Next**.
 * In the **Configure your new project dialog**, name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-  * Confirm the **Framework** is **.NET 7.0**
+  * Confirm the **Framework** is **.NET 7.0** (or later).
   * Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
   * Select **Create**.
 
@@ -90,7 +90,7 @@ The following diagram shows the design of the app.
   * Select **Continue**.
 
 * In the **Configure your new API** dialog, make the following selections:
-  * Confirm the **Target framework** is **.NET 7.0**
+  * Confirm the **Target framework** is **.NET 7.0** (or later).
   * Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
   * Confirm the checkbox for **Enable OpenAPI support** is checked.
   * Select **Continue**.
@@ -207,9 +207,9 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
-* Right-click the `Models` folder, and select **Add** > **New File** > **General** > **Empty Class**.
-* Name the class *TodoItem*, and then click **New**.
+* Control-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
+* Control-click the `Models` folder, and select **Add** > **New Class...** > **General** > **Empty Class**.
+* Name the class *TodoItem*, and then click **Create**.
 
 * Replace the template code with the following:
 
