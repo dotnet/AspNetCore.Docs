@@ -184,6 +184,18 @@ The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProb
 
 For more information, see [Problem details service](xref:web-api/handle-errors##pds7)
 
+### Route groups
+
+The <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> extension method helps organize groups of endpoints with a common prefix. It reduces repetitive code and allows for customizing entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A>.
+
+For example, the following code creates two similar groups of endpoints:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group2/Program.cs" id="mapgroup":::
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group2/TodoEndpoints.cs" id="todoendpoints":::
+
+For more information, see [Route groups](xref:fundamentals/minimal-apis#route-groups)
+
 ## gRPC
 
 ### JSON transcoding
