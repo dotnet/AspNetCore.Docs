@@ -14,4 +14,4 @@
 > * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
 > * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
 > * [Data seeding](/ef/core/modeling/data-seeding)
-  * [SQLite ALTER TABLE statement](https://sqlite.org/lang_altertable.html)
+> * [SQLite ALTER TABLE statement](https://sqlite.org/lang_altertable.html)

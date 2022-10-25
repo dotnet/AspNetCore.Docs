@@ -3,7 +3,7 @@ title: Part 5, work with a database in an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 5 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 10/07/2022
+ms.date: 10/25/2022
 uid: tutorials/first-mvc-app/working-with-sql
 ms.custom: contperf-fy21q3
 ---
@@ -322,7 +322,7 @@ Right-click on the `Movie` table **> View Data**
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/SeedData.cs?name=FirstVersion)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/SeedData.cs?name=FirstVersion)]
 
 If there are any movies in the database, the seed initializer returns and no movies are added.
 
