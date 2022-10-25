@@ -45,27 +45,22 @@ At the end of this tutorial, you'll have a Razor Pages web app that manages a da
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Start Visual Studio 2022 and select **Create a new project**.
+* Start Visual Studio and select **Create a new project**.
+* In the **Create a new project** dialog, select **ASP.NET Core Web App** > **Next**.
+* In the **Configure your new project** dialog, enter `RazorPagesMovie` for **Project name**. It's important to name the project **RazorPagesMovie**, including matching the capitalization, so the namespaces will match when you copy and paste example code.
+* Select **Next**.
+* In the **Additional information** dialog:
+  * Select **.NET 7.0**.
+  * Verify: **Do not use top-level statements** is unchecked
+* Select **Create**.
 
-   ![Create a new project from the start window](razor-pages-start/_static/6/start-window-create-new-project.png)
-
-1. In the **Create a new project** dialog, select **ASP.NET Core Web App**, and then select **Next**.
-
-   ![Create an ASP.NET Core Web App](razor-pages-start/_static/6/np.png)
-
-1. In the **Configure your new project** dialog, enter `RazorPagesMovie` for **Project name**. It's important to name the project *RazorPagesMovie*, including matching the capitalization, so the namespaces will match when you copy and paste example code.
-
-   ![Configure your new project](razor-pages-start/_static/6/config.png)
-
-1. Select **Next**.
-
-1. In the **Additional information** dialog, select **.NET 6.0 (** and then select **Create**.
-
-   ![Additional information](razor-pages-start/_static/6/additional-info.png)
+   ![Additional information](razor-pages-start/_static/7/additional_info.png)
 
   The following starter project is created:
 
    ![Solution Explorer](razor-pages-start/_static/6/se.png)
+
+For alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -134,7 +129,7 @@ Select **Yes** if you agree to trust the development certificate.
 Visual Studio:
 
 * Runs the app, which  launches the [Kestrel server](xref:fundamentals/servers/kestrel).
-* Launches the default browser at `https://localhost:5001`, which displays the apps UI.
+* Launches the default browser at `https://localhost:<port>`, which displays the apps UI. `<port>` is the random port that is assigned when the app was created.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -161,7 +156,7 @@ Contains Razor pages and supporting files. Each Razor page is a pair of files:
 * A `.cshtml` file that has HTML markup with C# code using Razor syntax.
 * A `.cshtml.cs` file that has C# code that handles page events.
 
-Supporting files have names that begin with an underscore. For example, the `_Layout.cshtml` file configures UI elements common to all pages. This file sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page. For more information, see <xref:mvc/views/layout>.
+Supporting files have names that begin with an underscore. For example, the `_Layout.cshtml` file configures UI elements common to all pages. `_Layout.cshtml` sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page. For more information, see <xref:mvc/views/layout>.
 
 ### wwwroot folder
 
@@ -175,17 +170,17 @@ Contains configuration data, like connection strings. For more information, see 
 
 Contains the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program1Snip.cs?name=snippet_all)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program1Snip.cs?name=snippet_all)]
 
 The following lines of code in this file create a `WebApplicationBuilder` with preconfigured defaults, add Razor Pages support to the [Dependency Injection (DI) container](xref:fundamentals/dependency-injection), and build the app:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program1Snip.cs?name=snippet_di)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program1Snip.cs?name=snippet_di)]
 
 The developer exception page is enabled by default and provides helpful information on exceptions. Production apps should not be run in development mode because the developer exception page can leak sensitive information.
 
 The following code sets the exception endpoint to `/Error` and enables [HTTP Strict Transport Security Protocol (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) when the app is ***not*** running in development mode:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program1Snip.cs?name=snippet_env)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program1Snip.cs?name=snippet_env)]
 
 For example, the preceding code runs when the app is in production or test mode. For more information, see [Use multiple environments in ASP.NET Core](xref:fundamentals/environments).
 
@@ -200,7 +195,7 @@ The following code enables various [Middleware](xref:fundamentals/middleware/ind
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60) ([how to download](xref:index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Next steps
 
