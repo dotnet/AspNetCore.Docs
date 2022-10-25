@@ -643,8 +643,8 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**
-* In the search box, enter **Microsoft.EntityFrameworkCore.InMemory**
+* In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**.
+* In the search box, enter **Microsoft.EntityFrameworkCore.InMemory**.
 * In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
 * Select **Add Package**
 * In the **Select Projects** window, select **Ok**
