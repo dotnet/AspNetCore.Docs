@@ -5,7 +5,7 @@ namespace MinApiRouteGroupSample;
 
 public static class TodoEndpoints
 {
-    // <todoendpoints>
+    // <snippet_TodoEndpoints>
     public static RouteGroupBuilder MapTodosApi(this RouteGroupBuilder group)
     {
         group.MapGet("/", GetAllTodos);
@@ -16,7 +16,7 @@ public static class TodoEndpoints
 
         return group;
     }
-    // </todoendpoints>
+    // </snippet_TodoEndpoints>
 
     // get all todos
     public static async Task<Ok<List<Todo>>> GetAllTodos(TodoGroupDbContext database)
@@ -37,7 +37,7 @@ public static class TodoEndpoints
     }
 
     // create todo
-    // <create>
+    // <snippet_Create>
     public static async Task<Created<Todo>> CreateTodo(Todo todo, TodoGroupDbContext database)
     {
         await database.Todos.AddAsync(todo);
@@ -45,7 +45,7 @@ public static class TodoEndpoints
 
         return TypedResults.Created($"{todo.Id}", todo);
     }
-    // </create>
+    // </snippet_Create>
 
     // update todo
     public static async Task<Results<NoContent, NotFound>> UpdateTodo(Todo todo, TodoGroupDbContext database)

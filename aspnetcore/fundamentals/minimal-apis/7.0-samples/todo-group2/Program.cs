@@ -23,16 +23,16 @@ if (app.Environment.IsDevelopment())
 }
 
 using var scope = app.Services.CreateScope();
-var db = scope.ServiceProvider.GetService<TodoGroupDbContext>();
-db?.Database.MigrateAsync();
+var db = scope.ServiceProvider.GetRequiredService<TodoGroupDbContext>();
 
-// <mapgroup>
+// <snippet_MapGroup>
 app.MapGroup("/public/todos")
     .MapTodosApi()
-    .WithTags("Public Todo Endpoints");
+    .WithTags("Public", "Todo", "Endpoints");
 
 app.MapGroup("/private/todos")
     .MapTodosApi()
     .RequireAuthorization();
-// </mapgroup>
+// </snippet_MapGroup>
+
 app.Run();
