@@ -601,7 +601,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 * Select **Next**.
 * In the **Additional information** dialog:
   * Select **.NET 7.0**.
-  * Uncheck **Do not use top-level statements**
+  * Verify that **Do not use top-level statements** is unchecked.
 * Select **Create**.
 
 ![Additional info dialog](start-mvc/_static/net7-additional-info.png)
