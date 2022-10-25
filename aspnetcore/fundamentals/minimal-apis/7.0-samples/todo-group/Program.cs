@@ -12,6 +12,9 @@ builder.Services.AddDbContext<TodoGroupDbContext>(options =>
     options.UseSqlite($"Data Source={Path.Join(AppContext.BaseDirectory, "WebMinRouteGroup.db")}");
 });
 
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication("Bearer").AddJwtBearer();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
