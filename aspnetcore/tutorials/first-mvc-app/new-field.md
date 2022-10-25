@@ -4,7 +4,7 @@ author: rick-anderson
 description: Part 8 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/07/2022
+ms.date: 10/25/2022
 uid: tutorials/first-mvc-app/new-field
 ---
 # Part 8, add a new field to an ASP.NET Core MVC app
@@ -387,7 +387,7 @@ When EF Code First is used to automatically create a database, Code First:
 
 Add a `Rating` property to `Models/Movie.cs`:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=AddRating&highlight=19)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/Movie.cs?name=AddRating&highlight=19)]
 
 Build the app
 
@@ -478,7 +478,17 @@ If all the records in the DB are deleted, the initialize method will seed the DB
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-See [Resetting all migrations](/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli#resetting-all-migrations) to remove all migrations and start over. 
+Delete the Migrations folder and the database file, and then run the following .NET CLI commands:
+
+```dotnetcli
+dotnet ef migrations add InitialCreate
+```
+
+```dotnetcli
+dotnet ef database update
+```
+
+For more information, see [Resetting all migrations](/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli#resetting-all-migrations).
 
 ---
 <!-- End of VS tabs -->
