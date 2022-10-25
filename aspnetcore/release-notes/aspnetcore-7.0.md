@@ -190,9 +190,9 @@ The <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2
 
 For example, the following code creates two similar groups of endpoints:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group2/Program.cs" id="mapgroup":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/Program.cs" id="snippet_MapGroup":::
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group2/TodoEndpoints.cs" id="todoendpoints":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/TodoEndpoints.cs" id="snippet_TodoEndpoints":::
 
 For more information, see [Route groups](xref:fundamentals/minimal-apis#route-groups)
 
