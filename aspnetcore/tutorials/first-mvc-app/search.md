@@ -3,7 +3,7 @@ title: Part 7, add search to an ASP.NET Core MVC app
 author: rick-anderson
 description: Part 7 of tutorial series on ASP.NET Core MVC.
 ms.author: riande
-ms.date: 10/20/2022
+ms.date: 10/25/2022
 uid: tutorials/first-mvc-app/search
 ---
 
@@ -382,7 +382,7 @@ The following markup shows the change to the `form` tag:
 
 Add the following `MovieGenreViewModel` class to the *Models* folder:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/MovieGenreViewModel.cs)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/MovieGenreViewModel.cs)]
 
 The movie-genre view model will contain:
 

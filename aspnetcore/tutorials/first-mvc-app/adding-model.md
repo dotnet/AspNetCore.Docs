@@ -1326,7 +1326,7 @@ Control-click the *Models* folder > **Add** > **New Class** > **Empty Class**. N
 
 Update the `Models/Movie.cs` file with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=First)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/Movie.cs?name=First)]
 
 The `Movie` class contains an `Id` field, which is required by the database for the primary key.
 
