@@ -18,6 +18,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
+    // http://localhost:5000/swagger
     app.UseSwaggerUI();
 }
 
@@ -27,10 +28,11 @@ var db = scope.ServiceProvider.GetRequiredService<TodoGroupDbContext>();
 // <snippet_MapGroup>
 app.MapGroup("/public/todos")
     .MapTodosApi()
-    .WithTags("Public", "Todo", "Endpoints");
+    .WithTags("Public");
 
 app.MapGroup("/private/todos")
     .MapTodosApi()
+    .WithTags("Private")
     .RequireAuthorization();
 // </snippet_MapGroup>
 

@@ -3,7 +3,7 @@
     "MinApiRouteGroupSample": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "applicationUrl": "http://*:5000",
+      "applicationUrl": "http://localhost:5000",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
