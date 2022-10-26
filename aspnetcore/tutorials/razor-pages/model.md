@@ -28,7 +28,7 @@ The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O
 1. Right-click the `Models` folder. Select **Add** > **Class**. Name the class *Movie*.
 1. Add the following properties to the `Movie` class:
 
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/Movie.cs?name=snippet1)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -37,6 +37,7 @@ The `Movie` class contains:
 
   * The user isn't required to enter time information in the date field.
   * Only the date is displayed, not time information.
+* The question mark after `string` indicates that the property is nullable. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -45,7 +46,7 @@ The `Movie` class contains:
 
 Add the following properties to the `Movie` class:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/Movie.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -54,12 +55,13 @@ The `Movie` class contains:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
+* The question mark after `string` indicates that the property is nullable. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
 
-<a name="dc6"></a>
+<a name="dc7"></a>
 
 ### Add NuGet packages and EF tools
 
-[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-6.md)]
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-7.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -72,7 +74,7 @@ The `Movie` class contains:
 
 1. Add the following properties to the `Movie` class:
 
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/Movie.cs?name=snippet1)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -93,7 +95,7 @@ Build the project to verify there are no compilation errors.
 In this section, the movie model is scaffolded. That is, the scaffolding tool produces pages for Create, Read, Update, and Delete (CRUD) operations for the movie model.
 
 # [Visual Studio](#tab/visual-studio)
-
+<!--
 1. Add the NuGet package `Microsoft.EntityFrameworkCore.Design`, which is required for the scaffolding tool.
    1. From the **Tools** menu, select **NuGet Package Manager** > **Manage NuGet Packages for Solution**
       ![NuGet Package Manager - manage](model/_static/6/nugetMP.png)
@@ -102,7 +104,7 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
    1. Check **Project** and then Select **Install**
    1. Select **I Accept** in the **License Acceptance** dialog.
       ![NuGet Package Manager - add package](model/_static/6/na.png)
-
+-->
 1. Create the *Pages/Movies* folder:
    1. Right-click on the *Pages* folder > **Add** > **New Folder**.
    1. Name the folder *Movies*.
@@ -122,8 +124,6 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
    1. Select **Add**.
 
    ![Add Razor Pages](model/_static/3/arp.png)
-   
-   If you get an error message that says you need to install the `Microsoft.EntityFrameworkCore.SqlServer` package, repeat the steps starting with **Add** > **New Scaffolded Item**.
 
 The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
@@ -183,6 +183,21 @@ The `appsettings.json` file is updated with the connection string used to connec
 
 ---
 
+### Fix nullable warnings
+
+Build the app. The `Create.cshtml.cs`, `Delete.cshtml.cs`, `Details.cshtml.cs`, `Index.cshtml.cs`, and `Edit.cshtml.cs` files all report a nullable warning when the app is compiled similar to the following:
+
+`warning CS8618: Non-nullable property 'Movie' must contain a non-null` value when exiting constructor. Consider declaring the property as nullable.
+
+In each of the files, append `= default!;` to the `Movie` declaration. For example:
+
+```diff
+- public IList<Movie> Movie { get;set; }
++ public IList<Movie> Movie { get;set; }  = default!;
+- public Movie Movie { get; set; }
++ public Movie Movie { get; set; } = default!;
+```
+
 ### Files created and updated
 
 The scaffold process creates the following files:
@@ -195,15 +210,15 @@ The created files are explained in the next tutorial.
 The scaffold process adds the following highlighted code to the `Program.cs` file:
 
 # [Visual Studio](#tab/visual-studio)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all&highlight=1-3,8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all&highlight=1-3,8-9)]
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all_sl&highlight=1-3,8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all_sl&highlight=1-2,8-9)]
 
 ---
 
 The `Program.cs` changes are explained later in this tutorial.
 
-<a name="pmc6"></a>
+<a name="pmc7"></a>
 
 ## Create the initial database schema using EF's migration feature
 
@@ -267,10 +282,10 @@ The scaffolding tool automatically created a database context and registered it 
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all&highlight=9-10)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all&highlight=9-10)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all_sl&highlight=9-10)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all_sl&highlight=7-8)]
 
 ---
 
@@ -280,13 +295,13 @@ The data context `RazorPagesMovieContext`:
 * Specifies which entities are included in the data model.
 * Coordinates EF Core functionality, such as Create, Read, Update and Delete, for the `Movie` model.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Data/RazorPagesMovieContext.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
 
-<a name="test"></a>
+<a name="test7"></a>
 
 ## Test the app
 
@@ -314,7 +329,7 @@ The next tutorial explains the files created by scaffolding.
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60) ([how to download](xref:index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Additional resources
 
@@ -509,7 +524,7 @@ The scaffold process adds the following highlighted code to the `Program.cs` fil
 # [Visual Studio](#tab/visual-studio)
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all&highlight=1-3,8-9)]
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all_sl&highlight=1-3,8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all_sl&highlight=1-2,8-9)]
 
 ---
 
