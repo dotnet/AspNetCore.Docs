@@ -117,7 +117,7 @@ app.MapPut("/todoitems/{id}", async (Todo inputTodo, int id, TodoDb db) =>
         {
             var todoParam = invocationContext.GetArgument<Todo>(0);
 
-            var validationError = Utilities.IsValid(tdparam);
+            var validationError = Utilities.IsValid(todoParam);
 
             if (!string.IsNullOrEmpty(validationError))
             {
