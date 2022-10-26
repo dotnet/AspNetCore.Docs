@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal web API with ASP.NET Core"
 author: rick-anderson
 description: Learn how to build a minimal web API with ASP.NET Core.
 ms.author: riande
-ms.date: 09/26/2022
+ms.date: 10/23/2022
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
 ---
@@ -249,7 +249,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**
-* In the searchbox, enter **Microsoft.EntityFrameworkCore.InMemory** 
+* In the search box, enter **Microsoft.EntityFrameworkCore.InMemory** 
 * In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
 * Select **Add Package**
 * In the **Select Projects** window, select **Ok**
@@ -305,7 +305,7 @@ This tutorial uses Postman to test the API.
 
 The following instructions post data to the app:
 
-  * Create a new request.
+  * Create a new HTTP request.
   * Set the HTTP method to `POST`.
   * Set the URI to `https://localhost:<port>/todoitems`. For example: `https://localhost:5001/todoitems`
   * Select the **Body** tab.
@@ -357,7 +357,7 @@ The call to `GET /todoitems` produces a response similar to the following:
 
 ### Test the GET endpoints with Postman
 
-* Create a new request.
+* Create a new HTTP request.
 * Set the HTTP method to **GET**.
 * Set the request URI to `https://localhost:<port>/todoitems`. For example, `https://localhost:5001/todoitems`.
 * Select **Send**.
@@ -457,6 +457,7 @@ Verify you can't post or get the secret field.
 - No support for [JsonPatch](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch/)
 - No support for [OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/)
 - No support for [ApiVersioning](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.Versioning/). See [this issue](https://github.com/dotnet/aspnet-api-versioning/issues/751) for more details.
+
 ## Use JsonOptions
 
 The following code uses <xref:Microsoft.AspNetCore.Http.Json.JsonOptions>:
@@ -560,14 +561,19 @@ This tutorial creates the following API:
 
 * In Visual Studio for Mac 2022, select **File** > **New Project...**.
 
-  ![macOS New solution](first-web-api-mac/_static/6/sln.png)
+* In the **Choose a template for your new project** dialog:
+  * Select **Web and Console** > **App** > **Empty**.
+  * Select **Continue**.
 
-* Select **Web and Console** > **App** > **Empty** > **Continue**.
+  ![Visual Studio for Mac Create a new project](min-web-api/_static/empty-vsmac-2022.png)
 
 * Make the following selections:
-  * **Target framework:** .NET 7.x (or more recent). 
+  * **Target framework:** .NET 7.0 (or later)
   * **Configure for HTTPS**: Check
-  * Select **Next**.
+  * **Do not use top-level statements**: Uncheck
+  * Select **Continue**.
+
+  ![Additional information](min-web-api/_static/add-info7-vsmac-2022.png)
 
 * Enter the following:
   * **Project name:** TodoApi
@@ -607,7 +613,7 @@ Press Ctrl+F5 to run the app. A browser window is opened.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. 
+Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
 
 ---
 
@@ -637,12 +643,12 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**
-* In the searchbox, enter **Microsoft.EntityFrameworkCore.InMemory** 
+* In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**.
+* In the search box, enter **Microsoft.EntityFrameworkCore.InMemory**.
 * In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
-* Select **Add Package**
-* In the **Select Projects** window, select **Ok**
-* In the **License Agreement** window, select **Agree**
+* Select **Add Package**.
+* In the **Select Projects** window, select **Ok**.
+* In the **License Agreement** window, select **Agree**.
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
 
 ---
@@ -681,7 +687,8 @@ This tutorial uses Postman to test the API.
 * Start the web app.
 * Start Postman.
 * Disable **SSL certificate verification**
-  * From **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
+  * For Postman for Windows, Select **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
+  * For Postman for macOS, Select **Postman** > **Preferences** (**General** tab), disable **SSL certificate verification**.
     > [!WARNING]
     > Re-enable SSL certificate verification after testing the sample app.
 
@@ -697,20 +704,23 @@ Run the app. The browser displays a 404 error because there is no longer a `/` e
 
 Use the POST endpoint to add data to the app:
 
-* Create a new request.
+* Create a new HTTP request.
 * Set the HTTP method to `POST`.
 * Set the URI to `https://localhost:<port>/todoitems`. For example: `https://localhost:5001/todoitems`
 * Select the **Body** tab.
 * Select **raw**.
 * Set the type to **JSON**.
 * In the request body enter JSON for a to-do item:
+
   ```json
   {
     "name":"walk dog",
     "isComplete":true
   }
   ```
+
 * Select **Send**.
+
   ![Postman with Post request details](min-web-api/_static/post2.png)
 
 ## Examine the GET endpoints
@@ -729,7 +739,7 @@ The sample app implements several GET endpoints by calling `MapGet`:
 
 Test the app by calling the endpoints from a browser or Postman. The following steps are for Postman.
 
-* Create a new request.
+* Create a new HTTP request.
 * Set the HTTP method to **GET**.
 * Set the request URI to `https://localhost:<port>/todoitems`. For example, `https://localhost:5001/todoitems`.
 * Select **Send**.
