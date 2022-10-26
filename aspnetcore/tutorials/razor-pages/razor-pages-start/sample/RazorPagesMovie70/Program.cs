@@ -35,7 +35,7 @@ app.MapRazorPages();
 app.Run();
 // </snippet_all>
 #elif SQL_Lite
-// </snippet_all_sl>
+// <snippet_all_sl>
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
