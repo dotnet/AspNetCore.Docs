@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+#define DEFAULT // SQL server is default, SQL_Lite is other
+#if DEFAULT
+// <snippet_all>
+// <snippet_di>
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using RazorPagesMovie.Data;
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +13,7 @@ builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("RazorPagesMovieContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesMovieContext' not found.")));
 
 var app = builder.Build();
+// </snippet_di>
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -28,3 +33,6 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+// </snippet_all>
+#elif SQL_Lite
+#endif

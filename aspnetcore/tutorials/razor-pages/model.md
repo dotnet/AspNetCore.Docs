@@ -183,6 +183,21 @@ The `appsettings.json` file is updated with the connection string used to connec
 
 ---
 
+### Fix nullable warnings
+
+Build the app. The `Create.cshtml.cs`, `Delete.cshtml.cs`, `Details.cshtml.cs`, `Index.cshtml.cs`, and `Edit.cshtml.cs` files all report a nullable warning when the app is compiled similar to the following:
+
+`warning CS8618: Non-nullable property 'Movie' must contain a non-null` value when exiting constructor. Consider declaring the property as nullable.
+
+In each of the files, append `= default!;` to the movie declaration. For example:
+
+```diff
+- public IList<Movie> Movie { get;set; }
++ public IList<Movie> Movie { get;set; }  = default!;
+- public Movie Movie { get; set; }
++ public Movie Movie { get; set; } = default!;
+```
+
 ### Files created and updated
 
 The scaffold process creates the following files:
@@ -195,7 +210,7 @@ The created files are explained in the next tutorial.
 The scaffold process adds the following highlighted code to the `Program.cs` file:
 
 # [Visual Studio](#tab/visual-studio)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all&highlight=1-3,8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all&highlight=1-3,8-9)]
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all_sl&highlight=1-3,8-9)]
 
@@ -203,7 +218,7 @@ The scaffold process adds the following highlighted code to the `Program.cs` fil
 
 The `Program.cs` changes are explained later in this tutorial.
 
-<a name="pmc6"></a>
+<a name="pmc7"></a>
 
 ## Create the initial database schema using EF's migration feature
 
@@ -267,7 +282,7 @@ The scaffolding tool automatically created a database context and registered it 
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all&highlight=9-10)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all&highlight=9-10)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all_sl&highlight=9-10)]
@@ -280,13 +295,13 @@ The data context `RazorPagesMovieContext`:
 * Specifies which entities are included in the data model.
 * Coordinates EF Core functionality, such as Create, Read, Update and Delete, for the `Movie` model.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Data/RazorPagesMovieContext.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
 The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
 
-<a name="test"></a>
+<a name="test7"></a>
 
 ## Test the app
 
