@@ -5,7 +5,7 @@ description: Learn how to run .NET from JavaScript.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/25/2022
+ms.date: 10/26/2022
 uid: client-side/dotnet-interop
 ---
 # Run .NET from JavaScript
@@ -82,7 +82,7 @@ To configure a project (`.csproj`) to enable JS interop:
   <WasmMainJSPath>main.js</WasmMainJSPath>
   ```
 
-Example .NET 7 preview release project file (`.csproj`) after configuration:
+Example project file (`.csproj`) after configuration:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -109,11 +109,23 @@ APIs in the following example are imported from `dotnet.js`. These APIs enable y
 > * An app imports JS methods so that they can be called from .NET.
 > * The app exports .NET methods so that they can be called from JS.
 
-Function calls in the following example:
+In the following example:
+
+* The `dotnet.js` file is used to create and start the .NET WebAssembly runtime. `dotnet.js` is generated as part of the build output of the app and found in the `AppBundle` folder:
+
+  > :::no-loc text="bin/{BUILD CONFIGURATION}/{TARGET FRAMEWORK}/browser-wasm/AppBundle":::
+
+  The `{BUILD CONFIGURATION}` placeholder is the build configuration, and the `{TARGET FRAMEWORK}` placeholder is the target framework.
+
+  > [!IMPORTANT]
+  > To integrate with an existing app, copy the contents of the `AppBundle` folder so that it can be served along with the rest of the app. For production deployments, publish the app with the `dotnet publish -c Release` command in a command shell and deploy the `AppBundle` folder with the app.
 
 * `dotnet.create()` sets up the .NET WebAssembly runtime.
+
 * `setModuleImports` associates a name with a module of JS functions for import into .NET. The JS module contains a `window.location.href` function, which returns the current page address (URL). The name of the module can be any string (it doesn't need to be a file name), but it must match the name used with the `JSImportAttribute` (explained later in this article). The `window.location.href` function is imported into C# and called by the C# method `GetHRef`. The `GetHRef` method is shown later in this section.
+
 * `exports.MyClass.Greeting()` calls into .NET (`MyClass.Greeting`) from JS. The `Greeting` C# method returns a string that includes the result of calling the `window.location.href` function. The `Greeting` method is shown later in this section.
+
 * `runMainAndExit` runs `Program.Main`.
 
 <!--
@@ -169,39 +181,39 @@ In the imported method signature, you can use .NET types for parameters and retu
 
 The following table indicates the supported type mappings.
 
-| .NET                        | JavaScript   | `Nullable` | `Task`➔`Promise` | `JSMarshalAs` optional | :::no-loc text="Array of"::: |
-| --------------------------- | ------------ | :--------: | :---------------: | :--------------------: | :-----: |
-| `Boolean`                   | `Boolean`    | ✅        | ✅                | ✅                    | |
-| `Byte`                      | `Number`     | ✅        | ✅                | ✅                    | ✅ |
-| `Char`                      | `String`     | ✅        | ✅                | ✅                    | |
-| `Int16`                     | `Number`     | ✅        | ✅                | ✅                    | |
-| `Int32`                     | `Number`     | ✅        | ✅                | ✅                    | ✅ |
-| `Int64`                     | `Number`     | ✅        | ✅                |                        | |
-| `Int64`                     | `BigInt`     | ✅        | ✅                |                        | |
-| `Single`                    | `Number`     | ✅        | ✅                | ✅                    | |
-| `Double`                    | `Number`     | ✅        | ✅                | ✅                    | ✅ |
-| `IntPtr`                    | `Number`     | ✅        | ✅                | ✅                    | |
-| `DateTime`                  | `Date`       | ✅        | ✅                |                        | |
-| `DateTimeOffset`            | `Date`       | ✅        | ✅                |                        | |
-| `Exception`                 | `Error`      |            | ✅                | ✅                    | |
-| `JSObject`                  | `Object`     |            | ✅                | ✅                    | ✅ |
-| `String`                    | `String`     |            | ✅                | ✅                    | ✅ |
-| `Object`                    | `Any`        |            | ✅                |                       | ✅ |
-| `Span<Byte>`                | `MemoryView` |            |                   |                        | |
-| `Span<Int32>`               | `MemoryView` |            |                   |                        | |
-| `Span<Double>`              | `MemoryView` |            |                   |                        | |
-| `ArraySegment<Byte>`        | `MemoryView` |            |                   |                        | |
-| `ArraySegment<Int32>`       | `MemoryView` |            |                   |                        | |
-| `ArraySegment<Double>`      | `MemoryView` |            |                   |                        | |
-| `Task`                      | `Promise`    |            |                   | ✅                    | |
-| `Action`                    | `Function`   |            |                   |                        | |
-| `Action<T1>`                | `Function`   |            |                   |                        | |
-| `Action<T1, T2>`            | `Function`   |            |                   |                        | |
-| `Action<T1, T2, T3>`        | `Function`   |            |                   |                        | |
-| `Func<TResult>`             | `Function`   |            |                   |                        | |
-| `Func<T1, TResult>`         | `Function`   |            |                   |                        | |
-| `Func<T1, T2, TResult>`     | `Function`   |            |                   |                        | |
-| `Func<T1, T2, T3, TResult>` | `Function`   |            |                   |                        | |
+| .NET | JavaScript | `Nullable` | `Task` <span aria-hidden="true">➔</span><span class="visually-hidden">to</span> `Promise` | `JSMarshalAs` optional | :::no-loc text="Array of"::: |
+| --- | --- | :---: | :---: | :---: | :---: |
+| `Boolean` | `Boolean` | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Byte` | `Number` | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> |
+| `Char` | `String` | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Int16` | `Number` | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Int32` | `Number` | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> |
+| `Int64` | `Number` | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Int64` | `BigInt` | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Single` | `Number` | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Double` | `Number` | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> |
+| `IntPtr` | `Number` | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span class="visually-hidden">Not supported</span> |
+| `DateTime` | `Date` | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
+| `DateTimeOffset` | `Date` | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Exception` | `Error` | <span class="visually-hidden">Not supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span class="visually-hidden">Not supported</span> |
+| `JSObject` | `Object` | <span class="visually-hidden">Not supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> |
+| `String` | `String` | <span class="visually-hidden">Not supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> |
+| `Object` | `Any` | <span class="visually-hidden">Not supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span class="visually-hidden">Not supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> |
+| `Span<Byte>` | `MemoryView` | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Span<Int32>` | `MemoryView` | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Span<Double>` | `MemoryView` | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
+| `ArraySegment<Byte>` | `MemoryView` | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
+| `ArraySegment<Int32>` | `MemoryView` | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
+| `ArraySegment<Double>` | `MemoryView` | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Task` | `Promise` | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span aria-hidden="true">✅</span><span class="visually-hidden">Supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Action` | `Function` | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Action<T1>` | `Function` | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Action<T1, T2>` | `Function` | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Action<T1, T2, T3>` | `Function` | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Func<TResult>` | `Function` | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Func<T1, TResult>` | `Function` | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Func<T1, T2, TResult>` | `Function` | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
+| `Func<T1, T2, T3, TResult>` | `Function` | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> | <span class="visually-hidden">Not supported</span> |
 
 The following conditions apply to type mapping and marshalled values:
 
@@ -226,24 +238,9 @@ internal static string Greeting()
 {
     var text = $"Hello, World! Greetings from {GetHRef()}";
     Console.WriteLine(text);
+
     return text;
 }
-```
-
-The `dotnet.js` file is used to create and start the .NET WebAssembly runtime. `dotnet.js` is generated as part of the build output of the app and found in the `AppBundle` folder:
-
-> :::no-loc text="bin/{BUILD CONFIGURATION}/{TARGET FRAMEWORK}/browser-wasm/AppBundle":::
-
-The `{BUILD CONFIGURATION}` placeholder is the build configuration, and the `{TARGET FRAMEWORK}` placeholder is the target framework.
-
-To integrate with an existing app, copy the contents of the `AppBundle` folder so that it can be served along with the rest of the app. For production deployments, publish the app with the `dotnet publish -c Release` command in a command shell and deploy the `AppBundle` folder with the app.
-
-In the following example, the app contains an HTML file (`.htm`/`.html`) that loads a JS file (`.js`), which imports `dotnet.js` and starts the .NET runtime:
-
-```javascript
-import { dotnet } from './dotnet.js'
-
-await dotnet.run();
 ```
 
 ## Experimental workload and project templates
@@ -254,17 +251,15 @@ To demonstrate the JS interop functionality and obtain JS interop project templa
 dotnet workload install wasm-experimental
 ```
 
-The `wasm-experimental` workload contains two project templates: `wasmbrowser` and `wasmconsole`. These templates are experimental at this time, which means the developer workflow for the templates is still evolving. But the .NET and JS APIs used in the templates are supported in .NET 7 and provide a foundation for using .NET on :::no-loc text="WASM"::: from JS.
+The `wasm-experimental` workload contains two project templates: `wasmbrowser` and `wasmconsole`. These templates are experimental at this time, which means the developer workflow for the templates is evolving. However, the .NET and JS APIs used in the templates are supported in .NET 7 and provide a foundation for using .NET on :::no-loc text="WASM"::: from JS.
 
 ### Browser app
 
-You can create a browser app by running the following command:
+You can create a browser app with the `wasmbrowser` template, which creates a web app that demonstrates using .NET and JS together in a browser:
 
 ```dotnetcli
 dotnet new wasmbrowser
 ```
-
-The `wasmbrowser` template creates a web app that demonstrates using .NET and JS together in a browser.
 
 Build the app from Visual Studio or by using the .NET CLI:
 
@@ -290,13 +285,11 @@ In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the target fra
 
 ### Node.js console app
 
-You can create a console app by running the following command:
+You can create a console app with the `wasmconsole` template, which creates an app that runs under :::no-loc text="WASM"::: as a [Node.js](https://nodejs.org/) or [V8](https://developers.google.com/apps-script/guides/v8-runtime) console app:
 
 ```dotnetcli
 dotnet new wasmconsole
 ```
-
-The `wasmconsole` template creates a app that runs under :::no-loc text="WASM"::: as a [Node.js](https://nodejs.org/) or [V8](https://developers.google.com/apps-script/guides/v8-runtime) console app.
 
 Build the app from Visual Studio or by using the .NET CLI:
 

@@ -67,7 +67,7 @@ issues:
         - check:
             - type: metadata-comment
               name: content source
-              value: "(?i).*main\/aspnetcore\/client-side\/import-export-interop.md"
+              value: "(?i).*main\/aspnetcore\/client-side\/dotnet-interop.md"
           pass:
             - labels-add: ["Blazor"]
             - projects-add: [35]
