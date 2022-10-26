@@ -1167,13 +1167,13 @@ The <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2
 
 For example, the following code creates two similar groups of endpoints:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group2/Program.cs" id="snippet_MapGroup":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/Program.cs" id="snippet_MapGroup":::
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group2/TodoEndpoints.cs" id="snippet_TodoEndpoints":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/TodoEndpoints.cs" id="snippet_TodoEndpoints":::
 
 In this scenario, you can use a relative address for the `Location` header in the `201 Created` result:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group2/TodoEndpoints.cs" id="snippet_create":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/TodoEndpoints.cs" id="snippet_create":::
 
 Route groups also support nested groups and complex prefix patterns with route parameters and constraints. For information about present route group capabilities and plans for future enhancements, see GitHub issue [dotnet/aspnetcore #41433](https://github.com/dotnet/aspnetcore/issues/41433).
 
