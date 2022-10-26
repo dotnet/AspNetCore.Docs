@@ -115,7 +115,7 @@ In the following example:
 
   > :::no-loc text="bin/{BUILD CONFIGURATION}/{TARGET FRAMEWORK}/browser-wasm/AppBundle":::
 
-  The `{BUILD CONFIGURATION}` placeholder is the build configuration, and the `{TARGET FRAMEWORK}` placeholder is the target framework.
+  The `{BUILD CONFIGURATION}` placeholder is the build configuration (for example, `Debug`, `Release`), and the `{TARGET FRAMEWORK}` placeholder is the target framework (for example, `net7.0`).
 
   > [!IMPORTANT]
   > To integrate with an existing app, copy the contents of the `AppBundle` folder so that it can be served along with the rest of the app. For production deployments, publish the app with the `dotnet publish -c Release` command in a command shell and deploy the `AppBundle` folder with the app.
