@@ -189,7 +189,7 @@ Build the app. The `Create.cshtml.cs`, `Delete.cshtml.cs`, `Details.cshtml.cs`, 
 
 `warning CS8618: Non-nullable property 'Movie' must contain a non-null` value when exiting constructor. Consider declaring the property as nullable.
 
-In each of the files, append `= default!;` to the movie declaration. For example:
+In each of the files, append `= default!;` to the `Movie` declaration. For example:
 
 ```diff
 - public IList<Movie> Movie { get;set; }
@@ -212,7 +212,7 @@ The scaffold process adds the following highlighted code to the `Program.cs` fil
 # [Visual Studio](#tab/visual-studio)
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all&highlight=1-3,8-9)]
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all_sl&highlight=1-3,8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all_sl&highlight=1-3,8-9)]
 
 ---
 
@@ -285,7 +285,7 @@ The scaffolding tool automatically created a database context and registered it 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all&highlight=9-10)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Program.cs?name=snippet_all_sl&highlight=9-10)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all_sl&highlight=9-10)]
 
 ---
 
@@ -329,7 +329,7 @@ The next tutorial explains the files created by scaffolding.
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60) ([how to download](xref:index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70) ([how to download](xref:index#how-to-download-a-sample)).
 
 ## Additional resources
 
