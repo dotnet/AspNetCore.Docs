@@ -43,4 +43,4 @@ if (app.Environment.IsDevelopment())
 app.Run();
 ```
 
-For more information on using [`AddProblemDetails`](/dotnet/api/microsoft.extensions.dependencyinjection.problemdetailsservicecollectionextensions.addproblemdetails?view=aspnetcore-7.0&preserve-view=true), see [Problem Details](aspnetcore/fundamentals/error-handling#pds7)
+For more information on using [`AddProblemDetails`](/dotnet/api/microsoft.extensions.dependencyinjection.problemdetailsservicecollectionextensions.addproblemdetails?view=aspnetcore-7.0&preserve-view=true), see [Problem Details](/aspnetcore/fundamentals/error-handling#pds7)
