@@ -20,9 +20,9 @@ The output caching middleware supports use in all types of ASP.NET Core apps: Mi
 
 ## Add the middleware to the app
 
-Add the output caching middleware to the service collection by calling <xref:Microsoft.Extensions.DependencyInjection.OutputCachingServicesExtensions.AddOutputCache%2A>.
+Add the output caching middleware to the service collection by calling <xref:Microsoft.Extensions.DependencyInjection.OutputCacheServiceCollectionExtensions.AddOutputCache%2A>.
 
-Add the middleware to the request processing pipeline by calling <xref:Microsoft.AspNetCore.Builder.OutputCachingExtensions.UseOutputCache%2A>.
+Add the middleware to the request processing pipeline by calling <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache%2A>.
 
 > [!NOTE]
 > * In apps that use [CORS middleware](xref:security/cors), `UseOutputCache` must be called after <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A>.
@@ -33,7 +33,7 @@ Add the middleware to the request processing pipeline by calling <xref:Microsoft
 
 For minimal API apps, configure an endpoint to do caching by calling `CacheOutput()` or by applying the `[OutputCache]` attribute, as shown in the following examples:
 
-:::code language="csharp" source="output/samples/7.x/Program.cs" id="oneendpointl":::
+:::code language="csharp" source="output/samples/7.x/Program.cs" id="oneendpoint":::
 
 For apps with controllers, apply the `[OutputCache]` attribute to the action method. For Razor Pages apps, apply the attribute to the Razor page class.
 
@@ -51,7 +51,7 @@ The following highlighted code creates two policies, each specifying a different
 
 You can select a policy for an endpoint when calling the `CacheOutput` method or using the `[OutputCache]` attribute:
 
-:::code language="csharp" source="output/samples/7.x/Program.cs" id="selectpolicies":::
+:::code language="csharp" source="output/samples/7.x/Program.cs" id="selectpolicy":::
 
 For apps with controllers, apply the `[OutputCache]` attribute to the action method. For Razor Pages apps, apply the attribute to the Razor page class.
 
@@ -66,11 +66,11 @@ By default, output caching follows these rules
 
 The following code applies all of the default caching rules to all of an app's endpoints:
 
-:::code language="csharp" source="output/samples/7.x/Program.cs" id="[policies3]":::
+:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies3":::
 
 The following code removes these defaults while applying caching to all of an app's endpoints:
 
-:::code language="csharp" source="output/samples/7.x/Program.cs" id="[policies4]":::
+:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies4":::
 
 
 You can override these defaults.
@@ -79,7 +79,7 @@ You can override these defaults.
 
 By default, every part of the URL is included as the key to a cache entry -- that is, the scheme, host, port, path, and query string. However, you might want to explicitly control the cache key. For example, suppose you have an endpoint that returns a unique response for each unique value of the `culture` query string. Variation in other parts of the URL, such as other query strings, shouldn't result in different cache entries. You can specify such rules in a policy, as shown in the following highlighted code:
 
-:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies" highlight="5":::
+:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies2" highlight="7":::
 
 You can then select the `VaryByQuery` policy for an endpoint:
 
@@ -137,9 +137,11 @@ This base policy enables you to use the "tag-all" tag to evict everything in cac
 
 By default, resource locking is enabled to mitigate the risk of [cache stampede and thundering herd](xref:performance/caching/overview#output-caching).
 
-To disable resource locking, set `AllowLocking` to `false`, as shown in the following example:
+To disable resource locking, call [SetLocking(false)](xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.SetLocking%2A) while creating a policy, as shown in the following example:
 
-:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies2" highlight="8":::
+:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies2" highlight="9":::
+
+The following example selects the no-locking policy for an endpoint:
 
 :::code language="csharp" source="output/samples/7.x/Program.cs" id="selectnolock":::
 
