@@ -5,7 +5,7 @@ description: Learn how to configure and use output caching middleware in ASP.NET
 monikerRange: '>= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/12/2022
+ms.date: 10/26/2022
 uid: performance/caching/output
 ---
 # Output caching middleware in ASP.NET Core
@@ -14,7 +14,7 @@ By [Tom Dykstra](https://github.com/tdykstra)
 
 :::moniker range=">= aspnetcore-7.0"
 
-This article explains how to configure [output caching middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/OutputCaching/src/OutputCacheMiddleware.cs) in an ASP.NET Core app. For an introduction to output caching, see [Output caching](xref:performance/caching/overview#output-caching).
+This article explains how to configure output caching middleware in an ASP.NET Core app. For an introduction to output caching, see [Output caching](xref:performance/caching/overview#output-caching).
 
 The output caching middleware supports use in all types of ASP.NET Core apps: Minimal API, Web API with controllers, MVC, and Razor Pages. The sample app is a Minimal API, but every caching feature it illustrates is also supported in the other app types.
 
