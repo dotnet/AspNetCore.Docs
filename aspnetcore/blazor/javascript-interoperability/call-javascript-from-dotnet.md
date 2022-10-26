@@ -2434,7 +2434,7 @@ For information on using a byte array when calling .NET from JavaScript, see <xr
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/blazor/includes/js-interop/6.0/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/7.0/size-limits.md)]
 
 ## Stream from .NET to JavaScript
 
