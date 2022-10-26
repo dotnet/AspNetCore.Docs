@@ -1606,7 +1606,7 @@ app.MapGet("/pokemon", async () =>
 });
 ```
 
-See <xref:fundamentals/minimal-apis/responses#stream7> for mor examples.
+See <xref:fundamentals/minimal-apis/responses#stream7> for more examples.
 
 ##### Redirect
 
@@ -1646,7 +1646,7 @@ The types implementing `IResult` are public, allowing for type assertions when t
 
 You can look at the return types of the corresponding methods on the static [TypedResults](/dotnet/api/microsoft.aspnetcore.http.typedresults) class to find the correct public `IResult` type to cast to.
 
-See <xref:fundamentals/minimal-apis/responses> for mor examples.
+See <xref:fundamentals/minimal-apis/responses> for more examples.
 
 ## Filters
 
