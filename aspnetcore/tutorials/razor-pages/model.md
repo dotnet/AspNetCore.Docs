@@ -28,7 +28,7 @@ The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O
 1. Right-click the `Models` folder. Select **Add** > **Class**. Name the class *Movie*.
 1. Add the following properties to the `Movie` class:
 
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/Movie.cs?name=snippet1)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -37,6 +37,7 @@ The `Movie` class contains:
 
   * The user isn't required to enter time information in the date field.
   * Only the date is displayed, not time information.
+* The question mark after `string` indicates that the property is nullable. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -45,7 +46,7 @@ The `Movie` class contains:
 
 Add the following properties to the `Movie` class:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/Movie.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -54,12 +55,13 @@ The `Movie` class contains:
 
   * The user is not required to enter time information in the date field.
   * Only the date is displayed, not time information.
+* The question mark after `string` indicates that the property is nullable. For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
 
-<a name="dc6"></a>
+<a name="dc7"></a>
 
 ### Add NuGet packages and EF tools
 
-[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-6.md)]
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-7.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -72,7 +74,7 @@ The `Movie` class contains:
 
 1. Add the following properties to the `Movie` class:
 
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/Movie.cs?name=snippet1)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -93,7 +95,7 @@ Build the project to verify there are no compilation errors.
 In this section, the movie model is scaffolded. That is, the scaffolding tool produces pages for Create, Read, Update, and Delete (CRUD) operations for the movie model.
 
 # [Visual Studio](#tab/visual-studio)
-
+<!--
 1. Add the NuGet package `Microsoft.EntityFrameworkCore.Design`, which is required for the scaffolding tool.
    1. From the **Tools** menu, select **NuGet Package Manager** > **Manage NuGet Packages for Solution**
       ![NuGet Package Manager - manage](model/_static/6/nugetMP.png)
@@ -102,7 +104,7 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
    1. Check **Project** and then Select **Install**
    1. Select **I Accept** in the **License Acceptance** dialog.
       ![NuGet Package Manager - add package](model/_static/6/na.png)
-
+-->
 1. Create the *Pages/Movies* folder:
    1. Right-click on the *Pages* folder > **Add** > **New Folder**.
    1. Name the folder *Movies*.
@@ -122,8 +124,6 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
    1. Select **Add**.
 
    ![Add Razor Pages](model/_static/3/arp.png)
-   
-   If you get an error message that says you need to install the `Microsoft.EntityFrameworkCore.SqlServer` package, repeat the steps starting with **Add** > **New Scaffolded Item**.
 
 The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
