@@ -213,7 +213,7 @@ For information about how to handle model state errors, see [Model binding](xref
 
 ## Problem details
 
-While [Problem Details](https://www.rfc-editor.org/rfc/rfc7807.html) are not the only response format they are commonly used to report errors for HTTP APIs.
+While [Problem Details](https://www.rfc-editor.org/rfc/rfc7807.html) are not the only response format to describe a HTTP API error, they are commonly used to report errors for HTTP APIs.
 
 The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface, which supports creating problem details in ASP.NET Core. The [`AddProblemDetails`](/dotnet/api/microsoft.extensions.dependencyinjection.problemdetailsservicecollectionextensions.addproblemdetails?view=aspnetcore-7.0&preserve-view=true) extension method on <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> register the default `IProblemDetailsService` implementation.
 
