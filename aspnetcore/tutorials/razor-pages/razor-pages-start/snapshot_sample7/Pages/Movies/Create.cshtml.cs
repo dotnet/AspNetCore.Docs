@@ -36,6 +36,7 @@ namespace RazorPagesMovie.Pages.Movies
 
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+        // <snippetPost>
         public async Task<IActionResult> OnPostAsync()
         {
           if (!ModelState.IsValid)
@@ -48,5 +49,6 @@ namespace RazorPagesMovie.Pages.Movies
 
             return RedirectToPage("./Index");
         }
+        // </snippetPost>
     }
 }
