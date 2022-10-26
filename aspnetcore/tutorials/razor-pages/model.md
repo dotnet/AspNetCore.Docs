@@ -183,6 +183,7 @@ The `appsettings.json` file is updated with the connection string used to connec
 
 ---
 
+<!--
 ### Fix nullable warnings
 
 Build the app. The `Create.cshtml.cs`, `Delete.cshtml.cs`, `Details.cshtml.cs`, `Index.cshtml.cs`, and `Edit.cshtml.cs` files all report a nullable warning when the app is compiled similar to the following:
@@ -197,6 +198,8 @@ In each of the files, append `= default!;` to the `Movie` declaration. For examp
 - public Movie Movie { get; set; }
 + public Movie Movie { get; set; } = default!;
 ```
+Fixed in GA per https://github.com/dotnet/Scaffolding/issues/1594#issuecomment-1292422389
+-->
 
 ### Files created and updated
 
