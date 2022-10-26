@@ -1,1 +1,0 @@
-Delete this file after creating sample code for [Minimal API parameter binding for argument lists](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-7-preview-5/#minimal-api-parameter-binding-for-argument-lists)

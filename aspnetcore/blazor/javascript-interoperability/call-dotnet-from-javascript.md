@@ -2155,7 +2155,7 @@ In the preceding example:
 
 ## Size limits on JavaScript interop calls
 
-[!INCLUDE[](~/blazor/includes/js-interop/6.0/size-limits.md)]
+[!INCLUDE[](~/blazor/includes/js-interop/7.0/size-limits.md)]
 
 ## JavaScript `[JSImport]`/`[JSExport]` interop
 

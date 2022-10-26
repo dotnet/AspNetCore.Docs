@@ -190,9 +190,9 @@ The <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2
 
 For example, the following code creates two similar groups of endpoints:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group2/Program.cs" id="mapgroup":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/Program.cs" id="snippet_MapGroup":::
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group2/TodoEndpoints.cs" id="todoendpoints":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/TodoEndpoints.cs" id="snippet_TodoEndpoints":::
 
 For more information, see [Route groups](xref:fundamentals/minimal-apis#route-groups)
 
@@ -406,18 +406,8 @@ JavaScript `[JSImport]`/`[JSExport]` interop API is a new low-level mechanism fo
 
 For more information:
 
-* <xref:blazor/js-interop/import-export-interop>: Pertains only to Blazor WebAssebmly apps.
-* Preview coverage is *coming soon* for running .NET code from JS apps that don't depend on the Blazor UI component model.
-
-<!--
-
-    IN PROGRESS
-
-, see the following articles
-
-* <xref:client-side/import-export-interop>: Pertains only to JavaScript apps that don't depend on the Blazor UI component model.
-
--->
+* <xref:blazor/js-interop/import-export-interop>: Pertains only to Blazor WebAssembly apps.
+* <xref:client-side/dotnet-interop>: Pertains only to JavaScript apps that don't depend on the Blazor UI component model.
 
 ### Conditional registration of the authentication state provider
 

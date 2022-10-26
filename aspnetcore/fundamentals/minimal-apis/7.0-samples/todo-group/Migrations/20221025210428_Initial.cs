@@ -18,7 +18,8 @@ namespace MinApiRouteGroupSample.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: false),
-                    IsDone = table.Column<bool>(type: "INTEGER", nullable: false)
+                    IsDone = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsPrivate = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
