@@ -72,7 +72,7 @@ issues:
             - labels-add: ["Blazor"]
             - projects-add: [35]
             - labels-remove: [":watch: Not Triaged"]
-            - assignee-add: ["guardrex"]
+            - assignee-add: ["guardrex", "pavelsavara"]
         
         # If the word appears anywhere in the file name path, add the label
         - check:
