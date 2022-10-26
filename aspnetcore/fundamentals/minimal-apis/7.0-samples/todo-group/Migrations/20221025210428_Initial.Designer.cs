@@ -9,7 +9,7 @@ using MinApiRouteGroupSample;
 
 namespace MinApiRouteGroupSample.Migrations
 {
-    [DbContext(typeof(TodoGroupDbContext))]
+    [DbContext(typeof(TodoDb))]
     [Migration("20221025210428_Initial")]
     partial class Initial
     {

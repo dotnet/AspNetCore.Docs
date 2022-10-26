@@ -8,8 +8,8 @@ using MinApiRouteGroupSample;
 
 namespace MinApiRouteGroupSample.Migrations
 {
-    [DbContext(typeof(TodoGroupDbContext))]
-    partial class TodoGroupDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(TodoDb))]
+    partial class TodoDbModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

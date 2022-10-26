@@ -2,17 +2,17 @@
 
 namespace MinApiRouteGroupSample;
 
-public class TodoGroupDbContext : DbContext
+public class TodoDb : DbContext
 {
     private DbSet<Todo> Todos => Set<Todo>();
 
+    /// <summary>
+    /// If false, only query public todos; if true, only query private todos.
+    /// </summary>
     public bool IsPrivate { get; set; }
 
-    public TodoGroupDbContext(DbContextOptions<TodoGroupDbContext> options)
-        : base(options)
-    {
-        Database.EnsureCreated();
-    }
+    public TodoDb(DbContextOptions<TodoDb> options)
+        : base(options) { }
 
     public async Task<Todo?> FindAsync(int id)
     {

@@ -19,14 +19,14 @@ public static class TodoEndpoints
     // </snippet_TodoEndpoints>
 
     // get all todos
-    public static async Task<Ok<List<Todo>>> GetAllTodos(TodoGroupDbContext database)
+    public static async Task<Ok<List<Todo>>> GetAllTodos(TodoDb database)
     {
         var todos = await database.ToListAsync();
         return TypedResults.Ok(todos);
     }
 
     // get todo by id
-    public static async Task<Results<Ok<Todo>, NotFound>> GetTodo(int id, TodoGroupDbContext database)
+    public static async Task<Results<Ok<Todo>, NotFound>> GetTodo(int id, TodoDb database)
     {
         var todo = await database.FindAsync(id);
 
@@ -38,7 +38,7 @@ public static class TodoEndpoints
 
     // create todo
     // <snippet_Create>
-    public static async Task<Created<Todo>> CreateTodo(Todo todo, TodoGroupDbContext database)
+    public static async Task<Created<Todo>> CreateTodo(Todo todo, TodoDb database)
     {
         await database.AddAsync(todo);
         await database.SaveChangesAsync();
@@ -48,7 +48,7 @@ public static class TodoEndpoints
     // </snippet_Create>
 
     // update todo
-    public static async Task<Results<NoContent, NotFound>> UpdateTodo(Todo todo, TodoGroupDbContext database)
+    public static async Task<Results<NoContent, NotFound>> UpdateTodo(Todo todo, TodoDb database)
     {
         var existingTodo = await database.FindAsync(todo.Id);
 
@@ -65,7 +65,7 @@ public static class TodoEndpoints
     }
 
     // delete todo
-    public static async Task<Results<NoContent, NotFound>> DeleteTodo(int id, TodoGroupDbContext database)
+    public static async Task<Results<NoContent, NotFound>> DeleteTodo(int id, TodoDb database)
     {
         var todo = await database.FindAsync(id);
 
