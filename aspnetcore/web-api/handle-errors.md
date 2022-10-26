@@ -180,19 +180,11 @@ The default problem details response body has the following `type`, `title`, and
 
 ### Problem details service
 
-The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface, which supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html).
-
-The following middleware generates problem details HTTP responses when [`AddProblemDetails`](/dotnet/api/microsoft.extensions.dependencyinjection.problemdetailsservicecollectionextensions.addproblemdetails?view=aspnetcore-7.0&preserve-view=true) is called, except when not accepted by the client:
-
-* <xref:Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware>: Generates a problem details response when a custom handler is not defined.
-* <xref:Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware>: Generates a problem details response by default.
-* [DeveloperExceptionPageMiddleware](#dep7): Generates a problem details response in development when `text/html` is not accepted.
+ASP.NET Core supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html) using the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService>. For more information, see the [Problem details](/aspnetcore/fundamentals/error-handling#pds7).
 
 The following code configures the app to generate a problem details response for all HTTP client and server error responses that ***don't have a body content yet***:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_apishort" highlight="4,8-9,13":::
-
-In the [Generate problem details from Middleware](#gpdm7) section of this article, an example is provided where the response has started and the problem details response is not returned.
 
 Consider the API controller from the previous section, which returns <xref:Microsoft.AspNetCore.Http.HttpResults.BadRequest> when the input is invalid:
 
@@ -210,9 +202,7 @@ The automatic creation of a `ProblemDetails` for error status codes is disabled 
 
 Using the preceding code, when an API controller returns `BadRequest`, an [HTTP 400](https://developer.mozilla.org/docs/Web/HTTP/Status/400) response status is returned with no response body. `SuppressMapClientErrors` prevents a `ProblemDetails` response from being created, even when calling `WriteAsync` for an API Controller endpoint. `WriteAsync` is explained later in this article.
 
-The next section shows how to customize the problem details response body to return a more helpful response.
-
-<a name="cpd7"></a>
+The next section shows how to customize the problem details response body, using <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails>, to return a more helpful response. For more customization options, see the [Customizing problem details](/aspnetcore/fundamentals/error-handling#cpd7).
 
 #### Customize problem details with `CustomizeProblemDetails`
 
@@ -247,24 +237,6 @@ The problem details response body contains the following when either `squareroot
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/middleware/problem-details-service)
 
-<a name="gpdm7"></a>
-
-#### Generate problem details from Middleware
-
-An alternative approach to using <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> to set <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails> is to set the <xref:Microsoft.AspNetCore.Http.ProblemDetailsContext.ProblemDetails> in middleware. A problem details response can be written by calling [`IProblemDetailsService.WriteAsync`](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true):
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_middleware" highlight="5,19-40":::
-
-In the preceding code, the minimal API endpoints `/divide` and `/squareroot` return the expected custom problem response on error input.
-
-The API controller endpoints return the default problem response on error input, not the custom problem response. The default problem response is returned because the API controller has written to the response stream, [Problem details for error status codes](/aspnet/core/web-api/#problem-details-for-error-status-codes-1), before [`IProblemDetailsService.WriteAsync`](https://github.com/dotnet/aspnetcore/blob/ce2db7ea0b161fc5eb35710fca6feeafeeac37bc/src/Http/Http.Extensions/src/ProblemDetailsService.cs#L24) is called and the response will not be written again.
-
-The preceding `ValuesController` returns <xref:Microsoft.AspNetCore.Mvc.BadRequestResult>, which writes to the response stream and therefore prevents the custom problem response from being returned.
-
-The following `Values3Controller` returns [`ControllerBase.Problem`](/dotnet/api/microsoft.aspnetcore.mvc.controllerbase.problem) so the expected custom problem result is returned:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet3"  highlight="16-21":::
-
 ### Produce a ProblemDetails payload for exceptions
 
 Consider the following app:
@@ -291,12 +263,6 @@ An alternative to a [custom exception handler page](xref:fundamentals/error-hand
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
 
 [Hellang.Middleware.ProblemDetails](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) is a 3rd party problem details middleware Nuget package.
-
-### Implement `IProblemDetailsWriter`
-
-An <xref:Microsoft.AspNetCore.Http.IProblemDetailsWriter> implementation can be created for advanced customizations:
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/SampleProblemDetailsWriter.cs" :::
 
 ### Implement `ProblemDetailsFactory`
 

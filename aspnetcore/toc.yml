@@ -710,6 +710,8 @@ items:
         uid: fundamentals/minimal-apis/responses
       - name: Middleware in Minimal API apps
         uid: fundamentals/minimal-apis/middleware
+      - name: Handle errors in Minimal API apps
+        uid: fundamentals/minimal-apis/handle-errors
   - name: Real-time apps
     displayName: signalr
     items:
