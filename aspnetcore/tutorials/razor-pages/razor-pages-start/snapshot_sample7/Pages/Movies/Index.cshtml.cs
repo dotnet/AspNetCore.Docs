@@ -1,9 +1,11 @@
+// <snippetFull>
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Movies
 {
+    // <snippet2>
     public class IndexModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
@@ -12,6 +14,7 @@ namespace RazorPagesMovie.Pages.Movies
         {
             _context = context;
         }
+        // </snippet2>
 
         public IList<Movie> Movie { get;set; }  = default!;
 
@@ -24,3 +27,4 @@ namespace RazorPagesMovie.Pages.Movies
         }
     }
 }
+// </snippetFull>
