@@ -10,9 +10,15 @@ uid: fundamentals/minimal-apis/handle-errors
 
 # How to handle errors in Minimal API apps
 
-## Exception handler
+## Exceptions
 
-TODO
+### Developer Exception Page
+
+### Exception handler
+
+## Client and Server error responses
+
+TODO: UseStatusCodePages
 
 ## Problem details
 
