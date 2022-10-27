@@ -41,13 +41,13 @@ For apps with controllers, apply the `[OutputCache]` attribute to the action met
 
 Create *policies* when calling `AddOutputCaching` to specify caching configuration that applies to multiple endpoints. A policy can be selected for specific endpoints, while a base policy provides default caching configuration for a collection of endpoints.
 
-The following highlighted code configures caching for all of the app's endpoints, with expiration time of 10 seconds. If you don't explicitly configure an expiration time, it's 1 minute.
+The following highlighted code configures caching for all of the app's endpoints, with expiration time of 10 seconds. If you don't explicitly configure an expiration time, it's one minute.
 
-:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies1" highlight="2":::
+:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies1" highlight="3":::
 
 The following highlighted code creates two policies, each specifying a different expiration time. Selected endpoints can use the 20 second expiration, and others can use the 30 second expiration.
 
-:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies1" highlight="3-4":::
+:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies1" highlight="4-5":::
 
 You can select a policy for an endpoint when calling the `CacheOutput` method or using the `[OutputCache]` attribute:
 
@@ -85,13 +85,15 @@ You can then select the `VaryByQuery` policy for an endpoint:
 
 :::code language="csharp" source="output/samples/7.x/Program.cs" id="selectquery":::
 
-Here are the options for controlling the cache key:
+Here are some of the options for controlling the cache key:
 
-* `VaryByQuery` - Specify one or more query string names to act as the cache key.
-* `VaryByHeader` - Specify one or more HTTP headers to act as the cache key.
-* `VaryByValue` - Specify a value to act as the cache key. The following example uses a value that indicates whether the current server time in seconds is odd or even. A new response is generated only when the number of seconds goes from odd to even or even to odd.
+* <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.SetVaryByQuery%2A> - Specify one or more query string names to act as the cache key.
+* <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.SetVaryByHeader%2A> - Specify one or more HTTP headers to act as the cache key.
+* <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.VaryByValue%2A>- Specify a value to act as the cache key. The following example uses a value that indicates whether the current server time in seconds is odd or even. A new response is generated only when the number of seconds goes from odd to even or even to odd.
 
   :::code language="csharp" source="output/samples/7.x/Program.cs" id="varybyvalue":::
+
+For more options, see the <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder> class.
 
 ## Cache revalidation
 
@@ -100,8 +102,6 @@ Cache revalidation means the server can return a `304 Not Modified` HTTP status 
 The following code illustrates the use of an `Etag` header to enable cache revalidation. If the client sends an `If-None-Match` header with the etag value of an earlier response, and the cache entry is fresh, the server returns 304 instead of the full response:
 
 :::code language="csharp" source="output/samples/7.x/Program.cs" id="etag":::
-
-If the client sends an `If-None-Match` header with the etag value and the cache entry isn't expired, the server returns 304 instead of the full response.
 
 Another way to do cache revalidation is to check the date of the cache entry creation compared to the date requested by the client. When the request header `If-Modified-Since` is provided, output caching returns 304 if the cached entry is older and isn't expired.
 
