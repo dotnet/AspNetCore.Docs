@@ -10,7 +10,7 @@ uid: mvc/advanced/custom-model-binding
 
 :::moniker range=">= aspnetcore-3.0"
 
-By [Steve Smith](https://ardalis.com/) and [Kirk Larkin](https://twitter.com/serpent5)
+By [Kirk Larkin](https://twitter.com/serpent5)
 
 Model binding allows controller actions to work directly with model types (passed in as method arguments), rather than HTTP requests. Mapping between incoming request data and application models is handled by model binders. Developers can extend the built-in model binding functionality by implementing custom model binders (though typically, you don't need to write your own provider).
 
@@ -20,9 +20,9 @@ Model binding allows controller actions to work directly with model types (passe
 
 The default model binders support most of the common .NET Core data types and should meet most developers' needs. They expect to bind text-based input from the request directly to model types. You might need to transform the input prior to binding it. For example, when you have a key that can be used to look up model data. You can use a custom model binder to fetch data based on the key.
 
-## Model binding review
+## Model binding simple and complex types
 
-Model binding uses specific definitions for the types it operates on. A *simple type* is converted from a single string in the input. A *complex type* is converted from multiple input values. The framework determines the difference based on the existence of a `TypeConverter`. We recommend you create a type converter if you have a simple `string` -> `SomeType` mapping that doesn't require external resources.
+Model binding uses specific definitions for the types it operates on. A *simple type* is converted from a single string from a <xref:System.ComponentModel.TypeConverter> or a `TryParse` method. A *complex type* is converted from multiple input values. The framework determines the difference based on the existence of a `TypeConverter` or `TryParse`. We recommend you create a type converter if you have a `string` to `SomeType` mapping that doesn't require external resources.
 
 Before creating your own custom model binder, it's worth reviewing how existing model binders are implemented. Consider the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinder> which can be used to convert base64-encoded strings into byte arrays. The byte arrays are often stored as files or database BLOB fields.
 
