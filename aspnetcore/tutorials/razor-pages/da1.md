@@ -21,7 +21,7 @@ The scaffolded movie app has a good start, but the presentation isn't ideal. **R
 
 Update `Models/Movie.cs` with the following highlighted code:
 
-[!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/MovieDateFixed.cs?name=snippet1&highlight=3,12,17)]
+[!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/MovieDateFixed.cs?name=snippet1&highlight=3,12,17)]
 
 In the previous code:
 
@@ -89,7 +89,7 @@ With the `@page "{id:int}"` directive, the break point is never hit. The routing
 
 Review the `OnPostAsync` method in the `Pages/Movies/Edit.cshtml.cs` file:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample6/Pages/Movies/Edit.cshtml.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample7/Pages/Movies/Edit.cshtml.cs?name=snippet_1)]
 
 The previous code detects concurrency exceptions when one client deletes the movie and the other client posts changes to the movie.
 
@@ -106,7 +106,7 @@ Production code may want to detect concurrency conflicts. See [Handle concurrenc
 
 Examine the `Pages/Movies/Edit.cshtml.cs` file:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample6/Pages/Movies/Edit.cshtml.cs?name=snippet2)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample7/Pages/Movies/Edit.cshtml.cs?name=snippet2)]
 
 When an HTTP GET request is made to the Movies/Edit page, for example, `https://localhost:5001/Movies/Edit/3`:
 
