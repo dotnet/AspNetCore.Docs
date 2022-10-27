@@ -278,6 +278,33 @@ The following `Values3Controller` returns [`ControllerBase.Problem`](/dotnet/api
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Controllers/ValuesController.cs" id="snippet3"  highlight="16-21":::
 
+## Produce a ProblemDetails payload for exceptions
+
+Consider the following app:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_apishort" highlight="4,8":::
+
+In non-development environments, when an exception occurs, the following a standardized [ProblemDetails response](https://datatracker.ietf.org/doc/html/rfc7807) is returned to the client:
+
+```json
+{
+"type":"https://tools.ietf.org/html/rfc7231#section-6.6.1",
+"title":"An error occurred while processing your request.",
+"status":500,"traceId":"00-b644<snip>-00"
+}
+```
+
+For most apps, the preceding code is all that for exceptions, however, the following section shows how get more detailed problem responses.
+
+An alternative to a [custom exception handler page](xref:fundamentals/error-handling#exception-handler-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. Using a lambda allows access to the error and writing a problem details response with [`IProblemDetailsService.WriteAsync`](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true):
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_lambda" :::
+
+> [!WARNING]
+> Do **not** serve sensitive error information to clients. Serving errors is a security risk.
+
+[Hellang.Middleware.ProblemDetails](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) is a 3rd party problem details middleware Nuget package.
+
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples) ([how to download](xref:index#how-to-download-a-sample))
