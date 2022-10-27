@@ -42,7 +42,7 @@ ASP.NET Core apps enable the developer exception page by default when both:
 
 For more information on configuring middleware see, [Middleware in Minimal API apps](/aspnet/core/fundamentals/minimal-apis/middleware).
 
-Using the preceding Minimal API app, when the Developer Exception Page detects an unhandled exception, it generates a default plain-text response similar to the following example:
+Using the preceding Minimal API app, when the `Developer Exception Page` detects an unhandled exception, it generates a default plain-text response similar to the following example:
 
 ```console
 HTTP/1.1 500 Internal Server Error
@@ -108,7 +108,7 @@ public record User(int Id);
 
 The `/users` endpoint produces `200 OK` with a `json` representation of `User` when `id` greater than `0`, or, `400 BAD REQUEST` status code without a response body. For more information about creating response, see [Create responses in Minimal API apps](/aspnet/core/fundamentals/minimal-apis/responses).
 
-The [`Status Code Pages middleware`](xref:fundamentals/error-handling#sestatuscodepages) can be configure to produce a common body content, **when empty**, for all client (`400`-`499`) or server (`500` -`599`) responses. The middleware is configure by calling 
+The [`Status Code Pages middleware`](xref:fundamentals/error-handling#sestatuscodepages) can be configure to produce a common body content, **when empty**, for all HTTP client (`400`-`499`) or server (`500` -`599`) responses. The middleware is configured by calling 
 [UseStatusCodePages](<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A>) extension method.
 
 For example, the following example change the app to respond an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client for all client and server responses, including routing errors (eg. `404 NOT FOUND`). For more information, see [Problem Details](#problem-details) section.
