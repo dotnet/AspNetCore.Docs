@@ -17,7 +17,7 @@ The scaffolded movie app has a good start, but the presentation isn't ideal. **R
 
 ![Movie application open in Chrome](sql/_static/m605.png)
 
-## Update the generated code
+## Update the model
 
 Update `Models/Movie.cs` with the following highlighted code:
 
