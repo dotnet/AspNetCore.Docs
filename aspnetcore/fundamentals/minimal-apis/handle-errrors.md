@@ -10,7 +10,7 @@ uid: fundamentals/minimal-apis/handle-errors
 
 # How to handle errors in Minimal API apps
 
-This article describes how to handle errors and customize error handling in Minimal API apps.
+This article describes how to handle errors in Minimal API apps.
 
 ## Exceptions
 
