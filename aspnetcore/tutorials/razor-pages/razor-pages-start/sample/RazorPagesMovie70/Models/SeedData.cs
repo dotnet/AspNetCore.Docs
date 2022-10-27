@@ -63,5 +63,5 @@ public static class SeedData
         }
     }
 }
-// <snippet_1>
+// </snippet_1>
 #endif
