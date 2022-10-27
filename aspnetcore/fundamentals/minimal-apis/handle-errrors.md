@@ -14,7 +14,7 @@ This article describes how to handle errors in Minimal API apps.
 
 ## Exceptions
 
-In a Minimal API app, there are two different built-in mechanism to handle the unhandled exception:
+In a Minimal API app, there are two different built-in centralized mechanism to handle unhandled exceptions:
 
 * [Developer Exception Page middleware](#developer-exception-page)  **Development environment only**
 * [Exception handler middleware](#exception-handler)
