@@ -1,10 +1,11 @@
-//#define DEFAULT // SQL server is default, SQL_Lite is other
+#define DEFAULT // SQL server is default, SQL_Lite is other
 #if DEFAULT
 // <snippet_all>
 // <snippet_di>
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using RazorPagesMovie.Data;
+using RazorPagesMovie.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,6 +14,13 @@ builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("RazorPagesMovieContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesMovieContext' not found.")));
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 // </snippet_di>
 
 // Configure the HTTP request pipeline.
@@ -37,7 +45,8 @@ app.Run();
 #elif SQL_Lite
 // <snippet_all_sl>
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using RazorPagesMovie.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
