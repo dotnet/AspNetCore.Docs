@@ -108,9 +108,9 @@ app.MapPut("/todoitems/{id}", async (Todo inputTodo, int id, TodoDb db) =>
     await db.SaveChangesAsync();
 
     return Results.NoContent();
-}).AddEndpointFilterFactory(async (filterFactoryContext, next) =>
+}).AddEndpointFilterFactory((filterFactoryContext, next) =>
 {
-    var parameters = context.MethodInfo.GetParameters();
+    var parameters = filterFactoryContext.MethodInfo.GetParameters();
     if (parameters.Length >= 1 && parameters[0].ParameterType == typeof(Todo))
     {
         return async invocationContext =>
@@ -123,8 +123,8 @@ app.MapPut("/todoitems/{id}", async (Todo inputTodo, int id, TodoDb db) =>
             {
                 return Results.Problem(validationError);
             }
-            return await next(invocationContextContext);
-        }
+            return await next(invocationContext);
+        };
     }
     return invocationContext => next(invocationContext); 
 });
