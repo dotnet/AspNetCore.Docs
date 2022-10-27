@@ -1,4 +1,4 @@
-#define DEFAULT // SQL server is default, SQL_Lite is other
+//#define DEFAULT // SQL server is default, SQL_Lite is other
 #if DEFAULT
 // <snippet_all>
 // <snippet_di>
