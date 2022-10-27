@@ -1,4 +1,4 @@
-//#define DEFAULT // SQL server is default, SQL_Lite is other
+#define DEFAULT // SQL server is default, SQL_Lite is other
 #if DEFAULT
 // <snippet_all>
 // <snippet_di>
@@ -36,7 +36,6 @@ app.Run();
 // </snippet_all>
 #elif SQL_Lite
 // <snippet_all_sl>
-// <snippet_di_sl>
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
@@ -47,7 +46,6 @@ builder.Services.AddDbContext<RazorPagesMovieContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("RazorPagesMovieContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesMovieContext' not found.")));
 
 var app = builder.Build();
-// </snippet_di_sl>
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
