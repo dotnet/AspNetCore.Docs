@@ -180,7 +180,7 @@ The default problem details response body has the following `type`, `title`, and
 
 ### Problem details service
 
-ASP.NET Core supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html) using the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService>. For more information, see the [Problem details](/aspnetcore/fundamentals/error-handling#pds7).
+ASP.NET Core supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html) using the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService>. For more information, see the [Problem details](/aspnet/core/fundamentals/error-handling#pds7).
 
 The following code configures the app to generate a problem details response for all HTTP client and server error responses that ***don't have a body content yet***:
 
@@ -202,7 +202,7 @@ The automatic creation of a `ProblemDetails` for error status codes is disabled 
 
 Using the preceding code, when an API controller returns `BadRequest`, an [HTTP 400](https://developer.mozilla.org/docs/Web/HTTP/Status/400) response status is returned with no response body. `SuppressMapClientErrors` prevents a `ProblemDetails` response from being created, even when calling `WriteAsync` for an API Controller endpoint. `WriteAsync` is explained later in this article.
 
-The next section shows how to customize the problem details response body, using <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails>, to return a more helpful response. For more customization options, see the [Customizing problem details](/aspnetcore/fundamentals/error-handling#cpd7).
+The next section shows how to customize the problem details response body, using <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails>, to return a more helpful response. For more customization options, see the [Customizing problem details](/aspnet/core/fundamentals/error-handling#cpd7).
 
 #### Customize problem details with `CustomizeProblemDetails`
 
