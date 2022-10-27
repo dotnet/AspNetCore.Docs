@@ -106,7 +106,7 @@ app.Run();
 public record User(int Id);
 ```
 
-The `/users` endpoint produces `200 OK` with a `json` representation of `User` when `id` greater than `0`, or, `400 BAD REQUEST` status code without a response body. For more information about creating response, see [Create responses in Minimal API apps](aspnet/core/fundamentals/minimal-apis/responses).
+The `/users` endpoint produces `200 OK` with a `json` representation of `User` when `id` greater than `0`, or, `400 BAD REQUEST` status code without a response body. For more information about creating response, see [Create responses in Minimal API apps](/aspnet/core/fundamentals/minimal-apis/responses).
 
 The [`Status Code Pages middleware`](xref:fundamentals/error-handling#sestatuscodepages) can be configure to produce a common body content, **when empty**, for all client (`400`-`499`) or server (`500` -`599`) responses. The middleware is configure by calling 
 [UseStatusCodePages](<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A>) extension method.
