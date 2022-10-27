@@ -70,7 +70,7 @@ Accept-Encoding: gzip, deflate, br
 
 ### Exception handler
 
-In non-development environments, use [Exception Handling Middleware](xref:fundamentals/error-handling#exception-handler-page) to produce an error payload. To configure the `Exception Handling Middleware` in the preceding Minimal API app, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. 
+In non-development environments, use [Exception Handler Middleware](xref:fundamentals/error-handling#exception-handler-page) to produce an error payload. To configure the `Exception Handler Middleware` in the preceding Minimal API app, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. 
 
 For example, the following code change the app to respond an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client. For more information, see [Problem Details](#problem-details) section.
 
@@ -92,7 +92,42 @@ app.Run();
 
 ## Client and Server error responses
 
-TODO: UseStatusCodePages
+Consider the following Minimal API app.
+
+``` csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.Map("/users/{id:int}", (int id) 
+    => id <= 0 ? Results.BadRequest() : Results.Ok(new User(id)) );
+
+app.Run();
+
+public record User(int Id);
+```
+
+The `/users` endpoint produces `200 OK` with a `json` representation of `User` when `id` greater than `0`, or, `400 BAD REQUEST` status code without a response body. For more information about creating response, see [Create responses in Minimal API apps](aspnet/core/fundamentals/minimal-apis/responses).
+
+The [`Status Code Pages middleware`](xref:fundamentals/error-handling#sestatuscodepages) can be configure to produce a common body content, **when empty**, for all client (`400`-`499`) or server (`500` -`599`) responses. The middleware is configure by calling 
+[UseStatusCodePages](<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A>) extension method.
+
+For example, the following example change the app to respond an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client for all client and server responses, including routing errors (eg. `404 NOT FOUND`). For more information, see [Problem Details](#problem-details) section.
+
+``` csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.UseStatusCodePages(async statusCodeContext 
+    =>  await Results.Problem(statusCode: statusCodeContext.HttpContext.Response.StatusCode)
+                 .ExecuteAsync(statusCodeContext.HttpContext));
+
+app.Map("/users/{id:int}", (int id) 
+    => id <= 0 ? Results.BadRequest() : Results.Ok(new User(id)) );
+
+app.Run();
+
+public record User(int Id);
+```
 
 ## Problem details
 
@@ -118,11 +153,13 @@ var app = builder.Build();
 app.UseExceptionHandler();
 app.UseStatusCodePages();
 
-app.Map("/bad-request", () => Results.BadRequest());
+app.Map("/users/{id:int}", (int id) 
+    => id <= 0 ? Results.BadRequest() : Results.Ok(new User(id)) );
+
 app.Map("/exception", () 
     => { throw new InvalidOperationException("Sample Exception"); });
 
 app.Run();
 ```
 
-For more information on using [`AddProblemDetails`](/dotnet/api/microsoft.extensions.dependencyinjection.problemdetailsservicecollectionextensions.addproblemdetails?view=aspnetcore-7.0&preserve-view=true), see [Problem Details](/aspnet/core/fundamentals/error-handling#pds7)
+For more information on using `AddProblemDetails`, see [Problem Details](/aspnet/core/fundamentals/error-handling?view=aspnetcore-7.0&preserve-view=true#pds7)
