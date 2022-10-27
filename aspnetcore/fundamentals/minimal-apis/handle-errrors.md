@@ -10,11 +10,13 @@ uid: fundamentals/minimal-apis/handle-errors
 
 # How to handle errors in Minimal API apps
 
+This article describes how to handle errors and customize error handling in Minimal API apps.
+
 ## Exceptions
 
 In a Minimal API app, there are two different built-in mechanism to handle the unhandled exception:
 
-* [Developer Exception Page middleware **Development environment only**](#developer-exception-page)
+* [Developer Exception Page middleware](#developer-exception-page)  **Development environment only**
 * [Exception handler middleware](#exception-handler)
 
 Consider the following Minimal API app, which throws an exception when the endpoint `/exception` is requested:
@@ -23,7 +25,8 @@ Consider the following Minimal API app, which throws an exception when the endpo
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-app.Map("/exception", () => { throw new InvalidOperationException("Sample Exception"); });
+app.Map("/exception", () 
+    => { throw new InvalidOperationException("Sample Exception"); });
 
 app.Run();
 ```
@@ -67,7 +70,7 @@ Accept-Encoding: gzip, deflate, br
 
 ### Exception handler
 
-In non-development environments, use [Exception Handling Middleware](xref:fundamentals/error-handling) to produce an error payload. To configure the `Exception Handling Middleware` in the preceding Minimal API app, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. 
+In non-development environments, use [Exception Handling Middleware](xref:fundamentals/error-handling#exception-handler-page) to produce an error payload. To configure the `Exception Handling Middleware` in the preceding Minimal API app, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. 
 
 For example, the following code change the app to respond an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client. For more information, see [Problem Details](#problem-details) section.
 
@@ -81,7 +84,8 @@ app.UseExceptionHandler(exceptionHandlerApp
         => await Results.Problem()
                      .ExecuteAsync(context)));
 
-app.Map("exception", () => { throw new InvalidOperationException("Sample Exception"); });
+app.Map("/exception", () 
+    => { throw new InvalidOperationException("Sample Exception"); });
 
 app.Run();
 ```
@@ -96,11 +100,17 @@ TODO: UseStatusCodePages
 
 Minimal API apps can be configured to generate problem details response for all HTTP client and server error responses that ***don't have a body content yet*** using the [`AddProblemDetails`](/dotnet/api/microsoft.extensions.dependencyinjection.problemdetailsservicecollectionextensions.addproblemdetails?view=aspnetcore-7.0&preserve-view=true) extension method on <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>.
 
+The following middleware generates problem details HTTP responses when [`AddProblemDetails`](/dotnet/api/microsoft.extensions.dependencyinjection.problemdetailsservicecollectionextensions.addproblemdetails?view=aspnetcore-7.0&preserve-view=true) is called, except when not accepted by the client:
+
+* <xref:Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware>: Generates a problem details response when a custom handler is not defined.
+* <xref:Microsoft.AspNetCore.Diagnostics.StatusCodePagesMiddleware>: Generates a problem details response by default.
+* <xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware>: Generates a problem details response in development when `text/html` is not accepted.
+
+
 The following code configures the app to generate a problem details:
 
 ``` csharp
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddProblemDetails();
 
 var app = builder.Build();
@@ -108,16 +118,13 @@ var app = builder.Build();
 app.UseExceptionHandler();
 app.UseStatusCodePages();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
-
-// Route handler endpoints goes here
-
+app.Map("/bad-request", () => Results.BadRequest());
+app.Map("/exception", () 
+    => { throw new InvalidOperationException("Sample Exception"); });
 
 app.Run();
 ```
+
 
 TODO: Explain changes in the middleware
 
