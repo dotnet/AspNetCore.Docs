@@ -12,14 +12,27 @@ uid: fundamentals/minimal-apis/handle-errors
 
 ## Exceptions
 
-TODO:
+TODO: Briefly introduction
+
+For example, consider the following Minimal API app, which throws an exception for the endpoint `/exception`:
+
+``` csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.Map("/exception", () => { throw new InvalidOperationException("Sample Exception"); });
+
+app.Run();
+```
+
+In a Minimal API app, there are two different built-in mechanism to handle the unhandled exception:
 
 * [Developer Exception Page middleware **Development environment only**](#developer-exception-page)
 * [Exception handler middleware](#exception-handler)
 
 ### Developer Exception Page
 
-The [Developer Exception Page](xref:fundamentals/error-handling) shows detailed stack traces for server errors. It uses <xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware> to capture synchronous and asynchronous exceptions from the HTTP pipeline and to generate error responses. 
+The [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page) shows detailed stack traces for server errors. It uses <xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware> to capture synchronous and asynchronous exceptions from the HTTP pipeline and to generate error responses. 
 
 ASP.NET Core apps enable the developer exception page by default when both:
 
@@ -28,18 +41,7 @@ ASP.NET Core apps enable the developer exception page by default when both:
 
 For more information on configuring middleware see, [Middleware in Minimal API apps](/aspnet/core/fundamentals/minimal-apis/middleware).
 
-For example, consider the following route handler, which throws an exception:
-
-``` csharp
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
-app.Map("exception", () => { throw new InvalidOperationException("Sample Exception"); });
-
-app.Run();
-```
-
-When the Developer Exception Page detects an unhandled exception, it generates a default plain-text response similar to the following example:
+Using the preceding Minimal API app, when the Developer Exception Page detects an unhandled exception, it generates a default plain-text response similar to the following example:
 
 ```console
 HTTP/1.1 500 Internal Server Error
@@ -66,6 +68,25 @@ Accept-Encoding: gzip, deflate, br
 > Don't enable the Developer Exception Page **unless the app is running in the Development environment**. Don't share detailed exception information publicly when the app runs in production. For more information on configuring environments, see <xref:fundamentals/environments>.
 
 ### Exception handler
+
+In non-development environments, use [Exception Handling Middleware](xref:fundamentals/error-handling) to produce an error payload. To configure the `Exception Handling Middleware` in the preceding Minimal API app, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. 
+
+For example, the following code change the app to respond an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client. For more information, see [Problem Details](#problem-details) section.
+
+
+``` csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.UseExceptionHandler(exceptionHandlerApp 
+    => exceptionHandlerApp.Run(async context 
+        => await Results.Problem()
+                     .ExecuteAsync(context)));
+
+app.Map("exception", () => { throw new InvalidOperationException("Sample Exception"); });
+
+app.Run();
+```
 
 ## Client and Server error responses
 
