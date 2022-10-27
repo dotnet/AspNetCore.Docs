@@ -12,9 +12,12 @@ uid: fundamentals/minimal-apis/handle-errors
 
 ## Exceptions
 
-TODO: Briefly introduction
+In a Minimal API app, there are two different built-in mechanism to handle the unhandled exception:
 
-For example, consider the following Minimal API app, which throws an exception for the endpoint `/exception`:
+* [Developer Exception Page middleware **Development environment only**](#developer-exception-page)
+* [Exception handler middleware](#exception-handler)
+
+Consider the following Minimal API app, which throws an exception when the endpoint `/exception` is requested:
 
 ``` csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -24,11 +27,6 @@ app.Map("/exception", () => { throw new InvalidOperationException("Sample Except
 
 app.Run();
 ```
-
-In a Minimal API app, there are two different built-in mechanism to handle the unhandled exception:
-
-* [Developer Exception Page middleware **Development environment only**](#developer-exception-page)
-* [Exception handler middleware](#exception-handler)
 
 ### Developer Exception Page
 
