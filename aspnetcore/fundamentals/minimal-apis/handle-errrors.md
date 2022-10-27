@@ -125,7 +125,4 @@ app.Map("/exception", ()
 app.Run();
 ```
 
-
-TODO: Explain changes in the middleware
-
 For more information on using [`AddProblemDetails`](/dotnet/api/microsoft.extensions.dependencyinjection.problemdetailsservicecollectionextensions.addproblemdetails?view=aspnetcore-7.0&preserve-view=true), see [Problem Details](/aspnet/core/fundamentals/error-handling#pds7)
