@@ -27,11 +27,11 @@ Add the middleware to the request processing pipeline by calling <xref:Microsoft
 > [!NOTE]
 > * In apps that use [CORS middleware](xref:security/cors), `UseOutputCache` must be called after <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A>.
 > * In Razor Pages apps and apps with controllers, `UseOutputCache` must be called after `UseRouting`.
-> * Calling `AddOutputCache`and `UseOutputCache` doesn't start caching behavior. It makes caching available, but the actual caching behavior must be configured as shown in the following sections.
+> * Calling `AddOutputCache`and `UseOutputCache` doesn't start caching behavior, it makes caching available. Caching response data must be configured as shown in the following sections.
 
 ## Configure one endpoint or page
 
-For minimal API apps, configure an endpoint to do caching by calling `CacheOutput()` or by applying the `[OutputCache]` attribute, as shown in the following examples:
+For minimal API apps, configure an endpoint to do caching by calling [`CacheOutput`](xref:Microsoft.Extensions.DependencyInjection.OutputCacheConventionBuilderExtensions.CacheOutput%2A), or by applying the [`[OutputCache]`](xref:Microsoft.AspNetCore.OutputCaching.OutputCacheAttribute) attribute, as shown in the following examples:
 
 :::code language="csharp" source="output/samples/7.x/Program.cs" id="oneendpoint":::
 
@@ -41,7 +41,7 @@ For apps with controllers, apply the `[OutputCache]` attribute to the action met
 
 Create *policies* when calling `AddOutputCaching` to specify caching configuration that applies to multiple endpoints. A policy can be selected for specific endpoints, while a base policy provides default caching configuration for a collection of endpoints.
 
-The following highlighted code configures caching for all of the app's endpoints, with expiration time of 10 seconds. If you don't explicitly configure an expiration time, it's one minute.
+The following highlighted code configures caching for all of the app's endpoints, with expiration time of 10 seconds. If an expiration time isn't specified,  it defaults to one minute.
 
 :::code language="csharp" source="output/samples/7.x/Program.cs" id="policies1" highlight="3":::
 
@@ -57,7 +57,7 @@ For apps with controllers, apply the `[OutputCache]` attribute to the action met
 
 ## Default output caching policy
 
-By default, output caching follows these rules
+By default, output caching follows these rules:
 
 * Only HTTP 200 responses are cached.
 * Only HTTP GET or HEAD requests are cached.
@@ -77,7 +77,7 @@ You can override these defaults.
 
 ## Specify the cache key
 
-By default, every part of the URL is included as the key to a cache entry -- that is, the scheme, host, port, path, and query string. However, you might want to explicitly control the cache key. For example, suppose you have an endpoint that returns a unique response for each unique value of the `culture` query string. Variation in other parts of the URL, such as other query strings, shouldn't result in different cache entries. You can specify such rules in a policy, as shown in the following highlighted code:
+By default, every part of the URL is included as the key to a cache entry, that is, the scheme, host, port, path, and query string. However, you might want to explicitly control the cache key. For example, suppose you have an endpoint that returns a unique response for each unique value of the `culture` query string. Variation in other parts of the URL, such as other query strings, shouldn't result in different cache entries. You can specify such rules in a policy, as shown in the following highlighted code:
 
 :::code language="csharp" source="output/samples/7.x/Program.cs" id="policies2" highlight="7":::
 
@@ -99,7 +99,7 @@ For more options, see the <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePo
 
 Cache revalidation means the server can return a `304 Not Modified` HTTP status code instead of the full response body. This status code informs the client that the response to the request is unchanged from what the client previously received.
 
-The following code illustrates the use of an `Etag` header to enable cache revalidation. If the client sends an `If-None-Match` header with the etag value of an earlier response, and the cache entry is fresh, the server returns 304 instead of the full response:
+The following code illustrates the use of an [`Etag`](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) header to enable cache revalidation. If the client sends an [`If-None-Match`](https://developer.mozilla.org/docs/Web/HTTP/Headers/If-None-Match) header with the etag value of an earlier response, and the cache entry is fresh, the server returns [304 Not Modified](https://developer.mozilla.org/docs/Web/HTTP/Status/304) instead of the full response:
 
 :::code language="csharp" source="output/samples/7.x/Program.cs" id="etag":::
 
@@ -135,7 +135,7 @@ This base policy enables you to use the "tag-all" tag to evict everything in cac
 
 ## Disable resource locking
 
-By default, resource locking is enabled to mitigate the risk of [cache stampede and thundering herd](xref:performance/caching/overview#output-caching).
+By default, resource locking is enabled to mitigate the risk of [cache stampede and thundering herd](https://en.wikipedia.org/wiki/Thundering_herd_problem). For more information, see [Output Caching](xref:performance/caching/overview#output-caching).
 
 To disable resource locking, call [SetLocking(false)](xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.SetLocking%2A) while creating a policy, as shown in the following example:
 
