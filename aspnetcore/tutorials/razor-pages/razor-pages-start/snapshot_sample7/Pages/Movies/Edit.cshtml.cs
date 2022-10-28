@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,6 +11,7 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Movies
 {
+    // <snippet2>
     public class EditModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
@@ -41,6 +42,7 @@ namespace RazorPagesMovie.Pages.Movies
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
+        // <snippet_1>
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -73,5 +75,8 @@ namespace RazorPagesMovie.Pages.Movies
         {
           return _context.Movie.Any(e => e.Id == id);
         }
+        // </snippet_1>
+        // </snippet2>
+
     }
 }

@@ -21,12 +21,12 @@ The scaffolded movie app has a good start, but the presentation isn't ideal. **R
 
 Update `Models/Movie.cs` with the following highlighted code:
 
-[!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/MovieDateFixed.cs?name=snippet1&highlight=3,12,17)]
+[!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/MovieDateFixed.cs?name=snippet_1&highlight=3,12,17)]
 
 In the previous code:
 
 * The `[Column(TypeName = "decimal(18, 2)")]` data annotation enables Entity Framework Core to correctly map `Price` to currency in the database. For more information, see [Data Types](/ef/core/modeling/relational/data-types).
-* The [[Display]](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) attribute specifies the display name of a field. In the preceding code, "Release Date" instead of "ReleaseDate".
+* The [[Display]](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) attribute specifies the display name of a field. In the preceding code, `Release Date` instead of `ReleaseDate`.
 * The [[DataType]](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (`Date`). The time information stored in the field isn't displayed.
 
 [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) is covered in the next tutorial.
@@ -53,7 +53,7 @@ Use **View Source** from a browser to examine the generated markup. A portion of
 </td>
 ```
 
-   The dynamically generated links pass the movie ID with a query string. For example, the `?id=1` in `https://localhost:5001/Movies/Details?id=1`.
+   The dynamically generated links pass the movie ID with a [query string](https://launchschool.com/books/http/read/what_is_a_url). For example, the `?id=1` in `https://localhost:5001/Movies/Details?id=1`.
 
 ### Add route template
 
@@ -69,7 +69,7 @@ The generated HTML adds the ID to the path portion of the URL:
 </td>
 ```
 
-A request to the page with the `{id:int}` route template that does **not** include the integer will return an HTTP 404 (not found) error. For example, `https://localhost:5001/Movies/Details` will return a 404 error. To make the ID optional, append `?` to the route constraint:
+A request to the page with the `{id:int}` route template that does **not** include the integer returns an HTTP 404 (not found) error. For example, `https://localhost:5001/Movies/Details` returns a 404 error. To make the ID optional, append `?` to the route constraint:
 
 ```cshtml
 @page "{id:int?}"
@@ -89,7 +89,7 @@ With the `@page "{id:int}"` directive, the break point is never hit. The routing
 
 Review the `OnPostAsync` method in the `Pages/Movies/Edit.cshtml.cs` file:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample6/Pages/Movies/Edit.cshtml.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample7/Pages/Movies/Edit.cshtml.cs?name=snippet_1)]
 
 The previous code detects concurrency exceptions when one client deletes the movie and the other client posts changes to the movie.
 
@@ -106,7 +106,7 @@ Production code may want to detect concurrency conflicts. See [Handle concurrenc
 
 Examine the `Pages/Movies/Edit.cshtml.cs` file:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample6/Pages/Movies/Edit.cshtml.cs?name=snippet2)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample7/Pages/Movies/Edit.cshtml.cs?name=snippet2)]
 
 When an HTTP GET request is made to the Movies/Edit page, for example, `https://localhost:5001/Movies/Edit/3`:
 
