@@ -91,7 +91,7 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
   In `Pages/_Layout.cshtml` of a Blazor Server app:
 
   ```html
-  <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+  <script src="_framework/blazor.server.js" autostart="false"></script>
   <script>
     Blazor.start({
       configureSignalR: function (builder) {
@@ -881,10 +881,10 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
   >
   > In the following example, a custom value of 60 seconds is used for the server timeout.
 
-  In `Pages/_Layout.cshtml` of a Blazor Server app:
+  In `Pages/_Host.cshtml` of a Blazor Server app:
 
   ```html
-  <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+  <script src="_framework/blazor.server.js" autostart="false"></script>
   <script>
     Blazor.start({
       configureSignalR: function (builder) {
