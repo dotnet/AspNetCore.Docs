@@ -245,8 +245,8 @@ For more information, including how to initialize Blazor when the document is re
 
 Configure the following values for the client:
 
-* `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the keep-alive interval (`keepAliveIntervalInMilliseconds`).
-* `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The keep-alive interval should be less than or equal to half the value assigned to the server timeout (`serverTimeoutInMilliseconds`).
+* `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the Keep-Alive interval (`keepAliveIntervalInMilliseconds`).
+* `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout (`serverTimeoutInMilliseconds`).
 
 The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
 
@@ -287,10 +287,10 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-When changing the values of the server timeout (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>) or the keep-alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>:
+When changing the values of the server timeout (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>) or the Keep-Alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>:
 
-* The server timeout should be at least double the value assigned to the keep-alive interval.
-* The keep-alive interval should be less than or equal to half the value assigned to the server timeout.
+* The server timeout should be at least double the value assigned to the Keep-Alive interval.
+* The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout.
 
 For more information, see the *Global deployment and connection failures* sections of the following articles:
 
@@ -628,8 +628,8 @@ For more information, including how to initialize Blazor when the document is re
 
 Configure the following values for the client:
 
-* `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the keep-alive interval (`keepAliveIntervalInMilliseconds`).
-* `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The keep-alive interval should be less than or equal to half the value assigned to the server timeout (`serverTimeoutInMilliseconds`).
+* `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the Keep-Alive interval (`keepAliveIntervalInMilliseconds`).
+* `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout (`serverTimeoutInMilliseconds`).
 
 The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
 
@@ -670,10 +670,10 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-When changing the values of the server timeout (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>) or the keep-alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>:
+When changing the values of the server timeout (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>) or the Keep-Alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>:
 
-* The server timeout should be at least double the value assigned to the keep-alive interval.
-* The keep-alive interval should be less than or equal to half the value assigned to the server timeout.
+* The server timeout should be at least double the value assigned to the Keep-Alive interval.
+* The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout.
 
 For more information, see the *Global deployment and connection failures* sections of the following articles:
 
@@ -997,8 +997,8 @@ For more information, including how to initialize Blazor when the document is re
 
 Configure the following values for the client:
 
-* `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the keep-alive interval (`keepAliveIntervalInMilliseconds`).
-* `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The keep-alive interval should be less than or equal to half the value assigned to the server timeout (`serverTimeoutInMilliseconds`).
+* `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the Keep-Alive interval (`keepAliveIntervalInMilliseconds`).
+* `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout (`serverTimeoutInMilliseconds`).
 
 The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
 
@@ -1039,10 +1039,10 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-When changing the values of the server timeout (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>) or the keep-alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>:
+When changing the values of the server timeout (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>) or the Keep-Alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>:
 
-* The server timeout should be at least double the value assigned to the keep-alive interval.
-* The keep-alive interval should be less than or equal to half the value assigned to the server timeout.
+* The server timeout should be at least double the value assigned to the Keep-Alive interval.
+* The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout.
 
 For more information, see the *Global deployment and connection failures* sections of the following articles:
 
@@ -1399,8 +1399,8 @@ For more information, including how to initialize Blazor when the document is re
 
 Configure the following values for the client:
 
-* `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the keep-alive interval (`keepAliveIntervalInMilliseconds`).
-* `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The keep-alive interval should be less than or equal to half the value assigned to the server timeout (`serverTimeoutInMilliseconds`).
+* `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the Keep-Alive interval (`keepAliveIntervalInMilliseconds`).
+* `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout (`serverTimeoutInMilliseconds`).
 
 The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
 
@@ -1441,10 +1441,10 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-When changing the values of the server timeout (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>) or the keep-alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>:
+When changing the values of the server timeout (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>) or the Keep-Alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>:
 
-* The server timeout should be at least double the value assigned to the keep-alive interval.
-* The keep-alive interval should be less than or equal to half the value assigned to the server timeout.
+* The server timeout should be at least double the value assigned to the Keep-Alive interval.
+* The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout.
 
 For more information, see the *Global deployment and connection failures* sections of the following articles:
 
