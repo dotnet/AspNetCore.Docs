@@ -181,7 +181,7 @@ Use a tool like [Firefox Browser Developer](https://www.mozilla.org/firefox/deve
 
 ## Azure deployed sample
 
-The [sample app](https://responsecompression.azurewebsites.net/) depolyed to Azure has the following `Program.cs` file:
+The [sample app](https://responsecompression.azurewebsites.net/) deployed to Azure has the following `Program.cs` file:
 
 [!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet_opt)]
 
@@ -207,7 +207,7 @@ Network bandwidth is a limited resource. Reducing the size of the response usual
 
 ## When to use Response Compression Middleware
 
-Use server-based response compression technologies in IIS, Apache, or Nginx. The performance of the middleware probably won't match that of the server modules. [HTTP.sys server](xref:fundamentals/servers/httpsys) server and [Kestrel](xref:fundamentals/servers/kestrel) server don't currently offer built-in compression support.
+Use server-based response compression technologies in IIS, Apache, or Nginx. The performance of the middleware probably won't match that of the server modules. [HTTP.sys](xref:fundamentals/servers/httpsys) server and [Kestrel](xref:fundamentals/servers/kestrel) server don't currently offer built-in compression support.
 
 Use Response Compression Middleware when you're:
 
