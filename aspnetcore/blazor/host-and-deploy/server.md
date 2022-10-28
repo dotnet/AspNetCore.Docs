@@ -130,9 +130,7 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
   * The server timeout should be at least double the value assigned to the Keep-Alive interval.
   * The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout.
 
-  For more information, see <xref:blazor/fundamentals/signalr#configure-signalr-timeouts-and-keep-alive-on-the-client>.
-
-For more information on SignalR configuration, see <xref:blazor/fundamentals/signalr>.
+For more information, see <xref:blazor/fundamentals/signalr#configure-signalr-timeouts-and-keep-alive-on-the-client>.
 
 ## Azure SignalR Service
 
@@ -925,9 +923,7 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
   * The server timeout should be at least double the value assigned to the Keep-Alive interval.
   * The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout.
 
-  For more information, see <xref:blazor/fundamentals/signalr#configure-signalr-timeouts-and-keep-alive-on-the-client>.
-
-For more information on SignalR configuration, see <xref:blazor/fundamentals/signalr>.
+For more information, see <xref:blazor/fundamentals/signalr#configure-signalr-timeouts-and-keep-alive-on-the-client>.
 
 ## Azure SignalR Service
 
