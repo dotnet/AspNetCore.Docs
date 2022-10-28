@@ -329,17 +329,17 @@ Route handlers are methods that execute when the route matches. Route handlers c
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_sm)]
 
-### Name routes and link generation
+### Name endpoints and link generation
 
-Routes can be given names in order to generate URLs to the route. Using a named route avoids having to hard code paths in an app:
+Endpoints can be given names in order to generate URLs to the endpoint. Using a named endpoint avoids having to hard code paths in an app:
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_nr)]
 
-The preceding code displays `The link to the hello route is /hello` from the `/` endpoint.
+The preceding code displays `The link to the hello endpoint is /hello` from the `/` endpoint.
 
-**NOTE**: Route names are case sensitive.
+**NOTE**: Endpoint names are case sensitive.
 
-Route names:
+Endpoint names:
 
 * Must be globally unique.
 * Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](xref:fundamentals/minimal-apis/openapi).
