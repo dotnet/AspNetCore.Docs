@@ -158,29 +158,34 @@ This is server-side validation that you get by default; in a later tutorial you'
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Create&highlight=8)]
 
-Change the date to a valid value and click **Create** showing that we still cannot not create the new object. We need to disable the setting in our project template for this. 
+Change the date to a valid value and click **Create** showomg we still can't create the new object. We'll learn how to fix this in the next section now.
 
-1. We meed to change the value of the asp-validation-summary helper tag. This is so we can enable errors messages in the UI. 
+## Make Enrollment navigation property nullable in the Student class
 
-2. We have to declare our Enrollment Navigation property as Nullable. We are not yet creating any new enrollments for the student and have the navigation property or foreign key as implicitly required for creation of the object.
+![Enrollments required error](crud/_static/enrollments_required_error.png)
 
-That is the reason why we are getting errors.
+A more local fix for a single problem means:   
 
-Firstly in our `Student` class simply change navigation property to be nullable with a question mark symbol: 
+1. Changing the value of the `asp-validation-summary` helper tag, so we can enable error messages in the UI. 
+
+2. Declare the Enrollment Navigation property as Nullable. We're not yet creating new enrollments and have the navigation property implicitly required for object creation.
+
+That's the reason why you're getting errors.
+
+In the  `Student` class simply change navigation property to be nullable with a question mark symbol: 
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_NullableEnrollments&highlight=11)]
 
-Also in *Views/Students/Create.cshtml* you will notice the `asp-validation-summary` property is set to `ModelOnly` we need to change the value to `All` as shown here.
+Also in *Views/Students/Create.cshtml* notice the `asp-validation-summary` property is set to `ModelOnly` we need to change the value to `All` as shown here.
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Create.cshtml?range=1-14&highlight=13)]
 
 You should now be able to click **Create** to see the new student appear in the **Index** page.
 
-One last thing to keep in mind is if you are having the same problem on multiple pages and these steps did not work then worst case scenario would be to go into `ContosoUniversity.csproj` and comment out the following line.   
+> [!NOTE]
+> You may get this problem on .NET 6 and later. If you're having this problem on multiple pages and these steps didn't work then a more global approach would be to go into `ContosoUniversity.csproj` to set the `nullable` setting to `disable`.
 
-```xml
-<Nullable>disable</Nullable>
-```
+
 But for simplicity we will leave it alone in this tutorial.
 
 ## Update the Edit page
@@ -243,7 +248,7 @@ Run the app, select the **Students** tab, then click an **Edit** hyperlink.
 
 Change some of the data and click **Save**. The **Index** page opens and you see the changed data.
 
-If you get problems please go to `Views/Students/Edit.cshtml` and ensure the  `asp-validation-summary` property is set to to the value `All` just like we did in the previous `Create.cshtml` page.
+If you get problems please go to `Views/Students/Edit.cshtml` and ensure the `asp-validation-summary` property is set to the value `All` just like we did in the previous `Create.cshtml` page.
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Edit.cshtml?range=1-14&highlight=13)]
 
