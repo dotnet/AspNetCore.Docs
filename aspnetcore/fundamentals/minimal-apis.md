@@ -329,7 +329,7 @@ Route handlers are methods that execute when the route matches. Route handlers c
 
 [!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_sm)]
 
-### Name endpoints and link generation
+### Named endpoints and link generation
 
 Endpoints can be given names in order to generate URLs to the endpoint. Using a named endpoint avoids having to hard code paths in an app:
 
