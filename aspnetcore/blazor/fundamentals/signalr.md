@@ -268,7 +268,7 @@ The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwr
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
 
-When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example based on the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) uses default values:
+When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example, based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor), uses default values:
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -291,6 +291,11 @@ When changing the values of the server timeout (<xref:Microsoft.AspNetCore.Signa
 
 * The server timeout should be at least double the value assigned to the keep-alive interval.
 * The keep-alive interval should be less than or equal to half the value assigned to the server timeout.
+
+For more information, see the *Global deployment and connection failures* sections of the following articles:
+
+* <xref:blazor/host-and-deploy/server#global-deployment-and-connection-failures>
+* <xref:blazor/host-and-deploy/webassembly#global-deployment-and-connection-failures>
 
 ## Configure SignalR client logging (Blazor Server)
 
@@ -646,7 +651,7 @@ The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroo
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
 
-When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example based on the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) uses default values:
+When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example, based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor), uses default values:
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -669,6 +674,11 @@ When changing the values of the server timeout (<xref:Microsoft.AspNetCore.Signa
 
 * The server timeout should be at least double the value assigned to the keep-alive interval.
 * The keep-alive interval should be less than or equal to half the value assigned to the server timeout.
+
+For more information, see the *Global deployment and connection failures* sections of the following articles:
+
+* <xref:blazor/host-and-deploy/server#global-deployment-and-connection-failures>
+* <xref:blazor/host-and-deploy/webassembly#global-deployment-and-connection-failures>
 
 ## Configure SignalR client logging (Blazor Server)
 
@@ -1010,7 +1020,7 @@ The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroo
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
 
-When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example based on the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) uses default values:
+When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example, based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor), uses default values:
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -1033,6 +1043,11 @@ When changing the values of the server timeout (<xref:Microsoft.AspNetCore.Signa
 
 * The server timeout should be at least double the value assigned to the keep-alive interval.
 * The keep-alive interval should be less than or equal to half the value assigned to the server timeout.
+
+For more information, see the *Global deployment and connection failures* sections of the following articles:
+
+* <xref:blazor/host-and-deploy/server#global-deployment-and-connection-failures>
+* <xref:blazor/host-and-deploy/webassembly#global-deployment-and-connection-failures>
 
 ## Configure SignalR client logging (Blazor Server)
 
@@ -1380,7 +1395,7 @@ When `autostart` is disabled, any aspect of the app that doesn't depend on the c
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
-## Configure SignalR server timeout and Keep-Alive on the client
+## Configure SignalR timeouts and Keep-Alive on the client
 
 Configure the following values for the client:
 
@@ -1407,7 +1422,7 @@ The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroo
 
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
 
-When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example based on the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) uses default values:
+When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example, based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor), uses default values:
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -1430,6 +1445,11 @@ When changing the values of the server timeout (<xref:Microsoft.AspNetCore.Signa
 
 * The server timeout should be at least double the value assigned to the keep-alive interval.
 * The keep-alive interval should be less than or equal to half the value assigned to the server timeout.
+
+For more information, see the *Global deployment and connection failures* sections of the following articles:
+
+* <xref:blazor/host-and-deploy/server#global-deployment-and-connection-failures>
+* <xref:blazor/host-and-deploy/webassembly#global-deployment-and-connection-failures>
 
 ## Configure SignalR client logging (Blazor Server)
 
