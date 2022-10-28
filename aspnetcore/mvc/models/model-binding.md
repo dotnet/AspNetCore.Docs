@@ -399,7 +399,7 @@ For targets that are collections of simple types, model binding looks for matche
   [a]=1050&[b]=2000&index=a&index=b
   ```
 
- Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding attempts to use `index` as the index for the collection which might result in incorrect binding. For example, consider the following action:
+  Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding attempts to use `index` as the index for the collection which might result in incorrect binding. For example, consider the following action:
   
   ```csharp
   public IActionResult Post(string index, List<Product> products)
@@ -1032,7 +1032,7 @@ For targets that are collections of simple types, model binding looks for matche
   [a]=1050&[b]=2000&index=a&index=b
   ```
 
- Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding attempts to use `index` as the index for the collection which might result in incorrect binding. For example, consider the following action:
+  Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding attempts to use `index` as the index for the collection which might result in incorrect binding. For example, consider the following action:
   
   ```csharp
   public IActionResult Post(string index, List<Product> products)
