@@ -240,7 +240,7 @@ HTTP/3 support is in preview in .NET 6, and needs to be enabled via a configurat
 
 `System.Net.SocketsHttpHandler.Http3Support` can also be set using [AppContext.SetSwitch](xref:System.AppContext.SetSwitch%2A).
 
-A <xref:System.Net.Http.DelegatingHandler> can bee used to force a gRPC client to use HTTP/3. Forcing HTTP/3 avoids the overhead of upgrading the request. Force HTTP/3 with code similar to the following:
+A <xref:System.Net.Http.DelegatingHandler> can be used to force a gRPC client to use HTTP/3. Forcing HTTP/3 avoids the overhead of upgrading the request. Force HTTP/3 with code similar to the following:
 
 ```csharp
 /// <summary>
