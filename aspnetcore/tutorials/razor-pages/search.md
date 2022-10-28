@@ -42,7 +42,7 @@ var movies = from m in _context.Movie
 
 The query is only ***defined*** at this point, it has ***not*** been run against the database.
 
-If the `SearchString` property is not null or empty, the movies query is modified to filter on the search string:
+If the `SearchString` property is not `null` or empty, the movies query is modified to filter on the search string:
 
 [!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Index.cshtml.cs?name=snippet_SearchNull)]
 
@@ -90,7 +90,7 @@ Save the changes and test the filter.
 
 Update the Index page's `OnGetAsync` method with the following code:
 
-   [!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Index.cshtml.cs?name=snippet_SearchGenre)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Index.cshtml.cs?name=snippet_SearchGenre)]
 
 The following code is a LINQ query that retrieves all the genres from the database.
 
