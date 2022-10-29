@@ -303,31 +303,6 @@ For more information, see the *Global deployment and connection failures* sectio
 * <xref:blazor/host-and-deploy/server#global-deployment-and-connection-failures>
 * <xref:blazor/host-and-deploy/webassembly#global-deployment-and-connection-failures>
 
-## Configure SignalR client logging (Blazor Server)
-
-On the client builder, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
-
-`Pages/_Layout.cshtml`:
-
-```cshtml
-<body>
-    ...
-
-    <script src="_framework/blazor.server.js" autostart="false"></script>
-    <script>
-      Blazor.start({
-        configureSignalR: function (builder) {
-          builder.configureLogging("information");
-        }
-      });
-    </script>
-</body>
-```
-
-In the preceding example, `information` is equivalent to a log level of <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>.
-
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
-
 ## Modify the reconnection handler (Blazor Server)
 
 The reconnection handler's circuit connection events can be modified for custom behaviors, such as:
@@ -692,31 +667,6 @@ For more information, see the *Global deployment and connection failures* sectio
 * <xref:blazor/host-and-deploy/server#global-deployment-and-connection-failures>
 * <xref:blazor/host-and-deploy/webassembly#global-deployment-and-connection-failures>
 
-## Configure SignalR client logging (Blazor Server)
-
-On the client builder, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
-
-`Pages/_Host.cshtml`:
-
-```cshtml
-<body>
-    ...
-
-    <script src="_framework/blazor.server.js" autostart="false"></script>
-    <script>
-      Blazor.start({
-        configureSignalR: function (builder) {
-          builder.configureLogging("information");
-        }
-      });
-    </script>
-</body>
-```
-
-In the preceding example, `information` is equivalent to a log level of <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>.
-
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
-
 ## Modify the reconnection handler (Blazor Server)
 
 The reconnection handler's circuit connection events can be modified for custom behaviors, such as:
@@ -1066,31 +1016,6 @@ For more information, see the *Global deployment and connection failures* sectio
 
 * <xref:blazor/host-and-deploy/server#global-deployment-and-connection-failures>
 * <xref:blazor/host-and-deploy/webassembly#global-deployment-and-connection-failures>
-
-## Configure SignalR client logging (Blazor Server)
-
-On the client builder, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
-
-`Pages/_Host.cshtml`:
-
-```cshtml
-<body>
-    ...
-
-    <script src="_framework/blazor.server.js" autostart="false"></script>
-    <script>
-      Blazor.start({
-        configureSignalR: function (builder) {
-          builder.configureLogging("information");
-        }
-      });
-    </script>
-</body>
-```
-
-In the preceding example, `information` is equivalent to a log level of <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>.
-
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
 ## Modify the reconnection handler (Blazor Server)
 
@@ -1468,31 +1393,6 @@ For more information, see the *Global deployment and connection failures* sectio
 
 * <xref:blazor/host-and-deploy/server#global-deployment-and-connection-failures>
 * <xref:blazor/host-and-deploy/webassembly#global-deployment-and-connection-failures>
-
-## Configure SignalR client logging (Blazor Server)
-
-On the client builder, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
-
-`Pages/_Host.cshtml`:
-
-```cshtml
-<body>
-    ...
-
-    <script src="_framework/blazor.server.js" autostart="false"></script>
-    <script>
-      Blazor.start({
-        configureSignalR: function (builder) {
-          builder.configureLogging("information");
-        }
-      });
-    </script>
-</body>
-```
-
-In the preceding example, `information` is equivalent to a log level of <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType>.
-
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
 ## Modify the reconnection handler (Blazor Server)
 

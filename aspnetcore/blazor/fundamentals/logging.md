@@ -527,28 +527,131 @@ Output:
 
 A hosted Blazor WebAssembly app that [prerenders its content](xref:blazor/components/prerendering-and-integration) executes [component initialization code twice](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). Logging takes place server-side on the first execution of initialization code and client-side on the second execution of initialization code. Depending on the goal of logging during initialization, check logs server-side, client-side, or both.
 
-## SignalR .NET client logging
+## SignalR client logging (Blazor Server)
 
-Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a traditional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
+On the client builder in `Pages/_Layout.cshtml`, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
+
+For the `configureLogging` log level value, pass the argument as either the string or integer log level shown in the following table.
+
+| <xref:Microsoft.Extensions.Logging.LogLevel>             | String setting | Integer setting |
+| -------------------------------------------------------- | :------------: | :-------------: |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Trace>       | `trace`        | 0               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Debug>       | `debug`        | 1               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Information> | `information`  | 2               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Warning>     | `warning`      | 3               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Error>       | `error`        | 4               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Critical>    | `critical`     | 5               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.None>        | `none`         | 6               |
+
+Example 1: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with a string value:
+
+```html
+<script src="_framework/blazor.server.js" autostart="false"></script>
+<script>
+  Blazor.start({
+    configureSignalR: function (builder) {
+      builder.configureLogging("information");
+    }
+  });
+</script>
+```
+
+Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with an integer value:
+
+```html
+<script src="_framework/blazor.server.js" autostart="false"></script>
+<script>
+  Blazor.start({
+    configureSignalR: function (builder) {
+      builder.configureLogging(2);
+    }
+  });
+</script>
+```
+
+For more information on Blazor startup (`Blazor.start`), see <xref:blazor/fundamentals/startup>.
+
+## SignalR client logging (Blazor WebAssembly)
+
+In Blazor WebAssembly apps, set up app settings configuration as described in <xref:blazor/fundamentals/configuration#logging-configuration>. Place app settings files in `wwwroot` that contain a `Logging:LogLevel:HubConnection` app setting.
+
+> [!NOTE]
+> As an alternative to using app settings, you can pass the <xref:Microsoft.Extensions.Logging.LogLevel> as the argument to <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> when the hub connection is created in a Razor component. However, accidentally deploying the app to a production hosting environment with verbose logging may result in a performance penalty. We recommend using app settings to set the log level.
+
+Provide a `Logging:LogLevel:HubConnection` app setting in the default `appsettings.json` file and in the `Development` environment app settings file. Use a typical less-verbose log level for the default, such as <xref:Microsoft.Extensions.Logging.LogLevel.Warning?displayProperty=nameWithType>. The default app settings value is what is used in `Staging` and `Production` environments if no app settings files for those environments are present. Use a verbose log level in the `Development` environment app settings file, such as <xref:Microsoft.Extensions.Logging.LogLevel.Trace?displayProperty=nameWithType>.
+
+`wwwroot/appsettings.json`:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning",
+      "HubConnection": "Warning"
+    }
+  }
+}
+```
+
+`wwwroot/appsettings.Development.json`:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning",
+      "HubConnection": "Trace"
+    }
+  }
+}
+```
+
+> [!IMPORTANT]
+> Configuration in the preceding app settings files is only used by the app if the guidance in <xref:blazor/fundamentals/configuration#logging-configuration> is followed.
+
+At the top of the Razor component file (`.razor`):
+
+* Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a traditional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
+* Inject an `IConfiguration` to read the `Logging:LogLevel:HubConnection` app setting.
 
 > [!NOTE]
 > `WebAssemblyConsoleLogger` is [internal](/dotnet/csharp/language-reference/keywords/internal) and not supported for direct use in developer code.
 
-Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> and inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> into the component:
-
-```razor
-@using Microsoft.Extensions.Logging
+```csharp
 @inject ILoggerProvider LoggerProvider
+@inject IConfiguration Config
 ```
 
-In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType> (`Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>):
+> [!NOTE]
+> The following example is based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). Consult the tutorial for further details.
+
+In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType> to add the logging provider and set the minimum log level from configuration:
 
 ```csharp
-var connection = new HubConnectionBuilder()
-    .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
-    .ConfigureLogging(logging => logging.AddProvider(LoggerProvider))
-    .Build();
+protected override async Task OnInitializedAsync()
+{
+    hubConnection = new HubConnectionBuilder()
+        .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+        .ConfigureLogging(builder => 
+        {
+            builder.AddProvider(LoggerProvider);
+            builder.SetMinimumLevel(
+                Config.GetValue<LogLevel>("Logging:LogLevel:HubConnection"));
+        })
+        .Build();
+
+    hubConnection.On<string, string>("ReceiveMessage", (user, message) => ...
+
+    await hubConnection.StartAsync();
+}
 ```
+
+> [!NOTE]
+> In the preceding example, `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
+
+For more information on setting the app's environment for Blazor WebAssembly, see <xref:blazor/fundamentals/environments>.
 
 ## Additional resources
 
@@ -857,28 +960,133 @@ Run the app again. Select the **`Log Messages`** button. Notice that the logging
 
 A hosted Blazor WebAssembly app that [prerenders its content](xref:blazor/components/prerendering-and-integration) executes [component initialization code twice](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). Logging takes place server-side on the first execution of initialization code and client-side on the second execution of initialization code. Depending on the goal of logging during initialization, check logs server-side, client-side, or both.
 
-## SignalR .NET client logging
+## SignalR client logging (Blazor Server)
 
-Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a traditional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
+On the client builder in `Pages/_Layout.cshtml`, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
+
+For the `configureLogging` log level value, pass the argument as either the string or integer log level shown in the following table.
+
+| <xref:Microsoft.Extensions.Logging.LogLevel>             | String setting | Integer setting |
+| -------------------------------------------------------- | :------------: | :-------------: |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Trace>       | `trace`        | 0               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Debug>       | `debug`        | 1               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Information> | `information`  | 2               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Warning>     | `warning`      | 3               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Error>       | `error`        | 4               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Critical>    | `critical`     | 5               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.None>        | `none`         | 6               |
+
+Example 1: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with a string value:
+
+```html
+<script src="_framework/blazor.server.js" autostart="false"></script>
+<script>
+  Blazor.start({
+    configureSignalR: function (builder) {
+      builder.configureLogging("information");
+    }
+  });
+</script>
+```
+
+Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with an integer value:
+
+```html
+<script src="_framework/blazor.server.js" autostart="false"></script>
+<script>
+  Blazor.start({
+    configureSignalR: function (builder) {
+      builder.configureLogging(2);
+    }
+  });
+</script>
+```
+
+For more information on Blazor startup (`Blazor.start`), see <xref:blazor/fundamentals/startup>.
+
+## SignalR client logging (Blazor WebAssembly)
+
+In Blazor WebAssembly apps, set up app settings configuration as described in <xref:blazor/fundamentals/configuration#logging-configuration>. Place app settings files in `wwwroot` that contain a `Logging:LogLevel:HubConnection` app setting.
+
+> [!NOTE]
+> As an alternative to using app settings, you can pass the <xref:Microsoft.Extensions.Logging.LogLevel> as the argument to <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> when the hub connection is created in a Razor component. However, accidentally deploying the app to a production hosting environment with verbose logging may result in a performance penalty. We recommend using app settings to set the log level.
+
+Provide a `Logging:LogLevel:HubConnection` app setting in the default `appsettings.json` file and in the `Development` environment app settings file. Use a typical less-verbose log level for the default, such as <xref:Microsoft.Extensions.Logging.LogLevel.Warning?displayProperty=nameWithType>. The default app settings value is what is used in `Staging` and `Production` environments if no app settings files for those environments are present. Use a verbose log level in the `Development` environment app settings file, such as <xref:Microsoft.Extensions.Logging.LogLevel.Trace?displayProperty=nameWithType>.
+
+`wwwroot/appsettings.json`:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning",
+      "HubConnection": "Warning"
+    }
+  }
+}
+```
+
+`wwwroot/appsettings.Development.json`:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning",
+      "HubConnection": "Trace"
+    }
+  }
+}
+```
+
+> [!IMPORTANT]
+> Configuration in the preceding app settings files is only used by the app if the guidance in <xref:blazor/fundamentals/configuration#logging-configuration> is followed.
+
+At the top of the Razor component file (`.razor`):
+
+* Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName>.
+* Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a traditional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
+* Inject an `IConfiguration` to read the `Logging:LogLevel:HubConnection` app setting.
 
 > [!NOTE]
 > `WebAssemblyConsoleLogger` is [internal](/dotnet/csharp/language-reference/keywords/internal) and not supported for direct use in developer code.
 
-Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> and inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> into the component:
-
-```razor
+```csharp
 @using Microsoft.Extensions.Logging
 @inject ILoggerProvider LoggerProvider
+@inject IConfiguration Config
 ```
 
-In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType> (`Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>):
+> [!NOTE]
+> The following example is based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). Consult the tutorial for further details.
+
+In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType> to add the logging provider and set the minimum log level from configuration:
 
 ```csharp
-var connection = new HubConnectionBuilder()
-    .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
-    .ConfigureLogging(logging => logging.AddProvider(LoggerProvider))
-    .Build();
+protected override async Task OnInitializedAsync()
+{
+    hubConnection = new HubConnectionBuilder()
+        .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+        .ConfigureLogging(builder => 
+        {
+            builder.AddProvider(LoggerProvider);
+            builder.SetMinimumLevel(
+                Config.GetValue<LogLevel>("Logging:LogLevel:HubConnection"));
+        })
+        .Build();
+
+    hubConnection.On<string, string>("ReceiveMessage", (user, message) => ...
+
+    await hubConnection.StartAsync();
+}
 ```
+
+> [!NOTE]
+> In the preceding example, `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
+
+For more information on setting the app's environment for Blazor WebAssembly, see <xref:blazor/fundamentals/environments>.
 
 ## Additional resources
 
@@ -1182,28 +1390,133 @@ Run the app again. Select the **`Log Messages`** button. Notice that the logging
 
 A hosted Blazor WebAssembly app that [prerenders its content](xref:blazor/components/prerendering-and-integration) executes [component initialization code twice](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). Logging takes place server-side on the first execution of initialization code and client-side on the second execution of initialization code. Depending on the goal of logging during initialization, check logs server-side, client-side, or both.
 
-## SignalR .NET client logging
+## SignalR client logging (Blazor Server)
 
-Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a traditional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
+On the client builder in `Pages/_Layout.cshtml`, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
+
+For the `configureLogging` log level value, pass the argument as either the string or integer log level shown in the following table.
+
+| <xref:Microsoft.Extensions.Logging.LogLevel>             | String setting | Integer setting |
+| -------------------------------------------------------- | :------------: | :-------------: |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Trace>       | `trace`        | 0               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Debug>       | `debug`        | 1               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Information> | `information`  | 2               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Warning>     | `warning`      | 3               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Error>       | `error`        | 4               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Critical>    | `critical`     | 5               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.None>        | `none`         | 6               |
+
+Example 1: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with a string value:
+
+```html
+<script src="_framework/blazor.server.js" autostart="false"></script>
+<script>
+  Blazor.start({
+    configureSignalR: function (builder) {
+      builder.configureLogging("information");
+    }
+  });
+</script>
+```
+
+Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with an integer value:
+
+```html
+<script src="_framework/blazor.server.js" autostart="false"></script>
+<script>
+  Blazor.start({
+    configureSignalR: function (builder) {
+      builder.configureLogging(2);
+    }
+  });
+</script>
+```
+
+For more information on Blazor startup (`Blazor.start`), see <xref:blazor/fundamentals/startup>.
+
+## SignalR client logging (Blazor WebAssembly)
+
+In Blazor WebAssembly apps, set up app settings configuration as described in <xref:blazor/fundamentals/configuration#logging-configuration>. Place app settings files in `wwwroot` that contain a `Logging:LogLevel:HubConnection` app setting.
+
+> [!NOTE]
+> As an alternative to using app settings, you can pass the <xref:Microsoft.Extensions.Logging.LogLevel> as the argument to <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> when the hub connection is created in a Razor component. However, accidentally deploying the app to a production hosting environment with verbose logging may result in a performance penalty. We recommend using app settings to set the log level.
+
+Provide a `Logging:LogLevel:HubConnection` app setting in the default `appsettings.json` file and in the `Development` environment app settings file. Use a typical less-verbose log level for the default, such as <xref:Microsoft.Extensions.Logging.LogLevel.Warning?displayProperty=nameWithType>. The default app settings value is what is used in `Staging` and `Production` environments if no app settings files for those environments are present. Use a verbose log level in the `Development` environment app settings file, such as <xref:Microsoft.Extensions.Logging.LogLevel.Trace?displayProperty=nameWithType>.
+
+`wwwroot/appsettings.json`:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning",
+      "HubConnection": "Warning"
+    }
+  }
+}
+```
+
+`wwwroot/appsettings.Development.json`:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning",
+      "HubConnection": "Trace"
+    }
+  }
+}
+```
+
+> [!IMPORTANT]
+> Configuration in the preceding app settings files is only used by the app if the guidance in <xref:blazor/fundamentals/configuration#logging-configuration> is followed.
+
+At the top of the Razor component file (`.razor`):
+
+* Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName>.
+* Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a traditional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
+* Inject an `IConfiguration` to read the `Logging:LogLevel:HubConnection` app setting.
 
 > [!NOTE]
 > `WebAssemblyConsoleLogger` is [internal](/dotnet/csharp/language-reference/keywords/internal) and not supported for direct use in developer code.
 
-Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> and inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> into the component:
-
-```razor
+```csharp
 @using Microsoft.Extensions.Logging
 @inject ILoggerProvider LoggerProvider
+@inject IConfiguration Config
 ```
 
-In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType> (`Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>):
+> [!NOTE]
+> The following example is based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). Consult the tutorial for further details.
+
+In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType> to add the logging provider and set the minimum log level from configuration:
 
 ```csharp
-var connection = new HubConnectionBuilder()
-    .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
-    .ConfigureLogging(logging => logging.AddProvider(LoggerProvider))
-    .Build();
+protected override async Task OnInitializedAsync()
+{
+    hubConnection = new HubConnectionBuilder()
+        .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+        .ConfigureLogging(builder => 
+        {
+            builder.AddProvider(LoggerProvider);
+            builder.SetMinimumLevel(
+                Config.GetValue<LogLevel>("Logging:LogLevel:HubConnection"));
+        })
+        .Build();
+
+    hubConnection.On<string, string>("ReceiveMessage", (user, message) => ...
+
+    await hubConnection.StartAsync();
+}
 ```
+
+> [!NOTE]
+> In the preceding example, `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
+
+For more information on setting the app's environment for Blazor WebAssembly, see <xref:blazor/fundamentals/environments>.
 
 ## Additional resources
 
@@ -1722,28 +2035,131 @@ Output:
 
 A hosted Blazor WebAssembly app that [prerenders its content](xref:blazor/components/prerendering-and-integration) executes [component initialization code twice](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). Logging takes place server-side on the first execution of initialization code and client-side on the second execution of initialization code. Depending on the goal of logging during initialization, check logs server-side, client-side, or both.
 
-## SignalR .NET client logging
+## SignalR client logging (Blazor Server)
 
-Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a traditional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
+On the client builder in `Pages/_Layout.cshtml`, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
+
+For the `configureLogging` log level value, pass the argument as either the string or integer log level shown in the following table.
+
+| <xref:Microsoft.Extensions.Logging.LogLevel>             | String setting | Integer setting |
+| -------------------------------------------------------- | :------------: | :-------------: |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Trace>       | `trace`        | 0               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Debug>       | `debug`        | 1               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Information> | `information`  | 2               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Warning>     | `warning`      | 3               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Error>       | `error`        | 4               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.Critical>    | `critical`     | 5               |
+| <xref:Microsoft.Extensions.Logging.LogLevel.None>        | `none`         | 6               |
+
+Example 1: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with a string value:
+
+```html
+<script src="_framework/blazor.server.js" autostart="false"></script>
+<script>
+  Blazor.start({
+    configureSignalR: function (builder) {
+      builder.configureLogging("information");
+    }
+  });
+</script>
+```
+
+Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with an integer value:
+
+```html
+<script src="_framework/blazor.server.js" autostart="false"></script>
+<script>
+  Blazor.start({
+    configureSignalR: function (builder) {
+      builder.configureLogging(2);
+    }
+  });
+</script>
+```
+
+For more information on Blazor startup (`Blazor.start`), see <xref:blazor/fundamentals/startup>.
+
+## SignalR client logging (Blazor WebAssembly)
+
+In Blazor WebAssembly apps, set up app settings configuration as described in <xref:blazor/fundamentals/configuration#logging-configuration>. Place app settings files in `wwwroot` that contain a `Logging:LogLevel:HubConnection` app setting.
+
+> [!NOTE]
+> As an alternative to using app settings, you can pass the <xref:Microsoft.Extensions.Logging.LogLevel> as the argument to <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> when the hub connection is created in a Razor component. However, accidentally deploying the app to a production hosting environment with verbose logging may result in a performance penalty. We recommend using app settings to set the log level.
+
+Provide a `Logging:LogLevel:HubConnection` app setting in the default `appsettings.json` file and in the `Development` environment app settings file. Use a typical less-verbose log level for the default, such as <xref:Microsoft.Extensions.Logging.LogLevel.Warning?displayProperty=nameWithType>. The default app settings value is what is used in `Staging` and `Production` environments if no app settings files for those environments are present. Use a verbose log level in the `Development` environment app settings file, such as <xref:Microsoft.Extensions.Logging.LogLevel.Trace?displayProperty=nameWithType>.
+
+`wwwroot/appsettings.json`:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning",
+      "HubConnection": "Warning"
+    }
+  }
+}
+```
+
+`wwwroot/appsettings.Development.json`:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning",
+      "HubConnection": "Trace"
+    }
+  }
+}
+```
+
+> [!IMPORTANT]
+> Configuration in the preceding app settings files is only used by the app if the guidance in <xref:blazor/fundamentals/configuration#logging-configuration> is followed.
+
+At the top of the Razor component file (`.razor`):
+
+* Inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> to add a `WebAssemblyConsoleLogger` to the logging providers passed to <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Unlike a traditional <xref:Microsoft.Extensions.Logging.Console.ConsoleLogger>, `WebAssemblyConsoleLogger` is a wrapper around browser-specific logging APIs (for example, `console.log`). Use of `WebAssemblyConsoleLogger` makes logging possible within Mono inside a browser context.
+* Inject an `IConfiguration` to read the `Logging:LogLevel:HubConnection` app setting.
 
 > [!NOTE]
 > `WebAssemblyConsoleLogger` is [internal](/dotnet/csharp/language-reference/keywords/internal) and not supported for direct use in developer code.
 
-Add the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> and inject an <xref:Microsoft.Extensions.Logging.ILoggerProvider> into the component:
-
-```razor
-@using Microsoft.Extensions.Logging
+```csharp
 @inject ILoggerProvider LoggerProvider
+@inject IConfiguration Config
 ```
 
-In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType> (`Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>):
+> [!NOTE]
+> The following example is based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). Consult the tutorial for further details.
+
+In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType> to add the logging provider and set the minimum log level from configuration:
 
 ```csharp
-var connection = new HubConnectionBuilder()
-    .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
-    .ConfigureLogging(logging => logging.AddProvider(LoggerProvider))
-    .Build();
+protected override async Task OnInitializedAsync()
+{
+    hubConnection = new HubConnectionBuilder()
+        .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+        .ConfigureLogging(builder => 
+        {
+            builder.AddProvider(LoggerProvider);
+            builder.SetMinimumLevel(
+                Config.GetValue<LogLevel>("Logging:LogLevel:HubConnection"));
+        })
+        .Build();
+
+    hubConnection.On<string, string>("ReceiveMessage", (user, message) => ...
+
+    await hubConnection.StartAsync();
+}
 ```
+
+> [!NOTE]
+> In the preceding example, `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
+
+For more information on setting the app's environment for Blazor WebAssembly, see <xref:blazor/fundamentals/environments>.
 
 ## Blazor WebAssembly authentication logging
 
