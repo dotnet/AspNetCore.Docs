@@ -243,7 +243,11 @@ For more information, including how to initialize Blazor when the document is re
 
 ## Configure SignalR server timeout and Keep-Alive on the client
 
-Configure the following values for the client:
+### Blazor Server hub
+
+*This section only applies to Blazor Server.*
+
+Configure the following values for the Blazor Server hub connection on the client:
 
 * `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the Keep-Alive interval (`keepAliveIntervalInMilliseconds`).
 * `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout (`serverTimeoutInMilliseconds`).
@@ -251,7 +255,7 @@ Configure the following values for the client:
 The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
 
 ```html
-<script src="_framework/blazor.{HOSTING MODEL}.js" autostart="false"></script>
+<script src="_framework/blazor.server.js" autostart="false"></script>
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
@@ -266,7 +270,9 @@ The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwr
 </script>
 ```
 
-In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
+### Hub connections created in Razor components
+
+*This section only applies to Blazor Server components and components in the :::no-loc text="Client"::: project of a hosted Blazor WebAssembly solution.*
 
 When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example, based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor), uses default values:
 
@@ -626,15 +632,19 @@ For more information, including how to initialize Blazor when the document is re
 
 ## Configure SignalR server timeout and Keep-Alive on the client
 
-Configure the following values for the client:
+### Blazor Server hub
+
+*This section only applies to Blazor Server.*
+
+Configure the following values for the Blazor Server hub connection on the client:
 
 * `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the Keep-Alive interval (`keepAliveIntervalInMilliseconds`).
 * `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout (`serverTimeoutInMilliseconds`).
 
-The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
+The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
 
 ```html
-<script src="_framework/blazor.{HOSTING MODEL}.js" autostart="false"></script>
+<script src="_framework/blazor.server.js" autostart="false"></script>
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
@@ -649,7 +659,9 @@ The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroo
 </script>
 ```
 
-In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
+### Hub connections created in Razor components
+
+*This section only applies to Blazor Server components and components in the :::no-loc text="Client"::: project of a hosted Blazor WebAssembly solution.*
 
 When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example, based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor), uses default values:
 
@@ -995,15 +1007,19 @@ For more information, including how to initialize Blazor when the document is re
 
 ## Configure SignalR server timeout and Keep-Alive on the client
 
-Configure the following values for the client:
+### Blazor Server hub
+
+*This section only applies to Blazor Server.*
+
+Configure the following values for the Blazor Server hub connection on the client:
 
 * `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the Keep-Alive interval (`keepAliveIntervalInMilliseconds`).
 * `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout (`serverTimeoutInMilliseconds`).
 
-The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
+The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
 
 ```html
-<script src="_framework/blazor.{HOSTING MODEL}.js" autostart="false"></script>
+<script src="_framework/blazor.server.js" autostart="false"></script>
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
@@ -1018,7 +1034,9 @@ The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroo
 </script>
 ```
 
-In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
+### Hub connections created in Razor components
+
+*This section only applies to Blazor Server components and components in the :::no-loc text="Client"::: project of a hosted Blazor WebAssembly solution.*
 
 When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example, based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor), uses default values:
 
