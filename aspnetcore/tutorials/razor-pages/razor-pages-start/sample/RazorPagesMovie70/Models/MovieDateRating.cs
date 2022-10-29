@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RazorPagesMovie.Models
 {
-    // </snippet>
+    // <snippet>
     public class Movie
     {
         public int Id { get; set; }
