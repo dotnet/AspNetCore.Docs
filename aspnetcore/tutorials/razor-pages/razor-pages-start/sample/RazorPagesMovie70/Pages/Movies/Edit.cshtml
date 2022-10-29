@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model RazorPagesMovie.Pages.Movies.EditModel
 
 @{
@@ -35,6 +35,11 @@
                 <span asp-validation-for="Movie.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Movie.Rating" class="control-label"></label>
+                <input asp-for="Movie.Rating" class="form-control" />
+                <span asp-validation-for="Movie.Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -46,5 +51,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
