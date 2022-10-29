@@ -1,4 +1,4 @@
-//#define FIRST
+#define FIRST
 #if FIRST
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -22,10 +22,12 @@ namespace RazorPagesMovie.Pages.Movies
 
         [BindProperty(SupportsGet = true)]
         public string? SearchString { get; set; }
-        public SelectList? Genres { get; set; }
-        [BindProperty(SupportsGet = true)]
 
+        public SelectList? Genres { get; set; }
+
+        [BindProperty(SupportsGet = true)]
         public string? MovieGenre { get; set; }
+
         // </snippet_newProps>
         public async Task OnGetAsync()
         {
