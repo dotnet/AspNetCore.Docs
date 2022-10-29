@@ -32,7 +32,7 @@ Automatic verification that the schema and model are in sync makes it easier to 
 1. Edit `Pages/Movies/Index.cshtml`, and add a `Rating` field:
    <a name="addrat7"></a>
 <!-- Update Index in working project then copy to snap7 folder -->
-    [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snap7/IndexRating.cshtml?highlight=40-42,62-64)]
+   [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snap7/IndexRating.cshtml?highlight=40-42,62-64)]
 
 1. Update the following pages with a `Rating` field:
    * *[Pages/Movies/Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Create.cshtml)*.
