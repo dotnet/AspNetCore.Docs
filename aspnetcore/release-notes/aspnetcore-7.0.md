@@ -73,6 +73,18 @@ For more information, see [Use JSON property names in validation errors](xref:mv
 
 ## Minimal APIs
 
+### Route groups
+
+The <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> extension method helps organize groups of endpoints with a common prefix. It reduces repetitive code and allows for customizing entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A>.
+
+For example, the following code creates two similar groups of endpoints:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/Program.cs" id="snippet_MapGroup":::
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/TodoEndpoints.cs" id="snippet_TodoEndpoints":::
+
+For more information, see [Route groups](xref:fundamentals/minimal-apis#route-groups)
+
 ### Filters in Minimal API apps
 
 Minimal API filters allow developers to implement business logic that supports:
@@ -183,18 +195,6 @@ The [`[AsParameters]` attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttr
 The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface, which supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html).
 
 For more information, see [Problem details service](xref:web-api/handle-errors##pds7)
-
-### Route groups
-
-The <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> extension method helps organize groups of endpoints with a common prefix. It reduces repetitive code and allows for customizing entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A>.
-
-For example, the following code creates two similar groups of endpoints:
-
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/Program.cs" id="snippet_MapGroup":::
-
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/TodoEndpoints.cs" id="snippet_TodoEndpoints":::
-
-For more information, see [Route groups](xref:fundamentals/minimal-apis#route-groups)
 
 ## gRPC
 
