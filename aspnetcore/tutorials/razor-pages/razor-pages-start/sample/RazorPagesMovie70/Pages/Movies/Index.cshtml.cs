@@ -19,6 +19,7 @@ namespace RazorPagesMovie.Pages.Movies
         }
 
         public IList<Movie> Movie { get;set; }  = default!;
+
         [BindProperty(SupportsGet = true)]
         public string? SearchString { get; set; }
         public SelectList? Genres { get; set; }
