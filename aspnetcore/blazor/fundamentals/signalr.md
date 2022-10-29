@@ -641,7 +641,7 @@ Configure the following values for the Blazor Server hub connection on the clien
 * `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the Keep-Alive interval (`keepAliveIntervalInMilliseconds`).
 * `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout (`serverTimeoutInMilliseconds`).
 
-The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
+The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
 
 ```html
 <script src="_framework/blazor.server.js" autostart="false"></script>
@@ -1016,7 +1016,7 @@ Configure the following values for the Blazor Server hub connection on the clien
 * `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the Keep-Alive interval (`keepAliveIntervalInMilliseconds`).
 * `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout (`serverTimeoutInMilliseconds`).
 
-The following example for either `Pages/_Layout.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
+The following example for either `Pages/_Host.cshtml` (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
 
 ```html
 <script src="_framework/blazor.server.js" autostart="false"></script>
