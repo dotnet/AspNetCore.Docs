@@ -517,7 +517,7 @@ This tutorial creates the following API:
 * In the **Create a new project** dialog:
   * Enter `API` in the **Search for templates** search box.
   * Select the **ASP.NET Core Web API** template and select **Next**.
-  ![Visual Studio Create a new project](min-web-api/_static/empty.png)
+  ![Visual Studio Create a new project](min-web-api/_static/create-web-api.png)
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
 
