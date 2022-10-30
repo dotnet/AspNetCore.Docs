@@ -4,6 +4,7 @@ author: rick-anderson
 description: Learn how to build a minimal web API with ASP.NET Core.
 ms.author: riande
 ms.date: 10/23/2022
+ms.custom: engagement-fy23
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
 ---
