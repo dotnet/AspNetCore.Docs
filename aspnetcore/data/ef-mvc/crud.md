@@ -185,9 +185,6 @@ You should now be able to click **Create** to see the new student appear in the 
 > [!NOTE]
 > You may get this problem on .NET 6 and later. If you're having this problem on multiple pages and these steps didn't work then a more global approach would be to go into `ContosoUniversity.csproj` to set the `nullable` setting to `disable`.
 
-
-But for simplicity we will leave it alone in this tutorial.
-
 ## Update the Edit page
 
 In `StudentController.cs`, the HttpGet `Edit` method (the one without the `HttpPost` attribute) uses the `FirstOrDefaultAsync` method to retrieve the selected Student entity, as you saw in the `Details` method. You don't need to change this method.
