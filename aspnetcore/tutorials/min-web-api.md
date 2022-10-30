@@ -37,17 +37,17 @@ This tutorial creates the following API:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
 
 ![VS22 installer workloads](min-web-api/_static/asp-net-web-dev.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
 
 ---
 
@@ -507,17 +507,17 @@ This tutorial creates the following API:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
 
 ![VS22 installer workloads](min-web-api/_static/asp-net-web-dev.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
 
 ---
 
