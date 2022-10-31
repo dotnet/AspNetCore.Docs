@@ -17,7 +17,6 @@ This article describes how to handle errors in Minimal API apps.
 In a Minimal API app, there are two different built-in centralized mechanisms to handle unhandled exceptions:
 
 * [Developer Exception Page middleware](#developer-exception-page) (For use in the **Development environment only**.)
-* ```
 * [Exception handler middleware](#exception-handler)
 
 This section refers to the following Minimal API app to demonstrate ways to handle exceptions. It throws an exception when the endpoint `/exception` is requested:
