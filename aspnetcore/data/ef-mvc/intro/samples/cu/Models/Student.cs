@@ -38,7 +38,6 @@ namespace ContosoUniversity.Models
 }
 #endregion
 
-
 #elif DataType
 #region snippet_DataType
 using System;
