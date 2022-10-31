@@ -2037,7 +2037,7 @@ For additional example code, see the [`NavigationManagerComponent` in the `Basic
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-To facilitate the control of navigation events in a Razor component, use the `NavigationLock` component. As long as the `NavigationLock` component is rendered, it intercepts navigation events.
+The `NavigationLock` component intercepts navigation events as long as it is rendered, effectively "locking" any given navigation until a decision is made to either proceed or cancel. Use `NavigationLock` when navigation interception can be scoped to the lifetime of a component.
 
 `NavigationLock` parameters:
 
