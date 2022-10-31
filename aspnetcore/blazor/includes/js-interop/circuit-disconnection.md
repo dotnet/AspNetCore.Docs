@@ -42,5 +42,5 @@ If you must clean up your own JS objects or execute other JS code on the client 
 
 For more information, see the following articles:
 
-* <xref:fundamentals/handle-errors>: The *JavaScript interop* section discusses error handling in JS interop scenarios. <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
+* <xref:blazor/fundamentals/handle-errors>: The *JavaScript interop* section discusses error handling in JS interop scenarios. <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
 * <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>: The *Component disposal with `IDisposable` and `IAsyncDisposable`* section describes how to implement disposal patterns in Razor components.
