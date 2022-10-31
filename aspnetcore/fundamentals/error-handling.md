@@ -213,9 +213,9 @@ For information about how to handle model state errors, see [Model binding](xref
 
 ## Problem details
 
-[Problem Details](https://www.rfc-editor.org/rfc/rfc7807.html) are not the only response format to describe a HTTP API error, however, they are commonly used to report errors for HTTP APIs.
+[Problem Details](https://www.rfc-editor.org/rfc/rfc7807.html) are not the only response format to describe an HTTP API error, however, they are commonly used to report errors for HTTP APIs.
 
-The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface, which supports creating problem details in ASP.NET Core. The [`AddProblemDetails`](/dotnet/api/microsoft.extensions.dependencyinjection.problemdetailsservicecollectionextensions.addproblemdetails?view=aspnetcore-7.0&preserve-view=true) extension method on <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> register the default `IProblemDetailsService` implementation.
+The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface, which supports creating problem details in ASP.NET Core. The [`AddProblemDetails`](/dotnet/api/microsoft.extensions.dependencyinjection.problemdetailsservicecollectionextensions.addproblemdetails?view=aspnetcore-7.0&preserve-view=true) extension method on <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> registers the default `IProblemDetailsService` implementation.
 
 In ASP.NET Core apps, the following middleware generates problem details HTTP responses when [`AddProblemDetails`](/dotnet/api/microsoft.extensions.dependencyinjection.problemdetailsservicecollectionextensions.addproblemdetails?view=aspnetcore-7.0&preserve-view=true) is called, except when not accepted by the client:
 
@@ -237,13 +237,13 @@ TODO
 
 #### `CustomizeProblemDetails` operation
 
-The generated problem details can be customized using <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails> and are applied to all auto-generated problem details.
+The generated problem details can be customized using <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails>, and the customizations are applied to all auto-generated problem details.
 
 The following code uses <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> to set <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails>:
 
 :::code language="csharp" source="error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_CustomizeProblemDetails" highlight="3-5":::
 
-For example, a `HTTP Status 400 Bad Request` endpoint result produces the following problem details response body
+For example, an [`HTTP Status 400 Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400) endpoint result produces the following problem details response body:
 
 ```json
 {
@@ -262,13 +262,13 @@ An <xref:Microsoft.AspNetCore.Http.IProblemDetailsWriter> implementation can be 
 
 #### Problem details from Middleware
 
-An alternative approach to using <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> to set <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails> is to set the <xref:Microsoft.AspNetCore.Http.ProblemDetailsContext.ProblemDetails> in middleware. A problem details response can be written by calling [`IProblemDetailsService.WriteAsync`](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true):
+An alternative approach to using <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> with <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails> is to set the <xref:Microsoft.AspNetCore.Http.ProblemDetailsContext.ProblemDetails> in middleware. A problem details response can be written by calling [`IProblemDetailsService.WriteAsync`](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true):
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_middleware" highlight="5,19-40":::
 
 In the preceding code, the minimal API endpoints `/divide` and `/squareroot` return the expected custom problem response on error input.
 
-The API controller endpoints return the default problem response on error input, not the custom problem response. The default problem response is returned because the API controller has written to the response stream, [Problem details for error status codes](/aspnet/core/web-api/#problem-details-for-error-status-codes-1), before [`IProblemDetailsService.WriteAsync`](https://github.com/dotnet/aspnetcore/blob/ce2db7ea0b161fc5eb35710fca6feeafeeac37bc/src/Http/Http.Extensions/src/ProblemDetailsService.cs#L24) is called and the response will not be written again.
+The API controller endpoints return the default problem response on error input, not the custom problem response. The default problem response is returned because the API controller has written to the response stream, [Problem details for error status codes](/aspnet/core/web-api/#problem-details-for-error-status-codes-1), before [`IProblemDetailsService.WriteAsync`](https://github.com/dotnet/aspnetcore/blob/ce2db7ea0b161fc5eb35710fca6feeafeeac37bc/src/Http/Http.Extensions/src/ProblemDetailsService.cs#L24) is called and the response is **not** written again.
 
 The following `ValuesController` returns <xref:Microsoft.AspNetCore.Mvc.BadRequestResult>, which writes to the response stream and therefore prevents the custom problem response from being returned.
 
@@ -284,7 +284,7 @@ Consider the following app:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_apishort" highlight="4,8":::
 
-In non-development environments, when an exception occurs, the following a standardized [ProblemDetails response](https://datatracker.ietf.org/doc/html/rfc7807) is returned to the client:
+In non-development environments, when an exception occurs, the following is a standard [ProblemDetails response](https://datatracker.ietf.org/doc/html/rfc7807) that is returned to the client:
 
 ```json
 {
@@ -294,7 +294,7 @@ In non-development environments, when an exception occurs, the following a stand
 }
 ```
 
-For most apps, the preceding code is all that for exceptions, however, the following section shows how get more detailed problem responses.
+For most apps, the preceding code is all that's needed for exceptions, however, the following section shows how to get more detailed problem responses.
 
 An alternative to a [custom exception handler page](xref:fundamentals/error-handling#exception-handler-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. Using a lambda allows access to the error and writing a problem details response with [`IProblemDetailsService.WriteAsync`](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true):
 
