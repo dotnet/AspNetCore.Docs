@@ -174,7 +174,7 @@ That's the reason why you're getting errors.
 
 In the  `Student` class simply change navigation property to be nullable with a question mark symbol: 
 
-[!code-csharp[](intro/samples/cu/Models/Students.cs?name=snippet_NullableEnrollments&highlight=36)]
+[!code-csharp[](intro/samples/cu/Models/Student.cs?name=snippet_NullableEnrollments&highlight=36)]
 
 Also in *Views/Students/Create.cshtml* notice the `asp-validation-summary` property is set to `ModelOnly` we need to change the value to `All` as shown here.
 
