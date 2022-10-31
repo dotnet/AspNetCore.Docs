@@ -19,7 +19,7 @@ namespace ContosoUniversity.Models
 }
 #endregion
 
-#if Crud
+#elif Crud
 #region snippet_NullableEnrollments
 using System;
 using System.Collections.Generic;
