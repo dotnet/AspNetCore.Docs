@@ -307,7 +307,7 @@ An alternative to a [custom exception handler page](xref:fundamentals/error-hand
 > [!WARNING]
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
 
-An alternative approach to generate problem details is to use the 3rd party Nuget package [Hellang.Middleware.ProblemDetails](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) that can be use to map exceptions and client errors to a problem details.
+An alternative approach to generate problem details is to use the 3rd party Nuget package [Hellang.Middleware.ProblemDetails](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) that can be used to map exceptions and client errors to problem details.
 
 ## Additional resources
 
