@@ -231,9 +231,13 @@ The next section shows how to customize the problem details response body.
 
 <a name="cpd7"></a>
 
-### Customizing problem details
+### Customize problem details
 
-TODO
+The automatic creation of a `ProblemDetails` can be customized using of the following options:
+
+1. Use [`ProblemDetailsOptions.CustomizeProblemDetails`](#customizeproblemdetails-operation)
+2. Use a custom [`IProblemDetailsWriter`](#custom-iproblemdetailswriter)
+3. Call the [`IProblemDetailsService` in a middleware](#problem-details-from-Middleware)
 
 #### `CustomizeProblemDetails` operation
 
