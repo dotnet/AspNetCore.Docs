@@ -36,7 +36,7 @@ The <xref:System.ComponentModel.DataAnnotations> namespace provides:
 
 Update the `Movie` class to take advantage of the built-in `[Required]`, `[StringLength]`, `[RegularExpression]`, and `[Range]` validation attributes.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/MovieDateRatingDA.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/MovieDateRatingDA.cs?name=snippet1)]
 
 The validation attributes specify behavior to enforce on the model properties they're applied to:
 
@@ -120,7 +120,7 @@ When validation logic needs to change, it's done only in the model. Validation i
 
 Examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. The `[DataType]` attribute is applied to the `ReleaseDate` and `Price` properties.
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie70/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
 
 The `[DataType]` attributes provide:
 
