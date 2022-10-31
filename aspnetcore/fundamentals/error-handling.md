@@ -237,7 +237,7 @@ The automatic creation of a `ProblemDetails` can be customized using of the foll
 
 1. Use [`ProblemDetailsOptions.CustomizeProblemDetails`](#customizeproblemdetails-operation)
 2. Use a custom [`IProblemDetailsWriter`](#custom-iproblemdetailswriter)
-3. Call the [`IProblemDetailsService` in a middleware](#problem-details-from-Middleware)
+3. Call the [`IProblemDetailsService` in a middleware](#problem-details-from-middleware)
 
 #### `CustomizeProblemDetails` operation
 
