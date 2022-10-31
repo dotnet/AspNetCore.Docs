@@ -234,6 +234,8 @@ Components shouldn't need to implement <xref:System.IDisposable> and <xref:Syste
 
 Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
 
+For guidance on JavaScript interop object disposal that throws a <xref:Microsoft.JSInterop.JSDisconnectedException> in Blazor Server apps when a circuit is disconnected, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-interop-calls-at-circuit-disconnection> or <xref:blazor/js-interop/call-dotnet-from-javascript#javascript-interop-calls-at-circuit-disconnection>. For general JavaScript interop error handling guidance, see the *JavaScript interop* section in <xref:fundamentals/handle-errors>. <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
+
 ### Synchronous `IDisposable`
 
 For synchronous disposal tasks, use <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>.
@@ -696,6 +698,8 @@ Components shouldn't need to implement <xref:System.IDisposable> and <xref:Syste
 
 Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
 
+For guidance on JavaScript interop object disposal that throws a <xref:Microsoft.JSInterop.JSDisconnectedException> in Blazor Server apps when a circuit is disconnected, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-interop-calls-at-circuit-disconnection> or <xref:blazor/js-interop/call-dotnet-from-javascript#javascript-interop-calls-at-circuit-disconnection>. For general JavaScript interop error handling guidance, see the *JavaScript interop* section in <xref:fundamentals/handle-errors>. <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
+
 ### Synchronous `IDisposable`
 
 For synchronous disposal tasks, use <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>.
@@ -1153,6 +1157,8 @@ If a component implements <xref:System.IDisposable>, <xref:System.IAsyncDisposab
 Components shouldn't need to implement <xref:System.IDisposable> and <xref:System.IAsyncDisposable> simultaneously. If both are implemented, the framework only executes the asynchronous overload.
 
 Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
+
+For guidance on JavaScript interop object disposal that throws a <xref:Microsoft.JSInterop.JSDisconnectedException> in Blazor Server apps when a circuit is disconnected, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-interop-calls-at-circuit-disconnection> or <xref:blazor/js-interop/call-dotnet-from-javascript#javascript-interop-calls-at-circuit-disconnection>. For general JavaScript interop error handling guidance, see the *JavaScript interop* section in <xref:fundamentals/handle-errors>. <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
 
 ### Synchronous `IDisposable`
 
@@ -1614,6 +1620,8 @@ If a component implements <xref:System.IDisposable>, <xref:System.IAsyncDisposab
 Components shouldn't need to implement <xref:System.IDisposable> and <xref:System.IAsyncDisposable> simultaneously. If both are implemented, the framework only executes the asynchronous overload.
 
 Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
+
+For guidance on JavaScript interop object disposal that throws a <xref:Microsoft.JSInterop.JSDisconnectedException> in Blazor Server apps when a circuit is disconnected, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-interop-calls-at-circuit-disconnection> or <xref:blazor/js-interop/call-dotnet-from-javascript#javascript-interop-calls-at-circuit-disconnection>. For general JavaScript interop error handling guidance, see the *JavaScript interop* section in <xref:fundamentals/handle-errors>. <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
 
 ### Synchronous `IDisposable`
 
