@@ -730,7 +730,7 @@ In the preceding example:
 
 [!INCLUDE[](~/blazor/includes/js-interop/6.0/size-limits.md)]
 
-## JavaScript interop calls at circuit disconnection
+## JavaScript interop calls without a circuit
 
 [!INCLUDE[](~/blazor/includes/js-interop/circuit-disconnection.md)]
 
@@ -1064,7 +1064,7 @@ JS isolation provides the following benefits:
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
 
-## JavaScript interop calls at circuit disconnection
+## JavaScript interop calls without a circuit
 
 [!INCLUDE[](~/blazor/includes/js-interop/circuit-disconnection.md)]
 
@@ -1384,7 +1384,7 @@ Objects that contain circular references can't be serialized on the client for e
 
 [!INCLUDE[](~/blazor/includes/js-interop/3.1/size-limits.md)]
 
-## JavaScript interop calls at circuit disconnection
+## JavaScript interop calls without a circuit
 
 [!INCLUDE[](~/blazor/includes/js-interop/circuit-disconnection.md)]
 
@@ -2180,7 +2180,7 @@ As an alternative to interacting with JavaScript (JS) in Blazor WebAssembly apps
 
 For more information, see <xref:blazor/js-interop/import-export-interop>. 
 
-## JavaScript interop calls at circuit disconnection
+## JavaScript interop calls without a circuit
 
 [!INCLUDE[](~/blazor/includes/js-interop/circuit-disconnection.md)]
 

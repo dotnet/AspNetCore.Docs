@@ -814,7 +814,7 @@ longRunningFn: 3
 longRunningFn aborted!
 ```
 
-## JavaScript interop calls at circuit disconnection
+## JavaScript interop calls without a circuit
 
 [!INCLUDE[](~/blazor/includes/js-interop/circuit-disconnection.md)]
 
@@ -1438,7 +1438,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 :::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
 
-## JavaScript interop calls at circuit disconnection
+## JavaScript interop calls without a circuit
 
 [!INCLUDE[](~/blazor/includes/js-interop/circuit-disconnection.md)]
 
@@ -1855,7 +1855,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 :::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
 
-## JavaScript interop calls at circuit disconnection
+## JavaScript interop calls without a circuit
 
 [!INCLUDE[](~/blazor/includes/js-interop/circuit-disconnection.md)]
 
@@ -2610,7 +2610,7 @@ Unmarshalled interop using the <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime>
 
 For more information, see <xref:blazor/js-interop/import-export-interop>. 
 
-## JavaScript interop calls at circuit disconnection
+## JavaScript interop calls without a circuit
 
 [!INCLUDE[](~/blazor/includes/js-interop/circuit-disconnection.md)]
 
