@@ -1,5 +1,5 @@
 ---
-title: Minimal APIs overview
+title: Minimal APIs cheat sheet 
 author: rick-anderson
 description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: riande
