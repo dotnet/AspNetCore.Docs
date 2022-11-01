@@ -1,3 +1,4 @@
+#if NEVER
 // <snippetFull>
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -28,3 +29,4 @@ namespace RazorPagesMovie.Pages.Movies
     }
 }
 // </snippetFull>
+#endif
