@@ -1,6 +1,6 @@
 *This section only applies to Blazor Server apps.*
 
-JavaScript (JS) interop calls can't be issued after a SignalR circuit is disconnected. During component disposal without a circuit and at any other time that a circuit doesn't exist, the following method calls fail and log a message that the circuit is disconnected:
+JavaScript (JS) interop calls can't be issued after a SignalR circuit is disconnected. Without a circuit during component disposal or at any other time that a circuit doesn't exist, the following method calls fail and log a message that the circuit is disconnected as a <xref:Microsoft.JSInterop.JSDisconnectedException>:
 
 * JS interop method calls
   * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
@@ -8,14 +8,14 @@ JavaScript (JS) interop calls can't be issued after a SignalR circuit is disconn
   * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>)
 * `Dispose`/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference> or `Dispose` calls on any <xref:Microsoft.JSInterop.DotNetObjectReference>.
 
-The error message logged by the framework is of type <xref:Microsoft.JSInterop.JSDisconnectedException>. In order to avoid logging the exception, catch it in a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement.
+In order to avoid logging <xref:Microsoft.JSInterop.JSDisconnectedException> or to log a custom information, catch the exception in a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement.
 
 For the following component disposal example with an <xref:Microsoft.JSInterop.IJSObjectReference> object used to call JS from .NET:
 
 * The component implements <xref:System.IAsyncDisposable>.
 * `objInstance` is an <xref:Microsoft.JSInterop.IJSObjectReference>.
-* Optionally, you can log a message that the circuit was disconnected in the `catch` statement at whatever log level you prefer. The following example doesn't log a custom message because it assumes the developer doesn't care about when or where circuits are disconnected during component disposal.
 * <xref:Microsoft.JSInterop.JSDisconnectedException> is caught and not logged.
+* Optionally, you can log custom information in the `catch` statement at whatever log level you prefer. The following example doesn't log custom information because it assumes the developer doesn't care about when or where circuits are disconnected during component disposal.
 
 ```csharp
 async ValueTask IAsyncDisposable.DisposeAsync()
@@ -38,7 +38,7 @@ async ValueTask IAsyncDisposable.DisposeAsync()
 >
 > When a circuit fails and developer disposal code fails with a caught or uncaught <xref:Microsoft.JSInterop.JSDisconnectedException>, automatic garbage collection eventually disposes of any objects created by the developer in the component.
 
-If you must clean up your own JS objects or execute other JS code on the client after a circuit is lost or you prefer to dispose one or more <xref:Microsoft.JSInterop.IJSObjectReference>s or <xref:Microsoft.JSInterop.DotNetObjectReference>s on the client, use the [`MutationObserver` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JS on the client and avoid calling `Dispose`/`DisposeAsync` method on the objects in the component.
+If you must clean up your own JS objects or execute other JS code on the client after a circuit is lost or you prefer to dispose of one or more <xref:Microsoft.JSInterop.IJSObjectReference>s or <xref:Microsoft.JSInterop.DotNetObjectReference>s on the client, use the [`MutationObserver` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JS on the client and avoid calling `Dispose`/`DisposeAsync` on the objects in the component.
 
 For more information, see the following articles:
 
