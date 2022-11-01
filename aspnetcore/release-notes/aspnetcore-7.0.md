@@ -208,6 +208,41 @@ gRPC JSON transcoding is an extension for ASP.NET Core that creates RESTful JSON
 
 For more information, see [gRPC JSON transcoding in ASP.NET Core gRPC apps](xref:grpc/json-transcoding?view=aspnetcore-7.0) and <xref:grpc/json-transcoding-openapi>.
 
+### gRPC health checks in ASP.NET Core
+
+The [gRPC health checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md) is a standard for reporting the health of gRPC server apps. Health checks are exposed by an app as a gRPC service. They are typically used with an external monitoring service to check the status of an app.
+
+gRPC ASP.NET Core has added built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](xref:host-and-deploy/health-checks) are reported to callers.
+
+For more information, see <xref:grpc/health-checks>.
+
+### Improved call credentials support
+
+Call credentials are the recommended way to configure a gRPC client to send an auth token to the server. gRPC clients supports two new features to make call credentials easier to use:
+
+* Previously, call credentials were only sent with a gRPC call if the connection was secured with TLS. A new setting on `GrpcChannelOptions`, called `UnsafeUseInsecureChannelCallCredentials`, allows this behavior to be customized. An scenario where this is useful is using call credentials in a local development that doesn't have TLS configured.
+* A new method called `AddCallCredentials` is available for use with the [gRPC client factory](xref:grpc/clientfactory). `AddCallCredentials` is a quick way to configure call credentials for a gRPC client, and integrates well with dependency injection (DI). Scoped services can be resolved to set an auth token on the gRPC client.
+
+The following code configures the gRPC client factory to send `Authorization` metadata:
+
+```csharp
+builder.Services
+    .AddGrpcClient<Greeter.GreeterClient>(o =>
+    {
+        o.Address = new Uri("https://localhost:5001");
+    })
+    .AddCallCredentials((context, metadata) =>
+    {
+        if (!string.IsNullOrEmpty(_token))
+        {
+            metadata.Add("Authorization", $"Bearer {_token}");
+        }
+        return Task.CompletedTask;
+    });
+```
+
+For more information, see [Configure a bearer token with the gRPC client factory](xref:grpc/authn-and-authz#bearer-token-with-grpc-client-factory).
+
 ## SignalR
 
 ### Client results
