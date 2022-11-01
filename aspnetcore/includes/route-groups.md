@@ -6,15 +6,15 @@ For example, the following code creates two similar groups of endpoints:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/Program.cs" id="snippet_MapGroup":::
 
-The first group of endpoints will only match requests prefixed with `/public/todos` and are accessible without any authentication. The second group of endpoints will only match requests prefixed with `/private/todos` and require authentication.
-
-The `QueryPrivateTodos` [endpoint filter factory](xref:fundamentals/minimal-apis/min-api-filters) is a local function that modifies the route handler's `TodoDb` parameters to allow to access and store private todo data.
-
 :::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/TodoEndpoints.cs" id="snippet_TodoEndpoints":::
 
 In this scenario, you can use a relative address for the `Location` header in the `201 Created` result:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/TodoEndpoints.cs" id="snippet_create":::
+
+The first group of endpoints will only match requests prefixed with `/public/todos` and are accessible without any authentication. The second group of endpoints will only match requests prefixed with `/private/todos` and require authentication.
+
+The `QueryPrivateTodos` [endpoint filter factory](xref:fundamentals/minimal-apis/min-api-filters) is a local function that modifies the route handler's `TodoDb` parameters to allow to access and store private todo data.
 
 Route groups also support nested groups and complex prefix patterns with route parameters and constraints. In the following example, and route handler mapped to the `user` group can capture the `{org}` and `{group}` route parameters defined in the outer group prefixes.
 
@@ -27,7 +27,7 @@ var user = org.MapGroup("{user}");
 user.MapGet("", (string org, string user) => $"{org}/{user}");
 ```
 
-Adding filters or metadata to a group behaves the same way as adding them individually to each endpoint before adding any extra filters or metadata that may have been added to a specific endpoint or inner group.
+Adding filters or metadata to a group behaves the same way as adding them individually to each endpoint before adding any extra filters or metadata that may have been added to an inner group or specific endpoint.
 
 ```csharp
 var outer = app.MapGroup("/outer");
