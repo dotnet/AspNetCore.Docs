@@ -490,7 +490,7 @@ For more information, see [Shadow copying in IIS](xref:host-and-deploy/iis/advan
 
 ### Kestrel full certificate chain improvements
 
-[HttpsConnectionAdapterOptions](/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions?view=aspnetcore-7.0&preserve-view=true) has a new [ServerCertificateChain](/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions.servercertificatechain?view=aspnetcore-7.0&preserve-view=true#microsoft-aspnetcore-server-kestrel-https-httpsconnectionadapteroptions-servercertificatechain) property of type [X509Certificate2Collection](/dotnet/api/system.security.cryptography.x509certificates.x509certificate2collection?view=net-6.0), which makes it easier to validate certificate chains by allowing a full chain including intermediate certificates to be specified. See [dotnet/aspnetcore#21513](https://github.com/dotnet/aspnetcore/issues/21513) for more details.
+[HttpsConnectionAdapterOptions](/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions?view=aspnetcore-7.0&preserve-view=true) has a new [ServerCertificateChain](/dotnet/api/microsoft.aspnetcore.server.kestrel.https.httpsconnectionadapteroptions.servercertificatechain?view=aspnetcore-7.0&preserve-view=true#microsoft-aspnetcore-server-kestrel-https-httpsconnectionadapteroptions-servercertificatechain) property of type [X509Certificate2Collection](/dotnet/api/system.security.cryptography.x509certificates.x509certificate2collection), which makes it easier to validate certificate chains by allowing a full chain including intermediate certificates to be specified. See [dotnet/aspnetcore#21513](https://github.com/dotnet/aspnetcore/issues/21513) for more details.
 
 ### dotnet watch
 
