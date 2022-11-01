@@ -1,5 +1,5 @@
 ---
-title: JavaScript `[JSImport]`/`[JSExport]` interop with ASP.NET Core Blazor WebAssembly
+title: JavaScript JSImport/JSExport interop with ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Learn how to interact with JavaScript in Blazor WebAssembly apps using JavaScript `[JSImport]`/`[JSExport]` interop.
 monikerRange: '= aspnetcore-7.0'
