@@ -389,7 +389,8 @@ Common locations exist for persisting state:
 * [Server-side storage](#server-side-storage-wasm)
 * [URL](#url-wasm)
 * [Browser storage](#browser-storage-wasm)
-* [In-memory state container service](#in-memory-state-container-service-wasm)
+* [In-memory state container service](#in-memory-state-container-service-wasm) 
+* [Additional approaches](#additional-approaches-wasm)
 
 <h2 id="server-side-storage-wasm">Server-side storage</h2>
 
@@ -449,6 +450,15 @@ Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk th
 <h2 id="in-memory-state-container-service-wasm">In-memory state container service</h2>
 
 [!INCLUDE[](~/blazor/includes/state-container.md)]
+
+<h2 id="additional-approaches-wasm">Additional approaches</h2>
+
+When implementing custom state storage, a useful approach is to adopt [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters):
+
+* To consume state across many components.
+* If there's just one top-level state object to persist.
+
+For additional discussion and example approaches, see [Blazor: In-memory state container as cascading parameter (dotnet/AspNetCore.Docs #27296)](https://github.com/dotnet/AspNetCore.Docs/issues/27296).
 
 ## Additional resources
 
@@ -830,6 +840,7 @@ Common locations exist for persisting state:
 * [URL](#url-wasm)
 * [Browser storage](#browser-storage-wasm)
 * [In-memory state container service](#in-memory-state-container-service-wasm)
+* [Additional approaches](#additional-approaches-wasm)
 
 <h2 id="server-side-storage-wasm">Server-side storage</h2>
 
@@ -889,6 +900,15 @@ Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk th
 <h2 id="in-memory-state-container-service-wasm">In-memory state container service</h2>
 
 [!INCLUDE[](~/blazor/includes/state-container.md)]
+
+<h2 id="additional-approaches-wasm">Additional approaches</h2>
+
+When implementing custom state storage, a useful approach is to adopt [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters):
+
+* To consume state across many components.
+* If there's just one top-level state object to persist.
+
+For additional discussion and example approaches, see [Blazor: In-memory state container as cascading parameter (dotnet/AspNetCore.Docs #27296)](https://github.com/dotnet/AspNetCore.Docs/issues/27296).
 
 ## Additional resources
 
@@ -1285,6 +1305,7 @@ Common locations exist for persisting state:
 * [URL](#url-wasm)
 * [Browser storage](#browser-storage-wasm)
 * [In-memory state container service](#in-memory-state-container-service-wasm)
+* [Additional approaches](#additional-approaches-wasm)
 
 <h2 id="server-side-storage-wasm">Server-side storage</h2>
 
@@ -1344,6 +1365,15 @@ Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk th
 <h2 id="in-memory-state-container-service-wasm">In-memory state container service</h2>
 
 [!INCLUDE[](~/blazor/includes/state-container.md)]
+
+<h2 id="additional-approaches-wasm">Additional approaches</h2>
+
+When implementing custom state storage, a useful approach is to adopt [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters):
+
+* To consume state across many components.
+* If there's just one top-level state object to persist.
+
+For additional discussion and example approaches, see [Blazor: In-memory state container as cascading parameter (dotnet/AspNetCore.Docs #27296)](https://github.com/dotnet/AspNetCore.Docs/issues/27296).
 
 ## Additional resources
 
