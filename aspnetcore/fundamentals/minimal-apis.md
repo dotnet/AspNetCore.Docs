@@ -817,7 +817,7 @@ A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCor
 
 ### Route Handlers
 
-[!INCLUDE [route handling](minimal-apis/includes/route-handling.md)]
+[!INCLUDE [route handling](minimal-apis/includes/route-handlers.md)]
 
 ### Parameter Binding
 

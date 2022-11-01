@@ -12,11 +12,11 @@ uid: fundamentals/minimal-apis/route-handlers
 
 A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A>:
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_r1)]
+[!code-csharp[](7.0-samples/WebMinAPIs/Program.cs?name=snippet_r1)]
 
 The <xref:System.Delegate> arguments passed to these methods are called "route handlers".
 
-[!INCLUDE [route handling](includes/route-handling.md)]
+[!INCLUDE [route handling](includes/route-handlers.md)]
 
 ## Parameter binding
 

@@ -14,7 +14,7 @@ Supported binding sources:
 
 The following example GET route handler uses some of these parameter binding sources:
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_pbg&highlight=8-11)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_pbg&highlight=8-11)]
 
 The following table shows the relationship between the parameters used in the preceding example and the associated binding sources.
 
@@ -29,18 +29,18 @@ The HTTP methods `GET`, `HEAD`, `OPTIONS`, and `DELETE` don't implicitly bind fr
 
 The following example POST route handler uses a binding source of body (as JSON) for the `person` parameter:
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_pbp&highlight=5)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_pbp&highlight=5)]
 
 The parameters in the preceding examples are all bound from request data automatically. To demonstrate the convenience that parameter binding provides, the following example route handlers show how to read request data directly from the request:
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Snippets/Program.cs?name=snippet_ManualRequestBinding&highlight=3-5,12)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Snippets/Program.cs?name=snippet_ManualRequestBinding&highlight=3-5,12)]
 
 ### Explicit Parameter Binding
 
 Attributes can be used to explicitly declare where parameters are bound from.
 
 <!-- TODO - finish Service  -->
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_epb)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_epb)]
 
 | Parameter | Binding Source |
 | --------- | -------------- |
@@ -65,7 +65,7 @@ Parameters declared in route handlers are treated as required:
 * If a request matches the route, the route handler only runs if all required parameters are provided in the request.
 * Failure to provide all required parameters results in an error.
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op1)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op1)]
 
 | URI | result |
 | --------- | -------------- |
@@ -75,7 +75,7 @@ Parameters declared in route handlers are treated as required:
 
 To make `pageNumber` optional, define the type as optional or provide a default value:
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op2)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op2)]
 
 | URI | result |
 | --------- | -------------- |
@@ -85,13 +85,13 @@ To make `pageNumber` optional, define the type as optional or provide a default 
 
 The preceding nullable and default value applies to all sources:
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op3)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op3)]
 
 The preceding code calls the method with a null product if no request body is sent.
 
 **NOTE**: If invalid data is provided and the parameter is nullable, the route handler is ***not*** run.
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op4)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_op4)]
 
 | URI | result |
 | --------- | -------------- |
@@ -242,7 +242,7 @@ The following [`record`](/dotnet/csharp/language-reference/builtin-types/record)
 
 Using a `struct` with `AsParameters` can be more performant than using a `record` type.
 
-The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/arg-lists) in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
+The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/~/fundamentals/minimal-apis/samples/arg-lists) in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
 
 ### Custom Binding
 
@@ -262,7 +262,7 @@ public static bool TryParse(string value, IFormatProvider provider, T out result
 
 The following code displays `Point: 12.3, 10.1` with the URI `/map?Point=12.3,10.1`:
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cb)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cb)]
 
 #### BindAsync
 
@@ -275,7 +275,7 @@ public static ValueTask<T?> BindAsync(HttpContext context);
 
 The following code displays `SortBy:xyz, SortDirection:Desc, CurrentPage:99` with the URI `/products?SortBy=xyz&SortDir=Desc&Page=99`:
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_ba)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_ba)]
 
 <a name="bf"></a>
 
@@ -323,7 +323,7 @@ The rules for determining a binding source from a parameter:
 
 The body binding source uses <xref:System.Text.Json?displayProperty=fullName> for de-serialization. It is ***not*** possible to change this default, but the binding can be customized using other techniques described previously. To customize JSON serializer options, use code similar to the following:
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cjson)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cjson)]
 
 The preceding code:
 

@@ -2,25 +2,25 @@ Route handlers are methods that execute when the route matches. Route handlers c
 
 #### Lambda expression
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_le)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_le)]
 
 #### Local function
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_lf)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_lf)]
 
 #### Instance method
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_im)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_im)]
 
 #### Static method
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_sm)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_sm)]
 
 ### Named endpoints and link generation
 
 Endpoints can be given names in order to generate URLs to the endpoint. Using a named endpoint avoids having to hard code paths in an app:
 
-[!code-csharp[](minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_nr)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_nr)]
 
 The preceding code displays `The link to the hello endpoint is /hello` from the `/` endpoint.
 
@@ -29,13 +29,13 @@ The preceding code displays `The link to the hello endpoint is /hello` from the 
 Endpoint names:
 
 * Must be globally unique.
-* Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](xref:fundamentals/minimal-apis/openapi).
+* Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](xref:~/fundamentals/minimal-apis/openapi).
 
 ### Route Parameters
 
 Route parameters can be captured as part of the route pattern definition:
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_rp)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_rp)]
 
 The preceding code returns `The user id is 3 and book id is 7` from the URI `/users/3/books/7`.
 
@@ -49,7 +49,7 @@ In the preceding code, if either route value cannot be converted to an `int`, an
 
 The following catch all route returns `Routing to hello` from the `/posts/hello' endpoint:
 
-[!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_wild)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_wild)]
 
 ### Route constraints
 
