@@ -17,3 +17,11 @@ A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCor
 The second parameter to these methods are called the "route handlers".
 
 [!INCLUDE [route handling](includes/route-handling.md)]
+
+## Parameter binding
+
+<xref:fundamentals/minimal-apis/parameter-binding> describes the rules in detail for how route handler parameters are populated.
+
+## Responses
+
+<xref:fundamentals/minimal-apis/responses> describes in detail how values returned from route handlers are converted into responses.

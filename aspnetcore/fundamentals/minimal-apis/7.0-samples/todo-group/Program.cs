@@ -41,7 +41,6 @@ app.MapGroup("/private/todos")
     .WithTags("Private")
     .AddEndpointFilterFactory(QueryPrivateTodos)
     .RequireAuthorization();
-// </snippet_MapGroup>
 
 app.Run();
 
@@ -58,7 +57,7 @@ EndpointFilterDelegate QueryPrivateTodos(EndpointFilterFactoryContext factoryCon
         }
     }
 
-    // Skip filter if the method doesn't have a TodoDb parameter
+    // Skip filter if the method doesn't have a TodoDb parameter.
     if (dbContextIndex < 0)
     {
         return next;
@@ -80,3 +79,4 @@ EndpointFilterDelegate QueryPrivateTodos(EndpointFilterFactoryContext factoryCon
         }
     };
 }
+// <snippet_MapGroup>
