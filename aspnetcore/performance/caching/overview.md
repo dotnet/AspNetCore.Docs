@@ -50,6 +50,7 @@ The output caching middleware enables caching of HTTP responses. Output caching 
 * The cache storage medium is extensible.
 
   Memory is used by default. Response caching is limited to memory.
+
 * You can programmatically invalidate selected cache entries.
 
   Response caching's dependence on HTTP headers leaves you with few options for invalidating cache entries.
