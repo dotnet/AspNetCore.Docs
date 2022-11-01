@@ -8,7 +8,7 @@ JavaScript (JS) interop calls can't be issued after a SignalR circuit is disconn
   * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>)
 * `Dispose`/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference> or `Dispose` calls on any <xref:Microsoft.JSInterop.DotNetObjectReference>.
 
-In order to avoid logging <xref:Microsoft.JSInterop.JSDisconnectedException> or to log a custom information, catch the exception in a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement.
+In order to avoid logging <xref:Microsoft.JSInterop.JSDisconnectedException> or to log custom information, catch the exception in a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement.
 
 For the following component disposal example with an <xref:Microsoft.JSInterop.IJSObjectReference> object used to call JS from .NET:
 
@@ -38,7 +38,7 @@ async ValueTask IAsyncDisposable.DisposeAsync()
 >
 > When a circuit fails and developer disposal code fails with a caught or uncaught <xref:Microsoft.JSInterop.JSDisconnectedException>, automatic garbage collection eventually disposes of any objects created by the developer in the component.
 
-If you must clean up your own JS objects or execute other JS code on the client after a circuit is lost or you prefer to dispose of one or more <xref:Microsoft.JSInterop.IJSObjectReference>s or <xref:Microsoft.JSInterop.DotNetObjectReference>s on the client, use the [`MutationObserver` (MDN documentation)](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JS on the client and avoid calling `Dispose`/`DisposeAsync` on the objects in the component.
+If you must clean up your own JS objects or execute other JS code on the client after a circuit is lost or you prefer to dispose of one or more <xref:Microsoft.JSInterop.IJSObjectReference>s or <xref:Microsoft.JSInterop.DotNetObjectReference>s on the client, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JS on the client and avoid calling `Dispose`/`DisposeAsync` on the objects in the component.
 
 For more information, see the following articles:
 
