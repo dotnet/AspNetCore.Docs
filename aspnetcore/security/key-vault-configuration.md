@@ -344,7 +344,7 @@ class SampleKeyVaultSecretManager : KeyVaultSecretManager
   public override bool Load(SecretProperties properties) =>
     properties.Enabled.HasValue &&
     properties.Enabled.Value &&
-    properties.ExpiresOn.Hasvalue &&
+    properties.ExpiresOn.HasValue &&
     properties.ExpiresOn.Value > DateTimeOffset.Now;
 }
 ```
