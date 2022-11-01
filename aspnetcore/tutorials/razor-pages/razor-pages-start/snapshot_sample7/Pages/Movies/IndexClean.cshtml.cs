@@ -1,9 +1,10 @@
 // Change namespace so it sill compiles
+// <snippetFull>
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Page.Movies;
+namespace RazorPagesMovie.Pages.Movies;
 
 // <snippet2>
 public class IndexModel : PageModel
@@ -26,3 +27,4 @@ public class IndexModel : PageModel
         }
     }
 }
+// </snippetFull>
