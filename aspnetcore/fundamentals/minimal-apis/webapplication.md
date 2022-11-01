@@ -7,6 +7,7 @@ monikerRange: '>= aspnetcore-7.0'
 ms.date: 10/31/2022
 uid: fundamentals/minimal-apis/webapplication
 ---
+
 # WebApplication and WebApplicationBuilder
 
 [!INCLUDE [WebApplication](minimal-apis/includes/webapplication.md)]

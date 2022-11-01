@@ -14,7 +14,7 @@ A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCor
 
 [!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_r1)]
 
-The second parameter to these methods are called the "route handlers".
+The <xref:System.Delegate> arguments passed to these methods are called "route handlers".
 
 [!INCLUDE [route handling](includes/route-handling.md)]
 

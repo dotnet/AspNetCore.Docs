@@ -14,14 +14,13 @@ uid: fundamentals/minimal-apis
 
 This document:
 
-* Provides an overview of minimal APIs.
+* Provides a single-page cheat sheet demonstrating how to use minimal APIs.
 * Is intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>
 
 The minimal APIs consist of:
 
-* New hosting APIs
-* <xref:Microsoft.AspNetCore.Builder.WebApplication> and <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>
-* New routing APIs
+* [WebApplication and WebApplicationBuilder](xref:fundamentals/minimal-apis/webapplication)
+* [Route Handlers](xref:fundamentals/minimal-apis/route-handlers)
 
 ## `WebApplication`
 
