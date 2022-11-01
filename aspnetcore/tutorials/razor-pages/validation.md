@@ -175,7 +175,7 @@ The following code shows combining attributes on one line:
 
 The DataAnnotations applied to the class changes the schema. For example, the DataAnnotations applied to the `Title` field:
 
-[!code-csharp[](razor-pages-start/sample/RazorPagesMovie60/Models/MovieDateRatingDA.cs?name=snippet11)]
+[!code-csharp[](razor-pages-start/sample/RazorPagesMovie70/Models/MovieDateRatingDA.cs?name=snippet11)]
 
 * Limits the characters to 60.
 * Doesn't allow a `null` value.
