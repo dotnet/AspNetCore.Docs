@@ -1,5 +1,5 @@
 ---
-title: How to use OpenAPI with minimal APIs
+title: How to use OpenAPI in Minimal API applications
 author: rick-anderson
 description: Learn how to use OpenAPI (Swagger and Swashbuckle) features of minimal APIs in ASP.NET Core.
 ms.author: riande
