@@ -3,6 +3,9 @@ Nested components typically bind data using *chained bind* as described in <xref
 * A pair of components uses a state container to track a property.
 * One component in the following example is nested in the other component, but nesting isn't required for this approach to work.
 
+> [!IMPORTANT]
+> The example in this section demonstrates how to create an in-memory state container service, register the service, and use the service in components. The example doesn't persist data without further development. For persistent storage of data, the state container must adopt an underlying storage mechanism that survives when browser memory is cleared. This can be accomplished with `localStorage`/`sessionStorage` or some other technology.
+
 `StateContainer.cs`:
 
 ```csharp
