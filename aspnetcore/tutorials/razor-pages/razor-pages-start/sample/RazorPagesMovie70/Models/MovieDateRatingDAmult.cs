@@ -1,4 +1,4 @@
-#define COMBINED
+//#define COMBINED
 #if COMBINED
 // <snippet1>
 using System.ComponentModel.DataAnnotations;

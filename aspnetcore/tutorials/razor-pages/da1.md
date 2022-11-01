@@ -21,7 +21,7 @@ The scaffolded movie app has a good start, but the presentation isn't ideal. **R
 
 Update `Models/Movie.cs` with the following highlighted code:
 
-[!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/MovieDateFixed.cs?name=snippet_1&highlight=3,12,17)]
+[!code-csharp[Main](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/MovieDateFixed.cs?name=snippet_1&highlight=2,11,16)]
 
 In the previous code:
 

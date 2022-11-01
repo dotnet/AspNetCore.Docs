@@ -1,4 +1,4 @@
-//#define MovieDateRatingDA
+#define MovieDateRatingDA
 #if MovieDateRatingDA
 // <snippet1>
 using System.ComponentModel.DataAnnotations;
