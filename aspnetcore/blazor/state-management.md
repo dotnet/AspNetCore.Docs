@@ -451,6 +451,8 @@ When implementing custom browser state storage, a useful approach is to adopt [c
 * To consume state across many components.
 * If there's just one top-level state object to persist.
 
+For additional discussion and example approaches, see [Blazor: In-memory state container as cascading parameter (dotnet/AspNetCore.Docs #27296)](https://github.com/dotnet/AspNetCore.Docs/issues/27296).
+
 <h2 id="in-memory-state-container-service-wasm">In-memory state container service</h2>
 
 [!INCLUDE[](~/blazor/includes/state-container.md)]
@@ -895,6 +897,8 @@ When implementing custom browser state storage, a useful approach is to adopt [c
 
 * To consume state across many components.
 * If there's just one top-level state object to persist.
+
+For additional discussion and example approaches, see [Blazor: In-memory state container as cascading parameter (dotnet/AspNetCore.Docs #27296)](https://github.com/dotnet/AspNetCore.Docs/issues/27296).
 
 <h2 id="in-memory-state-container-service-wasm">In-memory state container service</h2>
 
@@ -1355,6 +1359,8 @@ When implementing custom browser state storage, a useful approach is to adopt [c
 
 * To consume state across many components.
 * If there's just one top-level state object to persist.
+
+For additional discussion and example approaches, see [Blazor: In-memory state container as cascading parameter (dotnet/AspNetCore.Docs #27296)](https://github.com/dotnet/AspNetCore.Docs/issues/27296).
 
 <h2 id="in-memory-state-container-service-wasm">In-memory state container service</h2>
 
