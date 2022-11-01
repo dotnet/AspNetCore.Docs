@@ -184,6 +184,8 @@ The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProb
 
 For more information, see [Problem details service](xref:web-api/handle-errors##pds7)
 
+### Route groups
+
 [!INCLUDE[](~/includes/route-groups.md)]
 
 ## gRPC

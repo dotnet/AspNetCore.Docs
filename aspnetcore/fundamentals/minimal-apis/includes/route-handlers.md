@@ -76,5 +76,6 @@ The following table demonstrates the preceding route templates and their behavio
 
 For more information, see [Route constraint reference](xref:fundamentals/routing) in <xref:fundamentals/routing>.
 
-[!INCLUDE[](~/includes/route-groups.md)]
+### Route groups
 
+[!INCLUDE[](~/includes/route-groups.md)]
