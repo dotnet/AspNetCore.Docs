@@ -220,7 +220,7 @@ For more information, see <xref:grpc/health-checks>.
 
 Call credentials are the recommended way to configure a gRPC client to send an auth token to the server. gRPC clients support two new features to make call credentials easier to use:
 
-* Previously, a gRPC call only sent call credentials if the connection was secured with TLS. A new setting on `GrpcChannelOptions`, called `UnsafeUseInsecureChannelCallCredentials`, allows this behavior to be customized. A scenario where this is useful is using call credentials in a local development that doesn't have TLS configured.
+* Support for call credentials in a local development environment that doesn't have TLS configured: Previously, a gRPC call only sent call credentials if the connection was secured with TLS. A new setting on `GrpcChannelOptions`, called `UnsafeUseInsecureChannelCallCredentials`, allows this behavior to be customized.
 * A new method called `AddCallCredentials` is available with the [gRPC client factory](xref:grpc/clientfactory). `AddCallCredentials` is a quick way to configure call credentials for a gRPC client and integrates well with dependency injection (DI).
 
 The following code configures the gRPC client factory to send `Authorization` metadata:
