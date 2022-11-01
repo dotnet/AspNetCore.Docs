@@ -10,9 +10,11 @@ uid: fundamentals/minimal-apis/security
 
 # Authentication and authorization in minimal APIs
 
+Minimal APIs support all the authentication and authorization options available in ASP.NET and provide some additional functionality to improve the experience working with authentication.
+
 ## Key concepts in authentication and authorization
 
-Minimal APIs support all the authentication and authorization options available in ASP.NET and provide some additional functionality to improve the experience working with authentication. Authentication is the process of determining a user's identity. Authorization is the process of determining whether a user has access to a resource. Both authentication and authorization scenarios share similar implementation semantics in ASP.NET Core. Authentication is handled by the authentication service, [IAuthenticationService](/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationservice), which is used by authentication [middleware](/aspnet/core/fundamentals/middleware). Authorization is handled by the authorization service, [IAuthorizationService](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice), which is used by the authorization middleware.
+Authentication is the process of determining a user's identity. Authorization is the process of determining whether a user has access to a resource. Both authentication and authorization scenarios share similar implementation semantics in ASP.NET Core. Authentication is handled by the authentication service, [IAuthenticationService](/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationservice), which is used by authentication [middleware](/aspnet/core/fundamentals/middleware). Authorization is handled by the authorization service, [IAuthorizationService](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice), which is used by the authorization middleware.
 
 The authentication service uses registered authentication handlers to complete authentication-related actions. For example, an authentication-related action is authenticating a user or logging out a user. Authentication schemes are names that are used to uniquely identify an authentication handler and its configuration options. Authentication handlers are responsible for implementing the strategies for authentication and generating a user's claims given a particular authentication strategy, such as OAuth or OIDC. The configuration options are unique to the strategy as well and provide the handler with configuration that affects authentication behavior, such as redirect URIs.
 
@@ -64,7 +66,7 @@ var app = builder.Build();
 app.Run();
 ```
 
-In some cases, such as controlling middleware order, it's necessary to explicitly register authentication and authorization. In the following sample, the authentication middleware runs _after_ the CORS middleware has run.
+In some cases, such as controlling middleware order, it's necessary to explicitly register authentication and authorization. In the following sample, the authentication middleware runs _after_ the CORS middleware has run. For more information on middlewares and this automatic behavior, review [the documentation](/aspnet/core/fundamentals/minimal-apis/middleware).
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -114,7 +116,7 @@ The ASP.NET Core framework expects to find these options under the `Authenticati
 }
 ```
 
-In `Program.cs`, we register two JWT bearer-based authentication strategies: one with the default scheme name ("Bearer") and one with the "LocalAuthIssuer" scheme name. 
+In `Program.cs`, we register two JWT bearer-based authentication strategies: one with the the "Bearer" scheme name and one with the "LocalAuthIssuer" scheme name. "Bearer" is the typical default scheme in JWT-bearer based enabled applications, but the default scheme can be overridden by setting the `DefaultScheme` property as in the example above.
 
 The scheme name is used to uniquely identify an authentication strategy and is used as the lookup key when resolving authentication options from config, as shown in the following example:
 
