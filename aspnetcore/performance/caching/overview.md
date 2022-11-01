@@ -43,14 +43,13 @@ For more information, see <xref:mvc/views/tag-helpers/builtin-th/distributed-cac
 
 The output caching middleware enables caching of HTTP responses. Output caching differs from [response caching](#response-caching) in the following ways:
 
-* You configure the caching behavior on the server.
+* The caching behavior is configurable on the server.
 
   Response caching behavior is defined by HTTP headers. For example, when you visit a website with Chrome or Edge, the browser automatically sends a `Cache-control: max-age=0` header. This header effectively disables response caching, since the server follows the directions provided by the client. A new response is returned for every request, even if the server has a fresh cached response. With output caching the client doesn't override the caching behavior that you configure on the server.
 
 * The cache storage medium is extensible.
 
-  Memory is used by default. Disk, Redis, blob storage, and others are available. Response caching is limited to memory.
-
+  Memory is used by default. Response caching is limited to memory.
 * You can programmatically invalidate selected cache entries.
 
   Response caching's dependence on HTTP headers leaves you with few options for invalidating cache entries.
