@@ -18,28 +18,7 @@ Welcome to what's new in the ASP.NET Core docs from October 1, 2022 through Octo
 ### Updated articles
 
 - <xref:blazor/fundamentals/logging> - SignalR-Blazor client logging enhancements
-- <xref:blazor/fundamentals/signalr>
-  - Blazor SignalR configuration updates
-  - Temporarily address Blazor SignalR guidance
-  - Blazor-SignalR configuration updates
-- <xref:blazor/host-and-deploy/server>
-  - Blazor SignalR configuration updates
-  - Blazor-SignalR configuration updates
-- <xref:blazor/host-and-deploy/webassembly>
-  - Blazor SignalR configuration updates
-  - Blazor-SignalR configuration updates
 - <xref:blazor/security/webassembly/aad-groups-roles> - [7.0] Single auth scheme for Blazor docs
-- <xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c>
-  - Temporarily remove coverage
-  - Blazor auth logging 7.0
-- <xref:blazor/security/webassembly/hosted-with-azure-active-directory>
-  - Temporarily remove coverage
-  - Blazor auth logging 7.0
-- <xref:blazor/security/webassembly/hosted-with-identity-server> - Blazor auth logging 7.0
-- <xref:blazor/security/webassembly/standalone-with-authentication-library> - Blazor auth logging 7.0
-- <xref:blazor/security/webassembly/standalone-with-azure-active-directory-b2c> - Blazor auth logging 7.0
-- <xref:blazor/security/webassembly/standalone-with-azure-active-directory> - Blazor auth logging 7.0
-- <xref:blazor/security/webassembly/standalone-with-microsoft-accounts> - Blazor auth logging 7.0
 
 ## Client-side development
 
@@ -60,7 +39,6 @@ Welcome to what's new in the ASP.NET Core docs from October 1, 2022 through Octo
 ### Updated articles
 
 - <xref:fundamentals/error-handling> - Updating ProblemDetails docs
-- <xref:fundamentals/minimal-apis> - Fix minimal-apis.md's TOC
 - <xref:fundamentals/minimal-apis/openapi> - Update documentation for OpenAPI in minimal APIs
 
 ## Migration
@@ -87,33 +65,10 @@ Welcome to what's new in the ASP.NET Core docs from October 1, 2022 through Octo
 
 - <xref:test/integration-tests>
   - UPdate integration tests to .NET 7
-  - update monikers for integration tests
 
 ## Tutorials
 
 ### Updated articles
-
-- <xref:tutorials/razor-pages/validation> - moniker prep
-- <xref:tutorials/razor-pages/new-field> - Moniker prep
-- <xref:tutorials/razor-pages/search> - Moniker prep
-- <xref:tutorials/razor-pages/da1> - Mon prep
-- <xref:tutorials/razor-pages/sql> - Mon prep
-- <xref:tutorials/razor-pages/page> - Moniker prep for Scaffolded RP
-- <xref:tutorials/razor-pages/model> - Moniker prep
-- <xref:tutorials/razor-pages/razor-pages-start> - Moniker Prep
-- <xref:tutorials/first-web-api>
-  - .NET 7: Intro to Web API /2
-  - moniker prep for Web API
-- <xref:tutorials/first-mvc-app/adding-controller> - Add .NET 7 moniker sections
-- <xref:tutorials/first-mvc-app/adding-model> - Add .NET 7 moniker sections
-- <xref:tutorials/first-mvc-app/adding-view> - Add .NET 7 moniker sections
-- <xref:tutorials/first-mvc-app/controller-methods-views> - Add .NET 7 moniker sections
-- <xref:tutorials/first-mvc-app/new-field> - Add .NET 7 moniker sections
-- <xref:tutorials/first-mvc-app/search> - Add .NET 7 moniker sections
-- <xref:tutorials/first-mvc-app/start-mvc> - Add .NET 7 moniker sections
-- <xref:tutorials/first-mvc-app/validation> - Add .NET 7 moniker sections
-- <xref:tutorials/first-mvc-app/working-with-sql> - Add .NET 7 moniker sections
-- <xref:tutorials/publish-to-azure-api-management-using-vs> - .net6 and vs2022 fixes as per #25341
 
 ## Web API
 
@@ -125,7 +80,6 @@ Welcome to what's new in the ASP.NET Core docs from October 1, 2022 through Octo
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham (32)
 - [sabahshariq](https://github.com/sabahshariq) - Sabah Shariq (6)
 - [jf-gbg](https://github.com/jf-gbg) - Josh Franklin (2)
 - [0xced](https://github.com/0xced) - Cédric Luthi (1)
