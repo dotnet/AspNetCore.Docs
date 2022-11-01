@@ -446,6 +446,11 @@ Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk th
 > [!WARNING]
 > Users may view or tamper with the data stored in `localStorage` and `sessionStorage`.
 
+When implementing custom browser state storage, a useful approach is to adopt [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters):
+
+* To consume state across many components.
+* If there's just one top-level state object to persist.
+
 <h2 id="in-memory-state-container-service-wasm">In-memory state container service</h2>
 
 [!INCLUDE[](~/blazor/includes/state-container.md)]
@@ -885,6 +890,11 @@ Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk th
 
 > [!WARNING]
 > Users may view or tamper with the data stored in `localStorage` and `sessionStorage`.
+
+When implementing custom browser state storage, a useful approach is to adopt [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters):
+
+* To consume state across many components.
+* If there's just one top-level state object to persist.
 
 <h2 id="in-memory-state-container-service-wasm">In-memory state container service</h2>
 
@@ -1340,6 +1350,11 @@ Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk th
 
 > [!WARNING]
 > Users may view or tamper with the data stored in `localStorage` and `sessionStorage`.
+
+When implementing custom browser state storage, a useful approach is to adopt [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters):
+
+* To consume state across many components.
+* If there's just one top-level state object to persist.
 
 <h2 id="in-memory-state-container-service-wasm">In-memory state container service</h2>
 
