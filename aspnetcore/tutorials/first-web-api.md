@@ -103,6 +103,7 @@ The following diagram shows the design of the app.
 ## Add a NuGet package
 
 * In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**
+* Select **Include prereleases**.
 * In the search box, enter **Microsoft.EntityFrameworkCore.InMemory**.
 * In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
 * Select **Add Package**
@@ -145,7 +146,7 @@ The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it o
 * The [Curl](https://curl.haxx.se/) command to test the WeatherForecast API.
 * The URL to test the WeatherForecast API.
 * The response code, body, and headers.
-* A drop down list box with media types and the example value and schema.
+* A drop-down list box with media types and the example value and schema.
 
 If the Swagger page doesn't appear, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/21647).
 
@@ -207,9 +208,9 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Control-click the **TodoAPI** project and select and select **Add** > **New Folder**. Name the folder `Models`.
+* Control-click the **TodoAPI** project and select **Add** > **New Folder**. Name the folder `Models`.
 * Control-click the `Models` folder, and select **Add** > **New Class...** > **General** > **Empty Class**.
-* Name the class *TodoItem*, and then click **Create**.
+* Name the class *TodoItem*, and then select **Create**.
 
 * Replace the template code with the following:
 
@@ -623,7 +624,7 @@ The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it o
 * The [Curl](https://curl.haxx.se/) command to test the WeatherForecast API.
 * The URL to test the WeatherForecast API.
 * The response code, body, and headers.
-* A drop down list box with media types and the example value and schema.
+* A drop-down list box with media types and the example value and schema.
 
 If the Swagger page doesn't appear, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/21647).
 
