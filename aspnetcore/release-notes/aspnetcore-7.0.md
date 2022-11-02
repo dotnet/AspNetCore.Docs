@@ -97,10 +97,6 @@ In ASP.NET 7, binding query strings to an array of primitive types, string array
 
 Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented. For more information, see [Bind arrays and string values from headers and query strings](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#bindar).
 
-### Provide endpoint descriptions and summaries
-
-Minimal APIs now support annotating operations with descriptions and summaries for OpenAPI spec generation. You can call extension methods <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A> or use attributes [[EndpointDescription]](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) and [[EndpointSummary]](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute)).
-
 For more information, see [Add endpoint summary or description](xref:fundamentals/minimal-apis#add-endpoint-summary-or-description).
 
 ### Bind the request body as a `Stream` or `PipeReader`
@@ -156,11 +152,11 @@ The [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f2
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/todo/Program.cs?name=snippet_withopenapi2&highlight=9-99)]
 
-#### Exclude Open API description
+#### Provide endpoint descriptions and summaries
 
-In the following sample, the `/skipme` endpoint is excluded from generating an OpenAPI description:
+Minimal APIs now support annotating operations with descriptions and summaries for OpenAPI spec generation. You can call extension methods <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A> or use attributes [[EndpointDescription]](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) and [[EndpointSummary]](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute)).
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_swag2&highlight=20-21)]
+For more information, see [OpenAPI in minimal API apps](xref:fundamentals/minimal-apis/openapi?view=aspnetcore-7.0)
 
 ### File uploads using IFormFile and IFormFileCollection
 
@@ -507,6 +503,19 @@ One place where these improvements can be noticed is in gRPC, a popular RPC fram
 
 Changes were made in the HTTP/2 frame writing code that improves performance when there are multiple streams trying to write data on a single HTTP/2 connection. We now dispatch TLS work to the thread pool and more quickly release a write lock that other streams can acquire to write their data. The reduction in wait times can yield significant performance improvements in cases where there is contention for this write lock. A gRPC benchmark with 70 streams on a single connection (with TLS) showed a ~15% improvement in requests per second (RPS) with this change.
 
+### Http/2 WebSockets support
+
+.NET 7 introduces Websockets over HTTP/2 support for Kestrel, the SignalR JavaScript client, and SignalR with Blazor WebAssembly.
+
+Using WebSockets over HTTP/2 takes advantage of new features such as:
+
+* Header compression.
+* Multiplexing, which reduces the time and resources needed when making multiple requests to the server.
+
+These supported features are available in Kestrel on all HTTP/2 enabled platforms. The version negotiation is automatic in browsers and Kestrel, so no new APIs are needed.
+
+For more information, see [Http/2 WebSockets support](xref:fundamentals/websockets?view=aspnetcore-7.0#http2-websockets-support).
+
 ### Kestrel performance improvements on high core machines
 
 Kestrel uses <xref:System.Collections.Concurrent.ConcurrentQueue%601> for many purposes. One purpose is scheduling I/O operations in Kestrel's default Socket transport. Partitioning the `ConcurrentQueue` based on the associated socket reduces contention and increases throughput on machines with many CPU cores.
@@ -531,7 +540,7 @@ The [`ServerReady`](https://github.com/dotnet/aspnetcore/blob/v7.0.0-preview.5.2
 
 Shadow copying app assemblies to the [ASP.NET Core Module (ANCM)](xref:host-and-deploy/aspnet-core-module) for IIS can provide a better end user experience than stopping the app by deploying an [app offline file](xref:host-and-deploy/iis/app-offline).
 
-For more information, see [Shadow copying in IIS](xref:host-and-deploy/iis/advanced?view=aspnetcore-7.0#shadow-copy)
+For more information, see [Shadow copying in IIS](xref:host-and-deploy/iis/advanced?view=aspnetcore-7.0#shadow-copy).
 
 ## Miscellaneous
 
@@ -549,7 +558,7 @@ Here's an example of what the new output looks like:
 
 ![output for dotnet watch](~/release-notes/aspnetcore-7/static/dnwatch.png)
 
-See [this GitHub pull request](https://github.com/dotnet/sdk/pull/23318) for more information.
+For more information, see [this GitHub pull request](https://github.com/dotnet/sdk/pull/23318).
 
 ### Configure dotnet watch to always restart for rude edits
 
