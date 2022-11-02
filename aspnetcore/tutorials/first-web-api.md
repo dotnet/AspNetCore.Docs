@@ -3,8 +3,8 @@ title: "Tutorial: Create a web API with ASP.NET Core"
 author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
-ms.custom: mvc
-ms.date: 10/24/2022
+ms.custom: mvc, engagement-fy23
+ms.date: 10/31/2022
 uid: tutorials/first-web-api
 ---
 
@@ -284,9 +284,10 @@ Make sure that all of your changes so far are saved.
 Run the following commands from the project folder, that is, the `TodoApi` folder:
 
 ```dotnetcli
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 7.0.0-*
+dotnet add package Microsoft.EntityFrameworkCore.Design -v 7.0.0-*
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 7.0.0-*
+dotnet tool uninstall -g dotnet-aspnet-codegenerator
 dotnet tool install -g dotnet-aspnet-codegenerator
 dotnet-aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
@@ -294,7 +295,7 @@ dotnet-aspnet-codegenerator controller -name TodoItemsController -async -api -m 
 The preceding commands:
 
 * Add NuGet packages required for scaffolding.
-* Install the scaffolding engine (`dotnet-aspnet-codegenerator`).
+* Install the scaffolding engine (`dotnet-aspnet-codegenerator`) after uninstalling any possible previous version.
 * Scaffold the `TodoItemsController`.
 
 ---
