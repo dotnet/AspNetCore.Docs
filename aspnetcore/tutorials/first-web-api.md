@@ -299,9 +299,9 @@ The preceding commands:
 * Add NuGet packages required for scaffolding.
 * Install the scaffolding engine (`dotnet-aspnet-codegenerator`) after uninstalling any possible previous version.
 
-* Build the project.
+Build the project.
 
-* Run the following command:
+Run the following command:
 
   ```dotnetcli
   dotnet-aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
