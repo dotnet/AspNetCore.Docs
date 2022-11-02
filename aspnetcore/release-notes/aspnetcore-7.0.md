@@ -481,7 +481,7 @@ New guidance is available for Blazor Hybrid security scenarios. For more informa
 
 ### Output caching middleware
 
-Output caching is a new middleware that stores responses from a web app and serves them from a cache rather than computing them every time. Output caching differs from [response caching](#response-caching) in the following ways:
+Output caching is a new middleware that stores responses from a web app and serves them from a cache rather than computing them every time. Output caching differs from [response caching](xref:performance/caching/overview#response-caching) in the following ways:
 
 * The caching behavior is configurable on the server.
 * Cache entries can be programmatically invalidated.
