@@ -207,7 +207,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Control-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
+* Control-click the **TodoAPI** project and select and select **Add** > **New Folder**. Name the folder `Models`.
 * Control-click the `Models` folder, and select **Add** > **New Class...** > **General** > **Empty Class**.
 * Name the class *TodoItem*, and then click **Create**.
 
@@ -281,7 +281,8 @@ The preceding code:
 
 Make sure that all of your changes so far are saved.
 
-Run the following commands from the project folder, that is, the `TodoApi` folder:
+* Control-click the **TodoAPI** project and select **Open in Terminal**.  The terminal opens at the `TodoAPI` project folder.
+Run the following commands:
 
 ```dotnetcli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 7.0.0-*
