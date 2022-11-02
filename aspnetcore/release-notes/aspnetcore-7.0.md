@@ -489,7 +489,7 @@ Output caching is a new middleware that stores responses from a web app and serv
 * Cache revalidation means the server can return a `304 Not Modified` HTTP status code instead of a cached response body.
 * The cache storage medium is extensible.
 
-For more information, see [Overview of caching](xref:performance/caching/overview) and [Output caching middleware](performance/caching/output).
+For more information, see [Overview of caching](xref:performance/caching/overview) and [Output caching middleware](xref:performance/caching/output).
 
 ### HTTP/2 Performance improvements
 
