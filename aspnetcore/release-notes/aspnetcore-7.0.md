@@ -479,6 +479,18 @@ New guidance is available for Blazor Hybrid security scenarios. For more informa
 
 ## Performance
 
+### Output caching middleware
+
+Output caching is a new middleware that stores responses from a web app and serves them from a cache rather than computing them every time. Output caching differs from [response caching](xref:performance/caching/overview#response-caching) in the following ways:
+
+* The caching behavior is configurable on the server.
+* Cache entries can be programmatically invalidated.
+* Resource locking mitigates the risk of [cache stampede](https://en.wikipedia.org/wiki/Cache_stampede) and [thundering herd](https://en.wikipedia.org/wiki/Thundering_herd_problem).
+* Cache revalidation means the server can return a `304 Not Modified` HTTP status code instead of a cached response body.
+* The cache storage medium is extensible.
+
+For more information, see [Overview of caching](xref:performance/caching/overview) and [Output caching middleware](xref:performance/caching/output).
+
 ### HTTP/2 Performance improvements
 
 .NET 7 introduces a significant re-architecture of how Kestrel processes HTTP/2 requests. ASP.NET Core apps with busy HTTP/2 connections will experience reduced CPU usage and higher throughput.
