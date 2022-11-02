@@ -91,7 +91,7 @@ The following diagram shows the design of the app.
 
 * In the **Configure your new API** dialog, make the following selections:
   * Confirm the **Target framework** is **.NET 7.0** (or later).
-  * Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
+  * Confirm the checkbox for **Use controllers (uncheck to use minimal APIs)** is checked.
   * Confirm the checkbox for **Enable OpenAPI support** is checked.
   * Select **Continue**.
 
