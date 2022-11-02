@@ -1,5 +1,5 @@
 ---
-title: Minimal APIs cheat sheet 
+title: Minimal APIs quick reference
 author: rick-anderson
 description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: riande
@@ -8,13 +8,13 @@ ms.date: 10/24/2022
 uid: fundamentals/minimal-apis
 ---
 
-# Minimal APIs overview
+# Minimal APIs quick reference
 
 :::moniker range="= aspnetcore-6.0"
 
 This document:
 
-* Provides a single-page cheat sheet demonstrating how to use minimal APIs.
+* Provides a quick reference for minimal APIs.
 * Is intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>
 
 The minimal APIs consist of:
@@ -773,7 +773,7 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
 This document:
 
-* Provides a single-page cheat sheet demonstrating how to use minimal APIs.
+* Provides a quick reference for minimal APIs.
 * Is intended for experienced developers. For an introduction, see <xref:tutorials/min-web-api>
 
 The minimal APIs consist of:

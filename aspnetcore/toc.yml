@@ -698,7 +698,7 @@ items:
             uid: web-api/http-repl/telemetry
   - name: Minimal APIs
     items:
-      - name: Minimal APIs cheat sheet
+      - name: Minimal APIs quick reference
         uid: fundamentals/minimal-apis
       - name: WebApplication and WebApplicationBuilder
         uid: fundamentals/minimal-apis/webapplication
