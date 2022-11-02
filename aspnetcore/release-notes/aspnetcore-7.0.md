@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 7.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/19/2022
+ms.date: 11/01/2022
 uid: aspnetcore-7
 ---
 # What's new in ASP.NET Core 7.0 preview
@@ -482,6 +482,18 @@ New guidance is available for Blazor Hybrid security scenarios. For more informa
 * <xref:blazor/hybrid/security/security-considerations?view=aspnetcore-7.0>
 
 ## Performance
+
+### Output caching middleware
+
+Output caching is a new middleware that helps you store results from your web app and serve them from a cache rather than computing them every time. Output caching differs from [response caching](#response-caching) in the following ways:
+
+* The caching behavior is configurable on the server.
+* Cache entries can be programmatically invalidated.
+* Resource locking mitigates the risk of [cache stampede](https://en.wikipedia.org/wiki/Cache_stampede) and [thundering herd](https://en.wikipedia.org/wiki/Thundering_herd_problem).
+* Cache revalidation means the server can return a `304 Not Modified` HTTP status code instead of a cached response body.
+* The cache storage medium is extensible.
+
+For more information, see [Overview of caching](xref:performance/caching/overview) and [Output caching middleware](performance/caching/output).
 
 ### HTTP/2 Performance improvements
 
