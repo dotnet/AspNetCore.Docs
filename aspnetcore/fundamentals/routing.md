@@ -969,7 +969,7 @@ The routing tests have a [basic example](https://github.com/dotnet/AspNetCore/bl
 :::moniker-end
 :::moniker range=">= aspnetcore-7.0"
 
-**CONSIDER** implementing <xref:Microsoft.AspNetCore.Routing.EndpointDataSource.GetGroupedEndpoints%2A>. This gives complete control over running group conventions and the final metadata on the grouped endpoints.
+**CONSIDER** implementing <xref:Microsoft.AspNetCore.Routing.EndpointDataSource.GetGroupedEndpoints%2A>. This gives complete control over running group conventions and the final metadata on the grouped endpoints. For example, this allows custom `EndpointDataSource` implementations to run [endpoint filters](xref:fundamentals/minimal-apis/min-api-filters) added to groups.
 
 :::moniker-end
 :::moniker range=">= aspnetcore-6.0"

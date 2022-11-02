@@ -19,7 +19,7 @@ Route groups also support nested groups and complex prefix patterns with route p
 The prefix can also be empty. This can be useful for adding endpoint metadata or filters to a group of endpoints without changing the route pattern.
 
 ```csharp
-var all = app.MapGroup("").WithTags("all");
+var all = app.MapGroup("").WithOpenApi();
 var org = all.MapGroup("{org}");
 var user = org.MapGroup("{user}");
 user.MapGet("", (string org, string user) => $"{org}/{user}");

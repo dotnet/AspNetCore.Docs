@@ -9,10 +9,9 @@ Supported binding sources:
 * Services provided by dependency injection
 * Custom
 
-> [!NOTE]
-> Binding from form values is ***not*** natively supported in .NET.
+Binding from form values is ***not*** natively supported in .NET.
 
-The following example GET route handler uses some of these parameter binding sources:
+The following `GET ` route handler uses some of these parameter binding sources:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_pbg&highlight=8-11)]
 
@@ -31,7 +30,7 @@ The following example POST route handler uses a binding source of body (as JSON)
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_pbp&highlight=5)]
 
-The parameters in the preceding examples are all bound from request data automatically. To demonstrate the convenience that parameter binding provides, the following example route handlers show how to read request data directly from the request:
+The parameters in the preceding examples are all bound from request data automatically. To demonstrate the convenience that parameter binding provides, the following route handlers show how to read request data directly from the request:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Snippets/Program.cs?name=snippet_ManualRequestBinding&highlight=3-5,12)]
 
@@ -52,7 +51,7 @@ Attributes can be used to explicitly declare where parameters are bound from.
 > [!NOTE]
 > Binding from form values is ***not*** natively supported in .NET.
 
-### Parameter binding with DI
+### Parameter binding with dependency injection
 
 Parameter binding for minimal APIs binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
 
