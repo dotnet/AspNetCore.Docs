@@ -1492,6 +1492,8 @@ items:
             uid: performance/caching/memory
           - name: Distributed caching
             uid: performance/caching/distributed
+          - name: Output caching
+            uid: performance/caching/output
           - name: Response caching
             uid: performance/caching/response
           - name: Response caching middleware
