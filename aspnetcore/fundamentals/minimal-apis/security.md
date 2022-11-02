@@ -42,8 +42,6 @@ app.Run();
 Typically, a specific authentication strategy is used. In the following sample, the app is configured with support for JWT bearer-based authentication.
 
 ```csharp
-using Microsoft.AspNetCore.Authentication.Cookie;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuthentication().AddJwtBearer();
