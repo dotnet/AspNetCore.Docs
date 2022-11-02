@@ -90,7 +90,7 @@ Authentication strategies typically support a variety of configurations that are
 - JWT bearer-based
 - OpenID Connection-based
 
-The ASP.NET Core framework expects to find these options under the `Authentication:Schemes:{SchemeName}` section in configuration. The `appsettings.json` definition in the following sample defines two different schemes, `Bearer` and `LocalAuthIssuer`, with their respective options. The `Authentication:DefaultScheme` option can be used to configure the default authentication strategy that's used.
+The ASP.NET Core framework expects to find these options under the `Authentication:Schemes:{SchemeName}` section in [configuration](/aspnet/core/fundamentals/configuration). In the following sample, two different schemes, `Bearer` and `LocalAuthIssuer`, are defined with their respective options. The `Authentication:DefaultScheme` option can be used to configure the default authentication strategy that's used.
 
 ```json
 {
