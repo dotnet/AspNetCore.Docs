@@ -3,8 +3,8 @@ title: "Tutorial: Create a web API with ASP.NET Core"
 author: rick-anderson
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: riande
-ms.custom: mvc
-ms.date: 10/18/2022
+ms.custom: mvc, engagement-fy23
+ms.date: 10/31/2022
 uid: tutorials/first-web-api
 ---
 
@@ -57,7 +57,7 @@ The following diagram shows the design of the app.
 * Select the **ASP.NET Core Web API** template and select **Next**.
 * In the **Configure your new project dialog**, name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-  * Confirm the **Framework** is **.NET 7.0**
+  * Confirm the **Framework** is **.NET 7.0** (or later).
   * Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
   * Select **Create**.
 
@@ -83,27 +83,32 @@ The following diagram shows the design of the app.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Select **File** > **New Solution**.
+* In Visual Studio for Mac 2022, select **File** > **New Project...**.
 
-  ![macOS New solution](first-web-api-mac/_static/6/sln.png)
+* In the **Choose a template for your new project** dialog:
+  * Select **Web and Console** > **App** > **API**.
+  * Select **Continue**.
 
-* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
+* In the **Configure your new API** dialog, make the following selections:
+  * Confirm the **Target framework** is **.NET 7.0** (or later).
+  * Confirm the checkbox for **Use controllers (uncheck to use minimal APIs)** is checked.
+  * Confirm the checkbox for **Enable OpenAPI support** is checked.
+  * Select **Continue**.
 
-  ![macOS API template selection](first-web-api-mac/_static/6/api_template.png)
+* Enter the following:
+  * **Project name:** TodoApi
+  * **Solution name:** TodoApi
+  * Select **Create**.
 
-* In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 5.x **Target Framework**. Select **Next**.
+## Add a NuGet package
 
-* Enter *TodoApi* for the **Project Name** and then select **Create**.
-
-  ![config dialog](first-web-api-mac/_static/6/configure_your_new_api2.png)
-
-[!INCLUDE[](~/includes/mac-terminal-access.md)]
-
-Open a command terminal in the project folder and run the following command:
-
-   ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.InMemory
-   ```
+* In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**
+* Select **Include prereleases**.
+* In the search box, enter **Microsoft.EntityFrameworkCore.InMemory**.
+* In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
+* Select **Add Package**
+* In the **Select Projects** window, select **Ok**
+* In the **License Agreement** window, select **Agree**
 
 ---
 
@@ -132,7 +137,7 @@ Run the app:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. There is no endpoint at `https://localhost:<port>` so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`.
 
 ---
 
@@ -141,7 +146,7 @@ The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it o
 * The [Curl](https://curl.haxx.se/) command to test the WeatherForecast API.
 * The URL to test the WeatherForecast API.
 * The response code, body, and headers.
-* A drop down list box with media types and the example value and schema.
+* A drop-down list box with media types and the example value and schema.
 
 If the Swagger page doesn't appear, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/21647).
 
@@ -203,19 +208,11 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
-
-<!--
-* Right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
-
-  ![new folder](first-web-api-mac/_static/6/add_new_folder.png)
-
-* Right-click the `Models` folder, and select **Add** > **New File** > **General** > **Empty Class**.
-
-* Name the class *TodoItem*, and then click **New**.
+* Control-click the **TodoAPI** project and select **Add** > **New Folder**. Name the folder `Models`.
+* Control-click the `Models` folder, and select **Add** > **New Class...** > **General** > **Empty Class**.
+* Name the class *TodoItem*, and then select **Create**.
 
 * Replace the template code with the following:
--->
 
 ---
 
@@ -242,19 +239,9 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 * Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-* Add a `TodoContext.cs` file to the `Models` folder.
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
-
-<!--
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-* Add a `TodoContext` class to the `Models` folder.
--->
+* Add a `TodoContext.cs` file to the `Models` folder.
 
 ---
 
@@ -291,30 +278,35 @@ The preceding code:
 
   If the scaffolding operation fails, select **Add** to try scaffolding a second time.
 
-# [Visual Studio Code](#tab/visual-studio-code)
-<!-- # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)-->
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 Make sure that all of your changes so far are saved.
 
-Run the following commands from the project folder, that is, the `TodoApi` folder:
+* Control-click the **TodoAPI** project and select **Open in Terminal**.  The terminal opens at the `TodoAPI` project folder.
+Run the following commands:
 
 ```dotnetcli
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 7.0.0-*
+dotnet add package Microsoft.EntityFrameworkCore.Design -v 7.0.0-*
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 7.0.0-*
+dotnet tool uninstall -g dotnet-aspnet-codegenerator
 dotnet tool install -g dotnet-aspnet-codegenerator
-dotnet-aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
 The preceding commands:
 
 * Add NuGet packages required for scaffolding.
-* Install the scaffolding engine (`dotnet-aspnet-codegenerator`).
-* Scaffold the `TodoItemsController`.
+* Install the scaffolding engine (`dotnet-aspnet-codegenerator`) after uninstalling any possible previous version.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+Build the project.
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+Run the following command:
+
+  ```dotnetcli
+  dotnet-aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
+  ```
+
+The preceding command scaffolds the `TodoItemsController`.
 
 ---
 
@@ -640,7 +632,7 @@ The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it o
 * The [Curl](https://curl.haxx.se/) command to test the WeatherForecast API.
 * The URL to test the WeatherForecast API.
 * The response code, body, and headers.
-* A drop down list box with media types and the example value and schema.
+* A drop-down list box with media types and the example value and schema.
 
 If the Swagger page doesn't appear, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/21647).
 
