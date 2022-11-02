@@ -10,20 +10,20 @@ uid: fundamentals/minimal-apis/security
 
 # Authentication and authorization in minimal APIs
 
-Minimal APIs support all the authentication and authorization options available in ASP.NET and provide some additional functionality to improve the experience working with authentication.
+Minimal APIs support all the authentication and authorization options available in ASP.NET Core and provide some additional functionality to improve the experience working with authentication.
 
 ## Key concepts in authentication and authorization
 
 Authentication is the process of determining a user's identity. Authorization is the process of determining whether a user has access to a resource. Both authentication and authorization scenarios share similar implementation semantics in ASP.NET Core. Authentication is handled by the authentication service, [IAuthenticationService](/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationservice), which is used by authentication [middleware](/aspnet/core/fundamentals/middleware). Authorization is handled by the authorization service, [IAuthorizationService](/dotnet/api/microsoft.aspnetcore.authorization.iauthorizationservice), which is used by the authorization middleware.
 
-The authentication service uses registered authentication handlers to complete authentication-related actions. For example, an authentication-related action is authenticating a user or logging out a user. Authentication schemes are names that are used to uniquely identify an authentication handler and its configuration options. Authentication handlers are responsible for implementing the strategies for authentication and generating a user's claims given a particular authentication strategy, such as OAuth or OIDC. The configuration options are unique to the strategy as well and provide the handler with configuration that affects authentication behavior, such as redirect URIs.
+The authentication service uses registered authentication handlers to complete authentication-related actions. For example, an authentication-related action is authenticating a user or signing out a user. Authentication schemes are names that are used to uniquely identify an authentication handler and its configuration options. Authentication handlers are responsible for implementing the strategies for authentication and generating a user's claims given a particular authentication strategy, such as OAuth or OIDC. The configuration options are unique to the strategy as well and provide the handler with configuration that affects authentication behavior, such as redirect URIs.
 
 There are two strategies for determining user access to resources in the authorization layer:
 
 * Role-based strategies determine a user's access based on the role they are assigned, such as `Administrator` or `User`. For more information on role-based authorization, see [role-based authorization documentation](/aspnet/core/security/authorization/roles).
 * Claim-based strategies determine a user's access based on claims that are issued by a central authority. For more information on claim-based authorization, see [claim-based authorization documentation](/aspnet/core/security/authorization/claims).
 
-In ASP.NET, both strategies are captured into an authorization requirement. The authorization service leverages authorization handlers to determine whether or not a particular user meets the authorization requirements applied onto a resource. 
+In ASP.NET Core, both strategies are captured into an authorization requirement. The authorization service leverages authorization handlers to determine whether or not a particular user meets the authorization requirements applied onto a resource. 
 
 ## Enabling authentication in minimal applications
 
@@ -53,7 +53,7 @@ var app = builder.Build();
 app.Run();
 ```
 
-By default, the [`WebApplication`](/dotnet/api/microsoft.aspnetcore.builder.webapplication) automatically registers the authentication and authorization middlewares if certain authentication and authorization services are enabled. In the following code sample below, it's not necessary to invoke [`UseAuthentication`](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication) or [`UseAuthorization`](/dotnet/api/microsoft.aspnetcore.builder.authorizationappbuilderextensions.useauthorization) to register the middlewares beause [`WebApplication`](/dotnet/api/microsoft.aspnetcore.builder.webapplication) does this automatically after `AddAuthentication` or `AddAuthorization` are called.
+By default, the [`WebApplication`](/dotnet/api/microsoft.aspnetcore.builder.webapplication) automatically registers the authentication and authorization middlewares if certain authentication and authorization services are enabled. In the following sample, it's not necessary to invoke [`UseAuthentication`](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication) or [`UseAuthorization`](/dotnet/api/microsoft.aspnetcore.builder.authorizationappbuilderextensions.useauthorization) to register the middlewares because [`WebApplication`](/dotnet/api/microsoft.aspnetcore.builder.webapplication) does this automatically after `AddAuthentication` or `AddAuthorization` are called.
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -66,7 +66,7 @@ var app = builder.Build();
 app.Run();
 ```
 
-In some cases, such as controlling middleware order, it's necessary to explicitly register authentication and authorization. In the following sample, the authentication middleware runs _after_ the CORS middleware has run. For more information on middlewares and this automatic behavior, review [the documentation](/aspnet/core/fundamentals/minimal-apis/middleware).
+In some cases, such as controlling middleware order, it's necessary to explicitly register authentication and authorization. In the following sample, the authentication middleware runs _after_ the CORS middleware has run. For more information on middlewares and this automatic behavior, see [Middleware in Minimal API apps](/aspnet/core/fundamentals/minimal-apis/middleware).
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -87,10 +87,10 @@ app.Run();
 
 Authentication strategies typically support a variety of configurations that are loaded via options. Minimal app's support loading options from configuration for the following authentication strategies:
 
-- JWT bearer-based authentication strategies
-- OpenID Connection-based authentication strategies
+- JWT bearer-based
+- OpenID Connection-based
 
-The ASP.NET Core framework expects to find these options under the `Authentication:Schemes:{SchemeName}` section in configuration. The `appsettings.json` definition in the following sample defines two different schemes, `Bearer` and `LocalAuthIssuer`, with their respective options. The `Authentication:DefaultScheme` option can be used to configure the default authentication strategy that is used.
+The ASP.NET Core framework expects to find these options under the `Authentication:Schemes:{SchemeName}` section in configuration. The `appsettings.json` definition in the following sample defines two different schemes, `Bearer` and `LocalAuthIssuer`, with their respective options. The `Authentication:DefaultScheme` option can be used to configure the default authentication strategy that's used.
 
 ```json
 {
@@ -116,7 +116,7 @@ The ASP.NET Core framework expects to find these options under the `Authenticati
 }
 ```
 
-In `Program.cs`, we register two JWT bearer-based authentication strategies: one with the the "Bearer" scheme name and one with the "LocalAuthIssuer" scheme name. "Bearer" is the typical default scheme in JWT-bearer based enabled applications, but the default scheme can be overridden by setting the `DefaultScheme` property as in the example above.
+In `Program.cs`, we register two JWT bearer-based authentication strategies: one with the the "Bearer" scheme name and one with the "LocalAuthIssuer" scheme name. "Bearer" is the typical default scheme in JWT-bearer based enabled applications, but the default scheme can be overridden by setting the `DefaultScheme` property as in the preceding example.
 
 The scheme name is used to uniquely identify an authentication strategy and is used as the lookup key when resolving authentication options from config, as shown in the following example:
 
