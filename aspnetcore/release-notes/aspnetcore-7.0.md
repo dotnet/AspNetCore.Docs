@@ -502,6 +502,12 @@ The following example shows how to use an SNI callback to resolve TLS options:
 
 :::code language="csharp" source="~/release-notes/sample/Program7.cs" id="snippet_1":::
 
+Significant work was done in .NET 7 to reduce HTTP/3 allocations. You can see some of those improvements in the following GitHub PR's:
+
+* [HTTP/3: Avoid per-request cancellation token allocations](https://github.com/dotnet/aspnetcore/pull/42685)
+*[ HTTP/3: Avoid ConnectionAbortedException allocations](https://github.com/dotnet/aspnetcore/pull/42708)
+* [HTTP/3: ValueTask pooling](https://github.com/dotnet/aspnetcore/pull/42760)
+
 ### HTTP/2 Performance improvements
 
 .NET 7 introduces a significant re-architecture of how Kestrel processes HTTP/2 requests. ASP.NET Core apps with busy HTTP/2 connections will experience reduced CPU usage and higher throughput.
