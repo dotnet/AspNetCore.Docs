@@ -35,7 +35,7 @@ public class WidgetController : ControllerBase
     {
         // <snippet_WidgetSubscribe>
         var subscribePath = _linkGenerator.GetPathByAction(
-            HttpContext, "Subscribe", null!, new { id = 17 })!;
+            HttpContext, "Subscribe", null, new { id = 17 });
         // </snippet_WidgetSubscribe>
 
         return Content(subscribePath);
