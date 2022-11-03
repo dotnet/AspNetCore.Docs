@@ -7,6 +7,7 @@ ms.date: 10/10/2022
 monikerRange: '>= aspnetcore-7.0'
 uid: fundamentals/minimal-apis/middleware
 ---
+
 # Middleware in Minimal API apps
 
 `WebApplication` automatically adds the following middleware depending on certain conditions:
