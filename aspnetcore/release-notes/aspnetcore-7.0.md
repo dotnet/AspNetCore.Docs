@@ -491,6 +491,17 @@ Output caching is a new middleware that stores responses from a web app and serv
 
 For more information, see [Overview of caching](xref:performance/caching/overview) and [Output caching middleware](xref:performance/caching/output).
 
+### HTTP/3 improvements
+
+This release:
+
+* Improves Kestrel’s support for HTTP/3. The two main areas of improvement are feature parity with HTTP/1.1 and HTTP/2, and performance
+* Provides full support for <xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps%2A?displayProperty=fullName> with HTTP/3. Kestrel offers advanced options for configuring connection certificates, such as hooking into [Server Name Indication (SNI)](https://wikipedia.org/wiki/Server_Name_Indication).
+
+The following example shows how to use an SNI callback to resolve TLS options:
+
+:::code language="csharp" source="~/release-notes/sample/Program7.cs" id="snippet_1":::
+
 ### HTTP/2 Performance improvements
 
 .NET 7 introduces a significant re-architecture of how Kestrel processes HTTP/2 requests. ASP.NET Core apps with busy HTTP/2 connections will experience reduced CPU usage and higher throughput.
