@@ -102,7 +102,11 @@ The Blazor framework provides built-in input components to receive and validate 
 | <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
 
-For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads>.
+All of the input components, including <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the rendered HTML element.
+
+Input components provide default behavior for validating when a field is changed, including updating the field CSS class to reflect the field's state as valid or invalid. Some components include useful parsing logic. For example, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> handle unparseable values gracefully by registering unparseable values as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?` for a nullable integer).
+
+The <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component is a bit more complex and is well detailed in <xref:blazor/file-uploads>.
 
 <!--
 
@@ -110,10 +114,6 @@ For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFil
 * [Preview an image provided by the `InputFile` component](#preview-an-image-provided-by-the-inputfile-component) (this article)
 
 -->
-
-All of the input components, including <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the rendered HTML element.
-
-Input components provide default behavior for validating when a field is changed, including updating the field CSS class to reflect the field's state as valid or invalid. Some components include useful parsing logic. For example, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> handle unparseable values gracefully by registering unparseable values as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?` for a nullable integer).
 
 ## Example form
 
