@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace RoutingSample.Snippets.Controllers;
 
@@ -38,6 +38,6 @@ public class WidgetController : ControllerBase
             HttpContext, "Subscribe", null, new { id = 17 });
         // </snippet_WidgetSubscribe>
 
-        return Content(subscribePath);
+        return Content(subscribePath!);
     }
 }
