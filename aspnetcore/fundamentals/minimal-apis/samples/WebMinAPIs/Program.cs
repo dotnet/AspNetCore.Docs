@@ -386,20 +386,6 @@ app.MapGet("/", (LinkGenerator linker) =>
 app.Run();
 #endregion
 
-#elif NR2
-#region snippet_nr2
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
-string Hi() => "Hello there";
-app.MapGet("/hello", Hi);
-
-app.MapGet("/", (LinkGenerator linker) => 
-        $"The link to the hello route is {linker.GetPathByName("Hi", values: null)}");
-
-app.Run();
-#endregion
-
 #elif RP
 #region snippet_rp
 var builder = WebApplication.CreateBuilder(args);
