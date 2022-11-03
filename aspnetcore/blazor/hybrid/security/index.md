@@ -111,7 +111,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;
 ```
 
-Remove the following line of code that returns a built `Microsoft.Maui.Hosting.MauiApp`:
+Remove the following line of code that returns a built <xref:Microsoft.Maui.Hosting.MauiApp?displayProperty=fullName>:
 
 ```diff
 - return builder.Build();
@@ -643,7 +643,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;
 ```
 
-Remove the following line of code that returns a built `Microsoft.Maui.Hosting.MauiApp`:
+Remove the following line of code that returns a built <xref:Microsoft.Maui.Hosting.MauiApp?displayProperty=fullName>:
 
 ```diff
 - return builder.Build();
