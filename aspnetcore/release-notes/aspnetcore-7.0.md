@@ -495,10 +495,10 @@ For more information, see [Overview of caching](xref:performance/caching/overvie
 
 This release:
 
+* Makes HTTP/3 fully supported by ASP.NET Core, it's no longer experimental.
 * Improves Kestrel’s support for HTTP/3. The two main areas of improvement are feature parity with HTTP/1.1 and HTTP/2, and performance.
 * Provides full support for <xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions,System.Security.Cryptography.X509Certificates.X509Certificate2)> with HTTP/3. Kestrel offers advanced options for configuring connection certificates, such as hooking into [Server Name Indication (SNI)](https://wikipedia.org/wiki/Server_Name_Indication).
-* Makes HTTP/3 fully supported by ASP.NET Core, it's no longer experimental.
-* Adds support for HTTP/3 with ASP.NET Core on [HTTP.sys](xref:fundamentals/servers/httpsys) and [IIS](xref:host-and-deploy/iis/modules).
+* Adds support for HTTP/3 on [HTTP.sys](xref:fundamentals/servers/httpsys) and [IIS](xref:host-and-deploy/iis/modules).
 
 The following example shows how to use an SNI callback to resolve TLS options:
 
