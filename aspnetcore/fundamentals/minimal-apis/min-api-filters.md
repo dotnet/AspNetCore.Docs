@@ -110,6 +110,12 @@ In the preceding code:
 * The signature of the handler is examined by inspecting [`MethodInfo.Parameters`](/dotnet/api/system.reflection.methodinfo.parameters) for the expected type signature. If the expected signature is found, the validation filter is registered onto the endpoint. This factory pattern is useful to register a filter that depends on the signature of the target endpoint handler.
 * If a matching signature isn't found, then a pass-through filter is registered.
 
+## Register a filter on controller actions
+
+In some scenarios, it might be necessary to apply the same filter logic for both route-handler based endpoints and controller actions. For this scenario, it is possible to invoke `AddEndpointFilter` on `ControllerActionEndpointConventionBuilder` to support executing the same filter logic on actions and endpoints.
+
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet_action_endpoint_filters)]
+
 ## Additional Resources
 
 * [View or download sample code](https://github.com/aspnet/Docs/tree/main/aspnetcore/fundamentals/minimal-apis/min-api-filters/7samples) ([how to download](xref:index#how-to-download-a-sample))

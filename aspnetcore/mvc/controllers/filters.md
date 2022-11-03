@@ -57,6 +57,8 @@ Each filter type is executed at a different stage in the filter pipeline:
   * Can change the result returned from the action.
   * Are **not** supported in Razor Pages.
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-7.0"
 
 * [Endpoint filters](/aspnet/core/fundamentals/minimal-apis/min-api-filters):
@@ -68,6 +70,8 @@ Each filter type is executed at a different stage in the filter pipeline:
   * Can be invoked on both actions and route handler-based endpoints.
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 * [Exception filters](#exception-filters) apply global policies to unhandled exceptions that occur before the response body has been written to.
 
