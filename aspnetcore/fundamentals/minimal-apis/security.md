@@ -139,7 +139,7 @@ Configuring authorization requirements on a resource is a two-step process that 
 1. Configuring the authorization requirements in a policy globally.
 2. Applying individual policies to resources.
 
-In the code sample below, the  `AddAuthorizationBuilder` is invoked which:
+In the following code, the  `AddAuthorizationBuilder` is invoked which:
 
 - Adds authorization-related services to the DI container.
 - Returns an `AuthorizationBuilder` that can be used to directly register authentication policies.
@@ -149,7 +149,7 @@ The code creates a new authorization policy, named `policy_greetings`, that enca
 - A role-based requirement that the user fall under the `admin` role.
 - A claim-based requirement that the user provide a `greetings_api` scope.
 
-Finally, the `admin_greetings` policy is provided as a required policy to the `/hello` endpoint.
+The `admin_greetings` policy is provided as a required policy to the `/hello` endpoint.
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -170,9 +170,9 @@ app.Run();
 
 ## Using `dotnet user-jwts` to improve development time testing
 
-Throughout this article, we've used an application configured with JWT-bearer based authentication as a sample. JWT bearer-based authentication requires that clients present a token in the request header to validate their identity and claims. Typically, these tokens are issued by a central authority, like an identity server.
+Throughout this article, an app configured with JWT-bearer based authentication is used. JWT bearer-based authentication requires that clients present a token in the request header to validate their identity and claims. Typically, these tokens are issued by a central authority, such as an identity server.
 
-When developing on the local machine, the [`dotnet user-jwts`](/aspnet/core/security/authentication/jwt-authn) tool can be used to creating bearer tokens.
+When developing on the local machine, the [`dotnet user-jwts`](/aspnet/core/security/authentication/jwt-authn) tool can be used to create bearer tokens.
 
 ```dotnetcli
 dotnet user-jwts create
