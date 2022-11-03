@@ -25,7 +25,7 @@ There are two strategies for determining user access to resources in the authori
 
 In ASP.NET Core, both strategies are captured into an authorization requirement. The authorization service leverages authorization handlers to determine whether or not a particular user meets the authorization requirements applied onto a resource. 
 
-## Enabling authentication in minimal applications
+## Enabling authentication in minimal apps
 
 To enable authentication, call [`AddAuthentication`](/dotnet/api/microsoft.extensions.dependencyinjection.authenticationservicecollectionextensions.addauthentication) to register the required authentication services on the app's service provider.
 
@@ -130,7 +130,7 @@ var app = builder.Build();
 app.Run();
 ```
 
-## Configuring authorization policies in minimal applications
+## Configuring authorization policies in minimal apps
 
 Authentication is used to identify and validate the identity of users against an API. Authorization is used to validate and verify access to resources in an API and is facilitated by the `IAuthorizationService` registered by the `AddAuthorization` extension method. In the following scenario, a `/hello` resource is added that requires a user to present an `is_admin` claim with a `greetings_api` scope.
 

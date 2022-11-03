@@ -8,6 +8,6 @@ ms.date: 10/31/2022
 uid: fundamentals/minimal-apis/parameter-binding
 ---
 
-# Parameter Binding
+# Parameter Binding in Minimal API apps
 
 [!INCLUDE [parameter-binding](includes/parameter-binding.md)]
