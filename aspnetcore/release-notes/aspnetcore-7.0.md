@@ -493,6 +493,8 @@ For more information, see [Overview of caching](xref:performance/caching/overvie
 
 ### HTTP/3 improvements
 
+<xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions,System.Security.Cryptography.X509Certificates.X509Certificate2)>
+
 This release:
 
 * Improves Kestrel’s support for HTTP/3. The two main areas of improvement are feature parity with HTTP/1.1 and HTTP/2, and performance
