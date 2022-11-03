@@ -496,7 +496,7 @@ For more information, see [Overview of caching](xref:performance/caching/overvie
 This release:
 
 * Improves Kestrel’s support for HTTP/3. The two main areas of improvement are feature parity with HTTP/1.1 and HTTP/2, and performance
-* Provides full support for [ListenOptionsHttpsExtensions.UseHttps](xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions,System.Security.Cryptography.X509Certificates.X509Certificate2) with HTTP/3. Kestrel offers advanced options for configuring connection certificates, such as hooking into [Server Name Indication (SNI)](https://wikipedia.org/wiki/Server_Name_Indication).
+* Provides full support for [ListenOptionsHttpsExtensions.UseHttps](xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions,System.Security.Cryptography.X509Certificates.X509Certificate2)) with HTTP/3. Kestrel offers advanced options for configuring connection certificates, such as hooking into [Server Name Indication (SNI)](https://wikipedia.org/wiki/Server_Name_Indication).
 
 The following example shows how to use an SNI callback to resolve TLS options:
 
