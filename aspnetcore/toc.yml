@@ -702,23 +702,23 @@ items:
         uid: fundamentals/minimal-apis
       - name: WebApplication and WebApplicationBuilder
         uid: fundamentals/minimal-apis/webapplication
-      - name: Route Handlers in Minimal API apps
+      - name: Route Handlers
         uid: fundamentals/minimal-apis/route-handlers
-      - name: Parameter binding in Minimal API apps
+      - name: Parameter binding
         uid: fundamentals/minimal-apis/parameter-binding
-      - name: Create responses in Minimal API apps
+      - name: Create responses
         uid: fundamentals/minimal-apis/responses
-      - name: OpenAPI in Minimal API apps
+      - name: OpenAPI
         uid: fundamentals/minimal-apis/openapi
       - name: Port tunneling in VS to debug web APIs
         href: /connectors/custom-connectors/port-tunneling
-      - name: Filters in Minimal API apps
+      - name: Filters
         uid: fundamentals/minimal-apis/min-api-filters
       - name: Unit and integration tests
         uid: fundamentals/minimal-apis/test-min-api
-      - name: Middleware in Minimal API apps
+      - name: Middleware
         uid: fundamentals/minimal-apis/middleware
-      - name: Handle errors in Minimal API apps
+      - name: Handle errors
         uid: fundamentals/minimal-apis/handle-errors
   - name: Real-time apps
     displayName: signalr

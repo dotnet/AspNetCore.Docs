@@ -1,14 +1,14 @@
 ---
-title: Route handlers in Minimal API applications
+title: Route handlers in Minimal API apps
 author: rick-anderson
-description: Learn how to handle requests in Minimal API applications.
+description: Learn how to handle requests in Minimal API apps.
 ms.author: riande
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 10/31/2022
 uid: fundamentals/minimal-apis/route-handlers
 ---
 
-# Route Handlers
+# Route Handlers in Minimal API apps
 
 A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A> where `{Verb}` is a camel-cased HTTP method like `Get`, `Post`, `Put` or `Delete`:
 

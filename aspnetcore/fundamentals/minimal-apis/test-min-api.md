@@ -1,7 +1,7 @@
 ---
-title: Test Minimal API applications
+title: Test Minimal API apps
 author: rick-anderson
-description: Unit and integration tests in Minimal API applications
+description: Unit and integration tests in Minimal API apps
 ms.author: riande
 ms.date: 9/30/2022
 monikerRange: '>= aspnetcore-7.0'
