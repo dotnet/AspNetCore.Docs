@@ -505,7 +505,7 @@ The following example shows how to use an SNI callback to resolve TLS options:
 Significant work was done in .NET 7 to reduce HTTP/3 allocations. You can see some of those improvements in the following GitHub PR's:
 
 * [HTTP/3: Avoid per-request cancellation token allocations](https://github.com/dotnet/aspnetcore/pull/42685)
-*[ HTTP/3: Avoid ConnectionAbortedException allocations](https://github.com/dotnet/aspnetcore/pull/42708)
+* [HTTP/3: Avoid ConnectionAbortedException allocations](https://github.com/dotnet/aspnetcore/pull/42708)
 * [HTTP/3: ValueTask pooling](https://github.com/dotnet/aspnetcore/pull/42760)
 
 ### HTTP/2 Performance improvements
