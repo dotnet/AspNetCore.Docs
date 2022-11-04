@@ -4,7 +4,7 @@ author: rick-anderson
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 ms.author: riande
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/25/2022
+ms.date: 11/04/2022
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/razor-pages-start
 ---
@@ -51,7 +51,7 @@ At the end of this tutorial, you'll have a Razor Pages web app that manages a da
 * Select **Next**.
 * In the **Additional information** dialog:
   * Select **.NET 7.0**.
-  * Verify: **Do not use top-level statements** is unchecked
+  * Verify: **Do not use top-level statements** is unchecked.
 * Select **Create**.
 
    ![Additional information](razor-pages-start/_static/7/additional_info.png)
@@ -64,43 +64,42 @@ For alternative approaches to create the project, see [Create a new project in V
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-1. Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+* Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 
-1. Change to the directory (`cd`) that will contain the project.
-1. Run the following commands:
+* Change to the directory (`cd`) that will contain the project.
+* Run the following commands:
 
-   ```dotnetcli
-   dotnet new webapp -o RazorPagesMovie
-   code -r RazorPagesMovie
-   ```
+  ```dotnetcli
+  dotnet new webapp -o RazorPagesMovie
+  code -r RazorPagesMovie
+  ```
 
-   Visual Studio Code displays a dialog box that asks **Do you trust the authors of the files in this folder**.  Select:
-    * The checkbox **trust the authors of all files in the parent folder**
-    * **Yes, I trust the authors** (because dotnet generated the files).
+Visual Studio Code displays a dialog box that asks **Do you trust the authors of the files in this folder**.
+  
+* Select:
+  * The checkbox **trust the authors of all files in the parent folder**.
+  * **Yes, I trust the authors** (because dotnet generated the files).
 
-   The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
+  The `dotnet new` command creates a new Razor Pages project in the *RazorPagesMovie* folder.
 
-   The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
+  The `code` command opens the *RazorPagesMovie* folder in the current instance of Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Select **File** > **New Solution**.
+* In Visual Studio for Mac 2022, select **File** > **New Project...**.
 
-   ![macOS New solution](razor-pages-start/_static/6/new_project_vsmac6.png)
+* In the **Choose a template for your new project** dialog:
+  * Select **Web and Console** > **App** > **Web Application**.
+  * Select **Continue**.
 
-1. In Visual Studio 2022 for Mac select **Web and Console** > **App** > **Web Application** > **Next**.
+* In the **Configure your new API** dialog, make the following selections:
+  * Verify: **Target framework** is set to **.NET 7.0** (or later).
+  * Verify: **Authentication** is set to **No Athentication**.
+  * Verify: **Do not use top-level statements** is unchecked.
+  * Select **Continue**.
 
-   ![macOS web app template selection](razor-pages-start/_static/6/web_app_template_vsmac6.png)
-
-1. In the **Configure your new Web Application** dialog:
-
-   1. Confirm that **Target framework** is set to the latest .NET 6.x version.
-   1. Confirm that **Authentication** is set to **No Authentication**.
-   1. Select **Next**.
-
-1. Name the project *RazorPagesMovie* and select **Create**.
-
-   ![macOS name the project](razor-pages-start/_static/6/razorpagesmovievsmac6.png)
+  *In the **Configure your new project** dialog, enter `RazorPagesMovie` for **Project name**. It's important to name the project **RazorPagesMovie**, including matching the capitalization, so the namespaces will match when you copy and paste example code.
+  * Select **Create**.
 
 ---
 
@@ -141,7 +140,9 @@ The default browser launched with the following URL: `https://localhost:<port>` 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is the port number randomly assigned at project creation and is set in `Properties/launchSettings.json`.
+Select **Debug** > **Start Debugging** to launch the app.
+
+Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is the port number randomly assigned at project creation and is set in `Properties/launchSettings.json`.
 
 ---
 
