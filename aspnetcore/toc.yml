@@ -1245,6 +1245,8 @@ items:
             uid: security/authentication/index
           - name: Introduction to Identity
             uid: security/authentication/identity
+          - name: Authentication and authorization in minimal APIs
+            uid: fundamentals/minimal-apis/security
           - name: Mapping, customizing, and transforming claims
             uid: security/authentication/claims
           - name: Identity with SPA

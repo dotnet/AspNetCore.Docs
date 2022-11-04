@@ -122,3 +122,4 @@ In some scenarios, it might be necessary to apply the same filter logic for both
 * [View or download sample code](https://github.com/aspnet/Docs/tree/main/aspnetcore/fundamentals/minimal-apis/min-api-filters/7samples) ([how to download](xref:index#how-to-download-a-sample))
 * [ValidationFilterRouteHandlerBuilderExtensions](https://github.com/DamianEdwards/MinimalApis.Extensions/blob/main/src/MinimalApis.Extensions/Filters/ValidationFilterRouteHandlerBuilderExtensions.cs) Validation extension methods.
 * <xref:tutorials/min-web-api>
+* <xref:fundamentals/minimal-apis/security>
