@@ -158,7 +158,7 @@ This is server-side validation that you get by default; in a later tutorial you'
 
 [!code-csharp[](intro/samples/cu/Controllers/StudentsController.cs?name=snippet_Create&highlight=8)]
 
-Change the date to a valid value and click **Create** showomg we still can't create the new object. We'll learn how to fix this in the next section now.
+Change the date to a valid value and click **Create** showing we still can't create the new object. We'll learn how to fix this in the next section now.
 
 ## Make Enrollment navigation property nullable in the Student class
 
