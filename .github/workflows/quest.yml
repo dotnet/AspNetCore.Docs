@@ -1,0 +1,63 @@
+name: "quest import"
+on:
+  issues:
+    types:
+      [ labeled, closed, reopened, assigned, unassigned ]
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "The reason for running the workflow"
+        required: true
+        default: "Manual run"
+      issue:
+        description: "The issue number to manually test"
+        required: true
+
+jobs:
+  import:
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      github.event.label.name == 'reQUEST' ||
+      github.event.label.name == 'seQUESTered' ||
+      contains(github.event.issue.labels.*.name, 'reQUEST') ||
+      contains(github.event.issue.labels.*.name, 'seQUESTered')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: "Print manual run reason"
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          echo "Reason: ${{ github.event.inputs.reason }}"
+          echo "Issue number: ${{ github.event.inputs.issue }}"
+
+      # This step occurs when ran manually, passing the manual issue number input
+      - name: manual-sequester
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        id: manual-sequester
+        uses: dotnet/docs-tools/actions/sequester@main
+        env:
+          ImportOptions__ApiKeys__GitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          ImportOptions__ApiKeys__OSPOKey: ${{ secrets.OSPO_KEY }}
+          ImportOptions__ApiKeys__QuestKey: ${{ secrets.QUEST_KEY }}
+        with:
+          org: ${{ github.repository_owner }}
+          repo: ${{ github.repository }}
+          issue: ${{ github.event.inputs.issue }}
+
+      # This step occurs automatically, passing the issue number from the event
+      - name: auto-sequester
+        if: ${{ github.event_name != 'workflow_dispatch' }}
+        id: auto-sequester
+        uses: dotnet/docs-tools/actions/sequester@main
+        env:
+          ImportOptions__ApiKeys__GitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          ImportOptions__ApiKeys__OSPOKey: ${{ secrets.OSPO_KEY }}
+          ImportOptions__ApiKeys__QuestKey: ${{ secrets.QUEST_KEY }}
+        with:
+          org: ${{ github.repository_owner }}
+          repo: ${{ github.repository }}
+          issue: ${{ github.event.issue.number }}
+          
