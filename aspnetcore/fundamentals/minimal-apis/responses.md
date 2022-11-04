@@ -196,7 +196,7 @@ public static void PopulateMetadata(MethodInfo method, EndpointBuilder builder)
 By default, Minimal API apps use [`Web defaults`](/dotnet/standard/serialization/system-text-json-configure-options#web-defaults-for-jsonserializeroptions) options during JSON serialization and deserialization.
 
 Options can be configured by invoking <xref:Microsoft.Extensions.DependencyInjection.HttpJsonServiceExtensions.ConfigureHttpJsonOptions%2A>, and the configured options are applied when the app calls extension methods defined in <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions> or <xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions>.
- 
+
 The following example invokes `ConfigureHttpJsonOptions` to configure options that apply wherever the app serializes or deserializes JSON for HTTP requests and responses:
 
 [!code-csharp[](7.0-samples/WebMinJson/Program.cs?name=snippet_1)]
@@ -205,4 +205,6 @@ To make more localized changes to the serialization options, pass modified versi
 
 [!code-csharp[](7.0-samples/WebMinJson/Program.cs?name=snippet_2&highlight=12,13)]
 
+## Additional Resources
 
+* <xref:fundamentals/minimal-apis/security>

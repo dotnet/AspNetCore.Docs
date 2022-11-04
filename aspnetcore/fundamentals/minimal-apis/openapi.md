@@ -263,4 +263,8 @@ Moved to uid: tutorials/min-web-api
 * [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs)
 * [OpenApiGenerator](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/src/OpenApiGenerator.cs)
 
+## Additional Resources
+
+* <xref:fundamentals/minimal-apis/security>
+
 :::moniker-end
