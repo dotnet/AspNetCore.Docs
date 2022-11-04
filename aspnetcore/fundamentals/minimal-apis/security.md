@@ -1,5 +1,5 @@
 ---
-title: Authentication and authorization for minimal APIs
+title: Authentication and authorization in minimal APIs
 author: captainsafia
 description: Learn how to configure authentication and authorization in minimal API apps
 ms.author: safia
