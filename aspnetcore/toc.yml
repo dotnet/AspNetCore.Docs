@@ -720,6 +720,8 @@ items:
         uid: fundamentals/minimal-apis/middleware
       - name: Handle errors
         uid: fundamentals/minimal-apis/handle-errors
+      - name: Authentication and authorization
+        uid: fundamentals/minimal-apis/security
   - name: Real-time apps
     displayName: signalr
     items:

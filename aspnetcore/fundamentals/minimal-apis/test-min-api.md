@@ -34,6 +34,7 @@ The following code uses the [`Ok<TValue>`](/dotnet/api/microsoft.aspnetcore.http
 
 * [Basic authentication tests](https://github.com/blowdart/idunno.Authentication/tree/dev/test/idunno.Authentication.Basic.Test) is not a .NET repository but was written by a member of the .NET team. It provides examples of basic authentication testing.
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample)
+* <xref:fundamentals/minimal-apis/security>
 * [Use port tunneling Visual Studio to debug web APIs](/connectors/custom-connectors/port-tunneling)
 * <xref:mvc/controllers/testing>
 * <xref:test/razor-pages-tests>
