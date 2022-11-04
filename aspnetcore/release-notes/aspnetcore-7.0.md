@@ -182,15 +182,7 @@ For more information, see [Problem details service](xref:web-api/handle-errors##
 
 ### Route groups
 
-The <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> extension method helps organize groups of endpoints with a common prefix. It reduces repetitive code and allows for customizing entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A>.
-
-For example, the following code creates two similar groups of endpoints:
-
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/Program.cs" id="snippet_MapGroup":::
-
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/TodoEndpoints.cs" id="snippet_TodoEndpoints":::
-
-For more information, see [Route groups](xref:fundamentals/minimal-apis#route-groups)
+[!INCLUDE[](~/includes/route-groups.md)]
 
 ## gRPC
 
@@ -490,6 +482,25 @@ Output caching is a new middleware that stores responses from a web app and serv
 * The cache storage medium is extensible.
 
 For more information, see [Overview of caching](xref:performance/caching/overview) and [Output caching middleware](xref:performance/caching/output).
+
+### HTTP/3 improvements
+
+This release:
+
+* Makes HTTP/3 fully supported by ASP.NET Core, it's no longer experimental.
+* Improves Kestrel’s support for HTTP/3. The two main areas of improvement are feature parity with HTTP/1.1 and HTTP/2, and performance.
+* Provides full support for <xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions,System.Security.Cryptography.X509Certificates.X509Certificate2)> with HTTP/3. Kestrel offers advanced options for configuring connection certificates, such as hooking into [Server Name Indication (SNI)](https://wikipedia.org/wiki/Server_Name_Indication).
+* Adds support for HTTP/3 on [HTTP.sys](xref:fundamentals/servers/httpsys) and [IIS](xref:host-and-deploy/iis/modules).
+
+The following example shows how to use an SNI callback to resolve TLS options:
+
+:::code language="csharp" source="~/release-notes/sample/Program7.cs" id="snippet_1":::
+
+Significant work was done in .NET 7 to reduce HTTP/3 allocations. You can see some of those improvements in the following GitHub PR's:
+
+* [HTTP/3: Avoid per-request cancellation token allocations](https://github.com/dotnet/aspnetcore/pull/42685)
+* [HTTP/3: Avoid ConnectionAbortedException allocations](https://github.com/dotnet/aspnetcore/pull/42708)
+* [HTTP/3: ValueTask pooling](https://github.com/dotnet/aspnetcore/pull/42760)
 
 ### HTTP/2 Performance improvements
 

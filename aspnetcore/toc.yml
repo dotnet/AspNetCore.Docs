@@ -698,21 +698,27 @@ items:
             uid: web-api/http-repl/telemetry
   - name: Minimal APIs
     items:
-      - name: Minimal APIs overview
+      - name: Minimal APIs quick reference
         uid: fundamentals/minimal-apis
-      - name: OpenAPI in Minimal API apps
+      - name: WebApplication and WebApplicationBuilder
+        uid: fundamentals/minimal-apis/webapplication
+      - name: Route Handlers
+        uid: fundamentals/minimal-apis/route-handlers
+      - name: Parameter binding
+        uid: fundamentals/minimal-apis/parameter-binding
+      - name: Create responses
+        uid: fundamentals/minimal-apis/responses
+      - name: OpenAPI
         uid: fundamentals/minimal-apis/openapi
       - name: Port tunneling in VS to debug web APIs
         href: /connectors/custom-connectors/port-tunneling
-      - name: Filters in Minimal API apps
+      - name: Filters
         uid: fundamentals/minimal-apis/min-api-filters
       - name: Unit and integration tests
         uid: fundamentals/minimal-apis/test-min-api
-      - name: Create responses in Minimal API apps
-        uid: fundamentals/minimal-apis/responses
-      - name: Middleware in Minimal API apps
+      - name: Middleware
         uid: fundamentals/minimal-apis/middleware
-      - name: Handle errors in Minimal API apps
+      - name: Handle errors
         uid: fundamentals/minimal-apis/handle-errors
   - name: Real-time apps
     displayName: signalr
