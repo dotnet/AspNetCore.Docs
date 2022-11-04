@@ -20,6 +20,14 @@ Blazor apps are built using *Razor components*, informally known as *Blazor comp
 
 Components are implemented using a combination of C# and HTML markup in [Razor](xref:mvc/views/razor) component files with the `.razor` file extension.
 
+By default, <xref:Microsoft.AspNetCore.Components.ComponentBase> is the base class for components described by Razor component files. <xref:Microsoft.AspNetCore.Components.ComponentBase> implements the lowest abstraction of components, the <xref:Microsoft.AspNetCore.Components.IComponent> interface. <xref:Microsoft.AspNetCore.Components.ComponentBase> defines component properties and methods for basic functionality, for example, to process a set of built-in component lifecycle events.
+
+[`ComponentBase` in `dotnet/aspnetcore` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs): The reference source contains additional remarks on the built-in lifecycle events. However, keep in mind that the internal implementations of component features are subject to change at any time without notice.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+Developers typically create Razor components from Razor component files (`.razor`) or base their components on <xref:Microsoft.AspNetCore.Components.ComponentBase>, but components can also be built by implementing <xref:Microsoft.AspNetCore.Components.IComponent>. Developer-built components that implement <xref:Microsoft.AspNetCore.Components.IComponent> can take low-level control over rendering at the cost of having to manually trigger rendering with events and lifecycle methods that the developer must create and maintain.
+
 ### Razor syntax
 
 Components use [Razor syntax](xref:mvc/views/razor). Two Razor features are extensively used by components, *directives* and *directive attributes*. These are reserved keywords prefixed with `@` that appear in Razor markup:
@@ -1520,6 +1528,14 @@ Blazor apps are built using *Razor components*, informally known as *Blazor comp
 
 Components are implemented using a combination of C# and HTML markup in [Razor](xref:mvc/views/razor) component files with the `.razor` file extension.
 
+By default, <xref:Microsoft.AspNetCore.Components.ComponentBase> is the base class for components described by Razor component files. <xref:Microsoft.AspNetCore.Components.ComponentBase> implements the lowest abstraction of components, the <xref:Microsoft.AspNetCore.Components.IComponent> interface. <xref:Microsoft.AspNetCore.Components.ComponentBase> defines component properties and methods for basic functionality, for example, to process a set of built-in component lifecycle events.
+
+[`ComponentBase` in `dotnet/aspnetcore` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs): The reference source contains additional remarks on the built-in lifecycle events. However, keep in mind that the internal implementations of component features are subject to change at any time without notice.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+Developers typically create Razor components from Razor component files (`.razor`) or base their components on <xref:Microsoft.AspNetCore.Components.ComponentBase>, but components can also be built by implementing <xref:Microsoft.AspNetCore.Components.IComponent>. Developer-built components that implement <xref:Microsoft.AspNetCore.Components.IComponent> can take low-level control over rendering at the cost of having to manually trigger rendering with events and lifecycle methods that the developer must create and maintain.
+
 ### Razor syntax
 
 Components use [Razor syntax](xref:mvc/views/razor). Two Razor features are extensively used by components, *directives* and *directive attributes*. These are reserved keywords prefixed with `@` that appear in Razor markup:
@@ -2530,6 +2546,14 @@ Blazor apps are built using *Razor components*, informally known as *Blazor comp
 ## Component classes
 
 Components are implemented using a combination of C# and HTML markup in [Razor](xref:mvc/views/razor) component files with the `.razor` file extension.
+
+By default, <xref:Microsoft.AspNetCore.Components.ComponentBase> is the base class for components described by Razor component files. <xref:Microsoft.AspNetCore.Components.ComponentBase> implements the lowest abstraction of components, the <xref:Microsoft.AspNetCore.Components.IComponent> interface. <xref:Microsoft.AspNetCore.Components.ComponentBase> defines component properties and methods for basic functionality, for example, to process a set of built-in component lifecycle events.
+
+[`ComponentBase` in `dotnet/aspnetcore` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs): The reference source contains additional remarks on the built-in lifecycle events. However, keep in mind that the internal implementations of component features are subject to change at any time without notice.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+Developers typically create Razor components from Razor component files (`.razor`) or base their components on <xref:Microsoft.AspNetCore.Components.ComponentBase>, but components can also be built by implementing <xref:Microsoft.AspNetCore.Components.IComponent>. Developer-built components that implement <xref:Microsoft.AspNetCore.Components.IComponent> can take low-level control over rendering at the cost of having to manually trigger rendering with events and lifecycle methods that the developer must create and maintain.
 
 ### Razor syntax
 
@@ -3557,6 +3581,14 @@ Blazor apps are built using *Razor components*, informally known as *Blazor comp
 ## Component classes
 
 Components are implemented using a combination of C# and HTML markup in [Razor](xref:mvc/views/razor) component files with the `.razor` file extension.
+
+By default, <xref:Microsoft.AspNetCore.Components.ComponentBase> is the base class for components described by Razor component files. <xref:Microsoft.AspNetCore.Components.ComponentBase> implements the lowest abstraction of components, the <xref:Microsoft.AspNetCore.Components.IComponent> interface. <xref:Microsoft.AspNetCore.Components.ComponentBase> defines component properties and methods for basic functionality, for example, to process a set of built-in component lifecycle events.
+
+[`ComponentBase` in `dotnet/aspnetcore` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs): The reference source contains additional remarks on the built-in lifecycle events. However, keep in mind that the internal implementations of component features are subject to change at any time without notice.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+Developers typically create Razor components from Razor component files (`.razor`) or base their components on <xref:Microsoft.AspNetCore.Components.ComponentBase>, but components can also be built by implementing <xref:Microsoft.AspNetCore.Components.IComponent>. Developer-built components that implement <xref:Microsoft.AspNetCore.Components.IComponent> can take low-level control over rendering at the cost of having to manually trigger rendering with events and lifecycle methods that the developer must create and maintain.
 
 ### Razor syntax
 
