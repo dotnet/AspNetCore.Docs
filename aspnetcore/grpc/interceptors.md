@@ -176,11 +176,11 @@ gRPC server interceptors intercept incoming RPC requests. They provide access to
 The following code presents an example of an intercepting an incoming unary RPC:
 
 ```csharp
-public class ServerLoggingInterceptor : Interceptor
+public class ServerLoggerInterceptor : Interceptor
 {
     private readonly ILogger _logger;
 
-    public ServerLoggingInterceptor(ILogger<ServerLoggingInterceptor> logger)
+    public ServerLoggerInterceptor(ILogger<ServerLoggerInterceptor> logger)
     {
         _logger = logger;
     }
