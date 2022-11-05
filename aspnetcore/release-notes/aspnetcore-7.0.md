@@ -15,6 +15,10 @@ This article highlights the most significant changes in ASP.NET Core 7.0 with li
 
 The `Microsoft.AspNetCore.RateLimiting` middleware provides rate limiting middleware. Apps configure rate limiting policies and then attach the policies to endpoints. For more information, see <xref:performance/rate-limit?view=aspnetcore-7.0&preserve-view=true>.
 
+## Authentication uses single scheme as DefaultScheme
+
+As part of the work to simplify authentication, when there is only a single authentication scheme registered, it's automatically used as the <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultScheme>. For more information, see [DefaultScheme](xref:security/authentication/index#defaultscheme)
+
 ## MVC and Razor pages
 
 ### Support for nullable models in MVC views and Razor Pages
