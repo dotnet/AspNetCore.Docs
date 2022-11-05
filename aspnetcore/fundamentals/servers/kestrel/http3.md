@@ -5,7 +5,7 @@ description: Learn about using HTTP/3 with Kestrel, the cross-platform web serve
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wigodbe
 ms.custom: mvc
-ms.date: 08/06/2021
+ms.date: 11/6/2022
 uid: fundamentals/servers/kestrel/http3
 ---
 
@@ -13,14 +13,10 @@ uid: fundamentals/servers/kestrel/http3
 
 :::moniker range=">= aspnetcore-7.0"
 
-[HTTP/3](https://quicwg.org/base-drafts/draft-ietf-quic-http.html) is the third and upcoming major version of HTTP. This article discusses requirements for HTTP/3 and how to configure Kestrel to use it.
+[HTTP/3](https://datatracker.ietf.org/doc/rfc9114/) is a proposed standard and the third major version of HTTP. This article discusses requirements for HTTP/3 and how to configure Kestrel to use it.
 
 > [!IMPORTANT]
-> HTTP/3 is available in .NET 6 as a *preview feature*. The HTTP/3 specification isn't finalized and behavioral or performance issues may exist in HTTP/3 with .NET 6.
-> 
-> For more information on preview feature support, see [the preview features supported section](https://github.com/dotnet/designs/blob/main/accepted/2021/preview-features/preview-features.md#are-preview-features-supported).
->
-> Apps configured to take advantage of HTTP/3 should be designed to also support HTTP/1.1 and HTTP/2. If issues are identified in HTTP/3, we recommend disabling HTTP/3 until the issues are resolved in a future release of ASP.NET Core. Significant issues are reported at the [Announcements GitHub repository](https://github.com/aspnet/Announcements/issues).
+> Apps configured to take advantage of HTTP/3 should be designed to also support HTTP/1.1 and HTTP/2.
 
 ## HTTP/3 requirements
 
@@ -42,22 +38,16 @@ The preceding Windows 11 Build versions may require the use of a [Windows Inside
 1. Add the `packages.microsoft.com` repository. See [Linux Software Repository for Microsoft Products](/windows-server/administration/linux-package-repository-for-microsoft-software) for instructions.
 2. Install the `libmsquic` package using the distro's package manager. For example, `apt install libmsquic=1.9*` on Ubuntu.
 
+<!-- Review following note -->
 **Note:** .NET 6 is only compatible with the 1.9.x versions of libmsquic. Libmsquic 2.x is not compatible due to breaking changes. Libmsquic receives updates to 1.9.x when needed to incorporate security fixes.  
 
 ### macOS
 
-HTTP/3 isn't currently supported on macOS and may be available in a future release.
+See [TN3102: HTTP/3 in your app](https://developer.apple.com/documentation/technotes/tn3102-http3-in-your-app)
 
 ## Getting started
 
-HTTP/3 is not enabled by default. Add configuration to `Program.cs` to enable HTTP/3.
-
-:::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_Http3" highlight="7-8":::
-
-The preceding code configures port 5001 to:
-
-* Use HTTP/3 alongside HTTP/1.1 and HTTP/2 by specifying `HttpProtocols.Http1AndHttp2AndHttp3`.
-* Enable HTTPS with `UseHttps`. HTTP/3 requires HTTPS.
+HTTP/3 is enabled by default.
 
 Because not all routers, firewalls, and proxies properly support HTTP/3, HTTP/3 should be configured together with HTTP/1.1 and HTTP/2. This can be done by specifying `HttpProtocols.Http1AndHttp2AndHttp3` as an endpoint's supported protocols.
 
@@ -75,6 +65,7 @@ HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the `alt-svc` hea
   * Set `HttpRequestMessage.Version` to 3.0, or
   * Set `HttpRequestMessage.VersionPolicy` to `HttpVersionPolicy.RequestVersionOrHigher`.
 
+<!-- OK to delete? 
 ## Limitations
 
 Some HTTPS scenarios are not yet supported for HTTP/3 in Kestrel. When calling `Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps` with <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions> while using HTTP/3, setting the following options on the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions> is a no-op (it does nothing):
@@ -85,7 +76,7 @@ Calling the following implementations of `Microsoft.AspNetCore.Hosting.ListenOpt
 
 * [UseHttps(this ListenOptions listenOptions, ServerOptionsSelectionCallback serverOptionsSelectionCallback, object state, TimeSpan handshakeTimeout)](xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions,System.Net.Security.ServerOptionsSelectionCallback,System.Object,System.TimeSpan))
 * [UseHttps(this ListenOptions listenOptions, TlsHandshakeCallbackOptions callbackOptions)](xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions,Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackOptions))
-
+-->
 ## HTTP/3 benefits
 
 HTTP/3 uses the same semantics as HTTP/1.1 and HTTP/2: the same request methods, status codes, and message fields apply to all versions. The differences are in the underlying transport. Both HTTP/1.1 and HTTP/2 use TCP as their transport. HTTP/3 uses a new transport technology developed alongside HTTP/3 called [QUIC](https://datatracker.ietf.org/doc/html/draft-ietf-quic-transport-34).
