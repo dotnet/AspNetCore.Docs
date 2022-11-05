@@ -17,7 +17,7 @@ The `Microsoft.AspNetCore.RateLimiting` middleware provides rate limiting middle
 
 ## Authentication uses single scheme as DefaultScheme
 
-As part of the work to simplify authentication, when there is only a single authentication scheme registered, it's automatically used as the <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultScheme> and doesn't need to be specified. For more information, see [DefaultScheme](xref:security/authentication/index#defaultscheme).
+As part of the work to simplify authentication, when there's only a single authentication scheme registered, it's automatically used as the <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultScheme> and doesn't need to be specified. For more information, see [DefaultScheme](xref:security/authentication/index#defaultscheme).
 
 ## MVC and Razor pages
 
