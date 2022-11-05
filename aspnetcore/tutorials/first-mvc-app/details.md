@@ -31,9 +31,9 @@ Note that the `HTTP GET Delete` method doesn't delete the specified movie, it re
 
 The `[HttpPost]` method that deletes the data is named `DeleteConfirmed` to give the HTTP POST method a unique signature or name. The two method signatures are shown below:
 
-[!code-csharp[](start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?name=DeleteSignature)]
+[!code-csharp[](start-mvc/sample/MvcMovie70/Controllers/MoviesController.cs?name=DeleteSignature)]
 
-[!code-csharp[](start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?name=DeleteConfirmedSignature)]
+[!code-csharp[](start-mvc/sample/MvcMovie70/Controllers/MoviesController.cs?name=DeleteConfirmedSignature)]
 
 The common language runtime (CLR) requires overloaded methods to have a unique parameter signature (same method name but different list of parameters). However, here you need two `Delete` methods -- one for GET and one for POST -- that both have the same parameter signature. (They both need to accept a single integer as a parameter.)
 
