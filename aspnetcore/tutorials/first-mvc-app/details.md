@@ -25,7 +25,7 @@ EF makes it easy to search for data using the `FirstOrDefaultAsync` method. An i
 
 Examine the `Delete` and `DeleteConfirmed` methods.
 
-[!code-csharp[](start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?name=Delete)]
+[!code-csharp[](start-mvc/sample/MvcMovie70/Controllers/MoviesController.cs?name=Delete)]
 
 Note that the `HTTP GET Delete` method doesn't delete the specified movie, it returns a view of the movie where you can submit (HttpPost) the deletion. Performing a delete operation in response to a GET request (or for that matter, performing an edit operation, create operation, or any other operation that changes data) opens up a security hole.
 
