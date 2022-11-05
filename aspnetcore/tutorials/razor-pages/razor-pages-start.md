@@ -90,13 +90,14 @@ For alternative approaches to create the project, see [Create a new project in V
   * Select **Web and Console** > **App** > **Web Application**.
   * Select **Continue**.
 
-* In the **Configure your new API** dialog, make the following selections:
+* In the **Configure your new Web Application** dialog:
   * Verify: **Target framework** is set to **.NET 7.0** (or later).
   * Verify: **Authentication** is set to **No Athentication**.
   * Verify: **Do not use top-level statements** is unchecked.
   * Select **Continue**.
 
-  *In the **Configure your new project** dialog, enter `RazorPagesMovie` for **Project name**. It's important to name the project **RazorPagesMovie**, including matching the capitalization, so the namespaces will match when you copy and paste example code.
+* In the **Configure your new Web Application** dialog:
+  * Enter `RazorPagesMovie` for **Project name**. It's important to name the project **RazorPagesMovie**, including matching the capitalization, so the namespaces will match when you copy and paste example code.
   * Select **Create**.
 
 ---
