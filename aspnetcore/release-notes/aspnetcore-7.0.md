@@ -7,7 +7,7 @@ ms.custom: mvc
 ms.date: 11/07/2022
 uid: aspnetcore-7
 ---
-# What's new in ASP.NET Core 7.0 preview
+# What's new in ASP.NET Core 7.0
 
 This article highlights the most significant changes in ASP.NET Core 7.0 with links to relevant documentation.
 
