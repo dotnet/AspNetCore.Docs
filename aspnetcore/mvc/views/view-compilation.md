@@ -17,6 +17,9 @@ Razor files with a `.cshtml` extension are compiled at both build and publish ti
 > [!NOTE]
 > Runtime compilation isn't supported for Razor components of Blazor apps.
 
+> [!NOTE]
+> [Global using directives](/dotnet/csharp/whats-new/csharp-10#global-using-directives) are ***not*** supported for runtime compilation.
+
 ## Razor compilation
 
 Build-time and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they're edited.
