@@ -57,8 +57,6 @@ For more information, see the following resources in the .NET documentation:
 * [How to customize property names and values with `System.Text.Json`](/dotnet/standard/serialization/system-text-json-customize-properties)
 * [How to write custom converters for JSON serialization (marshalling) in .NET](/dotnet/standard/serialization/system-text-json-converters-how-to)
 
-JSON serializer support for <xref:System.DateOnly?displayProperty=fullName> and <xref:System.TimeOnly?displayProperty=fullName> is planned for ASP.NET Core 7.0, which is scheduled for release by the end of 2022. For more information, see [Support `DateOnly` and `TimeOnly` in `JsonSerializer` (dotnet/runtime #53539)](https://github.com/dotnet/runtime/issues/53539).
-
 Blazor supports optimized byte array JS interop that avoids encoding/decoding byte arrays into Base64. The app can apply custom serialization and pass the resulting bytes. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#byte-array-support>.
 
 Blazor supports unmarshalled JS interop when a high volume of .NET objects are rapidly serialized or when large .NET objects or many .NET objects must be serialized. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#unmarshalled-javascript-interop>.
@@ -286,8 +284,6 @@ For more information, see the following resources in the .NET documentation:
 * [How to customize property names and values with `System.Text.Json`](/dotnet/standard/serialization/system-text-json-customize-properties)
 * [How to write custom converters for JSON serialization (marshalling) in .NET](/dotnet/standard/serialization/system-text-json-converters-how-to)
 
-JSON serializer support for <xref:System.DateOnly?displayProperty=fullName> and <xref:System.TimeOnly?displayProperty=fullName> is planned for ASP.NET Core 7.0, which is scheduled for release by the end of 2022. For more information, see [Support `DateOnly` and `TimeOnly` in `JsonSerializer` (dotnet/runtime #53539)](https://github.com/dotnet/runtime/issues/53539).
-
 Blazor supports unmarshalled JS interop when a high volume of .NET objects are rapidly serialized or when large .NET objects or many .NET objects must be serialized. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#unmarshalled-javascript-interop>.
 
 ## Location of JavaScript
@@ -499,8 +495,6 @@ For more information, see the following resources in the .NET documentation:
 * [How to customize property names and values with `System.Text.Json`](/dotnet/standard/serialization/system-text-json-customize-properties)
 * [How to write custom converters for JSON serialization (marshalling) in .NET](/dotnet/standard/serialization/system-text-json-converters-how-to)
 
-JSON serializer support for <xref:System.DateOnly?displayProperty=fullName> and <xref:System.TimeOnly?displayProperty=fullName> is planned for ASP.NET Core 7.0, which is scheduled for release by the end of 2022. For more information, see [Support `DateOnly` and `TimeOnly` in `JsonSerializer` (dotnet/runtime #53539)](https://github.com/dotnet/runtime/issues/53539).
-
 ## Location of JavaScript
 
 Load JavaScript (JS) code using any of the following approaches:
@@ -706,8 +700,6 @@ For more information, see the following resources in the .NET documentation:
 * [JSON serialization and deserialization (marshalling and unmarshalling) in .NET](/dotnet/standard/serialization/system-text-json-overview)
 * [How to customize property names and values with `System.Text.Json`](/dotnet/standard/serialization/system-text-json-customize-properties)
 * [How to write custom converters for JSON serialization (marshalling) in .NET](/dotnet/standard/serialization/system-text-json-converters-how-to)
-
-JSON serializer support for <xref:System.DateOnly?displayProperty=fullName> and <xref:System.TimeOnly?displayProperty=fullName> is planned for ASP.NET Core 7.0, which is scheduled for release by the end of 2022. For more information, see [Support `DateOnly` and `TimeOnly` in `JsonSerializer` (dotnet/runtime #53539)](https://github.com/dotnet/runtime/issues/53539).
 
 Blazor supports optimized byte array JS interop that avoids encoding/decoding byte arrays into Base64. The app can apply custom serialization and pass the resulting bytes. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#byte-array-support>.
 
