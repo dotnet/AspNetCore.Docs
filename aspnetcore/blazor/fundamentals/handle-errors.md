@@ -123,13 +123,13 @@ To define an error boundary, use the <xref:Microsoft.AspNetCore.Components.Web.E
 `Shared/MainLayout.razor`:
 
 ```razor
-<div class="main">
+<main>
     <div class="content px-4">
         <ErrorBoundary>
             @Body
         </ErrorBoundary>
     </div>
-</div>
+</main>
 ```
 
 The app continues to function normally, but the error boundary handles unhandled exceptions.
