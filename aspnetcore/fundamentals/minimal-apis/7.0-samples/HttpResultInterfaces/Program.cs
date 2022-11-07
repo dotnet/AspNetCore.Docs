@@ -34,6 +34,7 @@ public class Program
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
+        // <snippet_filter>
         app.MapGet("/weatherforecast", (int days) =>
         {
             if (days <= 0)
@@ -56,7 +57,7 @@ public class Program
                 _ => result
             };
         });
-
+        // </snippet_filter>
         app.Run();
     }
 }
