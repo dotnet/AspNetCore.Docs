@@ -70,9 +70,9 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 In the PMC, run the following commands:
 
 ```powershell
-Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design -IncludePrerelease
-Install-Package Microsoft.EntityFrameworkCore.Design -IncludePrerelease
-Install-Package Microsoft.EntityFrameworkCore.SqlServer -IncludePrerelease
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design
+Install-Package Microsoft.EntityFrameworkCore.Design
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 The preceding commands add:
