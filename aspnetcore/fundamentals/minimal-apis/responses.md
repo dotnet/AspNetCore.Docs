@@ -164,7 +164,7 @@ app.MapGet("/old-path", () => Results.Redirect("/new-path"));
 app.MapGet("/download", () => Results.File("myfile.text"));
 ```
 
-<a name="httpresultinterfaces7></a>
+<a name="httpresultinterfaces7"></a>
 
 ### HttpResult interfaces
 
