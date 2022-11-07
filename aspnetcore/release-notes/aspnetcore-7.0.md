@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 7.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/01/2022
+ms.date: 11/07/2022
 uid: aspnetcore-7
 ---
 # What's new in ASP.NET Core 7.0 preview
@@ -139,6 +139,19 @@ The following code uses the [`Ok<TValue>`](/dotnet/api/microsoft.aspnetcore.http
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_1" highlight="18":::
 
 For more information, see [`IResult` implementation types](xref:fundamentals/minimal-apis/test-min-api#iit7).
+
+### New HttpResult interfaces
+
+The following interfaces in the <xref:Microsoft.AspNetCore.Http> namespace provide a way to detect the `IResult` type at runtime, which is a common pattern in filter implementations:
+
+* <xref:Microsoft.AspNetCore.Http.IContentTypeHttpResult>
+* <xref:Microsoft.AspNetCore.Http.IFileHttpResult>
+* <xref:Microsoft.AspNetCore.Http.INestedHttpResult>
+* <xref:Microsoft.AspNetCore.Http.IStatusCodeHttpResult>
+* <xref:Microsoft.AspNetCore.Http.IValueHttpResult>
+* <xref:Microsoft.AspNetCore.Http.IValueHttpResult%601>
+
+For more information, see [IHttpResult interfaces](xref:fundamentals/minimal-apis/responses#httpresultinterfaces7).
 
 ### OpenAPI improvements for minimal APIs
 
@@ -492,7 +505,7 @@ For more information, see [Overview of caching](xref:performance/caching/overvie
 This release:
 
 * Makes HTTP/3 fully supported by ASP.NET Core, it's no longer experimental.
-* Improves Kestrel’s support for HTTP/3. The two main areas of improvement are feature parity with HTTP/1.1 and HTTP/2, and performance.
+* Improves Kestrel's support for HTTP/3. The two main areas of improvement are feature parity with HTTP/1.1 and HTTP/2, and performance.
 * Provides full support for <xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions,System.Security.Cryptography.X509Certificates.X509Certificate2)> with HTTP/3. Kestrel offers advanced options for configuring connection certificates, such as hooking into [Server Name Indication (SNI)](https://wikipedia.org/wiki/Server_Name_Indication).
 * Adds support for HTTP/3 on [HTTP.sys](xref:fundamentals/servers/httpsys) and [IIS](xref:host-and-deploy/iis/modules).
 
