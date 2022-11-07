@@ -181,6 +181,8 @@ Here's an example of a filter that uses one of these interfaces:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/HttpResultInterfaces/Program.cs" id="snippet_filter":::
 
+For more information, see [Filters in Minimal API apps](xref:fundamentals/minimal-apis/min-api-filters).
+
 ## Customizing responses
 
 Applications can control responses by implementing a custom <xref:Microsoft.AspNetCore.Http.IResult> type. The following code is an example of an HTML result type:
