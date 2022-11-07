@@ -164,6 +164,8 @@ app.MapGet("/old-path", () => Results.Redirect("/new-path"));
 app.MapGet("/download", () => Results.File("myfile.text"));
 ```
 
+<a name="httpresultinterfaces7></a>
+
 ### HttpResult interfaces
 
 The following interfaces in the <xref:Microsoft.AspNetCore.Http> namespace provide a way to detect the `IResult` type at runtime, which is a common pattern in filter implementations:
@@ -177,7 +179,7 @@ The following interfaces in the <xref:Microsoft.AspNetCore.Http> namespace provi
 
 Here's an example of a filter that uses one of these interfaces:
 
-:::code language="csharp" source="~\fundamentals\minimal-apis\7.0-samples\HttpResultInterfaces/Program.cs" id="snippet_filter":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/HttpResultInterfaces/Program.cs" id="snippet_filter":::
 
 ## Customizing responses
 
