@@ -208,8 +208,6 @@ public static void PopulateMetadata(MethodInfo method, EndpointBuilder builder)
 }
 ```
 
-
-
 ## Configure JSON serialization options
 
 By default, Minimal API apps use [`Web defaults`](/dotnet/standard/serialization/system-text-json-configure-options#web-defaults-for-jsonserializeroptions) options during JSON serialization and deserialization.
