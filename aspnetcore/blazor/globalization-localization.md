@@ -598,7 +598,7 @@ The following `CultureSelector` component shows how to call the `Set` method of 
 }
 ```
 
-Inside the closing `</div>` tag of the `<div class="main">` element in `Shared/MainLayout.razor`, add the `CultureSelector` component:
+Inside the closing `</div>` tag of the `<main>` element in `Shared/MainLayout.razor`, add the `CultureSelector` component:
 
 ```razor
 <div class="bottom-row px-4">

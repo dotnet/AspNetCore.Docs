@@ -52,14 +52,14 @@ Similar to a regular component parameter, components accepting a cascading param
 `Shared/MainLayout.razor`:
 
 ```razor
-<div class="main">
+<main>
     <CascadingValue Value="@theme">
         <div class="content px-4">
             @Body
         </div>
     </CascadingValue>
     <button @onclick="ChangeToDarkTheme">Dark mode</button>
-</div>
+</main>
 
 @code {
     private ThemeInfo theme = new() { ButtonClass = "btn-success" };
