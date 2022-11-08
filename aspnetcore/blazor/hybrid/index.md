@@ -5,7 +5,7 @@ description: Explore ASP.NET Core Blazor Hybrid, a way to build interactive clie
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
-ms.date: 02/10/2021
+ms.date: 11/08/2022
 uid: blazor/hybrid/index
 ---
 # ASP.NET Core Blazor Hybrid
