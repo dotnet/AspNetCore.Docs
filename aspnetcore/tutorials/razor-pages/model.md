@@ -3,7 +3,7 @@ title: Part 2, add a model
 author: rick-anderson
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.author: riande
-ms.date: 10/24/2022
+ms.date: 11/04/2022
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/model
@@ -63,8 +63,8 @@ The `Movie` class contains:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. In the **Solution Tool Window**, right-click the *RazorPagesMovie* project, and then select **Add** > **New Folder...**. Name the folder `Models`.
-1. Right-click the `Models` folder, and then select **Add** > **New File...**.
+1. In the **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Add** > **New Folder...**. Name the folder `Models`.
+1. Control-click the `Models` folder, and then select **Add** > **New Class...**.
 1. In the **New File** dialog:
    1. Select **General** in the left pane.
    1. Select **Empty Class** in the center pane.
@@ -163,16 +163,16 @@ For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. Create a *Pages/Movies* folder:
-   1. Right-click on the *Pages* folder > **Add** > **New Folder**.
+   1. Control-click on the *Pages* folder > **Add** > **New Folder**.
    1. Name the folder *Movies*.
 
-1. Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
+1. Control-click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
 
    ![New Scaffolding on Mac](model/_static/6/scaMac6.png)
 
 1. In the **New Scaffolding** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Next**.
 
-   ![Add Scaffolding on Mac](model/_static/6/add_scaffoldMac6.png)
+   ![Add Scaffolding on Mac](model/_static/7/add_scaffoldMac7.png)
 
 1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
    1. In the **Model class to use:** row, enter `Movie`.
