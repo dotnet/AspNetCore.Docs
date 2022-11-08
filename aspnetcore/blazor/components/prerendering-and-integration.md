@@ -926,6 +926,18 @@ By initializing components with the same state used during prerendering, any exp
 :::zone-end
 
 :::zone pivot="server"
+     
+## Prerendered state size and SignalR message size limit
+
+A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
+
+* The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
+* The reconnection dialog on the client appears when the circuit fails. Recovery isn't possible.
+
+To resolve the problem, use ***either*** of the following approaches:
+
+* Reduce the amount of data that you are putting into the prerendered state.
+* Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
 
 ## Additional Blazor Server resources
 
@@ -1622,6 +1634,18 @@ For more information, see <xref:blazor/components/index#namespaces>.
 
 :::zone pivot="server"
 
+## Prerendered state size and SignalR message size limit
+
+A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
+
+* The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
+* The reconnection dialog on the client appears when the circuit fails. Recovery isn't possible.
+
+To resolve the problem, use ***either*** of the following approaches:
+
+* Reduce the amount of data that you are putting into the prerendered state.
+* Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
+
 ## Additional Blazor Server resources
 
 * [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering)
@@ -2049,6 +2073,18 @@ When using a custom folder to hold the project's Razor components, add the names
 The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages app or the `Views` folder of an MVC app.
 
 For more information, see <xref:blazor/components/index#namespaces>.
+
+## Prerendered state size and SignalR message size limit
+
+A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
+
+* The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
+* The reconnection dialog on the client appears when the circuit fails. Recovery isn't possible.
+
+To resolve the problem, use ***either*** of the following approaches:
+
+* Reduce the amount of data that you are putting into the prerendered state.
+* Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
 
 ## Additional Blazor Server resources
 
@@ -2937,6 +2973,18 @@ By initializing components with the same state used during prerendering, any exp
 :::zone-end
 
 :::zone pivot="server"
+
+## Prerendered state size and SignalR message size limit
+
+A large prerendered state size may exceed the SignalR circuit message size limit, which results in the following:
+
+* The SignalR circuit fails to initialize with an error on the client: :::no-loc text="Circuit host not initialized.":::
+* The reconnection dialog on the client appears when the circuit fails. Recovery isn't possible.
+
+To resolve the problem, use ***either*** of the following approaches:
+
+* Reduce the amount of data that you are putting into the prerendered state.
+* Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
 
 ## Additional Blazor Server resources
 
