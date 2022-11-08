@@ -936,7 +936,7 @@ A large prerendered state size may exceed the SignalR circuit message size limit
 
 To resolve the problem, use ***either*** of the following approaches:
 
-* Reduce the amount of data that you are putting in prerrendered state.
+* Reduce the amount of data that you are putting into the prerrendered state.
 * Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
 
 ## Additional Blazor Server resources
@@ -1643,7 +1643,7 @@ A large prerendered state size may exceed the SignalR circuit message size limit
 
 To resolve the problem, use ***either*** of the following approaches:
 
-* Reduce the amount of data that you are putting in prerrendered state.
+* Reduce the amount of data that you are putting into the prerrendered state.
 * Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
 
 ## Additional Blazor Server resources
@@ -2083,7 +2083,7 @@ A large prerendered state size may exceed the SignalR circuit message size limit
 
 To resolve the problem, use ***either*** of the following approaches:
 
-* Reduce the amount of data that you are putting in prerrendered state.
+* Reduce the amount of data that you are putting into the prerrendered state.
 * Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
 
 ## Additional Blazor Server resources
@@ -2983,7 +2983,7 @@ A large prerendered state size may exceed the SignalR circuit message size limit
 
 To resolve the problem, use ***either*** of the following approaches:
 
-* Reduce the amount of data that you are putting in prerrendered state.
+* Reduce the amount of data that you are putting into the prerrendered state.
 * Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
 
 ## Additional Blazor Server resources
