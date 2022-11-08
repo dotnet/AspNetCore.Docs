@@ -126,19 +126,7 @@ In the following example:
 
 * `exports.MyClass.Greeting()` calls into .NET (`MyClass.Greeting`) from JS. The `Greeting` C# method returns a string that includes the result of calling the `window.location.href` function. The `Greeting` method is shown later in this section.
 
-* `runMainAndExit` runs `Program.Main`.
-
-<!--
-
-    NOTE: THE FOLLOWING CODE IS CHANGING FOR RELEASE:
-
-    https://github.com/dotnet/runtime/blob/release/7.0/src/mono/wasm/templates/templates/browser/main.js
-
-    For example, the runMainAndExit() is changing to dotnet.run().
-
-    This is tracked on the 7.0 doc tracking issue at https://github.com/dotnet/AspNetCore.Docs/issues/26364.
-    
--->
+* `dotnet.run()` runs `Program.Main`.
 
 JS module:
 
@@ -148,7 +136,7 @@ import { dotnet } from './dotnet.js'
 const is_browser = typeof window != "undefined";
 if (!is_browser) throw new Error(`Expected to be running in a browser`);
 
-const { setModuleImports, getAssemblyExports, getConfig, runMainAndExit } = 
+const { setModuleImports, getAssemblyExports, getConfig } = 
   await dotnet.create();
 
 setModuleImports("main.js", {
@@ -164,8 +152,8 @@ const exports = await getAssemblyExports(config.mainAssemblyName);
 const text = exports.MyClass.Greeting();
 console.log(text);
 
-document.getElementById("out").innerHTML = `${text}`;
-await runMainAndExit(config.mainAssemblyName, ["dotnet", "is", "great!"]);
+document.getElementById("out").innerHTML = text;
+await dotnet.run();
 ```
 
 To import a JS function so it can be called from C#, use the new `JSImportAttribute` on a matching method signature. The first parameter to the `JSImportAttribute` is the name of the JS function to import and the second parameter is the name of the module.
