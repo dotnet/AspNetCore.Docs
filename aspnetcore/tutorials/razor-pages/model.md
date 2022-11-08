@@ -181,6 +181,8 @@ For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/
 
    ![Add Razor Pages on Mac](model/_static/arpMac.png)
 
+The scaffolding process may take some time to complete as required packages are automatically downloaded and added to the project.
+
 The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
 [!INCLUDE[](~/includes/DevProdSQLite.md)]
@@ -261,6 +263,7 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 * Run the following .NET CLI commands:
 
   ```dotnetcli
+  dotnet tool uninstall --global dotnet-ef
   dotnet tool install --global dotnet-ef
   dotnet ef migrations add InitialCreate
   dotnet ef database update
@@ -271,7 +274,10 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 ---
 
-The preceding commands install [the Entity Framework Core tools](/ef/core/get-started/overview/install#get-the-entity-framework-core-tools) and run the `migrations` command to generate code that creates the initial database schema.
+The preceding commands:
+
+* Install the latest [the Entity Framework Core tools](/ef/core/get-started/overview/install#get-the-entity-framework-core-tools) after uninstalling any previous version, if it exists.
+* Run the `migrations` command to generate code that creates the initial database schema.
 
 The following warning is displayed, which is addressed in a later step:
 
