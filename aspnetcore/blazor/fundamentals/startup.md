@@ -205,14 +205,16 @@ document.documentElement.style.setProperty(
   '--blazor-load-percentage-text', `"${Math.floor(percentage)}%"`);
 ```
 
-The progress indicators are implemented in HTML in the `wwwroot/index.html` file:
+The default round progress indicator is implemented in HTML in the `wwwroot/index.html` file:
 
 ```html
-<svg class="loading-progress">
-    <circle r="40%" cx="50%" cy="50%" />
-    <circle r="40%" cx="50%" cy="50%" />
-</svg>
-<div class="loading-progress-text"></div>
+<div id="app">
+    <svg class="loading-progress">
+        <circle r="40%" cx="50%" cy="50%" />
+        <circle r="40%" cx="50%" cy="50%" />
+    </svg>
+    <div class="loading-progress-text"></div>
+</div>
 ```
 
 To review the Blazor WebAssembly project template markup and styling for the default progress indicators, see the ASP.NET Core reference source:
@@ -221,6 +223,40 @@ To review the Blazor WebAssembly project template markup and styling for the def
 * [`app.css`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot/css/app.css)
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+Instead of using the default round progress indicator, the following example shows how to implement a linear progress indicator.
+
+In `wwwroot/css/app.css`, a CSS variable is used to pass the value of `--blazor-load-percentage` to the `scale` property of a blue pseudo-element that indicates the loading progress of the app's files:
+
+```css
+.linear-progress {
+    background: silver;
+    width: 50vw;
+    margin: 20% auto;
+    height: 1rem;
+    border-radius: 10rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.linear-progress:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: blue;
+    scale: var(--blazor-load-percentage, 0%) 100%;
+    transform-origin: left top;
+    transition: scale ease-out 0.5s;
+}
+```
+
+As the app loads, `--blazor-load-percentage` is updated automatically, which dynamically changes the progress indicator's visual representation.
+
+In `wwwroot/index.html`, remove the default SVG round indicator in `<div id="app">...</div>` and replace it with the following markup:
+
+```html
+<div class="linear-progress"></div>
+```
 
 ## Additional resources
 
