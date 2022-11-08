@@ -5,7 +5,7 @@ description: Learn how to share Razor components, C# code, and static assets acr
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/02/2022
+ms.date: 11/08/2022
 uid: blazor/hybrid/class-libraries
 ---
 # Share assets across web and native clients using a Razor class library (RCL)
@@ -66,7 +66,7 @@ The .NET Podcasts app showcases the following technologies:
 
 Components from an RCL can be simultaneously shared by web and native client apps built using Blazor. The guidance in <xref:blazor/components/class-libraries> explains how to share Razor components using a Razor class library (RCL). The same guidance applies to reusing Razor components from an RCL in a Blazor Hybrid app.
 
-Component namespaces are derived from the RCL's package ID or assembly name and the component's folder path within the RCL. For more information, see <xref:blazor/components/index#namespaces>. [`@using`](xref:mvc/views/razor#using) directives can be placed in `_Imports.razor` files for components and code, as the following example deomonstrates for an RCL named `SharedLibrary` with a `Shared` folder of shared Razor components and a `Data` folder of shared data classes:
+Component namespaces are derived from the RCL's package ID or assembly name and the component's folder path within the RCL. For more information, see <xref:blazor/components/index#namespaces>. [`@using`](xref:mvc/views/razor#using) directives can be placed in `_Imports.razor` files for components and code, as the following example demonstrates for an RCL named `SharedLibrary` with a `Shared` folder of shared Razor components and a `Data` folder of shared data classes:
 
 ```razor
 @using SharedLibrary
@@ -375,7 +375,7 @@ namespace SharedLibrary.Web
 The following example is for a .NET MAUI app in the solution that:
 
 * Has a project reference for the `SharedLibrary` project.
-* Registers the appropriate `CustomService` implmentation for each platform.
+* Registers the appropriate `CustomService` implementation for each platform.
 
 In `MauiProgram` (`MauiProgram.cs`):
 
@@ -400,12 +400,12 @@ using SharedLibrary.Interfaces;
 ```
 
 > [!NOTE]
-> Windows Forms Blazor projects register services in `Form1`'s contstructor (`Form1.cs`). WPF Blazor projects register services in `MainWindow`'s constructor (`MainWindow.xaml`).
+> Windows Forms Blazor projects register services in `Form1`'s constructor (`Form1.cs`). WPF Blazor projects register services in `MainWindow`'s constructor (`MainWindow.xaml`).
 
 The following example for a Blazor Server or Blazor WebAssembly project:
 
 * Has a project reference for the `SharedLibrary` project.
-* Registers the appropriate `CustomService` implmentation for web-based clients.
+* Registers the appropriate `CustomService` implementation for web-based clients.
 
 In `Program.cs`:
 

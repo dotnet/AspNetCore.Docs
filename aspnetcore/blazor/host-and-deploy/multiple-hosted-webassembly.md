@@ -5,7 +5,7 @@ description: Learn how to configure a hosted Blazor WebAssembly app to host mult
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/27/2022
+ms.date: 11/08/2022
 uid: blazor/host-and-deploy/multiple-hosted-webassembly
 ---
 # Multiple hosted ASP.NET Core Blazor WebAssembly apps

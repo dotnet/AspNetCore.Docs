@@ -5,7 +5,7 @@ description: Learn how to interact with JavaScript in Blazor WebAssembly apps us
 monikerRange: '= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/26/2022
+ms.date: 11/08/2022
 uid: blazor/js-interop/import-export-interop
 ---
 # JavaScript `[JSImport]`/`[JSExport]` interop with ASP.NET Core Blazor

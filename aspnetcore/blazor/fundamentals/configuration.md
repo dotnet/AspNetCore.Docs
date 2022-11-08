@@ -5,7 +5,7 @@ description: Learn about configuration of Blazor apps, including app settings, a
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 11/08/2022
 uid: blazor/fundamentals/configuration
 ---
 # ASP.NET Core Blazor configuration

@@ -5,7 +5,7 @@ description: Learn how to author and organize Razor components for the web and W
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
-ms.date: 06/09/2022
+ms.date: 11/08/2022
 uid: blazor/hybrid/reuse-razor-components
 ---
 # Reuse Razor components in ASP.NET Core Blazor Hybrid

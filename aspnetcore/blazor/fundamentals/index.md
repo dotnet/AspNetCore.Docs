@@ -5,7 +5,7 @@ description: Learn foundational concepts of the Blazor application framework.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/08/2022
+ms.date: 11/08/2022
 uid: blazor/fundamentals/index
 ---
 # ASP.NET Core Blazor fundamentals

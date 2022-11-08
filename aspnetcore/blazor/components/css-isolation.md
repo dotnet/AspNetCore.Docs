@@ -5,7 +5,7 @@ description: Learn how CSS isolation scopes CSS to Razor components, which can s
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 11/08/2022
 uid: blazor/components/css-isolation
 ---
 # ASP.NET Core Blazor CSS isolation
