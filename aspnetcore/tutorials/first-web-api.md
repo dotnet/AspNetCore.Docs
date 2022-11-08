@@ -103,7 +103,6 @@ The following diagram shows the design of the app.
 ## Add a NuGet package
 
 * In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**
-* Select **Include prereleases**.
 * In the search box, enter **Microsoft.EntityFrameworkCore.InMemory**.
 * In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
 * Select **Add Package**

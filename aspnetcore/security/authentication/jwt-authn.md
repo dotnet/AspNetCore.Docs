@@ -93,7 +93,7 @@ Run the following commands to create an empty web project and add the [Microsoft
 ```dotnetcli
 dotnet new web -o MyJWT
 cd MyJWT
-dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer --prerelease
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
 ```
 
 Replace the contents of `Program.cs` with the following code:

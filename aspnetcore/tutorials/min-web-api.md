@@ -39,8 +39,6 @@ This tutorial creates the following API:
 
 [!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
 
-![VS22 installer workloads](min-web-api/_static/asp-net-web-dev.png)
-
 # [Visual Studio Code](#tab/visual-studio-code)
 
 [!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
@@ -157,7 +155,6 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
 * Select the **Browse** tab.
-* Select **Include prerelease**.
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane and then select **Install**.
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.

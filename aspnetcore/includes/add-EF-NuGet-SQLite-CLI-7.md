@@ -2,13 +2,13 @@ Run the following .NET CLI commands:
 
 ```dotnetcli
 dotnet tool uninstall --global dotnet-aspnet-codegenerator
-dotnet tool install --global dotnet-aspnet-codegenerator --prerelease
+dotnet tool install --global dotnet-aspnet-codegenerator
 dotnet tool uninstall --global dotnet-ef
-dotnet tool install --global dotnet-ef --prerelease
-dotnet add package Microsoft.EntityFrameworkCore.Design --prerelease
-dotnet add package Microsoft.EntityFrameworkCore.SQLite --prerelease
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --prerelease
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer --prerelease
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 The preceding commands add:
