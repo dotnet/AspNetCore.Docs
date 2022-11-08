@@ -224,9 +224,9 @@ To review the Blazor WebAssembly project template markup and styling for the def
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-Instead of a round progress indicator, a linear indicator can be implemented:
+Instead of using the default round progress indicator, the following example shows how to implement a linear progress indicator.
 
-In `wwwroot/css/app.css`, a CSS variable is used to pass the value of `--blazor-load-percentage` to the `scale` property of a blue pseudo-element that indicates the loading progress of the app files:
+In `wwwroot/css/app.css`, a CSS variable is used to pass the value of `--blazor-load-percentage` to the `scale` property of a blue pseudo-element that indicates the loading progress of the app's files:
 
 ```css
 .linear-progress {
@@ -250,7 +250,7 @@ In `wwwroot/css/app.css`, a CSS variable is used to pass the value of `--blazor-
 }
 ```
 
-As the app loads, `--blazor-load-percentage` is updated automatically, which dynamically changes the progress indicator's visual representation of the app loaded files.
+As the app loads, `--blazor-load-percentage` is updated automatically, which dynamically changes the progress indicator's visual representation.
 
 In `wwwroot/index.html`, remove the default SVG round indicator in `<div id="app">...</div>` and replace it with the following markup:
 
