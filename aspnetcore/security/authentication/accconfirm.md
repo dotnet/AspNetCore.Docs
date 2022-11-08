@@ -242,7 +242,7 @@ Run the app, select the **Register** link, and register a user. Once registered,
 
 ### Configure an email provider
 
-In this tutorial, [SendGrid](https://sendgrid.com) is used to send email. You can use other email providers. We recommend you use SendGrid or another email service to send email. SMTP is difficult to configure so mail is not marked a spam.
+In this tutorial, [SendGrid](https://sendgrid.com) is used to send email. You can use other email providers. We recommend you use SendGrid or another email service to send email. SMTP is difficult to configure so mail is not marked as spam.
 
 The SendGrid account may require [adding a Sender](https://sendgrid.com/docs/ui/sending-email/senders/).
 
