@@ -15,7 +15,7 @@ By [Chris Ross](https://github.com/tratcher)
 
 :::moniker range=">= aspnetcore-7.0"
 
-[HTTP/3](https://datatracker.ietf.org/doc/rfc9114/) is supported with ASP.NET Core in the following IIS deployment scenarios:
+[HTTP/3](https://datatracker.ietf.org/doc/rfc9114/) is fully supported with ASP.NET Core in the following IIS scenarios:
 
 * In-process
 * [Out-of-Process](xref:host-and-deploy/iis/index#out-of-process-hosting-model). In Out-of-Process, IIS responds to the client using HTTP/3, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
