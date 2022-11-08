@@ -5,7 +5,7 @@ description: Build a Windows Forms Blazor app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/23/2022
+ms.date: 11/08/2022
 uid: blazor/hybrid/tutorials/windows-forms
 ---
 # Build a Windows Forms Blazor app
