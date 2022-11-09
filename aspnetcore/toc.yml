@@ -925,6 +925,8 @@ items:
           - name: Telemetry
             displayName: httprepl
             uid: web-api/http-repl/telemetry
+      - name: Test Minimal API
+        uid: fundamentals/minimal-apis/test-min-api
       - name: Razor Pages unit tests
         uid: test/razor-pages-tests
       - name: MVC controllers unit tests
@@ -935,8 +937,6 @@ items:
         uid: test/loadtests
       - name: Test middleware
         uid: test/middleware
-      - name: Test Minimal API
-        uid: fundamentals/minimal-apis/test-min-api
   - name: Debug
     items:
       - name: Debug with Visual Studio
