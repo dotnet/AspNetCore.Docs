@@ -16,7 +16,7 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitte
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
-This tutorial has not been updated for ASP.NET Core 6. The ASP.NET Core 6 web templates use the new [minimal hosting model](xref:migration/50-to-60#new-hosting-model), which unifies `Startup.cs` and `Program.cs` into a single `Program.cs` file. Until this tutorial is updated, see <xref:data/ef-rp/intro> and <xref:tutorials/first-mvc-app/adding-model> on how to use EF with the new minimal hosting model. Updating the tutorial for ASP.NET Core 6 is tracked in [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/13920).
+This tutorial has been updated for ASP.NET Core 6. The ASP.NET Core 6 web templates use the new [minimal hosting model](xref:migration/50-to-60#new-hosting-model), which unifies `Startup.cs` and `Program.cs` into a single `Program.cs` file. Updating the tutorial for ASP.NET Core 6 is tracked in [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/13920).
 
 The Contoso University sample web app demonstrates how to create an ASP.NET Core MVC web app using Entity Framework (EF) Core and Visual Studio.
 
@@ -26,7 +26,7 @@ The sample app is a web site for a fictional Contoso University. It includes fun
 
 * If you're new to ASP.NET Core MVC, go through the [Get started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc) tutorial series before starting this one.
 
-[!INCLUDE[VS prereqs](~/includes/net-core-prereqs-vs-5.0.md)]
+[!INCLUDE[VS prereqs](~/includes/net-prereqs-vs-6.0.md)]
 
 ## Database engines
 
@@ -58,15 +58,17 @@ Users can view and update student, course, and instructor information. Here are 
 ## Create web app
 
 1. Start Visual Studio and select **Create a new project**.
-1. In the **Create a new project** dialog, select **ASP.NET Core Web Application** > **Next**.
+1. In the **Create a new project** dialog, select **ASP.NET Core Web App (Model-View-Controller)** > **Next**.
+![New ASP.NET Core Project dialog](~/data/ef-mvc/intro/_static/new-aspnet6.png)
 1. In the **Configure your new project** dialog, enter `ContosoUniversity` for **Project name**. It's important to use this exact name including capitalization, so each `namespace` matches when code is copied.
 1. Select **Create**.
-1. In the **Create a new ASP.NET Core web application** dialog, select:
-    1. **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
+1. In the **Additional information** dialog, select:
+    1. **.NET Core 6.0 (Long-term-support)** in the Framework dropdowns.
     1. **ASP.NET Core Web App (Model-View-Controller)**.
-    1. **Create**
-      ![New ASP.NET Core Project dialog](~/data/ef-mvc/intro/_static/new-aspnet5.png)
+    1. **Create** 
+![Additional Info dialog](intro/_static/new-aspnet6-additional-info.png)
 
+<!-- TODO: Continue from here  -->
 ## Set up the site style
 
 A few basic changes set up the site menu, layout, and home page.
@@ -383,7 +385,7 @@ Advance to the next tutorial to learn how to perform basic CRUD (create, read, u
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 2.2 MVC web applications using Entity Framework (EF) Core 2.2 and Visual Studio 2017 or 2019.
+The Contoso University sample web application demonstrates how to create ASP.NET Core 6.0 MVC web applications using Entity Framework (EF) Core 6.0.9 and Visual Studio 2022 or 2022.
 
 This tutorial has not been updated for ASP.NET Core 3.1. It has been updated for [ASP.NET Core 5.0](xref:data/ef-mvc/intro?view=aspnetcore-5.0&preserve-view=true).
 
@@ -391,8 +393,8 @@ The sample application is a web site for a fictional Contoso University. It incl
 
 ## Prerequisites
 
-* [.NET Core SDK 2.2](https://dotnet.microsoft.com/download)
-* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the following workloads:
+* [.NET Core SDK 6.0](https://dotnet.microsoft.com/download)
+* [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the following workloads:
   * **ASP.NET and web development** workload
   * **.NET Core cross-platform development** workload
 
