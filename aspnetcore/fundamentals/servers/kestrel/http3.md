@@ -38,16 +38,24 @@ The preceding Windows 11 Build versions may require the use of a [Windows Inside
 1. Add the `packages.microsoft.com` repository. See [Linux Software Repository for Microsoft Products](/windows-server/administration/linux-package-repository-for-microsoft-software) for instructions.
 2. Install the `libmsquic` package using the distro's package manager. For example, `apt install libmsquic=1.9*` on Ubuntu.
 
-<!-- Review following note -->
 **Note:** .NET 6 is only compatible with the 1.9.x versions of libmsquic. Libmsquic 2.x is not compatible due to breaking changes. Libmsquic receives updates to 1.9.x when needed to incorporate security fixes.  
 
 ### macOS
 
-See [TN3102: HTTP/3 in your app](https://developer.apple.com/documentation/technotes/tn3102-http3-in-your-app)
+HTTP/3 isn't currently supported on macOS and may be available in a future release.
 
 ## Getting started
 
-HTTP/3 is enabled by default.
+HTTP/3 is not enabled by default. Add configuration to `Program.cs` to enable HTTP/3.
+
+:::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_Http3" highlight="7-8":::
+
+The preceding code configures port 5001 to:
+
+* Use HTTP/3 alongside HTTP/1.1 and HTTP/2 by specifying `HttpProtocols.Http1AndHttp2AndHttp3`.
+* Enable HTTPS with `UseHttps`. HTTP/3 requires HTTPS.
+
+Because not all routers, firewalls, and proxies properly support HTTP/3, HTTP/3 should be configured together with HTTP/1.1 and HTTP/2. This can be done by specifying `HttpProtocols.Http1AndHttp2AndHttp3` as an endpoint's supported protocols.
 
 Because not all routers, firewalls, and proxies properly support HTTP/3, HTTP/3 should be configured together with HTTP/1.1 and HTTP/2. This can be done by specifying [`HttpProtocols.Http1AndHttp2AndHttp3`](xref:Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http1AndHttp2AndHttp3) as an endpoint's supported protocols.
 
@@ -65,18 +73,6 @@ HTTP/3 is discovered as an upgrade from HTTP/1.1 or HTTP/2 via the [`alt-svc`](h
   * Set [`HttpRequestMessage.Version`](xref:System.Net.Http.HttpRequestMessage.Version) to 3.0, or
   * Set [`HttpRequestMessage.VersionPolicy`](xref:System.Net.Http.HttpRequestMessage.VersionPolicy) to [`HttpVersionPolicy.RequestVersionOrHigher`](xref:System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher).
 
-<!-- OK to delete? 
-## Limitations
-
-Some HTTPS scenarios are not yet supported for HTTP/3 in Kestrel. When calling `Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps` with <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions> while using HTTP/3, setting the following options on the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions> is a no-op (it does nothing):
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.HandshakeTimeout>
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.OnAuthenticate>
-
-Calling the following implementations of `Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps` throw an error when using HTTP/3:
-
-* [UseHttps(this ListenOptions listenOptions, ServerOptionsSelectionCallback serverOptionsSelectionCallback, object state, TimeSpan handshakeTimeout)](xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions,System.Net.Security.ServerOptionsSelectionCallback,System.Object,System.TimeSpan))
-* [UseHttps(this ListenOptions listenOptions, TlsHandshakeCallbackOptions callbackOptions)](xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions,Microsoft.AspNetCore.Server.Kestrel.Https.TlsHandshakeCallbackOptions))
--->
 ## HTTP/3 benefits
 
 HTTP/3 uses the same semantics as HTTP/1.1 and HTTP/2: the same request methods, status codes, and message fields apply to all versions. The differences are in the underlying transport. Both HTTP/1.1 and HTTP/2 use TCP as their transport. HTTP/3 uses a new transport technology developed alongside HTTP/3 called [QUIC](https://datatracker.ietf.org/doc/html/draft-ietf-quic-transport-34).
