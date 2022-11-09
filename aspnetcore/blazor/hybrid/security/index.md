@@ -5,7 +5,7 @@ description: Learn about Blazor Hybrid authentication and authorization scenario
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/23/2022
+ms.date: 11/08/2022
 uid: blazor/hybrid/security/index
 zone_pivot_groups: blazor-hybrid-frameworks
 ---
@@ -35,6 +35,11 @@ After authentication is added to a .NET MAUI, WPF, or Windows Forms app and user
 :::zone pivot="maui"
 
 .NET MAUI apps use [Xamarin.Essentials: Web Authenticator](/xamarin/essentials/web-authenticator): The `WebAuthenticator` class allows the app to initiate browser-based authentication flows that listen for a callback to a specific URL registered with the app.
+
+For additional guidance, see the following resources:
+
+* [Web authenticator (.NET MAUI documentation](/dotnet/maui/platform-integration/communication/authentication)
+* [`Sample.Server.WebAuthenticator` sample app](https://github.com/dotnet/maui/tree/main/src/Essentials/samples/Sample.Server.WebAuthenticator)
 
 :::zone-end
 
@@ -106,7 +111,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;
 ```
 
-Remove the following line of code that returns a built `Microsoft.Maui.Hosting.MauiApp`:
+Remove the following line of code that returns a built <xref:Microsoft.Maui.Hosting.MauiApp?displayProperty=fullName>:
 
 ```diff
 - return builder.Build();
@@ -563,6 +568,11 @@ After authentication is added to a .NET MAUI, WPF, or Windows Forms app and user
 
 .NET MAUI apps use [Xamarin.Essentials: Web Authenticator](/xamarin/essentials/web-authenticator): The `WebAuthenticator` class allows the app to initiate browser-based authentication flows that listen for a callback to a specific URL registered with the app.
 
+For additional guidance, see the following resources:
+
+* [Web authenticator (.NET MAUI documentation](/dotnet/maui/platform-integration/communication/authentication)
+* [`Sample.Server.WebAuthenticator` sample app](https://github.com/dotnet/maui/tree/main/src/Essentials/samples/Sample.Server.WebAuthenticator)
+
 :::zone-end
 
 :::zone pivot="wpf"
@@ -633,7 +643,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;
 ```
 
-Remove the following line of code that returns a built `Microsoft.Maui.Hosting.MauiApp`:
+Remove the following line of code that returns a built <xref:Microsoft.Maui.Hosting.MauiApp?displayProperty=fullName>:
 
 ```diff
 - return builder.Build();

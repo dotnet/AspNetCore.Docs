@@ -240,7 +240,7 @@ HTTP/3 support is in preview in .NET 6, and needs to be enabled via a configurat
 
 `System.Net.SocketsHttpHandler.Http3Support` can also be set using [AppContext.SetSwitch](xref:System.AppContext.SetSwitch%2A).
 
-A <xref:System.Net.Http.DelegatingHandler> can bee used to force a gRPC client to use HTTP/3. Forcing HTTP/3 avoids the overhead of upgrading the request. Force HTTP/3 with code similar to the following:
+A <xref:System.Net.Http.DelegatingHandler> can be used to force a gRPC client to use HTTP/3. Forcing HTTP/3 avoids the overhead of upgrading the request. Force HTTP/3 with code similar to the following:
 
 ```csharp
 /// <summary>
@@ -274,9 +274,6 @@ var reply = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
 ```
 
 Alternatively, a client factory can be configured with `Http3Handler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
-
-
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 :::moniker-end
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
@@ -494,8 +491,6 @@ The preceding code:
 
 Alternatively, a client factory can be configured with `SubdirectoryHandler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
 
-[!INCLUDE[](~/includes/gRPCazure.md)]
-
 :::moniker-end
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
@@ -711,7 +706,5 @@ The preceding code:
 * Calls the gRPC service with `SayHelloAsync`. The gRPC call is sent to `https://localhost:5001/MyApp/greet.Greeter/SayHello`.
 
 Alternatively, a client factory can be configured with `SubdirectoryHandler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
-
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 :::moniker-end

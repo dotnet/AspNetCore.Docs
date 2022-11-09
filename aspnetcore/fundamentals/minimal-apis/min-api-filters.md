@@ -1,12 +1,13 @@
 ---
-title: Filters in Minimal API applications
+title: Filters in Minimal API apps
 author: rick-anderson
-description: Use filters in Minimal API applications
+description: Use filters in Minimal API apps
 ms.author: riande
 ms.date: 8/11/2022
 monikerRange: '>= aspnetcore-7.0'
 uid: fundamentals/minimal-apis/min-api-filters
 ---
+
 # Filters in Minimal API apps
 
 By [Fiyaz Bin Hasan](https://github.com/fiyazbinhasan), [Martin Costello](https://twitter.com/martin_costello), and [Rick Anderson](https://twitter.com/RickAndMSFT)
@@ -110,8 +111,15 @@ In the preceding code:
 * The signature of the handler is examined by inspecting [`MethodInfo.Parameters`](/dotnet/api/system.reflection.methodinfo.parameters) for the expected type signature. If the expected signature is found, the validation filter is registered onto the endpoint. This factory pattern is useful to register a filter that depends on the signature of the target endpoint handler.
 * If a matching signature isn't found, then a pass-through filter is registered.
 
+## Register a filter on controller actions
+
+In some scenarios, it might be necessary to apply the same filter logic for both route-handler based endpoints and controller actions. For this scenario, it is possible to invoke `AddEndpointFilter` on `ControllerActionEndpointConventionBuilder` to support executing the same filter logic on actions and endpoints.
+
+[!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/7samples/Filters/Program.cs?name=snippet_action_endpoint_filters)]
+
 ## Additional Resources
 
 * [View or download sample code](https://github.com/aspnet/Docs/tree/main/aspnetcore/fundamentals/minimal-apis/min-api-filters/7samples) ([how to download](xref:index#how-to-download-a-sample))
 * [ValidationFilterRouteHandlerBuilderExtensions](https://github.com/DamianEdwards/MinimalApis.Extensions/blob/main/src/MinimalApis.Extensions/Filters/ValidationFilterRouteHandlerBuilderExtensions.cs) Validation extension methods.
 * <xref:tutorials/min-web-api>
+* <xref:fundamentals/minimal-apis/security>

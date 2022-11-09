@@ -218,6 +218,8 @@ items:
             uid: fundamentals/middleware/index
           - name: Rate limiting middleware
             uid: performance/rate-limit
+          - name: Middleware in Minimal API apps
+            uid: fundamentals/minimal-apis/middleware
           - name: Test middleware
             uid: test/middleware
           - name: Response caching middleware
@@ -381,6 +383,8 @@ items:
                 uid: blazor/hybrid/developer-tools
               - name: Reuse Razor components
                 uid: blazor/hybrid/reuse-razor-components
+              - name: Class libraries
+                uid: blazor/hybrid/class-libraries
               - name: Security and Identity
                 items:
                   - name: Overview
@@ -455,10 +459,12 @@ items:
             items:
               - name: Overview
                 uid: blazor/js-interop/index
-              - name: Call JavaScript from .NET
+              - name: Call JS from .NET
                 uid: blazor/js-interop/call-javascript-from-dotnet
-              - name: Call .NET from JavaScript
+              - name: Call .NET from JS
                 uid: blazor/js-interop/call-dotnet-from-javascript
+              - name: JSImport/JSExport interop
+                uid: blazor/js-interop/import-export-interop
           - name: Call a web API
             uid: blazor/call-web-api
           - name: Images
@@ -555,6 +561,8 @@ items:
                 uid: client-side/libman/libman-cli
               - name: Visual Studio
                 uid: client-side/libman/libman-vs
+          - name: Run .NET from JavaScript
+            uid: client-side/dotnet-interop
           - name: Grunt
             uid: client-side/using-grunt
           - name: Bundle and minify
@@ -690,16 +698,30 @@ items:
             uid: web-api/http-repl/telemetry
   - name: Minimal APIs
     items:
-      - name: Minimal APIs overview
+      - name: Minimal APIs quick reference
         uid: fundamentals/minimal-apis
-      - name: OpenAPI in Minimal API apps
+      - name: WebApplication and WebApplicationBuilder
+        uid: fundamentals/minimal-apis/webapplication
+      - name: Route Handlers
+        uid: fundamentals/minimal-apis/route-handlers
+      - name: Parameter binding
+        uid: fundamentals/minimal-apis/parameter-binding
+      - name: Create responses
+        uid: fundamentals/minimal-apis/responses
+      - name: OpenAPI
         uid: fundamentals/minimal-apis/openapi
       - name: Port tunneling in VS to debug web APIs
         href: /connectors/custom-connectors/port-tunneling
-      - name: Filters in Minimal API apps
+      - name: Filters
         uid: fundamentals/minimal-apis/min-api-filters
       - name: Unit and integration tests
         uid: fundamentals/minimal-apis/test-min-api
+      - name: Middleware
+        uid: fundamentals/minimal-apis/middleware
+      - name: Handle errors
+        uid: fundamentals/minimal-apis/handle-errors
+      - name: Authentication and authorization
+        uid: fundamentals/minimal-apis/security
   - name: Real-time apps
     displayName: signalr
     items:
@@ -1478,6 +1500,8 @@ items:
             uid: performance/caching/memory
           - name: Distributed caching
             uid: performance/caching/distributed
+          - name: Output caching
+            uid: performance/caching/output
           - name: Response caching
             uid: performance/caching/response
           - name: Response caching middleware

@@ -1,14 +1,14 @@
 ---
-title: How to use OpenAPI with minimal APIs
+title: How to use OpenAPI in Minimal API apps
 author: rick-anderson
 description: Learn how to use OpenAPI (Swagger and Swashbuckle) features of minimal APIs in ASP.NET Core.
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 10/11/2022
+ms.date: 10/24/2022
 uid: fundamentals/minimal-apis/openapi
 ---
 
-# OpenAPI support in minimal APIs - ASP.NET Core
+# OpenAPI support in minimal API apps
 
 :::moniker range="= aspnetcore-6.0"
 
@@ -75,7 +75,7 @@ ASP.NET Core provides the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org
 
 [!code-xml[](7.0-samples/WebMinOpenApi/projectFile.xml?highlight=10)]
 
-When using [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) with `Microsoft.AspNetCore.OpenApi`, `Swashbuckle.AspNetCore` 6.3.1 and later must be used. Version 6.4.0 or later is required if you want to [provide endpoint summary or description text](#add-endpoint-summary-or-description).
+When using [`Swashbuckle.AspNetCore`](https://www.nuget.org/packages/Swashbuckle.AspNetCore/) with `Microsoft.AspNetCore.OpenApi`, `Swashbuckle.AspNetCore` 6.4.0 or later must be used. [`Microsoft.OpenApi`](https://www.nuget.org/packages/Microsoft.OpenApi/) 1.4.3 or later must be used to leverage copy constructors in `WithOpenApi` invocations.
 
 ## Add OpenAPI annotations to endpoints via `WithOpenApi`
 
@@ -198,6 +198,22 @@ When setting the response type for endpoints that may return a ProblemDetails re
 
 When there are no explicit annotations provided by one of the strategies above, the framework attempts to determine a default response type by examining the signature of the response. This default response is populated under the `200` status code in the OpenAPI definition.
 
+### Multiple response types
+
+If an endpoint can return different response types in different scenarios, you can provide metadata in the following ways:
+
+* Call the [`Produces`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.produces) extension method multiple times, as shown in the following example:
+
+  [!code-csharp[](samples/todo/Program.cs?name=snippet_getCustom)]
+
+* Use [`Results<TResult1,TResult2,TResultN>`](xref:Microsoft.AspNetCore.Http.HttpResults.Results%606) in the signature and [`TypedResults`](/dotnet/api/microsoft.aspnetcore.http.typedresults) in the body of the handler, as shown in the following example:
+
+  :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MultipleResultTypes/Program.cs" id="snippet_multiple_result_types":::
+
+  The `Results<TResult1,TResult2,TResultN>` [union types](https://en.wikipedia.org/wiki/Union_type) declare that a route handler returns multiple `IResult`-implementing concrete types, and any of those types that implement `IEndpointMetadataProvider` will contribute to the endpoint’s metadata.
+
+  The union types implement implicit cast operators. These operators enable the compiler to automatically convert the types specified in the generic arguments to an instance of the union type. This capability has the added benefit of providing compile-time checking that a route handler only returns the results that it declares it does. Attempting to return a type that isn't declared as one of the generic arguments to `Results<TResult1,TResult2,TResultN>` results in a compilation error.
+
 ## Describe request body and parameters
 
 In addition to describing the types that are returned by an endpoint, OpenAPI also supports annotating the inputs that are consumed by an API. These inputs fall into two categories:
@@ -221,7 +237,7 @@ public class Todo : IEndpointParameterMetadataProvider
 {
     public static void PopulateMetadata(ParameterInfo parameter, EndpointBuilder builder)
     {
-        builder.Metadata.Add(new AcceptsMetadata(typeof(Todo), isOptional: false, "application/xml"));
+        builder.Metadata.Add(new ConsumesAttribute(typeof(Todo), isOptional: false, "application/xml"));
     }
 }
 ```
@@ -246,5 +262,9 @@ Moved to uid: tutorials/min-web-api
 
 * [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs)
 * [OpenApiGenerator](https://github.com/dotnet/aspnetcore/blob/main/src/OpenApi/src/OpenApiGenerator.cs)
+
+## Additional Resources
+
+* <xref:fundamentals/minimal-apis/security>
 
 :::moniker-end

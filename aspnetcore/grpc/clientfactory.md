@@ -95,7 +95,7 @@ The preceding code:
 * Registers the `GreeterClient` type.
 * Configures a `LoggingInterceptor` for this client. `LoggingInterceptor` is created once and shared between `GreeterClient` instances.
 
-By default, an interceptor is created once and shared between clients. This behavior can be overriden by specifying a scope when registering an intercepter. The client factory can be configured to create a new interceptor for each client by specifying `InterceptorScope.Client`.
+By default, an interceptor is created once and shared between clients. This behavior can be overridden by specifying a scope when registering an interceptor. The client factory can be configured to create a new interceptor for each client by specifying `InterceptorScope.Client`.
 
 ```csharp
 builder.Services
@@ -133,7 +133,7 @@ builder.Services
 > * `HttpHandler` is set to the result from <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A>.
 > * `LoggerFactory` is set to the <xref:Microsoft.Extensions.Logging.ILoggerFactory> resolved from DI.
 > 
-> These values can be overriden by `ConfigureChannel`.
+> These values can be overridden by `ConfigureChannel`.
 
 ## Call credentials
 
@@ -318,7 +318,7 @@ The preceding code:
 * Registers the `GreeterClient` type.
 * Configures a `LoggingInterceptor` for this client. `LoggingInterceptor` is created once and shared between `GreeterClient` instances.
 
-By default, an interceptor is created once and shared between clients. This behavior can be overriden by specifying a scope when registering an intercepter. The client factory can be configured to create a new interceptor for each client by specifying `InterceptorScope.Client`.
+By default, an interceptor is created once and shared between clients. This behavior can be overridden by specifying a scope when registering an interceptor. The client factory can be configured to create a new interceptor for each client by specifying `InterceptorScope.Client`.
 
 ```csharp
 services
@@ -356,7 +356,7 @@ services
 > * `HttpHandler` is set to the result from <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A>.
 > * `LoggerFactory` is set to the <xref:Microsoft.Extensions.Logging.ILoggerFactory> resolved from DI.
 > 
-> These values can be overriden by `ConfigureChannel`.
+> These values can be overridden by `ConfigureChannel`.
 
 ## Deadline and cancellation propagation
 

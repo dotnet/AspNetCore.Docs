@@ -64,6 +64,15 @@ issues:
             - projects-add: [35]
             - labels-remove: [":watch: Not Triaged"]
             - assignee-add: ["guardrex"]
+        - check:
+            - type: metadata-comment
+              name: content source
+              value: "(?i).*main\/aspnetcore\/client-side\/dotnet-interop.md"
+          pass:
+            - labels-add: ["Blazor"]
+            - projects-add: [35]
+            - labels-remove: [":watch: Not Triaged"]
+            - assignee-add: ["guardrex", "pavelsavara"]
         
         # If the word appears anywhere in the file name path, add the label
         - check:

@@ -46,7 +46,7 @@ app.UseAuthorization();
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
 
-app.MapFallbackToFile("index.html"); ;
+app.MapFallbackToFile("index.html");
 
 app.Run();
 #endregion
@@ -95,7 +95,7 @@ app.UseAuthorization();
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
 
-app.MapFallbackToFile("index.html"); ;
+app.MapFallbackToFile("index.html");
 
 app.Run();
 #endregion
@@ -159,7 +159,7 @@ app.UseAuthorization();
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
 
-app.MapFallbackToFile("index.html"); ;
+app.MapFallbackToFile("index.html");
 
 app.Run();
 #endregion
@@ -243,7 +243,7 @@ app.UseAuthorization();
 app.MapDefaultControllerRoute().RequireAuthorization();
 app.MapRazorPages().RequireAuthorization();
 
-app.MapFallbackToFile("index.html"); ;
+app.MapFallbackToFile("index.html");
 
 app.Run();
 #endregion

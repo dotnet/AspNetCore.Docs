@@ -1,34 +1,82 @@
-using Data;
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using MinApiRouteGroupSample;
 
 var builder = WebApplication.CreateBuilder(args);
-var connection = new SqliteConnection("DataSource=:memory:");
-connection.Open();
 
+// Add services to the container.
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<TodoGroupDbContext>(options =>
+builder.Services.AddDbContext<TodoDb>(options =>
 {
-    options.UseSqlite(connection);
+    options.UseSqlite($"Data Source={Path.Join(AppContext.BaseDirectory, "WebMinRouteGroup.db")}");
 });
+
+builder.Services.AddAuthentication().AddJwtBearer();
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<TodoDb>();
+    db.Database.EnsureCreated();
+}
+
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    // localhost:{port}/swagger
     app.UseSwagger();
+    // http://localhost:5000/swagger
     app.UseSwaggerUI();
 }
 
-app.MapGet("/", () => "Hello World!");
+// <snippet_MapGroup>
+app.MapGroup("/public/todos")
+    .MapTodosApi()
+    .WithTags("Public");
 
-// todo endpoints
-app.MapGroup("public/todos").MapTodosApi().WithTags("Todo Endpoints").AddEndpointFilter(async (context, next) =>
-{
-    app.Logger.LogInformation("Accessing todo endpoints");
-    return await next(context);
-});
+app.MapGroup("/private/todos")
+    .MapTodosApi()
+    .WithTags("Private")
+    .AddEndpointFilterFactory(QueryPrivateTodos)
+    .RequireAuthorization();
 
 app.Run();
+
+EndpointFilterDelegate QueryPrivateTodos(EndpointFilterFactoryContext factoryContext, EndpointFilterDelegate next)
+{
+    var dbContextIndex = -1;
+    
+    foreach (var argument in factoryContext.MethodInfo.GetParameters())
+    {
+        if (argument.ParameterType == typeof(TodoDb))
+        {
+            dbContextIndex = argument.Position;
+            break;
+        }
+    }
+
+    // Skip filter if the method doesn't have a TodoDb parameter.
+    if (dbContextIndex < 0)
+    {
+        return next;
+    }
+
+    return async invocationContext =>
+    {
+        var dbContext = invocationContext.GetArgument<TodoDb>(dbContextIndex);
+        dbContext.IsPrivate = true;
+
+        try
+        {
+            return await next(invocationContext);
+        }
+        finally
+        {
+            // This should only be relevant if you're pooling or otherwise reusing the DbContext instance.
+            dbContext.IsPrivate = false;
+        }
+    };
+}
+// </snippet_MapGroup>

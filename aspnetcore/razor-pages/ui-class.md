@@ -118,6 +118,10 @@ In the following example, the `lib.css` stylesheet in the `wwwroot` folder isn't
 
 To include TypeScript files in an RCL:
 
+1. Reference the [`Microsoft.TypeScript.MSBuild`](https://www.nuget.org/packages/Microsoft.TypeScript.MSBuild) NuGet package in the project.
+
+   [!INCLUDE[](~/includes/package-reference.md)]
+
 1. Place the TypeScript files (`.ts`) outside of the `wwwroot` folder. For example, place the files in a `Client` folder.
 
 1. Configure the TypeScript build output for the `wwwroot` folder. Set the `TypescriptOutDir` property inside of a `PropertyGroup` in the project file:
@@ -271,6 +275,10 @@ In the following example, the `lib.css` stylesheet in the `wwwroot` folder isn't
 ### Typescript integration
 
 To include TypeScript files in an RCL:
+
+1. Reference the [`Microsoft.TypeScript.MSBuild`](https://www.nuget.org/packages/Microsoft.TypeScript.MSBuild) NuGet package in the project.
+
+   [!INCLUDE[](~/includes/package-reference.md)]
 
 1. Place the TypeScript files (`.ts`) outside of the `wwwroot` folder. For example, place the files in a `Client` folder.
 
@@ -662,6 +670,10 @@ In the following example, the `lib.css` stylesheet in the `wwwroot` folder isn't
 ### Typescript integration
 
 To include TypeScript files in an RCL:
+
+1. Reference the [`Microsoft.TypeScript.MSBuild`](https://www.nuget.org/packages/Microsoft.TypeScript.MSBuild) NuGet package in the project.
+
+   [!INCLUDE[](~/includes/package-reference.md)]
 
 1. Place the TypeScript files (`.ts`) outside of the `wwwroot` folder. For example, place the files in a `Client` folder.
 

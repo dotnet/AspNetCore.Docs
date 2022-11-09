@@ -11,8 +11,6 @@ uid: grpc/aspnetcore
 
 This document shows how to get started with gRPC services using ASP.NET Core.
 
-[!INCLUDE[](~/includes/gRPCazure.md)]
-
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
