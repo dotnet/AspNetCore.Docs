@@ -1,1 +1,1 @@
-* [Visual Studio 2022 for Mac latest preview](https://visualstudio.microsoft.com/vs/mac/preview/)
+* [Visual Studio 2022 for Mac](https://visualstudio.microsoft.com/vs/mac/)
