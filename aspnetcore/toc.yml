@@ -913,89 +913,93 @@ items:
         href: https://github.com/grpc/grpc-dotnet/tree/master/examples
       - name: Troubleshoot
         uid: grpc/troubleshoot
-  - name: Test, debug, and troubleshoot
+  - name: Test
     items:
       - name: .NET Hot Reload
         uid: test/hot-reload
-      - name: Debug .NET and ASP.NET Core source code
-        uid: test/debug-aspnetcore-source
+      - name: Test with HttpRepl
+        items:
+          - name: Overview
+            displayName: httprepl
+            uid: web-api/http-repl
+          - name: Telemetry
+            displayName: httprepl
+            uid: web-api/http-repl/telemetry
+      - name: Test Minimal API
+        uid: fundamentals/minimal-apis/test-min-api
       - name: Razor Pages unit tests
         uid: test/razor-pages-tests
       - name: MVC controllers unit tests
         uid: mvc/controllers/testing
       - name: Integration tests
         uid: test/integration-tests
-      - name: Testing Minimal API
-        uid: fundamentals/minimal-apis/test-min-api
+      - name: Load and stress testing
+        uid: test/loadtests
       - name: Test middleware
         uid: test/middleware
+  - name: Debug
+    items:
+      - name: Debug with Visual Studio
+        uid: test/debug-aspnetcore-source
       - name: Remote debugging
         href: /visualstudio/debugger/remote-debugging-azure
-      - name: Snapshot debugging
+      - name: Snapshot debugging in Azure
         href: /azure/azure-monitor/app/snapshot-debugger?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
       - name: Snapshot debugging in Visual Studio
         href: /visualstudio/debugger/debug-live-azure-applications
-      - name: Port tunneling in VS to debug web APIs
+      - name: Port tunneling in Visual Studio
         href: /connectors/custom-connectors/port-tunneling
-      - name: Test with HttpRepl
-        items:
-          - name: Overview
-            uid: web-api/http-repl
-          - name: Telemetry
-            uid: web-api/http-repl/telemetry
-      - name: Load and stress testing
-        uid: test/loadtests
+  - name: Troubleshoot
+    items:
       - name: Troubleshoot and debug
         uid: test/troubleshoot
-      - name: Logging
-        uid: fundamentals/logging/index
       - name: Troubleshoot Azure and IIS
         uid: test/troubleshoot-azure-iis
       - name: Azure and IIS errors reference
         uid: host-and-deploy/azure-iis-errors-reference
-      - name: Code analysis
-        uid: diagnostics/code-analysis
-        items:
-          - name: ASP0000
-            uid: diagnostics/asp0000
-          - name: ASP0001
-            uid: diagnostics/asp0001
-          - name: ASP0003
-            uid: diagnostics/asp0003
-          - name: ASP0004
-            uid: diagnostics/asp0004
-          - name: ASP0005
-            uid: diagnostics/asp0005
-          - name: ASP0006
-            uid: diagnostics/asp0006
-          - name: ASP0007
-            uid: diagnostics/asp0007
-          - name: BL0001
-            uid: diagnostics/bl0001
-          - name: BL0002
-            uid: diagnostics/bl0002
-          - name: BL0003
-            uid: diagnostics/bl0003
-          - name: BL0004
-            uid: diagnostics/bl0004
-          - name: BL0005
-            uid: diagnostics/bl0005
-          - name: BL0006
-            uid: diagnostics/bl0006
-          - name: MVC1000
-            uid: diagnostics/mvc1000
-          - name: MVC1001
-            uid: diagnostics/mvc1001
-          - name: MVC1002
-            uid: diagnostics/mvc1002
-          - name: MVC1003
-            uid: diagnostics/mvc1003
-          - name: MVC1004
-            uid: diagnostics/mvc1004
-          - name: MVC1005
-            uid: diagnostics/mvc1005
-          - name: MVC1006
-            uid: diagnostics/mvc1006
+  - name: Code analysis
+    uid: diagnostics/code-analysis
+    items:
+      - name: ASP0000
+        uid: diagnostics/asp0000
+      - name: ASP0001
+        uid: diagnostics/asp0001
+      - name: ASP0003
+        uid: diagnostics/asp0003
+      - name: ASP0004
+        uid: diagnostics/asp0004
+      - name: ASP0005
+        uid: diagnostics/asp0005
+      - name: ASP0006
+        uid: diagnostics/asp0006
+      - name: ASP0007
+        uid: diagnostics/asp0007
+      - name: BL0001
+        uid: diagnostics/bl0001
+      - name: BL0002
+        uid: diagnostics/bl0002
+      - name: BL0003
+        uid: diagnostics/bl0003
+      - name: BL0004
+        uid: diagnostics/bl0004
+      - name: BL0005
+        uid: diagnostics/bl0005
+      - name: BL0006
+        uid: diagnostics/bl0006
+      - name: MVC1000
+        uid: diagnostics/mvc1000
+      - name: MVC1001
+        uid: diagnostics/mvc1001
+      - name: MVC1002
+        uid: diagnostics/mvc1002
+      - name: MVC1003
+        uid: diagnostics/mvc1003
+      - name: MVC1004
+        uid: diagnostics/mvc1004
+      - name: MVC1005
+        uid: diagnostics/mvc1005
+      - name: MVC1006
+        uid: diagnostics/mvc1006
   - name: Data access
     items:
       - name: Tutorials
@@ -1497,19 +1501,25 @@ items:
       - name: Caching
         items:
           - name: Overview
+            displayName: cache, caching
             uid: performance/caching/overview
           - name: In-memory cache
+            displayName: caching
             uid: performance/caching/memory
           - name: Distributed caching
+            displayName: cache
             uid: performance/caching/distributed
           - name: Output caching
+            displayName: cache
             uid: performance/caching/output
           - name: Response caching
+            displayName: cache
             uid: performance/caching/response
           - name: Response caching middleware
+            displayName: cache
             uid: performance/caching/middleware
-          - name: Object reuse with ObjectPool
-            uid: performance/ObjectPool
+      - name: Object reuse with ObjectPool
+        uid: performance/ObjectPool
       - name: Response compression
         uid: performance/response-compression
       - name: Diagnostic tools
