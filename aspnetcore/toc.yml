@@ -688,8 +688,6 @@ items:
         uid: web-api/advanced/conventions
       - name: Handle errors
         uid: web-api/handle-errors
-      - name: Port tunneling in VS to debug web APIs
-        href: /connectors/custom-connectors/port-tunneling
       - name: Test with HttpRepl
         items:
           - name: Overview
@@ -710,8 +708,6 @@ items:
         uid: fundamentals/minimal-apis/responses
       - name: OpenAPI
         uid: fundamentals/minimal-apis/openapi
-      - name: Port tunneling in VS to debug web APIs
-        href: /connectors/custom-connectors/port-tunneling
       - name: Filters
         uid: fundamentals/minimal-apis/min-api-filters
       - name: Unit and integration tests
@@ -941,6 +937,12 @@ items:
         href: /visualstudio/debugger/debug-live-azure-applications
       - name: Port tunneling in VS to debug web APIs
         href: /connectors/custom-connectors/port-tunneling
+      - name: Test with HttpRepl
+        items:
+          - name: Overview
+            uid: web-api/http-repl
+          - name: Telemetry
+            uid: web-api/http-repl/telemetry
       - name: Load and stress testing
         uid: test/loadtests
       - name: Troubleshoot and debug
