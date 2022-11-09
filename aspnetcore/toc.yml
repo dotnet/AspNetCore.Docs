@@ -919,7 +919,7 @@ items:
         items:
           - name: .NET Hot Reload
             uid: test/hot-reload
-          - name: HttpRepl
+          - name: Test with HttpRepl
             items:
               - name: Overview
                 displayName: httprepl
