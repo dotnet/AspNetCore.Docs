@@ -915,20 +915,18 @@ items:
         uid: grpc/troubleshoot
   - name: Test, debug, and troubleshoot
     items:
-      - name: Logging
-        uid: fundamentals/logging/index
-      - name: .NET Hot Reload
-        uid: test/hot-reload
-      - name: HttpRepl
-        items:
-          - name: Overview
-            displayName: httprepl
-            uid: web-api/http-repl
-          - name: Telemetry
-            displayName: httprepl
-            uid: web-api/http-repl/telemetry
       - name: Test
         items:
+          - name: .NET Hot Reload
+            uid: test/hot-reload
+          - name: HttpRepl
+            items:
+              - name: Overview
+                displayName: httprepl
+                uid: web-api/http-repl
+              - name: Telemetry
+                displayName: httprepl
+                uid: web-api/http-repl/telemetry
           - name: Razor Pages unit tests
             uid: test/razor-pages-tests
           - name: MVC controllers unit tests
