@@ -24,9 +24,6 @@ This tutorial shows you how to build and run a .NET MAUI Blazor app. You learn h
 * [Microsoft Edge `WebView2`](https://developer.microsoft.com/microsoft-edge/webview2/): `WebView2` is required on Windows when running a native app. When developing .NET MAUI Blazor apps and only running them in Visual Studio's emulators, `WebView2` isn't required.
 * [Enable hardware acceleration](/dotnet/maui/android/emulator/hardware-acceleration) to improve the performance of the Android emulator.
 
-> [!NOTE]
-> Blazor Hybrid has reached General Availability (GA) and is fully supported for production workloads. Visual Studio for Mac is in prerelease for working on Blazor Hybrid apps and may be modified before final release. We recommend keeping Visual Studio 2022 updated for the best tooling experience.
-
 ## Create a .NET MAUI Blazor app
 
 Launch Visual Studio 2022.
