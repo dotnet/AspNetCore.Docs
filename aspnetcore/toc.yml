@@ -943,7 +943,7 @@ items:
         uid: test/debug-aspnetcore-source
       - name: Remote debugging
         href: /visualstudio/debugger/remote-debugging-azure
-      - name: Snapshot debugging
+      - name: Snapshot debugging in Azure
         href: /azure/azure-monitor/app/snapshot-debugger?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
       - name: Snapshot debugging in Visual Studio
         href: /visualstudio/debugger/debug-live-azure-applications
