@@ -38,9 +38,10 @@ Blazor WebAssembly Hot Reload supports the following code changes:
 * Adding static fields and methods to existing types.
 * Adding static lambdas to existing methods.
 * Adding lambdas that capture `this` to existing methods that already captured `this` previously.
-* Components reset their parameters to their default values when a value is removed.
 
-The following code changes aren't supported:
+Blazor WebAssembly and Blazor Server Hot Reload have support for when components reset their parameters to their default values when a value is removed.
+
+The following code changes aren't supported for Blazor WebAssembly apps:
 
 * Adding local functions.
 * Adding a new [`await` operator](/dotnet/csharp/language-reference/operators/await) or [`yield` keyword](/dotnet/csharp/language-reference/keywords/yield) expression.
@@ -56,7 +57,7 @@ Blazor WebAssembly Hot Reload supports the following code changes:
 * Most changes to method bodies, such as adding, removing, and editing variables, expressions, and statements.
 * Changes to the bodies of [lambda expressions](/dotnet/csharp/language-reference/operators/lambda-expressions) and [local functions](/dotnet/csharp/programming-guide/classes-and-structs/local-functions).
 
-The following code changes aren't supported:
+The following code changes aren't supported for Blazor WebAssembly apps:
 
 * Adding new lambdas or local functions.
 * Adding a new [`await` operator](/dotnet/csharp/language-reference/operators/await) or [`yield` keyword](/dotnet/csharp/language-reference/keywords/yield) expression.
