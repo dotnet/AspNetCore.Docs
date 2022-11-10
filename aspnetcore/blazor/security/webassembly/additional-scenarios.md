@@ -78,7 +78,7 @@ The following scenarios demonstrate how to customize authentication requests and
 
 ### Customize the login process
 
-Add additional parameters to a login request by calling `TryAddAdditionalParameter` one or more times on a new instance of `InteractiveRequestOptions`:
+Add additional parameters to a login request by calling <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions.TryAddAdditionalParameter%2A> one or more times on a new instance of <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>:
 
 ```csharp
 InteractiveRequestOptions requestOptions = 
@@ -99,9 +99,9 @@ The preceding example assumes:
 * The presence of an `@using`/`using` statement for API in the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace.
 * <xref:Microsoft.AspNetCore.Components.NavigationManager> injected as `Navigation`.
 
-Obtain an additional parameter by calling `TryGetAdditionalParameter` with the name of the parameter. Remove an additional parameter by calling `TryRemoveAdditionalParameter` with the name of the parameter.
+Obtain an additional parameter by calling `TryGetAdditionalParameter` with the name of the parameter. Remove an additional parameter by calling <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions.TryRemoveAdditionalParameter%2A> with the name of the parameter.
 
-<!-- For more information, see <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>. -->
+For more information, see <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>.
 
 ### Logout with a custom return URL
 
@@ -113,7 +113,7 @@ Navigation.NavigateToLogout("authentication/logout", "goodbye");
 
 ### Customize options before obtaining a token interactively
 
-If an <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> occurs, attach additional parameters for a new identity provider access token request by calling `TryAddAdditionalParameter` one or more times:
+If an <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> occurs, attach additional parameters for a new identity provider access token request by calling <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions.TryAddAdditionalParameter%2A> one or more times:
 
 ```csharp
 try
@@ -136,11 +136,11 @@ The preceding example assumes that:
 * The presence of an `@using`/`using` statement for API in the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace.
 * `HttpClient` injected as `Http`.
 
-<!-- For more information, see <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>. -->
+For more information, see <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>.
 
 ### Customize options when using an `IAccessTokenProvider`
 
-If obtaining a token fails when using an <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider>, attach additional parameters for the new identity provider access token request by calling `TryAddAdditionalParameter` one or more times:
+If obtaining a token fails when using an <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider>, attach additional parameters for the new identity provider access token request by calling <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions.TryAddAdditionalParameter%2A> one or more times:
 
 ```csharp
 var accessTokenResult = await TokenProvider.RequestAccessToken(
@@ -166,11 +166,11 @@ The preceding example assumes:
 * The presence of an `@using`/`using` statement for API in the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace.
 * <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider> injected as `TokenProvider`.
 
-<!-- For more information, see <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>. -->
+For more information, see <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>.
 
 ### Obtain the login path from authentication options
 
-Obtain the configured login path from `RemoteAuthenticationOptions`:
+Obtain the configured login path from <xref:Microsoft.AspNetCore.Builder.RemoteAuthenticationOptions>:
 
 ```csharp
 var loginPath = RemoteAuthOptions.Get(Options.DefaultName).AuthenticationPaths.LogInPath;
@@ -423,7 +423,7 @@ An alternative approach to using the <xref:System.Net.Http.IHttpClientFactory> i
 
 ## Request additional access tokens
 
-Access tokens can be manually obtained by calling `IAccessTokenProvider.RequestAccessToken`. In the following example, an additional scope is required by an app for the default <xref:System.Net.Http.HttpClient>. The Microsoft Authentication Library (MSAL) example configures the scope with `MsalProviderOptions`:
+Access tokens can be manually obtained by calling <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider.RequestAccessToken%2A?displayProperty=nameWithType>. In the following example, an additional scope is required by an app for the default <xref:System.Net.Http.HttpClient>. The Microsoft Authentication Library (MSAL) example configures the scope with `MsalProviderOptions`:
 
 In `Program.cs`:
 
@@ -439,7 +439,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 The `{CUSTOM SCOPE 1}` and `{CUSTOM SCOPE 2}` placeholders in the preceding example are custom scopes.
 
-The `IAccessTokenProvider.RequestToken` method provides an overload that allows an app to provision an access token with a given set of scopes.
+The <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider.RequestAccessToken%2A?displayProperty=nameWithType> method provides an overload that allows an app to provision an access token with a given set of scopes.
 
 In a Razor component:
 
@@ -1649,7 +1649,7 @@ An alternative approach to using the <xref:System.Net.Http.IHttpClientFactory> i
 
 ## Request additional access tokens
 
-Access tokens can be manually obtained by calling `IAccessTokenProvider.RequestAccessToken`. In the following example, an additional scope is required by an app for the default <xref:System.Net.Http.HttpClient>. The Microsoft Authentication Library (MSAL) example configures the scope with `MsalProviderOptions`:
+Access tokens can be manually obtained by calling <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider.RequestAccessToken%2A?displayProperty=nameWithType>. In the following example, an additional scope is required by an app for the default <xref:System.Net.Http.HttpClient>. The Microsoft Authentication Library (MSAL) example configures the scope with `MsalProviderOptions`:
 
 In `Program.cs`:
 
@@ -2875,7 +2875,7 @@ An alternative approach to using the <xref:System.Net.Http.IHttpClientFactory> i
 
 ## Request additional access tokens
 
-Access tokens can be manually obtained by calling `IAccessTokenProvider.RequestAccessToken`. In the following example, an additional scope is required by an app for the default <xref:System.Net.Http.HttpClient>. The Microsoft Authentication Library (MSAL) example configures the scope with `MsalProviderOptions`:
+Access tokens can be manually obtained by calling <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider.RequestAccessToken%2A?displayProperty=nameWithType>. In the following example, an additional scope is required by an app for the default <xref:System.Net.Http.HttpClient>. The Microsoft Authentication Library (MSAL) example configures the scope with `MsalProviderOptions`:
 
 In `Program.cs`:
 
@@ -4106,7 +4106,7 @@ An alternative approach to using the <xref:System.Net.Http.IHttpClientFactory> i
 
 ## Request additional access tokens
 
-Access tokens can be manually obtained by calling `IAccessTokenProvider.RequestAccessToken`. In the following example, an additional scope is required by an app for the default <xref:System.Net.Http.HttpClient>. The Microsoft Authentication Library (MSAL) example configures the scope with `MsalProviderOptions`:
+Access tokens can be manually obtained by calling <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider.RequestAccessToken%2A?displayProperty=nameWithType>. In the following example, an additional scope is required by an app for the default <xref:System.Net.Http.HttpClient>. The Microsoft Authentication Library (MSAL) example configures the scope with `MsalProviderOptions`:
 
 In `Program.cs`:
 
@@ -4122,7 +4122,7 @@ builder.Services.AddMsalAuthentication(options =>
 
 The `{CUSTOM SCOPE 1}` and `{CUSTOM SCOPE 2}` placeholders in the preceding example are custom scopes.
 
-The `IAccessTokenProvider.RequestToken` method provides an overload that allows an app to provision an access token with a given set of scopes.
+The <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider.RequestAccessToken%2A?displayProperty=nameWithType> method provides an overload that allows an app to provision an access token with a given set of scopes.
 
 In a Razor component:
 

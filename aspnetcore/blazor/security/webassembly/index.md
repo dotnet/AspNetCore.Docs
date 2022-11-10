@@ -65,19 +65,19 @@ The state stored by the History API provides the following benefits for remote a
 * The attack surface area is reduced. Unlike using the query string to store navigation state, the state stored by the History API can't be set via a top-level navigation nor be influenced from a different origin.
 * The history entry is replaced upon successful authentication, so the state attached to the history entry is removed and doesn't require clean up.
 
-`InteractiveRequestOptions` represents the request to the identity provider for logging in or provisioning an access token.
+<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions> represents the request to the identity provider for logging in or provisioning an access token.
 
-`NavigationManagerExtensions` provides the `NavigateToLogin` method for a login operation and `NavigateToLogout` for a logout operation. The methods call <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType>, setting the history entry state with a passed `InteractiveRequestOptions` or a new `InteractiveRequestOptions` instance created by the method for:
+<xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions> provides the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.NavigationManagerExtensions.NavigateToLogin%2A> method for a login operation and <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.NavigationManagerExtensions.NavigateToLogout%2A> for a logout operation. The methods call <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType>, setting the history entry state with a passed `InteractiveRequestOptions` or a new `InteractiveRequestOptions` instance created by the method for:
 
-* A user signing in (`InteractionType.SignIn`) with the current URI for the return URL.
-* A user signing out (`InteractionType.SignOut`) with the return URL.
+* A user signing in (<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractionType.SignIn?displayProperty=nameWithType>) with the current URI for the return URL.
+* A user signing out (<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractionType.SignOut?displayProperty=nameWithType>) with the return URL.
 
 The following authentication scenarios are covered in the <xref:blazor/security/webassembly/additional-scenarios#custom-authentication-request-scenarios> article:
 
 * Customize the login process
 * Logout with a custom return URL
 * Customize options before obtaining a token interactively
-* Customize options when using an `IAccessTokenProvider`
+* Customize options when using an <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider>
 * Obtain the login path from authentication options
 
 ## `Authentication` component

@@ -156,7 +156,7 @@ document.getElementById("out").innerHTML = text;
 await dotnet.run();
 ```
 
-To import a JS function so it can be called from C#, use the new `JSImportAttribute` on a matching method signature. The first parameter to the `JSImportAttribute` is the name of the JS function to import and the second parameter is the name of the module.
+To import a JS function so it can be called from C#, use the new <xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute> on a matching method signature. The first parameter to the <xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute> is the name of the JS function to import and the second parameter is the name of the module.
 
 In the following example, the `window.location.href` function is called from the `main.js` module when `GetHRef` method is called:
 
@@ -165,7 +165,7 @@ In the following example, the `window.location.href` function is called from the
 internal static partial string GetHRef();
 ```
 
-In the imported method signature, you can use .NET types for parameters and return values, which are marshalled automatically by the runtime. Use `JSMarshalAsAttribute<T>` to control how the imported method parameters are marshalled. For example, you might choose to marshal a `long` as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>. You can pass <xref:System.Action>/<xref:System.Func%601> callbacks as parameters, which are marshalled as callable JS functions. You can pass both JS and managed object references, and they are marshaled as proxy objects, keeping the object alive across the boundary until the proxy is garbage collected. You can also import and export asynchronous methods with a <xref:System.Threading.Tasks.Task> result, which are marshaled as [JS promises](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods.
+In the imported method signature, you can use .NET types for parameters and return values, which are marshalled automatically by the runtime. Use <xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute%601> to control how the imported method parameters are marshalled. For example, you might choose to marshal a `long` as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>. You can pass <xref:System.Action>/<xref:System.Func%601> callbacks as parameters, which are marshalled as callable JS functions. You can pass both JS and managed object references, and they are marshaled as proxy objects, keeping the object alive across the boundary until the proxy is garbage collected. You can also import and export asynchronous methods with a <xref:System.Threading.Tasks.Task> result, which are marshaled as [JS promises](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods.
 
 [!INCLUDE[](~/blazor/includes/js-interop/7.0/import-export-interop-mappings.md)]
 
@@ -176,7 +176,7 @@ Functions accessible on the global namespace can be imported by using the [`glob
 internal static partial void Log([JSMarshalAs<JSType.String>] string message);
 ```
 
-To export a .NET method so it can be called from JS, use the `JSExportAttribute`.
+To export a .NET method so it can be called from JS, use the <xref:System.Runtime.InteropServices.JavaScript.JSExportAttribute>.
 
 In the following example, the `Greeting` method returns a string that includes the result of calling the `GetHRef` method. As shown earlier, the `GetHref` C# method calls into JS for the `window.location.href` function from the `main.js` module. `window.location.href` returns the current page address (URL):
 
@@ -263,6 +263,9 @@ In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the target fra
 
 ## Additional resources
 
+* API documentation
+  * [`[JSImport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute)
+  * [`[JSExport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSExportAttribute)
 * <xref:blazor/js-interop/import-export-interop>
 * In the `dotnet/runtime` GitHub repository:
   * [.NET WebAssembly runtime](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/runtime/)
