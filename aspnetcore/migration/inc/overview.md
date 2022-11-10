@@ -27,7 +27,7 @@ Before starting the migration, the app targets ASP.NET Framework and runs on Win
 
 ![Before starting the migration](~/migration/inc/overview/static/1.png)
 
-Migration starts by introducing a new app based on ASP.NET Core that becomes the entry point. Incoming requests go to the ASP.NET Core app, which either handles the request or proxies the request to the .NET Framework app via [YARP](https://microsoft.github.io/reverse-proxy/). At first, the majority of code providing responses is the .NET Framework app, but the core app is now set up to start migrating routes:
+Migration starts by introducing a new app based on ASP.NET Core that becomes the entry point. Incoming requests go to the ASP.NET Core app, which either handles the request or proxies the request to the .NET Framework app via [YARP](https://microsoft.github.io/reverse-proxy/). At first, the majority of code providing responses is the .NET Framework app, but the ASP.NET Core app is now set up to start migrating routes:
 
 ![start migrating routes](~/migration/inc/overview/static/nop.png)
 
@@ -38,47 +38,36 @@ To start moving business logic that relies on `HttpContext` to ???, the librarie
 
 ![Microsoft.AspNetCore.SystemWebAdapters](~/migration/inc/overview/static/sys_adapt.png)
 
-At this point, the journey is to focus on moving routes over one at a time. This could be WebAPI or MVC controllers (or even a single method from a controller), ASPX pages, handlers, or some other implementation of a route. If the route is available in the core app, it will then be matched and served from there.
+<!-- Review: Why does this need to be serialized? Can't one team migrate WebAPI, another specific controllers, another, ASPX pages, etc -->
+At this point, the migration process moves routes over one at a time. This could be WebAPI or MVC controller action methods, ASPX pages, handlers, or some other implementation of a route. If the route is available in the ASP.NET Core app, it's matched and served.
 
-During this process, additional service and infrastructure will be identified that must be moved, in some way, to run on .NET Core. Some options include (listed in order of maintainability):
+During migration process, additional services and infrastructure are identified that must be migrated to run on .NET Core. Options include listed in order of maintainability:
 
 1. Duplicate the code
 2. Link the code in the new project
 3. Move the code to shared libraries
 
-Over time, the core app will start processing more of the routes served than the .NET Framework app:
+Eventually, the ASP.NET Core app handles more of the routes than the .NET Framework app
 
-```mermaid
-flowchart LR;
-  external[External Traffic] --> core[ \n\nASP.NET Core Application\n\n\n]
-  core -- Adapters --- libraries
-  core -- YARP proxy --> framework[.NET Framework Application]
-  framework --- libraries[[Business logic]]
-```
+![the ASP.NET Core app handles more of the routes](~/migration/inc/overview/static/sys_adapt.png)
 
-During this process, you may have the route in both the ASP.NET Core and the ASP.NET Framework apps. This could allow you to perform some A/B testing to ensure functionality is as expected.
+During migration, the same route may be available in both the ASP.NET Core and the ASP.NET Framework apps. Duplicate routes allows performing A/B testing to ensure functionality is as expected.
 
-Once the .NET Framework Application is no longer needed, it may be removed:
+<!-- I think customers can figure this out
+Once the .NET Framework Application is no longer needed, it may be removed: -->
 
-```mermaid
-flowchart LR;
-  external[External Traffic] --> core[ASP.NET Core Application]
-  core -- Adapters --- libraries[[Business logic]]
-```
+Once the ASP.NET Framework app is deleted:
 
-At this point, the app as a whole is running on the ASP.NET Core app stack, but is still using the adapters from this repo. At this point, the goal will be to remove the use of the adapters until the app is relying solely on the ASP.NET Core app framework:
+* The app is running on the ASP.NET Core app stack, but is still using the adapters.
+* The remaining migration work is to remove the use of the adapters.
 
-```mermaid
-flowchart LR;
-  external[External Traffic] --> core[ASP.NET Core Application]
-  core --- libraries[[Business logic]]
-```
+![final](~/migration/inc/overview/static/final.png)
 
 ## System.Web Adapters
 
-The `Microsoft.AspNetCore.SystemWebAdapters` is a collection of runtime helpers that will facilitate using old core written against `System.Web` while moving onto ASP.NET Core.
+The `Microsoft.AspNetCore.SystemWebAdapters` is a collection of runtime helpers that facilitate using old core <!-- Review: What's old core? --> written against `System.Web` while moving to ASP.NET Core.
 
-The heart of the library is support for `System.Web.HttpContext`. This attempts to provide compatible behavior for what is found running on ASP.NET to expedite moving onto ASP.NET Core. There are a number of behaviors that ASP.NET provided that incur a performance cost if enabled on ASP.NET Core so must be opted into.
+The heart of the library is support for `System.Web.HttpContext`. The adaptors attempt to provide compatible behavior for what is found running on ASP.NET to expedite moving To ASP.NET Core. There are a number of behaviors that ASP.NET provided that incur a performance cost if enabled on ASP.NET Core, these behaviors must be opted into.
 <!--
 For examples of scenarios where this is useful, see [here](adapters.md).
 
