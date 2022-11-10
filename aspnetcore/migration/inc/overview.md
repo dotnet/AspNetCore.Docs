@@ -25,26 +25,18 @@ To jump into the process, please see the `[Getting Started](getting_started.md)`
 
 Before starting the migration, the app targets ASP.NET Framework and runs on Windows with its supporting libraries:
 
-![start migrating routes](~/migration/inc/overview/static/1.png)
+![Before starting the migration](~/migration/inc/overview/static/1.png)
 
-Migration starts by introducing a new app based on ASP.NET Core that becomes the entry point. Incoming requests go to the ASP.NET Core app, which either handles the request or proxies the request to the .NET Framework Application via [YARP](https://microsoft.github.io/reverse-proxy/)
-
-* Requests that have a matching route are returned by the ASP.NET Core app.
-* If the ASP.NET Core app contains a route that matches the request, 
-
-* If the core app cannot match a route, it will proxy the request onto the .NET Framework app via [YARP](https://microsoft.github.io/reverse-proxy/) and serve a response as the app has already been doing. Majority of code will continue to be in the .NET Framework app, but the core app is now set up to start migrating routes to:
+Migration starts by introducing a new app based on ASP.NET Core that becomes the entry point. Incoming requests go to the ASP.NET Core app, which either handles the request or proxies the request to the .NET Framework app via [YARP](https://microsoft.github.io/reverse-proxy/). At first, the majority of code providing responses is the .NET Framework app, but the core app is now set up to start migrating routes:
 
 ![start migrating routes](~/migration/inc/overview/static/nop.png)
 
-In order to start moving over business logic that relies on `HttpContext`, the libraries need to be built against `Microsoft.AspNetCore.SystemWebAdapters`. This allows libraries to be built against .NET Framework, .NET Core, or .NET Standard 2.0. This will ensure that the libraries are using surface area that is available on both ASP.NET and ASP.NET Core:
+To start moving business logic that relies on `HttpContext` to ???, the libraries need to be built with `Microsoft.AspNetCore.SystemWebAdapters`. Building the libraries with `Microsoft.AspNetCore.SystemWebAdapters` allows:
 
-```mermaid
-flowchart LR;
-  external[External Traffic] --> core[ASP.NET Core Application]
-  core -- Adapters --- libraries
-  core -- YARP proxy --> framework[ \n\n.NET Framework Application\n\n\n]
-  framework --- libraries[[Business logic]]
-```
+* The libraries to be built against .NET Framework, .NET Core, or .NET Standard 2.0.
+* Ensures that the libraries are using APIs that are available on both ASP.NET and ASP.NET Core.
+
+![Microsoft.AspNetCore.SystemWebAdapters](~/migration/inc/overview/static/sys_adapt.png)
 
 At this point, the journey is to focus on moving routes over one at a time. This could be WebAPI or MVC controllers (or even a single method from a controller), ASPX pages, handlers, or some other implementation of a route. If the route is available in the core app, it will then be matched and served from there.
 
