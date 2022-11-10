@@ -694,9 +694,7 @@ hubConnection.on("GetMessage", async () => {
 ```
 
 > [!NOTE]
-> Client results don't work with the Azure SignalR Service.
->
-> This will be addressed in a future release. For more information, see [Support returning values from client invocations](https://github.com/dotnet/aspnetcore/issues/5280).
+> Client results now also works with the Azure SignalR Service([v1.19.0+](https://github.com/Azure/azure-signalr/releases/tag/v1.19.0)).
 
 ## Change the name of a hub method
 
