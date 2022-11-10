@@ -5,10 +5,20 @@ description: Learn how to interact with JavaScript in Blazor WebAssembly apps us
 monikerRange: '= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 11/10/2022
 uid: blazor/js-interop/import-export-interop
 ---
 # JavaScript `[JSImport]`/`[JSExport]` interop with ASP.NET Core Blazor
+
+<!--
+
+    AUTHOR NOTE: This topic is configured in metadata for ONLY the 7.0 release
+                 because I assume that this implementation of JS interop will
+                 be expanded to Blazor Server and will replace IJSRuntime-based
+                 JS interop. If so, this topic will disappear at 8.0 in favor
+                 of 8.0 JS interop docs adopting this API completely.
+
+-->
 
 This article explains how to interact with JavaScript (JS) in Blazor WebAssembly apps using JavaScript (JS) `[JSImport]`/`[JSExport]` interop API released with .NET 7.
 
@@ -119,6 +129,13 @@ The module name in the `[JSImport]` attribute and the call to load the module in
 ```csharp
 [JSImport("getMessage", 
     "Contoso.InteropServices.JavaScript.UserMessages.CallJavaScript1")]
+```
+
+Functions accessible on the global namespace can be imported by using the [`globalThis`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/globalThis) prefix in the function name and by using the `[JSImport]` attribute without providing a module name. In the following example, [`console.log`](https://developer.mozilla.org/docs/Web/API/console/log) is prefixed with `globalThis`. The imported function is called by the C# `Log` method, which accepts a C# string message (`message`) and marshalls the C# string to a JS [`String`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) for `console.log`:
+
+```csharp
+[JSImport("globalThis.console.log")]
+internal static partial void Log([JSMarshalAs<JSType.String>] string message);
 ```
 
 Export scripts from a standard [JavaScript ES6 module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules) either [collocated with a component](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) or placed with other JavaScript static assets in a JS file (for example, `wwwroot/js/{FILENAME}.js`, where JS static assets are maintained in a folder named `js` in the app's `wwwroot` folder and the `{FILENAME}` placeholder is the filename).
