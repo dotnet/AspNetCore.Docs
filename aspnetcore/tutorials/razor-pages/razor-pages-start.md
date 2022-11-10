@@ -92,7 +92,7 @@ For alternative approaches to create the project, see [Create a new project in V
 
 * In the **Configure your new Web Application** dialog:
   * Verify: **Target framework** is set to **.NET 7.0** (or later).
-  * Verify: **Authentication** is set to **No Athentication**.
+  * Verify: **Authentication** is set to **No Authentication**.
   * Verify: **Do not use top-level statements** is unchecked.
   * Select **Continue**.
 
