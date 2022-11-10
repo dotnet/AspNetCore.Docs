@@ -35,7 +35,7 @@ The generated connection string is similar to the following JSON:
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/appsettings_SQLite.json?highlight=10-12)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/appsettings_SQLite.json?highlight=9-11)]
 
 ---
 
