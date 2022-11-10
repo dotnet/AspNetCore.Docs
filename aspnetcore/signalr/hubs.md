@@ -693,9 +693,6 @@ hubConnection.on("GetMessage", async () => {
 });
 ```
 
-> [!NOTE]
-> Client results now also works with the Azure SignalR Service([v1.19.0+](https://github.com/Azure/azure-signalr/releases/tag/v1.19.0)).
-
 ## Change the name of a hub method
 
 By default, a server hub method name is the name of the .NET method. To change this default behavior for a specific method, use the [HubMethodName](xref:Microsoft.AspNetCore.SignalR.HubMethodNameAttribute) attribute. The client should use this name instead of the .NET method name when invoking the method:
