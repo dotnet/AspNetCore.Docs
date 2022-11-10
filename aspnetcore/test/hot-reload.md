@@ -38,6 +38,7 @@ Blazor WebAssembly Hot Reload supports the following code changes:
 * Adding static fields and methods to existing types.
 * Adding static lambdas to existing methods.
 * Adding lambdas that capture `this` to existing methods that already captured `this` previously.
+* Components reset their parameters to their default values when a value is removed.
 
 The following code changes aren't supported:
 
