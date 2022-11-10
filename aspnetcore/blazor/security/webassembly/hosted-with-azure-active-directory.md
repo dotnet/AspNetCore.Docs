@@ -365,7 +365,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/7.0/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -405,7 +405,7 @@ Run the app from the Server project. When using Visual Studio, either:
 
 -->
 
-[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/7.0/troubleshoot.md)]
 
 ## Additional resources
 
@@ -768,7 +768,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/6.0/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -808,7 +808,7 @@ Run the app from the Server project. When using Visual Studio, either:
 
 -->
 
-[!INCLUDE[](~/blazor/security/includes/troubleshoot-60-or-earlier.md)]
+[!INCLUDE[](~/blazor/security/includes/6.0/troubleshoot.md)]
 
 ## Additional resources
 
@@ -1171,7 +1171,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/5.0/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -1211,7 +1211,7 @@ Run the app from the Server project. When using Visual Studio, either:
 
 -->
 
-[!INCLUDE[](~/blazor/security/includes/troubleshoot-60-or-earlier.md)]
+[!INCLUDE[](~/blazor/security/includes/5.0/troubleshoot.md)]
 
 ## Additional resources
 
@@ -1566,7 +1566,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/3.1/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -1606,7 +1606,7 @@ Run the app from the Server project. When using Visual Studio, either:
 
 -->
 
-[!INCLUDE[](~/blazor/security/includes/troubleshoot-60-or-earlier.md)]
+[!INCLUDE[](~/blazor/security/includes/3.1/troubleshoot.md)]
 
 ## Additional resources
 
