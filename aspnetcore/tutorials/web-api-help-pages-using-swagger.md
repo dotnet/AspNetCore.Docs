@@ -21,7 +21,7 @@ The two main OpenAPI implementations for .NET are [Swashbuckle](https://github.c
 * [Getting Started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
 * [Getting Started with NSwag](xref:tutorials/get-started-with-nswag)
 
-## OpenApi vs. Swagger
+## OpenAPI vs. Swagger
 
 The Swagger project was donated to the OpenAPI Initiative in 2015 and has since been referred to as OpenAPI. Both names are used interchangeably. However, "OpenAPI" refers to the specification. "Swagger" refers to the family of open-source and commercial products from SmartBear that work with the OpenAPI Specification. Subsequent open-source products, such as [OpenAPIGenerator](https://github.com/OpenAPITools/openapi-generator), also fall under the Swagger family name, despite not being released by SmartBear.
 
@@ -30,7 +30,7 @@ In short:
 * OpenAPI is a specification.
 * Swagger is tooling that uses the OpenAPI specification. For example, OpenAPIGenerator and SwaggerUI.
 
-## OpenAPI specification (openapi.json)
+## OpenAPI specification (`openapi.json`)
 
 The OpenAPI specification is a document that describes the capabilities of your API. The document is based on the [XML](xref:tutorials/get-started-with-swashbuckle#xml-comments) and attribute annotations within the controllers and models. It's the core part of the OpenAPI flow and is used to drive tooling such as SwaggerUI. By default, it's named `openapi.json`. Here's an example of an OpenAPI specification, reduced for brevity:
 
