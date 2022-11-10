@@ -16,7 +16,7 @@ This article explains how to use component virtualization in ASP.NET Core Blazor
 
 Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support with the [`Virtualize` component](xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601). Virtualization is a technique for limiting UI rendering to just the parts that are currently visible. For example, virtualization is helpful when the app must render a long list of items and only a subset of items is required to be visible at any given time.
 
-Use the `Virtualize` component when:
+Use the `Virtualize` component ([reference source](xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601)) when:
 
 * Rendering a set of data items in a loop.
 * Most of the items aren't visible due to scrolling.
@@ -290,7 +290,7 @@ The `Virtualize` component supports using the document itself as the scroll root
 
 ## Control the spacer element tag name
 
-If the `Virtualize` component is placed inside an element that requires a specific child tag name, `SpacerElement` allows you to obtain or set the virtualization spacer tag name. The default value is `div`. For the following example, the `Virtualize` component renders inside a table body element ([`tbody`](https://developer.mozilla.org/docs/Web/HTML/Element/tbody)), so the appropriate child element for a table row ([`tr`](https://developer.mozilla.org/docs/Web/HTML/Element/tr)) is set as the spacer.
+If the `Virtualize` component is placed inside an element that requires a specific child tag name, <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601.SpacerElement> allows you to obtain or set the virtualization spacer tag name. The default value is `div`. For the following example, the `Virtualize` component renders inside a table body element ([`tbody`](https://developer.mozilla.org/docs/Web/HTML/Element/tbody)), so the appropriate child element for a table row ([`tr`](https://developer.mozilla.org/docs/Web/HTML/Element/tr)) is set as the spacer.
 
 `Pages/VirtualizedTable.razor`:
 
@@ -338,7 +338,7 @@ In the preceding example, the document root is used as the scroll container, so 
 
 Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support with the [`Virtualize` component](xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601). Virtualization is a technique for limiting UI rendering to just the parts that are currently visible. For example, virtualization is helpful when the app must render a long list of items and only a subset of items is required to be visible at any given time.
 
-Use the `Virtualize` component when:
+Use the `Virtualize` component ([reference source](xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601)) when:
 
 * Rendering a set of data items in a loop.
 * Most of the items aren't visible due to scrolling.
@@ -617,7 +617,7 @@ To work around this problem prior to the release of .NET 7, either avoid styling
 
 Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support with the [`Virtualize` component](xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601). Virtualization is a technique for limiting UI rendering to just the parts that are currently visible. For example, virtualization is helpful when the app must render a long list of items and only a subset of items is required to be visible at any given time.
 
-Use the `Virtualize` component when:
+Use the `Virtualize` component ([reference source](xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601)) when:
 
 * Rendering a set of data items in a loop.
 * Most of the items aren't visible due to scrolling.
