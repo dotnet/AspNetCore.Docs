@@ -21,7 +21,7 @@ The two main OpenAPI implementations for .NET are [Swashbuckle](https://github.c
 * [Getting Started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
 * [Getting Started with NSwag](xref:tutorials/get-started-with-nswag)
 
-## OpenApi vs. Swagger
+## OpenAPI vs. Swagger
 
 The Swagger project was donated to the OpenAPI Initiative in 2015 and has since been referred to as OpenAPI. Both names are used interchangeably. However, "OpenAPI" refers to the specification. "Swagger" refers to the family of open-source and commercial products from SmartBear that work with the OpenAPI Specification. Subsequent open-source products, such as [OpenAPIGenerator](https://github.com/OpenAPITools/openapi-generator), also fall under the Swagger family name, despite not being released by SmartBear.
 
