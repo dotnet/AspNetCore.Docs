@@ -121,6 +121,27 @@ In the call to `DotNet.invokeMethodAsync` or `DotNet.invokeMethod` (Blazor WebAs
 >
 > For more information, see [Asynchronous programming with async and await](/dotnet/csharp/programming-guide/concepts/async/) in the C# guide.
 
+## Create JavaScript object and data references to pass to .NET
+
+Call `DotNet.createJSObjectReference(jsObject)` to construct a JS object reference so that it can be passed to .NET, where `jsObject` is the JS object used to create the JS object reference. The following example passes a reference to the non-serializable `window` object to .NET, which receives it in the `ReceiveWindowObject` C# method as an <xref:Microsoft.JSInterop.IJSObjectReference>:
+
+```javascript
+DotNet.invokeMethodAsync('{APP NAMESPACE}', 'ReceiveWindowObject', 
+  DotNet.createJSObjectReference(window));
+```
+
+```csharp
+[JSInvokable]
+public void ReceiveWindowObject(IJSObjectReference objRef)
+{
+    ...
+}
+```
+
+In the preceding example, the `{APP NAMESPACE}` placeholder is the app's namespace.
+
+Call `DotNet.createJSStreamReference(streamReference)` to construct a JS stream reference so that it can be passed to .NET, where `streamReference` is an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer), [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob), or any [typed array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/TypedArray), such as [`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) or [`Float32Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float32Array), used to create the JS stream reference.
+
 ## Invoke an instance .NET method
 
 To invoke an instance .NET method from JavaScript (JS):
@@ -917,6 +938,27 @@ In the call to `DotNet.invokeMethodAsync` or `DotNet.invokeMethod` (Blazor WebAs
 >
 > For more information, see [Asynchronous programming with async and await](/dotnet/csharp/programming-guide/concepts/async/) in the C# guide.
 
+## Create JavaScript object and data references to pass to .NET
+
+Call `DotNet.createJSObjectReference(jsObject)` to construct a JS object reference so that it can be passed to .NET, where `jsObject` is the JS object used to create the JS object reference. The following example passes a reference to the non-serializable `window` object to .NET, which receives it in the `ReceiveWindowObject` C# method as an <xref:Microsoft.JSInterop.IJSObjectReference>:
+
+```javascript
+DotNet.invokeMethodAsync('{APP NAMESPACE}', 'ReceiveWindowObject', 
+  DotNet.createJSObjectReference(window));
+```
+
+```csharp
+[JSInvokable]
+public void ReceiveWindowObject(IJSObjectReference objRef)
+{
+    ...
+}
+```
+
+In the preceding example, the `{APP NAMESPACE}` placeholder is the app's namespace.
+
+Call `DotNet.createJSStreamReference(streamReference)` to construct a JS stream reference so that it can be passed to .NET, where `streamReference` is an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer), [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob), or any [typed array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/TypedArray), such as [`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) or [`Float32Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float32Array), used to create the JS stream reference.
+
 ## Invoke an instance .NET method
 
 To invoke an instance .NET method from JavaScript (JS):
@@ -1703,6 +1745,27 @@ In the call to `DotNet.invokeMethodAsync` or `DotNet.invokeMethod` (Blazor WebAs
 >
 > For more information, see [Asynchronous programming with async and await](/dotnet/csharp/programming-guide/concepts/async/) in the C# guide.
 
+## Create JavaScript object and data references to pass to .NET
+
+Call `DotNet.createJSObjectReference(jsObject)` to construct a JS object reference so that it can be passed to .NET, where `jsObject` is the JS object used to create the JS object reference. The following example passes a reference to the non-serializable `window` object to .NET, which receives it in the `ReceiveWindowObject` C# method as an <xref:Microsoft.JSInterop.IJSObjectReference>:
+
+```javascript
+DotNet.invokeMethodAsync('{APP NAMESPACE}', 'ReceiveWindowObject', 
+  DotNet.createJSObjectReference(window));
+```
+
+```csharp
+[JSInvokable]
+public void ReceiveWindowObject(IJSObjectReference objRef)
+{
+    ...
+}
+```
+
+In the preceding example, the `{APP NAMESPACE}` placeholder is the app's namespace.
+
+Call `DotNet.createJSStreamReference(streamReference)` to construct a JS stream reference so that it can be passed to .NET, where `streamReference` is an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer), [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob), or any [typed array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/TypedArray), such as [`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) or [`Float32Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float32Array), used to create the JS stream reference.
+
 ## Invoke an instance .NET method
 
 To invoke an instance .NET method from JavaScript (JS):
@@ -2098,6 +2161,27 @@ In the call to `DotNet.invokeMethodAsync` or `DotNet.invokeMethod` (Blazor WebAs
 > ```
 >
 > For more information, see [Asynchronous programming with async and await](/dotnet/csharp/programming-guide/concepts/async/) in the C# guide.
+
+## Create JavaScript object and data references to pass to .NET
+
+Call `DotNet.createJSObjectReference(jsObject)` to construct a JS object reference so that it can be passed to .NET, where `jsObject` is the JS object used to create the JS object reference. The following example passes a reference to the non-serializable `window` object to .NET, which receives it in the `ReceiveWindowObject` C# method as an <xref:Microsoft.JSInterop.IJSObjectReference>:
+
+```javascript
+DotNet.invokeMethodAsync('{APP NAMESPACE}', 'ReceiveWindowObject', 
+  DotNet.createJSObjectReference(window));
+```
+
+```csharp
+[JSInvokable]
+public void ReceiveWindowObject(IJSObjectReference objRef)
+{
+    ...
+}
+```
+
+In the preceding example, the `{APP NAMESPACE}` placeholder is the app's namespace.
+
+Call `DotNet.createJSStreamReference(streamReference)` to construct a JS stream reference so that it can be passed to .NET, where `streamReference` is an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer), [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob), or any [typed array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/TypedArray), such as [`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) or [`Float32Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float32Array), used to create the JS stream reference.
 
 ## Invoke an instance .NET method
 
