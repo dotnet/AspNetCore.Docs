@@ -39,7 +39,7 @@ To start moving business logic that relies on `HttpContext` to ???, the librarie
 ![Microsoft.AspNetCore.SystemWebAdapters](~/migration/inc/overview/static/sys_adapt.png)
 
 <!-- Review: Why does this need to be serialized? Can't one team migrate WebAPI, another specific controllers, another, ASPX pages, etc -->
-At this point, the migration process moves routes over one at a time. This could be WebAPI or MVC controller action methods, ASPX pages, handlers, or some other implementation of a route. If the route is available in the ASP.NET Core app, it's matched and served.
+At this point, the migration process migrates routes <!--over one at a time-->. For example, WebAPI or MVC controller action methods, ASPX pages, handlers, or some other implementation of a route. If the route is available in the ASP.NET Core app, it's matched and served.
 
 During migration process, additional services and infrastructure are identified that must be migrated to run on .NET Core. Options include listed in order of maintainability:
 
@@ -61,7 +61,7 @@ Once the ASP.NET Framework app is deleted:
 * The app is running on the ASP.NET Core app stack, but is still using the adapters.
 * The remaining migration work is to remove the use of the adapters.
 
-![final](~/migration/inc/overview/static/final.png)
+![final pic](~/migration/inc/overview/static/final.png)
 
 ## System.Web Adapters
 
