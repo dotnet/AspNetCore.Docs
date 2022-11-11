@@ -29,12 +29,6 @@ In this tutorial, you:
 
 * [Get started with EF Core and ASP.NET Core MVC](intro.md)
 
-* Please advise that the .NET 6 & 7 NRTs [(nullable reference types)](https://learn.microsoft.com/ef/core/miscellaneous/nullable-reference-types ) is enabled by default. Problems can happen where we're not creating navigation property elements which would be required for object creation. We will touch on how to fix this soon and will patch this in future documentation.
-
-* .NET 6 by default has the `asp-validation-summary` helper tag set to `ModelOnly` which prevents notifying us of problems like the one we described with NRTs. We will show how to correct that in this tutorial but you can ignore it by disabling NRTs which we will touch on, in this page. 
-
-* You want to try and use the minimal hosting model generated in .NET 6 though it is not mandatory, it unifies Program.cs and.
-
 ## Customize the Details page
 
 The scaffolded code for the Students Index page left out the `Enrollments` property, because that property holds a collection. In the **Details** page, you'll display the contents of the collection in an HTML table.
