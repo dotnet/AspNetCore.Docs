@@ -39,7 +39,7 @@ Blazor WebAssembly Hot Reload supports the following code changes:
 * Adding static lambdas to existing methods.
 * Adding lambdas that capture `this` to existing methods that already captured `this` previously.
 
-Note that when an attribute is removed that previously set the value of a component parameter, the component parameter is set back to its default value.
+Note that when an attribute is removed that previously set the value of a component parameter, the component is disposed and re-initialized to set the removed parameter back to its default value.
 
 The following code changes aren't supported for Blazor WebAssembly apps:
 
