@@ -44,7 +44,7 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
 * [`Virtualize`](xref:blazor/components/virtualization)
 
-&dagger;Currently, the component is prerelease, experimental, unsupported, and not recommended for production apps.
+&dagger;The `QuickGrid` component is in preview. You're welcome to use it in production if it meets your needs, but it isn't officially supported and may change in future releases.
 
 :::moniker-end
 
