@@ -28,6 +28,12 @@ The sample app is a web site for a fictional Contoso University. It includes fun
 
 [!INCLUDE[VS prereqs](~/includes/net-prereqs-vs-6.0.md)]
 
+* Please advise that the .NET 6 & 7 NRTs [(nullable reference types)](https://learn.microsoft.com/ef/core/miscellaneous/nullable-reference-types ) is enabled by default. Problems can happen where we're not creating navigation property elements which would be required for object creation. We will touch on how to fix this soon and will patch this in future documentation.
+
+* .NET 6 by default has the `asp-validation-summary` helper tag set to `ModelOnly` which prevents notifying us of problems like the one we described with NRTs. We will show how to correct that in this tutorial but you can ignore it by disabling NRTs which we will touch on, in this page. 
+
+* You want to try and use the minimal hosting model generated in .NET 6 though it is not mandatory, it unifies Program.cs and.
+
 ## Database engines
 
 The Visual Studio instructions use [SQL Server LocalDB](/sql/database-engine/configure-windows/sql-server-2016-express-localdb), a version of SQL Server Express that runs only on Windows.
@@ -68,7 +74,10 @@ Users can view and update student, course, and instructor information. Here are 
     1. **Create** 
 ![Additional Info dialog](intro/_static/new-aspnet6-additional-info.png)
 
-<!-- TODO: Continue from here  -->
+<!-- TODO: Continue from here.
+    1. Mention NRT as per https://github.com/dotnet/AspNetCore.Docs/pull/27440#:~:text=Briefly%20explain%20that,deal%20with%20it.
+    2. Mention 
+  -->
 ## Set up the site style
 
 A few basic changes set up the site menu, layout, and home page.
