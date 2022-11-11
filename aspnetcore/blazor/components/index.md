@@ -1564,7 +1564,7 @@ For various `QuickGrid` demonstrations, see the [**QuickGrid for Blazor** app](h
 There aren't current plans to extend `QuickGrid` with features that full-blown commercial grids tend to offer, for example, hierarchical rows, drag-to-reorder columns, or Excel-like range selections. If you require advanced features that you don't wish to develop on your own, continue using third-party grids.
 
 > [!WARNING]
-> `QuickGrid` is currently **prerelease**, **experimental**, and **unsupported** by Microsoft. `QuickGrid` is ***not*** recommended for use in production apps.
+> The `QuickGrid` component is in preview. You're welcome to use it in production if it meets your needs, but it isn't officially supported and may change in future releases.
 
 :::moniker-end
 
