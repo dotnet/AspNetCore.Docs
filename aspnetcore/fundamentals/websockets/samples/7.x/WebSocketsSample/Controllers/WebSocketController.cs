@@ -6,8 +6,7 @@ namespace WebSocketsSample.Controllers;
 #region snippet_Controller_Connect
 public class WebSocketController : ControllerBase
 {
-    [HttpConnect("/ws")]
-    [HttpGet("/ws")]
+    [Route("/ws")]
     public async Task Get()
     {
         if (HttpContext.WebSockets.IsWebSocketRequest)
