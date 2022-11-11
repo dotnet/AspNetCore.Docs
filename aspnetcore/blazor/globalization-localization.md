@@ -28,7 +28,11 @@ This article describes how to use Blazor's globalization and localization featur
 * The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language), which is set by the browser based on a user's language preferences in browser settings.
 * A culture set by the app not based on the value of the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language). The setting can be static for all users or dynamic based on app logic. When the setting is based on the user's preference, the setting is usually saved for reload on future visits.
 
-For additional general information, see <xref:fundamentals/localization>.
+For additional general information, see the following resources:
+
+* <xref:fundamentals/localization>
+* [.NET Fundamentals: Globalization](/dotnet/standard/globalization-localization/globalization)
+* [.NET Fundamentals: Localization](/dotnet/standard/globalization-localization/localization)
 
 > [!NOTE]
 > Often, the terms *language* and *culture* are used interchangeably when dealing with globalization and localization concepts.
@@ -896,7 +900,11 @@ This article describes how to use Blazor's globalization and localization featur
 * The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language), which is set by the browser based on a user's language preferences in browser settings.
 * A culture set by the app not based on the value of the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language). The setting can be static for all users or dynamic based on app logic. When the setting is based on the user's preference, the setting is usually saved for reload on future visits.
 
-For additional general information, see <xref:fundamentals/localization>.
+For additional general information, see the following resources:
+
+* <xref:fundamentals/localization>
+* [.NET Fundamentals: Globalization](/dotnet/standard/globalization-localization/globalization)
+* [.NET Fundamentals: Localization](/dotnet/standard/globalization-localization/localization)
 
 > [!NOTE]
 > Often, the terms *language* and *culture* are used interchangeably when dealing with globalization and localization concepts.
@@ -1772,7 +1780,11 @@ This article describes how to use Blazor's globalization and localization featur
 * The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language), which is set by the browser based on a user's language preferences in browser settings.
 * A culture set by the app not based on the value of the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language). The setting can be static for all users or dynamic based on app logic. When the setting is based on the user's preference, the setting is usually saved for reload on future visits.
 
-For additional general information, see <xref:fundamentals/localization>.
+For additional general information, see the following resources:
+
+* <xref:fundamentals/localization>
+* [.NET Fundamentals: Globalization](/dotnet/standard/globalization-localization/globalization)
+* [.NET Fundamentals: Localization](/dotnet/standard/globalization-localization/localization)
 
 > [!NOTE]
 > Often, the terms *language* and *culture* are used interchangeably when dealing with globalization and localization concepts.
@@ -2638,7 +2650,11 @@ This article describes how to use Blazor's globalization and localization featur
 * The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language), which is set by the browser based on a user's language preferences in browser settings.
 * A culture set by the app not based on the value of the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language). The setting can be static for all users or dynamic based on app logic. When the setting is based on the user's preference, the setting is usually saved for reload on future visits.
 
-For additional general information, see <xref:fundamentals/localization>.
+For additional general information, see the following resources:
+
+* <xref:fundamentals/localization>
+* [.NET Fundamentals: Globalization](/dotnet/standard/globalization-localization/globalization)
+* [.NET Fundamentals: Localization](/dotnet/standard/globalization-localization/localization)
 
 > [!NOTE]
 > Often, the terms *language* and *culture* are used interchangeably when dealing with globalization and localization concepts.
