@@ -15,7 +15,7 @@ This article explains how to render globalized and localized content to users in
 
 :::moniker range=">= aspnetcore-7.0"
 
-For [globalization](/dotnet/standard/globalization-localization/globalization), Blazor provides number and date formatting. For [localization](/dotnet/standard/globalization-localization/localization), Blazor renders content using the [.NET Resources system](/dotnet/framework/resources/).
+For [globalization](/dotnet/core/extensions/globalization), Blazor provides number and date formatting. For [localization](/dotnet/core/extensions/localization), Blazor renders content using the [.NET Resources system](/dotnet/framework/resources/).
 
 A limited set of ASP.NET Core's localization features are supported:
 
@@ -28,7 +28,11 @@ This article describes how to use Blazor's globalization and localization featur
 * The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language), which is set by the browser based on a user's language preferences in browser settings.
 * A culture set by the app not based on the value of the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language). The setting can be static for all users or dynamic based on app logic. When the setting is based on the user's preference, the setting is usually saved for reload on future visits.
 
-For additional general information, see <xref:fundamentals/localization>.
+For additional general information, see the following resources:
+
+* <xref:fundamentals/localization>
+* [.NET Fundamentals: Globalization](/dotnet/core/extensions/globalization)
+* [.NET Fundamentals: Localization](/dotnet/core/extensions/localization)
 
 > [!NOTE]
 > Often, the terms *language* and *culture* are used interchangeably when dealing with globalization and localization concepts.
@@ -873,7 +877,7 @@ To further understand how the Blazor framework processes localization, see the [
 
 * [Set the app base path](xref:blazor/host-and-deploy/index#app-base-path)
 * <xref:fundamentals/localization>
-* [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
+* [Globalizing and localizing .NET applications](/dotnet/core/extensions/globalization-and-localization)
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Microsoft Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
 * [Localization & Generics](http://hishambinateya.com/localization-and-generics)
@@ -883,7 +887,7 @@ To further understand how the Blazor framework processes localization, see the [
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-For [globalization](/dotnet/standard/globalization-localization/globalization), Blazor provides number and date formatting. For [localization](/dotnet/standard/globalization-localization/localization), Blazor renders content using the [.NET Resources system](/dotnet/framework/resources/).
+For [globalization](/dotnet/core/extensions/globalization), Blazor provides number and date formatting. For [localization](/dotnet/core/extensions/localization), Blazor renders content using the [.NET Resources system](/dotnet/framework/resources/).
 
 A limited set of ASP.NET Core's localization features are supported:
 
@@ -896,7 +900,11 @@ This article describes how to use Blazor's globalization and localization featur
 * The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language), which is set by the browser based on a user's language preferences in browser settings.
 * A culture set by the app not based on the value of the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language). The setting can be static for all users or dynamic based on app logic. When the setting is based on the user's preference, the setting is usually saved for reload on future visits.
 
-For additional general information, see <xref:fundamentals/localization>.
+For additional general information, see the following resources:
+
+* <xref:fundamentals/localization>
+* [.NET Fundamentals: Globalization](/dotnet/core/extensions/globalization)
+* [.NET Fundamentals: Localization](/dotnet/core/extensions/localization)
 
 > [!NOTE]
 > Often, the terms *language* and *culture* are used interchangeably when dealing with globalization and localization concepts.
@@ -1749,7 +1757,7 @@ To further understand how the Blazor framework processes localization, see the [
 
 * [Set the app base path](xref:blazor/host-and-deploy/index#app-base-path)
 * <xref:fundamentals/localization>
-* [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
+* [Globalizing and localizing .NET applications](/dotnet/core/extensions/globalization-and-localization)
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Microsoft Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
 * [Localization & Generics](http://hishambinateya.com/localization-and-generics)
@@ -1759,7 +1767,7 @@ To further understand how the Blazor framework processes localization, see the [
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-For [globalization](/dotnet/standard/globalization-localization/globalization), Blazor provides number and date formatting. For [localization](/dotnet/standard/globalization-localization/localization), Blazor renders content using the [.NET Resources system](/dotnet/framework/resources/).
+For [globalization](/dotnet/core/extensions/globalization), Blazor provides number and date formatting. For [localization](/dotnet/core/extensions/localization), Blazor renders content using the [.NET Resources system](/dotnet/framework/resources/).
 
 A limited set of ASP.NET Core's localization features are supported:
 
@@ -1772,7 +1780,11 @@ This article describes how to use Blazor's globalization and localization featur
 * The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language), which is set by the browser based on a user's language preferences in browser settings.
 * A culture set by the app not based on the value of the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language). The setting can be static for all users or dynamic based on app logic. When the setting is based on the user's preference, the setting is usually saved for reload on future visits.
 
-For additional general information, see <xref:fundamentals/localization>.
+For additional general information, see the following resources:
+
+* <xref:fundamentals/localization>
+* [.NET Fundamentals: Globalization](/dotnet/core/extensions/globalization)
+* [.NET Fundamentals: Localization](/dotnet/core/extensions/localization)
 
 > [!NOTE]
 > Often, the terms *language* and *culture* are used interchangeably when dealing with globalization and localization concepts.
@@ -2615,7 +2627,7 @@ To further understand how the Blazor framework processes localization, see the [
 
 * [Set the app base path](xref:blazor/host-and-deploy/index#app-base-path)
 * <xref:fundamentals/localization>
-* [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
+* [Globalizing and localizing .NET applications](/dotnet/core/extensions/globalization-and-localization)
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Microsoft Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
 * [Localization & Generics](http://hishambinateya.com/localization-and-generics)
@@ -2625,7 +2637,7 @@ To further understand how the Blazor framework processes localization, see the [
 
 :::moniker range="< aspnetcore-5.0"
 
-For [globalization](/dotnet/standard/globalization-localization/globalization), Blazor provides number and date formatting. For [localization](/dotnet/standard/globalization-localization/localization), Blazor renders content using the [.NET Resources system](/dotnet/framework/resources/).
+For [globalization](/dotnet/core/extensions/globalization), Blazor provides number and date formatting. For [localization](/dotnet/core/extensions/localization), Blazor renders content using the [.NET Resources system](/dotnet/framework/resources/).
 
 A limited set of ASP.NET Core's localization features are supported:
 
@@ -2638,7 +2650,11 @@ This article describes how to use Blazor's globalization and localization featur
 * The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language), which is set by the browser based on a user's language preferences in browser settings.
 * A culture set by the app not based on the value of the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language). The setting can be static for all users or dynamic based on app logic. When the setting is based on the user's preference, the setting is usually saved for reload on future visits.
 
-For additional general information, see <xref:fundamentals/localization>.
+For additional general information, see the following resources:
+
+* <xref:fundamentals/localization>
+* [.NET Fundamentals: Globalization](/dotnet/core/extensions/globalization)
+* [.NET Fundamentals: Localization](/dotnet/core/extensions/localization)
 
 > [!NOTE]
 > Often, the terms *language* and *culture* are used interchangeably when dealing with globalization and localization concepts.
@@ -3395,7 +3411,7 @@ Optionally, add a menu item to the navigation in `Shared/NavMenu.razor` for the 
 
 * [Set the app base path](xref:blazor/host-and-deploy/index#app-base-path)
 * <xref:fundamentals/localization>
-* [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
+* [Globalizing and localizing .NET applications](/dotnet/core/extensions/globalization-and-localization)
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Microsoft Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
 * [Localization & Generics](http://hishambinateya.com/localization-and-generics)
