@@ -29,7 +29,7 @@ Adding filters or metadata to a group behaves the same way as adding them indivi
 
 ```csharp
 var outer = app.MapGroup("/outer");
-var inner = inner.MapGroup("/inner");
+var inner = outer.MapGroup("/inner");
 
 inner.AddEndpointFilter((context, next) =>
 {
