@@ -5,7 +5,7 @@ description: Use .NET Hot Reload to apply code changes to a running app without 
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/27/2021
+ms.date: 11/10/2022
 uid: test/hot-reload
 ---
 # .NET Hot Reload support for ASP.NET Core
@@ -26,13 +26,44 @@ For more information on supported scenarios, see [Supported code changes (C# and
 
 ## Blazor WebAssembly
 
-Blazor WebAssembly Hot Reload support has the following conditions:
+::: moniker range=">= aspnetcore-7.0"
 
-* Hot Reload reacts to most changes to method bodies, such as adding, removing, and editing variables, expressions, and statements.
-* Changes to the bodies of [lambda expressions](/dotnet/csharp/language-reference/operators/lambda-expressions) and [local functions](/dotnet/csharp/programming-guide/classes-and-structs/local-functions) are also supported.
-* Adding new lambdas or local functions, adding a new [`await` operator](/dotnet/csharp/language-reference/operators/await) or [`yield` keyword](/dotnet/csharp/language-reference/keywords/yield) expression is ***not*** supported.
-* Changing the names of method parameters is ***not*** supported.
-* Changes outside of method bodies is ***not*** supported.
+Blazor WebAssembly Hot Reload supports the following code changes:
+
+* New types.
+* Nested classes.
+* Most changes to method bodies, such as adding, removing, and editing variables, expressions, and statements.
+* Changes to the bodies of [lambda expressions](/dotnet/csharp/language-reference/operators/lambda-expressions) and [local functions](/dotnet/csharp/programming-guide/classes-and-structs/local-functions).
+* Adding static and instance methods to existing types.
+* Adding static fields and methods to existing types.
+* Adding static lambdas to existing methods.
+* Adding lambdas that capture `this` to existing methods that already captured `this` previously.
+
+Note that when an attribute is removed that previously set the value of a component parameter, the component is disposed and re-initialized to set the removed parameter back to its default value.
+
+The following code changes aren't supported for Blazor WebAssembly apps:
+
+* Adding a new [`await` operator](/dotnet/csharp/language-reference/operators/await) or [`yield` keyword](/dotnet/csharp/language-reference/keywords/yield) expression.
+* Changing the names of method parameters.
+* Adding new non-`static` fields, events, or properties 
+
+::: moniker-end
+
+::: moniker range="< aspnetcore-7.0"
+
+Blazor WebAssembly Hot Reload supports the following code changes:
+
+* Most changes to method bodies, such as adding, removing, and editing variables, expressions, and statements.
+* Changes to the bodies of [lambda expressions](/dotnet/csharp/language-reference/operators/lambda-expressions) and [local functions](/dotnet/csharp/programming-guide/classes-and-structs/local-functions).
+
+The following code changes aren't supported for Blazor WebAssembly apps:
+
+* Adding new lambdas or local functions.
+* Adding a new [`await` operator](/dotnet/csharp/language-reference/operators/await) or [`yield` keyword](/dotnet/csharp/language-reference/keywords/yield) expression.
+* Changing the names of method parameters.
+* Changes outside of method bodies.
+
+::: moniker-end
 
 ## .NET CLI
 
