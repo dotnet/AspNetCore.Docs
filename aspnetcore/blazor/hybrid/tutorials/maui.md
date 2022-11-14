@@ -42,11 +42,11 @@ In the **Configure your new project** dialog, set the **Project name** to **:::n
 
 :::image type="content" source="maui/_static/configure-project.png" alt-text="Configure the project.":::
 
-In the **Additional Information** dialog, select the framework version with the **Framework** dropdown list. Select the **Create** button.
+In the **Additional information** dialog, select the framework version with the **Framework** dropdown list. Select the **Create** button.
 
 :::image type="content" source="maui/_static/additional-information.png" alt-text="Additional information dialog for selecting the framework version and creating the project.":::
 
-Wait for Visual Studio to create the project and for the project's dependencies to be restored. Monitor the progress in **Solution Explorer** by opening the **Dependencies** entry.
+Wait for Visual Studio to create the project and restore the project's dependencies. Monitor the progress in **Solution Explorer** by opening the **Dependencies** entry.
 
 Dependencies restoring:
 
@@ -108,7 +108,7 @@ Wait for Visual Studio to download, unzip, and create an Android Emulator. When 
 Close the **Android Device Manager** window. Wait until the emulated phone window appears, the Android OS loads, and the home screen appears.
 
 > [!IMPORTANT]
-> The emulated phone must be powered on with the Android OS loaded in order to load and run the app in the debugger. If the emulated phone isn't running, turn on the phone with the **Power** button using either the <kbd>Ctrl</kbd>+<kbd>P</kbd> keyboard shortcut or by selecting the **Power** button in the UI:
+> The emulated phone must be powered on with the Android OS loaded in order to load and run the app in the debugger. If the emulated phone isn't running, turn on the phone using either the <kbd>Ctrl</kbd>+<kbd>P</kbd> keyboard shortcut or by selecting the **Power** button in the UI:
 >
 > :::image type="content" source="maui/_static/android-phone-power-button.png" alt-text="The Android Emulator's Power button.":::
 
