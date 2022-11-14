@@ -24,6 +24,7 @@ var org = all.MapGroup("{org}");
 var user = org.MapGroup("{user}");
 user.MapGet("", (string org, string user) => $"{org}/{user}");
 ```
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/TodoEndpoints.cs" id="snippet_create":::
 
 Adding filters or metadata to a group behaves the same way as adding them individually to each endpoint before adding any extra filters or metadata that may have been added to an inner group or specific endpoint.
 

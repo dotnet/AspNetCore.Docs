@@ -80,3 +80,33 @@ EndpointFilterDelegate QueryPrivateTodos(EndpointFilterFactoryContext factoryCon
     };
 }
 // </snippet_MapGroup>
+
+// <snippet_NestedMapGroup1>
+var all = app.MapGroup("").WithOpenApi();
+var org = all.MapGroup("{org}");
+var user = org.MapGroup("{user}");
+user.MapGet("", (string org, string user) => $"{org}/{user}");
+// </snippet_NestedMapGroup1>
+
+// <snippet_NestedMapGroup2>
+var outer = app.MapGroup("/outer");
+var inner = outer.MapGroup("/inner");
+
+inner.AddEndpointFilter((context, next) =>
+{
+    app.Logger.LogInformation("/inner group filter");
+    return next();
+});
+
+outer.AddEndpointFilter((context, next) =>
+{
+    app.Logger.LogInformation("/outer group filter");
+    return next();
+});
+
+inner.MapGet("/", () => "Hi!").AddEndpointFilter((context, next) =>
+{
+    app.Logger.LogInformation("MapGet filter");
+    return next();
+});
+// </snippet_NestedMapGroup2>
