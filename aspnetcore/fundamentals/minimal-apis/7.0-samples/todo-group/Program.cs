@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using MinApiRouteGroupSample;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -42,12 +41,11 @@ app.MapGroup("/private/todos")
     .AddEndpointFilterFactory(QueryPrivateTodos)
     .RequireAuthorization();
 
-app.Run();
 
 EndpointFilterDelegate QueryPrivateTodos(EndpointFilterFactoryContext factoryContext, EndpointFilterDelegate next)
 {
     var dbContextIndex = -1;
-    
+
     foreach (var argument in factoryContext.MethodInfo.GetParameters())
     {
         if (argument.ParameterType == typeof(TodoDb))
@@ -80,3 +78,35 @@ EndpointFilterDelegate QueryPrivateTodos(EndpointFilterFactoryContext factoryCon
     };
 }
 // </snippet_MapGroup>
+
+// <snippet_NestedMapGroup1>
+var all = app.MapGroup("").WithOpenApi();
+var org = all.MapGroup("{org}");
+var user = org.MapGroup("{user}");
+user.MapGet("", (string org, string user) => $"{org}/{user}");
+// </snippet_NestedMapGroup1>
+
+// <snippet_NestedMapGroup2>
+var outer = app.MapGroup("/outer");
+var inner = outer.MapGroup("/inner");
+
+inner.AddEndpointFilter((context, next) =>
+{
+    app.Logger.LogInformation("/inner group filter");
+    return next(context);
+});
+
+outer.AddEndpointFilter((context, next) =>
+{
+    app.Logger.LogInformation("/outer group filter");
+    return next(context);
+});
+
+inner.MapGet("/", () => "Hi!").AddEndpointFilter((context, next) =>
+{
+    app.Logger.LogInformation("MapGet filter");
+    return next(context);
+});
+// </snippet_NestedMapGroup2>
+
+app.Run();

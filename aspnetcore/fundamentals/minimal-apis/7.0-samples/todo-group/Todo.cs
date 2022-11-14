@@ -1,4 +1,4 @@
-﻿namespace MinApiRouteGroupSample;
+namespace MinApiRouteGroupSample;
 
 public class Todo
 {

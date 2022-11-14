@@ -18,37 +18,11 @@ Route groups also support nested groups and complex prefix patterns with route p
 
 The prefix can also be empty. This can be useful for adding endpoint metadata or filters to a group of endpoints without changing the route pattern.
 
-```csharp
-var all = app.MapGroup("").WithOpenApi();
-var org = all.MapGroup("{org}");
-var user = org.MapGroup("{user}");
-user.MapGet("", (string org, string user) => $"{org}/{user}");
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/Program.cs" id="snippet_NestedMapGroup1":::
 
 Adding filters or metadata to a group behaves the same way as adding them individually to each endpoint before adding any extra filters or metadata that may have been added to an inner group or specific endpoint.
 
-```csharp
-var outer = app.MapGroup("/outer");
-var inner = inner.MapGroup("/inner");
-
-inner.AddEndpointFilter((context, next) =>
-{
-    app.Logger.LogInformation("/inner group filter");
-    return next();
-});
-
-outer.AddEndpointFilter((context, next) =>
-{
-    app.Logger.LogInformation("/outer group filter");
-    return next();
-});
-
-inner.MapGet("/", () => "Hi!").AddEndpointFilter((context, next) =>
-{
-    app.Logger.LogInformation("MapGet filter");
-    return next();
-});
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/Program.cs" id="snippet_NestedMapGroup2":::
 
 In the above example, the outer filter will log the incoming request before the inner filter even though it was added second. Because the filters were applied to different groups, the order they were added relative to each other does not matter. The order filters are added do matter if applied to the same group or specific endpoint.
 
