@@ -45,7 +45,7 @@ app.MapGroup("/private/todos")
 EndpointFilterDelegate QueryPrivateTodos(EndpointFilterFactoryContext factoryContext, EndpointFilterDelegate next)
 {
     var dbContextIndex = -1;
-    
+
     foreach (var argument in factoryContext.MethodInfo.GetParameters())
     {
         if (argument.ParameterType == typeof(TodoDb))
