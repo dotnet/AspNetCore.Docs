@@ -31,8 +31,6 @@ HTTP/3 has different requirements depending on the operating system. If the plat
 * Windows 11 Build 22000 or later OR Windows Server 2022.
 * TLS 1.3 or later connection.
 
-The preceding Windows 11 Build versions may require the use of a [Windows Insider](https://insider.windows.com) build.
-
 ### Linux
 
 * `libmsquic` package installed.
@@ -117,8 +115,6 @@ HTTP/3 has different requirements depending on the operating system. If the plat
 
 * Windows 11 Build 22000 or later OR Windows Server 2022.
 * TLS 1.3 or later connection.
-
-The preceding Windows 11 Build versions may require the use of a [Windows Insider](https://insider.windows.com) build.
 
 ### Linux
 
