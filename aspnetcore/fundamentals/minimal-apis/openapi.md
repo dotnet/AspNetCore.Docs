@@ -126,18 +126,7 @@ app.MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
 
 ## Add endpoint summary or description
 
-The endpoint summary and description can be added by any of the following approaches:
-* Calling the extension methods `WithSummary` and `WithDescription`.
-* Using the [`[EndpointSummary]](<xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute>) and [`[EndpointDescription]`](<xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute>) attributes.
-* Setting directly on the OpenAPI annotation.
-
-The following highlighted code provides summary and description text for OpenAPI specification generation using extension methods:
-
-:::code language="csharp" source="endpoint-description-summary/7.0-samples/OpenAPISummary/Program.cs" id="summary_and_description" highlight="13-14":::
-
-:::code language="csharp" source="endpoint-description-summary/7.0-samples/OpenAPISummary/Program.cs" id="summary_and_description2" highlight="2-3":::
-
-In the following code, the summaries are set directly on the OpenAPI annotation.
+The endpoint summary and description can be added by invoking the `WithOpenApi` extension method. In the following code, the summaries are set directly on the OpenAPI annotation.
 
 ```csharp
 app.MapGet("/todoitems2", async (TodoDb db) => await db.Todos.ToListAsync())
