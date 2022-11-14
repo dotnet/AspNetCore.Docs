@@ -1,0 +1,23 @@
+name: Add comment
+on:
+  issues:
+    types:
+      - labeled
+jobs:
+  add-comment:
+    if: github.event.label.name == 'Blazor'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Add comment
+        uses: peter-evans/create-or-update-comment@5adcb0bb0f9fb3f95ef05400558bdb3f329ee808
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            # This is a multi-line test comment
+            
+            A list:
+            
+            * With GitHub **Markdown** :sparkles:
+            * Item 2
