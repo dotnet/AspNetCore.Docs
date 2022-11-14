@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MinApiRouteGroupSample;
-
+using Microsoft.AspNetCore.Builder;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -42,7 +42,6 @@ app.MapGroup("/private/todos")
     .AddEndpointFilterFactory(QueryPrivateTodos)
     .RequireAuthorization();
 
-app.Run();
 
 EndpointFilterDelegate QueryPrivateTodos(EndpointFilterFactoryContext factoryContext, EndpointFilterDelegate next)
 {
@@ -95,18 +94,20 @@ var inner = outer.MapGroup("/inner");
 inner.AddEndpointFilter((context, next) =>
 {
     app.Logger.LogInformation("/inner group filter");
-    return next();
+    return next(context);
 });
 
 outer.AddEndpointFilter((context, next) =>
 {
     app.Logger.LogInformation("/outer group filter");
-    return next();
+    return next(context);
 });
 
 inner.MapGet("/", () => "Hi!").AddEndpointFilter((context, next) =>
 {
     app.Logger.LogInformation("MapGet filter");
-    return next();
+    return next(context);
 });
 // </snippet_NestedMapGroup2>
+
+app.Run();
