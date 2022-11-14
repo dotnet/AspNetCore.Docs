@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0-rc.2.22476.2" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.0-rc.2.22472.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0-rc.2.22472.11">
       <PrivateAssets>all</PrivateAssets>
