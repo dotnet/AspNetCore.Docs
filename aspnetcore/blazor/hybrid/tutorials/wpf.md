@@ -22,9 +22,6 @@ This tutorial shows you how to build and run a WPF Blazor app. You learn how to:
 * [Supported platforms (WPF documentation)](/dotnet/desktop/wpf/overview/)
 * [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) with the **.NET desktop development** workload
 
-> [!NOTE]
-> Blazor Hybrid has reached General Availability (GA) and is fully supported for production workloads. Visual Studio for Mac is in prerelease for working on Blazor Hybrid apps and may be modified before final release. We recommend keeping Visual Studio 2022 updated for the best tooling experience.
-
 ## Visual Studio workload
 
 If the **.NET desktop development** workload isn't installed, use the Visual Studio installer to install the workload. For more information, see [Modify Visual Studio workloads, components, and language packs](/visualstudio/install/modify-visual-studio).
@@ -33,13 +30,11 @@ If the **.NET desktop development** workload isn't installed, use the Visual Stu
 
 ## Create a WPF Blazor project
 
-Start Visual Studio 2022.
-
-In the Start Window, select **Create a new project**:
+Launch Visual Studio. In the **Start Window**, select **Create a new project**:
 
 :::image type="content" source="wpf/_static/new-solution.png" alt-text="Create a new solution in Visual Studio.":::
 
-In the **Create a new project** dialog, filter the **Project type** drop-down to **Desktop**. Select the C# project template for **WPF Application** and select the **Next** button:
+In the **Create a new project** dialog, filter the **Project type** dropdown to **Desktop**. Select the C# project template for **WPF Application** and select the **Next** button:
 
 :::image type="content" source="wpf/_static/create-project.png" alt-text="Create a new project in Visual Studio.":::
 

@@ -26,13 +26,11 @@ This tutorial shows you how to build and run a .NET MAUI Blazor app. You learn h
 
 ## Create a .NET MAUI Blazor app
 
-Launch Visual Studio 2022.
-
-In the Start Window, select **Create a new project**:
+Launch Visual Studio. In the **Start Window**, select **Create a new project**:
 
 :::image type="content" source="maui/_static/new-solution.png" alt-text="New solution.":::
 
-In the **Create a new project** window, use the **Project type** drop-down to filter **MAUI** templates:
+In the **Create a new project** window, use the **Project type** dropdown to filter **MAUI** templates:
 
 :::image type="content" source="maui/_static/new-project-1.png" alt-text="Filter templates to .NET MAUI.":::
 
@@ -40,13 +38,23 @@ Select the **.NET MAUI Blazor App** template and then select the **Next** button
 
 :::image type="content" source="maui/_static/new-project-2.png" alt-text="Choose a template.":::
 
-In the **Configure your new project** dialog, set the **Project name** to **`MauiBlazor`**, choose a suitable location for the project, and select the **Create** button.
+In the **Configure your new project** dialog, set the **Project name** to **:::no-loc text="MauiBlazor":::**, choose a suitable location for the project, and select the **Next** button.
 
 :::image type="content" source="maui/_static/configure-project.png" alt-text="Configure the project.":::
 
-Wait for Visual Studio to create the project and for the project's dependencies to be restored:
+In the **Additional Information** dialog, select the framework version with the **Framework** dropdown list. Select the **Create** button.
 
-:::image type="content" source="maui/_static/restored-dependencies.png" alt-text="Restored dependencies.":::
+:::image type="content" source="maui/_static/additional-information.png" alt-text="Additional information dialog for selecting the framework version and creating the project.":::
+
+Wait for Visual Studio to create the project and for the project's dependencies to be restored. Monitor the progress in **Solution Explorer** by opening the **Dependencies** entry.
+
+Dependencies restoring:
+
+:::image type="content" source="maui/_static/dependencies-restoring.png" alt-text="Restoring dependencies.":::
+
+Dependencies restored:
+
+:::image type="content" source="maui/_static/dependencies-restored.png" alt-text="Restored dependencies.":::
 
 ## Run the app on Windows
 
@@ -66,9 +74,9 @@ If you followed the guidance in the [Run the app on Windows](#run-the-app-on-win
 
 :::image type="content" source="maui/_static/stop-debugging-button.png" alt-text="Stop Debugging button.":::
 
-In the Visual Studio toolbar, select the start configuration drop-down button. Select **Android Emulators** > **Android Emulator**:
+In the Visual Studio toolbar, select the start configuration dropdown button. Select **Android Emulators** > **Android Emulator**:
 
-:::image type="content" source="maui/_static/android-emulators-android-emulator-button.png" alt-text="Android Emulators drop-down selection for the Android Emulator button.":::
+:::image type="content" source="maui/_static/android-emulators-android-emulator-button.png" alt-text="Android Emulators dropdown selection for the Android Emulator button.":::
 
 Android SDKs are required to build apps for Android. In the **Error List** panel, a message appears asking you to double-click the message to install the required Android SDKs:
 
@@ -99,11 +107,26 @@ Wait for Visual Studio to download, unzip, and create an Android Emulator. When 
 
 Close the **Android Device Manager** window. Wait until the emulated phone window appears, the Android OS loads, and the home screen appears.
 
+> [!IMPORTANT]
+> The emulated phone must be powered on with the Android OS loaded in order to load and run the app in the debugger. If the emulated phone isn't running, turn on the phone with the **Power** button using either the <kbd>Ctrl</kbd>+<kbd>P</kbd> keyboard shortcut or by selecting the **Power** button in the UI:
+>
+> :::image type="content" source="maui/_static/android-phone-power-button.png" alt-text="The Android Emulator's Power button.":::
+
 In the Visual Studio toolbar, select the **Pixel 5 - {VERSION}** button to build and run the project, where the `{VERSION}` placeholder is the Android version. In the following example, the Android version is `API 30 (Android 11.0 - API 30)`, and a later version appears depending on the Android SDK installed:
 
 :::image type="content" source="maui/_static/pixel5-api30.png" alt-text="Pixel 5 API 30 emulator button.":::
 
 Visual Studio builds the project and deploys the app to the emulator.
+
+Starting the emulator, loading the emulated phone and OS, and deploying and running the app can take several minutes depending on the speed of the system and whether or not [hardware acceleration](/xamarin/android/get-started/installation/android-emulator/hardware-acceleration) is enabled. You can monitor the progress of the deployment by inspecting Visual Studio's status bar at the bottom of the UI. The **Ready** indicator receives a checkmark and the emulator's deployment and app loading indicators disappear when the app is running:
+
+During deployment:
+
+:::image type="content" source="maui/_static/deploy-run-indicator-1.png" alt-text="The first deploy-run indicator that appears in the Visual Studio footer bar.":::
+
+During app startup:
+
+:::image type="content" source="maui/_static/deploy-run-indicator-2.png" alt-text="The second deploy-run indicator that appears in the Visual Studio footer bar.":::
 
 The app running in the Android Emulator:
 
