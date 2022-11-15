@@ -632,10 +632,10 @@ In the following example, a location changing handler is registered for navigati
 @implements IDisposable
 
 <p>
-    <button @onclick="Navigation.NavigateTo("/")">
+    <button @onclick="@(() => Navigation.NavigateTo("/"))">
         Home (Allowed)
     </button>
-    <button @onclick="Navigation.NavigateTo("/counter")">
+    <button @onclick="@(() => Navigation.NavigateTo("/counter"))">
         Counter (Prevented)
     </button>
 </p>
@@ -654,8 +654,9 @@ In the following example, a location changing handler is registered for navigati
 
     private async ValueTask OnLocationChanging(LocationChangingContext context)
     {
-        if (context.TargetLocation == "counter")
+        if (context.TargetLocation == "/counter")
         {
+            await Task.Yield();
             context.PreventNavigation();
         }
     }
