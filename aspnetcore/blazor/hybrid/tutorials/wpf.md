@@ -5,7 +5,7 @@ description: Build a Windows Presentation Foundation (WPF) app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 11/15/2022
 uid: blazor/hybrid/tutorials/wpf
 ---
 # Build a Windows Presentation Foundation (WPF) Blazor app
@@ -38,11 +38,15 @@ In the **Create a new project** dialog, filter the **Project type** dropdown to 
 
 :::image type="content" source="wpf/_static/create-project.png" alt-text="Create a new project in Visual Studio.":::
 
-In the **Configure your new project** dialog, set the **Project name** to **`WpfBlazor`**, choose a suitable location for the project, and select the **Next** button.
+In the **Configure your new project** dialog:
+
+* Set the **Project name** to **:::no-loc text="WpfBlazor":::**.
+* Choose a suitable location for the project.
+* Select the **Next** button.
 
 :::image type="content" source="wpf/_static/configure-project.png" alt-text="Configure the project.":::
 
-In the **Additional information** dialog, select the framework version, which must be .NET 6.0 or later. Select the **Create** button:
+In the **Additional information** dialog, select the framework version with the **Framework** dropdown list. Select the **Create** button:
 
 :::image type="content" source="wpf/_static/additional-information.png" alt-text="The Additional Information dialog for the WPF project.":::
 
@@ -50,7 +54,7 @@ Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-
 
 :::image type="content" source="wpf/_static/nuget-package-manager.png" alt-text="Use Nuget Package Manager in Visual Studio to install the Microsoft.AspNetCore.Components.WebView.Wpf NuGet package.":::
 
-In **Solution Explorer**, right-click the `WpfBlazor` project and select **Edit Project File** to open the project file (`WpfBlazor.csproj`).
+In **Solution Explorer**, right-click the project's name, **:::no-loc text="WpfBlazor":::**, and select **Edit Project File** to open the project file (`WpfBlazor.csproj`).
 
 At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
 
@@ -63,13 +67,14 @@ At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
     Additional open issue on it: https://github.com/dotnet/maui/issues/5861
 -->
 
-Set the project's namespace, `WpfBlazor` in this tutorial, as the app's root namespace by adding the following property group to the project file:
+In the project file's existing `<PropertyGroup>` add the following markup to set the app's root namespace, which is `WpfBlazor` in this tutorial:
 
 ```xml
-<PropertyGroup>
-  <RootNameSpace>WpfBlazor</RootNameSpace>
-</PropertyGroup>
+<RootNamespace>WpfBlazor</RootNamespace>
 ```
+
+> [!NOTE]
+> The preceding guidance on setting the project's root namespace is a temporary workaround. For more information, see [[Blazor][Wpf] Root namespace related issue (dotnet/maui #5861)](https://github.com/dotnet/maui/issues/5861).
 
 Save the changes to the project file (`WpfBlazor.csproj`).
 
