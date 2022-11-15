@@ -1,8 +1,6 @@
 items:
   - name: ASP.NET Core documentation
     href: index.yml
-  - name: What's new in ASP.NET Core docs
-    href: whats-new/index.yml
   - name: Overview
     items:
       - name: About ASP.NET Core
@@ -15,6 +13,8 @@ items:
     uid: getting-started
   - name: What's new
     items:
+      - name: What's new in docs
+        href: whats-new/index.yml
       - name: What's new in 7.0
         uid: aspnetcore-7
       - name: What's new in 6.0
