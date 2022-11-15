@@ -652,13 +652,14 @@ In the following example, a location changing handler is registered for navigati
         }
     }
 
-    private async ValueTask OnLocationChanging(LocationChangingContext context)
+    private ValueTask OnLocationChanging(LocationChangingContext context)
     {
         if (context.TargetLocation == "/counter")
         {
-            await Task.Yield();
             context.PreventNavigation();
         }
+
+        return ValueTask.CompletedTask;
     }
 
     public void Dispose() => registration?.Dispose();
