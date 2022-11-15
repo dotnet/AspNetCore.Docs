@@ -7,7 +7,7 @@ ms.custom: mvc
 ms.date: 03/02/2022
 uid: index
 ---
-# Overview to ASP.NET Core
+# Overview of ASP.NET Core
 
 By [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Shaun Luttin](https://mvp.microsoft.com/en-us/PublicProfile/5001182)
 
