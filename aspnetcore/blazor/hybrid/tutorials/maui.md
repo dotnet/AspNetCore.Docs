@@ -5,7 +5,7 @@ description: Build a .NET MAUI Blazor app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 11/15/2022
 uid: blazor/hybrid/tutorials/maui
 ---
 # Build a .NET MAUI Blazor app
@@ -21,7 +21,7 @@ This tutorial shows you how to build and run a .NET MAUI Blazor app. You learn h
 
 * [Supported platforms (.NET MAUI documentation)](/dotnet/maui/supported-platforms)
 * [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) with the **.NET Multi-platform App UI development** workload.
-* [Microsoft Edge `WebView2`](https://developer.microsoft.com/microsoft-edge/webview2/): `WebView2` is required on Windows when running a native app. When developing .NET MAUI Blazor apps and only running them in Visual Studio's emulators, `WebView2` isn't required.
+* [Microsoft Edge :::no-loc text="WebView2":::](https://developer.microsoft.com/microsoft-edge/webview2/): :::no-loc text="WebView2"::: is required on Windows when running a native app. When developing .NET MAUI Blazor apps and only running them in Visual Studio's emulators, :::no-loc text="WebView2"::: isn't required.
 * [Enable hardware acceleration](/dotnet/maui/android/emulator/hardware-acceleration) to improve the performance of the Android emulator.
 
 ## Create a .NET MAUI Blazor app
@@ -38,11 +38,15 @@ Select the **.NET MAUI Blazor App** template and then select the **Next** button
 
 :::image type="content" source="maui/_static/new-project-2.png" alt-text="Choose a template.":::
 
-In the **Configure your new project** dialog, set the **Project name** to **:::no-loc text="MauiBlazor":::**, choose a suitable location for the project, and select the **Next** button.
+In the **Configure your new project** dialog:
+
+* Set the **Project name** to **:::no-loc text="MauiBlazor":::**.
+* Choose a suitable location for the project.
+* Select the **Next** button.
 
 :::image type="content" source="maui/_static/configure-project.png" alt-text="Configure the project.":::
 
-In the **Additional information** dialog, select the framework version with the **Framework** dropdown list. Select the **Create** button.
+In the **Additional information** dialog, select the framework version with the **Framework** dropdown list. Select the **Create** button:
 
 :::image type="content" source="maui/_static/additional-information.png" alt-text="Additional information dialog for selecting the framework version and creating the project.":::
 
@@ -112,7 +116,7 @@ Close the **Android Device Manager** window. Wait until the emulated phone windo
 >
 > :::image type="content" source="maui/_static/android-phone-power-button.png" alt-text="The Android Emulator's Power button.":::
 
-In the Visual Studio toolbar, select the **Pixel 5 - {VERSION}** button to build and run the project, where the `{VERSION}` placeholder is the Android version. In the following example, the Android version is `API 30 (Android 11.0 - API 30)`, and a later version appears depending on the Android SDK installed:
+In the Visual Studio toolbar, select the **:::no-loc text="Pixel 5 - {VERSION}":::** button to build and run the project, where the `{VERSION}` placeholder is the Android version. In the following example, the Android version is **:::no-loc text="API 30 (Android 11.0 - API 30)":::**, and a later version appears depending on the Android SDK installed:
 
 :::image type="content" source="maui/_static/pixel5-api30.png" alt-text="Pixel 5 API 30 emulator button.":::
 
