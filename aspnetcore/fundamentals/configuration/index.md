@@ -12,9 +12,9 @@ uid: fundamentals/configuration/index
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
-[!INCLUDE[](~/includes/configuration/index7.md)]
+[!INCLUDE[](~/fundamentals/configuration/index/includes/index7.md)]
 
-[!INCLUDE[](~/includes/configuration/index6.md)]
+[!INCLUDE[](~/fundamentals/configuration/index/includes/index6.md)]
 
 :::moniker range=">= aspnetcore-3.1 < aspnetcore-6.0"
 
