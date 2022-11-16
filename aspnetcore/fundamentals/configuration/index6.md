@@ -9,6 +9,8 @@ ms.date: 4/21/2022
 uid: fundamentals/configuration/index
 ---
 
+# Configuration in ASP.NET Core
+
 Application configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
 
 * Settings files, such as `appsettings.json`
@@ -891,7 +893,7 @@ Before the app is configured and started, a *host* is configured and launched. T
 For details on the default configuration when using the [Web Host](xref:fundamentals/host/web-host), see the [ASP.NET Core 2.2 version of this topic](?view=aspnetcore-2.2&preserve-view=true).
 
 * Host configuration is provided from:
-  * Environment variables prefixed with `DOTNET_` (for example, `DOTNET_ENVIRONMENT`) using the [Environment Variables configuration provider](#environment-variables). The prefix (`DOTNET_`) is stripped when the configuration key-value pairs are loaded.
+  * Environment variables prefixed with `DOTNET_` (for example, `DOTNET_ENVIRONMENT`) using the [Environment Variables configuration provider](#evcp). The prefix (`DOTNET_`) is stripped when the configuration key-value pairs are loaded.
   * Command-line arguments using the [Command-line configuration provider](#clcp).
 * Web Host default configuration is established (`ConfigureWebHostDefaults`):
   * Kestrel is used as the web server and configured using the app's configuration providers.
