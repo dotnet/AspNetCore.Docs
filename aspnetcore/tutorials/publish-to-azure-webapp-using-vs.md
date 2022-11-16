@@ -1,11 +1,11 @@
 ---
 title: Publish an ASP.NET Core app to Azure with Visual Studio
-author: rick-anderson
+author: wadepickett
 description: Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: riande
-ms.custom: "devx-track-csharp, mvc"
-ms.date: 09/25/2022
+ms.author: wpickett
+ms.custom: "devx-track-csharp, mvc, engagement-fy23"
+ms.date: 11/16/2022
 uid: tutorials/publish-to-azure-webapp-using-vs
 ---
 # Publish an ASP.NET Core app to Azure with Visual Studio
@@ -103,6 +103,8 @@ After creation is completed the dialog is automatically closed and the **Publish
 
 ![Publish dialog: select App Service instance](publish-to-azure-webapp-using-vs/_static/select_as.png)
 
+The **Publish profile creation progress** dialog confirms the publish profile was created. Select **Close**.
+
 Next you see the **Publish Profile summary** page. Visual Studio has detected that this application requires a SQL Server database which it has listed in the Service Dependencies pane. Select **...** and then **Connect**.
 
 ![Publish Profile summary page: configure SQL Server dependency](publish-to-azure-webapp-using-vs/_static/sql.png)
@@ -140,11 +142,13 @@ In the next step of the **Connect to Azure SQL Database** dialog:
 
 ![Configure Azure SQL Database dialog, connection string details](publish-to-azure-webapp-using-vs/_static/sql_connection.png)
 
-In the **Publish Profile summary** page select **Settings**:
+The **Dependency configuration progress** dialog confirms the Azure SQL Database is configured. Select **Close**.
+
+In the **Publish Profile summary** page select **More actions** > **Edit**:
 
 ![Publish profile summary page: edit settings](publish-to-azure-webapp-using-vs/_static/pp_configured.png)
 
-On the **Settings** page of the **Publish** dialog:
+On the **Settings** pane of the **Publish** dialog:
 
 * Expand **Databases** and check **Use this connection string at runtime**.
 * Expand **Entity Framework Migrations** and check **Apply this migration on publish**.
@@ -159,7 +163,7 @@ Click **Publish**. Visual Studio publishes your app to Azure. When the deploymen
 
 ### Update the app
 
-* Edit the `Pages/Index.cshtml` Razor page and change its contents. For example, you can modify the paragraph to say "Hello ASP.NET Core!":
+* Edit the `Pages/Index.cshtml` Razor page and change its contents, then save the changes. For example, you can modify the paragraph to say "Hello ASP.NET Core!":
 
     [!code-html[Index](publish-to-azure-webapp-using-vs/sample/index.cshtml?highlight=10&range=1-12)]
 
