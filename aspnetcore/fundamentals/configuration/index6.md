@@ -9,7 +9,7 @@ ms.date: 4/21/2022
 uid: fundamentals/configuration/index
 ---
 
-# Configuration in ASP.NET Core
+# .NET 6 Configuration in ASP.NET Core
 
 .NET 6 
 Application configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
