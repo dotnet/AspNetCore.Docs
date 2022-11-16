@@ -14,7 +14,7 @@ By [Damien Bowden](https://github.com/damienbod)
 
 :::moniker range=">= aspnetcore-6.0"
 
-Claims can be created from any user or identity data which can be issued using a trusted identity provider or ASP.NET Core identity. A claim is a name value pair that represents what the subject is, not what the subject can do.
+Claims can be created from any user or identity data which can be issued using a trusted identity provider or ASP.NET Core identity. A claim is a name value pair that will often represent what the subject is, but can also represent what the subject can do (i.e. permission or role).
 This article covers the following areas:
 
 * How to configure and map claims using an [OpenID Connect](https://openid.net/connect/) client
