@@ -12,7 +12,7 @@ uid: migration/inc/start
 
 # Get started with incremental ASP.NET to ASP.NET Core migration
 
-In order to start a large migration, we recommend setting up a ASP.NET Core application that will proxy to the original .NET Framework Application. This set up will look like this:
+In order to start a large migration, we recommend setting up a ASP.NET Core app that will proxy to the original .NET Framework app. This set up will look like this:
 
 ![final pic](~/migration/inc/overview/static/final.png)
 
@@ -23,15 +23,15 @@ To understand how this is helpful in the migration process, please refer to the 
 1. Install the [experimental Visual Studio extension](https://marketplace.visualstudio.com/items?itemName=WebToolsTeam.aspnetprojectmigrations) that helps configure the solution.
 2. Right click the ASP.NET Framework app and select **Migrate Project**:
    ![Migrate Menu](~/migration/inc/start/static/migrate_menu.png)
-3. This will open a menu that will offter to start a migration. Click the link to begin:
+1. This will open a menu that will offter to start a migration. Click the link to begin:
    ![Migrate Options](~/migration/inc/start/static/migrate_options.png)
-4. A wizard will now appear that allows you to create a new project or select an existing project.
+1. A wizard will now appear that allows you to create a new project or select an existing project.
    ![Migrate Wizard](~/migration/inc/start/static/migrate_wizard.png)
-5. After completing the wizard, you will now have an ASP.NET Core project that will proxy requests that do not exist there onto the ASP.NET Framework application.
+1. After completing the wizard, you have an ASP.NET Core project that proxies requests that do not exist there onto the ASP.NET Framework app.
 
 ## Upgrade supporting libraries
 
-If you have supporting libraries in your solution that you will need to use, they should be upgraded to support .NET 6. [Upgrade Assistant](https://github.com/dotnet/upgrade-assistant) is a great tool for this.
+If you have supporting libraries in your solution that you will need to use, they should be upgraded to support .NET 6 or later<!--Review -->. [Upgrade Assistant](https://github.com/dotnet/upgrade-assistant) is a great tool for this.
 
 The adapters in this project can be used in these libraries to enable support for `System.Web.HttpContext` usage that you may have in class libraries. In order to enable this in a library:
 
