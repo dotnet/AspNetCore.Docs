@@ -873,6 +873,56 @@ To further understand how the Blazor framework processes localization, see the [
 
 :::zone-end
 
+## Shared resources
+
+To create localization shared resources, adopt the following approach.
+
+* Create a dummy class with an arbitrary class name. In the following example:
+
+  * The app uses the `BlazorSample` namespace, and localization assets use the `BlazorSample.Localization` namespace.
+  * The dummy class is named `SharedResource`.
+  * The class file is placed in a `Localization` folder at the root of the app.
+
+  `Localization/SharedResource.cs`:
+
+  ```csharp
+  namespace BlazorSample.Localization
+  {
+      public class SharedResource
+      {
+      }
+  }
+  ```
+
+* Create the shared resource files with a **Build Action** of `Embedded resource`. In the following example:
+
+  * The files are placed in the `Localization` folder with the dummy `SharedResource` class (`Localization/SharedResource.cs`).
+  * Name the resource files to match the name of the dummy class. The following example files include a default localization file and a file for Spanish (`es`) localization.
+
+  * `Localization/SharedResource.resx`
+  * `Localization/SharedResource.es.resx`
+
+  > [!NOTE]
+  > `Localization` is resource path that can be set via <xref:Microsoft.Extensions.Localization.LocalizationOptions>.
+
+* To reference the dummy class for an injected <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> in a Razor component, either place an [`@using`](xref:mvc/views/razor#using) directive for the localization namespace or include the localization namespace in the dummy class reference. In the following examples:
+
+  * The first example states the `Localization` namespace for the `SharedResource` dummy class with an [`@using`](xref:mvc/views/razor#using) directive.
+  * The second example states the `SharedResource` dummy class's namespace explicitly.
+
+  In a Razor component, use ***either*** of the following approaches:
+
+  ```razor
+  @using Localization
+  @inject IStringLocalizer<SharedResource> Loc
+  ```
+
+  ```razor
+  @inject IStringLocalizer<Localization.SharedResource> Loc
+  ```
+
+For additional guidance, see <xref:fundamentals/localization>.
+
 ## Additional resources
 
 * [Set the app base path](xref:blazor/host-and-deploy/index#app-base-path)
@@ -1753,6 +1803,56 @@ To further understand how the Blazor framework processes localization, see the [
 
 :::zone-end
 
+## Shared resources
+
+To create localization shared resources, adopt the following approach.
+
+* Create a dummy class with an arbitrary class name. In the following example:
+
+  * The app uses the `BlazorSample` namespace, and localization assets use the `BlazorSample.Localization` namespace.
+  * The dummy class is named `SharedResource`.
+  * The class file is placed in a `Localization` folder at the root of the app.
+
+  `Localization/SharedResource.cs`:
+
+  ```csharp
+  namespace BlazorSample.Localization
+  {
+      public class SharedResource
+      {
+      }
+  }
+  ```
+
+* Create the shared resource files with a **Build Action** of `Embedded resource`. In the following example:
+
+  * The files are placed in the `Localization` folder with the dummy `SharedResource` class (`Localization/SharedResource.cs`).
+  * Name the resource files to match the name of the dummy class. The following example files include a default localization file and a file for Spanish (`es`) localization.
+
+  * `Localization/SharedResource.resx`
+  * `Localization/SharedResource.es.resx`
+
+  > [!NOTE]
+  > `Localization` is resource path that can be set via <xref:Microsoft.Extensions.Localization.LocalizationOptions>.
+
+* To reference the dummy class for an injected <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> in a Razor component, either place an [`@using`](xref:mvc/views/razor#using) directive for the localization namespace or include the localization namespace in the dummy class reference. In the following examples:
+
+  * The first example states the `Localization` namespace for the `SharedResource` dummy class with an [`@using`](xref:mvc/views/razor#using) directive.
+  * The second example states the `SharedResource` dummy class's namespace explicitly.
+
+  In a Razor component, use ***either*** of the following approaches:
+
+  ```razor
+  @using Localization
+  @inject IStringLocalizer<SharedResource> Loc
+  ```
+
+  ```razor
+  @inject IStringLocalizer<Localization.SharedResource> Loc
+  ```
+
+For additional guidance, see <xref:fundamentals/localization>.
+
 ## Additional resources
 
 * [Set the app base path](xref:blazor/host-and-deploy/index#app-base-path)
@@ -2623,6 +2723,56 @@ To further understand how the Blazor framework processes localization, see the [
 
 :::zone-end
 
+## Shared resources
+
+To create localization shared resources, adopt the following approach.
+
+* Create a dummy class with an arbitrary class name. In the following example:
+
+  * The app uses the `BlazorSample` namespace, and localization assets use the `BlazorSample.Localization` namespace.
+  * The dummy class is named `SharedResource`.
+  * The class file is placed in a `Localization` folder at the root of the app.
+
+  `Localization/SharedResource.cs`:
+
+  ```csharp
+  namespace BlazorSample.Localization
+  {
+      public class SharedResource
+      {
+      }
+  }
+  ```
+
+* Create the shared resource files with a **Build Action** of `Embedded resource`. In the following example:
+
+  * The files are placed in the `Localization` folder with the dummy `SharedResource` class (`Localization/SharedResource.cs`).
+  * Name the resource files to match the name of the dummy class. The following example files include a default localization file and a file for Spanish (`es`) localization.
+
+  * `Localization/SharedResource.resx`
+  * `Localization/SharedResource.es.resx`
+
+  > [!NOTE]
+  > `Localization` is resource path that can be set via <xref:Microsoft.Extensions.Localization.LocalizationOptions>.
+
+* To reference the dummy class for an injected <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> in a Razor component, either place an [`@using`](xref:mvc/views/razor#using) directive for the localization namespace or include the localization namespace in the dummy class reference. In the following examples:
+
+  * The first example states the `Localization` namespace for the `SharedResource` dummy class with an [`@using`](xref:mvc/views/razor#using) directive.
+  * The second example states the `SharedResource` dummy class's namespace explicitly.
+
+  In a Razor component, use ***either*** of the following approaches:
+
+  ```razor
+  @using Localization
+  @inject IStringLocalizer<SharedResource> Loc
+  ```
+
+  ```razor
+  @inject IStringLocalizer<Localization.SharedResource> Loc
+  ```
+
+For additional guidance, see <xref:fundamentals/localization>.
+
 ## Additional resources
 
 * [Set the app base path](xref:blazor/host-and-deploy/index#app-base-path)
@@ -3406,6 +3556,56 @@ Add the namespace for <xref:Microsoft.Extensions.Localization?displayProperty=fu
 ```
 
 Optionally, add a menu item to the navigation in `Shared/NavMenu.razor` for the `CultureExample2` component.
+
+## Shared resources
+
+To create localization shared resources, adopt the following approach.
+
+* Create a dummy class with an arbitrary class name. In the following example:
+
+  * The app uses the `BlazorSample` namespace, and localization assets use the `BlazorSample.Localization` namespace.
+  * The dummy class is named `SharedResource`.
+  * The class file is placed in a `Localization` folder at the root of the app.
+
+  `Localization/SharedResource.cs`:
+
+  ```csharp
+  namespace BlazorSample.Localization
+  {
+      public class SharedResource
+      {
+      }
+  }
+  ```
+
+* Create the shared resource files with a **Build Action** of `Embedded resource`. In the following example:
+
+  * The files are placed in the `Localization` folder with the dummy `SharedResource` class (`Localization/SharedResource.cs`).
+  * Name the resource files to match the name of the dummy class. The following example files include a default localization file and a file for Spanish (`es`) localization.
+
+  * `Localization/SharedResource.resx`
+  * `Localization/SharedResource.es.resx`
+
+  > [!NOTE]
+  > `Localization` is resource path that can be set via <xref:Microsoft.Extensions.Localization.LocalizationOptions>.
+
+* To reference the dummy class for an injected <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> in a Razor component, either place an [`@using`](xref:mvc/views/razor#using) directive for the localization namespace or include the localization namespace in the dummy class reference. In the following examples:
+
+  * The first example states the `Localization` namespace for the `SharedResource` dummy class with an [`@using`](xref:mvc/views/razor#using) directive.
+  * The second example states the `SharedResource` dummy class's namespace explicitly.
+
+  In a Razor component, use ***either*** of the following approaches:
+
+  ```razor
+  @using Localization
+  @inject IStringLocalizer<SharedResource> Loc
+  ```
+
+  ```razor
+  @inject IStringLocalizer<Localization.SharedResource> Loc
+  ```
+
+For additional guidance, see <xref:fundamentals/localization>.
 
 ## Additional resources
 
