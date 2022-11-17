@@ -875,7 +875,7 @@ To further understand how the Blazor framework processes localization, see the [
 
 ## Shared resources
 
-To create localization shared resources, adopt the following approach. For additional information, see the shared resources guidance in the <xref:fundamentals/localization#make-the-apps-content-localizable> article.
+To create localization shared resources, adopt the following approach.
 
 * Create a dummy class with an arbitrary class name. In the following example:
 
@@ -1805,7 +1805,7 @@ To further understand how the Blazor framework processes localization, see the [
 
 ## Shared resources
 
-To create localization shared resources, adopt the following approach. For additional information, see the shared resources guidance in the <xref:fundamentals/localization#make-the-apps-content-localizable> article.
+To create localization shared resources, adopt the following approach.
 
 * Create a dummy class with an arbitrary class name. In the following example:
 
@@ -2725,7 +2725,7 @@ To further understand how the Blazor framework processes localization, see the [
 
 ## Shared resources
 
-To create localization shared resources, adopt the following approach. For additional information, see the shared resources guidance in the <xref:fundamentals/localization#make-the-apps-content-localizable> article.
+To create localization shared resources, adopt the following approach.
 
 * Create a dummy class with an arbitrary class name. In the following example:
 
@@ -3559,7 +3559,7 @@ Optionally, add a menu item to the navigation in `Shared/NavMenu.razor` for the 
 
 ## Shared resources
 
-To create localization shared resources, adopt the following approach. For additional information, see the shared resources guidance in the <xref:fundamentals/localization#make-the-apps-content-localizable> article.
+To create localization shared resources, adopt the following approach.
 
 * Create a dummy class with an arbitrary class name. In the following example:
 
