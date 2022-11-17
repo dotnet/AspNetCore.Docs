@@ -1,3 +1,16 @@
+
+---
+title: Incremental ASP.NET to ASP.NET Core Migration
+description: Incremental ASP.NET to ASP.NET Core Migration
+author: rick-anderson
+ms.author: riande
+monikerRange: '>= aspnetcore-6.0'
+ms.date: 11/9/2022
+ms.topic: article
+ms.prod: aspnet-core
+uid: migration/inc/wrapped
+---
+
 # Wrapped ASP.NET Core Session State
 
 This implementation wraps the session provided on ASP.NET Core so that it can be used with the adapters. The session will be using the same backing store as `Microsoft.AspNetCore.Http.ISession` but will provide strongly-typed access to its members.
