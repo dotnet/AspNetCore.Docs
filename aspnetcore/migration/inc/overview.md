@@ -3,7 +3,7 @@ title: Incremental ASP.NET to ASP.NET Core Migration
 description: Incremental ASP.NET to ASP.NET Core Migration
 author: rick-anderson
 ms.author: riande
-monikerRange: '>= aspnetcore-1.0'
+monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/9/2022
 ms.topic: article
 ms.prod: aspnet-core
@@ -14,11 +14,11 @@ uid: migration/inc/overview
 
 Migrating an app from ASP.NET Framework to ASP.NET Core is non-trivial for the majority of production apps. These apps often incorporate new technologies as they become available and are often composed of many legacy decisions. This article provide guidance and links to tools for migrating ASP.NET Framework apps to ASP.NET Core with as little change as possible.
 
-One of the larger challenges is the pervasive use of <xref:System.Web.HttpContext> throughout a code base. Without the incremental approach and tools, a large scale rewrite is required to remove the `System.Web.HttpContext` dependency. The adapters in [dotnet/systemweb-adapters](https://github.com/dotnet/systemweb-adapters)] provide a set of runtime helpers to access the types the ASP.NET Framework app used but in a way that works using ASP.NET Core with minimal changes.
+One of the larger challenges is the pervasive use of <xref:System.Web.HttpContext> throughout a code base. Without the incremental approach and tools, a large scale rewrite is required to remove the `System.Web.HttpContext` dependency. The adapters in [dotnet/systemweb-adapters](https://github.com/dotnet/systemweb-adapters) provide a set of runtime helpers to access the types the ASP.NET Framework app used but in a way that works using ASP.NET Core with minimal changes.
 
 A complete migration may take considerable effort depending on the size of the app, dependencies, and non-portable APIs used. In order to keep deploying an app to production while working on migrating, the best pattern is to follow is the [Strangler Fig pattern](/azure/architecture/patterns/strangler-fig). The *Strangler Fig pattern* allows for continual development on the old system with an incremental approach to replacing specific pieces of functionality with new services. This document describes how to apply the Strangler Fig pattern to an ASP.NET app migrating towards ASP.NET Core.
 
-To jump into the process, please see the `[Getting Started](getting_started.md)` guide.
+If you'd like to skip this over and get started, see [Get started](xref:migration/inc/start).
 
 ## App migration to ASP.NET Core
 
