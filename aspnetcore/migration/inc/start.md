@@ -16,7 +16,7 @@ In order to start a large migration, we recommend setting up a ASP.NET Core app 
 
 ![final pic](~/migration/inc/overview/static/final.png)
 
-To understand how this is helpful in the migration process, please refer to the [introduction](README.md). The rest of this document will provide the steps to set this up and how to proceed with an incremental migration.
+To understand how this is helpful in the migration process, see [Incremental ASP.NET to ASP.NET Core migration](xref:migration/inc/overview). The rest of this article provides the steps to set this up and how to proceed with an incremental migration.
 
 ## Set up ASP.NET Core Project
 
@@ -51,4 +51,4 @@ It is possible to share authentication between the original ASP.NET app and the 
 
 ## General Usage Guidance
 
-There are a number of differences between ASP.NET and ASP.NET Core that the adapters are able to help migrate. However, there are some features that require an opt-in as they incur some cost. There are also behavior that cannot be adapted. See [usage guidance](usage_guidance.md) for a list of these.
+There are a number of differences between ASP.NET and ASP.NET Core that the adapters are able to help migrate. However, there are some features that require an opt-in as they incur some cost. There are also behavior that cannot be adapted. See `[usage guidance](usage_guidance.md)` for a list of these.
