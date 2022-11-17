@@ -1,6 +1,6 @@
 ---
-title: Incremental ASP.NET to ASP.NET Core Migration
-description: Incremental ASP.NET to ASP.NET Core Migration
+title: Incremental ASP.NET to ASP.NET Core Migration Usage Guidance
+description: Incremental ASP.NET to ASP.NET Core Migration Usage Guidance
 author: rick-anderson
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
@@ -99,11 +99,11 @@ app.MapDefaultControllerRoute()
     .RequireSystemWebAdapterSession();
 ```
 
-This also requires some implementation of a session store. For details of options here, see [here](./session-state/session.md).
+This also requires some implementation of a session store. For details of options here, see [here](xref:migration/inc/session).
 
 ## Remote session exposes additional endpoint for application
 
-The [remote session support](session-state/remote-session.md) exposes an endpoint that allows the core app to retrieve session information. This may cause a potentially long-lived request to exist between the core app and the framework app, but will time out with the current request or the session timeout (by default is 20 minutes).
+The [remote session support](xref:migration/inc/remote-session) exposes an endpoint that allows the core app to retrieve session information. This may cause a potentially long-lived request to exist between the core app and the framework app, but will time out with the current request or the session timeout (by default is 20 minutes).
 
 **Recommendation**: Ensure the API key used is a strong one and that the connection with the framework app is done over SSL.
 

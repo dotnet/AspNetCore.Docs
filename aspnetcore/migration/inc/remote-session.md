@@ -14,7 +14,7 @@ uid: migration/inc/remote-session
 
 Remote app session state will enable communication between the ASP.NET Core and ASP.NET app and to retrieve the session state. This is enabled by exposing an endpoint on the ASP.NET app that can be queried to retrieve and set the session state.
 
-# HttpSessionState serialization
+## HttpSessionState serialization
 
 The `System.Web.SessionState.HttpSessionState` object must be serialized for remote app session state to be enabled. This is accomplished through implementation of the type `Microsoft.AspNetCore.SystemWebAdapters.SessionState.Serialization.ISessionSerializer`, of which a default binary writer implementation is provided. This is added by the following code:
 
@@ -85,9 +85,9 @@ SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
     .AddSessionServer();
 ```
 
-# Protocol
+## Protocol
 
-## Readonly
+### Readonly
 Readonly session will retrieve the session state from the framework app without any sort of locking. This consists of a single `GET` request that will return a session state and can be closed immediately.
 
 ```mermaid

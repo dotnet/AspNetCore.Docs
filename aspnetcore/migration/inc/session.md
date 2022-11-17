@@ -12,7 +12,7 @@ uid: migration/inc/session
 
 # ASP.NET to ASP.NET Core incremental session state migration
 
-# Session State
+## Session State
 
 Session state in ASP.NET Framework provided a number of features that ASP.NET Core does not provide. In order to migrate from ASP.NET Framework to Core, the adapters provide mechanisms to enable populating session state with similar behavior as `System.Web` did. Some of the differences between framework and core are:
 

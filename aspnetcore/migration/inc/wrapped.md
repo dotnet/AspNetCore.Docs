@@ -1,6 +1,6 @@
 ---
-title: Incremental ASP.NET to ASP.NET Core Migration
-description: Incremental ASP.NET to ASP.NET Core Migration
+title: Wrapped ASP.NET Core session state
+description: Wrapped ASP.NET Core session state
 author: rick-anderson
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
