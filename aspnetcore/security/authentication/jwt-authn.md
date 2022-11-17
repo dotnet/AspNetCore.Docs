@@ -110,13 +110,13 @@ The `user-jwts` tool hides implementation details, such as where and how the val
 
 File system path:
 
-`%APPDATA%\Microsoft\UserSecrets\<secrets_GUID>\secrets.json`
+`%APPDATA%\Microsoft\UserSecrets\<secrets_GUID>\user-jwts.json`
 
 # [Linux / macOS](#tab/linux+macos)
 
 File system path:
 
-`~/.microsoft/usersecrets/<secrets_GUID>/secrets.json`
+`~/.microsoft/usersecrets/<secrets_GUID>/user-jwts.json`
 
 ---
 
