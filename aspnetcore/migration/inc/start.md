@@ -43,11 +43,11 @@ This step may require a number of projects to change depending on your solution 
 
 ## Enable Session Support
 
-Session is a commonly used feature of ASP.NET that shares the name with a feature in ASP.NET Core the APIs are much different. See the documentation on `[session support](session-state/session.md)`.
+Session is a commonly used feature of ASP.NET that shares the name with a feature in ASP.NET Core the APIs are much different. See the documentation on [session support](xref:migration/inc/session).
 
 ## Enable shared authentication support
 
-It is possible to share authentication between the original ASP.NET app and the new ASP.NET Core app by using the `System.Web` adapters remote authentication feature. This feature allows the ASP.NET Core app to defer authentication to the ASP.NET app. See the `[remote app connection](remote-app-setup.md)` and `[remote authentication](remote-authentication/remote-authentication.md)` docs for more details.
+It is possible to share authentication between the original ASP.NET app and the new ASP.NET Core app by using the `System.Web` adapters remote authentication feature. This feature allows the ASP.NET Core app to defer authentication to the ASP.NET app. See the [remote app connection](xref:migration/inc/remote-app-setup) and [remote authentication](xref:migration/inc/remote-authentication) docs for more details.
 
 ## General Usage Guidance
 

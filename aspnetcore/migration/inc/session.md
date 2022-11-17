@@ -56,5 +56,5 @@ Below are the available implementations:
 
 | Implementation                                              | Strongly typed | Locking | Standalone |
 |-------------------------------------------------------------|----------------|---------|------------|
-| `[Remote app](remote-session.md)`                             | ✔️             | ✔️     | ⛔        |
-| `[Wrapped ASP.NET Core](wrapped-aspnetcore-session.md)`       | ✔️             | ⛔     | ✔️        |
+| [Remote app](xref:migration/inc/remote-session)                             | ✔️             | ✔️     | ⛔        |
+| [Wrapped ASP.NET Core](xref:migration/inc/wrapped-aspnetcore)       | ✔️             | ⛔     | ✔️        |
