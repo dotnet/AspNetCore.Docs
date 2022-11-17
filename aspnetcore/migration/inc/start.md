@@ -23,7 +23,7 @@ To understand how this is helpful in the migration process, see [Incremental ASP
 1. Install the [experimental Visual Studio extension](https://marketplace.visualstudio.com/items?itemName=WebToolsTeam.aspnetprojectmigrations) that helps configure the solution.
 2. Right click the ASP.NET Framework app and select **Migrate Project**:
    ![Migrate Menu](~/migration/inc/start/static/migrate_menu.png)
-1. This will open a menu that will offter to start a migration. Click the link to begin:
+1. This will open a menu that will offer to start a migration. Click the link to begin:
    ![Migrate Options](~/migration/inc/start/static/migrate_options.png)
 1. A wizard will now appear that allows you to create a new project or select an existing project.
    ![Migrate Wizard](~/migration/inc/start/static/migrate_wizard.png)
