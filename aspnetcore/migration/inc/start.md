@@ -33,22 +33,22 @@ To understand how this is helpful in the migration process, please refer to the 
 
 If you have supporting libraries in your solution that you will need to use, they should be upgraded to support .NET 6 or later<!--Review -->. [Upgrade Assistant](https://github.com/dotnet/upgrade-assistant) is a great tool for this.
 
-The adapters in this project can be used in these libraries to enable support for `System.Web.HttpContext` usage that you may have in class libraries. In order to enable this in a library:
+The adapters in this project can be used in these libraries to enable support for `System.Web.HttpContext` usage in class libraries. In order to enable `System.Web.HttpContext` usage in a library:
 
 1. Remove reference to `System.Web` in the project file
 2. Add the `Microsoft.AspNetCore.SystemWebAdapters` package
-3. Enable multi-targeting and add a .NET 6 target, or convert the project to .NET Standard
+3. Enable multi-targeting and add a .NET 6 target or later<!--Review -->, or convert the project to .NET Standard
 
 This step may require a number of projects to change depending on your solution structure. Upgrade Assistant can help you identify which ones need to change and automate a number of steps in the process.
 
 ## Enable Session Support
 
-Session is a commonly used feature of ASP.NET that shares a name with a feature in ASP.NET Core but that's where the similarity ends. Please see the documentation on [session support](session-state/session.md) to understand how to use it.
+Session is a commonly used feature of ASP.NET that shares the name with a feature in ASP.NET Core the APIs are much different. See the documentation on `[session support](session-state/session.md)`.
 
 ## Enable shared authentication support
 
-It is possible to share authentication between the original ASP.NET app and the new ASP.NET Core app by using the System.Web adapters remote authentication feature. This feature allows the ASP.NET Core app to defer authentication to the ASP.NET app. Please see the [remote app connection](remote-app-setup.md) and [remote authentication]((remote-authentication/remote-authentication.md)) docs for more details.
+It is possible to share authentication between the original ASP.NET app and the new ASP.NET Core app by using the `System.Web` adapters remote authentication feature. This feature allows the ASP.NET Core app to defer authentication to the ASP.NET app. See the `[remote app connection](remote-app-setup.md)` and `[remote authentication](remote-authentication/remote-authentication.md)` docs for more details.
 
 ## General Usage Guidance
 
-There are a number of differences between ASP.NET and ASP.NET Core that the adapters are able to smooth over. However, there are some features that require an opt-in as it will incur some cost. There are also behavior that cannot be adapted. Please see [usage guidance](usage_guidance.md) to see a list of these.
+There are a number of differences between ASP.NET and ASP.NET Core that the adapters are able to help migrate. However, there are some features that require an opt-in as they incur some cost. There are also behavior that cannot be adapted. See [usage guidance](usage_guidance.md) for a list of these.
