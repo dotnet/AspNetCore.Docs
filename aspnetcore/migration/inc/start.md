@@ -51,4 +51,4 @@ It is possible to share authentication between the original ASP.NET app and the 
 
 ## General Usage Guidance
 
-There are a number of differences between ASP.NET and ASP.NET Core that the adapters are able to help migrate. However, there are some features that require an opt-in as they incur some cost. There are also behavior that cannot be adapted. See `[usage guidance](usage_guidance.md)` for a list of these.
+There are a number of differences between ASP.NET and ASP.NET Core that the adapters are able to help migrate. However, there are some features that require an opt-in as they incur some cost. There are also behavior that cannot be adapted. See [usage guidance](xref:migration/inc/usage_guidance) for a list of these.

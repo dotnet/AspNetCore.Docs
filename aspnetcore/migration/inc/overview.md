@@ -64,8 +64,7 @@ Once the ASP.NET Framework app is no longer needed and deleted:
 The `Microsoft.AspNetCore.SystemWebAdapters` is a collection of runtime helpers that facilitate using old core <!-- Review: What's old core? --> written against `System.Web` while moving to ASP.NET Core.
 
 The heart of the library is support for `System.Web.HttpContext`. The adaptors attempt to provide compatible behavior for what is found running on ASP.NET to expedite moving To ASP.NET Core. There are a number of behaviors that ASP.NET provided that incur a performance cost if enabled on ASP.NET Core, these behaviors must be opted into.
-<!--
-For examples of scenarios where this is useful, see [here](adapters.md).
 
-For guidance around usage, please see [here](usage_guidance.md).
--->
+For examples of scenarios where this is useful, see [here](xref:migration/inc/adapters).
+
+For guidance around usage, please see [here](xref:migration/inc/usage_guidance).
