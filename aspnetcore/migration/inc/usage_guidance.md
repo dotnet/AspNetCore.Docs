@@ -33,7 +33,7 @@ There are two ways to convert an `Microsoft.AspNetCore.Http.HttpContext` to a `S
 
 In ASP.NET Framework, `CultureInfo.Current` was set for a request, but this is not done automatically in ASP.NET Core. Instead, you must add the appropriate middleware to your pipeline.
 
-**Recommendation**: See [ASP.NET Core Localization](https://docs.microsoft.com/aspnet/core/fundamentals/localization#localization-middleware) for details on how to enable this.
+**Recommendation**: See [ASP.NET Core Localization](/aspnet/core/fundamentals/localization#localization-middleware) for details on how to enable this.
 
 Simplest way to enable this with similar behavior as ASP.NET Framework would be to add the following to your pipeline:
 
