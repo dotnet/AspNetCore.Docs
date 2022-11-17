@@ -58,7 +58,7 @@ Original | Renamed
 
 ## Impact of bundling and minification
 
-The following table outlines differences between individually loading assets and using bundling and minification in a typical web app:
+The following table outlines differences between individually loading assets and using bundling and minification for a typical web app.
 
 Action | Without B/M | With B/M | Reduction
 --- | :---: | :---: | :---:
