@@ -53,7 +53,6 @@ In ASP.NET Framework, a request had thread-affinity and `HttpContext.Current` wo
 
 **Recommendation**: If reading/writing to the `HttpContext`, you must ensure you are doing so in a single-threaded way. You can force a request to never run concurrently on any async context by setting the `ISingleThreadedRequestMetadata`. This will have performance implications and should only be used if you can't refactor usage to ensure non-concurrent access. There is an implementation available to add to controllers with `SingleThreadedRequestAttribute`:
 
-
 ```csharp
 [SingleThreadedRequest]
 public class SomeController : Controller

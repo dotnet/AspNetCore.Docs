@@ -12,13 +12,13 @@ uid: migration/inc/overview
 
 # Incremental ASP.NET to ASP.NET Core migration
 
-Migrating an app from ASP.NET Framework to ASP.NET Core is non-trivial for the majority of production apps. These apps often incorporate new technologies as they become available and are often composed of many legacy decisions. This article provide guidance and links to tools for migrating ASP.NET Framework apps to ASP.NET Core with as little change as possible.
+Migrating an app from ASP.NET Framework to ASP.NET Core is non-trivial for the majority of production apps. These apps often incorporate new technologies as they become available and are often composed of many legacy decisions. This article provides guidance and links to tools for migrating ASP.NET Framework apps to ASP.NET Core with as little change as possible.
 
 One of the larger challenges is the pervasive use of <xref:System.Web.HttpContext> throughout a code base. Without the incremental approach and tools, a large scale rewrite is required to remove the `System.Web.HttpContext` dependency. The adapters in [dotnet/systemweb-adapters](https://github.com/dotnet/systemweb-adapters) provide a set of runtime helpers to access the types the ASP.NET Framework app used but in a way that works using ASP.NET Core with minimal changes.
 
 A complete migration may take considerable effort depending on the size of the app, dependencies, and non-portable APIs used. In order to keep deploying an app to production while working on migrating, the best pattern is to follow is the [Strangler Fig pattern](/azure/architecture/patterns/strangler-fig). The *Strangler Fig pattern* allows for continual development on the old system with an incremental approach to replacing specific pieces of functionality with new services. This document describes how to apply the Strangler Fig pattern to an ASP.NET app migrating towards ASP.NET Core.
 
-If you'd like to skip this over and get started, see [Get started](xref:migration/inc/start).
+If you'd like to skip this overview article and get started, see [Get started](xref:migration/inc/start).
 
 ## App migration to ASP.NET Core
 
@@ -33,12 +33,12 @@ Migration starts by introducing a new app based on ASP.NET Core that becomes the
 To migrate business logic that relies on `HttpContext`, the libraries need to be built with `Microsoft.AspNetCore.SystemWebAdapters`. Building the libraries with `Microsoft.AspNetCore.SystemWebAdapters` allows:
 
 * The libraries to be built against .NET Framework, .NET Core, or .NET Standard 2.0.
-* Ensures that the libraries are using APIs that are available on both ASP.NET and ASP.NET Core.
+* Ensures that the libraries are using APIs that are available on both ASP.NET Framework and ASP.NET Core.
 
 ![Microsoft.AspNetCore.SystemWebAdapters](~/migration/inc/overview/static/sys_adapt.png)
 
 <!-- Review: Why does this need to be serialized? Can't one team migrate WebAPI, another specific controllers, another, ASPX pages, etc -->
-At this point, the process migrates routes <!--over one at a time-->. For example, WebAPI or MVC controller action methods, ASPX pages, handlers, or some other implementation of a route. If the route is available in the ASP.NET Core app, it's matched and served.
+Once the ASP.NET Core app using YARP is set up, you can start migrating routes from ASP.NET Framework to ASP.NET Core using `SystemWebAdapters`. For example, WebAPI or MVC controller action methods, ASPX pages, handlers, or some other implementation of a route. If the route is available in the ASP.NET Core app, it's matched and served.
 
 During the migration process, additional services and infrastructure are identified that must be migrated to run on .NET Core. Options listed in order of maintainability include:
 
@@ -46,7 +46,7 @@ During the migration process, additional services and infrastructure are identif
 2. Link the code in the new project
 3. Move the code to shared libraries
 
-Eventually, the ASP.NET Core app handles more of the routes than the .NET Framework app
+Eventually, the ASP.NET Core app handles more of the routes than the .NET Framework app:
 
 ![the ASP.NET Core app handles more of the routes](~/migration/inc/overview/static/sys_adapt.png)
 
@@ -63,8 +63,8 @@ Once the ASP.NET Framework app is no longer needed and deleted:
 
 The `Microsoft.AspNetCore.SystemWebAdapters` is a collection of runtime helpers that facilitate using old core <!-- Review: What's old core? --> written against `System.Web` while moving to ASP.NET Core.
 
-The heart of the library is support for `System.Web.HttpContext`. The adaptors attempt to provide compatible behavior for what is found running on ASP.NET to expedite moving To ASP.NET Core. There are a number of behaviors that ASP.NET provided that incur a performance cost if enabled on ASP.NET Core, these behaviors must be opted into.
+The heart of the library is support for `System.Web.HttpContext`. The adaptors attempt to provide compatible behavior for what is found running on ASP.NET Framework to expedite moving To ASP.NET Core. There are a number of behaviors that ASP.NET Framework provided that incur a performance cost if enabled on ASP.NET Core, these behaviors must be opted into.
 
-For examples of scenarios where this is useful, see [here](xref:migration/inc/adapters).
+For examples of scenarios where this is useful, see [the adapters article](xref:migration/inc/adapters).
 
-For guidance around usage, please see [here](xref:migration/inc/usage_guidance).
+For guidance around usage, see the [usage guidance article](xref:migration/inc/usage_guidance).
