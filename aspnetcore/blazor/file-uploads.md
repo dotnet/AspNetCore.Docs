@@ -578,8 +578,7 @@ SignalR defines a message size limit that applies to every message Blazor receiv
 
 The logged error is similar to the following:
 
-> :::no-loc text="Error: Connection disconnected with error 'Error: Server returned an error on close: Connection closed with an error.'.
-e.log @ blazor.server.js:1":::
+> :::no-loc text="Error: Connection disconnected with error 'Error: Server returned an error on close: Connection closed with an error.'. e.log @ blazor.server.js:1":::
 
 When uploading files, reaching the message size limit on the first message is rare. If the limit is reached, the app can configure <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> with a larger value.
 
