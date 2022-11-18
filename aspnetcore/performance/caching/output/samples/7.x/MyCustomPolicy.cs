@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.OutputCaching;
 using Microsoft.Extensions.Primitives;
 
@@ -32,8 +31,8 @@ public sealed class MyCustomPolicy : IOutputCachePolicy
         return ValueTask.CompletedTask;
     }
 
-    /// <inheritdoc />
-    ValueTask IOutputCachePolicy.ServeResponseAsync(OutputCacheContext context, CancellationToken cancellationToken)
+    ValueTask IOutputCachePolicy.ServeResponseAsync
+        (OutputCacheContext context, CancellationToken cancellationToken)
     {
         var response = context.HttpContext.Response;
 
@@ -45,7 +44,8 @@ public sealed class MyCustomPolicy : IOutputCachePolicy
         }
 
         // Check response code
-        if (response.StatusCode != StatusCodes.Status200OK && response.StatusCode != StatusCodes.Status301MovedPermanently)
+        if (response.StatusCode != StatusCodes.Status200OK && 
+            response.StatusCode != StatusCodes.Status301MovedPermanently)
         {
             context.AllowCacheStorage = false;
             return ValueTask.CompletedTask;
@@ -57,17 +57,19 @@ public sealed class MyCustomPolicy : IOutputCachePolicy
     private static bool AttemptOutputCaching(OutputCacheContext context)
     {
         // Check if the current request fulfills the requirements to be cached
-
         var request = context.HttpContext.Request;
 
         // Verify the method
-        if (!HttpMethods.IsGet(request.Method) && !HttpMethods.IsHead(request.Method) && !HttpMethods.IsPost(request.Method))
+        if (!HttpMethods.IsGet(request.Method) && 
+            !HttpMethods.IsHead(request.Method) && 
+            !HttpMethods.IsPost(request.Method))
         {
             return false;
         }
 
         // Verify existence of authorization headers
-        if (!StringValues.IsNullOrEmpty(request.Headers.Authorization) || request.HttpContext.User?.Identity?.IsAuthenticated == true)
+        if (!StringValues.IsNullOrEmpty(request.Headers.Authorization) || 
+            request.HttpContext.User?.Identity?.IsAuthenticated == true)
         {
             return false;
         }
@@ -75,4 +77,3 @@ public sealed class MyCustomPolicy : IOutputCachePolicy
         return true;
     }
 }
-

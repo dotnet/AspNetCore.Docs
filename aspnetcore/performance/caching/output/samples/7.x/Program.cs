@@ -48,7 +48,7 @@ public class Program
         //<policies3b>
         builder.Services.AddOutputCache(options =>
         {
-            options.AddBasePolicy(MyCustomPolicy.Instance);
+            options.AddPolicy("CachePost", MyCustomPolicy.Instance);
         });
         //</policies3b>
 #endif
@@ -126,7 +126,7 @@ public class Program
         // </evictbytag>
 
         // <post>
-        app.MapPost("/cachedpost", Gravatar.WriteGravatar).CacheOutput();
+        app.MapPost("/cachedpost", Gravatar.WriteGravatar).CacheOutput("CachePost");
         // </post>
 
         // <selectnolock>
