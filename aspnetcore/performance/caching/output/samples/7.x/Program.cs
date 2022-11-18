@@ -1,4 +1,4 @@
-#define Version4
+#define Version3b // Version1 / Version2 / Version3 / Version4
 using Microsoft.AspNetCore.OutputCaching;
 using System.Globalization;
 
@@ -40,9 +40,17 @@ public class Program
         //<policies3>
         builder.Services.AddOutputCache(options =>
         {
-            options.AddBasePolicy(builder => builder.Cache());
+        options.AddBasePolicy(builder => builder.Cache());
         });
         //</policies3>
+#endif
+#if Version3b
+        //<policies3b>
+        builder.Services.AddOutputCache(options =>
+        {
+            options.AddBasePolicy(MyCustomPolicy.Instance); // builder => builder.Cache());
+        });
+        //</policies3b>
 #endif
 #if Version4
         //<policies4>
@@ -116,6 +124,10 @@ public class Program
             await cache.EvictByTagAsync(tag, default);
         });
         // </evictbytag>
+
+        // <post>
+        app.MapPost("/cachedpost", Gravatar.WriteGravatar).CacheOutput();
+        // </post>
 
         // <selectnolock>
         app.MapGet("/nolock", Gravatar.WriteGravatar).CacheOutput("NoLock");
