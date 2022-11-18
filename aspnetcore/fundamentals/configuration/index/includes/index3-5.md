@@ -24,7 +24,7 @@ Consider the Kestrel specific endpoint configured as an environment variable:
 
 `set Kestrel__Endpoints__Https__Url=https://localhost:8888`
 
-In the preceding environment variable, `Https` is the name of the Kestrel specific endpoint. The preceding `appsettings.json` file also defines a Kestrel specific endpoint named `Https`. By [default](#default-configuration), environment variables using the [Environment Variables configuration provider](#evcp) are read after `appsettings.{Environment}.json`, therefore, the preceding environment variable is used for the `Https` endpoint.
+In the preceding environment variable, `Https` is the name of the Kestrel specific endpoint. The preceding `appsettings.json` file also defines a Kestrel specific endpoint named `Https`. By [default](#default-host-configuration), environment variables using the [Environment Variables configuration provider](#evcp) are read after `appsettings.{Environment}.json`, therefore, the preceding environment variable is used for the `Https` endpoint.
 
 :::moniker-end
 
@@ -233,7 +233,7 @@ In the following code, an <xref:Microsoft.Extensions.Options.IConfigureOptions%6
 
 The following code displays the options values:
 
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Test2.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Pages/Test2.cshtml.cs?name=snippet)]
 
 In the preceding example, the values of `Option1` and `Option2` are specified in `appsettings.json` and then overridden by the configured delegate.
 
@@ -250,7 +250,7 @@ Before the app is configured and started, a *host* is configured and launched. T
 For details on the default configuration when using the [Web Host](xref:fundamentals/host/web-host), see the [ASP.NET Core 2.2 version of this topic](?view=aspnetcore-2.2&preserve-view=true).
 
 * Host configuration is provided from:
-  * Environment variables prefixed with `DOTNET_` (for example, `DOTNET_ENVIRONMENT`) using the [Environment Variables configuration provider](#environment-variables). The prefix (`DOTNET_`) is stripped when the configuration key-value pairs are loaded.
+  * Environment variables prefixed with `DOTNET_` (for example, `DOTNET_ENVIRONMENT`) using the [Environment Variables configuration provider](#evcp). The prefix (`DOTNET_`) is stripped when the configuration key-value pairs are loaded.
   * Command-line arguments using the Command-line configuration provider.
 * Web Host default configuration is established (`ConfigureWebHostDefaults`):
   * Kestrel is used as the web server and configured using the app's configuration providers.
