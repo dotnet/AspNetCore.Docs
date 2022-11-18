@@ -16,7 +16,6 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Rick Anderson](https://twitte
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
-This tutorial has been updated for ASP.NET Core 6. The ASP.NET Core 6 web templates use the new [minimal hosting model](xref:migration/50-to-60#new-hosting-model), which unifies `Startup.cs` and `Program.cs` into a single `Program.cs` file. Updating the tutorial for ASP.NET Core 6 is tracked in [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/13920).
 
 The Contoso University sample web app demonstrates how to create an ASP.NET Core MVC web app using Entity Framework (EF) Core and Visual Studio.
 
@@ -28,11 +27,11 @@ The sample app is a web site for a fictional Contoso University. It includes fun
 
 [!INCLUDE[VS prereqs](~/includes/net-prereqs-vs-6.0.md)]
 
-* Please advise that the .NET 6 & 7 NRTs [(nullable reference types)](https://learn.microsoft.com/ef/core/miscellaneous/nullable-reference-types ) is enabled by default. Problems can happen where we're not creating navigation property elements which would be required for object creation. We will touch on how to fix this soon and will patch this in future documentation.
+This tutorial has not been updated for ASP.NET Core 6 or later. The tutorial's instructions will not work correctly if you create a project that targets ASP.NET Core 6 or 7. For example, the ASP.NET Core 6 and 7 web templates use the [minimal hosting model](xref:migration/50-to-60#new-hosting-model), which unifies `Startup.cs` and `Program.cs` into a single `Program.cs` file.
 
-* .NET 6 by default has the `asp-validation-summary` helper tag set to `ModelOnly` which prevents notifying us of problems like the one we described with NRTs. We will show how to correct that in this tutorial but you can ignore it by disabling NRTs which we will touch on, in this page. 
+Another difference introduced in .NET 6 is the NRT [(nullable reference types)](https://learn.microsoft.com/ef/core/miscellaneous/nullable-reference-types ) feature. The project templates enable this feature by default. Problems can happen where EF considers a property to be required in .NET 6 which is nullable in .NET 5. For example, the Create Student page will fail silently unless the `Enrollments` property is made nullable or the `asp-validation-summary` helper tag is changed from `ModelOnly` to `All`.
 
-* You want to try and use the minimal hosting model generated in .NET 6 though it is not mandatory, it unifies Program.cs and.
+We recommend that you install and use the .NET 5 SDK for this tutorial. Until this tutorial is updated, see <xref:data/ef-rp/intro> on how to use Entity Framework with ASP.NET Core 6 or later.
 
 ## Database engines
 
