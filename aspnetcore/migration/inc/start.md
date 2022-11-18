@@ -36,8 +36,9 @@ If you have supporting libraries in your solution that you will need to use, the
 The adapters in this project can be used in these libraries to enable support for `System.Web.HttpContext` usage in class libraries. In order to enable `System.Web.HttpContext` usage in a library:
 
 1. Remove reference to `System.Web` in the project file
-2. Add the `Microsoft.AspNetCore.SystemWebAdapters` package
-3. Enable multi-targeting and add a .NET 6 target or later<!--Review -->, or convert the project to .NET Standard
+1. Add the `Microsoft.AspNetCore.SystemWebAdapters` package
+<!--1. Enable multi-targeting and add a .NET 6 target or later, or convert the project to .NET Standard-->
+1. Ensure the target framework supports .NET Core. Multi-targeting can be used if .NET Standard 2.0 is not sufficient
 
 This step may require a number of projects to change depending on your solution structure. Upgrade Assistant can help you identify which ones need to change and automate a number of steps in the process.
 

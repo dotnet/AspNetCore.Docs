@@ -37,7 +37,6 @@ To migrate business logic that relies on `HttpContext`, the libraries need to be
 
 ![Microsoft.AspNetCore.SystemWebAdapters](~/migration/inc/overview/static/sys_adapt.png)
 
-<!-- Review: Why does this need to be serialized? Can't one team migrate WebAPI, another specific controllers, another, ASPX pages, etc -->
 Once the ASP.NET Core app using YARP is set up, you can start migrating routes from ASP.NET Framework to ASP.NET Core using `SystemWebAdapters`. For example, WebAPI or MVC controller action methods, ASPX pages, handlers, or some other implementation of a route. If the route is available in the ASP.NET Core app, it's matched and served.
 
 During the migration process, additional services and infrastructure are identified that must be migrated to run on .NET Core. Options listed in order of maintainability include:
@@ -61,7 +60,7 @@ Once the ASP.NET Framework app is no longer needed and deleted:
 
 ## System.Web Adapters
 
-The `Microsoft.AspNetCore.SystemWebAdapters` is a collection of runtime helpers that facilitate using old core <!-- Review: What's old core? --> written against `System.Web` while moving to ASP.NET Core.
+The `Microsoft.AspNetCore.SystemWebAdapters` is a collection of runtime helpers that facilitate using code written against `System.Web` while moving to ASP.NET Core.
 
 The heart of the library is support for `System.Web.HttpContext`. The adaptors attempt to provide compatible behavior for what is found running on ASP.NET Framework to expedite moving To ASP.NET Core. There are a number of behaviors that ASP.NET Framework provided that incur a performance cost if enabled on ASP.NET Core, these behaviors must be opted into.
 
