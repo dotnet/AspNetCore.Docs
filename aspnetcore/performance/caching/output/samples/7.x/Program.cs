@@ -1,4 +1,4 @@
-#define Version3b // Version1 / Version2 / Version3 / Version4
+#define Version3B // Version1 / Version2 / Version3 / Version4
 using Microsoft.AspNetCore.OutputCaching;
 using System.Globalization;
 
@@ -16,9 +16,12 @@ public class Program
         //<policies1>
         builder.Services.AddOutputCache(options =>
         {
-            options.AddBasePolicy(builder => builder.Expire(TimeSpan.FromSeconds(10)));
-            options.AddPolicy("Expire20", builder => builder.Expire(TimeSpan.FromSeconds(20)));
-            options.AddPolicy("Expire30", builder => builder.Expire(TimeSpan.FromSeconds(30)));
+            options.AddBasePolicy(builder => 
+                builder.Expire(TimeSpan.FromSeconds(10)));
+            options.AddPolicy("Expire20", builder => 
+                builder.Expire(TimeSpan.FromSeconds(20)));
+            options.AddPolicy("Expire30", builder => 
+                builder.Expire(TimeSpan.FromSeconds(30)));
         });
         //</policies1>
 #endif
@@ -68,12 +71,14 @@ public class Program
 
         //<oneendpoint>
         app.MapGet("/cached", Gravatar.WriteGravatar).CacheOutput();
-        app.MapGet("/attribute", [OutputCache] (context) => Gravatar.WriteGravatar(context));
+        app.MapGet("/attribute", [OutputCache] (context) => 
+            Gravatar.WriteGravatar(context));
         //</oneendpoint>
 
         //<selectpolicy>
         app.MapGet("/20", Gravatar.WriteGravatar).CacheOutput("Expire20");
-        app.MapGet("/30", [OutputCache(PolicyName = "Expire30")] (context) => Gravatar.WriteGravatar(context));
+        app.MapGet("/30", [OutputCache(PolicyName = "Expire30")] (context) => 
+            Gravatar.WriteGravatar(context));
         //</selectpolicy>
 
         //<selectquery>
@@ -126,11 +131,13 @@ public class Program
         // </evictbytag>
 
         // <post>
-        app.MapPost("/cachedpost", Gravatar.WriteGravatar).CacheOutput("CachePost");
+        app.MapPost("/cachedpost", Gravatar.WriteGravatar)
+            .CacheOutput("CachePost");
         // </post>
 
         // <selectnolock>
-        app.MapGet("/nolock", Gravatar.WriteGravatar).CacheOutput("NoLock");
+        app.MapGet("/nolock", Gravatar.WriteGravatar)
+            .CacheOutput("NoLock");
         // </selectnolock>
 
         app.Run();
