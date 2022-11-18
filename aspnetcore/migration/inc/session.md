@@ -31,9 +31,6 @@ A default JSON implementation is provided that is configured via the `JsonSessio
 
 - `RegisterKey<T>(string)` - Registers a session key to a known type. This is required in order to serialize/deserialize the session state correctly. If a key is found that there is no registration for, an error will be thrown and session will not be available.
 
-To use the default JSON backed implementation, add a package reference to [Microsoft.AspNetCore.SystemWebAdapters.SessionState](https://www.nuget.org/packages/Microsoft.AspNetCore.SystemWebAdapters.SessionState) and add the following to the startup:
-
-> The Microsoft.AspNetCore.SystemWebAdapters.SessionState package is currently in preview. Remember to check the box to 'include prerelease' packages.
 
 ```csharp
 builder.Services.AddSystemWebAdapters()
