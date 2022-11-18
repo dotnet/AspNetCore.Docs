@@ -12,13 +12,9 @@ uid: fundamentals/configuration/index
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
-[!INCLUDE[](~/fundamentals/configuration/index/includes/index7.md)]
+:::moniker range=">= aspnetcore-7.0" 
 
-[!INCLUDE[](~/fundamentals/configuration/index/includes/index6.md)]
-
-:::moniker range=">= aspnetcore-3.1 < aspnetcore-6.0"
-
-Configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
+Application configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
 
 * Settings files, such as `appsettings.json`
 * Environment variables
@@ -29,44 +25,87 @@ Configuration in ASP.NET Core is performed using one or more [configuration prov
 * Directory files
 * In-memory .NET objects
 
-This topic provides information on configuration in ASP.NET Core. For information on using configuration in console apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
+This article provides information on configuration in ASP.NET Core. For information on using configuration in console apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
+## Application and Host Configuration
+
+ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> which contains the host. While some configuration can be done in both the host and the application configuration providers, generally, only configuration that is necessary for the host should be done in host configuration.
+
+Application configuration is the highest priority and is detailed in the next section. [Host configuration](#host) follows application configuration, and is described in this article.
 
 <a name="default"></a>
 
-## Default configuration
+### Default application configuration sources
 
 ASP.NET Core web apps created with [dotnet new](/dotnet/core/tools/dotnet-new) or Visual Studio generate the following code:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Program.cs?name=snippet&highlight=9)]
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+```
 
- <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> provides default configuration for the app in the following order:
+<a name="hi2low"></a>
 
-1. [ChainedConfigurationProvider](xref:Microsoft.Extensions.Configuration.ChainedConfigurationSource) :  Adds an existing `IConfiguration` as a source. In the default configuration case, adds the [host](#hvac) configuration and setting it as the first source for the *app* configuration.
-1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
+[WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The initialized `WebApplicationBuilder` (`builder`) provides default configuration for the app in the following order, from highest to lowest priority:
+
+1. Command-line arguments using the [Command-line configuration provider](#command-line).
+1. Non-prefixed environment variables using the [Non-prefixed environment variables configuration provider](#evcp).
+1. [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
 1. `appsettings.{Environment}.json` using the [JSON configuration provider](#file-configuration-provider). For example, `appsettings.Production.json` and `appsettings.Development.json`.
-1. [App secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
-1. Environment variables using the [Environment Variables configuration provider](#evcp).
-1. Command-line arguments using the [Command-line configuration provider](#clcp).
+1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
+1. A fallback to the host configuration described in the [next section](#host).
 
-Configuration providers that are added later override previous key settings. For example, if `MyKey` is set in both `appsettings.json` and the environment, the environment value is used. Using the default configuration providers, the  [Command-line configuration provider](#clcp) overrides all other providers.
+<a name="host"></a>
 
-For more information on `CreateDefaultBuilder`, see [Default builder settings](xref:fundamentals/host/generic-host#default-builder-settings).
+### Default host configuration sources
+
+The following list contains the default host configuration sources from highest to lowest priority:
+
+1. Command-line arguments using the [Command-line configuration provider](#command-line)
+1. `ASPNETCORE_`-prefixed environment variables using the [Environment variables configuration provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider).
+1. `DOTNET_`-prefixed environment variables using the [Environment variables configuration provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider).
+
+When a configuration value is set in host and application configuration, the application configuration is used.
+
+### Host variables
+
+The following variables are locked in early when initializing the host builders and can't be influenced by application config:
+
+* [Application name](xref:fundamentals/minimal-apis#change-the-content-root-application-name-and-environment)
+* [Environment name](xref:fundamentals/environments), for example `Development`, `Production`, and `Staging`
+* [Content root](xref:fundamentals/index#content-root)
+* [Web root](xref:fundamentals/index#web-root)
+* Whether to scan for [hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration) and which assemblies to scan for.
+* Variables read by app and library code from [HostBuilderContext.Configuration](xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration) in [IHostBuilder.ConfigureAppConfiguration](xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureAppConfiguration%2A) callbacks.
+
+Every other host setting is read from application config instead of host config.
+
+`URLS` is one of the many common host settings that is not a bootstrap setting. Like every other host setting not in the previous list, `URLS` is read later from application config. Host config is a fallback for application config, so host config can be used to set `URLS`, but it will be overridden by any configuration source in application config like `appsettings.json`.
+
+For more information, see [Change the content root, app name, and environment](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment) and [Change the content root, app name, and environment by environment variables or command line](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment-by-environment-variables-or-command-line)
+
+The remaining sections in this article refer to application configuration.
+
+## Application configuration providers
 
 The following code displays the enabled configuration providers in the order they were added:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Index2.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Pages/Index2.cshtml.cs?name=snippet)]
+
+The preceding [list of highest to lowest priority default configuration sources](#hi2low) shows the providers in the opposite order they are added to template generated application. For example, the [JSON configuration provider](#file-configuration-provider) is added before the [Command-line configuration provider](#command-line).
+
+Configuration providers that are added later have higher priority and override previous key settings. For example, if `MyKey` is set in both `appsettings.json` and the environment, the environment value is used. Using the default configuration providers, the  [Command-line configuration provider](#clcp) overrides all other providers.
+
+For more information on `CreateBuilder`, see [Default builder settings](xref:fundamentals/host/generic-host#default-builder-settings).
 
 ### `appsettings.json`
 
 Consider the following `appsettings.json` file:
 
-[!code-json[](index/samples/3.x/ConfigSample/appsettings.json)]
+[!code-json[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/appsettings.json)]
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) displays several of the preceding configurations settings:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
 The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration in the following order:
 
@@ -86,7 +125,7 @@ Using the [default](#default) configuration, the `appsettings.json` and `appsett
 
 ### Bind hierarchical configuration data using the options pattern
 
-[!INCLUDE[](~/includes/bind.md)]
+[!INCLUDE[](~/includes/bind6.md)]
 
 Using the [default](#default) configuration, the `appsettings.json` and `appsettings.{Environment}.json` files are enabled with [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75). Changes made to the `appsettings.json` and `appsettings.{Environment}.json` file ***after*** the app starts are read by the [JSON configuration provider](#jcp).
 
@@ -94,7 +133,7 @@ See [JSON configuration provider](#jcp) in this document for information on addi
 
 ## Combining service collection
 
-[!INCLUDE[](~/includes/combine-di.md)]
+[!INCLUDE[](~/includes/combine-di6.md)]
 
 <a name="security"></a>
 
@@ -117,7 +156,12 @@ For more information on storing passwords or other sensitive data:
 
 <a name="evcp"></a>
 
-## Environment variables
+## Non-prefixed environment variables
+
+Non-prefixed environment variables are environment variables other than those prefixed by `ASPNETCORE_` or `DOTNET_`. For example, the ASP.NET Core web application templates set `"ASPNETCORE_ENVIRONMENT": "Development"` in `launchSettings.json`. For more information on `ASPNETCORE_` and `DOTNET_` environment variables, see:
+
+* [List of highest to lowest priority default configuration sources](#hi2low) including non-prefixed, `ASPNETCORE_`-prefixed and `DOTNETCORE_`-prefixed environment variables.
+* [`DOTNET_` environment variables](/dotnet/core/tools/dotnet-environment-variables) used outside of [Microsoft.Extensions.Hosting](xref:Microsoft.Extensions.Hosting).
 
 Using the [default](#default) configuration, the <xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider> loads configuration from environment variable key-value pairs after reading `appsettings.json`, `appsettings.{Environment}.json`, and [user secrets](xref:security/app-secrets). Therefore, key values read from the environment override values read from `appsettings.json`, `appsettings.{Environment}.json`, and user secrets.
 
@@ -155,11 +199,11 @@ To test that the preceding commands override `appsettings.json` and `appsettings
 
 Call <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables%2A> with a string to specify a prefix for environment variables:
 
-[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Program.cs?name=snippet4&highlight=12)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_env&highlight=5)]
 
 In the preceding code:
 
-* `config.AddEnvironmentVariables(prefix: "MyCustomPrefix_")` is added after the [default configuration providers](#default). For an example of ordering the configuration providers, see [JSON configuration provider](#jcp).
+* `builder.Configuration.AddEnvironmentVariables(prefix: "MyCustomPrefix_")` is added after the [default configuration providers](#default). For an example of ordering the configuration providers, see [JSON configuration provider](#jcp).
 * Environment variables set with the `MyCustomPrefix_` prefix override the [default configuration providers](#default). This includes environment variables without the prefix.
 
 The prefix is stripped off when the configuration key-value pairs are read.
@@ -245,7 +289,15 @@ On Linux, the value of URL environment variables must be escaped so `systemd` ca
 
 The following code displays the environment variables and values on application startup, which can be helpful when debugging environment settings:
 
-[!code-csharp[](~/fundamentals/configuration/index/samples_snippets/5.x/Program.cs?name=snippet)]
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+foreach (var c in builder.Configuration.AsEnumerable())
+{
+    Console.WriteLine(c.Key + " = " + c.Value);
+}
+```
 
 <a name="clcp"></a>
 
@@ -299,41 +351,38 @@ Switch mappings dictionary key rules:
 
 To use a switch mappings dictionary, pass it into the call to `AddCommandLine`:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramSwitch.cs?name=snippet&highlight=10-18,23)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_sw)]
 
-The following code shows the key values for the replaced keys:
-
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test3.cshtml.cs?name=snippet)]
-
-The following command works to test key replacement:
+Run the following command works to test key replacement:
 
 ```dotnetcli
 dotnet run -k1 value1 -k2 value2 --alt3=value2 /alt4=value3 --alt5 value5 /alt6 value6
 ```
 
+The following code shows the key values for the replaced keys:
+
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Pages/Test3.cshtml.cs?name=snippet)]
+
 For apps that use switch mappings, the call to `CreateDefaultBuilder` shouldn't pass arguments. The `CreateDefaultBuilder` method's `AddCommandLine` call doesn't include mapped switches, and there's no way to pass the switch-mapping dictionary to `CreateDefaultBuilder`. The solution isn't to pass the arguments to `CreateDefaultBuilder` but instead to allow the `ConfigurationBuilder` method's `AddCommandLine` method to process both the arguments and the switch-mapping dictionary.
 
 ## Set environment and command-line arguments with Visual Studio
 
-The following image shows setting environment and command-line arguments with Visual Studio:
+Environment and command-line arguments can be set in Visual Studio from the launch profiles dialog:
 
-![Debug tab of VS](index/_static/vs-cmd-env.png)
-
-In Visual Studio 2019 version 16.10 preview 4 and later, setting environment and command-line arguments is done from the launch profiles UI:
-
-![launch profiles UI](index/_static/dbg-launch-profiles-ui.png)
+* In Solution Explorer, right click the project and select **Properties**.
+* Select the **Debug > General** tab and select **Open debug launch profiles UI**.
 
 ## Hierarchical configuration data
 
 The Configuration API reads hierarchical configuration data by flattening the hierarchical data with the use of a delimiter in the configuration keys.
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following  `appsettings.json` file:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) contains the following  `appsettings.json` file:
 
-[!code-json[](index/samples/3.x/ConfigSample/appsettings.json)]
+[!code-json[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/appsettings.json)]
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the configurations settings:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) displays several of the configurations settings:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
 The preferred way to read hierarchical configuration data is using the options pattern. For more information, see [Bind hierarchical configuration data](#optpat) in this document.
 
@@ -432,21 +481,20 @@ When an environment variable is discovered and loaded into configuration with an
 The <xref:Microsoft.Extensions.Configuration.Ini.IniConfigurationProvider> loads configuration from INI file key-value pairs at runtime.
 
 The following code clears all the configuration providers and adds several configuration providers:
-
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramINI.cs?name=snippet&highlight=10-30)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_ini)]
 
 In the preceding code, settings in the `MyIniConfig.ini` and  `MyIniConfig.{Environment}.ini` files are overridden by settings in the:
 
 * [Environment variables configuration provider](#evcp)
 * [Command-line configuration provider](#clcp).
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following `MyIniConfig.ini` file:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) contains the following `MyIniConfig.ini` file:
 
-[!code-ini[](index/samples/3.x/ConfigSample/MyIniConfig.ini)]
+[!code-ini[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/MyIniConfig.ini)]
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) displays several of the preceding configurations settings:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
 <a name="jcp"></a>
 
@@ -461,7 +509,7 @@ Overloads can specify:
 
 Consider the following code:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSON.cs?name=snippet&highlight=12-14)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_json)]
 
 The preceding code:
 
@@ -471,10 +519,10 @@ The preceding code:
 * Reads the [default configuration providers](#default) before the `MyConfig.json` file. Settings in the `MyConfig.json` file override setting in the default configuration providers, including the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
 
 You typically ***don't*** want a custom JSON file overriding values set in the [Environment variables configuration provider](#evcp) and the [Command-line configuration provider](#clcp).
-
+<!-- not needed sample 
 The following code clears all the configuration providers and adds several configuration providers:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSON2.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/ProgramJSON2.cs?name=snippet)]
 
 In the preceding code, settings in the `MyConfig.json` and  *MyConfig*.`Environment`.*json* files:
 
@@ -483,11 +531,13 @@ In the preceding code, settings in the `MyConfig.json` and  *MyConfig*.`Environm
 
 The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following  `MyConfig.json` file:
 
-[!code-json[](index/samples/3.x/ConfigSample/MyConfig.json)]
+[!code-json[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/MyConfig.json)]
 
 The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
+
+-->
 
 ### XML configuration provider
 
@@ -495,28 +545,28 @@ The <xref:Microsoft.Extensions.Configuration.Xml.XmlConfigurationProvider> loads
 
 The following code clears all the configuration providers and adds several configuration providers:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramXML.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_xml)]
 
 In the preceding code, settings in the `MyXMLFile.xml` and  `MyXMLFile.{Environment}.xml` files are overridden by settings in the:
 
 * [Environment variables configuration provider](#evcp)
 * [Command-line configuration provider](#clcp).
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) contains the following `MyXMLFile.xml` file:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) contains the following `MyXMLFile.xml` file:
 
-[!code-xml[](index/samples/3.x/ConfigSample/MyXMLFile.xml)]
+[!code-xml[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/MyXMLFile.xml)]
 
-The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays several of the preceding configurations settings:
+The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample) displays several of the preceding configurations settings:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
 Repeating elements that use the same element name work if the `name` attribute is used to distinguish the elements:
 
-[!code-xml[](index/samples/3.x/ConfigSample/MyXMLFile3.xml)]
+[!code-xml[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/MyXMLFile3.xml)]
 
 The following code reads the previous configuration file and displays the keys and values:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/XML/Index.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Pages/XML/Index.cshtml.cs?name=snippet)]
 
 Attributes can be used to supply values:
 
@@ -567,19 +617,15 @@ The <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationProvider>
 
 The following code adds a memory collection to the configuration system:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet6)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_mem)]
 
 The following code from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample) displays the preceding configurations settings:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/Test.cshtml.cs?name=snippet)]
 
 In the preceding code, `config.AddInMemoryCollection(Dict)` is added after the [default configuration providers](#default). For an example of ordering the configuration providers, see [JSON configuration provider](#jcp).
 
 See [Bind an array](#boa) for another example using `MemoryConfigurationProvider`.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 <a name="kestrel"></a>
 
@@ -607,15 +653,11 @@ Consider the Kestrel specific endpoint configured as an environment variable:
 
 In the preceding environment variable, `Https` is the name of the Kestrel specific endpoint. The preceding `appsettings.json` file also defines a Kestrel specific endpoint named `Https`. By [default](#default-configuration), environment variables using the [Environment Variables configuration provider](#evcp) are read after `appsettings.{Environment}.json`, therefore, the preceding environment variable is used for the `Https` endpoint.
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
-
 ## GetValue
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue%2A?displayProperty=nameWithType> extracts a single value from configuration with a specified key and converts it to the specified type. This method is an extension method for <xref:Microsoft.Extensions.Configuration.IConfiguration>:
+<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue%2A?displayProperty=nameWithType> extracts a single value from configuration with a specified key and converts it to the specified type:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestNum.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Pages/TestNum.cshtml.cs?name=snippet)]
 
 In the preceding code,  if `NumberKey` isn't found in the configuration, the default value of `99` is used.
 
@@ -623,11 +665,11 @@ In the preceding code,  if `NumberKey` isn't found in the configuration, the def
 
 For the examples that follow, consider the following `MySubsection.json` file:
 
-[!code-json[](index/samples/3.x/ConfigSample/MySubsection.json)]
+[!code-json[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/MySubsection.json)]
 
 The following code adds `MySubsection.json` to the configuration providers:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSONsection.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_sub)]
 
 ### GetSection
 
@@ -635,11 +677,11 @@ The following code adds `MySubsection.json` to the configuration providers:
 
 The following code returns values for `section1`:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Pages/TestSection.cshtml.cs?name=snippet)]
 
 The following code returns values for `section2:subsection0`:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection2.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Pages/TestSection2.cshtml.cs?name=snippet)]
 
 `GetSection` never returns `null`. If a matching section isn't found, an empty `IConfigurationSection` is returned.
 
@@ -649,27 +691,29 @@ When `GetSection` returns a matching section, <xref:Microsoft.Extensions.Configu
 
 The following code calls <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren%2A?displayProperty=nameWithType> and returns values for `section2:subsection0`:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection4.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Pages/TestSection4.cshtml.cs?name=snippet)]
 
 The preceding code calls <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.Exists%2A?displayProperty=nameWithType> to verify the  section exists:
 
- <a name="boa"></a>
+<a name="boa"></a>
 
 ## Bind an array
 
 The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment is capable of array binding to a [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) class array.
 
-Consider `MyArray.json` from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample):
+Consider `MyArray.json` from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/6.x/ConfigSample):
 
-[!code-json[](index/samples/3.x/ConfigSample/MyArray.json)]
+[!code-json[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/MyArray.json)]
 
 The following code adds `MyArray.json` to the configuration providers:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSONarray.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_ba)]
 
 The following code reads the configuration and displays the values:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
+
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Options/ArrayExample.cs?name=snippet)]
 
 The preceding code returns the following output:
 
@@ -681,15 +725,15 @@ Index: 3  Value: value40
 Index: 4  Value: value50
 ```
 
-In the preceding output, Index 3 has value `value40`, corresponding to `"4": "value40",` in `MyArray.json`. The bound array indices are continuous and not bound to the configuration key index. The configuration binder isn't capable of binding null values or creating null entries in bound objects
+In the preceding output, Index 3 has value `value40`, corresponding to `"4": "value40",` in `MyArray.json`. The bound array indices are continuous and not bound to the configuration key index. The configuration binder isn't capable of binding null values or creating null entries in bound objects.
+<!-- Not needed sample 
+The  following code loads the `array:entries` configuration with the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection*> extension method:
 
-The  following code loads the `array:entries` configuration with the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection%2A> extension method:
-
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet)]
 
 The following code reads the configuration in the `arrayDict` `Dictionary` and displays the values:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
 
 The preceding code returns the following output:
 
@@ -705,15 +749,15 @@ Index &num;3 in the bound object holds the configuration data for the `array:4` 
 
 The missing configuration item for index &num;3 can be supplied before binding to the `ArrayExample` instance by any configuration provider that reads the index &num;3 key/value pair. Consider the following `Value3.json` file from the sample download:
 
-[!code-json[](index/samples/3.x/ConfigSample/Value3.json)]
+[!code-json[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Value3.json)]
 
 The following code includes configuration for `Value3.json` and the `arrayDict` `Dictionary`:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet2)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet2)]
 
 The following code reads the preceding configuration and displays the values:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
 
 The preceding code returns the following output:
 
@@ -727,6 +771,7 @@ Index: 5  Value: value5
 ```
 
 Custom configuration providers aren't required to implement array binding.
+-->
 
 ## Custom configuration provider
 
@@ -742,79 +787,94 @@ Define an `EFConfigurationValue` entity for storing configuration values in the 
 
 `Models/EFConfigurationValue.cs`:
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Models/EFConfigurationValue.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/EfconfigSample/Models/EFConfigurationValue.cs?name=snippet1)]
 
 Add an `EFConfigurationContext` to store and access the configured values.
 
 `EFConfigurationProvider/EFConfigurationContext.cs`:
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationContext.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/EfconfigSample/EFConfigurationProvider/EFConfigurationContext.cs?name=snippet1)]
 
 Create a class that implements <xref:Microsoft.Extensions.Configuration.IConfigurationSource>.
 
 `EFConfigurationProvider/EFConfigurationSource.cs`:
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationSource.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/EfconfigSample/EFConfigurationProvider/EFConfigurationSource.cs?name=snippet1)]
 
 Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty. Since configuration keys are case-insensitive, the dictionary used to initialize the database is created with the case-insensitive comparer ([StringComparer.OrdinalIgnoreCase](xref:System.StringComparer.OrdinalIgnoreCase)).
 
 `EFConfigurationProvider/EFConfigurationProvider.cs`:
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationProvider.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/EfconfigSample/EFConfigurationProvider/EFConfigurationProvider.cs?name=snippet1)]
 
 An `AddEFConfiguration` extension method permits adding the configuration source to a `ConfigurationBuilder`.
 
 `Extensions/EntityFrameworkExtensions.cs`:
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Extensions/EntityFrameworkExtensions.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/EfconfigSample/Extensions/EntityFrameworkExtensions.cs?name=snippet1)]
 
 The following code shows how to use the custom `EFConfigurationProvider` in `Program.cs`:
 
-[!code-csharp[](index/samples_snippets/3.x/ConfigurationSample/Program.cs?highlight=7-8)]
+[!code-csharp[](~/fundamentals/configuration/index/samples_snippets/6.x/EfconfigSample/Program.cs?highlight=5-6)]
 
-<a name="acs"></a>
+## Access configuration with Dependency Injection (DI)
 
-## Access configuration in Startup
+Configuration can be injected into services using [Dependency Injection (DI)](xref:fundamentals/dependency-injection) by resolving the <xref:Microsoft.Extensions.Configuration.IConfiguration> service:
 
-The following code displays configuration data in `Startup` methods:
+[!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Service.cs?name=snippet_Class&highlight=5-6)]
 
-[!code-csharp[](index/samples/3.x/ConfigSample/StartupKey.cs?name=snippet&highlight=13,18)]
-
-For an example of accessing configuration using startup convenience methods, see [App startup: Convenience methods](xref:fundamentals/startup#convenience-methods).
+For information on how to access values using `IConfiguration`, see [GetValue](#getvalue) and [GetSection, GetChildren, and Exists](#getsection-getchildren-and-exists) in this article.
 
 ## Access configuration in Razor Pages
 
 The following code displays configuration data in a Razor Page:
 
-[!code-cshtml[](index/samples/3.x/ConfigSample/Pages/Test5.cshtml)]
+[!code-cshtml[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Pages/Test5.cshtml)]
 
 In the following code, `MyOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure%2A> and bound to configuration:
 
-[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Startup3.cs?name=snippet_Example2)]
+[!code-csharp[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/Program.cs?name=snippet)]
 
 The following markup uses the [`@inject`](xref:mvc/views/razor#inject) Razor directive to resolve and display the options values:
 
-[!code-cshtml[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Pages/Test3.cshtml)]
+[!code-cshtml[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/Pages/Test3.cshtml)]
 
 ## Access configuration in a MVC view file
 
 The following code displays configuration data in a MVC view:
 
-[!code-cshtml[](index/samples/3.x/ConfigSample/Views/Home2/Index.cshtml)]
+[!code-cshtml[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Views/Home2/Index.cshtml)]
+
+## Access configuration in `Program.cs`
+
+The following code accesses configuration in the  `Program.cs` file.
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello World!");
+
+var key1 = app.Configuration.GetValue<int>("KeyOne");
+var key2 = app.Configuration.GetValue<bool>("KeyTwo");
+
+app.Logger.LogInformation($"KeyOne = {key1}");
+app.Logger.LogInformation($"KeyTwo = {key2}");
+
+app.Run();
+```
 
 ## Configure options with a delegate
 
 Options configured in a delegate override values set in the configuration providers.
 
-Configuring options with a delegate is demonstrated as Example 2 in the sample app.
-
 In the following code, an <xref:Microsoft.Extensions.Options.IConfigureOptions%601> service is added to the service container. It uses a delegate to configure values for `MyOptions`:
 
-[!code-csharp[](~/fundamentals/configuration/options/samples/3.x/OptionsSample/Startup2.cs?name=snippet_Example2)]
+[!code-csharp[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/Program.cs?name=snippet_del)]
 
 The following code displays the options values:
 
-[!code-csharp[](options/samples/3.x/OptionsSample/Pages/Test2.cshtml.cs?name=snippet)]
+[!code-csharp[~/fundamentals/configuration/optionssamples/6.x/OptionsSample/Pages/Test2.cshtml.cs?name=snippet)]
 
 In the preceding example, the values of `Option1` and `Option2` are specified in `appsettings.json` and then overridden by the configured delegate.
 
@@ -832,7 +892,7 @@ For details on the default configuration when using the [Web Host](xref:fundamen
 
 * Host configuration is provided from:
   * Environment variables prefixed with `DOTNET_` (for example, `DOTNET_ENVIRONMENT`) using the [Environment Variables configuration provider](#environment-variables). The prefix (`DOTNET_`) is stripped when the configuration key-value pairs are loaded.
-  * Command-line arguments using the Command-line configuration provider.
+  * Command-line arguments using the [Command-line configuration provider](#clcp).
 * Web Host default configuration is established (`ConfigureWebHostDefaults`):
   * Kestrel is used as the web server and configured using the app's configuration providers.
   * Add Host Filtering Middleware.
@@ -861,7 +921,13 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 ## Additional resources
 
 * [Configuration source code](https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Configuration)
+* [WebApplicationBuilder source code](https://github.com/dotnet/aspnetcore/blob/v6.0.1/src/DefaultBuilder/src/WebApplicationBuilder.cs)
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples) ([how to download](xref:index#how-to-download-a-sample))
 * <xref:fundamentals/configuration/options>
 * <xref:blazor/fundamentals/configuration>
 
 :::moniker-end
+
+[!INCLUDE[](~/fundamentals/configuration/index/includes/index6.md)]
+
+[!INCLUDE[](~/fundamentals/configuration/index/includes/index3-5.md)]
