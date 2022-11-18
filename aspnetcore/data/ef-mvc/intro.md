@@ -396,8 +396,8 @@ The sample application is a web site for a fictional Contoso University. It incl
 
 ## Prerequisites
 
-* [.NET Core SDK 6.0](https://dotnet.microsoft.com/download)
-* [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the following workloads:
+* [.NET Core SDK 2.2](https://dotnet.microsoft.com/download)
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the following workloads:
   * **ASP.NET and web development** workload
   * **.NET Core cross-platform development** workload
 
