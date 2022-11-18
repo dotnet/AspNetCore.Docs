@@ -388,7 +388,7 @@ Advance to the next tutorial to learn how to perform basic CRUD (create, read, u
 
 [!INCLUDE [RP better than MVC](~/includes/RP-EF/rp-over-mvc.md)]
 
-The Contoso University sample web application demonstrates how to create ASP.NET Core 6.0 MVC web applications using Entity Framework (EF) Core 6.0.9 and Visual Studio 2022 or 2022.
+The Contoso University sample web application demonstrates how to create ASP.NET Core 2.2 MVC web applications using Entity Framework (EF) Core 2.2 and Visual Studio 2019.
 
 This tutorial has not been updated for ASP.NET Core 3.1. It has been updated for [ASP.NET Core 5.0](xref:data/ef-mvc/intro?view=aspnetcore-5.0&preserve-view=true).
 
