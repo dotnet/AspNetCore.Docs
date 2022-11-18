@@ -1,18 +1,4 @@
----
-title: Configuration in ASP.NET Core
-author: rick-anderson
-description: Learn how to use the Configuration API to configure AppSettings in an ASP.NET Core app.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 11/11/2022
-uid: fundamentals/configuration/index
----
-# Configuration in ASP.NET Core
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
-
-:::moniker range=">= aspnetcore-7.0" 
+:::moniker range="= aspnetcore-6.0"
 
 Application configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
 
@@ -60,11 +46,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 The following list contains the default host configuration sources from highest to lowest priority:
 
-1. Command-line arguments using the [Command-line configuration provider](#command-line)
 1. `ASPNETCORE_`-prefixed environment variables using the [Environment variables configuration provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider).
+1.  Command-line arguments using the [Command-line configuration provider](#command-line)
 1. `DOTNET_`-prefixed environment variables using the [Environment variables configuration provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider).
 
 When a configuration value is set in host and application configuration, the application configuration is used.
+
+<!--
+Remove next paragraph for .NET 7 as it's fixed in .NET 7 see bottom of the GitHub comment listed below.
+-->
+See [**Explanation** in this GitHub comment](https://github.com/dotnet/AspNetCore.Docs/issues/25626#issuecomment-1098616664) for an explanation of why in host configuration, `ASPNETCORE_` prefixed environment variables have higher priority than command-line arguments.
 
 ### Host variables
 
@@ -874,7 +865,7 @@ In the following code, an <xref:Microsoft.Extensions.Options.IConfigureOptions%6
 
 The following code displays the options values:
 
-[!code-csharp[~/fundamentals/configuration/optionssamples/6.x/OptionsSample/Pages/Test2.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/options/samples/6.x/OptionsSample/Pages/Test2.cshtml.cs?name=snippet)]
 
 In the preceding example, the values of `Option1` and `Option2` are specified in `appsettings.json` and then overridden by the configured delegate.
 
@@ -927,7 +918,3 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 * <xref:blazor/fundamentals/configuration>
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/configuration/index/includes/index6.md)]
-
-[!INCLUDE[](~/fundamentals/configuration/index/includes/index3-5.md)]
