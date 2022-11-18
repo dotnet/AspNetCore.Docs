@@ -63,20 +63,15 @@ Users can view and update student, course, and instructor information. Here are 
 ## Create web app
 
 1. Start Visual Studio and select **Create a new project**.
-1. In the **Create a new project** dialog, select **ASP.NET Core Web App (Model-View-Controller)** > **Next**.
-![New ASP.NET Core Project dialog](~/data/ef-mvc/intro/_static/new-aspnet6.png)
+1. In the **Create a new project** dialog, select **ASP.NET Core Web Application** > **Next**.
 1. In the **Configure your new project** dialog, enter `ContosoUniversity` for **Project name**. It's important to use this exact name including capitalization, so each `namespace` matches when code is copied.
 1. Select **Create**.
-1. In the **Additional information** dialog, select:
-    1. **.NET Core 6.0 (Long-term-support)** in the Framework dropdowns.
+1. In the **Create a new ASP.NET Core web application** dialog, select:
+    1. **.NET Core** and **ASP.NET Core 5.0** in the dropdowns.
     1. **ASP.NET Core Web App (Model-View-Controller)**.
-    1. **Create** 
-![Additional Info dialog](intro/_static/new-aspnet6-additional-info.png)
+    1. **Create**
+      ![New ASP.NET Core Project dialog](~/data/ef-mvc/intro/_static/new-aspnet5.png)
 
-<!-- TODO: Continue from here.
-    1. Mention NRT as per https://github.com/dotnet/AspNetCore.Docs/pull/27440#:~:text=Briefly%20explain%20that,deal%20with%20it.
-    2. Mention 
-  -->
 ## Set up the site style
 
 A few basic changes set up the site menu, layout, and home page.
