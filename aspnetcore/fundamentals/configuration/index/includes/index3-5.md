@@ -34,7 +34,7 @@ In the preceding environment variable, `Https` is the name of the Kestrel specif
 
 <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue%2A?displayProperty=nameWithType> extracts a single value from configuration with a specified key and converts it to the specified type. This method is an extension method for <xref:Microsoft.Extensions.Configuration.IConfiguration>:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestNum.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/TestNum.cshtml.cs?name=snippet)]
 
 In the preceding code,  if `NumberKey` isn't found in the configuration, the default value of `99` is used.
 
@@ -42,11 +42,11 @@ In the preceding code,  if `NumberKey` isn't found in the configuration, the def
 
 For the examples that follow, consider the following `MySubsection.json` file:
 
-[!code-json[](index/samples/3.x/ConfigSample/MySubsection.json)]
+[!code-json[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/MySubsection.json)]
 
 The following code adds `MySubsection.json` to the configuration providers:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSONsection.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/ProgramJSONsection.cs?name=snippet)]
 
 ### GetSection
 
@@ -54,11 +54,11 @@ The following code adds `MySubsection.json` to the configuration providers:
 
 The following code returns values for `section1`:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/TestSection.cshtml.cs?name=snippet)]
 
 The following code returns values for `section2:subsection0`:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection2.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/TestSection2.cshtml.cs?name=snippet)]
 
 `GetSection` never returns `null`. If a matching section isn't found, an empty `IConfigurationSection` is returned.
 
@@ -68,7 +68,7 @@ When `GetSection` returns a matching section, <xref:Microsoft.Extensions.Configu
 
 The following code calls <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren%2A?displayProperty=nameWithType> and returns values for `section2:subsection0`:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/TestSection4.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/TestSection4.cshtml.cs?name=snippet)]
 
 The preceding code calls <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.Exists%2A?displayProperty=nameWithType> to verify the  section exists:
 
@@ -80,15 +80,15 @@ The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?display
 
 Consider `MyArray.json` from the [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/configuration/index/samples/3.x/ConfigSample):
 
-[!code-json[](index/samples/3.x/ConfigSample/MyArray.json)]
+[!code-json[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/MyArray.json)]
 
 The following code adds `MyArray.json` to the configuration providers:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramJSONarray.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/ProgramJSONarray.cs?name=snippet)]
 
 The following code reads the configuration and displays the values:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
 
 The preceding code returns the following output:
 
@@ -104,11 +104,11 @@ In the preceding output, Index 3 has value `value40`, corresponding to `"4": "va
 
 The  following code loads the `array:entries` configuration with the <xref:Microsoft.Extensions.Configuration.MemoryConfigurationBuilderExtensions.AddInMemoryCollection%2A> extension method:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet)]
 
 The following code reads the configuration in the `arrayDict` `Dictionary` and displays the values:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
 
 The preceding code returns the following output:
 
@@ -124,15 +124,15 @@ Index &num;3 in the bound object holds the configuration data for the `array:4` 
 
 The missing configuration item for index &num;3 can be supplied before binding to the `ArrayExample` instance by any configuration provider that reads the index &num;3 key/value pair. Consider the following `Value3.json` file from the sample download:
 
-[!code-json[](index/samples/3.x/ConfigSample/Value3.json)]
+[!code-json[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Value3.json)]
 
 The following code includes configuration for `Value3.json` and the `arrayDict` `Dictionary`:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet2)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/ProgramArray.cs?name=snippet2)]
 
 The following code reads the preceding configuration and displays the values:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/Array.cshtml.cs?name=snippet)]
 
 The preceding code returns the following output:
 
@@ -161,35 +161,35 @@ Define an `EFConfigurationValue` entity for storing configuration values in the 
 
 `Models/EFConfigurationValue.cs`:
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Models/EFConfigurationValue.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigurationSample/Models/EFConfigurationValue.cs?name=snippet1)]
 
 Add an `EFConfigurationContext` to store and access the configured values.
 
 `EFConfigurationProvider/EFConfigurationContext.cs`:
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationContext.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationContext.cs?name=snippet1)]
 
 Create a class that implements <xref:Microsoft.Extensions.Configuration.IConfigurationSource>.
 
 `EFConfigurationProvider/EFConfigurationSource.cs`:
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationSource.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationSource.cs?name=snippet1)]
 
 Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty. Since configuration keys are case-insensitive, the dictionary used to initialize the database is created with the case-insensitive comparer ([StringComparer.OrdinalIgnoreCase](xref:System.StringComparer.OrdinalIgnoreCase)).
 
 `EFConfigurationProvider/EFConfigurationProvider.cs`:
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationProvider.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigurationSample/EFConfigurationProvider/EFConfigurationProvider.cs?name=snippet1)]
 
 An `AddEFConfiguration` extension method permits adding the configuration source to a `ConfigurationBuilder`.
 
 `Extensions/EntityFrameworkExtensions.cs`:
 
-[!code-csharp[](index/samples/3.x/ConfigurationSample/Extensions/EntityFrameworkExtensions.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigurationSample/Extensions/EntityFrameworkExtensions.cs?name=snippet1)]
 
 The following code shows how to use the custom `EFConfigurationProvider` in `Program.cs`:
 
-[!code-csharp[](index/samples_snippets/3.x/ConfigurationSample/Program.cs?highlight=7-8)]
+[!code-csharp[](~/fundamentals/configuration/index/samples_snippets/3.x/ConfigurationSample/Program.cs?highlight=7-8)]
 
 <a name="acs"></a>
 
@@ -197,7 +197,7 @@ The following code shows how to use the custom `EFConfigurationProvider` in `Pro
 
 The following code displays configuration data in `Startup` methods:
 
-[!code-csharp[](index/samples/3.x/ConfigSample/StartupKey.cs?name=snippet&highlight=13,18)]
+[!code-csharp[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/StartupKey.cs?name=snippet&highlight=13,18)]
 
 For an example of accessing configuration using startup convenience methods, see [App startup: Convenience methods](xref:fundamentals/startup#convenience-methods).
 
@@ -205,7 +205,7 @@ For an example of accessing configuration using startup convenience methods, see
 
 The following code displays configuration data in a Razor Page:
 
-[!code-cshtml[](index/samples/3.x/ConfigSample/Pages/Test5.cshtml)]
+[!code-cshtml[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Pages/Test5.cshtml)]
 
 In the following code, `MyOptions` is added to the service container with <xref:Microsoft.Extensions.DependencyInjection.OptionsConfigurationServiceCollectionExtensions.Configure%2A> and bound to configuration:
 
@@ -219,7 +219,7 @@ The following markup uses the [`@inject`](xref:mvc/views/razor#inject) Razor dir
 
 The following code displays configuration data in a MVC view:
 
-[!code-cshtml[](index/samples/3.x/ConfigSample/Views/Home2/Index.cshtml)]
+[!code-cshtml[](~/fundamentals/configuration/index/samples/3.x/ConfigSample/Views/Home2/Index.cshtml)]
 
 ## Configure options with a delegate
 
