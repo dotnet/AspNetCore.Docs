@@ -40,3 +40,11 @@ groups:
       title: WPF
     - id: winforms
       title: Windows Forms
+- id: blazor-hybrid-tutorial-vs-operating-systems
+  title: Operating System
+  prompt: Choose a Visual Studio operating system
+  pivots:
+    - id: windows
+      title: Windows
+    - id: macos
+      title: macOS
