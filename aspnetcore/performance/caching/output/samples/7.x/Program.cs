@@ -43,7 +43,7 @@ public class Program
         //<policies3>
         builder.Services.AddOutputCache(options =>
         {
-        options.AddBasePolicy(builder => builder.Cache());
+            options.AddBasePolicy(builder => builder.Cache());
         });
         //</policies3>
 #endif

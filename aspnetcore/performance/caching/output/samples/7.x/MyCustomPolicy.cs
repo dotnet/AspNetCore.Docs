@@ -11,7 +11,9 @@ public sealed class MyCustomPolicy : IOutputCachePolicy
     {
     }
 
-    ValueTask IOutputCachePolicy.CacheRequestAsync(OutputCacheContext context, CancellationToken cancellationToken)
+    ValueTask IOutputCachePolicy.CacheRequestAsync(
+        OutputCacheContext context, 
+        CancellationToken cancellationToken)
     {
         var attemptOutputCaching = AttemptOutputCaching(context);
         context.EnableOutputCaching = true;
