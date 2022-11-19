@@ -71,6 +71,8 @@ Add an `_Imports.razor` file to the root of the project with an [`@using`](xref:
 @using Microsoft.AspNetCore.Components.Web
 ```
 
+Save the `_Imports.razor` file.
+
 Add a `wwwroot` folder to the project.
 
 Add an `index.html` file to the `wwwroot` folder with the following markup.
@@ -183,6 +185,8 @@ Add the following `Counter` component to the root of the project, which is the d
     }
 }
 ```
+
+Save the `Counter` component (`Counter.razor`).
 
 In **Solution Explorer**, double-click on the `Form1.cs` file to open the designer:
 
