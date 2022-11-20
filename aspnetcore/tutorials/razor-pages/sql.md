@@ -1,15 +1,13 @@
 ---
 title: Part 4, work with a database
-author: rick-anderson
+author: wadepickett
 description: Part 4 of tutorial series on Razor Pages.
-ms.author: riande
+ms.author: wpickett
 ms.date: 10/24/2022
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/sql
 ---
 # Part 4 of tutorial series on Razor Pages
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
 
 :::moniker range=">= aspnetcore-7.0"
 

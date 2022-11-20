@@ -1,15 +1,13 @@
 ---
 title: Part 7, add a new field
-author: rick-anderson
+author: wadepickett
 description: Part 7 of tutorial series on Razor Pages.
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc, contperf-fy21q2
 ms.date: 10/24/2022
 uid: tutorials/razor-pages/new-field
 ---
 # Part 7, add a new field to a Razor Page in ASP.NET Core
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-7.0"
 

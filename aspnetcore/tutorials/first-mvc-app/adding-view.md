@@ -1,8 +1,8 @@
 ---
 title: Part 3, add a view to an ASP.NET Core MVC app
-author: rick-anderson
+author: wadepickett
 description: Part 3 of tutorial series on ASP.NET Core MVC.
-ms.author: riande
+ms.author: wpickett
 ms.date: 11/04/2022
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-view
@@ -10,8 +10,6 @@ ms.custom: contperf-fy21q3
 ---
 
 # Part 3, add a view to an ASP.NET Core MVC app
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-7.0"
 

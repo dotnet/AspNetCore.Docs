@@ -1,16 +1,14 @@
 ---
 title: Part 2, add a model
-author: rick-anderson
+author: wadepickett
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
-ms.author: riande
+ms.author: wpickett
 ms.date: 11/04/2022
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/model
 ---
 # Part 2, add a model to a Razor Pages app in ASP.NET Core
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-7.0"
 

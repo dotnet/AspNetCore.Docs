@@ -1,15 +1,13 @@
 ---
 title: Part 6, add search
-author: rick-anderson
+author: wadepickett
 description: Part 6 of tutorial series on Razor Pages.
-ms.author: riande
+ms.author: wpickett
 ms.date: 10/24/2022
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/search
 ---
 # Part 6, add search to ASP.NET Core Razor Pages
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-7.0"
 

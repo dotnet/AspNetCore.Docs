@@ -1,16 +1,14 @@
 ---
 title: "Tutorial: Create a web API with ASP.NET Core"
-author: rick-anderson
+author: wadepickett
 description: Learn how to build a web API with ASP.NET Core.
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc, engagement-fy23
 ms.date: 10/31/2022
 uid: tutorials/first-web-api
 ---
 
 # Tutorial: Create a web API with ASP.NET Core
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
 This tutorial teaches the basics of building a web API using a database.
 

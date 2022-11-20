@@ -1,16 +1,14 @@
 ---
 title: Part 4, add a model to an ASP.NET Core MVC app
-author: rick-anderson
+author: wadepickett
 description: Part 4 of tutorial series on ASP.NET Core MVC.
-ms.author: riande
+ms.author: wpickett
 ms.date: 11/04/2022
 uid: tutorials/first-mvc-app/adding-model
 ms.custom: contperf-fy21q3
 ---
 
 # Part 4, add a model to an ASP.NET Core MVC app
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Jon P Smith](https://twitter.com/thereformedprog).
 
 In this tutorial, classes are added for managing movies in a database. These classes are the "**M**odel" part of the **M**VC app.
 

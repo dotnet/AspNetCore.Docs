@@ -1,8 +1,8 @@
 ---
 title: "Tutorial: Get started with Razor Pages in ASP.NET Core"
-author: rick-anderson
+author: wadepickett
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
-ms.author: riande
+ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/04/2022
 ms.custom: contperf-fy21q2
@@ -10,8 +10,6 @@ uid: tutorials/razor-pages/razor-pages-start
 ---
 
 # Tutorial: Get started with Razor Pages in ASP.NET Core
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-7.0"
 

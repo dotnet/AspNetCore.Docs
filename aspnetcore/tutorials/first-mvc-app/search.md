@@ -1,15 +1,13 @@
 ---
 title: Part 7, add search to an ASP.NET Core MVC app
-author: rick-anderson
+author: wadepickett
 description: Part 7 of tutorial series on ASP.NET Core MVC.
-ms.author: riande
+ms.author: wpickett
 ms.date: 10/25/2022
 uid: tutorials/first-mvc-app/search
 ---
 
 # Part 7, add search to an ASP.NET Core MVC app
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-7.0"
 
