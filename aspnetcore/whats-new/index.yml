@@ -13,17 +13,17 @@ landingContent:
   - linkListType: whats-new
     links:
     - text: October 2022
-      url: dotnet-AspNetCore.Docs-2022-10-01.md
+      url: dotnet-AspNetCore.Docs-mod4.md
     - text: September 2022
-      url: dotnet-AspNetCore.Docs-2022-09-01.md
+      url: dotnet-AspNetCore.Docs-mod3.md
     - text: August 2022
-      url: dotnet-AspNetCore.Docs-2022-08-01.md
+      url: dotnet-AspNetCore.Docs-mod2.md
     - text: July 2022
-      url: dotnet-AspNetCore.Docs-2022-07-01.md
+      url: dotnet-AspNetCore.Docs-mod1.md
     - text: June 2022
-      url: dotnet-AspNetCore.Docs-2022-04-01.md
+      url: dotnet-AspNetCore.Docs-mod0.md
     - text: March 2022
-      url: dotnet-AspNetCore.Docs-2022-03-01.md
+      url: dotnet-AspNetCore.Docs-mod5.md
 - title: Get involved - contribute to ASP.NET Core docs
   linkLists:
   - linkListType: overview
