@@ -780,10 +780,10 @@ When rendering a list of elements or components and the elements or components s
 
 Consider the following example that demonstrates a collection mapping problem that's solved by using [`@key`][5].
 
-For the following `Details` and `People` components:
+For the following `Details` and `PeopleExample` components:
 
-* The `Details` component receives data (`Data`) from the parent `People` component, which is displayed in an `<input>` element. Any given displayed `<input>` element can receive the focus of the page from the user when they select one of the `<input>` elements.
-* The `People` component creates a list of person objects for display using the `Details` component. Every three seconds, a new person is added to the collection.
+* The `Details` component receives data (`Data`) from the parent `PeopleExample` component, which is displayed in an `<input>` element. Any given displayed `<input>` element can receive the focus of the page from the user when they select one of the `<input>` elements.
+* The `PeopleExample` component creates a list of person objects for display using the `Details` component. Every three seconds, a new person is added to the collection.
 
 This demonstration allows you to:
 
@@ -794,17 +794,17 @@ This demonstration allows you to:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/index/Details.razor":::
 
-In the following `People` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the [`@key`][5] directive attribute is used to improve the user's experience.
+In the following `PeopleExample` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the [`@key`][5] directive attribute is used to improve the user's experience.
 
-`Pages/People.razor`:
+`Pages/PeopleExample.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/index/People.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/index/PeopleExample.razor":::
 
 The contents of the `people` collection changes with inserted, deleted, or re-ordered entries. Rerendering can lead to visible behavior differences. For example, each time a person is inserted into the `people` collection, the user's focus is lost.
 
 The mapping process of elements or components to a collection can be controlled with the [`@key`][5] directive attribute. Use of [`@key`][5] guarantees the preservation of elements or components based on the key's value. If the `Details` component in the preceding example is keyed on the `person` item, Blazor ignores rerendering `Details` components that haven't changed.
 
-To modify the `People` component to use the [`@key`][5] directive attribute with the `people` collection, update the `<Details>` element to the following:
+To modify the `PeopleExample` component to use the [`@key`][5] directive attribute with the `people` collection, update the `<Details>` element to the following:
 
 ```razor
 <Details @key="person" Data="@person.Data" />
@@ -2336,10 +2336,10 @@ When rendering a list of elements or components and the elements or components s
 
 Consider the following example that demonstrates a collection mapping problem that's solved by using [`@key`][5].
 
-For the following `Details` and `People` components:
+For the following `Details` and `PeopleExample` components:
 
-* The `Details` component receives data (`Data`) from the parent `People` component, which is displayed in an `<input>` element. Any given displayed `<input>` element can receive the focus of the page from the user when they select one of the `<input>` elements.
-* The `People` component creates a list of person objects for display using the `Details` component. Every three seconds, a new person is added to the collection.
+* The `Details` component receives data (`Data`) from the parent `PeopleExample` component, which is displayed in an `<input>` element. Any given displayed `<input>` element can receive the focus of the page from the user when they select one of the `<input>` elements.
+* The `PeopleExample` component creates a list of person objects for display using the `Details` component. Every three seconds, a new person is added to the collection.
 
 This demonstration allows you to:
 
@@ -2350,17 +2350,17 @@ This demonstration allows you to:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/index/Details.razor":::
 
-In the following `People` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the [`@key`][5] directive attribute is used to improve the user's experience.
+In the following `PeopleExample` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the [`@key`][5] directive attribute is used to improve the user's experience.
 
-`Pages/People.razor`:
+`Pages/PeopleExample.razor`:
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/People.razor":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/PeopleExample.razor":::
 
 The contents of the `people` collection changes with inserted, deleted, or re-ordered entries. Rerendering can lead to visible behavior differences. For example, each time a person is inserted into the `people` collection, the user's focus is lost.
 
 The mapping process of elements or components to a collection can be controlled with the [`@key`][5] directive attribute. Use of [`@key`][5] guarantees the preservation of elements or components based on the key's value. If the `Details` component in the preceding example is keyed on the `person` item, Blazor ignores rerendering `Details` components that haven't changed.
 
-To modify the `People` component to use the [`@key`][5] directive attribute with the `people` collection, update the `<Details>` element to the following:
+To modify the `PeopleExample` component to use the [`@key`][5] directive attribute with the `people` collection, update the `<Details>` element to the following:
 
 ```razor
 <Details @key="person" Data="@person.Data" />
@@ -3797,10 +3797,10 @@ When rendering a list of elements or components and the elements or components s
 
 Consider the following example that demonstrates a collection mapping problem that's solved by using [`@key`][5].
 
-For following `Details` and `People` components:
+For following `Details` and `PeopleExample` components:
 
-* The `Details` component receives data (`Data`) from the parent `People` component, which is displayed in an `<input>` element. Any given displayed `<input>` element can receive the focus of the page from the user when they select one of the `<input>` elements.
-* The `People` component creates a list of person objects for display using the `Details` component. Every three seconds, a new person is added to the collection.
+* The `Details` component receives data (`Data`) from the parent `PeopleExample` component, which is displayed in an `<input>` element. Any given displayed `<input>` element can receive the focus of the page from the user when they select one of the `<input>` elements.
+* The `PeopleExample` component creates a list of person objects for display using the `Details` component. Every three seconds, a new person is added to the collection.
 
 This demonstration allows you to:
 
@@ -3811,17 +3811,17 @@ This demonstration allows you to:
 
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/index/Details.razor":::
 
-In the following `People` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the [`@key`][5] directive attribute is used to improve the user's experience.
+In the following `PeopleExample` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the [`@key`][5] directive attribute is used to improve the user's experience.
 
-`Pages/People.razor`:
+`Pages/PeopleExample.razor`:
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/People.razor":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/PeopleExample.razor":::
 
 The contents of the `people` collection changes with inserted, deleted, or re-ordered entries. Rerendering can lead to visible behavior differences. For example, each time a person is inserted into the `people` collection, the user's focus is lost.
 
 The mapping process of elements or components to a collection can be controlled with the [`@key`][5] directive attribute. Use of [`@key`][5] guarantees the preservation of elements or components based on the key's value. If the `Details` component in the preceding example is keyed on the `person` item, Blazor ignores rerendering `Details` components that haven't changed.
 
-To modify the `People` component to use the [`@key`][5] directive attribute with the `people` collection, update the `<Details>` element to the following:
+To modify the `PeopleExample` component to use the [`@key`][5] directive attribute with the `people` collection, update the `<Details>` element to the following:
 
 ```razor
 <Details @key="person" Data="@person.Data" />
@@ -4810,10 +4810,10 @@ When rendering a list of elements or components and the elements or components s
 
 Consider the following example that demonstrates a collection mapping problem that's solved by using [`@key`][5].
 
-For the following `Details` and `People` components:
+For the following `Details` and `PeopleExample` components:
 
-* The `Details` component receives data (`Data`) from the parent `People` component, which is displayed in an `<input>` element. Any given displayed `<input>` element can receive the focus of the page from the user when they select one of the `<input>` elements.
-* The `People` component creates a list of person objects for display using the `Details` component. Every three seconds, a new person is added to the collection.
+* The `Details` component receives data (`Data`) from the parent `PeopleExample` component, which is displayed in an `<input>` element. Any given displayed `<input>` element can receive the focus of the page from the user when they select one of the `<input>` elements.
+* The `PeopleExample` component creates a list of person objects for display using the `Details` component. Every three seconds, a new person is added to the collection.
 
 This demonstration allows you to:
 
@@ -4824,17 +4824,17 @@ This demonstration allows you to:
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/index/Details.razor":::
 
-In the following `People` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the [`@key`][5] directive attribute is used to improve the user's experience.
+In the following `PeopleExample` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the [`@key`][5] directive attribute is used to improve the user's experience.
 
-`Pages/People.razor`:
+`Pages/PeopleExample.razor`:
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/People.razor":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/PeopleExample.razor":::
 
 The contents of the `people` collection changes with inserted, deleted, or re-ordered entries. Rerendering can lead to visible behavior differences. For example, each time a person is inserted into the `people` collection, the user's focus is lost.
 
 The mapping process of elements or components to a collection can be controlled with the [`@key`][5] directive attribute. Use of [`@key`][5] guarantees the preservation of elements or components based on the key's value. If the `Details` component in the preceding example is keyed on the `person` item, Blazor ignores rerendering `Details` components that haven't changed.
 
-To modify the `People` component to use the [`@key`][5] directive attribute with the `people` collection, update the `<Details>` element to the following:
+To modify the `PeopleExample` component to use the [`@key`][5] directive attribute with the `people` collection, update the `<Details>` element to the following:
 
 ```razor
 <Details @key="person" Data="@person.Data" />
