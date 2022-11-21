@@ -35,6 +35,28 @@ Blazor Hybrid exposes the underlying Web View configuration for different platfo
 
 Use the preferred patterns on each platform to attach event handlers to the events to execute your custom code.
 
+## Exception handling in Windows Forms and WPF apps
+
+*This section only applies to Windows Forms and WPF Blazor Hybrid apps.*
+
+Create a callback for `UnhandledException` on the <xref:System.AppDomain.CurrentDomain?displayProperty=fullName> property. The following example uses a a [compiler directive](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if) to display a <xref:System.Windows.Forms.MessageBox> that either alerts the user that an error has occurred or shows the error information to the developer. Log the error information in `error.ExceptionObject`.
+
+```csharp
+AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
+{
+#if DEBUG
+    MessageBox.Show(text: error.ExceptionObject.ToString(), caption: "Error");
+#else
+    MessageBox.Show(text: "An error occurred.", caption: "Error");
+#endif
+    
+    // Log the error information (error.ExceptionObject)
+};
+```
+
+> [!WARNING]
+> Avoid exposing error information to users, which is a security risk.
+
 ## Additional resources
 
 * <xref:blazor/hybrid/tutorials/index>
