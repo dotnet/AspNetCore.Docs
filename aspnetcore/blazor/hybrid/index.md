@@ -5,7 +5,7 @@ description: Explore ASP.NET Core Blazor Hybrid, a way to build interactive clie
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
-ms.date: 11/08/2022
+ms.date: 11/21/2022
 uid: blazor/hybrid/index
 ---
 # ASP.NET Core Blazor Hybrid
@@ -56,6 +56,23 @@ AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
 
 > [!WARNING]
 > Avoid exposing error information to users, which is a security risk.
+
+## Globalization and localization
+
+.NET MAUI configures the <xref:System.Globalization.CultureInfo.CurrentCulture> and <xref:System.Globalization.CultureInfo.CurrentUICulture> based on the device's ambient information.
+
+<xref:Microsoft.Extensions.Localization.IStringLocalizer> and other API in the <xref:Microsoft.Extensions.Localization?displayProperty=fullName> namespace generally work as expected, along with globalization formatting, parsing, and binding that relies on the user's culture.
+
+When dynamically changing the app culture at runtime, the app must be reloaded to reflect the change in culture, which takes care of rerendering the root component and passing the new culture to rerendered child components.
+
+.NET's resource system supports embedding localized images (as blobs) into an app, but Blazor Hybrid can't display the embedded images in Razor components at this time. Even if a user reads an image's bytes into a <xref:System.IO.Stream> using <xref:System.Resources.ResourceManager>, the framework doesn't currently support rendering the retrieved image in a Razor component.
+
+[A platform-specific approach to include localized images](/xamarin/xamarin-forms/user-interface/images#local-images) is a feature of .NET's resource system, but a Razor component's browser elements aren't able to interact with such images.
+
+For more information, see the following resources:
+
+* [Xamarin.Forms String and Image Localization](/xamarin/xamarin-forms/app-fundamentals/localization/): The guidance generally applies to Blazor Hybrid apps. Not every scenario is supported at this time.
+* [Blazor Image component to display images that are not accessible through HTTP endpoints (dotnet/aspnetcore #25274)](https://github.com/dotnet/aspnetcore/issues/25274)
 
 ## Additional resources
 
