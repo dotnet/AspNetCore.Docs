@@ -39,7 +39,7 @@ Use the preferred patterns on each platform to attach event handlers to the even
 
 *This section only applies to Windows Forms and WPF Blazor Hybrid apps.*
 
-Create a callback for `UnhandledException` on the <xref:System.AppDomain.CurrentDomain?displayProperty=fullName> property. The following example uses a a [compiler directive](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if) to display a <xref:System.Windows.Forms.MessageBox> that either alerts the user that an error has occurred or shows the error information to the developer. Log the error information in `error.ExceptionObject`.
+Create a callback for `UnhandledException` on the <xref:System.AppDomain.CurrentDomain?displayProperty=fullName> property. The following example uses a [compiler directive](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if) to display a <xref:System.Windows.Forms.MessageBox> that either alerts the user that an error has occurred or shows the error information to the developer. Log the error information in `error.ExceptionObject`.
 
 ```csharp
 AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
