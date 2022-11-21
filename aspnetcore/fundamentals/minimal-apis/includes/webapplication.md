@@ -108,7 +108,7 @@ The following sections show how to specify the custom certificate using the `app
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cert3)]
 
-## Read the environment
+## Environment
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_re)]
 
@@ -189,15 +189,17 @@ By default the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> reads c
 * Environment variables
 * The command line
 
-For a complete list of configuration sources read, see [Default configuration](xref:fundamentals/configuration/index?view=aspnetcore-6.0#default-configuration) in <xref:fundamentals/configuration/index?view=aspnetcore-6.0>
+The following code reads `HelloKey` from configuration and displays the value at the `/` endpoint. If the configuration value is null, "Hello" is assigned to `message`:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_configb)]
 
+For a complete list of configuration sources read, see [Default configuration](xref:fundamentals/configuration/index?view=aspnetcore-6.0#default-configuration) in <xref:fundamentals/configuration/index?view=aspnetcore-6.0>
+
 ## Read the environment
 
-The following code reads `HelloKey` from configuration and displays the value at the `/` endpoint. If the configuration value is null, "Hello" is assigned to `message`:
-
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_reb)]
+
+For more information on using the environment, see <xref:fundamentals/environments?view=aspnetcore-6.0>
 
 ## Add logging providers
 
