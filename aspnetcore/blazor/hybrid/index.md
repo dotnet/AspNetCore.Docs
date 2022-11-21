@@ -54,9 +54,6 @@ AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
 };
 ```
 
-> [!WARNING]
-> Avoid exposing error information to users, which is a security risk.
-
 ## Globalization and localization
 
 *This section only applies to .NET MAUI Blazor Hybrid apps.*
