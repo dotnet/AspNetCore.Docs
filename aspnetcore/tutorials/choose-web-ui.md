@@ -3,7 +3,7 @@ title: Choose an ASP.NET Core UI
 author: wadepickett
 description: Learn when to use which ASP.NET Core web UI technologies. Understand the server, client and hybrid options.
 ms.author: wpickett
-ms.date: 11/20/2022
+ms.date: 03/02/2022
 uid: tutorials/choose-web-ui
 ---
 # Choose an ASP.NET Core web UI
