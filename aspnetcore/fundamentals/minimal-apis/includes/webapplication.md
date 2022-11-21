@@ -12,7 +12,7 @@ The following code creates a <xref:Microsoft.AspNetCore.Builder.WebApplication> 
 
 [`WebApplication.Create`](xref:Microsoft.AspNetCore.Builder.WebApplication.Create%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplication> class with preconfigured defaults.
 
-### Working with ports
+## Working with ports
 
 When a web app is created with Visual Studio or `dotnet new`, a `Properties/launchSettings.json` file is created that specifies the ports the app responds to. In the port setting samples that follow, running the app from Visual Studio returns an error dialog `Unable to connect to web server 'AppName'`.  Visual Studio returns an error because it's expecting the port specified in `Properties/launchSettings.json`, but the app is using the port specified by `app.Run("http://localhost:3000")`. Run the following port changing samples from the command line.
 
@@ -22,13 +22,13 @@ The following sections set the port the app responds to.
 
 In the preceding code, the app responds to port `3000`.
 
-#### Multiple ports
+### Multiple ports
 
 In the following code, the app responds to port `3000` and `4000`.
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_pm)]
 
-#### Set the port from the command line
+### Set the port from the command line
 
 The following command makes the app respond to port `7777`:
 
@@ -38,7 +38,7 @@ dotnet run --urls="https://localhost:7777"
 
 If the Kestrel endpoint is also configured in the `appsettings.json` file, the `appsettings.json` file specified URL is used. For more information, see [Kestrel endpoint configuration](xref:fundamentals/configuration/index?view=aspnetcore-6.0#kestrel)
 
-#### Read the port from environment
+### Read the port from environment
 
 The following code reads the port from the environment:
 
@@ -46,7 +46,7 @@ The following code reads the port from the environment:
 
 The preferred way to set the port from the environment is to use the `ASPNETCORE_URLS` environment variable, which is shown in the following section.
 
-#### Set the ports via the ASPNETCORE_URLS environment variable
+### Set the ports via the ASPNETCORE_URLS environment variable
 
 The `ASPNETCORE_URLS` environment variable is available to set the port:
 
@@ -60,19 +60,19 @@ ASPNETCORE_URLS=http://localhost:3000
 ASPNETCORE_URLS=http://localhost:3000;https://localhost:5000
 ```
 
-### Listen on all interfaces
+## Listen on all interfaces
 
 The following samples demonstrate listening on all interfaces
 
-#### http://*:3000
+### http://*:3000
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_i1)]
 
-#### http://+:3000
+### http://+:3000
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_ip)]
 
-#### `http://0.0.0.0:3000`
+### `http://0.0.0.0:3000`
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_i0)]
 
@@ -83,6 +83,8 @@ The preceding samples can use `ASPNETCORE_URLS`
 ```
 ASPNETCORE_URLS=http://*:3000;https://+:5000;http://0.0.0.0:5005
 ```
+
+## Working with certificates
 
 ### Specify HTTPS with development certificate
 
@@ -106,13 +108,13 @@ The following sections show how to specify the custom certificate using the `app
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cert3)]
 
-### Read the environment
+## Read the environment
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_re)]
 
 For more information using the environment, see <xref:fundamentals/environments?view=aspnetcore-6.0>
 
-### Configuration
+## Configuration
 
 The following code reads from the configuration system:
 
@@ -120,7 +122,7 @@ The following code reads from the configuration system:
 
 For more information, see <xref:fundamentals/configuration/index?view=aspnetcore-6.0>
 
-### Logging
+## Logging
 
 The following code writes a message to the log on application startup:
 
@@ -128,7 +130,7 @@ The following code writes a message to the log on application startup:
 
 For more information, see <xref:fundamentals/logging/index?view=aspnetcore-6.0>
 
-### Access the Dependency Injection (DI) container
+## Access the Dependency Injection (DI) container
 
 The following code shows how to get services from the DI container during application startup:
 
@@ -138,9 +140,10 @@ For more information, see <xref:fundamentals/dependency-injection?view=aspnetcor
 
 ## WebApplicationBuilder
 
-This section contains sample code using <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>.
+The following sections contain sample code using <xref:Microsoft.AspNetCore.Builder.
+WebApplicationBuilder>.
 
-### Change the content root, application name, and environment
+## Change the content root, application name, and environment
 
 The following code sets the content root, application name, and environment:
 
@@ -148,9 +151,9 @@ The following code sets the content root, application name, and environment:
 
 [WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults.
 
-For more information, see <xref:fundamentals/index?view=aspnetcore-6.0>
+For more information, see <xref:fundamentals/index?view=aspnetcore-7.0>
 
-### Change the content root, app name, and environment by environment variables or command line
+## Change the content root, app name, and environment by environment variables or command line
 
 The following table shows the environment variable and command-line argument used to change the content root, app name, and environment:
 
@@ -160,7 +163,7 @@ The following table shows the environment variable and command-line argument use
 | Environment name |  ASPNETCORE_ENVIRONMENT | --environment |
 | Content root  | ASPNETCORE_CONTENTROOT  | --contentRoot |
 
-### Add configuration providers
+## Add configuration providers
 
 The following sample adds the INI configuration provider:
 
@@ -178,7 +181,7 @@ var app = builder.Build();
 
 For detailed information, see [File configuration providers](xref:fundamentals/configuration/index?view=aspnetcore-6.0#file-configuration-provider) in <xref:fundamentals/configuration/index?view=aspnetcore-6.0>.
 
-### Read configuration
+## Read configuration
 
 By default the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> reads configuration from multiple sources, including:
 
@@ -190,40 +193,39 @@ For a complete list of configuration sources read, see [Default configuration](x
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_configb)]
 
-### Read the environment
+## Read the environment
 
 The following code reads `HelloKey` from configuration and displays the value at the `/` endpoint. If the configuration value is null, "Hello" is assigned to `message`:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_reb)]
 
-### Add logging providers
+## Add logging providers
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_logb)]
 
-### Add services
+## Add services
 
 [!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_svc)]
 
-
-### Customize the IHostBuilder
+## Customize the IHostBuilder
 
 Existing extension methods on <xref:Microsoft.Extensions.Hosting.IHostBuilder> can be accessed using the [Host property](xref:Microsoft.Extensions.Hosting.IHostBuilder.Properties):
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_ihb)]
 
-### Customize the IWebHostBuilder
+## Customize the IWebHostBuilder
 
 Extension methods on <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> can be accessed using the [WebApplicationBuilder.WebHost](xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost) property.
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_iwhb)]
 
-### Change the web root
+## Change the web root
 
 By default, the web root is relative to the content root in the `wwwroot` folder. Web root is where the static files middleware looks for static files. Web root can be changed with `WebHostOptions`, the command line, or with the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseWebRoot%2A> method:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_chngr)]
 
-### Custom dependency injection (DI) container
+## Custom dependency injection (DI) container
 
 The following example uses [Autofac](https://autofac.readthedocs.io/en/latest/integration/aspnetcore.html):
 
@@ -239,7 +241,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterMod
 var app = builder.Build();
 ```
 
-### Add Middleware
+## Add Middleware
 
 Any existing ASP.NET Core middleware can be configured on the `WebApplication`:
 
@@ -247,7 +249,7 @@ Any existing ASP.NET Core middleware can be configured on the `WebApplication`:
 
 For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.0>
 
-### Developer exception page
+## Developer exception page
 
 <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The developer exception page is enabled in the  preconfigured defaults. When the following code is run in the [development environment](xref:fundamentals/environments), navigating to `/` renders a friendly page that shows the exception.
 

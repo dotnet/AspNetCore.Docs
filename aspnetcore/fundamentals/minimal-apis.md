@@ -49,21 +49,21 @@ The following table lists some of the middleware frequently used with minimal AP
 
 The following sections cover routing, parameter binding, and responses.
 
-### Routing
+## Routing
 
 A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A>:
 
 [!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_r1)]
 
-### Route Handlers
+## Route Handlers
 
 [!INCLUDE [route handling](minimal-apis/includes/route-handlers.md)]
 
-### Parameter Binding
+## Parameter Binding
 
 [!INCLUDE [parameter binding](minimal-apis/includes/parameter-binding.md)]
 
-### Read the request body
+## Read the request body
 
 Read the request body directly using a <xref:Microsoft.AspNetCore.Http.HttpContext> or <xref:Microsoft.AspNetCore.Http.HttpRequest> parameter:
 
@@ -90,21 +90,21 @@ Route handlers support the following types of return values:
 
 For a more in-depth guide to route handler return values see <xref:fundamentals/minimal-apis/responses>
 
-### Example return values
+## Example return values
 
-#### string return values
+### string return values
 
 ```csharp
 app.MapGet("/hello", () => "Hello World");
 ```
 
-#### JSON return values
+### JSON return values
 
 ```csharp
 app.MapGet("/hello", () => new { Message = "Hello World" });
 ```
 
-#### IResult return values
+### IResult return values
 
 ```csharp
 app.MapGet("/hello", () => Results.Ok(new { Message = "Hello World" }));
@@ -114,26 +114,26 @@ The following example uses the built-in result types to customize the response:
 
 [!code-csharp[](minimal-apis/7.0-samples/todo/Program.cs?name=snippet_getCustom)]
 
-##### JSON
+#### JSON
 
 ```csharp
 app.MapGet("/hello", () => Results.Json(new { Message = "Hello World" }));
 ```
 
-##### Custom Status Code
+#### Custom Status Code
 
 ```csharp
 app.MapGet("/405", () => Results.StatusCode(405));
 ```
 
-##### Text
+#### Text
 
 ```csharp
 app.MapGet("/text", () => Results.Text("This is some text"));
 ```
 <a name="stream7"></a>
 
-##### Stream
+#### Stream
 
 ```csharp
 var proxyClient = new HttpClient();
@@ -147,13 +147,13 @@ app.MapGet("/pokemon", async () =>
 
 See <xref:fundamentals/minimal-apis/responses#stream7> for more examples.
 
-##### Redirect
+#### Redirect
 
 ```csharp
 app.MapGet("/old-path", () => Results.Redirect("/new-path"));
 ```
 
-##### File
+#### File
 
 ```csharp
 app.MapGet("/download", () => Results.File("myfile.text"));
@@ -161,11 +161,11 @@ app.MapGet("/download", () => Results.File("myfile.text"));
 
 <a name="binr7"></a>
 
-### Built-in results
+## Built-in results
 
 [!INCLUDE [results-helpers](minimal-apis/includes/results-helpers.md)]
 
-### Customizing results
+## Customizing results
 
 Applications can control responses by implementing a custom <xref:Microsoft.AspNetCore.Http.IResult> type. The following code is an example of an HTML result type:
 
@@ -175,7 +175,7 @@ We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResu
 
 [!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
 
-### Typed results
+## Typed results
 
 The <xref:Microsoft.AspNetCore.Http.IResult> interface can represent values returned from minimal APIs that don't utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL.
 
@@ -205,7 +205,7 @@ The following sample uses [policy-based authorization](xref:security/authorizati
 
 [!code-csharp[](minimal-apis/7.0-samples/WebRPauth/Program.cs?name=snippet_auth3&range=7-8,22-26)]
 
-### Allow unauthenticated users to access an endpoint
+## Allow unauthenticated users to access an endpoint
 
 The [`[AllowAnonymous]`](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute)
 allows unauthenticated users to access endpoints:
