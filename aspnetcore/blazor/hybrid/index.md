@@ -35,7 +35,7 @@ Blazor Hybrid exposes the underlying Web View configuration for different platfo
 
 Use the preferred patterns on each platform to attach event handlers to the events to execute your custom code.
 
-## Exception handling in Windows Forms and WPF apps
+## Unhandled exceptions in Windows Forms and WPF apps
 
 *This section only applies to Windows Forms and WPF Blazor Hybrid apps.*
 
