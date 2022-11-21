@@ -59,6 +59,8 @@ AppDomain.CurrentDomain.UnhandledException += (sender, error) =>
 
 ## Globalization and localization
 
+*This section only applies to .NET MAUI Blazor Hybrid apps.*
+
 .NET MAUI configures the <xref:System.Globalization.CultureInfo.CurrentCulture> and <xref:System.Globalization.CultureInfo.CurrentUICulture> based on the device's ambient information.
 
 <xref:Microsoft.Extensions.Localization.IStringLocalizer> and other API in the <xref:Microsoft.Extensions.Localization?displayProperty=fullName> namespace generally work as expected, along with globalization formatting, parsing, and binding that relies on the user's culture.
@@ -67,7 +69,7 @@ When dynamically changing the app culture at runtime, the app must be reloaded t
 
 .NET's resource system supports embedding localized images (as blobs) into an app, but Blazor Hybrid can't display the embedded images in Razor components at this time. Even if a user reads an image's bytes into a <xref:System.IO.Stream> using <xref:System.Resources.ResourceManager>, the framework doesn't currently support rendering the retrieved image in a Razor component.
 
-[A platform-specific approach to include localized images](/xamarin/xamarin-forms/user-interface/images#local-images) is a feature of .NET's resource system, but a Razor component's browser elements aren't able to interact with such images.
+[A platform-specific approach to include localized images](/xamarin/xamarin-forms/user-interface/images#local-images) is a feature of .NET's resource system, but a Razor component's browser elements in a .NET MAUI Blazor Hybrid app aren't able to interact with such images.
 
 For more information, see the following resources:
 
