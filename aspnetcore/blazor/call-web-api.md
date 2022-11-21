@@ -622,7 +622,7 @@ Various network tools are publicly available for testing web API backend apps di
 
 * <xref:blazor/security/webassembly/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Blazor WebAssembly apps, the article covers general CORS concepts.
-* [Cross-Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
+* [Cross-Origin resource sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 * [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch)
 
 :::zone-end
@@ -634,7 +634,7 @@ Various network tools are publicly available for testing web API backend apps di
 * <xref:security/enforcing-ssl>
 * <xref:security/cors>
 * [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints)
-* [Cross-Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
+* [Cross-Origin resource sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 
 :::zone-end
 
