@@ -1,18 +1,18 @@
 Route handlers are methods that execute when the route matches. Route handlers can be a function of any shape, including synchronous or asynchronous. Route handlers can be a lambda expression, a local function, an instance method or a static method.
 
-#### Lambda expression
+### Lambda expression
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_le)]
 
-#### Local function
+### Local function
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_lf)]
 
-#### Instance method
+### Instance method
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_im)]
 
-#### Static method
+### Static method
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_sm)]
 
@@ -31,7 +31,7 @@ Endpoint names:
 * Must be globally unique.
 * Are used as the OpenAPI operation id when OpenAPI support is enabled. For more information, see [OpenAPI](xref:fundamentals/minimal-apis/openapi).
 
-## Route Parameters
+### Route Parameters
 
 Route parameters can be captured as part of the route pattern definition:
 
@@ -45,13 +45,13 @@ In the preceding code, if either route value cannot be converted to an `int`, an
 
 **`BadHttpRequestException: Failed to bind parameter "int userId" from "hello".`**
 
-## Wildcard and catch all routes
+### Wildcard and catch all routes
 
 The following catch all route returns `Routing to hello` from the `/posts/hello' endpoint:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_wild)]
 
-## Route constraints
+### Route constraints
 
 Route constraints constrain the matching behavior of a route.
 
@@ -76,6 +76,6 @@ The following table demonstrates the preceding route templates and their behavio
 
 For more information, see [Route constraint reference](xref:fundamentals/routing) in <xref:fundamentals/routing>.
 
-## Route groups
+### Route groups
 
 [!INCLUDE[](~/includes/route-groups.md)]

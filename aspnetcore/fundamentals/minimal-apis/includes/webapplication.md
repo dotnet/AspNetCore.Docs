@@ -142,7 +142,7 @@ For more information, see <xref:fundamentals/dependency-injection?view=aspnetcor
 
 The following sections contain sample code using <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>.
 
-## Change the content root, application name, and environment
+## Change the content root, app name, and environment
 
 The following code sets the content root, application name, and environment:
 
@@ -152,7 +152,7 @@ The following code sets the content root, application name, and environment:
 
 For more information, see <xref:fundamentals/index?view=aspnetcore-7.0>
 
-## Change the content root, app name, and environment by environment variables or command line
+### Change the content root, app name, and environment by environment variables or command line
 
 The following table shows the environment variable and command-line argument used to change the content root, app name, and environment:
 
@@ -242,16 +242,16 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterMod
 var app = builder.Build();
 ```
 
+## Developer exception page
+
+<xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The developer exception page is enabled in the  preconfigured defaults. When the following code is run in the [development environment](xref:fundamentals/environments), navigating to `/` renders a friendly page that shows the exception.
+
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_dep)]
+
 ## Add Middleware
 
 Any existing ASP.NET Core middleware can be configured on the `WebApplication`:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_addmid)]
 
-For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.0>
-
-## Developer exception page
-
-<xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults. The developer exception page is enabled in the  preconfigured defaults. When the following code is run in the [development environment](xref:fundamentals/environments), navigating to `/` renders a friendly page that shows the exception.
-
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_dep)]
+For more information, see <xref:fundamentals/middleware/index>

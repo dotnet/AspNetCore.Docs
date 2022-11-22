@@ -4,7 +4,7 @@ author: rick-anderson
 description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 11/21/2022
+ms.date: 11/22/2022
 uid: fundamentals/minimal-apis
 ---
 
@@ -114,26 +114,26 @@ The following example uses the built-in result types to customize the response:
 
 [!code-csharp[](minimal-apis/7.0-samples/todo/Program.cs?name=snippet_getCustom)]
 
-#### JSON
+### JSON
 
 ```csharp
 app.MapGet("/hello", () => Results.Json(new { Message = "Hello World" }));
 ```
 
-#### Custom Status Code
+### Custom Status Code
 
 ```csharp
 app.MapGet("/405", () => Results.StatusCode(405));
 ```
 
-#### Text
+### Text
 
 ```csharp
 app.MapGet("/text", () => Results.Text("This is some text"));
 ```
 <a name="stream7"></a>
 
-#### Stream
+### Stream
 
 ```csharp
 var proxyClient = new HttpClient();
@@ -147,13 +147,13 @@ app.MapGet("/pokemon", async () =>
 
 See <xref:fundamentals/minimal-apis/responses#stream7> for more examples.
 
-#### Redirect
+### Redirect
 
 ```csharp
 app.MapGet("/old-path", () => Results.Redirect("/new-path"));
 ```
 
-#### File
+### File
 
 ```csharp
 app.MapGet("/download", () => Results.File("myfile.text"));
@@ -161,11 +161,11 @@ app.MapGet("/download", () => Results.File("myfile.text"));
 
 <a name="binr7"></a>
 
-## Built-in results
+### Built-in results
 
 [!INCLUDE [results-helpers](minimal-apis/includes/results-helpers.md)]
 
-## Customizing results
+### Customizing results
 
 Applications can control responses by implementing a custom <xref:Microsoft.AspNetCore.Http.IResult> type. The following code is an example of an HTML result type:
 
@@ -175,7 +175,7 @@ We recommend adding an extension method to <xref:Microsoft.AspNetCore.Http.IResu
 
 [!code-csharp[](minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_xtn)]
 
-## Typed results
+### Typed results
 
 The <xref:Microsoft.AspNetCore.Http.IResult> interface can represent values returned from minimal APIs that don't utilize the implicit support for JSON serializing the returned object to the HTTP response. The static [Results](/dotnet/api/microsoft.aspnetcore.http.results) class is used to create varying `IResult` objects that represent different types of responses. For example, setting the response status code or redirecting to another URL.
 
