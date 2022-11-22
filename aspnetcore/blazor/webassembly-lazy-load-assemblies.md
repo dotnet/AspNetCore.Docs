@@ -363,9 +363,6 @@ If the `Robot` component from the RCL is requested at `/robot`, the `GrantImahar
 * If unexpected rendering occurs, such as rendering a component from a previous navigation, confirm that the code throws if the cancellation token is set.
 * If assemblies configured for lazy loading unexpectedly load at app start, check that the assembly is marked for lazy loading in the project file.
 
-> [!NOTE]
-> A known issue exists for loading types from a lazily-loaded assembly. For more information, see [Blazor WebAssembly lazy loading assemblies not working when using @ref attribute in the component (dotnet/aspnetcore #29342)](https://github.com/dotnet/aspnetcore/issues/29342).
-
 ## Additional resources
 
 * [Handle asynchronous navigation events with `OnNavigateAsync`](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync)
