@@ -697,7 +697,7 @@ items:
   - name: Minimal APIs
     items:
       - name: Minimal APIs overview
-         uid: fundamentals/minimal-apis/overview
+        uid: fundamentals/minimal-apis/overview
       - name: Minimal APIs quick reference
         uid: fundamentals/minimal-apis
       - name: WebApplication and WebApplicationBuilder
