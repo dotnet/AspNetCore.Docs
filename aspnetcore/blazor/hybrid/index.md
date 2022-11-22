@@ -14,7 +14,7 @@ This article explains ASP.NET Core Blazor Hybrid, a way to build interactive cli
 
 Use *Blazor Hybrid* to blend desktop and mobile native client frameworks with .NET and Blazor.
 
-In a Blazor Hybrid app, [Razor components](xref:blazor/components/index) run natively on the device. Components render to an embedded Web View control through a local interop channel. Components don't run in the browser, and WebAssembly isn't involved. Razor components load and execute code quickly, and components have full access to the native capabilities of the device through the .NET platform.
+In a Blazor Hybrid app, [Razor components](xref:blazor/components/index) run natively on the device. Components render to an embedded Web View control through a local interop channel. Components don't run in the browser, and WebAssembly isn't involved. Razor components load and execute code quickly, and components have full access to the native capabilities of the device through the .NET platform. Component styles rendered in a Web View are platform dependent and may require you to account for rendering differences across platforms using custom stylesheets.
 
 Blazor Hybrid articles cover subjects pertaining to integrating [Razor components](xref:blazor/components/index) into native client frameworks.
 
