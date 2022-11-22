@@ -140,8 +140,7 @@ For more information, see <xref:fundamentals/dependency-injection?view=aspnetcor
 
 ## WebApplicationBuilder
 
-The following sections contain sample code using <xref:Microsoft.AspNetCore.Builder.
-WebApplicationBuilder>.
+The following sections contain sample code using <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>.
 
 ## Change the content root, application name, and environment
 
