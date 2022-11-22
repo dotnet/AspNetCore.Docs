@@ -44,4 +44,4 @@ In the preceding PowerShell script:
 * The `Remove-Item` command starts the app pool.
 * Commands between the `New-Item` command and the `Remove-Item` command are provided by the developer to deploy the app.
 
-Files can also be unlocked by manually stopping the app pool in the IIS Manager on the server. Don't use the `app_offine.htm` file when using the IIS Manager to stop and restart the app pool.
+Files can also be unlocked by manually stopping the app pool in the IIS Manager on the server. Don't use the `app_offline.htm` file when using the IIS Manager to stop and restart the app pool.
