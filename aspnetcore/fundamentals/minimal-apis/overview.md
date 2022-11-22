@@ -14,7 +14,7 @@ Minimal APIs are both a technology and an approach to quickly and easily create 
 You can build fully functioning REST endpoints with minimal code and configuration. Skip traditional scaffolding and avoid unnecessary controllers by fluently declaring
 your API routes and actions. For example, the following code creates an API at the root of your web application that returns the text, "Hello World!"
 
-```chsarp
+```csharp
 var app = WebApplication.Create(args);
 
 app.MapGet("/", () => "Hello World!");
