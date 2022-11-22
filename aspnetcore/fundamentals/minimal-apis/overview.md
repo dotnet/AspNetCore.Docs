@@ -24,7 +24,7 @@ app.Run();
 
 Of course, most APIs accept parameters as part of the route.
 
-``csharp 
+```csharp 
 var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
@@ -35,16 +35,12 @@ app.MapGet("/users/{userId}/books/{bookId}",
 app.Run();
 ```
 
-Minimal APIs support the configuration and customization you need to scale to multiple APIs, handle complex routes and control the responses your APIs provide. 
-
-## Want to learn more?
-
-Use the TOC navigation to jump to the topics of your choice. A great place to get started is the [web application builder](#).
+That's all it takes to get started, but it's not all that's available. Minimal APIs support the configuration and customization you need to scale to multiple APIs, handle complex routes, apply authorization rules and control the shape and content of your API responses. To learn more, use the table of contents navigation to jump to the topic of your choice. A good place to get started is <xref:fundamentals/minimal-apis/webapplication>.
 
 ## Want to see some code examples?
 
-Here is a list of [common scenarios in minimal APIs](#).
+For a full list of common scenarios with code examples, see <xref:fundamentals/minimal-apis>.
 
-##  Want to jump straight into your first project?
+## Want to jump straight into your first project?
 
-Check out this [getting started tutorial](#).
+Build a minimal API app with our tutorial: <xref:tutorials/min-web-api>.
