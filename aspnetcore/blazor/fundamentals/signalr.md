@@ -326,6 +326,86 @@ To modify the connection events, register callbacks for the following connection
 </body>
 ```
 
+### Advanced scenario: Automatically refresh the page when reconnection fails
+
+The default reconnection behavior requires the user to take manual action to refresh the page after reconnection fails. However, a custom reconnection handler can be used to automatically refresh the page:
+
+`Pages/_Host.cshtml`:
+
+```cshtml
+<body>
+    ...
+
+    <div id="reconnect-modal" style="display: none;"></div>
+    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script src="boot.js"></script>
+</body>
+```
+
+`wwwroot/boot.js`:
+
+```js
+(() => {
+  const maximumRetryCount = 3;
+  const retryIntervalMilliseconds = 5000;
+  const reconnectModal = document.getElementById('reconnect-modal');
+  
+  const startReconnectionProcess = () => {
+    reconnectModal.style.display = 'block';
+
+    let isCanceled = false;
+
+    (async () => {
+      for (let i = 0; i < maximumRetryCount; i++) {
+        reconnectModal.innerText = `Attempting to reconnect: ${i + 1} of ${maximumRetryCount}`;
+
+        await new Promise(resolve => setTimeout(resolve, retryIntervalMilliseconds));
+
+        if (isCanceled) {
+          return;
+        }
+
+        try {
+          const result = await Blazor.reconnect();
+          if (!result) {
+            // The server was reached, but the connection was rejected; reload the page.
+            location.reload();
+            return;
+          }
+
+          // Successfully reconnected to the server.
+          return;
+        } catch {
+          // Didn't reach the server; try again.
+        }
+      }
+
+      // Retried too many times; reload the page.
+      location.reload();
+    })();
+
+    return {
+      cancel: () => {
+        isCanceled = true;
+        reconnectModal.style.display = 'none';
+      },
+    };
+  };
+
+  let currentReconnectionProcess = null;
+
+  Blazor.start({
+    reconnectionHandler: {
+      onConnectionDown: () => currentReconnectionProcess ??= startReconnectionProcess(),
+      onConnectionUp: () => {
+        currentReconnectionProcess?.cancel();
+        currentReconnectionProcess = null;
+      },
+    },
+  });
+})();
+```
+
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
 ## Adjust the reconnection retry count and interval (Blazor Server)
