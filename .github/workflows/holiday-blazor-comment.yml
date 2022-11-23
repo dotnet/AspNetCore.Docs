@@ -5,7 +5,7 @@ on:
       - labeled
 jobs:
   add-comment:
-    if: github.event.label.name == 'Blazor2'
+    if: github.event.label.name == 'Blazor'
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -16,9 +16,9 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
-            ### 🍂🎁 ***OOF for the holidays*** ❄️⛄ 
+            ### :turkey: ***OOF for the holiday weekend*** :turkey: 
             
-            This issue has been marked for triage on the `Blazor.Docs` project, and I'll respond as soon as I return. It make take a couple of days to dig out ⛰️⛏️ from holiday issues when I return, but I'll get back to you *ASAP* 🏃. 
+            This issue has been marked for triage on the `Blazor.Docs` project, and I'll respond as soon as I return from the Thanksgiving holiday weekend. I'll get back to you *ASAP* 🏃. 
             
             We only work on documentation on this repo. If you need product support, close this issue and seek assistance through one or more of the following support channels:
             
