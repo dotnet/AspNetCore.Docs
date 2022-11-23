@@ -35,7 +35,7 @@ app.MapGet("/users/{userId}/books/{bookId}",
 app.Run();
 ```
 
-That's all it takes to get started, but it's not all that's available. Minimal APIs support the configuration and customization you need to scale to multiple APIs, handle complex routes, apply authorization rules and control the shape and content of your API responses. To learn more, use the table of contents navigation to jump to the topic of your choice. A good place to get started is <xref:fundamentals/minimal-apis/webapplication>.
+That's all it takes to get started, but it's not all that's available. Minimal APIs support the configuration and customization needed to scale to multiple APIs, handle complex routes, apply authorization rules, and control the content of API responses. A good place to get started is <xref:tutorials/min-web-api>.
 
 ## Want to see some code examples?
 
