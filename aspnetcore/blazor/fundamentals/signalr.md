@@ -326,7 +326,7 @@ To modify the connection events, register callbacks for the following connection
 </body>
 ```
 
-### Advanced scenario: Automatically refresh the page when reconnection fails
+### Automatically refresh the page when reconnection fails (Blazor Server)
 
 The default reconnection behavior requires the user to take manual action to refresh the page after reconnection fails. However, a custom reconnection handler can be used to automatically refresh the page:
 
