@@ -2,7 +2,7 @@
 title: Publish an ASP.NET Core app to Azure with Visual Studio
 author: wadepickett
 description: Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
-monikerRange: '>= aspnetcore-6.0'
+monikerRange: '>= aspnetcore-7.0'
 ms.author: wpickett
 ms.custom: "devx-track-csharp, mvc, engagement-fy23"
 ms.date: 11/16/2022
@@ -34,7 +34,7 @@ In the **Configure your new project** dialog, name your project, and then select
 
 In the **Additional information** dialog:
 
-* In the **Framework** input, select **.NET 6.0 (Long-term support)**.
+* In the **Framework** input, select **.NET 7.0 (Standard Term Support)**.
 * In the **Authentication type** input, select **Individual Accounts**, and then select **Create**.
 
 ![Additional information](publish-to-azure-webapp-using-vs/_static/additional-info.png)
@@ -43,8 +43,7 @@ Visual Studio creates the solution.
 
 ## Run the app
 
-* Press CTRL+F5 to run the project.
-* Test the **Privacy** link.
+* Press F5 to run the project.
 
 ![Web application open in Microsoft Edge on localhost](publish-to-azure-webapp-using-vs/_static/show.png)
 
@@ -57,11 +56,14 @@ Visual Studio creates the solution.
 
 ![A database operation failed while processing the request](publish-to-azure-webapp-using-vs/_static/mig.png)
 
+* In the **Register confirmation page**, select **Click here to confirm your account**.
 * Login as the new user.
 
 The app displays the email used to register the new user and a **Logout** link.
 
 ![Web application open in Microsoft Edge. The Register link is replaced by the text Hello user@example.com!](publish-to-azure-webapp-using-vs/_static/hello.png)
+
+* Stop the application by either closing the browser or in Visual Studio select **Debug** > **Stop Debugging**.
 
 ## Deploy the app to Azure
 
