@@ -1461,7 +1461,17 @@ Load Blazor into the JS app (`blazor.server.js` or `blazor.webassembly.js`). Ren
 
 ```javascript
 let containerElement = document.getElementById('my-counter');
-await Blazor.rootComponents.add(containerElement, 'counter', { incrementAmount: 10 });
+await window.Blazor.rootComponents.add(containerElement, 'counter', { incrementAmount: 10 });
+```
+
+`rootComponents.add` returns an instance of the component. Call `dispose` on the instance to release it:
+
+```javascript
+const rootComponent = await window.Blazor.rootComponents.add(...);
+
+...
+
+rootComponent.dispose();
 ```
 
 ## Blazor custom elements
