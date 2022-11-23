@@ -344,7 +344,7 @@ The default reconnection behavior requires the user to take manual action to ref
 
 `wwwroot/boot.js`:
 
-```js
+```javascript
 (() => {
   const maximumRetryCount = 3;
   const retryIntervalMilliseconds = 5000;
