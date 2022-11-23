@@ -1452,6 +1452,12 @@ In the preceding code, the CSS selector, `#app`, indicates that the `App` compon
 <div id="app">...</app>
 ```
 
+MVC and Razor Pages apps can also use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) to register statically-rendered Blazor WebAssembly root components:
+
+```cshtml
+<component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
+```
+
 Statically-rendered components with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) (Blazor Server) or registered by the app in `Program.cs` (Blazor WebAssembly) can only be added to the app. They can't be removed or updated afterwards.
 
 For more information, see the following resources:
@@ -3045,6 +3051,12 @@ In the preceding code, the CSS selector, `#app`, indicates that the `App` compon
 
 ```html
 <div id="app">...</app>
+```
+
+MVC and Razor Pages apps can also use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) to register statically-rendered Blazor WebAssembly root components:
+
+```cshtml
+<component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
 ```
 
 Statically-rendered components with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) (Blazor Server) or registered by the app in `Program.cs` (Blazor WebAssembly) can only be added to the app. They can't be removed or updated afterwards.
