@@ -252,7 +252,7 @@ The following `DateRangeTP` class implements `TryParse`:
 
 :::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Models/DateRangeTP.cs" id="snippet":::
 
-The following controller action uses the `DateRDateRangeTPange` class to bind a date range:
+The following controller action uses the `DateRangeTP` class to bind a date range:
 
 :::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_22":::
 
