@@ -19,13 +19,13 @@ public class DateRangeTP
 
     public static bool TryParse(string? value, out DateRangeTP? result)
     {
-        if (string.IsNullOrEmpty(value) || value.Split('-').Length != 2)
+        var range = value?.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        if (range?.Length != 2)
         {
             result = default;
             return false;
         }
 
-        var range = value.Split(',');
         result = new DateRangeTP(range[0], range[1]);
         return true;
     }
