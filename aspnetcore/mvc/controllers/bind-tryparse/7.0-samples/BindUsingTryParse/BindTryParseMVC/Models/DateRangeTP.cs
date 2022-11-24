@@ -20,7 +20,7 @@ public class DateRangeTP
     public static bool TryParse(string? value, out DateRangeTP? result)
     {
         var range = value?.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-        if (!range?.Length == 2)
+        if (range?.Length != 2)
         {
             result = default;
             return false;
