@@ -73,6 +73,20 @@ namespace ContosoUniversity.Data
                 EnrollmentDate = DateTime.Parse("2011-09-01")
             };
 
+            var students = new Student[]
+            {
+                alexander,
+                alonso,
+                anand,
+                barzdukas,
+                li,
+                justice,
+                norman,
+                olivetto
+            };
+
+            context.AddRange(students);
+
             var abercrombie = new Instructor
             {
                 FirstMidName = "Kim",
@@ -108,6 +122,17 @@ namespace ContosoUniversity.Data
                 HireDate = DateTime.Parse("2004-02-12")
             };
 
+            var instructors = new Instructor[]
+            {
+                abercrombie,
+                fakhouri,
+                harui,
+                kapoor,
+                zheng
+            };
+
+            context.AddRange(instructors);
+
             var officeAssignments = new OfficeAssignment[]
             {
                 new OfficeAssignment {
@@ -118,7 +143,7 @@ namespace ContosoUniversity.Data
                     Location = "Gowan 27" },
                 new OfficeAssignment {
                     Instructor = kapoor,
-                    Location = "Thompson 304" },
+                    Location = "Thompson 304" }
             };
 
             context.AddRange(officeAssignments);
@@ -154,6 +179,16 @@ namespace ContosoUniversity.Data
                 StartDate = DateTime.Parse("2007-09-01"),
                 Administrator = kapoor
             };
+
+            var departments = new Department[]
+            {
+                english,
+                mathematics,
+                engineering,
+                economics
+            };
+
+            context.AddRange(departments);
 
             var chemistry = new Course
             {
@@ -218,13 +253,26 @@ namespace ContosoUniversity.Data
                 Instructors = new List<Instructor> { abercrombie }
             };
 
+            var courses = new Course[]
+            {
+                chemistry,
+                microeconomics,
+                macroeconmics,
+                calculus,
+                trigonometry,
+                composition,
+                literature
+            };
+
+            context.AddRange(courses);
+
             var enrollments = new Enrollment[]
             {
                 new Enrollment {
                     Student = alexander,
                     Course = chemistry,
                     Grade = Grade.A
-                },
+                    },
                     new Enrollment {
                     Student = alexander,
                     Course = microeconomics,
@@ -241,7 +289,7 @@ namespace ContosoUniversity.Data
                     Grade = Grade.B
                     },
                     new Enrollment {
-                        Student = alonso,
+                    Student = alonso,
                     Course = trigonometry,
                     Grade = Grade.B
                     },
@@ -252,14 +300,14 @@ namespace ContosoUniversity.Data
                     },
                     new Enrollment {
                     Student = anand,
-                    Course = chemistry,
+                    Course = chemistry
                     },
                     new Enrollment {
                     Student = anand,
                     Course = microeconomics,
                     Grade = Grade.B
                     },
-                new Enrollment {
+                    new Enrollment {
                     Student = barzdukas,
                     Course = chemistry,
                     Grade = Grade.B
