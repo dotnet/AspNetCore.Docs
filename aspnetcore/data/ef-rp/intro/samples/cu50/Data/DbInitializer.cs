@@ -198,7 +198,7 @@ namespace ContosoUniversity.Data
                 Department = engineering,
                 Instructors = new List<Instructor> { kapoor, harui }
             };
-     
+
             var microeconomics = new Course
             {
                 CourseID = 4022,
@@ -207,7 +207,7 @@ namespace ContosoUniversity.Data
                 Department = economics,
                 Instructors = new List<Instructor> { zheng }
             };
-     
+
             var macroeconmics = new Course
             {
                 CourseID = 4041,
@@ -216,7 +216,7 @@ namespace ContosoUniversity.Data
                 Department = economics,
                 Instructors = new List<Instructor> { zheng }
             };
-     
+
             var calculus = new Course
             {
                 CourseID = 1045,
@@ -225,7 +225,7 @@ namespace ContosoUniversity.Data
                 Department = mathematics,
                 Instructors = new List<Instructor> { fakhouri }
             };
-     
+
             var trigonometry = new Course
             {
                 CourseID = 3141,
@@ -234,7 +234,7 @@ namespace ContosoUniversity.Data
                 Department = mathematics,
                 Instructors = new List<Instructor> { harui }
             };
-     
+
             var composition = new Course
             {
                 CourseID = 2021,
@@ -243,7 +243,7 @@ namespace ContosoUniversity.Data
                 Department = english,
                 Instructors = new List<Instructor> { abercrombie }
             };
-     
+
             var literature = new Course
             {
                 CourseID = 2042,
@@ -272,56 +272,56 @@ namespace ContosoUniversity.Data
                     Student = alexander,
                     Course = chemistry,
                     Grade = Grade.A
-                    },
-                    new Enrollment {
+                },
+                new Enrollment {
                     Student = alexander,
                     Course = microeconomics,
                     Grade = Grade.C
-                    },
-                    new Enrollment {
+                },
+                new Enrollment {
                     Student = alexander,
                     Course = macroeconmics,
                     Grade = Grade.B
-                    },
-                    new Enrollment {
+                },
+                new Enrollment {
                     Student = alonso,
                     Course = calculus,
                     Grade = Grade.B
-                    },
-                    new Enrollment {
+                },
+                new Enrollment {
                     Student = alonso,
                     Course = trigonometry,
                     Grade = Grade.B
-                    },
-                    new Enrollment {
+                },
+                new Enrollment {
                     Student = alonso,
                     Course = composition,
                     Grade = Grade.B
-                    },
-                    new Enrollment {
+                },
+                new Enrollment {
                     Student = anand,
                     Course = chemistry
-                    },
-                    new Enrollment {
+                },
+                new Enrollment {
                     Student = anand,
                     Course = microeconomics,
                     Grade = Grade.B
-                    },
-                    new Enrollment {
+                },
+                new Enrollment {
                     Student = barzdukas,
                     Course = chemistry,
                     Grade = Grade.B
-                    },
-                    new Enrollment {
+                },
+                new Enrollment {
                     Student = li,
                     Course = composition,
                     Grade = Grade.B
-                    },
-                    new Enrollment {
+                },
+                new Enrollment {
                     Student = justice,
                     Course = literature,
                     Grade = Grade.B
-                    }
+                }
             };
 
             context.AddRange(enrollments);
