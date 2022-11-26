@@ -19,7 +19,7 @@ This article explains how to use [Microsoft Graph API](/graph/use-the-api), whic
 [Microsoft Graph SDKs](/graph/sdks/sdks-overview) are designed to simplify building high-quality, efficient, and resilient applications that access Microsoft Graph.
 
 > [!NOTE]
-> Using Graph permissions in a public application can lead to an privilege escalation attack. Validate that the specified Graph permissions do not allow the user to do more than the intended use. Use confidential clients for sensitive Graph permissions.
+> Using Graph permissions in a public application can lead to a privilege escalation attack. Validate that the specified Graph permissions do not allow the user to do more than the intended use. Use confidential clients for sensitive Graph permissions.
 
 The examples in this section require package references for the standalone or **:::no-loc text="Client":::** app:
 
