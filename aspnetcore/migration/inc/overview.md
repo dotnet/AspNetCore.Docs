@@ -37,19 +37,22 @@ To migrate business logic that relies on `HttpContext`, the libraries need to be
 
 ![Microsoft.AspNetCore.SystemWebAdapters](~/migration/inc/overview/static/sys_adapt.png)
 
-Once the ASP.NET Core app using YARP is set up, you can start migrating routes from ASP.NET Framework to ASP.NET Core using `SystemWebAdapters`. For example, WebAPI or MVC controller action methods, ASPX pages, handlers, or some other implementation of a route. If the route is available in the ASP.NET Core app, it's matched and served.
+Once the ASP.NET Core app using YARP is set up, you can start migrating routes from ASP.NET Framework to ASP.NET Core. For example, WebAPI or MVC controller action methods,handlers, or some other implementation of a route. If the route is available in the ASP.NET Core app, it's matched and served.
 
 During the migration process, additional services and infrastructure are identified that must be migrated to run on .NET Core. Options listed in order of maintainability include:
 
+1. Move the code to shared libraries
+1. Link the code in the new project
 1. Duplicate the code
-2. Link the code in the new project
-3. Move the code to shared libraries
-
+1. 
 Eventually, the ASP.NET Core app handles more of the routes than the .NET Framework app:
 
 ![the ASP.NET Core app handles more of the routes](~/migration/inc/overview/static/sys_adapt.png)
 
+<!--the only way to really do that would be to hit the ASP.NET app directly which generally isn't what will happen in these scenarios.
+
 During migration, the same route may be available in both the ASP.NET Core and the ASP.NET Framework apps. Duplicate routes allows performing A/B testing to ensure functionality is as expected.
+-->
 
 Once the ASP.NET Framework app is no longer needed and deleted:
 
