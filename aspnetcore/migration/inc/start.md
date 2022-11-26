@@ -27,7 +27,7 @@ To understand how this is helpful in the migration process, see [Incremental ASP
    ![Migrate Options](~/migration/inc/start/static/migrate_options.png)
 1. A wizard will now appear that allows you to create a new project or select an existing project.
    ![Migrate Wizard](~/migration/inc/start/static/migrate_wizard.png)
-1. After completing the wizard, you have an ASP.NET Core project that proxies requests that do not exist there onto the ASP.NET Framework app.
+1. After completing the wizard, you have an ASP.NET Core project that proxies requests to routes that do not exist there onto the ASP.NET Framework app.
 
 ## Upgrade supporting libraries
 
@@ -52,4 +52,4 @@ It is possible to share authentication between the original ASP.NET app and the 
 
 ## General Usage Guidance
 
-There are a number of differences between ASP.NET and ASP.NET Core that the adapters are able to help migrate. However, there are some features that require an opt-in as they incur some cost. There are also behavior that cannot be adapted. See [usage guidance](xref:migration/inc/usage_guidance) for a list of these.
+There are a number of differences between ASP.NET and ASP.NET Core that the adapters are able to help migrate. However, there are some features that require an opt-in as they incur some cost. There are also behaviors that cannot be adapted. See [usage guidance](xref:migration/inc/usage_guidance) for a list of these.

@@ -22,7 +22,7 @@ To enable the ASP.NET Core app to communicate with the ASP.NET app, it's necessa
 
 ### ASP.NET app configuration
 
-To setup the ASP.NET app to be able to receive requests from the ASP.NET Core app, call the `AddRemoteApp` extension method on the `ISystemWebAdapterBuilder` as shown here.
+To set up the ASP.NET app to be able to receive requests from the ASP.NET Core app, call the `AddRemoteApp` extension method on the `ISystemWebAdapterBuilder` as shown here.
 
 ```CSharp
 SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
@@ -37,7 +37,7 @@ In the options configuration method passed to the `AddRemoteApp` call, you must 
 
 ### ASP.NET Core app
 
-To setup the ASP.NET Core app to be able to send requests to the ASP.NET app, you need to make a similar change, calling `AddRemoteApp` after registering System.Web adapter services with `AddSystemWebAdapters`.
+To set up the ASP.NET Core app to be able to send requests to the ASP.NET app, you need to make a similar change, calling `AddRemoteApp` after registering System.Web adapter services with `AddSystemWebAdapters`.
 
 ```CSharp
 builder.Services.AddSystemWebAdapters()
@@ -50,7 +50,7 @@ builder.Services.AddSystemWebAdapters()
 
 The `AddRemoteApp` call is used to configure the remote app's URL and the shared secret API key.
 
-With both the ASP.NET and ASP.NET Core app updated, extension methods can now be used to setup [remote app authentication](xref:migration/inc/remote-authentication) or [remote session](xref:migration/inc/remote-session), as needed.
+With both the ASP.NET and ASP.NET Core app updated, extension methods can now be used to set up [remote app authentication](xref:migration/inc/remote-authentication) or [remote session](xref:migration/inc/remote-session), as needed.
 
 ## Securing the remote app connection
 

@@ -14,7 +14,7 @@ uid: migration/inc/overview
 
 Migrating an app from ASP.NET Framework to ASP.NET Core is non-trivial for the majority of production apps. These apps often incorporate new technologies as they become available and are often composed of many legacy decisions. This article provides guidance and links to tools for migrating ASP.NET Framework apps to ASP.NET Core with as little change as possible.
 
-One of the larger challenges is the pervasive use of <xref:System.Web.HttpContext> throughout a code base. Without the incremental approach and tools, a large scale rewrite is required to remove the `System.Web.HttpContext` dependency. The adapters in [dotnet/systemweb-adapters](https://github.com/dotnet/systemweb-adapters) provide a set of runtime helpers to access the types the ASP.NET Framework app used but in a way that works using ASP.NET Core with minimal changes.
+One of the larger challenges is the pervasive use of <xref:System.Web.HttpContext> throughout a code base. Without the incremental approach and tools, a large scale rewrite is required to remove the `System.Web.HttpContext` dependency. The adapters in [dotnet/systemweb-adapters](https://github.com/dotnet/systemweb-adapters) provide a set of runtime helpers to access the types used in the ASP.NET Framework app in a way that works in ASP.NET Core with minimal changes.
 
 A complete migration may take considerable effort depending on the size of the app, dependencies, and non-portable APIs used. In order to keep deploying an app to production while working on migrating, the best pattern is to follow is the [Strangler Fig pattern](/azure/architecture/patterns/strangler-fig). The *Strangler Fig pattern* allows for continual development on the old system with an incremental approach to replacing specific pieces of functionality with new services. This document describes how to apply the Strangler Fig pattern to an ASP.NET app migrating towards ASP.NET Core.
 
@@ -26,7 +26,7 @@ Before starting the migration, the app targets ASP.NET Framework and runs on Win
 
 ![Before starting the migration](~/migration/inc/overview/static/1.png)
 
-Migration starts by introducing a new app based on ASP.NET Core that becomes the entry point. Incoming requests go to the ASP.NET Core app, which either handles the request or proxies the request to the .NET Framework app via [YARP](https://microsoft.github.io/reverse-proxy/). At first, the majority of code providing responses is the .NET Framework app, but the ASP.NET Core app is now set up to start migrating routes:
+Migration starts by introducing a new app based on ASP.NET Core that becomes the entry point. Incoming requests go to the ASP.NET Core app, which either handles the request or proxies the request to the .NET Framework app via [YARP](https://microsoft.github.io/reverse-proxy/). At first, the majority of code providing responses is in the .NET Framework app, but the ASP.NET Core app is now set up to start migrating routes:
 
 ![start migrating routes](~/migration/inc/overview/static/nop.png)
 
@@ -62,7 +62,7 @@ Once the ASP.NET Framework app is no longer needed and deleted:
 
 The `Microsoft.AspNetCore.SystemWebAdapters` is a collection of runtime helpers that facilitate using code written against `System.Web` while moving to ASP.NET Core.
 
-The heart of the library is support for `System.Web.HttpContext`. The adaptors attempt to provide compatible behavior for what is found running on ASP.NET Framework to expedite moving To ASP.NET Core. There are a number of behaviors that ASP.NET Framework provided that incur a performance cost if enabled on ASP.NET Core, these behaviors must be opted into.
+The heart of the library is support for `System.Web.HttpContext`. The adapters attempt to provide compatible behavior for what is found running on ASP.NET Framework to expedite moving to ASP.NET Core. There are a number of behaviors that ASP.NET Framework provided that incur a performance cost if enabled on ASP.NET Core; these behaviors must be opted into.
 
 For examples of scenarios where this is useful, see [the adapters article](xref:migration/inc/adapters).
 

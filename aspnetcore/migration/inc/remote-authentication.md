@@ -12,7 +12,7 @@ uid: migration/inc/remote-authentication
 
 # Remote Authentication
 
-The System.Web adapter's remote authentication feature allows an ASP.NET Core app to determine a user's identity (authenticate an HTTP request) by deferring to an ASP.NET app. Enabling the feature adds an endpoint to the ASP.NET app that returns a serialized `ClaimsPrincipal` representing the authenticated user for any requests made to the endpoint. The ASP.NET Core app, then, registers a custom authentication handler that will (for endpoints with remote authentication enabled) determine a user's identity by calling that endpoint on the ASP.NET app and passing selected headers and cookies from the original request received by the ASP.NET Core app.
+The System.Web adapters' remote authentication feature allows an ASP.NET Core app to determine a user's identity (authenticate an HTTP request) by deferring to an ASP.NET app. Enabling the feature adds an endpoint to the ASP.NET app that returns a serialized `ClaimsPrincipal` representing the authenticated user for any requests made to the endpoint. The ASP.NET Core app, then, registers a custom authentication handler that will (for endpoints with remote authentication enabled) determine a user's identity by calling that endpoint on the ASP.NET app and passing selected headers and cookies from the original request received by the ASP.NET Core app.
 
 ## Configuration
 
@@ -22,7 +22,7 @@ First, follow the [remote app setup](xref:migration/inc/remote-app-setup) instru
 
 ### ASP.NET app configuration
 
-First, the ASP.NET app needs to be configured to add the authentication endpoint. This is done by calling the `AddRemoteAuthentication` extension method to set up the HTTP module that will watch for requests to the authentication endpoint.  Note that remote authentication scenarios typically want to add proxy support, as well, so that any auth-related redirects will correctly route to the ASP.NET Core app rather than the ASP.NET one.
+First, the ASP.NET app needs to be configured to add the authentication endpoint. This is done by calling the `AddRemoteAuthentication` extension method to set up the HTTP module that will watch for requests to the authentication endpoint. Note that remote authentication scenarios typically want to add proxy support as well, so that any auth-related redirects will correctly route to the ASP.NET Core app rather than the ASP.NET one.
 
 ```CSharp
 SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
@@ -70,11 +70,11 @@ app.UseAuthentication();
 1. When the ASP.NET Core app's `RemoteAuthenticationAuthHandler` receives the response from the ASP.NET app:
     1. If a ClaimsPrincipal was successfully returned, the auth handler will deserialize it and use it as the current user's identity.
     1. If a ClaimsPrincipal was not successfully returned, the handler will store the result and if authentication is challenged (because the user is accessing a protected resource, for example), the request's response will be updated with the status code and selected response headers from the response from the authenticate endpoint. This enables challenge responses (like redirects to a login page) to be propagated to end users.
-        1. Because results from the ASP.NET app's authenticate endpoint may include data specific to that endpoint, users can register `IRemoteAuthenticationResultProcessor` implementations with the ASP.NET Core app which will run on any authentication results before they are used. As an example, the one built-in `IRemoteAuthenticationResultProcessor` is `RedirectUrlProcessor` which looks for Location response headers returned from the authenticate endpoint and ensures that they redirect back to the host of the ASP.NET Core app and not the ASP.NET app directly.
+        1. Because results from the ASP.NET app's authenticate endpoint may include data specific to that endpoint, users can register `IRemoteAuthenticationResultProcessor` implementations with the ASP.NET Core app which will run on any authentication results before they are used. As an example, the one built-in `IRemoteAuthenticationResultProcessor` is `RedirectUrlProcessor` which looks for `Location` response headers returned from the authenticate endpoint and ensures that they redirect back to the host of the ASP.NET Core app and not the ASP.NET app directly.
 
 ## Known limitations
 
 This remote authentication approach has a couple known limitations:
 
 1. Because Windows authentication depends on a handle to a Windows identity, Windows authentication is not supported by this feature. Future work is planned to explore how shared Windows authentication might work.
-1. This feature allows the ASP.NET Core app to make use of an identity authenticated by the ASP.NET app but all actions related to users (logging on, logging off, etc.) still need to be routed through the ASP.NET app.
+1. This feature allows the ASP.NET Core app to make use of an identity authenticated by the ASP.NET app, but all actions related to users (logging on, logging off, etc.) still need to be routed through the ASP.NET app.
