@@ -104,7 +104,7 @@ A `DbContext` is created using the factory (`DbFactory`) to delete a contact in 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
 
 ## Scope to the component lifetime
 
