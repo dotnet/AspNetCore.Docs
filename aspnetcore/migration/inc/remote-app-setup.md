@@ -48,7 +48,10 @@ builder.Services.AddSystemWebAdapters()
     });
 ```
 
-The `AddRemoteApp` call is used to configure the remote app's URL and the shared secret API key.
+In the preceding code:
+
+* The `AddRemoteApp` call is used to configure the remote app's URL and the shared secret API key.
+* The `RemoteAppUrl` property specifies the URL of the ASP.NET Framework app that the ASP.NET Core app communicates with. In this example, the URL is read from an existing configuration setting used by the YARP proxy that proxies requests to the ASP.NET Framework app as part of the incremental migration's *strangler fig pattern*.
 
 With both the ASP.NET and ASP.NET Core app updated, extension methods can now be used to set up [remote app authentication](xref:migration/inc/remote-authentication) or [remote session](xref:migration/inc/remote-session), as needed.
 

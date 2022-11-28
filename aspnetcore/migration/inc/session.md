@@ -43,7 +43,7 @@ builder.Services.AddSystemWebAdapters()
 
 ## Implementations
 
-There are two available implementations of the session state object that currently ship, each with some trade offs of features. The best choice for an application may depend on which part of the migration it is in, and may change over time.
+There are two available implementations of the session state object that currently ship, each with some trade offs of features. The best choice for an app may depend on which part of the migration it is in, and may change over time.
 
 - Strongly typed: Provides the ability to access an object and can be cast to the expected type
 - Locking: Ensures multiple requests within a single session are queued up and aren't accessing the session at the same time
