@@ -18,8 +18,12 @@ This article explains how to use [Microsoft Graph API](/graph/use-the-api), whic
 
 [Microsoft Graph SDKs](/graph/sdks/sdks-overview) are designed to simplify building high-quality, efficient, and resilient applications that access Microsoft Graph.
 
-> [!NOTE]
-> Using Graph permissions in a public application can lead to a privilege escalation attack. Validate that the specified Graph permissions do not allow the user to do more than the intended use. Use confidential clients for sensitive Graph permissions.
+> [!WARNING]
+> Using Microsoft Graph in a public app can lead to a privilege escalation attack. For more information, see the following resources on least-privileged access and Graph permissions:
+>
+> * [Enhance security with the principle of least privilege](https://learn.microsoft.com/azure/active-directory/develop/secure-least-privileged-access)
+> * [Microsoft Security Best Practices: Securing privileged access](https://learn.microsoft.com/security/compass/overview)
+> * [Microsoft Graph auth overview](https://learn.microsoft.com/graph/auth/) and [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference)
 
 The examples in this section require package references for the standalone or **:::no-loc text="Client":::** app:
 
@@ -519,6 +523,13 @@ The preceding example is for an app that uses AAD authentication with MSAL. Simi
 ## Graph SDK
 
 [Microsoft Graph SDKs](/graph/sdks/sdks-overview) are designed to simplify building high-quality, efficient, and resilient applications that access Microsoft Graph.
+
+> [!WARNING]
+> Using Microsoft Graph in a public app can lead to a privilege escalation attack. For more information, see the following resources on least-privileged access and Graph permissions:
+>
+> * [Enhance security with the principle of least privilege](https://learn.microsoft.com/azure/active-directory/develop/secure-least-privileged-access)
+> * [Microsoft Security Best Practices: Securing privileged access](https://learn.microsoft.com/security/compass/overview)
+> * [Microsoft Graph auth overview](https://learn.microsoft.com/graph/auth/) and [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference)
 
 The examples in this section require package references for the standalone or **:::no-loc text="Client":::** app:
 
