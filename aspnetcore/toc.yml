@@ -974,6 +974,30 @@ items:
         uid: diagnostics/asp0006
       - name: ASP0007
         uid: diagnostics/asp0007
+      - name: ASP0008
+        uid: diagnostics/asp0008
+      - name: ASP0009
+        uid: diagnostics/asp0009
+      - name: ASP0010
+        uid: diagnostics/asp0010
+      - name: ASP0011
+        uid: diagnostics/asp0011
+      - name: ASP0012
+        uid: diagnostics/asp0012
+      - name: ASP0013
+        uid: diagnostics/asp0013
+      - name: ASP0014
+        uid: diagnostics/asp0014
+      - name: ASP0015
+        uid: diagnostics/asp0015
+      - name: ASP0016
+        uid: diagnostics/asp0016
+      - name: ASP0017
+        uid: diagnostics/asp0017
+      - name: ASP0018
+        uid: diagnostics/asp0018
+      - name: ASP0019
+        uid: diagnostics/asp0019
       - name: BL0001
         uid: diagnostics/bl0001
       - name: BL0002
