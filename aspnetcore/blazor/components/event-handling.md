@@ -102,7 +102,7 @@ Custom events with custom event arguments are generally enabled with the followi
    ```html
    <script>
      Blazor.registerCustomEventType('customevent', {
-       createEventArgs: eventArgsCreator;
+       createEventArgs: eventArgsCreator
      });
    </script>
    ```
@@ -124,7 +124,7 @@ Custom events with custom event arguments are generally enabled with the followi
 
    ```csharp
    [EventHandler("oncustomevent", typeof(CustomEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
-   static class EventHandlers
+   public static class EventHandlers
    {
    }
    ```
