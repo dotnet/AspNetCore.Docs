@@ -136,7 +136,7 @@ Custom events with custom event arguments are generally enabled with the followi
 
    @code
    {
-       void HandleCustomEvent(CustomEventArgs eventArgs)
+       private void HandleCustomEvent(CustomEventArgs eventArgs)
        {
            // eventArgs.CustomProperty1
            // eventArgs.CustomProperty2
