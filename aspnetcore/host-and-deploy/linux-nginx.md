@@ -4,8 +4,8 @@ author: rick-anderson
 description: Learn how to set up Nginx as a reverse proxy on an Ubuntu 20.04 VM to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: mvc
-ms.date: 11/30/2021
+ms.custom: mvc, engagement-fy23
+ms.date: 11/28/2022
 uid: host-and-deploy/linux-nginx
 ---
 # Host ASP.NET Core on Linux with Nginx
@@ -26,9 +26,25 @@ This guide:
 
 ## Prerequisites
 
+# [Ubuntu](#tab/linux-ubuntu)
+
 * Access to an Ubuntu 20.04 VM with a standard user account with sudo privilege.
 * The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
 * An existing ASP.NET Core app.
+
+# [Red Hat Enterprise Linux](#tab/linux-rhel)
+
+* Access to a Red Hat Enterprise (RHEL) 8.0 or later VM with a standard user account with sudo privilege.
+* The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
+* An existing ASP.NET Core app.
+
+# [SUSE Linux Enterprise Server](#tab/linux-sles)
+
+* Access to an SLES 12 VM with a standard user account with sudo privilege.
+* The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
+* An existing ASP.NET Core app.
+
+---
 
 At any point in the future after upgrading the shared framework, restart the ASP.NET Core apps hosted by the server.
 
@@ -123,7 +139,19 @@ For more information, see <xref:host-and-deploy/proxy-load-balancer>.
 
 ### Install Nginx
 
+# [Ubuntu](#tab/linux-ubuntu)
+
 Use `apt-get` to install Nginx. The installer creates a `systemd` init script that runs Nginx as daemon on system startup. Follow the installation instructions for Ubuntu at [Nginx: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages).
+
+# [Red Hat Enterprise Linux](#tab/linux-rhel)
+
+Use `yum-utils` to select and install an Nginx module stream. Follow the installation instructions for RHEL at [Nginx: Official Debian/Ubuntu packages](https://nginx.org/en/linux_packages.html#RHEL).
+
+# [SUSE Linux Enterprise Server](#tab/linux-sles)
+
+Use `yum-utils` to select and install an Nginx module stream. Follow the installation instructions for SLES at [Nginx: Official Debian/Ubuntu packages](https://nginx.org/en/linux_packages.html#SLES).
+
+---
 
 > [!NOTE]
 > If optional Nginx modules are required, building Nginx from source might be required.
