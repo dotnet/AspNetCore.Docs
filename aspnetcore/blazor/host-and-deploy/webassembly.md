@@ -810,10 +810,24 @@ In the project file, the script is executed after publishing the app for the `Re
 > </staticContent>
 > ```
 >
+> Include an update for compressed files if [compression](#compression) is in use:
+>
+> ```
+> <mimeMap fileExtension=".bin.br" mimeType="application/octet-stream" />
+> <mimeMap fileExtension=".bin.gz" mimeType="application/octet-stream" />
+> ```
+>
 > Remove the entry for the `.dll` file extension:
 >
 > ```diff
 > - <mimeMap fileExtension=".dll" mimeType="application/octet-stream" />
+> ```
+>
+> Remove entries for compressed `.dll` files if [compression](#compression) is in use:
+>
+> ```diff
+> - <mimeMap fileExtension=".dll.br" mimeType="application/octet-stream" />
+> - <mimeMap fileExtension=".dll.gz" mimeType="application/octet-stream" />
 > ```
 >
 > For more information on custom `web.config` files, see the [Use a custom `web.config`](#use-a-custom-webconfig) section.
@@ -1850,10 +1864,24 @@ In the project file, the script is executed after publishing the app for the `Re
 > </staticContent>
 > ```
 >
+> Include an update for compressed files if [compression](#compression) is in use:
+>
+> ```
+> <mimeMap fileExtension=".bin.br" mimeType="application/octet-stream" />
+> <mimeMap fileExtension=".bin.gz" mimeType="application/octet-stream" />
+> ```
+>
 > Remove the entry for the `.dll` file extension:
 >
 > ```diff
 > - <mimeMap fileExtension=".dll" mimeType="application/octet-stream" />
+> ```
+>
+> Remove entries for compressed `.dll` files if [compression](#compression) is in use:
+>
+> ```diff
+> - <mimeMap fileExtension=".dll.br" mimeType="application/octet-stream" />
+> - <mimeMap fileExtension=".dll.gz" mimeType="application/octet-stream" />
 > ```
 >
 > For more information on custom `web.config` files, see the [Use a custom `web.config`](#use-a-custom-webconfig) section.
@@ -2715,10 +2743,24 @@ In the project file, the script is executed after publishing the app for the `Re
 > </staticContent>
 > ```
 >
+> Include an update for compressed files if [compression](#compression) is in use:
+>
+> ```
+> <mimeMap fileExtension=".bin.br" mimeType="application/octet-stream" />
+> <mimeMap fileExtension=".bin.gz" mimeType="application/octet-stream" />
+> ```
+>
 > Remove the entry for the `.dll` file extension:
 >
 > ```diff
 > - <mimeMap fileExtension=".dll" mimeType="application/octet-stream" />
+> ```
+>
+> Remove entries for compressed `.dll` files if [compression](#compression) is in use:
+>
+> ```diff
+> - <mimeMap fileExtension=".dll.br" mimeType="application/octet-stream" />
+> - <mimeMap fileExtension=".dll.gz" mimeType="application/octet-stream" />
 > ```
 >
 > For more information on custom `web.config` files, see the [Use a custom `web.config`](#use-a-custom-webconfig) section.
