@@ -145,11 +145,11 @@ Use `apt-get` to install Nginx. The installer creates a `systemd` init script th
 
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
-Use `yum-utils` to select and install an Nginx module stream. Follow the installation instructions for RHEL at [Nginx: Official Debian/Ubuntu packages](https://nginx.org/en/linux_packages.html#RHEL).
+Use `yum-utils` to select and install an Nginx module stream. Follow the installation instructions for RHEL at [Nginx: Linux packages - RHEL](https://nginx.org/en/linux_packages.html#RHEL).
 
 # [SUSE Linux Enterprise Server](#tab/linux-sles)
 
-Use `yum-utils` to select and install an Nginx module stream. Follow the installation instructions for SLES at [Nginx: Official Debian/Ubuntu packages](https://nginx.org/en/linux_packages.html#SLES).
+Use `yum-utils` to select and install an Nginx module stream. Follow the installation instructions for SLES at [Nginx: Nginx: Linux packages - SLES](https://nginx.org/en/linux_packages.html#SLES).
 
 ---
 
