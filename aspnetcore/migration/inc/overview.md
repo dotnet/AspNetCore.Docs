@@ -44,7 +44,7 @@ During the migration process, additional services and infrastructure are identif
 1. Move the code to shared libraries
 1. Link the code in the new project
 1. Duplicate the code
-1. 
+
 Eventually, the ASP.NET Core app handles more of the routes than the .NET Framework app:
 
 ![the ASP.NET Core app handles more of the routes](~/migration/inc/overview/static/sys_adapt.png)
