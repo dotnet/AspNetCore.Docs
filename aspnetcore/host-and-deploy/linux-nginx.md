@@ -168,7 +168,7 @@ Verify a browser displays the default landing page for Nginx. The landing page i
 
 To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx/sites-available/default`. Open it in a text editor, and replace the contents with the following snippet:
 
-```
+```text
 server {
     listen        80;
     server_name   example.com *.example.com;
@@ -189,7 +189,7 @@ If the app is a SignalR or Blazor Server app, see <xref:signalr/scale#linux-with
 
 When no `server_name` matches, Nginx uses the default server. If no default server is defined, the first server in the configuration file is the default server. As a best practice, add a specific default server that returns a status code of 444 in your configuration file. A default server configuration example is:
 
-```
+```text
 server {
     listen   80 default_server;
     # listen [::]:80 default_server deferred;
@@ -239,7 +239,7 @@ sudo nano /etc/systemd/system/kestrel-helloapp.service
 
 The following example is an `.ini` service file for the app:
 
-```
+```text
 [Unit]
 Description=Example .NET Web API App running on Linux
 
@@ -263,7 +263,7 @@ In the preceding example, the user that manages the service is specified by the 
 
 Use `TimeoutStopSec` to configure the duration of time to wait for the app to shut down after it receives the initial interrupt signal. If the app doesn't shut down in this period, SIGKILL is issued to terminate the app. Provide the value as unitless seconds (for example, `150`), a time span value (for example, `2min 30s`), or `infinity` to disable the timeout. `TimeoutStopSec` defaults to the value of `DefaultTimeoutStopSec` in the manager configuration file (`systemd-system.conf`, `system.conf.d`, `systemd-user.conf`, `user.conf.d`). The default timeout for most distributions is 90 seconds.
 
-```
+```text
 # The default value is 90 seconds for most distributions.
 TimeoutStopSec=90
 ```
@@ -278,7 +278,7 @@ systemd-escape "<value-to-escape>"
 
 Colon (`:`) separators aren't supported in environment variable names. Use a double underscore (`__`) in place of a colon. The [Environment Variables configuration provider](xref:fundamentals/configuration/index#environment-variables) converts double-underscores into colons when environment variables are read into configuration. In the following example, the connection string key `ConnectionStrings:DefaultConnection` is set into the service definition file as `ConnectionStrings__DefaultConnection`:
 
-```
+```console
 Environment=ConnectionStrings__DefaultConnection={Connection String}
 ```
 
@@ -290,7 +290,7 @@ sudo systemctl enable kestrel-helloapp.service
 
 Start the service and verify that it's running.
 
-```
+```bash
 sudo systemctl start kestrel-helloapp.service
 sudo systemctl status kestrel-helloapp.service
 
@@ -385,7 +385,7 @@ sudo ufw enable
 
 Edit `src/http/ngx_http_header_filter_module.c`:
 
-```
+```text
 static char ngx_http_server_string[] = "Server: Web Server" CRLF;
 static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 ```
