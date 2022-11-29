@@ -34,6 +34,8 @@ In this topic, you learn how to use Identity to register, log in, and log out a 
 * An alternative identity solution for authentication and authorization in ASP.NET Core apps.
 * Not related to ASP.NET Core Identity.
 
+View [Let's Learn .NET: Auth and Identity](https://www.youtube.com/watch?v=SFLG-gStXC0) to learn more about the differences between ASP.NET Core Identity and Microsoft Identity Platform. 
+
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
 [View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/sample) ([how to download](xref:index#how-to-download-a-sample)).
