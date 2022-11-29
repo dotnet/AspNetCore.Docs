@@ -516,7 +516,10 @@ To host the app in Docker:
 * Copy the `publish` folder assets to a location folder defined in the web server for serving static files.
 * Apply additional configuration as needed to serve the Blazor WebAssembly app.
 
-For configuration guidance, see the [Nginx](#nginx) or [Apache](#apache) sections earlier in this article.
+For configuration guidance, see the following resources:
+
+* [Nginx](#nginx) section or [Apache](#apache) section of this article
+* [Docker Documentation](https://docs.docker.com/)
 
 ## Host configuration values
 
@@ -1582,7 +1585,10 @@ To host the app in Docker:
 * Copy the `publish` folder assets to a location folder defined in the web server for serving static files.
 * Apply additional configuration as needed to serve the Blazor WebAssembly app.
 
-For configuration guidance, see the [Nginx](#nginx) or [Apache](#apache) sections earlier in this article.
+For configuration guidance, see the following resources:
+
+* [Nginx](#nginx) section or [Apache](#apache) section of this article
+* [Docker Documentation](https://docs.docker.com/)
 
 ## Host configuration values
 
@@ -2603,7 +2609,10 @@ To host the app in Docker:
 * Copy the `publish` folder assets to a location folder defined in the web server for serving static files.
 * Apply additional configuration as needed to serve the Blazor WebAssembly app.
 
-For configuration guidance, see the [Nginx](#nginx) or [Apache](#apache) sections earlier in this article.
+For configuration guidance, see the following resources:
+
+* [Nginx](#nginx) section or [Apache](#apache) section of this article
+* [Docker Documentation](https://docs.docker.com/)
 
 ## Host configuration values
 
@@ -3416,7 +3425,10 @@ To host the app in Docker:
 * Copy the `publish` folder assets to a location folder defined in the web server for serving static files.
 * Apply additional configuration as needed to serve the Blazor WebAssembly app.
 
-For configuration guidance, see the [Nginx](#nginx) or [Apache](#apache) sections earlier in this article.
+For configuration guidance, see the following resources:
+
+* [Nginx](#nginx) section or [Apache](#apache) section of this article
+* [Docker Documentation](https://docs.docker.com/)
 
 ## Host configuration values
 
