@@ -79,7 +79,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 
      Add:
 
-     ```razor
+     ```cshtml
      <link href="css/app.css" rel="stylesheet" />
      <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
      <component type="typeof(HeadOutlet)" render-mode="WebAssemblyPrerendered" />
@@ -112,7 +112,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 
      Add:
 
-     ```razor
+     ```cshtml
      <component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
      ```
 
@@ -193,7 +193,7 @@ Include the **:::no-loc text="Client":::** project's styles in the layout file. 
 
 Place the following lines in the `<head>` content of the layout file:
 
-```html
+```cshtml
 <title>@ViewData["Title"] - BlazorHosted</title>
 <link href="css/app.css" rel="stylesheet" />
 <link rel="stylesheet" href="BlazorHosted.Client.styles.css" asp-append-version="true" />
@@ -982,7 +982,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 
      Add:
 
-     ```razor
+     ```cshtml
      <link href="css/app.css" rel="stylesheet" />
      <link href="BlazorHosted.Client.styles.css" rel="stylesheet" />
      <component type="typeof(HeadOutlet)" render-mode="WebAssemblyPrerendered" />
@@ -1031,7 +1031,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 
      Add:
 
-     ```razor
+     ```cshtml
      <component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
      ```
 
@@ -1115,7 +1115,7 @@ Include the **:::no-loc text="Client":::** project's styles in the layout file. 
 
 Place the following lines in the `<head>` content of the layout file:
 
-```html
+```cshtml
 <title>@ViewData["Title"] - BlazorHosted</title>
 <link href="css/app.css" rel="stylesheet" />
 <link rel="stylesheet" href="BlazorHosted.Client.styles.css" asp-append-version="true" />
@@ -1337,7 +1337,7 @@ Use the following guidance to integrate Razor components into pages and views of
 
    * Add the following `<base>` tag and <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component Tag Helper to the `<head>` element in `Pages/Shared/_Layout.cshtml` (Razor Pages) or `Views/Shared/_Layout.cshtml` (MVC):
 
-     ```html
+     ```cshtml
      <base href="~/" />
      <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
      ```
