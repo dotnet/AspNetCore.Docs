@@ -9,6 +9,8 @@ uid: tutorials/first-mvc-app/new-field
 ---
 # Part 8, add a new field to an ASP.NET Core MVC app
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 :::moniker range=">= aspnetcore-7.0"
 
 In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:

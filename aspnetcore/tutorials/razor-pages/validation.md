@@ -9,6 +9,8 @@ uid: tutorials/razor-pages/validation
 ---
 # Part 8 of tutorial series on Razor Pages
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 :::moniker range=">= aspnetcore-7.0"
 
 In this section, validation logic is added to the `Movie` model. The validation rules are enforced any time a user creates or edits a movie.

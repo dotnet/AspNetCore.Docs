@@ -11,6 +11,8 @@ ms.custom: contperf-fy21q3
 
 # Part 3, add a view to an ASP.NET Core MVC app
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 :::moniker range=">= aspnetcore-7.0"
 
 In this section, you modify the `HelloWorldController` class to use [Razor](xref:mvc/views/razor) view files. This cleanly encapsulates the process of generating HTML responses to a client.

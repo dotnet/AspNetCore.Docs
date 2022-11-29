@@ -10,6 +10,8 @@ uid: tutorials/web-api-javascript
 ---
 # Tutorial: Call an ASP.NET Core web API with JavaScript
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 This tutorial shows how to call an ASP.NET Core web API with JavaScript, using the [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API).
 
 :::moniker range=">= aspnetcore-6.0"

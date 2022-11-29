@@ -9,6 +9,8 @@ ms.custom: contperf-fy21q3
 ---
 # Get started with ASP.NET Core MVC
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 :::moniker range=">= aspnetcore-7.0"
 
 [!INCLUDE [consider RP](~/includes/razor.md)]

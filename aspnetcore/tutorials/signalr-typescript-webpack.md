@@ -3,6 +3,7 @@ title: "Tutorial: Get started with ASP.NET Core SignalR using TypeScript and Web
 author: ssougnez
 description: This tutorial provides a walkthrough of bundling and building an ASP.NET Core SignalR web app using TypeScript and Webpack.
 monikerRange: ">= aspnetcore-2.1"
+<!-- ms.author: bradyg -->
 ms.author: wpickett
 ms.custom: mvc
 ms.date: 03/15/2022

@@ -9,6 +9,8 @@ uid: tutorials/first-mvc-app/controller-methods-views
 
 # Part 6, controller methods and views in ASP.NET Core
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 :::moniker range=">= aspnetcore-7.0"
 
 We have a good start to the movie app, but the presentation isn't ideal, for example, **ReleaseDate** should be two words.

@@ -9,6 +9,8 @@ uid: tutorials/first-mvc-app/search
 
 # Part 7, add search to an ASP.NET Core MVC app
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 :::moniker range=">= aspnetcore-7.0"
 
 In this section, you add search capability to the `Index` action method that lets you search movies by *genre* or *name*.

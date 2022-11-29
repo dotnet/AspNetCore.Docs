@@ -9,6 +9,8 @@ uid: tutorials/first-mvc-app/details
 
 # Part 10, examine the Details and Delete methods of an ASP.NET Core app
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 :::moniker range=">= aspnetcore-7.0"
 
 Open the Movie controller and examine the `Details` method:

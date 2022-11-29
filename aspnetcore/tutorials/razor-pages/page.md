@@ -11,6 +11,8 @@ uid: tutorials/razor-pages/page
 
 # Part 3, scaffolded Razor Pages in ASP.NET Core
 
+By [Rick Anderson](https://twitter.com/RickAndMSFT)
+
 This tutorial examines the Razor Pages created by scaffolding in the [previous tutorial](xref:tutorials/razor-pages/model).
 
 :::moniker range=">= aspnetcore-7.0"
