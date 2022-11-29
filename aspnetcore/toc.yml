@@ -1668,7 +1668,7 @@ items:
               uid: migration/inc/usage_guidance
             - name: Wrapped session state
               uid: migration/inc/wrapped
-            - name: session state migration
+            - name: Session state migration
               uid: migration/inc/session
             - name: Remote app session state
               uid: migration/inc/remote-session
