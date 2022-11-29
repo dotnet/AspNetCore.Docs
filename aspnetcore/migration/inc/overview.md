@@ -49,17 +49,14 @@ Eventually, the ASP.NET Core app handles more of the routes than the .NET Framew
 
 ![the ASP.NET Core app handles more of the routes](~/migration/inc/overview/static/sys_adapt.png)
 
-<!--the only way to really do that would be to hit the ASP.NET app directly which generally isn't what will happen in these scenarios.
-
-During migration, the same route may be available in both the ASP.NET Core and the ASP.NET Framework apps. Duplicate routes allows performing A/B testing to ensure functionality is as expected.
--->
-
 Once the ASP.NET Framework app is no longer needed and deleted:
 
 * The app is running on the ASP.NET Core app stack, but is still using the adapters.
 * The remaining migration work is removing the use of adapters.
 
 ![final pic](~/migration/inc/overview/static/final.png)
+
+[Microsoft Project Migrations](https://marketplace.visualstudio.com/items?itemName=WebToolsTeam.aspnetprojectmigrations) is an experimental [Visual Studio extension](/visualstudio/ide/finding-and-using-visual-studio-extensions?view=vs-2022) that can assist in incremental migration from ASP.NET Framework to ASP.NET Core.
 
 ## System.Web Adapters
 
@@ -70,3 +67,7 @@ The heart of the library is support for `System.Web.HttpContext`. The adapters a
 For examples of scenarios where this is useful, see [the adapters article](xref:migration/inc/adapters).
 
 For guidance around usage, see the [usage guidance article](xref:migration/inc/usage_guidance).
+
+## Additional Resources
+
+* [Video:Tooling for Incremental ASP.NET Core Migrations](https://www.youtube.com/watch?v=P96l0pDNVpM)
