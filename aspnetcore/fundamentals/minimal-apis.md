@@ -771,6 +771,48 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
 
 :::moniker range=">= aspnetcore-7.0"
 
+:::row:::
+   :::column span="":::
+      * WebApplication
+        * Working with ports
+        * Listen on all interfaces
+        * Working with certificates
+        * Environment
+        * Configuration
+        * Logging
+        * Access the Dependency Injection (DI) container
+   :::column-end:::
+   :::column span="":::
+      * WebApplicationBuilder
+        * Change the content root, app name, and environment
+        * Add configuration providers
+        * Read configuration
+        * Read the environment
+        * Add logging providers
+        * Add services
+        * Customize the IHostBuilder
+        * Customize the IWebHostBuilder
+        * Change the web root
+        * Custom dependency injection (DI) container
+        * Developer exception page
+        * Add Middleware
+   :::column-end:::
+   :::column span="":::
+      * ASP.NET Core Middleware
+      * Request handling
+      * Routing
+      * Route Handlers
+      * Parameter Binding
+      * Read the request body
+      * Responses
+      * Example return values
+      * Filters
+      * Authorization
+        * Allow unauthenticated users to access an endpoint
+        * CORS
+   :::column-end:::
+:::row-end:::
+
 This document:
 
 * Provides a quick reference for minimal APIs.
