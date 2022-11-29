@@ -1653,6 +1653,27 @@ items:
       - name: ASP.NET to ASP.NET Core
         displayName: migrate, migration
         items:
+          - name: Incremental migration
+            displayName: migrate, migration
+            items:
+            - name: Overview
+              uid: migration/inc/overview
+            - name: Get started
+              uid: migration/inc/start
+            - name: System.Web adapters
+              uid: migration/inc/adapters
+            - name: Remote app setup
+              uid: migration/inc/remote-app-setup
+            - name: Usage Guidance
+              uid: migration/inc/usage_guidance
+            - name: Wrapped session state
+              uid: migration/inc/wrapped
+            - name: Session state migration
+              uid: migration/inc/session
+            - name: Remote app session state
+              uid: migration/inc/remote-session
+            - name: Remote Authentication
+              uid: migration/inc/remote-authentication 
           - name: Overview
             uid: migration/proper-to-2x/index
           - name: MVC
