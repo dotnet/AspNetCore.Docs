@@ -209,13 +209,25 @@ To directly run the app on the server:
 1. Navigate to the app's directory.
 1. Run the app: `dotnet <app_assembly.dll>`, where `app_assembly.dll` is the assembly file name of the app.
 
+# [Ubuntu](#tab/linux-ubuntu)
+
 If the app runs on the server but fails to respond over the Internet, check the server's firewall and confirm port 80 is open. If using an Azure Ubuntu VM, add a Network Security Group (NSG) rule that enables inbound port 80 traffic. There's no need to enable an outbound port 80 rule, as the outbound traffic is automatically granted when the inbound rule is enabled.
+
+# [Red Hat Enterprise Linux](#tab/linux-rhel)
+
+If the app runs on the server but fails to respond over the Internet, check the server's firewall and confirm port 80 is open.
+
+# [SUSE Linux Enterprise Server](#tab/linux-sles)
+
+If the app runs on the server but fails to respond over the Internet, check the server's firewall and confirm port 80 is open.
+
+---
 
 When done testing the app, shut down the app with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) at the command prompt.
 
 ## Monitor the app
 
-The server is set up to forward requests made to `http://<serveraddress>:80` on to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`. However, Nginx isn't set up to manage the Kestrel process. `systemd` can be used to create a service file to start and monitor the underlying web app. `systemd` is an init system that provides many powerful features for starting, stopping, and managing processes. 
+The server is set up to forward requests made to `http://<serveraddress>:80` on to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`. However, Nginx isn't set up to manage the Kestrel process. `systemd` can be used to create a service file to start and monitor the underlying web app. `systemd` is an init system that provides many powerful features for starting, stopping, and managing processes.
 
 ### Create the service file
 
@@ -229,7 +241,7 @@ The following example is an `.ini` service file for the app:
 
 ```
 [Unit]
-Description=Example .NET Web API App running on Ubuntu
+Description=Example .NET Web API App running on Linux
 
 [Service]
 WorkingDirectory=/var/www/helloapp
@@ -282,7 +294,7 @@ Start the service and verify that it's running.
 sudo systemctl start kestrel-helloapp.service
 sudo systemctl status kestrel-helloapp.service
 
-◝ kestrel-helloapp.service - Example .NET Web API App running on Ubuntu
+◝ kestrel-helloapp.service - Example .NET Web API App running on Linux
     Loaded: loaded (/etc/systemd/system/kestrel-helloapp.service; enabled)
     Active: active (running) since Thu 2016-10-18 04:09:35 NZDT; 35s ago
 Main PID: 9021 (dotnet)
