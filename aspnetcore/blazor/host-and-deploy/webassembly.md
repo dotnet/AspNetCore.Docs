@@ -506,6 +506,18 @@ When using a project site instead of an organization site, update the `<base>` t
 > [!NOTE]
 > The [SteveSandersonMS/BlazorOnGitHubPages GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages) isn't owned, maintained, or supported by the .NET Foundation or Microsoft.
 
+### Standalone with Docker
+
+A standalone Blazor WebAssembly app is published as a set of static files for hosting by a static file server.
+
+To host the app in Docker:
+
+* Choose a Docker container with web server support, such as Ngnix or Apache.
+* Copy the `publish` folder assets to a location folder defined in the web server for serving static files.
+* Apply additional configuration as needed to serve the Blazor WebAssembly app.
+
+For configuration guidance, see the [Nginx](#nginx) or [Apache](#apache) sections earlier in this article.
+
 ## Host configuration values
 
 [Blazor WebAssembly apps](xref:blazor/hosting-models#blazor-webassembly) can accept the following host configuration values as command-line arguments at runtime in the development environment.
@@ -1560,6 +1572,18 @@ When using a project site instead of an organization site, update the `<base>` t
 > [!NOTE]
 > The [SteveSandersonMS/BlazorOnGitHubPages GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages) isn't owned, maintained, or supported by the .NET Foundation or Microsoft.
 
+### Standalone with Docker
+
+A standalone Blazor WebAssembly app is published as a set of static files for hosting by a static file server.
+
+To host the app in Docker:
+
+* Choose a Docker container with web server support, such as Ngnix or Apache.
+* Copy the `publish` folder assets to a location folder defined in the web server for serving static files.
+* Apply additional configuration as needed to serve the Blazor WebAssembly app.
+
+For configuration guidance, see the [Nginx](#nginx) or [Apache](#apache) sections earlier in this article.
+
 ## Host configuration values
 
 [Blazor WebAssembly apps](xref:blazor/hosting-models#blazor-webassembly) can accept the following host configuration values as command-line arguments at runtime in the development environment.
@@ -2569,6 +2593,18 @@ When using a project site instead of an organization site, update the `<base>` t
 > [!NOTE]
 > The [SteveSandersonMS/BlazorOnGitHubPages GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages) isn't owned, maintained, or supported by the .NET Foundation or Microsoft.
 
+### Standalone with Docker
+
+A standalone Blazor WebAssembly app is published as a set of static files for hosting by a static file server.
+
+To host the app in Docker:
+
+* Choose a Docker container with web server support, such as Ngnix or Apache.
+* Copy the `publish` folder assets to a location folder defined in the web server for serving static files.
+* Apply additional configuration as needed to serve the Blazor WebAssembly app.
+
+For configuration guidance, see the [Nginx](#nginx) or [Apache](#apache) sections earlier in this article.
+
 ## Host configuration values
 
 [Blazor WebAssembly apps](xref:blazor/hosting-models#blazor-webassembly) can accept the following host configuration values as command-line arguments at runtime in the development environment.
@@ -3369,6 +3405,18 @@ When using a project site instead of an organization site, update the `<base>` t
 
 > [!NOTE]
 > The [SteveSandersonMS/BlazorOnGitHubPages GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages) isn't owned, maintained, or supported by the .NET Foundation or Microsoft.
+
+### Standalone with Docker
+
+A standalone Blazor WebAssembly app is published as a set of static files for hosting by a static file server.
+
+To host the app in Docker:
+
+* Choose a Docker container with web server support, such as Ngnix or Apache.
+* Copy the `publish` folder assets to a location folder defined in the web server for serving static files.
+* Apply additional configuration as needed to serve the Blazor WebAssembly app.
+
+For configuration guidance, see the [Nginx](#nginx) or [Apache](#apache) sections earlier in this article.
 
 ## Host configuration values
 
