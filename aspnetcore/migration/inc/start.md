@@ -31,13 +31,13 @@ To understand how this is helpful in the migration process, see [Incremental ASP
 
 ## Upgrade supporting libraries
 
-If you have supporting libraries in your solution that you will need to use, they should be upgraded to support .NET 6 or later<!--Review -->. [Upgrade Assistant](https://github.com/dotnet/upgrade-assistant) is a great tool for this.
+If you have supporting libraries in your solution that you will need to use, they should be upgraded to .NET Standard 2.0, if possible.  [Upgrade Assistant](https://github.com/dotnet/upgrade-assistant) is a great tool for this. If libraries are unable to target .NET Standard, you can target .NET 6 or later either along with the .NET Framework target in the original project or in a new project alongside the original.
 
-The adapters in this project can be used in these libraries to enable support for `System.Web.HttpContext` usage in class libraries. In order to enable `System.Web.HttpContext` usage in a library:
+The [adapters](xref:migration/inc/adapters) can be used in these libraries to enable support for `System.Web.HttpContext` usage in class libraries. In order to enable `System.Web.HttpContext` usage in a library:
 
 1. Remove reference to `System.Web` in the project file
 1. Add the `Microsoft.AspNetCore.SystemWebAdapters` package
-<!--1. Enable multi-targeting and add a .NET 6 target or later, or convert the project to .NET Standard-->
+1. Enable multi-targeting and add a .NET 6 target or later, or convert the project to .NET Standard 2.0.
 1. Ensure the target framework supports .NET Core. Multi-targeting can be used if .NET Standard 2.0 is not sufficient
 
 This step may require a number of projects to change depending on your solution structure. Upgrade Assistant can help you identify which ones need to change and automate a number of steps in the process.
