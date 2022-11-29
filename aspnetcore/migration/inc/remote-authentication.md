@@ -76,5 +76,5 @@ app.UseAuthentication();
 
 This remote authentication approach has a couple known limitations:
 
-1. Because Windows authentication depends on a handle to a Windows identity, Windows authentication is not supported by this feature. Future work is planned to explore how shared Windows authentication might work.
+1. Because Windows authentication depends on a handle to a Windows identity, Windows authentication is not supported by this feature. Future work is planned to explore how shared Windows authentication might work. See [dotnet/systemweb-adapters#246](https://github.com/dotnet/systemweb-adapters/issues/246) for more information.
 1. This feature allows the ASP.NET Core app to make use of an identity authenticated by the ASP.NET app, but all actions related to users (logging on, logging off, etc.) still need to be routed through the ASP.NET app.
