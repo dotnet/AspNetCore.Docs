@@ -16,29 +16,29 @@ An app can describe the [OpenAPI specification](https://swagger.io/specification
 
 The following code is a typical ASP.NET Core app with OpenAPI support:
 
-[!code-csharp[](samples/WebMinAPIs/Program.cs?name=snippet_swag)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_swag)]
 
 ### Exclude OpenAPI description
 
 In the following sample, the `/skipme` endpoint is excluded from generating an OpenAPI description:
 
-[!code-csharp[](samples/WebMinAPIs/Program.cs?name=snippet_swag2)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_swag2)]
 
 ### Describe response types
 
 The following example uses the built-in result types to customize the response:
 
-[!code-csharp[](samples/todo/Program.cs?name=snippet_getCustom)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/todo/Program.cs?name=snippet_getCustom)]
 
 ### Add operation ids to OpenAPI
 
-[!code-csharp[](samples/todo/Program.cs?name=snippet_name)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/todo/Program.cs?name=snippet_name)]
 
 ### Add tags to the OpenAPI description
 
 The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specification/grouping-operations-with-tags/):
 
-[!code-csharp[](samples/todo/Program.cs?name=snippet_grp)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/todo/Program.cs?name=snippet_grp)]
 
 :::moniker-end
 
@@ -96,7 +96,7 @@ The [`WithOpenApi`](/dotnet/api/microsoft.aspnetcore.builder.openapiendpointconv
 
 Operation IDs are used to uniquely identify a given endpoint in OpenAPI. The [`WithName`](/dotnet/api/microsoft.aspnetcore.builder.routingendpointconventionbuilderextensions.withname) extension method can be used to set the operation ID used for a method.
 
-[!code-csharp[](samples/todo/Program.cs?name=snippet_name)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/todo/Program.cs?name=snippet_name)]
 
 Alternatively, the `OperationId` property can be set directly on the OpenAPI annotation.
 
@@ -112,7 +112,7 @@ app.MapGet("/todos", async (TodoDb db) => await db.Todos.ToListAsync())
 
 OpenAPI supports using [tag objects](https://swagger.io/docs/specification/grouping-operations-with-tags/) to categorize operations. These tags are typically used to group operations in the Swagger UI. These tags can be added to an operation by invoking the [WithTags](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.withtags) extension method on the endpoint with the desired tags.
 
-[!code-csharp[](samples/todo/Program.cs?name=snippet_grp)]
+[!code-csharp[](~/fundamentals/minimal-apis/samples/todo/Program.cs?name=snippet_grp)]
 
 Alternatively, the list of `OpenApiTags` can be set on the OpenAPI annotation via the `WithOpenApi` extension method.
 
@@ -193,7 +193,7 @@ If an endpoint can return different response types in different scenarios, you c
 
 * Call the [`Produces`](/dotnet/api/microsoft.aspnetcore.http.openapiroutehandlerbuilderextensions.produces) extension method multiple times, as shown in the following example:
 
-  [!code-csharp[](samples/todo/Program.cs?name=snippet_getCustom)]
+  [!code-csharp[](~/fundamentals/minimal-apis/samples/todo/Program.cs?name=snippet_getCustom)]
 
 * Use [`Results<TResult1,TResult2,TResultN>`](xref:Microsoft.AspNetCore.Http.HttpResults.Results%606) in the signature and [`TypedResults`](/dotnet/api/microsoft.aspnetcore.http.typedresults) in the body of the handler, as shown in the following example:
 
