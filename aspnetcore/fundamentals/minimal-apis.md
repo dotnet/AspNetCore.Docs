@@ -775,42 +775,42 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
 :::row:::
    :::column span="":::
       WebApplication
-      &nbsp;&nbsp;&nbsp;&nbsp;Working with ports  
-      &nbsp;&nbsp;&nbsp;&nbsp;Listen on all interfaces  
-      &nbsp;&nbsp;&nbsp;&nbsp;Working with certificates  
-      &nbsp;&nbsp;&nbsp;&nbsp;Environment  
-      &nbsp;&nbsp;&nbsp;&nbsp;Configuration  
-      &nbsp;&nbsp;&nbsp;&nbsp;Logging  
-      &nbsp;&nbsp;&nbsp;&nbsp;Access the Dependency Injection (DI) container  
+      > Working with ports  
+      > Listen on all interfaces  
+      > Working with certificates  
+      > Environment  
+      > Configuration  
+      > Logging  
+      > Access the Dependency Injection (DI) container  
    :::column-end:::
    :::column span="":::
       WebApplicationBuilder  
-      &nbsp;&nbsp;&nbsp;&nbsp;Change the content root, app name, and environment  
-      &nbsp;&nbsp;&nbsp;&nbsp;Add configuration providers  
-      &nbsp;&nbsp;&nbsp;&nbsp;Read configuration  
-      &nbsp;&nbsp;&nbsp;&nbsp;Read the environment  
-      &nbsp;&nbsp;&nbsp;&nbsp;Add logging providers  
-      &nbsp;&nbsp;&nbsp;&nbsp;Add services  
-      &nbsp;&nbsp;&nbsp;&nbsp;Customize the IHostBuilder  
-      &nbsp;&nbsp;&nbsp;&nbsp;Customize the IWebHostBuilder  
-      &nbsp;&nbsp;&nbsp;&nbsp;Change the web root  
-      &nbsp;&nbsp;&nbsp;&nbsp;Custom dependency injection (DI) container  
-      &nbsp;&nbsp;&nbsp;&nbsp;Developer exception page  
-      &nbsp;&nbsp;&nbsp;&nbsp;Add Middleware  
+      > Change the content root, app name, and environment  
+      > Add configuration providers  
+      > Read configuration  
+      > Read the environment  
+      > Add logging providers  
+      > Add services  
+      > Customize the IHostBuilder  
+      > Customize the IWebHostBuilder  
+      > Change the web root  
+      > Custom dependency injection (DI) container  
+      > Developer exception page  
+      > Add Middleware  
    :::column-end:::
    :::column span="":::
       ASP.NET Core Middleware  
       Request handling  
-      &nbsp;&nbsp;&nbsp;&nbsp;Routing  
-      &nbsp;&nbsp;&nbsp;&nbsp;Route Handlers  
-      &nbsp;&nbsp;&nbsp;&nbsp;Parameter Binding  
-      &nbsp;&nbsp;&nbsp;&nbsp;Read the request body  
+      > Routing  
+      > Route Handlers  
+      > Parameter Binding  
+      > Read the request body  
       Responses  
-      &nbsp;&nbsp;&nbsp;&nbsp;Example return values  
+      > Example return values  
       Filters  
       Authorization  
-      &nbsp;&nbsp;&nbsp;&nbsp;Allow unauthenticated users to access an endpoint  
-      &nbsp;&nbsp;&nbsp;&nbsp;CORS  
+      > Allow unauthenticated users to access an endpoint  
+      > CORS  
    :::column-end:::
 :::row-end:::
 ---
