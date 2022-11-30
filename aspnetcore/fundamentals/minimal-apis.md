@@ -810,7 +810,7 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
       **Filters**  
       **Authorization**  
       Allow unauthenticated users to access an endpoint  
-      CORS  
+      **CORS**  
    :::column-end:::
 :::row-end:::
 ---
