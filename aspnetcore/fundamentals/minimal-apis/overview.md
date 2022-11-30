@@ -10,9 +10,8 @@ uid: fundamentals/minimal-apis/overview
 
 # Minimal APIs overview
 
-Minimal APIs are both a technology and an approach to quickly and easily create web-based APIs with HTTP endpoints in ASP.NET Core.
-You can build fully functioning REST endpoints with minimal code and configuration. Skip traditional scaffolding and avoid unnecessary controllers by fluently declaring
-your API routes and actions. For example, the following code creates an API at the root of your web application that returns the text, "Hello World!"
+Minimal APIs are a simplified approach for building fast HTTP APIs with  ASP.NET Core.
+You can build fully functioning REST endpoints with minimal code and configuration. Skip traditional scaffolding and avoid unnecessary controllers by fluently declaring API routes and actions. For example, the following code creates an API at the root of the web app that returns the text, `"Hello World!"`.
 
 ```csharp
 var app = WebApplication.Create(args);
@@ -22,7 +21,7 @@ app.MapGet("/", () => "Hello World!");
 app.Run();
 ```
 
-Of course, most APIs accept parameters as part of the route.
+Most APIs accept parameters as part of the route.
 
 ```csharp 
 var builder = WebApplication.CreateBuilder(args);
