@@ -10,38 +10,6 @@ uid: fundamentals/minimal-apis/openapi
 
 # OpenAPI support in minimal API apps
 
-:::moniker range="= aspnetcore-6.0"
-
-An app can describe the [OpenAPI specification](https://swagger.io/specification/) for route handlers using [Swashbuckle](https://www.nuget.org/packages/Swashbuckle.AspNetCore/).
-
-The following code is a typical ASP.NET Core app with OpenAPI support:
-
-[!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_swag)]
-
-### Exclude OpenAPI description
-
-In the following sample, the `/skipme` endpoint is excluded from generating an OpenAPI description:
-
-[!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_swag2)]
-
-### Describe response types
-
-The following example uses the built-in result types to customize the response:
-
-[!code-csharp[](~/fundamentals/minimal-apis/samples/todo/Program.cs?name=snippet_getCustom)]
-
-### Add operation ids to OpenAPI
-
-[!code-csharp[](~/fundamentals/minimal-apis/samples/todo/Program.cs?name=snippet_name)]
-
-### Add tags to the OpenAPI description
-
-The following code uses an [OpenAPI grouping tag](https://swagger.io/docs/specification/grouping-operations-with-tags/):
-
-[!code-csharp[](~/fundamentals/minimal-apis/samples/todo/Program.cs?name=snippet_grp)]
-
-:::moniker-end
-
 :::moniker range=">= aspnetcore-7.0"
 
 The [OpenAPI specification](https://spec.openapis.org/oas/latest.html) is a programming language-agnostic standard for documenting HTTP APIs. This standard is supported in minimal APIs through a combination of built-in APIs and open-source libraries. There are three key aspects to OpenAPI integration in an application:
@@ -241,12 +209,6 @@ When no explicit annotation is provided, the framework attempts to determine the
 
 Minimal APIs support API versioning via the [Asp.Versioning.Http package](https://www.nuget.org/packages/Asp.Versioning.Http). Examples of configuring versioning with minimal APIs can be found in [the API versioning repo](https://github.com/dotnet/aspnet-api-versioning/tree/3857a332057d970ad11bac0edfdbff8a559a215d/examples/AspNetCore/WebApi).
 
-<!-- 
-# Differences between minimal APIs and APIs with controllers
-
-Moved to uid: tutorials/min-web-api
--->
-
 ## ASP.NET Core OpenAPI source code on GitHub
 
 * [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f22f8d39aae21d212282004f/src/OpenApi/src/OpenApiRouteHandlerBuilderExtensions.cs)
@@ -257,3 +219,5 @@ Moved to uid: tutorials/min-web-api
 * <xref:fundamentals/minimal-apis/security>
 
 :::moniker-end
+
+[!INCLUDE[](~/fundamentals/minimal-apis/includes/openapi6.md)]
