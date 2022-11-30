@@ -774,7 +774,7 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
 ---
 :::row:::
    :::column span="":::
-      WebApplication
+      * WebApplication
           * Working with ports  
           * Listen on all interfaces  
           * Working with certificates  
@@ -784,7 +784,7 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
           * Access the Dependency Injection (DI) container  
    :::column-end:::
    :::column span="":::
-      WebApplicationBuilder  
+      * WebApplicationBuilder  
           * Change the content root, app name, and environment  
           * Add configuration providers  
           * Read configuration  
@@ -799,16 +799,16 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
           * Add Middleware  
    :::column-end:::
    :::column span="":::
-      ASP.NET Core Middleware  
-      Request handling  
+      * ASP.NET Core Middleware  
+      * Request handling  
           * Routing  
           * Route Handlers  
           * Parameter Binding  
           * Read the request body  
-      Responses  
+      * Responses  
           * Example return values  
-      Filters  
-      Authorization  
+      * Filters  
+      * Authorization  
           * Allow unauthenticated users to access an endpoint  
           * CORS  
    :::column-end:::
