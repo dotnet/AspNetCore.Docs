@@ -1,3 +1,4 @@
+:::moniker range=">= aspnetcore-6.0"
 This document:
 
 * Provides a quick reference for minimal APIs.
@@ -752,3 +753,5 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
 ## See also
 
 [OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/openapi)
+
+:::moniker-end
