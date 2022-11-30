@@ -64,7 +64,7 @@ The app displays the email used to register the new user and a **Logout** link.
 ![Web application open in Microsoft Edge. The Register link is replaced by the text Hello user@example.com!](publish-to-azure-webapp-using-vs/_static/hello.png)
 
 * Stop the application by either closing the browser or in Visual Studio select **Debug** > **Stop Debugging**.
-* In Visual Studio select **Build** > **Clean Solution** to remove any intermediate and output files, and avoid potential file locks.
+* In Visual Studio select **Build** > **Clean Solution** to  clean project items  and avoid file contention.
 
 ## Deploy the app to Azure
 
