@@ -1,4 +1,5 @@
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range="= aspnetcore-6.0"
+
 This document:
 
 * Provides a quick reference for minimal APIs.
