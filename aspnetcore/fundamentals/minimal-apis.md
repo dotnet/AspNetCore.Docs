@@ -772,7 +772,6 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
 :::moniker range=">= aspnetcore-7.0"
 
 ---
-
 :::row:::
    :::column span="":::
       WebApplication
@@ -785,7 +784,7 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
       &nbsp;&nbsp;&nbsp;&nbsp;Access the Dependency Injection (DI) container  
    :::column-end:::
    :::column span="":::
-      WebApplicationBuilder
+      WebApplicationBuilder  
       &nbsp;&nbsp;&nbsp;&nbsp;Change the content root, app name, and environment  
       &nbsp;&nbsp;&nbsp;&nbsp;Add configuration providers  
       &nbsp;&nbsp;&nbsp;&nbsp;Read configuration  
@@ -801,19 +800,20 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
    :::column-end:::
    :::column span="":::
       ASP.NET Core Middleware  
-      Request handling
+      Request handling  
       &nbsp;&nbsp;&nbsp;&nbsp;Routing  
       &nbsp;&nbsp;&nbsp;&nbsp;Route Handlers  
       &nbsp;&nbsp;&nbsp;&nbsp;Parameter Binding  
       &nbsp;&nbsp;&nbsp;&nbsp;Read the request body  
-      Responses
+      Responses  
       &nbsp;&nbsp;&nbsp;&nbsp;Example return values  
       Filters  
-      Authorization
+      Authorization  
       &nbsp;&nbsp;&nbsp;&nbsp;Allow unauthenticated users to access an endpoint  
       &nbsp;&nbsp;&nbsp;&nbsp;CORS  
    :::column-end:::
 :::row-end:::
+---
 
 This document:
 
