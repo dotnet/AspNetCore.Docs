@@ -237,8 +237,4 @@ Moved to uid: tutorials/min-web-api
 
 :::moniker-end
 
-:::moniker range="= aspnetcore-6.0"
-
 [!INCLUDE[](~/fundamentals/minimal-apis/includes/minimal-apis6.md)]
-
-:::moniker-end
