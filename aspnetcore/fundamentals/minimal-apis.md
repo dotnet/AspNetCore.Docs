@@ -236,3 +236,5 @@ Moved to uid: tutorials/min-web-api
 [OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/openapi)
 
 :::moniker-end
+
+[!INCLUDE[](~/fundamentals/minimal-apis/includes/minimal-apis6.md)]
