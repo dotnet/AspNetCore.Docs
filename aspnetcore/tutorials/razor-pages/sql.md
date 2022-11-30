@@ -9,7 +9,7 @@ uid: tutorials/razor-pages/sql
 ---
 # Part 4 of tutorial series on Razor Pages
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Joe Audette](https://twitter.com/joeaudette)
+By [Joe Audette](https://twitter.com/joeaudette)
 
 :::moniker range=">= aspnetcore-7.0"
 
