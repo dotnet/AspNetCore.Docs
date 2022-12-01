@@ -1,15 +1,13 @@
 ---
 title: Part 5, update the generated pages
-author: rick-anderson
+author: wadepickett
 description: Part 5 of tutorial series on Razor Pages.
-ms.author: riande
+ms.author: wpickett
 ms.date: 10/24/2022
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/da1
 ---
 # Part 5, update the generated pages in an ASP.NET Core app
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-7.0"
 

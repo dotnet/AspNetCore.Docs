@@ -1,8 +1,8 @@
 ---
 title: Publish an ASP.NET Core app to Azure with Visual Studio
-author: rick-anderson
+author: wadepickett
 description: Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
-ms.author: riande
+ms.author: wpickett
 ms.custom: "devx-track-csharp, mvc"
 ms.date: 07/10/2019
 uid: tutorials/publish-to-azure-webapp-using-vs
@@ -15,7 +15,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 [!INCLUDE [Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
 :::moniker-end
-
 
 If you're working on macOS, see [Publish a Web app to Azure App Service using Visual Studio for Mac](/visualstudio/mac/publish-app-svc).
 
