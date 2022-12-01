@@ -782,11 +782,11 @@ For more information, see <xref:security/cors?view=aspnetcore-6.0>
       Configuration  
       Logging  
       Access the Dependency Injection (DI) container  
-   :::column-end:::
-   :::column span="":::
       **WebApplicationBuilder**  
       Change the content root, app name, and environment  
       Add configuration providers  
+   :::column-end:::
+   :::column span="":::
       Read configuration  
       Read the environment  
       Add logging providers  
