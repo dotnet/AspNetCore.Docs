@@ -216,7 +216,7 @@ Review the `OnPostAsync` method in the `Pages/Movies/Edit.cshtml.cs` file:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample6/Pages/Movies/Edit.cshtml.cs?name=snippet1)]
 
-The previous code detects concurrency exceptions when one client deletes the movie and the other client posts changes to the movie.
+The previous code detects concurrency exceptions when one client deletes the movie and the other client posts changes to the movie. The previous code does **not** detect conflicts that occur because of two or more clients editing the same movie concurrently. In this case edits by multiple clients are applied in the order that `SaveChanges` is called and edits that are applied later may overwrite earlier edits with stale values.
 
 To test the `catch` block:
 
@@ -225,7 +225,7 @@ To test the `catch` block:
 1. In another browser window, select the **Delete** link for the same movie, and then delete the movie.
 1. In the previous browser window, post changes to the movie.
 
-Production code may want to detect concurrency conflicts. See [Handle concurrency conflicts](xref:data/ef-rp/concurrency) for more information.
+Production code may want to detect additional concurrency conflicts such as multiple clients editing an entity at the same time. See [Handle concurrency conflicts](xref:data/ef-rp/concurrency) for more information.
 
 ### Posting and binding review
 
