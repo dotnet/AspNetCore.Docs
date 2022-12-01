@@ -385,7 +385,7 @@ sudo ufw enable
 
 Edit `src/http/ngx_http_header_filter_module.c`:
 
-```text
+```c
 static char ngx_http_server_string[] = "Server: Web Server" CRLF;
 static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 ```
