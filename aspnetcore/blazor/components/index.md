@@ -1430,6 +1430,41 @@ The following `GenericTypeExample5` component with inferred cascaded types provi
 }
 ```
 
+## Render static root Razor components
+
+A *root Razor component* is the first component loaded of any component hierarachy created by the app.
+
+In an app created from the Blazor Server project template, the `App` component (`App.razor`) is created as the default root component in `Pages/_Host.cshtml` using the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper):
+
+```cshtml
+<component type="typeof(App)" render-mode="ServerPrerendered" />
+```
+
+In an app created from the Blazor WebAssembly project template, the `App` component (`App.razor`) is created as the default root component in `Program.cs`:
+
+```csharp
+builder.RootComponents.Add<App>("#app");
+```
+
+In the preceding code, the CSS selector, `#app`, indicates that the `App` component is created for the `<div>` in `wwwroot/index.html` with an `id` of `app`:
+
+```html
+<div id="app">...</app>
+```
+
+MVC and Razor Pages apps can also use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) to register statically-rendered Blazor WebAssembly root components:
+
+```cshtml
+<component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
+```
+
+Statically-rendered components can only be added to the app. They can't be removed or updated afterwards.
+
+For more information, see the following resources:
+
+* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
+* <xref:blazor/components/prerendering-and-integration>
+
 ## Render Razor components from JavaScript
 
 Razor components can be dynamically-rendered from JavaScript (JS) for existing JS apps.
@@ -1461,7 +1496,17 @@ Load Blazor into the JS app (`blazor.server.js` or `blazor.webassembly.js`). Ren
 
 ```javascript
 let containerElement = document.getElementById('my-counter');
-await Blazor.rootComponents.add(containerElement, 'counter', { incrementAmount: 10 });
+await window.Blazor.rootComponents.add(containerElement, 'counter', { incrementAmount: 10 });
+```
+
+`rootComponents.add` returns an instance of the component. Call `dispose` on the instance to release it:
+
+```javascript
+const rootComponent = await window.Blazor.rootComponents.add(...);
+
+...
+
+rootComponent.dispose();
 ```
 
 ## Blazor custom elements
@@ -2986,6 +3031,41 @@ The following `GenericTypeExample5` component with inferred cascaded types provi
 }
 ```
 
+## Render static root Razor components
+
+A *root Razor component* is the first component loaded of any component hierarachy created by the app.
+
+In an app created from the Blazor Server project template, the `App` component (`App.razor`) is created as the default root component in `Pages/_Host.cshtml` using the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper):
+
+```cshtml
+<component type="typeof(App)" render-mode="ServerPrerendered" />
+```
+
+In an app created from the Blazor WebAssembly project template, the `App` component (`App.razor`) is created as the default root component in `Program.cs`:
+
+```csharp
+builder.RootComponents.Add<App>("#app");
+```
+
+In the preceding code, the CSS selector, `#app`, indicates that the `App` component is created for the `<div>` in `wwwroot/index.html` with an `id` of `app`:
+
+```html
+<div id="app">...</app>
+```
+
+MVC and Razor Pages apps can also use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) to register statically-rendered Blazor WebAssembly root components:
+
+```cshtml
+<component type="typeof(App)" render-mode="WebAssemblyPrerendered" />
+```
+
+Statically-rendered components can only be added to the app. They can't be removed or updated afterwards.
+
+For more information, see the following resources:
+
+* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
+* <xref:blazor/components/prerendering-and-integration>
+
 ## Render Razor components from JavaScript
 
 Razor components can be dynamically-rendered from JavaScript (JS) for existing JS apps.
@@ -3017,7 +3097,17 @@ Load Blazor into the JS app (`blazor.server.js` or `blazor.webassembly.js`). Ren
 
 ```javascript
 let containerElement = document.getElementById('my-counter');
-await Blazor.rootComponents.add(containerElement, 'counter', { incrementAmount: 10 });
+await window.Blazor.rootComponents.add(containerElement, 'counter', { incrementAmount: 10 });
+```
+
+`rootComponents.add` returns an instance of the component. Call `dispose` on the instance to release it:
+
+```javascript
+const rootComponent = await window.Blazor.rootComponents.add(...);
+
+...
+
+rootComponent.dispose();
 ```
 
 ## Blazor custom elements
