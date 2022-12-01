@@ -127,6 +127,10 @@ If a configuration value must be guaranteed, see [GetValue](#getvalue). The prec
 
 Using the [default](#default) configuration, the `appsettings.json` and `appsettings.{Environment}.json` files are enabled with [reloadOnChange: true](https://github.com/dotnet/extensions/blob/release/3.1/src/Hosting/Hosting/src/Host.cs#L74-L75). Changes made to the `appsettings.json` and `appsettings.{Environment}.json` file ***after*** the app starts are read by the [JSON configuration provider](#jcp).
 
+### Comments in appsettings.json
+
+Comments in `appsettings.json` and `appsettings.{Environment}.json`files are supported using JavaScript or C# style comments.
+
 <a name="optpat"></a>
 
 ### Bind hierarchical configuration data using the options pattern
