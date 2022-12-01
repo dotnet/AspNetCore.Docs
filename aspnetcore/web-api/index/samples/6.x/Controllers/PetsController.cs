@@ -59,7 +59,7 @@ namespace WebApiSample.Controllers
                      _petsInMemoryStore.Max(p => p.Id) + 1 : 1;
             _petsInMemoryStore.Add(pet);
 
-            return CreatedAtAction(nameof(GetById), new { id = pet.Id }, pet);
+            return CreatedAtAction(nameof(Create), new { id = pet.Id }, pet);
         }
         #endregion
     }
