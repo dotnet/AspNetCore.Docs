@@ -1,8 +1,8 @@
 ---
 title: Part 10, examine the Details and Delete methods of an ASP.NET Core app
-author: rick-anderson
+author: wadepickett
 description: Part 10 of tutorial series on ASP.NET Core MVC.
-ms.author: riande
+ms.author: wpickett
 ms.date: 10/07/2022
 uid: tutorials/first-mvc-app/details
 ---

@@ -1,8 +1,8 @@
 ---
 title: Part 8, add validation
-author: rick-anderson
+author: wadepickett
 description: Part 8 of tutorial series on Razor Pages.
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc, contperf-fy21q2
 ms.date: 10/13/2021
 uid: tutorials/razor-pages/validation

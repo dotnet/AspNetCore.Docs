@@ -1,8 +1,8 @@
 ---
 title: Part 8, add a new field to an ASP.NET Core MVC app
-author: rick-anderson
+author: wadepickett
 description: Part 8 of tutorial series on ASP.NET Core MVC.
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 10/25/2022
 uid: tutorials/first-mvc-app/new-field
