@@ -33,10 +33,6 @@ Welcome to what's new in the ASP.NET Core docs for November 2022. This article l
 - <xref:fundamentals/minimal-apis/webapplication>
 - <xref:fundamentals/minimal-apis/security>
 
-### Updated articles
-
-- <xref:fundamentals/servers/kestrel/http3> - moniker prep HTTP/3
-
 ## Migration
 
 ### New articles
@@ -65,16 +61,12 @@ Welcome to what's new in the ASP.NET Core docs for November 2022. This article l
 
 ### Updated articles
 
-- <xref:tutorials/first-mvc-app/adding-model> - Put moniker block 7 on top
-- <xref:tutorials/first-mvc-app/search> - Put moniker block 7 on top
-- <xref:tutorials/first-mvc-app/start-mvc> - Put moniker block 7 on top
 - <xref:tutorials/min-web-api> - Prereq fix on min-web-api.md
 
 ## Community contributors
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham ![There were 55 pull requests merged by Luke Latham.](https://img.shields.io/badge/Merged%20Pull%20Requests-55-green)
 - [alex-jitbit](https://github.com/alex-jitbit) - Alexander Yumashev ![There were 1 pull requests merged by Alexander Yumashev.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [BlueHtml](https://github.com/BlueHtml) ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [byguid](https://github.com/byguid) - Ustym Simchuk ![There were 1 pull requests merged by Ustym Simchuk.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
