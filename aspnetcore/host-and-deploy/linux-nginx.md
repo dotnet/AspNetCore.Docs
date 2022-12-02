@@ -13,7 +13,7 @@ uid: host-and-deploy/linux-nginx
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
 :::moniker range=">= aspnetcore-6.0"
-This guide explains setting up a production-ready ASP.NET Core environment on an Ubuntu 20.04 VM. These instructions likely work with newer versions of Ubuntu, but the instructions haven't been tested with newer versions.
+This guide explains setting up a production-ready ASP.NET Core environment on a VM for Ubuntu, Red Hat Enterprise (RHEL) and SUSE Linux Enterprise Server.
 
 For information on other Linux distributions supported by ASP.NET Core, see [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites).
 
@@ -28,7 +28,7 @@ This guide:
 
 # [Ubuntu](#tab/linux-ubuntu)
 
-* Access to an Ubuntu 20.04 VM with a standard user account with sudo privilege.
+* Access to an Ubuntu 20.04 VM with a standard user account with sudo privilege. These instructions likely work with newer versions of Ubuntu, but the instructions haven't been tested with newer versions.
 * The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
 * An existing ASP.NET Core app.
 
@@ -40,7 +40,7 @@ This guide:
 
 # [SUSE Linux Enterprise Server](#tab/linux-sles)
 
-* Access to an SLES 12 VM with a standard user account with sudo privilege.
+* Access to an SLES 12 or 15 VM with a standard user account with sudo privilege.
 * The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
 * An existing ASP.NET Core app.
 
