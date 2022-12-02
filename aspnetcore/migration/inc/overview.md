@@ -10,6 +10,8 @@ ms.prod: aspnet-core
 uid: migration/inc/overview
 ---
 
+<!-- see mermaid.txt to change diagrams -->
+
 # Incremental ASP.NET to ASP.NET Core migration
 
 Migrating an app from ASP.NET Framework to ASP.NET Core is non-trivial for the majority of production apps. These apps often incorporate new technologies as they become available and are often composed of many legacy decisions. This article provides guidance and links to tools for migrating ASP.NET Framework apps to ASP.NET Core with as little change as possible.
@@ -56,7 +58,7 @@ Once the ASP.NET Framework app is no longer needed and deleted:
 
 ![final pic](~/migration/inc/overview/static/final.png)
 
-[Microsoft Project Migrations](https://marketplace.visualstudio.com/items?itemName=WebToolsTeam.aspnetprojectmigrations) is an experimental [Visual Studio extension](/visualstudio/ide/finding-and-using-visual-studio-extensions?view=vs-2022) that can assist in incremental migration from ASP.NET Framework to ASP.NET Core.
+[Microsoft Project Migrations](https://marketplace.visualstudio.com/items?itemName=WebToolsTeam.aspnetprojectmigrations) is an experimental [Visual Studio extension](/visualstudio/ide/finding-and-using-visual-studio-extensions) that can assist in incremental migration from ASP.NET Framework to ASP.NET Core.
 
 ## System.Web Adapters
 
