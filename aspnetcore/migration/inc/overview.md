@@ -56,7 +56,7 @@ Once the ASP.NET Framework app is no longer needed and deleted:
 
 ![final pic](~/migration/inc/overview/static/final.png)
 
-[Microsoft Project Migrations](https://marketplace.visualstudio.com/items?itemName=WebToolsTeam.aspnetprojectmigrations) is an experimental [Visual Studio extension](/visualstudio/ide/finding-and-using-visual-studio-extensions?view=vs-2022) that can assist in incremental migration from ASP.NET Framework to ASP.NET Core.
+[Microsoft Project Migrations](https://marketplace.visualstudio.com/items?itemName=WebToolsTeam.aspnetprojectmigrations) is an experimental [Visual Studio extension](/visualstudio/ide/finding-and-using-visual-studio-extensions) that can assist in incremental migration from ASP.NET Framework to ASP.NET Core.
 
 ## System.Web Adapters
 
@@ -72,7 +72,7 @@ For guidance around usage, see the [usage guidance article](xref:migration/inc/u
 
 * [Video:Tooling for Incremental ASP.NET Core Migrations](https://www.youtube.com/watch?v=P96l0pDNVpM)
 
-<!--
+<!--  mermaid incase we want to change imaged
 
 ```mermaid
     sequenceDiagram
