@@ -119,9 +119,9 @@ builder.Services.AddAuthentication(options =>
   {
        // Other options...
        options.TokenValidationParameters = new TokenValidationParameters
-      {
+       {
           NameClaimType = "email"
-       //, RoleClaimType = "role"
+          //, RoleClaimType = "role"
        };
   });
 #endregion
