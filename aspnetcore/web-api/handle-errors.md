@@ -180,7 +180,7 @@ The default problem details response body has the following `type`, `title`, and
 
 ### Problem details service
 
-ASP.NET Core supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html) using the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService>. For more information, see the [Problem details](/aspnet/core/fundamentals/error-handling#pds7).
+ASP.NET Core supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html) using the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService>. For more information, see the [Problem details service](/aspnet/core/fundamentals/error-handling#pds7).
 
 The following code configures the app to generate a problem details response for all HTTP client and server error responses that ***don't have a body content yet***:
 
