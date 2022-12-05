@@ -1519,6 +1519,8 @@ Blazor custom elements:
 * Eliminate the need to manually manage the state and lifecycle of root Razor components using JavaScript APIs.
 * Are useful for gradually introducing Razor components into existing projects written in other SPA frameworks.
 
+Custom elements don't support [child content](#child-content-render-fragments) or [templated components](xref:blazor/components/templated-components).
+
 ### Blazor Server registration
 
 To register a root component as a custom element in a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in `Program.cs`. The following example registers the `Counter` component with the custom HTML element `my-counter`:
