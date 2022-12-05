@@ -13,7 +13,7 @@ uid: fundamentals/http-logging/index
 
 :::moniker range=">= aspnetcore-6.0"
 
-HTTP Logging is a middleware that logs information about HTTP requests and HTTP responses. HTTP logging provides logs of:
+HTTP Logging is a middleware that logs information about incoming HTTP requests and HTTP responses. HTTP logging provides logs of:
 
 * HTTP request information
 * Common properties

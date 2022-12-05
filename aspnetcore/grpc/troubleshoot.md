@@ -170,6 +170,9 @@ The WPF application can use the gRPC generated types from the new class library 
 
 ## Calling gRPC services hosted in a sub-directory
 
+> [!WARNING]
+> Many third-party gRPC tools don't support services hosted in subdirectories. Consider finding a way to host gRPC as the root directory.
+
 The path component of a gRPC channel's address is ignored when making gRPC calls. For example, `GrpcChannel.ForAddress("https://localhost:5001/ignored_path")` won't use `ignored_path` when routing gRPC calls for the service.
 
 The address path is ignored because gRPC has a standardized, prescriptive address structure. A gRPC address combines the package, service and method names: `https://localhost:5001/PackageName.ServiceName/MethodName`.
@@ -237,7 +240,7 @@ HTTP/3 support is in preview in .NET 6, and needs to be enabled via a configurat
 
 `System.Net.SocketsHttpHandler.Http3Support` can also be set using [AppContext.SetSwitch](xref:System.AppContext.SetSwitch%2A).
 
-A <xref:System.Net.Http.DelegatingHandler> can bee used to force a gRPC client to use HTTP/3. Forcing HTTP/3 avoids the overhead of upgrading the request. Force HTTP/3 with code similar to the following:
+A <xref:System.Net.Http.DelegatingHandler> can be used to force a gRPC client to use HTTP/3. Forcing HTTP/3 avoids the overhead of upgrading the request. Force HTTP/3 with code similar to the following:
 
 ```csharp
 /// <summary>
@@ -271,9 +274,6 @@ var reply = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
 ```
 
 Alternatively, a client factory can be configured with `Http3Handler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
-
-
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 :::moniker-end
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
@@ -435,6 +435,9 @@ The WPF application can use the gRPC generated types from the new class library 
 
 ## Calling gRPC services hosted in a sub-directory
 
+> [!WARNING]
+> Many third-party gRPC tools don't support services hosted in subdirectories. Consider finding a way to host gRPC as the root directory.
+
 The path component of a gRPC channel's address is ignored when making gRPC calls. For example, `GrpcChannel.ForAddress("https://localhost:5001/ignored_path")` won't use `ignored_path` when routing gRPC calls for the service.
 
 The address path is ignored because gRPC has a standardized, prescriptive address structure. A gRPC address combines the package, service and method names: `https://localhost:5001/PackageName.ServiceName/MethodName`.
@@ -487,8 +490,6 @@ The preceding code:
 * Calls the gRPC service with `SayHelloAsync`. The gRPC call is sent to `https://localhost:5001/MyApp/greet.Greeter/SayHello`.
 
 Alternatively, a client factory can be configured with `SubdirectoryHandler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
-
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 :::moniker-end
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
@@ -650,6 +651,9 @@ The WPF application can use the gRPC generated types from the new class library 
 
 ## Calling gRPC services hosted in a sub-directory
 
+> [!WARNING]
+> Many third-party gRPC tools don't support services hosted in subdirectories. Consider finding a way to host gRPC as the root directory.
+
 The path component of a gRPC channel's address is ignored when making gRPC calls. For example, `GrpcChannel.ForAddress("https://localhost:5001/ignored_path")` won't use `ignored_path` when routing gRPC calls for the service.
 
 The address path is ignored because gRPC has a standardized, prescriptive address structure. A gRPC address combines the package, service and method names: `https://localhost:5001/PackageName.ServiceName/MethodName`.
@@ -702,7 +706,5 @@ The preceding code:
 * Calls the gRPC service with `SayHelloAsync`. The gRPC call is sent to `https://localhost:5001/MyApp/greet.Greeter/SayHello`.
 
 Alternatively, a client factory can be configured with `SubdirectoryHandler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
-
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 :::moniker-end

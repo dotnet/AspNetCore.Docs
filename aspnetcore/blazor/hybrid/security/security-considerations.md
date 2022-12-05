@@ -5,7 +5,7 @@ description: Learn about security considerations when developing apps in Blazor 
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/23/2022
+ms.date: 11/08/2022
 uid: blazor/hybrid/security/security-considerations
 ---
 # ASP.NET Core Blazor Hybrid security considerations
@@ -31,7 +31,7 @@ Consider the code inside the Web View as **untrusted** in the same way that code
 
 If possible, avoid loading content from a third-party origin. To mitigate risk, you might be able to serve content directly from the app by downloading the external assets, verifying that they're safe to serve to users, and placing them into the app's `wwwroot` folder for packaging with the rest of the app. When the external content is downloaded for inclusion in the app, we recommend scanning it for viruses and malware before placing it into the `wwwroot` folder of the app.
 
-If your app must reference content from an external origin, we recommended that you use common web security approaches to provide the app with an opportunity to block the content from loading if the content is compromised:
+If your app must reference content from an external origin, we recommend that you use common web security approaches to provide the app with an opportunity to block the content from loading if the content is compromised:
 
 * Serve content securely with TLS/HTTPS.
 * Institute a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP).

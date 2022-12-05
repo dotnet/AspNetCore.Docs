@@ -5,7 +5,7 @@ description: Learn foundational concepts of the Blazor application framework.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/08/2022
+ms.date: 11/08/2022
 uid: blazor/fundamentals/index
 ---
 # ASP.NET Core Blazor fundamentals
@@ -88,6 +88,16 @@ The ASP.NET Core repository's Basic Test App is also a helpful set of samples fo
 [`BasicTestApp` in ASP.NET Core reference source (`dotnet/aspnetcore`)](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/BasicTestApp)
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+## Byte multiples
+
+.NET byte sizes use metric prefixes for non-decimal multiples of bytes based on powers of 1024.
+
+| Name (abbreviation) | Size                    | Example                    |
+| ------------------- | ----------------------- | -------------------------- |
+| Kilobyte (KB)       | 1,024 bytes             | 1 KB = 1,024 bytes         |
+| Megabyte (MB)       | 1,024<sup>2</sup> bytes | 1 MB = 1,048,576 bytes     |
+| Gigabyte (GB)       | 1,024<sup>3</sup> bytes | 1 GB = 1,073,741,824 bytes |
 
 ## Support requests
 

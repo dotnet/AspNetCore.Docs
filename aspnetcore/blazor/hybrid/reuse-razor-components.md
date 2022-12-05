@@ -1,16 +1,16 @@
 ---
 title: Reuse Razor components in ASP.NET Core Blazor Hybrid apps
 author: guardrex
-description: Learn how to author and organize Razor components for the web and and Web Views in Blazor Hybrid apps.
+description: Learn how to author and organize Razor components for the web and Web Views in Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
-ms.date: 06/09/2022
+ms.date: 11/08/2022
 uid: blazor/hybrid/reuse-razor-components
 ---
 # Reuse Razor components in ASP.NET Core Blazor Hybrid
 
-This article explains how to author and organize Razor components for the web and and :::no-loc text="Web Views"::: in Blazor Hybrid apps.
+This article explains how to author and organize Razor components for the web and :::no-loc text="Web Views"::: in Blazor Hybrid apps.
 
 Razor components work across hosting models (Blazor WebAssembly, Blazor Server, and in the Web View of Blazor Hybrid) and across platforms (Android, iOS, and Windows). Hosting models and platforms have unique capabilities that components can leverage, but components executing across hosting models and platforms must leverage unique capabilities separately, which the following examples demonstrate:
 

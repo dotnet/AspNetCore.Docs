@@ -40,6 +40,11 @@ The preceding instructions work for basic stepping into functions, but the optim
 
 If you have debugged an app before with the previous version of .NET, delete the `%TEMP%/SymbolCache` directory as it can have old PDBs that are out of date.
 
+## Debugging .NET Core on Unix over SSH
+
+* [Debugging .NET Core on Unix over SSH](https://devblogs.microsoft.com/devops/debugging-net-core-on-unix-over-ssh/)
+* [Debugging ASP Core on Linux with Visual Studio 2017](https://devblogs.microsoft.com/premier-developer/debugging-asp-core-on-linux-with-visual-studio-2017/)
+
 ## Additional resources
 
 * [JIT Optimization and Debugging](/visualstudio/debugger/jit-optimization-and-debugging)

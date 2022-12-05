@@ -5,7 +5,7 @@ description: Learn how to build Blazor apps with the tutorials listed in this ar
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/10/2022
+ms.date: 11/08/2022
 uid: blazor/tutorials/index
 ---
 # ASP.NET Core Blazor tutorials
@@ -20,6 +20,6 @@ The following tutorials are available for ASP.NET Core Blazor:
 
 * <xref:blazor/hybrid/tutorials/index>
 
-* [Learn modules](/learn/paths/build-web-apps-with-blazor/)
+* [Learn modules](/training/paths/build-web-apps-with-blazor/)
 
 For more information on Blazor hosting models, Blazor Server and Blazor WebAssembly, see <xref:blazor/hosting-models>.

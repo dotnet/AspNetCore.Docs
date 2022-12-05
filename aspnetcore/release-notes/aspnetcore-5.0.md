@@ -59,7 +59,7 @@ ASP.NET Core 3.1 introduced <xref:Microsoft.AspNetCore.Mvc.Routing.DynamicRouteV
 * The [[Compare]](xref:System.ComponentModel.DataAnnotations.CompareAttribute) attribute can be applied to properties on a Razor Page model.
 * Parameters and properties bound from the body are considered required by default. <!-- Review: How is this different from 3.1
 The validation system in .NET Core 3.0 and later treats non-nullable parameters or bound properties as if they had a [Required] attribute.
-see https://docs.microsoft.com/aspnet/core/mvc/models/validation?view=aspnetcore-3.1   
+see https://learn.microsoft.com/aspnet/core/mvc/models/validation?view=aspnetcore-3.1   
 -->
 
 ## Web API

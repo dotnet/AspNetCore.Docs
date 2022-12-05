@@ -107,3 +107,19 @@ app.Run();
 #endregion
 #endif
 
+#region snippet_action_endpoint_filters
+var builder = WebApplication.CreateBuilder(args);
+
+var app = builder.Build();
+
+app.MapController()
+    .AddEndpointFilter(async (efiContext, next) =>
+    {
+        efiContext.HttpContext.Items["endpointFilterCalled"] = true;
+        var result = await next(efiContext);
+        return result;
+    });
+
+app.Run();
+#endregion
+

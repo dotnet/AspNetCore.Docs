@@ -1,0 +1,2 @@
+> [!NOTE]
+> When a single authentication scheme is registered, the authentication scheme is automatically used as the app's default scheme, and it isn't necessary to state the scheme to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication%2A> or via <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions>. For more information, see <xref:security/authentication/index#defaultscheme> and the [ASP.NET Core announcement (aspnet/Announcements #490)](https://github.com/aspnet/Announcements/issues/490).

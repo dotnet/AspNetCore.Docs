@@ -5,7 +5,7 @@ description: Build a Windows Presentation Foundation (WPF) app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/23/2022
+ms.date: 11/15/2022
 uid: blazor/hybrid/tutorials/wpf
 ---
 # Build a Windows Presentation Foundation (WPF) Blazor app
@@ -20,10 +20,7 @@ This tutorial shows you how to build and run a WPF Blazor app. You learn how to:
 ## Prerequisites
 
 * [Supported platforms (WPF documentation)](/dotnet/desktop/wpf/overview/)
-* [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **.NET desktop development** workload
-
-> [!NOTE]
-> Blazor Hybrid has reached General Availability (GA) and is fully supported for production workloads. Visual Studio and Visual Studio for Mac are in prerelease for working on Blazor Hybrid apps and may be modified before final release. We recommend keeping Visual Studio 2022 Preview updated for the best tooling experience.
+* [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) with the **.NET desktop development** workload
 
 ## Visual Studio workload
 
@@ -33,21 +30,23 @@ If the **.NET desktop development** workload isn't installed, use the Visual Stu
 
 ## Create a WPF Blazor project
 
-Start Visual Studio 2022 Preview.
-
-In the Start Window, select **Create a new project**:
+Launch Visual Studio. In the **Start Window**, select **Create a new project**:
 
 :::image type="content" source="wpf/_static/new-solution.png" alt-text="Create a new solution in Visual Studio.":::
 
-In the **Create a new project** dialog, filter the **Project type** drop-down to **Desktop**. Select the C# project template for **WPF Application** and select the **Next** button:
+In the **Create a new project** dialog, filter the **Project type** dropdown to **Desktop**. Select the C# project template for **WPF Application** and select the **Next** button:
 
 :::image type="content" source="wpf/_static/create-project.png" alt-text="Create a new project in Visual Studio.":::
 
-In the **Configure your new project** dialog, set the **Project name** to **`WpfBlazor`**, choose a suitable location for the project, and select the **Next** button.
+In the **Configure your new project** dialog:
+
+* Set the **Project name** to **:::no-loc text="WpfBlazor":::**.
+* Choose a suitable location for the project.
+* Select the **Next** button.
 
 :::image type="content" source="wpf/_static/configure-project.png" alt-text="Configure the project.":::
 
-In the **Additional information** dialog, select the framework version, which must be .NET 6.0 or later. Select the **Create** button:
+In the **Additional information** dialog, select the framework version with the **Framework** dropdown list. Select the **Create** button:
 
 :::image type="content" source="wpf/_static/additional-information.png" alt-text="The Additional Information dialog for the WPF project.":::
 
@@ -55,7 +54,7 @@ Use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-
 
 :::image type="content" source="wpf/_static/nuget-package-manager.png" alt-text="Use Nuget Package Manager in Visual Studio to install the Microsoft.AspNetCore.Components.WebView.Wpf NuGet package.":::
 
-In **Solution Explorer**, right-click the `WpfBlazor` project and select **Edit Project File** to open the project file (`WpfBlazor.csproj`).
+In **Solution Explorer**, right-click the project's name, **:::no-loc text="WpfBlazor":::**, and select **Edit Project File** to open the project file (`WpfBlazor.csproj`).
 
 At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
 
@@ -68,13 +67,14 @@ At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
     Additional open issue on it: https://github.com/dotnet/maui/issues/5861
 -->
 
-Set the project's namespace, `WpfBlazor` in this tutorial, as the app's root namespace by adding the following property group to the project file:
+In the project file's existing `<PropertyGroup>` add the following markup to set the app's root namespace, which is `WpfBlazor` in this tutorial:
 
 ```xml
-<PropertyGroup>
-  <RootNameSpace>WpfBlazor</RootNameSpace>
-</PropertyGroup>
+<RootNamespace>WpfBlazor</RootNamespace>
 ```
+
+> [!NOTE]
+> The preceding guidance on setting the project's root namespace is a temporary workaround. For more information, see [[Blazor][Wpf] Root namespace related issue (dotnet/maui #5861)](https://github.com/dotnet/maui/issues/5861).
 
 Save the changes to the project file (`WpfBlazor.csproj`).
 
@@ -85,6 +85,8 @@ Add an `_Imports.razor` file to the root of the project with an [`@using`](xref:
 ```razor
 @using Microsoft.AspNetCore.Components.Web
 ```
+
+Save the `_Imports.razor` file.
 
 Add a `wwwroot` folder to the project.
 
@@ -197,6 +199,8 @@ Add the following `Counter` component to the root of the project, which is the d
     }
 }
 ```
+
+Save the `Counter` component (`Counter.razor`).
 
 If the `MainWindow` designer isn't open, open it by double-clicking the `MainWindow.xaml` file in **Solution Explorer**. In the `MainWindow` designer, replace the XAML code with the following:
 

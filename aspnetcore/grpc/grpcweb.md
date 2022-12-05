@@ -63,7 +63,7 @@ The preceding code:
 
 * Calls `AddCors` to add CORS services and configure a CORS policy that exposes gRPC-specific headers.
 * Calls `UseCors` to add the CORS middleware after routing configuration and before endpoints configuration.
-* Specifies that the `endpoints.MapGrpcService<GreeterService>()` method supports CORS with `RequiresCors`.
+* Specifies that the `endpoints.MapGrpcService<GreeterService>()` method supports CORS with `RequireCors`.
 
 ### gRPC-Web and streaming
 
@@ -161,4 +161,4 @@ For more information, see <xref:grpc/clientfactory>.
 
 * [gRPC for Web Clients GitHub project](https://github.com/grpc/grpc-web)
 * <xref:security/cors>
-* <xref:grpc/httpapi>
+* <xref:grpc/json-transcoding>

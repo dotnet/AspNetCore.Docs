@@ -5,7 +5,7 @@ description: Learn how to build Blazor WebAssembly apps with native dependencies
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/28/2021
+ms.date: 11/08/2022
 uid: blazor/webassembly-native-dependencies
 ---
 # ASP.NET Core Blazor WebAssembly native dependencies
@@ -16,12 +16,9 @@ Blazor WebAssembly apps can use native dependencies built to run on WebAssembly.
 
 ## .NET WebAssembly build tools
 
-The **.NET WebAssembly build tools** are based on [Emscripten](https://emscripten.org/), a compiler toolchain for the web platform. To install the **.NET WebAssembly build tools**, use ***either*** of the following approaches:
+The .NET WebAssembly build tools are based on [Emscripten](https://emscripten.org/), a compiler toolchain for the web platform. For more information on the build tools, including installation, see <xref:blazor/tooling#net-webassembly-build-tools>.
 
-* For the **ASP.NET and web development** workload in the Visual Studio installer, select the **.NET WebAssembly build tools** option from the list of optional components.
-* Run `dotnet workload install wasm-tools` in a command shell.
-
-Add native dependencies to a Blazor WebAssembly app by adding `NativeFileReference` items in the app's project file. When the project is built, each `NativeFileReference` is passed to Emscripten by the **.NET WebAssembly build tools** so that they are compiled and linked into the runtime. Next, [`p/invoke`](/dotnet/standard/native-interop/pinvoke) into the native code from the app's .NET code.
+Add native dependencies to a Blazor WebAssembly app by adding `NativeFileReference` items in the app's project file. When the project is built, each `NativeFileReference` is passed to Emscripten by the .NET WebAssembly build tools so that they are compiled and linked into the runtime. Next, [`p/invoke`](/dotnet/standard/native-interop/pinvoke) into the native code from the app's .NET code.
 
 Generally, any portable native code can be used as a native dependency with Blazor WebAssembly. You can add native dependencies to C/C++ code or code previously compiled using Emscripten:
 
@@ -83,7 +80,7 @@ Add a simple native C function to a Blazor WebAssembly app:
    }
    ```
 
-When you build the app with the **.NET WebAssembly build tools** installed, the native C code is compiled and linked into the .NET WebAssembly runtime (`dotnet.wasm`). After the app is built, run the app to see the rendered factorial value.
+When you build the app with the .NET WebAssembly build tools installed, the native C code is compiled and linked into the .NET WebAssembly runtime (`dotnet.wasm`). After the app is built, run the app to see the rendered factorial value.
 
 ## C++ managed method callbacks
 
@@ -152,3 +149,7 @@ To use SkiaSharp in a Blazor WebAssembly app:
    ```
 
 1. Build the app, which might take several minutes. Run the app and navigate to the `NativeDependencyExample` component at `/native-dependency-example`.
+
+## Additional resources
+
+* [.NET WebAssembly build tools](xref:blazor/tooling#net-webassembly-build-tools)

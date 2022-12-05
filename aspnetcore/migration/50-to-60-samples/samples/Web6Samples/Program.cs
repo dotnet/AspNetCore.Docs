@@ -21,6 +21,7 @@ app.Run();
 #region snippet_root
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
+    Args = args,
     ApplicationName = typeof(Program).Assembly.FullName,
     ContentRootPath = Directory.GetCurrentDirectory(),
     EnvironmentName = Environments.Staging,

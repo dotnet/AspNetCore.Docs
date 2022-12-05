@@ -5,7 +5,7 @@ description: Learn how to use Graph API with Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 11/08/2022
 uid: blazor/security/webassembly/graph-api
 ---
 # Use Graph API with ASP.NET Core Blazor WebAssembly
@@ -18,7 +18,7 @@ This article explains how to use [Microsoft Graph API](/graph/use-the-api), whic
 
 [Microsoft Graph SDKs](/graph/sdks/sdks-overview) are designed to simplify building high-quality, efficient, and resilient applications that access Microsoft Graph.
 
-The examples in this section require package references for the standalone or **`Client`** app:
+The examples in this section require package references for the standalone or **:::no-loc text="Client":::** app:
 
 * [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http)
 * [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph)
@@ -32,7 +32,7 @@ The following utility classes and configuration are used in each of the followin
 
 After adding the Microsoft Graph API scopes in the AAD area of the Azure portal:
 
-* Add the following `GraphClientExtensions.cs` class to the standalone app or **`Client`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
+* Add the following `GraphClientExtensions.cs` class to the standalone app or **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 * Provide the required scopes to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions.Scopes> property of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions> in the `AuthenticateRequestAsync` method. In the following example, the `User.Read` scope is specified to match the examples in later sections of this article.
 
 ```csharp
@@ -273,7 +273,7 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
 
 The examples in this section use a named <xref:System.Net.Http.HttpClient> for Graph API to obtain a user's mobile phone number to process a call.
 
-The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) for the standalone or **`Client`** app.
+The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) for the standalone or **:::no-loc text="Client":::** app.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -293,8 +293,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 public class GraphAPIAuthorizationMessageHandler : AuthorizationMessageHandler
 {
     public GraphAPIAuthorizationMessageHandler(IAccessTokenProvider provider,
-        NavigationManager navigationManager)
-        : base(provider, navigationManager)
+        NavigationManager navigation)
+        : base(provider, navigation)
     {
         ConfigureHandler(
             authorizedUrls: new[] { "https://graph.microsoft.com" },
@@ -517,7 +517,7 @@ The preceding example is for an app that uses AAD authentication with MSAL. Simi
 
 [Microsoft Graph SDKs](/graph/sdks/sdks-overview) are designed to simplify building high-quality, efficient, and resilient applications that access Microsoft Graph.
 
-The examples in this section require package references for the standalone or **`Client`** app:
+The examples in this section require package references for the standalone or **:::no-loc text="Client":::** app:
 
 * [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http)
 * [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph)
@@ -531,7 +531,7 @@ The following utility classes and configuration are used in each of the followin
 
 After adding the Microsoft Graph API scopes in the AAD area of the Azure portal:
 
-* Add the following `GraphClientExtensions.cs` class to the standalone app or **`Client`** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
+* Add the following `GraphClientExtensions.cs` class to the standalone app or **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 * Provide the required scopes to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions.Scopes> property of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions> in the `AuthenticateRequestAsync` method. In the following example, the `User.Read` scope is specified to match the examples in later sections of this article.
 
 ```csharp
@@ -772,7 +772,7 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
 
 The examples in this section use a named <xref:System.Net.Http.HttpClient> for Graph API to obtain a user's mobile phone number to process a call.
 
-The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) for the standalone or **`Client`** app.
+The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) for the standalone or **:::no-loc text="Client":::** app.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -792,8 +792,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 public class GraphAPIAuthorizationMessageHandler : AuthorizationMessageHandler
 {
     public GraphAPIAuthorizationMessageHandler(IAccessTokenProvider provider,
-        NavigationManager navigationManager)
-        : base(provider, navigationManager)
+        NavigationManager navigation)
+        : base(provider, navigation)
     {
         ConfigureHandler(
             authorizedUrls: new[] { "https://graph.microsoft.com" },
@@ -1016,7 +1016,7 @@ The preceding example is for an app that uses AAD authentication with MSAL. Simi
 
 The examples in this section use a named <xref:System.Net.Http.HttpClient> for Graph API to obtain a user's mobile phone number to process a call.
 
-The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) for the standalone or **`Client`** app.
+The examples in this section require a package reference for [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) for the standalone or **:::no-loc text="Client":::** app.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -1036,8 +1036,8 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 public class GraphAPIAuthorizationMessageHandler : AuthorizationMessageHandler
 {
     public GraphAPIAuthorizationMessageHandler(IAccessTokenProvider provider,
-        NavigationManager navigationManager)
-        : base(provider, navigationManager)
+        NavigationManager navigation)
+        : base(provider, navigation)
     {
         ConfigureHandler(
             authorizedUrls: new[] { "https://graph.microsoft.com" },

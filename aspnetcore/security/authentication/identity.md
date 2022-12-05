@@ -28,11 +28,10 @@ Identity is typically configured using a SQL Server database to store user names
 
 In this topic, you learn how to use Identity to register, log in, and log out a user. Note: the templates treat username and email as the same for users. For more detailed instructions about creating apps that use Identity, see [Next Steps](#next).
 
-[Microsoft identity platform](/azure/active-directory/develop/) is:
+ASP.NET Core Identity isn't related to the [Microsoft identity platform](/azure/active-directory/develop/). Microsoft identity platform is:
 
 * An evolution of the Azure Active Directory (Azure AD) developer platform.
 * An alternative identity solution for authentication and authorization in ASP.NET Core apps.
-* Not related to ASP.NET Core Identity.
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
@@ -245,6 +244,7 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 ## Next Steps
 
 * [ASP.NET Core Identity source code](https://github.com/dotnet/aspnetcore/tree/main/src/Identity)
+* [How to work with Roles in ASP.NET Core Identity](https://www.yogihosting.com/aspnet-core-identity-roles/) <!-- https://github.com/dotnet/AspNetCore.Docs/issues/7114 ->
 * See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/5131) for information on configuring Identity using SQLite.
 * [Configure Identity](xref:security/authentication/identity-configuration)
 * <xref:security/authorization/secure-data>

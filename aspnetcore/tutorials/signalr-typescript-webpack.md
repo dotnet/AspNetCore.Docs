@@ -3,7 +3,8 @@ title: "Tutorial: Get started with ASP.NET Core SignalR using TypeScript and Web
 author: ssougnez
 description: This tutorial provides a walkthrough of bundling and building an ASP.NET Core SignalR web app using TypeScript and Webpack.
 monikerRange: ">= aspnetcore-2.1"
-ms.author: bradyg
+<!-- ms.author: bradyg -->
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 03/15/2022
 uid: tutorials/signalr-typescript-webpack
@@ -272,7 +273,7 @@ In this tutorial, you learn how to:
 
 # [Visual Studio](#tab/visual-studio)
 
-* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
 * [.NET Core SDK 3.0 or later](https://dotnet.microsoft.com/download/dotnet-core)
 * [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 
@@ -547,7 +548,7 @@ In this tutorial, you learn how to:
 
 # [Visual Studio](#tab/visual-studio)
 
-* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
 * [.NET Core SDK 2.2 or later](https://dotnet.microsoft.com/download/dotnet-core)
 * [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/)
 

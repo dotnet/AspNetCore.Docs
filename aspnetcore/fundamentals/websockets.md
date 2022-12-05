@@ -1,9 +1,9 @@
 ---
 title: WebSockets support in ASP.NET Core
-author: rick-anderson
+author: wadepickett
 description: Learn how to get started with WebSockets in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc
 ms.date: 08/17/2022
 uid: fundamentals/websockets
@@ -110,13 +110,7 @@ Never use `Task.Wait`, `Task.Result`, or similar blocking calls to wait for the 
 
 ## Add HTTP/2 WebSockets support for existing controllers
 
-.NET 7 introduced Websockets over HTTP/2 support for Kestrel, the SignalR JavaScript client, and SignalR with Blazor WebAssembly. HTTP/2 WebSockets use CONNECT requests rather than GET.  The previous controller action method example can be modified to use CONNECT by defining an `HttpConnect` attribute class and applying that attribute to the controller method.
-
-The following is an example custom attribute routing class named `HttpConnectAttribute`:
-
-[!code-csharp[](~/fundamentals/websockets/samples/7.x/WebSocketsSample/Controllers/HttpConnectAttribute.cs)]
-
-The custom `[HttpConnect]` attribute is applied in addition to an [[HttpGet]](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute on a controller action. This enables Websocket support over both HTTP/2 and HTTP/1:
+.NET 7 introduced Websockets over HTTP/2 support for Kestrel, the SignalR JavaScript client, and SignalR with Blazor WebAssembly. HTTP/2 WebSockets use CONNECT requests rather than GET. If you previously used `[HttpGet("/path")]` on your controller action method for Websocket requests, update it to use `[Route("/path")]` instead.
 
 [!code-csharp[](~/fundamentals/websockets/samples/7.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet_Controller_Connect&highlight=3)]
 

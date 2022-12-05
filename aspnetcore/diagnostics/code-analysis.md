@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about source code analysis in ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.date: 12/17/2021
+ms.date: 11/22/2022
 uid: diagnostics/code-analysis
 ---
 # Code analysis in ASP.NET Core apps
@@ -20,6 +20,18 @@ uid: diagnostics/code-analysis
 | [ASP0005](xref:diagnostics/asp0005) | Non-breaking             | Do not place attribute on method called by route handler lambda              |
 | [ASP0006](xref:diagnostics/asp0006) | Non-breaking             | Do not use non-literal sequence numbers                                      |
 | [ASP0007](xref:diagnostics/asp0007) | Non-breaking             | Route parameter and argument optionality is mismatched                       |
+| [ASP0008](xref:diagnostics/asp0008) | Non-breaking             | Do not use ConfigureWebHost with WebApplicationBuilder.Host                  |
+| [ASP0009](xref:diagnostics/asp0009) | Non-breaking             | Do not use Configure with WebApplicationBuilder.WebHost                      |
+| [ASP0010](xref:diagnostics/asp0010) | Non-breaking             | Do not use UseStartup with WebApplicationBuilder.WebHost                     |
+| [ASP0011](xref:diagnostics/asp0011) | Non-breaking             | Suggest using builder.Logging over Host.ConfigureLogging or WebHost.ConfigureLogging                     |
+| [ASP0012](xref:diagnostics/asp0012) | Non-breaking             | Suggest using builder.Services over Host.ConfigureServices or WebHost.ConfigureServices                    |
+| [ASP0013](xref:diagnostics/asp0013) | Non-breaking             | Suggest switching from using Configure methods to WebApplicationBuilder.Configuration                     |
+| [ASP0014](xref:diagnostics/asp0014) | Non-breaking             | Suggest using top level route registrations                                  |
+| [ASP0015](xref:diagnostics/asp0015) | Non-breaking             | Suggest using IHeaderDictionary properties |
+| [ASP0016](xref:diagnostics/asp0016) | Non-breaking             | Do not return a value from RequestDelegate |
+| [ASP0017](xref:diagnostics/asp0017) | Non-breaking             | Invalid route pattern |
+| [ASP0018](xref:diagnostics/asp0018) | Non-breaking             | Unused route parameter |
+| [ASP0019](xref:diagnostics/asp0019) | Non-breaking             | Suggest using IHeaderDictionary.Append or the indexer |
 | [BL0001](xref:diagnostics/bl0001)   | Breaking                 | Component parameter should have public setters                               |
 | [BL0002](xref:diagnostics/bl0002)   | Non-breaking             | Component has multiple CaptureUnmatchedValues parameters                     |
 | [BL0003](xref:diagnostics/bl0003)   | Breaking                 | Component parameter with CaptureUnmatchedValues has the wrong type           |

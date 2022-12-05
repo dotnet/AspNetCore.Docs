@@ -1,6 +1,6 @@
 # Upload Files Sample App
 
-This sample app demonstrates concepts described in the [Upload files in ASP.NET Core](https://docs.microsoft.com/aspnet/core/mvc/models/file-uploads) topic.
+This sample app demonstrates concepts described in the [Upload files in ASP.NET Core](https://learn.microsoft.com/aspnet/core/mvc/models/file-uploads) topic.
 
 ## Security considerations
 
@@ -33,7 +33,7 @@ Security steps that reduce the likelihood of a successful attack are:
 > * [Unrestricted File Upload](https://www.owasp.org/index.php/Unrestricted_File_Upload)
 > * [Azure Security: Ensure appropriate controls are in place when accepting files from users](/azure/security/azure-security-threat-modeling-tool-input-validation#controls-users)
 
-For additional information, see [Upload files in ASP.NET Core](https://docs.microsoft.com/aspnet/core/mvc/models/file-uploads).
+For additional information, see [Upload files in ASP.NET Core](https://learn.microsoft.com/aspnet/core/mvc/models/file-uploads).
 
 ## How to use the sample
 

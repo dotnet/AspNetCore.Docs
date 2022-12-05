@@ -5,13 +5,13 @@ monikerRange: '>= aspnetcore-7.0'
 description: Learn how limit requests in ASP.NET Core apps
 ms.author: riande
 ms.custom: mvc
-ms.date: 8/28/2022
+ms.date: 9/30/2022
 uid: performance/rate-limit
 ---
 
 # Rate limiting middleware in ASP.NET Core
 
-By [Arvin Kahbazi](https://github.com/Kahbazi) and [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [Arvin Kahbazi](https://github.com/Kahbazi), [Maarten Balliauw](https://github.com/maartenba), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -37,11 +37,13 @@ Consider the following code:
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_fixed":::
 
 The preceding code:
+
+* Calls <xref:Microsoft.AspNetCore.Builder.RateLimiterServiceCollectionExtensions.AddRateLimiter%2A> to add a rate limiting service to the service collection.
+* Calls `AddFixedWindowLimiter` to create a fixed window limiter with a policy name of `"fixed"` and sets:
+* <xref:System.Threading.RateLimiting.FixedWindowRateLimiterOptions.PermitLimit> to 4 and the time <xref:System.Threading.RateLimiting.FixedWindowRateLimiterOptions.Window> to 12. A maximum of 4 requests per each 12-second window are allowed.
+* <xref:System.Threading.RateLimiting.FixedWindowRateLimiterOptions.QueueProcessingOrder> to <xref:System.Threading.RateLimiting.QueueProcessingOrder.OldestFirst>.
+* <xref:System.Threading.RateLimiting.FixedWindowRateLimiterOptions.QueueLimit> to 2.
 * Calls [UseRateLimiter](/dotnet/api/microsoft.aspnetcore.builder.ratelimiterapplicationbuilderextensions.useratelimiter) to enable rate limiting.
-* Creates a fixed window limiter with a policy name of `"fixed"` and sets:
-* `permitLimit` to 4 and the time `window` to 12. A maximum of 4 requests per each 12-second window are allowed.
-* `queueProcessingOrder` to `QueueProcessingOrder.OldestFirst`.
-* `queueLimit` to 2.
 
 Apps should use [Configuration](xref:fundamentals/configuration/index) to set limiter options. The following code updates the preceding code using [`MyRateLimitOptions`](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/fundamentals/middleware/rate-limit/WebRateLimitAuth/Models/MyRateLimitOptions.cs) for configuration:
 
@@ -115,7 +117,7 @@ The following code uses the token bucket limiter:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_token":::
 
-When `autoReplenishment` is set to `true`, an internal timer replenishes the tokens every `replenishmentPeriod`; when set to `false`, the app must call `TryReplenish` on the limiter.
+When <xref:System.Threading.RateLimiting.TokenBucketRateLimiterOptions.AutoReplenishment%2A> is set to `true`, an internal timer replenishes the tokens every <xref:System.Threading.RateLimiting.TokenBucketRateLimiter.ReplenishmentPeriod%2A>; when set to `false`, the app must call <xref:System.Threading.RateLimiting.TokenBucketRateLimiter.TryReplenish%2A> on the limiter.
 
 <a name="concur"></a>
 
@@ -126,6 +128,36 @@ The concurrency limiter limits the number concurrent requests. Each request redu
 The following code uses the concurrency limiter:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_concur":::
+
+## `EnableRateLimiting` and `DisableRateLimiting` attributes
+
+The [`[EnableRateLimiting]`](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) and [`[DisableRateLimiting]`](xref:Microsoft.AspNetCore.RateLimiting.DisableRateLimitingAttribute) attributes can be applied to a Controller, action method, or Razor Page.
+
+The `[DisableRateLimiting]` attribute ***disables*** rate limiting to the Controller, action method, or Razor Page regardless of named rate limiters or global limiters applied. For example, consider the following code which calls <xref:Microsoft.AspNetCore.Builder.RateLimiterEndpointConventionBuilderExtensions.RequireRateLimiting%2A> to apply the `fixedPolicy` rate limiting to all controller endpoints:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRate2/Program.cs" id="snippet_1" highlight="51":::
+
+In the following code, `[DisableRateLimiting]` disables rate limiting and overrides `[EnableRateLimiting("fixed")]` applied to the `Home2Controller` and `app.MapDefaultControllerRoute().RequireRateLimiting(fixedPolicy)` called in `Program.cs`:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRate2/Controllers/Home2Controller.cs" id="snippet_1" highlight="1,16,22":::
+
+In the preceding code, the `[EnableRateLimiting("sliding")]` is ***not*** applied to the `Privacy` action method because `Program.cs` called `app.MapDefaultControllerRoute().RequireRateLimiting(fixedPolicy)`. <!-- https://github.com/dotnet/AspNetCore.Docs/pull/27294#discussion_r998484867 -->
+
+Consider the following code which doesn't call `RequireRateLimiting` on `MapRazorPages` or `MapDefaultControllerRoute`:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRate2/Program.cs" id="snippet_2" highlight="52,51":::
+
+Consider the following controller:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRate2/Controllers/Home2Controller.cs" id="snippet_1" highlight="1,16,22":::
+
+In the preceding controller:
+
+* The `"fixed"` policy rate limiter is applied to all action methods that don't have `EnableRateLimiting` and `DisableRateLimiting` attributes.
+* The `"sliding"` policy rate limiter is applied to the `Privacy` action.
+* Rate limiting is disabled on the `NoLimit` action method.
+
+The same rules apply to Razor Pages. The `DisableRateLimiting` attribute disables rate limiting on a Razor Page. `EnableRateLimiting` is only applied to a Razor Page if `MapRazorPages().RequireRateLimiting(Policy)` has ***not*** been called.
 
 ## Limiter algorithm comparison
 
@@ -148,7 +180,7 @@ The following sample:
     * One shared partition for all anonymous users.
   * A <xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOptions.GlobalLimiter> that is applied to all requests. The global limiter will be executed first, followed by the endpoint-specific limiter, if one exists. The `GlobalLimiter` creates a partition for each <xref:System.Net.IPAddress>.
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_1":::
 
 > [!WARNING]
 >Creating partitions on client IP addresses makes the app vulnerable to Denial of Service Attacks which employ IP Source Address Spoofing. For more information, see [BCP 38 RFC 2827 Network Ingress Filtering: Defeating Denial of Service Attacks which employ IP Source Address Spoofing](https://www.rfc-editor.org/info/bcp38).
@@ -186,5 +218,10 @@ See [the samples repository for the complete `Program.cs`](https://github.com/do
 Before deploying an app using rate limiting to production, stress test the app to validate the rate limiters and options used. For example, create a [JMeter script](https://jmeter.apache.org/usermanual/jmeter_proxy_step_by_step.html) with a tool like [BlazeMeter](https://guide.blazemeter.com/hc/articles/207421695-Writing-your-first-JMeter-script) or [Apache JMeter HTTP(S) Test Script Recorder](https://jmeter.apache.org/usermanual/jmeter_proxy_step_by_step.html) and load the script to [Azure Load Testing](/azure/load-testing/overview-what-is-azure-load-testing).
 
 Creating partitions with user input makes the app vulnerable to [Denial of Service](https://www.cisa.gov/uscert/ncas/tips/ST04-015) (DoS) Attacks. For example, creating partitions on client IP addresses makes the app vulnerable to Denial of Service Attacks that employ IP Source Address Spoofing. For more information, see [BCP 38 RFC 2827 Network Ingress Filtering: Defeating Denial of Service Attacks that employ IP Source Address Spoofing](https://www.rfc-editor.org/info/bcp38).
+
+## Additional resources
+
+* [Rate limiting middleware](https://blog.maartenballiauw.be/post/2022/09/26/aspnet-core-rate-limiting-middleware.html) by Maarten Balliauw
+* [Rate limit an HTTP handler in .NET](/dotnet/core/extensions/http-ratelimiter)
 
 :::moniker-end

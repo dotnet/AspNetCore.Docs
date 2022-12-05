@@ -110,7 +110,7 @@ Configure Azure AD, Azure Key Vault, and the app to use an Azure AD Application 
 
 The sample app uses an Application ID and X.509 certificate when the `#define` preprocessor directive at the top of `Program.cs` is set to `Certificate`.
 
-1. Create a PKCS#12 archive (*.pfx*) certificate. Options for creating certificates include [MakeCert on Windows](/windows/desktop/seccrypto/makecert) and [OpenSSL](https://www.openssl.org/).
+1. Create a PKCS#12 archive (*.pfx*) certificate. Options for creating certificates include [New-SelfSignedCertificate on Windows](/powershell/module/pki/new-selfsignedcertificate) and [OpenSSL](https://www.openssl.org/).
 1. Install the certificate into the current user's personal certificate store. Marking the key as exportable is optional. Note the certificate's thumbprint, which is used later in this process.
 1. Export the PKCS#12 archive (*.pfx*) certificate as a DER-encoded certificate (*.cer*).
 1. Register the app with Azure AD (**App registrations**).
@@ -336,7 +336,29 @@ To reload secrets periodically, at a specified interval, set the <xref:Azure.Ext
 
 ## Disabled and expired secrets
 
-Disabled and expired secrets are excluded from the configuration provider. To include values for these secrets in app configuration, provide the configuration using a different configuration provider or update the disabled or expired secret.
+Disabled and expired secrets are included by default in the configuration provider. To exclude values for these secrets in app configuration, update the disabled or expired secret or provide the configuration using a custom configuration provider:
+
+```csharp
+class SampleKeyVaultSecretManager : KeyVaultSecretManager
+{
+  public override bool Load(SecretProperties properties) =>
+    properties.Enabled.HasValue &&
+    properties.Enabled.Value &&
+    properties.ExpiresOn.HasValue &&
+    properties.ExpiresOn.Value > DateTimeOffset.Now;
+}
+```
+
+Pass this custom `KeyVaultSecretManager` to `AddAzureKeyVault`:
+
+```csharp
+// using Azure.Extensions.AspNetCore.Configuration.Secrets;
+
+builder.Configuration.AddAzureKeyVault(
+    new Uri($"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/"),
+    new DefaultAzureCredential(),
+    new SampleKeyVaultSecretManager());
+```
 
 ## Troubleshoot
 
@@ -460,7 +482,7 @@ Configure Azure AD, Azure Key Vault, and the app to use an Azure AD Application 
 
 The sample app uses an Application ID and X.509 certificate when the `#define` preprocessor directive at the top of `Program.cs` is set to `Certificate`.
 
-1. Create a PKCS#12 archive (*.pfx*) certificate. Options for creating certificates include [MakeCert on Windows](/windows/desktop/seccrypto/makecert) and [OpenSSL](https://www.openssl.org/).
+1. Create a PKCS#12 archive (*.pfx*) certificate. Options for creating certificates include [New-SelfSignedCertificate on Windows](/powershell/module/pki/new-selfsignedcertificate) and [OpenSSL](https://www.openssl.org/).
 1. Install the certificate into the current user's personal certificate store. Marking the key as exportable is optional. Note the certificate's thumbprint, which is used later in this process.
 1. Export the PKCS#12 archive (*.pfx*) certificate as a DER-encoded certificate (*.cer*).
 1. Register the app with Azure AD (**App registrations**).

@@ -3,15 +3,15 @@ items:
   href: index.yml
   expanded: true
   items:
+  - name: November 2022
+    href: dotnet-AspNetCore.Docs-mod5.md
+  - name: October 2022
+    href: dotnet-AspNetCore.Docs-mod4.md
+  - name: September 2022
+    href: dotnet-AspNetCore.Docs-mod3.md
   - name: August 2022
-    href: dotnet-AspNetCore.Docs-2022-08-01.md
+    href: dotnet-AspNetCore.Docs-mod2.md
   - name: July 2022
-    href: dotnet-AspNetCore.Docs-2022-07-01.md
+    href: dotnet-AspNetCore.Docs-mod1.md
   - name: June 2022
-    href: dotnet-AspNetCore.Docs-2022-04-01.md
-  - name: March 2022
-    href: dotnet-AspNetCore.Docs-2022-03-01.md
-  - name: February 2022
-    href: dotnet-AspNetCore.Docs-2022-02-01.md
-  - name: January 2022
-    href: dotnet-AspNetCore.Docs-2022-01-01.md
+    href: dotnet-AspNetCore.Docs-mod0.md
