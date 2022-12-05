@@ -1521,7 +1521,7 @@ Blazor custom elements:
 
 Custom elements don't support [child content](#child-content-render-fragments) or [templated components](xref:blazor/components/templated-components).
 
-### Passing parameters
+### Pass parameters
 
 Pass parameters to your Blazor component either as HTML attributes or as JavaScript properties on the DOM element.
 
