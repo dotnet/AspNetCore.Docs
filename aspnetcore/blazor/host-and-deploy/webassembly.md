@@ -289,7 +289,7 @@ To use a custom `web.config` file:
 
 If the SDK's `web.config` generation or transformation during publish either doesn't move the file to published assets in the `publish` folder or modifies the custom configuration in your custom `web.config` file, use any of the following approaches as needed to take full control of the process:
 
-* If the SDK doesn't generate the file, for example, in a standalone Blazor WebAssembly app at `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish`, depending on which version of the SDK is used and where the `{TARGET FRAMEWORK}` placeholder is the target framework, set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). Usually for standalone WebAsssembly apps, this is the only required setting to move a custom `web.config` file and prevent transformation of the file by the SDK.
+* If the SDK doesn't generate the file, for example, in a standalone Blazor WebAssembly app at `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish`, depending on which version of the SDK is used and where the `{TARGET FRAMEWORK}` placeholder is the target framework, set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). Usually for standalone WebAssembly apps, this is the only required setting to move a custom `web.config` file and prevent transformation of the file by the SDK.
 
   ```xml
   <PropertyGroup>
@@ -505,6 +505,21 @@ When using a project site instead of an organization site, update the `<base>` t
 
 > [!NOTE]
 > The [SteveSandersonMS/BlazorOnGitHubPages GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages) isn't owned, maintained, or supported by the .NET Foundation or Microsoft.
+
+### Standalone with Docker
+
+A standalone Blazor WebAssembly app is published as a set of static files for hosting by a static file server.
+
+To host the app in Docker:
+
+* Choose a Docker container with web server support, such as Ngnix or Apache.
+* Copy the `publish` folder assets to a location folder defined in the web server for serving static files.
+* Apply additional configuration as needed to serve the Blazor WebAssembly app.
+
+For configuration guidance, see the following resources:
+
+* [Nginx](#nginx) section or [Apache](#apache) section of this article
+* [Docker Documentation](https://docs.docker.com/)
 
 ## Host configuration values
 
@@ -799,6 +814,38 @@ In the project file, the script is executed after publishing the app for the `Re
 
 > [!NOTE]
 > When renaming and lazy loading the same assemblies, see the guidance in <xref:blazor/webassembly-lazy-load-assemblies#onnavigateasync-events-and-renamed-assembly-files>.
+
+Usually, the app's server requires static asset configuration to serve the files with the updated extension. For an app hosted by IIS, add a MIME map entry (`<mimeMap>`) for the new file extension in the static content section (`<staticContent>`) in a custom `web.config` file. The following example assumes that the file extension is changed from `.dll` to `.bin`:
+
+```xml
+<staticContent>
+  ...
+  <mimeMap fileExtension=".bin" mimeType="application/octet-stream" />
+  ...
+</staticContent>
+```
+
+Include an update for compressed files if [compression](#compression) is in use:
+
+```
+<mimeMap fileExtension=".bin.br" mimeType="application/octet-stream" />
+<mimeMap fileExtension=".bin.gz" mimeType="application/octet-stream" />
+```
+
+Remove the entry for the `.dll` file extension:
+
+```diff
+- <mimeMap fileExtension=".dll" mimeType="application/octet-stream" />
+```
+
+Remove entries for compressed `.dll` files if [compression](#compression) is in use:
+
+```diff
+- <mimeMap fileExtension=".dll.br" mimeType="application/octet-stream" />
+- <mimeMap fileExtension=".dll.gz" mimeType="application/octet-stream" />
+```
+
+For more information on custom `web.config` files, see the [Use a custom `web.config`](#use-a-custom-webconfig) section.
 
 ## Prior deployment corruption
 
@@ -1528,6 +1575,21 @@ When using a project site instead of an organization site, update the `<base>` t
 > [!NOTE]
 > The [SteveSandersonMS/BlazorOnGitHubPages GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages) isn't owned, maintained, or supported by the .NET Foundation or Microsoft.
 
+### Standalone with Docker
+
+A standalone Blazor WebAssembly app is published as a set of static files for hosting by a static file server.
+
+To host the app in Docker:
+
+* Choose a Docker container with web server support, such as Ngnix or Apache.
+* Copy the `publish` folder assets to a location folder defined in the web server for serving static files.
+* Apply additional configuration as needed to serve the Blazor WebAssembly app.
+
+For configuration guidance, see the following resources:
+
+* [Nginx](#nginx) section or [Apache](#apache) section of this article
+* [Docker Documentation](https://docs.docker.com/)
+
 ## Host configuration values
 
 [Blazor WebAssembly apps](xref:blazor/hosting-models#blazor-webassembly) can accept the following host configuration values as command-line arguments at runtime in the development environment.
@@ -1821,6 +1883,38 @@ In the project file, the script is executed after publishing the app for the `Re
 
 > [!NOTE]
 > When renaming and lazy loading the same assemblies, see the guidance in <xref:blazor/webassembly-lazy-load-assemblies#onnavigateasync-events-and-renamed-assembly-files>.
+
+Usually, the app's server requires static asset configuration to serve the files with the updated extension. For an app hosted by IIS, add a MIME map entry (`<mimeMap>`) for the new file extension in the static content section (`<staticContent>`) in a custom `web.config` file. The following example assumes that the file extension is changed from `.dll` to `.bin`:
+
+```xml
+<staticContent>
+  ...
+  <mimeMap fileExtension=".bin" mimeType="application/octet-stream" />
+  ...
+</staticContent>
+```
+
+Include an update for compressed files if [compression](#compression) is in use:
+
+```
+<mimeMap fileExtension=".bin.br" mimeType="application/octet-stream" />
+<mimeMap fileExtension=".bin.gz" mimeType="application/octet-stream" />
+```
+
+Remove the entry for the `.dll` file extension:
+
+```diff
+- <mimeMap fileExtension=".dll" mimeType="application/octet-stream" />
+```
+
+Remove entries for compressed `.dll` files if [compression](#compression) is in use:
+
+```diff
+- <mimeMap fileExtension=".dll.br" mimeType="application/octet-stream" />
+- <mimeMap fileExtension=".dll.gz" mimeType="application/octet-stream" />
+```
+
+For more information on custom `web.config` files, see the [Use a custom `web.config`](#use-a-custom-webconfig) section.
 
 ## Prior deployment corruption
 
@@ -2289,7 +2383,7 @@ To use a custom `web.config` file:
 
 If the SDK's `web.config` generation or transformation during publish either doesn't move the file to published assets in the `publish` folder or modifies the custom configuration in your custom `web.config` file, use any of the following approaches as needed to take full control of the process:
 
-* If the SDK doesn't generate the file, for example, in a standalone Blazor WebAssembly app at `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish`, depending on which version of the SDK is used and where the `{TARGET FRAMEWORK}` placeholder is the target framework, set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). Usually for standalone WebAsssembly apps, this is the only required setting to move a custom `web.config` file and prevent transformation of the file by the SDK.
+* If the SDK doesn't generate the file, for example, in a standalone Blazor WebAssembly app at `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish`, depending on which version of the SDK is used and where the `{TARGET FRAMEWORK}` placeholder is the target framework, set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). Usually for standalone WebAssembly apps, this is the only required setting to move a custom `web.config` file and prevent transformation of the file by the SDK.
 
   ```xml
   <PropertyGroup>
@@ -2505,6 +2599,21 @@ When using a project site instead of an organization site, update the `<base>` t
 > [!NOTE]
 > The [SteveSandersonMS/BlazorOnGitHubPages GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages) isn't owned, maintained, or supported by the .NET Foundation or Microsoft.
 
+### Standalone with Docker
+
+A standalone Blazor WebAssembly app is published as a set of static files for hosting by a static file server.
+
+To host the app in Docker:
+
+* Choose a Docker container with web server support, such as Ngnix or Apache.
+* Copy the `publish` folder assets to a location folder defined in the web server for serving static files.
+* Apply additional configuration as needed to serve the Blazor WebAssembly app.
+
+For configuration guidance, see the following resources:
+
+* [Nginx](#nginx) section or [Apache](#apache) section of this article
+* [Docker Documentation](https://docs.docker.com/)
+
 ## Host configuration values
 
 [Blazor WebAssembly apps](xref:blazor/hosting-models#blazor-webassembly) can accept the following host configuration values as command-line arguments at runtime in the development environment.
@@ -2668,6 +2777,38 @@ In the project file, the script is executed after publishing the app for the `Re
 
 > [!NOTE]
 > When renaming and lazy loading the same assemblies, see the guidance in <xref:blazor/webassembly-lazy-load-assemblies#onnavigateasync-events-and-renamed-assembly-files>.
+
+Usually, the app's server requires static asset configuration to serve the files with the updated extension. For an app hosted by IIS, add a MIME map entry (`<mimeMap>`) for the new file extension in the static content section (`<staticContent>`) in a custom `web.config` file. The following example assumes that the file extension is changed from `.dll` to `.bin`:
+
+```xml
+<staticContent>
+  ...
+  <mimeMap fileExtension=".bin" mimeType="application/octet-stream" />
+  ...
+</staticContent>
+```
+
+Include an update for compressed files if [compression](#compression) is in use:
+
+```
+<mimeMap fileExtension=".bin.br" mimeType="application/octet-stream" />
+<mimeMap fileExtension=".bin.gz" mimeType="application/octet-stream" />
+```
+
+Remove the entry for the `.dll` file extension:
+
+```diff
+- <mimeMap fileExtension=".dll" mimeType="application/octet-stream" />
+```
+
+Remove entries for compressed `.dll` files if [compression](#compression) is in use:
+
+```diff
+- <mimeMap fileExtension=".dll.br" mimeType="application/octet-stream" />
+- <mimeMap fileExtension=".dll.gz" mimeType="application/octet-stream" />
+```
+
+For more information on custom `web.config` files, see the [Use a custom `web.config`](#use-a-custom-webconfig) section.
 
 ## Prior deployment corruption
 
@@ -3057,7 +3198,7 @@ To use a custom `web.config` file:
 
 If the SDK's `web.config` generation or transformation during publish either doesn't move the file to published assets in the `publish` folder or modifies the custom configuration in your custom `web.config` file, use any of the following approaches as needed to take full control of the process:
 
-* If the SDK doesn't generate the file, for example, in a standalone Blazor WebAssembly app at `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish`, depending on which version of the SDK is used and where the `{TARGET FRAMEWORK}` placeholder is the target framework, set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). Usually for standalone WebAsssembly apps, this is the only required setting to move a custom `web.config` file and prevent transformation of the file by the SDK.
+* If the SDK doesn't generate the file, for example, in a standalone Blazor WebAssembly app at `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` or `bin\Release\{TARGET FRAMEWORK}\browser-wasm\publish`, depending on which version of the SDK is used and where the `{TARGET FRAMEWORK}` placeholder is the target framework, set the `<PublishIISAssets>` property to `true` in the project file (`.csproj`). Usually for standalone WebAssembly apps, this is the only required setting to move a custom `web.config` file and prevent transformation of the file by the SDK.
 
   ```xml
   <PropertyGroup>
@@ -3273,6 +3414,21 @@ When using a project site instead of an organization site, update the `<base>` t
 
 > [!NOTE]
 > The [SteveSandersonMS/BlazorOnGitHubPages GitHub repository](https://github.com/SteveSandersonMS/BlazorOnGitHubPages) isn't owned, maintained, or supported by the .NET Foundation or Microsoft.
+
+### Standalone with Docker
+
+A standalone Blazor WebAssembly app is published as a set of static files for hosting by a static file server.
+
+To host the app in Docker:
+
+* Choose a Docker container with web server support, such as Ngnix or Apache.
+* Copy the `publish` folder assets to a location folder defined in the web server for serving static files.
+* Apply additional configuration as needed to serve the Blazor WebAssembly app.
+
+For configuration guidance, see the following resources:
+
+* [Nginx](#nginx) section or [Apache](#apache) section of this article
+* [Docker Documentation](https://docs.docker.com/)
 
 ## Host configuration values
 

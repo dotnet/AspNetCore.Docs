@@ -1,10 +1,10 @@
 ---
 title: "Tutorial: Create a web API with ASP.NET Core"
-author: rick-anderson
+author: wadepickett
 description: Learn how to build a web API with ASP.NET Core.
-ms.author: riande
+ms.author: wpickett
 ms.custom: mvc, engagement-fy23
-ms.date: 10/31/2022
+ms.date: 12/05/2022
 uid: tutorials/first-web-api
 ---
 
@@ -285,9 +285,9 @@ Make sure that all of your changes so far are saved.
 Run the following commands:
 
 ```dotnetcli
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 7.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.Design -v 7.0.0-*
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 7.0.0-*
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 7.0.0
+dotnet add package Microsoft.EntityFrameworkCore.Design -v 7.0.0
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 7.0.0
 dotnet tool uninstall -g dotnet-aspnet-codegenerator
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
@@ -302,7 +302,7 @@ Build the project.
 Run the following command:
 
   ```dotnetcli
-  dotnet-aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
+  dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
   ```
 
 The preceding command scaffolds the `TodoItemsController`.
@@ -807,7 +807,7 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet tool install -g dotnet-aspnet-codegenerator
-dotnet-aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
+dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
 The preceding commands:

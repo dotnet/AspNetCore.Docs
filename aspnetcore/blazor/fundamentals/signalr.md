@@ -167,6 +167,8 @@ builder.Services.AddServerSideBlazor()
 > [!WARNING]
 > The default value of <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> is 32 KB. Increasing the value may increase the risk of [Denial of service (DoS) attacks](xref:blazor/security/server/threat-mitigation#denial-of-service-dos-attacks).
 
+For information on Blazor Server's memory model, see <xref:blazor/host-and-deploy/server#blazor-server-memory-model>.
+
 ## Blazor Hub endpoint route configuration (Blazor Server)
 
 In `Program.cs`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> to map the Blazor <xref:Microsoft.AspNetCore.SignalR.Hub> to the app's default path. The Blazor Server script (`blazor.server.js`) automatically points to the endpoint created by <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>.
@@ -324,6 +326,86 @@ To modify the connection events, register callbacks for the following connection
       });
     </script>
 </body>
+```
+
+### Automatically refresh the page when reconnection fails (Blazor Server)
+
+The default reconnection behavior requires the user to take manual action to refresh the page after reconnection fails. However, a custom reconnection handler can be used to automatically refresh the page:
+
+`Pages/_Host.cshtml`:
+
+```cshtml
+<body>
+    ...
+
+    <div id="reconnect-modal" style="display: none;"></div>
+    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script src="boot.js"></script>
+</body>
+```
+
+`wwwroot/boot.js`:
+
+```javascript
+(() => {
+  const maximumRetryCount = 3;
+  const retryIntervalMilliseconds = 5000;
+  const reconnectModal = document.getElementById('reconnect-modal');
+  
+  const startReconnectionProcess = () => {
+    reconnectModal.style.display = 'block';
+
+    let isCanceled = false;
+
+    (async () => {
+      for (let i = 0; i < maximumRetryCount; i++) {
+        reconnectModal.innerText = `Attempting to reconnect: ${i + 1} of ${maximumRetryCount}`;
+
+        await new Promise(resolve => setTimeout(resolve, retryIntervalMilliseconds));
+
+        if (isCanceled) {
+          return;
+        }
+
+        try {
+          const result = await Blazor.reconnect();
+          if (!result) {
+            // The server was reached, but the connection was rejected; reload the page.
+            location.reload();
+            return;
+          }
+
+          // Successfully reconnected to the server.
+          return;
+        } catch {
+          // Didn't reach the server; try again.
+        }
+      }
+
+      // Retried too many times; reload the page.
+      location.reload();
+    })();
+
+    return {
+      cancel: () => {
+        isCanceled = true;
+        reconnectModal.style.display = 'none';
+      },
+    };
+  };
+
+  let currentReconnectionProcess = null;
+
+  Blazor.start({
+    reconnectionHandler: {
+      onConnectionDown: () => currentReconnectionProcess ??= startReconnectionProcess(),
+      onConnectionUp: () => {
+        currentReconnectionProcess?.cancel();
+        currentReconnectionProcess = null;
+      },
+    },
+  });
+})();
 ```
 
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
@@ -555,6 +637,8 @@ builder.Services.AddServerSideBlazor()
 
 > [!WARNING]
 > The default value of <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> is 32 KB. Increasing the value may increase the risk of [Denial of service (DoS) attacks](xref:blazor/security/server/threat-mitigation#denial-of-service-dos-attacks).
+
+For information on Blazor Server's memory model, see <xref:blazor/host-and-deploy/server#blazor-server-memory-model>.
 
 ## Blazor Hub endpoint route configuration (Blazor Server)
 
@@ -920,6 +1004,8 @@ services.AddServerSideBlazor()
 > [!WARNING]
 > The default value of <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> is 32 KB. Increasing the value may increase the risk of [Denial of service (DoS) attacks](xref:blazor/security/server/threat-mitigation#denial-of-service-dos-attacks).
 
+For information on Blazor Server's memory model, see <xref:blazor/host-and-deploy/server#blazor-server-memory-model>.
+
 ## Blazor Hub endpoint route configuration (Blazor Server)
 
 In `Startup.Configure`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> on the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder> of <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> to map the Blazor <xref:Microsoft.AspNetCore.SignalR.Hub> to the app's default path. The Blazor Server script (`blazor.server.js`) automatically points to the endpoint created by <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>.
@@ -1279,6 +1365,8 @@ services.AddServerSideBlazor()
 
 > [!WARNING]
 > The default value of <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> is 32 KB. Increasing the value may increase the risk of [Denial of service (DoS) attacks](xref:blazor/security/server/threat-mitigation#denial-of-service-dos-attacks).
+
+For information on Blazor Server's memory model, see <xref:blazor/host-and-deploy/server#blazor-server-memory-model>.
 
 ## Blazor Hub endpoint route configuration (Blazor Server)
 

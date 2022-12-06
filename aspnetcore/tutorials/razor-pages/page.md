@@ -1,8 +1,8 @@
 ---
 title: Part 3, scaffolded Razor Pages
-author: rick-anderson
+author: wadepickett
 description: Part 3 of tutorial series on Razor Pages.
-ms.author: riande
+ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/24/2022
 ms.custom: contperf-fy21q2

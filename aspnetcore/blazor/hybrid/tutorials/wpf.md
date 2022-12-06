@@ -86,6 +86,8 @@ Add an `_Imports.razor` file to the root of the project with an [`@using`](xref:
 @using Microsoft.AspNetCore.Components.Web
 ```
 
+Save the `_Imports.razor` file.
+
 Add a `wwwroot` folder to the project.
 
 Add an `index.html` file to the `wwwroot` folder with the following markup.
@@ -197,6 +199,8 @@ Add the following `Counter` component to the root of the project, which is the d
     }
 }
 ```
+
+Save the `Counter` component (`Counter.razor`).
 
 If the `MainWindow` designer isn't open, open it by double-clicking the `MainWindow.xaml` file in **Solution Explorer**. In the `MainWindow` designer, replace the XAML code with the following:
 

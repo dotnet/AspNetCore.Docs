@@ -195,7 +195,7 @@ The [`[AsParameters]` attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttr
 
 The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface, which supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html).
 
-For more information, see [Problem details service](xref:web-api/handle-errors##pds7)
+For more information, see [Problem details service](xref:web-api/handle-errors#pds7).
 
 ### Route groups
 
@@ -209,7 +209,7 @@ gRPC JSON transcoding is an extension for ASP.NET Core that creates RESTful JSON
 
 * Apps to call gRPC services with familiar HTTP concepts.
 * ASP.NET Core gRPC apps to support both gRPC and RESTful JSON APIs without replicating functionality.
-* Experimental support for generating OpenAPI from transcoded RESTful APIs by integrating with with [Swashbuckle](xref:tutorials/get-started-with-swashbuckle).
+* Experimental support for generating OpenAPI from transcoded RESTful APIs by integrating with [Swashbuckle](xref:tutorials/get-started-with-swashbuckle).
 
 For more information, see [gRPC JSON transcoding in ASP.NET Core gRPC apps](xref:grpc/json-transcoding?view=aspnetcore-7.0) and <xref:grpc/json-transcoding-openapi>.
 
@@ -289,6 +289,9 @@ The [`Microsoft.AspNetCore.Components.CustomElements`](https://www.nuget.org/pac
 For more information, see <xref:blazor/components/index?view=aspnetcore-7.0#blazor-custom-elements>.
 
 ### Bind modifiers (`@bind:after`, `@bind:get`, `@bind:set`)
+
+> [!IMPORTANT]
+> The `@bind:after`/`@bind:get`/`@bind:set` features aren't functional for the .NET 7 release. These features will work as expected when 7.0.1 is released, which is planned for mid-December. For more information, see the [.NET 7 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/known-issues.md#70-bind-get-set-after-cant-be-used-in-70-blazor-applications).
 
 In .NET 7, you can run asynchronous logic after a binding event has completed using the new `@bind:after` modifier. In the following example, the `PerformSearch` asynchronous method runs automatically after any changes to the search text are detected:
 

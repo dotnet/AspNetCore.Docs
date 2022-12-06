@@ -98,6 +98,8 @@ Here are some of the options for controlling the cache key:
 
   :::code language="csharp" source="output/samples/7.x/Program.cs" id="varybyvalue":::
 
+Use <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions.UseCaseSensitivePaths?displayProperty=nameWithType> to specify that the path part of the key is case sensitive. The default is case insensitive.
+
 For more options, see the <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder> class.
 
 ## Cache revalidation
@@ -149,6 +151,18 @@ To disable resource locking, call [SetLocking(false)](xref:Microsoft.AspNetCore.
 The following example selects the no-locking policy for an endpoint:
 
 :::code language="csharp" source="output/samples/7.x/Program.cs" id="selectnolock":::
+
+## Limits
+
+The following properties of <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions> let you configure limits that apply to all endpoints:
+
+* <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions.SizeLimit> - Maximum size of cache storage. When this limit is reached, no new responses will be cached until older entries are evicted. Default value is 100 MB.
+* <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions.MaximumBodySize> - If the response body exceeds this limit, it will not be cached. Default value is 64 MB.
+* <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions.DefaultExpirationTimeSpan> - The expiration time duration that applies when not specified by a policy. Default value is 60 seconds.
+
+## Cache storage
+
+<xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> is used for storage. By default it's used with <xref:System.Runtime.Caching.MemoryCache>. We don't recommend <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use with output caching. `IDistributedCache` doesn't have atomic features, which are required for tagging. We recommend that you create custom <xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> implementations by using direct dependencies on the underlying storage mechanism, such as Redis.
 
 ## See also
 

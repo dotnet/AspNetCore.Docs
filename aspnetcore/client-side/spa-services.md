@@ -1,7 +1,7 @@
 ---
-title: Use JavaScript Services to Create Single Page Applications in ASP.NET Core
+title: The features described in this article are obsolete as of ASP.NET Core 3.0
 author: rick-anderson
-description: Learn about the benefits of using JavaScript Services to create a Single Page Application (SPA) backed by ASP.NET Core.
+description: The features described in this article are obsolete as of ASP.NET Core 3.0
 monikerRange: '>= aspnetcore-2.1'
 ms.author: scaddie
 ms.custom: H1Hack27Feb2017

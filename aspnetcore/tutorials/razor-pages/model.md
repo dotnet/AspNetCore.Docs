@@ -1,16 +1,14 @@
 ---
 title: Part 2, add a model
-author: rick-anderson
+author: wadepickett
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
-ms.author: riande
-ms.date: 11/04/2022
+ms.author: wpickett
+ms.date: 12/05/2022
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/model
 ---
 # Part 2, add a model to a Razor Pages app in ASP.NET Core
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -130,13 +128,13 @@ The `appsettings.json` file is updated with the connection string used to connec
 * Open a command shell to the project directory, which contains the `Program.cs` and `.csproj` files. On Windows, run the following command:
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries -sqlite
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovie.Data.RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries -sqlite
   ```
 
   On non-Windows machines, run the following command:
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries -sqlite
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovie.Data.RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries -sqlite
   ```
 
 <a name="codegenerator"></a>
@@ -145,7 +143,7 @@ The following table details the ASP.NET Core code generator options.
 | Option               | Description|
 | ----------------- | ------------ |
 | `-m`  | The name of the model. |
-| `-dc`  | The `DbContext` class to use. |
+| `-dc`  | The `DbContext` class to use including namespace. |
 | `-udl` | Use the default layout. |
 | `-outDir` | The relative output folder path to create the views. |
 | `--referenceScriptLibraries` | Adds `_ValidationScriptsPartial` to Edit and Create pages |
@@ -156,7 +154,7 @@ Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorpage` c
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
 [!INCLUDE[](~/includes/DevProdSQLite.md)]
 
@@ -492,7 +490,7 @@ Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorpage` c
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
 [!INCLUDE[](~/includes/DevProdSQLite.md)]
 
@@ -795,7 +793,7 @@ Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorpage` c
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
 [!INCLUDE[](~/includes/RP/sqlitedev.md)]
 
@@ -1131,7 +1129,7 @@ Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorpage` c
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
 ### Use SQLite for development, SQL Server for production
 
