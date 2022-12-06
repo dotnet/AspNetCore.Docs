@@ -1,30 +1,30 @@
 ---
-title: dotnet-aspnet-codegenerator command
+title: dotnet aspnet-codegenerator command
 author: rick-anderson
-description: The dotnet-aspnet-codegenerator command scaffolds ASP.NET Core projects.
+description: The dotnet aspnet-codegenerator command scaffolds ASP.NET Core projects.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
-ms.date: 11/16/2020
+ms.date: 12/05/2022
 uid: fundamentals/tools/dotnet-aspnet-codegenerator
 ---
 
-# dotnet-aspnet-codegenerator
+# dotnet aspnet-codegenerator
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-`dotnet-aspnet-codegenerator` - Runs the ASP.NET Core scaffolding engine. `dotnet-aspnet-codegenerator` is only required to scaffold from the command line, it's not needed to use scaffolding with Visual Studio.
+`dotnet aspnet-codegenerator` - Runs the ASP.NET Core scaffolding engine. `dotnet aspnet-codegenerator` is only required to scaffold from the command line, it's not needed to use scaffolding with Visual Studio.
 
 ## Install and update aspnet-codegenerator
 
 Install the [.NET SDK](https://dotnet.microsoft.com/download).
 
-`dotnet-aspnet-codegenerator` is a [global tool](/dotnet/core/tools/global-tools) that must be installed. The following command installs the latest stable version of the `dotnet-aspnet-codegenerator` tool:
+`dotnet aspnet-codegenerator` is a [global tool](/dotnet/core/tools/global-tools) that must be installed. The following command installs the latest stable version of the `dotnet aspnet-codegenerator` tool:
 
 ```dotnetcli
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
-The following command updates `dotnet-aspnet-codegenerator` to the latest stable version available from the installed .NET Core SDKs:
+The following command updates `dotnet aspnet-codegenerator` to the latest stable version available from the installed .NET Core SDKs:
 
 ```dotnetcli
 dotnet tool update -g dotnet-aspnet-codegenerator
@@ -34,7 +34,7 @@ dotnet tool update -g dotnet-aspnet-codegenerator
 
 It may be necessary to uninstall the `aspnet-codegenerator` to resolve problems. For example, if you installed a preview version of `aspnet-codegenerator`, uninstall it before installing the released version.
 
-The following commands uninstall the `dotnet-aspnet-codegenerator` tool and installs the latest stable version:
+The following commands uninstall the `dotnet aspnet-codegenerator` tool and installs the latest stable version:
 
 ```dotnetcli
 dotnet tool uninstall -g dotnet-aspnet-codegenerator
@@ -44,13 +44,13 @@ dotnet tool install -g dotnet-aspnet-codegenerator
 ## Synopsis
 
 ```
-dotnet-aspnet-codegenerator [arguments] [-p|--project] [-n|--nuget-package-dir] [-c|--configuration] [-tfm|--target-framework] [-b|--build-base-path] [--no-build] 
-dotnet-aspnet-codegenerator [-h|--help]
+dotnet aspnet-codegenerator [arguments] [-p|--project] [-n|--nuget-package-dir] [-c|--configuration] [-tfm|--target-framework] [-b|--build-base-path] [--no-build] 
+dotnet aspnet-codegenerator [-h|--help]
 ```
 
 ## Description
 
-The `dotnet-aspnet-codegenerator` global command runs the ASP.NET Core code generator and scaffolding engine.
+The `dotnet aspnet-codegenerator` global command runs the ASP.NET Core code generator and scaffolding engine.
 
 ## Arguments
 
@@ -112,7 +112,7 @@ The following sections detail the options available for the supported generators
 
 This tool is intended for ASP.NET Core web projects with controllers and views. It's not intended for Razor Pages apps.
 
-Usage: `dotnet-aspnet-codegenerator area AreaNameToGenerate`
+Usage: `dotnet aspnet-codegenerator area AreaNameToGenerate`
 
 The preceding command generates the following folders:
 
@@ -144,10 +144,10 @@ The following table lists options unique to  `aspnet-codegenerator controller`:
 Use the `-h` switch for help on the `aspnet-codegenerator controller` command:
 
 ```dotnetcli
-dotnet-aspnet-codegenerator controller -h
+dotnet aspnet-codegenerator controller -h
 ```
 
-See [Scaffold the movie model](xref:tutorials/first-mvc-app/adding-model) for an example of `dotnet-aspnet-codegenerator controller`.
+See [Scaffold the movie model](xref:tutorials/first-mvc-app/adding-model) for an example of `dotnet aspnet-codegenerator controller`.
 
 ### Razorpage
 
@@ -165,7 +165,7 @@ Razor Pages can be individually scaffolded by specifying the name of the new pag
 For example, the following command uses the Edit template to generate `MyEdit.cshtml` and `MyEdit.cshtml.cs`:
 
 ```dotnetcli
-dotnet-aspnet-codegenerator razorpage MyEdit Edit -m Movie -dc RazorPagesMovieContext -outDir Pages/Movies
+dotnet aspnet-codegenerator razorpage MyEdit Edit -m Movie -dc RazorPagesMovieContext -outDir Pages/Movies
 ```
 
 Typically, the template and generated file name is not specified, and the following templates are created:
@@ -191,10 +191,10 @@ The following table lists options unique to  `aspnet-codegenerator razorpage`:
 Use the `-h` switch for help on the `aspnet-codegenerator razorpage` command:
 
 ```dotnetcli
-dotnet-aspnet-codegenerator razorpage -h
+dotnet aspnet-codegenerator razorpage -h
 ```
 
-See [Scaffold the movie model](xref:tutorials/razor-pages/model) for an example of `dotnet-aspnet-codegenerator razorpage`.
+See [Scaffold the movie model](xref:tutorials/razor-pages/model) for an example of `dotnet aspnet-codegenerator razorpage`.
 
 ### View
 
@@ -210,7 +210,7 @@ Views can be individually scaffolded by specifying the name of the view and the 
 For example, the following command uses the Edit template to generate `MyEdit.cshtml`:
 
 ```dotnetcli
-dotnet-aspnet-codegenerator view MyEdit Edit -m Movie -dc MovieContext -outDir Views/Movies
+dotnet aspnet-codegenerator view MyEdit Edit -m Movie -dc MovieContext -outDir Views/Movies
 ```
 
 The following table lists options for  `aspnet-codegenerator` `razorpage`, `controller` and `view`:
@@ -227,7 +227,7 @@ The following table lists options unique to  `aspnet-codegenerator view`:
 Use the `-h` switch for help on the `aspnet-codegenerator view` command:
 
 ```dotnetcli
-dotnet-aspnet-codegenerator view -h
+dotnet aspnet-codegenerator view -h
 ```
 
 ### Identity

@@ -3,7 +3,7 @@ title: Part 4, add a model to an ASP.NET Core MVC app
 author: wadepickett
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 11/04/2022
+ms.date: 12/05/2022
 uid: tutorials/first-mvc-app/adding-model
 ms.custom: contperf-fy21q3
 ---
@@ -631,7 +631,7 @@ export PATH=$HOME/.dotnet/tools:$PATH
 Run the following command:
 
 ```dotnetcli
-dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
 ```
 
 [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
@@ -667,7 +667,7 @@ export PATH=$HOME/.dotnet/tools:$PATH
 Run the following command:
 
 ```dotnetcli
-dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
 ```
 
 [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
@@ -1082,7 +1082,7 @@ export PATH=$HOME/.dotnet/tools:$PATH
 Run the following command:
 
 ```dotnetcli
-dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
 ```
 
 [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
@@ -1115,7 +1115,7 @@ export PATH=$HOME/.dotnet/tools:$PATH
 Run the following command:
 
 ```dotnetcli
-dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
 
 ```
 
@@ -1552,7 +1552,7 @@ The automatic creation of these files is known as *scaffolding*.
 * Run the following command:
 
   ```dotnetcli
-  dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+  dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
   ```
 
   [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
@@ -1564,7 +1564,7 @@ The automatic creation of these files is known as *scaffolding*.
 * Run the following command:
 
   ```dotnetcli
-  dotnet-aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+  dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
   ```
 
   [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
