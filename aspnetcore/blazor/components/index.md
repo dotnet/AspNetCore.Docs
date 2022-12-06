@@ -1519,6 +1519,43 @@ Blazor custom elements:
 * Eliminate the need to manually manage the state and lifecycle of root Razor components using JavaScript APIs.
 * Are useful for gradually introducing Razor components into existing projects written in other SPA frameworks.
 
+Custom elements don't support [child content](#child-content-render-fragments) or [templated components](xref:blazor/components/templated-components).
+
+### Pass parameters
+
+Pass parameters to your Blazor component either as HTML attributes or as JavaScript properties on the DOM element.
+
+Consider the following integer parameter declaration:
+
+```csharp
+[Parameter]
+public int IncrementAmount { get; set; }
+```
+
+Pass a value to the preceding parameter as an HTML attribute:
+
+```html
+<custom-blazor-counter increment-amount="123"></custom-blazor-counter>
+```
+
+The attribute name adopts kebab-case syntax (`increment-amount`, not `IncrementAmount`).
+
+Alternatively, you can set the parameter's value as a JavaScript property on the element object:
+
+```javascript
+const elem = document.querySelector("custom-blazor-counter");
+elem.incrementAmount = 123;
+```
+
+The property name adopts camel case syntax (`incrementAmount`, not `IncrementAmount`).
+
+You can update parameter values at any time using either attribute or property syntax.
+
+Supported parameter types:
+
+* Using JavaScript property syntax, you can pass objects of any JSON-serializable type.
+* Using HTML attributes, you are limited to passing objects of string, boolean, or numerical types.
+
 ### Blazor Server registration
 
 To register a root component as a custom element in a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in `Program.cs`. The following example registers the `Counter` component with the custom HTML element `my-counter`:
