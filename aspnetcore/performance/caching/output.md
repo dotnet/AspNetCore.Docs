@@ -5,7 +5,7 @@ description: Learn how to configure and use output caching middleware in ASP.NET
 monikerRange: '>= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/18/2022
+ms.date: 12/06/2022
 uid: performance/caching/output
 ---
 # Output caching middleware in ASP.NET Core
@@ -68,7 +68,7 @@ The following code applies all of the default caching rules to all of an app's e
 
 :::code language="csharp" source="output/samples/7.x/Program.cs" id="policies3":::
 
-The following code shows how to override the default rules. The highlighted lines in the following custom policy code enable caching for HTTP Post methods and HTTP 301 responses. The
+The following code shows how to override the default rules. The highlighted lines in the following custom policy code enable caching for HTTP Post methods and HTTP 301 responses:
 
 :::code language="csharp" source="output/samples/7.x/MyCustomPolicy.cs" highlight="50,67":::
 
