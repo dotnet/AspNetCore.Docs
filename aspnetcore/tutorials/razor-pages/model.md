@@ -3,7 +3,7 @@ title: Part 2, add a model
 author: wadepickett
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.author: wpickett
-ms.date: 11/04/2022
+ms.date: 12/05/2022
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: contperf-fy21q2
 uid: tutorials/razor-pages/model
@@ -154,7 +154,7 @@ Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorpage` c
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
 [!INCLUDE[](~/includes/DevProdSQLite.md)]
 
@@ -490,7 +490,7 @@ Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorpage` c
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
 [!INCLUDE[](~/includes/DevProdSQLite.md)]
 
@@ -793,7 +793,7 @@ Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorpage` c
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
 [!INCLUDE[](~/includes/RP/sqlitedev.md)]
 
@@ -1129,7 +1129,7 @@ Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorpage` c
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-For more information, see [dotnet-aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
 ### Use SQLite for development, SQL Server for production
 
