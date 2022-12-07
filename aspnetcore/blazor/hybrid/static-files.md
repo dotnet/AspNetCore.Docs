@@ -176,7 +176,7 @@ In the following example component:
 
 ## Static assets limited to Razor components
 
-One or more `BlazorWebView` controls have a configured host file (:::no-loc text="HostPage":::), typically `wwwroot/index.html`. The :::no-loc text="HostPage"::: path is relative to the project. All static web assets (scripts, CSS files, images, and other files) that are referenced from a `BlazorWebView` are relative to its configured :::no-loc text="HostPage":::.
+A `BlazorWebView` control has a configured host file (:::no-loc text="HostPage":::), typically `wwwroot/index.html`. The :::no-loc text="HostPage"::: path is relative to the project. All static web assets (scripts, CSS files, images, and other files) that are referenced from a `BlazorWebView` are relative to its configured :::no-loc text="HostPage":::.
 
 Static web assets from a [Razor class library (RCL)](xref:razor-pages/ui-class) use special paths: `_content/{PACKAGE ID}/{PATH AND FILE NAME}`. The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`. These paths are logically subpaths of the app's `wwwroot` folder, although they're actually coming from other packages or projects. Component-specific CSS style bundles are also built at the root of the `wwwroot` folder.
 
