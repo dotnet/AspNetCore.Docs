@@ -5,7 +5,7 @@ description: Learn how to consume static asset files in Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 12/06/2022
 uid: blazor/hybrid/static-files
 ---
 # ASP.NET Core Blazor Hybrid static files
@@ -176,9 +176,19 @@ In the following example component:
 
 ## Static assets limited to Razor components
 
-In scenarios where the app only uses static assets in Razor components, the static assets can be supplied from the app's web root (`wwwroot` folder).
+A `BlazorWebView` control has a configured host file (:::no-loc text="HostPage":::), typically `wwwroot/index.html`. The :::no-loc text="HostPage"::: path is relative to the project. All static web assets (scripts, CSS files, images, and other files) that are referenced from a `BlazorWebView` are relative to its configured :::no-loc text="HostPage":::.
 
-Place assets into the `wwwroot` folder. The example in this section uses a static text file.
+Static web assets from a [Razor class library (RCL)](xref:razor-pages/ui-class) use special paths: `_content/{PACKAGE ID}/{PATH AND FILE NAME}`. The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`. These paths are logically subpaths of the app's `wwwroot` folder, although they're actually coming from other packages or projects. Component-specific CSS style bundles are also built at the root of the `wwwroot` folder.
+
+The web root of the :::no-loc text="HostPage"::: determines which subset of static assets are available:
+
+* `wwwroot/index.html` (*Recommended*): All assets in the app's `wwwroot` folder are available (for example: `wwwroot/image.png` is available from `/image.png`), including subfolders (for example: `wwwroot/subfolder/image.png` is available from `/subfolder/image.png`). RCL static assets in the RCL's `wwwroot` folder are available (for example: `wwwroot/image.png` is available from the path `_content/{PACKAGE ID}/image.png`), including subfolders (for example: `wwwroot/subfolder/image.png` is available from the path `_content/{PACKAGE ID}/subfolder/image.png`).
+* `wwwroot/{PATH}/index.html`: All assets in the app's `wwwroot/{PATH}` folder are available using app web root relative paths. RCL static assets in `wwwroot/{PATH}` are ***not available*** because they would be in a non-existent theoretical location, such as `../../_content/{PACKAGE ID}/{PATH}`, which is ***not a supported relative path***.
+* `wwwroot/_content/{PACKAGE ID}/index.html`: All assets in the RCL's `wwwroot/{PATH}` folder are available using RCL web root relative paths. The app's static assets in `wwwroot/{PATH}` are ***not available*** because they would be in a non-existent theoretical location, such as `../../{PATH}`, which is ***not a supported relative path***.
+
+For most apps, we recommend placing the :::no-loc text="HostPage"::: at the root of the `wwwroot` folder of the app, which provides the greatest flexibility for supplying static assets from the app, RCLs, and via subfolders of the app and RCLs.
+
+The following examples demonstrate referencing static assets from the app's web root (`wwwroot` folder) with a :::no-loc text="HostPage"::: rooted in the `wwwroot` folder.
 
 `wwwroot/data.txt`:
 
