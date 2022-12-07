@@ -68,6 +68,8 @@ The following code applies all of the default caching rules to all of an app's e
 
 :::code language="csharp" source="output/samples/7.x/Program.cs" id="policies3":::
 
+### Override the default policy
+
 The following code shows how to override the default rules. The highlighted lines in the following custom policy code enable caching for HTTP Post methods and HTTP 301 responses:
 
 :::code language="csharp" source="output/samples/7.x/MyCustomPolicy.cs" highlight="50,67":::
@@ -76,9 +78,23 @@ To use this custom policy, create a named policy:
 
 :::code language="csharp" source="output/samples/7.x/Program.cs" id="policies3b":::
 
-And select it for an endpoint:
+And select the named policy for an endpoint:
 
 :::code language="csharp" source="output/samples/7.x/Program.cs" id="post":::
+
+### An alternative way to override the default policy
+
+The custom policy class shown earlier has a private constructor and `Instance` property that creates a singleton. As an alternative, you can use Dependency Injection (DI) to initialize an instance. Give the custom policy class a public constructor instead of a private constructor, and eliminate the `Instance` property. For example:
+
+:::code language="csharp" source="output/samples/7.x/MyCustomPolicy2.cs" id="fordi":::
+
+The remainder of the class is the same as shown earlier. Add the custom policy as shown in the following example:
+
+:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies3c":::
+
+With this code, DI creates the instance of the custom policy class. Any public arguments in the constructor would also be resolved.
+
+When using a custom policy as a base policy, don't call `OutputCache()` on any endpoint that the base policy should apply to. Calling `OutputCache()` adds the default policy to the endpoint.
 
 ## Specify the cache key
 

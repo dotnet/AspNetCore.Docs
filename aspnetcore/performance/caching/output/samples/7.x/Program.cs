@@ -1,4 +1,4 @@
-#define Version3B // Version1 / Version2 / Version3 / Version4
+#define Version3c // Version1 / Version2 / Version3 / Version 3b / Version 3c / Version4
 using Microsoft.AspNetCore.OutputCaching;
 using System.Globalization;
 
@@ -54,6 +54,14 @@ public class Program
             options.AddPolicy("CachePost", MyCustomPolicy.Instance);
         });
         //</policies3b>
+#endif
+#if Version3c
+        //<policies3c>
+        builder.Services.AddOutputCache(options =>
+        {
+            options.AddBasePolicy(builder => builder.AddPolicy<MyCustomPolicy2>(),true);
+        });
+        //</policies3c>
 #endif
 #if Version4
         //<policies4>
@@ -135,6 +143,10 @@ public class Program
             .CacheOutput("CachePost");
         // </post>
 
+        // <postalt>
+        app.MapPost("/cachedpost2", Gravatar.WriteGravatar);
+        // </postalt>
+        
         // <selectnolock>
         app.MapGet("/nolock", Gravatar.WriteGravatar)
             .CacheOutput("NoLock");
