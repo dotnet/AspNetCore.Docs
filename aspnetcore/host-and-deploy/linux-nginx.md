@@ -513,7 +513,7 @@ This header prevents most browsers from MIME-sniffing a response away from the d
    sudo nano /etc/nginx/nginx.conf
    ```
 
-   Add the line: `add_header X-Content-Type-Options "nosniff";`
+   Within the `http{}` code block, add the line: `add_header X-Content-Type-Options "nosniff";`
 
 1. Save the file.
 1. Restart Nginx.
