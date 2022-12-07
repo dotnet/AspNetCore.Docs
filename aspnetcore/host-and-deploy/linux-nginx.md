@@ -372,7 +372,7 @@ Close off all external ports that aren't in use. Uncomplicated firewall (ufw) pr
 Install `ufw` and configure it to allow traffic on any ports needed.
 
 ```bash
-sudo yum -y install ufw
+sudo apt-get install ufw
 
 sudo ufw allow 22/tcp
 sudo ufw allow 80/tcp
@@ -406,7 +406,7 @@ sudo ufw enable
 Install `ufw` and configure it to allow traffic on any ports needed.
 
 ```bash
-sudo apt-get install ufw
+sudo yum -y install ufw
 
 sudo ufw allow 22/tcp
 sudo ufw allow 80/tcp
