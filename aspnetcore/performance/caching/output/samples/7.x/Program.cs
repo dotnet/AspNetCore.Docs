@@ -59,7 +59,8 @@ public class Program
         //<policies3c>
         builder.Services.AddOutputCache(options =>
         {
-            options.AddBasePolicy(builder => builder.AddPolicy<MyCustomPolicy2>(),true);
+            options.AddBasePolicy(builder => 
+                builder.AddPolicy<MyCustomPolicy2>(),true);
         });
         //</policies3c>
 #endif
