@@ -498,7 +498,7 @@ To mitigate clickjacking attacks:
    sudo nano /etc/nginx/nginx.conf
    ```
 
-   Add the line: `add_header X-Frame-Options "SAMEORIGIN";`
+   Within the `http{}` code block, add the line: `add_header X-Frame-Options "SAMEORIGIN";`
 
 1. Save the file.
 1. Restart Nginx.
