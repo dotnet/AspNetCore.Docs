@@ -364,8 +364,44 @@ Linux Security Modules (LSM) is a framework that's part of the Linux kernel sinc
 
 Close off all external ports that aren't in use. Uncomplicated firewall (ufw) provides a front end for `iptables` by providing a CLI for configuring the firewall.
 
+# [Ubuntu](#tab/linux-ubuntu)
+
 > [!WARNING]
 > A firewall will prevent access to the whole system if not configured correctly. Failure to specify the correct SSH port will effectively lock you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW) and the [manual](https://manpages.ubuntu.com/manpages/bionic/man8/ufw.8.html).
+
+Install `ufw` and configure it to allow traffic on any ports needed.
+
+```bash
+sudo yum -y install ufw
+
+sudo ufw allow 22/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+
+sudo ufw enable
+```
+
+# [Red Hat Enterprise Linux](#tab/linux-rhel)
+
+> [!WARNING]
+> A firewall will prevent access to the whole system if not configured correctly. Failure to specify the correct SSH port will effectively lock you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW).
+
+Install `ufw` and configure it to allow traffic on any ports needed.
+
+```bash
+sudo yum -y install ufw
+
+sudo ufw allow 22/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+
+sudo ufw enable
+```
+
+# [SUSE Linux Enterprise Server](#tab/linux-sles)
+
+> [!WARNING]
+> A firewall will prevent access to the whole system if not configured correctly. Failure to specify the correct SSH port will effectively lock you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW).
 
 Install `ufw` and configure it to allow traffic on any ports needed.
 
@@ -378,6 +414,8 @@ sudo ufw allow 443/tcp
 
 sudo ufw enable
 ```
+
+---
 
 ### Secure Nginx
 
