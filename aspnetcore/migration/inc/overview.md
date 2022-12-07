@@ -62,9 +62,12 @@ Once the ASP.NET Framework app is no longer needed and deleted:
 
 ## System.Web Adapters
 
-The `Microsoft.AspNetCore.SystemWebAdapters` is a collection of runtime helpers that facilitate using code written against `System.Web` while moving to ASP.NET Core.
+The `Microsoft.AspNetCore.SystemWebAdapters` namespace is a collection of runtime helpers that facilitate using code written against `System.Web` while moving to ASP.NET Core. There are a few packages that may be used to use features from these adapters:
 
-The heart of the library is support for `System.Web.HttpContext`. The adapters attempt to provide compatible behavior for what is found running on ASP.NET Framework to expedite moving to ASP.NET Core. There are a number of behaviors that ASP.NET Framework provided that incur a performance cost if enabled on ASP.NET Core; these behaviors must be opted into.
+- `Microsoft.AspNetCore.SystemWebAdapters`: This package is used in supporting libraries and provide the System.Web APIs you may have taken a dependency on, such as `HttpContext` and others. This package targets .NET Standard 2.0, .NET 4.5+, and .NET 6+.
+- `Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices`: This package only targets .NET Framework and is intended to provide services to ASP.NET Framework applications that may need to provide incremental migrations. This is generally not expected to be referenced from libraries, but rather from the applications themselves.
+- `Microsoft.AspNetCore.SystemWebAdapters.CoreServices`: This package only targets .NET 6+ and is intended to provide services to ASP.NET Core applications to configure behavior of `System.Web` APIs as well as opting into any behaviors for incremental migration. This is generally not expected to be referenced from libraries, but rather from the applications themselves.
+- `Microsoft.AspNetCore.SystemWebAdapters.Abstractions`: This package is a supporting package that provides abstractions for services used by both the ASP.NET Core and ASP.NET Framework application such as session state serialization.
 
 For examples of scenarios where this is useful, see [the adapters article](xref:migration/inc/adapters).
 
