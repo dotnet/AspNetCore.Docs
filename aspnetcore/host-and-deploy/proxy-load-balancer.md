@@ -434,6 +434,8 @@ if (string.Equals(
 }
 ```
 
+The consumed values are removed from X-Forwarded-Proto and old values are persisted in X-Original-Proto. The same pattern is applied to the other headers, `Host` and `For`.
+
 ## Certificate forwarding 
 
 ### Azure
