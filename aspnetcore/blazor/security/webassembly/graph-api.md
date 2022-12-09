@@ -2,7 +2,7 @@
 title: Use Graph API with ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Learn how to use the Microsoft Graph SDK/API with Blazor WebAssembly apps.
-monikerRange: '>= aspnetcore-6.0'
+monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/09/2022
