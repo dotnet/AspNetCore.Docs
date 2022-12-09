@@ -391,6 +391,8 @@ items:
                     uid: blazor/hybrid/security/index
                   - name: Security considerations
                     uid: blazor/hybrid/security/security-considerations
+              - name: Publish
+                uid: blazor/hybrid/publish/index
           - name: Project structure
             uid: blazor/project-structure
           - name: Fundamentals
