@@ -166,7 +166,19 @@ Verify a browser displays the default landing page for Nginx. The landing page i
 
 ### Configure Nginx
 
+# [Ubuntu](#tab/linux-ubuntu)
+
 To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx/sites-available/default`. Open it in a text editor, and replace the contents with the following snippet:
+
+# [Red Hat Enterprise Linux](#tab/linux-rhel)
+
+To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the contents of the server configuration in the `server {}` code block with contents with the following snippet:
+
+# [SUSE Linux Enterprise Server](#tab/linux-sles)
+
+To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the contents of the server configuration in the `server {}` code block with contents with the following snippet:
+
+---
 
 ```text
 server {
