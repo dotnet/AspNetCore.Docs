@@ -591,7 +591,7 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
 > [!NOTE]
 > If the app uses a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap your app's custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the preceding code.
 
-The preceding example is for an app that uses AAD authentication with MSAL. Similar patterns exist for OIDC and API authentication. For more information, see the examples in the [Customize the user with a payload claim](xref:blazor/security/webassembly/additional-scenarios#customize-the-user-with-a-payload-claim) section of the <xref:xref:blazor/security/webassembly/additional-scenarios> article.
+The preceding example is for an app that uses AAD authentication with MSAL. Similar patterns exist for OIDC and API authentication. For more information, see the examples in the [Customize the user with a payload claim](xref:blazor/security/webassembly/additional-scenarios#customize-the-user-with-a-payload-claim) section of the <xref:blazor/security/webassembly/additional-scenarios> article.
 
 You can use the following `UserClaims` component to study the user's claims after the user authenticates with AAD:
 
@@ -651,7 +651,7 @@ When testing with the Graph API locally, we recommend using a new in-private/inc
 ### Security guidance
 
 * [Microsoft Graph auth overview](/graph/auth/)
-* [Overview of Microsoft Graph permissions](https://learn.microsoft.com/en-us/graph/permissions-overview)
+* [Overview of Microsoft Graph permissions](/graph/permissions-overview)
 * [Microsoft Graph permissions reference](/graph/permissions-reference)
 * [Enhance security with the principle of least privilege](/azure/active-directory/develop/secure-least-privileged-access)
 * [Microsoft Security Best Practices: Securing privileged access](/security/compass/overview)
