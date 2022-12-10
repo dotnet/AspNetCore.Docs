@@ -2,7 +2,7 @@
 title: Use Graph API with ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Learn how to use the Microsoft Graph SDK/API with Blazor WebAssembly apps.
-monikerRange: '>= aspnetcore-5.0'
+monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 12/10/2022
@@ -22,6 +22,8 @@ The examples in this article pertain to using the Graph SDK or a named `HttpClie
 
 > [!NOTE]
 > The scenarios described in this article apply to using Azure Active Directory (AAD) as the identity provider, not AAD B2C. Using Microsoft Graph with a client-side Blazor WebAssembly app and the AAD B2C identity provider isn't supported at this time. Using a hosted Blazor WebAssembly app is supported, where the **:::no-loc text="Server":::** app uses the Graph SDK/API to provide Graph data to the **:::no-loc text="Client":::** app via web API.
+>
+> The examples in this article take advantage of recent .NET features released with ASP.NET Core 6.0 or later. When using the examples in ASP.NET Core 5.0 or earlier, minor modifications are required. However, the text and code examples that pertain to interacting with Microsoft Graph are the same for all versions of ASP.NET Core.
 
 Two approaches are available for directly interacting with Microsoft Graph in Blazor apps:
 

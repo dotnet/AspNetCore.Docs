@@ -551,6 +551,7 @@ After creating the app, you should be able to:
   * [Access token scopes](#access-token-scopes)
   * [Quickstart: Configure an application to expose web APIs](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis)
   * [Hosted with AAD: Access token scopes (includes guidance on AAD `App ID URI` scope formats)](xref:blazor/security/webassembly/hosted-with-azure-active-directory#access-token-scopes)
+  * [Access token scopes for Microsoft Graph API](xref:blazor/security/webassembly/graph-api)
 
 ## Authentication package
 
