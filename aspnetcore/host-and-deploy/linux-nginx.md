@@ -172,11 +172,11 @@ To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET C
 
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
-To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the contents of the server configuration in the `server {}` code block with contents with the following snippet:
+To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the `server{}` code block with contents with the following snippet:
 
 # [SUSE Linux Enterprise Server](#tab/linux-sles)
 
-To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the contents of the server configuration in the `server {}` code block with contents with the following snippet:
+To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the `server{}` code block with contents with the following snippet:
 
 ---
 
@@ -483,7 +483,21 @@ Add the */etc/nginx/proxy.conf* configuration file:
 
 [!code-nginx[](linux-nginx/proxy.conf)]
 
+# [Ubuntu](#tab/linux-ubuntu)
+
 **Replace** the contents of the */etc/nginx/nginx.conf* configuration file with the following file. The example contains both `http` and `server` sections in one configuration file.
+
+[!code-nginx[](linux-nginx/nginx.conf)]
+
+# [Red Hat Enterprise Linux](#tab/linux-rhel)
+
+Modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the `http{}` and `server{}` code blocks with contents with the following snippet:
+
+# [SUSE Linux Enterprise Server](#tab/linux-sles)
+
+Modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the `http{}` and `server{}` code blocks with contents with the following snippet:
+
+---
 
 [!code-nginx[](linux-nginx/nginx.conf)]
 
