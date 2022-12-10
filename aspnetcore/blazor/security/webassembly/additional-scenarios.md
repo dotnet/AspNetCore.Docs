@@ -865,12 +865,13 @@ public class CustomAccountFactory
     {
         var initialUser = await base.CreateUserAsync(account, options);
 
-        if (initialUser.Identity.IsAuthenticated)
+        if (initialUser.Identity != null && initialUser.Identity.IsAuthenticated)
         {
+            var userIdentity = (ClaimsIdentity)initialUser.Identity;
+
             foreach (var value in account.AuthenticationMethod)
             {
-                ((ClaimsIdentity)initialUser.Identity)
-                    .AddClaim(new Claim("amr", value));
+                userIdentity.AddClaim(new Claim("amr", value));
             }
         }
 
