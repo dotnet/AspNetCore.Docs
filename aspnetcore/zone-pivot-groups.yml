@@ -48,3 +48,11 @@ groups:
       title: Windows
     - id: macos
       title: macOS
+- id: blazor-graph-api
+  title: Approach
+  prompt: Choose an approach for interacting with Microsoft Graph
+  pivots:
+    - id: graph-sdk
+      title: Graph SDK
+    - id: named-client-graph-api
+      title: Named HttpClient with Graph API
