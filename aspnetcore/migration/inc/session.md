@@ -17,7 +17,7 @@ uid: migration/inc/session
 Session state in ASP.NET Framework provided a number of features that ASP.NET Core does not provide. In order to migrate from ASP.NET Framework to Core, the adapters provide mechanisms to enable populating session state with similar behavior as `System.Web` did. Some of the differences between framework and core are:
 
 - ASP.NET Framework would lock session usage within a session, so subsequent requests in a session are handled in a serial fashion. This is different than ASP.NET Core that does not provide any of these guarantees.
-- ASP.NET Framework would serialize and deserialize objects automatically (unless being done in-memory). ASP.NET Core simply provides a mechanism to store a `byte[]` given a key. Any object serialization/deserialization has to be done manually be the user.
+- ASP.NET Framework would serialize and deserialize objects automatically (unless being done in-memory). ASP.NET Core provides a mechanism to store a `byte[]` given a key. Any object serialization/deserialization has to be done manually by the user.
 
 The adapter infrastructure exposes two interfaces that can be used to implement any session storage system. These are:
 
