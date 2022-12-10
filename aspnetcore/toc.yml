@@ -662,8 +662,6 @@ items:
             uid: tutorials/first-web-api
           - name: Create a minimal web API
             uid: tutorials/min-web-api
-          - name: Create a web API
-            uid: tutorials/first-web-api
           - name: Web API with MongoDB
             uid: tutorials/first-mongo-app
       - name: Swagger / OpenAPI
