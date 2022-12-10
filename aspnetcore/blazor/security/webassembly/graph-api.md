@@ -5,7 +5,7 @@ description: Learn how to use the Microsoft Graph SDK/API with Blazor WebAssembl
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/09/2022
+ms.date: 12/10/2022
 uid: blazor/security/webassembly/graph-api
 zone_pivot_groups: blazor-graph-api
 ---
@@ -13,20 +13,19 @@ zone_pivot_groups: blazor-graph-api
 
 This article explains how to use [Microsoft Graph API](/graph/use-the-api) in Blazor WebAssembly apps, which is a RESTful web API that enables apps to access Microsoft Cloud service resources.
 
-> [!WARNING]
-> The guidance in this article isn't meant to replace the primary [Microsoft Graph documentation](/graph/) and additional Azure security guidance in other Microsoft documentation sets. Assess the security guidance in the [Additional resources](#additional-resources) section of this article before implementing Microsoft Graph in a production environment. Follow all of Microsoft's best practices guidance to limit the attack surface area of your apps.
+The guidance in this article isn't meant to replace the primary [Microsoft Graph documentation](/graph/) and additional Azure security guidance in other Microsoft documentation sets. Assess the security guidance in the [Additional resources](#additional-resources) section of this article before implementing Microsoft Graph in a production environment. Follow all of Microsoft's best practices to limit the attack surface area of your apps.
 
-The examples in this article pertain to using the Graph SDK or a named `HttpClient` with Graph API directly from a standalone Blazor WebAssembly app or directly from the **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). An additional scenario that isn't covered by this article is for a **:::no-loc text="Client":::** app of a hosted solution to call the **:::no-loc text="Server":::** app of a hosted solution via web API, and then the the **:::no-loc text="Server":::** app uses the Graph SDK or Graph API to call Microsoft Graph and return data to the **:::no-loc text="Client":::** app. This is a viable and supported approach, but it isn't covered by this article. If you wish to adopt this approach:
+The examples in this article pertain to using the Graph SDK or a named `HttpClient` with Graph API directly from a standalone Blazor WebAssembly app or directly from the **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). An additional scenario that isn't covered by this article is for a **:::no-loc text="Client":::** app of a hosted solution to call the **:::no-loc text="Server":::** app of the solution via web API, and then the the **:::no-loc text="Server":::** app uses the Graph SDK/API to call Microsoft Graph and return data to the **:::no-loc text="Client":::** app. Although this is a supported approach, it isn't covered by this article. If you wish to adopt this approach:
 
 * Follow the guidance in <xref:blazor/call-web-api> for the web API aspects on issuing requests to the **:::no-loc text="Server":::** app from the **:::no-loc text="Client":::** app and returning data to the **:::no-loc text="Client":::** app.
-* Follow the guidance in the primary [Microsoft Graph documentation](/graph/) to use the Graph SDK with a typical ASP.NET Core app, which in this scenario is the **:::no-loc text="Server":::** app of the solution. If you use the Blazor WebAssembly project template to the create the hosted Blazor WebAssembly solution (**ASP.NET Core Hosted**/`-h|--hosted`) with organizational authorization (single organization/`SingleOrg` or multiple organization/`MultiOrg`) and the Microsoft Graph option (**Microsoft identity platform** > **Connected Services** > **Add Microsoft Graph permissions**/`--calls-graph`), the **:::no-loc text="Server":::** app of the solution is configured to use the Graph SDK.
+* Follow the guidance in the primary [Microsoft Graph documentation](/graph/) to use the Graph SDK with a typical ASP.NET Core app, which in this scenario is the **:::no-loc text="Server":::** app of the solution. If you use the Blazor WebAssembly project template to the create the hosted Blazor WebAssembly solution (**ASP.NET Core Hosted**/`-h|--hosted`) with organizational authorization (single organization/`SingleOrg` or multiple organization/`MultiOrg`) and the Microsoft Graph option (**Microsoft identity platform** > **Connected Services** > **Add Microsoft Graph permissions** in Visual Studio or the `--calls-graph` option with the .NET CLI `dotnet new` command), the **:::no-loc text="Server":::** app of the solution is configured to use the Graph SDK when the solution is created from the project template.
 
 > [!NOTE]
-> The scenarios described in this article apply to using Azure Active Directory (AAD) as the identity provider, not AAD B2C.
+> The scenarios described in this article apply to using Azure Active Directory (AAD) as the identity provider, not AAD B2C. Using Microsoft Graph with a client-side Blazor WebAssembly app and the AAD B2C identity provider isn't supported at this time. Using a hosted Blazor WebAssembly app is supported, where the **:::no-loc text="Server":::** app uses the Graph SDK/API to provide Graph data to the **:::no-loc text="Client":::** app via web API.
 
 Two approaches are available for directly interacting with Microsoft Graph in Blazor apps:
 
-* [Microsoft Graph SDKs](/graph/sdks/sdks-overview) are designed to simplify building high-quality, efficient, and resilient applications that access Microsoft Graph. Select the **Graph SDK** button to adopt this approach.
+* The [Microsoft Graph SDKs](/graph/sdks/sdks-overview) are designed to simplify building high-quality, efficient, and resilient applications that access Microsoft Graph. Select the **Graph SDK** button to adopt this approach. The SDK for use in Blazor apps is called the *Microsoft Graph .NET Client Library*.
 * A named <xref:System.Net.Http.HttpClient> can issue web API requests to directly to Graph API. For more information on named `HttpClient`s, see <xref:blazor/call-web-api>. Select the **Named HttpClient with Graph API** button to adopt this approach.
 
 :::zone pivot="graph-sdk"
@@ -38,7 +37,7 @@ The Graph SDK examples require the following package references in the standalon
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-After adding the Microsoft Graph API scopes in the AAD area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json`. In the following example, the `User.Read` scope is specified to match the examples in later sections of this article.
+After adding the Microsoft Graph API scopes in the AAD area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file, which includes the Graph base URL, version, and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article.
 
 ```json
 "MicrosoftGraph": {
@@ -167,7 +166,7 @@ builder.Services.AddGraphClient(baseUrl, scopes);
 
 ## Call Graph API from a component using the Graph SDK
 
-The following `GraphExample` component uses an injected `GraphServiceClient` to obtain the user's AAD profile data and display their mobile phone number.
+The following `GraphExample` component uses an injected `GraphServiceClient` to obtain the user's AAD profile data and display their mobile phone number. For any test user that you create in AAD, make sure that you give the user's AAD profile a mobile phone number in the Azure portal.
 
 `Pages/GraphExample.razor`:
 
@@ -196,17 +195,17 @@ The following `GraphExample` component uses an injected `GraphServiceClient` to 
 }
 ```
 
-When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
+When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
 
 ## Customize user claims with the Graph SDK
 
-In the following example, the app creates mobile phone number and office location claims for a user from their AAD user profile's data. The app must have the `User.Read` Graph API scope configured in AAD.
+In the following example, the app creates mobile phone number and office location claims for a user from their AAD user profile's data. The app must have the `User.Read` Graph API scope configured in AAD. Any test users for this scenario must have a mobile phone number and office location in their AAD profile, which can be added via the Azure portal.
 
 In the following custom user account factory:
 
 * An <xref:Microsoft.Extensions.Logging.ILogger> (`logger`) is included for convenience in case you wish to log information or errors in the `CreateUserAsync` method.
 * In the event that an <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> is thrown, the user is redirected to the identity provider to sign into their account. Additional or different actions can be taken when requesting an access token fails. For example, the app can log the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> and create a support ticket for further investigation.
-* The framework's <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> represents the user's account. If the app requires a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap the custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the following code.
+* The framework's <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> represents the user's account. If the app requires a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap your custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the following code.
 
 `CustomAccountFactory.cs`:
 
@@ -271,13 +270,15 @@ public class CustomAccountFactory
 }
 ```
 
-Next, configure the MSAL authentication to use the custom user account factory. Confirm that the `Program.cs` file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
+Configure the MSAL authentication to use the custom user account factory.
+
+Confirm that the `Program.cs` file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 ```
 
-The example in this section builds on the approach of reading the base URL and Microsoft Graph scopes from app configuration via the `MicrosoftGraph:Scopes` key in `wwwroot/appsettings.json`. The following lines should already be present in `Program.cs` from following the guidance earlier in this article:
+The example in this section builds on the approach of reading the base URL, version, and scopes from app configuration via the `MicrosoftGraph` section in `wwwroot/appsettings.json` file. The following lines should already be present in `Program.cs` from following the guidance earlier in this article:
 
 ```csharp
 var baseUrl = string.Join("/", 
@@ -289,7 +290,9 @@ var scopes = builder.Configuration.GetSection("MicrosoftGraph:Scopes")
 builder.Services.AddGraphClient(baseUrl, scopes);
 ```
 
-In `Program.cs`, find the call to the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method. Update the code to the following, which includes a call to <xref:Microsoft.Extensions.DependencyInjection.RemoteAuthenticationBuilderExtensions.AddAccountClaimsPrincipalFactory%2A> that adds an account claims principal factory with the `CustomAccountFactory`:
+In `Program.cs`, find the call to the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method. Update the code to the following, which includes a call to <xref:Microsoft.Extensions.DependencyInjection.RemoteAuthenticationBuilderExtensions.AddAccountClaimsPrincipalFactory%2A> that adds an account claims principal factory with the `CustomAccountFactory`.
+
+If the app uses a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap the custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the following code.
 
 ```csharp
 builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
@@ -301,9 +304,6 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
     .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, RemoteUserAccount,
         CustomAccountFactory>();
 ```
-
-> [!NOTE]
-> If the app uses a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap the custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the preceding code.
 
 You can use the following `UserClaims` component to study the user's claims after the user authenticates with AAD:
 
@@ -341,15 +341,12 @@ else
             .GetAuthenticationStateAsync();
         var user = authState.User;
 
-        if (user.Identity is not null && user.Identity.IsAuthenticated)
-        {
-            claims = user.Claims;
-        }
+        claims = user.Claims;
     }
 }
 ```
 
-When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
+When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
 
 :::zone-end
 
@@ -361,7 +358,7 @@ The examples require a package reference for [`Microsoft.Extensions.Http`](https
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-After adding the Microsoft Graph API scopes in the AAD area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json`. In the following example, the `User.Read` scope is specified to match the examples in later sections of this article.
+After adding the Microsoft Graph API scopes in the AAD area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file. In the following example, the `User.Read` scope is specified to match the examples in later sections of this article.
 
 ```json
 "MicrosoftGraph": {
@@ -373,7 +370,7 @@ After adding the Microsoft Graph API scopes in the AAD area of the Azure portal,
 }
 ```
 
-Create the following `GraphAuthorizationMessageHandler` class and project configuration in `Program.cs` for working with Graph API.
+Create the following `GraphAuthorizationMessageHandler` class and project configuration in `Program.cs` for working with Graph API. The base URL and scopes are provided to the handler from configuration.
 
 `GraphAuthorizationMessageHandler.cs`:
 
@@ -381,9 +378,9 @@ Create the following `GraphAuthorizationMessageHandler` class and project config
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
-public class GraphAPIAuthorizationMessageHandler : AuthorizationMessageHandler
+public class GraphAuthorizationMessageHandler : AuthorizationMessageHandler
 {
-    public GraphAPIAuthorizationMessageHandler(IAccessTokenProvider provider,
+    public GraphAuthorizationMessageHandler(IAccessTokenProvider provider,
         NavigationManager navigation, IConfiguration config)
         : base(provider, navigation)
     {
@@ -397,19 +394,18 @@ public class GraphAPIAuthorizationMessageHandler : AuthorizationMessageHandler
 In `Program.cs`, configure the named <xref:System.Net.Http.HttpClient> for Graph API:
 
 ```csharp
-builder.Services.AddTransient<GraphAPIAuthorizationMessageHandler>();
+builder.Services.AddTransient<GraphAuthorizationMessageHandler>();
 
 builder.Services.AddHttpClient("GraphAPI",
         client => client.BaseAddress = new Uri(
             builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"]))
-    .AddHttpMessageHandler<GraphAPIAuthorizationMessageHandler>();
+    .AddHttpMessageHandler<GraphAuthorizationMessageHandler>();
 ```
 
-> [!NOTE]
-> In the preceding example, the `GraphAPIAuthorizationMessageHandler` <xref:System.Net.Http.DelegatingHandler> is registered as a transient service for <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>. Transient registration is recommended for <xref:System.Net.Http.IHttpClientFactory>, which manages its own DI scopes. For more information, see the following resources:
->
-> * [Utility base component classes to manage a DI scope](xref:blazor/fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
-> * [Detect transient disposables in Blazor WebAssembly apps](xref:blazor/fundamentals/dependency-injection#detect-transient-disposables-in-blazor-webassembly-apps)
+In the preceding example, the `GraphAuthorizationMessageHandler` <xref:System.Net.Http.DelegatingHandler> is registered as a transient service for <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>. Transient registration is recommended for <xref:System.Net.Http.IHttpClientFactory>, which manages its own DI scopes. For more information, see the following resources:
+
+* [Utility base component classes to manage a DI scope](xref:blazor/fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
+* [Detect transient disposables in Blazor WebAssembly apps](xref:blazor/fundamentals/dependency-injection#detect-transient-disposables-in-blazor-webassembly-apps)
 
 ## Call Graph API from a component with a named `HttpClient`
 
@@ -430,7 +426,7 @@ public class UserInfo
 }
 ```
 
-In the following `GraphExample` component, an <xref:System.Net.Http.HttpClient> is created for Graph API to issue a request for the user's profile data.
+In the following `GraphExample` component, an <xref:System.Net.Http.HttpClient> is created for Graph API to issue a request for the user's profile data. The Graph version, provided by configuration, and `me` resource (`/v1.0/me`) are added to the base URL for the Graph API request. JSON data returned by Graph is deserialized into the `UserInfo` class properties. In the following example, the mobile phone number is obtained. You can add similar code to include the user's AAD profile office location if you wish (`userInfo.OfficeLocation`). If the access token request fails, the user is redirected to sign into the app for a new access token.
 
 `Pages/GraphExample.razor`:
 
@@ -474,11 +470,11 @@ In the following `GraphExample` component, an <xref:System.Net.Http.HttpClient> 
 }
 ```
 
-When testing with the Graph API locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
+When testing with the Graph API locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with testing. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
 
 ## Customize user claims using a named `HttpClient`
 
-In the following example, the app creates mobile phone number and office location claims for the user from their AAD user profile's data. The app must have the `User.Read` Graph API scope configured in AAD.
+In the following example, the app creates mobile phone number and office location claims for the user from their AAD user profile's data. The app must have the `User.Read` Graph API scope configured in AAD. Test user accounts in AAD require an entry for the mobile phone number and office location, which can be added via the Azure portal to their user profiles.
 
 If you haven't already added the `UserInfo` class to the app by following the guidance earlier in this article, add the following class and designate the required user profile properties with the <xref:System.Text.Json.Serialization.JsonPropertyNameAttribute> attribute and the JSON name used by AAD. The following example sets up properties for the user's mobile phone number and office location.
 
@@ -569,13 +565,15 @@ public class CustomAccountFactory
 }
 ```
 
-Next, the MSAL authentication is configured to use the custom user account factory. Start by confirming that the `Program.cs` file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
+The MSAL authentication is configured to use the custom user account factory. Start by confirming that the `Program.cs` file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 ```
 
-In `Program.cs`, find the call to the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method. Update the code to the following, which includes a call to <xref:Microsoft.Extensions.DependencyInjection.RemoteAuthenticationBuilderExtensions.AddAccountClaimsPrincipalFactory%2A> that adds an account claims principal factory with the `CustomAccountFactory`:
+In `Program.cs`, find the call to the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method. Update the code to the following, which includes a call to <xref:Microsoft.Extensions.DependencyInjection.RemoteAuthenticationBuilderExtensions.AddAccountClaimsPrincipalFactory%2A> that adds an account claims principal factory with the `CustomAccountFactory`.
+
+If the app uses a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap your app's custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the following code.
 
 ```csharp
 builder.Services.AddMsalAuthentication<RemoteAuthenticationState, 
@@ -587,9 +585,6 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
     .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, RemoteUserAccount, 
         CustomAccountFactory>();
 ```
-
-> [!NOTE]
-> If the app uses a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap your app's custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the preceding code.
 
 The preceding example is for an app that uses AAD authentication with MSAL. Similar patterns exist for OIDC and API authentication. For more information, see the examples in the [Customize the user with a payload claim](xref:blazor/security/webassembly/additional-scenarios#customize-the-user-with-a-payload-claim) section of the <xref:blazor/security/webassembly/additional-scenarios> article.
 
@@ -629,15 +624,12 @@ else
             .GetAuthenticationStateAsync();
         var user = authState.User;
 
-        if (user.Identity is not null && user.Identity.IsAuthenticated)
-        {
-            claims = user.Claims;
-        }
+        claims = user.Claims;
     }
 }
 ```
 
-When testing with the Graph API locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
+When testing with the Graph API locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with testing. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
 
 :::zone-end
 
@@ -646,7 +638,7 @@ When testing with the Graph API locally, we recommend using a new in-private/inc
 ### General guidance
 
 * [Microsoft Graph documentation](/graph/)
-* [Microsoft Graph sample ASP.NET Core app](https://github.com/microsoftgraph/msgraph-sample-aspnet-core/tree/main/): Most appropriate for ***hosted*** Blazor WebAssembly solutions, where the **:::no-loc text="Server":::** app is configured to access Microsoft Graph as a typical ASP.NET Core app on behalf of the **:::no-loc text="Client":::** app. The **:::no-loc text="Client":::** app uses web API to make requests to the **:::no-loc text="Server":::** app for Graph data. However, the Graph coding practices in the linked Microsoft Graph sample app are relevant for standalone Blazor WebAssembly apps and should be consulted for general best practices.
+* [Microsoft Graph sample ASP.NET Core app](https://github.com/microsoftgraph/msgraph-sample-aspnet-core/tree/main/): This sample app is most appropriate for ***hosted*** Blazor WebAssembly solutions, where the **:::no-loc text="Server":::** app is configured to access Microsoft Graph as a typical ASP.NET Core app on behalf of the **:::no-loc text="Client":::** app. The **:::no-loc text="Client":::** app uses web API to make requests to the **:::no-loc text="Server":::** app for Graph data. Although this sample app doesn't directly apply to calling Graph from client-side Blazor WebAssembly apps, the Graph coding practices in the linked sample app are relevant for standalone Blazor WebAssembly apps and should be consulted for general best practices.
 
 ### Security guidance
 
