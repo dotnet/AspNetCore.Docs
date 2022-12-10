@@ -81,7 +81,7 @@ SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
     })
     // Provide a strong API key that will be used to authenticate the request on the remote app for querying the session
     // ApiKey is a string representing a GUID
-    .AddRemoteAppServer(options => options.ApiKey = ConfigurationManager.AppSettings["RemoteAppApiKey"])
+    .AddRemoteAppServer(options => options.ApiKey = ConfigurationManager.AppSettings("RemoteAppApiKey"))
     .AddSessionServer();
 ```
 
