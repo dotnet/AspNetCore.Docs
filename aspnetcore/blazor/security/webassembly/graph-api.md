@@ -181,7 +181,7 @@ The following `GraphExample` component uses an injected `GraphServiceClient` to 
 
 <h1>Microsoft Graph Component Example</h1>
 
-@if (user is not null && !string.IsNullOrEmpty(user.MobilePhone))
+@if (!string.IsNullOrEmpty(user?.MobilePhone))
 {
     <p>Mobile Phone: @user.MobilePhone</p>
 }
