@@ -15,9 +15,9 @@ This article explains how to use [Microsoft Graph API](/graph/use-the-api) in Bl
 
 Two approaches are available for directly interacting with Microsoft Graph in Blazor apps:
 
-* **Graph SDK**: The [Microsoft Graph SDKs](/graph/sdks/sdks-overview) are designed to simplify building high-quality, efficient, and resilient applications that access Microsoft Graph. Select the **Graph SDK** button to adopt this approach. The SDK for use in Blazor apps is called the *Microsoft Graph .NET Client Library*.
+* **Graph SDK**: The [Microsoft Graph SDKs](/graph/sdks/sdks-overview) are designed to simplify building high-quality, efficient, and resilient applications that access Microsoft Graph. Select the **Graph SDK** button at the top of this article to adopt this approach.
 
-* **Named HttpClient with Graph API**: A named <xref:System.Net.Http.HttpClient> can issue web API requests to directly to Graph API. For more information on named `HttpClient`s, see <xref:blazor/call-web-api>. Select the **Named HttpClient with Graph API** button to adopt this approach.
+* **Named HttpClient with Graph API**: A [named `HttpClient`](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) can issue web API requests to directly to Graph API. Select the **Named HttpClient with Graph API** button at the top of this article to adopt this approach.
 
 The guidance in this article isn't meant to replace the primary [Microsoft Graph documentation](/graph/) and additional Azure security guidance in other Microsoft documentation sets. Assess the security guidance in the [Additional resources](#additional-resources) section of this article before implementing Microsoft Graph in a production environment. Follow all of Microsoft's best practices to limit the attack surface area of your apps.
 
@@ -27,6 +27,8 @@ The guidance in this article isn't meant to replace the primary [Microsoft Graph
 > The examples in this article take advantage of recent .NET features released with ASP.NET Core 6.0 or later. When using the examples in ASP.NET Core 5.0 or earlier, minor modifications are required. However, the text and code examples that pertain to interacting with Microsoft Graph are the same for all versions of ASP.NET Core.
 
 :::zone pivot="graph-sdk"
+
+The SDK for use in Blazor apps is called the *Microsoft Graph .NET Client Library*.
 
 The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app or the **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly solution:
 
