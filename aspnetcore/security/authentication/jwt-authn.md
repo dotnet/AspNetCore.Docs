@@ -61,7 +61,7 @@ The MSBuild project or solution to apply a command on. If a project or solution 
 | ------------- | ------------- |
 | clear  |  Delete all issued JWTs for a project. |
 | create | Issue a new JSON Web Token.   |
-| delete | Delete a given JWT. |
+| remove | Delete a given JWT. |
 | key | Display or reset the signing key used to issue JWTs. |
 | list | Lists the JWTs issued for the project. |
 | print | Display the details of a given JWT. |
