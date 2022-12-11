@@ -459,7 +459,7 @@ In the following `GraphExample` component, an <xref:System.Net.Http.HttpClient> 
             var userInfo = await client.GetFromJsonAsync<UserInfo>(
                 $"{Config.GetSection("MicrosoftGraph")["Version"]}/me");
 
-            if (userInfo is not null && !string.IsNullOrEmpty(userInfo.MobilePhone))
+            if (!string.IsNullOrEmpty(userInfo?.MobilePhone))
             {
                 mobilePhone = userInfo.MobilePhone;
             }
