@@ -442,13 +442,13 @@ In the following `GraphExample` component, an <xref:System.Net.Http.HttpClient> 
 
 <h1>Microsoft Graph Component Example</h1>
 
-@if (!string.IsNullOrEmpty(mobilePhone))
+@if (!string.IsNullOrEmpty(userInfo?.MobilePhone))
 {
-    <p>Mobile Phone: @mobilePhone</p>
+    <p>Mobile Phone: @userInfo.MobilePhone</p>
 }
 
 @code {
-    private string? mobilePhone;
+    private UserInfo? userInfo;
 
     protected override async Task OnInitializedAsync()
     {
@@ -456,13 +456,8 @@ In the following `GraphExample` component, an <xref:System.Net.Http.HttpClient> 
         {
             var client = ClientFactory.CreateClient("GraphAPI");
 
-            var userInfo = await client.GetFromJsonAsync<UserInfo>(
+            userInfo = await client.GetFromJsonAsync<UserInfo>(
                 $"{Config.GetSection("MicrosoftGraph")["Version"]}/me");
-
-            if (!string.IsNullOrEmpty(userInfo?.MobilePhone))
-            {
-                mobilePhone = userInfo.MobilePhone;
-            }
         }
         catch (AccessTokenNotAvailableException exception)
         {
