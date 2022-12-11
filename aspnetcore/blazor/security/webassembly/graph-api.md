@@ -21,14 +21,16 @@ Two approaches are available for directly interacting with Microsoft Graph in Bl
 
 The guidance in this article isn't meant to replace the primary [Microsoft Graph documentation](/graph/) and additional Azure security guidance in other Microsoft documentation sets. Assess the security guidance in the [Additional resources](#additional-resources) section of this article before implementing Microsoft Graph in a production environment. Follow all of Microsoft's best practices to limit the attack surface area of your apps.
 
-> [!NOTE]
-> The scenarios described in this article apply to using Azure Active Directory (AAD) as the identity provider, not AAD B2C. Using Microsoft Graph with a client-side Blazor WebAssembly app and the AAD B2C identity provider isn't supported at this time. Using a hosted Blazor WebAssembly app is supported, where the **:::no-loc text="Server":::** app uses the Graph SDK/API to provide Graph data to the **:::no-loc text="Client":::** app via web API.
->
-> The examples in this article take advantage of recent .NET features released with ASP.NET Core 6.0 or later. When using the examples in ASP.NET Core 5.0 or earlier, minor modifications are required. However, the text and code examples that pertain to interacting with Microsoft Graph are the same for all versions of ASP.NET Core.
+> [!IMPORTANT]
+> The scenarios described in this article apply to using Azure Active Directory (AAD) as the identity provider, not AAD B2C. Using Microsoft Graph with a client-side Blazor WebAssembly app and the AAD B2C identity provider isn't supported at this time.
+
+Using a hosted Blazor WebAssembly app is supported, where the **:::no-loc text="Server":::** app uses the Graph SDK/API to provide Graph data to the **:::no-loc text="Client":::** app via web API. For more information, see the [Hosted Blazor WebAssembly solutions](#hosted-blazor-webassembly-solutions) section of this article.
+
+The examples in this article take advantage of recent .NET features released with ASP.NET Core 6.0 or later. When using the examples in ASP.NET Core 5.0 or earlier, minor modifications are required. However, the text and code examples that pertain to interacting with Microsoft Graph are the same for all versions of ASP.NET Core.
 
 :::zone pivot="graph-sdk"
 
-The SDK for use in Blazor apps is called the *Microsoft Graph .NET Client Library*.
+The Microsoft Graph SDK for use in Blazor apps is called the *Microsoft Graph .NET Client Library*.
 
 The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app or the **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly solution:
 
@@ -645,7 +647,7 @@ The examples in this article pertain to using the Graph SDK or a named `HttpClie
 ### General guidance
 
 * [Microsoft Graph documentation](/graph/)
-* [Microsoft Graph sample ASP.NET Core app](https://github.com/microsoftgraph/msgraph-sample-aspnet-core/tree/main/): This sample app is most appropriate for ***hosted*** Blazor WebAssembly solutions, where the **:::no-loc text="Server":::** app is configured to access Microsoft Graph as a typical ASP.NET Core app on behalf of the **:::no-loc text="Client":::** app. The **:::no-loc text="Client":::** app uses web API to make requests to the **:::no-loc text="Server":::** app for Graph data. Although this sample app doesn't directly apply to calling Graph from client-side Blazor WebAssembly apps, the Graph coding practices in the linked sample app are relevant for standalone Blazor WebAssembly apps and should be consulted for general best practices.
+* [Build .NET apps with Microsoft Graph tutorial](/graph/tutorials/dotnet?tabs=aad) and [Microsoft Graph sample ASP.NET Core app](https://github.com/microsoftgraph/msgraph-sample-aspnet-core/tree/main/): These resources are most appropriate for ***hosted*** Blazor WebAssembly solutions, where the **:::no-loc text="Server":::** app is configured to access Microsoft Graph as a typical ASP.NET Core app on behalf of the **:::no-loc text="Client":::** app. The **:::no-loc text="Client":::** app uses web API to make requests to the **:::no-loc text="Server":::** app for Graph data. Although these resources don't directly apply to calling Graph from *client-side* Blazor WebAssembly apps, the AAD app configuration and Microsoft Graph coding practices in the linked resources are relevant for standalone Blazor WebAssembly apps and should be consulted for general best practices.
 
 ### Security guidance
 
