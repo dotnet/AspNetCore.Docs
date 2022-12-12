@@ -8,4 +8,4 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-The default setting is `popup`, and the string value isn't case sensitive.
+The default setting is `popup`, and the string value isn't case-sensitive.

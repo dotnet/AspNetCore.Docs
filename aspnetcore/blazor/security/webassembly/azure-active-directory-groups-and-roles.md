@@ -357,8 +357,8 @@ To configure the app in the Azure portal to provide App Roles membership claims,
 
 The following example assumes that the **CLIENT** and **SERVER** apps are configured with two roles, and the roles are assigned to a test user:
 
-* `admin`
-* `developer`
+* `Admin`
+* `Developer`
 
 > [!NOTE]
 > When developing a hosted Blazor WebAssembly app or a client-server pair of standalone apps (a standalone Blazor WebAssembly app and a standalone ASP.NET Core server API/web API app), the `appRoles` manifest property of both the client and the server Azure portal app registrations must include the same configured roles. After establishing the roles in the client app's manifest, copy them in their entirety to the server app's manifest. If you don't mirror the manifest `appRoles` between the client and server app registrations, role claims aren't established for authenticated users of the server API/web API, even if their access token has the correct roles claims.
@@ -402,18 +402,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 > [!NOTE]
 > If you prefer to use the `wids` claim (ADD Administrator Roles), assign "`wids`" to the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType?displayProperty=nameWithType>.
 
-Component authorization approaches are functional at this point. Any of the authorization mechanisms in components of the **CLIENT** app can use the `admin` role to authorize the user:
+Component authorization approaches are functional at this point. Any of the authorization mechanisms in components of the **CLIENT** app can use the `Admin` role to authorize the user:
 
 * [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component)
 
   ```razor
-  <AuthorizeView Roles="admin">
+  <AuthorizeView Roles="Admin">
   ```
 
 * [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>)
 
   ```razor
-  @attribute [Authorize(Roles = "admin")]
+  @attribute [Authorize(Roles = "Admin")]
   ```
 
 * [Procedural logic](xref:blazor/security/index#procedural-logic)
@@ -422,43 +422,43 @@ Component authorization approaches are functional at this point. Any of the auth
   var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
   var user = authState.User;
 
-  if (user.IsInRole("admin")) { ... }
+  if (user.IsInRole("Admin")) { ... }
   ```
 
 Multiple role tests are supported:
 
-* Require that the user be in **either** the `admin` **or** `developer` role with the `AuthorizeView` component:
+* Require that the user be in **either** the `Admin` **or** `Developer` role with the `AuthorizeView` component:
 
   ```razor
-  <AuthorizeView Roles="admin, developer">
+  <AuthorizeView Roles="Admin, Developer">
       ...
   </AuthorizeView>
   ```
 
-* Require that the user be in **both** the `admin` **and** `developer` roles with the `AuthorizeView` component:
+* Require that the user be in **both** the `Admin` **and** `Developer` roles with the `AuthorizeView` component:
 
   ```razor
-  <AuthorizeView Roles="admin">
-      <AuthorizeView Roles="developer">
+  <AuthorizeView Roles="Admin">
+      <AuthorizeView Roles="Developer">
           ...
       </AuthorizeView>
   </AuthorizeView>
   ```
 
-* Require that the user be in **either** the `admin` **or** `developer` role with the `[Authorize]` attribute:
+* Require that the user be in **either** the `Admin` **or** `Developer` role with the `[Authorize]` attribute:
 
   ```razor
-  @attribute [Authorize(Roles = "admin, developer")]
+  @attribute [Authorize(Roles = "Admin, Developer")]
   ```
 
-* Require that the user be in **both** the `admin` **and** `developer` roles with the `[Authorize]` attribute:
+* Require that the user be in **both** the `Admin` **and** `Developer` roles with the `[Authorize]` attribute:
 
   ```razor
-  @attribute [Authorize(Roles = "admin")]
-  @attribute [Authorize(Roles = "developer")]
+  @attribute [Authorize(Roles = "Admin")]
+  @attribute [Authorize(Roles = "Developer")]
   ```
 
-* Require that the user be in **either** the `admin` **or** `developer` role with procedural code:
+* Require that the user be in **either** the `Admin` **or** `Developer` role with procedural code:
 
   ```razor
   @code {
@@ -468,7 +468,7 @@ Multiple role tests are supported:
               .GetAuthenticationStateAsync();
           var user = authState.User;
 
-          if (user.IsInRole("admin") || user.IsInRole("developer"))
+          if (user.IsInRole("Admin") || user.IsInRole("Developer"))
           {
               ...
           }
@@ -480,42 +480,42 @@ Multiple role tests are supported:
   }
   ```
 
-* Require that the user be in **both** the `admin` **and** `developer` roles with procedural code by changing the [conditional OR (`||`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) to a [conditional AND (`&&`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) in the preceding example:
+* Require that the user be in **both** the `Admin` **and** `Developer` roles with procedural code by changing the [conditional OR (`||`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) to a [conditional AND (`&&`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) in the preceding example:
 
   ```csharp
-  if (user.IsInRole("admin") && user.IsInRole("developer"))
+  if (user.IsInRole("Admin") && user.IsInRole("Developer"))
   ```
 
-Any of the authorization mechanisms in controllers of the **SERVER** app can use the `admin` role to authorize the user:
+Any of the authorization mechanisms in controllers of the **SERVER** app can use the `Admin` role to authorize the user:
 
 * [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>)
 
   ```csharp
-  [Authorize(Roles = "admin")]
+  [Authorize(Roles = "Admin")]
   ```
 
 * [Procedural logic](xref:blazor/security/index#procedural-logic)
 
   ```csharp
-  if (User.IsInRole("admin")) { ... }
+  if (User.IsInRole("Admin")) { ... }
   ```
 
 Multiple role tests are supported:
 
-* Require that the user be in **either** the `admin` **or** `developer` role with the `[Authorize]` attribute:
+* Require that the user be in **either** the `Admin` **or** `Developer` role with the `[Authorize]` attribute:
 
   ```csharp
-  [Authorize(Roles = "admin, developer")]
+  [Authorize(Roles = "Admin, Developer")]
   ```
 
-* Require that the user be in **both** the `admin` **and** `developer` roles with the `[Authorize]` attribute:
+* Require that the user be in **both** the `Admin` **and** `Developer` roles with the `[Authorize]` attribute:
 
   ```csharp
-  [Authorize(Roles = "admin")]
-  [Authorize(Roles = "developer")]
+  [Authorize(Roles = "Admin")]
+  [Authorize(Roles = "Developer")]
   ```
 
-* Require that the user be in **either** the `admin` **or** `developer` role with procedural code:
+* Require that the user be in **either** the `Admin` **or** `Developer` role with procedural code:
 
   ```csharp
   static readonly string[] scopeRequiredByApi = new string[] { "API.Access" };
@@ -527,7 +527,7 @@ Multiple role tests are supported:
   {
       HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
 
-      if (User.IsInRole("admin") || User.IsInRole("developer"))
+      if (User.IsInRole("Admin") || User.IsInRole("Developer"))
       {
           ...
       }
@@ -540,11 +540,15 @@ Multiple role tests are supported:
   }
   ```
 
-* Require that the user be in **both** the `admin` **and** `developer` roles with procedural code by changing the [conditional OR (`||`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) to a [conditional AND (`&&`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) in the preceding example:
+* Require that the user be in **both** the `Admin` **and** `Developer` roles with procedural code by changing the [conditional OR (`||`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) to a [conditional AND (`&&`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) in the preceding example:
 
   ```csharp
-  if (User.IsInRole("admin") && User.IsInRole("developer"))
+  if (User.IsInRole("Admin") && User.IsInRole("Developer"))
   ```
+
+Because .NET string comparisons are case-sensitive by default, matching role names is also case-sensitive. For example, `Admin` (uppercase `A`) is not treated as the same role as `admin` (lowercase `a`).
+
+Pascal case is typically used for role names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirement. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role names is also unusual but permitted. For example, `billing administrator` is an unusual role name format in .NET apps but valid.
 
 ## Additional resources
 
@@ -903,8 +907,8 @@ To configure the app in the Azure portal to provide App Roles membership claims,
 
 The following example assumes that the **CLIENT** and **SERVER** apps are configured with two roles, and the roles are assigned to a test user:
 
-* `admin`
-* `developer`
+* `Admin`
+* `Developer`
 
 > [!NOTE]
 > When developing a hosted Blazor WebAssembly app or a client-server pair of standalone apps (a standalone Blazor WebAssembly app and a standalone ASP.NET Core server API/web API app), the `appRoles` manifest property of both the client and the server Azure portal app registrations must include the same configured roles. After establishing the roles in the client app's manifest, copy them in their entirety to the server app's manifest. If you don't mirror the manifest `appRoles` between the client and server app registrations, role claims aren't established for authenticated users of the server API/web API, even if their access token has the correct roles claims.
@@ -946,18 +950,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 > [!NOTE]
 > If you prefer to use the `wids` claim (ADD Administrator Roles), assign "`wids`" to the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType?displayProperty=nameWithType>.
 
-Component authorization approaches are functional at this point. Any of the authorization mechanisms in components of the **CLIENT** app can use the `admin` role to authorize the user:
+Component authorization approaches are functional at this point. Any of the authorization mechanisms in components of the **CLIENT** app can use the `Admin` role to authorize the user:
 
 * [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component)
 
   ```razor
-  <AuthorizeView Roles="admin">
+  <AuthorizeView Roles="Admin">
   ```
 
 * [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>)
 
   ```razor
-  @attribute [Authorize(Roles = "admin")]
+  @attribute [Authorize(Roles = "Admin")]
   ```
 
 * [Procedural logic](xref:blazor/security/index#procedural-logic)
@@ -966,43 +970,43 @@ Component authorization approaches are functional at this point. Any of the auth
   var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
   var user = authState.User;
 
-  if (user.IsInRole("admin")) { ... }
+  if (user.IsInRole("Admin")) { ... }
   ```
 
 Multiple role tests are supported:
 
-* Require that the user be in **either** the `admin` **or** `developer` role with the `AuthorizeView` component:
+* Require that the user be in **either** the `Admin` **or** `Developer` role with the `AuthorizeView` component:
 
   ```razor
-  <AuthorizeView Roles="admin, developer">
+  <AuthorizeView Roles="Admin, Developer">
       ...
   </AuthorizeView>
   ```
 
-* Require that the user be in **both** the `admin` **and** `developer` roles with the `AuthorizeView` component:
+* Require that the user be in **both** the `Admin` **and** `Developer` roles with the `AuthorizeView` component:
 
   ```razor
-  <AuthorizeView Roles="admin">
-      <AuthorizeView Roles="developer">
+  <AuthorizeView Roles="Admin">
+      <AuthorizeView Roles="Developer">
           ...
       </AuthorizeView>
   </AuthorizeView>
   ```
 
-* Require that the user be in **either** the `admin` **or** `developer` role with the `[Authorize]` attribute:
+* Require that the user be in **either** the `Admin` **or** `Developer` role with the `[Authorize]` attribute:
 
   ```razor
-  @attribute [Authorize(Roles = "admin, developer")]
+  @attribute [Authorize(Roles = "Admin, Developer")]
   ```
 
-* Require that the user be in **both** the `admin` **and** `developer` roles with the `[Authorize]` attribute:
+* Require that the user be in **both** the `Admin` **and** `Developer` roles with the `[Authorize]` attribute:
 
   ```razor
-  @attribute [Authorize(Roles = "admin")]
-  @attribute [Authorize(Roles = "developer")]
+  @attribute [Authorize(Roles = "Admin")]
+  @attribute [Authorize(Roles = "Developer")]
   ```
 
-* Require that the user be in **either** the `admin` **or** `developer` role with procedural code:
+* Require that the user be in **either** the `Admin` **or** `Developer` role with procedural code:
 
   ```razor
   @code {
@@ -1012,7 +1016,7 @@ Multiple role tests are supported:
               .GetAuthenticationStateAsync();
           var user = authState.User;
 
-          if (user.IsInRole("admin") || user.IsInRole("developer"))
+          if (user.IsInRole("Admin") || user.IsInRole("Developer"))
           {
               ...
           }
@@ -1024,42 +1028,42 @@ Multiple role tests are supported:
   }
   ```
 
-* Require that the user be in **both** the `admin` **and** `developer` roles with procedural code by changing the [conditional OR (`||`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) to a [conditional AND (`&&`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) in the preceding example:
+* Require that the user be in **both** the `Admin` **and** `Developer` roles with procedural code by changing the [conditional OR (`||`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) to a [conditional AND (`&&`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) in the preceding example:
 
   ```csharp
-  if (user.IsInRole("admin") && user.IsInRole("developer"))
+  if (user.IsInRole("Admin") && user.IsInRole("Developer"))
   ```
 
-Any of the authorization mechanisms in controllers of the **SERVER** app can use the `admin` role to authorize the user:
+Any of the authorization mechanisms in controllers of the **SERVER** app can use the `Admin` role to authorize the user:
 
 * [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>)
 
   ```csharp
-  [Authorize(Roles = "admin")]
+  [Authorize(Roles = "Admin")]
   ```
 
 * [Procedural logic](xref:blazor/security/index#procedural-logic)
 
   ```csharp
-  if (User.IsInRole("admin")) { ... }
+  if (User.IsInRole("Admin")) { ... }
   ```
 
 Multiple role tests are supported:
 
-* Require that the user be in **either** the `admin` **or** `developer` role with the `[Authorize]` attribute:
+* Require that the user be in **either** the `Admin` **or** `Developer` role with the `[Authorize]` attribute:
 
   ```csharp
-  [Authorize(Roles = "admin, developer")]
+  [Authorize(Roles = "Admin, Developer")]
   ```
 
-* Require that the user be in **both** the `admin` **and** `developer` roles with the `[Authorize]` attribute:
+* Require that the user be in **both** the `Admin` **and** `Developer` roles with the `[Authorize]` attribute:
 
   ```csharp
-  [Authorize(Roles = "admin")]
-  [Authorize(Roles = "developer")]
+  [Authorize(Roles = "Admin")]
+  [Authorize(Roles = "Developer")]
   ```
 
-* Require that the user be in **either** the `admin` **or** `developer` role with procedural code:
+* Require that the user be in **either** the `Admin` **or** `Developer` role with procedural code:
 
   ```csharp
   static readonly string[] scopeRequiredByApi = new string[] { "API.Access" };
@@ -1071,7 +1075,7 @@ Multiple role tests are supported:
   {
       HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
 
-      if (User.IsInRole("admin") || User.IsInRole("developer"))
+      if (User.IsInRole("Admin") || User.IsInRole("Developer"))
       {
           ...
       }
@@ -1084,11 +1088,15 @@ Multiple role tests are supported:
   }
   ```
 
-* Require that the user be in **both** the `admin` **and** `developer` roles with procedural code by changing the [conditional OR (`||`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) to a [conditional AND (`&&`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) in the preceding example:
+* Require that the user be in **both** the `Admin` **and** `Developer` roles with procedural code by changing the [conditional OR (`||`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) to a [conditional AND (`&&`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) in the preceding example:
 
   ```csharp
-  if (User.IsInRole("admin") && User.IsInRole("developer"))
+  if (User.IsInRole("Admin") && User.IsInRole("Developer"))
   ```
+
+Because .NET string comparisons are case-sensitive by default, matching role names is also case-sensitive. For example, `Admin` (uppercase `A`) is not treated as the same role as `admin` (lowercase `a`).
+
+Pascal case is typically used for role names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirement. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role names is also unusual but permitted. For example, `billing administrator` is an unusual role name format in .NET apps but valid.
 
 ## Additional resources
 
@@ -1447,8 +1455,8 @@ To configure the app in the Azure portal to provide App Roles membership claims,
 
 The following example assumes that the **CLIENT** and **SERVER** apps are configured with two roles, and the roles are assigned to a test user:
 
-* `admin`
-* `developer`
+* `Admin`
+* `Developer`
 
 > [!NOTE]
 > When developing a hosted Blazor WebAssembly app or a client-server pair of standalone apps (a standalone Blazor WebAssembly app and a standalone ASP.NET Core server API/web API app), the `appRoles` manifest property of both the client and the server Azure portal app registrations must include the same configured roles. After establishing the roles in the client app's manifest, copy them in their entirety to the server app's manifest. If you don't mirror the manifest `appRoles` between the client and server app registrations, role claims aren't established for authenticated users of the server API/web API, even if their access token has the correct roles claims.
@@ -1490,18 +1498,18 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 > [!NOTE]
 > If you prefer to use the `wids` claim (ADD Administrator Roles), assign "`wids`" to the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType?displayProperty=nameWithType>.
 
-Component authorization approaches are functional at this point. Any of the authorization mechanisms in components of the **CLIENT** app can use the `admin` role to authorize the user:
+Component authorization approaches are functional at this point. Any of the authorization mechanisms in components of the **CLIENT** app can use the `Admin` role to authorize the user:
 
 * [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component)
 
   ```razor
-  <AuthorizeView Roles="admin">
+  <AuthorizeView Roles="Admin">
   ```
 
 * [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>)
 
   ```razor
-  @attribute [Authorize(Roles = "admin")]
+  @attribute [Authorize(Roles = "Admin")]
   ```
 
 * [Procedural logic](xref:blazor/security/index#procedural-logic)
@@ -1510,43 +1518,43 @@ Component authorization approaches are functional at this point. Any of the auth
   var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
   var user = authState.User;
 
-  if (user.IsInRole("admin")) { ... }
+  if (user.IsInRole("Admin")) { ... }
   ```
 
 Multiple role tests are supported:
 
-* Require that the user be in **either** the `admin` **or** `developer` role with the `AuthorizeView` component:
+* Require that the user be in **either** the `Admin` **or** `Developer` role with the `AuthorizeView` component:
 
   ```razor
-  <AuthorizeView Roles="admin, developer">
+  <AuthorizeView Roles="Admin, Developer">
       ...
   </AuthorizeView>
   ```
 
-* Require that the user be in **both** the `admin` **and** `developer` roles with the `AuthorizeView` component:
+* Require that the user be in **both** the `Admin` **and** `Developer` roles with the `AuthorizeView` component:
 
   ```razor
-  <AuthorizeView Roles="admin">
-      <AuthorizeView Roles="developer">
+  <AuthorizeView Roles="Admin">
+      <AuthorizeView Roles="Developer">
           ...
       </AuthorizeView>
   </AuthorizeView>
   ```
 
-* Require that the user be in **either** the `admin` **or** `developer` role with the `[Authorize]` attribute:
+* Require that the user be in **either** the `Admin` **or** `Developer` role with the `[Authorize]` attribute:
 
   ```razor
-  @attribute [Authorize(Roles = "admin, developer")]
+  @attribute [Authorize(Roles = "Admin, Developer")]
   ```
 
-* Require that the user be in **both** the `admin` **and** `developer` roles with the `[Authorize]` attribute:
+* Require that the user be in **both** the `Admin` **and** `Developer` roles with the `[Authorize]` attribute:
 
   ```razor
-  @attribute [Authorize(Roles = "admin")]
-  @attribute [Authorize(Roles = "developer")]
+  @attribute [Authorize(Roles = "Admin")]
+  @attribute [Authorize(Roles = "Developer")]
   ```
 
-* Require that the user be in **either** the `admin` **or** `developer` role with procedural code:
+* Require that the user be in **either** the `Admin` **or** `Developer` role with procedural code:
 
   ```razor
   @code {
@@ -1556,7 +1564,7 @@ Multiple role tests are supported:
               .GetAuthenticationStateAsync();
           var user = authState.User;
 
-          if (user.IsInRole("admin") || user.IsInRole("developer"))
+          if (user.IsInRole("Admin") || user.IsInRole("Developer"))
           {
               ...
           }
@@ -1568,42 +1576,42 @@ Multiple role tests are supported:
   }
   ```
 
-* Require that the user be in **both** the `admin` **and** `developer` roles with procedural code by changing the [conditional OR (`||`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) to a [conditional AND (`&&`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) in the preceding example:
+* Require that the user be in **both** the `Admin` **and** `Developer` roles with procedural code by changing the [conditional OR (`||`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) to a [conditional AND (`&&`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) in the preceding example:
 
   ```csharp
-  if (user.IsInRole("admin") && user.IsInRole("developer"))
+  if (user.IsInRole("Admin") && user.IsInRole("Developer"))
   ```
 
-Any of the authorization mechanisms in controllers of the **SERVER** app can use the `admin` role to authorize the user:
+Any of the authorization mechanisms in controllers of the **SERVER** app can use the `Admin` role to authorize the user:
 
 * [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>)
 
   ```csharp
-  [Authorize(Roles = "admin")]
+  [Authorize(Roles = "Admin")]
   ```
 
 * [Procedural logic](xref:blazor/security/index#procedural-logic)
 
   ```csharp
-  if (User.IsInRole("admin")) { ... }
+  if (User.IsInRole("Admin")) { ... }
   ```
 
 Multiple role tests are supported:
 
-* Require that the user be in **either** the `admin` **or** `developer` role with the `[Authorize]` attribute:
+* Require that the user be in **either** the `Admin` **or** `Developer` role with the `[Authorize]` attribute:
 
   ```csharp
-  [Authorize(Roles = "admin, developer")]
+  [Authorize(Roles = "Admin, Developer")]
   ```
 
-* Require that the user be in **both** the `admin` **and** `developer` roles with the `[Authorize]` attribute:
+* Require that the user be in **both** the `Admin` **and** `Developer` roles with the `[Authorize]` attribute:
 
   ```csharp
-  [Authorize(Roles = "admin")]
-  [Authorize(Roles = "developer")]
+  [Authorize(Roles = "Admin")]
+  [Authorize(Roles = "Developer")]
   ```
 
-* Require that the user be in **either** the `admin` **or** `developer` role with procedural code:
+* Require that the user be in **either** the `Admin` **or** `Developer` role with procedural code:
 
   ```csharp
   static readonly string[] scopeRequiredByApi = new string[] { "API.Access" };
@@ -1615,7 +1623,7 @@ Multiple role tests are supported:
   {
       HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
 
-      if (User.IsInRole("admin") || User.IsInRole("developer"))
+      if (User.IsInRole("Admin") || User.IsInRole("Developer"))
       {
           ...
       }
@@ -1628,11 +1636,15 @@ Multiple role tests are supported:
   }
   ```
 
-* Require that the user be in **both** the `admin` **and** `developer` roles with procedural code by changing the [conditional OR (`||`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) to a [conditional AND (`&&`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) in the preceding example:
+* Require that the user be in **both** the `Admin` **and** `Developer` roles with procedural code by changing the [conditional OR (`||`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) to a [conditional AND (`&&`)](/dotnet/csharp/language-reference/operators/boolean-logical-operators) in the preceding example:
 
   ```csharp
-  if (User.IsInRole("admin") && User.IsInRole("developer"))
+  if (User.IsInRole("Admin") && User.IsInRole("Developer"))
   ```
+
+Because .NET string comparisons are case-sensitive by default, matching role names is also case-sensitive. For example, `Admin` (uppercase `A`) is not treated as the same role as `admin` (lowercase `a`).
+
+Pascal case is typically used for role names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirement. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role names is also unusual but permitted. For example, `billing administrator` is an unusual role name format in .NET apps but valid.
 
 ## Additional resources
 
