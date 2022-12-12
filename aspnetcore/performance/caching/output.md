@@ -72,7 +72,7 @@ The following code applies all of the default caching rules to all of an app's e
 
 The following code shows how to override the default rules. The highlighted lines in the following custom policy code enable caching for HTTP Post methods and HTTP 301 responses:
 
-:::code language="csharp" source="output/samples/7.x/MyCustomPolicy.cs" highlight="50,67":::
+:::code language="csharp" source="output/samples/7.x/MyCustomPolicy.cs" highlight="50,68":::
 
 To use this custom policy, create a named policy:
 
