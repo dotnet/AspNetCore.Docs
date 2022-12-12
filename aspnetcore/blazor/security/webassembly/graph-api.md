@@ -5,7 +5,7 @@ description: Learn how to use the Microsoft Graph SDK/API with Blazor WebAssembl
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/10/2022
+ms.date: 12/12/2022
 uid: blazor/security/webassembly/graph-api
 zone_pivot_groups: blazor-graph-api
 ---
@@ -642,6 +642,7 @@ The examples in this article pertain to using the Graph SDK or a named `HttpClie
 ### General guidance
 
 * [Microsoft Graph documentation](/graph/)
+* [Microsoft Graph sample Blazor WebAssembly app](https://github.com/microsoftgraph/msgraph-sample-blazor-clientside): This sample demonstrates how to use the Microsoft Graph .NET SDK to access data in Office 365 from Blazor WebAssembly apps.
 * [Build .NET apps with Microsoft Graph tutorial](/graph/tutorials/dotnet?tabs=aad) and [Microsoft Graph sample ASP.NET Core app](https://github.com/microsoftgraph/msgraph-sample-aspnet-core/tree/main/): These resources are most appropriate for ***hosted*** Blazor WebAssembly solutions, where the **:::no-loc text="Server":::** app is configured to access Microsoft Graph as a typical ASP.NET Core app on behalf of the **:::no-loc text="Client":::** app. The **:::no-loc text="Client":::** app uses web API to make requests to the **:::no-loc text="Server":::** app for Graph data. Although these resources don't directly apply to calling Graph from *client-side* Blazor WebAssembly apps, the AAD app configuration and Microsoft Graph coding practices in the linked resources are relevant for standalone Blazor WebAssembly apps and should be consulted for general best practices.
 
 ### Security guidance
