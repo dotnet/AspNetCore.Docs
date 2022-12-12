@@ -314,7 +314,7 @@ If neither <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Rol
 
 Because .NET string comparisons are case-sensitive by default, matching role and policy names is also case-sensitive. For example, `Admin` (uppercase `A`) is not treated as the same role as `admin` (lowercase `a`).
 
-Pascal case is typically used for role and policy names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirements. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role and policy names is also unusual but permitted. For example, `billing administrator` is an unusual role or policy name format in .NET apps but valid.
+Pascal case is typically used for role and policy names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirement. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role and policy names is also unusual but permitted. For example, `billing administrator` is an unusual role or policy name format in .NET apps but valid.
 
 ### Content displayed during asynchronous authentication
 
@@ -877,7 +877,7 @@ If neither <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Rol
 
 Because .NET string comparisons are case-sensitive by default, matching role and policy names is also case-sensitive. For example, `Admin` (uppercase `A`) is not treated as the same role as `admin` (lowercase `a`).
 
-Pascal case is typically used for role and policy names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirements. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role and policy names is also unusual but permitted. For example, `billing administrator` is an unusual role or policy name format in .NET apps but valid.
+Pascal case is typically used for role and policy names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirement. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role and policy names is also unusual but permitted. For example, `billing administrator` is an unusual role or policy name format in .NET apps but valid.
 
 ### Content displayed during asynchronous authentication
 
@@ -1442,7 +1442,7 @@ If neither <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Rol
 
 Because .NET string comparisons are case-sensitive by default, matching role and policy names is also case-sensitive. For example, `Admin` (uppercase `A`) is not treated as the same role as `admin` (lowercase `a`).
 
-Pascal case is typically used for role and policy names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirements. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role and policy names is also unusual but permitted. For example, `billing administrator` is an unusual role or policy name format in .NET apps but valid.
+Pascal case is typically used for role and policy names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirement. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role and policy names is also unusual but permitted. For example, `billing administrator` is an unusual role or policy name format in .NET apps but valid.
 
 ### Content displayed during asynchronous authentication
 
@@ -2008,7 +2008,7 @@ If neither <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Rol
 
 Because .NET string comparisons are case-sensitive by default, matching role and policy names is also case-sensitive. For example, `Admin` (uppercase `A`) is not treated as the same role as `admin` (lowercase `a`).
 
-Pascal case is typically used for role and policy names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirements. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role and policy names is also unusual but permitted. For example, `billing administrator` is an unusual role or policy name format in .NET apps but valid.
+Pascal case is typically used for role and policy names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirement. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role and policy names is also unusual but permitted. For example, `billing administrator` is an unusual role or policy name format in .NET apps but valid.
 
 ### Content displayed during asynchronous authentication
 
