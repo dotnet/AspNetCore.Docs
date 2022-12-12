@@ -425,14 +425,14 @@ JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
 
 In the **:::no-loc text="Client":::** app, component authorization approaches are functional at this point. Any of the authorization mechanisms in components can use a role to authorize the user:
 
-* [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) (Example: `<AuthorizeView Roles="admin">`)
-* [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (Example: `@attribute [Authorize(Roles = "admin")]`)
-* [Procedural logic](xref:blazor/security/index#procedural-logic) (Example: `if (user.IsInRole("admin")) { ... }`)
+* [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) (Example: `<AuthorizeView Roles="Admin">`)
+* [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (Example: `@attribute [Authorize(Roles = "Admin")]`)
+* [Procedural logic](xref:blazor/security/index#procedural-logic) (Example: `if (user.IsInRole("Admin")) { ... }`)
 
   Multiple role tests are supported:
 
   ```csharp
-  if (user.IsInRole("admin") && user.IsInRole("developer"))
+  if (user.IsInRole("Admin") && user.IsInRole("Developer"))
   {
       ...
   }
@@ -968,14 +968,14 @@ JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
 
 In the **:::no-loc text="Client":::** app, component authorization approaches are functional at this point. Any of the authorization mechanisms in components can use a role to authorize the user:
 
-* [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) (Example: `<AuthorizeView Roles="admin">`)
-* [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (Example: `@attribute [Authorize(Roles = "admin")]`)
-* [Procedural logic](xref:blazor/security/index#procedural-logic) (Example: `if (user.IsInRole("admin")) { ... }`)
+* [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) (Example: `<AuthorizeView Roles="Admin">`)
+* [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (Example: `@attribute [Authorize(Roles = "Admin")]`)
+* [Procedural logic](xref:blazor/security/index#procedural-logic) (Example: `if (user.IsInRole("Admin")) { ... }`)
 
   Multiple role tests are supported:
 
   ```csharp
-  if (user.IsInRole("admin") && user.IsInRole("developer"))
+  if (user.IsInRole("Admin") && user.IsInRole("Developer"))
   {
       ...
   }
@@ -1508,14 +1508,14 @@ JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
 
 In the **:::no-loc text="Client":::** app, component authorization approaches are functional at this point. Any of the authorization mechanisms in components can use a role to authorize the user:
 
-* [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) (Example: `<AuthorizeView Roles="admin">`)
-* [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (Example: `@attribute [Authorize(Roles = "admin")]`)
-* [Procedural logic](xref:blazor/security/index#procedural-logic) (Example: `if (user.IsInRole("admin")) { ... }`)
+* [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) (Example: `<AuthorizeView Roles="Admin">`)
+* [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (Example: `@attribute [Authorize(Roles = "Admin")]`)
+* [Procedural logic](xref:blazor/security/index#procedural-logic) (Example: `if (user.IsInRole("Admin")) { ... }`)
 
   Multiple role tests are supported:
 
   ```csharp
-  if (user.IsInRole("admin") && user.IsInRole("developer"))
+  if (user.IsInRole("Admin") && user.IsInRole("Developer"))
   {
       ...
   }
@@ -2218,14 +2218,14 @@ JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
 
 In the **:::no-loc text="Client":::** app, component authorization approaches are functional at this point. Any of the authorization mechanisms in components can use a role to authorize the user:
 
-* [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) (Example: `<AuthorizeView Roles="admin">`)
-* [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (Example: `@attribute [Authorize(Roles = "admin")]`)
-* [Procedural logic](xref:blazor/security/index#procedural-logic) (Example: `if (user.IsInRole("admin")) { ... }`)
+* [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) (Example: `<AuthorizeView Roles="Admin">`)
+* [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (Example: `@attribute [Authorize(Roles = "Admin")]`)
+* [Procedural logic](xref:blazor/security/index#procedural-logic) (Example: `if (user.IsInRole("Admin")) { ... }`)
 
   Multiple role tests are supported:
 
   ```csharp
-  if (user.IsInRole("admin") && user.IsInRole("developer"))
+  if (user.IsInRole("Admin") && user.IsInRole("Developer"))
   {
       ...
   }

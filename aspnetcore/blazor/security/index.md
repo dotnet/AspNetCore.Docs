@@ -288,11 +288,11 @@ The following example is from the [Blazor Server project template](xref:blazor/p
 
 The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component supports *role-based* or *policy-based* authorization.
 
-For role-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> parameter:
+For role-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> parameter. In the following example, the user must have a role claim for either (or both) the `Admin` or `Superuser` roles:
 
 ```razor
-<AuthorizeView Roles="admin, superuser">
-    <p>You can only see this if you're an admin or superuser.</p>
+<AuthorizeView Roles="Admin, Superuser">
+    <p>You can only see this if you're an Admin or Superuser.</p>
 </AuthorizeView>
 ```
 
@@ -301,8 +301,8 @@ For more information, including configuration guidance, see <xref:security/autho
 For policy-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> parameter:
 
 ```razor
-<AuthorizeView Policy="content-editor">
-    <p>You can only see this if you satisfy the "content-editor" policy.</p>
+<AuthorizeView Policy="ContentEditor">
+    <p>You can only see this if you satisfy the "ContentEditor" policy.</p>
 </AuthorizeView>
 ```
 
@@ -311,6 +311,10 @@ Claims-based authorization is a special case of policy-based authorization. For 
 These APIs can be used in either Blazor Server or Blazor WebAssembly apps.
 
 If neither <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> nor <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> is specified, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> uses the default policy.
+
+Because .NET string comparisons are case-sensitive by default, matching role and policy names is also case-sensitive. For example, `Admin` (uppercase `A`) is not treated as the same role as `admin` (lowercase `a`).
+
+Pascal case is typically used for role and policy names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirements. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role and policy names is also unusual but permitted. For example, `billing administrator` is an unusual role or policy name format in .NET apps but valid.
 
 ### Content displayed during asynchronous authentication
 
@@ -351,18 +355,18 @@ The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeA
 
 ```razor
 @page "/"
-@attribute [Authorize(Roles = "admin, superuser")]
+@attribute [Authorize(Roles = "Admin, Superuser")]
 
-<p>You can only see this if you're in the 'admin' or 'superuser' role.</p>
+<p>You can only see this if you're in the 'Admin' or 'Superuser' role.</p>
 ```
 
 For policy-based authorization, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> parameter:
 
 ```razor
 @page "/"
-@attribute [Authorize(Policy = "content-editor")]
+@attribute [Authorize(Policy = "ContentEditor")]
 
-<p>You can only see this if you satisfy the 'content-editor' policy.</p>
+<p>You can only see this if you satisfy the 'ContentEditor' policy.</p>
 ```
 
 If neither <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> nor <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> is specified, [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) uses the default policy, which by default is to treat:
@@ -847,11 +851,11 @@ The following example is from the [Blazor Server project template](xref:blazor/p
 
 The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component supports *role-based* or *policy-based* authorization.
 
-For role-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> parameter:
+For role-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> parameter. In the following example, the user must have a role claim for either (or both) the `Admin` or `Superuser` roles:
 
 ```razor
-<AuthorizeView Roles="admin, superuser">
-    <p>You can only see this if you're an admin or superuser.</p>
+<AuthorizeView Roles="Admin, Superuser">
+    <p>You can only see this if you're an Admin or Superuser.</p>
 </AuthorizeView>
 ```
 
@@ -860,8 +864,8 @@ For more information, including configuration guidance, see <xref:security/autho
 For policy-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> parameter:
 
 ```razor
-<AuthorizeView Policy="content-editor">
-    <p>You can only see this if you satisfy the "content-editor" policy.</p>
+<AuthorizeView Policy="ContentEditor">
+    <p>You can only see this if you satisfy the "ContentEditor" policy.</p>
 </AuthorizeView>
 ```
 
@@ -870,6 +874,10 @@ Claims-based authorization is a special case of policy-based authorization. For 
 These APIs can be used in either Blazor Server or Blazor WebAssembly apps.
 
 If neither <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> nor <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> is specified, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> uses the default policy.
+
+Because .NET string comparisons are case-sensitive by default, matching role and policy names is also case-sensitive. For example, `Admin` (uppercase `A`) is not treated as the same role as `admin` (lowercase `a`).
+
+Pascal case is typically used for role and policy names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirements. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role and policy names is also unusual but permitted. For example, `billing administrator` is an unusual role or policy name format in .NET apps but valid.
 
 ### Content displayed during asynchronous authentication
 
@@ -910,18 +918,18 @@ The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeA
 
 ```razor
 @page "/"
-@attribute [Authorize(Roles = "admin, superuser")]
+@attribute [Authorize(Roles = "Admin, Superuser")]
 
-<p>You can only see this if you're in the 'admin' or 'superuser' role.</p>
+<p>You can only see this if you're in the 'Admin' or 'Superuser' role.</p>
 ```
 
 For policy-based authorization, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> parameter:
 
 ```razor
 @page "/"
-@attribute [Authorize(Policy = "content-editor")]
+@attribute [Authorize(Policy = "ContentEditor")]
 
-<p>You can only see this if you satisfy the 'content-editor' policy.</p>
+<p>You can only see this if you satisfy the 'ContentEditor' policy.</p>
 ```
 
 If neither <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> nor <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> is specified, [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) uses the default policy, which by default is to treat:
@@ -1408,11 +1416,11 @@ The following example is from the [Blazor Server project template](xref:blazor/p
 
 The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component supports *role-based* or *policy-based* authorization.
 
-For role-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> parameter:
+For role-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> parameter. In the following example, the user must have a role claim for either (or both) the `Admin` or `Superuser` roles:
 
 ```razor
-<AuthorizeView Roles="admin, superuser">
-    <p>You can only see this if you're an admin or superuser.</p>
+<AuthorizeView Roles="Admin, Superuser">
+    <p>You can only see this if you're an Admin or Superuser.</p>
 </AuthorizeView>
 ```
 
@@ -1421,8 +1429,8 @@ For more information, including configuration guidance, see <xref:security/autho
 For policy-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> parameter:
 
 ```razor
-<AuthorizeView Policy="content-editor">
-    <p>You can only see this if you satisfy the "content-editor" policy.</p>
+<AuthorizeView Policy="ContentEditor">
+    <p>You can only see this if you satisfy the "ContentEditor" policy.</p>
 </AuthorizeView>
 ```
 
@@ -1431,6 +1439,10 @@ Claims-based authorization is a special case of policy-based authorization. For 
 These APIs can be used in either Blazor Server or Blazor WebAssembly apps.
 
 If neither <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> nor <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> is specified, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> uses the default policy.
+
+Because .NET string comparisons are case-sensitive by default, matching role and policy names is also case-sensitive. For example, `Admin` (uppercase `A`) is not treated as the same role as `admin` (lowercase `a`).
+
+Pascal case is typically used for role and policy names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirements. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role and policy names is also unusual but permitted. For example, `billing administrator` is an unusual role or policy name format in .NET apps but valid.
 
 ### Content displayed during asynchronous authentication
 
@@ -1471,18 +1483,18 @@ The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeA
 
 ```razor
 @page "/"
-@attribute [Authorize(Roles = "admin, superuser")]
+@attribute [Authorize(Roles = "Admin, Superuser")]
 
-<p>You can only see this if you're in the 'admin' or 'superuser' role.</p>
+<p>You can only see this if you're in the 'Admin' or 'Superuser' role.</p>
 ```
 
 For policy-based authorization, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> parameter:
 
 ```razor
 @page "/"
-@attribute [Authorize(Policy = "content-editor")]
+@attribute [Authorize(Policy = "ContentEditor")]
 
-<p>You can only see this if you satisfy the 'content-editor' policy.</p>
+<p>You can only see this if you satisfy the 'ContentEditor' policy.</p>
 ```
 
 If neither <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> nor <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> is specified, [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) uses the default policy, which by default is to treat:
@@ -1970,11 +1982,11 @@ The following example is from the [Blazor Server project template](xref:blazor/p
 
 The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component supports *role-based* or *policy-based* authorization.
 
-For role-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> parameter:
+For role-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> parameter. In the following example, the user must have a role claim for either (or both) the `Admin` or `Superuser` roles:
 
 ```razor
-<AuthorizeView Roles="admin, superuser">
-    <p>You can only see this if you're an admin or superuser.</p>
+<AuthorizeView Roles="Admin, Superuser">
+    <p>You can only see this if you're an Admin or Superuser.</p>
 </AuthorizeView>
 ```
 
@@ -1983,8 +1995,8 @@ For more information, including configuration guidance, see <xref:security/autho
 For policy-based authorization, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> parameter:
 
 ```razor
-<AuthorizeView Policy="content-editor">
-    <p>You can only see this if you satisfy the "content-editor" policy.</p>
+<AuthorizeView Policy="ContentEditor">
+    <p>You can only see this if you satisfy the "ContentEditor" policy.</p>
 </AuthorizeView>
 ```
 
@@ -1993,6 +2005,10 @@ Claims-based authorization is a special case of policy-based authorization. For 
 These APIs can be used in either Blazor Server or Blazor WebAssembly apps.
 
 If neither <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> nor <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> is specified, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> uses the default policy.
+
+Because .NET string comparisons are case-sensitive by default, matching role and policy names is also case-sensitive. For example, `Admin` (uppercase `A`) is not treated as the same role as `admin` (lowercase `a`).
+
+Pascal case is typically used for role and policy names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirements. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role and policy names is also unusual but permitted. For example, `billing administrator` is an unusual role or policy name format in .NET apps but valid.
 
 ### Content displayed during asynchronous authentication
 
@@ -2033,18 +2049,18 @@ The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeA
 
 ```razor
 @page "/"
-@attribute [Authorize(Roles = "admin, superuser")]
+@attribute [Authorize(Roles = "Admin, Superuser")]
 
-<p>You can only see this if you're in the 'admin' or 'superuser' role.</p>
+<p>You can only see this if you're in the 'Admin' or 'Superuser' role.</p>
 ```
 
 For policy-based authorization, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> parameter:
 
 ```razor
 @page "/"
-@attribute [Authorize(Policy = "content-editor")]
+@attribute [Authorize(Policy = "ContentEditor")]
 
-<p>You can only see this if you satisfy the 'content-editor' policy.</p>
+<p>You can only see this if you satisfy the 'ContentEditor' policy.</p>
 ```
 
 If neither <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> nor <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> is specified, [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) uses the default policy, which by default is to treat:
