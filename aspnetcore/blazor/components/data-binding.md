@@ -96,7 +96,7 @@ Example:
 
 For another example use of `@bind:get` and `@bind:set`, see the [Bind across more than two components](#bind-across-more-than-two-components) section later in this article.
 
-Razor attribute binding is case sensitive:
+Razor attribute binding is case-sensitive:
 
 * `@bind`, `@bind:event`, and `@bind:after` are valid.
 * `@Bind`/`@bind:Event`/`@bind:aftEr` (capital letters) or `@BIND`/`@BIND:EVENT`/`@BIND:AFTER` (all capital letters) **are invalid**.
@@ -380,7 +380,7 @@ Bind a property or field on other [Document Object Model (DOM)](https://develope
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor" highlight="4":::
 
-Razor attribute binding is case sensitive:
+Razor attribute binding is case-sensitive:
 
 * `@bind` and `@bind:event` are valid.
 * `@Bind`/`@Bind:Event` (capital letters `B` and `E`) or `@BIND`/`@BIND:EVENT` (all capital letters) **are invalid**.
@@ -638,7 +638,7 @@ Bind a property or field on other [Document Object Model (DOM)](https://develope
 
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor" highlight="4":::
 
-Razor attribute binding is case sensitive:
+Razor attribute binding is case-sensitive:
 
 * `@bind` and `@bind:event` are valid.
 * `@Bind`/`@Bind:Event` (capital letters `B` and `E`) or `@BIND`/`@BIND:EVENT` (all capital letters) **are invalid**.
@@ -835,7 +835,7 @@ Bind a property or field on other [Document Object Model (DOM)](https://develope
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor" highlight="4":::
 
-Razor attribute binding is case sensitive:
+Razor attribute binding is case-sensitive:
 
 * `@bind` and `@bind:event` are valid.
 * `@Bind`/`@Bind:Event` (capital letters `B` and `E`) or `@BIND`/`@BIND:EVENT` (all capital letters) **are invalid**.
