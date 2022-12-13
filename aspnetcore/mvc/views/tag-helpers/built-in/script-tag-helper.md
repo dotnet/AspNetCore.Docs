@@ -38,9 +38,11 @@ See [Script Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper
 
 When `asp-append-version` is specified with a `true` value along with a `src` attribute, a unique version is generated.
 
+[!INCLUDE[](~/includes/th_version.md)]
+
 ### asp-fallback-src
 
-The URL of a Script tag to fallback to in the case the primary one fails. For more information, see <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper.FallbackSrc>.
+The URL of a Script tag to fallback to in the case the primary one fails.
 
 ### asp-fallback-src-exclude
 
@@ -73,8 +75,6 @@ A comma-separated list of globbed file patterns of JavaScript scripts to load. T
 ### asp-suppress-fallback-integrity
 
 Boolean value that determines if an integrity hash will be compared with the asp-fallback-src value.
-
-[!INCLUDE[](~/includes/th_version.md)]
 
 ## Additional resources
 
