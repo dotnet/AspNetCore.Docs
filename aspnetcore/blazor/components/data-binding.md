@@ -77,6 +77,41 @@ In the following example:
 }
 ```
 
+Additional examples:
+
+```razor
+@* Elements *@
+
+<input type="text" @bind="text" @bind:after="() => { }" />
+
+<input type="text" @bind="text" @bind:after="AfterAsync" />
+
+<input type="text" @bind="text" @bind:after="() => { }" />
+
+<input type="text" @bind="text" @bind:after="AfterAsync" />
+
+@* Components *@
+
+<InputText @bind-Value="text" @bind-Value:after="() => { }" />
+
+<InputText @bind-Value="text" @bind-Value:after="AfterAsync" />
+
+<InputText @bind-Value="text" @bind-Value:after="() => { }" />
+
+<InputText @bind-Value="text" @bind-Value:after="AfterAsync" />
+
+@code {
+    private string text = "";
+
+    private Task AfterAsync()
+    {
+        return Task.CompletedTask;
+    }
+}
+```
+
+For more information on the `InputText` component, see <xref:blazor/forms-and-input-components>.
+
 Components support two-way data binding by defining a pair of parameters:
 
 * `@bind:get`: Specifies the value to bind.
@@ -99,47 +134,31 @@ Examples:
 ```razor
 @* Elements *@
 
-<input type="text" @bind="text" @bind:after="() => { }" />
-
 <input type="text" @bind:get="text" @bind:set="(value) => { }" />
-
-<input type="text" @bind="text" @bind:after="AfterAsync" />
 
 <input type="text" @bind:get="text" @bind:set="SetAsync" />
 
-<input type="text" @bind="text" @bind:after="() => { }" />
-
 <input type="text" @bind:get="text" @bind:set="(value) => { }" />
-
-<input type="text" @bind="text" @bind:after="AfterAsync" />
 
 <input type="text" @bind:get="text" @bind:set="SetAsync" />
 
 @* Components *@
 
-<InputText @bind-Value="text" @bind-Value:after="() => { }" />
-
 <InputText @bind-Value:get="text" @bind-Value:set="(value) => { }" />
-
-<InputText @bind-Value="text" @bind-Value:after="AfterAsync" />
 
 <InputText @bind-Value:get="text" @bind-Value:set="SetAsync" />
 
-<InputText @bind-Value="text" @bind-Value:after="() => { }" />
-
 <InputText @bind-Value:get="text" @bind-Value:set="(value) => { }" />
-
-<InputText @bind-Value="text" @bind-Value:after="AfterAsync" />
 
 <InputText @bind-Value:get="text" @bind-Value:set="SetAsync" />
 
 @code {
     private string text = "";
 
-    private void After(){}
-    private void Set() {}
-    private Task AfterAsync() { return Task.CompletedTask; }
-    private Task SetAsync(string value) { return Task.CompletedTask; }
+    private Task SetAsync(string value)
+    {
+        return Task.CompletedTask;
+    }
 }
 ```
 
