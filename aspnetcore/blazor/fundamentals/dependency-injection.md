@@ -966,7 +966,7 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
   
 *This section only applies to Blazor Server apps.**
 
-There may be times when a Razor component invokes asynchronous methods that execute code in a different DI scope. Without the correct approach, these DI scopes don't have access to Blazor's services, such as `IJSInterop` and <xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage>.
+There may be times when a Razor component invokes asynchronous methods that execute code in a different DI scope. Without the correct approach, these DI scopes don't have access to Blazor's services, such as <xref:Microsoft.JSInterop.IJSRuntime> and <xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage>.
 
 For example, <xref:System.Net.Http.HttpClient> instances created using <xref:System.Net.Http.IHttpClientFactory> have their own DI service scope. As a result, <xref:System.Net.Http.HttpMessageHandler> instances configured on the <xref:System.Net.Http.HttpClient> aren't able to directly inject Blazor services.
 
