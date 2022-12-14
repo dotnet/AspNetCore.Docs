@@ -94,21 +94,58 @@ Components support two-way data binding by defining a pair of parameters:
 
 The `@bind:get` and `@bind:set` modifiers are always used together.
 
-Example:
+Examples:
 
 ```razor
-<input @bind:get="Value" @bind:set="ValueChanged" />
+@* Elements *@
+
+<input type="text" @bind="_text" @bind:after="() => { }" />
+
+<input type="text" @bind:get="_text" @bind:set="(value) => { }" />
+
+<input type="text" @bind="_text" @bind:after="AfterAsync" />
+
+<input type="text" @bind:get="_text" @bind:set="SetAsync" />
+
+<input type="text" @bind="_text" @bind:after="() => { }" />
+
+<input type="text" @bind:get="_text" @bind:set="(value) => { }" />
+
+<input type="text" @bind="_text" @bind:after="AfterAsync" />
+
+<input type="text" @bind:get="_text" @bind:set="SetAsync" />
+
+@* Components *@
+
+<InputText @bind-Value="_text" @bind-Value:after="() => { }" />
+
+<InputText @bind-Value:get="_text" @bind-Value:set="(value) => { }" />
+
+<InputText @bind-Value="_text" @bind-Value:after="AfterAsync" />
+
+<InputText @bind-Value:get="_text" @bind-Value:set="SetAsync" />
+
+<InputText @bind-Value="_text" @bind-Value:after="() => { }" />
+
+<InputText @bind-Value:get="_text" @bind-Value:set="(value) => { }" />
+
+<InputText @bind-Value="_text" @bind-Value:after="AfterAsync" />
+
+<InputText @bind-Value:get="_text" @bind-Value:set="SetAsync" />
 
 @code {
-    [Parameter]
-    public string? Value { get; set; }
+    private string _text = "";
 
-    [Parameter]
-    public EventCallback<string> ValueChanged { get; set; }
+    private void After(){}
+    private void Set() {}
+    private Task AfterAsync() { return Task.CompletedTask; }
+    private Task SetAsync(string value) { return Task.CompletedTask; }
 }
 ```
 
-For another example use of `@bind:get` and `@bind:set`, see the [Bind across more than two components](#bind-across-more-than-two-components) section later in this article.
+For more information on the `InputText` component, see <xref:blazor/forms-and-input-components>.
+
+<!-- For another example use of `@bind:get` and `@bind:set`, see the [Bind across more than two components](#bind-across-more-than-two-components) section later in this article. -->
 
 Razor attribute binding is case-sensitive:
 

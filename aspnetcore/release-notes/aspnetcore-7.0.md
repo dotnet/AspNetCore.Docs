@@ -322,24 +322,65 @@ In .NET 7, it's also easier to set up binding for component parameters. Componen
 
 The `@bind:get` and `@bind:set` modifiers are always used together.
 
-Example:
+Examples:
 
 ```razor
-<input @bind:get="Value" @bind:set="ValueChanged" />
+@* Elements *@
+
+<input type="text" @bind="_text" @bind:after="() => { }" />
+
+<input type="text" @bind:get="_text" @bind:set="(value) => { }" />
+
+<input type="text" @bind="_text" @bind:after="AfterAsync" />
+
+<input type="text" @bind:get="_text" @bind:set="SetAsync" />
+
+<input type="text" @bind="_text" @bind:after="() => { }" />
+
+<input type="text" @bind:get="_text" @bind:set="(value) => { }" />
+
+<input type="text" @bind="_text" @bind:after="AfterAsync" />
+
+<input type="text" @bind:get="_text" @bind:set="SetAsync" />
+
+@* Components *@
+
+<InputText @bind-Value="_text" @bind-Value:after="() => { }" />
+
+<InputText @bind-Value:get="_text" @bind-Value:set="(value) => { }" />
+
+<InputText @bind-Value="_text" @bind-Value:after="AfterAsync" />
+
+<InputText @bind-Value:get="_text" @bind-Value:set="SetAsync" />
+
+<InputText @bind-Value="_text" @bind-Value:after="() => { }" />
+
+<InputText @bind-Value:get="_text" @bind-Value:set="(value) => { }" />
+
+<InputText @bind-Value="_text" @bind-Value:after="AfterAsync" />
+
+<InputText @bind-Value:get="_text" @bind-Value:set="SetAsync" />
 
 @code {
-    [Parameter]
-    public TValue? Value { get; set; }
+    private string _text = "";
 
-    [Parameter]
-    public EventCallback<TValue> ValueChanged { get; set; }
+    private void After(){}
+    private void Set() {}
+    private Task AfterAsync() { return Task.CompletedTask; }
+    private Task SetAsync(string value) { return Task.CompletedTask; }
 }
 ```
+
+For more information on the `InputText` component, see <xref:blazor/forms-and-input-components>.
+
+<!--
 
 For more information, see the following content in the *Data binding* article:
 
 * [Introduction](xref:blazor/components/data-binding?view=aspnetcore-7.0)
 * [Bind across more than two components](xref:blazor/components/data-binding?view=aspnetcore-7.0#bind-across-more-than-two-components)
+
+-->
 
 ### Hot Reload improvements
 
