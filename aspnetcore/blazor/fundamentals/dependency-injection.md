@@ -970,8 +970,6 @@ There may be times when a Razor component invokes asynchronous methods that exec
 
 For example, <xref:System.Net.Http.HttpClient> instances created using <xref:System.Net.Http.IHttpClientFactory> have their own DI service scope. As a result, <xref:System.Net.Http.HttpMessageHandler> instances configured on the <xref:System.Net.Http.HttpClient> aren't able to directly inject Blazor services.
 
-Until this scenario is addressed as a product feature in a future Blazor release, the following workaround is available to configure accessible Blazor services from code in other DI scopes when invoked from a Razor component.
-
 Create a static class `BlazorServiceAccessor` that defines an [`AsyncLocal<IServiceProvider>`](xref:System.Threading.AsyncLocal`1), which stores the Blazor <xref:System.IServiceProvider> for the current asynchronous context. Asynchronous code invoked from a Razor component can use `BlazorServiceAccessor.Services` to access Blazor services. *This is only necessary if the <xref:System.IServiceProvider> available to the invoked code was created in a different DI service scope.*
 
 `BlazorServiceAccessor.cs`:
