@@ -46,7 +46,14 @@ Bind a property or field on other [Document Object Model (DOM)](https://develope
 To execute asynchronous logic after binding, use `@bind:after="{EVENT}"` with a DOM event for the `{EVENT}` placeholder. An assigned C# method isn't executed until the bound value is assigned synchronously.
 
 > [!IMPORTANT]
-> The `@bind:after` feature isn't functional for the .NET 7 release. This feature will work as expected when 7.0.1 is released, which is planned for mid-December. For more information, see the [.NET 7 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/known-issues.md#70-bind-get-set-after-cant-be-used-in-70-blazor-applications).
+> The `@bind:after` feature is receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](/download/dotnet/7.0).
+>
+> Using an event callback parameter (`[Parameter] public EventCallback<string> ValueChanged { get; set; }`) isn't supported. Instead, pass an <xref:System.Action>-returning or <xref:System.Threading.Tasks.Task>-returning method to `@bind:after`.
+>
+> For more information, see the following resources:
+>
+> * [Blazor `@bind:after` not working on .NET 7 RTM release (dotnet/aspnetcore #44957)](https://github.com/dotnet/aspnetcore/issues/44957)
+> * [`BindGetSetAfter701` sample app (javiercn/BindGetSetAfter701 GitHub repository)](https://github.com/javiercn/BindGetSetAfter701)
 
 In the following example:
 
@@ -76,27 +83,71 @@ Components support two-way data binding by defining a pair of parameters:
 * `@bind:set`: Specifies a callback for when the value changes.
 
 > [!IMPORTANT]
-> The `@bind:get` and `@bind:set` features aren't functional for the .NET 7 release. These features will work as expected when 7.0.1 is released, which is planned for mid-December. For more information, see the [.NET 7 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/known-issues.md#70-bind-get-set-after-cant-be-used-in-70-blazor-applications).
+> The `@bind:get` and `@bind:set` features are receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](/download/dotnet/7.0).
+>
+> Using an event callback parameter (`[Parameter] public EventCallback<string> ValueChanged { get; set; }`) isn't supported. Instead, pass an <xref:System.Action>-returning or <xref:System.Threading.Tasks.Task>-returning method to `@bind:set`.
+>
+> For more information, see the following resources:
+>
+> * [Blazor `@bind:after` not working on .NET 7 RTM release (dotnet/aspnetcore #44957)](https://github.com/dotnet/aspnetcore/issues/44957)
+> * [`BindGetSetAfter701` sample app (javiercn/BindGetSetAfter701 GitHub repository)](https://github.com/javiercn/BindGetSetAfter701)
 
 The `@bind:get` and `@bind:set` modifiers are always used together.
 
-Example:
+Examples:
 
 ```razor
-<input @bind:get="Value" @bind:set="ValueChanged" />
+@* Elements *@
+
+<input type="text" @bind="text" @bind:after="() => { }" />
+
+<input type="text" @bind:get="text" @bind:set="(value) => { }" />
+
+<input type="text" @bind="text" @bind:after="AfterAsync" />
+
+<input type="text" @bind:get="text" @bind:set="SetAsync" />
+
+<input type="text" @bind="text" @bind:after="() => { }" />
+
+<input type="text" @bind:get="text" @bind:set="(value) => { }" />
+
+<input type="text" @bind="text" @bind:after="AfterAsync" />
+
+<input type="text" @bind:get="text" @bind:set="SetAsync" />
+
+@* Components *@
+
+<InputText @bind-Value="text" @bind-Value:after="() => { }" />
+
+<InputText @bind-Value:get="text" @bind-Value:set="(value) => { }" />
+
+<InputText @bind-Value="text" @bind-Value:after="AfterAsync" />
+
+<InputText @bind-Value:get="text" @bind-Value:set="SetAsync" />
+
+<InputText @bind-Value="text" @bind-Value:after="() => { }" />
+
+<InputText @bind-Value:get="text" @bind-Value:set="(value) => { }" />
+
+<InputText @bind-Value="text" @bind-Value:after="AfterAsync" />
+
+<InputText @bind-Value:get="text" @bind-Value:set="SetAsync" />
 
 @code {
-    [Parameter]
-    public string? Value { get; set; }
+    private string text = "";
 
-    [Parameter]
-    public EventCallback<string> ValueChanged { get; set; }
+    private void After(){}
+    private void Set() {}
+    private Task AfterAsync() { return Task.CompletedTask; }
+    private Task SetAsync(string value) { return Task.CompletedTask; }
 }
 ```
 
-For another example use of `@bind:get` and `@bind:set`, see the [Bind across more than two components](#bind-across-more-than-two-components) section later in this article.
+For more information on the `InputText` component, see <xref:blazor/forms-and-input-components>.
 
-Razor attribute binding is case sensitive:
+<!-- For another example use of `@bind:get` and `@bind:set`, see the [Bind across more than two components](#bind-across-more-than-two-components) section later in this article. -->
+
+Razor attribute binding is case-sensitive:
 
 * `@bind`, `@bind:event`, and `@bind:after` are valid.
 * `@Bind`/`@bind:Event`/`@bind:aftEr` (capital letters) or `@BIND`/`@BIND:EVENT`/`@BIND:AFTER` (all capital letters) **are invalid**.
@@ -309,8 +360,17 @@ In the following example, the `PasswordUpdated` method executes asynchronously a
 
 ## Bind across more than two components
 
+<!-- HOLD: See https://github.com/dotnet/AspNetCore.Docs/issues/27848
+
 > [!IMPORTANT]
-> The `@bind:get` and `@bind:set` features demonstrated in this section aren't functional for the .NET 7 release. These features will work as expected when 7.0.1 is released, which is planned for mid-December. For more information, see the [.NET 7 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/known-issues.md#70-bind-get-set-after-cant-be-used-in-70-blazor-applications). To see a working version of the guidance in this section that doesn't rely on `@bind:get`/`@bind:set`, see the 6.0 version of this article.
+> The `@bind:get` and `@bind:set` features demonstrated in this section are receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](/download/dotnet/7.0).
+>
+> For more information, see the following resources:
+>
+> * [Blazor `@bind:after` not working on .NET 7 RTM release (dotnet/aspnetcore #44957)](https://github.com/dotnet/aspnetcore/issues/44957)
+> * [`BindGetSetAfter701` sample app (javiercn/BindGetSetAfter701 GitHub repository)](https://github.com/javiercn/BindGetSetAfter701)
+>
+> To see a working version of the guidance in this section that doesn't rely on `@bind:get`/`@bind:set` modifiers, see the 6.0 version of this article.
 
 You can bind parameters through any number of nested components, but you must respect the one-way flow of data:
 
@@ -335,6 +395,32 @@ In the following `NestedChild` component, the `NestedGrandchild` component:
 `Shared/NestedGrandchild.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/data-binding/NestedGrandchild.razor":::
+
+For an alternative approach suited to sharing data in memory and across components that aren't necessarily nested, see <xref:blazor/state-management>.
+
+-->
+
+You can bind parameters through any number of nested components, but you must respect the one-way flow of data:
+
+* Change notifications *flow up the hierarchy*.
+* New parameter values *flow down the hierarchy*.
+
+A common and recommended approach is to only store the underlying data in the parent component to avoid any confusion about what state must be updated, as shown in the following example.
+
+`Pages/Parent2.razor`:
+
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/Parent2.razor":::
+
+`Shared/NestedChild.razor`:
+
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/NestedChild.razor":::
+
+> [!WARNING]
+> Generally, avoid creating components that write directly to their own component parameters. The preceding `NestedChild` component makes use of a `BoundValue` property instead of writing directly to its `ChildMessage` parameter. For more information, see <xref:blazor/components/index#overwritten-parameters>.
+
+`Shared/NestedGrandchild.razor`:
+
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/NestedGrandchild.razor":::
 
 For an alternative approach suited to sharing data in memory and across components that aren't necessarily nested, see <xref:blazor/state-management>.
 
@@ -380,7 +466,7 @@ Bind a property or field on other [Document Object Model (DOM)](https://develope
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor" highlight="4":::
 
-Razor attribute binding is case sensitive:
+Razor attribute binding is case-sensitive:
 
 * `@bind` and `@bind:event` are valid.
 * `@Bind`/`@Bind:Event` (capital letters `B` and `E`) or `@BIND`/`@BIND:EVENT` (all capital letters) **are invalid**.
@@ -638,7 +724,7 @@ Bind a property or field on other [Document Object Model (DOM)](https://develope
 
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor" highlight="4":::
 
-Razor attribute binding is case sensitive:
+Razor attribute binding is case-sensitive:
 
 * `@bind` and `@bind:event` are valid.
 * `@Bind`/`@Bind:Event` (capital letters `B` and `E`) or `@BIND`/`@BIND:EVENT` (all capital letters) **are invalid**.
@@ -835,7 +921,7 @@ Bind a property or field on other [Document Object Model (DOM)](https://develope
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/data-binding/BindEvent.razor" highlight="4":::
 
-Razor attribute binding is case sensitive:
+Razor attribute binding is case-sensitive:
 
 * `@bind` and `@bind:event` are valid.
 * `@Bind`/`@Bind:Event` (capital letters `B` and `E`) or `@BIND`/`@BIND:EVENT` (all capital letters) **are invalid**.

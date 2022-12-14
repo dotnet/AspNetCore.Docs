@@ -15,7 +15,11 @@ The Blazor framework supports forms and provides built-in input components:
 * <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation)
 * [Built-in input components](#built-in-input-components)
 
-The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace provides classes for managing form views, state, and validation. The namespace appears by default in the `_Imports.razor` file of an app created from a Blazor project template.
+The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace provides classes for managing form views, state, and validation, and the namespace also provides access to built-in :::no-loc text="Input*"::: Razor components for use in Blazor apps. The namespace appears by default in the `_Imports.razor` file of an app created from a Blazor project template. If you don't maintain a `using` statement in `_Imports.razor` for the namespace, you can use the namespace in individual Razor components with the [`@using`](xref:mvc/views/razor#using) directive:
+
+```razor
+@using Microsoft.AspNetCore.Components.Forms
+```
 
 :::moniker range=">= aspnetcore-7.0"
 
