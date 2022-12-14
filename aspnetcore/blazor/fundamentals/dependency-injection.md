@@ -962,7 +962,7 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
 
 > System.InvalidOperationException: Trying to resolve transient disposable service TransientDependency in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
   
-## Access Blazor services from another DI scope
+## Access Blazor services from a different DI scope
   
 *This section only applies to Blazor Server apps.**
 
