@@ -961,6 +961,111 @@ The app can register transient disposables without throwing an exception. Howeve
 Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDependency`:
 
 > System.InvalidOperationException: Trying to resolve transient disposable service TransientDependency in the wrong scope. Use an 'OwningComponentBase\<T>' component base class for the service 'T' you are trying to resolve.
+  
+## Access Blazor services from another DI scope
+  
+*This section only applies to Blazor Server apps.**
+
+There may be times when a Razor component invokes asynchronous methods that execute code in a different DI scope. Without the correct approach, these DI scopes don't have access to Blazor's services, such as `IJSInterop` and <xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage>.
+
+For example, <xref:System.Net.Http.HttpClient> instances created using <xref:System.Net.Http.IHttpClientFactory> have their own DI service scope. As a result, <xref:System.Net.Http.HttpMessageHandler> instances configured on the <xref:System.Net.Http.HttpClient> aren't able to directly inject Blazor services.
+
+Until this scenario is addressed as a product feature in a future Blazor release, the following workaround is available to configure accessible Blazor services from code in other DI scopes when invoked from a Razor component.
+
+Create a static class `BlazorServiceAccessor` that defines an [`AsyncLocal<IServiceProvider>`](xref:System.Threading.AsyncLocal`1), which stores the Blazor <xref:System.IServiceProvider> for the current asynchronous context. Asynchronous code invoked from a Razor component can use `BlazorServiceAccessor.Services` to access Blazor services. *This is only necessary if the <xref:System.IServiceProvider> available to the invoked code was created in a different DI service scope.*
+
+`BlazorServiceAccessor.cs`:
+
+```csharp
+internal static class BlazorServiceAccessor
+{
+    private static readonly AsyncLocal<IServiceProvider> s_blazorServices = new();
+
+    public static IServiceProvider Services
+    {
+        get => s_blazorServices.Value ?? throw new InvalidOperationException(
+            "Blazor services are not available in the current context.");
+        set => s_blazorServices.Value = value;
+    }
+}
+```
+
+To set the value of `BlazorServiceAccessor.Services` automatically when an `async` component method is invoked, create a custom base component that re-implements the three primary asynchronous entry points into Razor component code:
+
+* <xref:Microsoft.AspNetCore.Components.IComponent.SetParametersAsync%2A?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Components.IHandleEvent.HandleEventAsync%2A?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Components.IHandleAfterRender.OnAfterRenderAsync%2A?displayProperty=nameWithType>
+
+The following class demonstrates the implementation for the base component.
+  
+`CustomComponentBase.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components;
+
+public class CustomComponentBase : ComponentBase, IHandleEvent, IHandleAfterRender
+{
+    private bool hasCalledOnAfterRender;
+
+    [Inject]
+    private IServiceProvider Services { get; set; } = default!;
+
+    public override Task SetParametersAsync(ParameterView parameters)
+        => InvokeWithBlazorServiceContext(() => base.SetParametersAsync(parameters));
+
+    Task IHandleEvent.HandleEventAsync(EventCallbackWorkItem callback, object? arg)
+        => InvokeWithBlazorServiceContext(() =>
+        {
+            var task = callback.InvokeAsync(arg);
+            var shouldAwaitTask = task.Status != TaskStatus.RanToCompletion &&
+                task.Status != TaskStatus.Canceled;
+
+            StateHasChanged();
+
+            return shouldAwaitTask ?
+                CallStateHasChangedOnAsyncCompletion(task) :
+                Task.CompletedTask;
+        });
+
+    Task IHandleAfterRender.OnAfterRenderAsync()
+        => InvokeWithBlazorServiceContext(() =>
+        {
+            var firstRender = !hasCalledOnAfterRender;
+            hasCalledOnAfterRender |= true;
+
+            OnAfterRender(firstRender);
+
+            return OnAfterRenderAsync(firstRender);
+        });
+
+    private async Task CallStateHasChangedOnAsyncCompletion(Task task)
+    {
+        try
+        {
+            await task;
+        }
+        catch
+        {
+            if (task.IsCanceled)
+            {
+                return;
+            }
+
+            throw;
+        }
+
+        StateHasChanged();
+    }
+
+    private async Task InvokeWithBlazorServiceContext(Func<Task> func)
+    {
+        BlazorServiceAccessor.Services = Services;
+        await func();
+    }
+}
+```
+
+Any components extending `CustomComponentBase` automatically have `BlazorServiceAccessor.Services` set to the <xref:System.IServiceProvider> in the current Blazor DI scope.
 
 ## Additional resources
 
