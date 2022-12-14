@@ -291,7 +291,14 @@ For more information, see <xref:blazor/components/index?view=aspnetcore-7.0#blaz
 ### Bind modifiers (`@bind:after`, `@bind:get`, `@bind:set`)
 
 > [!IMPORTANT]
-> The `@bind:after`/`@bind:get`/`@bind:set` features aren't functional for the .NET 7 release. These features will work as expected when 7.0.1 is released, which is planned for mid-December. For more information, see the [.NET 7 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/known-issues.md#70-bind-get-set-after-cant-be-used-in-70-blazor-applications).
+> The `@bind:after`/`@bind:get`/`@bind:set` features are receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](/download/dotnet/7.0).
+>
+> Using an event callback parameter (`[Parameter] public EventCallback<string> ValueChanged { get; set; }`) isn't supported. Instead, pass an <xref:System.Action>-returning or <xref:System.Threading.Tasks.Task>-returning method to `@bind:set`/`@bind:after`.
+>
+> For more information, see the following resources:
+>
+> * [Blazor `@bind:after` not working on .NET 7 RTM release (dotnet/aspnetcore #44957)](https://github.com/dotnet/aspnetcore/issues/44957)
+> * [`BindGetSetAfter701` sample app (javiercn/BindGetSetAfter701 GitHub repository)](https://github.com/javiercn/BindGetSetAfter701)
 
 In .NET 7, you can run asynchronous logic after a binding event has completed using the new `@bind:after` modifier. In the following example, the `PerformSearch` asynchronous method runs automatically after any changes to the search text are detected:
 
