@@ -77,36 +77,37 @@ In the following example:
 }
 ```
 
-Additional examples:
+Additional examples
+
+`Pages/BindAfter.razor`:
 
 ```razor
-@* Elements *@
+@page "/bind-after"
+@using Microsoft.AspNetCore.Components.Forms
+
+<h1>Bind After Examples</h1>
+
+<h2>Elements</h2>
 
 <input type="text" @bind="text" @bind:after="() => { }" />
 
-<input type="text" @bind="text" @bind:after="AfterAsync" />
-
-<input type="text" @bind="text" @bind:after="() => { }" />
+<input type="text" @bind="text" @bind:after="After" />
 
 <input type="text" @bind="text" @bind:after="AfterAsync" />
 
-@* Components *@
+<h2>Components</h2>
 
 <InputText @bind-Value="text" @bind-Value:after="() => { }" />
 
-<InputText @bind-Value="text" @bind-Value:after="AfterAsync" />
-
-<InputText @bind-Value="text" @bind-Value:after="() => { }" />
+<InputText @bind-Value="text" @bind-Value:after="After" />
 
 <InputText @bind-Value="text" @bind-Value:after="AfterAsync" />
 
 @code {
     private string text = "";
 
-    private Task AfterAsync()
-    {
-        return Task.CompletedTask;
-    }
+    private void After() {}
+    private Task AfterAsync() { return Task.CompletedTask; }
 }
 ```
 
@@ -129,36 +130,37 @@ Components support two-way data binding by defining a pair of parameters:
 
 The `@bind:get` and `@bind:set` modifiers are always used together.
 
-Examples:
+Examples
+
+`Pages/BindGetSet.razor`:
 
 ```razor
-@* Elements *@
+@page "/bind-get-set"
+@using Microsoft.AspNetCore.Components.Forms
+
+<h1>Bind Get Set Examples</h1>
+
+<h2>Elements</h2>
 
 <input type="text" @bind:get="text" @bind:set="(value) => { }" />
 
-<input type="text" @bind:get="text" @bind:set="SetAsync" />
-
-<input type="text" @bind:get="text" @bind:set="(value) => { }" />
+<input type="text" @bind:get="text" @bind:set="Set" />
 
 <input type="text" @bind:get="text" @bind:set="SetAsync" />
 
-@* Components *@
+<h2>Components</h2>
 
 <InputText @bind-Value:get="text" @bind-Value:set="(value) => { }" />
 
-<InputText @bind-Value:get="text" @bind-Value:set="SetAsync" />
-
-<InputText @bind-Value:get="text" @bind-Value:set="(value) => { }" />
+<InputText @bind-Value:get="text" @bind-Value:set="Set" />
 
 <InputText @bind-Value:get="text" @bind-Value:set="SetAsync" />
 
 @code {
     private string text = "";
 
-    private Task SetAsync(string value)
-    {
-        return Task.CompletedTask;
-    }
+    private void Set() {}
+    private Task SetAsync(string value) { return Task.CompletedTask; }
 }
 ```
 
