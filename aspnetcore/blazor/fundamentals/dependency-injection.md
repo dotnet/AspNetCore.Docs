@@ -1013,7 +1013,7 @@ public class CustomComponentBase : ComponentBase, IHandleEvent, IHandleAfterRend
     public override Task SetParametersAsync(ParameterView parameters)
         => InvokeWithBlazorServiceContext(() => base.SetParametersAsync(parameters));
 
-    Task IHandleEvent.HandleEventAsync(EventCallbackWorkItem callback, object? arg)
+    private Task IHandleEvent.HandleEventAsync(EventCallbackWorkItem callback, object? arg)
         => InvokeWithBlazorServiceContext(() =>
         {
             var task = callback.InvokeAsync(arg);
@@ -1027,7 +1027,7 @@ public class CustomComponentBase : ComponentBase, IHandleEvent, IHandleAfterRend
                 Task.CompletedTask;
         });
 
-    Task IHandleAfterRender.OnAfterRenderAsync()
+    private Task IHandleAfterRender.OnAfterRenderAsync()
         => InvokeWithBlazorServiceContext(() =>
         {
             var firstRender = !hasCalledOnAfterRender;
