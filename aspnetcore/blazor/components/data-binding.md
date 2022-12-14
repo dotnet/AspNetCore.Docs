@@ -99,42 +99,42 @@ Examples:
 ```razor
 @* Elements *@
 
-<input type="text" @bind="_text" @bind:after="() => { }" />
+<input type="text" @bind="text" @bind:after="() => { }" />
 
-<input type="text" @bind:get="_text" @bind:set="(value) => { }" />
+<input type="text" @bind:get="text" @bind:set="(value) => { }" />
 
-<input type="text" @bind="_text" @bind:after="AfterAsync" />
+<input type="text" @bind="text" @bind:after="AfterAsync" />
 
-<input type="text" @bind:get="_text" @bind:set="SetAsync" />
+<input type="text" @bind:get="text" @bind:set="SetAsync" />
 
-<input type="text" @bind="_text" @bind:after="() => { }" />
+<input type="text" @bind="text" @bind:after="() => { }" />
 
-<input type="text" @bind:get="_text" @bind:set="(value) => { }" />
+<input type="text" @bind:get="text" @bind:set="(value) => { }" />
 
-<input type="text" @bind="_text" @bind:after="AfterAsync" />
+<input type="text" @bind="text" @bind:after="AfterAsync" />
 
-<input type="text" @bind:get="_text" @bind:set="SetAsync" />
+<input type="text" @bind:get="text" @bind:set="SetAsync" />
 
 @* Components *@
 
-<InputText @bind-Value="_text" @bind-Value:after="() => { }" />
+<InputText @bind-Value="text" @bind-Value:after="() => { }" />
 
-<InputText @bind-Value:get="_text" @bind-Value:set="(value) => { }" />
+<InputText @bind-Value:get="text" @bind-Value:set="(value) => { }" />
 
-<InputText @bind-Value="_text" @bind-Value:after="AfterAsync" />
+<InputText @bind-Value="text" @bind-Value:after="AfterAsync" />
 
-<InputText @bind-Value:get="_text" @bind-Value:set="SetAsync" />
+<InputText @bind-Value:get="text" @bind-Value:set="SetAsync" />
 
-<InputText @bind-Value="_text" @bind-Value:after="() => { }" />
+<InputText @bind-Value="text" @bind-Value:after="() => { }" />
 
-<InputText @bind-Value:get="_text" @bind-Value:set="(value) => { }" />
+<InputText @bind-Value:get="text" @bind-Value:set="(value) => { }" />
 
-<InputText @bind-Value="_text" @bind-Value:after="AfterAsync" />
+<InputText @bind-Value="text" @bind-Value:after="AfterAsync" />
 
-<InputText @bind-Value:get="_text" @bind-Value:set="SetAsync" />
+<InputText @bind-Value:get="text" @bind-Value:set="SetAsync" />
 
 @code {
-    private string _text = "";
+    private string text = "";
 
     private void After(){}
     private void Set() {}
