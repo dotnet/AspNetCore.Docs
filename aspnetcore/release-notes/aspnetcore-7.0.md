@@ -291,7 +291,14 @@ For more information, see <xref:blazor/components/index?view=aspnetcore-7.0#blaz
 ### Bind modifiers (`@bind:after`, `@bind:get`, `@bind:set`)
 
 > [!IMPORTANT]
-> The `@bind:after`/`@bind:get`/`@bind:set` features aren't functional for the .NET 7 release. These features will work as expected when 7.0.1 is released, which is planned for mid-December. For more information, see the [.NET 7 Release Notes](https://github.com/dotnet/core/blob/main/release-notes/7.0/known-issues.md#70-bind-get-set-after-cant-be-used-in-70-blazor-applications).
+> The `@bind:after`/`@bind:get`/`@bind:set` features are receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](/download/dotnet/7.0).
+>
+> Using an event callback parameter (`[Parameter] public EventCallback<string> ValueChanged { get; set; }`) isn't supported. Instead, pass an <xref:System.Action>-returning or <xref:System.Threading.Tasks.Task>-returning method to `@bind:set`/`@bind:after`.
+>
+> For more information, see the following resources:
+>
+> * [Blazor `@bind:after` not working on .NET 7 RTM release (dotnet/aspnetcore #44957)](https://github.com/dotnet/aspnetcore/issues/44957)
+> * [`BindGetSetAfter701` sample app (javiercn/BindGetSetAfter701 GitHub repository)](https://github.com/javiercn/BindGetSetAfter701)
 
 In .NET 7, you can run asynchronous logic after a binding event has completed using the new `@bind:after` modifier. In the following example, the `PerformSearch` asynchronous method runs automatically after any changes to the search text are detected:
 
@@ -315,24 +322,65 @@ In .NET 7, it's also easier to set up binding for component parameters. Componen
 
 The `@bind:get` and `@bind:set` modifiers are always used together.
 
-Example:
+Examples:
 
 ```razor
-<input @bind:get="Value" @bind:set="ValueChanged" />
+@* Elements *@
+
+<input type="text" @bind="text" @bind:after="() => { }" />
+
+<input type="text" @bind:get="text" @bind:set="(value) => { }" />
+
+<input type="text" @bind="text" @bind:after="AfterAsync" />
+
+<input type="text" @bind:get="text" @bind:set="SetAsync" />
+
+<input type="text" @bind="text" @bind:after="() => { }" />
+
+<input type="text" @bind:get="text" @bind:set="(value) => { }" />
+
+<input type="text" @bind="text" @bind:after="AfterAsync" />
+
+<input type="text" @bind:get="text" @bind:set="SetAsync" />
+
+@* Components *@
+
+<InputText @bind-Value="text" @bind-Value:after="() => { }" />
+
+<InputText @bind-Value:get="text" @bind-Value:set="(value) => { }" />
+
+<InputText @bind-Value="text" @bind-Value:after="AfterAsync" />
+
+<InputText @bind-Value:get="text" @bind-Value:set="SetAsync" />
+
+<InputText @bind-Value="text" @bind-Value:after="() => { }" />
+
+<InputText @bind-Value:get="text" @bind-Value:set="(value) => { }" />
+
+<InputText @bind-Value="text" @bind-Value:after="AfterAsync" />
+
+<InputText @bind-Value:get="text" @bind-Value:set="SetAsync" />
 
 @code {
-    [Parameter]
-    public TValue? Value { get; set; }
+    private string text = "";
 
-    [Parameter]
-    public EventCallback<TValue> ValueChanged { get; set; }
+    private void After(){}
+    private void Set() {}
+    private Task AfterAsync() { return Task.CompletedTask; }
+    private Task SetAsync(string value) { return Task.CompletedTask; }
 }
 ```
+
+For more information on the `InputText` component, see <xref:blazor/forms-and-input-components>.
+
+<!--
 
 For more information, see the following content in the *Data binding* article:
 
 * [Introduction](xref:blazor/components/data-binding?view=aspnetcore-7.0)
 * [Bind across more than two components](xref:blazor/components/data-binding?view=aspnetcore-7.0#bind-across-more-than-two-components)
+
+-->
 
 ### Hot Reload improvements
 
