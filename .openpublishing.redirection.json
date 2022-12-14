@@ -292,7 +292,12 @@
         },
         {
             "source_path": "aspnetcore/performance/measuring.md",
-            "redirect_url": "/aspnet/core/performance/",
+            "redirect_url": "/aspnet/core/performance/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/performance/performance-best-practices.md",
+            "redirect_url": "/aspnet/core/fundamentals/best-practices",
             "redirect_document_id": false
         },
         {

@@ -267,6 +267,8 @@ items:
         uid: fundamentals/http-requests
       - name: Static files
         uid: fundamentals/static-files
+      - name: Best practices
+        uid: fundamentals/best-practices
   - name: Web apps
     items:
       - name: Choose an ASP.NET Core UI
@@ -1513,10 +1515,9 @@ items:
       - name: Application security - OWASP
         href: https://cheatsheetseries.owasp.org/cheatsheets/DotNet_Security_Cheat_Sheet.html
   - name: Performance
-    displayName: Performance Best Practices
     items:
       - name: Overview
-        uid: performance/performance-best-practices
+        uid: performance/overview
       - name: Rate limiting middleware
         uid: performance/rate-limit
       - name: Memory and GC
