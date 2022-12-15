@@ -1552,6 +1552,18 @@ builder.RootComponents.RegisterCustomElement<Counter>("my-counter");
 > [!NOTE]
 > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
 
+### Use the registered custom element
+
+Use the custom element with any web framework. For example, the preceding `my-counter` custom HTML element is used in a React app with the following markup:
+
+```html
+<my-counter increment-amount={incrementAmount}></my-counter>
+```
+
+For a complete example of how to create custom elements with Blazor, see the [`CustomElementsComponent` component](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/CustomElementsComponent.razor) in the reference source.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 ### Pass parameters
 
 Pass parameters to your Blazor component either as HTML attributes or as JavaScript properties on the DOM element.
@@ -1586,18 +1598,6 @@ Supported parameter types:
 
 * Using JavaScript property syntax, you can pass objects of any JSON-serializable type.
 * Using HTML attributes, you are limited to passing objects of string, boolean, or numerical types.
-
-### Use the registered custom element
-
-Use the custom element with any web framework. For example, the preceding `my-counter` custom HTML element is used in a React app with the following markup:
-
-```html
-<my-counter increment-amount={incrementAmount}></my-counter>
-```
-
-For a complete example of how to create custom elements with Blazor, see the [`CustomElementsComponent` component](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/CustomElementsComponent.razor) in the reference source.
-
-[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ## Generate Angular and React components
 
