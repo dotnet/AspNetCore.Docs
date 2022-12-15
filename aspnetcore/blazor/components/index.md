@@ -1521,6 +1521,37 @@ Blazor custom elements:
 
 Custom elements don't support [child content](#child-content-render-fragments) or [templated components](xref:blazor/components/templated-components).
 
+### Package
+
+Add package reference for [`Microsoft.AspNetCore.Components.CustomElements`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.CustomElements) to the app's project file.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+### Blazor Server registration
+
+To register a root component as a custom element in a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in `Program.cs`. The following example registers the `Counter` component with the custom HTML element `my-counter`:
+
+```csharp
+builder.Services.AddServerSideBlazor(options =>
+{
+    options.RootComponents.RegisterCustomElement<Counter>("my-counter");
+});
+```
+
+> [!NOTE]
+> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
+
+### Blazor WebAssembly registration
+
+To register a root component as a custom element in a Blazor WebAssembly app, call `RegisterCustomElement` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in `Program.cs`. The following example registers the `Counter` component with the custom HTML element `my-counter`:
+
+```csharp
+builder.RootComponents.RegisterCustomElement<Counter>("my-counter");
+```
+
+> [!NOTE]
+> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
+
 ### Pass parameters
 
 Pass parameters to your Blazor component either as HTML attributes or as JavaScript properties on the DOM element.
@@ -1555,31 +1586,6 @@ Supported parameter types:
 
 * Using JavaScript property syntax, you can pass objects of any JSON-serializable type.
 * Using HTML attributes, you are limited to passing objects of string, boolean, or numerical types.
-
-### Blazor Server registration
-
-To register a root component as a custom element in a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in `Program.cs`. The following example registers the `Counter` component with the custom HTML element `my-counter`:
-
-```csharp
-builder.Services.AddServerSideBlazor(options =>
-{
-    options.RootComponents.RegisterCustomElement<Counter>("my-counter");
-});
-```
-
-> [!NOTE]
-> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
-
-### Blazor WebAssembly registration
-
-To register a root component as a custom element in a Blazor WebAssembly app, call `RegisterCustomElement` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in `Program.cs`. The following example registers the `Counter` component with the custom HTML element `my-counter`:
-
-```csharp
-builder.RootComponents.RegisterCustomElement<Counter>("my-counter");
-```
-
-> [!NOTE]
-> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
 
 ### Use the registered custom element
 
