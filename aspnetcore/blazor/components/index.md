@@ -1578,7 +1578,7 @@ public int IncrementAmount { get; set; }
 Pass a value to the preceding parameter as an HTML attribute:
 
 ```html
-<custom-blazor-counter increment-amount="123"></custom-blazor-counter>
+<my-counter increment-amount="123"></custom-blazor-counter>
 ```
 
 The attribute name adopts kebab-case syntax (`increment-amount`, not `IncrementAmount`).
@@ -1586,7 +1586,7 @@ The attribute name adopts kebab-case syntax (`increment-amount`, not `IncrementA
 Alternatively, you can set the parameter's value as a JavaScript property on the element object:
 
 ```javascript
-const elem = document.querySelector("custom-blazor-counter");
+const elem = document.querySelector("my-counter");
 elem.incrementAmount = 123;
 ```
 
