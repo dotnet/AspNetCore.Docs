@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly to use Azure Active Direc
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 11/08/2022
+ms.date: 12/15/2022
 uid: blazor/security/webassembly/aad-groups-roles
 ---
 # Azure Active Directory (AAD) groups, Administrator Roles, and App Roles
@@ -35,20 +35,29 @@ The article's guidance provides instructions for client and server apps:
 * **CLIENT**: Standalone Blazor WebAssembly apps or the **:::no-loc text="Client":::** app of a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 * **SERVER**: Standalone ASP.NET Core server API/web API apps or the **:::no-loc text="Server":::** app of a hosted Blazor solution.
 
+## Prerequisite
+
+The guidance in this article implements the Microsoft Graph API per the *Graph SDK* guidance in <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk>. Follow the *Graph SDK* implementation guidance to configure the app and test it to confirm that the app can obtain Graph API data for a test user account.
+
+When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
+
 ## Scopes
 
-To permit [Microsoft Graph API](/graph/use-the-api) calls for user profile, role assignment, and group membership data, the **CLIENT** is configured with (`https://graph.microsoft.com/User.Read`) [Graph API permission (scope)](/graph/permissions-reference) in the Azure portal.
+To permit [Microsoft Graph API](/graph/use-the-api) calls for user profile, role assignment, and group membership data:
 
-A **SERVER** app that calls Graph API for role and group membership data is provided `GroupMember.Read.All` (`https://graph.microsoft.com/GroupMember.Read.All`) [Graph API permission (scope)](/graph/permissions-reference) in the Azure portal.
+* A **CLIENT** app is configured with the `User.Read` scope (`https://graph.microsoft.com/User.Read`) in the Azure portal.
+* A **SERVER** app is configured with the `GroupMember.Read.All` scope (`https://graph.microsoft.com/GroupMember.Read.All`) in the Azure portal.
 
-These scopes are required in addition to the scopes required in AAD deployment scenarios described by the topics listed in the first section of this article.
+The preceding scopes are required in addition to the scopes required in AAD deployment scenarios described by the topics listed earlier (*Standalone with Microsoft Accounts*, *Standalone with AAD*, and *Hosted with AAD*).
+
+For more information, see the [Microsoft Graph permissions reference](/graph/permissions-reference).
 
 > [!NOTE]
 > The words "permission" and "scope" are used interchangeably in the Azure portal and in various Microsoft and external documentation sets. This article uses the word "scope" throughout for the permissions assigned to an app in the Azure portal.
 
 ## Group Membership Claims attribute
 
-In the app's manifest in the Azure portal for **CLIENT** and **SERVER** apps, set the [`groupMembershipClaims` attribute](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute) to `All`. A value of `All` results in obtaining all of the security groups, distribution groups, and roles that the signed-in user is a member of.
+In the app's manifest in the Azure portal for **CLIENT** and **SERVER** apps, set the [`groupMembershipClaims` attribute](/azure/active-directory/develop/reference-app-manifest#groupmembershipclaims-attribute) to `All`. A value of `All` results in AAD sending all of the security groups, distribution groups, and roles that the signed-in user is a member of in the [well-known IDs claim (`wids`)](/azure/active-directory/develop/access-tokens#payload-claims):
 
 1. Open the app's Azure portal registration.
 1. Select **Manage** > **Manifest** in the sidebar.
@@ -72,7 +81,7 @@ The examples in this article:
 In the **CLIENT** app, extend <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> to include properties for:
 
 * `Roles`: AAD App Roles array (covered in the [App Roles](#app-roles) section)
-* `Wids`: AAD Administrator Roles in [well-known IDs claims (`wids`)](/azure/active-directory/develop/access-tokens#payload-claims)
+* `Wids`: AAD Administrator Roles in [well-known IDs claim (`wids`)](/azure/active-directory/develop/access-tokens#payload-claims)
 * `Oid`: Immutable [object identifier claim (`oid`)](/azure/active-directory/develop/id-tokens#payload-claims) (uniquely identifies a user within and across tenants)
 
 Assign an empty array to each array property so that checking for `null` isn't required when these properties are used in `foreach` loops.
@@ -80,20 +89,19 @@ Assign an empty array to each array property so that checking for `null` isn't r
 `CustomUserAccount.cs`:
 
 ```csharp
-using System;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 public class CustomUserAccount : RemoteUserAccount
 {
     [JsonPropertyName("roles")]
-    public string[] Roles { get; set; } = Array.Empty<string>();
+    public List<string>? Roles { get; set; }
 
     [JsonPropertyName("wids")]
-    public string[] Wids { get; set; } = Array.Empty<string>();
+    public List<string>? Wids { get; set; }
 
     [JsonPropertyName("oid")]
-    public string Oid { get; set; }
+    public string? Oid { get; set; }
 }
 ```
 
@@ -101,33 +109,21 @@ Add a package reference to the **CLIENT** app for [`Microsoft.Graph`](https://ww
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-Add the Graph SDK utility classes and configuration in the *Graph SDK* section of the <xref:blazor/security/webassembly/graph-api#graph-sdk> article. In the `GraphClientExtensions` class, specify the `User.Read` scope for the access token in the `AuthenticateRequestAsync` method:
-
-```csharp
-var result = await TokenProvider.RequestAccessToken(
-    new AccessTokenRequestOptions()
-    {
-        Scopes = new[] { "https://graph.microsoft.com/User.Read" }
-    });
-```
+Add the Graph SDK utility classes and configuration in the *Graph SDK* guidance of the <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk> article. Specify the `User.Read` scope for the access token as the topic shows in its example `wwwroot/appsettings.json` file.
 
 Add the following custom user account factory to the **CLIENT** app. The custom user factory is used to establish:
 
 * App Role claims (`appRole`) (covered in the [App Roles](#app-roles) section)
 * AAD Administrator Role claims (`directoryRole`)
-* An example user profile data claim for the user's mobile phone number (`mobilePhone`)
+* Example user profile data claims for the user's mobile phone number (`mobilePhone`) and office location (`officeLocation`)
 * AAD Group claims (`directoryGroup`)
 
 `CustomAccountFactory.cs`:
 
 ```csharp
-using System;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Graph;
 
 public class CustomAccountFactory
@@ -144,59 +140,64 @@ public class CustomAccountFactory
         this.serviceProvider = serviceProvider;
         this.logger = logger;
     }
+
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
         CustomUserAccount account,
         RemoteAuthenticationUserOptions options)
     {
         var initialUser = await base.CreateUserAsync(account, options);
 
-        if (initialUser.Identity.IsAuthenticated)
+        if (initialUser.Identity is not null &&
+            initialUser.Identity.IsAuthenticated)
         {
-            var userIdentity = (ClaimsIdentity)initialUser.Identity;
+            var userIdentity = initialUser.Identity as ClaimsIdentity;
 
-            foreach (var role in account.Roles)
+            if (userIdentity is not null)
             {
-                userIdentity.AddClaim(new Claim("appRole", role));
-            }
-
-            foreach (var wid in account.Wids)
-            {
-                userIdentity.AddClaim(new Claim("directoryRole", wid));
-            }
-
-            try
-            {
-                var graphClient = ActivatorUtilities
-                    .CreateInstance<GraphServiceClient>(serviceProvider);
-
-                var requestMe = graphClient.Me.Request();
-                var user = await requestMe.GetAsync();
-
-                if (user != null)
+                account?.Roles?.ForEach((role) =>
                 {
-                    userIdentity.AddClaim(new Claim("mobilePhone",
-                        user.MobilePhone));
-                }
+                    userIdentity.AddClaim(new Claim("appRole", role));
+                });
 
-                var requestMemberOf = graphClient.Users[account.Oid].MemberOf;
-                var memberships = await requestMemberOf.Request().GetAsync();
-
-                if (memberships != null)
+                account?.Wids?.ForEach((wid) =>
                 {
-                    foreach (var entry in memberships)
+                    userIdentity.AddClaim(new Claim("directoryRole", wid));
+                });
+
+                try
+                {
+                    var client = ActivatorUtilities
+                        .CreateInstance<GraphServiceClient>(serviceProvider);
+                    var request = client.Me.Request();
+                    var user = await request.GetAsync();
+
+                    if (user is not null)
                     {
-                        if (entry.ODataType == "#microsoft.graph.group")
+                        userIdentity.AddClaim(new Claim("mobilephone",
+                            user.MobilePhone ?? "(000) 000-0000"));
+                        userIdentity.AddClaim(new Claim("officelocation",
+                            user.OfficeLocation ?? "Not set"));
+                    }
+
+                    var requestMemberOf = client.Users[account?.Oid].MemberOf;
+                    var memberships = await requestMemberOf.Request().GetAsync();
+
+                    if (memberships is not null)
+                    {
+                        foreach (var entry in memberships)
                         {
-                            userIdentity.AddClaim(
-                                new Claim("directoryGroup", entry.Id));
+                            if (entry.ODataType == "#microsoft.graph.group")
+                            {
+                                userIdentity.AddClaim(
+                                    new Claim("directoryGroup", entry.Id));
+                            }
                         }
                     }
                 }
-            }
-            catch (ServiceException exception)
-            {
-                logger.LogError("Graph API service failure: {Message}",
-                    exception.Message);
+                catch (AccessTokenNotAvailableException exception)
+                {
+                    exception.Redirect();
+                }
             }
         }
 
@@ -209,27 +210,50 @@ The preceding code doesn't include transitive memberships. If the app requires d
 
 The preceding code ignores group membership claims (`groups`) that are AAD Administrator Roles (`#microsoft.graph.directoryRole` type) because the GUID values returned by the Microsoft Identity Platform 2.0 are AAD Administrator Role **entity IDs** and not [**Role Template IDs**](/azure/active-directory/roles/permissions-reference#role-template-ids). Entity IDs aren't stable across tenants in Microsoft Identity Platform 2.0 and shouldn't be used to create authorization policies for users in apps. Always use **Role Template IDs** for AAD Administrator Roles **provided by `wids` claims**.
 
-In `Program.cs` of the **CLIENT** app, configure the MSAL authentication to use the custom user account factory.
+In the **CLIENT** app, configure the MSAL authentication to use the custom user account factory.
 
-`Program.cs`:
+Confirm that the `Program.cs` file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
 
 ```csharp
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using Microsoft.Extensions.Configuration;
+```
 
-...
+Update the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> call to the following. Note that the Blazor framework's <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> is replaced by the app's `CustomUserAccount` for the MSAL authentication and account claims principal factory:
 
+```csharp
 builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
     CustomUserAccount>(options =>
-{
-    ...
-})
-.AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, CustomUserAccount,
-    CustomAccountFactory>();
+    {
+        builder.Configuration.Bind("AzureAd",
+            options.ProviderOptions.Authentication);
+    })
+    .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, CustomUserAccount,
+        CustomAccountFactory>();
+```
 
-...
+Confirm the presence of the *Graph SDK* code described by the <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk> article and that the `wwwroot/appsettings.json` configuration is correct per the *Graph SDK* guidance:
 
-builder.Services.AddGraphClient();
+
+```csharp
+var baseUrl = string.Join("/", 
+    builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"], 
+    builder.Configuration.GetSection("MicrosoftGraph")["Version"]);
+var scopes = builder.Configuration.GetSection("MicrosoftGraph:Scopes")
+    .Get<List<string>>();
+
+builder.Services.AddGraphClient(baseUrl, scopes);
+```
+
+`wwwroot/appsettings.json`:
+
+```json
+"MicrosoftGraph": {
+  "BaseUrl": "https://graph.microsoft.com",
+  "Version: "v1.0",
+  "Scopes": [
+    "user.read"
+  ]
+}
 ```
 
 ## Authorization configuration
@@ -363,10 +387,55 @@ The following example assumes that the **CLIENT** and **SERVER** apps are config
 > [!NOTE]
 > When developing a hosted Blazor WebAssembly app or a client-server pair of standalone apps (a standalone Blazor WebAssembly app and a standalone ASP.NET Core server API/web API app), the `appRoles` manifest property of both the client and the server Azure portal app registrations must include the same configured roles. After establishing the roles in the client app's manifest, copy them in their entirety to the server app's manifest. If you don't mirror the manifest `appRoles` between the client and server app registrations, role claims aren't established for authenticated users of the server API/web API, even if their access token has the correct roles claims.
 
+Although you can't assign roles to groups without an Azure AD Premium account, you can assign roles to users and receive a roles claim for users with a standard Azure account. The guidance in this section doesn't require an AAD Premium account.
+
+If you have a Premium tier Azure account, **Manage** > **App roles** appears in the Azure portal app registration sidebar. Follow the guidance in [How to: Add app roles in your application and receive them in the token](/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps) to configure the app's roles.
+
+If you don't have a Premium tier Azure account, edit the app's manifest in the Azure portal. Follow the guidance in [Application roles: Roles using Azure AD App Roles: Implementation](/azure/architecture/multitenant-identity/app-roles#implementation) to establish the app's roles manually in the `appRoles` entry of the manifest file. Save the changes to the file. The following is an example `appRoles` entry that create roles for `Admin` and `Developer`. These example roles are used later in this section's example at the component level to implement access restrictions:
+
+```json
+"appRoles": [
+  {
+    "allowedMemberTypes": [
+      "User"
+    ],
+    "description": "Administrators manage developers.",
+    "displayName": "Admin",
+    "id": "584e483a-7101-404b-9bb1-83bf9463e335",
+    "isEnabled": true,
+    "lang": null,
+    "origin": "Application",
+    "value": "Admin"
+  },
+  {
+    "allowedMemberTypes": [
+      "User"
+    ],
+    "description": "Developers write code.",
+    "displayName": "Developer",
+    "id": "82770d35-2a93-4182-b3f5-3d7bfe9dfe46",
+    "isEnabled": true,
+    "lang": null,
+    "origin": "Application",
+    "value": "Developer"
+  }
+],
+```
+
 > [!NOTE]
-> Although you can't assign roles to groups without an Azure AD Premium account, you can assign roles to users and receive a roles claim for users with a standard Azure account. The guidance in this section doesn't require an AAD Premium account.
->
-> Multiple roles are assigned in the Azure portal by **_re-adding a user_** for each additional role assignment.
+> You can generate GUIDs with an [online GUID generator program (Google search result for "guid generator")](https://www.google.com/search?q=guid+generator). 
+
+To assign a role to a user (or group if you have a Premium tier Azure account):
+
+1. Navigate to **Enterprise applications** in the AAD area of the Azure portal.
+1. Select the app. Select **Manage** > **Users and groups** from the sidebar.
+1. Select the checkbox for one or more user accounts.
+1. From the menu above the list of users, select **Edit assignment**.
+1. For the **Select a role** entry, select **None selected**.
+1. Choose a role from the list and use the **Select** button to select it.
+1. Use the **Assign** button at the bottom of the screen to assign the role.
+
+Multiple roles are assigned in the Azure portal by **_re-adding a user_** for each additional role assignment. Use the **Add user/group** button at the top of the list of users to re-add a user. Use the preceding steps to assign another role to the user. You can repeat this process as many times as needed to add additional roles to a user (or group).
 
 The `CustomAccountFactory` shown in the [Custom user account](#custom-user-account) section is set up to act on a `roles` claim with a JSON array value. Add and register the `CustomAccountFactory` in the **CLIENT** app as shown in the [Custom user account](#custom-user-account) section. There's no need to provide code to remove the original `roles` claim because it's automatically removed by the framework.
 
@@ -401,6 +470,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 > [!NOTE]
 > If you prefer to use the `wids` claim (ADD Administrator Roles), assign "`wids`" to the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType?displayProperty=nameWithType>.
+
+After you've completed the preceding steps to create and assign roles to users (or groups if you have a Premium tier Azure account) and implemented the `CustomAccountFactory` with the Graph SDK, as explained earlier in this article and in <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk>, you should see an `appRole` claim for each assigned role that a signed-in user is assigned (or roles assigned to groups that they are members of). Run the app with a test user to confirm the claim(s) are present as expected. When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
 
 Component authorization approaches are functional at this point. Any of the authorization mechanisms in components of the **CLIENT** app can use the `Admin` role to authorize the user:
 
@@ -630,7 +701,6 @@ Assign an empty array to each array property so that checking for `null` isn't r
 `CustomUserAccount.cs`:
 
 ```csharp
-using System;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
@@ -643,7 +713,7 @@ public class CustomUserAccount : RemoteUserAccount
     public string[] Wids { get; set; } = Array.Empty<string>();
 
     [JsonPropertyName("oid")]
-    public string Oid { get; set; }
+    public string? Oid { get; set; }
 }
 ```
 
