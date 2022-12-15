@@ -1523,7 +1523,7 @@ Custom elements don't support [child content](#child-content-render-fragments) o
 
 ### Package
 
-Add package reference for [`Microsoft.AspNetCore.Components.CustomElements`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.CustomElements) to the app's project file.
+Add a package reference for [`Microsoft.AspNetCore.Components.CustomElements`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.CustomElements) to the app's project file.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
