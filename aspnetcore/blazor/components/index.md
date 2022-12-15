@@ -1521,40 +1521,11 @@ Blazor custom elements:
 
 Custom elements don't support [child content](#child-content-render-fragments) or [templated components](xref:blazor/components/templated-components).
 
-### Pass parameters
+### Package
 
-Pass parameters to your Blazor component either as HTML attributes or as JavaScript properties on the DOM element.
+Add a package reference for [`Microsoft.AspNetCore.Components.CustomElements`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.CustomElements) to the app's project file.
 
-Consider the following integer parameter declaration:
-
-```csharp
-[Parameter]
-public int IncrementAmount { get; set; }
-```
-
-Pass a value to the preceding parameter as an HTML attribute:
-
-```html
-<custom-blazor-counter increment-amount="123"></custom-blazor-counter>
-```
-
-The attribute name adopts kebab-case syntax (`increment-amount`, not `IncrementAmount`).
-
-Alternatively, you can set the parameter's value as a JavaScript property on the element object:
-
-```javascript
-const elem = document.querySelector("custom-blazor-counter");
-elem.incrementAmount = 123;
-```
-
-The property name adopts camel case syntax (`incrementAmount`, not `IncrementAmount`).
-
-You can update parameter values at any time using either attribute or property syntax.
-
-Supported parameter types:
-
-* Using JavaScript property syntax, you can pass objects of any JSON-serializable type.
-* Using HTML attributes, you are limited to passing objects of string, boolean, or numerical types.
+[!INCLUDE[](~/includes/package-reference.md)]
 
 ### Blazor Server registration
 
@@ -1592,6 +1563,41 @@ Use the custom element with any web framework. For example, the preceding `my-co
 For a complete example of how to create custom elements with Blazor, see the [`CustomElementsComponent` component](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/CustomElementsComponent.razor) in the reference source.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+### Pass parameters
+
+Pass parameters to your Blazor component either as HTML attributes or as JavaScript properties on the DOM element.
+
+Consider the following integer parameter declaration:
+
+```csharp
+[Parameter]
+public int IncrementAmount { get; set; }
+```
+
+Pass a value to the preceding parameter as an HTML attribute:
+
+```html
+<my-counter increment-amount="123"></custom-blazor-counter>
+```
+
+The attribute name adopts kebab-case syntax (`increment-amount`, not `IncrementAmount`).
+
+Alternatively, you can set the parameter's value as a JavaScript property on the element object:
+
+```javascript
+const elem = document.querySelector("my-counter");
+elem.incrementAmount = 123;
+```
+
+The property name adopts camel case syntax (`incrementAmount`, not `IncrementAmount`).
+
+You can update parameter values at any time using either attribute or property syntax.
+
+Supported parameter types:
+
+* Using JavaScript property syntax, you can pass objects of any JSON-serializable type.
+* Using HTML attributes, you are limited to passing objects of string, boolean, or numerical types.
 
 ## Generate Angular and React components
 
