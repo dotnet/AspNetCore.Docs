@@ -970,20 +970,38 @@ There may be times when a Razor component invokes asynchronous methods that exec
 
 For example, <xref:System.Net.Http.HttpClient> instances created using <xref:System.Net.Http.IHttpClientFactory> have their own DI service scope. As a result, <xref:System.Net.Http.HttpMessageHandler> instances configured on the <xref:System.Net.Http.HttpClient> aren't able to directly inject Blazor services.
 
-Create a static class `BlazorServiceAccessor` that defines an [`AsyncLocal<IServiceProvider>`](xref:System.Threading.AsyncLocal`1), which stores the Blazor <xref:System.IServiceProvider> for the current asynchronous context. Asynchronous code invoked from a Razor component can use `BlazorServiceAccessor.Services` to access Blazor services. *This is only necessary if the <xref:System.IServiceProvider> available to the invoked code was created in a different DI service scope.*
+Create a class `BlazorServiceAccessor` that defines an [`AsyncLocal`](xref:System.Threading.AsyncLocal`1), which stores the Blazor <xref:System.IServiceProvider> for the current asynchronous context. A `BlazorServiceAcccessor` instance can be acquired from within a different DI service scope to access Blazor services.
 
 `BlazorServiceAccessor.cs`:
 
 ```csharp
-internal static class BlazorServiceAccessor
+internal sealed class BlazorServiceAccessor
 {
-    private static readonly AsyncLocal<IServiceProvider> s_blazorServices = new();
+    private static readonly AsyncLocal<BlazorServiceHolder> s_currentServiceHolder = new();
 
-    public static IServiceProvider Services
+    public IServiceProvider? Services
     {
-        get => s_blazorServices.Value ?? throw new InvalidOperationException(
-            "Blazor services are not available in the current context.");
-        set => s_blazorServices.Value = value;
+        get => s_currentServiceHolder.Value?.Services;
+        set
+        {
+            if (s_currentServiceHolder.Value is { } holder)
+            {
+                // Clear the current IServiceProvider trapped in the AsyncLocal.
+                holder.Services = null;
+            }
+
+            if (value is not null)
+            {
+                // Use object indirection to hold the IServiceProvider in an AsyncLocal
+                // so it can be cleared in all ExecutionContexts when it's cleared.
+                s_currentServiceHolder.Value = new() { Services = value };
+            }
+        }
+    }
+
+    private sealed class BlazorServiceHolder
+    {
+        public IServiceProvider? Services { get; set; }
     }
 }
 ```
@@ -1008,10 +1026,13 @@ public class CustomComponentBase : ComponentBase, IHandleEvent, IHandleAfterRend
     [Inject]
     private IServiceProvider Services { get; set; } = default!;
 
+    [Inject]
+    private BlazorServiceAccessor BlazorServiceAccessor { get; set; } = default!;
+
     public override Task SetParametersAsync(ParameterView parameters)
         => InvokeWithBlazorServiceContext(() => base.SetParametersAsync(parameters));
 
-    private Task IHandleEvent.HandleEventAsync(EventCallbackWorkItem callback, object? arg)
+    Task IHandleEvent.HandleEventAsync(EventCallbackWorkItem callback, object? arg)
         => InvokeWithBlazorServiceContext(() =>
         {
             var task = callback.InvokeAsync(arg);
@@ -1025,7 +1046,7 @@ public class CustomComponentBase : ComponentBase, IHandleEvent, IHandleAfterRend
                 Task.CompletedTask;
         });
 
-    private Task IHandleAfterRender.OnAfterRenderAsync()
+    Task IHandleAfterRender.OnAfterRenderAsync()
         => InvokeWithBlazorServiceContext(() =>
         {
             var firstRender = !hasCalledOnAfterRender;
@@ -1057,13 +1078,29 @@ public class CustomComponentBase : ComponentBase, IHandleEvent, IHandleAfterRend
 
     private async Task InvokeWithBlazorServiceContext(Func<Task> func)
     {
-        BlazorServiceAccessor.Services = Services;
-        await func();
+        try
+        {
+            BlazorServiceAccessor.Services = Services;
+            await func();
+        }
+        finally
+        {
+            BlazorServiceAccessor.Services = null;
+        }
     }
 }
 ```
 
 Any components extending `CustomComponentBase` automatically have `BlazorServiceAccessor.Services` set to the <xref:System.IServiceProvider> in the current Blazor DI scope.
+
+Finally, in `Program.cs`, add the `BlazorServiceAccessor` as a scoped service:
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+// ...
+builder.Services.AddScoped<BlazorServiceAccessor>();
+// ...
+```
 
 ## Additional resources
 
