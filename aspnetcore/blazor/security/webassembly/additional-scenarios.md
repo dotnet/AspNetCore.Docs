@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 12/13/2022
 uid: blazor/security/webassembly/additional-scenarios
 ---
 # ASP.NET Core Blazor WebAssembly additional security scenarios
@@ -78,42 +78,74 @@ The following scenarios demonstrate how to customize authentication requests and
 
 ### Customize the login process
 
-Add additional parameters to a login request by calling <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions.TryAddAdditionalParameter%2A> one or more times on a new instance of <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>:
+Manage additional parameters to a login request with the following methods one or more times on a new instance of <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>:
+
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions.TryAddAdditionalParameter%2A>
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions.TryRemoveAdditionalParameter%2A>
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions.TryGetAdditionalParameter%2A>
+
+In the following `LoginDisplay` component example, additional parameters are added to the login request:
+
+* `prompt` is set to `login`: Forces the user to enter their credentials on that request, negating single sign on.
+* `loginHint` is set to `peter@contoso.com`: Pre-fills the username/email address field of the sign-in page for the user to `peter@contoso.com`. Apps often use this parameter during re-authentication, having already extracted the username from a previous sign in using the `preferred_username` claim.
+
+`Shared/LoginDisplay.razor`:
 
 ```csharp
-InteractiveRequestOptions requestOptions = 
-    new()
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject NavigationManager Navigation
+
+<AuthorizeView>
+    <Authorized>
+        Hello, @context.User.Identity?.Name!
+        <button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
+    </Authorized>
+    <NotAuthorized>
+        <button class="nav-link btn btn-link" @onclick="BeginLogIn">Log in</button>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code{
+    public void BeginLogOut()
     {
-        Interaction = InteractionType.SignIn,
-        ReturnUrl = Navigation.Uri,
-    };
+        Navigation.NavigateToLogout("authentication/logout");
+    }
 
-requestOptions.TryAddAdditionalParameter("prompt", "login");
-requestOptions.TryAddAdditionalParameter("login_hint", "peter@example.com");
+    public void BeginLogIn()
+    {
+        InteractiveRequestOptions requestOptions =
+            new()
+            {
+                Interaction = InteractionType.SignIn,
+                ReturnUrl = Navigation.Uri,
+            };
 
-Navigation.NavigateToLogin("authentication/login", requestOptions);
+        requestOptions.TryAddAdditionalParameter("prompt", "login");
+        requestOptions.TryAddAdditionalParameter("loginHint", "peter@contoso.com");
+
+        Navigation.NavigateToLogin("authentication/login", requestOptions);
+    }
+}
 ```
 
-The preceding example assumes:
+For more information, see the following resources:
 
-* The presence of an `@using`/`using` statement for API in the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace.
-* <xref:Microsoft.AspNetCore.Components.NavigationManager> injected as `Navigation`.
-
-Obtain an additional parameter by calling `TryGetAdditionalParameter` with the name of the parameter. Remove an additional parameter by calling <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions.TryRemoveAdditionalParameter%2A> with the name of the parameter.
-
-For more information, see <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>.
-
-### Logout with a custom return URL
-
-The following example logs out the user and returns the user to the `/goodbye` endpoint:
-
-```csharp
-Navigation.NavigateToLogout("authentication/logout", "goodbye");
-```
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>
+* [Popup request parameter list](https://azuread.github.io/microsoft-authentication-library-for-js/ref/modules/_azure_msal_browser.html#popuprequest)
 
 ### Customize options before obtaining a token interactively
 
-If an <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> occurs, attach additional parameters for a new identity provider access token request by calling <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions.TryAddAdditionalParameter%2A> one or more times:
+If an <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> occurs, manage additional parameters for a new identity provider access token request with the following methods one or more times on a new instance of <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>:
+
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions.TryAddAdditionalParameter%2A>
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions.TryRemoveAdditionalParameter%2A>
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions.TryGetAdditionalParameter%2A>
+
+In the following example that obtains JSON data via web API, additional parameters are added to the redirect request if an access token isn't available (<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> is thrown):
+
+* `prompt` is set to `login`: Forces the user to enter their credentials on that request, negating single sign on.
+* `loginHint` is set to `peter@contoso.com`: Pre-fills the username/email address field of the sign-in page for the user to `peter@contoso.com`. Apps often use this parameter during re-authentication, having already extracted the username from a previous sign in using the `preferred_username` claim.
 
 ```csharp
 try
@@ -126,7 +158,7 @@ catch (AccessTokenNotAvailableException ex)
 {
     ex.Redirect(requestOptions => {
         requestOptions.TryAddAdditionalParameter("prompt", "login");
-        requestOptions.TryAddAdditionalParameter("login_hint", "peter@example.com");
+        requestOptions.TryAddAdditionalParameter("loginHint", "peter@contoso.com");
     });
 }
 ```
@@ -136,25 +168,35 @@ The preceding example assumes that:
 * The presence of an `@using`/`using` statement for API in the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace.
 * `HttpClient` injected as `Http`.
 
-For more information, see <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>.
+For more information, see the following resources:
+
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>
+* [Redirect request parameter list](https://azuread.github.io/microsoft-authentication-library-for-js/ref/modules/_azure_msal_browser.html#redirectrequest)
 
 ### Customize options when using an `IAccessTokenProvider`
 
-If obtaining a token fails when using an <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider>, attach additional parameters for the new identity provider access token request by calling <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions.TryAddAdditionalParameter%2A> one or more times:
+If obtaining a token fails when using an <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider>, manage additional parameters for a new identity provider access token request with the following methods one or more times on a new instance of <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>:
+
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions.TryAddAdditionalParameter%2A>
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions.TryRemoveAdditionalParameter%2A>
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions.TryGetAdditionalParameter%2A>
+
+In the following example that attempts to obtain an access token for the user, additional parameters are added to the login request if the attempt to obtain a token fails when <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenResult.TryGetToken%2A> is called:
+
+* `prompt` is set to `login`: Forces the user to enter their credentials on that request, negating single sign on.
+* `loginHint` is set to `peter@contoso.com`: Pre-fills the username/email address field of the sign-in page for the user to `peter@contoso.com`. Apps often use this parameter during re-authentication, having already extracted the username from a previous sign in using the `preferred_username` claim.
 
 ```csharp
-var accessTokenResult = await TokenProvider.RequestAccessToken(
+var tokenResult = await TokenProvider.RequestAccessToken(
     new AccessTokenRequestOptions
     {
         Scopes = new[] { ... }
     });
 
-if (!accessTokenResult.TryGetToken(out var token))
+if (!tokenResult.TryGetToken(out var token))
 {
-    accessTokenResult.InteractionOptions
-        .TryAddAdditionalParameter("prompt", "login");
-    accessTokenResult.InteractionOptions
-        .TryAddAdditionalParameter("login_hint", "peter@example.com");
+    tokenResult.InteractionOptions.TryAddAdditionalParameter("prompt", "login");
+    tokenResult.InteractionOptions.TryAddAdditionalParameter("loginHint", "peter@contoso.com");
 
     Navigation.NavigateToLogin(accessTokenResult.InteractiveRequestUrl, 
         accessTokenResult.InteractionOptions);
@@ -166,7 +208,18 @@ The preceding example assumes:
 * The presence of an `@using`/`using` statement for API in the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace.
 * <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider> injected as `TokenProvider`.
 
-For more information, see <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>.
+For more information, see the following resources:
+
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractiveRequestOptions>
+* [Popup request parameter list](https://azuread.github.io/microsoft-authentication-library-for-js/ref/modules/_azure_msal_browser.html#popuprequest)
+
+### Logout with a custom return URL
+
+The following example logs out the user and returns the user to the `/goodbye` endpoint:
+
+```csharp
+Navigation.NavigateToLogout("authentication/logout", "goodbye");
+```
 
 ### Obtain the login path from authentication options
 
