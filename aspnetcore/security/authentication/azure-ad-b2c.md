@@ -66,7 +66,7 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
 	- Use either the **ClientSecret** or the **ClientCertificates** configuration. ClientCertificates are recommended.
     - Leave all other values as they are.
 	
-1. In *Views/Shared*, create a file named `_LoginPartial.cshtml`. Include the following code:
+1. In *Pages/Shared*, create a file named `_LoginPartial.cshtml`. Include the following code:
 
     :::code language="razor" source="azure-ad-b2c/sample/Pages/Shared/_LoginPartial.cshtml":::    
 
@@ -76,7 +76,7 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
     - Renders a **Sign out** or **Sign in** link as appropriate.
         - The link points to an action method on the `Account` controller in the `MicrosoftIdentity` area.
 
-1. In `Views/Shared/_Layout.cshtml`, add the highlighted line within the `<header>` element:
+1. In `Pages/Shared/_Layout.cshtml`, add the highlighted line within the `<header>` element:
 
     :::code language="razor" source="azure-ad-b2c/sample/Pages/Shared/_Layout.cshtml" range="11-32" highlight="10":::
  
