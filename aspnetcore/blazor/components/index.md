@@ -1594,22 +1594,18 @@ The following `Counter` component uses an `IncrementAmount` parameter to set the
 }
 ```
 
-Render the `Counter` component with the custom element in another page and pass a value to the `IncrementAmount` parameter as an HTML attribute:
+Render the `Counter` component with the custom element in another page and pass a value to the `IncrementAmount` parameter as an HTML attribute. The attribute name adopts kebab-case syntax (`increment-amount`, not `IncrementAmount`):
 
 ```html
 <my-counter increment-amount="10"></my-counter>
 ```
 
-The attribute name adopts kebab-case syntax (`increment-amount`, not `IncrementAmount`).
-
-Alternatively, you can set the parameter's value as a JavaScript property on the element object:
+Alternatively, you can set the parameter's value as a JavaScript property on the element object. The property name adopts camel case syntax (`incrementAmount`, not `IncrementAmount`):
 
 ```javascript
 const elem = document.querySelector("my-counter");
 elem.incrementAmount = 10;
 ```
-
-The property name adopts camel case syntax (`incrementAmount`, not `IncrementAmount`).
 
 You can update parameter values at any time using either attribute or property syntax.
 
