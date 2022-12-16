@@ -82,7 +82,7 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
  
     Adding `<partial name="_LoginPartial" />` renders the `_LoginPartial.cshtml` partial view in every page request that uses this layout.
 
-1. In `Startup.cs`, make the following changes:
+1. In `Program.cs`, make the following changes:
 
     1. Add the following `using` directives:
     
