@@ -1557,7 +1557,7 @@ builder.RootComponents.RegisterCustomElement<Counter>("my-counter");
 Use the custom element with any web framework. For example, the preceding `my-counter` custom HTML element is used in a React app with the following markup:
 
 ```html
-<my-counter increment-amount={incrementAmount}></my-counter>
+<my-counter></my-counter>
 ```
 
 For a complete example of how to create custom elements with Blazor, see the [`CustomElementsComponent` component](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/CustomElementsComponent.razor) in the reference source.
@@ -1568,17 +1568,36 @@ For a complete example of how to create custom elements with Blazor, see the [`C
 
 Pass parameters to your Blazor component either as HTML attributes or as JavaScript properties on the DOM element.
 
-Consider the following integer parameter declaration:
+The following `Counter` component uses an `IncrementAmount` parameter to set the increment amount of the **:::no-loc text="Click me":::** button.
 
-```csharp
-[Parameter]
-public int IncrementAmount { get; set; }
+`Pages/Counter.razor`:
+
+```razor
+@page "/counter"
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    [Parameter]
+    public int IncrementAmount { get; set; } = 1;
+
+    private void IncrementCount()
+    {
+        currentCount += IncrementAmount;
+    }
+}
 ```
 
-Pass a value to the preceding parameter as an HTML attribute:
+Render the `Counter` component with the custom element in another page and pass a value to the `IncrementAmount` parameter as an HTML attribute:
 
 ```html
-<my-counter increment-amount="123"></custom-blazor-counter>
+<my-counter increment-amount="10"></my-counter>
 ```
 
 The attribute name adopts kebab-case syntax (`increment-amount`, not `IncrementAmount`).
@@ -1587,7 +1606,7 @@ Alternatively, you can set the parameter's value as a JavaScript property on the
 
 ```javascript
 const elem = document.querySelector("my-counter");
-elem.incrementAmount = 123;
+elem.incrementAmount = 10;
 ```
 
 The property name adopts camel case syntax (`incrementAmount`, not `IncrementAmount`).
