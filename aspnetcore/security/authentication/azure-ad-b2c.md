@@ -78,7 +78,7 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
 
 1. In `Pages/Shared/_Layout.cshtml`, add the highlighted line within the `<header>` element:
 
-    :::code language="razor" source="azure-ad-b2c/sample/Pages/Shared/_Layout.cshtml" range="12-33" highlight="10":::
+    :::code language="razor" source="azure-ad-b2c/sample/Pages/Shared/_Layout.cshtml" range="12-33" highlight="18":::
  
     Adding `<partial name="_LoginPartial" />` renders the `_LoginPartial.cshtml` partial view in every page request that uses this layout.
 
