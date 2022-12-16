@@ -86,13 +86,13 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
 
     1. Add the following `using` directives:
     
-        :::code language="csharp" source="azure-ad-b2c/sample/Startup.cs" id="snippet_NewUsings":::
+        :::code language="csharp" source="azure-ad-b2c/sample/Program.cs" id="snippet_NewUsings":::
 
         The preceding code resolves references used in the next steps.
 
-    1. Replace `ConfigureServices` with the following code:
+    1. Update the `builder services` with the following code:
         
-        :::code language="csharp" source="azure-ad-b2c/sample/Startup.cs" id="snippet_ConfigureServices":::
+        :::code language="csharp" source="azure-ad-b2c/sample/Program.cs" id="snippet_builderservices":::
 
         In the preceding code:
 
@@ -101,18 +101,21 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
         - The `AddRazorPages` call configures the app so anonymous browsers can view the Index page. All other requests require authentication.
         - `AddMvcOptions` and `AddMicrosoftIdentityUI` add the required UI components for redirecting to/from Azure AD B2C.
     
-    1. Add the highlighted line to the `Configure` method:
+    1. Update the highlighted line to the `Configure` method:
         
-        :::code language="csharp" source="azure-ad-b2c/sample/Startup.cs" id="snippet_Configure" highlight="19":::
+        :::code language="csharp" source="azure-ad-b2c/sample/Program.cs" id="snippet_app":::
 
         The preceding code enables authentication in ASP.NET Core.
 
 ## Run the app
 
+    > [!NOTE]
+    > Use the profile which matches the Azure App registration **redirctURL**
+	
 1. Run the app.
     
     ```dotnetcli
-    dotnet run
+    dotnet run --launch-profile https
     ```
 
 1. Browse to the app's secure endpoint, for example, `https://localhost:5001/`.

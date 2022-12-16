@@ -1,10 +1,13 @@
+#region snippet_NewUsings
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+#endregion
 using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
+#region snippet_builderservices
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
         .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureADB2C"));
 
@@ -19,6 +22,7 @@ builder.Services.AddRazorPages(options => {
 })
 .AddMvcOptions(options => { })
 .AddMicrosoftIdentityUI();
+#endregion
 
 var app = builder.Build();
 
@@ -33,6 +37,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+#region snippet_app
 app.UseRouting();
 
 app.UseAuthentication();
@@ -40,5 +45,6 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 app.MapControllers();
+#endregion
 
 app.Run();
