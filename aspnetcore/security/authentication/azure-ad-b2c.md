@@ -52,23 +52,18 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
     - `Microsoft.Identity.Web` includes the basic set of dependencies for authenticating with the Microsoft Identity platform.
     - `Microsoft.Identity.Web.UI` includes UI functionality encapsulated in an area named `MicrosoftIdentity`.
 
-1. Add an `AzureB2C` object to `appsettings.json`.
+1. Add an `AzureADB2C` object to `appsettings.json`.
 
-    :::code language="json" source="azure-ad-b2c/sample/appsettings.json" highlight="2-8":::
-
-    - For **Domain**, use the domain of your Azure AD B2C tenant.
-    - For **ClientId**, use the **Application (client) ID** from the app registration you created in your tenant.
-    - Leave all other values as they are.
- 
     > [!NOTE]
-    > If using Azure B2C user flows, you need to set the **Instance** and the PolicyId of the type of flow.
+    > When using Azure B2C user flows, you need to set the **Instance** and the PolicyId of the type of flow.
 
-    :::code language="json" source="azure-ad-b2c/sample/appsettings-b2c-userflow.json" highlight="2-9":::
+    :::code language="json" source="azure-ad-b2c/sample/appsettings-b2c-userflow.json" highlight="2-17":::
 
     - For **Domain**, use the domain of your Azure AD B2C tenant.
     - For **ClientId**, use the **Application (client) ID** from the app registration you created in your tenant.
     - For **Instance**, use the domain of your Azure AD B2C tenant.
     - For **SignUpSignInPolicyId**, use the user flow policy defined in the Azure B2C tenant
+	- Use either the **ClientSecret** or the **ClientCertificates** configuration. ClientCertificates are recommended.
     - Leave all other values as they are.
 	
 1. In *Views/Shared*, create a file named `_LoginPartial.cshtml`. Include the following code:
