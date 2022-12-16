@@ -109,9 +109,8 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
 
 ## Run the app
 
-    > [!NOTE]
-    > Use the profile which matches the Azure App registration **Redirect URIs**
-	
+> [!NOTE]
+> Use the profile which matches the Azure App registration **Redirect URIs**
 1. Run the app.
     
     ```dotnetcli
