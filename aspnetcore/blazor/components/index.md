@@ -1554,7 +1554,7 @@ builder.RootComponents.RegisterCustomElement<Counter>("my-counter");
 
 ### Use the registered custom element
 
-Use the custom element with any web framework. For example, the preceding `my-counter` custom HTML element is used in a React app with the following markup:
+Use the custom element with any web framework. For example, the preceding `my-counter` custom HTML element that renders the app's `Counter` component is used in a React app with the following markup:
 
 ```html
 <my-counter></my-counter>
@@ -1594,7 +1594,7 @@ The following `Counter` component uses an `IncrementAmount` parameter to set the
 }
 ```
 
-Render the `Counter` component with the custom element in another page and pass a value to the `IncrementAmount` parameter as an HTML attribute. The attribute name adopts kebab-case syntax (`increment-amount`, not `IncrementAmount`):
+Render the `Counter` component with the custom element and pass a value to the `IncrementAmount` parameter as an HTML attribute. The attribute name adopts kebab-case syntax (`increment-amount`, not `IncrementAmount`):
 
 ```html
 <my-counter increment-amount="10"></my-counter>
