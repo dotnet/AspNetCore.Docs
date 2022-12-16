@@ -43,8 +43,8 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
 1. Add the `Microsoft.Identity.Web` and `Microsoft.Identity.Web.UI` packages to the project. If you're using Visual Studio, you can use [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio).
 
     ```dotnetcli
-    dotnet add package Microsoft.Identity.Web --version 1.4.0 
-    dotnet add package Microsoft.Identity.Web.UI --version 1.4.0
+    dotnet add package Microsoft.Identity.Web
+    dotnet add package Microsoft.Identity.Web.UI
     ```
     
     In the preceding:
