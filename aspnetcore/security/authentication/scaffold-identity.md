@@ -258,7 +258,7 @@ ASP.NET Core Identity is designed to work in the context of HTTP request and res
 
 Because <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601> aren't supported in Razor components, we recommend using web API to manage Identity actions from Razor components via a server-side Identity-enabled ASP.NET Core app. For guidance on creating web APIs for Blazor apps, see <xref:blazor/call-web-api>.
 
-An approach to using Razor components for Identity instead of Razor pages is to build your own custom Identity Razor components, but Microsoft doesn't recommend or support the approach. For additional context, explore the following discussions. Code examples provided by community members in the following discussions aren't supported by Microsoft but might be helpful to some developers:
+An approach to using Razor components for Identity instead of Razor pages is to build your own custom Identity Razor components, but Microsoft doesn't recommend or support the approach. For additional context, explore the following discussions. In the following discussions, code examples in issue comments and code examples cross-linked in non-Microsoft GitHub repositories aren't supported by Microsoft but might be helpful to some developers:
 
 * [Support Custom Login Component when using Identity (dotnet/aspnetcore #13601)](https://github.com/dotnet/aspnetcore/issues/13601)
 * [Reiteration on the `SigninManager<T>` not being supported in Razor Components (dotnet/aspnetcore #34095)](https://github.com/dotnet/aspnetcore/issues/34095)
