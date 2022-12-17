@@ -575,7 +575,7 @@ In JavaScript, add a function called with an HTML [`input`](https://developer.mo
 
 * Extracts the selected file.
 * Creates an object URL with [`createObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/createObjectURL).
-* Includes an event listener to revoke the object URL with [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) after the image is loaded, so memory isn't leaked.
+* Sets an event listener to revoke the object URL with [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) after the image is loaded, so memory isn't leaked.
 * Sets the `img` element's source to display the image.
 
 ```javascript
@@ -1216,7 +1216,7 @@ In JavaScript, add a function called with an HTML [`input`](https://developer.mo
 
 * Extracts the selected file.
 * Creates an object URL with [`createObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/createObjectURL).
-* Includes an event listener to revoke the object URL with [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) after the image is loaded, so memory isn't leaked.
+* Sets an event listener to revoke the object URL with [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) after the image is loaded, so memory isn't leaked.
 * Sets the `img` element's source to display the image.
 
 ```javascript
