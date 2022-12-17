@@ -5,7 +5,7 @@ description: Learn how to upload files in Blazor with the InputFile component.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 12/17/2022
 uid: blazor/file-uploads
 zone_pivot_groups: blazor-hosting-models
 ---
