@@ -548,6 +548,59 @@ In Blazor WebAssembly, file data is streamed directly into the .NET code within 
 
 :::zone-end
 
+## Upload image preview
+
+For an image preview of uploading images, start by adding an `InputFile` component with a component reference and an `OnChange` handler:
+
+```razor
+<InputFile @ref="inputFile" OnChange="@ShowPreview" />
+```
+
+Add an image element with an [element reference](xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements), which serves as the placeholder for the image preview:
+
+```razor
+<img @ref="previewImageElem" />
+```
+
+Add the associated references:
+
+```razor
+@code {
+    private InputFile? inputFile;
+    private ElementReference previewImageElem;
+}
+```
+
+In JavaScript, add a function called with an HTML [`input`](https://developer.mozilla.org/docs/Web/HTML/Element/input/) and [`img`](https://developer.mozilla.org/docs/Web/HTML/Element/img) element that performs the following:
+
+* Extracts the selected file.
+* Creates an object URL with [`createObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/createObjectURL).
+* Sets an event listener to revoke the object URL with [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) after the image is loaded, so memory isn't leaked.
+* Sets the `img` element's source to display the image.
+
+```javascript
+function previewImage(inputElem, imgElem) {
+  const url = URL.createObjectURL(inputElem.files[0]);
+  imgElem.addEventListener('load', () => URL.revokeObjectURL(url), { once: true });
+  imgElem.src = url;
+}
+```
+
+Finally, use an injected <xref:Microsoft.JSInterop.IJSRuntime> to add the `OnChange` handler that calls the JavaScript function:
+
+```razor
+@inject IJSRuntime JS
+
+...
+
+@code {
+    private ValueTask ShowPreview()
+        => JS.InvokeVoidAsync("previewImage", inputFile!.Element, previewImageElem);
+}
+```
+
+The preceding example is for uploading a single image. The approach can be expanded to support `multiple` images.
+
 ## Upload files to an external service
 
 Instead of an app handling file upload bytes and the app's server receiving uploaded files, clients can directly upload files to an external service. The app can safely process the files from the external service on demand. This approach hardens the app and its server against malicious attacks and potential performance problems.
@@ -1135,6 +1188,59 @@ In Blazor Server, file data is streamed over the SignalR connection into .NET co
 In Blazor WebAssembly, file data is streamed directly into the .NET code within the browser.
 
 :::zone-end
+
+## Upload image preview
+
+For an image preview of uploading images, start by adding an `InputFile` component with a component reference and an `OnChange` handler:
+
+```razor
+<InputFile @ref="inputFile" OnChange="@ShowPreview" />
+```
+
+Add an image element with an [element reference](xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements), which serves as the placeholder for the image preview:
+
+```razor
+<img @ref="previewImageElem" />
+```
+
+Add the associated references:
+
+```razor
+@code {
+    private InputFile? inputFile;
+    private ElementReference previewImageElem;
+}
+```
+
+In JavaScript, add a function called with an HTML [`input`](https://developer.mozilla.org/docs/Web/HTML/Element/input/) and [`img`](https://developer.mozilla.org/docs/Web/HTML/Element/img) element that performs the following:
+
+* Extracts the selected file.
+* Creates an object URL with [`createObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/createObjectURL).
+* Sets an event listener to revoke the object URL with [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) after the image is loaded, so memory isn't leaked.
+* Sets the `img` element's source to display the image.
+
+```javascript
+function previewImage(inputElem, imgElem) {
+  const url = URL.createObjectURL(inputElem.files[0]);
+  imgElem.addEventListener('load', () => URL.revokeObjectURL(url), { once: true });
+  imgElem.src = url;
+}
+```
+
+Finally, use an injected <xref:Microsoft.JSInterop.IJSRuntime> to add the `OnChange` handler that calls the JavaScript function:
+
+```razor
+@inject IJSRuntime JS
+
+...
+
+@code {
+    private ValueTask ShowPreview()
+        => JS.InvokeVoidAsync("previewImage", inputFile!.Element, previewImageElem);
+}
+```
+
+The preceding example is for uploading a single image. The approach can be expanded to support `multiple` images.
 
 ## Upload files to an external service
 
