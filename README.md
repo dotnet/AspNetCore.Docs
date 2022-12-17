@@ -5,3 +5,5 @@ This repository contains the conceptual ASP.NET Core documentation. See the [Con
 API documentation changes are made in the [`dotnet/AspNetApiDocs` GitHub repository](https://github.com/dotnet/AspNetApiDocs) against the triple slash `///` comments.
 
 ASP.NET 4.x documentation changes are made in the [`dotnet/AspNetDocs` GitHub repository](https://github.com/dotnet/AspNetDocs).
+
+Issues for learn.microsoft.com can be opened at [github.com/MicrosoftDocs/feedback](https://github.com/MicrosoftDocs/feedback)
