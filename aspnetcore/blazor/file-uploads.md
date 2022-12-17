@@ -548,6 +548,52 @@ In Blazor WebAssembly, file data is streamed directly into the .NET code within 
 
 :::zone-end
 
+## Upload image preview
+
+When uploading images, sometimes an image preview is desired. This can be achieved via the following:
+
+Start by adding an `InputFile` component with an `OnChange` handler.
+
+```razor
+<InputFile @ref="inputFile" OnChange="@ShowPreview" />
+```
+
+Then add an image element with a reference. This will serve as the placeholder for the image preview.
+
+```razor
+<img @ref="previewImageElem" />
+```
+
+The associated references must be added as well:
+
+```razor
+@code {
+    InputFile? inputFile;
+    ElementReference previewImageElem;
+}
+```
+
+In JavaScript, we can then add a function which when given an HTML [`input`](https://developer.mozilla.org/docs/Web/HTML/Element/input/) and [`img`](https://developer.mozilla.org/docs/Web/HTML/Element/img) element, extracts the selected file, [creates an Object URL](https://developer.mozilla.org/docs/Web/API/URL/createObjectURL), and sets the `img` element's source to display the image. Finally, we add an event listener to [`revokeObjectURL`](https://developer.mozilla.org/docs/Web/API/URL/revokeObjectURL) once the image is loaded so that memory isn't leaked.
+
+```js
+function previewImage(inputElem, imgElem) {
+    const url = URL.createObjectURL(inputElem.files[0]);
+    imgElem.addEventListener('load', () => URL.revokeObjectURL(url), { once: true });
+    imgElem.src = url;
+}
+```
+
+Finally, we can add the `OnChange` handler in which we call the `previewImage` function in JavaScript.
+
+```razor
+@code {
+    ValueTask ShowPreview()
+      => JS.InvokeVoidAsync("previewImage", inputFile!.Element, previewImageElem);
+}
+```
+
+Note this example is for uploading a single image. It can be expanded to support `multiple` images as well.
+
 ## Upload files to an external service
 
 Instead of an app handling file upload bytes and the app's server receiving uploaded files, clients can directly upload files to an external service. The app can safely process the files from the external service on demand. This approach hardens the app and its server against malicious attacks and potential performance problems.
