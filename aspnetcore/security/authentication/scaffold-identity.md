@@ -256,13 +256,16 @@ Because Blazor Server uses Razor Pages Identity pages, the styling of the UI cha
 
 ASP.NET Core Identity is designed to work in the context of HTTP request and response communication, which isn't the primary client-server communication model in Blazor apps. ASP.NET Core apps that use ASP.NET Core Identity for user management should use Razor Pages instead of Razor components for Identity-related UI, such as user registration, login, logout, and other user management tasks.
 
-An approach to using components for Identity instead of pages is to build custom Identity components. Because <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601> aren't supported in Razor components, use API endpoints to manage Identity actions. For guidance on creating web APIs for Blazor apps, see <xref:blazor/call-web-api>. <!-- For an example that uses <xref:Microsoft.AspNetCore.Identity.UserManager%601> in a hosted Blazor WebAssembly app, see <xref:blazor/security/webassembly/hosted-with-azure-active-directory#usermanager-and-signinmanager>. -->
+Because <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601> aren't supported in Razor components, we recommend using web API to manage Identity actions from Razor components via a server-side Identity-enabled ASP.NET Core app. For guidance on creating web APIs for Blazor apps, see <xref:blazor/call-web-api>.
 
-For additional context and further assistance, explore the following discussions and resources:
+An approach to using Razor components for Identity instead of Razor pages is to build your own custom Identity Razor components, but Microsoft doesn't recommend or support the approach. For additional context, explore the following discussions. In the following discussions, code examples in issue comments and code examples cross-linked in non-Microsoft GitHub repositories aren't supported by Microsoft but might be helpful to some developers:
 
 * [Support Custom Login Component when using Identity (dotnet/aspnetcore #13601)](https://github.com/dotnet/aspnetcore/issues/13601)
 * [Reiteration on the `SigninManager<T>` not being supported in Razor Components (dotnet/aspnetcore #34095)](https://github.com/dotnet/aspnetcore/issues/34095)
 * [There is no info on how to actually implement custom login form for server-side blazor (dotnet/AspNetCore.Docs #16813)](https://github.com/dotnet/AspNetCore.Docs/issues/16813)
+
+For additional assistance when seeking to build custom Identity Razor components or searching for third-party Razor components, we recommend the following resources:
+
 * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor) (Public support forum)
 * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA) (Public support chat)
 * [Blazor Gitter](https://gitter.im/aspnet/Blazor) (Public support chat)
