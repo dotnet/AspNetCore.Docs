@@ -599,7 +599,7 @@ Finally, use an injected <xref:Microsoft.JSInterop.IJSRuntime> to add the `OnCha
 }
 ```
 
-The preceding example is for uploading a single image. The approach can be expanded to support `multiple` images as well.
+The preceding example is for uploading a single image. The approach can be expanded to support `multiple` images.
 
 ## Upload files to an external service
 
@@ -1240,7 +1240,7 @@ Finally, use an injected <xref:Microsoft.JSInterop.IJSRuntime> to add the `OnCha
 }
 ```
 
-The preceding example is for uploading a single image. The approach can be expanded to support `multiple` images as well.
+The preceding example is for uploading a single image. The approach can be expanded to support `multiple` images.
 
 ## Upload files to an external service
 
