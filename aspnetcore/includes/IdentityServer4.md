@@ -2,7 +2,7 @@ ASP.NET Core Identity adds user interface (UI) login functionality to ASP.NET Co
 
 * [Azure Active Directory](/azure/api-management/api-management-howto-protect-backend-with-aad)
 * [Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-custom-rest-api-netfw) (Azure AD B2C)
-* [Duende IdentityServer](https://docs.duendesoftware.com/identityserver/v6/overview/)
+* [Duende IdentityServer](https://docs.duendesoftware.com/identityserver/v6/overview/). Duende IdentityServer is 3rd party product.
 
 Duende IdentityServer is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core. Duende IdentityServer enables the following security features:
 
@@ -12,3 +12,5 @@ Duende IdentityServer is an OpenID Connect and OAuth 2.0 framework for ASP.NET C
 * Federation Gateway
 
 For more information, see [Overview of Duende IdentityServer](https://docs.duendesoftware.com/identityserver/v6/overview/).
+
+For more information on other authentication providers, see [Community OSS authentication options for ASP.NET Core](xref:security/authentication/community)
