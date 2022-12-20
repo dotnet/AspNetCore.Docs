@@ -5,7 +5,7 @@ description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 9/3/2022
+ms.date: 12/19/2022
 uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
@@ -82,7 +82,7 @@ If using the [Web SDK](#sdk), a *web.config* file, which is normally produced wh
 
 ```xml
 <PropertyGroup>
-  <TargetFramework>netcoreapp3.0</TargetFramework>
+  <TargetFramework>net7.0</TargetFramework>
   <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
 </PropertyGroup>
 ```
@@ -406,7 +406,7 @@ If using the [Web SDK](#sdk), a *web.config* file, which is normally produced wh
 
 ```xml
 <PropertyGroup>
-  <TargetFramework>netcoreapp3.0</TargetFramework>
+  <TargetFramework>net6.0</TargetFramework>
   <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
 </PropertyGroup>
 ```
