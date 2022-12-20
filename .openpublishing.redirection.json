@@ -298,7 +298,7 @@
         {
             "source_path": "aspnetcore/performance/performance-best-practices.md",
             "redirect_url": "/aspnet/core/fundamentals/best-practices",
-            "redirect_document_id": false
+            "redirect_document_id": true
         },
         {
             "source_path": "aspnetcore/security/authentication/oauth2.md",

@@ -1519,13 +1519,6 @@ items:
     items:
       - name: Overview
         uid: performance/overview
-      - name: Rate limiting middleware
-        uid: performance/rate-limit
-      - name: Memory and GC
-        uid: performance/memory
-      - name: Scaling apps on Azure
-        displayName: azure, deploy, publish, scale
-        uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
       - name: Caching
         items:
           - name: Overview
@@ -1546,6 +1539,13 @@ items:
           - name: Response caching middleware
             displayName: cache
             uid: performance/caching/middleware
+      - name: Rate limiting middleware
+        uid: performance/rate-limit
+      - name: Memory and GC
+        uid: performance/memory
+      - name: Scaling apps on Azure
+        displayName: azure, deploy, publish, scale
+        uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
       - name: Object reuse with ObjectPool
         uid: performance/ObjectPool
       - name: Response compression

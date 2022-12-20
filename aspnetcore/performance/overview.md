@@ -11,12 +11,12 @@ uid: performance/overview
 
 The following articles provide information about how to maximize the performance of ASP.NET Core apps:
 
+* <xref:fundamentals/best-practices>
+* <xref:performance/caching/overview>
 * <xref:performance/rate-limit>
 * <xref:performance/memory>
 * <xref:host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps>
-* <xref:performance/caching/overview>
 * <xref:performance/ObjectPool>
 * <xref:performance/response-compression>
 * <xref:performance/diagnostic-tools>
 * <xref:test/loadtests>
-* <xref:fundamentals/best-practices>
