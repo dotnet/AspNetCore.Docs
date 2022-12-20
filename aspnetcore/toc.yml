@@ -267,9 +267,6 @@ items:
         uid: fundamentals/http-requests
       - name: Static files
         uid: fundamentals/static-files
-      - name: Best practices
-        displayName: performance
-        uid: fundamentals/best-practices
   - name: Web apps
     items:
       - name: Choose an ASP.NET Core UI
@@ -918,6 +915,9 @@ items:
         href: https://github.com/grpc/grpc-dotnet/tree/master/examples
       - name: Troubleshoot
         uid: grpc/troubleshoot
+  - name: Best practices
+    displayName: performance
+    uid: fundamentals/best-practices
   - name: Test
     items:
       - name: .NET Hot Reload
