@@ -261,7 +261,7 @@ The preceding highlighted code adds SignalR to the ASP.NET Core dependency injec
 
 ## Publish to Azure
 
-For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore).
+For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore). For more information on Azure SignalR Service, see [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview).
 
 :::moniker-end
 
