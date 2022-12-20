@@ -15,7 +15,7 @@ This article provides guidelines for maximizing performance and reliability of A
 
 ## Cache aggressively
 
-Caching is discussed in several parts of this document. For more information, see <xref:performance/caching/overview>.
+Caching is discussed in several parts of this article. For more information, see <xref:performance/caching/overview>.
 
 ## Understand hot code paths
 
@@ -165,10 +165,6 @@ Recommendations:
 
 App diagnostic tools, such as Application Insights, can help to identify common exceptions in an app that may affect performance.
 
-## Performance and reliability
-
-The following sections provide performance tips and describe known reliability problems and solutions.
-
 ## Avoid synchronous read or write on HttpRequest/HttpResponse body
 
 All I/O in ASP.NET Core is asynchronous. Servers implement the `Stream` interface, which has both synchronous and asynchronous overloads. The asynchronous ones should be preferred to avoid blocking thread pool threads. Blocking threads can lead to thread pool starvation.
@@ -236,7 +232,7 @@ When using a serializer/de-serializer that only supports synchronous reads and w
 * Buffer the data into memory asynchronously before passing it into the serializer/de-serializer.
 
 > [!WARNING]
-> If the request is large, it could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this document.
+> If the request is large, it could lead to an out of memory (OOM) condition. OOM can result in a Denial Of Service.  For more information, see [Avoid reading large request bodies or response bodies into memory](#arlb) in this article.
 
 ASP.NET Core 3.0 uses <xref:System.Text.Json> by default for JSON serialization. <xref:System.Text.Json>:
 
