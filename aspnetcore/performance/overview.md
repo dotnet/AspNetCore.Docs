@@ -5,7 +5,7 @@ description: Links to articles about performance in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.date: 12/20/2022
-<xref:performance/overview
+uid: performance/overview
 ---
 # ASP.NET Core performance
 

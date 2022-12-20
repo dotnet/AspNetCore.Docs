@@ -136,7 +136,7 @@ The `.vscode/launch.json` file is used only by Visual Studio Code.
 
 ### Production
 
-The production environment should be configured to maximize security, [performance](xref:performance/performance-best-practices), and application robustness. Some common settings that differ from development include:
+The production environment should be configured to maximize security, [performance](xref:performance/overview), and application robustness. Some common settings that differ from development include:
 
 * [Caching](xref:performance/caching/memory).
 * Client-side resources are bundled, minified, and potentially served from a CDN.
@@ -407,7 +407,7 @@ The `.vscode/launch.json` file is only used by Visual Studio Code.
 
 ### Production
 
-The production environment should be configured to maximize security, [performance](xref:performance/performance-best-practices), and application robustness. Some common settings that differ from development include:
+The production environment should be configured to maximize security, [performance](xref:performance/overview), and application robustness. Some common settings that differ from development include:
 
 * [Caching](xref:performance/caching/memory).
 * Client-side resources are bundled, minified, and potentially served from a CDN.
