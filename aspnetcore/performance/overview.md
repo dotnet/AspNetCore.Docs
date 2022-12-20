@@ -9,7 +9,7 @@ uid: performance/overview
 ---
 # ASP.NET Core performance
 
-The following articles provide information about how to maximize the performance of ASP.NET Core apps:
+The following articles provide information about how to optimize the performance of ASP.NET Core apps:
 
 * <xref:fundamentals/best-practices>
 * <xref:performance/caching/overview>
