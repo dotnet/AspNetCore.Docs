@@ -268,6 +268,7 @@ items:
       - name: Static files
         uid: fundamentals/static-files
       - name: Best practices
+        displayName: performance
         uid: fundamentals/best-practices
   - name: Web apps
     items:
