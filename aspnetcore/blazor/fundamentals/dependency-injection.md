@@ -135,7 +135,7 @@ var builder = WebApplication.CreateBuilder(args);
 Client.Program.ConfigureCommonServices(builder.Services);
 ```
 
-For an example of this approach, see <xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication>.
+For an example of this approach, see <xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication>.
 
 ## Service lifetime
 
@@ -613,7 +613,7 @@ var builder = WebApplication.CreateBuilder(args);
 Client.Program.ConfigureCommonServices(builder.Services);
 ```
 
-For an example of this approach, see <xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication>.
+For an example of this approach, see <xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication>.
 
 ## Service lifetime
 
@@ -1251,7 +1251,7 @@ In the **:::no-loc text="Server":::** project's `ConfigureServices` method of `S
 Client.Program.ConfigureCommonServices(services);
 ```
 
-For an example of this approach, see <xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication>.
+For an example of this approach, see <xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication>.
 
 ## Service lifetime
 
@@ -1746,7 +1746,7 @@ In the **:::no-loc text="Server":::** project's `ConfigureServices` method of `S
 Client.Program.ConfigureCommonServices(services);
 ```
 
-For an example of this approach, see <xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication>.
+For an example of this approach, see <xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication>.
 
 ## Service lifetime
 

@@ -987,7 +987,7 @@ Register the `CustomAccountFactory` for the authentication provider in use. Any 
 
 For an additional example that works with AAD security groups and AAD Administrator Roles and a custom user account class, see <xref:blazor/security/webassembly/aad-groups-roles>.
 
-## Support prerendering with authentication
+## Prerendering with authentication
 
 Prerendering content that requires authentication and authorization isn't currently supported. After following the guidance in one of the Blazor WebAssembly security app topics, use the following instructions to create an app that:
 
@@ -2213,7 +2213,7 @@ Register the `CustomAccountFactory` for the authentication provider in use. Any 
 
 For an additional example that works with AAD security groups and AAD Administrator Roles and a custom user account class, see <xref:blazor/security/webassembly/aad-groups-roles>.
 
-## Support prerendering with authentication
+## Prerendering with authentication
 
 Prerendering content that requires authentication and authorization isn't currently supported. After following the guidance in one of the Blazor WebAssembly security app topics, use the following instructions to create an app that:
 
@@ -3437,7 +3437,7 @@ Register the `CustomAccountFactory` for the authentication provider in use. Any 
 
 For an additional example that works with AAD security groups and AAD Administrator Roles and a custom user account class, see <xref:blazor/security/webassembly/aad-groups-roles>.
 
-## Support prerendering with authentication
+## Prerendering with authentication
 
 Prerendering content that requires authentication and authorization isn't currently supported. After following the guidance in one of the Blazor WebAssembly security app topics, use the following instructions to create an app that:
 
@@ -4668,7 +4668,7 @@ Register the `CustomAccountFactory` for the authentication provider in use. Any 
 
 For an additional example that works with AAD security groups and AAD Administrator Roles and a custom user account class, see <xref:blazor/security/webassembly/aad-groups-roles>.
 
-## Support prerendering with authentication
+## Prerendering with authentication
 
 Prerendering content that requires authentication and authorization isn't currently supported. After following the guidance in one of the Blazor WebAssembly security app topics, use the following instructions to create an app that:
 
