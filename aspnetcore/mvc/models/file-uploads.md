@@ -10,7 +10,7 @@ uid: mvc/models/file-uploads
 ---
 # Upload files in ASP.NET Core
 
-By [Steve Smith](https://ardalis.com/) and [Rutger Storm](https://github.com/rutix)
+By [Rutger Storm](https://github.com/rutix)
 
 :::moniker range=">= aspnetcore-5.0"
 
