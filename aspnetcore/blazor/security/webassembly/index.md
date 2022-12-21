@@ -130,6 +130,15 @@ Apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribu
 > [!NOTE]
 > Setting an <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser%2A> is **not** supported.
 
+## Use one identity provider app registration per app
+
+Some of the articles under this *Overview* pertain to either of the following Blazor hosting scenarios that involve two or more apps:
+
+* A hosted Blazor WebAssembly solution, which is composed of two apps: a client-side Blazor WebAssembly app and a server-side ASP.NET Core host app. Authenticated users to the client app access server resources and data provided by the server app.
+* A standalone Blazor WebAssembly app that uses web API with authenticated users to access server resources and data provided by a server app. This scenario is similar to using a hosted Blazor WebAssembly solution; but in this case, the client app isn't hosted by the server app.
+
+When these scenarios are implemented in documentation examples, ***two*** identity provider registrations are used, one for the client app and one for the server app. Using separate registrations, for example in Azure Active Directory, isn't strictly required. However, using two registrations is a security best practice because it isolates the registrations by app. Using separate registrations also allows independent configuration of the client and server registrations.
+
 ## Refresh tokens
 
 Although refresh tokens can't be secured in Blazor WebAssembly apps, they can be used if you implement them with appropriate security strategies.
@@ -213,6 +222,18 @@ For more information, see <xref:signalr/authn-and-authz#bearer-token-authenticat
 
 To enable debug or trace logging, see the *Authentication logging (Blazor WebAssembly)* section in the 7.0 version of the <xref:blazor/fundamentals/logging> article.
 
+## The WebAssembly sandbox
+
+The WebAssembly *sandbox* restricts access to the environment of the system executing WebAssembly code, including access to I/O subsystems, system storage and resources, and the operating system. The isolation between WebAssembly code and the system that executes the code makes WebAssembly a safe coding framework for systems. However, WebAssembly is vulnerable to side-channel attacks at the hardware level. Normal precautions and due diligence in sourcing hardware and placing limitations on accessing hardware apply.
+
+*WebAssembly isn't owned or maintained by Microsoft.*
+
+For more information, see the following W3C resources:
+
+* [WebAssembly: Security](https://webassembly.org/docs/security/)
+* [WebAssembly Specification: Security Considerations](https://webassembly.github.io/spec/core/intro/introduction.html#security-considerations)
+* [W3C WebAssembly Community Group: Feedback and issues](https://webassembly.org/community/feedback/): The W3C WebAssembly Community Group link is only provided for reference, making it clear that WebAssembly security vulnerabilities and bugs are patched on an ongoing basis, often reported and addressed by browser. ***Don't send feedback or bug reports on Blazor to the W3C WebAssembly Community Group.*** Blazor feedback should be reported to the [Microsoft ASP.NET Core product unit](https://github.com/dotnet/aspnetcore/issues). If the Microsoft product unit determines that an underlying problem with WebAssembly exists, the product unit will take the appropriate steps to report the problem to the W3C WebAssembly Community Group.
+
 ## Implementation guidance
 
 Articles under this *Overview* provide information on authenticating users in Blazor WebAssembly apps against specific providers.
@@ -237,8 +258,12 @@ Further configuration guidance is found in the following articles:
 
 ## Additional resources
 
-* [Microsoft identity platform documentation](/azure/active-directory/develop/)
-* <xref:host-and-deploy/proxy-load-balancer>: Includes guidance on:
+* Microsoft identity platform documentation
+  * [General documentation](/azure/active-directory/develop/)
+  * [Access tokens](/azure/active-directory/develop/access-tokens)
+* <xref:host-and-deploy/proxy-load-balancer>
   * Using Forwarded Headers Middleware to preserve HTTPS scheme information across proxy servers and internal networks.
   * Additional scenarios and use cases, including manual scheme configuration, request path changes for correct request routing, and forwarding the request scheme for Linux and non-IIS reverse proxies.
 * [Prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
+* [WebAssembly: Security](https://webassembly.org/docs/security/)
+* [WebAssembly Specification: Security Considerations](https://webassembly.github.io/spec/core/intro/introduction.html#security-considerations)
