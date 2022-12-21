@@ -1521,6 +1521,16 @@ Blazor custom elements:
 
 Custom elements don't support [child content](#child-content-render-fragments) or [templated components](xref:blazor/components/templated-components).
 
+### Element name
+
+Per the [HTML specification](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-core-concepts), custom element tag names must adopt kebab case:
+
+<span aria-hidden="true">❌</span><span class="visually-hidden">Invalid:</span> `mycounter`  
+<span aria-hidden="true">❌</span><span class="visually-hidden">Invalid:</span> `MY-COUNTER`  
+<span aria-hidden="true">❌</span><span class="visually-hidden">Invalid:</span> `MyCounter`  
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Valid:</span> `my-counter`  
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Valid:</span> `my-cool-counter`
+
 ### Package
 
 Add a package reference for [`Microsoft.AspNetCore.Components.CustomElements`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.CustomElements) to the app's project file.
