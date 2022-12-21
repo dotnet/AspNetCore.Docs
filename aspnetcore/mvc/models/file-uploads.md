@@ -89,7 +89,7 @@ While specific boundaries can't be provided on what is small vs large for your d
 
 - By default, [HttpRequest.Form](xref:Microsoft.AspNetCore.Http.HttpRequest.Form) does not buffer the entire request body (<xref:Microsoft.AspNetCore.Http.Features.FormOptions.BufferBody>), but it does buffer any multipart form files included.
 - <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> is the max size for buffered form files, defaults to 128MB.
-- <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MemoryBufferThreshold> indicates how much to buffer files in memory before transitioning to a buffer file on disk, defaults to 64KB.
+- <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MemoryBufferThreshold> indicates how much to buffer files in memory before transitioning to a buffer file on disk, defaults to 64KB. `MemoryBufferThreshold` acts as a boundary between small and large files which is raised or lowered depending on the apps resources and scenarios.
 
 Fore more information on `FormOptions`, see the [source code](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http/src/Features/FormOptions.cs).
 
