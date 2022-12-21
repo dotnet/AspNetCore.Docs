@@ -20,11 +20,11 @@ Blazor Hybrid articles cover subjects pertaining to integrating [Razor component
 
 ## Blazor Hybrid apps with .NET MAUI
 
-Blazor Hybrid support is built into the [.NET Multi-platform App UI (.NET MAUI)](/dotnet/maui/what-is-maui) framework. .NET MAUI includes the `BlazorWebView` control that permits rendering [Razor components](xref:blazor/components/index) into an embedded Web View. By using .NET MAUI and Blazor together, you can reuse one set of web UI components across mobile, desktop, and web.
+Blazor Hybrid support is built into the [.NET Multi-platform App UI (.NET MAUI)](/dotnet/maui/what-is-maui) framework. .NET MAUI includes the <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> control that permits rendering [Razor components](xref:blazor/components/index) into an embedded Web View. By using .NET MAUI and Blazor together, you can reuse one set of web UI components across mobile, desktop, and web.
 
 ## Blazor Hybrid apps with WPF and Windows Forms
 
-Blazor Hybrid apps can be built with [Windows Presentation Foundation (WPF)](/dotnet/desktop/wpf/overview/) and [Windows Forms](/dotnet/desktop/winforms/overview/). Blazor provides `BlazorWebView` controls for both of these frameworks. Razor components run natively in the Windows desktop and render to an embedded Web View. Using Blazor in WPF and Windows Forms enables you to add new UI to your existing Windows desktop apps that can be reused across platforms with .NET MAUI or on the web.
+Blazor Hybrid apps can be built with [Windows Presentation Foundation (WPF)](/dotnet/desktop/wpf/overview/) and [Windows Forms](/dotnet/desktop/winforms/overview/). Blazor provides `BlazorWebView` controls for both of these frameworks ([WPF `BlazorWebView`](xref:Microsoft.AspNetCore.Components.WebView.Wpf.BlazorWebView), [Windows Forms  `BlazorWebView`](xref:Microsoft.AspNetCore.Components.WebView.WindowsForms.BlazorWebView)). Razor components run natively in the Windows desktop and render to an embedded Web View. Using Blazor in WPF and Windows Forms enables you to add new UI to your existing Windows desktop apps that can be reused across platforms with .NET MAUI or on the web.
 
 ## Web View configuration
 
@@ -34,6 +34,18 @@ Blazor Hybrid exposes the underlying Web View configuration for different platfo
 * `BlazorWebViewInitialized` provides access to the Web View to allow further configuration of the settings.
 
 Use the preferred patterns on each platform to attach event handlers to the events to execute your custom code.
+
+API documentation:
+
+* .NET MAUI
+  * <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView.BlazorWebViewInitializing>
+  * <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView.BlazorWebViewInitialized>
+* WPF
+  * <xref:Microsoft.AspNetCore.Components.WebView.Wpf.BlazorWebView.BlazorWebViewInitializing>
+  * <xref:Microsoft.AspNetCore.Components.WebView.Wpf.BlazorWebView.BlazorWebViewInitialized>
+* Windows Forms
+  * <xref:Microsoft.AspNetCore.Components.WebView.WindowsForms.BlazorWebView.BlazorWebViewInitializing>
+  * <xref:Microsoft.AspNetCore.Components.WebView.WindowsForms.BlazorWebView.BlazorWebViewInitialized>
 
 ## Unhandled exceptions in Windows Forms and WPF apps
 

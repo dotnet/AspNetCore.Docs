@@ -68,7 +68,7 @@ To set the minimum logging level, call <xref:Microsoft.Extensions.Logging.Loggin
 builder.Logging.SetMinimumLevel(LogLevel.Warning);
 ```
 
-### Log in `Program.cs`
+## Log in `Program.cs` (Blazor WebAssembly)
 
 [Logging in `Program.cs`](xref:fundamentals/logging/index#log-in-programcs) is supported in Blazor WebAssembly apps after the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> is built using the framework's internal console logger provider ([`WebAssemblyConsoleLoggerProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly/src/Services/WebAssemblyConsoleLoggerProvider.cs)).
 
@@ -92,7 +92,7 @@ Developer tools console output:
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-### Log category
+## Log category (Blazor WebAssembly)
 
 [Log categories](xref:fundamentals/logging/index#log-category) are supported in Blazor WebAssembly apps.
 
@@ -110,7 +110,7 @@ Developer tools console output:
 > :::no-loc text="warn: CustomCategory[0]":::  
 > :::no-loc text="Someone has clicked me!":::
 
-### Log event ID
+## Log event ID (Blazor WebAssembly)
 
 [Log event ID](xref:fundamentals/logging/index#log-event-id) is supported in Blazor WebAssembly apps.
 
@@ -140,7 +140,7 @@ Developer tools console output:
 > :::no-loc text="warn: BlazorSample.Pages.Counter[1001]":::  
 > :::no-loc text="Someone has clicked me!":::
 
-### Log message template
+## Log message template (Blazor WebAssembly)
 
 [Log message templates](xref:fundamentals/logging/index#log-message-template) are supported in Blazor WebAssembly apps:
 
@@ -157,7 +157,7 @@ Developer tools console output:
 > :::no-loc text="info: BlazorSample.Pages.Counter[0]":::  
 > :::no-loc text="Someone clicked me at 04/21/2022 12:15:57!":::
 
-### Log exception parameters
+## Log exception parameters (Blazor WebAssembly)
 
 [Log exception parameters](xref:fundamentals/logging/index#log-exceptions) are supported in Blazor WebAssembly apps.
 
@@ -189,7 +189,7 @@ Developer tools console output:
 > :::no-loc text="System.OperationCanceledException: Skip 3":::  
 > :::no-loc text="at BlazorSample.Pages.Counter.IncrementCount() in C:\Users\Alaba\Desktop\BlazorSample\Pages\Counter.razor:line 28":::
 
-### Filter function
+## Filter function (Blazor WebAssembly)
 
 [Filter functions](xref:fundamentals/logging/index#filter-function) are supported in Blazor WebAssembly apps.
 
@@ -252,7 +252,7 @@ In `Program.cs`, logging messages specific to <xref:Microsoft.AspNetCore.Compone
 
 After ***either*** of the preceding filters is added to the app, the console output at the **Verbose** level doesn't show logging messages from the <xref:Microsoft.AspNetCore.Components.RenderTree> API.
 
-### Custom logger provider
+## Custom logger provider (Blazor WebAssembly)
 
 The example in this section demonstrates a custom logger provider for further customization.
 
@@ -483,9 +483,9 @@ Run the app again. Select the **`Log Messages`** button. Notice that the logging
 > :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
 > :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
-### Log scopes
+## Log scopes (Blazor WebAssembly)
 
-The Blazor WebAssembly developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#custom-logger-provider) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
+The Blazor WebAssembly developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#custom-logger-provider-blazor-webassembly) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
 
 [`BlazorWebAssemblyScopesLogger` sample app](https://github.com/dotnet/blazor-samples/tree/main/6.0/BlazorWebAssemblyScopesLogger)
 
@@ -653,9 +653,9 @@ protected override async Task OnInitializedAsync()
 
 For more information on setting the app's environment for Blazor WebAssembly, see <xref:blazor/fundamentals/environments>.
 
-## Blazor WebAssembly authentication logging
+## Authentication logging (Blazor WebAssembly)
 
-*This section only applies to Blazor WebAssembly apps.*
+*This section only applies to Blazor WebAssembly apps in ASP.NET Core 7.0 or later.*
 
 Log Blazor authentication messages at the <xref:Microsoft.Extensions.Logging.LogLevel.Debug?displayProperty=nameWithType> or <xref:Microsoft.Extensions.Logging.LogLevel.Trace?displayProperty=nameWithType> logging levels with a logging configuration in app settings or by using a log filter for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> in `Program.cs`.
 
@@ -752,7 +752,7 @@ To set the minimum logging level, call <xref:Microsoft.Extensions.Logging.Loggin
 builder.Logging.SetMinimumLevel(LogLevel.Warning);
 ```
 
-### Log in `Program.cs`
+## Log in `Program.cs` (Blazor WebAssembly)
 
 [Logging in `Program.cs`](xref:fundamentals/logging/index#log-in-programcs) is supported in Blazor WebAssembly apps after the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> is built using the framework's internal console logger provider ([`WebAssemblyConsoleLoggerProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly/src/Services/WebAssemblyConsoleLoggerProvider.cs)).
 
@@ -776,7 +776,7 @@ Developer tools console output:
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-### Log category
+## Log category (Blazor WebAssembly)
 
 [Log categories](xref:fundamentals/logging/index#log-category) are supported in Blazor WebAssembly apps.
 
@@ -794,7 +794,7 @@ Developer tools console output:
 > :::no-loc text="warn: CustomCategory[0]":::  
 > :::no-loc text="Someone has clicked me!":::
 
-### Log event ID
+## Log event ID (Blazor WebAssembly)
 
 [Log event ID](xref:fundamentals/logging/index#log-event-id) is supported in Blazor WebAssembly apps.
 
@@ -824,7 +824,7 @@ Developer tools console output:
 > :::no-loc text="warn: BlazorSample.Pages.Counter[1001]":::  
 > :::no-loc text="Someone has clicked me!":::
 
-### Log message template
+## Log message template (Blazor WebAssembly)
 
 [Log message templates](xref:fundamentals/logging/index#log-message-template) are supported in Blazor WebAssembly apps:
 
@@ -841,7 +841,7 @@ Developer tools console output:
 > :::no-loc text="info: BlazorSample.Pages.Counter[0]":::  
 > :::no-loc text="Someone clicked me at 04/21/2022 12:15:57!":::
 
-### Log exception parameters
+## Log exception parameters (Blazor WebAssembly)
 
 [Log exception parameters](xref:fundamentals/logging/index#log-exceptions) are supported in Blazor WebAssembly apps.
 
@@ -873,7 +873,7 @@ Developer tools console output:
 > :::no-loc text="System.OperationCanceledException: Skip 3":::  
 > :::no-loc text="at BlazorSample.Pages.Counter.IncrementCount() in C:\Users\Alaba\Desktop\BlazorSample\Pages\Counter.razor:line 28":::
 
-### Filter function
+## Filter function (Blazor WebAssembly)
 
 [Filter functions](xref:fundamentals/logging/index#filter-function) are supported in Blazor WebAssembly apps.
 
@@ -936,7 +936,7 @@ In `Program.cs`, logging messages specific to <xref:Microsoft.AspNetCore.Compone
 
 After ***either*** of the preceding filters is added to the app, the console output at the **Verbose** level doesn't show logging messages from the <xref:Microsoft.AspNetCore.Components.RenderTree> API.
 
-### Custom logger provider
+## Custom logger provider (Blazor WebAssembly)
 
 The example in this section demonstrates a custom logger provider for further customization.
 
@@ -1167,9 +1167,9 @@ Run the app again. Select the **`Log Messages`** button. Notice that the logging
 > :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
 > :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
 
-### Log scopes
+## Log scopes (Blazor WebAssembly)
 
-The Blazor WebAssembly developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#custom-logger-provider) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
+The Blazor WebAssembly developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#custom-logger-provider-blazor-webassembly) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
 
 [`BlazorWebAssemblyScopesLogger` sample app](https://github.com/dotnet/blazor-samples/tree/main/6.0/BlazorWebAssemblyScopesLogger)
 
@@ -1409,7 +1409,7 @@ To set the minimum logging level, call <xref:Microsoft.Extensions.Logging.Loggin
 builder.Logging.SetMinimumLevel(LogLevel.Warning);
 ```
 
-### Custom logger provider in Blazor WebAssembly apps
+## Custom logger provider in Blazor WebAssembly apps
 
 The example in this section demonstrates a custom logger provider for further customization.
 
@@ -1839,7 +1839,7 @@ To set the minimum logging level, call <xref:Microsoft.Extensions.Logging.Loggin
 builder.Logging.SetMinimumLevel(LogLevel.Warning);
 ```
 
-### Custom logger provider in Blazor WebAssembly apps
+## Custom logger provider in Blazor WebAssembly apps
 
 The example in this section demonstrates a custom logger provider for further customization.
 
