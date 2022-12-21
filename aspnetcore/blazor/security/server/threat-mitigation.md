@@ -39,7 +39,7 @@ Resource exhaustion can occur when a client interacts with the server and causes
 
 Denial of service (DoS) attacks usually seek to exhaust an app or server's resources. However, resource exhaustion isn't necessarily the result of an attack on the system. For example, finite resources can be exhausted due to high user demand. DoS is covered further in the [Denial of service (DoS) attacks](#denial-of-service-dos-attacks) section.
 
-Resources external to the Blazor framework, such as databases and file handles (used to read and write files), may also experience resource exhaustion. For more information, see <xref:performance/performance-best-practices>.
+Resources external to the Blazor framework, such as databases and file handles (used to read and write files), may also experience resource exhaustion. For more information, see <xref:fundamentals/best-practices>.
 
 ### CPU
 
@@ -430,7 +430,7 @@ Resource exhaustion can occur when a client interacts with the server and causes
 
 Denial of service (DoS) attacks usually seek to exhaust an app or server's resources. However, resource exhaustion isn't necessarily the result of an attack on the system. For example, finite resources can be exhausted due to high user demand. DoS is covered further in the [Denial of service (DoS) attacks](#denial-of-service-dos-attacks) section.
 
-Resources external to the Blazor framework, such as databases and file handles (used to read and write files), may also experience resource exhaustion. For more information, see <xref:performance/performance-best-practices>.
+Resources external to the Blazor framework, such as databases and file handles (used to read and write files), may also experience resource exhaustion. For more information, see <xref:fundamentals/best-practices>.
 
 ### CPU
 
@@ -821,7 +821,7 @@ Resource exhaustion can occur when a client interacts with the server and causes
 
 Denial of service (DoS) attacks usually seek to exhaust an app or server's resources. However, resource exhaustion isn't necessarily the result of an attack on the system. For example, finite resources can be exhausted due to high user demand. DoS is covered further in the [Denial of service (DoS) attacks](#denial-of-service-dos-attacks) section.
 
-Resources external to the Blazor framework, such as databases and file handles (used to read and write files), may also experience resource exhaustion. For more information, see <xref:performance/performance-best-practices>.
+Resources external to the Blazor framework, such as databases and file handles (used to read and write files), may also experience resource exhaustion. For more information, see <xref:fundamentals/best-practices>.
 
 ### CPU
 
