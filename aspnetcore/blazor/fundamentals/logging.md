@@ -485,7 +485,7 @@ Run the app again. Select the **`Log Messages`** button. Notice that the logging
 
 ## Log scopes (Blazor WebAssembly)
 
-The Blazor WebAssembly developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#custom-logger-provider) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
+The Blazor WebAssembly developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#custom-logger-provider-blazor-webassembly) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
 
 [`BlazorWebAssemblyScopesLogger` sample app](https://github.com/dotnet/blazor-samples/tree/main/6.0/BlazorWebAssemblyScopesLogger)
 
@@ -1169,7 +1169,7 @@ Run the app again. Select the **`Log Messages`** button. Notice that the logging
 
 ## Log scopes (Blazor WebAssembly)
 
-The Blazor WebAssembly developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#custom-logger-provider) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
+The Blazor WebAssembly developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#custom-logger-provider-blazor-webassembly) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
 
 [`BlazorWebAssemblyScopesLogger` sample app](https://github.com/dotnet/blazor-samples/tree/main/6.0/BlazorWebAssemblyScopesLogger)
 
