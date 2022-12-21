@@ -1523,7 +1523,7 @@ Custom elements don't support [child content](#child-content-render-fragments) o
 
 ### Element name
 
-Per the [HTML specification](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-core-concepts), custom element tag names must be in kebab case:
+Per the [HTML specification](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements-core-concepts), custom element tag names must adopt kebab case:
 
 <span aria-hidden="true">❌</span><span class="visually-hidden">Invalid:</span> `mycounter`  
 <span aria-hidden="true">❌</span><span class="visually-hidden">Invalid:</span> `MY-COUNTER`  
