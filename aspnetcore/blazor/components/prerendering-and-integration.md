@@ -117,7 +117,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      ```
 
      > [!IMPORTANT]
-     > Prerendering isn't supported for authentication endpoints (`/authentication/` path segment). For more information, see <xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication>.
+     > Prerendering isn't supported for authentication endpoints (`/authentication/` path segment). For more information, see <xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication>.
 
 1. In the `Program.cs` file of the **:::no-loc text="Server":::** project, change the fallback endpoint from the `index.html` file to the `_Host.cshtml` page:
 
@@ -877,7 +877,7 @@ By initializing components with the same state used during prerendering, any exp
   * [Prerendering with JavaScript interop](xref:blazor/components/lifecycle#prerendering-with-javascript-interop)
 * Authentication and authorization subjects that pertain to prerendering
   * [General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-  * [Support prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication)
+  * [Prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
 * [Host and deploy: Blazor WebAssembly](xref:blazor/host-and-deploy/webassembly)
 
 :::zone-end
@@ -1036,7 +1036,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      ```
 
      > [!IMPORTANT]
-     > Prerendering isn't supported for authentication endpoints (`/authentication/` path segment). For more information, see <xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication>.
+     > Prerendering isn't supported for authentication endpoints (`/authentication/` path segment). For more information, see <xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication>.
 
 1. In endpoint mapping of the **:::no-loc text="Server":::** project in `Program.cs`, change the fallback from the `index.html` file to the `_Host.cshtml` page:
 
@@ -1820,7 +1820,7 @@ By initializing components with the same state used during prerendering, any exp
   * [Prerendering with JavaScript interop](xref:blazor/components/lifecycle#prerendering-with-javascript-interop)
 * Authentication and authorization subjects that pertain to prerendering
   * [General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-  * [Support prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication)
+  * [Prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
 * [Host and deploy: Blazor WebAssembly](xref:blazor/host-and-deploy/webassembly)
 
 :::zone-end
@@ -2527,7 +2527,7 @@ For more information, see <xref:blazor/components/index#namespaces>.
   * [Prerendering with JavaScript interop](xref:blazor/components/lifecycle#prerendering-with-javascript-interop)
 * Authentication and authorization subjects that pertain to prerendering
   * [General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-  * [Support prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#support-prerendering-with-authentication)
+  * [Prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
 * [Host and deploy: Blazor WebAssembly](xref:blazor/host-and-deploy/webassembly)
 
 :::zone-end
