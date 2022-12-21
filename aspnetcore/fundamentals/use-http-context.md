@@ -26,7 +26,7 @@ Commonly used members on `HttpRequest` include:
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Headers?displayProperty=nameWithType>|A collection of request headers.|`user-agent=Edge`<br />`x-custom-header=MyValue`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues?displayProperty=nameWithType>|A collection of route values. The collection is set when the request is matched to a route.|`language=en`<br />`article=getstarted`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Query?displayProperty=nameWithType>|A collection of query values parsed from <xref:Microsoft.AspNetCore.Http.HttpRequest.QueryString>.|`filter=hello`<br />`page=1`|
-|[HttpRequest.ReadFormAsync()](xref:Microsoft.AspNetCore.Http.HttpRequest.ReadFormAsync(System.Threading.CancellationToken))|A method that reads the request body as a form and returns a form values collection. For information about why `ReadFormAsync` should be used to access form data, see [Prefer ReadFormAsync over Request.Form](xref:performance/performance-best-practices#prefer-readformasync-over-requestform).|`email=user@contoso.com`<br />`password=TNkt4taM`|
+|[HttpRequest.ReadFormAsync()](xref:Microsoft.AspNetCore.Http.HttpRequest.ReadFormAsync(System.Threading.CancellationToken))|A method that reads the request body as a form and returns a form values collection. For information about why `ReadFormAsync` should be used to access form data, see [Prefer ReadFormAsync over Request.Form](xref:fundamentals/best-practices#prefer-readformasync-over-requestform).|`email=user@contoso.com`<br />`password=TNkt4taM`|
 |<xref:Microsoft.AspNetCore.Http.HttpRequest.Body?displayProperty=nameWithType>|A <xref:System.IO.Stream> for reading the request body.|UTF-8 JSON payload|
 
 ### Get request headers
