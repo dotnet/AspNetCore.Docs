@@ -24,16 +24,22 @@ Default URI request routing behavior:
   * WPF and Windows Forms: The host page content is returned.
   * .NET MAUI: A 404 response is returned.
 
-To change the link handling behavior for links that don't set `target="_blank"`, register the `UrlLoading` event and set the `UrlLoadingEventArgs.UrlLoadingStrategy` property. The `UrlLoadingStrategy` enumeration allows setting link handling behavior to any of the following values:
+To change the link handling behavior for links that don't set `target="_blank"`, register the `UrlLoading` event and set the <xref:Microsoft.AspNetCore.Components.WebView.UrlLoadingEventArgs.UrlLoadingStrategy?displayProperty=nameWithType> property. The <xref:Microsoft.AspNetCore.Components.WebView.UrlLoadingEventArgs.UrlLoadingStrategy> enumeration allows setting link handling behavior to any of the following values:
 
-* `OpenExternally`: Load the URL using an app determined by the device. This is the default strategy for URIs with an external host.
-* `OpenInWebView`: Load the URL within the `BlazorWebView`. This is the default strategy for URLs with a host matching the app origin. ***Don't use this strategy for external links unless you can ensure the destination URI is fully trusted.***
-* `CancelLoad`: Cancels the current URL loading attempt.
+* <xref:Microsoft.AspNetCore.Components.WebView.UrlLoadingStrategy.OpenExternally>: Load the URL using an app determined by the device. This is the default strategy for URIs with an external host.
+* <xref:Microsoft.AspNetCore.Components.WebView.UrlLoadingStrategy.OpenInWebView>: Load the URL within the `BlazorWebView`. This is the default strategy for URLs with a host matching the app origin. ***Don't use this strategy for external links unless you can ensure the destination URI is fully trusted.***
+* <xref:Microsoft.AspNetCore.Components.WebView.UrlLoadingStrategy.CancelLoad>: Cancels the current URL loading attempt.
 
-The `UrlLoadingEventArgs.Url` property is used to get or dynamically set the URL.
+The <xref:Microsoft.AspNetCore.Components.WebView.UrlLoadingEventArgs.Url?displayProperty=nameWithType> property is used to get or dynamically set the URL.
 
 > [!WARNING]
 > By default, external links are opened in an app determined by the device. Opening external links within a `BlazorWebView` can introduce security vulnerabilities and should ***not*** be enabled unless you can ensure that the external links are fully trusted.
+
+API documentation:
+
+* .NET MAUI: <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView.UrlLoading>
+* WPF: <xref:Microsoft.AspNetCore.Components.WebView.Wpf.BlazorWebView.UrlLoading>
+* Windows Forms: <xref:Microsoft.AspNetCore.Components.WebView.WindowsForms.BlazorWebView.UrlLoading>
 
 ## Namespace
 
@@ -189,16 +195,22 @@ Default URI request routing behavior:
   * WPF and Windows Forms: The host page content is returned.
   * .NET MAUI: A 404 response is returned.
 
-To change the link handling behavior for links that don't set `target="_blank"`, register the `UrlLoading` event and set the `UrlLoadingEventArgs.UrlLoadingStrategy` property. The `UrlLoadingStrategy` enumeration allows setting link handling behavior to any of the following values:
+To change the link handling behavior for links that don't set `target="_blank"`, register the `UrlLoading` event and set the <xref:Microsoft.AspNetCore.Components.WebView.UrlLoadingEventArgs.UrlLoadingStrategy?displayProperty=nameWithType> property. The <xref:Microsoft.AspNetCore.Components.WebView.UrlLoadingEventArgs.UrlLoadingStrategy> enumeration allows setting link handling behavior to any of the following values:
 
-* `OpenExternally`: Load the URL using an app determined by the device. This is the default strategy for URIs with an external host.
-* `OpenInWebView`: Load the URL within the `BlazorWebView`. This is the default strategy for URLs with a host matching the app origin. ***Don't use this strategy for external links unless you can ensure the destination URI is fully trusted.***
-* `CancelLoad`: Cancels the current URL loading attempt.
+* <xref:Microsoft.AspNetCore.Components.WebView.UrlLoadingStrategy.OpenExternally>: Load the URL using an app determined by the device. This is the default strategy for URIs with an external host.
+* <xref:Microsoft.AspNetCore.Components.WebView.UrlLoadingStrategy.OpenInWebView>: Load the URL within the `BlazorWebView`. This is the default strategy for URLs with a host matching the app origin. ***Don't use this strategy for external links unless you can ensure the destination URI is fully trusted.***
+* <xref:Microsoft.AspNetCore.Components.WebView.UrlLoadingStrategy.CancelLoad>: Cancels the current URL loading attempt.
 
-The `UrlLoadingEventArgs.Url` property is used to get or dynamically set the URL.
+The <xref:Microsoft.AspNetCore.Components.WebView.UrlLoadingEventArgs.Url?displayProperty=nameWithType> property is used to get or dynamically set the URL.
 
 > [!WARNING]
 > By default, external links are opened in an app determined by the device. Opening external links within a `BlazorWebView` can introduce security vulnerabilities and should ***not*** be enabled unless you can ensure that the external links are fully trusted.
+
+API documentation:
+
+* .NET MAUI: <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView.UrlLoading>
+* WPF: <xref:Microsoft.AspNetCore.Components.WebView.Wpf.BlazorWebView.UrlLoading>
+* Windows Forms: <xref:Microsoft.AspNetCore.Components.WebView.WindowsForms.BlazorWebView.UrlLoading>
 
 ## Namespace
 
