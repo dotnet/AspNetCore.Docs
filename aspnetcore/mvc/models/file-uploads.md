@@ -60,7 +60,7 @@ Common storage options for files include:
 
 * Database
 
-  * For small file uploads, a database is often faster than physical storage (file system or network share) options.
+  * For [small](#small5) file uploads, a database is often faster than physical storage (file system or network share) options.
   * A database is often more convenient than physical storage options because retrieval of a database record for user data can concurrently supply the file content (for example, an avatar image).
   * A database is potentially less expensive than using a cloud data storage service.
 
@@ -78,6 +78,20 @@ Common storage options for files include:
   * Services are potentially lower cost in large storage infrastructure scenarios.
 
   For more information, see [Quickstart: Use .NET to create a blob in object storage](/azure/storage/blobs/storage-quickstart-blobs-dotnet).
+
+<a name="small5"></a>
+
+## Small and large files
+
+The definition of small and large files depend on the computing resources available. Apps should benchmark the storage approach used to ensure it can handle the expected sizes. Benchmark memory, CPU, disk, and database performance.
+
+While specific boundaries can't be provided on what is small vs large for your deployment, here are some of AspNetCore's related defaults for [FormOptions](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http/src/Features/FormOptions.cs):
+
+- By default, [HttpRequest.Form](xref:Microsoft.AspNetCore.Http.HttpRequest.Form) does not buffer the entire request body (<xref:Microsoft.AspNetCore.Http.Features.FormOptions.BufferBody>), but it does buffer any multipart form files included.
+- <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> is the max size for buffered form files, defaults to 128MB.
+- <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MemoryBufferThreshold> indicates how much to buffer files in memory before transitioning to a buffer file on disk, defaults to 64KB. `MemoryBufferThreshold` acts as a boundary between small and large files which is raised or lowered depending on the apps resources and scenarios.
+
+Fore more information on `FormOptions`, see the [source code](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http/src/Features/FormOptions.cs).
 
 ## File upload scenarios
 
