@@ -370,9 +370,9 @@ See [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/32842).
 
 ## Trust HTTPS certificate from Windows Subsystem for Linux
 
-The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS self-signed development certificate. To configure the Windows certificate store to trust the WSL certificate:
+The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS self-signed development certificate, which by default isn't trusted in Windows. The easiest way to have Windows trust the WSL certificate, is to configure WSL to use the same certificate as Windows:
 
-* Export the developer certificate to a file on ***Windows***:
+* On ***Windows***, export the developer certificate to a file:
 
   ```
   dotnet dev-certs https -ep https.pfx -p $CREDENTIAL_PLACEHOLDER$ --trust
