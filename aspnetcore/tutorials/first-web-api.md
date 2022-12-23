@@ -297,6 +297,8 @@ The preceding commands:
 * Add NuGet packages required for scaffolding.
 * Install the scaffolding engine (`dotnet-aspnet-codegenerator`) after uninstalling any possible previous version.
 
+Note: add dotnet tools to PATH. (i.e. export PATH=$HOME/.dotnet/tools:$PATH)
+
 Build the project.
 
 Run the following command:
