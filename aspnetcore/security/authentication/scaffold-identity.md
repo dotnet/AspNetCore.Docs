@@ -164,7 +164,7 @@ Tokens can be passed to components:
 
 For more information, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
 
-In the `Pages/_Host.cshtml` file, establish the token after adding it to the `InitialApplicationState` and `TokenProvider` classes:
+In the `Pages/_Host.cshtml` file, establish the token after adding it to the [`InitialApplicationState` and `TokenProvider` classes](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app):
 
 ```csharp
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
@@ -613,7 +613,7 @@ Tokens can be passed to components:
 
 For more information, see <xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app>.
 
-In the `Pages/_Host.cshtml` file, establish the token after adding it to the `InitialApplicationState` and `TokenProvider` classes:
+In the `Pages/_Host.cshtml` file, establish the token after adding it to the [`InitialApplicationState` and `TokenProvider` classes](xref:blazor/security/server/additional-scenarios#pass-tokens-to-a-blazor-server-app):
 
 ```csharp
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
