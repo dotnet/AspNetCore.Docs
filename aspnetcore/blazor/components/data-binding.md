@@ -46,7 +46,7 @@ Bind a property or field on other [Document Object Model (DOM)](https://develope
 To execute asynchronous logic after binding, use `@bind:after="{EVENT}"` with a DOM event for the `{EVENT}` placeholder. An assigned C# method isn't executed until the bound value is assigned synchronously.
 
 > [!IMPORTANT]
-> The `@bind:after` feature is receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](/download/dotnet/7.0).
+> The `@bind:after` feature is receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](https://dotnet.microsoft.com/download).
 >
 > Using an event callback parameter (`[Parameter] public EventCallback<string> ValueChanged { get; set; }`) isn't supported. Instead, pass an <xref:System.Action>-returning or <xref:System.Threading.Tasks.Task>-returning method to `@bind:after`.
 >
