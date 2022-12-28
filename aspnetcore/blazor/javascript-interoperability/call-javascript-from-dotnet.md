@@ -753,6 +753,15 @@ Unmarshalled interop using the <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime>
 
 For more information, see <xref:blazor/js-interop/import-export-interop>. 
 
+## Document Object Model (DOM) cleanup tasks during component disposal
+
+Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
+
+* The component may have been removed from the DOM by the time your cleanup code executes in `Dispose{Async}`.
+* In a Blazor Server app, the Blazor renderer may have been disposed by the framework by the time your cleanup code executes in `Dispose{Async}`.
+
+The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
+
 ## JavaScript interop calls without a circuit
 
 [!INCLUDE[](~/blazor/includes/js-interop/circuit-disconnection.md)]
@@ -1568,6 +1577,15 @@ longRunningFn: 3
 longRunningFn aborted!
 ```
 
+## Document Object Model (DOM) cleanup tasks during component disposal
+
+Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
+
+* The component may have been removed from the DOM by the time your cleanup code executes in `Dispose{Async}`.
+* In a Blazor Server app, the Blazor renderer may have been disposed by the framework by the time your cleanup code executes in `Dispose{Async}`.
+
+The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
+
 ## JavaScript interop calls without a circuit
 
 [!INCLUDE[](~/blazor/includes/js-interop/circuit-disconnection.md)]
@@ -2192,6 +2210,15 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 :::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
 
+## Document Object Model (DOM) cleanup tasks during component disposal
+
+Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
+
+* The component may have been removed from the DOM by the time your cleanup code executes in `Dispose{Async}`.
+* In a Blazor Server app, the Blazor renderer may have been disposed by the framework by the time your cleanup code executes in `Dispose{Async}`.
+
+The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
+
 ## JavaScript interop calls without a circuit
 
 [!INCLUDE[](~/blazor/includes/js-interop/circuit-disconnection.md)]
@@ -2608,6 +2635,15 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 `Pages/CallJsExample11.razor`:
 
 :::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
+
+## Document Object Model (DOM) cleanup tasks during component disposal
+
+Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
+
+* The component may have been removed from the DOM by the time your cleanup code executes in `Dispose{Async}`.
+* In a Blazor Server app, the Blazor renderer may have been disposed by the framework by the time your cleanup code executes in `Dispose{Async}`.
+
+The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
 
 ## JavaScript interop calls without a circuit
 

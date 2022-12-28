@@ -821,6 +821,15 @@ As an alternative to interacting with JavaScript (JS) in Blazor WebAssembly apps
 
 For more information, see <xref:blazor/js-interop/import-export-interop>. 
 
+## Document Object Model (DOM) cleanup tasks during component disposal
+
+Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
+
+* The component may have been removed from the DOM by the time your cleanup code executes in `Dispose{Async}`.
+* In a Blazor Server app, the Blazor renderer may have been disposed by the framework by the time your cleanup code executes in `Dispose{Async}`.
+
+The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
+
 ## JavaScript interop calls without a circuit
 
 [!INCLUDE[](~/blazor/includes/js-interop/circuit-disconnection.md)]
@@ -1630,6 +1639,15 @@ In the preceding example:
 
 [!INCLUDE[](~/blazor/includes/js-interop/6.0/size-limits.md)]
 
+## Document Object Model (DOM) cleanup tasks during component disposal
+
+Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
+
+* The component may have been removed from the DOM by the time your cleanup code executes in `Dispose{Async}`.
+* In a Blazor Server app, the Blazor renderer may have been disposed by the framework by the time your cleanup code executes in `Dispose{Async}`.
+
+The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM. 
+
 ## JavaScript interop calls without a circuit
 
 [!INCLUDE[](~/blazor/includes/js-interop/circuit-disconnection.md)]
@@ -2047,6 +2065,15 @@ JS isolation provides the following benefits:
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
 
+## Document Object Model (DOM) cleanup tasks during component disposal
+
+Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
+
+* The component may have been removed from the DOM by the time your cleanup code executes in `Dispose{Async}`.
+* In a Blazor Server app, the Blazor renderer may have been disposed by the framework by the time your cleanup code executes in `Dispose{Async}`.
+
+The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
+
 ## JavaScript interop calls without a circuit
 
 [!INCLUDE[](~/blazor/includes/js-interop/circuit-disconnection.md)]
@@ -2449,6 +2476,15 @@ Objects that contain circular references can't be serialized on the client for e
 ## Size limits on JavaScript interop calls
 
 [!INCLUDE[](~/blazor/includes/js-interop/3.1/size-limits.md)]
+
+## Document Object Model (DOM) cleanup tasks during component disposal
+
+Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
+
+* The component may have been removed from the DOM by the time your cleanup code executes in `Dispose{Async}`.
+* In a Blazor Server app, the Blazor renderer may have been disposed by the framework by the time your cleanup code executes in `Dispose{Async}`.
+
+The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
 
 ## JavaScript interop calls without a circuit
 
