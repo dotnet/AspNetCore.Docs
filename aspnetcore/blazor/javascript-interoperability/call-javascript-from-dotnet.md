@@ -753,7 +753,7 @@ Unmarshalled interop using the <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime>
 
 For more information, see <xref:blazor/js-interop/import-export-interop>. 
 
-## Cleanup code failures during component disposal
+## Document Object Model (DOM) cleanup tasks during component disposal
 
 Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
 
@@ -1577,7 +1577,7 @@ longRunningFn: 3
 longRunningFn aborted!
 ```
 
-## Cleanup code failures during component disposal
+## Document Object Model (DOM) cleanup tasks during component disposal
 
 Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
 
@@ -2210,7 +2210,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 :::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
 
-## Cleanup code failures during component disposal
+## Document Object Model (DOM) cleanup tasks during component disposal
 
 Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
 
@@ -2636,7 +2636,7 @@ In the following example, the `nonFunction` JS function doesn't exist. When the 
 
 :::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample11.razor" highlight="28":::
 
-## Cleanup code failures during component disposal
+## Document Object Model (DOM) cleanup tasks during component disposal
 
 Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
 

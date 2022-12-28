@@ -234,7 +234,7 @@ Components shouldn't need to implement <xref:System.IDisposable> and <xref:Syste
 
 Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
 
-### Cleanup code failures during component disposal
+### Document Object Model (DOM) cleanup tasks during component disposal
 
 Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
 
@@ -707,7 +707,7 @@ Components shouldn't need to implement <xref:System.IDisposable> and <xref:Syste
 
 Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
 
-### Cleanup code failures during component disposal
+### Document Object Model (DOM) cleanup tasks during component disposal
 
 Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
 
@@ -1180,7 +1180,7 @@ Components shouldn't need to implement <xref:System.IDisposable> and <xref:Syste
 
 Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
 
-### Cleanup code failures during component disposal
+### Document Object Model (DOM) cleanup tasks during component disposal
 
 Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
 
@@ -1649,7 +1649,7 @@ Components shouldn't need to implement <xref:System.IDisposable> and <xref:Syste
 
 Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
 
-### Cleanup code failures during component disposal
+### Document Object Model (DOM) cleanup tasks during component disposal
 
 Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
 

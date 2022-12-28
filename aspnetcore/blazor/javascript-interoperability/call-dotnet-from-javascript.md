@@ -821,7 +821,7 @@ As an alternative to interacting with JavaScript (JS) in Blazor WebAssembly apps
 
 For more information, see <xref:blazor/js-interop/import-export-interop>. 
 
-## Cleanup code failures during component disposal
+## Document Object Model (DOM) cleanup tasks during component disposal
 
 Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
 
@@ -1639,7 +1639,7 @@ In the preceding example:
 
 [!INCLUDE[](~/blazor/includes/js-interop/6.0/size-limits.md)]
 
-## Cleanup code failures during component disposal
+## Document Object Model (DOM) cleanup tasks during component disposal
 
 Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
 
@@ -2065,7 +2065,7 @@ JS isolation provides the following benefits:
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
 
-## Cleanup code failures during component disposal
+## Document Object Model (DOM) cleanup tasks during component disposal
 
 Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
 
@@ -2477,7 +2477,7 @@ Objects that contain circular references can't be serialized on the client for e
 
 [!INCLUDE[](~/blazor/includes/js-interop/3.1/size-limits.md)]
 
-## Cleanup code failures during component disposal
+## Document Object Model (DOM) cleanup tasks during component disposal
 
 Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
 
