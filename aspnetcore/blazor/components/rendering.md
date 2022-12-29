@@ -422,7 +422,7 @@ The UI might involve:
 
 One way to deal with this scenario is to provide a *state management* class, often as a dependency injection (DI) service, injected into multiple components. When one component calls a method on the state manager, the state manager raises a C# event that's then received by an independent component. For an example of this, see [In-memory state container service](https://learn.microsoft.com/en-us/aspnet/core/blazor/state-management?view=aspnetcore-7.0&pivots=server#in-memory-state-container-service-server) ([WASM equivalent](https://learn.microsoft.com/en-us/aspnet/core/blazor/state-management?view=aspnetcore-7.0&pivots=webassembly#in-memory-state-container-service-server)) section of State Management article.
 
-Another option you have is to [pass data across a component hierarchy](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/cascading-values-and-parameters?view=aspnetcore-7.0#pass-data-across-a-component-hierarchy) using cascading values and paramterers.
+Another option you have is to [pass data across a component hierarchy](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/cascading-values-and-parameters?view=aspnetcore-7.0#pass-data-across-a-component-hierarchy) using cascading values and parameters.
 
 You can also pass state updates by [binding across more than two components](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/data-binding?view=aspnetcore-7.0#bind-across-more-than-two-components) using data bindings.
 
