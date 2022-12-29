@@ -141,7 +141,7 @@ WebAssembly code can access the full functionality of the browser via JavaScript
 
 ![Blazor WebAssembly runs .NET code in the browser with WebAssembly.](~/blazor/index/_static/blazor-webassembly.png)
 
-When a Blazor WebAssembly app is built and run in a browser:
+When a Blazor WebAssembly app is built and run:
 
 * C# code files and Razor files are compiled into .NET assemblies.
 * The assemblies and the [.NET runtime](/dotnet/framework/get-started/overview) are downloaded to the browser.
