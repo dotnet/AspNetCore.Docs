@@ -424,7 +424,7 @@ One way to deal with this scenario is to provide a *state management* class, oft
 
 Another option you have is to [pass data across a component hierarchy](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy) using cascading values and parameters.
 
-You can also pass state updates by [binding across more than two components](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/data-binding?view=aspnetcore-7.0#bind-across-more-than-two-components) using data bindings.
+You can also pass state updates by [binding across more than two components](https://learn.microsoft.com/en-us/aspnet/core/blazor/components/data-binding#bind-across-more-than-two-components) using data bindings.
 
 Since these C# events are outside the Blazor rendering pipeline, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> on other components you wish to render in response to the state manager's events.
 
