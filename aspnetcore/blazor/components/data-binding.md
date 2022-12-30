@@ -173,6 +173,62 @@ Razor attribute binding is case-sensitive:
 * `@bind`, `@bind:event`, and `@bind:after` are valid.
 * `@Bind`/`@bind:Event`/`@bind:aftEr` (capital letters) or `@BIND`/`@BIND:EVENT`/`@BIND:AFTER` (all capital letters) **are invalid**.
 
+## Use `@bind:get`/`@bind:set` modifiers and avoid event handlers for two-way data binding
+
+Two-way data binding isn't possible to implement with an event handler.
+
+<span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> Consider the following dysfunctional approach using an event handler:
+
+```razor
+<p>
+    <input value="@inputValue" @oninput="OnInput" />
+</p>
+
+<p>
+    <code>inputValue</code>: @inputValue
+</p>
+
+@code {
+    private string? inputValue;
+
+    protected void OnInput(ChangeEventArgs args)
+    {
+        var newValue = args.Value?.ToString() ?? string.Empty;
+
+        inputValue = newValue.Length > 4 ? "Long!" : inputValue = newValue;
+    }
+}
+```
+
+The `OnInput1` event handler in the preceding code updates the value of `inputValue` to `Too long!` after a fourth character is provided. However, the event handler doesn't prevent additional characters from being added to the `<input>` element that aren't reflected in the underlying value of `inputValue`, which remains `Too long!`. The preceding example is only capable of one-way data binding.
+
+The reason for this behavior is that Blazor isn't aware that your code intends to modify the value of `inputValue` in the event handler. Blazor doesn't try to force the Document Object Model (DOM) and the .NET side to match unless they are bound with `@bind` syntax. In earlier versions of Blazor, this problem was addressed by binding (`@bind`) to a property and controlling the value with the property's setter. In ASP.NET Core 7.0 or later, new `@bind:get`/`@bind:set` modifier syntax is used to implement two-way data binding, as the next example demonstrates.
+
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> Consider the following correct approach using `@bind:get`/`@bind:set`:
+
+```razor
+<p>
+    <input @bind:event="oninput" @bind:get="inputValue" @bind:set="OnInput" />
+</p>
+
+<p>
+    <code>inputValue</code>: @inputValue
+</p>
+
+@code {
+    private string? inputValue;
+
+    protected void OnInput(string value)
+    {
+        var newValue = value ?? string.Empty;
+
+        inputValue = newValue.Length > 4 ? "Long!" : inputValue = newValue;
+    }
+}
+```
+
+Using `@bind:get`/`@bind:set` attributes in the preceding example both controls the underlying value of `inputValue` via `@bind:set` and always reflects the current value of `inputValue` via `@bind:get` in the `<input>` element. The preceding example demonstrates the correct approach for implementing two-way data binding. The approach also has the benefit of binding to a field or avoiding logic in a property setter when a property is bound.
+
 ## Multiple option selection with `<select>` elements
 
 Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with `<select>` elements. The [`@onchange`](xref:mvc/views/razor#onevent) event provides an array of the selected elements via [event arguments (`ChangeEventArgs`)](xref:blazor/components/event-handling#event-arguments). The value must be bound to an array type.
@@ -222,7 +278,7 @@ Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attrib
     public string[] SelectedCars { get; set; } = new string[] { };
     public string[] SelectedCities { get; set; } = new[] { "bal", "sea" };
 
-    void SelectedCarsChanged(ChangeEventArgs e)
+    private void SelectedCarsChanged(ChangeEventArgs e)
     {
         if (e.Value is not null)
         {
@@ -541,7 +597,7 @@ Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attrib
     public string[] SelectedCars { get; set; } = new string[] { };
     public string[] SelectedCities { get; set; } = new[] { "bal", "sea" };
 
-    void SelectedCarsChanged(ChangeEventArgs e)
+    private void SelectedCarsChanged(ChangeEventArgs e)
     {
         if (e.Value is not null)
         {
