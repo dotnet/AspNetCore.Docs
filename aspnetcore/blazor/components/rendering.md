@@ -108,12 +108,11 @@ The UI might involve:
 
 One way to deal with this scenario is to provide a *state management* class, often as a dependency injection (DI) service, injected into multiple components. When one component calls a method on the state manager, the state manager raises a C# event that's then received by an independent component.
 
-> [!NOTE]
-> For approaches to manage state, see the following resources:
->
-> * [In-memory state container service (Blazor Server)](xref:blazor/state-management?pivots=server#in-memory-state-container-service-server) ([Blazor WebAssembly equivalent](xref:blazor/state-management?pivots=webassembly#in-memory-state-container-service-server)) section of the *State management* article.
-> * [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy) using cascading values and parameters.
-> * [Bind across more than two components](xref:blazor/components/data-binding#bind-across-more-than-two-components) using data bindings.
+For approaches to manage state, see the following resources:
+
+* [In-memory state container service (Blazor Server)](xref:blazor/state-management?pivots=server#in-memory-state-container-service-server) ([Blazor WebAssembly equivalent](xref:blazor/state-management?pivots=webassembly#in-memory-state-container-service-server)) section of the *State management* article.
+* [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy) using cascading values and parameters.
+* [Bind across more than two components](xref:blazor/components/data-binding#bind-across-more-than-two-components) using data bindings.
 
 For the state manager approach, C# events are outside the Blazor rendering pipeline. Call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> on other components you wish to rerender in response to the state manager's events.
 
@@ -217,12 +216,11 @@ The UI might involve:
 
 One way to deal with this scenario is to provide a *state management* class, often as a dependency injection (DI) service, injected into multiple components. When one component calls a method on the state manager, the state manager raises a C# event that's then received by an independent component.
 
-> [!NOTE]
-> For approaches to manage state, see the following resources:
->
-> * [In-memory state container service (Blazor Server)](xref:blazor/state-management?pivots=server#in-memory-state-container-service-server) ([Blazor WebAssembly equivalent](xref:blazor/state-management?pivots=webassembly#in-memory-state-container-service-server)) section of the *State management* article.
-> * [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy) using cascading values and parameters.
-> * [Bind across more than two components](xref:blazor/components/data-binding#bind-across-more-than-two-components) using data bindings.
+For approaches to manage state, see the following resources:
+
+* [In-memory state container service (Blazor Server)](xref:blazor/state-management?pivots=server#in-memory-state-container-service-server) ([Blazor WebAssembly equivalent](xref:blazor/state-management?pivots=webassembly#in-memory-state-container-service-server)) section of the *State management* article.
+* [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy) using cascading values and parameters.
+* [Bind across more than two components](xref:blazor/components/data-binding#bind-across-more-than-two-components) using data bindings.
 
 For the state manager approach, C# events are outside the Blazor rendering pipeline. Call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> on other components you wish to rerender in response to the state manager's events.
 
@@ -330,12 +328,11 @@ The UI might involve:
 
 One way to deal with this scenario is to provide a *state management* class, often as a dependency injection (DI) service, injected into multiple components. When one component calls a method on the state manager, the state manager raises a C# event that's then received by an independent component.
 
-> [!NOTE]
-> For approaches to manage state, see the following resources:
->
-> * [In-memory state container service (Blazor Server)](xref:blazor/state-management?pivots=server#in-memory-state-container-service-server) ([Blazor WebAssembly equivalent](xref:blazor/state-management?pivots=webassembly#in-memory-state-container-service-server)) section of the *State management* article.
-> * [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy) using cascading values and parameters.
-> * [Bind across more than two components](xref:blazor/components/data-binding#bind-across-more-than-two-components) using data bindings.
+For approaches to manage state, see the following resources:
+
+* [In-memory state container service (Blazor Server)](xref:blazor/state-management?pivots=server#in-memory-state-container-service-server) ([Blazor WebAssembly equivalent](xref:blazor/state-management?pivots=webassembly#in-memory-state-container-service-server)) section of the *State management* article.
+* [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy) using cascading values and parameters.
+* [Bind across more than two components](xref:blazor/components/data-binding#bind-across-more-than-two-components) using data bindings.
 
 For the state manager approach, C# events are outside the Blazor rendering pipeline. Call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> on other components you wish to rerender in response to the state manager's events.
 
@@ -443,12 +440,11 @@ The UI might involve:
 
 One way to deal with this scenario is to provide a *state management* class, often as a dependency injection (DI) service, injected into multiple components. When one component calls a method on the state manager, the state manager raises a C# event that's then received by an independent component.
 
-> [!NOTE]
-> For approaches to manage state, see the following resources:
->
-> * [In-memory state container service (Blazor Server)](xref:blazor/state-management?pivots=server#in-memory-state-container-service-server) ([Blazor WebAssembly equivalent](xref:blazor/state-management?pivots=webassembly#in-memory-state-container-service-server)) section of the *State management* article.
-> * [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy) using cascading values and parameters.
-> * [Bind across more than two components](xref:blazor/components/data-binding#bind-across-more-than-two-components) using data bindings.
+For approaches to manage state, see the following resources:
+
+* [In-memory state container service (Blazor Server)](xref:blazor/state-management?pivots=server#in-memory-state-container-service-server) ([Blazor WebAssembly equivalent](xref:blazor/state-management?pivots=webassembly#in-memory-state-container-service-server)) section of the *State management* article.
+* [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy) using cascading values and parameters.
+* [Bind across more than two components](xref:blazor/components/data-binding#bind-across-more-than-two-components) using data bindings.
 
 For the state manager approach, C# events are outside the Blazor rendering pipeline. Call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> on other components you wish to rerender in response to the state manager's events.
 
