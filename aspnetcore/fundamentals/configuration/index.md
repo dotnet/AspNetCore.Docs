@@ -64,7 +64,7 @@ The following list contains the default host configuration sources from highest 
 1. `DOTNET_`-prefixed environment variables using the [Environment variables configuration provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider).
 1. `ASPNETCORE_`-prefixed environment variables using the [Environment variables configuration provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider).
 
-For the [.NET Generic Host](xref:fundamentals/host/generic-host) and [Web Host](xref:fundamentals/host/web-host), the the default host configuration sources from highest to lowest priority is:
+For the [.NET Generic Host](xref:fundamentals/host/generic-host) and [Web Host](xref:fundamentals/host/web-host), the default host configuration sources from highest to lowest priority is:
 
 1. `ASPNETCORE_`-prefixed environment variables using the [Environment variables configuration provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider).
 1.  Command-line arguments using the [Command-line configuration provider](#command-line)
