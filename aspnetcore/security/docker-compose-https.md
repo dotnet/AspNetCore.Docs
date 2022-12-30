@@ -49,12 +49,19 @@ Use the following instructions for your operating system configuration.
 
 Generate certificate and configure local machine:
 
-```dotnetcli
-dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
+```powershell
+dotnet dev-certs https -ep "$env:USERPROFILE\.aspnet\https\aspnetapp.pfx"  -p $CREDENTIAL_PLACEHOLDER$
 dotnet dev-certs https --trust
 ```
 
-In the preceding commands, replace `{ password here }` with a password.
+The previous command using the .NET CLI:
+
+```dotnetcli
+dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p $CREDENTIAL_PLACEHOLDER$
+dotnet dev-certs https --trust
+```
+
+In the preceding commands, replace `$CREDENTIAL_PLACEHOLDER$` with a password.
 
 Create a _docker-compose.debug.yml_ file with the following content:
 
@@ -88,13 +95,13 @@ docker-compose -f "docker-compose.debug.yml" up -d
 Generate certificate and configure local machine:
 
 ```dotnetcli
-dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p { password here }
+dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p $CREDENTIAL_PLACEHOLDER$
 dotnet dev-certs https --trust
 ```
 
 `dotnet dev-certs https --trust` is only supported on macOS and Windows. You need to trust certificates on Linux in the way that is supported by your distribution. It is likely that you need to trust the certificate in your browser.
 
-In the preceding commands, replace `{ password here }` with a password.
+In the preceding commands, replace `$CREDENTIAL_PLACEHOLDER$` with a password.
 
 Create a _docker-compose.debug.yml_ file with the following content:
 
@@ -128,11 +135,11 @@ docker-compose -f "docker-compose.debug.yml" up -d
 Generate certificate and configure local machine:
 
 ```dotnetcli
-dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
+dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p $CREDENTIAL_PLACEHOLDER$
 dotnet dev-certs https --trust
 ```
 
-In the preceding commands, replace `{ password here }` with a password.
+In the preceding commands, replace `$CREDENTIAL_PLACEHOLDER$` with a password.
 
 Create a _docker-compose.debug.yml_ file with the following content:
 
