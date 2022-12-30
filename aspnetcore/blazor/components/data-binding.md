@@ -191,7 +191,7 @@ Two-way data binding isn't possible to implement with an event handler.
 @code {
     private string? inputValue;
 
-    protected void OnInput(ChangeEventArgs args)
+    private void OnInput(ChangeEventArgs args)
     {
         var newValue = args.Value?.ToString() ?? string.Empty;
 
@@ -218,7 +218,7 @@ The reason for this behavior is that Blazor isn't aware that your code intends t
 @code {
     private string? inputValue;
 
-    protected void OnInput(string value)
+    private void OnInput(string value)
     {
         var newValue = value ?? string.Empty;
 
