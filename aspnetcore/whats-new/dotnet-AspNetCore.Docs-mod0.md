@@ -18,13 +18,9 @@ Welcome to what's new in the ASP.NET Core docs for December 2022. This article l
 ### Updated articles
 
 - <xref:blazor/fundamentals/dependency-injection>
-  - Place content for additional versions
-  - Access services from a different DI scope
 - <xref:blazor/security/webassembly/index> - Security Overview updates
 - <xref:blazor/file-uploads> - [Blazor] Add image upload preview guidance
 - <xref:blazor/security/webassembly/aad-groups-roles>
-  - Blazor AAD groups and roles updates
-  - Role and policy name conventions
 - <xref:blazor/components/data-binding> - Blazor bind get/set/after NOTE
 - <xref:blazor/security/webassembly/additional-scenarios> - Additional guidance on custom parameters
 - <xref:blazor/security/index> - Role and policy name conventions
@@ -39,7 +35,7 @@ Welcome to what's new in the ASP.NET Core docs for December 2022. This article l
 
 ### Updated articles
 
-- <xref:fundamentals/best-practices> - Move and rename "ASP.NET Core Performance Best Practices" doc
+- <xref:fundamentals/best-practices> 
 
 ## Performance
 
@@ -57,7 +53,6 @@ Welcome to what's new in the ASP.NET Core docs for December 2022. This article l
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham ![There were 32 pull requests merged by Luke Latham.](https://img.shields.io/badge/Merged%20Pull%20Requests-32-green)
 - [3ilal](https://github.com/3ilal) - Bilal Hussain Shah ![There were 1 pull requests merged by Bilal Hussain Shah.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [andychiare](https://github.com/andychiare) - Andrea Chiarelli ![There were 1 pull requests merged by Andrea Chiarelli.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [damienbod](https://github.com/damienbod) - damienbod ![There were 1 pull requests merged by damienbod.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
