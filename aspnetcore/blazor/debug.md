@@ -199,7 +199,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    ```
 
    > [!NOTE]
-   > **If your Blazor Web Assembly application is in the workspace root (i.e. a sub-folder), you must include the "cwd" property:
+   > **If your Blazor Web Assembly application is not in the workspace root (i.e. in a sub-folder), you must include the "cwd" property:
    ```"cwd": "${workspaceFolder}/BlazorApp1"```
 
 1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu command.
