@@ -177,7 +177,7 @@ Razor attribute binding is case-sensitive:
 
 Two-way data binding isn't possible to implement with an event handler. Use `@bind:get`/`@bind:set` modifiers for two-way data binding.
 
-<span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> Consider the following ***dysfunctional approach*** for two-way data binding using an event handler:
+<span aria-hidden="true">❌</span> Consider the following ***dysfunctional approach*** for two-way data binding using an event handler:
 
 ```razor
 <p>
@@ -200,11 +200,11 @@ Two-way data binding isn't possible to implement with an event handler. Use `@bi
 }
 ```
 
-The `OnInput` event handler in the preceding code updates the value of `inputValue` to `Long!` after a fourth character is provided. However, the user can continue adding characters to the element value in the UI. The value of `inputValue` isn't bound back to the element's value with each keystroke. The preceding example is only capable of one-way data binding.
+The `OnInput` event handler updates the value of `inputValue` to `Long!` after a fourth character is provided. However, the user can continue adding characters to the element value in the UI. The value of `inputValue` isn't bound back to the element's value with each keystroke. The preceding example is only capable of one-way data binding.
 
-The reason for this behavior is that Blazor isn't aware that your code intends to modify the value of `inputValue` in the event handler. Blazor doesn't try to force [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) element values and .NET variable values to match unless they're bound with `@bind` syntax. In earlier versions of Blazor, two-way data binding is implemented by binding the element to a property and controlling the property's value with the property's setter. In ASP.NET Core 7.0 or later, `@bind:get`/`@bind:set` modifier syntax is used to implement two-way data binding, as the next example demonstrates.
+The reason for this behavior is that Blazor isn't aware that your code intends to modify the value of `inputValue` in the event handler. Blazor doesn't try to force [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) element values and .NET variable values to match unless they're bound with `@bind` syntax. In earlier versions of Blazor, two-way data binding is implemented by [binding the element to a property and controlling the property's value with its setter](#binding-to-a-property-with-c-get-and-set-accessors). In ASP.NET Core 7.0 or later, `@bind:get`/`@bind:set` modifier syntax is used to implement two-way data binding, as the next example demonstrates.
 
-<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> Consider the following ***correct approach*** using `@bind:get`/`@bind:set` for two-way data binding:
+<span aria-hidden="true">✔️</span> Consider the following ***correct approach*** using `@bind:get`/`@bind:set` for two-way data binding:
 
 ```razor
 <p>
@@ -227,7 +227,18 @@ The reason for this behavior is that Blazor isn't aware that your code intends t
 }
 ```
 
-Using `@bind:get`/`@bind:set` modifiers in the preceding example both controls the underlying value of `inputValue` via `@bind:set` and binds the value of `inputValue` to the element's value via `@bind:get`. The preceding example demonstrates the correct approach for implementing two-way data binding.
+Using `@bind:get`/`@bind:set` modifiers both controls the underlying value of `inputValue` via `@bind:set` and binds the value of `inputValue` to the element's value via `@bind:get`. The preceding example demonstrates the correct approach for implementing two-way data binding.
+
+## Binding to a property with C# `get` and `set` accessors
+
+[C# `get` and `set` accessors](/dotnet/csharp/programming-guide/classes-and-structs/using-properties) can be used to create custom binding format behavior, as the following `DecimalBinding` component demonstrates. The component binds a positive or negative decimal with up to three decimal places to an `<input>` element by way of a `string` property (`DecimalValue`).
+
+`Pages/DecimalBinding.razor`:
+
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/DecimalBinding.razor" highlight="7,21-31":::
+
+> [!NOTE]
+> For two-way data binding in ASP.NET Core 7.0 or later, we recommend using `@bind:get`/`@bind:set` modifiers. For more information, see the `@bind:get`/`@bind:set` in the opening section of this article.
 
 ## Multiple option selection with `<select>` elements
 
@@ -346,17 +357,6 @@ Specifying a format for the `date` field type isn't recommended because Blazor h
 ```razor
 <input type="date" @bind="startDate" @bind:format="yyyy-MM-dd">
 ```
-
-## Binding to a property with C# `get` and `set` accessors
-
-[C# `get` and `set` accessors](/dotnet/csharp/programming-guide/classes-and-structs/using-properties) can be used to create custom binding format behavior, as the following `DecimalBinding` component demonstrates. The component binds a positive or negative decimal with up to three decimal places to an `<input>` element by way of a `string` property (`DecimalValue`).
-
-`Pages/DecimalBinding.razor`:
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/DecimalBinding.razor" highlight="7,21-31":::
-
-> [!NOTE]
-> For two-way data binding in ASP.NET Core 7.0 or later, we recommend using `@bind:get`/`@bind:set` modifiers. For more information, see the `@bind:get`/`@bind:set` in the opening section of this article.
 
 ## Binding with component parameters
 
