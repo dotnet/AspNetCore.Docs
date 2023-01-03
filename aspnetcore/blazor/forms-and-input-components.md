@@ -15,7 +15,7 @@ The Blazor framework supports forms and provides built-in input components:
 * <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation)
 * [Built-in input components](#built-in-input-components)
 
-The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace provides classes for managing form views, state, and validation, and the namespace also provides access to built-in :::no-loc text="Input*"::: Razor components for use in Blazor apps. The namespace appears by default in the `_Imports.razor` file of an app created from a Blazor project template. If you don't maintain a `using` statement in `_Imports.razor` for the namespace, you can use the namespace in individual Razor components with the [`@using`](xref:mvc/views/razor#using) directive:
+The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace provides classes for managing form elements, state, and validation, and the namespace also provides access to built-in :::no-loc text="Input*"::: Razor components for use in Blazor apps. The namespace appears by default in the `_Imports.razor` file of an app created from a Blazor project template. If you don't maintain a `using` statement in `_Imports.razor` for the namespace, you can use the namespace in individual Razor components with the [`@using`](xref:mvc/views/razor#using) directive:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Forms
@@ -106,15 +106,6 @@ The Blazor framework provides built-in input components to receive and validate 
 | <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
 
-For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads>.
-
-<!--
-
-* <xref:blazor/file-uploads>
-* [Preview an image provided by the `InputFile` component](#preview-an-image-provided-by-the-inputfile-component) (this article)
-
--->
-
 All of the input components, including <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the rendered HTML element.
 
 Input components provide default behavior for validating when a field is changed:
@@ -123,6 +114,15 @@ Input components provide default behavior for validating when a field is changed
 * For controls that don't have an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, the default validation reflects the valid or invalid state but does ***not*** provide validation styling to the underlying HTML element.
 
 Some components include useful parsing logic. For example, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> handle unparseable values gracefully by registering unparseable values as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?` for a nullable integer).
+
+The <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component is a bit more complex and is detailed in <xref:blazor/file-uploads>.
+
+<!--
+
+* <xref:blazor/file-uploads>
+* [Preview an image provided by the `InputFile` component](#preview-an-image-provided-by-the-inputfile-component) (this article)
+
+-->
 
 ## Example form
 
