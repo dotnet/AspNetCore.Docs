@@ -175,9 +175,9 @@ Razor attribute binding is case-sensitive:
 
 ## Use `@bind:get`/`@bind:set` modifiers and avoid event handlers for two-way data binding
 
-Two-way data binding isn't possible to implement with an event handler.
+Two-way data binding isn't possible to implement with an event handler. Use `@bind:get`/`@bind:set` modifiers for two-way data binding.
 
-<span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> Consider the following dysfunctional approach using an event handler:
+<span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> Consider the following *dysfunctional approach* for two-way data binding using an event handler:
 
 ```razor
 <p>
@@ -200,11 +200,11 @@ Two-way data binding isn't possible to implement with an event handler.
 }
 ```
 
-The `OnInput1` event handler in the preceding code updates the value of `inputValue` to `Too long!` after a fourth character is provided. However, the event handler doesn't prevent additional characters from being added to the `<input>` element that aren't reflected in the underlying value of `inputValue`, which remains `Too long!`. The preceding example is only capable of one-way data binding.
+The `OnInput1` event handler in the preceding code updates the value of `inputValue` to `Long!` after a fourth character is provided. However, the event handler doesn't prevent the user from adding additional characters to the `<input>` element that aren't reflected in the underlying value of `inputValue`, which remains `Long!`. The preceding example is only capable of one-way data binding.
 
-The reason for this behavior is that Blazor isn't aware that your code intends to modify the value of `inputValue` in the event handler. Blazor doesn't try to force [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) element values and .NET variable values to match unless they're bound with `@bind` syntax. In earlier versions of Blazor, this problem was addressed by binding to a property and controlling the value with the property's setter. In ASP.NET Core 7.0 or later, new `@bind:get`/`@bind:set` modifier syntax is used to implement two-way data binding, as the next example demonstrates.
+The reason for this behavior is that Blazor isn't aware that your code intends to modify the value of `inputValue` in the event handler. Blazor doesn't try to force [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) element values and .NET variable values to match unless they're bound with `@bind` syntax. In earlier versions of Blazor, this problem was addressed by binding to a property and controlling the value with the property's setter. In ASP.NET Core 7.0 or later, `@bind:get`/`@bind:set` modifier syntax is used to implement two-way data binding, as the next example demonstrates.
 
-<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> Consider the following correct approach using `@bind:get`/`@bind:set`:
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> Consider the following *correct approach* using `@bind:get`/`@bind:set` for two-way data binding:
 
 ```razor
 <p>
@@ -227,7 +227,7 @@ The reason for this behavior is that Blazor isn't aware that your code intends t
 }
 ```
 
-Using `@bind:get`/`@bind:set` attributes in the preceding example both controls the underlying value of `inputValue` via `@bind:set` and always reflects the current value of `inputValue` via `@bind:get` in the `<input>` element. The preceding example demonstrates the correct approach for implementing two-way data binding. The approach also has the benefit of binding to a field or avoiding logic in a property setter when a property is bound.
+Using `@bind:get`/`@bind:set` attributes in the preceding example both controls the underlying value of `inputValue` via `@bind:set` and always reflects the current value of `inputValue` via `@bind:get` in the `<input>` element. The preceding example demonstrates the correct approach for implementing two-way data binding.
 
 ## Multiple option selection with `<select>` elements
 
