@@ -3,7 +3,7 @@ title: Choose an ASP.NET Core UI
 author: wadepickett
 description: Learn when to use which ASP.NET Core web UI technologies. Understand the server, client and hybrid options.
 ms.author: wpickett
-ms.date: 03/02/2022
+ms.date: 12/29/2022
 uid: tutorials/choose-web-ui
 ---
 # Choose an ASP.NET Core web UI
@@ -101,29 +101,46 @@ MVC benefits, in addition to the server rendering benefits:
 
 To get started with  ASP.NET Core MVC, see <xref:tutorials/first-mvc-app/start-mvc>. For an overview of ASP.NET Core MVC's architecture and benefits, see <xref:mvc/overview>.
 
+### Blazor Server
+
+Blazor is a framework for building interactive client-side web UI with [.NET](/dotnet/standard/tour):
+
+* Create rich interactive UIs using [C#](/dotnet/csharp/) instead of [JavaScript](https://www.javascript.com).
+* Share server-side and client-side app logic written in .NET.
+* Render the UI as HTML and CSS for wide browser support, including mobile browsers.
+* Integrate with modern hosting platforms, such as [Docker](/dotnet/standard/microservices-architecture/container-docker-introduction/index).
+* Build hybrid desktop and mobile apps with .NET and Blazor.
+
+Using .NET for client-side web development offers the following advantages:
+
+* Write code in C# instead of JavaScript.
+* Leverage the existing .NET ecosystem of [.NET libraries](/dotnet/standard/class-libraries).
+* Share app logic across server and client.
+* Benefit from .NET's performance, reliability, and security.
+* Stay productive on Windows, Linux, or macOS with a development environment, such as [Visual Studio](https://visualstudio.microsoft.com/) or [Visual Studio Code](https://code.visualstudio.com/).
+* Build on a common set of languages, frameworks, and tools that are stable, feature-rich, and easy to use.
+
+Blazor Server provides support for hosting server-rendered UI in an ASP.NET Core app. Client UI updates are handled over a [SignalR](xref:signalr/introduction) connection. The runtime stays on the server and handles executing the app's C# code.
+
+For more information, see <xref:blazor/index> and <xref:blazor/hosting-models>. The client-rendered Blazor hosting model is described in the [Blazor WebAssembly](#blazor-webassembly) section later in this article.
+
 ## Choose a client rendered ASP.NET Core solution
 
 The following section briefly explains the ASP.NET Core web UI client rendered models available and provides links to get started.
 
-### Blazor
+### Blazor WebAssembly
 
-Blazor apps are composed of Razor components: segments of reusable, web UI implemented using C#, HTML, and CSS. Both client and server code are written in C#, allowing shared code and libraries. Razor components can be rendered or prerendered from views and pages.
+Blazor WebAssembly is a [single-page app (SPA) framework](/dotnet/architecture/modern-web-apps-azure/choose-between-traditional-web-and-single-page-apps) for building interactive client-side web apps with the general characteristics described in the [Blazor Server](#blazor-server) section earlier in this article.
 
-Benefits of Razor components:
+Running .NET code inside web browsers is made possible by [WebAssembly](https://webassembly.org) (abbreviated `wasm`). WebAssembly is a compact bytecode format optimized for fast download and maximum execution speed. WebAssembly is an open web standard and supported in web browsers without plugins. Blazor WebAssembly works in all modern web browsers, including mobile browsers.
 
-* Build interactive web UIs using C# rather than JavaScript. Using the same language for front-end and back-end code can:
-  * Accelerate app development.
-  * Reduce build pipeline complexity.
-  * Simplify maintenance.
-  * Leverage the existing .NET ecosystem of [.NET libraries](/dotnet/standard/class-libraries).
-  * Let developers understand and work on both client-side and server-side code.
-* Create reusable, sharable UI components.
-* Quickly get productive with Blazor reusable UI components from [top component vendors](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor).
-* Work with all modern web browsers, including mobile browsers. Blazor uses open web standards without plug-ins or code transpilation.
+When a Blazor WebAssembly app is built and run:
 
-Host Razor components either using Blazor Server or Blazor WebAssembly to take advantage of server or client rendering.
+* C# code files and Razor files are compiled into .NET assemblies.
+* The assemblies and the [.NET runtime](/dotnet/framework/get-started/overview) are downloaded to the browser.
+* Blazor WebAssembly bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor WebAssembly runtime uses JavaScript interop to handle [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model) manipulation and browser API calls.
 
-For more information, see <xref:blazor/index> and <xref:blazor/hosting-models>.
+For more information, see <xref:blazor/index> and <xref:blazor/hosting-models>. The server-rendered Blazor hosting model is described in the [Blazor Server](#blazor-server) section earlier in this article.
 
 ### ASP.NET Core Single Page Application (SPA) with JavaScript Frameworks such as Angular and React
 
