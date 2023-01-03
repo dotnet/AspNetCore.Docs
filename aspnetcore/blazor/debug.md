@@ -198,7 +198,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    }
    ```
 
-   If the app is in a subfolder of the workspace root, include the current working directory (`cwd`) property with the path to the app. Replace the `{PATH}` placeholder with the path to the app:
+   If the app is in a subfolder of the workspace root, include the current working directory (`cwd`) property with the path to the app. In the following property value, replace the `{PATH}` placeholder with the path to the app:
    
    ```json
    "cwd": "${workspaceFolder}/{PATH}"
@@ -601,7 +601,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    }
    ```
    
-   If the app is in a subfolder of the workspace root, include the current working directory (`cwd`) property with the path to the app. Replace the `{PATH}` placeholder with the path to the app:
+   If the app is in a subfolder of the workspace root, include the current working directory (`cwd`) property with the path to the app. In the following property value, replace the `{PATH}` placeholder with the path to the app:
    
    ```json
    "cwd": "${workspaceFolder}/{PATH}"
@@ -1004,7 +1004,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    }
    ```
    
-   If the app is in a subfolder of the workspace root, include the current working directory (`cwd`) property with the path to the app. Replace the `{PATH}` placeholder with the path to the app:
+   If the app is in a subfolder of the workspace root, include the current working directory (`cwd`) property with the path to the app. In the following property value, replace the `{PATH}` placeholder with the path to the app:
    
    ```json
    "cwd": "${workspaceFolder}/{PATH}"
@@ -1455,7 +1455,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    }
    ```
    
-   If the app is in a subfolder of the workspace root, include the current working directory (`cwd`) property with the path to the app. Replace the `{PATH}` placeholder with the path to the app:
+   If the app is in a subfolder of the workspace root, include the current working directory (`cwd`) property with the path to the app. In the following property value, replace the `{PATH}` placeholder with the path to the app:
    
    ```json
    "cwd": "${workspaceFolder}/{PATH}"
