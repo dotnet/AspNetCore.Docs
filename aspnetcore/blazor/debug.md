@@ -198,6 +198,18 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    }
    ```
 
+   If the app is in a subfolder of the workspace root, include the current working directory (`cwd`) property with the path to the app. In the following property value, replace the `{PATH}` placeholder with the path to the app:
+   
+   ```json
+   "cwd": "${workspaceFolder}/{PATH}"
+   ```
+   
+   In the following example, the app is in a subfolder named `blazorwasm`:
+   
+   ```json
+   "cwd": "${workspaceFolder}/blazorwasm"
+   ```
+
 1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu command.
 
    > [!NOTE]
@@ -587,6 +599,18 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
      "request": "launch",
      "url": "https://localhost:{PORT}"
    }
+   ```
+   
+   If the app is in a subfolder of the workspace root, include the current working directory (`cwd`) property with the path to the app. In the following property value, replace the `{PATH}` placeholder with the path to the app:
+   
+   ```json
+   "cwd": "${workspaceFolder}/{PATH}"
+   ```
+   
+   In the following example, the app is in a subfolder named `blazorwasm`:
+   
+   ```json
+   "cwd": "${workspaceFolder}/blazorwasm"
    ```
 
 1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu command.
@@ -978,6 +1002,18 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
      "request": "launch",
      "url": "https://localhost:{PORT}"
    }
+   ```
+   
+   If the app is in a subfolder of the workspace root, include the current working directory (`cwd`) property with the path to the app. In the following property value, replace the `{PATH}` placeholder with the path to the app:
+   
+   ```json
+   "cwd": "${workspaceFolder}/{PATH}"
+   ```
+   
+   In the following example, the app is in a subfolder named `blazorwasm`:
+   
+   ```json
+   "cwd": "${workspaceFolder}/blazorwasm"
    ```
 
 1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu command.
@@ -1417,6 +1453,18 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
      "request": "launch",
      "url": "https://localhost:{PORT}"
    }
+   ```
+   
+   If the app is in a subfolder of the workspace root, include the current working directory (`cwd`) property with the path to the app. In the following property value, replace the `{PATH}` placeholder with the path to the app:
+   
+   ```json
+   "cwd": "${workspaceFolder}/{PATH}"
+   ```
+   
+   In the following example, the app is in a subfolder named `blazorwasm`:
+   
+   ```json
+   "cwd": "${workspaceFolder}/blazorwasm"
    ```
 
 1. Start debugging using the <kbd>F5</kbd> keyboard shortcut or the menu command.
