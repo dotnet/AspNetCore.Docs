@@ -184,7 +184,7 @@ namespace BlazorSample.Pages
     {
         private int currentCount = 0;
 
-        void IncrementCount()
+        private void IncrementCount()
         {
             currentCount++;
         }
@@ -1853,7 +1853,7 @@ namespace BlazorSample.Pages
     {
         private int currentCount = 0;
 
-        void IncrementCount()
+        private void IncrementCount()
         {
             currentCount++;
         }
@@ -3414,7 +3414,7 @@ namespace BlazorSample.Pages
     {
         private int currentCount = 0;
 
-        void IncrementCount()
+        private void IncrementCount()
         {
             currentCount++;
         }
@@ -4430,7 +4430,7 @@ namespace BlazorSample.Pages
     {
         private int currentCount = 0;
 
-        void IncrementCount()
+        private void IncrementCount()
         {
             currentCount++;
         }
