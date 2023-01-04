@@ -1362,7 +1362,7 @@ items:
                   - name: Web API with Azure AD B2C
                     href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/how-to-secure-a-web-api-built-with-aspnet-core-using-the-azure-ad-b2c/
           - name: Secure ASP.NET Core apps with Microsoft Identity Web
-            href: https://learn.microsoft.com/en-us/azure/active-directory/develop/
+            href: /azure/active-directory/develop/
           - name: Secure ASP.NET Core apps with Duende Identity Server
             href: https://docs.duendesoftware.com
           - name: Secure ASP.NET Core apps with IdentityServer4
