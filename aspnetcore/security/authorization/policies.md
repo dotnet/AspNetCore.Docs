@@ -254,3 +254,5 @@ if (context.Resource is AuthorizationFilterContext mvcContext)
 [!INCLUDE[](~/includes/requireAuth.md)]
 
 :::moniker-end
+
+[!INCLUDE[](~/security/authorization/policies/includes/policies5.md)]
