@@ -16,7 +16,7 @@ Underneath the covers, [role-based authorization](xref:security/authorization/ro
 
 An authorization policy consists of one or more requirements. Register it as part of the authorization service configuration, in the app's `Program.cs` file:
 
-:::code language="csharp" source="policies/samples/6.0/AuthorizationPoliciesSample/Program.cs" range="20-23,29":::
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Program.cs" range="20-23,29":::
 
 In the preceding example, an "AtLeast21" policy is created. It has a single requirement&mdash;that of a minimum age, which is supplied as a parameter to the requirement.
 
@@ -24,7 +24,7 @@ In the preceding example, an "AtLeast21" policy is created. It has a single requ
 
 The primary service that determines if authorization is successful is <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>:
 
-:::code language="csharp" source="policies/samples/stubs/copy_of_IAuthorizationService.cs" id="snippet" highlight="24-25,48-49":::
+:::code language="csharp" source="~/security/authorization/policies/samples/stubs/copy_of_IAuthorizationService.cs" id="snippet" highlight="24-25,48-49":::
 
 The preceding code highlights the two methods of the [IAuthorizationService](https://github.com/dotnet/AspNetCore/blob/v2.2.4/src/Security/Authorization/Core/src/IAuthorizationService.cs).
 
@@ -103,13 +103,13 @@ For apps that use Razor Pages, see the [Apply policies to Razor Pages](#apply-po
 
 Apply policies to controllers by using the `[Authorize]` attribute with the policy name. For example:
 
-:::code language="csharp" source="policies/samples/6.0/AuthorizationPoliciesSample/Controllers/AtLeast21Controller.cs" highlight="6":::
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Controllers/AtLeast21Controller.cs" highlight="6":::
 
 ## Apply policies to Razor Pages
 
 Apply policies to Razor Pages by using the `[Authorize]` attribute with the policy name. For example:
 
-:::code language="csharp" source="policies/samples/6.0/AuthorizationPoliciesSample/Pages/AtLeast21.cshtml.cs" highlight="6":::
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Pages/AtLeast21.cshtml.cs" highlight="6":::
 
 Policies can ***not*** be applied at the Razor Page handler level, they must be applied to the Page.
 
@@ -119,7 +119,7 @@ Policies can also be applied to Razor Pages by using an [authorization conventio
 
 Apply policies to endpoints by using <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> with the policy name. For example:
 
-:::code language="csharp" source="policies/samples/6.0/AuthorizationPoliciesSample/Program.cs" id="snippet_requireAuthorization":::
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Program.cs" id="snippet_requireAuthorization":::
 
 <a name="requirements"></a>
 
@@ -127,7 +127,7 @@ Apply policies to endpoints by using <xref:Microsoft.AspNetCore.Builder.Authoriz
 
 An authorization requirement is a collection of data parameters that a policy can use to evaluate the current user principal. In our "AtLeast21" policy, the requirement is a single parameter&mdash;the minimum age. A requirement implements <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement>, which is an empty marker interface. A parameterized minimum age requirement could be implemented as follows:
 
-:::code language="csharp" source="policies/samples/6.0/AuthorizationPoliciesSample/Policies/Requirements/MinimumAgeRequirement.cs":::
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Policies/Requirements/MinimumAgeRequirement.cs":::
 
 If an authorization policy contains multiple authorization requirements, all requirements must pass in order for the policy evaluation to succeed. In other words, multiple authorization requirements added to a single authorization policy are treated on an **AND** basis.
 
@@ -148,7 +148,7 @@ A requirement can have [multiple handlers](#security-authorization-policies-base
 
 The following example shows a one-to-one relationship in which a minimum age handler handles a single requirement:
 
-:::code language="csharp" source="policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/MinimumAgeHandler.cs":::
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/MinimumAgeHandler.cs":::
 
 The preceding code determines if the current user principal has a date of birth claim that has been issued by a known and trusted Issuer. Authorization can't occur when the claim is missing, in which case a completed task is returned. When a claim is present, the user's age is calculated. If the user meets the minimum age defined by the requirement, authorization is considered successful. When authorization is successful, `context.Succeed` is invoked with the satisfied requirement as its sole parameter.
 
@@ -156,7 +156,7 @@ The preceding code determines if the current user principal has a date of birth 
 
 The following example shows a one-to-many relationship in which a permission handler can handle three different types of requirements:
 
-:::code language="csharp" source="policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/PermissionHandler.cs":::
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/PermissionHandler.cs":::
 
 The preceding code traverses <xref:Microsoft.AspNetCore.Authorization.AuthorizationHandlerContext.PendingRequirements%2A>&mdash;a property containing requirements not marked as successful. For a `ReadPermission` requirement, the user must be either an owner or a sponsor to access the requested resource. For an `EditPermission` or `DeletePermission` requirement, they must be an owner to access the requested resource.
 
@@ -166,7 +166,7 @@ The preceding code traverses <xref:Microsoft.AspNetCore.Authorization.Authorizat
 
 Register handlers in the services collection during configuration. For example:
 
-:::code language="csharp" source="policies/samples/6.0/AuthorizationPoliciesSample/Program.cs" id="snippet_minimumAgeHandlerRegistration":::
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Program.cs" id="snippet_minimumAgeHandlerRegistration":::
 
 The preceding code registers `MinimumAgeHandler` as a singleton. Handlers can be registered using any of the built-in [service lifetimes](xref:fundamentals/dependency-injection#service-lifetimes).
 
@@ -197,15 +197,15 @@ In cases where you want evaluation to be on an **OR** basis, implement multiple 
 
 `BuildingEntryRequirement.cs`
 
-:::code language="csharp" source="policies/samples/6.0/AuthorizationPoliciesSample/Policies/Requirements/BuildingEntryRequirement.cs":::
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Policies/Requirements/BuildingEntryRequirement.cs":::
 
 `BadgeEntryHandler.cs`
 
-:::code language="csharp" source="policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/BadgeEntryHandler.cs":::
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/BadgeEntryHandler.cs":::
 
 `TemporaryStickerHandler.cs`
 
-:::code language="csharp" source="policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/TemporaryStickerHandler.cs":::
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Policies/Handlers/TemporaryStickerHandler.cs":::
 
 Ensure that both handlers are [registered](xref:security/authorization/policies#security-authorization-policies-based-handler-registration). If either handler succeeds when a policy evaluates the `BuildingEntryRequirement`, the policy evaluation succeeds.
 
@@ -217,7 +217,7 @@ There may be situations in which fulfilling a policy is simple to express in cod
 
 For example, the previous `BadgeEntryHandler` could be rewritten as follows:
 
-:::code language="csharp" source="policies/samples/6.0/AuthorizationPoliciesSample/Program.cs" range="20-21,25-29":::
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Program.cs" range="20-21,25-29":::
 
 <a name="access-mvc-request-context-in-handlers"></a>
 
