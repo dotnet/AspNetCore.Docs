@@ -9,7 +9,7 @@ uid: test/tunnels
 ---
 # How to use dev tunnels in Visual Studio 2022 with ASP.NET Core apps
 
-The *Dev tunnels* feature of Visual Studio 2022 enables ad-hoc connections between machines that can't directly connect to each other. A URL is created that enables any device with an internet connection to connect to an ASP.NET Core project while it runs on localhost.
+The *dev tunnels* feature of Visual Studio 2022 enables ad-hoc connections between machines that can't directly connect to each other. A URL is created that enables any device with an internet connection to connect to an ASP.NET Core project while it runs on localhost.
 
 ## Use cases
 
@@ -34,7 +34,7 @@ In Visual Studio 2022, open an ASP.NET Core web project, or a solution with at l
 
 In the debug dropdown, select **Dev Tunnels** > **Create A Tunnel**.
 
-:::image type="content" source="~/test/dev-tunnels/_static/debug-dropdown-create-selected.png" alt-text="Debug dropdown showing Dev Tunnels option with Create tunnel selected":::
+:::image type="content" source="~/test/dev-tunnels/_static/debug-dropdown-create-selected.png" alt-text="Debug dropdown showing dev tunnels option with Create tunnel selected":::
 
 The tunnel creation dialog opens.
 
@@ -78,7 +78,7 @@ Now any authenticated user can open the same URL on any other internet-connected
 
 For web projects that have browser support, a warning page is shown on the first request sent to the tunnel URL from each device:
 
-:::image type="content" source="~/test/dev-tunnels/_static/dev-tunnels-notification.png" alt-text="Dev Tunnels notification page.":::
+:::image type="content" source="~/test/dev-tunnels/_static/dev-tunnels-notification.png" alt-text="Dev tunnels notification page.":::
 
 After **Continue** is selected, the request is routed to the local web app. This notification page isn't shown for API requests using dev tunnels.
 
