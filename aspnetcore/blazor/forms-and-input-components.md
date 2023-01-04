@@ -44,7 +44,6 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 @inject ILogger<FormExample1> Logger
 
 <EditForm Model="@exampleModel" OnSubmit="@HandleSubmit">
-
     <InputText id="name" @bind-Value="exampleModel.Name" />
 
     <button type="submit">Submit</button>
@@ -57,7 +56,7 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
     {
         Logger.LogInformation("HandleSubmit called");
 
-        // Process the valid form
+        // Process the form
     }
 }
 ```
@@ -78,7 +77,7 @@ To demonstrate how the preceding <xref:Microsoft.AspNetCore.Components.Forms.Edi
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/ExampleModel.cs" highlight="5-6":::
 
-The earlier `FormExample1` component is modified to include the following:
+The earlier `FormExample1` component is modified:
 
 * <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> is replaced with <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>, which processes assigned event handler if the form is valid when submitted by the user. The method name is changed to `HandleValidSubmit`, which reflects that the method is called when the form is valid.
 * A <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component is added to display validation messages when the form is invalid on form submission.
