@@ -253,7 +253,7 @@ if (context.Resource is AuthorizationFilterContext mvcContext)
 
 [!INCLUDE[](~/includes/requireAuth.md)]
 
-## Authorization with External Service
+## Authorization with external service
 
 This is a sample that shows how we can implement additional authorization requirements with an external authorization service. In this example, we have an API (Contoso.API) secured with Azure AD. However, that is an additional authorization check with a custom API (Contoso.Security.API) which returns a payload describing whether this particular client app can invoke the GetWeather API.
 
@@ -307,3 +307,5 @@ This is a sample that shows how we can implement additional authorization requir
 5. Now we can run the Solution and use Postman to invoke the API. You can add breakpoints in the Contoso.Security.API in SecurityPolicyController and observe the Client Id is being passed in that is used to assert whether it is allowed to Get Weather.
 
 [!INCLUDE[](~/security/authorization/policies/includes/policies5.md)]
+
+::: moniker-end
