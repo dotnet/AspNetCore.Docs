@@ -80,12 +80,12 @@ To demonstrate how the preceding <xref:Microsoft.AspNetCore.Components.Forms.Edi
 
 The earlier `FormExample1` component is modified to include the following:
 
-* A `ValidationSummary` component is added to display validation messages when the form is invalid on form submission.
+* <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> is replaced with <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>, which processes assigned event handler if the form is valid when submitted by the user. The method name is changed to `HandleValidSubmit`, which reflects that the method is called when the form is valid.
+* A <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component is added to display validation messages when the form is invalid on form submission.
 * The data annotations validator (<xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component&dagger;) attaches validation support using data annotations:
   * If the `<input>` form field is left blank when the **`Submit`** button is selected, an error appears in the validation summary (<xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component&Dagger;) ("`The Name field is required.`") and `HandleValidSubmit` is **not** called.
   * If the `<input>` form field contains more than ten characters when the **`Submit`** button is selected, an error appears in the validation summary ("`Name is too long.`") and `HandleValidSubmit` is **not** called.
   * If the `<input>` form field contains a valid value when the **`Submit`** button is selected, `HandleValidSubmit` is called.
-* <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> is replaced with <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>, which processes assigned event handler if the form is valid when submitted by the user. The method name is changed to `HandleValidSubmit`, which reflects that the method is called when the form is valid.
 
 &dagger;The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is covered in the [Validator component](#validator-components) section. &Dagger;The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component is covered in the [Validation Summary and Validation Message components](#validation-summary-and-validation-message-components) section. For more information on property binding, see <xref:blazor/components/data-binding#binding-with-component-parameters>.
 
