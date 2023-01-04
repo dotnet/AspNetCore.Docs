@@ -177,7 +177,7 @@ In `Program.cs`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.Comp
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
-To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page:
+To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page.
 
 `Pages/_Host.cshtml`:
 
@@ -223,6 +223,25 @@ Customize the delay before the reconnection display appears by setting the `tran
 #components-reconnect-modal {
     transition: visibility 0s linear 1000ms;
 }
+```
+
+To display the current reconnect attempt, define an element with an `id` of `components-reconnect-current-attempt`. To display the maximum number of reconnect retries, define an element with an `id` of `components-reconnect-max-retries`. The following example places these elements inside a reconnect attempt modal element in the host page following the previous example.
+
+`Pages/_Host.cshtml`:
+
+```cshtml
+<div id="components-reconnect-modal">
+    There was a problem with the connection!
+    (Current reconnect attempt: 
+    <span id="components-reconnect-current-attempt"></span> /
+    <span id="components-reconnect-max-retries"></span>)
+</div>
+```
+
+When the custom reconnect modal appears, it renders content similar to the following based on the preceding code:
+
+```html
+There was a problem with the connection! (Current reconnect attempt: 3 / 8)
 ```
 
 ## Render mode (Blazor Server)
@@ -648,7 +667,7 @@ In `Program.cs`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.Comp
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
-To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the layout page:
+To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the layout page.
 
 `Pages/_Layout.cshtml`:
 
@@ -694,6 +713,25 @@ Customize the delay before the reconnection display appears by setting the `tran
 #components-reconnect-modal {
     transition: visibility 0s linear 1000ms;
 }
+```
+
+To display the current reconnect attempt, define an element with an `id` of `components-reconnect-current-attempt`. To display the maximum number of reconnect retries, define an element with an `id` of `components-reconnect-max-retries`. The following example places these elements inside a reconnect attempt modal element in the layout page following the previous example.
+
+`Pages/_Layout.cshtml`:
+
+```cshtml
+<div id="components-reconnect-modal">
+    There was a problem with the connection!
+    (Current reconnect attempt: 
+    <span id="components-reconnect-current-attempt"></span> /
+    <span id="components-reconnect-max-retries"></span>)
+</div>
+```
+
+When the custom reconnect modal appears, it renders content similar to the following based on the preceding code:
+
+```html
+There was a problem with the connection! (Current reconnect attempt: 3 / 8)
 ```
 
 ## Render mode (Blazor Server)
@@ -1014,7 +1052,7 @@ In `Startup.Configure`, Blazor Server apps call <xref:Microsoft.AspNetCore.Build
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
-To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page:
+To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page.
 
 `Pages/_Host.cshtml`:
 
@@ -1060,6 +1098,25 @@ Customize the delay before the reconnection display appears by setting the `tran
 #components-reconnect-modal {
     transition: visibility 0s linear 1000ms;
 }
+```
+
+To display the current reconnect attempt, define an element with an `id` of `components-reconnect-current-attempt`. To display the maximum number of reconnect retries, define an element with an `id` of `components-reconnect-max-retries`. The following example places these elements inside a reconnect attempt modal element in the host page following the previous example.
+
+`Pages/_Host.cshtml`:
+
+```cshtml
+<div id="components-reconnect-modal">
+    There was a problem with the connection!
+    (Current reconnect attempt: 
+    <span id="components-reconnect-current-attempt"></span> /
+    <span id="components-reconnect-max-retries"></span>)
+</div>
+```
+
+When the custom reconnect modal appears, it renders content similar to the following based on the preceding code:
+
+```html
+There was a problem with the connection! (Current reconnect attempt: 3 / 8)
 ```
 
 ## Render mode (Blazor Server)
@@ -1376,7 +1433,7 @@ In `Startup.Configure`, Blazor Server apps call <xref:Microsoft.AspNetCore.Build
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
-To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page:
+To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page.
 
 `Pages/_Host.cshtml`:
 
