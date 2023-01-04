@@ -634,11 +634,6 @@ public class ChatHub : Hub
 }
 ```
 
-> [!NOTE]
-> Using `InvokeAsync` from a Hub method requires setting the [`MaximumParallelInvocationsPerClient`](xref:signalr/configuration#configure-server-options) option to a value greater than 1.
->
-> This will be addressed in a future release. For more information, see [Support returning values from client invocations](https://github.com/dotnet/aspnetcore/issues/5280).
-
 The second way is to call `Client(...)` on an instance of [`IHubContext<T>`](xref:signalr/hubcontext):
 
 ```csharp
