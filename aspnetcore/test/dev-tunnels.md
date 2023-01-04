@@ -13,10 +13,10 @@ The *dev tunnels* feature of Visual Studio 2022 enables ad-hoc connections betwe
 
 ## Use cases
 
-Here are some of the scenarios that dev tunnels enable:
+Some of the scenarios that dev tunnels enable:
 
 * Test a web app on other devices, like mobile phones and tablets.
-* Test an app with external services. For instance, you could test and debug [Power Platform connectors](/connectors/custom-connectors/port-tunneling) or [Twilio webhooks](https://www.twilio.com/blog/use-visual-studio-port-tunneling-with-twilio-webhooks).
+* Test an app with external services. For instance, test and debug [Power Platform connectors](/connectors/custom-connectors/port-tunneling) or [Twilio webhooks](https://www.twilio.com/blog/use-visual-studio-port-tunneling-with-twilio-webhooks).
 * Make an app temporarily available to others over the internet, for a presentation or to invite others to review your work on a web app or API.
 * As an alternative to [ngrok](https://ngrok.com).
 
@@ -41,12 +41,12 @@ The tunnel creation dialog opens.
 :::image type="content" source="~/test/dev-tunnels/_static/create-tunnel.png" alt-text="Dev Tunnel creation dialog.":::
 
 * Select the account to use to create the tunnel. Account types that can be used to create tunnels include Azure, Microsoft Account (MSA), and GitHub.
-* Enter a name for the tunnel. This name will identify the tunnel in the Visual Studio UI.
+* Enter a name for the tunnel. This name identifies the tunnel in the Visual Studio UI.
 * Choose the tunnel type, Persistent or Temporary:
   * A temporary tunnel gets a new URL each time Visual Studio is started.
   * A persistent tunnel gets the same URL each time Visual Studio is started.
   For more information, see [Persistent vs. temporary tunnels](#persistent-versus-temporary-tunnels) later in this article.
-* Choose the authentication that will be required for access to the tunnel. The following options are available:
+* Choose the authentication that is required for access to the tunnel. The following options are available:
   * Private: The tunnel is accessible only to the account that created it.
   * Organization: The tunnel is accessible to accounts in the same organization as the one that created it. If this option is selected for a personal Microsoft account (MSA), the effect is the same as selecting Private. Organization support for Github accounts isn't supported.
   * Public: No authentication required. Choose this option only if it's safe to make the web app or API accessible to anyone on the internet.
@@ -62,7 +62,7 @@ The tunnel appears in the debug dropdown **Dev Tunnels** flyout:
 
 ## Specify the active tunnel
 
-A project or solution can have multiple tunnels, but only one at a time will be active. The **Dev Tunnels** flyout in the debug dropdown can specify the active tunnel. When there is an active tunnel, it's used for all ASP.NET Core projects that are started in Visual Studio. Once a tunnel is selected as active, it remains active until Visual Studio is closed. In the following illustration, **My Temporary Tunnel** is active:
+A project or solution can have multiple tunnels, but only one at a time is active. The **Dev Tunnels** flyout in the debug dropdown can specify the active tunnel. When there is an active tunnel, it's used for all ASP.NET Core projects that are started in Visual Studio. Once a tunnel is selected as active, it remains active until Visual Studio is closed. In the following illustration, **My Temporary Tunnel** is active:
 
 :::image type="content" source="~/test/dev-tunnels/_static/debug-dropdown-active-tunnel.png" alt-text="Debug dropdown showing active tunnel in Dev Tunnels flyout.":::
 
@@ -86,8 +86,8 @@ After **Continue** is selected, the request is routed to the local web app. This
 
 To test a web app on an external device like a phone or tablet, navigate to the tunnel URL on the device. To make it easier to reproduce the URL on the external device:
 
-* Make sure that the Edge browser is on the tunnel URL.
-* Generate a QR code to the URL in the Edge browser:
+* Navigate to the tunnel URL in an Edge browser on the local machine.
+* Generate a QR code to the URL in the Edge browser on the local machine:
   * Select the URL bar and the QR code button appears.
   * Select the QR code button to generate and view the QR code.
     :::image type="content" source="~/test/dev-tunnels/_static/generate-qr-code.png" alt-text="QR code with button to create it highlighted.":::
@@ -95,7 +95,7 @@ To test a web app on an external device like a phone or tablet, navigate to the 
 
 ## Dev Tunnels output window
 
-The **Dev Tunnels** output window shows the port and URL of a tunnel when a project starts using it. Select the **Dev Tunnels** output window by using the **Show output from:** dropdown in the **Output** window.
+To show the URL of a tunnel of a running project, select **Dev Tunnels** in the **Show output from** dropdown.
 
 :::image type="content" source="~/test/dev-tunnels/_static/dev-tunnels-output-window.png" alt-text="Dev Tunnels output window.":::
 
@@ -107,21 +107,21 @@ View and manage dev tunnels in the **Dev Tunnels** tool window:
 
 :::image type="content" source="~/test/dev-tunnels/_static/dev-tunnels-tool-window.png" alt-text="Dev Tunnels tool window.":::
 
-To open this window, Use the **Show Dev Tunnels Window** menu option in the debug dropdown. Or select **View** > **Other Windows** > **Dev Tunnels**.
+To open the **Dev Tunnels** window, select the **Show Dev Tunnels Window** menu option in the debug dropdown. Alternatively, select **View** > **Other Windows** > **Dev Tunnels**.
 
-From this tool window, create a new tunnel by selecting the green `+` button. When you create a tunnel from the tool window, it isn't automatically set as the active tunnel like it is when a tunnel is created from the debug dropdown.
+From the **Dev Tunnels**  window, create a new tunnel by selecting the green `+` button. When a tunnel is created from the **Dev Tunnels** window, it isn't automatically set as the active tunnel like it is when a tunnel is created from the debug dropdown.
 
-Delete a tunnel by using the red `x` button on the right side.
+Delete a tunnel by using the red `x` button to the right of the tunnel.
 
 ## Tunnel URL environment variable support
 
-The dev tunnels feature provides a way to get the tunnel URL of a project programmatically at run time. When you launch an app that uses a tunnel, Visual Studio creates an environment variable named `VS_TUNNEL_URL`. This is the URL for the tunnel that is used for the current project. It can be useful when you're integrating the application with an external service, and you need the URL to pass to the external service.
+The dev tunnels feature provides a way to get the tunnel URL of a project programmatically at run time. When an app is launched that uses a tunnel, Visual Studio creates the environment variable `VS_TUNNEL_URL`. The `VS_TUNNEL_URL` value is the URL for the tunnel that is used for the current project. `VS_TUNNEL_URL` can be useful when integrating the app with an external service, where the tunnel URL needs to be passed to the external service.
 
-If multiple ASP.NET Core projects are configured to start in Visual Studio, the app that is starting up will get an environment variable for any project that started before it. The pattern for this variable name is `VS_TUNNEL_URL_{ProjectName}`, where `{ProjectName}` is the name of the other project. For example, consider this example showing two projects set to start:
+If multiple ASP.NET Core projects are configured to start in Visual Studio, the app that is starting up gets an environment variable for any project that started before it. The pattern for this variable name is `VS_TUNNEL_URL_{ProjectName}`, where `{ProjectName}` is the name of the other project. For example, consider this example showing two projects set to start:
 
 :::image type="content" source="~/test/dev-tunnels/_static/multi-project-start.png" alt-text="Startup projects selection page showing MyWebApi and MyWebApp both starting, in that order.":::
 
-Since MyWebApi is above MyWebApp, it's started before the MyWebApp project. When the MyWebApi project is started, it will receive its tunnel URL in `VS_TUNNEL_URL`. When the MyWebApp project is started, it will receive its own tunnel URL in `VS_TUNNEL_URL` and the other project's tunnel URL in `VS_TUNNEL_URL_MyWebApi`. 
+Since MyWebApi is above MyWebApp, it's started before the MyWebApp project. When the MyWebApi project is started, it receives its tunnel URL in the `VS_TUNNEL_URL` environment variable. When the MyWebApp project is started, it receives its own tunnel URL in `VS_TUNNEL_URL` and the other project's tunnel URL is provided in the `VS_TUNNEL_URL_MyWebApi` environment variable. 
 
 To illustrate, the following highlighted lines of code have been added to the *Program.cs* file in MyWebApp:
 
@@ -149,17 +149,15 @@ For information about how to set up multiple startup projects, see [How to: Set 
 
 ## Persistent versus temporary tunnels
 
-A persistent tunnel is one that uses the same URL after you exit and restart Visual Studio. Having a URL that doesn't change might be useful when you're integrating a web app with an external service. For example, you're implementing a GitHub webhook, or developing an API to integrate with a Power Platform app. In such cases, you need to specify the callback URL to the external service. With a persistent tunnel, you only need to configure the external service with that URL once. With a temporary tunnel, you'd have to reconfigure the external service to point to the new URL each time Visual Studio restarts.
+A persistent tunnel is one that uses the same URL after exiting and restarting Visual Studio. Having a URL that doesn't change can be useful when integrating a web app with an external service. For example, implementing a GitHub webhook, or developing an API to integrate with a Power Platform app. In such cases, you might need to specify the callback URL to the external service. With a persistent tunnel, the external service URL only needs to be configured once. Using a temporary tunnel, the tunnel URL must be configured each time Visual Studio restarts.
 
-*Persistent* doesn't mean the tunnel works when Visual Studio isn't open. Any tunnel URL will connect to the local machine only if:
+*Persistent* doesn't mean the tunnel works when Visual Studio isn't open. A tunnel URL connects to the local machine only if:
 
 * Visual Studio is open.
 * A tunnel is selected as active.
 * The ASP.NET Core project that the tunnel URL connects to is running.
 
-Even if the tunnel is persistent, the tunnel URL doesn't work if the associated project isn't running in Visual Studio.
-
-A temporary tunnel is fine when you only need the dev tunnel URL to work for a short time. For example, you want to share in-progress work on a web app with others, or you want to test an app on an external device. In some cases, it might be best to get a new URL each time Visual Studio starts.
+A temporary tunnel is fine when the dev tunnel URL needs to work for a short time. For example, sharing in-progress work on a web app with others, or testing an app on an external device. In some cases, it might be best to get a new URL each time Visual Studio starts.
 
 ## See also
 
