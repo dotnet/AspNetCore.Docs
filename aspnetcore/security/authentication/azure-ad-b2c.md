@@ -76,13 +76,13 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
     - Renders a **Sign out** or **Sign in** link as appropriate.
         - The link points to an action method on the `Account` controller in the `MicrosoftIdentity` area.
 
-1. In `Pages/Shared/_Layout.cshtml`, add the highlighted line within the `<header>` element:
+1. In *Pages/Shared/_Layout.cshtml*, add the highlighted line within the `<header>` element:
 
     :::code language="razor" source="azure-ad-b2c/sample/Pages/Shared/_Layout.cshtml" range="12-33" highlight="18":::
  
     Adding `<partial name="_LoginPartial" />` renders the `_LoginPartial.cshtml` partial view in every page request that uses this layout.
 
-1. In `Program.cs`, make the following changes:
+1. In *Program.cs*, make the following changes:
 
     1. Add the following `using` directives:
     
@@ -90,7 +90,7 @@ In this tutorial, you'll learn how to configure an ASP.NET Core app for authenti
 
         The preceding code resolves references used in the next steps.
 
-    1. Update the `builder services` with the following code:
+    1. Update the `builder.Services` lines with the following code:
         
         :::code language="csharp" source="azure-ad-b2c/sample/Program.cs" id="snippet_builderservices":::
 
