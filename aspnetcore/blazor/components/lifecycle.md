@@ -32,6 +32,8 @@ Component lifecycle events:
 > [!NOTE]
 > Asynchronous actions performed in lifecycle events might not have completed before a component is rendered. For more information, see the [Handle incomplete async actions at render](#handle-incomplete-async-actions-at-render) section later in this article.
 
+A parent component renders before its children components because rendering is what determines which children are present. If synchronous parent component initialization is used, the parent initialization is guaranteed to complete first. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
+
 ![Component lifecycle events of a Razor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
 
 Document Object Model (DOM) event processing:
@@ -82,6 +84,8 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 ## Component initialization (`OnInitialized{Async}`)
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> are invoked when the component is initialized after having received its initial parameters in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>.
+
+If synchronous parent component initialization is used, the parent initialization is guaranteed to complete before child component initialization. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
 
 For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
 
@@ -505,6 +509,8 @@ Component lifecycle events:
 > [!NOTE]
 > Asynchronous actions performed in lifecycle events might not have completed before a component is rendered. For more information, see the [Handle incomplete async actions at render](#handle-incomplete-async-actions-at-render) section later in this article.
 
+A parent component renders before its children components because rendering is what determines which children are present. If synchronous parent component initialization is used, the parent initialization is guaranteed to complete first. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
+
 ![Component lifecycle events of a Razor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
 
 Document Object Model (DOM) event processing:
@@ -555,6 +561,8 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 ## Component initialization (`OnInitialized{Async}`)
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> are invoked when the component is initialized after having received its initial parameters in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>.
+
+If synchronous parent component initialization is used, the parent initialization is guaranteed to complete before child component initialization. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
 
 For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
 
@@ -978,6 +986,8 @@ Component lifecycle events:
 > [!NOTE]
 > Asynchronous actions performed in lifecycle events might not have completed before a component is rendered. For more information, see the [Handle incomplete async actions at render](#handle-incomplete-async-actions-at-render) section later in this article.
 
+A parent component renders before its children components because rendering is what determines which children are present. If synchronous parent component initialization is used, the parent initialization is guaranteed to complete first. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
+
 ![Component lifecycle events of a Razor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
 
 Document Object Model (DOM) event processing:
@@ -1028,6 +1038,8 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 ## Component initialization (`OnInitialized{Async}`)
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> are invoked when the component is initialized after having received its initial parameters in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>.
+
+If synchronous parent component initialization is used, the parent initialization is guaranteed to complete before child component initialization. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
 
 For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
 
@@ -1450,6 +1462,8 @@ Component lifecycle events:
 > [!NOTE]
 > Asynchronous actions performed in lifecycle events might not have completed before a component is rendered. For more information, see the [Handle incomplete async actions at render](#handle-incomplete-async-actions-at-render) section later in this article.
 
+A parent component renders before its children components because rendering is what determines which children are present. If synchronous parent component initialization is used, the parent initialization is guaranteed to complete first. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
+
 ![Component lifecycle events of a Razor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
 
 Document Object Model (DOM) event processing:
@@ -1500,6 +1514,8 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 ## Component initialization (`OnInitialized{Async}`)
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> are invoked when the component is initialized after having received its initial parameters in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>.
+
+If synchronous parent component initialization is used, the parent initialization is guaranteed to complete before child component initialization. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
 
 For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
 
