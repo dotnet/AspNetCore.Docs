@@ -493,7 +493,7 @@ The Razor component processes Razor component lifecycle events in a set of synch
 
 ## Lifecycle events
 
-The following simplified diagrams illustrate Razor component lifecycle event processing. The C# methods associated with the lifecycle events are defined with examples in the following sections of this article.
+The following simplified description and diagrams illustrate Razor component lifecycle event processing. The C# methods associated with the lifecycle events are defined with examples in the following sections of this article.
 
 Component lifecycle events:
 
@@ -968,7 +968,7 @@ The Razor component processes Razor component lifecycle events in a set of synch
 
 ## Lifecycle events
 
-The following simplified diagrams illustrate Razor component lifecycle event processing. The C# methods associated with the lifecycle events are defined with examples in the following sections of this article.
+The following simplified description and diagrams illustrate Razor component lifecycle event processing. The C# methods associated with the lifecycle events are defined with examples in the following sections of this article.
 
 Component lifecycle events:
 
@@ -1442,7 +1442,7 @@ The Razor component processes Razor component lifecycle events in a set of synch
 
 ## Lifecycle events
 
-The following simplified diagrams illustrate Razor component lifecycle event processing. The C# methods associated with the lifecycle events are defined with examples in the following sections of this article.
+The following simplified description and diagrams illustrate Razor component lifecycle event processing. The C# methods associated with the lifecycle events are defined with examples in the following sections of this article.
 
 Component lifecycle events:
 
