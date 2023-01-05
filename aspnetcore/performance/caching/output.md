@@ -97,7 +97,7 @@ The remainder of the class is the same as shown previously. Add the custom polic
 
 :::code language="csharp" source="output/samples/7.x/Program.cs" id="policies3c":::
 
-With this code, DI creates the instance of the custom policy class. Any public arguments in the constructor would also be resolved.
+The preceding code uses DI to create the instance of the custom policy class. Any public arguments in the constructor are resolved.
 
 When using a custom policy as a base policy, don't call `OutputCache()` (with no arguments) on any endpoint that the base policy should apply to. Calling `OutputCache()` adds the default policy to the endpoint.
 
