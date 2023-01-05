@@ -485,6 +485,10 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
 
+## Avoid `IHttpContextAccessor` in Razor components
+
+Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be holding the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
+
 ## Additional resources for Blazor Server apps
 
 * <xref:blazor/host-and-deploy/server#signalr-configuration>
@@ -901,6 +905,10 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
 
+## Avoid `IHttpContextAccessor` in Razor components
+
+Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be holding the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
+
 ## Additional resources for Blazor Server apps
 
 * <xref:blazor/host-and-deploy/server#signalr-configuration>
@@ -1290,6 +1298,10 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
 
+## Avoid `IHttpContextAccessor` in Razor components
+
+Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be holding the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
+
 ## Additional resources for Blazor Server apps
 
 * <xref:signalr/introduction>
@@ -1629,6 +1641,10 @@ public void ConfigureServices(IServiceCollection services)
 If a custom circuit handler's methods throw an unhandled exception, the exception is fatal to the Blazor Server circuit. To tolerate exceptions in a handler's code or called methods, wrap the code in one or more [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging.
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
+
+## Avoid `IHttpContextAccessor` in Razor components
+
+Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be holding the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
 
 ## Additional resources for Blazor Server apps
 

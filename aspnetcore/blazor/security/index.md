@@ -53,6 +53,9 @@ Blazor Server apps operate over a real-time connection that's created using Sign
 
 The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service for Blazor Server apps obtains authentication state data from ASP.NET Core's `HttpContext.User`. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
 
+> [!IMPORTANT]
+> Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be holding the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
+
 For more information on creating apps and configuration, see <xref:blazor/security/server/index>.
 
 ## `AuthenticationStateProvider` service
@@ -612,6 +615,9 @@ For more information on creating apps and configuration, see <xref:blazor/securi
 Blazor Server apps operate over a real-time connection that's created using SignalR. [Authentication in SignalR-based apps](xref:signalr/authn-and-authz) is handled when the connection is established. Authentication can be based on a cookie or some other bearer token.
 
 The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service for Blazor Server apps obtains authentication state data from ASP.NET Core's `HttpContext.User`. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
+
+> [!IMPORTANT]
+> Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be holding the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
 
 For more information on creating apps and configuration, see <xref:blazor/security/server/index>.
 
@@ -1175,6 +1181,9 @@ For more information on creating apps and configuration, see <xref:blazor/securi
 Blazor Server apps operate over a real-time connection that's created using SignalR. [Authentication in SignalR-based apps](xref:signalr/authn-and-authz) is handled when the connection is established. Authentication can be based on a cookie or some other bearer token.
 
 The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service for Blazor Server apps obtains authentication state data from ASP.NET Core's `HttpContext.User`. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
+
+> [!IMPORTANT]
+> Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be holding the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
 
 For more information on creating apps and configuration, see <xref:blazor/security/server/index>.
 
@@ -1743,6 +1752,9 @@ For more information on creating apps and configuration, see <xref:blazor/securi
 Blazor Server apps operate over a real-time connection that's created using SignalR. [Authentication in SignalR-based apps](xref:signalr/authn-and-authz) is handled when the connection is established. Authentication can be based on a cookie or some other bearer token.
 
 The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service for Blazor Server apps obtains authentication state data from ASP.NET Core's `HttpContext.User`. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
+
+> [!IMPORTANT]
+> Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be holding the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
 
 For more information on creating apps and configuration, see <xref:blazor/security/server/index>.
 
