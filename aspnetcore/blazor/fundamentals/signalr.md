@@ -487,7 +487,7 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 
 ## Avoid `IHttpContextAccessor` in Razor components
 
-Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be holding the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
+Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
 
 ## Additional resources for Blazor Server apps
 
@@ -907,7 +907,7 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 
 ## Avoid `IHttpContextAccessor` in Razor components
 
-Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be holding the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
+Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
 
 ## Additional resources for Blazor Server apps
 
@@ -1300,7 +1300,7 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 
 ## Avoid `IHttpContextAccessor` in Razor components
 
-Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be holding the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
+Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
 
 ## Additional resources for Blazor Server apps
 
@@ -1644,7 +1644,7 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 
 ## Avoid `IHttpContextAccessor` in Razor components
 
-Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be holding the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
+Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
 
 ## Additional resources for Blazor Server apps
 
