@@ -253,59 +253,38 @@ if (context.Resource is AuthorizationFilterContext mvcContext)
 
 [!INCLUDE[](~/includes/requireAuth.md)]
 
-## Authorization with external service
+<a name="exs"></a>
 
-This is a sample that shows how we can implement additional authorization requirements with an external authorization service. In this example, we have an API (Contoso.API) secured with Azure AD. However, that is an additional authorization check with a custom API (Contoso.Security.API) which returns a payload describing whether this particular client app can invoke the GetWeather API.
+## Authorization with external service sample
 
-### Get Started
+The sample code on [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/samples/aspnetcore-authz-with-ext-authz-service) shows how to implement additional authorization requirements with an external authorization service. The sample `Contoso.API` project is secured with [Azure AD](/azure/active-directory/fundamentals/active-directory-whatis).An additional authorization check from the `Contoso.Security.API` project returns a payload describing whether the `Contoso.API` client app can invoke the `GetWeather` API.
 
-1. Create an App Registration in your AAD Tenant. Be sure to assign it an AppRole. Under API permissions, add the AppRole as a permission and grant Admin consent. Note that in this setup, this App Registration represents both the API and the Client invoking the API. If you like, you can create 2 App Registrations. If you are using this setup, be sure to only perform the API permissions, add AppRole as a permission step for only the Client. Only the Client App Registration requires a Client Secret to be generated.
+### Configure the sample
 
-2. Configure the Contoso.API with the following:
+1. Create an [application registration](/azure/active-directory/develop/quickstart-register-app) in your [Azure Active Directory (Azure AD) tenant](/azure/active-directory/develop/quickstart-create-new-tenant):
 
-    ```json
-    {
-        "AzureAd": {
-            "Instance": "https://login.microsoftonline.com/",
-            "Domain": "<Tenant name from AAD properties>.onmicrosoft.com",
-            "TenantId": "<Tenant Id from AAD properties>",
-            "ClientId": "<Client Id from App Registration representing the API>"
-        },
-        "Logging": {
-            "LogLevel": {
-            "Default": "Information",
-            "Microsoft.AspNetCore": "Warning"
-            }
-        },
-        "AllowedHosts": "*"
-    }
-    ```
+ * Assign it an AppRole.
+ * Under API permissions, add the AppRole as a permission and grant Admin consent. Note that in this setup, this app registration represents both the API and the client invoking the API. If you like, you can create two app registrations. If you are using this setup, be sure to only perform the API permissions, add AppRole as a permission step for only the client. Only the client app registration requires a client secret to be generated.
 
-3. Configure the Contoso.Security.API with the following:
+2. Configure `Contoso.API` with the following settings:
 
-    ```json
-    {
-        "Logging": {
-            "LogLevel": {
-            "Default": "Information",
-            "Microsoft.AspNetCore": "Warning"
-            }
-        },
-        "AllowedHosts": "*",
-        "AllowedClients": [
-            "<Use the appropriate Client Id representing the Client calling the API>"
-        ]
-    }
-    ```
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/aspnetcore-authz-with-ext-authz-service/Contoso.API/appsettings.json:::
 
-4. Import the ContosoAPI.postman_collection.json file into Postman and configure an Environment with the following:
+3. Configure `Contoso.Security.API` with the following settings:
 
-    * ClientId: Client Id from App Registration representing the Client calling the API.
-    * ClientSecret: Client Secret from App Registration representing the Client calling the API.
-    * TenantId: Tenant Id from AAD properties
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/aspnetcore-authz-with-ext-authz-service/Contoso.Security.API/appsettings.json":::
 
-5. Now we can run the Solution and use Postman to invoke the API. You can add breakpoints in the Contoso.Security.API in SecurityPolicyController and observe the Client Id is being passed in that is used to assert whether it is allowed to Get Weather.
+4. Import the [ContosoAPI.postman_collection.json](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/samples/aspnetcore-authz-with-ext-authz-service/ContosoAPI.postman_collection.json) file into Postman and configure an environment with the following:
+
+    * `ClientId`: Client Id from app registration representing the client calling the API.
+    * `clientSecret`: Client Secret from app registration representing the client calling the API.
+    * `TenantId`: Tenant Id from AAD properties
+
+5. Run the solution and use Postman to invoke the API. You can add breakpoints in the `Contoso.Security.API.SecurityPolicyController` and observe the client Id is being passed in that is used to assert whether it is allowed to Get Weather.
 
 [!INCLUDE[](~/security/authorization/policies/includes/policies5.md)]
 
-::: moniker-end
+## Additional resources
+
+* Quickstart: Configure an application to expose a web API[
+::](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis): moniker-end
