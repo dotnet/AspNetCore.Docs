@@ -9,6 +9,8 @@ uid: security/authentication/azure-ad-b2c
 ---
 # Cloud authentication with Azure Active Directory B2C in ASP.NET Core
 
+By [Damien Bod](https://twitter.com/damien_bod)
+
 [Azure Active Directory B2C](/azure/active-directory-b2c/active-directory-b2c-overview) (Azure AD B2C) is a cloud identity management solution for web and mobile apps. The service provides authentication for apps hosted in the cloud and on-premises. Authentication types include individual accounts, social network accounts, and federated enterprise accounts. Additionally, Azure AD B2C can provide multi-factor authentication with minimal configuration.
 
 > [!TIP]
