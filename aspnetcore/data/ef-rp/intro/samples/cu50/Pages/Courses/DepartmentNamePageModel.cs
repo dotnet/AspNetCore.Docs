@@ -18,7 +18,9 @@ namespace ContosoUniversity.Pages.Courses
                                    select d;
 
             DepartmentNameSL = new SelectList(departmentsQuery.AsNoTracking(),
-                        "DepartmentID", "Name", selectedDepartment);
+                nameof(Department.DepartmentID),
+                nameof(Department.Name),
+                selectedDepartment);
         }
     }
 }
