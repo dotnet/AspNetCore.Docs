@@ -158,6 +158,7 @@ If an exceptional condition must be propagated to the client, use the <xref:Micr
 * <xref:signalr/introduction>
 * <xref:signalr/javascript-client>
 * <xref:signalr/publish-to-azure-web-app>
+* [SignalR Hub Protocol](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md)
 
 :::moniker-end
 
