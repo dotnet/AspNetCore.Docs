@@ -448,7 +448,7 @@ In the following example:
 
 ```csharp
 Navigation.GetUriWithQueryParameters(
-    new Dictionary<string, object>
+    new Dictionary<string, object?>
     {
         ["name"] = null,
         ["age"] = (int?)25,
@@ -474,7 +474,7 @@ In the following example:
 
 ```csharp
 Navigation.GetUriWithQueryParameters(
-    new Dictionary<string, object>
+    new Dictionary<string, object?>
     {
         ["full name"] = "Morena Baccarin",
         ["ping"] = new int?[] { 35, 16, null, 87, 240 }
@@ -1220,7 +1220,7 @@ In the following example:
 
 ```csharp
 Navigation.GetUriWithQueryParameters(
-    new Dictionary<string, object>
+    new Dictionary<string, object?>
     {
         ["name"] = null,
         ["age"] = (int?)25,
@@ -1246,7 +1246,7 @@ In the following example:
 
 ```csharp
 Navigation.GetUriWithQueryParameters(
-    new Dictionary<string, object>
+    new Dictionary<string, object?>
     {
         ["full name"] = "Morena Baccarin",
         ["ping"] = new int?[] { 35, 16, null, 87, 240 }
