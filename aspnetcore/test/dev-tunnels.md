@@ -151,11 +151,7 @@ For information about how to set up multiple startup projects, see [How to: Set 
 
 A persistent tunnel is one that uses the same URL after exiting and restarting Visual Studio. Having a URL that doesn't change can be useful when integrating a web app with an external service. For example, implementing a GitHub webhook, or developing an API to integrate with a Power Platform app. In such cases, you might need to specify the callback URL to the external service. With a persistent tunnel, the external service URL only needs to be configured once. Using a temporary tunnel, the tunnel URL must be configured each time Visual Studio restarts.
 
-*Persistent* doesn't mean the tunnel works when Visual Studio isn't open. A tunnel URL connects to the local machine only if:
-
-* Visual Studio is open.
-* A tunnel is selected as active.
-* The ASP.NET Core project that the tunnel URL connects to is running.
+*Persistent* doesn't mean the tunnel works when Visual Studio isn't open. A tunnel URL connects to the local machine only if the ASP.NET Core project that the tunnel URL connects to is running in Visual Studio.
 
 A temporary tunnel is fine when the dev tunnel URL needs to work for a short time. For example, sharing in-progress work on a web app with others, or testing an app on an external device. In some cases, it might be best to get a new URL each time Visual Studio starts.
 
