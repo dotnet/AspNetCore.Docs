@@ -266,9 +266,9 @@ The sample code on [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCor
  * Assign it an AppRole.
  * Under API permissions, add the AppRole as a permission and grant Admin consent. Note that in this setup, this app registration represents both the API and the client invoking the API. If you like, you can create two app registrations. If you are using this setup, be sure to only perform the API permissions, add AppRole as a permission step for only the client. Only the client app registration requires a client secret to be generated.
 
-2. Configure `Contoso.API` with the following settings:
+2. Configure the `Contoso.API` project with the following settings:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/aspnetcore-authz-with-ext-authz-service/Contoso.API/appsettings.json:::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/samples/aspnetcore-authz-with-ext-authz-service/Contoso.API/appsettings.json":::
 
 3. Configure `Contoso.Security.API` with the following settings:
 
