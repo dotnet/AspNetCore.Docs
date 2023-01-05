@@ -84,7 +84,7 @@ After **Continue** is selected, the request is routed to the local web app. This
 
 ### Use a tunnel to test on a phone or tablet
 
-To test a web app on an external device like a phone or tablet, navigate to the tunnel URL on the device. To make it easier to reproduce the URL on the external device:
+To test a web app from an external device like a phone or tablet, navigate to the tunnel URL. To make it easier to reproduce the URL on the external device:
 
 * Navigate to the tunnel URL in an Edge browser on the local machine.
 * Generate a QR code to the URL in the Edge browser on the local machine:
