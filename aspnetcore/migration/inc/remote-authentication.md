@@ -78,3 +78,9 @@ This remote authentication approach has a couple known limitations:
 
 1. Because Windows authentication depends on a handle to a Windows identity, Windows authentication is not supported by this feature. Future work is planned to explore how shared Windows authentication might work. See [dotnet/systemweb-adapters#246](https://github.com/dotnet/systemweb-adapters/issues/246) for more information.
 1. This feature allows the ASP.NET Core app to make use of an identity authenticated by the ASP.NET app, but all actions related to users (logging on, logging off, etc.) still need to be routed through the ASP.NET app.
+
+## Alternatives
+
+If authentication in the ASP.NET app is done using Katana Cookie Authentication Middleware, an alternative solution to sharing identity is to configure the ASP.NET and ASP.NET Core apps so that they are able to share an auth cookie. This allows both apps to determine user identity from the same cookie and signing in or out of one app will be reflected in the other. Note that because signing in typically depends on a specific database, shared cookie solutions will still typically have users always sign in through one of the apps (either ASP.NET or ASP.NET Core), but both apps will be able to see the users' identity and claims, and both apps will be able to log the user out.
+
+Details on how to configure sharing auth cookies between ASP.NET and ASP.NET Core apps are available in [cookie sharing documentation](xref:security/cookie-sharing) and a sample is available in the System.Web adapters GitHub repo demonstrating remote app authentication (as described above) with shared cookie configuration so that both apps can sign users out ([sample ASP.NET app](https://github.com/dotnet/systemweb-adapters/tree/main/samples/MvcApp), [sample ASP.NET Core app](https://github.com/dotnet/systemweb-adapters/tree/main/samples/MvcCoreApp)).

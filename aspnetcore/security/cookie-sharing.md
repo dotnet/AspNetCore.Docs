@@ -75,7 +75,29 @@ For production deployments, configure the `DataProtectionProvider` to encrypt ke
 
 ## Share authentication cookies between ASP.NET 4.x and ASP.NET Core apps
 
-ASP.NET 4.x apps that use Katana Cookie Authentication Middleware can be configured to generate authentication cookies that are compatible with the ASP.NET Core Cookie Authentication Middleware. For more information, see [Share authentication cookies between ASP.NET 4.x and ASP.NET Core apps (dotnet/AspNetCore.Docs #21987)](https://github.com/dotnet/AspNetCore.Docs/issues/21987).
+ASP.NET 4.x apps that use Katana Cookie Authentication Middleware can be configured to generate authentication cookies that are compatible with the ASP.NET Core Cookie Authentication Middleware. This can be useful if a web application consists of both ASP.NET 4.x apps and ASP.NET Core apps that must share a single sign-on experience. A specific example of such a scenario is [incrementally migrating](xref:migration/inc/overview) a web app from ASP.NET to ASP.NET Core. In such scenarios, it's common for some parts of an app to be served by the original ASP.NET app while others are served by the new ASP.NET Core app. Users should only have to sign in once, though. This can be accomplished either by using the System.Web adapters' [remote authentication](xref:migration/inc/remote-authentication) feature (which will use the ASP.NET app to sign users in) or by configuring the ASP.NET app to use Katana Cookie Authentication Middleware so that auth cookies are shared with the ASP.NET Core app.
+
+To configure ASP.NET Katana Cookie Authentication Middleware to share cookies with an ASP.NET Core app, first follow the instructions above to configure the ASP.NET Core app to use a specific cookie name, app name, and to persist data protection keys to a well-known location (such as a shared file location).
+
+Next, in the ASP.NET app, install the [`Microsoft.Owin.Security.Interop`](https://www.nuget.org/packages/Microsoft.Owin.Security.Interop/) package.
+
+Finally, update the `UseCookieAuthentication` call in Startup.Auth.cs to configure an AspNetTicketDataFormat to match the ASP.NET Core app's settings:
+
+[!code-csharp[](~/security/cookie-sharing/samples/WebCookieShare-NetFx/App_Start/Startup.Auth.cs?name=snippet_netfx_cookie_auth&highlight=11-23)]
+
+Important items configured here include:
+
+* The cookie name is set to the same name as in the ASP.NET Core app.
+* A data protection provider is created using the same key ring path. Note that in these examples, data protection keys are stored on disk but other data protection providers can be used, as well (Redis or Azure Blob Storage, for example) as long as the configuration matches between the apps.
+* The app name is set to be the same as the app name used in the ASP.NET Core app.
+* The authentication type is set to the name of the authentication scheme in the ASP.NET Core app.
+* `System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier` is set to a claim from the ASP.NET Core identity that will be unique to a user.
+
+Because the authentication type was changed to match the authentication scheme of the ASP.NET Core app, it's also necessary to update how the ASP.NET app generates new identities to use that same name. This is typically done in Models/IdentityModels.cs:
+
+[!code-csharp[](~/security/cookie-sharing/samples/WebCookieShare-NetFx/Models/IdentityModels.cs?name=snippet_generate_identity&highlight=5-6)]
+
+With these changes made, the ASP.NET and ASP.NET Core apps will be able to use the same authentication cookies so that users logging in or out of one app will be reflected in the other app.
 
 ## Use a common user database
 
