@@ -53,7 +53,7 @@ If you need access to a <xref:System.IO.Stream> that represents the file's bytes
 * On the server of a hosted Blazor WebAssembly app or a Blazor Server app, copy the stream directly to a file on disk without reading it into memory. Note that Blazor apps aren't able to access the client's file system directly. 
 * Upload files from the client directly to an external service. For more information, see the [Upload files to an external service](#upload-files-to-an-external-service) section.
 
-In the following examples, `browserFile` represents the uploaded file and implements <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile>:
+In the following examples, `browserFile` represents the uploaded file and implements <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile>. Working implementations for <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> are shown in the `FileUpload1` and `FileUpload2` components later in this article.
 
 <span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> The following approach is **NOT recommended** because the file's <xref:System.IO.Stream> content is read into a <xref:System.String> in memory (`reader`):
 
@@ -688,7 +688,7 @@ If you need access to a <xref:System.IO.Stream> that represents the file's bytes
 * On the server of a hosted Blazor WebAssembly app or a Blazor Server app, copy the stream directly to a file on disk without reading it into memory. Note that Blazor apps aren't able to access the client's file system directly. 
 * Upload files from the client directly to an external service. For more information, see the [Upload files to an external service](#upload-files-to-an-external-service) section.
 
-In the following examples, `browserFile` represents the uploaded file and implements <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile>:
+In the following examples, `browserFile` represents the uploaded file and implements <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile>. Working implementations for <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> are shown in the `FileUpload1` and `FileUpload2` components later in this article.
 
 <span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> The following approach is **NOT recommended** because the file's <xref:System.IO.Stream> content is read into a <xref:System.String> in memory (`reader`):
 
@@ -1333,7 +1333,7 @@ If you need access to a <xref:System.IO.Stream> that represents the file's bytes
 * Copy the stream directly to a file on disk without reading it into memory.
 * Upload files from the client directly to an external service. For more information, see the [Upload files to an external service](#upload-files-to-an-external-service) section.
 
-In the following examples, `browserFile` represents the uploaded file and implements <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile>:
+In the following examples, `browserFile` represents the uploaded file and implements <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile>. Working implementations for <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> are shown in the `FileUpload1` and `FileUpload2` components later in this article.
 
 <span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> The following approach is **NOT recommended** because the file's <xref:System.IO.Stream> content is read into a <xref:System.String> in memory (`reader`):
 
