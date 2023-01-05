@@ -95,4 +95,4 @@ Transient network failures may close the SignalR connection. The server may inte
 
 ## Additional resources
 
-* [SIGNALR ON THE WIRE – AN INFORMAL DESCRIPTION OF THE SIGNALR PROTOCOL](https://blog.3d-logic.com/2015/03/29/signalr-on-the-wire-an-informal-description-of-the-signalr-protocol/)
+* [SignalR Hub Protocol](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md)

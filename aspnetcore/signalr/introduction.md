@@ -29,7 +29,7 @@ Here are some features of SignalR for ASP.NET Core:
 * Sends messages to all connected clients simultaneously. For example, a chat room.
 * Sends messages to specific clients or groups of clients.
 * Scales to handle increasing traffic.
-* [SIGNALR ON THE WIRE – AN INFORMAL DESCRIPTION OF THE SIGNALR PROTOCOL](https://blog.3d-logic.com/2015/03/29/signalr-on-the-wire-an-informal-description-of-the-signalr-protocol/)
+* [SignalR Hub Protocol](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/HubProtocol.md)
 
 The source is hosted in a [SignalR repository on GitHub](https://github.com/dotnet/AspNetCore/tree/main/src/SignalR).
 
