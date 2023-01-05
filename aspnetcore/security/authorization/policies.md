@@ -5,7 +5,7 @@ description: Learn how to create and use authorization policy handlers for enfor
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 1/5/2023
 uid: security/authorization/policies
 ---
 # Policy-based authorization in ASP.NET Core
@@ -257,7 +257,7 @@ if (context.Resource is AuthorizationFilterContext mvcContext)
 
 ## Authorization with external service sample
 
-The sample code on [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/samples/aspnetcore-authz-with-ext-authz-service) shows how to implement additional authorization requirements with an external authorization service. The sample `Contoso.API` project is secured with [Azure AD](/azure/active-directory/fundamentals/active-directory-whatis).An additional authorization check from the `Contoso.Security.API` project returns a payload describing whether the `Contoso.API` client app can invoke the `GetWeather` API.
+The sample code on [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/samples/aspnetcore-authz-with-ext-authz-service) shows how to implement additional authorization requirements with an external authorization service. The sample `Contoso.API` project is secured with [Azure AD](/azure/active-directory/fundamentals/active-directory-whatis). An additional authorization check from the `Contoso.Security.API` project returns a payload describing whether the `Contoso.API` client app can invoke the `GetWeather` API.
 
 ### Configure the sample
 
@@ -287,5 +287,6 @@ The sample code on [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCor
 ## Additional resources
 
 * [Quickstart: Configure an application to expose a web API](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis)
+* [AspNetCore.Docs.Samples code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/samples/aspnetcore-authz-with-ext-authz-service)
 
 :::moniker-end
