@@ -922,6 +922,8 @@ items:
     items:
       - name: .NET Hot Reload
         uid: test/hot-reload
+      - name: Test with Visual Studio dev tunnels
+        uid: test/tunnels
       - name: Test with HttpRepl
         items:
           - name: Overview
@@ -952,7 +954,7 @@ items:
         href: /azure/azure-monitor/app/snapshot-debugger?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
       - name: Snapshot debugging in Visual Studio
         href: /visualstudio/debugger/debug-live-azure-applications
-      - name: Port tunneling in Visual Studio
+      - name: Visual Studio Dev Tunnels with Power Platform
         href: /connectors/custom-connectors/port-tunneling
   - name: Troubleshoot
     items:
