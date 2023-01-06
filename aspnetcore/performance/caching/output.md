@@ -5,7 +5,7 @@ description: Learn how to configure and use output caching middleware in ASP.NET
 monikerRange: '>= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/17/2022
+ms.date: 12/06/2022
 uid: performance/caching/output
 ---
 # Output caching middleware in ASP.NET Core
@@ -43,11 +43,11 @@ Create *policies* when calling `AddOutputCaching` to specify caching configurati
 
 The following highlighted code configures caching for all of the app's endpoints, with expiration time of 10 seconds. If an expiration time isn't specified,  it defaults to one minute.
 
-:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies1" highlight="3":::
+:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies1" highlight="3-4":::
 
 The following highlighted code creates two policies, each specifying a different expiration time. Selected endpoints can use the 20 second expiration, and others can use the 30 second expiration.
 
-:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies1" highlight="4-5":::
+:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies1" highlight="5-8":::
 
 You can select a policy for an endpoint when calling the `CacheOutput` method or using the `[OutputCache]` attribute:
 
@@ -68,12 +68,38 @@ The following code applies all of the default caching rules to all of an app's e
 
 :::code language="csharp" source="output/samples/7.x/Program.cs" id="policies3":::
 
-The following code removes these defaults while applying caching to all of an app's endpoints:
+### Override the default policy
 
-:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies4":::
+The following code shows how to override the default rules. The highlighted lines in the following custom policy code enable caching for HTTP POST methods and HTTP 301 responses:
 
+:::code language="csharp" source="output/samples/7.x/MyCustomPolicy.cs" highlight="50,68":::
 
-You can override these defaults.
+To use this custom policy, create a named policy:
+
+:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies3b":::
+
+And select the named policy for an endpoint:
+
+:::code language="csharp" source="output/samples/7.x/Program.cs" id="post":::
+
+### Alternative default policy override 
+
+Alternatively, use Dependency Injection (DI) to initialize an instance, with the following changes to the custom policy class:
+
+* A public constructor instead of a private constructor.
+* Eliminate the `Instance` property in the custom policy class.
+
+For example:
+
+:::code language="csharp" source="output/samples/7.x/MyCustomPolicy2.cs" id="fordi":::
+
+The remainder of the class is the same as shown previously. Add the custom policy as shown in the following example:
+
+:::code language="csharp" source="output/samples/7.x/Program.cs" id="policies3c":::
+
+The preceding code uses DI to create the instance of the custom policy class. Any public arguments in the constructor are resolved.
+
+When using a custom policy as a base policy, don't call `OutputCache()` (with no arguments) on any endpoint that the base policy should apply to. Calling `OutputCache()` adds the default policy to the endpoint.
 
 ## Specify the cache key
 
@@ -162,8 +188,8 @@ The following properties of <xref:Microsoft.AspNetCore.OutputCaching.OutputCache
 ## See also
 
 * <xref:performance/caching/overview>
-* <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/index>
-* <xref:fundamentals/change-tokens>
+* <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions>
+* <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder>
 
 :::moniker-end
