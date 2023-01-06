@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to use dev tunnels in Visual Studio with ASPNET Core apps.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: tdykstra
-ms.date: 12/28/2022
+ms.date: 01/06/2023
 uid: test/tunnels
 ---
 # How to use dev tunnels in Visual Studio 2022 with ASP.NET Core apps
@@ -16,9 +16,9 @@ The *dev tunnels* feature of Visual Studio 2022 enables ad-hoc connections betwe
 Some of the scenarios that dev tunnels enable:
 
 * Test a web app on other devices, like mobile phones and tablets.
-* Test an app with external services. For instance, test and debug [Power Platform connectors](/connectors/custom-connectors/port-tunneling) or [Twilio webhooks](https://www.twilio.com/blog/use-visual-studio-port-tunneling-with-twilio-webhooks).
+* Test an app with external services. For instance, test and debug [Power Platform connectors](/connectors/custom-connectors/port-tunneling), [Azure Communication Services APIs](https://github.com/Azure-Samples/communication-services-dotnet-quickstarts/tree/main/CallAutomation_AppointmentReminder/CallAutomation_AppointmentReminder), or [Twilio webhooks](https://www.twilio.com/blog/use-visual-studio-port-tunneling-with-twilio-webhooks).
 * Make an app temporarily available to others over the internet, for a presentation or to invite others to review your work on a web app or API.
-* As an alternative to [ngrok](https://ngrok.com).
+* As an alternative to other port-forwarding solutions.
 
 ## Prerequisites
 
@@ -159,5 +159,6 @@ A temporary tunnel is fine when the dev tunnel URL needs to work for a short tim
 
 The following resources use an early preview version of the dev tunnels feature, so parts of them are out of date:
 
-* [Use Visual Studio dev tunnels to handle Twilio Webhooks](https://www.twilio.com/blog/use-visual-studio-port-tunneling-with-twilio-webhooks).
 * [Use dev tunnels in Visual Studio to debug your web APIs](/connectors/custom-connectors/port-tunneling)
+* [Call Automation - Appointment Reminder Sample](https://github.com/Azure-Samples/communication-services-dotnet-quickstarts/tree/main/CallAutomation_AppointmentReminder/CallAutomation_AppointmentReminder)
+* [Use Visual Studio dev tunnels to handle Twilio Webhooks](https://www.twilio.com/blog/use-visual-studio-port-tunneling-with-twilio-webhooks).
