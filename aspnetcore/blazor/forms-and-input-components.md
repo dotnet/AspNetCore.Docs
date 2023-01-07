@@ -66,7 +66,7 @@ In the preceding `FormExample1` component:
 * The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component is rendered where the `<EditForm>` element appears.
 * The model is created in the component's `@code` block and held in a private field (`exampleModel`). The field is assigned to  <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType>'s attribute (`Model`) of the `<EditForm>` element.
 * The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component (`id="name"`) is an input component for editing string values. The `@bind-Value` directive attribute binds the `exampleModel.Name` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.Value%2A> property.
-* The `HandleSubmit` method is assigned to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit>. The handler is called when the form is submitted by the user.
+* The `HandleSubmit` method is registered as a handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> callback. The handler is called when the form is submitted by the user.
 
 To demonstrate how the preceding <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works with [data annotations](xref:mvc/models/validation) validation:
 
