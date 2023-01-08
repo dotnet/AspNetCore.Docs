@@ -5,7 +5,7 @@ description: Learn how to set up Nginx as a reverse proxy on an Ubuntu 20.04 VM 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, engagement-fy23
-ms.date: 11/28/2022
+ms.date: 01/08/2023
 uid: host-and-deploy/linux-nginx
 ---
 # Host ASP.NET Core on Linux with Nginx
@@ -172,11 +172,11 @@ To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET C
 
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
-To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the `server{}` code block with contents with the following snippet:
+To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx.conf`. Open it in a text editor, and replace the `server{}` code block with the following snippet:
 
 # [SUSE Linux Enterprise Server](#tab/linux-sles)
 
-To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the `server{}` code block with contents with the following snippet:
+To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx.conf`. Open it in a text editor, and replace the `server{}` code block with the following snippet:
 
 ---
 
