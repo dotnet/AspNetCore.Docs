@@ -15,7 +15,12 @@ The Blazor framework supports forms and provides built-in input components:
 * <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation)
 * [Built-in input components](#built-in-input-components)
 
-The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace provides classes for managing form elements, state, and validation, and the namespace also provides access to built-in :::no-loc text="Input*"::: Razor components for use in Blazor apps. The namespace appears by default in the `_Imports.razor` file of an app created from a Blazor project template. If you don't maintain a `using` statement in `_Imports.razor` for the namespace, you can use the namespace in individual Razor components with the [`@using`](xref:mvc/views/razor#using) directive:
+The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace provides:
+
+ * Classes for managing form elements, state, and validation.
+ * Access to built-in :::no-loc text="Input*"::: components, which can be used in Blazor apps.
+ 
+A project created from the Blazor project template includes the namespace by default in the app's `_Imports.razor` file, which makes the namespace available in all of the Razor component files (`.razor`) of the app without explicit [`@using`](xref:mvc/views/razor#using) directives:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Forms
@@ -23,7 +28,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namesp
 
 :::moniker range=">= aspnetcore-7.0"
 
-To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works, consider the following `ExampleModel` type. `ExampleModel` defines a `Name` property for a form that accepts a name from the user.
+To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works, consider the following example. `ExampleModel` represents the data model bound to the form and defines a `Name` property, which is used to store the value of the form's `name` field provided by the user.
 
 `ExampleModel.cs`:
 
