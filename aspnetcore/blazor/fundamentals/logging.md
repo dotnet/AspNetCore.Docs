@@ -569,7 +569,7 @@ Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log 
 </script>
 ```
 
-For more information on Blazor startup (`Blazor.start`), see <xref:blazor/fundamentals/startup>.
+For more information on Blazor startup (`Blazor.start()`), see <xref:blazor/fundamentals/startup>.
 
 ## SignalR client logging (Blazor WebAssembly)
 
@@ -1253,7 +1253,7 @@ Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log 
 </script>
 ```
 
-For more information on Blazor startup (`Blazor.start`), see <xref:blazor/fundamentals/startup>.
+For more information on Blazor startup (`Blazor.start()`), see <xref:blazor/fundamentals/startup>.
 
 ## SignalR client logging (Blazor WebAssembly)
 
@@ -1686,7 +1686,7 @@ Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log 
 </script>
 ```
 
-For more information on Blazor startup (`Blazor.start`), see <xref:blazor/fundamentals/startup>.
+For more information on Blazor startup (`Blazor.start()`), see <xref:blazor/fundamentals/startup>.
 
 ## SignalR client logging (Blazor WebAssembly)
 
@@ -2116,7 +2116,7 @@ Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log 
 </script>
 ```
 
-For more information on Blazor startup (`Blazor.start`), see <xref:blazor/fundamentals/startup>.
+For more information on Blazor startup (`Blazor.start()`), see <xref:blazor/fundamentals/startup>.
 
 ## SignalR client logging (Blazor WebAssembly)
 

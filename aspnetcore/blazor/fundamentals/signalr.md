@@ -250,12 +250,12 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 ## Blazor startup
 
-Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
+Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (hosted Blazor WebAssembly with SignalR implemented):
 
-* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` or `blazor.webassembly.js` script.
-* Place a script that calls `Blazor.start` after the Blazor script is loaded and inside the closing `</body>` tag.
+* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.{server|webassembly}.js` script.
+* Place a script that calls `Blazor.start()` after the Blazor script is loaded and inside the closing `</body>` tag.
 
-When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
+When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start()` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
@@ -744,12 +744,12 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 ## Blazor startup
 
-Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Layout.cshtml` file (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
+Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Layout.cshtml` file (Blazor Server) or `wwwroot/index.html` (hosted Blazor WebAssembly with SignalR implemented):
 
-* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` or `blazor.webassembly.js` script.
-* Place a script that calls `Blazor.start` after the Blazor script is loaded and inside the closing `</body>` tag.
+* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.{server|webassembly}.js` script.
+* Place a script that calls `Blazor.start()` after the Blazor script is loaded and inside the closing `</body>` tag.
 
-When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
+When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start()` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
@@ -1133,12 +1133,12 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 ## Blazor startup
 
-Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
+Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (hosted Blazor WebAssembly with SignalR implemented):
 
-* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` or `blazor.webassembly.js` script.
-* Place a script that calls `Blazor.start` after the Blazor script is loaded and inside the closing `</body>` tag.
+* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.{server|webassembly}.js` script.
+* Place a script that calls `Blazor.start()` after the Blazor script is loaded and inside the closing `</body>` tag.
 
-When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
+When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start()` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
@@ -1489,12 +1489,12 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 ## Blazor startup
 
-Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
+Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (hosted Blazor WebAssembly with SignalR implemented):
 
-* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` or `blazor.webassembly.js` script.
-* Place a script that calls `Blazor.start` after the Blazor script is loaded and inside the closing `</body>` tag.
+* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.{server|webassembly}.js` script.
+* Place a script that calls `Blazor.start()` after the Blazor script is loaded and inside the closing `</body>` tag.
 
-When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
+When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start()` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
