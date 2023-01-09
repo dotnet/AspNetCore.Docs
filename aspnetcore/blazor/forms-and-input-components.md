@@ -15,7 +15,12 @@ The Blazor framework supports forms and provides built-in input components:
 * <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation)
 * [Built-in input components](#built-in-input-components)
 
-The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace provides classes for managing form views, state, and validation, and the namespace also provides access to built-in :::no-loc text="Input*"::: Razor components for use in Blazor apps. The namespace appears by default in the `_Imports.razor` file of an app created from a Blazor project template. If you don't maintain a `using` statement in `_Imports.razor` for the namespace, you can use the namespace in individual Razor components with the [`@using`](xref:mvc/views/razor#using) directive:
+The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namespace provides:
+
+ * Classes for managing form elements, state, and validation.
+ * Access to built-in :::no-loc text="Input*"::: components, which can be used in Blazor apps.
+ 
+A project created from the Blazor project template includes the namespace by default in the app's `_Imports.razor` file, which makes the namespace available in all of the Razor component files (`.razor`) of the app without explicit [`@using`](xref:mvc/views/razor#using) directives:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Forms
@@ -23,30 +28,74 @@ The <xref:Microsoft.AspNetCore.Components.Forms?displayProperty=fullName> namesp
 
 :::moniker range=">= aspnetcore-7.0"
 
-To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works with [data annotations](xref:mvc/models/validation) validation, consider the following `ExampleModel` type. The `Name` property is marked required with the <xref:System.ComponentModel.DataAnnotations.RequiredAttribute> and specifies a <xref:System.ComponentModel.DataAnnotations.StringLengthAttribute> maximum string length limit and error message.
+To demonstrate how an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works, consider the following example. `ExampleModel` represents the data model bound to the form and defines a `Name` property, which is used to store the value of the form's `name` field provided by the user.
 
 `ExampleModel.cs`:
 
-:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/ExampleModel.cs" highlight="5-6":::
+```csharp
+public class ExampleModel
+{
+    public string? Name { get; set; }
+}
+```
 
 A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component. The following Razor component demonstrates typical elements, components, and Razor code to render a webform using an <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component, which is bound to the preceding `ExampleModel` type.
 
 `Pages/FormExample1.razor`:
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample1.razor":::
+```razor
+@page "/form-example-1"
+@using Microsoft.Extensions.Logging
+@inject ILogger<FormExample1> Logger
+
+<EditForm Model="@exampleModel" OnSubmit="@HandleSubmit">
+    <InputText id="name" @bind-Value="exampleModel.Name" />
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+@code {
+    private ExampleModel exampleModel = new();
+
+    private void HandleSubmit()
+    {
+        Logger.LogInformation("HandleSubmit called");
+
+        // Process the form
+    }
+}
+```
 
 In the preceding `FormExample1` component:
 
 * The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component is rendered where the `<EditForm>` element appears.
 * The model is created in the component's `@code` block and held in a private field (`exampleModel`). The field is assigned to  <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType>'s attribute (`Model`) of the `<EditForm>` element.
 * The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component (`id="name"`) is an input component for editing string values. The `@bind-Value` directive attribute binds the `exampleModel.Name` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.Value%2A> property.
-* The `HandleValidSubmit` method is assigned to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>. The handler is called if the form passes validation.
+* The `HandleSubmit` method is registered as a handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> callback. The handler is called when the form is submitted by the user.
+
+To demonstrate how the preceding <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works with [data annotations](xref:mvc/models/validation) validation:
+
+* The preceding `ExampleModel` uses the <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName> namespace.
+* The `Name` property of `ExampleModel` is marked required with the <xref:System.ComponentModel.DataAnnotations.RequiredAttribute> and specifies a <xref:System.ComponentModel.DataAnnotations.StringLengthAttribute> maximum string length limit and error message.
+
+`ExampleModel.cs`:
+
+:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/ExampleModel.cs" highlight="5-6":::
+
+The earlier `FormExample1` component is modified:
+
+* <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> is replaced with <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>, which processes assigned event handler if the form is valid when submitted by the user. The method name is changed to `HandleValidSubmit`, which reflects that the method is called when the form is valid.
+* A <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component is added to display validation messages when the form is invalid on form submission.
 * The data annotations validator (<xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component&dagger;) attaches validation support using data annotations:
   * If the `<input>` form field is left blank when the **`Submit`** button is selected, an error appears in the validation summary (<xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component&Dagger;) ("`The Name field is required.`") and `HandleValidSubmit` is **not** called.
   * If the `<input>` form field contains more than ten characters when the **`Submit`** button is selected, an error appears in the validation summary ("`Name is too long.`") and `HandleValidSubmit` is **not** called.
   * If the `<input>` form field contains a valid value when the **`Submit`** button is selected, `HandleValidSubmit` is called.
 
 &dagger;The <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component is covered in the [Validator component](#validator-components) section. &Dagger;The <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component is covered in the [Validation Summary and Validation Message components](#validation-summary-and-validation-message-components) section. For more information on property binding, see <xref:blazor/components/data-binding#binding-with-component-parameters>.
+
+`Pages/FormExample1.razor`:
+
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample1.razor":::
 
 ## Binding a form
 
@@ -106,15 +155,6 @@ The Blazor framework provides built-in input components to receive and validate 
 | <xref:Microsoft.AspNetCore.Components.Forms.InputText> | `<input>` |
 | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
 
-For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads>.
-
-<!--
-
-* <xref:blazor/file-uploads>
-* [Preview an image provided by the `InputFile` component](#preview-an-image-provided-by-the-inputfile-component) (this article)
-
--->
-
 All of the input components, including <xref:Microsoft.AspNetCore.Components.Forms.EditForm>, support arbitrary attributes. Any attribute that doesn't match a component parameter is added to the rendered HTML element.
 
 Input components provide default behavior for validating when a field is changed:
@@ -123,6 +163,15 @@ Input components provide default behavior for validating when a field is changed
 * For controls that don't have an <xref:Microsoft.AspNetCore.Components.Forms.EditContext>, the default validation reflects the valid or invalid state but does ***not*** provide validation styling to the underlying HTML element.
 
 Some components include useful parsing logic. For example, <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601> and <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> handle unparseable values gracefully by registering unparseable values as validation errors. Types that can accept null values also support nullability of the target field (for example, `int?` for a nullable integer).
+
+The <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component is a bit more complex and is detailed in <xref:blazor/file-uploads>.
+
+<!--
+
+* <xref:blazor/file-uploads>
+* [Preview an image provided by the `InputFile` component](#preview-an-image-provided-by-the-inputfile-component) (this article)
+
+-->
 
 ## Example form
 
