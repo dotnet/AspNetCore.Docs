@@ -505,7 +505,7 @@ using (var reader = new BinaryReader(uploadedFileData))
 }
 ```
 
-To obtain additional file signatures, use a [file signatures database (Google search result)](https://www.google.com/search?q=file+signatures+databases) and official file specifications. Consulting official file specifications may ensure that your selected signatures are valid.
+To obtain additional file signatures, use a [file signatures database (Google search result)](https://www.google.com/search?q=file+signatures+databases) and official file specifications. Consulting official file specifications may ensure that the selected signatures are valid.
 
 ### File name security
 
@@ -1229,7 +1229,7 @@ using (var reader = new BinaryReader(uploadedFileData))
 }
 ```
 
-To obtain additional file signatures, use a [file signatures database (Google search result)](https://www.google.com/search?q=file+signatures+databases) and official file specifications. Consulting official file specifications may ensure that your selected signatures are valid.
+To obtain additional file signatures, use a [file signatures database (Google search result)](https://www.google.com/search?q=file+signatures+databases) and official file specifications. Consulting official file specifications may ensure that the selected signatures are valid.
 
 ### File name security
 
@@ -1964,7 +1964,7 @@ using (var reader = new BinaryReader(uploadedFileData))
 }
 ```
 
-To obtain additional file signatures, use a [file signatures database (Google search result)](https://www.google.com/search?q=file+signatures+databases) and official file specifications. Consulting official file specifications may ensure that your selected signatures are valid.
+To obtain additional file signatures, use a [file signatures database (Google search result)](https://www.google.com/search?q=file+signatures+databases) and official file specifications. Consulting official file specifications may ensure that the selected signatures are valid.
 
 ### File name security
 
