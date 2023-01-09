@@ -46,7 +46,7 @@ For actions with multiple return types, return `IActionResult`. For example, whe
 
 ## Content negotiation
 
-Content negotiation occurs when the client specifies an [Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is:
+Content negotiation occurs when the client specifies an [Accept header](https://www.rfc-editor.org/rfc/rfc9110#field.accept). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is:
 
 * Implemented by <xref:Microsoft.AspNetCore.Mvc.ObjectResult>.
 * Built into the status code-specific action results returned from the helper methods. The action results helper methods are based on `ObjectResult`.
@@ -249,7 +249,7 @@ For actions with multiple return types, return `IActionResult`. For example, ret
 
 ## Content negotiation
 
-Content negotiation occurs when the client specifies an [Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is:
+Content negotiation occurs when the client specifies an [Accept header](https://www.rfc-editor.org/rfc/rfc9110#field.accept). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is:
 
 * Implemented by <xref:Microsoft.AspNetCore.Mvc.ObjectResult>.
 * Built into the status code-specific action results returned from the helper methods. The action results helper methods are based on `ObjectResult`.
@@ -478,7 +478,7 @@ For actions with multiple return types, return `IActionResult`. For example, whe
 
 ## Content negotiation
 
-Content negotiation occurs when the client specifies an [Accept header](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is:
+Content negotiation occurs when the client specifies an [Accept header](https://www.rfc-editor.org/rfc/rfc9110#field.accept). The default format used by ASP.NET Core is [JSON](https://json.org/). Content negotiation is:
 
 * Implemented by <xref:Microsoft.AspNetCore.Mvc.ObjectResult>.
 * Built into the status code-specific action results returned from the helper methods. The action results helper methods are based on `ObjectResult`.

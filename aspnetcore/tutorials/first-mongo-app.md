@@ -260,7 +260,7 @@ The preceding web API controller:
 
 * Uses the `BooksService` class to run CRUD operations.
 * Contains action methods to support GET, POST, PUT, and DELETE HTTP requests.
-* Calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> in the `Create` action method to return an [HTTP 201](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) response. Status code 201 is the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtAction` also adds a `Location` header to the response. The `Location` header specifies the URI of the newly created book.
+* Calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> in the `Create` action method to return an [HTTP 201](https://www.rfc-editor.org/rfc/rfc9110#status.201) response. Status code 201 is the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtAction` also adds a `Location` header to the response. The `Location` header specifies the URI of the newly created book.
 
 ## Test the web API
 
@@ -619,7 +619,7 @@ The preceding web API controller:
 
 * Uses the `BookService` class to run CRUD operations.
 * Contains action methods to support GET, POST, PUT, and DELETE HTTP requests.
-* Calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtRoute%2A> in the `Create` action method to return an [HTTP 201](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html) response. Status code 201 is the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtRoute` also adds a `Location` header to the response. The `Location` header specifies the URI of the newly created book.
+* Calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtRoute%2A> in the `Create` action method to return an [HTTP 201](https://www.rfc-editor.org/rfc/rfc9110#status.201) response. Status code 201 is the standard response for an HTTP POST method that creates a new resource on the server. `CreatedAtRoute` also adds a `Location` header to the response. The `Location` header specifies the URI of the newly created book.
 
 ## Test the web API
 

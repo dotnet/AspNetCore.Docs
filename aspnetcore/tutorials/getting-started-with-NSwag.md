@@ -217,7 +217,7 @@ In ASP.NET Core 2.2 or later, you can use conventions instead of explicitly deco
 
 The Swagger generator can now accurately describe this action, and generated clients know what they receive when calling the endpoint. As a recommendation, mark all actions with these attributes.
 
-For guidelines on what HTTP responses your API actions should return, see the [RFC 7231 specification](https://tools.ietf.org/html/rfc7231#section-4.3).
+For guidelines on what HTTP responses your API actions should return, see [RFC 9110: HTTP Semantics (Section 9.3. Method Definitions)](https://www.rfc-editor.org/rfc/rfc9110#name-method-definitions).
 
 :::moniker-end
 
@@ -429,6 +429,6 @@ In ASP.NET Core 2.2 or later, you can use conventions instead of explicitly deco
 
 The Swagger generator can now accurately describe this action, and generated clients know what they receive when calling the endpoint. As a recommendation, mark all actions with these attributes.
 
-For guidelines on what HTTP responses your API actions should return, see the [RFC 7231 specification](https://tools.ietf.org/html/rfc7231#section-4.3).
+For guidelines on what HTTP responses your API actions should return, see [RFC 9110: HTTP Semantics (Section 9.3. Method Definitions)](https://www.rfc-editor.org/rfc/rfc9110#name-method-definitions).
 
 :::moniker-end

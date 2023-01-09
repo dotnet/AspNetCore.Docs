@@ -95,7 +95,7 @@ The following feature interfaces are from <xref:Microsoft.AspNetCore.Http.Featur
 
 :::moniker-end
 
-<xref:Microsoft.AspNetCore.Http.Features.IHttpUpgradeFeature>: Defines support for [HTTP Upgrades](https://tools.ietf.org/html/rfc2616.html#section-14.42), which allow the client to specify which additional protocols it would like to use if the server wishes to switch protocols.
+<xref:Microsoft.AspNetCore.Http.Features.IHttpUpgradeFeature>: Defines support for [HTTP Upgrades](https://www.rfc-editor.org/rfc/rfc9110#field.upgrade), which allow the client to specify which additional protocols it would like to use if the server wishes to switch protocols.
 
 <xref:Microsoft.AspNetCore.Http.Features.IHttpWebSocketFeature>: Defines an API for supporting web sockets.
 

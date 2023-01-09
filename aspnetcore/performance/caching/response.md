@@ -17,7 +17,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://tw
 
 Response caching reduces the number of requests a client or proxy makes to a web server. Response caching also reduces the amount of work the web server performs to generate a response. Response caching is set in headers.
 
-The [ResponseCache attribute](#responsecache-attribute) sets response caching headers. Clients and intermediate proxies should honor the headers for caching responses under the [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234).
+The [ResponseCache attribute](#responsecache-attribute) sets response caching headers. Clients and intermediate proxies should honor the headers for caching responses under [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111).
 
 For server-side caching that follows the HTTP 1.1 Caching specification, use [Response Caching Middleware](xref:performance/caching/middleware). The middleware can use the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> properties to influence server-side caching behavior.
 
@@ -26,30 +26,30 @@ For server-side caching that follows the HTTP 1.1 Caching specification, use [Re
 
 ## HTTP-based response caching
 
-The [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234) describes how Internet caches should behave. The primary HTTP header used for caching is [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2), which is used to specify cache directives. The directives control caching behavior as requests make their way from clients to servers and as responses make their way from servers back to clients. Requests and responses move through proxy servers, and proxy servers must also conform to the HTTP 1.1 Caching specification.
+[RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111) describes how Internet caches should behave. The primary HTTP header used for caching is [Cache-Control](https://www.rfc-editor.org/rfc/rfc9111#field.cache-control), which is used to specify cache directives. The directives control caching behavior as requests make their way from clients to servers and as responses make their way from servers back to clients. Requests and responses move through proxy servers, and proxy servers must also conform to the HTTP 1.1 Caching specification.
 
 Common `Cache-Control` directives are shown in the following table.
 
-| Directive                                                       | Action |
-| --------------------------------------------------------------- | ------ |
-| [public](https://tools.ietf.org/html/rfc7234#section-5.2.2.5)   | A cache may store the response. |
-| [private](https://tools.ietf.org/html/rfc7234#section-5.2.2.6)  | The response must not be stored by a shared cache. A private cache may store and reuse the response. |
-| [max-age](https://tools.ietf.org/html/rfc7234#section-5.2.1.1)  | The client doesn't accept a response whose age is greater than the specified number of seconds. Examples: `max-age=60` (60 seconds), `max-age=2592000` (1 month) |
-| [no-cache](https://tools.ietf.org/html/rfc7234#section-5.2.1.4) | **On requests**: A cache must not use a stored response to satisfy the request. The origin server regenerates the response for the client, and the middleware updates the stored response in its cache.<br><br>**On responses**: The response must not be used for a subsequent request without validation on the origin server. |
-| [no-store](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **On requests**: A cache must not store the request.<br><br>**On responses**: A cache must not store any part of the response. |
+| Directive                                                                            | Action |
+| ------------------------------------------------------------------------------------ | ------ |
+| [public](https://www.rfc-editor.org/rfc/rfc9111#cache-response-directive.public)     | A cache may store the response. |
+| [private](https://www.rfc-editor.org/rfc/rfc9111#cache-response-directive.private)   | The response must not be stored by a shared cache. A private cache may store and reuse the response. |
+| [max-age](https://www.rfc-editor.org/rfc/rfc9111#cache-response-directive.max-age)   | The client doesn't accept a response whose age is greater than the specified number of seconds. Examples: `max-age=60` (60 seconds), `max-age=2592000` (1 month) |
+| [no-cache](https://www.rfc-editor.org/rfc/rfc9111#cache-response-directive.no-cache) | **On requests**: A cache must not use a stored response to satisfy the request. The origin server regenerates the response for the client, and the middleware updates the stored response in its cache.<br><br>**On responses**: The response must not be used for a subsequent request without validation on the origin server. |
+| [no-store](https://www.rfc-editor.org/rfc/rfc9111#cache-response-directive.no-store) | **On requests**: A cache must not store the request.<br><br>**On responses**: A cache must not store any part of the response. |
 
 Other cache headers that play a role in caching are shown in the following table.
 
-| Header                                                     | Function |
-| ---------------------------------------------------------- | -------- |
-| [Age](https://tools.ietf.org/html/rfc7234#section-5.1)     | An estimate of the amount of time in seconds since the response was generated or successfully validated at the origin server. |
-| [Expires](https://tools.ietf.org/html/rfc7234#section-5.3) | The time after which the response is considered stale. |
-| [Pragma](https://tools.ietf.org/html/rfc7234#section-5.4)  | Exists for backwards compatibility with HTTP/1.0 caches for setting `no-cache` behavior. If the `Cache-Control` header is present, the `Pragma` header is ignored. |
-| [Vary](https://tools.ietf.org/html/rfc7231#section-7.1.4)  | Specifies that a cached response must not be sent unless all of the `Vary` header fields match in both the cached response's original request and the new request. |
+| Header                                                          | Function |
+| --------------------------------------------------------------- | -------- |
+| [Age](https://www.rfc-editor.org/rfc/rfc9111#field.age)         | An estimate of the amount of time in seconds since the response was generated or successfully validated at the origin server. |
+| [Expires](https://www.rfc-editor.org/rfc/rfc9111#field.expires) | The time after which the response is considered stale. |
+| [Pragma](https://www.rfc-editor.org/rfc/rfc9111#field.pragma)   | Exists for backwards compatibility with HTTP/1.0 caches for setting `no-cache` behavior. If the `Cache-Control` header is present, the `Pragma` header is ignored. |
+| [Vary](https://www.rfc-editor.org/rfc/rfc9110#field.vary)       | Specifies that a cached response must not be sent unless all of the `Vary` header fields match in both the cached response's original request and the new request. |
 
 ## HTTP-based caching respects request Cache-Control directives
 
-The [HTTP 1.1 Caching specification for the Cache-Control header](https://tools.ietf.org/html/rfc7234#section-5.2) requires a cache to honor a valid `Cache-Control` header sent by the client. A client can make requests with a `no-cache` header value and force the server to generate a new response for every request.
+[RFC 9111: HTTP Caching (Section 5.2. Cache-Control)](https://www.rfc-editor.org/rfc/rfc9111#field.cache-control) requires a cache to honor a valid `Cache-Control` header sent by the client. A client can make requests with a `no-cache` header value and force the server to generate a new response for every request.
 
 Always honoring client `Cache-Control` request headers makes sense if you consider the goal of HTTP caching. Under the official specification, caching is meant to reduce the latency and network overhead of satisfying requests across a network of clients, proxies, and servers. It isn't necessarily a way to control the load on an origin server.
 
@@ -143,7 +143,7 @@ To enable caching, <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> must be
 
 `Location.Client` (`Cache-Control` set to `private`) indicates that *only the client* may cache the value. No intermediate cache should cache the value, including [Response Caching Middleware](xref:performance/caching/middleware).
 
-Cache control headers provide guidance to clients and intermediary proxies when and how to cache responses. There's no guarantee that clients and proxies will honor the [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234). [Response Caching Middleware](xref:performance/caching/middleware) always follows the caching rules laid out by the specification.
+Cache control headers provide guidance to clients and intermediary proxies when and how to cache responses. There's no guarantee that clients and proxies will honor [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111). [Response Caching Middleware](xref:performance/caching/middleware) always follows the caching rules laid out by the specification.
 
 The following example shows the headers produced by setting <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> and leaving the default <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> value:
 
@@ -185,8 +185,8 @@ The following code applies the `[ResponseCache]` attribute at the controller lev
 
 ## Additional resources
 
-* [Storing Responses in Caches](https://tools.ietf.org/html/rfc7234#section-3)
-* [Cache-Control](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)
+* [Storing Responses in Caches](https://www.rfc-editor.org/rfc/rfc9111.html#name-storing-responses-in-caches)
+* [Cache-Control](https://www.rfc-editor.org/rfc/rfc9111.html#field.cache-control)
 * <xref:performance/caching/memory>
 * <xref:performance/caching/distributed>
 * <xref:fundamentals/change-tokens>
@@ -201,36 +201,36 @@ The following code applies the `[ResponseCache]` attribute at the controller lev
 
 Response caching reduces the number of requests a client or proxy makes to a web server. Response caching also reduces the amount of work the web server performs to generate a response. Response caching is controlled by headers that specify how you want client, proxy, and middleware to cache responses.
 
-The [`[ResponseCache]`](#responsecache-attribute) participates in setting response caching headers. Clients and intermediate proxies should honor the headers for caching responses under the [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234).
+The [`[ResponseCache]`](#responsecache-attribute) participates in setting response caching headers. Clients and intermediate proxies should honor the headers for caching responses under [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111).
 
 For server-side caching that follows the HTTP 1.1 Caching specification, use [Response Caching Middleware](xref:performance/caching/middleware). The middleware can use the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) properties to set server-side caching headers.
 
 ## HTTP-based response caching
 
-The [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234) describes how Internet caches should behave. The primary HTTP header used for caching is [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2), which is used to specify cache *directives*. The directives control caching behavior as requests make their way from clients to servers and as responses make their way from servers back to clients. Requests and responses move through proxy servers, and proxy servers must also conform to the HTTP 1.1 Caching specification.
+[RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111) describes how Internet caches should behave. The primary HTTP header used for caching is [Cache-Control](https://www.rfc-editor.org/rfc/rfc9111#field.cache-control), which is used to specify cache *directives*. The directives control caching behavior as requests make their way from clients to servers and as responses make their way from servers back to clients. Requests and responses move through proxy servers, and proxy servers must also conform to the HTTP 1.1 Caching specification.
 
 Common `Cache-Control` directives are shown in the following table.
 
-| Directive                                                       | Action |
-| --------------------------------------------------------------- | ------ |
-| [public](https://tools.ietf.org/html/rfc7234#section-5.2.2.5)   | A cache may store the response. |
-| [private](https://tools.ietf.org/html/rfc7234#section-5.2.2.6)  | The response must not be stored by a shared cache. A private cache may store and reuse the response. |
-| [max-age](https://tools.ietf.org/html/rfc7234#section-5.2.1.1)  | The client doesn't accept a response whose age is greater than the specified number of seconds. Examples: `max-age=60` (60 seconds), `max-age=2592000` (1 month) |
-| [no-cache](https://tools.ietf.org/html/rfc7234#section-5.2.1.4) | **On requests**: A cache must not use a stored response to satisfy the request. The origin server regenerates the response for the client, and the middleware updates the stored response in its cache.<br><br>**On responses**: The response must not be used for a subsequent request without validation on the origin server. |
-| [no-store](https://tools.ietf.org/html/rfc7234#section-5.2.1.5) | **On requests**: A cache must not store the request.<br><br>**On responses**: A cache must not store any part of the response. |
+| Directive                                                                            | Action |
+| ------------------------------------------------------------------------------------ | ------ |
+| [public](https://www.rfc-editor.org/rfc/rfc9111#cache-response-directive.public)     | A cache may store the response. |
+| [private](https://www.rfc-editor.org/rfc/rfc9111#cache-response-directive.private)   | The response must not be stored by a shared cache. A private cache may store and reuse the response. |
+| [max-age](https://www.rfc-editor.org/rfc/rfc9111#cache-response-directive.max-age)   | The client doesn't accept a response whose age is greater than the specified number of seconds. Examples: `max-age=60` (60 seconds), `max-age=2592000` (1 month) |
+| [no-cache](https://www.rfc-editor.org/rfc/rfc9111#cache-response-directive.no-cache) | **On requests**: A cache must not use a stored response to satisfy the request. The origin server regenerates the response for the client, and the middleware updates the stored response in its cache.<br><br>**On responses**: The response must not be used for a subsequent request without validation on the origin server. |
+| [no-store](https://www.rfc-editor.org/rfc/rfc9111#cache-response-directive.no-store) | **On requests**: A cache must not store the request.<br><br>**On responses**: A cache must not store any part of the response. |
 
 Other cache headers that play a role in caching are shown in the following table.
 
-| Header                                                     | Function |
-| ---------------------------------------------------------- | -------- |
-| [Age](https://tools.ietf.org/html/rfc7234#section-5.1)     | An estimate of the amount of time in seconds since the response was generated or successfully validated at the origin server. |
-| [Expires](https://tools.ietf.org/html/rfc7234#section-5.3) | The time after which the response is considered stale. |
-| [Pragma](https://tools.ietf.org/html/rfc7234#section-5.4)  | Exists for backwards compatibility with HTTP/1.0 caches for setting `no-cache` behavior. If the `Cache-Control` header is present, the `Pragma` header is ignored. |
-| [Vary](https://tools.ietf.org/html/rfc7231#section-7.1.4)  | Specifies that a cached response must not be sent unless all of the `Vary` header fields match in both the cached response's original request and the new request. |
+| Header                                                          | Function |
+| --------------------------------------------------------------- | -------- |
+| [Age](https://www.rfc-editor.org/rfc/rfc9111#field.age)         | An estimate of the amount of time in seconds since the response was generated or successfully validated at the origin server. |
+| [Expires](https://www.rfc-editor.org/rfc/rfc9111#field.expires) | The time after which the response is considered stale. |
+| [Pragma](https://www.rfc-editor.org/rfc/rfc9111#field.pragma)   | Exists for backwards compatibility with HTTP/1.0 caches for setting `no-cache` behavior. If the `Cache-Control` header is present, the `Pragma` header is ignored. |
+| [Vary](https://www.rfc-editor.org/rfc/rfc9110#field.vary)       | Specifies that a cached response must not be sent unless all of the `Vary` header fields match in both the cached response's original request and the new request. |
 
 ## HTTP-based caching respects request Cache-Control directives
 
-The [HTTP 1.1 Caching specification for the Cache-Control header](https://tools.ietf.org/html/rfc7234#section-5.2) requires a cache to honor a valid `Cache-Control` header sent by the client. A client can make requests with a `no-cache` header value and force the server to generate a new response for every request.
+[RFC 9111: HTTP Caching (Section 5.2. Cache-Control)](https://www.rfc-editor.org/rfc/rfc9111#field.cache-control) requires a cache to honor a valid `Cache-Control` header sent by the client. A client can make requests with a `no-cache` header value and force the server to generate a new response for every request.
 
 Always honoring client `Cache-Control` request headers makes sense if you consider the goal of HTTP caching. Under the official specification, caching is meant to reduce the latency and network overhead of satisfying requests across a network of clients, proxies, and servers. It isn't necessarily a way to control the load on an origin server.
 
@@ -346,7 +346,7 @@ To enable caching, <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> must be
 
 `Location.Client` (`Cache-Control` set to `private`) indicates that *only the client* may cache the value. No intermediate cache should cache the value, including [Response Caching Middleware](xref:performance/caching/middleware).
 
-Cache control headers merely provide guidance to clients and intermediary proxies when and how to cache responses. There's no guarantee that clients and proxies will honor the [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234). [Response Caching Middleware](xref:performance/caching/middleware) always follows the caching rules laid out by the specification.
+Cache control headers merely provide guidance to clients and intermediary proxies when and how to cache responses. There's no guarantee that clients and proxies will honor [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111). [Response Caching Middleware](xref:performance/caching/middleware) always follows the caching rules laid out by the specification.
 
 The following example shows the Cache3 page model from the sample app and the headers produced by setting <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> and leaving the default <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> value:
 
@@ -384,8 +384,8 @@ Cache-Control: public,max-age=30
 
 ## Additional resources
 
-* [Storing Responses in Caches](https://tools.ietf.org/html/rfc7234#section-3)
-* [Cache-Control](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)
+* [Storing Responses in Caches](https://www.rfc-editor.org/rfc/rfc9111#name-storing-responses-in-caches)
+* [RFC 9111: HTTP Caching (Section 5.2. Cache-Control)](https://www.rfc-editor.org/rfc/rfc9111#field.cache-control)
 * <xref:performance/caching/memory>
 * <xref:performance/caching/distributed>
 * <xref:fundamentals/change-tokens>
