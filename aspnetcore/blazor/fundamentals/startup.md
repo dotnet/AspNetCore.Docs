@@ -14,7 +14,7 @@ This article explains how to configure Blazor startup.
 
 :::moniker range=">= aspnetcore-7.0"
 
-The Blazor startup process is automatic and asynchronous. Scripts added after the Blazor `<script>` tag are loaded and block the Blazor JavaScript engine until they've finished loading.
+The Blazor startup process is automatic and asynchronous. Scripts added after the Blazor `<script>` tag block the Blazor JavaScript engine until they've finished loading.
 
 To manually start Blazor in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
 
@@ -279,7 +279,7 @@ In `wwwroot/index.html`, remove the default SVG round indicator in `<div id="app
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-The Blazor startup process is automatic and asynchronous. Scripts added after the Blazor `<script>` tag are loaded and block the Blazor JavaScript engine until they've finished loading.
+The Blazor startup process is automatic and asynchronous. Scripts added after the Blazor `<script>` tag block the Blazor JavaScript engine until they've finished loading.
 
 To manually start Blazor in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Layout.cshtml` file (Blazor Server):
 
@@ -465,7 +465,7 @@ For more information on CSPs, see <xref:blazor/security/content-security-policy>
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-The Blazor startup process is automatic and asynchronous. Scripts added after the Blazor `<script>` tag are loaded and block the Blazor JavaScript engine until they've finished loading.
+The Blazor startup process is automatic and asynchronous. Scripts added after the Blazor `<script>` tag block the Blazor JavaScript engine until they've finished loading.
 
 To manually start Blazor in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
 
@@ -647,7 +647,7 @@ For more information on CSPs, see <xref:blazor/security/content-security-policy>
 
 :::moniker range="< aspnetcore-5.0"
 
-The Blazor startup process is automatic and asynchronous. Scripts added after the Blazor `<script>` tag are loaded and block the Blazor JavaScript engine until they've finished loading.
+The Blazor startup process is automatic and asynchronous. Scripts added after the Blazor `<script>` tag block the Blazor JavaScript engine until they've finished loading.
 
 To manually start Blazor in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
 

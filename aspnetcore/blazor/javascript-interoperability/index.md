@@ -136,7 +136,7 @@ For more information on RCLs, see <xref:blazor/components/class-libraries>.
 
 Place the JavaScript (JS) tags (`<script>...</script>`) with a script source (`src`) path inside the closing `</body>` tag after the Blazor script reference.
 
-The Blazor startup process is asynchronous, so scripts added after the Blazor `<script>` tag are loaded and block the Blazor JavaScript engine until they've finished loading.
+The Blazor startup process is asynchronous, so scripts added after the Blazor `<script>` tag block the Blazor JavaScript engine until they've finished loading.
 
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
@@ -365,7 +365,7 @@ For more information on RCLs, see <xref:blazor/components/class-libraries>.
 
 Place the JavaScript (JS) tags (`<script>...</script>`) with a script source (`src`) path inside the closing `</body>` tag after the Blazor script reference.
 
-The Blazor startup process is asynchronous, so scripts added after the Blazor `<script>` tag are loaded and block the Blazor JavaScript engine until they've finished loading.
+The Blazor startup process is asynchronous, so scripts added after the Blazor `<script>` tag block the Blazor JavaScript engine until they've finished loading.
 
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
@@ -581,7 +581,7 @@ The `{webassembly|server}` placeholder in the preceding markup is either `webass
 
 Place the script (`<script>...</script>`) with a script `src` path inside the closing `</body>` tag after the Blazor script reference.
 
-The Blazor startup process is asynchronous, so scripts added after the Blazor `<script>` tag are loaded and block the Blazor JavaScript engine until they've finished loading.
+The Blazor startup process is asynchronous, so scripts added after the Blazor `<script>` tag block the Blazor JavaScript engine until they've finished loading.
 
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
@@ -792,7 +792,7 @@ The `{webassembly|server}` placeholder in the preceding markup is either `webass
 
 Place the script (`<script>...</script>`) with a script `src` path inside the closing `</body>` tag after the Blazor script reference.
 
-The Blazor startup process is asynchronous, so scripts added after the Blazor `<script>` tag are loaded and block the Blazor JavaScript engine until they've finished loading.
+The Blazor startup process is asynchronous, so scripts added after the Blazor `<script>` tag block the Blazor JavaScript engine until they've finished loading.
 
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
