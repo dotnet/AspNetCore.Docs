@@ -136,6 +136,8 @@ For more information on RCLs, see <xref:blazor/components/class-libraries>.
 
 Place the JavaScript (JS) tags (`<script>...</script>`) with a script source (`src`) path inside the closing `</body>` tag after the Blazor script reference.
 
+The Blazor startup process is asynchronous, so scripts added after the Blazor `<script>` tag are loaded and block the Blazor JavaScript engine until they've finished loading.
+
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
 ```html
@@ -363,6 +365,8 @@ For more information on RCLs, see <xref:blazor/components/class-libraries>.
 
 Place the JavaScript (JS) tags (`<script>...</script>`) with a script source (`src`) path inside the closing `</body>` tag after the Blazor script reference.
 
+The Blazor startup process is asynchronous, so scripts added after the Blazor `<script>` tag are loaded and block the Blazor JavaScript engine until they've finished loading.
+
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
 ```html
@@ -522,7 +526,7 @@ Load JavaScript (JS) code using any of the following approaches:
 
 * [Load a script in `<head>` markup](#load-a-script-in-head-markup) (*Not generally recommended*)
 * [Load a script in `<body>` markup](#load-a-script-in-body-markup)
-* [Load a script from an external JS file (`.js`)](#load-a-script-from-an-external-js-file-js)
+* [Load a script from an external JavaScript file (`.js`)](#load-a-script-from-an-external-javascript-file-js)
 * [Inject a script after Blazor starts](#inject-a-script-after-blazor-starts)
 
 > [!WARNING]
@@ -573,9 +577,11 @@ Place the script (`<script>...</script>`) inside the closing `</body>` element m
 
 The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
 
-### Load a script from an external JS file (`.js`)
+### Load a script from an external JavaScript file (`.js`)
 
 Place the script (`<script>...</script>`) with a script `src` path inside the closing `</body>` tag after the Blazor script reference.
+
+The Blazor startup process is asynchronous, so scripts added after the Blazor `<script>` tag are loaded and block the Blazor JavaScript engine until they've finished loading.
 
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
@@ -731,7 +737,7 @@ Load JavaScript (JS) code using any of the following approaches:
 
 * [Load a script in `<head>` markup](#load-a-script-in-head-markup) (*Not generally recommended*)
 * [Load a script in `<body>` markup](#load-a-script-in-body-markup)
-* [Load a script from an external JS file (`.js`)](#load-a-script-from-an-external-js-file-js)
+* [Load a script from an external JavaScript file (`.js`)](#load-a-script-from-an-external-javascript-file-js)
 * [Inject a script after Blazor starts](#inject-a-script-after-blazor-starts)
 
 > [!WARNING]
@@ -782,9 +788,11 @@ Place the script (`<script>...</script>`) inside the closing `</body>` element m
 
 The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
 
-### Load a script from an external JS file (`.js`)
+### Load a script from an external JavaScript file (`.js`)
 
 Place the script (`<script>...</script>`) with a script `src` path inside the closing `</body>` tag after the Blazor script reference.
+
+The Blazor startup process is asynchronous, so scripts added after the Blazor `<script>` tag are loaded and block the Blazor JavaScript engine until they've finished loading.
 
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 

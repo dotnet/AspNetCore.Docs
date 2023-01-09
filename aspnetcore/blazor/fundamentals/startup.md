@@ -14,7 +14,9 @@ This article explains how to configure Blazor startup.
 
 :::moniker range=">= aspnetcore-7.0"
 
-Configure a manual start in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
+The Blazor startup process is automatic and asynchronous. Scripts added after the Blazor `<script>` tag are loaded and block the Blazor JavaScript engine until they've finished loading.
+
+To manually start Blazor in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
 
 * Add an `autostart="false"` attribute and value to the `<script>` tag for the Blazor script.
 * Place a script that calls `Blazor.start` after the Blazor `<script>` tag and inside the closing `</body>` tag.
@@ -277,7 +279,9 @@ In `wwwroot/index.html`, remove the default SVG round indicator in `<div id="app
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-Configure a manual start in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Layout.cshtml` file (Blazor Server):
+The Blazor startup process is automatic and asynchronous. Scripts added after the Blazor `<script>` tag are loaded and block the Blazor JavaScript engine until they've finished loading.
+
+To manually start Blazor in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Layout.cshtml` file (Blazor Server):
 
 * Add an `autostart="false"` attribute and value to the `<script>` tag for the Blazor script.
 * Place a script that calls `Blazor.start` after the Blazor `<script>` tag and inside the closing `</body>` tag.
@@ -461,7 +465,9 @@ For more information on CSPs, see <xref:blazor/security/content-security-policy>
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Configure a manual start in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
+The Blazor startup process is automatic and asynchronous. Scripts added after the Blazor `<script>` tag are loaded and block the Blazor JavaScript engine until they've finished loading.
+
+To manually start Blazor in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
 
 * Add an `autostart="false"` attribute and value to the `<script>` tag for the Blazor script.
 * Place a script that calls `Blazor.start` after the Blazor `<script>` tag and inside the closing `</body>` tag.
@@ -641,7 +647,9 @@ For more information on CSPs, see <xref:blazor/security/content-security-policy>
 
 :::moniker range="< aspnetcore-5.0"
 
-Configure a manual start in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
+The Blazor startup process is automatic and asynchronous. Scripts added after the Blazor `<script>` tag are loaded and block the Blazor JavaScript engine until they've finished loading.
+
+To manually start Blazor in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
 
 * Add an `autostart="false"` attribute and value to the `<script>` tag for the Blazor script.
 * Place a script that calls `Blazor.start` after the Blazor `<script>` tag and inside the closing `</body>` tag.
