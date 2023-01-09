@@ -149,7 +149,7 @@ Use `yum-utils` to select and install an Nginx module stream. Follow the install
 
 # [SUSE Linux Enterprise Server](#tab/linux-sles)
 
-Use `yum-utils` to select and install an Nginx module stream. Follow the installation instructions for SLES at [Nginx: Nginx: Linux packages - SLES](https://nginx.org/en/linux_packages.html#SLES).
+Use `yum-utils` to select and install an Nginx module stream. Follow the installation instructions for SLES at [Nginx: Linux packages - SLES](https://nginx.org/en/linux_packages.html#SLES).
 
 ---
 
