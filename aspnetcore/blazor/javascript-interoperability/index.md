@@ -64,10 +64,6 @@ For more information, see the following resources in the .NET documentation:
 
 Blazor supports optimized byte array JS interop that avoids encoding/decoding byte arrays into Base64. The app can apply custom serialization and pass the resulting bytes. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#byte-array-support>.
 
-## JavaScript initializers
-
-[!INCLUDE[](~/blazor/includes/js-initializers.md)]
-
 ## Location of JavaScript
 
 Load JavaScript (JS) code using any of the following approaches:
@@ -76,7 +72,7 @@ Load JavaScript (JS) code using any of the following approaches:
 * [Load a script in `<body>` markup](#load-a-script-in-body-markup)
 * [Load a script from an external JavaScript file (`.js`) collocated with a component](#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component)
 * [Load a script from an external JavaScript file (`.js`)](#load-a-script-from-an-external-javascript-file-js)
-* [Inject a script after Blazor starts](#inject-a-script-after-blazor-starts)
+* [Inject a script before or after Blazor starts](#inject-a-script-before-or-after-blazor-starts)
 
 > [!WARNING]
 > Don't place a `<script>` tag in a Razor component file (`.razor`) because the `<script>` tag can't be updated dynamically by Blazor.
@@ -136,8 +132,6 @@ For more information on RCLs, see <xref:blazor/components/class-libraries>.
 
 Place the JavaScript (JS) tags (`<script>...</script>`) with a script source (`src`) path inside the closing `</body>` tag after the Blazor script reference.
 
-The Blazor startup process is asynchronous, so scripts added after the Blazor `<script>` tag block the Blazor JavaScript engine until they've finished loading.
-
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
 ```html
@@ -183,34 +177,9 @@ In the following example of the preceding `<script>` tag:
 
 For more information, see <xref:blazor/components/class-libraries>.
 
-### Inject a script after Blazor starts
+### Inject a script before or after Blazor starts
 
-Load JS from an injected script in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server) when the app is initialized:
-
-* Add `autostart="false"` to the `<script>` tag that loads the Blazor script.
-* Inject a script into the `<head>` element markup that references a custom JS file after starting Blazor by calling `Blazor.start().then(...)`. Place the script (`<script>...</script>`) inside the closing `</body>` tag after the Blazor script is loaded.
-
-The following example injects the `wwwroot/scripts.js` file after Blazor starts:
-
-```html
-<body>
-    ...
-
-    <script src="_framework/blazor.{webassembly|server}.js" 
-        autostart="false"></script>
-    <script>
-      Blazor.start().then(function () {
-        var customScript = document.createElement('script');
-        customScript.setAttribute('src', 'scripts.js');
-        document.head.appendChild(customScript);
-      });
-    </script>
-</body>
-```
-
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
-
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
+To ensure scripts load before or after Blazor starts, use a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers).
 
 ## JavaScript isolation in JavaScript modules
 
@@ -293,10 +262,6 @@ Blazor supports optimized byte array JS interop that avoids encoding/decoding by
 
 Blazor supports unmarshalled JS interop when a high volume of .NET objects are rapidly serialized or when large .NET objects or many .NET objects must be serialized. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#unmarshalled-javascript-interop>.
 
-## JavaScript initializers
-
-[!INCLUDE[](~/blazor/includes/js-initializers.md)]
-
 ## Location of JavaScript
 
 Load JavaScript (JS) code using any of the following approaches:
@@ -305,7 +270,7 @@ Load JavaScript (JS) code using any of the following approaches:
 * [Load a script in `<body>` markup](#load-a-script-in-body-markup)
 * [Load a script from an external JavaScript file (`.js`) collocated with a component](#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component)
 * [Load a script from an external JavaScript file (`.js`)](#load-a-script-from-an-external-javascript-file-js)
-* [Inject a script after Blazor starts](#inject-a-script-after-blazor-starts)
+* [Inject a script before or after Blazor starts](#inject-a-script-before-or-after-blazor-starts)
 
 > [!WARNING]
 > Don't place a `<script>` tag in a Razor component file (`.razor`) because the `<script>` tag can't be updated dynamically by Blazor.
@@ -365,8 +330,6 @@ For more information on RCLs, see <xref:blazor/components/class-libraries>.
 
 Place the JavaScript (JS) tags (`<script>...</script>`) with a script source (`src`) path inside the closing `</body>` tag after the Blazor script reference.
 
-The Blazor startup process is asynchronous, so scripts added after the Blazor `<script>` tag block the Blazor JavaScript engine until they've finished loading.
-
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server):
 
 ```html
@@ -412,34 +375,9 @@ In the following example of the preceding `<script>` tag:
 
 For more information, see <xref:blazor/components/class-libraries>.
 
-### Inject a script after Blazor starts
+### Inject a script before or after Blazor starts
 
-Load JS from an injected script in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server) when the app is initialized:
-
-* Add `autostart="false"` to the `<script>` tag that loads the Blazor script.
-* Inject a script into the `<head>` element markup that references a custom JS file after starting Blazor by calling `Blazor.start().then(...)`. Place the script (`<script>...</script>`) inside the closing `</body>` tag after the Blazor script is loaded.
-
-The following example injects the `wwwroot/scripts.js` file after Blazor starts:
-
-```html
-<body>
-    ...
-
-    <script src="_framework/blazor.{webassembly|server}.js" 
-        autostart="false"></script>
-    <script>
-      Blazor.start().then(function () {
-        var customScript = document.createElement('script');
-        customScript.setAttribute('src', 'scripts.js');
-        document.head.appendChild(customScript);
-      });
-    </script>
-</body>
-```
-
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
-
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
+To ensure scripts load before or after Blazor starts, use a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers).
 
 ## JavaScript isolation in JavaScript modules
 
@@ -580,8 +518,6 @@ The `{webassembly|server}` placeholder in the preceding markup is either `webass
 ### Load a script from an external JavaScript file (`.js`)
 
 Place the script (`<script>...</script>`) with a script `src` path inside the closing `</body>` tag after the Blazor script reference.
-
-The Blazor startup process is asynchronous, so scripts added after the Blazor `<script>` tag block the Blazor JavaScript engine until they've finished loading.
 
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
@@ -791,8 +727,6 @@ The `{webassembly|server}` placeholder in the preceding markup is either `webass
 ### Load a script from an external JavaScript file (`.js`)
 
 Place the script (`<script>...</script>`) with a script `src` path inside the closing `</body>` tag after the Blazor script reference.
-
-The Blazor startup process is asynchronous, so scripts added after the Blazor `<script>` tag block the Blazor JavaScript engine until they've finished loading.
 
 In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
