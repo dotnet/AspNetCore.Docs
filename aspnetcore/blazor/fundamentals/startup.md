@@ -319,7 +319,6 @@ In `wwwroot/index.html`, remove the default SVG round indicator in `<div id="app
   * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval-blazor-server)
   * [Disconnect the Blazor circuit from the client](xref:blazor/fundamentals/signalr#disconnect-the-blazor-circuit-from-the-client-blazor-server)
 * [Globalization and localization: Statically set the culture with `Blazor.start()` (*Blazor WebAssembly only*)](xref:blazor/globalization-localization?pivots=webassembly#statically-set-the-culture)
-* [JS interop: Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 * [Host and deploy: Blazor WebAssembly: Compression](xref:blazor/host-and-deploy/webassembly#compression)
 
 :::moniker-end
@@ -552,7 +551,6 @@ For more information on CSPs, see <xref:blazor/security/content-security-policy>
   * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval-blazor-server)
   * [Disconnect the Blazor circuit from the client](xref:blazor/fundamentals/signalr#disconnect-the-blazor-circuit-from-the-client-blazor-server)
 * [Globalization and localization: Statically set the culture with `Blazor.start()` (*Blazor WebAssembly only*)](xref:blazor/globalization-localization?pivots=webassembly#statically-set-the-culture)
-* [JS interop: Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 * [Host and deploy: Blazor WebAssembly: Compression](xref:blazor/host-and-deploy/webassembly#compression)
 
 :::moniker-end
@@ -603,6 +601,33 @@ To perform additional tasks, such as JS interop initialization, use [`then`](htt
 ```
 
 The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
+
+### Inject a script after Blazor starts
+
+Load JavaScript from an injected script in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server) when the app is initialized:
+
+* Add `autostart="false"` to the `<script>` tag that loads the Blazor script.
+* Inject a script into the `<head>` element markup that references a custom JS file after starting Blazor by calling `Blazor.start().then(...)`. Place the script (`<script>...</script>`) inside the closing `</body>` tag after the Blazor script is loaded.
+
+The following example injects the `wwwroot/scripts.js` file after Blazor starts:
+
+```html
+<body>
+    ...
+
+    <script src="_framework/blazor.{webassembly|server}.js" 
+        autostart="false"></script>
+    <script>
+      Blazor.start().then(function () {
+        var customScript = document.createElement('script');
+        customScript.setAttribute('src', 'scripts.js');
+        document.head.appendChild(customScript);
+      });
+    </script>
+</body>
+```
+
+The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
 
 ## Load boot resources
 
@@ -785,6 +810,33 @@ To perform additional tasks, such as JS interop initialization, use [`then`](htt
 ```
 
 The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
+
+### Inject a script after Blazor starts
+
+Load JavaScript from an injected script in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server) when the app is initialized:
+
+* Add `autostart="false"` to the `<script>` tag that loads the Blazor script.
+* Inject a script into the `<head>` element markup that references a custom JS file after starting Blazor by calling `Blazor.start().then(...)`. Place the script (`<script>...</script>`) inside the closing `</body>` tag after the Blazor script is loaded.
+
+The following example injects the `wwwroot/scripts.js` file after Blazor starts:
+
+```html
+<body>
+    ...
+
+    <script src="_framework/blazor.{webassembly|server}.js" 
+        autostart="false"></script>
+    <script>
+      Blazor.start().then(function () {
+        var customScript = document.createElement('script');
+        customScript.setAttribute('src', 'scripts.js');
+        document.head.appendChild(customScript);
+      });
+    </script>
+</body>
+```
+
+The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
 
 ## Load boot resources
 

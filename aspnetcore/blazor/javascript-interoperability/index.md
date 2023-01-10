@@ -179,7 +179,7 @@ For more information, see <xref:blazor/components/class-libraries>.
 
 ### Inject a script before or after Blazor starts
 
-To ensure scripts load before or after Blazor starts, use a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers).
+To ensure scripts load before or after Blazor starts, use a JavaScript initializer. For more information and examples, see <xref:blazor/fundamentals/startup#javascript-initializers>.
 
 ## JavaScript isolation in JavaScript modules
 
@@ -377,7 +377,7 @@ For more information, see <xref:blazor/components/class-libraries>.
 
 ### Inject a script before or after Blazor starts
 
-To ensure scripts load before or after Blazor starts, use a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers).
+To ensure scripts load before or after Blazor starts, use a JavaScript initializer. For more information and examples, see <xref:blazor/fundamentals/startup#javascript-initializers>.
 
 ## JavaScript isolation in JavaScript modules
 
@@ -566,32 +566,7 @@ For more information, see <xref:blazor/components/class-libraries>.
 
 ### Inject a script after Blazor starts
 
-Load JS from an injected script in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server) when the app is initialized:
-
-* Add `autostart="false"` to the `<script>` tag that loads the Blazor script.
-* Inject a script into the `<head>` element markup that references a custom JS file after starting Blazor by calling `Blazor.start().then(...)`. Place the script (`<script>...</script>`) inside the closing `</body>` tag after the Blazor script is loaded.
-
-The following example injects the `wwwroot/scripts.js` file after Blazor starts:
-
-```html
-<body>
-    ...
-
-    <script src="_framework/blazor.{webassembly|server}.js" 
-        autostart="false"></script>
-    <script>
-      Blazor.start().then(function () {
-        var customScript = document.createElement('script');
-        customScript.setAttribute('src', 'scripts.js');
-        document.head.appendChild(customScript);
-      });
-    </script>
-</body>
-```
-
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
-
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
+To inject a script after Blazor starts, chain to the `Promise` that results from a manual start of Blazor. For more information and an example, see <xref:blazor/fundamentals/startup#inject-a-script-after-blazor-starts>.
 
 ## JavaScript isolation in JavaScript modules
 
@@ -775,32 +750,7 @@ For more information, see <xref:blazor/components/class-libraries>.
 
 ### Inject a script after Blazor starts
 
-Load JS from an injected script in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server) when the app is initialized:
-
-* Add `autostart="false"` to the `<script>` tag that loads the Blazor script.
-* Inject a script into the `<head>` element markup that references a custom JS file after starting Blazor by calling `Blazor.start().then(...)`. Place the script (`<script>...</script>`) inside the closing `</body>` tag after the Blazor script is loaded.
-
-The following example injects the `wwwroot/scripts.js` file after Blazor starts:
-
-```html
-<body>
-    ...
-
-    <script src="_framework/blazor.{webassembly|server}.js" 
-        autostart="false"></script>
-    <script>
-      Blazor.start().then(function () {
-        var customScript = document.createElement('script');
-        customScript.setAttribute('src', 'scripts.js');
-        document.head.appendChild(customScript);
-      });
-    </script>
-</body>
-```
-
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
-
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
+To inject a script after Blazor starts, chain to the `Promise` that results from a manual start of Blazor. For more information and an example, see <xref:blazor/fundamentals/startup#inject-a-script-after-blazor-starts>.
 
 ## Cached JavaScript files
 
