@@ -36,7 +36,7 @@ The primary benefit the ASP.NET Core SPA templates provide:
 
 When the browser sends a request for a backend endpoint, for example `/weatherforecast` in the templates. The SPA proxy receives the request and sends it back to the server transparently. The server responds and the SPA proxy sends the request back to the browser:
 
-
+![Proxy Server diagram](~/client-side/spa/intro/static/2BP.png)
 
 ## Additional resources
 
