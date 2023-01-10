@@ -319,23 +319,22 @@ private async Task<string> ReadData()
 }
 ```
 
-> [!NOTE]
-> [Collocated JavaScript files](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) are also accessible at logical subpaths of `wwwroot`. Instead of using the script described earlier for the `showPrompt` function in `wwwroot/scripts.js`, the following collocated JavaScript file for the `StaticAssetExample2` component also makes the function available.
->
-> `Pages/StaticAssetExample2.razor.js`:
->
-> ```javascript
-> export function showPrompt(message) {
->   return prompt(message, 'Type anything here');
-> }
-> ```
->
-> Modify the module object reference in the `StaticAssetExample2` component to use the collocated JavaScript file path:
->
-> ```csharp
-> module = await JS.InvokeAsync<IJSObjectReference>("import", 
->     "./Pages/StaticAssetExample2.razor.js");
-> ```
+[Collocated JavaScript files](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) are also accessible at logical subpaths of `wwwroot`. Instead of using the script described earlier for the `showPrompt` function in `wwwroot/scripts.js`, the following collocated JavaScript file for the `StaticAssetExample2` component also makes the function available.
+
+`Pages/StaticAssetExample2.razor.js`:
+
+```javascript
+export function showPrompt(message) {
+  return prompt(message, 'Type anything here');
+}
+```
+
+Modify the module object reference in the `StaticAssetExample2` component to use the collocated JavaScript file path:
+
+```csharp
+module = await JS.InvokeAsync<IJSObjectReference>("import", 
+    "./Pages/StaticAssetExample2.razor.js");
+```
 
 ## Trademarks
 
