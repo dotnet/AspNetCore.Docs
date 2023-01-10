@@ -73,6 +73,14 @@ For production deployments, configure the `DataProtectionProvider` to encrypt ke
 
 [!code-csharp[](~/security/cookie-sharing/samples/WebCookieShare/Program.cs?name=snippet_Encrypt&highlight=7-8)]
 
+## Use a common user database
+
+When apps use the same Identity schema (same version of Identity), confirm that the Identity system for each app is pointed at the same user database. Otherwise, the identity system produces failures at runtime when it attempts to match the information in the authentication cookie against the information in its database.
+
+When the Identity schema is different among apps, usually because apps are using different Identity versions, sharing a common database based on the latest version of Identity isn't possible without remapping and adding columns in other app's Identity schemas. It's often more efficient to upgrade the other apps to use the latest Identity version so that a common database can be shared by the apps.
+
+[!INCLUDE[](~/includes/appname6.md)]
+
 ## Share authentication cookies between ASP.NET 4.x and ASP.NET Core apps
 
 ASP.NET 4.x apps that use Microsoft.Owin Cookie Authentication Middleware can be configured to generate authentication cookies that are compatible with the ASP.NET Core Cookie Authentication Middleware. This can be useful if a web application consists of both ASP.NET 4.x apps and ASP.NET Core apps that must share a single sign-on experience. A specific example of such a scenario is [incrementally migrating](xref:migration/inc/overview) a web app from ASP.NET to ASP.NET Core. In such scenarios, it's common for some parts of an app to be served by the original ASP.NET app while others are served by the new ASP.NET Core app. Users should only have to sign in once, though. This can be accomplished by either of the following approaches:
@@ -103,14 +111,6 @@ Because the authentication type was changed to match the authentication scheme o
 With these changes, the ASP.NET and ASP.NET Core apps are able to use the same authentication cookies so that users signing in or out of one app are reflected in the other app.
 
 Note that because there are differences between ASP.NET Identity and ASP.NET Core Identity's database schemas, it is recommended that users only *sign-in* using one of the apps - either the ASP.NET or ASP.NET Core app. Once users are signed in, the steps documented in this section will allow the authentication cookie to be *used* by either app and both apps should be able to log users out.
-
-## Use a common user database
-
-When apps use the same Identity schema (same version of Identity), confirm that the Identity system for each app is pointed at the same user database. Otherwise, the identity system produces failures at runtime when it attempts to match the information in the authentication cookie against the information in its database.
-
-When the Identity schema is different among apps, usually because apps are using different Identity versions, sharing a common database based on the latest version of Identity isn't possible without remapping and adding columns in other app's Identity schemas. It's often more efficient to upgrade the other apps to use the latest Identity version so that a common database can be shared by the apps.
-
-[!INCLUDE[](~/includes/appname6.md)]
 
 ## Additional resources
 
