@@ -28,7 +28,7 @@ This guide:
 
 # [Ubuntu](#tab/linux-ubuntu)
 
-* Access to an Ubuntu 20.04 VM with a standard user account with sudo privilege. These instructions likely work with newer versions of Ubuntu, but the instructions haven't been tested with newer versions.
+* Access to an Ubuntu 20.04 VM with a standard user account with sudo privilege. These instructions haven't been tested with the latest Ubuntu versions,  but they should work.
 * The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
 * An existing ASP.NET Core app.
 
@@ -172,7 +172,7 @@ To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET C
 
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
-To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx.conf`. Open it in a text editor, and replace the `server{}` code block with the following snippet:
+To configure Nginx as a reverse proxy to forward HTTP requests to an ASP.NET Core app, modify `/etc/nginx.conf`. Replace the `server{}` code block with the following snippet:
 
 # [SUSE Linux Enterprise Server](#tab/linux-sles)
 
