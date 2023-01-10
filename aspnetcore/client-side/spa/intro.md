@@ -1,0 +1,35 @@
+---
+title: Overview of Single Page Applications (SPA) in ASP.NET Core
+author: rick-anderson
+ms.author: jacalvar
+monikerRange: '>= aspnetcore-6.0'
+description: Overview of Single Page Applications (SPA) in ASP.NET Core
+ms.date: 1/11/2023
+uid: spa/intro
+---
+# Overview of Single Page Applications (SPA) in ASP.NET Core
+
+## Architecture of Single Page Application templates
+
+The Single Page Application (SPA] templates for [Angular](https://angular.io/) and [React](https://reactjs.org/) offer the ability to develop Angular and React applications that are hosted inside a .NET backend server.
+
+At publish time, the files of the Angular and React app are copied to the `wwwroot` folder and are served via the [static files middleware](fundamentals/static-files).
+
+A fallback route handles unknown requests to the backend and serves the `index.html` for the SPA.
+
+During development, the app is setup to leverage the frontend proxy provided by React and Angular. React and Angular use the same frontend proxy.
+
+When the app launches, the `index.html`page is opened in the browser. A special middleware that is only enabled in development:
+
+* Intercepts the incoming requests.
+* Checks whether the proxy is running.
+* Redirects to the URL for the proxy if its running or launches a new instance of the proxy.
+* Returns a page to the browser that auto refreshes every few seconds until the proxy is up and the browser is redirected.
+
+![Browser Proxy Server diagram](~/client-side/spa/intro/static/1_BPS.png)
+
+## Additional resources
+
+* <xref:security/authentication/identity/spa>
+* <xref:spa/angular>
+* <xref:spa/react>
