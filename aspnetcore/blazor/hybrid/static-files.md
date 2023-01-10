@@ -215,7 +215,7 @@ In a Razor component:
 * The static text file contents can be read using the following techniques:
   * .NET MAUI: [:::no-loc text=".NET MAUI file system helpers":::](/dotnet/maui/platform-integration/storage/file-system-helpers) (<xref:Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync%2A>)
   * WPF and Windows Forms: <xref:System.IO.StreamReader.ReadToEndAsync%2A?displayProperty=nameWithType>
-* The objects of a JavaScript file (`wwwroot/scripts.js`) are available at logical subpaths of `wwwroot`.
+* JavaScript files are available at logical subpaths of `wwwroot` using `./` paths.
 * The image can be the source attribute (`src`) of an image tag (`<img>`).
 
 `StaticAssetExample2.razor`:
@@ -241,7 +241,7 @@ In a Razor component:
 
 <p>@result</p>
 
-<h2>Image</h2>
+<h2>Show an image</h2>
 
 <p><img alt="1991 Jeep YJ" src="/jeep-yj.png" /></p>
 
@@ -329,7 +329,7 @@ export function showPrompt(message) {
 }
 ```
 
-Modify the module object reference in the `StaticAssetExample2` component to use the collocated JavaScript file path:
+Modify the module object reference in the `StaticAssetExample2` component to use the collocated JavaScript file path (`./Pages/StaticAssetExample2.razor.js`):
 
 ```csharp
 module = await JS.InvokeAsync<IJSObjectReference>("import", 
