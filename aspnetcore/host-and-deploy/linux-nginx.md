@@ -28,7 +28,7 @@ This guide:
 
 # [Ubuntu](#tab/linux-ubuntu)
 
-* Access to an Ubuntu 20.04 VM with a standard user account with sudo privilege. These instructions haven't been tested with the latest Ubuntu versions,  but they should work.
+* Access to an Ubuntu 20.04 VM with a standard user account with sudo privilege. These instructions haven't been tested with the latest Ubuntu versions, but they should work.
 * The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
 * An existing ASP.NET Core app.
 
@@ -141,7 +141,7 @@ For more information, see <xref:host-and-deploy/proxy-load-balancer>.
 
 # [Ubuntu](#tab/linux-ubuntu)
 
-Use `apt-get` to install Nginx. The installer creates a `systemd` init script that runs Nginx as daemon on system startup. Follow the installation instructions for Ubuntu at [Nginx: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages).
+Use `apt-get` to install Nginx. The installer creates a [`systemd`](https://systemd.io/) init script that runs Nginx as daemon on system startup. Follow the installation instructions for Ubuntu at [Nginx: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages).
 
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
@@ -176,7 +176,7 @@ To configure Nginx as a reverse proxy to forward HTTP requests to an ASP.NET Cor
 
 # [SUSE Linux Enterprise Server](#tab/linux-sles)
 
-To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx.conf`. Open it in a text editor, and replace the `server{}` code block with the following snippet:
+To configure Nginx as a reverse proxy to forward HTTP requests to an ASP.NET Core app, modify `/etc/nginx.conf`. Replace the `server{}` code block with the following snippet:
 
 ---
 
@@ -239,7 +239,7 @@ When done testing the app, shut down the app with <kbd>Ctrl</kbd>+<kbd>C</kbd> (
 
 ## Monitor the app
 
-The server is set up to forward requests made to `http://<serveraddress>:80` on to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`. However, Nginx isn't set up to manage the Kestrel process. `systemd` can be used to create a service file to start and monitor the underlying web app. `systemd` is an init system that provides many powerful features for starting, stopping, and managing processes.
+The server is set up to forward requests made to `http://<serveraddress>:80` on to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`. However, Nginx isn't set up to manage the Kestrel process. [`systemd`](https://systemd.io/) can be used to create a service file to start and monitor the underlying web app. `systemd` is an init system that provides many powerful features for starting, stopping, and managing processes.
 
 ### Create the service file
 
@@ -327,7 +327,7 @@ Transfer-Encoding: chunked
 
 ### View logs
 
-Since the web app using Kestrel is managed using `systemd`, all events and processes are logged to a centralized journal. However, this journal includes all entries for all services and processes managed by `systemd`. To view the `kestrel-helloapp.service`-specific items, use the following command:
+Since the web app using Kestrel is managed using [`systemd`](https://systemd.io/), all events and processes are logged to a centralized journal. However, this journal includes all entries for all services and processes managed by `systemd`. To view the `kestrel-helloapp.service`-specific items, use the following command:
 
 ```bash
 sudo journalctl -fu kestrel-helloapp.service
@@ -379,7 +379,7 @@ Close off all external ports that aren't in use. Uncomplicated firewall (ufw) pr
 # [Ubuntu](#tab/linux-ubuntu)
 
 > [!WARNING]
-> A firewall will prevent access to the whole system if not configured correctly. Failure to specify the correct SSH port will effectively lock you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW) and the [manual](https://manpages.ubuntu.com/manpages/bionic/man8/ufw.8.html).
+> A firewall prevents access to the whole system if not configured correctly. Failure to specify the correct SSH port effectively locks you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW) and the [manual](https://manpages.ubuntu.com/manpages/bionic/man8/ufw.8.html).
 
 Install `ufw` and configure it to allow traffic on any ports needed.
 
@@ -396,7 +396,7 @@ sudo ufw enable
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
 > [!WARNING]
-> A firewall will prevent access to the whole system if not configured correctly. Failure to specify the correct SSH port will effectively lock you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW).
+> A firewall prevents access to the whole system if not configured correctly. Failure to specify the correct SSH port effectively locks you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW).
 
 Install `ufw` and configure it to allow traffic on any ports needed.
 
@@ -413,7 +413,7 @@ sudo ufw enable
 # [SUSE Linux Enterprise Server](#tab/linux-sles)
 
 > [!WARNING]
-> A firewall will prevent access to the whole system if not configured correctly. Failure to specify the correct SSH port will effectively lock you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW).
+> A firewall prevents access to the whole system if not configured correctly. Failure to specify the correct SSH port effectively locks you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW).
 
 Install `ufw` and configure it to allow traffic on any ports needed.
 
