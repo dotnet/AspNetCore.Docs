@@ -80,7 +80,7 @@ ASP.NET 4.x apps that use Katana Cookie Authentication Middleware can be configu
 * Using the System.Web adapters' [remote authentication](xref:migration/inc/remote-authentication) feature, which uses the ASP.NET app to sign users in.
 * Configuring the ASP.NET app to use Katana Cookie Authentication Middleware so that authentication cookies are shared with the ASP.NET Core app.
 
-To configure ASP.NET Katana Cookie Authentication Middleware to share cookies with an ASP.NET Core app, first follow the instructions above to configure the ASP.NET Core app to use a specific cookie name, app name, and to persist data protection keys to a well-known location (such as a shared file location).
+To configure ASP.NET Katana Cookie Authentication Middleware to share cookies with an ASP.NET Core app, follow the preceding instructions to configure the ASP.NET Core app to use a specific cookie name, app name, and to persist data protection keys to a well-known location. See [Configure ASP.NET Core Data Protection](xref:security/data-protection/configuration/overview) for more information on persisting data protection keys.
 
 Next, in the ASP.NET app, install the [`Microsoft.Owin.Security.Interop`](https://www.nuget.org/packages/Microsoft.Owin.Security.Interop/) package.
 
