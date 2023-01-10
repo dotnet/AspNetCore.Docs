@@ -177,7 +177,7 @@ In `Program.cs`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.Comp
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
-To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page:
+To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page.
 
 `Pages/_Host.cshtml`:
 
@@ -225,18 +225,37 @@ Customize the delay before the reconnection display appears by setting the `tran
 }
 ```
 
+To display the current reconnect attempt, define an element with an `id` of `components-reconnect-current-attempt`. To display the maximum number of reconnect retries, define an element with an `id` of `components-reconnect-max-retries`. The following example places these elements inside a reconnect attempt modal element in the host page following the previous example.
+
+`Pages/_Host.cshtml`:
+
+```cshtml
+<div id="components-reconnect-modal">
+    There was a problem with the connection!
+    (Current reconnect attempt: 
+    <span id="components-reconnect-current-attempt"></span> /
+    <span id="components-reconnect-max-retries"></span>)
+</div>
+```
+
+When the custom reconnect modal appears, it renders content similar to the following based on the preceding code:
+
+```html
+There was a problem with the connection! (Current reconnect attempt: 3 / 8)
+```
+
 ## Render mode (Blazor Server)
 
 By default, Blazor Server apps prerender the UI on the server before the client connection to the server is established. For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ## Blazor startup
 
-Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
+Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (hosted Blazor WebAssembly with SignalR implemented):
 
-* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` or `blazor.webassembly.js` script.
-* Place a script that calls `Blazor.start` after the Blazor script is loaded and inside the closing `</body>` tag.
+* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.{server|webassembly}.js` script.
+* Place a script that calls `Blazor.start()` after the Blazor script is loaded and inside the closing `</body>` tag.
 
-When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
+When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start()` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
@@ -466,6 +485,10 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
 
+## Avoid `IHttpContextAccessor` in Razor components
+
+Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
+
 ## Additional resources for Blazor Server apps
 
 * <xref:blazor/host-and-deploy/server#signalr-configuration>
@@ -648,7 +671,7 @@ In `Program.cs`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.Comp
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
-To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the layout page:
+To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the layout page.
 
 `Pages/_Layout.cshtml`:
 
@@ -696,18 +719,37 @@ Customize the delay before the reconnection display appears by setting the `tran
 }
 ```
 
+To display the current reconnect attempt, define an element with an `id` of `components-reconnect-current-attempt`. To display the maximum number of reconnect retries, define an element with an `id` of `components-reconnect-max-retries`. The following example places these elements inside a reconnect attempt modal element in the layout page following the previous example.
+
+`Pages/_Layout.cshtml`:
+
+```cshtml
+<div id="components-reconnect-modal">
+    There was a problem with the connection!
+    (Current reconnect attempt: 
+    <span id="components-reconnect-current-attempt"></span> /
+    <span id="components-reconnect-max-retries"></span>)
+</div>
+```
+
+When the custom reconnect modal appears, it renders content similar to the following based on the preceding code:
+
+```html
+There was a problem with the connection! (Current reconnect attempt: 3 / 8)
+```
+
 ## Render mode (Blazor Server)
 
 By default, Blazor Server apps prerender the UI on the server before the client connection to the server is established. For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ## Blazor startup
 
-Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Layout.cshtml` file (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
+Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Layout.cshtml` file (Blazor Server) or `wwwroot/index.html` (hosted Blazor WebAssembly with SignalR implemented):
 
-* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` or `blazor.webassembly.js` script.
-* Place a script that calls `Blazor.start` after the Blazor script is loaded and inside the closing `</body>` tag.
+* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.{server|webassembly}.js` script.
+* Place a script that calls `Blazor.start()` after the Blazor script is loaded and inside the closing `</body>` tag.
 
-When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
+When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start()` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
@@ -863,6 +905,10 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
 
+## Avoid `IHttpContextAccessor` in Razor components
+
+Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
+
 ## Additional resources for Blazor Server apps
 
 * <xref:blazor/host-and-deploy/server#signalr-configuration>
@@ -1014,7 +1060,7 @@ In `Startup.Configure`, Blazor Server apps call <xref:Microsoft.AspNetCore.Build
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
-To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page:
+To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page.
 
 `Pages/_Host.cshtml`:
 
@@ -1062,18 +1108,37 @@ Customize the delay before the reconnection display appears by setting the `tran
 }
 ```
 
+To display the current reconnect attempt, define an element with an `id` of `components-reconnect-current-attempt`. To display the maximum number of reconnect retries, define an element with an `id` of `components-reconnect-max-retries`. The following example places these elements inside a reconnect attempt modal element in the host page following the previous example.
+
+`Pages/_Host.cshtml`:
+
+```cshtml
+<div id="components-reconnect-modal">
+    There was a problem with the connection!
+    (Current reconnect attempt: 
+    <span id="components-reconnect-current-attempt"></span> /
+    <span id="components-reconnect-max-retries"></span>)
+</div>
+```
+
+When the custom reconnect modal appears, it renders content similar to the following based on the preceding code:
+
+```html
+There was a problem with the connection! (Current reconnect attempt: 3 / 8)
+```
+
 ## Render mode (Blazor Server)
 
 By default, Blazor Server apps prerender the UI on the server before the client connection to the server is established. For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
 ## Blazor startup
 
-Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
+Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (hosted Blazor WebAssembly with SignalR implemented):
 
-* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` or `blazor.webassembly.js` script.
-* Place a script that calls `Blazor.start` after the Blazor script is loaded and inside the closing `</body>` tag.
+* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.{server|webassembly}.js` script.
+* Place a script that calls `Blazor.start()` after the Blazor script is loaded and inside the closing `</body>` tag.
 
-When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
+When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start()` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
@@ -1233,6 +1298,10 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
 
+## Avoid `IHttpContextAccessor` in Razor components
+
+Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
+
 ## Additional resources for Blazor Server apps
 
 * <xref:signalr/introduction>
@@ -1376,7 +1445,7 @@ In `Startup.Configure`, Blazor Server apps call <xref:Microsoft.AspNetCore.Build
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
-To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page:
+To customize the UI, define a single element with an `id` of `components-reconnect-modal`. The following example places the element in the host page.
 
 `Pages/_Host.cshtml`:
 
@@ -1420,12 +1489,12 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 ## Blazor startup
 
-Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (Blazor WebAssembly):
+Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (hosted Blazor WebAssembly with SignalR implemented):
 
-* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.server.js` or `blazor.webassembly.js` script.
-* Place a script that calls `Blazor.start` after the Blazor script is loaded and inside the closing `</body>` tag.
+* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.{server|webassembly}.js` script.
+* Place a script that calls `Blazor.start()` after the Blazor script is loaded and inside the closing `</body>` tag.
 
-When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
+When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start()` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
 For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
 
@@ -1572,6 +1641,10 @@ public void ConfigureServices(IServiceCollection services)
 If a custom circuit handler's methods throw an unhandled exception, the exception is fatal to the Blazor Server circuit. To tolerate exceptions in a handler's code or called methods, wrap the code in one or more [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging.
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
+
+## Avoid `IHttpContextAccessor` in Razor components
+
+Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
 
 ## Additional resources for Blazor Server apps
 

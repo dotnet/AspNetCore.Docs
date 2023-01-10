@@ -32,6 +32,8 @@ Component lifecycle events:
 > [!NOTE]
 > Asynchronous actions performed in lifecycle events might not have completed before a component is rendered. For more information, see the [Handle incomplete async actions at render](#handle-incomplete-async-actions-at-render) section later in this article.
 
+A parent component renders before its children components because rendering is what determines which children are present. If synchronous parent component initialization is used, the parent initialization is guaranteed to complete first. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
+
 ![Component lifecycle events of a Razor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
 
 Document Object Model (DOM) event processing:
@@ -82,6 +84,8 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 ## Component initialization (`OnInitialized{Async}`)
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> are invoked when the component is initialized after having received its initial parameters in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>.
+
+If synchronous parent component initialization is used, the parent initialization is guaranteed to complete before child component initialization. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
 
 For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
 
@@ -233,6 +237,15 @@ If a component implements <xref:System.IDisposable>, <xref:System.IAsyncDisposab
 Components shouldn't need to implement <xref:System.IDisposable> and <xref:System.IAsyncDisposable> simultaneously. If both are implemented, the framework only executes the asynchronous overload.
 
 Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
+
+### Document Object Model (DOM) cleanup tasks during component disposal
+
+Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
+
+* The component may have been removed from the DOM by the time your cleanup code executes in `Dispose{Async}`.
+* In a Blazor Server app, the Blazor renderer may have been disposed by the framework by the time your cleanup code executes in `Dispose{Async}`.
+
+The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
 
 For guidance on <xref:Microsoft.JSInterop.JSDisconnectedException> in Blazor Server apps when a circuit is disconnected, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-interop-calls-without-a-circuit> or <xref:blazor/js-interop/call-dotnet-from-javascript#javascript-interop-calls-without-a-circuit>. For general JavaScript interop error handling guidance, see the *JavaScript interop* section in <xref:blazor/fundamentals/handle-errors>. <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
 
@@ -496,6 +509,8 @@ Component lifecycle events:
 > [!NOTE]
 > Asynchronous actions performed in lifecycle events might not have completed before a component is rendered. For more information, see the [Handle incomplete async actions at render](#handle-incomplete-async-actions-at-render) section later in this article.
 
+A parent component renders before its children components because rendering is what determines which children are present. If synchronous parent component initialization is used, the parent initialization is guaranteed to complete first. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
+
 ![Component lifecycle events of a Razor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
 
 Document Object Model (DOM) event processing:
@@ -546,6 +561,8 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 ## Component initialization (`OnInitialized{Async}`)
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> are invoked when the component is initialized after having received its initial parameters in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>.
+
+If synchronous parent component initialization is used, the parent initialization is guaranteed to complete before child component initialization. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
 
 For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
 
@@ -697,6 +714,15 @@ If a component implements <xref:System.IDisposable>, <xref:System.IAsyncDisposab
 Components shouldn't need to implement <xref:System.IDisposable> and <xref:System.IAsyncDisposable> simultaneously. If both are implemented, the framework only executes the asynchronous overload.
 
 Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
+
+### Document Object Model (DOM) cleanup tasks during component disposal
+
+Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
+
+* The component may have been removed from the DOM by the time your cleanup code executes in `Dispose{Async}`.
+* In a Blazor Server app, the Blazor renderer may have been disposed by the framework by the time your cleanup code executes in `Dispose{Async}`.
+
+The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
 
 For guidance on <xref:Microsoft.JSInterop.JSDisconnectedException> in Blazor Server apps when a circuit is disconnected, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-interop-calls-without-a-circuit> or <xref:blazor/js-interop/call-dotnet-from-javascript#javascript-interop-calls-without-a-circuit>. For general JavaScript interop error handling guidance, see the *JavaScript interop* section in <xref:blazor/fundamentals/handle-errors>. <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
 
@@ -960,6 +986,8 @@ Component lifecycle events:
 > [!NOTE]
 > Asynchronous actions performed in lifecycle events might not have completed before a component is rendered. For more information, see the [Handle incomplete async actions at render](#handle-incomplete-async-actions-at-render) section later in this article.
 
+A parent component renders before its children components because rendering is what determines which children are present. If synchronous parent component initialization is used, the parent initialization is guaranteed to complete first. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
+
 ![Component lifecycle events of a Razor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
 
 Document Object Model (DOM) event processing:
@@ -1010,6 +1038,8 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 ## Component initialization (`OnInitialized{Async}`)
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> are invoked when the component is initialized after having received its initial parameters in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>.
+
+If synchronous parent component initialization is used, the parent initialization is guaranteed to complete before child component initialization. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
 
 For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
 
@@ -1161,6 +1191,15 @@ If a component implements <xref:System.IDisposable>, <xref:System.IAsyncDisposab
 Components shouldn't need to implement <xref:System.IDisposable> and <xref:System.IAsyncDisposable> simultaneously. If both are implemented, the framework only executes the asynchronous overload.
 
 Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
+
+### Document Object Model (DOM) cleanup tasks during component disposal
+
+Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
+
+* The component may have been removed from the DOM by the time your cleanup code executes in `Dispose{Async}`.
+* In a Blazor Server app, the Blazor renderer may have been disposed by the framework by the time your cleanup code executes in `Dispose{Async}`.
+
+The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
 
 For guidance on <xref:Microsoft.JSInterop.JSDisconnectedException> in Blazor Server apps when a circuit is disconnected, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-interop-calls-without-a-circuit> or <xref:blazor/js-interop/call-dotnet-from-javascript#javascript-interop-calls-without-a-circuit>. For general JavaScript interop error handling guidance, see the *JavaScript interop* section in <xref:blazor/fundamentals/handle-errors>. <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
 
@@ -1423,6 +1462,8 @@ Component lifecycle events:
 > [!NOTE]
 > Asynchronous actions performed in lifecycle events might not have completed before a component is rendered. For more information, see the [Handle incomplete async actions at render](#handle-incomplete-async-actions-at-render) section later in this article.
 
+A parent component renders before its children components because rendering is what determines which children are present. If synchronous parent component initialization is used, the parent initialization is guaranteed to complete first. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
+
 ![Component lifecycle events of a Razor component in Blazor](~/blazor/components/lifecycle/_static/lifecycle1.png)
 
 Document Object Model (DOM) event processing:
@@ -1473,6 +1514,8 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 ## Component initialization (`OnInitialized{Async}`)
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> are invoked when the component is initialized after having received its initial parameters in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>.
+
+If synchronous parent component initialization is used, the parent initialization is guaranteed to complete before child component initialization. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
 
 For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
 
@@ -1621,6 +1664,15 @@ If a component implements <xref:System.IDisposable>, <xref:System.IAsyncDisposab
 Components shouldn't need to implement <xref:System.IDisposable> and <xref:System.IAsyncDisposable> simultaneously. If both are implemented, the framework only executes the asynchronous overload.
 
 Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
+
+### Document Object Model (DOM) cleanup tasks during component disposal
+
+Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
+
+* The component may have been removed from the DOM by the time your cleanup code executes in `Dispose{Async}`.
+* In a Blazor Server app, the Blazor renderer may have been disposed by the framework by the time your cleanup code executes in `Dispose{Async}`.
+
+The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
 
 For guidance on <xref:Microsoft.JSInterop.JSDisconnectedException> in Blazor Server apps when a circuit is disconnected, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-interop-calls-without-a-circuit> or <xref:blazor/js-interop/call-dotnet-from-javascript#javascript-interop-calls-without-a-circuit>. For general JavaScript interop error handling guidance, see the *JavaScript interop* section in <xref:blazor/fundamentals/handle-errors>. <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
 

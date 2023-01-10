@@ -40,7 +40,7 @@ In the following image, `admin@contoso.com` is signed in and in the administrato
 
 ![Screenshot showing admin@contoso.com signed in](secure-data/_static/admin.png)
 
-The administrator has all privileges. She can read/edit/delete any contact and change the status of contacts.
+The administrator has all privileges. She can read, edit, or delete any contact and change the status of contacts.
 
 The app was created by [scaffolding](xref:tutorials/first-mvc-app/adding-model#scaffold-movie-pages) the following `Contact` model:
 

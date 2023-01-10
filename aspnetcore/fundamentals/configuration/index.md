@@ -64,7 +64,7 @@ The following list contains the default host configuration sources from highest 
 1. `DOTNET_`-prefixed environment variables using the [Environment variables configuration provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider).
 1. `ASPNETCORE_`-prefixed environment variables using the [Environment variables configuration provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider).
 
-For the [.NET Generic Host](xref:fundamentals/host/generic-host) and [Web Host](xref:fundamentals/host/web-host), the the default host configuration sources from highest to lowest priority is:
+For the [.NET Generic Host](xref:fundamentals/host/generic-host) and [Web Host](xref:fundamentals/host/web-host), the default host configuration sources from highest to lowest priority is:
 
 1. `ASPNETCORE_`-prefixed environment variables using the [Environment variables configuration provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider).
 1.  Command-line arguments using the [Command-line configuration provider](#command-line)
@@ -884,7 +884,7 @@ In the following code, an <xref:Microsoft.Extensions.Options.IConfigureOptions%6
 
 The following code displays the options values:
 
-[!code-csharp[~/fundamentals/configuration/optionssamples/6.x/OptionsSample/Pages/Test2.cshtml.cs?name=snippet)]
+[!code-csharp[~/fundamentals/configuration/options/samples/6.x/OptionsSample/Pages/Test2.cshtml.cs?name=snippet)]
 
 In the preceding example, the values of `Option1` and `Option2` are specified in `appsettings.json` and then overridden by the configured delegate.
 

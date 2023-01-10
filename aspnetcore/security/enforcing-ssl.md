@@ -5,7 +5,7 @@ description: Learn how to require HTTPS/TLS in an ASP.NET Core web app.
 ms.author: riande
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: mvc
-ms.date: 03/10/2022
+ms.date: 01/04/2023
 uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
@@ -283,6 +283,8 @@ Establishing trust is distribution and browser specific. The following sections 
 
 ### Ubuntu trust the certificate for service-to-service communication
 
+The following instructions don't work for some Ubuntu versions, such as 20.04. For more information, see GitHub issue [dotnet/AspNetCore.Docs #23686](https://github.com/dotnet/AspNetCore.Docs/issues/23686).
+
 1. Install [OpenSSL](https://www.openssl.org/) 1.1.1h or later. See your distribution for instructions on how to update OpenSSL.
 1. Run the following commands:
 
@@ -297,7 +299,6 @@ The preceding commands:
 * Ensure the current user's developer certificate is created.
 * Exports the certificate with elevated permissions needed for the `ca-certificates` folder, using the current user's environment.
 * Removing the `-E`  flag exports the root user certificate, generating it if necessary. Each newly generated certificate has a different thumbprint. When running as root, `sudo`  and  `-E` are not needed.
-
 
 The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
 
@@ -362,7 +363,7 @@ See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) i
 
 ### Trust the certificate with Fedora 34
 
-See [this GitHub comment](https://github.com/dotnet/aspnetcore/issues/32361#issuecomment-837111639).
+See [this GitHub comment](https://github.com/dotnet/aspnetcore/issues/32361#issuecomment-837111639) and [Set up a .NET development environment](https://fedoramagazine.org/set-up-a-net-development-environment/) on Fedora.
 
 ### Trust the certificate with other distros
 
@@ -370,7 +371,9 @@ See [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/32842).
 
 ## Trust HTTPS certificate from Windows Subsystem for Linux
 
-The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS self-signed development certificate, which by default isn't trusted in Windows. The easiest way to have Windows trust the WSL certificate, is to configure WSL to use the same certificate as Windows:
+The following instructions don't work for some Linux distributions, such as Ubuntu 20.04. For more information, see GitHub issue [dotnet/AspNetCore.Docs #23686](https://github.com/dotnet/AspNetCore.Docs/issues/23686).
+
+The [Windows Subsystem for Linux (WSL)](/windows/wsl/about) generates an HTTPS self-signed development certificate. To configure the Windows certificate store to trust the WSL certificate:
 
 * On ***Windows***, export the developer certificate to a file:
 

@@ -14,10 +14,12 @@ This article explains how to configure Blazor startup.
 
 :::moniker range=">= aspnetcore-7.0"
 
-Configure a manual start in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
+The Blazor startup process via the Blazor script (`blazor.{webassembly|server}.js`) is automatic and asynchronous. The Blazor `<script>` tag is found in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server). Scripts added after the Blazor `<script>` tag block the Blazor JavaScript engine until they've finished loading.
 
-* Add an `autostart="false"` attribute and value to the `<script>` tag for the Blazor script.
-* Place a script that calls `Blazor.start` after the Blazor `<script>` tag and inside the closing `</body>` tag.
+To manually start Blazor:
+
+* Add an `autostart="false"` attribute and value to the Blazor `<script>` tag.
+* Place a script that calls `Blazor.start()` after the Blazor `<script>` tag and inside the closing `</body>` tag.
 
 ## JavaScript initializers
 
@@ -269,7 +271,7 @@ In `wwwroot/index.html`, remove the default SVG round indicator in `<div id="app
   * [Modify the reconnection handler](xref:blazor/fundamentals/signalr#modify-the-reconnection-handler-blazor-server)
   * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval-blazor-server)
   * [Disconnect the Blazor circuit from the client](xref:blazor/fundamentals/signalr#disconnect-the-blazor-circuit-from-the-client-blazor-server)
-* [Globalization and localization: Statically set the culture with `Blazor.start` (*Blazor WebAssembly only*)](xref:blazor/globalization-localization?pivots=webassembly#statically-set-the-culture)
+* [Globalization and localization: Statically set the culture with `Blazor.start()` (*Blazor WebAssembly only*)](xref:blazor/globalization-localization?pivots=webassembly#statically-set-the-culture)
 * [JS interop: Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 * [Host and deploy: Blazor WebAssembly: Compression](xref:blazor/host-and-deploy/webassembly#compression)
 
@@ -277,10 +279,12 @@ In `wwwroot/index.html`, remove the default SVG round indicator in `<div id="app
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-Configure a manual start in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Layout.cshtml` file (Blazor Server):
+The Blazor startup process via the Blazor script (`blazor.{webassembly|server}.js`) is automatic and asynchronous. The Blazor `<script>` tag is found in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Layout.cshtml` file (Blazor Server). Scripts added after the Blazor `<script>` tag block the Blazor JavaScript engine until they've finished loading.
 
-* Add an `autostart="false"` attribute and value to the `<script>` tag for the Blazor script.
-* Place a script that calls `Blazor.start` after the Blazor `<script>` tag and inside the closing `</body>` tag.
+To manually start Blazor:
+
+* Add an `autostart="false"` attribute and value to the Blazor `<script>` tag.
+* Place a script that calls `Blazor.start()` after the Blazor `<script>` tag and inside the closing `</body>` tag.
 
 ## JavaScript initializers
 
@@ -453,7 +457,7 @@ For more information on CSPs, see <xref:blazor/security/content-security-policy>
   * [Modify the reconnection handler](xref:blazor/fundamentals/signalr#modify-the-reconnection-handler-blazor-server)
   * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval-blazor-server)
   * [Disconnect the Blazor circuit from the client](xref:blazor/fundamentals/signalr#disconnect-the-blazor-circuit-from-the-client-blazor-server)
-* [Globalization and localization: Statically set the culture with `Blazor.start` (*Blazor WebAssembly only*)](xref:blazor/globalization-localization?pivots=webassembly#statically-set-the-culture)
+* [Globalization and localization: Statically set the culture with `Blazor.start()` (*Blazor WebAssembly only*)](xref:blazor/globalization-localization?pivots=webassembly#statically-set-the-culture)
 * [JS interop: Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 * [Host and deploy: Blazor WebAssembly: Compression](xref:blazor/host-and-deploy/webassembly#compression)
 
@@ -461,10 +465,12 @@ For more information on CSPs, see <xref:blazor/security/content-security-policy>
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Configure a manual start in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
+The Blazor startup process via the Blazor script (`blazor.{webassembly|server}.js`) is automatic and asynchronous. The Blazor `<script>` tag is found in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server). Scripts added after the Blazor `<script>` tag block the Blazor JavaScript engine until they've finished loading.
 
-* Add an `autostart="false"` attribute and value to the `<script>` tag for the Blazor script.
-* Place a script that calls `Blazor.start` after the Blazor `<script>` tag and inside the closing `</body>` tag.
+To manually start Blazor:
+
+* Add an `autostart="false"` attribute and value to the Blazor `<script>` tag.
+* Place a script that calls `Blazor.start()` after the Blazor `<script>` tag and inside the closing `</body>` tag.
 
 ## Initialize Blazor when the document is ready
 
@@ -633,7 +639,7 @@ For more information on CSPs, see <xref:blazor/security/content-security-policy>
   * [Modify the reconnection handler](xref:blazor/fundamentals/signalr#modify-the-reconnection-handler-blazor-server)
   * [Adjust the reconnection retry count and interval](xref:blazor/fundamentals/signalr#adjust-the-reconnection-retry-count-and-interval-blazor-server)
   * [Disconnect the Blazor circuit from the client](xref:blazor/fundamentals/signalr#disconnect-the-blazor-circuit-from-the-client-blazor-server)
-* [Globalization and localization: Statically set the culture with `Blazor.start` (*Blazor WebAssembly only*)](xref:blazor/globalization-localization?pivots=webassembly#statically-set-the-culture)
+* [Globalization and localization: Statically set the culture with `Blazor.start()` (*Blazor WebAssembly only*)](xref:blazor/globalization-localization?pivots=webassembly#statically-set-the-culture)
 * [JS interop: Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
 * [Host and deploy: Blazor WebAssembly: Compression](xref:blazor/host-and-deploy/webassembly#compression)
 
@@ -641,10 +647,12 @@ For more information on CSPs, see <xref:blazor/security/content-security-policy>
 
 :::moniker range="< aspnetcore-5.0"
 
-Configure a manual start in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
+The Blazor startup process via the Blazor script (`blazor.{webassembly|server}.js`) is automatic and asynchronous. The Blazor `<script>` tag is found in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server). Scripts added after the Blazor `<script>` tag block the Blazor JavaScript engine until they've finished loading.
 
-* Add an `autostart="false"` attribute and value to the `<script>` tag for the Blazor script.
-* Place a script that calls `Blazor.start` after the Blazor `<script>` tag and inside the closing `</body>` tag.
+To manually start Blazor:
+
+* Add an `autostart="false"` attribute and value to the Blazor `<script>` tag.
+* Place a script that calls `Blazor.start()` after the Blazor `<script>` tag and inside the closing `</body>` tag.
 
 ## Initialize Blazor when the document is ready
 
