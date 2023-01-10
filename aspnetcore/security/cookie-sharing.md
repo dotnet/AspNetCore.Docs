@@ -84,23 +84,23 @@ To configure ASP.NET Katana Cookie Authentication Middleware to share cookies wi
 
 In the ASP.NET app, install the [`Microsoft.Owin.Security.Interop`](https://www.nuget.org/packages/Microsoft.Owin.Security.Interop/) package.
 
-Finally, update the `UseCookieAuthentication` call in Startup.Auth.cs to configure an AspNetTicketDataFormat to match the ASP.NET Core app's settings:
+Update the `UseCookieAuthentication` call in Startup.Auth.cs to configure an AspNetTicketDataFormat to match the ASP.NET Core app's settings:
 
 [!code-csharp[](~/security/cookie-sharing/samples/WebCookieShare-NetFx/App_Start/Startup.Auth.cs?name=snippet_netfx_cookie_auth&highlight=11-23)]
 
 Important items configured here include:
 
 * The cookie name is set to the same name as in the ASP.NET Core app.
-* A data protection provider is created using the same key ring path. Note that in these examples, data protection keys are stored on disk but other data protection providers can be used, as well (Redis or Azure Blob Storage, for example) as long as the configuration matches between the apps.
+* A data protection provider is created using the same key ring path. Note that in these examples, data protection keys are stored on disk but other data protection providers can be used. For example, Redis or Azure Blob Storage can be used for data protection providers as long as the configuration matches between the apps. See [Configure ASP.NET Core Data Protection](xref:security/data-protection/configuration/overview) for more information on persisting data protection keys.
 * The app name is set to be the same as the app name used in the ASP.NET Core app.
 * The authentication type is set to the name of the authentication scheme in the ASP.NET Core app.
 * `System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier` is set to a claim from the ASP.NET Core identity that will be unique to a user.
 
-Because the authentication type was changed to match the authentication scheme of the ASP.NET Core app, it's also necessary to update how the ASP.NET app generates new identities to use that same name. This is typically done in Models/IdentityModels.cs:
+Because the authentication type was changed to match the authentication scheme of the ASP.NET Core app, it's also necessary to update how the ASP.NET app generates new identities to use that same name. This is typically done in `Models/IdentityModels.cs`:
 
 [!code-csharp[](~/security/cookie-sharing/samples/WebCookieShare-NetFx/Models/IdentityModels.cs?name=snippet_generate_identity&highlight=5-6)]
 
-With these changes made, the ASP.NET and ASP.NET Core apps will be able to use the same authentication cookies so that users logging in or out of one app will be reflected in the other app.
+With these changes, the ASP.NET and ASP.NET Core apps are able to use the same authentication cookies so that users signing in or out of one app are reflected in the other app.
 
 ## Use a common user database
 
@@ -222,4 +222,5 @@ When the Identity schema is different among apps, usually because apps are using
 ## Additional resources
 
 * <xref:host-and-deploy/web-farm>
+* [A primer on OWIN cookie authentication middleware for the ASP.NET developer](https://brockallen.com/2013/10/24/a-primer-on-owin-cookie-authentication-middleware-for-the-asp-net-developer/)
 :::moniker-end
