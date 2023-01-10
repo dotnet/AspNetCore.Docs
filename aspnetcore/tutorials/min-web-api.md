@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://gi
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a minimal web API with ASP.NET Core. For a tutorial on creating a web API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api). For a comparison, see [Differences between minimal APIs and APIs with controllers](#diff-v7) later in this tutorial.
+This tutorial teaches the basics of building a minimal web API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help in choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a web API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
 
 ## Overview
 
@@ -427,19 +427,6 @@ Update the code in `Program.cs` to use this DTO model:
 Verify you can post and get all fields except the secret field.
 
 <a name="diff-v7"></a>
-
-## Differences between minimal APIs and APIs with controllers
-
-Minimal APIs have:
-
-- Different support for filters. For more information, see [Filters in Minimal API apps](../fundamentals/minimal-apis/min-api-filters.md)
-- No support for model binding, for example: <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider>, <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder>. Support can be added with a custom binding shim.
-  - No support for binding from forms, except for <xref:Microsoft.AspNetCore.Http.IFormFile>. For more information, see [File uploads using IFormFile and IFormFileCollection](xref:aspnetcore-7#file-uploads-using-iformfile-and-iformfilecollection).
-- No built-in support for validation, i.e. <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidator>
-- No support for [application parts](xref:mvc/extensibility/app-parts) or the [application model](xref:mvc/controllers/application-model). There's no way to apply or build your own conventions.
-- No built-in view rendering support. We recommend using [Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for rendering views.
-- No support for [JsonPatch](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch/)
-- No support for [OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/)
 
 ## Next steps
 
