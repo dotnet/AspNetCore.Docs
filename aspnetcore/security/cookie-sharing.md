@@ -75,12 +75,12 @@ For production deployments, configure the `DataProtectionProvider` to encrypt ke
 
 ## Share authentication cookies between ASP.NET 4.x and ASP.NET Core apps
 
-ASP.NET 4.x apps that use Katana Cookie Authentication Middleware can be configured to generate authentication cookies that are compatible with the ASP.NET Core Cookie Authentication Middleware. This can be useful if a web application consists of both ASP.NET 4.x apps and ASP.NET Core apps that must share a single sign-on experience. A specific example of such a scenario is [incrementally migrating](xref:migration/inc/overview) a web app from ASP.NET to ASP.NET Core. In such scenarios, it's common for some parts of an app to be served by the original ASP.NET app while others are served by the new ASP.NET Core app. Users should only have to sign in once, though. This can be accomplished by either of the following approaches:
+ASP.NET 4.x apps that use Microsoft.Owin Cookie Authentication Middleware can be configured to generate authentication cookies that are compatible with the ASP.NET Core Cookie Authentication Middleware. This can be useful if a web application consists of both ASP.NET 4.x apps and ASP.NET Core apps that must share a single sign-on experience. A specific example of such a scenario is [incrementally migrating](xref:migration/inc/overview) a web app from ASP.NET to ASP.NET Core. In such scenarios, it's common for some parts of an app to be served by the original ASP.NET app while others are served by the new ASP.NET Core app. Users should only have to sign in once, though. This can be accomplished by either of the following approaches:
 
 * Using the System.Web adapters' [remote authentication](xref:migration/inc/remote-authentication) feature, which uses the ASP.NET app to sign users in.
-* Configuring the ASP.NET app to use Katana Cookie Authentication Middleware so that authentication cookies are shared with the ASP.NET Core app.
+* Configuring the ASP.NET app to use Microsoft.Owin Cookie Authentication Middleware so that authentication cookies are shared with the ASP.NET Core app.
 
-To configure ASP.NET Katana Cookie Authentication Middleware to share cookies with an ASP.NET Core app, follow the preceding instructions to configure the ASP.NET Core app to use a specific cookie name, app name, and to persist data protection keys to a well-known location. See [Configure ASP.NET Core Data Protection](xref:security/data-protection/configuration/overview) for more information on persisting data protection keys.
+To configure ASP.NET Microsoft.Owin Cookie Authentication Middleware to share cookies with an ASP.NET Core app, follow the preceding instructions to configure the ASP.NET Core app to use a specific cookie name, app name, and to persist data protection keys to a well-known location. See [Configure ASP.NET Core Data Protection](xref:security/data-protection/configuration/overview) for more information on persisting data protection keys.
 
 In the ASP.NET app, install the [`Microsoft.Owin.Security.Interop`](https://www.nuget.org/packages/Microsoft.Owin.Security.Interop/) package.
 
@@ -101,6 +101,8 @@ Because the authentication type was changed to match the authentication scheme o
 [!code-csharp[](~/security/cookie-sharing/samples/WebCookieShare-NetFx/Models/IdentityModels.cs?name=snippet_generate_identity&highlight=5-6)]
 
 With these changes, the ASP.NET and ASP.NET Core apps are able to use the same authentication cookies so that users signing in or out of one app are reflected in the other app.
+
+Note that because there are differences between ASP.NET Identity and ASP.NET Core Identity's database schemas, it is recommended that users only *sign-in* using one of the apps - either the ASP.NET or ASP.NET Core app. Once users are signed in, the steps documented in this section will allow the authentication cookie to be *used* by either app and both apps should be able to log users out.
 
 ## Use a common user database
 
