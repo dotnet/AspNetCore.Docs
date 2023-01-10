@@ -692,7 +692,7 @@ Load JavaScript (JS) code using any of approaches described by the [JS interop o
 * [Load a script in `<head>` markup](xref:blazor/js-interop/index#load-a-script-in-head-markup) (*Not generally recommended*)
 * [Load a script in `<body>` markup](xref:blazor/js-interop/index#load-a-script-in-body-markup)
 * [Load a script from an external JavaScript file (`.js`)](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js)
-* [Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
+* [Inject a script before or after Blazor starts](xref:blazor/js-interop/index#inject-a-script-before-or-after-blazor-starts)
 
 For information on isolating scripts in [JS modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules), see the [JavaScript isolation in JavaScript modules](#javascript-isolation-in-javascript-modules) section.
 
@@ -1518,7 +1518,7 @@ Load JavaScript (JS) code using any of approaches described by the [JS interop o
 * [Load a script in `<head>` markup](xref:blazor/js-interop/index#load-a-script-in-head-markup) (*Not generally recommended*)
 * [Load a script in `<body>` markup](xref:blazor/js-interop/index#load-a-script-in-body-markup)
 * [Load a script from an external JavaScript file (`.js`)](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js)
-* [Inject a script after Blazor starts](xref:blazor/js-interop/index#inject-a-script-after-blazor-starts)
+* [Inject a script before or after Blazor starts](xref:blazor/js-interop/index#inject-a-script-before-or-after-blazor-starts)
 
 For information on isolating scripts in [JS modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules), see the [JavaScript isolation in JavaScript modules](#javascript-isolation-in-javascript-modules) section.
 
