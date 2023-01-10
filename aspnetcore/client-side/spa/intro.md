@@ -13,7 +13,7 @@ uid: spa/intro
 
 The Single Page Application (SPA] templates for [Angular](https://angular.io/) and [React](https://reactjs.org/) offer the ability to develop Angular and React applications that are hosted inside a .NET backend server.
 
-At publish time, the files of the Angular and React app are copied to the `wwwroot` folder and are served via the [static files middleware](fundamentals/static-files).
+At publish time, the files of the Angular and React app are copied to the `wwwroot` folder and are served via the [static files middleware](xref:fundamentals/static-files).
 
 A fallback route handles unknown requests to the backend and serves the `index.html` for the SPA.
 
@@ -27,6 +27,12 @@ When the app launches, the `index.html`page is opened in the browser. A special 
 * Returns a page to the browser that auto refreshes every few seconds until the proxy is up and the browser is redirected.
 
 ![Browser Proxy Server diagram](~/client-side/spa/intro/static/1_BPS.png)
+
+The primary benefit the ASP.NET Core SPA templates provide:
+
+* Launches a proxy if it's not already running.
+* Setting up HTTPS.
+* Configuring some requests to be proxied to the backend ASP.NET Core server.
 
 ## Additional resources
 
