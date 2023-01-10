@@ -4,12 +4,11 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-	<IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
+	  <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="6.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="6.0.0" />
   </ItemGroup>
 
 </Project>
