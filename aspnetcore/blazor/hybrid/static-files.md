@@ -215,7 +215,7 @@ In a Razor component:
 * The static text file contents can be read using the following techniques:
   * .NET MAUI: [:::no-loc text=".NET MAUI file system helpers":::](/dotnet/maui/platform-integration/storage/file-system-helpers) (<xref:Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync%2A>)
   * WPF and Windows Forms: <xref:System.IO.StreamReader.ReadToEndAsync%2A?displayProperty=nameWithType>
-* The objects of a JavaScript file (`wwwroot/scripts.js`) are available as logical subpaths of `wwwroot`.
+* The objects of a JavaScript file (`wwwroot/scripts.js`) are available at logical subpaths of `wwwroot`.
 * The image can be the source attribute (`src`) of an image tag (`<img>`).
 
 `StaticAssetExample2.razor`:
@@ -325,7 +325,7 @@ private async Task<string> ReadData()
 > `Pages/StaticAssetExample2.razor.js`:
 >
 > ```javascript
-> export function showPrompt2(message) {
+> export function showPrompt(message) {
 >   return prompt(message, 'Type anything here');
 > }
 > ```
@@ -335,14 +335,6 @@ private async Task<string> ReadData()
 > ```csharp
 > module = await JS.InvokeAsync<IJSObjectReference>("import", 
 >     "./Pages/StaticAssetExample2.razor.js");
-> ```
->
-> Modify the `Prompt` method of the component to call the `showPrompt2` function:
->
-> ```csharp
-> public async ValueTask<string> Prompt(string message) =>
->     module is not null ?
->         await module.InvokeAsync<string>("showPrompt2", message) : null;
 > ```
 
 ## Trademarks
