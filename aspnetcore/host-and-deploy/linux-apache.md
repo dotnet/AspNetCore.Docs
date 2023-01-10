@@ -5,16 +5,18 @@ description: Learn how to set up Apache as a reverse proxy server on CentOS to r
 monikerRange: '>= aspnetcore-2.1'
 ms.author: shboyer
 ms.custom: mvc
-ms.date: 04/10/2020
+ms.date: 01/09/2023
 uid: host-and-deploy/linux-apache
 ---
 # Host ASP.NET Core on Linux with Apache
 
 By [Shayne Boyer](https://github.com/spboyer)
 
-Using this guide, learn how to set up [Apache](https://httpd.apache.org/) as a reverse proxy server on [CentOS 7](https://www.centos.org/) to redirect HTTP traffic to an ASP.NET Core web app running on [Kestrel](xref:fundamentals/servers/kestrel) server. The [mod_proxy extension](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html) and related modules create the server's reverse proxy.
+Using this guide, learn how to set up [Apache](https://httpd.apache.org/) as a reverse proxy server Ubuntu, Red Hat Enterprise (CentOS) and SUSE Linux Enterprise Server to redirect HTTP traffic to an ASP.NET Core web app running on [Kestrel](xref:fundamentals/servers/kestrel) server. The [mod_proxy extension](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html) and related modules create the server's reverse proxy.
 
 ## Prerequisites
+
+# [Ubuntu](#tab/linux-ubuntu)
 
 * Server running CentOS 7 with a standard user account with sudo privilege.
 * Install the .NET Core runtime on the server.
@@ -25,6 +27,20 @@ Using this guide, learn how to set up [Apache](https://httpd.apache.org/) as a r
 * An existing ASP.NET Core app.
 
 At any point in the future after upgrading the shared framework, restart the ASP.NET Core apps hosted by the server.
+
+# [Red Hat Enterprise Linux](#tab/linux-rhel)
+
+* Access to a Red Hat Enterprise (RHEL) 8.0 or later VM with a standard user account with sudo privilege.
+* The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
+* An existing ASP.NET Core app.
+
+# [SUSE Linux Enterprise Server](#tab/linux-sles)
+
+* Access to an SLES 12 or 15 VM with a standard user account with sudo privilege.
+* The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
+* An existing ASP.NET Core app.
+
+---
 
 ## Publish and copy over the app
 
@@ -59,7 +75,7 @@ dotnet publish --configuration Release
 
 The app can also be published as a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) if you prefer not to maintain the .NET Core runtime on the server.
 
-Copy the ASP.NET Core app to the server using a tool that integrates into the organization's workflow (for example, SCP, SFTP). It's common to locate web apps under the *var* directory (for example, *var/www/helloapp*).
+Copy the ASP.NET Core app to the server using a tool that integrates into the organization's workflow (for example, `SCP`, `SFTP`). It's common to locate web apps under the `var` directory (for example, `var/www/helloapp`).
 
 > [!NOTE]
 > Under a production deployment scenario, a continuous integration workflow does the work of publishing the app and copying the assets to the server.
@@ -68,9 +84,13 @@ Copy the ASP.NET Core app to the server using a tool that integrates into the or
 
 A reverse proxy is a common setup for serving dynamic web apps. The reverse proxy terminates the HTTP request and forwards it to the ASP.NET app.
 
+### Use a reverse proxy server
+
+Kestrel is great for serving dynamic content from ASP.NET Core. However, the web serving capabilities aren't as feature rich as servers such as IIS, Apache, or Nginx. A reverse proxy server can offload work such as serving static content, caching requests, compressing requests, and HTTPS termination from the HTTP server. A reverse proxy server may reside on a dedicated machine or may be deployed alongside an HTTP server.
+
 A proxy server forwards client requests to another server instead of fulfilling requests itself. A reverse proxy forwards to a fixed destination, typically on behalf of arbitrary clients. In this guide, Apache is configured as the reverse proxy running on the same server that Kestrel is serving the ASP.NET Core app.
 
-Because requests are forwarded by reverse proxy, use the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) from the [Microsoft.AspNetCore.HttpOverrides](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) package. The middleware updates the `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
+Because requests are forwarded by reverse proxy, use the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) from the [`Microsoft.AspNetCore.HttpOverrides`](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) package. The middleware updates the `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
 
 Any component that depends on the scheme, such as authentication, link generation, redirects, and geolocation, must be placed after invoking the Forwarded Headers Middleware.
 
@@ -79,7 +99,9 @@ Any component that depends on the scheme, such as authentication, link generatio
 Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> method at the top of `Startup.Configure` before calling other middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
 
 ```csharp
-// using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.HttpOverrides;
+
+...
 
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
@@ -91,7 +113,7 @@ app.UseAuthentication();
 
 If no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified to the middleware, the default headers to forward are `None`.
 
-Proxies running on loopback addresses (`127.0.0.0/8, [::1]`), including the standard localhost address (127.0.0.1), are trusted by default. If other trusted proxies or networks within the organization handle requests between the Internet and the web server, add them to the list of <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies%2A> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks%2A> with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. The following example adds a trusted proxy server at IP address 10.0.0.100 to the Forwarded Headers Middleware `KnownProxies` in `Startup.ConfigureServices`:
+Proxies running on loopback addresses (`127.0.0.0/8`, `[::1]`), including the standard localhost address (`127.0.0.1`), are trusted by default. If other trusted proxies or networks within the organization handle requests between the Internet and the web server, add them to the list of <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies%2A> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks%2A> with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. The following example adds a trusted proxy server at IP address 10.0.0.100 to the Forwarded Headers Middleware `KnownProxies` in `Startup.ConfigureServices`:
 
 ```csharp
 // using System.Net;
@@ -106,40 +128,46 @@ For more information, see <xref:host-and-deploy/proxy-load-balancer>.
 
 ### Install Apache
 
-Update CentOS packages to their latest stable versions:
+# [Ubuntu](#tab/linux-ubuntu)
+
+Use `apt-get` to install Apache. Follow the installation instructions for Ubuntu at [Apache: Compiling and Installing: Installing on Ubuntu/Debian](https://httpd.apache.org/docs/current/install.html).
+
+# [Red Hat Enterprise Linux](#tab/linux-rhel)
+
+Use `yum-utils` to update CentOS packages to their latest stable versions:
 
 ```bash
 sudo yum update -y
 ```
 
-Install the Apache web server on CentOS with a single `yum` command:
-
-```bash
-sudo yum -y install httpd mod_ssl
-```
-
-Sample output after running the command:
-
-```bash
-Downloading packages:
-httpd-2.4.6-40.el7.centos.4.x86_64.rpm               | 2.7 MB  00:00:01
-Running transaction check
-Running transaction test
-Transaction test succeeded
-Running transaction
-Installing : httpd-2.4.6-40.el7.centos.4.x86_64      1/1 
-Verifying  : httpd-2.4.6-40.el7.centos.4.x86_64      1/1 
-
-Installed:
-httpd.x86_64 0:2.4.6-40.el7.centos.4
-
-Complete!
-```
+Use `yum-utils` to select and install an Apache module stream. Follow the installation instructions for CentOS at [Apache: Compiling and Installing](https://httpd.apache.org/docs/current/install.html).
 
 > [!NOTE]
-> In this example, the output reflects httpd.86_64 since the CentOS 7 version is 64 bit. To verify where Apache is installed, run `whereis httpd` from a command prompt.
+> To verify where Apache is installed, run `whereis httpd` from a command prompt.
+
+# [SUSE Linux Enterprise Server](#tab/linux-sles)
+
+Use `yum-utils` to select and install an Apache module stream. Follow the installation instructions at [Apache: Compiling and Installing](https://httpd.apache.org/docs/current/install.html).
+
+---
 
 ### Configure Apache
+
+# [Ubuntu](#tab/linux-ubuntu)
+
+Configuration files for Apache are located within the `/etc/httpd/conf.d/` directory. In Apache on Ubuntu, all the virtual host configuration files are stored in `/etc/apache2/sites-available`. Any file with the *.conf* extension is processed in alphabetical order in addition to the module configuration files in `/etc/httpd/conf.modules.d/`, which contains any configuration files necessary to load modules.
+
+Create a configuration file, named *helloapp.conf*, for the app:
+
+# [Red Hat Enterprise Linux](#tab/linux-rhel)
+
+To configure Apache as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx.conf`. Open it in a text editor, and replace the `server{}` code block with the following snippet:
+
+# [SUSE Linux Enterprise Server](#tab/linux-sles)
+
+To configure Apache as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx.conf`. Open it in a text editor, and replace the `server{}` code block with the following snippet:
+
+---
 
 Configuration files for Apache are located within the `/etc/httpd/conf.d/` directory. In Apache on Ubuntu, all the virtual host configuration files are stored in `/etc/apache2/sites-available`. Any file with the *.conf* extension is processed in alphabetical order in addition to the module configuration files in `/etc/httpd/conf.modules.d/`, which contains any configuration files necessary to load modules.
 
@@ -199,7 +227,7 @@ sudo systemctl enable httpd
 
 ## Monitor the app
 
-Apache is now set up to forward requests made to `http://localhost:80` to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`. However, Apache isn't set up to manage the Kestrel process. Use *systemd* and create a service file to start and monitor the underlying web app. *systemd* is an init system that provides many powerful features for starting, stopping, and managing processes.
+Apache is now set up to forward requests made to `http://localhost:80` to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`. However, Apache isn't set up to manage the Kestrel process. Use [`systemd`](https://systemd.io/) and create a service file to start and monitor the underlying web app. *systemd* is an init system that provides many powerful features for starting, stopping, and managing processes.
 
 ### Create the service file
 
