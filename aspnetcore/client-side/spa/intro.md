@@ -40,6 +40,7 @@ When the browser sends a request for a backend endpoint, for example `/weatherfo
 
 ## Published Single Page Applications
 
+:::code language="csharp" source="~/client-side/spa/intro/samples/Program.cs" highlight="13,21":::
 
 :::code language="xml" source="~/client-side/spa/intro/samples/MyReact.csproj" range="27-99":::
 
