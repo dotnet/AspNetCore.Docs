@@ -1,6 +1,6 @@
 ---
 title: Host ASP.NET Core on Linux with Apache
-author: rick-anderson
+author: rick-andersonvm
 description: Learn how to set up Apache as a reverse proxy server on CentOS to redirect HTTP traffic to an ASP.NET Core web app running on Kestrel.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: shboyer
@@ -30,13 +30,13 @@ At any point in the future after upgrading the shared framework, restart the ASP
 
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
-* Access to a Red Hat Enterprise (RHEL) 8.0 or later VM with a standard user account with sudo privilege.
+* Access to CentOS 7.8 or later with a standard user account with sudo privilege.
 * The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
 * An existing ASP.NET Core app.
 
 # [SUSE Linux Enterprise Server](#tab/linux-sles)
 
-* Access to an SLES 12 or 15 VM with a standard user account with sudo privilege.
+* Access to SLES 12 or 15 with a standard user account with sudo privilege.
 * The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
 * An existing ASP.NET Core app.
 
@@ -113,7 +113,7 @@ app.UseAuthentication();
 
 If no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified to the middleware, the default headers to forward are `None`.
 
-Proxies running on loopback addresses (`127.0.0.0/8`, `[::1]`), including the standard localhost address (`127.0.0.1`), are trusted by default. If other trusted proxies or networks within the organization handle requests between the Internet and the web server, add them to the list of <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies%2A> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks%2A> with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. The following example adds a trusted proxy server at IP address 10.0.0.100 to the Forwarded Headers Middleware `KnownProxies` in `Startup.ConfigureServices`:
+Proxies running on loopback addresses (`127.0.0.0/8`, `[::1]`), including the standard localhost address (`127.0.0.1`), are trusted by default. If other trusted proxies or networks within the organization handle requests between the internet and the web server, add them to the list of <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies%2A> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks%2A> with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. The following example adds a trusted proxy server at IP address 10.0.0.100 to the Forwarded Headers Middleware `KnownProxies` in `Startup.ConfigureServices`:
 
 ```csharp
 // using System.Net;
@@ -173,7 +173,7 @@ Configuration files for Apache are located within the `/etc/httpd/conf.d/` direc
 
 Create a configuration file, named *helloapp.conf*, for the app:
 
-```
+```text
 <VirtualHost *:*>
     RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
 </VirtualHost>
