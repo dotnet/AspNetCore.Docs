@@ -639,7 +639,7 @@ For more information and configuration guidance, consult the following resources
   * [WebSocket proxying](http://nginx.org/docs/http/websocket.html)
 * Developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
+  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1mv5487zb-EOZxJ1iqb0A0ajowEbxByQ)
   * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 <!-- HOLD FOR FUTURE WORK
@@ -719,7 +719,7 @@ For more information and configuration guidance, consult the following resources
 * [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html)
 * Developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
+  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1mv5487zb-EOZxJ1iqb0A0ajowEbxByQ)
   * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 -->
@@ -1708,7 +1708,7 @@ For more information and configuration guidance, consult the following resources
   * [WebSocket proxying](http://nginx.org/docs/http/websocket.html)
 * Developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
+  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1mv5487zb-EOZxJ1iqb0A0ajowEbxByQ)
   * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 <!-- HOLD FOR FUTURE WORK
@@ -1788,7 +1788,7 @@ For more information and configuration guidance, consult the following resources
 * [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html)
 * Developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
+  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1mv5487zb-EOZxJ1iqb0A0ajowEbxByQ)
   * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 -->

@@ -267,7 +267,7 @@ An approach to using Razor components for Identity instead of Razor pages is to 
 For additional assistance when seeking to build custom Identity Razor components or searching for third-party Razor components, we recommend the following resources:
 
 * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor) (Public support forum)
-* [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA) (Public support chat)
+* [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1mv5487zb-EOZxJ1iqb0A0ajowEbxByQ) (Public support chat)
 * [Blazor Gitter](https://gitter.im/aspnet/Blazor) (Public support chat)
 * [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor) (Links to community-maintained Blazor resources)
 
