@@ -214,7 +214,7 @@ services.AddSignalR()
 
 ## Redis Clustering
 
-[Redis Clustering](https://redis.io/topics/cluster-spec) is a method for achieving high availability by using multiple Redis servers. Clustering is supported without any code modifications to your app.
+[Redis Clustering](https://redis.io/topics/cluster-spec) is a method for achieving high availability by using multiple Redis servers. Clustering is supported without any code modifications to the app.
 
 ## Next steps
 
