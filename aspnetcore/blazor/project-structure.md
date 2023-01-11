@@ -106,6 +106,19 @@ Project structure:
 
 Additional files and folders may appear in an app produced from a Blazor WebAssembly project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 
+A *hosted Blazor WebAssembly solution* includes the following ASP.NET Core projects:
+
+* ":::no-loc text="Client":::": The Blazor WebAssembly app.
+* ":::no-loc text="Server":::": An app that serves the Blazor WebAssembly app and weather data to clients.
+* ":::no-loc text="Shared":::": A project that maintains common classes, methods, and resources.
+
+The solution is generated from the Blazor WebAssembly project template in Visual Studio with the **ASP.NET Core Hosted** checkbox selected or with the `-ho|--hosted` option using the .NET CLI's `dotnet new blazorwasm` command. For more information, see <xref:blazor/tooling>.
+
+The project structure of the client-side app in a hosted Blazor Webassembly solution (":::no-loc text="Client":::" project) is the same as the project structure for a standalone Blazor WebAssembly app. Additional files in a hosted Blazor WebAssembly solution:
+
+* The ":::no-loc text="Server":::" project includes a weather forecast controller at `Controllers/WeatherForecastController.cs` that returns weather data to the ":::no-loc text="Client":::" project's `FetchData` component.
+* The ":::no-loc text="Shared":::" project includes a weather forecast class at `WeatherForecast.cs` that represents weather data for the ":::no-loc text="Client":::" and ":::no-loc text="Server":::" projects.
+
 ## Location of `<head>` content
 
 In Blazor Server apps, `<head>` content is located in the `Pages/_Host.cshtml` file.
@@ -205,6 +218,19 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * [Services](xref:blazor/fundamentals/dependency-injection) are added and configured (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
 
 Additional files and folders may appear in an app produced from a Blazor WebAssembly project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
+
+A *hosted Blazor WebAssembly solution* includes the following ASP.NET Core projects:
+
+* ":::no-loc text="Client":::": The Blazor WebAssembly app.
+* ":::no-loc text="Server":::": An app that serves the Blazor WebAssembly app and weather data to clients.
+* ":::no-loc text="Shared":::": A project that maintains common classes, methods, and resources.
+
+The solution is generated from the Blazor WebAssembly project template in Visual Studio with the **ASP.NET Core Hosted** checkbox selected or with the `-ho|--hosted` option using the .NET CLI's `dotnet new blazorwasm` command. For more information, see <xref:blazor/tooling>.
+
+The project structure of the client-side app in a hosted Blazor Webassembly solution (":::no-loc text="Client":::" project) is the same as the project structure for a standalone Blazor WebAssembly app. Additional files in a hosted Blazor WebAssembly solution:
+
+* The ":::no-loc text="Server":::" project includes a weather forecast controller at `Controllers/WeatherForecastController.cs` that returns weather data to the ":::no-loc text="Client":::" project's `FetchData` component.
+* The ":::no-loc text="Shared":::" project includes a weather forecast class at `WeatherForecast.cs` that represents weather data for the ":::no-loc text="Client":::" and ":::no-loc text="Server":::" projects.
 
 ## Location of `<head>` content
 
@@ -307,6 +333,19 @@ The Blazor WebAssembly template creates the initial files and directory structur
 
 Additional files and folders may appear in an app produced from a Blazor WebAssembly project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 
+A *hosted Blazor WebAssembly solution* includes the following ASP.NET Core projects:
+
+* ":::no-loc text="Client":::": The Blazor WebAssembly app.
+* ":::no-loc text="Server":::": An app that serves the Blazor WebAssembly app and weather data to clients.
+* ":::no-loc text="Shared":::": A project that maintains common classes, methods, and resources.
+
+The solution is generated from the Blazor WebAssembly project template in Visual Studio with the **ASP.NET Core Hosted** checkbox selected or with the `-ho|--hosted` option using the .NET CLI's `dotnet new blazorwasm` command. For more information, see <xref:blazor/tooling>.
+
+The project structure of the client-side app in a hosted Blazor Webassembly solution (":::no-loc text="Client":::" project) is the same as the project structure for a standalone Blazor WebAssembly app. Additional files in a hosted Blazor WebAssembly solution:
+
+* The ":::no-loc text="Server":::" project includes a weather forecast controller at `Controllers/WeatherForecastController.cs` that returns weather data to the ":::no-loc text="Client":::" project's `FetchData` component.
+* The ":::no-loc text="Shared":::" project includes a weather forecast class at `WeatherForecast.cs` that represents weather data for the ":::no-loc text="Client":::" and ":::no-loc text="Server":::" projects.
+
 ## Location of `<head>` content
 
 In Blazor Server apps, `<head>` content is located in the `Pages/_Host.cshtml` file.
@@ -402,6 +441,19 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * [Services](xref:blazor/fundamentals/dependency-injection) are added and configured (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
 
 Additional files and folders may appear in an app produced from a Blazor WebAssembly project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
+
+A *hosted Blazor WebAssembly solution* includes the following ASP.NET Core projects:
+
+* ":::no-loc text="Client":::": The Blazor WebAssembly app.
+* ":::no-loc text="Server":::": An app that serves the Blazor WebAssembly app and weather data to clients.
+* ":::no-loc text="Shared":::": A project that maintains common classes, methods, and resources.
+
+The solution is generated from the Blazor WebAssembly project template in Visual Studio with the **ASP.NET Core Hosted** checkbox selected or with the `-ho|--hosted` option using the .NET CLI's `dotnet new blazorwasm` command. For more information, see <xref:blazor/tooling>.
+
+The project structure of the client-side app in a hosted Blazor Webassembly solution (":::no-loc text="Client":::" project) is the same as the project structure for a standalone Blazor WebAssembly app. Additional files in a hosted Blazor WebAssembly solution:
+
+* The ":::no-loc text="Server":::" project includes a weather forecast controller at `Controllers/WeatherForecastController.cs` that returns weather data to the ":::no-loc text="Client":::" project's `FetchData` component.
+* The ":::no-loc text="Shared":::" project includes a weather forecast class at `WeatherForecast.cs` that represents weather data for the ":::no-loc text="Client":::" and ":::no-loc text="Server":::" projects.
 
 ## Location of `<head>` content
 
