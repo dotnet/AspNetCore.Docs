@@ -1,7 +1,7 @@
 ---
 title: Host ASP.NET Core on Linux with Nginx
 author: rick-anderson
-description: Learn how to set up Nginx as a reverse proxy on an Ubuntu 20.04 VM to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
+description: Learn how to set up Nginx as a reverse proxy on Ubuntu 20.04 to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc, engagement-fy23
@@ -13,7 +13,7 @@ uid: host-and-deploy/linux-nginx
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
 :::moniker range=">= aspnetcore-6.0"
-This guide explains setting up a production-ready ASP.NET Core environment on a VM for Ubuntu, Red Hat Enterprise (RHEL), and SUSE Linux Enterprise Server.
+This guide explains setting up a production-ready ASP.NET Core environment for Ubuntu, Red Hat Enterprise (RHEL), and SUSE Linux Enterprise Server.
 
 For information on other Linux distributions supported by ASP.NET Core, see [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites).
 
@@ -28,19 +28,19 @@ This guide:
 
 # [Ubuntu](#tab/linux-ubuntu)
 
-* Access to an Ubuntu 20.04 VM with a standard user account with sudo privilege.
+* Access to Ubuntu 20.04 with a standard user account with sudo privilege.
 * The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
 * An existing ASP.NET Core app.
 
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
-* Access to a Red Hat Enterprise (RHEL) 8.0 or later VM with a standard user account with sudo privilege.
+* Access to Red Hat Enterprise (RHEL) 8.0 or later with a standard user account with sudo privilege.
 * The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
 * An existing ASP.NET Core app.
 
 # [SUSE Linux Enterprise Server](#tab/linux-sles)
 
-* Access to an SLES 12 or 15 VM with a standard user account with sudo privilege.
+* Access to SLES 12 or 15 with a standard user account with sudo privilege.
 * The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
 * An existing ASP.NET Core app.
 
@@ -486,8 +486,6 @@ Add the */etc/nginx/proxy.conf* configuration file:
 # [Ubuntu](#tab/linux-ubuntu)
 
 **Replace** the contents of the */etc/nginx/nginx.conf* configuration file with the following file. The example contains both `http` and `server` sections in one configuration file.
-
-[!code-nginx[](linux-nginx/nginx.conf)]
 
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
