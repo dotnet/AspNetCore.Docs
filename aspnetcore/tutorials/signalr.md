@@ -106,7 +106,7 @@ At the end, you'll have a working chat app:
 
 ## Add the SignalR client library
 
-The SignalR server library is included in the ASP.NET Core shared framework. The JavaScript client library isn't automatically included in the project. For this tutorial, use Library Manager (LibMan) to get the client library from [unpkg](https://unpkg.com/). `unpkg`is a fast, global content delivery network for everything on [npm](https://unpkg.com/). 
+The SignalR server library is included in the ASP.NET Core shared framework. The JavaScript client library isn't automatically included in the project. For this tutorial, use Library Manager (LibMan) to get the client library from [unpkg](https://unpkg.com/). `unpkg`is a fast, global content delivery network for everything on [npm](https://www.npmjs.com/). 
 
 # [Visual Studio](#tab/visual-studio/)
 
