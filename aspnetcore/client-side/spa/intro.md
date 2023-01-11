@@ -38,6 +38,12 @@ When the browser sends a request for a backend endpoint, for example `/weatherfo
 
 ![Proxy Server diagram](~/client-side/spa/intro/static/2BP.png)
 
+## Published Single Page Applications
+
+
+:::code language="xml" source="~/client-side/spa/intro/samples/MyReact.csproj" range="27-99":::
+
+
 ## Additional resources
 
 * <xref:security/authentication/identity/spa>
