@@ -188,12 +188,9 @@ using Microsoft.Extensions.DependencyInjection.ConfigSample.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.AddJsonFile("MyConfig.json",
-                       optional: true,
-                       reloadOnChange: true);
-});
+builder.Configuration.AddJsonFile("MyConfig.json",
+        optional: true,
+        reloadOnChange: true);
 
 builder.Services.AddRazorPages();
 
