@@ -242,7 +242,7 @@ Follow the guidance for your tooling:
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
    > 
-   > If the app fails to run in the browser:
+   > If the app fails to start in the browser:
    > 
    > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
@@ -266,7 +266,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
    > 
-   > If the app fails to run in the browser:
+   > If the app fails to start in the browser:
    > 
    > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
@@ -288,7 +288,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
    > 
-   > If the app fails to run in the browser:
+   > If the app fails to start in the browser:
    > 
    > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
@@ -313,7 +313,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
    > 
-   > If the app fails to run in the browser:
+   > If the app fails to start in the browser:
    > 
    > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
@@ -803,7 +803,7 @@ Follow the guidance for your tooling:
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
    > 
-   > If the app fails to run in the browser:
+   > If the app fails to start in the browser:
    > 
    > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
@@ -827,7 +827,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
    > 
-   > If the app fails to run in the browser:
+   > If the app fails to start in the browser:
    > 
    > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
@@ -849,7 +849,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
    > 
-   > If the app fails to run in the browser:
+   > If the app fails to start in the browser:
    > 
    > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
@@ -874,7 +874,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
    > 
-   > If the app fails to run in the browser:
+   > If the app fails to start in the browser:
    > 
    > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
@@ -1353,7 +1353,7 @@ Follow the guidance for your tooling:
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
    > 
-   > If the app fails to run in the browser:
+   > If the app fails to start in the browser:
    > 
    > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
@@ -1377,7 +1377,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
    > 
-   > If the app fails to run in the browser:
+   > If the app fails to start in the browser:
    > 
    > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
@@ -1399,7 +1399,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
    > 
-   > If the app fails to run in the browser:
+   > If the app fails to start in the browser:
    > 
    > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
@@ -1424,7 +1424,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
    > 
-   > If the app fails to run in the browser:
+   > If the app fails to start in the browser:
    > 
    > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
@@ -1899,7 +1899,7 @@ Follow the guidance for your tooling:
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
    > 
-   > If the app fails to run in the browser:
+   > If the app fails to start in the browser:
    > 
    > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
@@ -1923,7 +1923,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
    > 
-   > If the app fails to run in the browser:
+   > If the app fails to start in the browser:
    > 
    > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
@@ -1945,7 +1945,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
    > 
-   > If the app fails to run in the browser:
+   > If the app fails to start in the browser:
    > 
    > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
@@ -1970,7 +1970,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
    > 
-   > If the app fails to run in the browser:
+   > If the app fails to start in the browser:
    > 
    > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
