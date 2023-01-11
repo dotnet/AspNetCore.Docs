@@ -241,6 +241,11 @@ Follow the guidance for your tooling:
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to run in the browser:
+   > 
+   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -260,6 +265,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to run in the browser:
+   > 
+   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -277,6 +287,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to run in the browser:
+   > 
+   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -297,6 +312,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
+   > 
+   > If the app fails to run in the browser:
+   > 
+   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -782,6 +802,11 @@ Follow the guidance for your tooling:
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to run in the browser:
+   > 
+   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -801,6 +826,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to run in the browser:
+   > 
+   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -818,6 +848,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to run in the browser:
+   > 
+   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -838,6 +873,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
+   > 
+   > If the app fails to run in the browser:
+   > 
+   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1312,6 +1352,11 @@ Follow the guidance for your tooling:
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to run in the browser:
+   > 
+   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1331,6 +1376,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to run in the browser:
+   > 
+   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1348,6 +1398,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to run in the browser:
+   > 
+   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1368,6 +1423,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
+   > 
+   > If the app fails to run in the browser:
+   > 
+   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1838,6 +1898,11 @@ Follow the guidance for your tooling:
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to run in the browser:
+   > 
+   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1857,6 +1922,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to run in the browser:
+   > 
+   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1874,6 +1944,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to run in the browser:
+   > 
+   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1894,6 +1969,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
+   > 
+   > If the app fails to run in the browser:
+   > 
+   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
