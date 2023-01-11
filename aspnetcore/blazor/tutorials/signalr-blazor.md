@@ -108,7 +108,7 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 1. Choose the **Blazor WebAssembly App** template. Select **Continue**.
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core hosted** checkbox. Select **Continue**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core Hosted** checkbox. Select **Continue**.
 
 1. In the **Project name** field, name the app `BlazorWebAssemblySignalRApp`. Select **Create**.
 
@@ -116,7 +116,7 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 1. Open the project by navigating to the project folder and opening the project's [solution](xref:blazor/tooling#visual-studio-solution-file-sln) file (`.sln`).
 
-1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **:::no-loc text="Client":::** project and a **:::no-loc text="Server":::** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core hosted** checkbox before selecting **Create**.
+1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **:::no-loc text="Client":::** project and a **:::no-loc text="Server":::** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core Hosted** checkbox before selecting **Create**.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -241,6 +241,11 @@ Follow the guidance for your tooling:
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to start in the browser:
+   > 
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -260,6 +265,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to start in the browser:
+   > 
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -277,6 +287,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to start in the browser:
+   > 
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -297,6 +312,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
+   > 
+   > If the app fails to start in the browser:
+   > 
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -649,7 +669,7 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 1. Choose the **Blazor WebAssembly App** template. Select **Continue**.
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core hosted** checkbox. Select **Continue**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core Hosted** checkbox. Select **Continue**.
 
 1. In the **Project name** field, name the app `BlazorWebAssemblySignalRApp`. Select **Create**.
 
@@ -657,7 +677,7 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 1. Open the project by navigating to the project folder and opening the project's [solution](xref:blazor/tooling#visual-studio-solution-file-sln) file (`.sln`).
 
-1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **:::no-loc text="Client":::** project and a **:::no-loc text="Server":::** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core hosted** checkbox before selecting **Create**.
+1. Confirm that a hosted Blazor WebAssembly app was created: In **Solution Explorer**, confirm the presence of a **:::no-loc text="Client":::** project and a **:::no-loc text="Server":::** project. If the two projects aren't present, start over and confirm selection of the **ASP.NET Core Hosted** checkbox before selecting **Create**.
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -782,6 +802,11 @@ Follow the guidance for your tooling:
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to start in the browser:
+   > 
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -801,6 +826,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to start in the browser:
+   > 
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -818,6 +848,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to start in the browser:
+   > 
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -838,6 +873,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
+   > 
+   > If the app fails to start in the browser:
+   > 
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1186,7 +1226,7 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 1. Choose the **Blazor WebAssembly App** template. Select **Continue**.
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core hosted** checkbox. Select **Continue**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core Hosted** checkbox. Select **Continue**.
 
 1. In the **Project name** field, name the app `BlazorWebAssemblySignalRApp`. Select **Create**.
 
@@ -1312,6 +1352,11 @@ Follow the guidance for your tooling:
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to start in the browser:
+   > 
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1331,6 +1376,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to start in the browser:
+   > 
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1348,6 +1398,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to start in the browser:
+   > 
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1368,6 +1423,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
+   > 
+   > If the app fails to start in the browser:
+   > 
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1712,7 +1772,7 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 
 1. Choose the **Blazor WebAssembly App** template. Select **Continue**.
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core hosted** checkbox. Select **Continue**.
+1. Confirm that **Authentication** is set to **No Authentication**. Select the **ASP.NET Core Hosted** checkbox. Select **Continue**.
 
 1. In the **Project name** field, name the app `BlazorWebAssemblySignalRApp`. Select **Create**.
 
@@ -1838,6 +1898,11 @@ Follow the guidance for your tooling:
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to start in the browser:
+   > 
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1857,6 +1922,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to start in the browser:
+   > 
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1874,6 +1944,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
    >
    > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
+   > 
+   > If the app fails to start in the browser:
+   > 
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 
@@ -1894,6 +1969,11 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
+   > 
+   > If the app fails to start in the browser:
+   > 
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
+   > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
 

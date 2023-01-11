@@ -80,7 +80,7 @@ When a Blazor WebAssembly app is published, the output is statically compressed 
 * [Brotli](https://tools.ietf.org/html/rfc7932) (highest level)
 * [Gzip](https://tools.ietf.org/html/rfc1952)
 
-Blazor relies on the host to the serve the appropriate compressed files. When using an ASP.NET Core hosted project, the host project is capable of performing content negotiation and serving the statically-compressed files. When hosting a Blazor WebAssembly standalone app, additional work might be required to ensure that statically-compressed files are served:
+Blazor relies on the host to the serve the appropriate compressed files. When using an **ASP.NET Core Hosted** Blazor WebAssembly project, the host project is capable of performing content negotiation and serving the statically-compressed files. When hosting a Blazor WebAssembly standalone app, additional work might be required to ensure that statically-compressed files are served:
 
 * For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section. 
 * When hosting on static hosting solutions that don't support statically-compressed file content negotiation, such as GitHub Pages, consider configuring the app to fetch and decode Brotli compressed files:
@@ -639,7 +639,7 @@ For more information and configuration guidance, consult the following resources
   * [WebSocket proxying](http://nginx.org/docs/http/websocket.html)
 * Developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
+  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1mv5487zb-EOZxJ1iqb0A0ajowEbxByQ)
   * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 <!-- HOLD FOR FUTURE WORK
@@ -719,7 +719,7 @@ For more information and configuration guidance, consult the following resources
 * [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html)
 * Developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
+  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1mv5487zb-EOZxJ1iqb0A0ajowEbxByQ)
   * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 -->
@@ -1149,7 +1149,7 @@ When a Blazor WebAssembly app is published, the output is statically compressed 
 * [Brotli](https://tools.ietf.org/html/rfc7932) (highest level)
 * [Gzip](https://tools.ietf.org/html/rfc1952)
 
-Blazor relies on the host to the serve the appropriate compressed files. When using an ASP.NET Core hosted project, the host project is capable of performing content negotiation and serving the statically-compressed files. When hosting a Blazor WebAssembly standalone app, additional work might be required to ensure that statically-compressed files are served:
+Blazor relies on the host to the serve the appropriate compressed files. When using an **ASP.NET Core Hosted** Blazor WebAssembly project, the host project is capable of performing content negotiation and serving the statically-compressed files. When hosting a Blazor WebAssembly standalone app, additional work might be required to ensure that statically-compressed files are served:
 
 * For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section. 
 * When hosting on static hosting solutions that don't support statically-compressed file content negotiation, such as GitHub Pages, consider configuring the app to fetch and decode Brotli compressed files:
@@ -1708,7 +1708,7 @@ For more information and configuration guidance, consult the following resources
   * [WebSocket proxying](http://nginx.org/docs/http/websocket.html)
 * Developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
+  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1mv5487zb-EOZxJ1iqb0A0ajowEbxByQ)
   * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 <!-- HOLD FOR FUTURE WORK
@@ -1788,7 +1788,7 @@ For more information and configuration guidance, consult the following resources
 * [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html)
 * Developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
+  * [ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1mv5487zb-EOZxJ1iqb0A0ajowEbxByQ)
   * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
 
 -->
@@ -2174,7 +2174,7 @@ When a Blazor WebAssembly app is published, the output is statically compressed 
 * [Brotli](https://tools.ietf.org/html/rfc7932) (highest level)
 * [Gzip](https://tools.ietf.org/html/rfc1952)
 
-Blazor relies on the host to the serve the appropriate compressed files. When using an ASP.NET Core hosted project, the host project is capable of performing content negotiation and serving the statically-compressed files. When hosting a Blazor WebAssembly standalone app, additional work might be required to ensure that statically-compressed files are served:
+Blazor relies on the host to the serve the appropriate compressed files. When using an **ASP.NET Core Hosted** Blazor WebAssembly project, the host project is capable of performing content negotiation and serving the statically-compressed files. When hosting a Blazor WebAssembly standalone app, additional work might be required to ensure that statically-compressed files are served:
 
 * For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section. 
 * When hosting on static hosting solutions that don't support statically-compressed file content negotiation, such as GitHub Pages, consider configuring the app to fetch and decode Brotli compressed files:
@@ -2989,7 +2989,7 @@ When a Blazor WebAssembly app is published, the output is statically compressed 
 * [Brotli](https://tools.ietf.org/html/rfc7932) (highest level)
 * [Gzip](https://tools.ietf.org/html/rfc1952)
 
-Blazor relies on the host to the serve the appropriate compressed files. When using an ASP.NET Core hosted project, the host project is capable of performing content negotiation and serving the statically-compressed files. When hosting a Blazor WebAssembly standalone app, additional work might be required to ensure that statically-compressed files are served:
+Blazor relies on the host to the serve the appropriate compressed files. When using an **ASP.NET Core Hosted** Blazor WebAssembly project, the host project is capable of performing content negotiation and serving the statically-compressed files. When hosting a Blazor WebAssembly standalone app, additional work might be required to ensure that statically-compressed files are served:
 
 * For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](#brotli-and-gzip-compression) section. 
 * When hosting on static hosting solutions that don't support statically-compressed file content negotiation, such as GitHub Pages, consider configuring the app to fetch and decode Brotli compressed files:

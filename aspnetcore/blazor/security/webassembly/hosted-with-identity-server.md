@@ -37,7 +37,7 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
 1. In the **Additional information** dialog, select **Individual Accounts** as the **Authentication Type** to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system.
 
-1. Select the **ASP.NET Core hosted** checkbox.
+1. Select the **ASP.NET Core Hosted** checkbox.
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
@@ -59,7 +59,7 @@ For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) comm
 
 To create a new hosted Blazor WebAssembly solution with an authentication mechanism:
 
-1. Select **Individual Authentication (in-app)** from the **Authentication** dropdown list when creating the app with the **ASP.NET Core hosted** checkbox. For guidance on creating a hosted Blazor WebAssembly solution, see <xref:blazor/tooling>.
+1. Select **Individual Authentication (in-app)** from the **Authentication** dropdown list when creating the app with the **ASP.NET Core Hosted** checkbox. For guidance on creating a hosted Blazor WebAssembly solution, see <xref:blazor/tooling>.
 
 1. The app is created for individual users stored in the app with ASP.NET Core [Identity](xref:security/authentication/identity).
 
@@ -582,7 +582,7 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
 1. In the **Additional information** dialog, select **Individual Accounts** as the **Authentication Type** to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system.
 
-1. Select the **ASP.NET Core hosted** checkbox.
+1. Select the **ASP.NET Core Hosted** checkbox.
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
@@ -604,7 +604,7 @@ For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) comm
 
 To create a new hosted Blazor WebAssembly solution with an authentication mechanism:
 
-1. Select **Individual Authentication (in-app)** from the **Authentication** dropdown list when creating the app with the **ASP.NET Core hosted** checkbox. For guidance on creating a hosted Blazor WebAssembly solution, see <xref:blazor/tooling>.
+1. Select **Individual Authentication (in-app)** from the **Authentication** dropdown list when creating the app with the **ASP.NET Core Hosted** checkbox. For guidance on creating a hosted Blazor WebAssembly solution, see <xref:blazor/tooling>.
 
 1. The app is created for individual users stored in the app with ASP.NET Core [Identity](xref:security/authentication/identity).
 
@@ -1122,7 +1122,7 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
 1. In the **Additional information** dialog, select **Individual Accounts** as the **Authentication Type** to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system.
 
-1. Select the **ASP.NET Core hosted** checkbox.
+1. Select the **ASP.NET Core Hosted** checkbox.
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
@@ -1144,7 +1144,7 @@ For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) comm
 
 To create a new hosted Blazor WebAssembly solution with an authentication mechanism:
 
-1. Select **Individual Authentication (in-app)** from the **Authentication** dropdown list when creating the app with the **ASP.NET Core hosted** checkbox. For guidance on creating a hosted Blazor WebAssembly solution, see <xref:blazor/tooling>.
+1. Select **Individual Authentication (in-app)** from the **Authentication** dropdown list when creating the app with the **ASP.NET Core Hosted** checkbox. For guidance on creating a hosted Blazor WebAssembly solution, see <xref:blazor/tooling>.
 
 1. The app is created for individual users stored in the app with ASP.NET Core [Identity](xref:security/authentication/identity).
 
@@ -1832,7 +1832,7 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
 1. In the **Additional information** dialog, select **Individual Accounts** as the **Authentication Type** to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system.
 
-1. Select the **ASP.NET Core hosted** checkbox.
+1. Select the **ASP.NET Core Hosted** checkbox.
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
@@ -1854,7 +1854,7 @@ For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) comm
 
 To create a new Blazor WebAssembly solution with an authentication mechanism:
 
-1. Select **Individual Authentication (in-app)** from the **Authentication** dropdown list when creating the app with the **ASP.NET Core hosted** checkbox. For guidance on creating a hosted Blazor WebAssembly solution, see <xref:blazor/tooling>.
+1. Select **Individual Authentication (in-app)** from the **Authentication** dropdown list when creating the app with the **ASP.NET Core Hosted** checkbox. For guidance on creating a hosted Blazor WebAssembly solution, see <xref:blazor/tooling>.
 
 1. The app is created for individual users stored in the app with ASP.NET Core [Identity](xref:security/authentication/identity).
 

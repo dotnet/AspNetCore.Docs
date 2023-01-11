@@ -156,7 +156,7 @@ The `HttpResults` can be useful when sharing code between Minimal APIs and Web A
 
 The <xref:Microsoft.AspNetCore.Http.HttpResults> namespace contains classes that implement the <xref:Microsoft.AspNetCore.Http.IResult> interface. The `IResult` interface defines a contract that represents the result of an HTTP endpoint. The static [Results](<xref:Microsoft.AspNetCore.Http.Results>) class is used to create varying `IResult` objects that represent different types of responses.
 
-The [Built-in results](/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#bimr7) table shows the common result helpers.
+The [Built-in results](/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#binr7) table shows the common result helpers.
 
 Consider the following code:
 
