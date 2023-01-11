@@ -40,10 +40,93 @@ When the browser sends a request for a backend endpoint, for example `/weatherfo
 
 ## Published Single Page Applications
 
+When the application is published, the SPA becomes a collection of files inside the `wwwroot` folder.
+
+There is no runtime component required to serve the app:
+
 :::code language="csharp" source="~/client-side/spa/intro/samples/Program.cs" highlight="13,21":::
+
+In the preceding template generated `Program.cs` file:
+* `app.UseStaticFiles` allows the files to be served.
+* `app.MapFallbackToFile("index.html")` enables serving the default document for any unknown request the server receives.
+
+When the app is published with `dotnet publish`, the following tasks in the `csproj` file ensures that `npm restore` runs and that the appropriate npm script runs to generate the production artifacts:
 
 :::code language="xml" source="~/client-side/spa/intro/samples/MyReact.csproj" range="27-99":::
 
+## Developing Single Page Apps
+
+The project file defines a few properties that control the behavior of the app during development:
+
+:::code language="xml" source="~/client-side/spa/intro/samples/MyReact.csproj" highlight="11-12,17":::
+
+* `SpaProxyServerUrl`: Controls the URL where the server expects the SPA proxy to be running. This is the URL:
+  * The server pings after launching the proxy to know if it's ready.
+  * Where it redirects the browser after a successful response.
+* `SpaProxyLaunchCommand`:  The command the server uses to launch the SPA proxy when it detects the proxy is not running.
+
+The package `Microsoft.AspNetCore.SpaProxy` is responsible for the preceding logic to detect the proxy and redirect the browser.
+
+The [hosting startup assembly](xref:fundamentals/configuration/platform-specific-configuration) defined in `Properties\launchSettings.json` is used to automatically add the required components during development necessary to detect if the proxy is running and launch it otherwise:
+
+:::code language="json" source="~/client-side/spa/intro/samples/launchSettings.json" highlight="17,25":::
+
+### Setup for the client Application
+
+This setup is specific to the frontend framework the app is using, however many aspects of the configuration are similar.
+
+#### Angular setup
+
+* Inside package.json, on the scripts section, the following scripts take care of launching the angular development server.
+, 
+
+* The prestart script invokes `aspnetcore-https.js` in the project, which is responsible for ensuring the dev server HTTPS certificate is available to the SPA proxy server.
+* The `start:windows` and `start:default` launch the Angular dev server via ng serve and provide the port (this matches the port in the csproj file) as well as the options to use HTTPS and the path to the certificate and the associated key.
+
+Inside `angular.json`, the serve command includes a `proxyconfig` element in the `development` configuration to indicate that `proxy.conf.js` should be used to configure the frontend proxy.
+```
+"serve": {
+  "builder": "@angular-devkit/build-angular:dev-server",
+  "configurations": {
+    "development": {
+      "browserTarget": "AngularApp70:build:development",
+      "proxyConfig": "proxy.conf.js"
+    }
+  },
+```
+
+proxy.conf.js is included in the project and defines the routes that need to be proxied back to the server backend. The general set of options is defined https://github.com/chimurai/http-proxy-middleware for react and angular since they both use the same proxy under the hood.
+
+The snippet below uses logic based on the environment variables set during development to determine the port the backend is running on.
+
+```js
+const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_HTTPS_PORT}` :
+  env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'http://localhost:8141';
+```
+
+#### React setup
+* Inside package.json, on the scripts section, the following scripts take care of launching the react app during development.
+```json
+{
+    "prestart": "node aspnetcore-https && node aspnetcore-react",
+    "start": "rimraf ./build && react-scripts start",
+}
+```
+
+* The prestart script invokes `aspnetcore-https.js` in the project, which is responsible for ensuring the dev server HTTPS certificate is available to the SPA proxy server.
+* The prestart script also invokes `aspnetcore-react.js` to setup the appropriate `.env.development.local` file to use the HTTPS local dev certificate, by adding `SSL_CRT_FILE=<<certificate-path>>` and 
+`SSL_KEY_FILE=<<key-path>>` to the file.
+
+Inside the `.env.development` file, we define the port for the development server as well as indicate that we want to use HTTPS.
+
+Finally, inside `src/setupProxy.js` we configure the SPA proxy to forward the requests to the backend. The general set of options is defined https://github.com/chimurai/http-proxy-middleware.
+
+The snippet below uses logic based on the environment variables set during development to determine the port the backend is running on.
+
+```js
+const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_HTTPS_PORT}` :
+  env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'http://localhost:8141';
+```
 
 ## Additional resources
 
