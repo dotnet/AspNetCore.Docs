@@ -244,7 +244,7 @@ Follow the guidance for your tooling:
    > 
    > If the app fails to start in the browser:
    > 
-   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
@@ -268,7 +268,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > 
    > If the app fails to start in the browser:
    > 
-   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
@@ -290,7 +290,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > 
    > If the app fails to start in the browser:
    > 
-   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
@@ -315,7 +315,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > 
    > If the app fails to start in the browser:
    > 
-   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
@@ -805,7 +805,7 @@ Follow the guidance for your tooling:
    > 
    > If the app fails to start in the browser:
    > 
-   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
@@ -829,7 +829,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > 
    > If the app fails to start in the browser:
    > 
-   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
@@ -851,7 +851,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > 
    > If the app fails to start in the browser:
    > 
-   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
@@ -876,7 +876,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > 
    > If the app fails to start in the browser:
    > 
-   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
@@ -1355,7 +1355,7 @@ Follow the guidance for your tooling:
    > 
    > If the app fails to start in the browser:
    > 
-   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
@@ -1379,7 +1379,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > 
    > If the app fails to start in the browser:
    > 
-   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
@@ -1401,7 +1401,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > 
    > If the app fails to start in the browser:
    > 
-   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
@@ -1426,7 +1426,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > 
    > If the app fails to start in the browser:
    > 
-   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
@@ -1901,7 +1901,7 @@ Follow the guidance for your tooling:
    > 
    > If the app fails to start in the browser:
    > 
-   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
@@ -1925,7 +1925,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > 
    > If the app fails to start in the browser:
    > 
-   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
@@ -1947,7 +1947,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > 
    > If the app fails to start in the browser:
    > 
-   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
@@ -1972,7 +1972,7 @@ For information on configuring VS Code assets in the `.vscode` folder, see the *
    > 
    > If the app fails to start in the browser:
    > 
-   > * Confirm in the console that the solution is running from the ":::no-loc text="Server":::" project.
+   > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
    > * Refresh the browser using the browser's reload button.
 
 1. Copy the URL from the address bar, open another browser instance or tab, and paste the URL in the address bar.
