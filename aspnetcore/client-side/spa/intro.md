@@ -38,9 +38,9 @@ When the browser sends a request for a backend endpoint, for example `/weatherfo
 
 ![Proxy Server diagram](~/client-side/spa/intro/static/2BP.png)
 
-## Published Single Page Applications
+## Published Single Page Apps
 
-When the application is published, the SPA becomes a collection of files inside the `wwwroot` folder.
+When the app is published, the SPA becomes a collection of files inside the `wwwroot` folder.
 
 There is no runtime component required to serve the app:
 
@@ -71,38 +71,32 @@ The [hosting startup assembly](xref:fundamentals/configuration/platform-specific
 
 :::code language="json" source="~/client-side/spa/intro/samples/launchSettings.json" highlight="17,25":::
 
-### Setup for the client Application
+### Setup for the client ap
 
 This setup is specific to the frontend framework the app is using, however many aspects of the configuration are similar.
 
 #### Angular setup
 
-* Inside package.json, on the scripts section, the following scripts take care of launching the angular development server.
-, 
+The template generated `ClientApp/package.json` file:
 
-* The prestart script invokes `aspnetcore-https.js` in the project, which is responsible for ensuring the dev server HTTPS certificate is available to the SPA proxy server.
-* The `start:windows` and `start:default` launch the Angular dev server via ng serve and provide the port (this matches the port in the csproj file) as well as the options to use HTTPS and the path to the certificate and the associated key.
+  :::code language="json" source="~/client-side/spa/intro/samples/Ang_package.json" highlight="6-9":::
 
-Inside `angular.json`, the serve command includes a `proxyconfig` element in the `development` configuration to indicate that `proxy.conf.js` should be used to configure the frontend proxy.
-```
-"serve": {
-  "builder": "@angular-devkit/build-angular:dev-server",
-  "configurations": {
-    "development": {
-      "browserTarget": "AngularApp70:build:development",
-      "proxyConfig": "proxy.conf.js"
-    }
-  },
-```
+* Contains scripts that launching the angular development server:
+* The `prestart` script invokes `ClientApp/aspnetcore-https.js`, which is responsible for ensuring the development server HTTPS certificate is available to the SPA proxy server.
+* The `start:windows` and `start:default`:
 
-proxy.conf.js is included in the project and defines the routes that need to be proxied back to the server backend. The general set of options is defined https://github.com/chimurai/http-proxy-middleware for react and angular since they both use the same proxy under the hood.
+  * Launch the Angular development server via `ng serve`.
+  * Provide the port, the options to use HTTPS, and the path to the certificate and the associated key. The provide port number matches the port number specified in the `.csproj` file.
 
-The snippet below uses logic based on the environment variables set during development to determine the port the backend is running on.
+The template generated `ClientApp/angular.json` file contains the `serve` command and includes a `proxyconfig` element in the `development` configuration to indicate that `proxy.conf.js` should be used to configure the frontend proxy:
 
-```js
-const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_HTTPS_PORT}` :
-  env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'http://localhost:8141';
-```
+  :::code language="json" source="~/client-side/spa/intro/samples/angular.json" highlight="71-80":::
+
+`ClientApp/proxy.conf.js` defines the routes that need to be proxied back to the server backend. The general set of options is defined at [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware) for react and angular since they both use the same proxy.
+
+The following highlighted code from `ClientApp/proxy.conf.js` uses logic based on the environment variables set during development to determine the port the backend is running on:
+
+  :::code language="javascript" source="~/client-side/spa/intro/samples/Ang_proxy.conf.js" highlight="3-4":::
 
 #### React setup
 * Inside package.json, on the scripts section, the following scripts take care of launching the react app during development.
@@ -133,3 +127,5 @@ const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_H
 * <xref:security/authentication/identity/spa>
 * <xref:spa/angular>
 * <xref:spa/react>
+* [Hosting Startup Assemblies](xref:fundamentals/host/web-host#hosting-startup-assemblies)
+
