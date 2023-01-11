@@ -28,7 +28,7 @@ This guide:
 
 # [Ubuntu](#tab/linux-ubuntu)
 
-* Access to an Ubuntu 20.04 VM with a standard user account with sudo privilege. These instructions haven't been tested with the latest Ubuntu versions, but they should work.
+* Access to an Ubuntu 20.04 VM with a standard user account with sudo privilege.
 * The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
 * An existing ASP.NET Core app.
 
