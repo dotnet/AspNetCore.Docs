@@ -12,18 +12,14 @@ uid: host-and-deploy/linux-apache
 
 By [Shayne Boyer](https://github.com/spboyer)
 
-Using this guide, learn how to set up [Apache](https://httpd.apache.org/) as a reverse proxy server Ubuntu, Red Hat Enterprise (CentOS) and SUSE Linux Enterprise Server to redirect HTTP traffic to an ASP.NET Core web app running on [Kestrel](xref:fundamentals/servers/kestrel) server. The [mod_proxy extension](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html) and related modules create the server's reverse proxy.
+Using this guide, learn how to set up [Apache](https://httpd.apache.org/) as a reverse proxy server on Ubuntu, Red Hat Enterprise (CentOS) and SUSE Linux Enterprise Server to redirect HTTP traffic to an ASP.NET Core web app running on [Kestrel](xref:fundamentals/servers/kestrel) server. The [mod_proxy extension](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html) and related modules create the server's reverse proxy.
 
 ## Prerequisites
 
 # [Ubuntu](#tab/linux-ubuntu)
 
-* Server running CentOS 7 with a standard user account with sudo privilege.
-* Install the .NET Core runtime on the server.
-   1. Visit the [Download .NET Core page](https://dotnet.microsoft.com/download/dotnet-core).
-   1. Select the latest non-preview .NET Core version.
-   1. Download the latest non-preview runtime in the table under **Run apps - Runtime**.
-   1. Select the Linux **Package manager instructions** link and follow the CentOS instructions.
+* Access to Ubuntu 20.04 with a standard user account with sudo privilege.
+* The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
 * An existing ASP.NET Core app.
 
 At any point in the future after upgrading the shared framework, restart the ASP.NET Core apps hosted by the server.
