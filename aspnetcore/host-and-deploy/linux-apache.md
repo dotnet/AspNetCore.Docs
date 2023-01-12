@@ -22,11 +22,9 @@ Using this guide, learn how to set up [Apache](https://httpd.apache.org/) as a r
 * The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
 * An existing ASP.NET Core app.
 
-At any point in the future after upgrading the shared framework, restart the ASP.NET Core apps hosted by the server.
-
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
-* Access to CentOS 7.8 or later with a standard user account with sudo privilege.
+* Access to Red Hat Enterprise (RHEL) 8.0 or later with a standard user account with sudo privilege.
 * The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
 * An existing ASP.NET Core app.
 
@@ -37,6 +35,8 @@ At any point in the future after upgrading the shared framework, restart the ASP
 * An existing ASP.NET Core app.
 
 ---
+
+At any point in the future after upgrading the shared framework, restart the ASP.NET Core apps hosted by the server.
 
 ## Publish and copy over the app
 
@@ -76,6 +76,11 @@ Copy the ASP.NET Core app to the server using a tool that integrates into the or
 > [!NOTE]
 > Under a production deployment scenario, a continuous integration workflow does the work of publishing the app and copying the assets to the server.
 
+Test the app:
+
+1. From the command line, run the app: `dotnet <app_assembly>.dll`.
+1. In a browser, navigate to `http://<serveraddress>:<port>` to verify the app works on Linux locally.
+
 ## Configure a proxy server
 
 A reverse proxy is a common setup for serving dynamic web apps. The reverse proxy terminates the HTTP request and forwards it to the ASP.NET app.
@@ -86,7 +91,7 @@ Kestrel is great for serving dynamic content from ASP.NET Core. However, the web
 
 A proxy server forwards client requests to another server instead of fulfilling requests itself. A reverse proxy forwards to a fixed destination, typically on behalf of arbitrary clients. In this guide, Apache is configured as the reverse proxy running on the same server that Kestrel is serving the ASP.NET Core app.
 
-Because requests are forwarded by reverse proxy, use the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) from the [`Microsoft.AspNetCore.HttpOverrides`](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides/) package. The middleware updates the `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
+Because requests are forwarded by reverse proxy, use the [Forwarded Headers Middleware](xref:host-and-deploy/proxy-load-balancer) from the [`Microsoft.AspNetCore.HttpOverrides`](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides) package. The middleware updates the `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
 
 Any component that depends on the scheme, such as authentication, link generation, redirects, and geolocation, must be placed after invoking the Forwarded Headers Middleware.
 
