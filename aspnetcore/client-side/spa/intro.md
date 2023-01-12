@@ -7,6 +7,7 @@ description: Overview of Single Page Applications (SPA) in ASP.NET Core
 ms.date: 1/11/2023
 uid: spa/intro
 ---
+<!-- Content from https://github.com/dotnet/AspNetCore.Docs/issues/26373 -->
 # Overview of Single Page Applications (SPA) in ASP.NET Core
 
 ## Architecture of Single Page Application templates
@@ -40,15 +41,15 @@ When the browser sends a request for a backend endpoint, for example `/weatherfo
 
 ## Published Single Page Apps
 
-When the app is published, the SPA becomes a collection of files inside the `wwwroot` folder.
+When the app is published, the SPA becomes a collection of files in the `wwwroot` folder.
 
 There is no runtime component required to serve the app:
 
 :::code language="csharp" source="~/client-side/spa/intro/samples/Program.cs" highlight="13,21":::
 
 In the preceding template generated `Program.cs` file:
-* `app.UseStaticFiles` allows the files to be served.
-* `app.MapFallbackToFile("index.html")` enables serving the default document for any unknown request the server receives.
+* `app.`<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> allows the files to be served.
+* `app.`<xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A>`("index.html")` enables serving the default document for any unknown request the server receives.
 
 When the app is published with `dotnet publish`, the following tasks in the `csproj` file ensures that `npm restore` runs and that the appropriate npm script runs to generate the production artifacts:
 
