@@ -4,11 +4,11 @@ participant Browser
 participant Proxy
 participant Server
 Browser->>Server: GET /
-Proxy? Proxy is running
+alt Proxy is running
   Server->>Browser: 301 Redirect <Proxy-URL>
 else Proxy is not running
   Server->>Proxy: Launch
-  BrowserChecks Browser checks with server if the proxy is running
+  par Browser checks with server if the proxy is running
     loop Until SPA proxy is running
       Server->>Browser: 200 OK <html>...</html>
       Browser->>Browser: Wait
