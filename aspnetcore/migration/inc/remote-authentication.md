@@ -81,10 +81,23 @@ This remote authentication approach has a couple known limitations:
 
 ## Alternatives
 
-If authentication in the ASP.NET app is done using Microsoft.Owin Cookie Authentication Middleware, an alternative solution to sharing identity is to configure the ASP.NET and ASP.NET Core apps so that they are able to share an auth cookie. This allows both apps to determine user identity from the same cookie and signing in or out of one app will be reflected in the other. Note that because signing in typically depends on a specific database, shared cookie solutions will still typically have users always sign in through one of the apps (either ASP.NET or ASP.NET Core), but both apps will be able to see the users' identity and claims, and both apps will be able to log the user out.
+If authentication in the ASP.NET app is done using `Microsoft.Owin` Cookie Authentication Middleware, an alternative solution to sharing identity is to configure the ASP.NET and ASP.NET Core apps so that they are able to share an authentication cookie. Sharing an authentication cookie enables:
+
+* Both apps to determine the user identity from the same cookie.
+* Signing in or out of one app signs the user in or out of the other app.
+
+Note that because signing in typically depends on a specific database:
+
+* Shared cookie solutions typically have users always sign in through one of the apps, either the ASP.NET or ASP.NET Core app.
+* Both apps are able to see the users' identity and claims, and both apps are able to sign the user out.
 
 Details on how to configure sharing auth cookies between ASP.NET and ASP.NET Core apps are available in [cookie sharing documentation](xref:security/cookie-sharing). The following samples in the [System.Web adapters](https://github.com/dotnet/systemweb-adapters) GitHub repo demonstrates remote app authentication with shared cookie configuration enabling both apps to sign users in and out :
   *([ASP.NET app](https://github.com/dotnet/systemweb-adapters/tree/main/samples/MvcApp)
   *  ASP.NET Core app](https://github.com/dotnet/systemweb-adapters/tree/main/samples/MvcCoreApp)
 
-Sharing authentication is a good option if the ASP.NET app is already using Microsoft.Owin cookie authentication and if it's possible to update the ASP.NET app and ASP.NET Core apps to use matching data protection settings (including having a shared location like a file path or Redis cache for storing data protection keys). For other scenarios, the remote authentication approach described previously in this doc is more flexible and will likely be a better fit.
+Sharing authentication is a good option if both the following are true:
+
+* The ASP.NET app is already using `Microsoft.Owin` cookie authentication.
+* It's possible to update the ASP.NET app and ASP.NET Core apps to use matching data protection settings. Matching shared data protection settings includes a shared file path, Redis cache, or Azure Blob Storage for storing data protection keys.
+
+For other scenarios, the remote authentication approach described previously in this doc is more flexible and is probably a better fit.
