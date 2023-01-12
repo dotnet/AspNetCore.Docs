@@ -135,13 +135,7 @@ Use `apt-get` to install Apache. Follow the installation instructions for Ubuntu
 
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
-Use `yum-utils` to update CentOS packages to their latest stable versions:
-
-```bash
-sudo yum update -y
-```
-
-Use `yum-utils` to select and install an Apache module stream. Follow the installation instructions for CentOS at [Apache: Compiling and Installing](https://httpd.apache.org/docs/current/install.html).
+Use `yum-utils` to select and install an Apache module stream. Follow the installation instructions for Red Hat Enterprise Linux at [Apache: Compiling and Installing](https://httpd.apache.org/docs/current/install.html).
 
 > [!NOTE]
 > To verify where Apache is installed, run `whereis httpd` from a command prompt.
@@ -156,7 +150,7 @@ Use `yum-utils` to select and install an Apache module stream. Follow the instal
 
 # [Ubuntu](#tab/linux-ubuntu)
 
-Configuration files for Apache are located within the `/etc/httpd/conf.d/` directory. In Apache on Ubuntu, all the virtual host configuration files are stored in `/etc/apache2/sites-available`. Any file with the *.conf* extension is processed in alphabetical order in addition to the module configuration files in `/etc/httpd/conf.modules.d/`, which contains any configuration files necessary to load modules.
+Configuration files for Apache are located within the `/etc/apache2/apache2.conf/` directory. In Apache on Ubuntu, all the virtual host configuration files are stored in `/etc/apache2/sites-available`. Any file with the *.conf* extension is processed in alphabetical order in addition to the module configuration files in `/etc/httpd/conf.modules.d/`, which contains any configuration files necessary to load modules.
 
 Create a configuration file, named *helloapp.conf*, for the app:
 
