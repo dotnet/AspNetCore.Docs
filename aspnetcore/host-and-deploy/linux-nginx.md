@@ -1,11 +1,11 @@
 ---
 title: Host ASP.NET Core on Linux with Nginx
 author: rick-anderson
-description: Learn how to set up Nginx as a reverse proxy on an Ubuntu 20.04 VM to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
+description: Learn how to set up Nginx as a reverse proxy on Ubuntu, RHEL and SUSE to forward HTTP traffic to an ASP.NET Core web app running on Kestrel.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: mvc
-ms.date: 11/30/2021
+ms.custom: mvc, engagement-fy23
+ms.date: 01/08/2023
 uid: host-and-deploy/linux-nginx
 ---
 # Host ASP.NET Core on Linux with Nginx
@@ -13,7 +13,7 @@ uid: host-and-deploy/linux-nginx
 By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
 :::moniker range=">= aspnetcore-6.0"
-This guide explains setting up a production-ready ASP.NET Core environment on an Ubuntu 20.04 VM. These instructions likely work with newer versions of Ubuntu, but the instructions haven't been tested with newer versions.
+This guide explains setting up a production-ready ASP.NET Core environment for Ubuntu, Red Hat Enterprise (RHEL), and SUSE Linux Enterprise Server.
 
 For information on other Linux distributions supported by ASP.NET Core, see [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites).
 
@@ -26,9 +26,25 @@ This guide:
 
 ## Prerequisites
 
-* Access to an Ubuntu 20.04 VM with a standard user account with sudo privilege.
+# [Ubuntu](#tab/linux-ubuntu)
+
+* Access to Ubuntu 20.04 with a standard user account with sudo privilege.
 * The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
 * An existing ASP.NET Core app.
+
+# [Red Hat Enterprise Linux](#tab/linux-rhel)
+
+* Access to Red Hat Enterprise (RHEL) 8.0 or later with a standard user account with sudo privilege.
+* The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
+* An existing ASP.NET Core app.
+
+# [SUSE Linux Enterprise Server](#tab/linux-sles)
+
+* Access to SLES 12 or 15 with a standard user account with sudo privilege.
+* The latest stable [.NET runtime installed](/dotnet/core/install/linux) on the server.
+* An existing ASP.NET Core app.
+
+---
 
 At any point in the future after upgrading the shared framework, restart the ASP.NET Core apps hosted by the server.
 
@@ -106,7 +122,7 @@ app.UseAuthentication();
 
 If no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified to the middleware, the default headers to forward are `None`.
 
-Proxies running on loopback addresses (`127.0.0.0/8`, `[::1]`), including the standard localhost address (`127.0.0.1`), are trusted by default. If other trusted proxies or networks within the organization handle requests between the Internet and the web server, add them to the list of <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies%2A> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks%2A> with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. The following example adds a trusted proxy server at IP address 10.0.0.100 to the Forwarded Headers Middleware `KnownProxies` in `Startup.ConfigureServices`:
+Proxies running on loopback addresses (`127.0.0.0/8`, `[::1]`), including the standard localhost address (`127.0.0.1`), are trusted by default. If other trusted proxies or networks within the organization handle requests between the internet and the web server, add them to the list of <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies%2A> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks%2A> with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. The following example adds a trusted proxy server at IP address 10.0.0.100 to the Forwarded Headers Middleware `KnownProxies` in `Startup.ConfigureServices`:
 
 ```csharp
 using System.Net;
@@ -123,7 +139,19 @@ For more information, see <xref:host-and-deploy/proxy-load-balancer>.
 
 ### Install Nginx
 
-Use `apt-get` to install Nginx. The installer creates a `systemd` init script that runs Nginx as daemon on system startup. Follow the installation instructions for Ubuntu at [Nginx: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages).
+# [Ubuntu](#tab/linux-ubuntu)
+
+Use `apt-get` to install Nginx. The installer creates a [`systemd`](https://systemd.io/) init script that runs Nginx as daemon on system startup. Follow the installation instructions for Ubuntu at [Nginx: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages).
+
+# [Red Hat Enterprise Linux](#tab/linux-rhel)
+
+Use `yum-utils` to select and install an Nginx module stream. Follow the installation instructions for RHEL at [Nginx: Linux packages - RHEL](https://nginx.org/en/linux_packages.html#RHEL).
+
+# [SUSE Linux Enterprise Server](#tab/linux-sles)
+
+Use `yum-utils` to select and install an Nginx module stream. Follow the installation instructions for SLES at [Nginx: Linux packages - SLES](https://nginx.org/en/linux_packages.html#SLES).
+
+---
 
 > [!NOTE]
 > If optional Nginx modules are required, building Nginx from source might be required.
@@ -138,9 +166,21 @@ Verify a browser displays the default landing page for Nginx. The landing page i
 
 ### Configure Nginx
 
+# [Ubuntu](#tab/linux-ubuntu)
+
 To configure Nginx as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx/sites-available/default`. Open it in a text editor, and replace the contents with the following snippet:
 
-```
+# [Red Hat Enterprise Linux](#tab/linux-rhel)
+
+To configure Nginx as a reverse proxy to forward HTTP requests to an ASP.NET Core app, modify `/etc/nginx.conf`. Replace the `server{}` code block with the following snippet:
+
+# [SUSE Linux Enterprise Server](#tab/linux-sles)
+
+To configure Nginx as a reverse proxy to forward HTTP requests to an ASP.NET Core app, modify `/etc/nginx.conf`. Replace the `server{}` code block with the following snippet:
+
+---
+
+```text
 server {
     listen        80;
     server_name   example.com *.example.com;
@@ -161,7 +201,7 @@ If the app is a SignalR or Blazor Server app, see <xref:signalr/scale#linux-with
 
 When no `server_name` matches, Nginx uses the default server. If no default server is defined, the first server in the configuration file is the default server. As a best practice, add a specific default server that returns a status code of 444 in your configuration file. A default server configuration example is:
 
-```
+```text
 server {
     listen   80 default_server;
     # listen [::]:80 default_server deferred;
@@ -181,13 +221,25 @@ To directly run the app on the server:
 1. Navigate to the app's directory.
 1. Run the app: `dotnet <app_assembly.dll>`, where `app_assembly.dll` is the assembly file name of the app.
 
-If the app runs on the server but fails to respond over the Internet, check the server's firewall and confirm port 80 is open. If using an Azure Ubuntu VM, add a Network Security Group (NSG) rule that enables inbound port 80 traffic. There's no need to enable an outbound port 80 rule, as the outbound traffic is automatically granted when the inbound rule is enabled.
+# [Ubuntu](#tab/linux-ubuntu)
+
+If the app runs on the server but fails to respond over the internet, check the server's firewall and confirm port 80 is open. If using an Azure Ubuntu VM, add a Network Security Group (NSG) rule that enables inbound port 80 traffic. There's no need to enable an outbound port 80 rule, as the outbound traffic is automatically granted when the inbound rule is enabled.
+
+# [Red Hat Enterprise Linux](#tab/linux-rhel)
+
+If the app runs on the server but fails to respond over the internet, check the server's firewall and confirm port 80 is open.
+
+# [SUSE Linux Enterprise Server](#tab/linux-sles)
+
+If the app runs on the server but fails to respond over the internet, check the server's firewall and confirm port 80 is open.
+
+---
 
 When done testing the app, shut down the app with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) at the command prompt.
 
 ## Monitor the app
 
-The server is set up to forward requests made to `http://<serveraddress>:80` on to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`. However, Nginx isn't set up to manage the Kestrel process. `systemd` can be used to create a service file to start and monitor the underlying web app. `systemd` is an init system that provides many powerful features for starting, stopping, and managing processes. 
+The server is set up to forward requests made to `http://<serveraddress>:80` on to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`. However, Nginx isn't set up to manage the Kestrel process. [`systemd`](https://systemd.io/) can be used to create a service file to start and monitor the underlying web app. `systemd` is an init system that provides many powerful features for starting, stopping, and managing processes.
 
 ### Create the service file
 
@@ -199,9 +251,9 @@ sudo nano /etc/systemd/system/kestrel-helloapp.service
 
 The following example is an `.ini` service file for the app:
 
-```
+```text
 [Unit]
-Description=Example .NET Web API App running on Ubuntu
+Description=Example .NET Web API App running on Linux
 
 [Service]
 WorkingDirectory=/var/www/helloapp
@@ -223,7 +275,7 @@ In the preceding example, the user that manages the service is specified by the 
 
 Use `TimeoutStopSec` to configure the duration of time to wait for the app to shut down after it receives the initial interrupt signal. If the app doesn't shut down in this period, SIGKILL is issued to terminate the app. Provide the value as unitless seconds (for example, `150`), a time span value (for example, `2min 30s`), or `infinity` to disable the timeout. `TimeoutStopSec` defaults to the value of `DefaultTimeoutStopSec` in the manager configuration file (`systemd-system.conf`, `system.conf.d`, `systemd-user.conf`, `user.conf.d`). The default timeout for most distributions is 90 seconds.
 
-```
+```text
 # The default value is 90 seconds for most distributions.
 TimeoutStopSec=90
 ```
@@ -238,7 +290,7 @@ systemd-escape "<value-to-escape>"
 
 Colon (`:`) separators aren't supported in environment variable names. Use a double underscore (`__`) in place of a colon. The [Environment Variables configuration provider](xref:fundamentals/configuration/index#environment-variables) converts double-underscores into colons when environment variables are read into configuration. In the following example, the connection string key `ConnectionStrings:DefaultConnection` is set into the service definition file as `ConnectionStrings__DefaultConnection`:
 
-```
+```console
 Environment=ConnectionStrings__DefaultConnection={Connection String}
 ```
 
@@ -250,11 +302,11 @@ sudo systemctl enable kestrel-helloapp.service
 
 Start the service and verify that it's running.
 
-```
+```bash
 sudo systemctl start kestrel-helloapp.service
 sudo systemctl status kestrel-helloapp.service
 
-◝ kestrel-helloapp.service - Example .NET Web API App running on Ubuntu
+◝ kestrel-helloapp.service - Example .NET Web API App running on Linux
     Loaded: loaded (/etc/systemd/system/kestrel-helloapp.service; enabled)
     Active: active (running) since Thu 2016-10-18 04:09:35 NZDT; 35s ago
 Main PID: 9021 (dotnet)
@@ -275,7 +327,7 @@ Transfer-Encoding: chunked
 
 ### View logs
 
-Since the web app using Kestrel is managed using `systemd`, all events and processes are logged to a centralized journal. However, this journal includes all entries for all services and processes managed by `systemd`. To view the `kestrel-helloapp.service`-specific items, use the following command:
+Since the web app using Kestrel is managed using [`systemd`](https://systemd.io/), all events and processes are logged to a centralized journal. However, this journal includes all entries for all services and processes managed by `systemd`. To view the `kestrel-helloapp.service`-specific items, use the following command:
 
 ```bash
 sudo journalctl -fu kestrel-helloapp.service
@@ -324,8 +376,10 @@ Linux Security Modules (LSM) is a framework that's part of the Linux kernel sinc
 
 Close off all external ports that aren't in use. Uncomplicated firewall (ufw) provides a front end for `iptables` by providing a CLI for configuring the firewall.
 
+# [Ubuntu](#tab/linux-ubuntu)
+
 > [!WARNING]
-> A firewall will prevent access to the whole system if not configured correctly. Failure to specify the correct SSH port will effectively lock you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW) and the [manual](https://manpages.ubuntu.com/manpages/bionic/man8/ufw.8.html).
+> A firewall prevents access to the whole system if not configured correctly. Failure to specify the correct SSH port effectively locks you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW) and the [manual](https://manpages.ubuntu.com/manpages/bionic/man8/ufw.8.html).
 
 Install `ufw` and configure it to allow traffic on any ports needed.
 
@@ -339,13 +393,49 @@ sudo ufw allow 443/tcp
 sudo ufw enable
 ```
 
+# [Red Hat Enterprise Linux](#tab/linux-rhel)
+
+> [!WARNING]
+> A firewall prevents access to the whole system if not configured correctly. Failure to specify the correct SSH port effectively locks you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW).
+
+Install `ufw` and configure it to allow traffic on any ports needed.
+
+```bash
+sudo yum -y install ufw
+
+sudo ufw allow 22/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+
+sudo ufw enable
+```
+
+# [SUSE Linux Enterprise Server](#tab/linux-sles)
+
+> [!WARNING]
+> A firewall prevents access to the whole system if not configured correctly. Failure to specify the correct SSH port effectively locks you out of the system if you are using SSH to connect to it. The default port is 22. For more information, see the [introduction to ufw](https://help.ubuntu.com/community/UFW).
+
+Install `ufw` and configure it to allow traffic on any ports needed.
+
+```bash
+sudo yum -y install ufw
+
+sudo ufw allow 22/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+
+sudo ufw enable
+```
+
+---
+
 ### Secure Nginx
 
 #### Change the Nginx response name
 
 Edit `src/http/ngx_http_header_filter_module.c`:
 
-```
+```c
 static char ngx_http_server_string[] = "Server: Web Server" CRLF;
 static char ngx_http_server_full_string[] = "Server: Web Server" CRLF;
 ```
@@ -393,7 +483,19 @@ Add the */etc/nginx/proxy.conf* configuration file:
 
 [!code-nginx[](linux-nginx/proxy.conf)]
 
+# [Ubuntu](#tab/linux-ubuntu)
+
 **Replace** the contents of the */etc/nginx/nginx.conf* configuration file with the following file. The example contains both `http` and `server` sections in one configuration file.
+
+# [Red Hat Enterprise Linux](#tab/linux-rhel)
+
+Modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the `http{}` and `server{}` code blocks with contents with the following snippet:
+
+# [SUSE Linux Enterprise Server](#tab/linux-sles)
+
+Modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the `http{}` and `server{}` code blocks with contents with the following snippet:
+
+---
 
 [!code-nginx[](linux-nginx/nginx.conf)]
 
@@ -420,7 +522,7 @@ To mitigate clickjacking attacks:
    sudo nano /etc/nginx/nginx.conf
    ```
 
-   Add the line: `add_header X-Frame-Options "SAMEORIGIN";`
+   Within the `http{}` code block, add the line: `add_header X-Frame-Options "SAMEORIGIN";`
 
 1. Save the file.
 1. Restart Nginx.
@@ -435,7 +537,7 @@ This header prevents most browsers from MIME-sniffing a response away from the d
    sudo nano /etc/nginx/nginx.conf
    ```
 
-   Add the line: `add_header X-Content-Type-Options "nosniff";`
+   Within the `http{}` code block, add the line: `add_header X-Content-Type-Options "nosniff";`
 
 1. Save the file.
 1. Restart Nginx.
