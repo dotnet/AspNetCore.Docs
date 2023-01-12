@@ -189,6 +189,8 @@ The simple types that the model binder can convert source strings into include t
 * [Char](xref:System.ComponentModel.CharConverter)
 * [DateTime](xref:System.ComponentModel.DateTimeConverter)
 * [DateTimeOffset](xref:System.ComponentModel.DateTimeOffsetConverter)
+* [DateOnly](xref:System.ComponentModel.DateOnlyConverter)
+* [TimeOnly](xref:System.ComponentModel.TimeOnlyConverter)
 * [Decimal](xref:System.ComponentModel.DecimalConverter)
 * [Double](xref:System.ComponentModel.DoubleConverter)
 * [Enum](xref:System.ComponentModel.EnumConverter)
