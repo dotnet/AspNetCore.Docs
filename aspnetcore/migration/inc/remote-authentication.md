@@ -86,10 +86,11 @@ If authentication in the ASP.NET app is done using `Microsoft.Owin` Cookie Authe
 * Both apps to determine the user identity from the same cookie.
 * Signing in or out of one app signs the user in or out of the other app.
 
-Note that because signing in typically depends on a specific database:
+Note that because signing in typically depends on a specific database, not all authentication functionality will work in both apps:
 
-* Shared cookie solutions typically have users always sign in through one of the apps, either the ASP.NET or ASP.NET Core app.
-* Both apps are able to see the users' identity and claims, and both apps are able to sign the user out.
+* Users should sign in through only one of the apps, either the ASP.NET or ASP.NET Core app, whichever the database is setup to work with.
+* Both apps are able to see the users' identity and claims.
+* Both apps are able to sign the user out.
 
 Details on how to configure sharing auth cookies between ASP.NET and ASP.NET Core apps are available in [cookie sharing documentation](xref:security/cookie-sharing). The following samples in the [System.Web adapters](https://github.com/dotnet/systemweb-adapters) GitHub repo demonstrates remote app authentication with shared cookie configuration enabling both apps to sign users in and out :
   *([ASP.NET app](https://github.com/dotnet/systemweb-adapters/tree/main/samples/MvcApp)
