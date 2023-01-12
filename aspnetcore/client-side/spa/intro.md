@@ -51,7 +51,7 @@ In the preceding template generated `Program.cs` file:
 * `app.`<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> allows the files to be served.
 * `app.`<xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A>`("index.html")` enables serving the default document for any unknown request the server receives.
 
-When the app is published with `dotnet publish`, the following tasks in the `csproj` file ensures that `npm restore` runs and that the appropriate npm script runs to generate the production artifacts:
+When the app is published with [dotnet publish](/dotnet/core/tools/dotnet-publish), the following tasks in the `csproj` file ensures that [`npm restore`](https://www.npmjs.com/package/restore) runs and that the appropriate npm script runs to generate the production artifacts:
 
 :::code language="xml" source="~/client-side/spa/intro/samples/MyReact.csproj" range="27-99":::
 
@@ -72,7 +72,7 @@ The [hosting startup assembly](xref:fundamentals/configuration/platform-specific
 
 :::code language="json" source="~/client-side/spa/intro/samples/launchSettings.json" highlight="17,25":::
 
-### Setup for the client ap
+### Setup for the client app
 
 This setup is specific to the frontend framework the app is using, however many aspects of the configuration are similar.
 
@@ -86,7 +86,7 @@ The template generated `ClientApp/package.json` file:
 * The `prestart` script invokes `ClientApp/aspnetcore-https.js`, which is responsible for ensuring the development server HTTPS certificate is available to the SPA proxy server.
 * The `start:windows` and `start:default`:
 
-  * Launch the Angular development server via `ng serve`.
+  * Launch the Angular development server via [`ng serve`](https://angular.io/cli/serve).
   * Provide the port, the options to use HTTPS, and the path to the certificate and the associated key. The provide port number matches the port number specified in the `.csproj` file.
 
 The template generated `ClientApp/angular.json` file contains:
@@ -107,13 +107,6 @@ The following highlighted code from `ClientApp/proxy.conf.js` uses logic based o
 * The `package.json` scripts section contains the following scripts that launches the react app during development, as shown in the following highlighted code:
 
   :::code language="json" source="~/client-side/spa/intro/samples/React_package.json" highlight="51-53":::
-
-```json
-{
-    "prestart": "node aspnetcore-https && node aspnetcore-react",
-    "start": "rimraf ./build && react-scripts start",
-}
-```
 
 * The `prestart` script invokes:
 
