@@ -1,6 +1,6 @@
 ---
 title: Host ASP.NET Core on Linux with Apache
-author: rick-andersonvm
+author: rick-anderson
 description: Learn how to set up Apache as a reverse proxy server on CentOS to redirect HTTP traffic to an ASP.NET Core web app running on Kestrel.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: shboyer
