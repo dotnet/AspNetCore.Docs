@@ -45,15 +45,7 @@ Bind a property or field on other [Document Object Model (DOM)](https://develope
 
 To execute asynchronous logic after binding, use `@bind:after="{EVENT}"` with a DOM event for the `{EVENT}` placeholder. An assigned C# method isn't executed until the bound value is assigned synchronously.
 
-> [!IMPORTANT]
-> The `@bind:after` feature is receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](https://dotnet.microsoft.com/download).
->
-> Using an event callback parameter (`[Parameter] public EventCallback<string> ValueChanged { get; set; }`) isn't supported. Instead, pass an <xref:System.Action>-returning or <xref:System.Threading.Tasks.Task>-returning method to `@bind:after`.
->
-> For more information, see the following resources:
->
-> * [Blazor `@bind:after` not working on .NET 7 RTM release (dotnet/aspnetcore #44957)](https://github.com/dotnet/aspnetcore/issues/44957)
-> * [`BindGetSetAfter701` sample app (javiercn/BindGetSetAfter701 GitHub repository)](https://github.com/javiercn/BindGetSetAfter701)
+Using an event callback parameter (`[Parameter] public EventCallback<string> ValueChanged { get; set; }`) with `@bind:after` isn't supported. Instead, pass a method that returns an <xref:System.Action> or <xref:System.Threading.Tasks.Task> to `@bind:after`.
 
 In the following example:
 
@@ -77,7 +69,7 @@ In the following example:
 }
 ```
 
-Additional examples
+The following `BindAfter` component demonstrates the use of `@bind:after`.
 
 `Pages/BindAfter.razor`:
 
@@ -118,19 +110,11 @@ Components support two-way data binding by defining a pair of parameters:
 * `@bind:get`: Specifies the value to bind.
 * `@bind:set`: Specifies a callback for when the value changes.
 
-> [!IMPORTANT]
-> The `@bind:get` and `@bind:set` features are receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](/download/dotnet/7.0).
->
-> Using an event callback parameter (`[Parameter] public EventCallback<string> ValueChanged { get; set; }`) isn't supported. Instead, pass an <xref:System.Action>-returning or <xref:System.Threading.Tasks.Task>-returning method to `@bind:set`.
->
-> For more information, see the following resources:
->
-> * [Blazor `@bind:after` not working on .NET 7 RTM release (dotnet/aspnetcore #44957)](https://github.com/dotnet/aspnetcore/issues/44957)
-> * [`BindGetSetAfter701` sample app (javiercn/BindGetSetAfter701 GitHub repository)](https://github.com/javiercn/BindGetSetAfter701)
-
 The `@bind:get` and `@bind:set` modifiers are always used together.
 
-Examples
+Using an event callback parameter with `@bind:set` (`[Parameter] public EventCallback<string> ValueChanged { get; set; }`) isn't supported. Instead, pass a method that returns an <xref:System.Action> or <xref:System.Threading.Tasks.Task> to `@bind:set`.
+
+The following `BindGetSet` component demonstrates the use of `@bind:get`/`@bind:set`.
 
 `Pages/BindGetSet.razor`:
 
@@ -166,7 +150,7 @@ Examples
 
 For more information on the `InputText` component, see <xref:blazor/forms-and-input-components>.
 
-<!-- For another example use of `@bind:get` and `@bind:set`, see the [Bind across more than two components](#bind-across-more-than-two-components) section later in this article. -->
+For another example use of `@bind:get` and `@bind:set`, see the [Bind across more than two components](#bind-across-more-than-two-components) section later in this article.
 
 Razor attribute binding is case-sensitive:
 
@@ -440,18 +424,6 @@ In the following example, the `PasswordUpdated` method executes asynchronously a
 
 ## Bind across more than two components
 
-<!-- HOLD: See https://github.com/dotnet/AspNetCore.Docs/issues/27848
-
-> [!IMPORTANT]
-> The `@bind:get` and `@bind:set` features demonstrated in this section are receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](/download/dotnet/7.0).
->
-> For more information, see the following resources:
->
-> * [Blazor `@bind:after` not working on .NET 7 RTM release (dotnet/aspnetcore #44957)](https://github.com/dotnet/aspnetcore/issues/44957)
-> * [`BindGetSetAfter701` sample app (javiercn/BindGetSetAfter701 GitHub repository)](https://github.com/javiercn/BindGetSetAfter701)
->
-> To see a working version of the guidance in this section that doesn't rely on `@bind:get`/`@bind:set` modifiers, see the 6.0 version of this article.
-
 You can bind parameters through any number of nested components, but you must respect the one-way flow of data:
 
 * Change notifications *flow up the hierarchy*.
@@ -475,32 +447,6 @@ In the following `NestedChild` component, the `NestedGrandchild` component:
 `Shared/NestedGrandchild.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/data-binding/NestedGrandchild.razor":::
-
-For an alternative approach suited to sharing data in memory and across components that aren't necessarily nested, see <xref:blazor/state-management>.
-
--->
-
-You can bind parameters through any number of nested components, but you must respect the one-way flow of data:
-
-* Change notifications *flow up the hierarchy*.
-* New parameter values *flow down the hierarchy*.
-
-A common and recommended approach is to only store the underlying data in the parent component to avoid any confusion about what state must be updated, as shown in the following example.
-
-`Pages/Parent2.razor`:
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/data-binding/Parent2.razor":::
-
-`Shared/NestedChild.razor`:
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/NestedChild.razor":::
-
-> [!WARNING]
-> Generally, avoid creating components that write directly to their own component parameters. The preceding `NestedChild` component makes use of a `BoundValue` property instead of writing directly to its `ChildMessage` parameter. For more information, see <xref:blazor/components/index#overwritten-parameters>.
-
-`Shared/NestedGrandchild.razor`:
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/data-binding/NestedGrandchild.razor":::
 
 For an alternative approach suited to sharing data in memory and across components that aren't necessarily nested, see <xref:blazor/state-management>.
 
