@@ -54,7 +54,7 @@ The `IStartupFilter` is registered in the service container in <xref:Microsoft.A
 
 When a query string parameter for `option` is provided, the middleware processes the value assignment before the ASP.NET Core middleware renders the response:
 
-[!code-cshtml[](~\aspnetcore\fundamentals\startup\7\WebStartup\Pages\Privacy.cshtml?name=snippet&highlight=5-6)]
+[!code-cshtml[](~/aspnetcore/fundamentals/startup/7/WebStartup/Pages/Privacy.cshtml?name=snippet&highlight=5-6)]
 
 Middleware execution order is set by the order of `IStartupFilter` registrations:
 
@@ -65,3 +65,5 @@ Middleware execution order is set by the order of `IStartupFilter` registrations
   * To invoke afterward, position the service registration after the library is added.
 
 :::moniker-end
+
+[!INCLUDE[](~/fundamentals/startup/includes/startup56.md)]
