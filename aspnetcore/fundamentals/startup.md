@@ -29,6 +29,8 @@ Apps using [EventSource](/dotnet/api/system.diagnostics.tracing.eventsource) can
 
 For more information on application startup, see <xref:fundamentals/index>.
 
+ <a name="IStartupFilter"></a>
+
 ## Extend Startup with startup filters
 
 Use <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>:
@@ -48,9 +50,9 @@ The `RequestSetOptionsMiddleware` is configured in the `RequestSetOptionsStartup
 
 [!code-csharp[](~/fundamentals/startup/7/WebStartup/Middleware/RequestSetOptionsStartupFilter.cs?name=snippet1?name=snippet1&highlight=7)]
 
-The `IStartupFilter` is registered in the service container in <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*>:
+The `IStartupFilter` is registered in `Program.cs`:
 
-[!code-csharp[](~/fundamentals/startup/7/WebStartup/Program.cs?highlight=5-6)]
+[!code-csharp[](~/fundamentals/startup/7/WebStartup/Program.cs?highlight=6-7)]
 
 When a query string parameter for `option` is provided, the middleware processes the value assignment before the ASP.NET Core middleware renders the response:
 
