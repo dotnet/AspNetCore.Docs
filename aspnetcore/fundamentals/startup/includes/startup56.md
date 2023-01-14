@@ -48,7 +48,7 @@ Middleware execution order is set by the order of `IStartupFilter` registrations
   * Position the service registration before the library is added to the service container.
   * To invoke afterward, position the service registration after the library is added.
 
-Note: You can't extend the ASP.NET Core app when you override `Configure`. For more informaton, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/45372).
+Note: You can't extend the ASP.NET Core app when you override `Configure`. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/45372).
 
 :::moniker-end
 
