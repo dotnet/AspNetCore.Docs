@@ -1,4 +1,4 @@
-#define AFTER // FIRST JWT1 JWT2 AFTER
+#define GREET // FIRST JWT1 JWT2 AFTER LOCAL GREET 
 #if NEVER
 #elif FIRST
 // <snippet_1>
@@ -45,4 +45,34 @@ app.UseAuthorization();
 app.MapGet("/", () => "Hello World!");
 app.Run();
 // </snippet_after>
+#elif LOCAL
+// <snippet_local>
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication()
+  .AddJwtBearer()
+  .AddJwtBearer("LocalAuthIssuer");
+  
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello World!");
+app.Run();
+// </snippet_local>
+#elif GREET
+// <snippet_greet>
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthorizationBuilder()
+  .AddPolicy("admin_greetings", policy =>
+        policy
+            .RequireRole("admin")
+            .RequireScope("greetings_api"));
+
+var app = builder.Build();
+
+app.MapGet("/hello", () => "Hello world!")
+  .RequireAuthorization("admin_greetings");
+
+app.Run();
+// </snippet_greet>
 #endif

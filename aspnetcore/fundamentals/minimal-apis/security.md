@@ -96,34 +96,19 @@ Configuring authorization requirements on a resource is a two-step process that 
 1. Configuring the authorization requirements in a policy globally.
 2. Applying individual policies to resources.
 
-In the following code, the  `AddAuthorizationBuilder` is invoked which:
+In the following code, <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder%2A> is invoked which:
 
 - Adds authorization-related services to the DI container.
-- Returns an `AuthorizationBuilder` that can be used to directly register authentication policies.
+- Returns an <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder> that can be used to directly register authentication policies.
 
 The code creates a new authorization policy, named `policy_greetings`, that encapsulate two authorization requirements:
 
-- A role-based requirement that the user fall under the `admin` role.
+- A role-based requirement for users in the `admin` role.
 - A claim-based requirement that the user provide a `greetings_api` scope.
 
 The `admin_greetings` policy is provided as a required policy to the `/hello` endpoint.
 
-```csharp
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddAuthorizationBuilder()
-  .AddPolicy("admin_greetings", policy => 
-		policy
-			.RequireRole("admin")
-			.RequireScope("greetings_api"))
-
-var app = builder.Build();
-
-app.MapGet("/hello", () => "Hello world!")
-  .RequireAuthorization("admin_greetings");
-
-app.Run();
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_greet" highlight="5":::
 
 ## Using `dotnet user-jwts` to improve development time testing
 
