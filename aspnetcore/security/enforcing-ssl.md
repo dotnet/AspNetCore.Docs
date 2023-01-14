@@ -363,7 +363,11 @@ See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) i
 
 ### Trust the certificate with Fedora 34
 
-See [this GitHub comment](https://github.com/dotnet/aspnetcore/issues/32361#issuecomment-837111639) and [Set up a .NET development environment](https://fedoramagazine.org/set-up-a-net-development-environment/) on Fedora.
+See:
+
+* [This GitHub comment](https://github.com/dotnet/aspnetcore/issues/32361#issuecomment-837111639)
+* [Fedora: Using Shared System Certificates](https://docs.fedoraproject.org/en-US/quick-docs/using-shared-system-certificates/)
+* [Set up a .NET development environment](https://fedoramagazine.org/set-up-a-net-development-environment/) on Fedora.
 
 ### Trust the certificate with other distros
 
