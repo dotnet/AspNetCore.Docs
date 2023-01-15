@@ -45,15 +45,12 @@ Bind a property or field on other [Document Object Model (DOM)](https://develope
 
 To execute asynchronous logic after binding, use `@bind:after="{EVENT}"` with a DOM event for the `{EVENT}` placeholder. An assigned C# method isn't executed until the bound value is assigned synchronously.
 
+Using an event callback parameter (`[Parameter] public EventCallback<string> ValueChanged { get; set; }`) with `@bind:after` isn't supported. Instead, pass a method that returns an <xref:System.Action> or <xref:System.Threading.Tasks.Task> to `@bind:after`.
+
 > [!IMPORTANT]
-> The `@bind:after` feature is receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](https://dotnet.microsoft.com/download).
+> The `@bind:after` feature is receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](https://dotnet.microsoft.com/download). Visual Studio updates to support the feature are planned for the mid-February Visual Studio release.
 >
-> Using an event callback parameter (`[Parameter] public EventCallback<string> ValueChanged { get; set; }`) isn't supported. Instead, pass an <xref:System.Action>-returning or <xref:System.Threading.Tasks.Task>-returning method to `@bind:after`.
->
-> For more information, see the following resources:
->
-> * [Blazor `@bind:after` not working on .NET 7 RTM release (dotnet/aspnetcore #44957)](https://github.com/dotnet/aspnetcore/issues/44957)
-> * [`BindGetSetAfter701` sample app (javiercn/BindGetSetAfter701 GitHub repository)](https://github.com/javiercn/BindGetSetAfter701)
+> For more information, see [Blazor `@bind:after` not working on .NET 7 RTM release (dotnet/aspnetcore #44957)](https://github.com/dotnet/aspnetcore/issues/44957).
 
 In the following example:
 
@@ -119,16 +116,13 @@ Components support two-way data binding by defining a pair of parameters:
 * `@bind:set`: Specifies a callback for when the value changes.
 
 > [!IMPORTANT]
-> The `@bind:get` and `@bind:set` features are receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](/download/dotnet/7.0).
+> The `@bind:get` and `@bind:set` features are receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](/download/dotnet/7.0). Visual Studio updates to support the feature are planned for the mid-February Visual Studio release.
 >
-> Using an event callback parameter (`[Parameter] public EventCallback<string> ValueChanged { get; set; }`) isn't supported. Instead, pass an <xref:System.Action>-returning or <xref:System.Threading.Tasks.Task>-returning method to `@bind:set`.
->
-> For more information, see the following resources:
->
-> * [Blazor `@bind:after` not working on .NET 7 RTM release (dotnet/aspnetcore #44957)](https://github.com/dotnet/aspnetcore/issues/44957)
-> * [`BindGetSetAfter701` sample app (javiercn/BindGetSetAfter701 GitHub repository)](https://github.com/javiercn/BindGetSetAfter701)
+> For more information, see [Blazor `@bind:after` not working on .NET 7 RTM release (dotnet/aspnetcore #44957)](https://github.com/dotnet/aspnetcore/issues/44957).
 
 The `@bind:get` and `@bind:set` modifiers are always used together.
+
+Using an event callback parameter with `@bind:set` (`[Parameter] public EventCallback<string> ValueChanged { get; set; }`) isn't supported. Instead, pass a method that returns an <xref:System.Action> or <xref:System.Threading.Tasks.Task> to `@bind:set`.
 
 Examples
 
