@@ -142,25 +142,29 @@ Examples
 
 <h2>Elements</h2>
 
-<input type="text" @bind:get="text" @bind:set="(value) => { }" />
-
+<input type="text" @bind:get="text" @bind:set="(value) => { text = value; }" />
 <input type="text" @bind:get="text" @bind:set="Set" />
-
 <input type="text" @bind:get="text" @bind:set="SetAsync" />
 
 <h2>Components</h2>
 
-<InputText @bind-Value:get="text" @bind-Value:set="(value) => { }" />
-
+<InputText @bind-Value:get="text" @bind-Value:set="(value) => { text = value; }" />
 <InputText @bind-Value:get="text" @bind-Value:set="Set" />
-
 <InputText @bind-Value:get="text" @bind-Value:set="SetAsync" />
 
 @code {
     private string text = "";
 
-    private void Set() {}
-    private Task SetAsync(string value) { return Task.CompletedTask; }
+    private void Set(string value)
+    {
+        text = value;
+    }
+
+    private Task SetAsync(string value)
+    {
+        text = value;
+        return Task.CompletedTask;
+    }
 }
 ```
 
