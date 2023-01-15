@@ -299,6 +299,12 @@ The preceding commands:
 
 Build the project.
 
+On macOS and Linux, export the scaffold tool path:
+
+```console
+export PATH=$HOME/.dotnet/tools:$PATH
+```
+
 Run the following command:
 
   ```dotnetcli
