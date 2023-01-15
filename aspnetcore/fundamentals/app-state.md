@@ -29,6 +29,12 @@ State can be stored using several approaches. Each approach is described later i
 | [HttpContext.Items](#httpcontextitems) | Server-side app code |
 | [Cache](#cache) | Server-side app code |
 
+## SignalR/Blazor Server and HTTP context-based state management
+
+[SignalR](xref:signalr/introduction) apps shouldn't use session state and other state management approaches that rely upon a stable HTTP context to store information. SignalR apps can store per-connection state in [`Context.Items` in the hub](xref:signalr/hubs). <!-- https://github.com/aspnet/SignalR/issues/2139 https://github.com/dotnet/AspNetCore.Docs/issues/27956 https://github.com/dotnet/AspNetCore.Docs/issues/14974 -->
+
+For more information and alternative state management approaches for Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
+
 ## Cookies
 
 Cookies store data across requests. Because cookies are sent with every request, their size should be kept to a minimum. Ideally, only an identifier should be stored in a cookie with the data stored by the app. Most browsers restrict cookie size to 4096 bytes. Only a limited number of cookies are available for each domain.
@@ -270,10 +276,6 @@ If the session middleware fails to persist a session:
 The session middleware can fail to persist a session if the backing store isn't available. For example, a user stores a shopping cart in session. The user adds an item to the cart but the commit fails. The app doesn't know about the failure so it reports to the user that the item was added to their cart, which isn't true.
 
 The recommended approach to check for errors is to call `await feature.Session.CommitAsync` when the app is done writing to the session. <xref:Microsoft.AspNetCore.Http.ISession.CommitAsync*> throws an exception if the backing store is unavailable. If `CommitAsync` fails, the app can process the exception. <xref:Microsoft.AspNetCore.Http.ISession.LoadAsync*> throws under the same conditions when the data store is unavailable.
-  
-## SignalR and session state
-
-SignalR apps should not use session state to store information. SignalR apps can store per connection state in `Context.Items` in the hub. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
 
 ## Additional resources
 
@@ -304,6 +306,12 @@ State can be stored using several approaches. Each approach is described later i
 | [Hidden fields](#hidden-fields) | HTTP form fields |
 | [HttpContext.Items](#httpcontextitems) | Server-side app code |
 | [Cache](#cache) | Server-side app code |
+
+## SignalR/Blazor Server and HTTP context-based state management
+
+[SignalR](xref:signalr/introduction) apps shouldn't use session state and other state management approaches that rely upon a stable HTTP context to store information. SignalR apps can store per-connection state in [`Context.Items` in the hub](xref:signalr/hubs). <!-- https://github.com/aspnet/SignalR/issues/2139 https://github.com/dotnet/AspNetCore.Docs/issues/27956 https://github.com/dotnet/AspNetCore.Docs/issues/14974 -->
+
+For more information and alternative state management approaches for Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
 
 ## Cookies
 
@@ -543,10 +551,6 @@ If the session middleware fails to persist a session:
 The session middleware can fail to persist a session if the backing store isn't available. For example, a user stores a shopping cart in session. The user adds an item to the cart but the commit fails. The app doesn't know about the failure so it reports to the user that the item was added to their cart, which isn't true.
 
 The recommended approach to check for errors is to call `await feature.Session.CommitAsync` when the app is done writing to the session. <xref:Microsoft.AspNetCore.Http.ISession.CommitAsync*> throws an exception if the backing store is unavailable. If `CommitAsync` fails, the app can process the exception. <xref:Microsoft.AspNetCore.Http.ISession.LoadAsync*> throws under the same conditions when the data store is unavailable.
-  
-## SignalR and session state
-
-SignalR apps should not use session state to store information. SignalR apps can store per connection state in `Context.Items` in the hub. <!-- https://github.com/aspnet/SignalR/issues/2139 -->
 
 ## Additional resources
 
