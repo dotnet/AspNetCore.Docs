@@ -18,7 +18,7 @@ namespace GrcpService
         {
             services.AddGrpc(options =>
             {
-                options.Inteceptors.Add<LoggingInterceptor>();
+                options.Interceptors.Add<LoggingInterceptor>();
             });
             services.AddSingleton<LoggingInterceptor>();
         }
