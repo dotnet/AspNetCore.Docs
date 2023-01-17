@@ -5,7 +5,7 @@ description: Learn how to use browser developer tools with ASP.NET Core Blazor H
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
-ms.date: 11/08/2022
+ms.date: 01/14/2022
 uid: blazor/hybrid/developer-tools
 zone_pivot_groups: blazor-hybrid-operating-systems
 ---
@@ -22,20 +22,20 @@ Ensure the Blazor Hybrid project is configured to support browser developer tool
 If the project isn't already configured for browser developer tools, add support by:
 
 1. Locating where the call to <xref:Microsoft.Extensions.DependencyInjection.BlazorWebViewServiceCollectionExtensions.AddMauiBlazorWebView%2A> is made, likely within the app's `MauiProgram.cs` file.
+1. At the top of the `MauiProgram.cs` file, confirm the presence of a `using` statement for <xref:Microsoft.Extensions.Logging?displayProperty=fullName>. If the `using` statement isn't present, add it to the top of the file:
+
+   ```csharp
+   using Microsoft.Extensions.Logging;
+   ```
+
 1. After the call to <xref:Microsoft.Extensions.DependencyInjection.BlazorWebViewServiceCollectionExtensions.AddMauiBlazorWebView%2A>, add the following code:
 
    ```csharp
    #if DEBUG
        builder.Services.AddBlazorWebViewDeveloperTools();
+       builder.Logging.AddDebug();
    #endif
    ```
-
-> [!NOTE]
-> Guidance on popular browsers' developer tools can be found in the documentation of each browser maintainer:
->
-> * [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
-> * [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
-> * [Safari Web Inspector](https://support.apple.com/guide/safari-developer/welcome/mac)
 
 :::zone pivot="windows"
 
@@ -71,9 +71,9 @@ To use browser developer tools with an Android app:
 To use Safari developer tools with an iOS app:
 
 1. Open desktop Safari.
-1. Select the **Preferences** > **Advanced** > **Show Develop** menu command.
+1. Select the **Safari** > **Preferences** > **Advanced** > **Show Develop menu in the menu bar** checkbox.
 1. Run the .NET MAUI Blazor app in the iOS simulator and navigate to an app page that uses a <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView>.
-1. Return to desktop Safari. Select **Develop** > **Simulator** > **0.0.0.0**. If multiple entries for **0.0.0.0** are present, select the entry that highlights the <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView>. The <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> is highlighted in blue in the iOS simulator when the correct **0.0.0.0** entry is selected.
+1. Return to Safari. Select **Develop** > **{REMOTE INSPECTION TARGET}** > **0.0.0.0**, where the `{REMOTE INSPECTION TARGET}` placeholder is either the devices's plain name (for example, `MacBook Pro`) or the device's serial number (for example `XMVM7VFF10`). If multiple entries for **0.0.0.0** are present, select the entry that highlights the <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView>. The <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> is highlighted in blue in the iOS simulator when the correct **0.0.0.0** entry is selected.
 
    ![Safari Develop Simulator open showing two entries for "0.0.0.0" with the second entry selected because it highlights the BlazorWebView in the Visual Studio emulator UI.](~/blazor/hybrid/developer-tools/_static/ios.png)
 
@@ -86,20 +86,48 @@ To use Safari developer tools with an iOS app:
 
 :::zone pivot="macos"
 
-Using browser developer tools with :::no-loc text="Mac Catalyst"::: apps isn't currently supported. You may wish to run the [iOS](?pivots=ios) application instead, as the behavior is similar between iOS and :::no-loc text="Mac Catalyst":::.
+<!-- On macOS, XML files use 4-space indents. Also, the PU uses 4-space indents in the .NET MAUI template file. -->
 
-<!--
+Add the `com.apple.security.get-task-allow` key, of type `Boolean`, to the [entitlements file](/dotnet/maui/ios/entitlements) of the app for its debug build.
+
+To add an entitlements file with the `com.apple.security.get-task-allow` key, add the following XML file named `Entitlements.Debug.plist` to the `Platforms/MacCatalyst` folder of the project.
+
+`Platforms/MacCatalyst/Entitlements.Debug.plist`:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>com.apple.security.get-task-allow</key>
+    <true/>
+</dict>
+</plist>
+```
+
+To consume the entitlements file for debug builds on :::no-loc text="Mac Catalyst":::, add the following `<PropertyGroup>` node to the app's project file as a child of the `<Project>` node:
+
+```xml
+<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst' and '$(Configuration)' == 'Debug'">
+    <CodeSignEntitlements>Platforms/MacCatalyst/Entitlements.Debug.plist</CodeSignEntitlements>
+</PropertyGroup>
+```
+
 To use Safari developer tools with a macOS app:
 
 1. Open desktop Safari.
-1. Select the **Preferences** > **Advanced** > **Show Develop** menu command.
-1. Run the .NET MAUI Blazor app in the macOS simulator.
-1. Return to desktop Safari. Select **Develop** > **Simulator** > **0.0.0.0**. If multiple entries for **0.0.0.0** are present, select the entry that highlights the <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView>. The <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> is highlighted in blue in the macOS simulator when the correct **0.0.0.0** entry is selected.
+1. Select the **Safari** > **Preferences** > **Advanced** > **Show Develop menu in the menu bar** checkbox.
+1. Run the .NET MAUI Blazor app in macOS.
+1. Return to Safari. Select **Develop** > **{REMOTE INSPECTION TARGET}** > **0.0.0.0**, where the `{REMOTE INSPECTION TARGET}` placeholder is either the devices's plain name (for example, `MacBook Pro`) or the device's serial number (for example `XMVM7VFF10`). If multiple entries for **0.0.0.0** are present, select the entry that highlights the <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView>. The <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> is highlighted in blue in macOS when the correct **0.0.0.0** entry is selected.
 1. The **Web Inspector** window appears for the <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView>.
 1. Developer tools provide a variety of features for working with apps, including which assets the page requested, how long assets took to load, and the content of loaded assets. The following example shows the **Console** tab, which includes any exception messages generated by the framework or developer code:
 
    ![Safari Web Inspector for a Blazor Hybrid app](~/blazor/hybrid/developer-tools/_static/safari2.png)
 
--->
-
 :::zone-end
+
+## Additional resources
+
+* [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
+* [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
+* [Safari Developer Help](https://support.apple.com/guide/safari-developer/welcome/mac)
