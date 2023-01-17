@@ -39,7 +39,7 @@ In the following `ShowImage1` component:
 The preceding example uses a C# field to hold the image's source data, but you can also use a C# property to hold the data.
 
 > [!NOTE]
-> Do **not** use a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Always capture the variable's value in a local variable and then use the local variable. In the preceding example:
+> Avoid using a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Capture the variable's value in a local variable. In the preceding example:
 >
 > * The loop variable `i` is assigned to `imageId`.
 > * `imageId` is used in the lambda expression.
@@ -54,6 +54,8 @@ The preceding example uses a C# field to hold the image's source data, but you c
 >     </button>
 > }
 > ```
+>
+> For more information, see <xref:blazor/components/event-handling#lambda-expressions>.
 
 ## Stream image data
 
@@ -144,7 +146,7 @@ In the following `ShowImage1` component:
 The preceding example uses a C# field to hold the image's source data, but you can also use a C# property to hold the data.
 
 > [!NOTE]
-> Do **not** use a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Always capture the variable's value in a local variable and then use the local variable. In the preceding example:
+> Avoid using a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Capture the variable's value in a local variable. In the preceding example:
 >
 > * The loop variable `i` is assigned to `imageId`.
 > * `imageId` is used in the lambda expression.
@@ -159,6 +161,8 @@ The preceding example uses a C# field to hold the image's source data, but you c
 >     </button>
 > }
 > ```
+>
+> For more information, see <xref:blazor/components/event-handling#lambda-expressions>.
 
 ## Stream image data
 
