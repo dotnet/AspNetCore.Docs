@@ -1,15 +1,15 @@
 ---
 title: "APIs overview"
 author: tdykstra
-description: Learn how to choose between controller-based APIs and minimal APIs.
+description: Learn about differences between controller-based APIs and minimal APIs.
 ms.author: tdykstra
 ms.date: 01/10/2023
 uid: fundamentals/apis
 ---
 
-# How to choose between controller-based APIs and minimal APIs
+# Choose between controller-based APIs and minimal APIs
 
-ASP.NET Core supports creating web APIs using controllers or using minimal APIs. *Controllers* in a web API project are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. *Minimal* refers to the minimal effort, code, and configuration that is required to build fully functioning REST endpoints. This article points out differences to be aware of when choosing between the two approaches.
+ASP.NET Core supports creating web APIs using controllers or using minimal APIs. *Controllers* in a web API project are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. *Minimal* refers to the minimal effort, code, and configuration that this approach requires for building fully functioning REST endpoints. This article points out differences between the two approaches.
 
 The design of minimal hides the host class by default and focuses on configuration and extensibility via extension methods that take lambda expressions. Controllers are classes that can take dependencies via constructor injection, use property injection, and generally follow those patterns.
 
@@ -39,7 +39,7 @@ Minimal APIs have many of the same capabilities as controller-based APIs. They s
 
 ## See also
 
-<xref:tutorials/web-api/index>.
+<xref:web-api/index>.
 <xref:tutorials/first-web-api>
-<xref:tutorials/fundamentals/minimal-apis/overview>
+<xref:fundamentals/minimal-apis/overview>
 <xref:tutorials/min-web-api>
