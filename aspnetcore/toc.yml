@@ -700,7 +700,7 @@ items:
               uid: web-api/http-repl
             - name: Telemetry
               uid: web-api/http-repl/telemetry
-      - name: Minimal API
+      - name: Minimal APIs
         items:
         - name: Overview
           uid: fundamentals/minimal-apis/overview
