@@ -88,23 +88,23 @@ items:
             uid: blazor/tutorials/index
       - name: APIs
         items:
-        - name: APIs with controllers
-          uid: items
-        - name: Create a web API with controllers
-          displayName: API tutorial
-          uid: tutorials/first-web-api
-        - name: Web API with MongoDB
-          displayName: API tutorial
-          uid: tutorials/first-mongo-app
-        - name: Web API with JavaScript
-          displayName: tutorial
-          uid: tutorials/web-api-javascript
-        - name: Backend for mobile
-          displayName: tutorial
-          uid: mobile/native-mobile-backend
-        - name: Publish to Azure API Management
-          displayName: tutorial
-          uid: tutorials/publish-to-azure-api-management-using-vs
+        - name: Controller-based APIs
+          items:
+          - name: Create a controller-based web API
+            displayName: API tutorial
+            uid: tutorials/first-web-api
+          - name: Web API with MongoDB
+            displayName: API tutorial
+            uid: tutorials/first-mongo-app
+          - name: Web API with JavaScript
+            displayName: tutorial
+            uid: tutorials/web-api-javascript
+          - name: Backend for mobile
+            displayName: tutorial
+            uid: mobile/native-mobile-backend
+          - name: Publish to Azure API Management
+            displayName: tutorial
+            uid: tutorials/publish-to-azure-api-management-using-vs
         - name: Minimal APIs
           items:
           - name: Create a minimal web API
@@ -659,7 +659,7 @@ items:
   - name: APIs
     items:
       - name: Overview
-        uid: apis/index
+        uid: fundamentals/apis
       - name: Controller-based APIs
         items:
         - name: Overview
