@@ -83,7 +83,7 @@ Test the app:
 
 ## Configure a proxy server
 
-A reverse proxy is a common setup for serving dynamic web apps. The reverse proxy terminates the HTTP request and forwards it to the ASP.NET app.
+A reverse proxy is a common setup for serving dynamic web apps. The reverse proxy terminates the HTTP request and forwards it to the ASP.NET Core app.
 
 ### Use a reverse proxy server
 
@@ -137,14 +137,39 @@ Use `apt-get` to install Apache. Follow the installation instructions for Ubuntu
 
 Use `yum-utils` to select and install an Apache module stream. Follow the installation instructions for Red Hat Enterprise Linux at [Apache: Compiling and Installing](https://httpd.apache.org/docs/current/install.html).
 
+Enable and start Apache using the following commands:
+
+```bash
+sudo systemctl enable httpd
+sudo systemctl start httpd
+```
+
+To verify Apache is active (running) use the following command:
+
+```bash
+sudo systemctl status httpd
+```
+
 > [!NOTE]
 > To verify where Apache is installed, run `whereis httpd` from a command prompt.
 
 # [SUSE Linux Enterprise Server](#tab/linux-sles)
 
-Use `yum-utils` to select and install an Apache module stream. Follow the installation instructions at [Apache: Compiling and Installing](https://httpd.apache.org/docs/current/install.html).
+Use YaST to install a standard configuration. Follow the installation instructions at [SLES Documentation: Apache Quick Start](https://documentation.suse.com/sles/15-SP1/html/SLES-all/cha-apache2.html#sec-apache2-quickstart).
 
----
+```bash
+sudo systemctl enable httpd
+sudo systemctl start httpd
+```
+
+To verify Apache is active (running) use the following command:
+
+```bash
+sudo systemctl status httpd
+```
+
+> [!NOTE]
+> To verify where Apache is installed, run `whereis httpd` from a command prompt.
 
 ### Configure Apache
 
@@ -507,7 +532,7 @@ To mitigate clickjacking attacks:
 
 #### MIME-type sniffing
 
-The `X-Content-Type-Options` header prevents Internet Explorer from *MIME-sniffing* (determining a file's `Content-Type` from the file's content). If the server sets the `Content-Type` header to `text/html` with the `nosniff` option set, Internet Explorer renders the content as `text/html` regardless of the file's content.
+The `X-Content-Type-Options` header prevents internet Explorer from *MIME-sniffing* (determining a file's `Content-Type` from the file's content). If the server sets the `Content-Type` header to `text/html` with the `nosniff` option set, internet Explorer renders the content as `text/html` regardless of the file's content.
 
 Edit the *httpd.conf* file:
 
