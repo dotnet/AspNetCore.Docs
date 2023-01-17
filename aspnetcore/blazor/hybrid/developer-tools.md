@@ -22,7 +22,7 @@ Ensure the Blazor Hybrid project is configured to support browser developer tool
 If the project isn't already configured for browser developer tools, add support by:
 
 1. Locating where the call to <xref:Microsoft.Extensions.DependencyInjection.BlazorWebViewServiceCollectionExtensions.AddMauiBlazorWebView%2A> is made, likely within the app's `MauiProgram.cs` file.
-1. Confirm or add a `using` statement for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> to the top of the `MauiProgram.cs` file:
+1. At the top of the `MauiProgram.cs` file, confirm the presence of a `using` statement for <xref:Microsoft.Extensions.Logging?displayProperty=fullName>. If the `using` statement isn't present, add it to the top of the file:
 
    ```csharp
    using Microsoft.Extensions.Logging;
