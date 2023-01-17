@@ -196,7 +196,13 @@ The following examples demonstrate referencing static assets from the app's web 
 This is text from a static text file resource.
 ```
 
-In **Solution Explorer**, select the `data.txt` file. In the file's **Properties**, set **Copy to Output Directory** to **Copy if newer**.
+`wwwroot/scripts.js`:
+
+```javascript
+export function showPrompt(message) {
+  return prompt(message, 'Type anything here');
+}
+```
 
 The following Jeep&reg; image is also used in this section's example. You can right-click the following image to save it locally for use in a local test app.
 
@@ -204,14 +210,12 @@ The following Jeep&reg; image is also used in this section's example. You can ri
 
 ![Jeep YJ&reg;](~/blazor/components/class-libraries/_static/jeep-yj.png)
 
-> [!NOTE]
-> For images in `wwwroot`, the **Copy to Output Directory** property uses the default setting of **Do not copy**.
-
 In a Razor component:
 
 * The static text file contents can be read using the following techniques:
   * .NET MAUI: [:::no-loc text=".NET MAUI file system helpers":::](/dotnet/maui/platform-integration/storage/file-system-helpers) (<xref:Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync%2A>)
   * WPF and Windows Forms: <xref:System.IO.StreamReader.ReadToEndAsync%2A?displayProperty=nameWithType>
+* JavaScript files are available at logical subpaths of `wwwroot` using `./` paths.
 * The image can be the source attribute (`src`) of an image tag (`<img>`).
 
 `StaticAssetExample2.razor`:
@@ -219,11 +223,25 @@ In a Razor component:
 ```razor
 @page "/static-asset-example-2"
 @using Microsoft.Extensions.Logging
+@implements IAsyncDisposable
+@inject IJSRuntime JS
 @inject ILogger<StaticAssetExample2> Logger
 
 <h1>Static Asset Example 2</h1>
 
+<h2>Read a file</h2>
+
 <p>@dataResourceText</p>
+
+<h2>Call JavaScript</h2>
+
+<p>
+    <button @onclick="TriggerPrompt">Trigger browser window prompt</button>
+</p>
+
+<p>@result</p>
+
+<h2>Show an image</h2>
 
 <p><img alt="1991 Jeep YJ" src="/jeep-yj.png" /></p>
 
@@ -233,7 +251,9 @@ In a Razor component:
 </p>
 
 @code {
-    public string dataResourceText = "Loading resource ...";
+    private string dataResourceText = "Loading resource ...";
+    private IJSObjectReference module;
+    private string result;
 
     protected override async Task OnInitializedAsync()
     {   
@@ -245,6 +265,32 @@ In a Razor component:
         {
             dataResourceText = "Data file not found.";
             Logger.LogError(ex, "'wwwroot/data.txt' not found.");
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            module = await JS.InvokeAsync<IJSObjectReference>("import",
+                "./scripts.js");
+        }
+    }
+
+    private async Task TriggerPrompt()
+    {
+        result = await Prompt("Provide some text");
+    }
+
+    public async ValueTask<string> Prompt(string message) =>
+        module is not null ?
+            await module.InvokeAsync<string>("showPrompt", message) : null;
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (module is not null)
+        {
+            await module.DisposeAsync();
         }
     }
 }
@@ -271,6 +317,23 @@ private async Task<string> ReadData()
 
     return await reader.ReadToEndAsync();
 }
+```
+
+[Collocated JavaScript files](xref:blazor/js-interop/index#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) are also accessible at logical subpaths of `wwwroot`. Instead of using the script described earlier for the `showPrompt` function in `wwwroot/scripts.js`, the following collocated JavaScript file for the `StaticAssetExample2` component also makes the function available.
+
+`Pages/StaticAssetExample2.razor.js`:
+
+```javascript
+export function showPrompt(message) {
+  return prompt(message, 'Type anything here');
+}
+```
+
+Modify the module object reference in the `StaticAssetExample2` component to use the collocated JavaScript file path (`./Pages/StaticAssetExample2.razor.js`):
+
+```csharp
+module = await JS.InvokeAsync<IJSObjectReference>("import", 
+    "./Pages/StaticAssetExample2.razor.js");
 ```
 
 ## Trademarks
