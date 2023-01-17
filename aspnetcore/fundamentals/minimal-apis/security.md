@@ -37,7 +37,7 @@ Typically, a specific authentication strategy is used. In the following sample, 
 
 By default, the [`WebApplication`](/dotnet/api/microsoft.aspnetcore.builder.webapplication) automatically registers the authentication and authorization middlewares if certain authentication and authorization services are enabled. In the following sample, it's not necessary to invoke [`UseAuthentication`](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication) or [`UseAuthorization`](/dotnet/api/microsoft.aspnetcore.builder.authorizationappbuilderextensions.useauthorization) to register the middlewares because [`WebApplication`](/dotnet/api/microsoft.aspnetcore.builder.webapplication) does this automatically after `AddAuthentication` or `AddAuthorization` are called.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_jwt2" highlight="2":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_jwt2" highlight="8-10":::
 
 In some cases, such as controlling middleware order, it's necessary to explicitly register authentication and authorization. In the following sample, the authentication middleware runs _after_ the CORS middleware has run. For more information on middlewares and this automatic behavior, see [Middleware in Minimal API apps](/aspnet/core/fundamentals/minimal-apis/middleware).
 
@@ -101,16 +101,16 @@ In the following code, <xref:Microsoft.Extensions.DependencyInjection.PolicyServ
 - Adds authorization-related services to the DI container.
 - Returns an <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder> that can be used to directly register authentication policies.
 
-The code creates a new authorization policy, named `policy_greetings`, that encapsulate two authorization requirements:
+The code creates a new authorization policy, named `policy_greetings`, that encapsulates two authorization requirements:
 
 - A role-based requirement for users in the `admin` role.
-- A claim-based requirement that the user provide a `greetings_api` scope.
+- A claim-based requirement via <xref:Microsoft.Identity.Web.PolicyBuilderExtensions.RequireScope%2A> that the user must provide a `greetings_api` scope.
 
 The `admin_greetings` policy is provided as a required policy to the `/hello` endpoint.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_greet" highlight="5":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_greet" highlight="3,11-12":::
 
-## Using `dotnet user-jwts` to improve development time testing
+## Use `dotnet user-jwts` for development testing
 
 Throughout this article, an app configured with JWT-bearer based authentication is used. JWT bearer-based authentication requires that clients present a token in the request header to validate their identity and claims. Typically, these tokens are issued by a central authority, such as an identity server.
 
