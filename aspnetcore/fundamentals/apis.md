@@ -39,7 +39,7 @@ Minimal APIs have many of the same capabilities as controller-based APIs. They s
 
 ## See also
 
-<xref:web-api/index>.
-<xref:tutorials/first-web-api>
-<xref:fundamentals/minimal-apis/overview>
-<xref:tutorials/min-web-api>
+* <xref:web-api/index>.
+* <xref:tutorials/first-web-api>
+* <xref:fundamentals/minimal-apis/overview>
+* <xref:tutorials/min-web-api>
