@@ -39,7 +39,7 @@ For apps with controllers, apply the `[OutputCache]` attribute to the action met
 
 ## Configure multiple endpoints or pages
 
-Create *policies* when calling `AddOutputCaching` to specify caching configuration that applies to multiple endpoints. A policy can be selected for specific endpoints, while a base policy provides default caching configuration for a collection of endpoints.
+Create *policies* when calling `AddOutputCache` to specify caching configuration that applies to multiple endpoints. A policy can be selected for specific endpoints, while a base policy provides default caching configuration for a collection of endpoints.
 
 The following highlighted code configures caching for all of the app's endpoints, with expiration time of 10 seconds. If an expiration time isn't specified,  it defaults to one minute.
 
