@@ -246,13 +246,25 @@ It's often convenient to close over additional values using C# method parameters
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor" highlight="10,19":::
 
-> [!NOTE]
-> Do **not** use a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Always capture the variable's value in a local variable and then use it. In the preceding example:
->
-> * The loop variable `i` is assigned to `buttonNumber`.
-> * `buttonNumber` is used in the lambda expression.
-
 Creating a large number of event delegates in a loop may cause poor rendering performance. For more information, see <xref:blazor/performance#avoid-recreating-delegates-for-many-repeated-elements-or-components>.
+
+Avoid using a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Capture the variable's value in a local variable. In the preceding example:
+
+* The loop variable `i` is assigned to `buttonNumber`.
+* `buttonNumber` is used in the lambda expression.
+
+Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>, which doesn't suffer from the preceding problem:
+
+```razor
+@foreach (var buttonNumber in Enumerable.Range(1,3))
+{
+    <p>
+        <button @onclick="@(e => UpdateHeading(e, buttonNumber))">
+            Button #@buttonNumber
+        </button>
+    </p>
+}
+```
 
 ## EventCallback
 
@@ -571,13 +583,25 @@ It's often convenient to close over additional values using C# method parameters
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor" highlight="10,19":::
 
-> [!NOTE]
-> Do **not** use a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Always capture the variable's value in a local variable and then use it. In the preceding example:
->
-> * The loop variable `i` is assigned to `buttonNumber`.
-> * `buttonNumber` is used in the lambda expression.
-
 Creating a large number of event delegates in a loop may cause poor rendering performance. For more information, see <xref:blazor/performance#avoid-recreating-delegates-for-many-repeated-elements-or-components>.
+
+Avoid using a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Capture the variable's value in a local variable. In the preceding example:
+
+* The loop variable `i` is assigned to `buttonNumber`.
+* `buttonNumber` is used in the lambda expression.
+
+Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>, which doesn't suffer from the preceding problem:
+
+```razor
+@foreach (var buttonNumber in Enumerable.Range(1,3))
+{
+    <p>
+        <button @onclick="@(e => UpdateHeading(e, buttonNumber))">
+            Button #@buttonNumber
+        </button>
+    </p>
+}
+```
 
 ## EventCallback
 
@@ -743,13 +767,25 @@ It's often convenient to close over additional values using C# method parameters
 
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor" highlight="10,19":::
 
-> [!NOTE]
-> Do **not** use a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Always capture the variable's value in a local variable and then use it. In the preceding example:
->
-> * The loop variable `i` is assigned to `buttonNumber`.
-> * `buttonNumber` is used in the lambda expression.
-
 Creating a large number of event delegates in a loop may cause poor rendering performance. For more information, see <xref:blazor/performance#avoid-recreating-delegates-for-many-repeated-elements-or-components>.
+
+Avoid using a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Capture the variable's value in a local variable. In the preceding example:
+
+* The loop variable `i` is assigned to `buttonNumber`.
+* `buttonNumber` is used in the lambda expression.
+
+Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>, which doesn't suffer from the preceding problem:
+
+```razor
+@foreach (var buttonNumber in Enumerable.Range(1,3))
+{
+    <p>
+        <button @onclick="@(e => UpdateHeading(e, buttonNumber))">
+            Button #@buttonNumber
+        </button>
+    </p>
+}
+```
 
 ## EventCallback
 
@@ -915,13 +951,25 @@ It's often convenient to close over additional values using C# method parameters
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample5.razor" highlight="10,19":::
 
-> [!NOTE]
-> Do **not** use a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Always capture the variable's value in a local variable and then use it. In the preceding example:
->
-> * The loop variable `i` is assigned to `buttonNumber`.
-> * `buttonNumber` is used in the lambda expression.
-
 Creating a large number of event delegates in a loop may cause poor rendering performance. For more information, see <xref:blazor/performance#avoid-recreating-delegates-for-many-repeated-elements-or-components>.
+
+Avoid using a loop variable directly in a lambda expression, such as `i` in the preceding `for` loop example. Otherwise, the same variable is used by all lambda expressions, which results in use of the same value in all lambdas. Capture the variable's value in a local variable. In the preceding example:
+
+* The loop variable `i` is assigned to `buttonNumber`.
+* `buttonNumber` is used in the lambda expression.
+
+Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range%2A?displayProperty=nameWithType>, which doesn't suffer from the preceding problem:
+
+```razor
+@foreach (var buttonNumber in Enumerable.Range(1,3))
+{
+    <p>
+        <button @onclick="@(e => UpdateHeading(e, buttonNumber))">
+            Button #@buttonNumber
+        </button>
+    </p>
+}
+```
 
 ## EventCallback
 
