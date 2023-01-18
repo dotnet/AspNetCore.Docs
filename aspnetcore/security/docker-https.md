@@ -49,7 +49,7 @@ Use the following instructions for your operating system configuration.
 
 ### Windows using Linux containers
 
-Generate certificate and configure local machine:
+Generate a certificate and configure the local machine:
 
 ```dotnetcli
 dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p <CREDENTIAL_PLACEHOLDER>
