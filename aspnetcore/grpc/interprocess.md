@@ -46,9 +46,9 @@ gRPC calls between a client and server on different machines are usually sent ov
 
 Support for other IPC technologies can be implemented using the extensibility in Kestrel and `SocketsHttpHandler`.
 
-# Configure client and server
+## Configure client and server
 
-Instructions for configuring Kestrel and SocketsHttpHandler to use IPC:
+Configuring a client and server depends on the IPC transport used. Instructions for configuring Kestrel and SocketsHttpHandler to use IPC:
 
 * [Inter-process communication with gRPC and Unix domain sockets](xref:grpc/interprocess-uds)
 * [Inter-process communication with gRPC and Named pipes](xref:grpc/interprocess-namedpipes)
