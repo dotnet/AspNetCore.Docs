@@ -42,7 +42,7 @@ The preceding example:
 
 * Configures Kestrel's endpoints in `ConfigureKestrel`.
 * Calls `ListenNamedPipe()` to listen to a named pipe with the specified name.
-* Creates a UDS endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
+* Creates a named pipe endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
 
 ### Client configuration
 
@@ -51,28 +51,33 @@ The preceding example:
 Named pipes connection factory example:
 
 ```csharp
-public class UnixDomainSocketConnectionFactory
+public class NamedPipeConnectionFactory
 {
-    private readonly EndPoint _endPoint;
+    private readonly string _pipeName;
 
-    public UnixDomainSocketConnectionFactory(EndPoint endPoint)
+    public NamedPipeConnectionFactory(string pipeName)
     {
-        _endPoint = endPoint;
+        _pipeName = pipeName;
     }
 
     public async ValueTask<Stream> ConnectAsync(SocketsHttpConnectionContext _,
         CancellationToken cancellationToken = default)
     {
-        var socket = new Socket(AddressFamily.Unix, SocketType.Stream, ProtocolType.Unspecified);
+        var clientStream = new NamedPipeClientStream(
+            serverName: ".",
+            pipeName: _pipeName,
+            direction: PipeDirection.InOut,
+            options: PipeOptions.WriteThrough | PipeOptions.Asynchronous,
+            impersonationLevel: TokenImpersonationLevel.Anonymous);
 
         try
         {
-            await socket.ConnectAsync(_endPoint, cancellationToken).ConfigureAwait(false);
-            return new NetworkStream(socket, true);
+            await clientStream.ConnectAsync(cancellationToken).ConfigureAwait(false);
+            return clientStream;
         }
         catch
         {
-            socket.Dispose();
+            clientStream.Dispose();
             throw;
         }
     }
@@ -84,8 +89,7 @@ Using the custom connection factory to create a channel:
 ```csharp
 public static GrpcChannel CreateChannel()
 {
-    var udsEndPoint = new UnixDomainSocketEndPoint(SocketPath);
-    var connectionFactory = new UnixDomainSocketConnectionFactory(udsEndPoint);
+    var connectionFactory = new NamedPipeConnectionFactory("MyPipeName");
     var socketsHttpHandler = new SocketsHttpHandler
     {
         ConnectCallback = connectionFactory.ConnectAsync
@@ -98,4 +102,4 @@ public static GrpcChannel CreateChannel()
 }
 ```
 
-Channels created using the preceding code send gRPC calls over Named pipes.
+Channels created using the preceding code send gRPC calls over named pipes.
