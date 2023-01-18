@@ -11,7 +11,7 @@ uid: grpc/interprocess
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-Apps on the same machine can be designed to communicate with each other. Operating systems provide technologies for enabling fast and efficient [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication). Popular examples of IPC technologies are named pipes and Unix domain sockets.
+Apps on the same machine can be designed to communicate with each other. Operating systems provide technologies for enabling fast and efficient [inter-process communication (IPC)](https://wikipedia.org/wiki/Inter-process_communication). Popular examples of IPC technologies are Unix domain sockets and Named pipes.
 
 .NET provides support for inter-process communication using gRPC.
 
@@ -19,13 +19,13 @@ Apps on the same machine can be designed to communicate with each other. Operati
 
 gRPC calls are sent from a client to a server. To communicate between apps on a machine with gRPC, at least one app must host an ASP.NET Core gRPC server.
 
-An ASP.NET Core gRPC server is usually create from the gRPC template.
+An ASP.NET Core gRPC server is usually create from the gRPC template. The project file created by the template uses `Microsoft.NET.SDK.Web` as the SDK:
 
 [!code-xml[](~/grpc/interprocess/Server-web.csproj?highlight=1)]
 
-The SDK value of `Microsoft.NET.SDK.Web` automatically adds a reference to the ASP.NET Core framework.
+The `Microsoft.NET.SDK.Web` SDK value automatically adds a reference to the ASP.NET Core framework. The reference allows the app to use ASP.NET Core types, which is required to host a server.
 
-ASP.NET Core and gRPC can be added to other project types, such as a console, WinForms or WPF app, by adding the `Microsoft.AspNetCore.App` framework to the project.
+ASP.NET Core and gRPC can be added to other project types, by adding the `Microsoft.AspNetCore.App` framework to the project.
 
 [!code-xml[](~/grpc/interprocess/Server.csproj?highlight=4-6)]
 
@@ -48,7 +48,7 @@ Support for other IPC technologies can be implemented using the extensibility in
 
 ## Configure client and server
 
-Configuring a client and server depends on the IPC transport used. Instructions for configuring Kestrel and SocketsHttpHandler to use IPC:
+The client and server must be configured to use an IPC transport. For more information about configuring Kestrel and `SocketsHttpHandler` to use IPC, sees:
 
 * [Inter-process communication with gRPC and Unix domain sockets](xref:grpc/interprocess-uds)
 * [Inter-process communication with gRPC and Named pipes](xref:grpc/interprocess-namedpipes)
