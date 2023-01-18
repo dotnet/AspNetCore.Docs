@@ -37,16 +37,6 @@ ASP.NET Core Identity isn't related to the [Microsoft identity platform](/azure/
 
 [View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/sample) ([how to download](xref:index#how-to-download-a-sample)).
 
-<a name="iss"></a>
-
-## ISecurityStampValidator and SignOut everywhere
-
-Apps need to react to user or application events involving security sensitive actions by regenerating the users <xref:System.Security.Claims.ClaimsPrincipal>. For example, the `ClaimsPrincipal` should be regenerated when joining a role, changing the password, or other security sensitive events. Identity uses the <xref:Microsoft.AspNetCore.Identity.ISecurityStampValidator> interface to regenerate the `ClaimsPrincipal`.  The default implementation of Identity registers a SecurityStampValidator with the main application cookie, as well as the two factor cookie.  The validator hooks into the `OnValidatePrincipal` event of each cookie to call into Identity to verify that the user's SecurityStamp claim is unchanged from what's stored in the cookie, at regular intervals (tradeoff between hitting the database and stale claims). Whenever your app wants to force existing cookies to be invalid the next time they are checked, simply call `userManager.UpdateSecurityStampAsync(user)`, this is what most of the Identity UI account/manage pages do after changing the password/adding a login. This is also how apps can easily implement a SignOut everywhere action.
-
-Changing the validation interval can be done via:
-
-:::code language="csharp" source="~/security\authentication\identity\sample\Program.cs" highlight="17-19":::
-
 <a name="adi"></a>
 
 ## Create a Web app with authentication
