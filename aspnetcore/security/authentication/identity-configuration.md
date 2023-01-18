@@ -12,6 +12,8 @@ uid: security/authentication/identity-configuration
 
 :::moniker range=">= aspnetcore-6.0"
 
+By [Damien Bowden](https://twitter.com/damien_bod)
+
 ASP.NET Core Identity uses default values for settings such as password policy, lockout, and cookie configuration. These settings can be overridden at application startup.
 
 ## Identity options
@@ -114,6 +116,8 @@ The following code sets `SignIn` settings (to default values):
 | <xref:Microsoft.AspNetCore.Identity.UserOptions.AllowedUserNameCharacters%2A> | Allowed characters in the username. | abcdefghijklmnopqrstuvwxyz<br>ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>0123456789<br>-.\_@+ |
 | <xref:Microsoft.AspNetCore.Identity.UserOptions.RequireUniqueEmail%2A> | Requires each user to have a unique email. | `false` |
 
+<a name="cs6"></a>
+
 ### Cookie settings
 
 Configure the app's cookie in `Program.cs`. [ConfigureApplicationCookie](xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})) must be called **after** calling `AddIdentity` or `AddDefaultIdentity`.
@@ -146,11 +150,11 @@ builder.Services.Configure<PasswordHasherOptions>(option =>
 
 [!INCLUDE[](~/includes/requireAuth.md)]
 
-<a name="iss"></a>
+<a name="iss6"></a>
 
 ## ISecurityStampValidator and SignOut everywhere
 
-Apps need to react to events involving security sensitive actions by regenerating the users <xref:System.Security.Claims.ClaimsPrincipal>. For example, the `ClaimsPrincipal` should be regenerated when joining a role, changing the password, or other security sensitive events. Identity uses the <xref:Microsoft.AspNetCore.Identity.ISecurityStampValidator> interface to regenerate the `ClaimsPrincipal`.  The default implementation of Identity registers a SecurityStampValidator with the main application cookie, as well as the two factor cookie.  The validator hooks into the `OnValidatePrincipal` event of each cookie to call into Identity to verify that the user's SecurityStamp claim is unchanged from what's stored in the cookie, at regular intervals (tradeoff between hitting the database and stale claims). Whenever your app wants to force existing cookies to be invalid the next time they are checked, simply call `userManager.UpdateSecurityStampAsync(user)`, this is what most of the Identity UI account/manage pages do after changing the password/adding a login. This is also how apps can easily implement a SignOut everywhere action.
+Apps need to react to events involving security sensitive actions by regenerating the users <xref:System.Security.Claims.ClaimsPrincipal>. For example, the `ClaimsPrincipal` should be regenerated when joining a role, changing the password, or other security sensitive events. Identity uses the <xref:Microsoft.AspNetCore.Identity.ISecurityStampValidator> interface to regenerate the `ClaimsPrincipal`.  The default implementation of Identity registers a [SecurityStampValidator](/dotnet/api/microsoft.aspnetcore.identity.securitystampvalidator) with the main [application cookie](#cs6) and the two-factor cookie. The validator hooks into the <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal> event of each cookie to call into Identity to verify that the user's security stamp claim is unchanged from what's stored in the cookie. The validator calls in at regular intervals. The call interval is a tradeoff between hitting the datastore too frequently and not often enough. Checking with a long interval results in stale claims. Call `userManager.UpdateSecurityStampAsync(user)`to force existing cookies to be invalided the next time they are checked. Most of the Identity UI account and manage pages call `userManager.UpdateSecurityStampAsync(user)` after changing the password or adding a login. Apps can call `userManager.UpdateSecurityStampAsync(user)` to implement a sign out everywhere action.
 
 Changing the validation interval is shown in the following highlighted code:
 
