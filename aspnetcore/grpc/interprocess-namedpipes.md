@@ -11,7 +11,9 @@ uid: grpc/interprocess-namedpipes
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-[Named pipes](https://wikipedia.org/wiki/Named_pipe) supports all versions of Windows. Named pipes integrate well with [Windows security](/windows/win32/ipc/named-pipe-security-and-access-rights) to control client access to the pipe.
+.NET supports inter-process communication (IPC) using gRPC. For more information about getting started with using gRPC to communicate between processes, see [Inter-process communication with gRPC](xref:grpc/interprocess).
+
+[Named pipes](https://wikipedia.org/wiki/Named_pipe) is an IPC transport that is supported on all versions of Windows. Named pipes integrate well with [Windows security](/windows/win32/ipc/named-pipe-security-and-access-rights) to control client access to the pipe. This article discusses how to configure gRPC communication over named pipes.
 
 Requirements:
 
@@ -51,11 +53,11 @@ The preceding example:
 Named pipes connection factory example:
 
 ```csharp
-public class NamedPipeConnectionFactory
+public class NamedPipesConnectionFactory
 {
     private readonly string _pipeName;
 
-    public NamedPipeConnectionFactory(string pipeName)
+    public NamedPipesConnectionFactory(string pipeName)
     {
         _pipeName = pipeName;
     }
@@ -89,7 +91,7 @@ Using the custom connection factory to create a channel:
 ```csharp
 public static GrpcChannel CreateChannel()
 {
-    var connectionFactory = new NamedPipeConnectionFactory("MyPipeName");
+    var connectionFactory = new NamedPipesConnectionFactory("MyPipeName");
     var socketsHttpHandler = new SocketsHttpHandler
     {
         ConnectCallback = connectionFactory.ConnectAsync
