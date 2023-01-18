@@ -16,7 +16,7 @@ ASP.NET Core supports creating web APIs using controllers or using minimal APIs.
 
 ## ControllerBase class
 
-A controller based web API consists of one or more controller classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. The web API project template provides a starter controller:
+A controller-based web API consists of one or more controller classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. The web API project template provides a starter controller:
 
 [!code-csharp[](index/samples/6.x/Controllers/WeatherForecastController.cs?name=snippet_ControllerSignature&highlight=3)]
 
@@ -109,7 +109,7 @@ ASP.NET Core MVC uses the <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ModelSta
 
 ### Default BadRequest response
 
-The following request body is an example of the serialized type:
+The following response body is an example of the serialized type:
 
 ```json
 {
@@ -119,7 +119,7 @@ The following request body is an example of the serialized type:
 }
 ```
 
-The default response type for an HTTP 400 response is <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The following request body is an example of the serialized type:
+The default response type for an HTTP 400 response is <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The following response body is an example of the serialized type:
 
 ```json
 {
@@ -168,7 +168,6 @@ A binding source attribute defines the location at which an action parameter's v
 |[`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)   | Request query string parameter |
 |[`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)   | Route data from the current request |
 |[`[FromServices]`](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) | The request service injected as an action parameter |
-|[`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) | [Method parameters](xref:fundamentals/minimal-apis#asparam7) |
 
 > [!WARNING]
 > Don't use `[FromRoute]` when values might contain `%2f` (that is `/`). `%2f` won't be unescaped to `/`. Use `[FromQuery]` if the value might contain `%2f`.
