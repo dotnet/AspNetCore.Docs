@@ -84,7 +84,8 @@ private void Handle_UrlLoading(object sender,
 {
     if (urlLoadingEventArgs.Url.Host != "0.0.0.0")
     {
-        urlLoadingEventArgs.UrlLoadingStrategy = UrlLoadingStrategy.OpenInWebView;
+        urlLoadingEventArgs.UrlLoadingStrategy = 
+            UrlLoadingStrategy.OpenInWebView;
     }
 }
 ```
