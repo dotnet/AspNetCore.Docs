@@ -137,7 +137,7 @@ Use `apt-get` to install Apache. Follow the installation instructions for Ubuntu
 
 Use `yum-utils` to select and install an Apache module stream. Follow the installation instructions for Red Hat Enterprise Linux at [Apache: Compiling and Installing](https://httpd.apache.org/docs/current/install.html).
 
-Enable and start Apache using the following commands:
+Once Apache is installed, enable and start Apache using the following commands:
 
 ```bash
 sudo systemctl enable httpd
@@ -155,7 +155,9 @@ sudo systemctl status httpd
 
 # [SUSE Linux Enterprise Server](#tab/linux-sles)
 
-Use YaST to install a standard configuration. Follow the installation instructions at [SLES Documentation: Apache Quick Start](https://documentation.suse.com/sles/15-SP1/html/SLES-all/cha-apache2.html#sec-apache2-quickstart).
+Use YaST to install a standard Apache configuration. Follow the installation instructions at [SLES Documentation: Apache Quick Start](https://documentation.suse.com/sles/15-SP1/html/SLES-all/cha-apache2.html#sec-apache2-quickstart).
+
+Once Apache is installed, enable and start Apache using the following commands:
 
 ```bash
 sudo systemctl enable httpd
@@ -170,6 +172,8 @@ sudo systemctl status httpd
 
 > [!NOTE]
 > To verify where Apache is installed, run `whereis httpd` from a command prompt.
+
+---
 
 ### Configure Apache
 
