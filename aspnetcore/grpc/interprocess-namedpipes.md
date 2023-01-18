@@ -41,7 +41,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 The preceding example:
 
 * Configures Kestrel's endpoints in `ConfigureKestrel`.
-* Calls <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenNamedPipe%2A> to listen to a named pipe with the specified name.
+* Calls `ListenNamedPipe()` to listen to a named pipe with the specified name.
 * Creates a UDS endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
 
 ### Client configuration

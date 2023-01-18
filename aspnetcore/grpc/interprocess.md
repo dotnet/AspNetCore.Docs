@@ -35,18 +35,20 @@ The preceding project file:
 * Adds a NuGet package reference to [`Grpc.AspNetCore`](https://www.nuget.org/packages/Grpc.AspNetCore).
 * Adds a `.proto` file.
 
-## Choose IPC transport
+## Inter-process communication transports
 
 gRPC calls between a client and server on different machines are usually sent over TCP sockets. TCP was designed for communicating across a network. .NET provides built-in support for transports that are optimized for IPC.
 
 .NET provides built-in support for two IPC transports:
 
 * [Unix domain sockets](https://wikipedia.org/wiki/Unix_domain_socket) is a widely supported IPC technology that's more efficient than TCP when the client and server are on the same machine. UDS can be used on Linux, macOS and [Windows 10/Windows Server 2019 or later](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/).
-
-  For more information, see [Inter-process communication with gRPC and Unix domain sockets]().
-
 * [Named pipes](https://wikipedia.org/wiki/Named_pipe) are supported by all versions of Windows. Named pipes integrate well with [Windows security](/windows/win32/ipc/named-pipe-security-and-access-rights) to control client access to the pipe.
 
-  For more information, see [Inter-process communication with gRPC and Named pipes]().
-
 Support for other IPC technologies can be implemented using the extensibility in Kestrel and `SocketsHttpHandler`.
+
+# Configure client and server
+
+Instructions for configuring Kestrel and SocketsHttpHandler to use IPC:
+
+* [Inter-process communication with gRPC and Unix domain sockets](xref:grpc/interprocess-uds)
+* [Inter-process communication with gRPC and Named pipes](xref:grpc/interprocess-namedpipes)
