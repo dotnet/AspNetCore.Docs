@@ -1509,6 +1509,64 @@ const rootComponent = await window.Blazor.rootComponents.add(...);
 rootComponent.dispose();
 ```
 
+<xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> includes an overload that accepts a JS function to register the custom element (`javaScriptInitializer`). The following example demonstrates the dynamic registration of a component that renders a quote.
+
+> [!IMPORTANT]
+> Don't confuse the `javaScriptInitializer` parameter of <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> with [JavaScript initializers](xref:blazor/fundamentals/startup#javascript-initializers). The name of the parameter and the JS initializers feature is coincidental.
+
+`Shared/Quote.razor`:
+
+```razor
+<div id="quoteDiv" class="m-5 p-5">
+    <h2>Quote</h2>
+    <p>@Text</p>
+</div>
+
+@code {
+    [Parameter]
+    public string? Text { get; set; }
+}
+```
+
+Blazor Server (`Program.cs`):
+
+```csharp
+options.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
+    javaScriptInitializer: "initializeComponent");
+```
+
+Blazor WebAssembly (`Program.cs`):
+
+```csharp
+builder.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
+    javaScriptInitializer: "initializeComponent");
+```
+
+In HTML:
+
+```html
+<button onclick="showQuote()">Show Quote</button>
+
+<div id="quoteContainer"></div>
+
+<script>
+  async function showQuote() {
+    let targetElement = document.getElementById('quoteContainer');
+    await Blazor.rootComponents.add(targetElement, 'quote', 
+    {
+        text: "Crow: I have my doubts that this movie is actually 'starring' " +
+        "anybody. More like, 'camera is generally pointed at.'"
+    });
+  }
+
+  async function initializeComponent() {
+    console.log("initializeComponent called!");
+  }
+</script>
+```
+
+Quote &copy;1988-1999 Satellite of Love LLC: [*Mystery Science Theater 3000*](https://mst3k.com/) ([Trace Beaulieu (Crow)](https://www.imdb.com/name/nm0064546/))
+
 ## Blazor custom elements
 
 Use Blazor custom elements to dynamically render Razor components from other SPA frameworks, such as Angular or React.
@@ -3177,6 +3235,64 @@ const rootComponent = await window.Blazor.rootComponents.add(...);
 
 rootComponent.dispose();
 ```
+
+<xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> includes an overload that accepts a JS function to register the custom element (`javaScriptInitializer`). The following example demonstrates the dynamic registration of a component that renders a quote.
+
+> [!IMPORTANT]
+> Don't confuse the `javaScriptInitializer` parameter of <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> with [JavaScript initializers](xref:blazor/fundamentals/startup#javascript-initializers). The name of the parameter and the JS initializers feature is coincidental.
+
+`Shared/Quote.razor`:
+
+```razor
+<div id="quoteDiv" class="m-5 p-5">
+    <h2>Quote</h2>
+    <p>@Text</p>
+</div>
+
+@code {
+    [Parameter]
+    public string? Text { get; set; }
+}
+```
+
+Blazor Server (`Program.cs`):
+
+```csharp
+options.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
+    javaScriptInitializer: "initializeComponent");
+```
+
+Blazor WebAssembly (`Program.cs`):
+
+```csharp
+builder.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
+    javaScriptInitializer: "initializeComponent");
+```
+
+In HTML:
+
+```html
+<button onclick="showQuote()">Show Quote</button>
+
+<div id="quoteContainer"></div>
+
+<script>
+  async function showQuote() {
+    let targetElement = document.getElementById('quoteContainer');
+    await Blazor.rootComponents.add(targetElement, 'quote', 
+    {
+        text: "Crow: I have my doubts that this movie is actually 'starring' " +
+        "anybody. More like, 'camera is generally pointed at.'"
+    });
+  }
+
+  async function initializeComponent() {
+    console.log("initializeComponent called!");
+  }
+</script>
+```
+
+Quote &copy;1988-1999 Satellite of Love LLC: [*Mystery Science Theater 3000*](https://mst3k.com/) ([Trace Beaulieu (Crow)](https://www.imdb.com/name/nm0064546/))
 
 ## Blazor custom elements
 
