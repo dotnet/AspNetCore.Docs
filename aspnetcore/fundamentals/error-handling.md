@@ -48,8 +48,8 @@ To configure a custom error handling page for the [Production environment](xref:
 
 Since this middleware can re-execute the request pipeline:
 
-* Middlewares need to handle reentrancy with the same request. Handling reentrancy normally means either cleaning up their state after calling `_next` or caching their processing on the `HttpContext` to avoid redoing it. When dealing with the request body, this either means buffering or caching the results like the Form reader.
-* For the <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)> overload that is used in templates, only the request path is modified, and the route data is cleared. Request headers, method, items, and the rest are all reused as-is.
+* Middlewares need to handle reentrancy with the same request. This normally means either cleaning up their state after calling `_next` or caching their processing on the `HttpContext` to avoid redoing it. When dealing with the request body, this either means buffering or caching the results like the Form reader.
+* For the <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)> overload that is used in templates, only the request path is modified, and the route data is cleared. Request data such as headers, method, and items are all reused as-is.
 * Scoped services remain the same.
 
 In the following example, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> adds the exception handling middleware in non-Development environments:
@@ -296,7 +296,7 @@ In non-development environments, when an exception occurs, the following is a st
 }
 ```
 
-For most apps, the preceding code is all that's needed for exceptions, however, the following section shows how to get more detailed problem responses.
+For most apps, the preceding code is all that's needed for exceptions. However, the following section shows how to get more detailed problem responses.
 
 An alternative to a [custom exception handler page](xref:fundamentals/error-handling#exception-handler-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. Using a lambda allows access to the error and writing a problem details response with [`IProblemDetailsService.WriteAsync`](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true):
 
@@ -305,7 +305,7 @@ An alternative to a [custom exception handler page](xref:fundamentals/error-hand
 > [!WARNING]
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
 
-An alternative approach to generate problem details is to use the 3rd party Nuget package [Hellang.Middleware.ProblemDetails](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) that can be used to map exceptions and client errors to problem details.
+An alternative approach to generate problem details is to use the third-party NuGet package [Hellang.Middleware.ProblemDetails](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) that can be used to map exceptions and client errors to problem details.
 
 ## Additional resources
 
