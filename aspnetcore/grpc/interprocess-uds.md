@@ -25,25 +25,16 @@ By [James Newton-King](https://twitter.com/jamesnk)
 Unix domain sockets are supported by [Kestrel](xref:fundamentals/servers/kestrel), which is configured in `Program.cs`:
 
 ```csharp
-public static readonly string SocketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");
+var socketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");
 
-public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-            webBuilder.ConfigureKestrel(options =>
-            {
-                if (File.Exists(SocketPath))
-                {
-                    File.Delete(SocketPath);
-                }
-                options.ListenUnixSocket(SocketPath, listenOptions =>
-                {
-                    listenOptions.Protocols = HttpProtocols.Http2;
-                });
-            });
-        });
+var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenUnixSocket(SocketPath, listenOptions =>
+    {
+        listenOptions.Protocols = HttpProtocols.Http2;
+    });
+});
 ```
 
 The preceding example:
