@@ -164,6 +164,11 @@ The endpoint that processes the error can get the original URL that generated th
 
 :::code language="csharp" source="error-handling/samples/7.x/ErrorHandlingSample/Pages/StatusCode.cshtml.cs" id="snippet_Class" highlight="12-21":::
 
+Since this middleware can re-execute the request pipeline:
+
+* Middlewares need to handle reentrancy with the same request. This normally means either cleaning up their state after calling `_next` or caching their processing on the `HttpContext` to avoid redoing it. When dealing with the request body, this either means buffering or caching the results like the Form reader.
+* Scoped services remain the same.
+
 ## Disable status code pages
 
 To disable status code pages for an MVC controller or action method, use the [[SkipStatusCodePages]](xref:Microsoft.AspNetCore.Mvc.SkipStatusCodePagesAttribute) attribute.
