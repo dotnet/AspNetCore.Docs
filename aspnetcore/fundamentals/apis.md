@@ -9,7 +9,7 @@ uid: fundamentals/apis
 
 # Choose between controller-based APIs and minimal APIs
 
-ASP.NET Core supports two approaches to creating APIs: a controller-based approach and minimal APIs. *Controllers* in an API project are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. *Minimal APIs* are designed so that minimal code and configuration is required to create an API. This article points out differences between the two approaches.
+ASP.NET Core supports two approaches to creating APIs: a controller-based approach and minimal APIs. *Controllers* in an API project are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. *Minimal APIs* define endpoints with logical handlers in lambdas or methods. This article points out differences between the two approaches.
 
 The design of minimal APIs hides the host class by default and focuses on configuration and extensibility via extension methods that take functions as lambda expressions. Controllers are classes that can take dependencies via constructor injection or property injection, and generally follow object-oriented patterns. Minimal APIs support dependency injection through other approaches such as accessing the service provider.
 
