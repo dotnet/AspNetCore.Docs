@@ -68,6 +68,10 @@ Middleware execution order is set by the order of `IStartupFilter` registrations
 
 Note: You can't extend the ASP.NET Core app when you override `Configure`. For more informaton, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/45372).
 
+## Add configuration at startup from an external assembly
+
+An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows adding enhancements to an app at startup from an external assembly outside of the app's `Program.cs` file. For more information, see <xref:fundamentals/configuration/platform-specific-configuration>.
+
 :::moniker-end
 
 [!INCLUDE[](~/fundamentals/startup/includes/startup56.md)]
