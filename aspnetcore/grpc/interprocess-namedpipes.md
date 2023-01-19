@@ -55,11 +55,11 @@ Named pipes connection factory example:
 ```csharp
 public class NamedPipesConnectionFactory
 {
-    private readonly string _pipeName;
+    private readonly string pipeName;
 
     public NamedPipesConnectionFactory(string pipeName)
     {
-        _pipeName = pipeName;
+        this.pipeName = pipeName;
     }
 
     public async ValueTask<Stream> ConnectAsync(SocketsHttpConnectionContext _,
@@ -67,7 +67,7 @@ public class NamedPipesConnectionFactory
     {
         var clientStream = new NamedPipeClientStream(
             serverName: ".",
-            pipeName: _pipeName,
+            pipeName: this.pipeName,
             direction: PipeDirection.InOut,
             options: PipeOptions.WriteThrough | PipeOptions.Asynchronous,
             impersonationLevel: TokenImpersonationLevel.Anonymous);

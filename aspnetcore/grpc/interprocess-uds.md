@@ -59,13 +59,13 @@ The preceding example:
 Unix domain sockets connection factory example:
 
 ```csharp
-public class UnixDomainSocketConnectionFactory
+public class UnixDomainSocketsConnectionFactory
 {
-    private readonly EndPoint _endPoint;
+    private readonly EndPoint endPoint;
 
-    public UnixDomainSocketConnectionFactory(EndPoint endPoint)
+    public UnixDomainSocketsConnectionFactory(EndPoint endPoint)
     {
-        _endPoint = endPoint;
+        this.endPoint = endPoint;
     }
 
     public async ValueTask<Stream> ConnectAsync(SocketsHttpConnectionContext _,
@@ -75,7 +75,7 @@ public class UnixDomainSocketConnectionFactory
 
         try
         {
-            await socket.ConnectAsync(_endPoint, cancellationToken).ConfigureAwait(false);
+            await socket.ConnectAsync(this.endPoint, cancellationToken).ConfigureAwait(false);
             return new NetworkStream(socket, true);
         }
         catch
@@ -95,7 +95,7 @@ public static readonly string SocketPath = Path.Combine(Path.GetTempPath(), "soc
 public static GrpcChannel CreateChannel()
 {
     var udsEndPoint = new UnixDomainSocketEndPoint(SocketPath);
-    var connectionFactory = new UnixDomainSocketConnectionFactory(udsEndPoint);
+    var connectionFactory = new UnixDomainSocketsConnectionFactory(udsEndPoint);
     var socketsHttpHandler = new SocketsHttpHandler
     {
         ConnectCallback = connectionFactory.ConnectAsync
