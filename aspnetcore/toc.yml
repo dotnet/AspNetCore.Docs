@@ -704,7 +704,7 @@ items:
         items:
         - name: Overview
           uid: fundamentals/minimal-apis/overview
-        - name: "Tutorial: Create a minimal web API"
+        - name: "Tutorial: Create a minimal API"
           uid: tutorials/min-web-api
         - name: Minimal APIs quick reference
           uid: fundamentals/minimal-apis
