@@ -9,7 +9,7 @@ uid: fundamentals/apis
 
 # Choose between controller-based APIs and minimal APIs
 
-ASP.NET Core supports creating web APIs using controllers or using minimal APIs. *Controllers* in a web API project are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. *Minimal* refers to the minimal effort, code, and configuration that this approach requires for building fully functioning REST endpoints. This article points out differences between the two approaches.
+ASP.NET Core supports two approaches to creating APIs: a controller-based approach and minimal APIs. *Controllers* in a web API project are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. *Minimal APIs* are designed so that minimal code and configuration is required to create your API. This article points out differences between the two approaches.
 
 The design of minimal APIs hides the host class by default and focuses on configuration and extensibility via extension methods that take functions as lambda expressions. Controllers are classes that can take dependencies via constructor injection or property injection, and generally follow object-oriented patterns. Minimal APIs support dependency injection through other approaches such as accessing the service provider.
 
@@ -19,7 +19,7 @@ Here's sample code for an API based on controllers:
 
 :::code language="csharp" source="~/fundamentals/apis/APIWithControllers/Controllers/WeatherForecastController.cs":::
 
-And the following code provides the same functionality in a minimal API project. Notice that the minimal API puts code that  corresponds to the controller code in a lambda.
+The following code provides the same functionality in a minimal API project. Notice that the minimal API approach involves including the related code in lambda expressions.
 
 :::code language="csharp" source="~/fundamentals/apis/MinimalAPI/Program.cs":::
 
@@ -27,7 +27,7 @@ Both API projects refer to the following class:
 
 :::code language="csharp" source="~/fundamentals/apis/APIWithControllers/WeatherForecast.cs":::
 
-Minimal APIs have many of the same capabilities as controller-based APIs. They support the configuration and customization needed to scale to multiple APIs, handle complex routes, apply authorization rules, and control the content of API responses. There are a few capabilities that controller-based APIs have but minimal APIs lack:
+Minimal APIs have many of the same capabilities as controller-based APIs. They support the configuration and customization needed to scale to multiple APIs, handle complex routes, apply authorization rules, and control the content of API responses. There are a few capabilities available with controller-based APIs that are not yet supported or implemented by minimal APIs. These include:
 
 - No built-in support for model binding (<xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider>, <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder>). Support can be added with a custom binding shim.
 - No support for binding from forms. This includes binding <xref:Microsoft.AspNetCore.Http.IFormFile>.
