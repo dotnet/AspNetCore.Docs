@@ -175,7 +175,7 @@ Middleware execution order is set by the order of `IStartupFilter` registrations
 
 ## Add configuration at startup from an external assembly
 
-An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows adding enhancements to an app at startup from an external assembly outside of the app's `Startup` class. For more information, see <xref:fundamentals/configuration/platform-specific-configuration>.
+An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows adding enhancements to an app at startup from an external assembly outside of the app's `Startup` class. For more information, see <xref:fundamentals/configuration/platform-specific-configuration>. `IHostingStartup` works with <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder>.
 
 ## Additional resources
 
