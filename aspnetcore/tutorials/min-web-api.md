@@ -1,7 +1,7 @@
 ---
-title: "Tutorial: Create a minimal web API with ASP.NET Core"
+title: "Tutorial: Create a minimal API with ASP.NET Core"
 author: wadepickett
-description: Learn how to build a minimal web API with ASP.NET Core.
+description: Learn how to build a minimal API with ASP.NET Core.
 ms.author: wpickett
 ms.date: 10/23/2022
 ms.custom: engagement-fy23
@@ -9,7 +9,7 @@ monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
 ---
 
-# Tutorial: Create a minimal web API with ASP.NET Core
+# Tutorial: Create a minimal API with ASP.NET Core
 
 <!-- TODO: Remove aspnetcore\tutorials\min-web-api\samples\6.x -->
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://github.com/tdykstra)
@@ -18,7 +18,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Tom Dykstra](https://gi
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a minimal web API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help in choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a web API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+This tutorial teaches the basics of building a minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help in choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
 
 ## Overview
 
@@ -49,7 +49,7 @@ This tutorial creates the following API:
 
 ---
 
-## Create a Web API project
+## Create an API project
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -347,7 +347,7 @@ Use Postman to delete a to-do item:
 
 ## Use the MapGroup API
 
-The sample app code repeats the `todoitems` URL prefix each time it sets up an endpoint. Web APIs often have groups of endpoints with a common URL prefix, and the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> method is available to help organize such groups. It reduces repetitive code and allows for customizing entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A>.
+The sample app code repeats the `todoitems` URL prefix each time it sets up an endpoint. APIs often have groups of endpoints with a common URL prefix, and the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> method is available to help organize such groups. It reduces repetitive code and allows for customizing entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A>.
 
 Replace the contents of `Program.cs` with the following code:
 
@@ -436,7 +436,7 @@ For information on how to configure JSON serialization in your Minimal API apps,
 
 ### Handle errors and exceptions
 
-The [developer exception page](xref:web-api/handle-errors#developer-exception-page) is enabled by default in the development environment for minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core web APIs](xref:web-api/handle-errors).
+The [developer exception page](xref:web-api/handle-errors#developer-exception-page) is enabled by default in the development environment for minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core APIs](xref:web-api/handle-errors).
 
 ### Test minimal API apps
 
@@ -460,7 +460,7 @@ For more information about minimal API apps, see <xref:fundamentals/minimal-apis
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a minimal web API with ASP.NET Core. For a tutorial on creating a web API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api). For a comparison, see [Differences between minimal APIs and APIs with controllers](#diff-v6) in this document.
+This tutorial teaches the basics of building a minimal API with ASP.NET Core. For a tutorial on creating an API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api). For a comparison, see [Differences between minimal APIs and APIs with controllers](#diff-v6) in this document.
 
 ## Overview
 
@@ -494,7 +494,7 @@ This tutorial creates the following API:
 
 ---
 
-## Create a Web API project
+## Create a API project
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -572,7 +572,7 @@ The `Program.cs` file contains the following code:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_default)]
 
-The project template creates a `WeatherForecast` API with support for [Swagger](xref:tutorials/web-api-help-pages-using-swagger). Swagger is used to generate useful documentation and help pages for web APIs.
+The project template creates a `WeatherForecast` API with support for [Swagger](xref:tutorials/web-api-help-pages-using-swagger). Swagger is used to generate useful documentation and help pages for APIs.
 
 The following highlighted code adds support for Swagger:
 
@@ -649,7 +649,7 @@ Copy and paste the **Request URL** in the browser: `https://localhost:<port>/Wea
 
 ## Update the generated code
 
-This tutorial focuses on creating a web API, so we'll delete the Swagger code and the `WeatherForecast` code. Replace the contents of the `Program.cs` file with the following:
+This tutorial focuses on creating an API, so we'll delete the Swagger code and the `WeatherForecast` code. Replace the contents of the `Program.cs` file with the following:
 
 [!code-csharp[](min-web-api/samples/6.x/todo/Program.cs?name=snippet_min)]
 
