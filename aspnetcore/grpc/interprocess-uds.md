@@ -1,10 +1,10 @@
 ---
 title: Inter-process communication with gRPC and Unix domain sockets
 author: jamesnk
-description: Learn how to use gRPC for inter-process communication with Unix domain sockets
+description: Learn how to use gRPC for inter-process communication with Unix domain sockets.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: jamesnk
-ms.date: 08/08/2022
+ms.date: 01/18/2023
 uid: grpc/interprocess-uds
 ---
 # Inter-process communication with gRPC and Unix domain sockets
@@ -15,7 +15,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 [Unix domain sockets (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) is a widely supported IPC transport that's more efficient than TCP when the client and server are on the same machine. This article discusses how to configure gRPC communication over UDS.
 
-Requirements:
+## Prerequisites
 
 * .NET 5 or later
 * Linux, macOS, or [Windows 10/Windows Server 2019 or later](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/)
@@ -48,13 +48,13 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 The preceding example:
 
-* Configures Kestrel's endpoints in `ConfigureKestrel`.
+* Configures Kestrel's endpoints in <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel%2A>.
 * Calls <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket%2A> to listen to a UDS with the specified path.
 * Creates a UDS endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
 
-### Client configuration
+## Client configuration
 
-`GrpcChannel` supports making gRPC calls over custom transports. When a channel is created, it can be configured with a `SocketsHttpHandler` that has a custom `ConnectCallback`. The callback allows the client to make connections over custom transports and then send HTTP requests over that transport.
+`GrpcChannel` supports making gRPC calls over custom transports. When a channel is created, it can be configured with a <xref:System.Net.Http.SocketsHttpHandler> that has a custom <xref:System.Net.Http.SocketsHttpHandler.ConnectCallback>. The callback allows the client to make connections over custom transports and then send HTTP requests over that transport.
 
 Unix domain sockets connection factory example:
 

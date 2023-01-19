@@ -35,18 +35,18 @@ The preceding project file:
 * Adds a NuGet package reference to [`Grpc.AspNetCore`](https://www.nuget.org/packages/Grpc.AspNetCore).
 * Adds a `.proto` file.
 
-## Inter-process communication transports
+## Inter-process communication (IPC) transports
 
 gRPC calls between a client and server on different machines are usually sent over TCP sockets. TCP is a great choice for communicating across a network or the Internet. .NET supports multiple transports designed for IPC workloads.
 
-* [Unix domain sockets](https://wikipedia.org/wiki/Unix_domain_socket) is a widely supported IPC technology that's more efficient than TCP when the client and server are on the same machine. UDS is usable on Linux, macOS, and [Windows 10/Windows Server 2019 or later](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/).
+* [Unix domain sockets (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) is a widely supported IPC technology that's more efficient than TCP when the client and server are on the same machine. UDS is usable on Linux, macOS, and [Windows 10/Windows Server 2019 or later](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/).
 * [Named pipes](https://wikipedia.org/wiki/Named_pipe) are supported by all versions of Windows. Named pipes integrate well with [Windows security](/windows/win32/ipc/named-pipe-security-and-access-rights) to control client access to the pipe.
 
 Implement other IPC technologies using the extensibility in Kestrel and `SocketsHttpHandler`.
 
 ## Configure client and server
 
-The client and server must be configured to use an IPC transport. For more information about configuring Kestrel and `SocketsHttpHandler` to use IPC:
+The client and server must be configured to use an inter-process communication (IPC) transport. For more information about configuring Kestrel and <xref:System.Net.Http.SocketsHttpHandler> to use IPC:
 
 * [Inter-process communication with gRPC and Unix domain sockets](xref:grpc/interprocess-uds)
 * [Inter-process communication with gRPC and Named pipes](xref:grpc/interprocess-namedpipes)
