@@ -1528,30 +1528,22 @@ rootComponent.dispose();
 }
 ```
 
-Blazor Server (`Program.cs`):
-
-Add the namespace for the location of the component. The following example assumes that the `Quote` component is in the app's `Shared` folder, and the app's namespace is `BlazorSample`.
+In `Program.cs`, add the namespace for the location of the component. The following example assumes that the `Quote` component is in the app's `Shared` folder, and the app's namespace is `BlazorSample`:
 
 ```csharp
 using BlazorSample.Shared;
 ```
 
-Register the `Quote` component:
+In `Program.cs`, register the `Quote` component.
+
+Blazor Server:
 
 ```csharp
 options.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
     javaScriptInitializer: "initializeComponent");
 ```
 
-Blazor WebAssembly (`Program.cs`):
-
-Add the namespace for the location of the component. The following example assumes that the `Quote` component is in the app's `Shared` folder, and the app's namespace is `BlazorSample`.
-
-```csharp
-using BlazorSample.Shared;
-```
-
-Register the `Quote` component:
+Blazor WebAssembly:
 
 ```csharp
 builder.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
@@ -3271,30 +3263,22 @@ rootComponent.dispose();
 }
 ```
 
-Blazor Server (`Program.cs`):
-
-Add the namespace for the location of the component. The following example places the `Quote` component in the app's `Shared` folder, and the app's namespace is `BlazorSample`.
+In `Program.cs`, add the namespace for the location of the component. The following example assumes that the `Quote` component is in the app's `Shared` folder, and the app's namespace is `BlazorSample`:
 
 ```csharp
 using BlazorSample.Shared;
 ```
 
-Register the `Quote` component:
+In `Program.cs`, register the `Quote` component.
+
+Blazor Server:
 
 ```csharp
 options.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
     javaScriptInitializer: "initializeComponent");
 ```
 
-Blazor WebAssembly (`Program.cs`):
-
-Add the namespace for the location of the component. The following example assumes that the `Quote` component is in the app's `Shared` folder, and the app's namespace is `BlazorSample`.
-
-```csharp
-using BlazorSample.Shared;
-```
-
-Register the `Quote` component:
+Blazor WebAssembly:
 
 ```csharp
 builder.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
