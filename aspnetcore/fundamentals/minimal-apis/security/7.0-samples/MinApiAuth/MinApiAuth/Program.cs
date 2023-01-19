@@ -60,6 +60,8 @@ app.Run();
 // </snippet_local>
 #elif GREET
 // <snippet_greet>
+using Microsoft.Identity.Web;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddAuthorizationBuilder()
