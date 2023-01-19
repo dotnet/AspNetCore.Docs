@@ -5,7 +5,7 @@ description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 9/9/2021
+ms.date: 01/18/2023
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
@@ -45,6 +45,12 @@ To configure a custom error handling page for the [Production environment](xref:
 
 > [!WARNING]
 > If the alternate pipeline throws an exception of its own, Exception Handling Middleware rethrows the original exception.
+
+Since this middleware can re-execute the request pipeline:
+
+* Middlewares need to handle reentrancy with the same request. Handling reentrancy normally means either cleaning up their state after calling `_next` or caching their processing on the `HttpContext` to avoid redoing it. When dealing with the request body, this either means buffering or caching the results like the Form reader.
+* For the <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)> overload that is used in templates, only the request path is modified, and the route data is cleared. Request headers, method, items, and the rest are all reused as-is.
+* Scoped services remain the same.
 
 In the following example, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> adds the exception handling middleware in non-Development environments:
 
@@ -225,7 +231,7 @@ The next section shows how to customize the problem details response body.
 
 ### Customize problem details
 
-The automatic creation of a `ProblemDetails` can be customized using of the following options:
+The automatic creation of a `ProblemDetails` can be customized using any of the following options:
 
 1. Use [`ProblemDetailsOptions.CustomizeProblemDetails`](#customizeproblemdetails-operation)
 2. Use a custom [`IProblemDetailsWriter`](#custom-iproblemdetailswriter)
