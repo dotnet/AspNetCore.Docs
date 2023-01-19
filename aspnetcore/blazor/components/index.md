@@ -1432,7 +1432,7 @@ The following `GenericTypeExample5` component with inferred cascaded types provi
 
 ## Render static root Razor components
 
-A *root Razor component* is the first component loaded of any component hierarachy created by the app.
+A *root Razor component* is the first component loaded of any component hierarchy created by the app.
 
 In an app created from the Blazor Server project template, the `App` component (`App.razor`) is created as the default root component in `Pages/_Host.cshtml` using the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper):
 
@@ -3101,7 +3101,7 @@ The following `GenericTypeExample5` component with inferred cascaded types provi
 
 ## Render static root Razor components
 
-A *root Razor component* is the first component loaded of any component hierarachy created by the app.
+A *root Razor component* is the first component loaded of any component hierarchy created by the app.
 
 In an app created from the Blazor Server project template, the `App` component (`App.razor`) is created as the default root component in `Pages/_Host.cshtml` using the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper):
 
