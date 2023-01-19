@@ -160,18 +160,18 @@ Use YaST to install a standard Apache configuration. Follow the installation ins
 Once Apache is installed, enable and start Apache using the following commands:
 
 ```bash
-sudo systemctl enable httpd
-sudo systemctl start httpd
+sudo systemctl enable apache2
+sudo systemctl start apache2
 ```
 
 To verify Apache is active (running) use the following command:
 
 ```bash
-sudo systemctl status httpd
+sudo systemctl status apache2
 ```
 
 > [!NOTE]
-> To verify where Apache is installed, run `whereis httpd` from a command prompt.
+> To verify where Apache is installed, run `whereis apache2` from a command prompt.
 
 ---
 
@@ -179,23 +179,32 @@ sudo systemctl status httpd
 
 # [Ubuntu](#tab/linux-ubuntu)
 
-Configuration files for Apache are located within the `/etc/apache2/apache2.conf/` directory. In Apache on Ubuntu, all the virtual host configuration files are stored in `/etc/apache2/sites-available`. Any file with the *.conf* extension is processed in alphabetical order in addition to the module configuration files in `/etc/httpd/conf.modules.d/`, which contains any configuration files necessary to load modules.
+Configuration files for Apache on Ubuntu are located within the `/etc/apache2/apache2.conf/` directory. All virtual host configuration files are stored in `/etc/apache2/sites-available/`. Any file in that directory with a *.conf* extension is processed in alphabetical order in addition to the module configuration files in `/etc/httpd/conf.modules.d/`, which contains any configuration files necessary to load modules.
 
-Create a configuration file, named *helloapp.conf*, for the app:
+To configure Apache as a reverse proxy to forward HTTP requests to your ASP.NET Core app:
+
+* Create a configuration file in `/etc/apache2/sites-available/` named *helloapp.conf*.
+* Add the following content:
 
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
-To configure Apache as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx.conf`. Open it in a text editor, and replace the `server{}` code block with the following snippet:
+Configuration files for Apache on RHEL are located within the `/etc/httpd/` directory. All virtual host configuration files are stored in `/etc/apache2/vhosts.d/`. Any file in that directory with a *.conf* extension is processed in alphabetical order in addition to the module configuration in `/etc/httpd/conf/httpd.conf`, which contains any configuration necessary to load modules.
+
+To configure Apache as a reverse proxy to forward HTTP requests to your ASP.NET Core app:
+
+* Create a configuration file in `/etc/apache2/vhosts.d/` named *helloapp.conf*.
+* Add the following content:
 
 # [SUSE Linux Enterprise Server](#tab/linux-sles)
 
-To configure Apache as a reverse proxy to forward HTTP requests to your ASP.NET Core app, modify `/etc/nginx.conf`. Open it in a text editor, and replace the `server{}` code block with the following snippet:
+Configuration files for Apache on SLES are located within the `/etc/apache2/` directory. All virtual host configuration files are stored in `/etc/apache2/vhosts.d/`. Any file in that directory with a *.conf* extension is processed in alphabetical order in addition to the module configuration files in `/etc/httpd/conf.modules.d/`, which contains any configuration files necessary to load modules.
+
+To configure Apache as a reverse proxy to forward HTTP requests to your ASP.NET Core app:
+
+* Create a configuration file in `/etc/apache2/vhosts.d/` named *helloapp.conf*.
+* Add the following content:
 
 ---
-
-Configuration files for Apache are located within the `/etc/httpd/conf.d/` directory. In Apache on Ubuntu, all the virtual host configuration files are stored in `/etc/apache2/sites-available`. Any file with the *.conf* extension is processed in alphabetical order in addition to the module configuration files in `/etc/httpd/conf.modules.d/`, which contains any configuration files necessary to load modules.
-
-Create a configuration file, named *helloapp.conf*, for the app:
 
 ```text
 <VirtualHost *:*>
