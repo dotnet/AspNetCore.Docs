@@ -11,7 +11,7 @@ uid: fundamentals/apis
 
 ASP.NET Core supports creating web APIs using controllers or using minimal APIs. *Controllers* in a web API project are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. *Minimal* refers to the minimal effort, code, and configuration that this approach requires for building fully functioning REST endpoints. This article points out differences between the two approaches.
 
-The design of minimal hides the host class by default and focuses on configuration and extensibility via extension methods that take lambda expressions. Controllers are classes that can take dependencies via constructor injection, use property injection, and generally follow those patterns.
+The design of minimal APIs hides the host class by default and focuses on configuration and extensibility via extension methods that take functions as lambda expressions. Controllers are classes that can take dependencies via constructor injection or property injection, and generally follow object-oriented patterns. Minimal APIs support dependency injection through other approaches such as accessing the service provider.
 
 Here's sample code for an API based on controllers:
 
