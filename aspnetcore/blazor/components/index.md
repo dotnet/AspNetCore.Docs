@@ -3230,55 +3230,12 @@ For more information, see the following resources:
 
 Razor components can be dynamically-rendered from JavaScript (JS) for existing JS apps.
 
-To render a Razor component from JS, register the component as a root component for JS rendering and assign the component an identifier:
-
-* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in `Program.cs`:
-
-  ```csharp
-  builder.Services.AddServerSideBlazor(options =>
-  {
-      options.RootComponents.RegisterForJavaScript<Counter>(identifier: "counter");
-  });
-  ```
-  
-  > [!NOTE]
-  > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
-
-* In a Blazor WebAssembly app, call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in `Program.cs`:
-
-  ```csharp
-  builder.RootComponents.RegisterForJavaScript<Counter>(identifier: "counter");
-  ```
-  
-  > [!NOTE]
-  > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
-
-Load Blazor into the JS app (`blazor.server.js` or `blazor.webassembly.js`). Render the component from JS into a container element using the registered identifier, passing component parameters as needed:
-
-```javascript
-let containerElement = document.getElementById('my-counter');
-await window.Blazor.rootComponents.add(containerElement, 'counter', { incrementAmount: 10 });
-```
-
-`rootComponents.add` returns an instance of the component. Call `dispose` on the instance to release it:
-
-```javascript
-const rootComponent = await window.Blazor.rootComponents.add(...);
-
-...
-
-rootComponent.dispose();
-```
-
-<xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> includes an overload that accepts a JS function to register the custom element (`javaScriptInitializer`). The following example demonstrates the dynamic registration of a component that renders a quote.
-
-> [!IMPORTANT]
-> Don't confuse the `javaScriptInitializer` parameter of <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> with [JavaScript initializers](xref:blazor/fundamentals/startup#javascript-initializers). The name of the parameter and the JS initializers feature is coincidental.
+The example in this section renders the following Razor component into a page via JS.
 
 `Shared/Quote.razor`:
 
 ```razor
-<div id="quoteDiv" class="m-5 p-5">
+<div class="m-5 p-5">
     <h2>Quote</h2>
     <p>@Text</p>
 </div>
@@ -3295,46 +3252,115 @@ In `Program.cs`, add the namespace for the location of the component. The follow
 using BlazorSample.Shared;
 ```
 
-In `Program.cs`, register the `Quote` component.
+Call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on the app's root component collection to register the `Quote` component as a root component for JS rendering. Assign the component an identifier, `quote` in the following example. 
 
-Blazor Server:
+<xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> includes an overload that accepts the name of a JS function that performs initialization logic after the component gets registered (`javaScriptInitializer`). The JS function is called immediately after the Blazor app starts, before any components are rendered. This function can be used for integration with JS technologies, such as HTML custom elements or a JS-based SPA framework. The following example demonstrates the dynamic registration of the preceding `Quote` component.
 
-```csharp
-options.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
-    javaScriptInitializer: "initializeComponent");
+* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in `Program.cs`:
+
+  ```csharp
+  builder.Services.AddServerSideBlazor(options =>
+  {
+      options.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
+          javaScriptInitializer: "jsComponentInitializers.initializeComponent");
+  });
+  ```
+
+* In a Blazor WebAssembly app, call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in `Program.cs`:
+
+  ```csharp
+  builder.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
+      javaScriptInitializer: "jsComponentInitializers.initializeComponent");
+  ```
+  
+> [!IMPORTANT]
+> Don't confuse the `javaScriptInitializer` parameter of <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> with [JavaScript initializers](xref:blazor/fundamentals/startup#javascript-initializers). The name of the parameter and the JS initializers feature is coincidental.
+
+Attach the initializer function with `name` and `parameters` function parameters to the `window` object. For demonstration purposes, the following `initializeComponent` function logs the name and parameters of the registered component.
+
+`wwwroot/js/jsComponentInitializers.js`:
+
+```javascript
+(function () {
+  window.jsComponentInitializers = {
+    initializeComponent: function (name, parameters) {
+      console.log({ name: name, parameters: parameters });
+    }
+  };
+})();
 ```
 
-Blazor WebAssembly:
+Render the component from JS into a container element using the registered identifier, passing component parameters as needed. 
 
-```csharp
-builder.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
-    javaScriptInitializer: "initializeComponent");
+In the following example:
+
+* The `Quote` component (`quote` identifier) is rendered into the `quoteContainer` element when the `showQuote` function is called.
+* A quote string is passed to the component's `Text` parameter.
+
+`wwwroot/js/scripts.js`:
+
+```javascript
+async function showQuote() {
+  let targetElement = document.getElementById('quoteContainer');
+  await Blazor.rootComponents.add(targetElement, 'quote', 
+  {
+    text: "Crow: I have my doubts that this movie is actually 'starring' " +
+      "anybody. More like, 'camera is generally pointed at.'"
+  });
+}
 ```
 
-In HTML:
+Load Blazor (`blazor.server.js` or `blazor.webassembly.js`) with the preceding scripts into the JS app:
+
+```html
+<script src="_framework/blazor.{server|webassembly}.js"></script>
+<script src="js/jsComponentInitializers.js"></script>
+<script src="js/scripts.js"></script>
+```
+
+In HTML, place the target container element (`quoteContainer`). For the demonstration in this section, a button triggers rendering the `Quote` component by calling the `showQuote` JS function:
 
 ```html
 <button onclick="showQuote()">Show Quote</button>
 
 <div id="quoteContainer"></div>
-
-<script>
-  async function showQuote() {
-    let targetElement = document.getElementById('quoteContainer');
-    await Blazor.rootComponents.add(targetElement, 'quote', 
-    {
-        text: "Crow: I have my doubts that this movie is actually 'starring' " +
-        "anybody. More like, 'camera is generally pointed at.'"
-    });
-  }
-
-  async function initializeComponent() {
-    console.log("initializeComponent called!");
-  }
-</script>
 ```
 
+On initialization before any components are rendered, the browser's developer tools console logs the `Quote` component's identifier (`name`) and parameters (`parameters`) when `initializeComponent` is called:
+
+```console
+Object { name: "quote", parameters: (1) […] }
+​  name: "quote"
+​  parameters: Array [ {…} ]
+​​    0: Object { name: "Text", type: "string" }
+​​    length: 1
+```
+
+The `Quote` component is rendered with the quote stored in `Text` displayed:
+
+<h3>:::no-loc text="Quote":::</h3>
+<p>:::no-loc text="Crow: I have my doubts that this movie is actually 'starring' anybody. More like, 'camera is generally pointed at.'":::</p>
+
 Quote &copy;1988-1999 Satellite of Love LLC: [*Mystery Science Theater 3000*](https://mst3k.com/) ([Trace Beaulieu (Crow)](https://www.imdb.com/name/nm0064546/))
+
+> [!NOTE]
+> `rootComponents.add` returns an instance of the component. Call `dispose` on the instance to release it:
+>
+> ```javascript
+> const rootComponent = await window.Blazor.rootComponents.add(...);
+>
+> ...
+>
+> rootComponent.dispose();
+> ```
+
+For an advanced example with additional features, see the example in the `BasicTestApp` of the ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository):
+
+* [`JavaScriptRootComponents.razor`](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/JavaScriptRootComponents.razor)
+* [`wwwroot/js/jsRootComponentInitializers.js`](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/wwwroot/js/jsRootComponentInitializers.js)
+* [`wwwroot/index.html`](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/wwwroot/index.html)
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ## Blazor custom elements
 
