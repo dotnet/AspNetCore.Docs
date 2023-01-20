@@ -5,7 +5,7 @@ description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 9/9/2021
+ms.date: 01/18/2023
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
@@ -45,6 +45,12 @@ To configure a custom error handling page for the [Production environment](xref:
 
 > [!WARNING]
 > If the alternate pipeline throws an exception of its own, Exception Handling Middleware rethrows the original exception.
+
+Since this middleware can re-execute the request pipeline:
+
+* Middlewares need to handle reentrancy with the same request. This normally means either cleaning up their state after calling `_next` or caching their processing on the `HttpContext` to avoid redoing it. When dealing with the request body, this either means buffering or caching the results like the Form reader.
+* For the <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)> overload that is used in templates, only the request path is modified, and the route data is cleared. Request data such as headers, method, and items are all reused as-is.
+* Scoped services remain the same.
 
 In the following example, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> adds the exception handling middleware in non-Development environments:
 
@@ -158,6 +164,11 @@ The endpoint that processes the error can get the original URL that generated th
 
 :::code language="csharp" source="error-handling/samples/7.x/ErrorHandlingSample/Pages/StatusCode.cshtml.cs" id="snippet_Class" highlight="12-21":::
 
+Since this middleware can re-execute the request pipeline:
+
+* Middlewares need to handle reentrancy with the same request. This normally means either cleaning up their state after calling `_next` or caching their processing on the `HttpContext` to avoid redoing it. When dealing with the request body, this either means buffering or caching the results like the Form reader.
+* Scoped services remain the same.
+
 ## Disable status code pages
 
 To disable status code pages for an MVC controller or action method, use the [[SkipStatusCodePages]](xref:Microsoft.AspNetCore.Mvc.SkipStatusCodePagesAttribute) attribute.
@@ -225,7 +236,7 @@ The next section shows how to customize the problem details response body.
 
 ### Customize problem details
 
-The automatic creation of a `ProblemDetails` can be customized using of the following options:
+The automatic creation of a `ProblemDetails` can be customized using any of the following options:
 
 1. Use [`ProblemDetailsOptions.CustomizeProblemDetails`](#customizeproblemdetails-operation)
 2. Use a custom [`IProblemDetailsWriter`](#custom-iproblemdetailswriter)
@@ -290,7 +301,7 @@ In non-development environments, when an exception occurs, the following is a st
 }
 ```
 
-For most apps, the preceding code is all that's needed for exceptions, however, the following section shows how to get more detailed problem responses.
+For most apps, the preceding code is all that's needed for exceptions. However, the following section shows how to get more detailed problem responses.
 
 An alternative to a [custom exception handler page](xref:fundamentals/error-handling#exception-handler-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. Using a lambda allows access to the error and writing a problem details response with [`IProblemDetailsService.WriteAsync`](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true):
 
@@ -299,7 +310,7 @@ An alternative to a [custom exception handler page](xref:fundamentals/error-hand
 > [!WARNING]
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
 
-An alternative approach to generate problem details is to use the 3rd party Nuget package [Hellang.Middleware.ProblemDetails](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) that can be used to map exceptions and client errors to problem details.
+An alternative approach to generate problem details is to use the third-party NuGet package [Hellang.Middleware.ProblemDetails](https://www.nuget.org/packages/Hellang.Middleware.ProblemDetails/) that can be used to map exceptions and client errors to problem details.
 
 ## Additional resources
 
