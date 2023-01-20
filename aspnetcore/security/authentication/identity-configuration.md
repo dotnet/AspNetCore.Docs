@@ -12,7 +12,6 @@ uid: security/authentication/identity-configuration
 
 :::moniker range=">= aspnetcore-6.0"
 
-By [Damien Bowden](https://twitter.com/damien_bod)
 
 ASP.NET Core Identity uses default values for settings such as password policy, lockout, and cookie configuration. These settings can be overridden at application startup.
 
