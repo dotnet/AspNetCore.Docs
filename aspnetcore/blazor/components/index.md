@@ -1491,9 +1491,13 @@ In `Program.cs`, add the namespace for the location of the component. The follow
 using BlazorSample.Shared;
 ```
 
-Call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on the app's root component collection to register the `Quote` component as a root component for JS rendering. Assign the component an identifier, `quote` in the following example. 
+Call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on the app's root component collection to register the a Razor component as a root component for JS rendering.
 
-<xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> includes an overload that accepts the name of a JS function that performs initialization logic after the component gets registered (`javaScriptInitializer`). The JS function is called immediately after the Blazor app starts, before any components are rendered. This function can be used for integration with JS technologies, such as HTML custom elements or a JS-based SPA framework. The following example demonstrates the dynamic registration of the preceding `Quote` component.
+<xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> includes an overload that accepts the name of a JS function that executes initialization logic (`javaScriptInitializer`). The JS function is called once per component registration immediately after the Blazor app starts and before any components are rendered. This function can be used for integration with JS technologies, such as HTML custom elements or a JS-based SPA framework.
+
+One or more initializer functions can be created and called by different component registrations, but the typical use case is to reuse the same initializer function for multiple components. One function is expected if the initializer function is configuring integration with custom elements or another JS-based SPA framework.
+
+The following example demonstrates the dynamic registration of the preceding `Quote` component with "`quote`" as the identifier.
 
 * In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in `Program.cs`:
 
@@ -1501,7 +1505,7 @@ Call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtension
   builder.Services.AddServerSideBlazor(options =>
   {
       options.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
-          javaScriptInitializer: "jsComponentInitializers.initializeComponent");
+          javaScriptInitializer: "initializeComponent");
   });
   ```
 
@@ -1509,7 +1513,7 @@ Call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtension
 
   ```csharp
   builder.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
-      javaScriptInitializer: "jsComponentInitializers.initializeComponent");
+      javaScriptInitializer: "initializeComponent");
   ```
   
 > [!IMPORTANT]
@@ -1520,13 +1524,9 @@ Attach the initializer function with `name` and `parameters` function parameters
 `wwwroot/js/jsComponentInitializers.js`:
 
 ```javascript
-(function () {
-  window.jsComponentInitializers = {
-    initializeComponent: function (name, parameters) {
-      console.log({ name: name, parameters: parameters });
-    }
-  };
-})();
+window.initializeComponent = (name, parameters) => {
+  console.log({ name: name, parameters: parameters });
+}
 ```
 
 Render the component from JS into a container element using the registered identifier, passing component parameters as needed. 
