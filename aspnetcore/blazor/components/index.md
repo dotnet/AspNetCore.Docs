@@ -1495,7 +1495,10 @@ Call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtension
 
 <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> includes an overload that accepts the name of a JS function that executes initialization logic (`javaScriptInitializer`). The JS function is called once per component registration immediately after the Blazor app starts and before any components are rendered. This function can be used for integration with JS technologies, such as HTML custom elements or a JS-based SPA framework.
 
-One or more initializer functions can be created and called by different component registrations, but the typical use case is to reuse the same initializer function for multiple components. One function is expected if the initializer function is configuring integration with custom elements or another JS-based SPA framework.
+One or more initializer functions can be created and called by different component registrations. The typical use case is to reuse the same initializer function for multiple components, which is expected if the initializer function is configuring integration with custom elements or another JS-based SPA framework.
+
+> [!IMPORTANT]
+> Don't confuse the `javaScriptInitializer` parameter of <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> with [JavaScript initializers](xref:blazor/fundamentals/startup#javascript-initializers). The name of the parameter and the JS initializers feature is coincidental.
 
 The following example demonstrates the dynamic registration of the preceding `Quote` component with "`quote`" as the identifier.
 
@@ -1515,9 +1518,6 @@ The following example demonstrates the dynamic registration of the preceding `Qu
   builder.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
       javaScriptInitializer: "initializeComponent");
   ```
-  
-> [!IMPORTANT]
-> Don't confuse the `javaScriptInitializer` parameter of <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> with [JavaScript initializers](xref:blazor/fundamentals/startup#javascript-initializers). The name of the parameter and the JS initializers feature is coincidental.
 
 Attach the initializer function with `name` and `parameters` function parameters to the `window` object. For demonstration purposes, the following `initializeComponent` function logs the name and parameters of the registered component.
 
@@ -1575,7 +1575,7 @@ Object { name: "quote", parameters: (1) […] }
 ​​    length: 1
 ```
 
-The `Quote` component is rendered with the quote stored in `Text` displayed:
+When the **:::no-loc text="Show Quote":::** button is selected, the `Quote` component is rendered with the quote stored in `Text` displayed:
 
 <h3>:::no-loc text="Quote":::</h3>
 <p>:::no-loc text="Crow: I have my doubts that this movie is actually 'starring' anybody. More like, 'camera is generally pointed at.'":::</p>
@@ -3256,7 +3256,10 @@ Call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtension
 
 <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> includes an overload that accepts the name of a JS function that executes initialization logic (`javaScriptInitializer`). The JS function is called once per component registration immediately after the Blazor app starts and before any components are rendered. This function can be used for integration with JS technologies, such as HTML custom elements or a JS-based SPA framework.
 
-One or more initializer functions can be created and called by different component registrations, but the typical use case is to reuse the same initializer function for multiple components. One function is expected if the initializer function is configuring integration with custom elements or another JS-based SPA framework.
+One or more initializer functions can be created and called by different component registrations. The typical use case is to reuse the same initializer function for multiple components, which is expected if the initializer function is configuring integration with custom elements or another JS-based SPA framework.
+
+> [!IMPORTANT]
+> Don't confuse the `javaScriptInitializer` parameter of <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> with [JavaScript initializers](xref:blazor/fundamentals/startup#javascript-initializers). The name of the parameter and the JS initializers feature is coincidental.
 
 The following example demonstrates the dynamic registration of the preceding `Quote` component with "`quote`" as the identifier.
 
@@ -3276,9 +3279,6 @@ The following example demonstrates the dynamic registration of the preceding `Qu
   builder.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
       javaScriptInitializer: "initializeComponent");
   ```
-  
-> [!IMPORTANT]
-> Don't confuse the `javaScriptInitializer` parameter of <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> with [JavaScript initializers](xref:blazor/fundamentals/startup#javascript-initializers). The name of the parameter and the JS initializers feature is coincidental.
 
 Attach the initializer function with `name` and `parameters` function parameters to the `window` object. For demonstration purposes, the following `initializeComponent` function logs the name and parameters of the registered component.
 
@@ -3336,7 +3336,7 @@ Object { name: "quote", parameters: (1) […] }
 ​​    length: 1
 ```
 
-The `Quote` component is rendered with the quote stored in `Text` displayed:
+When the **:::no-loc text="Show Quote":::** button is selected, the `Quote` component is rendered with the quote stored in `Text` displayed:
 
 <h3>:::no-loc text="Quote":::</h3>
 <p>:::no-loc text="Crow: I have my doubts that this movie is actually 'starring' anybody. More like, 'camera is generally pointed at.'":::</p>
