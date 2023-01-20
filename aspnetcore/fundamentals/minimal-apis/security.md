@@ -29,64 +29,26 @@ In ASP.NET Core, both strategies are captured into an authorization requirement.
 
 To enable authentication, call [`AddAuthentication`](/dotnet/api/microsoft.extensions.dependencyinjection.authenticationservicecollectionextensions.addauthentication) to register the required authentication services on the app's service provider.
 
-```csharp
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddAuthentication();
-
-var app = builder.Build();
-
-app.Run();
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_1" highlight="2-3":::
 
 Typically, a specific authentication strategy is used. In the following sample, the app is configured with support for JWT bearer-based authentication.
 
-```csharp
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddAuthentication().AddJwtBearer();
-
-var app = builder.Build();
-
-app.Run();
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_jwt1" highlight="2":::
 
 By default, the [`WebApplication`](/dotnet/api/microsoft.aspnetcore.builder.webapplication) automatically registers the authentication and authorization middlewares if certain authentication and authorization services are enabled. In the following sample, it's not necessary to invoke [`UseAuthentication`](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication) or [`UseAuthorization`](/dotnet/api/microsoft.aspnetcore.builder.authorizationappbuilderextensions.useauthorization) to register the middlewares because [`WebApplication`](/dotnet/api/microsoft.aspnetcore.builder.webapplication) does this automatically after `AddAuthentication` or `AddAuthorization` are called.
 
-```csharp
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddAuthentication().AddJwtBearer();
-builder.Services.AddAuthorization();
-
-var app = builder.Build();
-
-app.Run();
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_jwt2":::
 
 In some cases, such as controlling middleware order, it's necessary to explicitly register authentication and authorization. In the following sample, the authentication middleware runs _after_ the CORS middleware has run. For more information on middlewares and this automatic behavior, see [Middleware in Minimal API apps](/aspnet/core/fundamentals/minimal-apis/middleware).
 
-```csharp
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddAuthentication().AddJwtBearer();
-builder.Services.AddAuthorization();
-
-var app = builder.Build();
-
-app.UseCors();
-app.UseAuthentication();
-app.UseAuthorization();
-
-app.Run();
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_after" highlight="8-10":::
 
 ### Configuring authentication strategy
 
 Authentication strategies typically support a variety of configurations that are loaded via options. Minimal app's support loading options from configuration for the following authentication strategies:
 
-- JWT bearer-based
-- OpenID Connection-based
+- [JWT bearer-based](https://jwt.io/introduction)
+- [OpenID Connection-based](https://openid.net/connect/)
 
 The ASP.NET Core framework expects to find these options under the `Authentication:Schemes:{SchemeName}` section in [configuration](/aspnet/core/fundamentals/configuration). In the following sample, two different schemes, `Bearer` and `LocalAuthIssuer`, are defined with their respective options. The `Authentication:DefaultScheme` option can be used to configure the default authentication strategy that's used.
 
@@ -114,21 +76,16 @@ The ASP.NET Core framework expects to find these options under the `Authenticati
 }
 ```
 
-In `Program.cs`, we register two JWT bearer-based authentication strategies: one with the the "Bearer" scheme name and one with the "LocalAuthIssuer" scheme name. "Bearer" is the typical default scheme in JWT-bearer based enabled applications, but the default scheme can be overridden by setting the `DefaultScheme` property as in the preceding example.
+In `Program.cs`, two JWT bearer-based authentication strategies are registered, with the:
+
+* "Bearer" scheme name.
+* "LocalAuthIssuer" scheme name.
+
+"Bearer" is the typical default scheme in JWT-bearer based enabled apps, but the default scheme can be overridden by setting the `DefaultScheme` property as in the preceding example.
 
 The scheme name is used to uniquely identify an authentication strategy and is used as the lookup key when resolving authentication options from config, as shown in the following example:
 
-```csharp
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddAuthentication()
-  .AddJwtBearer()
-  .AddJwtBearer("LocalAuthIssuer");
-  
-var app = builder.Build();
-
-app.Run();
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_local" highlight="5":::
 
 ## Configuring authorization policies in minimal apps
 
@@ -139,36 +96,21 @@ Configuring authorization requirements on a resource is a two-step process that 
 1. Configuring the authorization requirements in a policy globally.
 2. Applying individual policies to resources.
 
-In the following code, the  `AddAuthorizationBuilder` is invoked which:
+In the following code, <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder%2A> is invoked which:
 
 - Adds authorization-related services to the DI container.
-- Returns an `AuthorizationBuilder` that can be used to directly register authentication policies.
+- Returns an <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder> that can be used to directly register authentication policies.
 
-The code creates a new authorization policy, named `policy_greetings`, that encapsulate two authorization requirements:
+The code creates a new authorization policy, named `policy_greetings`, that encapsulates two authorization requirements:
 
-- A role-based requirement that the user fall under the `admin` role.
-- A claim-based requirement that the user provide a `greetings_api` scope.
+- A role-based requirement via <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole%2A> for users with an `admin` role.
+- A claim-based requirement via <xref:Microsoft.Identity.Web.PolicyBuilderExtensions.RequireScope%2A> that the user must provide a `greetings_api` scope.
 
 The `admin_greetings` policy is provided as a required policy to the `/hello` endpoint.
 
-```csharp
-var builder = WebApplication.CreateBuilder(args);
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_greet" highlight="3,11-12":::
 
-builder.Services.AddAuthorizationBuilder()
-  .AddPolicy("admin_greetings", policy => 
-		policy
-			.RequireRole("admin")
-			.RequireScope("greetings_api"))
-
-var app = builder.Build();
-
-app.MapGet("/hello", () => "Hello world!")
-  .RequireAuthorization("admin_greetings");
-
-app.Run();
-```
-
-## Using `dotnet user-jwts` to improve development time testing
+## Use `dotnet user-jwts` for development testing
 
 Throughout this article, an app configured with JWT-bearer based authentication is used. JWT bearer-based authentication requires that clients present a token in the request header to validate their identity and claims. Typically, these tokens are issued by a central authority, such as an identity server.
 
