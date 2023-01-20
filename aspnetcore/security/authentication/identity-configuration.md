@@ -12,8 +12,6 @@ uid: security/authentication/identity-configuration
 
 :::moniker range=">= aspnetcore-6.0"
 
-By [Damien Bowden](https://twitter.com/damien_bod)
-
 ASP.NET Core Identity uses default values for settings such as password policy, lockout, and cookie configuration. These settings can be overridden at application startup.
 
 ## Identity options
@@ -152,7 +150,7 @@ builder.Services.Configure<PasswordHasherOptions>(option =>
 
 <a name="iss6"></a>
 
-## ISecurityStampValidator and SignOut everywhere
+## ISecurityStampValidator and sign out everywhere
 
 Apps need to react to events involving security sensitive actions by regenerating the users <xref:System.Security.Claims.ClaimsPrincipal>. For example, the `ClaimsPrincipal` should be regenerated when joining a role, changing the password, or other security sensitive events. Identity uses the <xref:Microsoft.AspNetCore.Identity.ISecurityStampValidator> interface to regenerate the `ClaimsPrincipal`.  The default implementation of Identity registers a [SecurityStampValidator](/dotnet/api/microsoft.aspnetcore.identity.securitystampvalidator) with the main [application cookie](#cs6) and the two-factor cookie. The validator hooks into the <xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationEvents.OnValidatePrincipal> event of each cookie to call into Identity to verify that the user's security stamp claim is unchanged from what's stored in the cookie. The validator calls in at regular intervals. The call interval is a tradeoff between hitting the datastore too frequently and not often enough. Checking with a long interval results in stale claims. Call `userManager.UpdateSecurityStampAsync(user)`to force existing cookies to be invalided the next time they are checked. Most of the Identity UI account and manage pages call `userManager.UpdateSecurityStampAsync(user)` after changing the password or adding a login. Apps can call `userManager.UpdateSecurityStampAsync(user)` to implement a sign out everywhere action.
 
