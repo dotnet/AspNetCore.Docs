@@ -86,14 +86,13 @@ items:
                 uid: tutorials/first-mvc-app/details
           - name: Blazor
             uid: blazor/tutorials/index
-      - name: Web API apps
+      - name: APIs
         items:
-          - name: Create a web API with controllers
+        - name: Controller-based APIs
+          items:
+          - name: Create a controller-based web API
             displayName: API tutorial
             uid: tutorials/first-web-api
-          - name: Create a minimal web API
-            displayName: API tutorial
-            uid: tutorials/min-web-api
           - name: Web API with MongoDB
             displayName: API tutorial
             uid: tutorials/first-mongo-app
@@ -106,6 +105,11 @@ items:
           - name: Publish to Azure API Management
             displayName: tutorial
             uid: tutorials/publish-to-azure-api-management-using-vs
+        - name: Minimal APIs
+          items:
+          - name: Create a minimal web API
+            displayName: API tutorial
+            uid: tutorials/min-web-api
       - name: Real-time web apps
         items:
           - name: SignalR with JavaScript
@@ -172,7 +176,7 @@ items:
           - name: Web apps >>
             displayName: tutorial, razor, razor pages, ui
             href: /training/modules/create-razor-pages-aspnet-core/
-          - name: Web API apps >>
+          - name: Web APIs >>
             displayName: tutorial
             href: /training/modules/build-web-api-aspnet-core/
           - name: Cloud-native microservices
@@ -654,74 +658,78 @@ items:
             uid: razor-pages/web-sdk
           - name: aspnet-codegenerator (Scaffolding)
             uid: fundamentals/tools/dotnet-aspnet-codegenerator
-  - name: Web API apps
+  - name: APIs
     items:
       - name: Overview
-        uid: web-api/index
-      - name: Tutorials
+        uid: fundamentals/apis
+      - name: Controller-based APIs
         items:
-          - name: Create a web API with controllers
-            uid: tutorials/first-web-api
-          - name: Create a minimal web API
-            uid: tutorials/min-web-api
-          - name: Web API with MongoDB
-            uid: tutorials/first-mongo-app
-      - name: Swagger / OpenAPI
+        - name: Overview
+          uid: web-api/index
+        - name: Tutorials
+          items:
+            - name: Create a web API with controllers
+              uid: tutorials/first-web-api
+            - name: Web API with MongoDB
+              uid: tutorials/first-mongo-app
+        - name: Swagger / OpenAPI
+          items:
+            - name: Overview
+              uid: tutorials/web-api-help-pages-using-swagger
+            - name: Get started with Swashbuckle
+              uid: tutorials/get-started-with-swashbuckle
+            - name: Get started with NSwag
+              uid: tutorials/get-started-with-nswag
+            - name: OpenAPI tools
+              uid: web-api/Microsoft.dotnet-openapi
+        - name: Action return types
+          uid: web-api/action-return-types
+        - name: Handle JSON Patch requests
+          uid: web-api/jsonpatch
+        - name: Format response data
+          uid: web-api/advanced/formatting
+        - name: Custom formatters
+          uid: web-api/advanced/custom-formatters
+        - name: Analyzers
+          uid: web-api/advanced/analyzers
+        - name: Conventions
+          uid: web-api/advanced/conventions
+        - name: Handle errors
+          uid: web-api/handle-errors
+        - name: Test with HttpRepl
+          items:
+            - name: Overview
+              uid: web-api/http-repl
+            - name: Telemetry
+              uid: web-api/http-repl/telemetry
+      - name: Minimal APIs
         items:
-          - name: Overview
-            uid: tutorials/web-api-help-pages-using-swagger
-          - name: Get started with Swashbuckle
-            uid: tutorials/get-started-with-swashbuckle
-          - name: Get started with NSwag
-            uid: tutorials/get-started-with-nswag
-          - name: OpenAPI tools
-            uid: web-api/Microsoft.dotnet-openapi
-      - name: Action return types
-        uid: web-api/action-return-types
-      - name: Handle JSON Patch requests
-        uid: web-api/jsonpatch
-      - name: Format response data
-        uid: web-api/advanced/formatting
-      - name: Custom formatters
-        uid: web-api/advanced/custom-formatters
-      - name: Analyzers
-        uid: web-api/advanced/analyzers
-      - name: Conventions
-        uid: web-api/advanced/conventions
-      - name: Handle errors
-        uid: web-api/handle-errors
-      - name: Test with HttpRepl
-        items:
-          - name: Overview
-            uid: web-api/http-repl
-          - name: Telemetry
-            uid: web-api/http-repl/telemetry
-  - name: Minimal APIs
-    items:
-      - name: Minimal APIs overview
-        uid: fundamentals/minimal-apis/overview
-      - name: Minimal APIs quick reference
-        uid: fundamentals/minimal-apis
-      - name: WebApplication and WebApplicationBuilder
-        uid: fundamentals/minimal-apis/webapplication
-      - name: Route Handlers
-        uid: fundamentals/minimal-apis/route-handlers
-      - name: Parameter binding
-        uid: fundamentals/minimal-apis/parameter-binding
-      - name: Create responses
-        uid: fundamentals/minimal-apis/responses
-      - name: OpenAPI
-        uid: fundamentals/minimal-apis/openapi
-      - name: Filters
-        uid: fundamentals/minimal-apis/min-api-filters
-      - name: Unit and integration tests
-        uid: fundamentals/minimal-apis/test-min-api
-      - name: Middleware
-        uid: fundamentals/minimal-apis/middleware
-      - name: Handle errors
-        uid: fundamentals/minimal-apis/handle-errors
-      - name: Authentication and authorization
-        uid: fundamentals/minimal-apis/security
+        - name: Overview
+          uid: fundamentals/minimal-apis/overview
+        - name: "Tutorial: Create a minimal API"
+          uid: tutorials/min-web-api
+        - name: Minimal APIs quick reference
+          uid: fundamentals/minimal-apis
+        - name: WebApplication and WebApplicationBuilder
+          uid: fundamentals/minimal-apis/webapplication
+        - name: Route Handlers
+          uid: fundamentals/minimal-apis/route-handlers
+        - name: Parameter binding
+          uid: fundamentals/minimal-apis/parameter-binding
+        - name: Create responses
+          uid: fundamentals/minimal-apis/responses
+        - name: OpenAPI
+          uid: fundamentals/minimal-apis/openapi
+        - name: Filters
+          uid: fundamentals/minimal-apis/min-api-filters
+        - name: Unit and integration tests
+          uid: fundamentals/minimal-apis/test-min-api
+        - name: Middleware
+          uid: fundamentals/minimal-apis/middleware
+        - name: Handle errors
+          uid: fundamentals/minimal-apis/handle-errors
+        - name: Authentication and authorization
+          uid: fundamentals/minimal-apis/security
   - name: Real-time apps
     displayName: signalr
     items:
