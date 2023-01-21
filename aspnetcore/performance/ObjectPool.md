@@ -15,10 +15,10 @@ By [Steve Gordon](https://twitter.com/stevejgordon), [Ryan Nowak](https://github
 
 <xref:Microsoft.Extensions.ObjectPool> is part of the ASP.NET Core infrastructure that supports keeping a group of objects in memory for reuse rather than allowing the objects to be garbage collected.
 
-You might want to use the object pool if the objects that are being managed are:
+Apps might want to use the object pool if the objects that are being managed are:
 
 - Expensive to allocate/initialize.
-- Represent some limited resource.
+- Represent a limited resource.
 - Used predictably and frequently.
 
 For example, the ASP.NET Core framework uses the object pool in some places to reuse <xref:System.Text.StringBuilder> instances. `StringBuilder` allocates and manages its own buffers to hold character data. ASP.NET Core regularly uses `StringBuilder` to implement features, and reusing them provides a performance benefit.
@@ -30,16 +30,15 @@ Object pooling doesn't always improve performance:
 
 Use object pooling only after collecting performance data using realistic scenarios for your app or library.
 
-**NOTE: The ObjectPool doesn't place a limit on the number of objects that it will allocate, it places a limit on the number of objects it will retain.**
+**NOTE: The ObjectPool doesn't place a limit on the number of objects that it allocates, it places a limit on the number of objects it retains.**
 
 ## Concepts
 
 <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> - the basic object pool abstraction. Used to get and return objects.
 
-<xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy%601> - implement this to customize how an object is created and how it is *reset* when returned to the pool. This can be passed into an object pool that you construct directly.... OR
+<xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy%601> - implement this to customize how an object is created and how it is reset when returned to the pool. This can be passed into an object pool that you construct directly, or
 
 <xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*> acts as a factory for creating object pools.
-<!-- REview, there is no ObjectPoolProvider<T> -->
 
 The ObjectPool can be used in an app in multiple ways:
 
