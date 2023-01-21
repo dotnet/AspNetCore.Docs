@@ -1,17 +1,4 @@
----
-title: Object reuse with ObjectPool in ASP.NET Core
-author: rick-anderson
-description: Tips for increasing performance in ASP.NET Core apps using ObjectPool.
-monikerRange: '>= aspnetcore-1.1'
-ms.author: riande
-ms.date: 04/11/2019
-uid: performance/ObjectPool
----
-# Object reuse with ObjectPool in ASP.NET Core
-
-By [Steve Gordon](https://twitter.com/stevejgordon), [Ryan Nowak](https://github.com/rynowak), and [Günther Foidl](https://github.com/gfoidl)
-
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 <xref:Microsoft.Extensions.ObjectPool> is part of the ASP.NET Core infrastructure that supports keeping a group of objects in memory for reuse rather than allowing the objects to be garbage collected.
 
@@ -29,6 +16,12 @@ Object pooling doesn't always improve performance:
 - Objects managed by the pool aren't de-allocated until the pool is de-allocated.
 
 Use object pooling only after collecting performance data using realistic scenarios for your app or library.
+
+:::moniker-end
+:::moniker range="< aspnetcore-3.0"
+**WARNING: The `ObjectPool` doesn't implement `IDisposable`. We don't recommend using it with types that need disposal.** `ObjectPool` in ASP.NET Core 3.0 and later supports `IDisposable`.
+:::moniker-end
+:::moniker range="< aspnetcore-6.0"
 
 **NOTE: The ObjectPool doesn't place a limit on the number of objects that it will allocate, it places a limit on the number of objects it will retain.**
 
@@ -51,6 +44,21 @@ The ObjectPool can be used in an app in multiple ways:
 
 Call <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Get*> to get an object and <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Return*> to return the object.  There's no requirement that you return every object. If you don't return an object, it will be garbage collected.
 
+:::moniker-end
+:::moniker range=">= aspnetcore-3.0"
+When <xref:Microsoft.Extensions.ObjectPool.DefaultObjectPoolProvider> is used and `T` implements `IDisposable`:
+
+* Items that are ***not*** returned to the pool will be disposed.
+* When the pool gets disposed by DI, all items in the pool are disposed.
+
+NOTE: After the pool is disposed:
+
+* Calling `Get` throws an `ObjectDisposedException`.
+* Calling `Return` disposes the given item.
+
+:::moniker-end
+:::moniker range="< aspnetcore-6.0"
+
 ## ObjectPool sample
 
 The following code:
@@ -59,10 +67,10 @@ The following code:
 * Adds and configures `ObjectPool<StringBuilder>` to the DI container.
 * Adds the `BirthdayMiddleware`.
 
-[!code-csharp[](~/performance/ObjectPool/ObjectPoolSample6/Program.cs)]
+[!code-csharp[](~/performance/ObjectPool/ObjectPoolSample/Startup.cs?name=snippet)]
 
 The following code implements `BirthdayMiddleware`
 
-[!code-csharp[](~/performance/ObjectPool/ObjectPoolSample6/BirthdayMiddleware.cs)]
+[!code-csharp[](~/performance/ObjectPool/ObjectPoolSample/BirthdayMiddleware.cs?name=snippet)]
 
 :::moniker-end
