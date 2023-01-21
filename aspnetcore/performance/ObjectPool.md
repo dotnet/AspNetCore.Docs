@@ -65,3 +65,5 @@ The following code implements `BirthdayMiddleware`
 [!code-csharp[](~/performance/ObjectPool/ObjectPoolSample6/BirthdayMiddleware.cs)]
 
 :::moniker-end
+
+[!INCLUDE[](~/performance/ObjectPool/includes/ObjectPool1-5.md)]
