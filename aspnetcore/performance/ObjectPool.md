@@ -13,7 +13,7 @@ By [Steve Gordon](https://twitter.com/stevejgordon), [Ryan Nowak](https://github
 
 :::moniker range=">= aspnetcore-6.0"
 
-<xref:Microsoft.Extensions.ObjectPool> is part of the ASP.NET Core infrastructure that supports keeping a group of objects in memory for reuse rather than allowing the objects to be garbage collected. All the static and instance methods on `ObjectPool` and provided sub-classes are thread-safe.
+<xref:Microsoft.Extensions.ObjectPool> is part of the ASP.NET Core infrastructure that supports keeping a group of objects in memory for reuse rather than allowing the objects to be garbage collected. All the static and instance methods on `ObjectPool` and provided  derived classes are thread-safe.
 
 Apps might want to use the object pool if the objects that are being managed are:
 
