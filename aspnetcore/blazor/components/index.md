@@ -1569,16 +1569,16 @@ On initialization before any components are rendered, the browser's developer to
 
 ```console
 Object { name: "quote", parameters: (1) […] }
-​  name: "quote"
-​  parameters: Array [ {…} ]
-​​    0: Object { name: "Text", type: "string" }
-​​    length: 1
+  name: "quote"
+  parameters: Array [ {…} ]
+    0: Object { name: "Text", type: "string" }
+    length: 1
 ```
 
 When the **:::no-loc text="Show Quote":::** button is selected, the `Quote` component is rendered with the quote stored in `Text` displayed:
 
-<h3>:::no-loc text="Quote":::</h3>
-<p>:::no-loc text="Crow: I have my doubts that this movie is actually 'starring' anybody. More like, 'camera is generally pointed at.'":::</p>
+<h3> :::no-loc text="Quote"::: </h3>
+<p> :::no-loc text="Crow: I have my doubts that this movie is actually 'starring' anybody. More like, 'camera is generally pointed at.'"::: </p>
 
 Quote &copy;1988-1999 Satellite of Love LLC: [*Mystery Science Theater 3000*](https://mst3k.com/) ([Trace Beaulieu (Crow)](https://www.imdb.com/name/nm0064546/))
 
