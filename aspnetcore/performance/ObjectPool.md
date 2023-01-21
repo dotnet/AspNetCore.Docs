@@ -13,7 +13,7 @@ By [Steve Gordon](https://twitter.com/stevejgordon), [Ryan Nowak](https://github
 
 :::moniker range=">= aspnetcore-6.0"
 
-<xref:Microsoft.Extensions.ObjectPool> is part of the ASP.NET Core infrastructure that supports keeping a group of objects in memory for reuse rather than allowing the objects to be garbage collected. Object pools created with members of `Microsoft.Extensions.ObjectPool` are thread safe. For example, the <xref:Microsoft.Extensions.ObjectPool.StringBuilderPooledObjectPolicy> created in this article with [ObjectPool.Create](xref:Microsoft.Extensions.ObjectPool.ObjectPool.Create%2A) creates a thread safe pool containing <xref:System.Text.StringBuilder> objects. `StringBuilder` is not thread safe, but access to the `StringBuilder` object in the pool is.
+<xref:Microsoft.Extensions.ObjectPool> is part of the ASP.NET Core infrastructure that supports keeping a group of objects in memory for reuse rather than allowing the objects to be garbage collected. All the static and instance methods on `ObjectPool` and provided sub-classes are thread-safe.
 
 Apps might want to use the object pool if the objects that are being managed are:
 
