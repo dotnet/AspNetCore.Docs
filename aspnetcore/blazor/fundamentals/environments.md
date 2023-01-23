@@ -12,7 +12,7 @@ uid: blazor/fundamentals/environments
 
 This article explains [ASP.NET Core environments](xref:fundamentals/environments) in Blazor, including how to set the environment.
 
-:::moniker range=">= aspnetcore-5.0”
+:::moniker range=">= aspnetcore-5.0"
 
 > [!IMPORTANT]
 > This topic applies to Blazor WebAssembly. For general guidance on ASP.NET Core app configuration, which describes the approaches to use for Blazor Server apps, see <xref:fundamentals/environments>.
@@ -21,7 +21,7 @@ This article explains [ASP.NET Core environments](xref:fundamentals/environments
 
 :::moniker-end
 
-:::moniker range=“< aspnetcore-5.0”
+:::moniker range="< aspnetcore-5.0"
 
 > [!NOTE]
 > This topic applies to Blazor WebAssembly. For general guidance on ASP.NET Core app configuration, which describes the approaches to use for Blazor Server apps, see <xref:fundamentals/environments>.
@@ -123,19 +123,19 @@ Obtain the app's environment in a component by injecting <xref:Microsoft.AspNetC
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0”
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/environments/ReadEnvironment.razor" highlight="3,7":::
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0”
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/environments/ReadEnvironment.razor" highlight="3,7":::
 
 :::moniker-end
 
-:::moniker range=“< aspnetcore-5.0”
+:::moniker range="< aspnetcore-5.0"
 
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/environments/ReadEnvironment.razor" highlight="3,7":::
 
