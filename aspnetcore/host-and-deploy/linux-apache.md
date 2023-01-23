@@ -157,7 +157,15 @@ sudo systemctl status httpd
 
 Use YaST to install a standard Apache configuration. Follow the installation instructions at [SLES Documentation: Apache Quick Start](https://documentation.suse.com/sles/15-SP1/html/SLES-all/cha-apache2.html#sec-apache2-quickstart).
 
-Once Apache is installed, enable and start Apache using the following commands:
+Once Apache is installed, ensure header and proxy mods installed with the following commands:
+
+```bash
+sudo a2enmod headers
+sudo a2enmod mod_proxy
+sudu a2enmod mod_proxy_balancer
+```
+
+Enable and start Apache using the following commands:
 
 ```bash
 sudo systemctl enable apache2
@@ -188,16 +196,16 @@ To configure Apache as a reverse proxy to forward HTTP requests to your ASP.NET 
 
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
-Configuration files for Apache on RHEL are located within the `/etc/httpd/` directory. All virtual host configuration files are stored in `/etc/apache2/vhosts.d/`. Any file in that directory with a *.conf* extension is processed in alphabetical order in addition to the module configuration in `/etc/httpd/conf/httpd.conf`, which contains any configuration necessary to load modules.
+Configuration files for Apache on RHEL are located within the `/etc/httpd/conf/` directory. All virtual host configuration files are stored in `/etc/httpd/conf.d/`. Any file in that directory with a *.conf* extension is processed in alphabetical order in addition to the module configuration in `/etc/httpd/conf.modules.d/`, which contains any configuration necessary to load modules.
 
 To configure Apache as a reverse proxy to forward HTTP requests to your ASP.NET Core app:
 
-* Create a configuration file in `/etc/apache2/vhosts.d/` named *helloapp.conf*.
+* Create a configuration file in `/etc/httpd/conf.d/` named *helloapp.conf*.
 * Add the following content:
 
 # [SUSE Linux Enterprise Server](#tab/linux-sles)
 
-Configuration files for Apache on SLES are located within the `/etc/apache2/` directory. All virtual host configuration files are stored in `/etc/apache2/vhosts.d/`. Any file in that directory with a *.conf* extension is processed in alphabetical order in addition to the module configuration files in `/etc/httpd/conf.modules.d/`, which contains any configuration files necessary to load modules.
+Configuration files for Apache on SLES are located within the `/etc/apache2/` directory. All virtual host configuration files are stored in `/etc/apache2/vhosts.d/`. Any file in that directory with a *.conf* extension is processed in alphabetical order in addition to the module configuration files in `/etc/apache2/loadmodule.conf/`, which contains any configuration files necessary to load modules.
 
 To configure Apache as a reverse proxy to forward HTTP requests to your ASP.NET Core app:
 
@@ -220,6 +228,7 @@ To configure Apache as a reverse proxy to forward HTTP requests to your ASP.NET 
     ErrorLog ${APACHE_LOG_DIR}helloapp-error.log
     CustomLog ${APACHE_LOG_DIR}helloapp-access.log common
 </VirtualHost>
+
 ```
 
 :::moniker range=">= aspnetcore-5.0"
@@ -241,7 +250,7 @@ sudo ln -s /etc/apache2/sites-available/helloapp.conf /etc/apache2/sites-enabled
 :::moniker-end
 
 > [!WARNING]
-> Failure to specify a proper [ServerName directive](https://httpd.apache.org/docs/current/mod/core.html#servername) in the **VirtualHost** block exposes your app to security vulnerabilities. Subdomain wildcard binding (for example, `*.example.com`) doesn't pose this security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). For more information, see [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4).
+> Failure to specify a proper [ServerName directive](https://httpd.apache.org/docs/current/mod/core.html#servername) in the `VirtualHost` block exposes your app to security vulnerabilities. Subdomain wildcard binding (for example, `*.example.com`) doesn't pose this security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). For more information, see [rfc7230 section-5.4](https://tools.ietf.org/html/rfc7230#section-5.4).
 
 Logging can be configured per `VirtualHost` using `ErrorLog` and `CustomLog` directives. `ErrorLog` is the location where the server logs errors, and `CustomLog` sets the filename and format of log file. In this case, this is where request information is logged. There's one line for each request.
 
