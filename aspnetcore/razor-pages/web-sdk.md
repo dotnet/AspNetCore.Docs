@@ -62,12 +62,4 @@ Use the Web.SDK in a project:
 
 The Web SDK imports MSBuild targets that enable the use of publish profiles and publishing using WebDeploy.
 
-### Properties
-
-| Property | Description |
-| -------- | ----------- |
-| `DisableImplicitFrameworkReferences` | Disables implicit reference to the `Microsoft.AspNetCore.App` shared framework. |
-| `DisableImplicitAspNetCoreAnalyzers` | Disables implicit reference to ASP.NET Core analyzers. |
-| `DisableImplicitComponentsAnalyzers` | Disables implicit reference to Razor Components analyzers when building Blazor (server) applications. |
-
 :::moniker-end
