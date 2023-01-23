@@ -11,7 +11,7 @@ uid: razor-pages/web-sdk
 
  :::moniker range=">= aspnetcore-3.0"
 
-### Overview
+## Overview
 
 `Microsoft.NET.Sdk.Web` is an [MSBuild project SDK](/visualstudio/msbuild/how-to-use-project-sdk) for building ASP.NET Core apps. It's possible to build an ASP.NET Core app without this SDK, however, the Web SDK is:
 
@@ -34,7 +34,7 @@ Features enabled by using the Web SDK:
   * [Analyzers](/visualstudio/extensibility/getting-started-with-roslyn-analyzers) designed for building ASP.NET Core apps.
 * The Web SDK imports MSBuild targets that enable the use of publish profiles and publishing using WebDeploy.
 
-### Properties
+## Properties
 
 | Property | Description |
 | -------- | ----------- |
