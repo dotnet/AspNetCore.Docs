@@ -26,22 +26,6 @@ See the ebook [Porting existing ASP.NET apps to .NET Core](https://aka.ms/aspnet
 
 [.NET Core SDK 7.0 or later](https://dotnet.microsoft.com/download)
 
-## Target frameworks
-
-ASP.NET Core projects offer developers the flexibility of targeting .NET Core, .NET Framework, or both. See [Choosing between .NET Core and .NET Framework for server apps](/dotnet/standard/choosing-core-framework-server) to determine which target framework is most appropriate.
-
-When targeting .NET Framework, projects need to reference individual NuGet packages.
-
-Targeting .NET Core allows you to eliminate numerous explicit package references, thanks to the ASP.NET Core [metapackage](xref:fundamentals/metapackage-app). Install the `Microsoft.AspNetCore.App` metapackage in your project:
-
-```xml
-<ItemGroup>
-   <PackageReference Include="Microsoft.AspNetCore.App" />
-</ItemGroup>
-```
-
-When the metapackage is used, no packages referenced in the metapackage are deployed with the app. The .NET Core Runtime Store includes these assets, and they're precompiled to improve performance. See [Microsoft.AspNetCore.App metapackage for ASP.NET Core](xref:fundamentals/metapackage-app) for more detail.
-
 ## Project structure differences
 
 The `.csproj` file format has been simplified in ASP.NET Core. Some notable changes include:
@@ -50,11 +34,11 @@ The `.csproj` file format has been simplified in ASP.NET Core. Some notable chan
 - There are no GUID-based references to other projects, which improves file readability.
 - The file can be edited without unloading it in Visual Studio:
 
-    ![Edit CSPROJ context menu option in Visual Studio 2017](_static/EditProjectVs2017.png)
+    ![Edit CSPROJ context menu option in Visual Studio 2017](~/migration/proper-to-2x/_static/EditProjectVs2017.png")
 
 ## Global.asax file replacement
 
-ASP.NET Core introduced a new mechanism for bootstrapping an app. The entry point for ASP.NET applications is the *Global.asax* file. Tasks such as route configuration and filter and area registrations are handled in the *Global.asax* file.
+ASP.NET Core introduced a new mechanism for bootstrapping an app. The entry point for ASP.NET applications is the *Global.asax* file. Tasks such as route configuration, filter and area registrations are handled in the *Global.asax* file:
 
 [!code-csharp[](~/migration/proper-to-2x/samples/globalasax-sample.cs)]
 
@@ -149,7 +133,7 @@ In ASP.NET, static files are stored in various directories and referenced in the
 
 In ASP.NET Core, static files are stored in the "web root" (*&lt;content root&gt;/wwwroot*), unless configured otherwise. The files are loaded into the request pipeline by invoking the `UseStaticFiles` extension method from `Startup.Configure`:
 
-[!code-csharp[](../../fundamentals/static-files/samples/1.x/StaticFilesSample/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
+[!code-csharp[](~/migration/proper-to-2x/samples/1.x/StaticFilesSample/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
 
 > [!NOTE]
 > If targeting .NET Framework, install the NuGet package `Microsoft.AspNetCore.StaticFiles`.
