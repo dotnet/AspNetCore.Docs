@@ -34,7 +34,7 @@ The `.csproj` file format has been simplified in ASP.NET Core. Some notable chan
 - There are no GUID-based references to other projects, which improves file readability.
 - The file can be edited without unloading it in Visual Studio:
 
-    ![Edit CSPROJ context menu option in Visual Studio 2017](~/migration/proper-to-2x/_static/EditProjectVs2017.png")
+    ![Edit CSPROJ context menu option in Visual Studio 2017](~/migration/proper-to-2x/_static/EditProjectVs2017.png)
 
 ## Global.asax file replacement
 
