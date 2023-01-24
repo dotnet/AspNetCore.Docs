@@ -12,7 +12,9 @@ By [Isaac Levin](https://isaaclevin.com)
 
  :::moniker range=">= aspnetcore-7.0"
 
-This article serves as a reference guide for migrating ASP.NET apps to ASP.NET Core.
+This article serves as a reference guide for migrating ASP.NET Framework apps to ASP.NET Core.
+
+Most non-trivial ASP.NET Framework should consider using the [incremental migration](xref:migration/inc/overview) approach.
 
 Visual Studio has tooling to help migrate ASP.NET apps to ASP.NET Core. For more information, see [Migrating from ASP.NET to ASP.NET Core in Visual Studio](https://devblogs.microsoft.com/dotnet/introducing-project-migrations-visual-studio-extension/).
 
@@ -22,7 +24,7 @@ See the ebook [Porting existing ASP.NET apps to .NET Core](https://aka.ms/aspnet
 
 ## Prerequisites
 
-[.NET Core SDK 2.2 or later](https://dotnet.microsoft.com/download)
+[.NET Core SDK 7.0 or later](https://dotnet.microsoft.com/download)
 
 ## Target frameworks
 
@@ -211,4 +213,4 @@ For apps that post JSON information to controllers and use JSON Input Formatters
 
 :::moniker-end
 
-[!INCLUDE[](~/migration\proper-to-2x\includes\index.md)]
+[!INCLUDE[](~/migration/proper-to-2x/includes/index.md)]
