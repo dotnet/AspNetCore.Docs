@@ -36,7 +36,7 @@ The `.csproj` file format has been simplified in ASP.NET Core. Some notable chan
 - There are no GUID-based references to other projects, which improves file readability.
 - The file can be edited without unloading it in Visual Studio:
 
-    ![Edit CSPROJ context menu option in Visual Studio 2017](_static/EditProjectVs2017.png)
+    ![Edit CSPROJ context menu option in Visual Studio 2017](~/migration/proper-to-2x/_static/EditProjectVs2017.png)]
 
 ## Global.asax file replacement
 
@@ -135,7 +135,7 @@ In ASP.NET, static files are stored in various directories and referenced in the
 
 In ASP.NET Core, static files are stored in the "web root" (*&lt;content root&gt;/wwwroot*), unless configured otherwise. The files are loaded into the request pipeline by invoking the `UseStaticFiles` extension method from `Startup.Configure`:
 
-[!code-csharp[](~/migration/proper-to-2x/samples/1.x/StaticFilesSample/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
+[!code-csharp[](~/migration/proper-to-2x/samples/globalasax-sample.cs?highlight=3&name=snippet_ConfigureMethod)]
 
 > [!NOTE]
 > If targeting .NET Framework, install the NuGet package `Microsoft.AspNetCore.StaticFiles`.
