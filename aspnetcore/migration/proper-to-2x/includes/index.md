@@ -1,16 +1,4 @@
----
-title: Migrate from ASP.NET to ASP.NET Core
-author: isaacrlevin
-description: Receive guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core.web
-ms.author: riande
-ms.date: 10/18/2019
-uid: migration/proper-to-2x/index
----
-# Migrate from ASP.NET to ASP.NET Core
-
-By [Isaac Levin](https://isaaclevin.com)
-
- :::moniker range=">= aspnetcore-7.0"
+ :::moniker range="< aspnetcore-7.0"
 
 This article serves as a reference guide for migrating ASP.NET apps to ASP.NET Core.
 
@@ -147,7 +135,7 @@ In ASP.NET, static files are stored in various directories and referenced in the
 
 In ASP.NET Core, static files are stored in the "web root" (*&lt;content root&gt;/wwwroot*), unless configured otherwise. The files are loaded into the request pipeline by invoking the `UseStaticFiles` extension method from `Startup.Configure`:
 
-[!code-csharp[](../../fundamentals/static-files/samples/1.x/StaticFilesSample/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
+[!code-csharp[](~/migration/proper-to-2x/samples/1.x/StaticFilesSample/StartupStaticFiles.cs?highlight=3&name=snippet_ConfigureMethod)]
 
 > [!NOTE]
 > If targeting .NET Framework, install the NuGet package `Microsoft.AspNetCore.StaticFiles`.
@@ -208,7 +196,4 @@ For apps that post JSON information to controllers and use JSON Input Formatters
 ## Additional resources
 
 - [Porting Libraries to .NET Core](/dotnet/core/porting/libraries)
-
 :::moniker-end
-
-[!INCLUDE[](~/migration\proper-to-2x\includes\index.md)]
