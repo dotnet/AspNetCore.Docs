@@ -88,7 +88,7 @@ The following example component:
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-7.0”
+:::moniker range="< aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/file-downloads/FileDownload1.razor":::
 
@@ -122,7 +122,7 @@ The example in this section uses a download file named `quote.txt`, which is pla
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-7.0”
+:::moniker range="< aspnetcore-7.0"
 
 :::code language="text" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/wwwroot/files/quote.txt":::
 
@@ -157,7 +157,7 @@ The following example component downloads the file from the same origin that the
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-7.0”
+:::moniker range="< aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/file-downloads/FileDownload2.razor":::
 
