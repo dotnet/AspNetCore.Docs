@@ -49,7 +49,7 @@ To read data from a user-selected file, call <xref:Microsoft.AspNetCore.Componen
 :::moniker range="< aspnetcore-6.0"
 
 > [!NOTE]
-> In ASP.NET Core 5.0, the maximum supported file size is 2GB. In ASP.NET Core 6.0 or later, the framework doesn't limit the maximum file size.
+> In ASP.NET Core 5.0, the maximum supported file size is 2 GB. In ASP.NET Core 6.0 or later, the framework doesn't limit the maximum file size.
 
 :::moniker-end
 
