@@ -42,6 +42,8 @@ Features enabled by using the Web SDK:
 | `DisableImplicitAspNetCoreAnalyzers` | Disables implicit reference to ASP.NET Core analyzers. |
 | `DisableImplicitComponentsAnalyzers` | Disables implicit reference to Razor Components analyzers when building Blazor (server) applications. |
 
+For more information on tasks, targets, properties, implicit blobs, globs, publishing, methods, and more, see the [README file](https://github.com/dotnet/sdk/tree/main/src/WebSdk) in the [WebSdk](https://github.com/dotnet/sdk/tree/main/src/WebSdk) repository.
+
 :::moniker-end
 :::moniker range="< aspnetcore-3.0"
 
