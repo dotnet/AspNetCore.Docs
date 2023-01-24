@@ -133,18 +133,50 @@ For more information, see <xref:host-and-deploy/proxy-load-balancer>.
 
 Use `apt-get` to install Apache. Follow the installation instructions for Ubuntu at [Apache: Compiling and Installing: Installing on Ubuntu/Debian](https://httpd.apache.org/docs/current/install.html).
 
+Once Apache is installed, ensure the Apache modules for [mod_header](https://httpd.apache.org/docs/2.4/mod/mod_headers.html), [mod_proxy](https://httpd.apache.org/docs/2.4/mod/mod_proxy_http.html) and [mod_proxy_http](https://httpd.apache.org/docs/2.4/mod/mod_proxy_http.html) are installed with the following commands:
+
+```bash
+sudo a2enmod headers
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+```
+
+Enable and start Apache using the following commands:
+
+```bash
+sudo systemctl enable apache2
+sudo systemctl start apache2
+```
+
+Verify Apache is active (running) use the following command:
+
+```bash
+sudo systemctl status apache2
+```
+
+> [!NOTE]
+> To verify where Apache is installed, run `whereis apache2` from a command prompt.
+
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
 Use `yum-utils` to select and install an Apache module stream. Follow the installation instructions for Red Hat Enterprise Linux at [Apache: Compiling and Installing](https://httpd.apache.org/docs/current/install.html).
 
-Once Apache is installed, enable and start Apache using the following commands:
+Once Apache is installed, ensure the Apache modules for [mod_header](https://httpd.apache.org/docs/2.4/mod/mod_headers.html), [mod_proxy](https://httpd.apache.org/docs/2.4/mod/mod_proxy_http.html) and [mod_proxy_http](https://httpd.apache.org/docs/2.4/mod/mod_proxy_http.html) are installed with the following commands:
+
+```bash
+sudo a2enmod headers
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+```
+
+Enable and start Apache using the following commands:
 
 ```bash
 sudo systemctl enable httpd
 sudo systemctl start httpd
 ```
 
-To verify Apache is active (running) use the following command:
+Verify Apache is active (running) use the following command:
 
 ```bash
 sudo systemctl status httpd
@@ -157,12 +189,12 @@ sudo systemctl status httpd
 
 Use YaST to install a standard Apache configuration. Follow the installation instructions at [SLES Documentation: Apache Quick Start](https://documentation.suse.com/sles/15-SP1/html/SLES-all/cha-apache2.html#sec-apache2-quickstart).
 
-Once Apache is installed, ensure header and proxy mods installed with the following commands:
+Once Apache is installed, ensure the Apache modules for [mod_header](https://httpd.apache.org/docs/2.4/mod/mod_headers.html), [mod_proxy](https://httpd.apache.org/docs/2.4/mod/mod_proxy_http.html) and [mod_proxy_http](https://httpd.apache.org/docs/2.4/mod/mod_proxy_http.html) are installed with the following commands:
 
 ```bash
 sudo a2enmod headers
 sudo a2enmod mod_proxy
-sudu a2enmod mod_proxy_balancer
+sudu a2enmod mod_proxy_http
 ```
 
 Enable and start Apache using the following commands:
@@ -172,7 +204,7 @@ sudo systemctl enable apache2
 sudo systemctl start apache2
 ```
 
-To verify Apache is active (running) use the following command:
+Verify Apache is active (running) use the following command:
 
 ```bash
 sudo systemctl status apache2
