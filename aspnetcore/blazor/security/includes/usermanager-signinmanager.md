@@ -91,5 +91,5 @@ namespace BlazorSample.Server.Controllers
 
 In the preceding example:
 
-* The **:::no-loc text="Server":::** project's namespace is `BlazorSample.Server`.
+* The **`Server`** project's namespace is `BlazorSample.Server`.
 * The **`Shared`** project's namespace is `BlazorSample.Shared`.

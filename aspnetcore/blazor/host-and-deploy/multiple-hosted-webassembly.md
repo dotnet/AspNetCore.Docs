@@ -19,7 +19,7 @@ Hosted Blazor [solutions](xref:blazor/tooling#visual-studio-solution-file-sln) c
 In the following example:
 
 * The project name of the hosted Blazor WebAssembly app is `MultipleBlazorApps` in a folder named `MultipleBlazorApps`.
-* The three projects in the solution before a second client app is added are `MultipleBlazorApps.Client` in the :::no-loc text="Client"::: folder, `MultipleBlazorApps.Server` in the :::no-loc text="Server"::: folder, and `MultipleBlazorApps.Shared` in the `Shared` folder.
+* The three projects in the solution before a second client app is added are `MultipleBlazorApps.Client` in the `Client` folder, `MultipleBlazorApps.Server` in the `Server` folder, and `MultipleBlazorApps.Shared` in the `Shared` folder.
 * The initial (first) client app is the default client project of the solution created from the Blazor WebAssembly project template. The first client app is accessible in a browser at port 5001 or with a host of `firstapp.com`.
 * A second client app is added to the solution, `MultipleBlazorApps.SecondClient` in a folder named `SecondClient`. The second client app is accessible in a browser at port 5002 or with a host of `secondapp.com`.
 * Optionally, the server project (`MultipleBlazorApps.Server`) can serve pages or views as a formal Razor Pages or MVC app.
@@ -38,14 +38,14 @@ The preceding configurations are beyond the scope of this demonstration. For mor
 * <xref:security/enforcing-ssl>
 * <xref:blazor/components/prerendering-and-integration?pivots=webassembly>
 
-Use an existing hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) or create a [new hosted Blazor WebAssembly solution](xref:blazor/tooling) from the Blazor WebAssembly project template by passing the `-ho|--hosted` option if using the .NET CLI or selecting the **ASP.NET Core hosted** checkbox in Visual Studio or Visual Studio for Mac when the project is created in the IDE.
+Use an existing hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) or create a [new hosted Blazor WebAssembly solution](xref:blazor/tooling) from the Blazor WebAssembly project template by passing the `-ho|--hosted` option if using the .NET CLI or selecting the **ASP.NET Core Hosted** checkbox in Visual Studio or Visual Studio for Mac when the project is created in the IDE.
 
 Use a folder for the solution named `MultipleBlazorApps` and name the project `MultipleBlazorApps`.
 
 Initial projects in the solution and their folders:
 
-* `MultipleBlazorApps.Client` is a Blazor WebAssembly client app in the :::no-loc text="Client"::: folder.
-* `MultipleBlazorApps.Server` is an ASP.NET Core server app that serves Blazor WebAssembly apps) in the :::no-loc text="Server"::: folder. Optionally, the server app can also serve pages or views, as a traditional Razor Pages or MVC app.
+* `MultipleBlazorApps.Client` is a Blazor WebAssembly client app in the `Client` folder.
+* `MultipleBlazorApps.Server` is an ASP.NET Core server app that serves Blazor WebAssembly apps) in the `Server` folder. Optionally, the server app can also serve pages or views, as a traditional Razor Pages or MVC app.
 * `MultipleBlazorApps.Shared` is a shared resources project for the client and server projects in the `Shared` folder.
 
 In the client app's project file (`MultipleBlazorApps.Client.csproj`), add a [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to a `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
@@ -57,13 +57,13 @@ In the client app's project file (`MultipleBlazorApps.Client.csproj`), add a [`<
 > [!NOTE]
 > The demonstration in this section uses web asset path names of `FirstApp` and `SecondApp`, but these specific names are merely for demonstration purposes. Any base path segments that distinguish the client apps are acceptable, such as `App1`/`App2`, `Client1`/`Client2`, `1`/`2`, or any similar naming scheme. These base path segments are used internally to route requests and serve responses and are ***not*** seen in a browser's address bar.
 
-Add a second client app to the solution. Add the project as a standalone Blazor WebAssembly app. To create a standalone Blazor WebAssembly app, don't pass the `-ho|--hosted` option if using the .NET CLI or don't use the **ASP.NET Core hosted** checkbox if using Visual Studio:
+Add a second client app to the solution. Add the project as a standalone Blazor WebAssembly app. To create a standalone Blazor WebAssembly app, don't pass the `-ho|--hosted` option if using the .NET CLI or don't use the **ASP.NET Core Hosted** checkbox if using Visual Studio:
 
 * Name the project `MultipleBlazorApps.SecondClient` and place the app into a folder named `SecondClient`.
 * The solution folder created from the project template contains the following solution file and folders after the `SecondClient` folder is added:
-  * :::no-loc text="Client"::: (folder)
+  * `Client` (folder)
   * `SecondClient` (folder)
-  * :::no-loc text="Server"::: (folder)
+  * `Server` (folder)
   * `Shared` (folder)
   * `MultipleBlazorApps.sln` (file)
 
