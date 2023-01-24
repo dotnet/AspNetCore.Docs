@@ -14,29 +14,16 @@ By [Isaac Levin](https://isaaclevin.com)
 
 This article serves as a reference guide for migrating ASP.NET Framework apps to ASP.NET Core.
 
+Most non-trivial ASP.NET Framework should consider using the [incremental migration](xref:migration/inc/overview) approach.
+
 Visual Studio has tooling to help migrate ASP.NET apps to ASP.NET Core. For more information, see [Migrating from ASP.NET to ASP.NET Core in Visual Studio](https://devblogs.microsoft.com/dotnet/introducing-project-migrations-visual-studio-extension/).
 
 The [.NET Upgrade Assistant](https://dotnet.microsoft.com/en-us/platform/upgrade-assistant) is a command-line tool that can help migrate ASP.NET to ASP.NET Core. For more information, see [Overview of the .NET Upgrade Assistant](/dotnet/architecture/porting-existing-aspnet-apps/) and [Upgrade an ASP.NET MVC app to .NET 6 with the .NET Upgrade Assistant](/dotnet/core/porting/upgrade-assistant-aspnetmvc).
 
-See the ebook [Porting existing ASP.NET apps to .NET Core](https://aka.ms/aspnet-porting-ebook) for a comprehensive porting guide.
+The ebook [Porting existing ASP.NET apps to .NET Core](https://aka.ms/aspnet-porting-ebook):
 
-## Prerequisites
-
-[.NET Core SDK 2.2 or later](https://dotnet.microsoft.com/download)
-
-## Target frameworks
-
-ASP.NET Core projects offer developers the flexibility of targeting .NET Core, .NET Framework, or both. See [Choosing between .NET Core and .NET Framework for server apps](/dotnet/standard/choosing-core-framework-server) to determine which target framework is most appropriate.
-
-When targeting .NET Framework, projects need to reference individual NuGet packages.
-
-Targeting .NET Core allows you to eliminate numerous explicit package references, thanks to the ASP.NET Core [metapackage](xref:fundamentals/metapackage-app). Install the `Microsoft.AspNetCore.App` metapackage in your project:
-
-```xml
-<ItemGroup>
-   <PackageReference Include="Microsoft.AspNetCore.App" />
-</ItemGroup>
-```
+* Contains more information on porting ASP.NET Framework apps to ASP.NET Core.
+* Contains incremental migration information that is outdate. See <xref:migration/inc/overview> for the definitive guide.
 
 ## Project structure differences
 
