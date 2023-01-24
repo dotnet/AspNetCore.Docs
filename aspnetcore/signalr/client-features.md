@@ -40,7 +40,7 @@ The table below shows the features and support for the clients that offer real-t
 | Long Polling Transport |2.1.0|1.0.0|1.0.0|3.0.0|
 | JSON Hub Protocol |2.1.0|1.0.0|1.0.0|1.0.0|
 | MessagePack Hub Protocol |2.1.0|1.0.0|1.0.0|5.0.0|
-| Client Results |7.0.0|7.0.0|7.0.0|❌|
+| Client Results |7.0.0|7.0.0|7.0.0|7.0.0|
 
 Support for enabling additional client features is tracked in [our issue tracker](https://github.com/dotnet/AspNetCore/issues).
 
