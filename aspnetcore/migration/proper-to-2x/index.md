@@ -24,7 +24,21 @@ See the ebook [Porting existing ASP.NET apps to .NET Core](https://aka.ms/aspnet
 
 ## Prerequisites
 
-[.NET Core SDK 7.0 or later](https://dotnet.microsoft.com/download)
+[.NET Core SDK 2.2 or later](https://dotnet.microsoft.com/download)
+
+## Target frameworks
+
+ASP.NET Core projects offer developers the flexibility of targeting .NET Core, .NET Framework, or both. See [Choosing between .NET Core and .NET Framework for server apps](/dotnet/standard/choosing-core-framework-server) to determine which target framework is most appropriate.
+
+When targeting .NET Framework, projects need to reference individual NuGet packages.
+
+Targeting .NET Core allows you to eliminate numerous explicit package references, thanks to the ASP.NET Core [metapackage](xref:fundamentals/metapackage-app). Install the `Microsoft.AspNetCore.App` metapackage in your project:
+
+```xml
+<ItemGroup>
+   <PackageReference Include="Microsoft.AspNetCore.App" />
+</ItemGroup>
+```
 
 ## Project structure differences
 
