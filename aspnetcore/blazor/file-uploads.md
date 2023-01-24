@@ -251,9 +251,9 @@ public class UploadResult
 
 :::zone pivot="webassembly"
 
-The following `UploadResult` class in the **`Shared`** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`. In the following example, the project's namespace is `BlazorSample.Shared`.
+The following `UploadResult` class in the **:::no-loc text="Shared":::** project maintains the result of an uploaded file. When a file fails to upload on the server, an error code is returned in `ErrorCode` for display to the user. A safe file name is generated on the server for each file and returned to the client in `StoredFileName` for display. Files are keyed between the client and server using the unsafe/untrusted file name in `FileName`. In the following example, the project's namespace is `BlazorSample.Shared`.
 
-`UploadResult.cs` in the **`Shared`** project of the hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln):
+`UploadResult.cs` in the **:::no-loc text="Shared":::** project of the hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln):
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -289,7 +289,7 @@ namespace BlazorSample.Shared
 
 :::moniker-end
 
-To make the `UploadResult` class available to the **:::no-loc text="Client":::** project, add an import to the **:::no-loc text="Client":::** project's `_Imports.razor` file for the **`Shared`** project:
+To make the `UploadResult` class available to the **:::no-loc text="Client":::** project, add an import to the **:::no-loc text="Client":::** project's `_Imports.razor` file for the **:::no-loc text="Shared":::** project:
 
 ```razor
 @using BlazorSample.Shared
