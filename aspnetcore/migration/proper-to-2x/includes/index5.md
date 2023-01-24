@@ -1,20 +1,6 @@
----
-title: Migrate from ASP.NET to ASP.NET Core
-author: isaacrlevin
-description: Receive guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core.web
-ms.author: riande
-ms.date: 10/18/2019
-uid: migration/proper-to-2x/index
----
-# Migrate from ASP.NET to ASP.NET Core
+ :::moniker range="< aspnetcore-7.0"
 
-By [Isaac Levin](https://isaaclevin.com)
-
- :::moniker range=">= aspnetcore-7.0"
-
-This article serves as a reference guide for migrating ASP.NET Framework apps to ASP.NET Core.
-
-Most non-trivial ASP.NET Framework should consider using the [incremental migration](xref:migration/inc/overview) approach.
+This article serves as a reference guide for migrating ASP.NET apps to ASP.NET Core.
 
 Visual Studio has tooling to help migrate ASP.NET apps to ASP.NET Core. For more information, see [Migrating from ASP.NET to ASP.NET Core in Visual Studio](https://devblogs.microsoft.com/dotnet/introducing-project-migrations-visual-studio-extension/).
 
@@ -40,6 +26,8 @@ Targeting .NET Core allows you to eliminate numerous explicit package references
 </ItemGroup>
 ```
 
+When the metapackage is used, no packages referenced in the metapackage are deployed with the app. The .NET Core Runtime Store includes these assets, and they're precompiled to improve performance. See [Microsoft.AspNetCore.App metapackage for ASP.NET Core](xref:fundamentals/metapackage-app) for more detail.
+
 ## Project structure differences
 
 The `.csproj` file format has been simplified in ASP.NET Core. Some notable changes include:
@@ -48,11 +36,11 @@ The `.csproj` file format has been simplified in ASP.NET Core. Some notable chan
 - There are no GUID-based references to other projects, which improves file readability.
 - The file can be edited without unloading it in Visual Studio:
 
-    ![Edit CSPROJ context menu option in Visual Studio 2017](~/migration/proper-to-2x/_static/EditProjectVs2017.png)
+    ![Edit CSPROJ context menu option in Visual Studio 2017](~/migration/proper-to-2x/_static/EditProjectVs2017.png)]
 
 ## Global.asax file replacement
 
-ASP.NET Core introduced a new mechanism for bootstrapping an app. The entry point for ASP.NET applications is the *Global.asax* file. Tasks such as route configuration, filter and area registrations are handled in the *Global.asax* file:
+ASP.NET Core introduced a new mechanism for bootstrapping an app. The entry point for ASP.NET applications is the *Global.asax* file. Tasks such as route configuration and filter and area registrations are handled in the *Global.asax* file.
 
 [!code-csharp[](~/migration/proper-to-2x/samples/globalasax-sample.cs)]
 
@@ -208,7 +196,4 @@ For apps that post JSON information to controllers and use JSON Input Formatters
 ## Additional resources
 
 - [Porting Libraries to .NET Core](/dotnet/core/porting/libraries)
-
 :::moniker-end
-
-[!INCLUDE[](~/migration/proper-to-2x/includes/index5.md)]
