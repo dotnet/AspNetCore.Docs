@@ -14,10 +14,10 @@ By [Isaac Levin](https://isaaclevin.com)
 
 Most non-trivial ASP.NET Framework apps should consider using the [incremental migration](xref:migration/inc/overview) approach.
 
-The ebook [Porting existing ASP.NET apps to .NET Core](https://aka.ms/aspnet-porting-ebook):
+The ebook [Porting existing ASP.NET apps to .NET Core](https://aka.ms/aspnet-porting-ebook) contains information:
 
-* Contains more information on porting ASP.NET Framework apps to ASP.NET Core.
-* Contains incremental migration information that is outdated. See <xref:migration/inc/overview> for the definitive guide.
+* On porting ASP.NET Framework apps to ASP.NET Core.
+* Incremental migration information that is outdated. See <xref:migration/inc/overview> for the definitive guide.
 
 ## URI decoding differences between ASP.NET to ASP.NET Core
 
@@ -28,7 +28,7 @@ ASP.NET Core has the following URI decoding differences with ASP.NET Framework:
 | `\` | `%5C`  |  `/` |  `\` |
 | `/` | `%2F`  |  `%2F` |  `/` |
 
-`%2F`:
+When decoding `%2F` on ASP.NET Core:
 
 * The entire path gets unescaped except `%2F` because converting it to `/` would change the path structure. It can’t be decoded until the path is split into segments.
 * See the [PathBase source](https://source.dot.net/#Microsoft.AspNetCore.Http.Abstractions/HttpRequest.cs,8d85f458c32cb4a5) for more information.
