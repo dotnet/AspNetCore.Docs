@@ -1,4 +1,4 @@
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 Underneath the covers, [role-based authorization](xref:security/authorization/roles) and [claims-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a pre-configured policy. These building blocks support the expression of authorization evaluations in code. The result is a richer, reusable, testable authorization structure.
 
@@ -241,10 +241,6 @@ if (context.Resource is AuthorizationFilterContext mvcContext)
 ## Globally require all users to be authenticated
 
 [!INCLUDE[](~/includes/requireAuth.md)]
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
 
 Underneath the covers, [role-based authorization](xref:security/authorization/roles) and [claims-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a pre-configured policy. These building blocks support the expression of authorization evaluations in code. The result is a richer, reusable, testable authorization structure.
 
