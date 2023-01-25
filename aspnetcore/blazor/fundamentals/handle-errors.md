@@ -64,24 +64,6 @@ In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html
 
 The `blazor-error-ui` element is normally hidden due to the presence of the `display: none` style of the `blazor-error-ui` CSS class in the site's stylesheet (`wwwroot/css/site.css` for Blazor Server or `wwwroot/css/app.css` for Blazor WebAssembly). When an error occurs, the framework applies `display: block` to the element.
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html` file:
-
-```html
-<div id="blazor-error-ui">
-    An unhandled error has occurred.
-    <a href="" class="reload">Reload</a>
-    <a class="dismiss">🗙</a>
-</div>
-```
-
-The `blazor-error-ui` element is normally hidden due to the presence of the `display: none` style of the `blazor-error-ui` CSS class in the app's stylesheet (`wwwroot/css/app.css`). When an error occurs, the framework applies `display: block` to the element.
-
-:::moniker-end
-
 ## Detailed circuit errors
 
 *This section applies to Blazor Server apps.*
@@ -141,7 +123,14 @@ The framework terminates a circuit when an unhandled exception occurs for the fo
 * The app's normal operation can't be guaranteed after an unhandled exception.
 * Security vulnerabilities may appear in the app if the circuit continues in an undefined state.
 
+## Global exception handling
+
 :::moniker range=">= aspnetcore-6.0"
+
+For global exception handling, see the following sections:
+
+* [Error boundaries](#error-boundaries)
+* [Alternative global exception handling](#alternative-global-exception-handling)
 
 ## Error boundaries
 
@@ -319,8 +308,6 @@ Because the approaches in this section handle errors with a [`try-catch`](/dotne
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
-
-## Global exception handling
 
 Blazor is a single-page application (SPA) client-side framework. The browser serves as the app's host and thus acts as the processing pipeline for individual Razor components based on URI requests for navigation and static assets. Unlike ASP.NET Core apps that run on the server with a middleware processing pipeline, there is no middleware pipeline that processes requests for Razor components that can be leveraged for global error handling. However, an app can use an error processing component as a cascading value to process errors in a centralized way.
 

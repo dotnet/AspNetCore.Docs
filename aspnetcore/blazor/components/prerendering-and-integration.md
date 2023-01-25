@@ -905,7 +905,7 @@ To resolve the problem, use ***either*** of the following approaches:
   * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering)
   * [Prerendering with JavaScript interop](xref:blazor/components/lifecycle#prerendering-with-javascript-interop)
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-* [Handle Errors: Blazor Server Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
+* [Handle Errors: Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
 * [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/threat-mitigation#cross-site-scripting-xss)
 
@@ -1848,7 +1848,7 @@ To resolve the problem, use ***either*** of the following approaches:
   * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering)
   * [Prerendering with JavaScript interop](xref:blazor/components/lifecycle#prerendering-with-javascript-interop)
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-* [Handle Errors: Blazor Server Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
+* [Handle Errors: Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
 * [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/threat-mitigation#cross-site-scripting-xss)
 
@@ -2555,7 +2555,7 @@ To resolve the problem, use ***either*** of the following approaches:
   * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering)
   * [Prerendering with JavaScript interop](xref:blazor/components/lifecycle#prerendering-with-javascript-interop)
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-* [Handle Errors: Blazor Server Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
+* [Handle Errors: Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
 * [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/threat-mitigation#cross-site-scripting-xss)
 
@@ -2995,7 +2995,7 @@ To resolve the problem, use ***either*** of the following approaches:
   * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering)
   * [Prerendering with JavaScript interop](xref:blazor/components/lifecycle#prerendering-with-javascript-interop)
 * [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-* [Handle Errors: Blazor Server Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
+* [Handle Errors: Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
 * [Host and deploy: Blazor Server](xref:blazor/host-and-deploy/server)
 * [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/server/threat-mitigation#cross-site-scripting-xss)
 
