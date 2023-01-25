@@ -505,7 +505,7 @@ Render fragments are used to render child content throughout Blazor apps and are
 * [Blazor layouts](xref:blazor/components/layouts)
 * [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy)
 * [Templated components](xref:blazor/components/templated-components)
-* <xref:blazor/fundamentals/handle-errors>
+* [Global exception handling](xref:blazor/fundamentals/handle-errors#global-exception-handling)
 
 > [!NOTE]
 > Blazor framework's [built-in Razor components](xref:blazor/components/built-in-components) use the same `ChildContent` component parameter convention to set their content. You can see the components that set child content by searching for the component parameter property name `ChildContent` in the [API documentation (filters API with the search term "ChildContent")](/dotnet/api/?term=ChildContent).
@@ -2265,7 +2265,7 @@ Render fragments are used to render child content throughout Blazor apps and are
 * [Blazor layouts](xref:blazor/components/layouts)
 * [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy)
 * [Templated components](xref:blazor/components/templated-components)
-* <xref:blazor/fundamentals/handle-errors>
+* [Global exception handling](xref:blazor/fundamentals/handle-errors#global-exception-handling)
 
 > [!NOTE]
 > Blazor framework's [built-in Razor components](xref:blazor/components/built-in-components) use the same `ChildContent` component parameter convention to set their content. You can see the components that set child content by searching for the component parameter property name `ChildContent` in the [API documentation (filters API with the search term "ChildContent")](/dotnet/api/?term=ChildContent).
@@ -3863,7 +3863,7 @@ Render fragments are used to render child content throughout Blazor apps and are
 * [Blazor layouts](xref:blazor/components/layouts)
 * [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy)
 * [Templated components](xref:blazor/components/templated-components)
-* <xref:blazor/fundamentals/handle-errors>
+* [Global exception handling](xref:blazor/fundamentals/handle-errors#global-exception-handling)
 
 > [!NOTE]
 > Blazor framework's [built-in Razor components](xref:blazor/components/built-in-components) use the same `ChildContent` component parameter convention to set their content. You can see the components that set child content by searching for the component parameter property name `ChildContent` in the [API documentation (filters API with the search term "ChildContent")](/dotnet/api/?term=ChildContent).
@@ -4876,7 +4876,7 @@ Render fragments are used to render child content throughout Blazor apps and are
 * [Blazor layouts](xref:blazor/components/layouts)
 * [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy)
 * [Templated components](xref:blazor/components/templated-components)
-* <xref:blazor/fundamentals/handle-errors>
+* [Global exception handling](xref:blazor/fundamentals/handle-errors#global-exception-handling)
 
 > [!NOTE]
 > Blazor framework's [built-in Razor components](xref:blazor/components/built-in-components) use the same `ChildContent` component parameter convention to set their content. You can see the components that set child content by searching for the component parameter property name `ChildContent` in the [API documentation (filters API with the search term "ChildContent")](/dotnet/api/?term=ChildContent).
