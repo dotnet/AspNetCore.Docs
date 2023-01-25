@@ -906,7 +906,13 @@ items:
       - name: Performance best practices
         uid: grpc/performance
       - name: Inter-process communication
-        uid: grpc/interprocess
+        items:
+          - name: Overview
+            uid: grpc/interprocess
+          - name: Unix domain sockets
+            uid: grpc/interprocess-uds
+          - name: Named pipes
+            uid: grpc/interprocess-namedpipes
       - name: Code-first services and clients
         uid: grpc/code-first
       - name: gRPC health checks
