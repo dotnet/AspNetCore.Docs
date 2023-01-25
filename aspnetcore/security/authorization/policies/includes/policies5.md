@@ -8,7 +8,7 @@ An authorization policy consists of one or more requirements. It's registered as
 
 In the preceding example, an "AtLeast21" policy is created. It has a single requirement&mdash;that of a minimum age, which is supplied as a parameter to the requirement.
 
-## IAuthorizationService
+## IAuthorizationService 5
 
 The primary service that determines if authorization is successful is <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>:
 
@@ -92,7 +92,7 @@ Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> or `[Authori
 
 <a name="apply-policies-to-mvc-controllers"></a>
 
-## Apply policies to MVC controllers
+## Apply policies to MVC controller
 
 If you're using Razor Pages, see [Apply policies to Razor Pages](#apply-policies-to-razor-pages) in this document.
 
