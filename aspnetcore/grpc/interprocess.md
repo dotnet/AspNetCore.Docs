@@ -55,4 +55,4 @@ The client and server must be configured to use an inter-process communication (
 * [Inter-process communication with gRPC and Named pipes](xref:grpc/interprocess-namedpipes)
 
 > [!NOTE]
-> Named pipes requires .NET 8 or later.
+> Built-in support for Named pipes in ASP.NET Core requires .NET 8 or later. .NET 8 is currently in preview and will be released near the end of 2023.
