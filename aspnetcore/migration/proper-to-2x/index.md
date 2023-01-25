@@ -37,7 +37,7 @@ To generate the value for `HttpRequest.Url`, use `new Uri(this.AspNetCoreHttpReq
 
 ## Additional resources
 
-- [Porting Libraries to .NET Core](/dotnet/core/porting/libraries)
+- [Overview of porting from .NET Framework to .NET](/dotnet/core/porting/libraries)
 
 :::moniker-end
 
