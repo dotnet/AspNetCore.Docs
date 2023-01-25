@@ -17,7 +17,7 @@ Most non-trivial ASP.NET Framework apps should consider using the [incremental m
 The ebook [Porting existing ASP.NET apps to .NET Core](https://aka.ms/aspnet-porting-ebook) contains information:
 
 * On porting ASP.NET Framework apps to ASP.NET Core.
-* Incremental migration information that is outdated. See <xref:migration/inc/overview> for the definitive guide.
+* Incremental migration information that is outdated. See <xref:migration/inc/overview> for the definitive guide to incremental migration.
 
 ## URI decoding differences between ASP.NET to ASP.NET Core
 
