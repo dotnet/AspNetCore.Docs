@@ -5,7 +5,7 @@ description: Create a chat app that uses ASP.NET Core SignalR with Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 01/25/2022
 uid: blazor/tutorials/signalr-blazor
 zone_pivot_groups: blazor-hosting-models
 ---
