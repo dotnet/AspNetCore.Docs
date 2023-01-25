@@ -288,7 +288,7 @@ JS interop interactions between the client and server are recorded in the server
 
 When an error occurs on the server, the framework notifies the client and tears down the session. By default, the client receives a generic error message that can be seen in the browser's developer tools.
 
-The client-side error doesn't include the call stack and doesn't provide detail on the cause of the error, but server logs do contain such information. For development purposes, sensitive error information can be made available to the client by [enabling detailed errors](xref:blazor/fundamentals/handle-errors#blazor-server-detailed-circuit-errors).
+The client-side error doesn't include the call stack and doesn't provide detail on the cause of the error, but server logs do contain such information. For development purposes, sensitive error information can be made available to the client by [enabling detailed errors](xref:blazor/fundamentals/handle-errors#detailed-circuit-errors).
 
 > [!WARNING]
 > Exposing error information to clients on the Internet is a security risk that should always be avoided.
@@ -679,7 +679,7 @@ JS interop interactions between the client and server are recorded in the server
 
 When an error occurs on the server, the framework notifies the client and tears down the session. By default, the client receives a generic error message that can be seen in the browser's developer tools.
 
-The client-side error doesn't include the call stack and doesn't provide detail on the cause of the error, but server logs do contain such information. For development purposes, sensitive error information can be made available to the client by [enabling detailed errors](xref:blazor/fundamentals/handle-errors#blazor-server-detailed-circuit-errors).
+The client-side error doesn't include the call stack and doesn't provide detail on the cause of the error, but server logs do contain such information. For development purposes, sensitive error information can be made available to the client by [enabling detailed errors](xref:blazor/fundamentals/handle-errors#detailed-circuit-errors).
 
 > [!WARNING]
 > Exposing error information to clients on the Internet is a security risk that should always be avoided.
@@ -1070,7 +1070,7 @@ JS interop interactions between the client and server are recorded in the server
 
 When an error occurs on the server, the framework notifies the client and tears down the session. By default, the client receives a generic error message that can be seen in the browser's developer tools.
 
-The client-side error doesn't include the call stack and doesn't provide detail on the cause of the error, but server logs do contain such information. For development purposes, sensitive error information can be made available to the client by [enabling detailed errors](xref:blazor/fundamentals/handle-errors#blazor-server-detailed-circuit-errors).
+The client-side error doesn't include the call stack and doesn't provide detail on the cause of the error, but server logs do contain such information. For development purposes, sensitive error information can be made available to the client by [enabling detailed errors](xref:blazor/fundamentals/handle-errors#detailed-circuit-errors).
 
 > [!WARNING]
 > Exposing error information to clients on the Internet is a security risk that should always be avoided.
