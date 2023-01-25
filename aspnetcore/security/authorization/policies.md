@@ -290,3 +290,5 @@ The sample code on [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCor
 * [AspNetCore.Docs.Samples code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/samples/aspnetcore-authz-with-ext-authz-service)
 
 :::moniker-end
+
+[!INCLUDE[](~/security/authorization/policies/includes/policies5.md)]
