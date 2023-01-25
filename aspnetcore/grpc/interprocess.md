@@ -53,3 +53,6 @@ The client and server must be configured to use an inter-process communication (
 
 * [Inter-process communication with gRPC and Unix domain sockets](xref:grpc/interprocess-uds)
 * [Inter-process communication with gRPC and Named pipes](xref:grpc/interprocess-namedpipes)
+
+> [!NOTE]
+> Named pipes requires .NET 8 or later.
