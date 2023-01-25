@@ -84,7 +84,7 @@ await host.RunAsync();
 
 ## Add services to a Blazor Server app
 
-:::moniker range=">= aspnetcore-6.0
+:::moniker range=">= aspnetcore-6.0"
 
 After creating a new app, examine part of the `Program.cs` file:
 
@@ -104,7 +104,7 @@ builder.Services.AddSingleton<IDataAccess, DataAccess>();
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-6.0
+:::moniker range="< aspnetcore-6.0"
 
 After creating a new app, examine the `Startup.ConfigureServices` method in `Startup.cs`:
 
@@ -206,7 +206,7 @@ public class ComponentBase : IComponent
 }
 ```
 
-:::moniker range=">= aspnetcore-6.0
+:::moniker range=">= aspnetcore-6.0"
 
 > [!NOTE]
 > Since injected services are expected to be available, don't mark injected services as nullable. Instead, assign a default literal with the null-forgiving operator (`default!`). For example:
@@ -317,7 +317,7 @@ In the following `TimeTravel` component:
 
 `Pages/TimeTravel.razor`:
 
-:::moniker range=">= aspnetcore-6.0
+:::moniker range=">= aspnetcore-6.0"
 
 ```razor
 @page "/time-travel"
@@ -343,7 +343,7 @@ In the following `TimeTravel` component:
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-6.0
+:::moniker range="< aspnetcore-6.0"
 
 ```razor
 @page "/time-travel"
@@ -427,7 +427,7 @@ The following example shows how to detect disposable transient services in an ap
 
 `DetectIncorrectUsagesOfTransientDisposables.cs` for Blazor WebAssembly apps:
 
-:::moniker range=">= aspnetcore-7.0
+:::moniker range=">= aspnetcore-7.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/dependency-injection/DetectIncorrectUsagesOfTransientDisposables.cs":::
 
@@ -464,7 +464,7 @@ The `TransientDisposable` in the following example is detected.
 
 `Program.cs`:
 
-:::moniker range=">= aspnetcore-6.0
+:::moniker range=">= aspnetcore-6.0"
 
 ```csharp
 using Microsoft.AspNetCore.Components.Web;
@@ -490,7 +490,7 @@ await host.RunAsync();
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-6.0
+:::moniker range="< aspnetcore-6.0"
 
 ```csharp
 public class Program
@@ -549,7 +549,7 @@ The following example shows how to detect disposable transient services in an ap
 
 `DetectIncorrectUsagesOfTransientDisposables.cs`:
 
-:::moniker range=">= aspnetcore-7.0
+:::moniker range=">= aspnetcore-7.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_Server/dependency-injection/DetectIncorrectUsagesOfTransientDisposables.cs":::
 
@@ -602,7 +602,7 @@ public class TransientDependency
 
 The `TransientDependency` in the following example is detected.
 
-:::moniker range=">= aspnetcore-6.0
+:::moniker range=">= aspnetcore-6.0"
 
 In `Program.cs`:
 
@@ -615,7 +615,7 @@ builder.Services.AddTransient<ITransitiveTransientDisposableDependency,
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-6.0
+:::moniker range="< aspnetcore-6.0"
 
 In `Startup.cs`:
 
