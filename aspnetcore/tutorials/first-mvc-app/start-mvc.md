@@ -168,7 +168,7 @@ You can launch the app in debug or non-debug mode from the **Debug** menu.
 
 The following image shows the app:
 
-![Home or Index page](./start-mvc/_static/output_macos_net7.png)
+![Home or Index page](./start-mvc/_static/output_macos_VS22.png)
 
 ---
 
