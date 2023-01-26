@@ -3,10 +3,10 @@ title: Part 2, add a controller to an ASP.NET Core MVC app
 author: wadepickett
 description: Part 2 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 11/04/2022
+ms.date: 01/25/2023
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-controller
-ms.custom: contperf-fy21q3
+ms.custom: contperf-fy21q3, engagement-fy23
 ---
 
 # Part 2, add a controller to an ASP.NET Core MVC app
@@ -61,17 +61,15 @@ Select the **EXPLORER** icon and then control-click (right-click) **Controllers 
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
-<!--
 In **Solution Explorer**, right-click **Controllers > Add > New File**.
 
-![Contextual menu](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller.png)
+![Contextual menu](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller_MacVS22.png)
 
 Select **ASP.NET Core** and **Controller Class**.
 
 Name the controller **HelloWorldController**.
 
 ![Add MVC controller and name it](~/tutorials/first-mvc-app-mac/adding-controller/_static/ac.png)
--->
 
 ---
 
