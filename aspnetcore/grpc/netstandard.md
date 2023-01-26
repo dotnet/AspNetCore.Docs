@@ -72,7 +72,6 @@ Requirements and restrictions to using `WinHttpHandler`:
 * A reference to [`System.Net.Http.WinHttpHandler`](https://www.nuget.org/packages/System.Net.Http.WinHttpHandler/) version 6.0.1 or later.
 * Configure `WinHttpHandler` on the channel using `GrpcChannelOptions.HttpHandler`.
 * .NET Framework 4.6.1 or later.
-* Only unary and server streaming gRPC calls are supported.
 * Only gRPC calls over TLS are supported.
 
 ```csharp

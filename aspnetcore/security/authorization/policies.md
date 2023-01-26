@@ -282,11 +282,11 @@ The sample code on [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCor
 
 5. Run the solution and use Postman to invoke the API. You can add breakpoints in the `Contoso.Security.API.SecurityPolicyController` and observe the client Id is being passed in that is used to assert whether it is allowed to Get Weather.
 
-[!INCLUDE[](~/security/authorization/policies/includes/policies5.md)]
-
 ## Additional resources
 
 * [Quickstart: Configure an application to expose a web API](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis)
 * [AspNetCore.Docs.Samples code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/samples/aspnetcore-authz-with-ext-authz-service)
 
 :::moniker-end
+
+[!INCLUDE[](~/security/authorization/policies/includes/policies5.md)]
