@@ -678,7 +678,7 @@ For more information, see the following API resources:
 
 In Blazor Server, file data is streamed over the SignalR connection into .NET code on the server as the file is read.
 
-:::moniker range=“= aspnetcore-5.0”
+:::moniker range="= aspnetcore-5.0"
 
 <xref:Microsoft.AspNetCore.Components.Forms.RemoteBrowserFileStreamOptions> allows configuring file upload characteristics for Blazor Server.
 
@@ -692,7 +692,7 @@ In Blazor WebAssembly, file data is streamed directly into the .NET code within 
 
 :::zone-end
 
-:::moniker range=“>= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 ## Upload image preview
 
