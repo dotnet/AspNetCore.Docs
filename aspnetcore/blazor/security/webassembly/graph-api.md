@@ -44,7 +44,7 @@ After adding the Microsoft Graph API scopes in the AAD area of the Azure portal,
 ```json
 "MicrosoftGraph": {
   "BaseUrl": "https://graph.microsoft.com",
-  "Version: "v1.0",
+  "Version:" "v1.0",
   "Scopes": [
     "user.read"
   ]
