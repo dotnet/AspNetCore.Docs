@@ -35,6 +35,10 @@ When decoding `%2F` on ASP.NET Core:
 
 To generate the value for `HttpRequest.Url`, use `new Uri(this.AspNetCoreHttpRequest.GetEncodedUrl());` to avoid `Uri` misinterpreting the values.
 
+## Migrating User Secrets from ASP.NET Framework to ASP.NET Core
+
+See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/27611).
+
 ## Additional resources
 
 - [Overview of porting from .NET Framework to .NET](/dotnet/core/porting/libraries)
