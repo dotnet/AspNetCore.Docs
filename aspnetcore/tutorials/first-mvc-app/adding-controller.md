@@ -59,8 +59,6 @@ Select the **EXPLORER** icon and then control-click (right-click) **Controllers 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
-
 In **Solution Explorer**, right-click **Controllers > Add > New File**.
 
 ![Contextual menu](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller_MacVS22.png)
@@ -93,7 +91,7 @@ The second comment specifies an [HTTP GET](https://developer.mozilla.org/docs/We
 
 Run the app without the debugger.
 
-Append "HelloWorld" to the path in the address bar. The `Index` method returns a string.
+Append `/HelloWorld` to the path in the address bar. The `Index` method returns a string.
 
 ![Browser window showing an app response of This is my default action](~/tutorials/first-mvc-app/adding-controller/_static/hell1.png)
 
@@ -150,7 +148,7 @@ Run the app and enter the following URL: `https://localhost:{PORT}/HelloWorld/We
 
 In the preceding URL:
 
-* The third URL segment matched the route parameter `id`. 
+* The third URL segment matched the route parameter `id`.
 * The `Welcome` method contains a parameter `id` that matched the URL template in the `MapControllerRoute` method.
 * The trailing `?` starts the [query string](https://wikipedia.org/wiki/Query_string).
 
