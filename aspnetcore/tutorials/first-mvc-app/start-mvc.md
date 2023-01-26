@@ -160,7 +160,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
   * Launches a browser.
   * Navigates to `http://localhost:port`, where *port* is a randomly chosen port number, set when Visual Studio creates a web project.
 
-  [!INCLUDE[](~/includes/trustCertMac.md)]
+  [!INCLUDE[](~/includes/trustCertMacVS22.md)]
 
   The address bar shows `localhost:<port#>` and not something like `example.com`. The standard hostname for your local computer is `localhost`. Localhost only serves web requests from the local computer.
 
