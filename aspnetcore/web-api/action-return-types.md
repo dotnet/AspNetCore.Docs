@@ -35,7 +35,7 @@ When multiple return types are possible, it's common to mix an <xref:Microsoft.A
 
 ### Return IEnumerable\<T> or IAsyncEnumerable\<T>
 
-See [Return `IEnumerable<T>` or `IAsyncEnumerable<T>`](/aspnet/core/fundamentals/best-practices#return-ienumerablet-or-iasyncenumerablet0#return-ienumerablet-or-iasyncenumerablet) for a performance considerations.
+See [Return `IEnumerable<T>` or `IAsyncEnumerable<T>`](/aspnet/core/fundamentals/best-practices#return-ienumerablet-or-iasyncenumerablet0#return-ienumerablet-or-iasyncenumerablet) for performance considerations.
 
 ASP.NET Core buffers the result of actions that return <xref:System.Collections.Generic.IEnumerable%601> before writing them to the response. Consider declaring the action signature's return type as <xref:System.Collections.Generic.IAsyncEnumerable%601> to guarantee asynchronous iteration. Ultimately, the iteration mode is based on the underlying concrete type being returned and the selected formatter affects how the result is processed:
 
