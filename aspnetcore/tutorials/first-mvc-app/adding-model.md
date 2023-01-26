@@ -3,9 +3,9 @@ title: Part 4, add a model to an ASP.NET Core MVC app
 author: wadepickett
 description: Part 4 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 12/05/2022
+ms.date: 01/26/2023
 uid: tutorials/first-mvc-app/adding-model
-ms.custom: contperf-fy21q3
+ms.custom: contperf-fy21q3, engagement-fy23
 ---
 
 # Part 4, add a model to an ASP.NET Core MVC app

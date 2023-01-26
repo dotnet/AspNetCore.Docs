@@ -3,10 +3,10 @@ title: Part 3, add a view to an ASP.NET Core MVC app
 author: wadepickett
 description: Part 3 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 11/04/2022
+ms.date: 01/26/2023
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/adding-view
-ms.custom: contperf-fy21q3
+ms.custom: contperf-fy21q3, engagement-fy23
 ---
 
 # Part 3, add a view to an ASP.NET Core MVC app
@@ -64,7 +64,6 @@ Add an `Index` view for the `HelloWorldController`:
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
-<!--
 Control-click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
 
 Control-click on the *Views/HelloWorld* folder, and then **Add > New File**.
@@ -72,12 +71,11 @@ Control-click on the *Views/HelloWorld* folder, and then **Add > New File**.
 In the **New File** dialog:
 
 * Select **ASP.NET Core** in the left pane.
-* Select **Razor View - Empty** in the center pane.
+* Select **Razor View** in the center pane.
 * Type *Index* in the **Name** box.
-* Select **New**.
+* Select **Create**.
 
-  ![Add New Item dialog](adding-view/_static/add_view_macVSM8.9.png)
--->
+  ![Add New Item dialog](adding-view/_static/add_view_macVS22.png)
 
 ---
 
@@ -273,7 +271,6 @@ Add an `Index` view for the `HelloWorldController`:
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 
-<!--
 Control-click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
 
 Control-click on the *Views/HelloWorld* folder, and then **Add > New File**.
@@ -281,12 +278,11 @@ Control-click on the *Views/HelloWorld* folder, and then **Add > New File**.
 In the **New File** dialog:
 
 * Select **ASP.NET Core** in the left pane.
-* Select **Razor View - Empty** in the center pane.
+* Select **Razor View** in the center pane.
 * Type *Index* in the **Name** box.
-* Select **New**.
+* Select **Create**.
 
-  ![Add New Item dialog](adding-view/_static/add_view_macVSM8.9.png)
--->
+  ![Add New Item dialog](adding-view/_static/add_view_macVS22.png)
 
 ---
 
