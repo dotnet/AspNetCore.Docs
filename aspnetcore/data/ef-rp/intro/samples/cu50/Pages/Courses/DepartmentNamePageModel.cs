@@ -25,3 +25,4 @@ namespace ContosoUniversity.Pages.Courses
         }
     }
 }
+
