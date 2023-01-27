@@ -123,7 +123,7 @@ In the following example:
 * The namespace of the app is `MauiBlazor`, which matches the suggested project name of the <xref:blazor/hybrid/tutorials/maui> tutorial.
 * A <xref:Microsoft.Maui.Controls.ContentPage> is placed in a new folder added to the app named `Views`.
 
-In `App.xaml`, create the `MainPage` as a <xref:Microsoft.Maui.Controls.NavigationPage> by making the following change:
+In `App.xaml.cs`, create the `MainPage` as a <xref:Microsoft.Maui.Controls.NavigationPage> by making the following change:
 
 ```diff
 - MainPage = new MainPage();
@@ -145,12 +145,13 @@ In `App.xaml`, create the `MainPage` as a <xref:Microsoft.Maui.Controls.Navigati
                HorizontalOptions="Center"
                FontSize="24" />
         <Button x:Name="CloseButton" 
+                Clicked="CloseButton_Clicked" 
                 Text="Close" />
     </StackLayout>
 </ContentPage>
 ```
 
-In the `NavigationExample` code file, an event handler for the close button calls <xref:Microsoft.Maui.Controls.INavigation.PopAsync%2A> to pop the <xref:Microsoft.Maui.Controls.ContentPage> off of the navigation stack.
+In the following `NavigationExample` code file, the `CloseButton_Clicked` event handler for the close button calls <xref:Microsoft.Maui.Controls.INavigation.PopAsync%2A> to pop the <xref:Microsoft.Maui.Controls.ContentPage> off of the navigation stack.
 
 `Views/NavigationExample.xaml.cs`:
 
@@ -162,7 +163,6 @@ public partial class NavigationExample : ContentPage
     public NavigationExample()
     {
         InitializeComponent();
-        CloseButton.Clicked += CloseButton_Clicked;
     }
 
     private async void CloseButton_Clicked(object sender, EventArgs e)
