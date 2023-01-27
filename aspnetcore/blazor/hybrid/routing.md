@@ -150,6 +150,8 @@ In `App.xaml`, create the `MainPage` as a <xref:Microsoft.Maui.Controls.Navigati
 </ContentPage>
 ```
 
+In the `NavigationExample` code file, an event handler for the close button calls <xref:Microsoft.Maui.Controls.INavigation.PopAsync%2A> to pop the <xref:Microsoft.Maui.Controls.ContentPage> off of the navigation stack.
+
 `Views/NavigationExample.xaml.cs`:
 
 ```csharp
