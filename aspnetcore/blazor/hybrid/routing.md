@@ -144,7 +144,7 @@ In `App.xaml`, create the `MainPage` as a <xref:Microsoft.Maui.Controls.Navigati
                VerticalOptions="Center"
                HorizontalOptions="Center"
                FontSize="24" />
-        <Button x:Name="OnCloseButtonClicked" 
+        <Button x:Name="CloseButton" 
                 Text="Close" />
     </StackLayout>
 </ContentPage>
@@ -160,10 +160,10 @@ public partial class NavigationExample : ContentPage
     public NavigationExample()
     {
         InitializeComponent();
-        OnCloseButtonClicked.Clicked += CloseButtonClicked_Clicked;
+        CloseButton.Clicked += CloseButton_Clicked;
     }
 
-    private async void CloseButtonClicked_Clicked(object sender, EventArgs e)
+    private async void CloseButton_Clicked(object sender, EventArgs e)
     {
         await Navigation.PopAsync();
     }
@@ -202,7 +202,7 @@ Welcome to your new app.
 
 To change the preceding example to modal navigation:
 
-* In the `CloseButtonClicked_Clicked` method (`Views/NavigationExample.xaml.cs`), change <xref:Microsoft.Maui.Controls.INavigation.PopAsync%2A> to <xref:Microsoft.Maui.Controls.INavigation.PopModalAsync%2A>:
+* In the `CloseButton_Clicked` method (`Views/NavigationExample.xaml.cs`), change <xref:Microsoft.Maui.Controls.INavigation.PopAsync%2A> to <xref:Microsoft.Maui.Controls.INavigation.PopModalAsync%2A>:
 
   ```diff
   - await Navigation.PopAsync();
