@@ -5,7 +5,7 @@ description: Learn about configuring options for Kestrel, the cross-platform web
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/20/2022
+ms.date: 01/26/2023
 uid: fundamentals/servers/kestrel/options
 ---
 # Configure options for the ASP.NET Core Kestrel web server
@@ -44,6 +44,8 @@ By default, Kestrel configuration is loaded from the `Kestrel` section using a p
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.KeepAliveTimeout> gets or sets the [keep-alive timeout](https://www.rfc-editor.org/rfc/rfc9112.html#name-keep-alive-connections):
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelLimitsKeepAliveTimeout" highlight="3":::
+
+This timeout is not enforced when a debugger is attached to the Kestrel process.
 
 ### Maximum client connections
 
@@ -100,6 +102,8 @@ Server-wide rate limits configured via <xref:Microsoft.AspNetCore.Server.Kestrel
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.RequestHeadersTimeout> gets or sets the maximum amount of time the server spends receiving request headers:
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelLimitsRequestHeadersTimeout" highlight="3":::
+
+This timeout is not enforced when a debugger is attached to the Kestrel process.
 
 ## HTTP/2 limits
 
@@ -180,6 +184,10 @@ For information about other Kestrel options and limits, see:
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions>
     
+## Behavior with debugger attached
+
+Certain timeouts and rate limits aren't enforced when a debugger is attached to a Kestrel process. For more information, see [Behavior with debugger attached](xref:fundamentals/servers/kestrel#behavior-with-debugger-attached).
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
