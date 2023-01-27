@@ -47,9 +47,9 @@ The following timeouts and rate limits aren't enforced when a debugger is attach
 * <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerLimits.RequestHeadersTimeout?displayProperty=nameWithType>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinRequestBodyDataRate?displayProperty=nameWithType>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MinResponseDataRate?displayProperty=nameWithType>
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IConnectionTimeoutFeature?displayProperty=nameWithType>
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinRequestBodyDataRateFeature?displayProperty=nameWithType>
-* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinResponseDataRateFeature?displayProperty=nameWithType>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IConnectionTimeoutFeature>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinRequestBodyDataRateFeature>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinResponseDataRateFeature>
 
 ## Additional resources
 
