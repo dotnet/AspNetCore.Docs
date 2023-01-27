@@ -94,8 +94,6 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 * Enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` when code is copied.
 * Select **Create**.
 
--->
-
 ---
 
 ### Run the app
