@@ -116,7 +116,7 @@ blazorWebView.UrlLoading +=
 
 This section explains how to navigate among .NET MAUI content pages and Razor components.
 
-The .NET MAUI Blazor hybrid project template isn't a [Shell-based app](/dotnet/maui/fundamentals/shell/), so the [URI-based navigation for Shell-based apps](/dotnet/maui/fundamentals/shell/navigation) isn't the simplest approach to implement in a project based on the project template. The examples in this section use a <xref:Microsoft.Maui.Controls.NavigationPage> to perform modeless or modal navigation.
+The .NET MAUI Blazor hybrid project template isn't a [Shell-based app](/dotnet/maui/fundamentals/shell/), so the [URI-based navigation for Shell-based apps](/dotnet/maui/fundamentals/shell/navigation) isn't suitable for a project based on the project template. The examples in this section use a <xref:Microsoft.Maui.Controls.NavigationPage> to perform modeless or modal navigation.
 
 In the following example:
 
