@@ -639,6 +639,8 @@ Actions are either conventionally routed or attribute routed. Placing a route on
 
 Attribute routing and conventional routing use the same routing engine.
 
+[!INCLUDE[](~/includes/routeSlash.md)]
+
 <a name="routing-url-gen-ref-label"></a>
 <a name="ambient"></a>
 
