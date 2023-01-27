@@ -186,7 +186,7 @@ For information about other Kestrel options and limits, see:
     
 ## Behavior with debugger attached
 
-Certain timeouts and rate limits aren't enforced when a debugger is attached to a Kestrel process. For more information, see [Behavior with debugger attached](../kestrel.md#behavior-with-debugger-attached).
+Certain timeouts and rate limits aren't enforced when a debugger is attached to a Kestrel process. For more information, see [Behavior with debugger attached](xref:fundamentals/servers/kestrel#behavior-with-debugger-attached).
 
 :::moniker-end
 
