@@ -14,10 +14,9 @@ By [Isaac Levin](https://isaaclevin.com)
 
 Most non-trivial ASP.NET Framework apps should consider using the [incremental migration](xref:migration/inc/overview) approach.
 
-The ebook [Porting existing ASP.NET apps to .NET Core](https://aka.ms/aspnet-porting-ebook) contains information:
+Visual Studio has tooling to help migrate ASP.NET apps to ASP.NET Core. For more information, see [Migrating from ASP.NET to ASP.NET Core in Visual Studio](/aspnet/core/migration/inc/overview).
 
-* On porting ASP.NET Framework apps to ASP.NET Core.
-* Incremental migration information that is outdated. See <xref:migration/inc/overview> for the definitive guide to incremental migration.
+The [.NET Upgrade Assistant](https://dotnet.microsoft.com/platform/upgrade-assistant) is a command-line tool that can help migrate ASP.NET to ASP.NET Core. For more information, see [Overview of the .NET Upgrade Assistant](/dotnet/architecture/porting-existing-aspnet-apps/) and [Upgrade an ASP.NET MVC app to .NET 6 with the .NET Upgrade Assistant](/dotnet/core/porting/upgrade-assistant-aspnetmvc).
 
 ## URI decoding differences between ASP.NET to ASP.NET Core
 

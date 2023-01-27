@@ -33,7 +33,7 @@
             @Html.DisplayFor(model => model.Department.StartDate)
         </dd>
         <dt class="col-sm-2">
-            @Utility.GetLastChars(Model.Department.ConcurrencyToken)
+            @Html.DisplayNameFor(model => model.Department.ConcurrencyToken)
         </dt>
         <dd class="col-sm-10">
             @Utility.GetLastChars(Model.Department.ConcurrencyToken)
