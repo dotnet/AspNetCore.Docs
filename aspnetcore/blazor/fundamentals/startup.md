@@ -359,6 +359,6 @@ In `wwwroot/index.html`, remove the default SVG round indicator in `<div id="app
 ## Additional resources
 
 * [Environments: Set the app's environment](xref:blazor/fundamentals/environments)
-* [SignalR (includes sections on SignalR startup configuration)](xref:blazor/fundamentals/signalr#blazor-startup)
+* [SignalR (includes sections on SignalR startup configuration)](xref:blazor/fundamentals/signalr)
 * [Globalization and localization: Statically set the culture with `Blazor.start()` (*Blazor WebAssembly only*)](xref:blazor/globalization-localization?pivots=webassembly#statically-set-the-culture)
 * [Host and deploy: Blazor WebAssembly: Compression](xref:blazor/host-and-deploy/webassembly#compression)
