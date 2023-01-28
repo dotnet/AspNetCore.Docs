@@ -24,13 +24,12 @@ ASP.NET Core has the following URI decoding differences with ASP.NET Framework:
 
 | ASCII   | Encoded | ASP.NET Core | ASP.NET Framework |
 | ------------- | ------------- | ------------- | ------------- |
-| `\` | `%5C`  |  `/` |  `\` |
+| `\` | `%5C`  |  `\` |  `/` |
 | `/` | `%2F`  |  `%2F` |  `/` |
 
 When decoding `%2F` on ASP.NET Core:
 
 * The entire path gets unescaped except `%2F` because converting it to `/` would change the path structure. It can’t be decoded until the path is split into segments.
-* See the [PathBase source](https://source.dot.net/#Microsoft.AspNetCore.Http.Abstractions/HttpRequest.cs,8d85f458c32cb4a5) for more information.
 
 To generate the value for `HttpRequest.Url`, use `new Uri(this.AspNetCoreHttpRequest.GetEncodedUrl());` to avoid `Uri` misinterpreting the values.
 
