@@ -89,7 +89,7 @@ Components support multiple route templates using multiple [`@page` directives](
 
 :::moniker range="< aspnetcore-6.0"
 
-The <xref:Microsoft.AspNetCore.Components.Routing.Router> doesn't interact with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
+The <xref:Microsoft.AspNetCore.Components.Routing.Router> doesn't interact with query string values. To work with query strings, see the [Query strings](#query-strings) section.
 
 :::moniker-end
 
@@ -254,7 +254,7 @@ protected override void OnParametersSet()
 :::moniker range="< aspnetcore-6.0"
 
 > [!NOTE]
-> Route parameters don't work with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
+> Route parameters don't work with query string values. To work with query strings, see the [Query strings](#query-strings) section.
 
 :::moniker-end
 
@@ -292,7 +292,7 @@ In the following example, the route to the `User` component only matches if:
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/routing/User.razor" highlight="1":::
 
 > [!NOTE]
-> Route constraints don't work with query string values. To work with query strings, see the [Query string and parse parameters](#query-string-and-parse-parameters) section.
+> Route constraints don't work with query string values. To work with query strings, see the [Query strings](#query-strings) section.
 
 :::moniker-end
 
