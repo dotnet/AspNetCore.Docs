@@ -342,17 +342,7 @@ Route constraints also work with [optional parameters](#route-parameters). In th
 
 ## Routing with URLs that contain dots
 
-:::moniker range=">= aspnetcore-7.0"
-
 For hosted Blazor WebAssembly and Blazor Server apps, the server-side default route template assumes that if the last segment of a request URL contains a dot (`.`) that a file is requested. For example, the relative URL `/example/some.thing` is interpreted by the router as a request for a file named `some.thing`. Without additional configuration, an app returns a *404 - Not Found* response if `some.thing` was meant to route to a component with an [`@page`](xref:mvc/views/razor#page) directive and `some.thing` is a route parameter value. To use a route with one or more parameters that contain a dot, the app must configure the route with a custom template.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-7.0"
-
-For hosted Blazor WebAssembly and Blazor Server apps, the server-side default route template assumes that if the last segment of a request URL contains a dot (`.`) that a file is requested. For example, the URL `https://localhost.com:5001/example/some.thing` is interpreted by the router as a request for a file named `some.thing`. Without additional configuration, an app returns a *404 - Not Found* response if `some.thing` was meant to route to a component with an [`@page`](xref:mvc/views/razor#page) directive and `some.thing` is a route parameter value. To use a route with one or more parameters that contain a dot, the app must configure the route with a custom template.
-
-:::moniker-end
 
 Consider the following `Example` component that can receive a route parameter from the last segment of the URL.
 
@@ -420,9 +410,9 @@ endpoints.MapFallbackToPage("/example/{param?}", "/_Host");
 
 For more information, see <xref:fundamentals/routing>.
 
-## Catch-all route parameters
-
 :::moniker range=">= aspnetcore-5.0"
+
+## Catch-all route parameters
 
 Catch-all route parameters, which capture paths across multiple folder boundaries, are supported in components.
 
@@ -459,12 +449,6 @@ Catch-all route parameters are:
 For the URL `/catch-all/this/is/a/test` with a route template of `/catch-all/{*pageRoute}`, the value of `PageRoute` is set to `this/is/a/test`.
 
 Slashes and segments of the captured path are decoded. For a route template of `/catch-all/{*pageRoute}`, the URL `/catch-all/this/is/a%2Ftest%2A` yields `this/is/a/test*`.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-Catch-all route parameters are supported in ASP.NET Core 5.0 or later. For more information, select the 5.0 version of this article.
 
 :::moniker-end
 
@@ -1259,5 +1243,3 @@ The typical configuration is to route all requests to a Razor page, which acts a
 The route specified in the host file is called a *fallback route* because it operates with a low priority in route matching. The fallback route is used when other routes don't match. This allows the app to use other controllers and pages without interfering with component routing in the Blazor Server app.
 
 For information on configuring <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for non-root URL server hosting, see <xref:blazor/host-and-deploy/index#app-base-path>.
-
-:::moniker-end
