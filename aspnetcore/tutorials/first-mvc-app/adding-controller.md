@@ -212,7 +212,7 @@ Select the **EXPLORER** icon and then control-click (right-click) **Controllers 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
 <!--
 In **Solution Explorer**, right-click **Controllers > Add > New File**.

@@ -207,7 +207,7 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
 <!--
 [!INCLUDE[](~/includes/net-core-prereqs-mac-5.0.md)]
@@ -255,7 +255,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
 <!--
 * Select **File** > **New Solution**.
@@ -333,7 +333,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
 <!--
 * Select **Run** > **Start Without Debugging** to launch the app.

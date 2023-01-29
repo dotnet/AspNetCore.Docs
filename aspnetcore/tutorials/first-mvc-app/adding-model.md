@@ -34,11 +34,7 @@ Add a file named `Movie.cs` to the *Models* folder.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
-
-<!-- 
 Control-click the *Models* folder > **Add** > **New Class** > **Empty Class**. Name the file `Movie.cs`.
- -->
 
 ---
 
@@ -89,9 +85,6 @@ The preceding commands add:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
-
-<!--
 From the **Project** menu, select **Manage NuGet Packages**.
 
 In the **Search** field in the upper right:
@@ -100,7 +93,7 @@ In the **Search** field in the upper right:
 * Press the <kbd>Return</kbd> key to search.
 * Select the matching NuGet package and select the **Add Package** button.
 
-![Add Entity Framework Core NuGet Package](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages.png)
+![Add Entity Framework Core NuGet Package](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages_VS22.png)
 
 The **Select Projects** dialog displays, with the `MvcMovie` project selected. Select the **Ok** button.
 
@@ -119,7 +112,6 @@ dotnet tool install --global dotnet-aspnet-codegenerator
 ```
 
 The preceding command adds the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
--->
 
 ---
 
@@ -195,9 +187,6 @@ Scaffolding updates the following:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
-
-<!--
 Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, `Startup.cs`, and `.csproj` files.
 
 Export the scaffold tool path:
@@ -228,7 +217,6 @@ Scaffolding updates the following:
 
 * Registers the database context in `Startup.ConfigureServices` of the `Startup.cs` file.
 * Adds a database connection string to the `appsettings.json` file.
--->
 
 ---
 
@@ -350,11 +338,7 @@ Scaffolding generated the following highlighted code in `Program.cs`:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
-
-<!--
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
--->
 
 ---
 
@@ -496,7 +480,7 @@ Add a file named `Movie.cs` to the *Models* folder.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
 <!-- 
 Control-click the *Models* folder > **Add** > **New Class** > **Empty Class**. Name the file `Movie.cs`.
@@ -547,7 +531,7 @@ The preceding commands add:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
 <!--
 From the **Project** menu, select **Manage NuGet Packages**.
@@ -653,7 +637,7 @@ Scaffolding updates the following:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
 <!--
 Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, `Startup.cs`, and `.csproj` files.
@@ -815,7 +799,7 @@ Scaffolding generated the following highlighted code in `Program.cs`:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+For Visual Studio for Mac, 7 version of this tutorial.
 
 <!--
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
