@@ -105,13 +105,29 @@ Repeat the above steps to install the following NuGet packages:
 * `Microsoft.EntityFrameworkCore.SqlServer`
 * `Microsoft.EntityFrameworkCore.Design`
 
-Run the following .NET CLI command:
+The preceding packages include:
+
+* The EF Core SQLite provider, which installs the EF Core package as a dependency.
+* Packages needed for scaffolding: `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.SqlServer`.
+
+Run the following .NET CLI commands:
 
 ```dotnetcli
+dotnet tool uninstall --global dotnet-aspnet-codegenerator
 dotnet tool install --global dotnet-aspnet-codegenerator
+dotnet tool uninstall --global dotnet-ef
+dotnet tool install --global dotnet-ef
 ```
 
-The preceding command adds the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+The preceding commands add:
+
+* The [command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
+* The [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+* Design time tools for EF Core.
+* The EF Core SQLite provider, which installs the EF Core package as a dependency.
+* Packages needed for scaffolding: `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.SqlServer`.
+
+For guidance on multiple environment configuration that permits an app to configure its database contexts by environment, see <xref:fundamentals/environments#environment-based-startup-class-and-methods>.
 
 ---
 
