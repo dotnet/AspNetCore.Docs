@@ -338,7 +338,7 @@ Scaffolding generated the following highlighted code in `Program.cs`:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=FirstSQLite&highlight=3-4)]
 
 ---
 
