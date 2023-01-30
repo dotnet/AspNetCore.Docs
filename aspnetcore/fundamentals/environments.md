@@ -22,7 +22,7 @@ To determine the runtime environment, ASP.NET Core reads from the following envi
 
 1. [DOTNET_ENVIRONMENT](xref:fundamentals/configuration/index#default-host-configuration)
 
-:::moniker range="< aspnetcore-7.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
 1. `ASPNETCORE_ENVIRONMENT` when the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> method is called. The default ASP.NET Core web app templates call `WebApplication.CreateBuilder`. The `ASPNETCORE_ENVIRONMENT` value overrides `DOTNET_ENVIRONMENT`.
 
