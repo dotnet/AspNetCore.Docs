@@ -3,7 +3,6 @@
 #elif FIRST
 // <snippet_1>
 var builder = WebApplication.CreateBuilder(args);
-// Requires Microsoft.AspNetCore.Authentication.JwtBearer
 builder.Services.AddAuthentication();
 var app = builder.Build();
 
@@ -13,6 +12,7 @@ app.Run();
 #elif JWT1
 // <snippet_jwt1>
 var builder = WebApplication.CreateBuilder(args);
+// Requires Microsoft.AspNetCore.Authentication.JwtBearer
 builder.Services.AddAuthentication().AddJwtBearer();
 var app = builder.Build();
 
