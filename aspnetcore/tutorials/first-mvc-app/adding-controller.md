@@ -61,7 +61,7 @@ Select the **EXPLORER** icon and then control-click (right-click) **Controllers 
 
 In **Solution Explorer**, control-click **Controllers** and select **Add > New File**.
 
-![Contextual menu](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller_MacVS22.png)
+![Contextual menu for adding a controller](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller_MacVS22.png)
 
 Select **ASP.NET Core** and **Controller Class**.
 

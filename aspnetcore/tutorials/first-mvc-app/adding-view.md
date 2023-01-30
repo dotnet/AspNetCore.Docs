@@ -62,9 +62,9 @@ Add an `Index` view for the `HelloWorldController`:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Control-click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
+Control-click the *Views* folder and select **Add > New Folder** and name the folder *HelloWorld*.
 
-Control-click on the *Views/HelloWorld* folder, and then **Add > New File**.
+Control-click the *Views/HelloWorld* folder and select **Add > New File**.
 
 In the **New File** dialog:
 
