@@ -3,7 +3,8 @@ title: Part 9, add validation to an ASP.NET Core MVC app
 author: wadepickett
 description: Part 9 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 10/25/2022
+ms.date: 01/29/2023
+ms.custom: engagement-fy23
 uid: tutorials/first-mvc-app/validation
 ---
 
