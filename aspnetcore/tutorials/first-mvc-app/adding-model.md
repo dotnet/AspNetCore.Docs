@@ -282,8 +282,6 @@ Ignore the preceding warning, it's fixed in a later tutorial.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
-
 Run the following .NET CLI commands:
 
 ```dotnetcli
@@ -348,11 +346,7 @@ Scaffolding generated the following highlighted code in `Program.cs`:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=FirstSQLServer&highlight=3-4)]
 
-# [Visual Studio Code](#tab/visual-studio-code)
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=FirstSQLite&highlight=3-4)]
-
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=FirstSQLite&highlight=3-4)]
 
