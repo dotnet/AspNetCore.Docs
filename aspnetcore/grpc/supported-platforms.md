@@ -36,6 +36,18 @@ Hosting gRPC services with ASP.NET Core requires .NET Core 3.x or later.
 
 ASP.NET Core gRPC services can be hosted on all operating system that .NET Core supports.
 
+:::moniker range=">= aspnetcore-8.0"
+
+> [!div class="checklist"]
+>
+> * Windows
+> * Linux
+> * macOS
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 > [!div class="checklist"]
 >
 > * Windows
@@ -43,6 +55,8 @@ ASP.NET Core gRPC services can be hosted on all operating system that .NET Core 
 > * macOS&dagger;
 
 &dagger;[macOS doesn't support hosting ASP.NET Core apps with HTTPS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
+
+:::moniker-end
 
 ### Supported ASP.NET Core servers
 
