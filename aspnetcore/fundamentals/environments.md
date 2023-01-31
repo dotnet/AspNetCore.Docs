@@ -35,6 +35,8 @@ To determine the runtime environment, ASP.NET Core reads from the following envi
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-6.0"
+
 `IHostEnvironment.EnvironmentName` can be set to any value, but the following values are provided by the framework:
 
 * <xref:Microsoft.Extensions.Hosting.Environments.Development>: The [launchSettings.json](#lsj) file sets `ASPNETCORE_ENVIRONMENT` to `Development` on the local machine.
