@@ -28,4 +28,4 @@ conceptualContent:
             url: minimal-apis/index.md
           - text: Develop ASP.NET Core controller-based APIs
             itemType: get-started
-            url: https://dotnet.microsoft.com/apps/cloud/migrate-to-azure
+            url: https://dotnet.microsoft.com/
