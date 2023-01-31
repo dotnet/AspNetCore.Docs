@@ -1,0 +1,9 @@
+items:
+- name: ASP.NET Core minimal-apis book
+  href: index.md
+- name: Chapter 1
+  href: chapter1.md
+- name: Chapter 2
+  href: chapter2.md
+- name: Chapter 3
+  href: chapter3.md

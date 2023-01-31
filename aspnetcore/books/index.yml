@@ -1,0 +1,31 @@
+### YamlMime:Hub
+
+title: ASP.NET Core books
+summary: Learn how to develop ASP.NET Core apps
+brand: dotnet
+
+metadata:
+  title: Books for learning ASP.NET Core
+  description: Learn how to develop ASP.NET Core apps.
+  ms.topic: hub-page
+  ms.date: 02/01/2023
+  ms.product: dotnet
+  ms.collection: collection
+
+conceptualContent:
+# itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
+  items:
+    - title: Develop ASP.NET Core grpc apps
+      links:
+          - text: Get started with ASP.NET Core gRPC
+            itemType: get-started
+            url: grpc/index.md
+
+    - title: Develop ASP.NET Core APIs
+      links:
+          - text: Get started with ASP.NET Core minimal APIs
+            itemType: get-started
+            url: minimal-apis/index.md
+          - text: Get started with ASP.NET Core controller-based APIs
+            itemType: get-started
+            url: controller-based-apis/index.md
