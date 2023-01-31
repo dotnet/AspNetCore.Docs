@@ -236,7 +236,7 @@ Using `@bind:get`/`@bind:set` modifiers both controls the underlying value of `i
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/data-binding/DecimalBinding.razor" highlight="7,21-31":::
 
 > [!NOTE]
-> For two-way data binding in ASP.NET Core 7.0 or later, we recommend using `@bind:get`/`@bind:set` modifiers. For more information, see the `@bind:get`/`@bind:set` in the opening section of this article.
+> Binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType>. For two-way data binding in ASP.NET Core 7.0 or later, we recommend using `@bind:get`/`@bind:set` modifiers. For more information, see the `@bind:get`/`@bind:set` guidance in the opening section of this article.
 
 ## Multiple option selection with `<select>` elements
 
