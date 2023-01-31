@@ -11,7 +11,7 @@ uid: fundamentals/servers/kestrel/http2
 
 # Use HTTP/2 with the ASP.NET Core Kestrel web server
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0"
 
 [HTTP/2](https://httpwg.org/specs/rfc7540.html) is available for ASP.NET Core apps if the following base requirements are met:
 
