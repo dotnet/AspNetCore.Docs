@@ -1,12 +1,12 @@
-<!-- USED in RP and MVC tutorial for .NET 6 -->
+<!-- USED in RP and MVC tutorial for .NET 7 -->
 
 ## Add validation rules to the movie model
 
 The DataAnnotations namespace provides a set of built-in validation attributes that are applied declaratively to a class or property. DataAnnotations also contains formatting attributes like `DataType` that help with formatting and don't provide any validation.
 
-Update the `Movie` class to take advantage of the built-in `Required`, `StringLength`, `RegularExpression`, and `Range` validation attributes.
+Update the `Movie` class to take advantage of the built-in validation attributes `Required`, `StringLength`, `RegularExpression`, `Range` and the `DataType` formatting attribute.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/Movie.cs?name=FinalSnippet&highlight=11-12,19,24-26,29-31)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/Movie.cs?name=FinalSnippet&highlight=11-12,19-20,24-26,29-31)]
 
 The validation attributes specify behavior that you want to enforce on the model properties they're applied to:
 
