@@ -1,11 +1,11 @@
 ---
-title: Getting started with gRPC
+title: Getting started with ASP.NET Core gRPC
 description: A guide for learning how to develop ASP.NET Core gRPC applications.
 author: tdykstra
 ms.date: 01/31/2023
 ---
 
-# Getting started with gRPC
+# Getting started with ASP.NET Core gRPC
 
 PUBLISHED BY
 
@@ -52,8 +52,6 @@ A secondary audience is technical decision-makers who plan to choose whether to 
 This guide begins by defining gRPC and introducing a reference application built using gRPC. Beyond these first two chapters, the rest of the book is broken up into specific chapters focused on topics common to most gRPC applications.
 
 This guide is available both in PDF form and online. Feel free to forward this document or links to its online version to your team to help ensure common understanding of these topics. Most of these topics benefit from a consistent understanding of the underlying principles and patterns, as well as the trade-offs involved in decisions related to these topics. Our goal with this document is to equip teams and their leaders with the information they need to make well-informed decisions for their applications' architecture, development, and hosting.
-
-[!INCLUDE [feedback](../../includes/feedback.md)]
 
 >[!div class="step-by-step"]
 >[Next](introduction.md)

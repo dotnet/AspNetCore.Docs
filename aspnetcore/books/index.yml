@@ -19,13 +19,13 @@ conceptualContent:
       links:
           - text: Get started with AsP.NET Core gRPC
             itemType: get-started
-            url: grpc/index.yml
+            url: grpc/index.md
 
     - title: Develop ASP.NET Core APIs
       links:
           - text: Develop ASP.NET Core minimal APIs
             itemType: get-started
-            url: minimal-api/index.md
+            url: minimal-apis/index.md
           - text: Develop ASP.NET Core controller-based APIs
             itemType: get-started
             url: https://dotnet.microsoft.com/apps/cloud/migrate-to-azure
