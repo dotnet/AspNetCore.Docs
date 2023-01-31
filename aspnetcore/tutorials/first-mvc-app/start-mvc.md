@@ -86,7 +86,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * Start Visual Studio for Mac and select **File** > **New Project...**.
-* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application (Model-View-Controller)** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Continue**.
+* In Visual Studio for Mac select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Continue**.
 * In the **Configure your new Web Application (Model-View-Controller)** dialog:
   * Select **.NET 7.0** for the **Target Framework**.
   * Verify that **Do not use top-level statements** is unchecked.

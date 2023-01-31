@@ -109,6 +109,7 @@ The preceding packages include:
 
 * The EF Core SQLite provider, which installs the EF Core package as a dependency.
 * Packages needed for scaffolding: `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.SqlServer`.
+* Design time tools for EF Core.
 
 Run the following .NET CLI commands:
 
@@ -123,11 +124,6 @@ The preceding commands add:
 
 * The [command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
 * The [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
-* Design time tools for EF Core.
-* The EF Core SQLite provider, which installs the EF Core package as a dependency.
-* Packages needed for scaffolding: `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.SqlServer`.
-
-For guidance on multiple environment configuration that permits an app to configure its database contexts by environment, see <xref:fundamentals/environments#environment-based-startup-class-and-methods>.
 
 ---
 
@@ -162,11 +158,23 @@ If you get an error message, select **Add** a second time to try it again.
 
 <a name="scaffolding-created"></a>
 
+Scaffolding creates the following:
+
+* A movies controller: `Controllers/MoviesController.cs`
+* Razor view files for **Create**, **Delete**, **Details**, **Edit**, and **Index** pages: `Views/Movies/*.cshtml`
+* A database context class: `Data/MvcMovieContext.cs`
+
 Scaffolding updates the following:
 
 * Inserts required package references in the `MvcMovie.csproj` project file.
 * Registers the database context in the `Program.cs` file.
 * Adds a database connection string to the `appsettings.json` file.
+
+The automatic creation of these files and file updates is known as *scaffolding*.
+
+The scaffolded pages can't be used yet because the database doesn't exist. Running the app and selecting the **Movie App** link results in a *Cannot open database* or *no such table: Movie* error message.
+
+Build the app to verify that there are no errors.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -186,6 +194,25 @@ dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMo
 
 [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
 
+<a name="scaffolding-created"></a>
+
+Scaffolding creates the following:
+
+* A movies controller: `Controllers/MoviesController.cs`
+* Razor view files for **Create**, **Delete**, **Details**, **Edit**, and **Index** pages: `Views/Movies/*.cshtml`
+* A database context class: `Data/MvcMovieContext.cs`
+
+Scaffolding updates the following:
+
+* Registers the database context in the `Program.cs` file
+* Adds a database connection string to the `appsettings.json` file.
+
+The automatic creation of these files and file updates is known as *scaffolding*.
+
+The scaffolded pages can't be used yet because the database doesn't exist. Running the app and selecting the **Movie App** link results in a *Cannot open database* or *no such table: Movie* error message.
+
+Build the app to verify that there are no errors.
+
 <a name="sqlite-dev-vsc"></a>
 
 ### Use SQLite for development, SQL Server for production
@@ -193,13 +220,6 @@ dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMo
 The following highlighted code in `Program.cs` shows how to use SQLite in development and SQL Server in production.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLiteDevProd&highlight=3-99)]
-
-<a name="scaffolding-created"></a>
-
-Scaffolding updates the following:
-
-* Registers the database context in the `Program.cs` file
-* Adds a database connection string to the `appsettings.json` file.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -219,6 +239,23 @@ dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMo
 
 [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
 
+Scaffolding creates the following:
+
+* A movies controller: `Controllers/MoviesController.cs`
+* Razor view files for **Create**, **Delete**, **Details**, **Edit**, and **Index** pages: `Views/Movies/*.cshtml`
+* A database context class: `Data/MvcMovieContext.cs`
+
+Scaffolding updates the following:
+
+* Registers the database context in the `Program.cs` file
+* Adds a database connection string to the `appsettings.json` file.
+
+The automatic creation of these files and file updates is known as *scaffolding*.
+
+The scaffolded pages can't be used yet because the database doesn't exist. Running the app and selecting the **Movie App** link results in a *Cannot open database* or *no such table: Movie* error message.
+
+Build the app to verify that there are no errors.
+
 <a name="sqlite-dev-vs-mac"></a>
 
 ### Use SQLite for development, SQL Server for production
@@ -229,26 +266,10 @@ The following highlighted code in `Program.cs` shows how to use SQLite in develo
 
 <a name="scaffolding-created"></a>
 
-Scaffolding updates the following:
-
-* Registers the database context in the `Program.cs` file
-* Adds a database connection string to the `appsettings.json` file.
-
 ---
 
 <!-- End of tabs                  -->
 
-Scaffolding creates the following:
-
-* A movies controller: `Controllers/MoviesController.cs`
-* Razor view files for **Create**, **Delete**, **Details**, **Edit**, and **Index** pages: `Views/Movies/*.cshtml`
-* A database context class: `Data/MvcMovieContext.cs`
-
-The automatic creation of these files and file updates is known as *scaffolding*.
-
-The scaffolded pages can't be used yet because the database doesn't exist. Running the app and selecting the **Movie App** link results in a *Cannot open database* or *no such table: Movie* error message.
-
-Build the app to verify that there are no errors.
 
 <a name="migration"></a>
 
