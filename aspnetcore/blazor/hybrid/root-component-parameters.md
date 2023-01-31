@@ -5,19 +5,24 @@ description: Learn how to pass an optional dictionary of parameters to the root 
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
-ms.date: 01/30/2023
-uid: blazor/hybrid/pass-root-component-parameters
+ms.date: 01/31/2023
+uid: blazor/hybrid/root-component-parameters
 ---
 # Pass root component parameters in ASP.NET Core Blazor Hybrid
 
-This article explains how to pass root component parameters in a Blazor Hybrid app. Although this article's example focuses on .NET MAUI Blazor apps, the concepts are the same for Windows Forms-Blazor and WPF-Blazor apps.
+This article explains how to pass root component parameters in a Blazor Hybrid app.
 
-The <xref:Microsoft.AspNetCore.Components.WebView.Maui.RootComponent> class of a <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> defines a <xref:Microsoft.AspNetCore.Components.WebView.Maui.RootComponent.Parameters> property of type `IDictionary<string, object?>?`, which represents an optional dictionary of parameters to pass to the root component.
+The <xref:Microsoft.AspNetCore.Components.WebView.Maui.RootComponent?displayProperty=nameWithType>/<xref:Microsoft.AspNetCore.Components.WebView.Wpf.RootComponent?displayProperty=nameWithType>/<xref:Microsoft.AspNetCore.Components.WebView.WindowsForms.RootComponent?displayProperty=nameWithType> class of a `BlazorWebView` defines a `Parameters` property of type `IDictionary<string, object?>?`, which represents an optional dictionary of parameters to pass to the root component.
 
-The following example passes a view model to the root component, which further passes the view model as a cascading type to a Razor component in the Blazor portion of the app. The example is based on the Keypad example in the .NET MAUI documentation:
+The following example passes a view model to the root component, which further passes the view model as a cascading type to a Razor component in the Blazor portion of the app. The example is based on the keypad example in the .NET MAUI documentation:
 
-* [Data binding and MVVM: Commanding (.NET MAUI documentation)](/dotnet/maui/xaml/fundamentals/mvvm#commanding)
+* [Data binding and MVVM: Commanding (.NET MAUI documentation)](/dotnet/maui/xaml/fundamentals/mvvm#commanding): Explains data binding with MVVM using a keypad example.
 * [.NET MAUI Samples](https://github.com/dotnet/maui-samples): Provides sample code for `KeypadViewModel.cs` and `KeypadPage.xaml`/`KeypadPage.xaml.cs`, which are required for the following example to work. At the time of writing, namespaces in these examples don't include the folder name. In future versions of the sample app, namespaces may include the folder names `ViewModels` and `Views`. If namespaces change in the .NET MAUI sample app, modify the examples in this article to match the updates.
+
+Although the keypad example focuses on implementing the MVVM pattern in .NET MAUI Blazor apps:
+
+* The dictionary of objects passed to root components can include any type for any purpose where you need to pass one or more parameters to the root component for use by Razor components in the app.
+* The concepts demonstrated by the following .NET MAUI Blazor example are the same for Windows Forms Blazor apps and WPF Blazor apps.
 
 Although you can set `Parameters` directly in XAML, the following example names the root component (`rootComponent`) in the XAML file and sets the parameter dictionary in the code-behind file.
 
@@ -78,7 +83,7 @@ At this point, the cascaded type is available to Razor components throughout the
 The following `Keypad` component example:
 
 * Displays the current value of `KeypadViewModel.DisplayText`.
-* Permits character deletion by calling the `KeypadViewModel.DeleteCharCommand` command if the display string length is greater than 0 (zero), which is checked by a call to <xref:System.Windows.Input.ICommand.CanExecute%2A?displayProperty=nameWithType>.
+* Permits character deletion by calling the `KeypadViewModel.DeleteCharCommand` command if the display string length is greater than 0 (zero), which is checked by the call to <xref:System.Windows.Input.ICommand.CanExecute%2A?displayProperty=nameWithType>.
 * Permits adding characters by calling `KeypadViewModel.AddCharCommand` with the key pressed in the UI.
 
 `Pages/Keypad.razor`:
@@ -88,7 +93,7 @@ The following `Keypad` component example:
 
 <h1>Keypad</h1>
 
-<table class="table">
+<table id="keypad">
     <thead>
         <tr>
             <th colspan="2">@KeypadViewModel.DisplayText</th>
@@ -136,6 +141,29 @@ The following `Keypad` component example:
         KeypadViewModel.AddCharCommand.Execute(key);
     }
 }
+```
+
+Purely for demonstration purposes, style the buttons by placing the following CSS styles in the `wwwroot/index.html` file's `<head>` content:
+
+```html
+<style>
+    #keypad button {
+        border: 1px solid black;
+        border-radius:6px;
+        height: 35px;
+        width:80px;
+    }
+</style>
+```
+
+Create a sidebar navigation entry in the [`NavMenu` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (`Shared/NavMenu.razor`) with the following markup:
+
+```razor
+<div class="nav-item px-3">
+    <NavLink class="nav-link" href="keypad">
+        <span class="oi oi-list-rich" aria-hidden="true"></span> Keypad
+    </NavLink>
+</div>
 ```
 
 ## Additional resources

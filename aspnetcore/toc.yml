@@ -390,7 +390,7 @@ items:
               - name: Class libraries
                 uid: blazor/hybrid/class-libraries
               - name: Root component parameters
-                uid: blazor/hybrid/pass-root-component-parameters
+                uid: blazor/hybrid/root-component-parameters
               - name: Security and Identity
                 items:
                   - name: Overview
