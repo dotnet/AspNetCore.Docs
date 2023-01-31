@@ -43,7 +43,7 @@ Additional HTTP/2 features in Kestrel support gRPC, including support for respon
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-7.0 < aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 [HTTP/2](https://httpwg.org/specs/rfc7540.html) is available for ASP.NET Core apps if the following base requirements are met:
 
