@@ -34,7 +34,7 @@ Add a file named `Movie.cs` to the *Models* folder.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Control-click the *Models* folder > **Add** > **New Class** > **Empty Class**. Name the file `Movie.cs`.
+Control-click the **Models** folder and select **Add** > **New Class** > **Empty Class**. Name the file `Movie.cs`.
 
 ---
 
@@ -223,7 +223,7 @@ The following highlighted code in `Program.cs` shows how to use SQLite in develo
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, `Startup.cs`, and `.csproj` files.
+Open a command window in the project directory. The project directory is the directory that contains the `.csproj` file.
 
 Export the scaffold tool path:
 
@@ -830,7 +830,7 @@ Scaffolding generated the following highlighted code in `Program.cs`:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, 7 version of this tutorial.
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
 <!--
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
