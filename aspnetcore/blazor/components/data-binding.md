@@ -193,7 +193,7 @@ Two-way data binding isn't possible to implement with an event handler. Use `@bi
     {
         var newValue = args.Value?.ToString() ?? string.Empty;
 
-        inputValue = newValue.Length > 4 ? "Long!" : inputValue = newValue;
+        inputValue = newValue.Length > 4 ? "Long!" : newValue;
     }
 }
 ```
@@ -220,7 +220,7 @@ The reason for this behavior is that Blazor isn't aware that your code intends t
     {
         var newValue = value ?? string.Empty;
 
-        inputValue = newValue.Length > 4 ? "Long!" : inputValue = newValue;
+        inputValue = newValue.Length > 4 ? "Long!" : newValue;
     }
 }
 ```
