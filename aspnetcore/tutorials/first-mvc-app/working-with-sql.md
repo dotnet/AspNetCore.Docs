@@ -3,9 +3,9 @@ title: Part 5, work with a database in an ASP.NET Core MVC app
 author: wadepickett
 description: Part 5 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 10/25/2022
+ms.date: 01/29/2023
 uid: tutorials/first-mvc-app/working-with-sql
-ms.custom: contperf-fy21q3
+ms.custom: contperf-fy21q3, engagement-fy23
 ---
 
 # Part 5, work with a database in an ASP.NET Core MVC app
