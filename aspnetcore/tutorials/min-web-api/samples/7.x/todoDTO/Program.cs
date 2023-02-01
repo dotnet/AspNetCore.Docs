@@ -49,6 +49,8 @@ static async Task<IResult> CreateTodo(TodoItemDTO todoItemDTO, TodoDb db)
     db.Todos.Add(todoItem);
     await db.SaveChangesAsync();
 
+    todoItemDTO = new TodoItemDTO(todoItem);
+
     return TypedResults.Created($"/todoitems/{todoItem.Id}", todoItemDTO);
 }
 
