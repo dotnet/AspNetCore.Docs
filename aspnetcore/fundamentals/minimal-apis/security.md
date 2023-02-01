@@ -108,7 +108,7 @@ The code creates a new authorization policy, named `policy_greetings`, that enca
 
 The `admin_greetings` policy is provided as a required policy to the `/hello` endpoint.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_greet" highlight="3,11-12":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_greet" highlight="5-9,12-13":::
 
 ## Use `dotnet user-jwts` for development testing
 
