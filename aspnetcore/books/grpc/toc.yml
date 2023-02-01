@@ -3,3 +3,15 @@ items:
   href: index.md
 - name: Introduction
   href: /aspnet/core/books
+- name: Introduction
+  href: /aspnet/core/books/grpc
+- name: Chapter 1
+  href: /aspnet/core/books/grpc
+- name: Chapter 2
+  href: /aspnet/core/books/grpc
+- name: Chapter 3
+  href: /aspnet/core/books/grpc
+- name: Chapter 4
+  href: /aspnet/core/books/grpc
+- name: Chapter 5
+  href: /aspnet/core/books/grpc

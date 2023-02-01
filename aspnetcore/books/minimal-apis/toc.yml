@@ -1,5 +1,15 @@
 items:
-- name: ASP.NET Core gRPC book
+- name: ASP.NET Core minimal-apis book
   href: index.md
 - name: Introduction
-  href: /aspnet/core/books/grpc
+  href: /aspnet/core/books/minimal-apis
+- name: Chapter 1
+  href: /aspnet/core/books/minimal-apis
+- name: Chapter 2
+  href: /aspnet/core/books/minimal-apis
+- name: Chapter 3
+  href: /aspnet/core/books/minimal-apis
+- name: Chapter 4
+  href: /aspnet/core/books/minimal-apis
+- name: Chapter 5
+  href: /aspnet/core/books/minimal-apis
