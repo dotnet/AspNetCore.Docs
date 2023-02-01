@@ -112,6 +112,9 @@ To perform additional tasks, such as JS interop initialization, use [`then`](htt
 
 The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
 
+> [!NOTE]
+> For a library to automatically execute additional tasks after Blazor has started, use a [JavaScript initializer](#javascript-initializers). Use of a JS initializer doesn't require the consumer of the library to chain JS calls to Blazor's manual start.
+
 ## Load boot resources
 
 *This section only applies to Blazor WebAssembly apps.*
