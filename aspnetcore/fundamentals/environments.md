@@ -18,10 +18,24 @@ ASP.NET Core configures app behavior based on the runtime environment using an e
 
 ## Environments
 
+:::moniker-end
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 To determine the runtime environment, ASP.NET Core reads from the following environment variables:
 
 1. [DOTNET_ENVIRONMENT](xref:fundamentals/configuration/index#default-host-configuration)
 1. `ASPNETCORE_ENVIRONMENT` when the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> method is called. The default ASP.NET Core web app templates call `WebApplication.CreateBuilder`. The `ASPNETCORE_ENVIRONMENT` value overrides `DOTNET_ENVIRONMENT`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+To determine the runtime environment, ASP.NET Core reads from the following environment variables:
+
+1. [DOTNET_ENVIRONMENT](xref:fundamentals/configuration/index#default-host-configuration)
+1. `ASPNETCORE_ENVIRONMENT` when the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> method is called. The default ASP.NET Core web app templates call `WebApplication.CreateBuilder`. The `DOTNET_ENVIRONMENT` value overrides `ASPNETCORE_ENVIRONMENT` when `WebApplicationBuilder` is used. For other hosts, such as `ConfigureWebHostDefaults` and `WebHost.CreateDefaultBuilder`, `ASPNETCORE_ENVIRONMENT` has higher precedence.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 `IHostEnvironment.EnvironmentName` can be set to any value, but the following values are provided by the framework:
 
