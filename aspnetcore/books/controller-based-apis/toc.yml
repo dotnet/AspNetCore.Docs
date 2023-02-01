@@ -2,8 +2,6 @@ items:
 - name: ASP.NET Core controller-based-apis book
   href: index.md
 - name: Introduction
-  href: /aspnet/core/books
-- name: Introduction
   href: /aspnet/core/books/controller-based-apis
 - name: Chapter 1
   href: /aspnet/core/books/controller-based-apis

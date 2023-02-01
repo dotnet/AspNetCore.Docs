@@ -2,8 +2,6 @@ items:
 - name: ASP.NET Core gRPC book
   href: index.md
 - name: Introduction
-  href: /aspnet/core/books
-- name: Introduction
   href: /aspnet/core/books/grpc
 - name: Chapter 1
   href: /aspnet/core/books/grpc
