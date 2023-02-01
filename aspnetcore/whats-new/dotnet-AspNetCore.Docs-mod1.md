@@ -72,7 +72,7 @@ Welcome to what's new in the ASP.NET Core docs for January 2023. This article li
 
 ### Updated articles
 
-- <xref:security/authorization/policies> - Add sample to polices auth /4
+- <xref:security/authorization/policies> - Add sample to polices auth
 
 ## Testing
 
@@ -91,7 +91,6 @@ Welcome to what's new in the ASP.NET Core docs for January 2023. This article li
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham ![There were 55 pull requests merged by Luke Latham.](https://img.shields.io/badge/Merged%20Pull%20Requests-55-green)
 - [AnkitSharma-007](https://github.com/AnkitSharma-007) - Ankit ![There were 2 pull requests merged by Ankit.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
 - [AbbasiMohamad](https://github.com/AbbasiMohamad) - Mohamad Abbasi ![There were 1 pull requests merged by Mohamad Abbasi.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [Adam-S-Daniel](https://github.com/Adam-S-Daniel) - Adam Daniel ![There were 1 pull requests merged by Adam Daniel.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
