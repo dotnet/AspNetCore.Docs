@@ -1,93 +1,113 @@
 ---
-title: "ASP.NET Core docs: What's new for July 1, 2022 - July 31, 2022"
-description: "What's new in the ASP.NET Core docs for July 1, 2022 - July 31, 2022."
-ms.date: 08/01/2022
+title: "ASP.NET Core docs: What's new for January 2023"
+description: "What's new in the ASP.NET Core docs for January 2023."
+ms.custom: January-2023
+ms.date: 02/01/2023
 ---
 
-# ASP.NET Core docs: What's new for July 1, 2022 - July 31, 2022
+# ASP.NET Core docs: What's new for January 2023
 
-Welcome to what's new in the ASP.NET Core docs from July 1, 2022 through July 31, 2022. This article lists some of the major changes to docs during this period.
+Welcome to what's new in the ASP.NET Core docs for January 2023. This article lists some of the major changes to docs during this period.
 
 ## Blazor
 
-### Updated articles
+### New articles
 
-- <xref:blazor/forms-and-input-components>
-  - Custom validation attribute with DI
-  - Blazor template and prerendering updates
-  - Partial updates for previewing images
-- <xref:blazor/tooling> - Blazor empty templates
-- <xref:blazor/components/dynamiccomponent>
-  - Update event callback approach
-  - Blazor template and prerendering updates
-  - Event callbacks with DynamicComponent
-- <xref:blazor/advanced-scenarios> - Blazor template and prerendering updates
-- <xref:blazor/blazor-server-ef-core> - Blazor template and prerendering updates
-- <xref:blazor/call-web-api> - Blazor template and prerendering updates
-- <xref:blazor/components/cascading-values-and-parameters> - Blazor template and prerendering updates
-- <xref:blazor/components/control-head-content> - Blazor template and prerendering updates
-- <xref:blazor/components/data-binding> - Blazor template and prerendering updates
-- <xref:blazor/components/event-handling> - Blazor template and prerendering updates
-- <xref:blazor/components/index> - Blazor template and prerendering updates
-- <xref:blazor/components/layouts> - Blazor template and prerendering updates
-- <xref:blazor/components/lifecycle> - Blazor template and prerendering updates
-- <xref:blazor/components/prerendering-and-integration> - Blazor template and prerendering updates
-- <xref:blazor/components/rendering> - Blazor template and prerendering updates
-- <xref:blazor/components/templated-components> - Blazor template and prerendering updates
-- <xref:blazor/debug> - Blazor template and prerendering updates
-- <xref:blazor/file-downloads> - Blazor template and prerendering updates
-- <xref:blazor/file-uploads> - Blazor template and prerendering updates
-- <xref:blazor/fundamentals/dependency-injection> - Blazor template and prerendering updates
-- <xref:blazor/fundamentals/environments> - Blazor template and prerendering updates
-- <xref:blazor/fundamentals/handle-errors> - Blazor template and prerendering updates
-- <xref:blazor/fundamentals/logging> - Blazor template and prerendering updates
-- <xref:blazor/fundamentals/routing> - Blazor template and prerendering updates
-- <xref:blazor/fundamentals/signalr> - Blazor template and prerendering updates
-- <xref:blazor/fundamentals/startup> - Blazor template and prerendering updates
-- <xref:blazor/globalization-localization> - Blazor template and prerendering updates
-- <xref:blazor/host-and-deploy/server> - Blazor template and prerendering updates
-- <xref:blazor/hosting-models> - Blazor template and prerendering updates
-- <xref:blazor/images> - Blazor template and prerendering updates
-- <xref:blazor/js-interop/call-dotnet-from-javascript> - Blazor template and prerendering updates
-- <xref:blazor/js-interop/call-javascript-from-dotnet> - Blazor template and prerendering updates
-- <xref:blazor/js-interop/index> - Blazor template and prerendering updates
-- <xref:blazor/performance> - Blazor template and prerendering updates
-- <xref:blazor/project-structure> - Blazor template and prerendering updates
-- <xref:blazor/tutorials/build-a-blazor-app> - Blazor template and prerendering updates
-- <xref:blazor/tutorials/signalr-blazor> - Blazor template and prerendering updates
-- <xref:blazor/security/webassembly/additional-scenarios> - Provide additional Blazor WASM security guidance
-
-## MVC
+- <xref:blazor/hybrid/root-component-parameters>
 
 ### Updated articles
 
-## Release notes
+- <xref:blazor/fundamentals/startup>
+  - Startup article versioning
+  - JS interop script location (2)
+- <xref:blazor/fundamentals/routing> - Routing article versioning
+- <xref:blazor/fundamentals/logging> - Logging article versioning
+- <xref:blazor/hybrid/routing> - Blazor Hybrid (MAUI) page-component navigation
+- <xref:blazor/fundamentals/handle-errors> - Handle errors article versioning
+- <xref:blazor/fundamentals/dependency-injection> - DI article versioning
+- <xref:blazor/project-structure>
+  - Project structure article versioning
+  - Add hosted WASM content
+- <xref:blazor/hosting-models> - Hosting models article versioning
+- <xref:blazor/file-uploads> - File uploads article versioning
+- <xref:blazor/components/index> - Document javaScriptInitializer
+- <xref:blazor/components/event-handling> - Lambda expression and loop vars
+- <xref:blazor/tutorials/signalr-blazor> - Add troubleshooting guidance
+- <xref:blazor/hybrid/static-files> - Add static JS file example
+- <xref:blazor/fundamentals/signalr> - Add connection state elements
+- <xref:blazor/forms-and-input-components> - Forms and input components updates
+- <xref:blazor/components/data-binding> - Binding guidance improvements
+
+## Client-side development
 
 ### New articles
 
-- <xref:aspnetcore-7>
+- <xref:spa/intro>
+
+## Fundamentals
+
+### New articles
+
+- <xref:fundamentals/apis>
+
+### Updated articles
+
+- <xref:fundamentals/servers/kestrel> - Update docs for macOS + TLS on .NET 8
+- <xref:fundamentals/middleware/index> - Add Output Caching in list of middleware
+
+## gRPC
+
+### New articles
+
+- <xref:grpc/interprocess-namedpipes>
+- <xref:grpc/interprocess-uds>
+
+## Hosting and deployment
+
+### Updated articles
+
+- <xref:host-and-deploy/linux-nginx> - Host-Linux Nginx: Add RHEL and SLES distros
 
 ## Security
 
 ### Updated articles
 
-- <xref:security/anti-request-forgery> - Antiforgery doc updates
+- <xref:security/authorization/policies> - Add sample to polices auth /4
+
+## Testing
+
+### New articles
+
+- <xref:test/tunnels>
+
+## Tutorials
+
+### Updated articles
+
+- <xref:tutorials/grpc/grpc-start> - Update docs for macOS + TLS on .NET 8
+- <xref:tutorials/first-mvc-app/adding-model> - Update MacOS .NET 7: Series: Get started with ASP.NET Core MVC
 
 ## Community contributors
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [fiyazbinhasan](https://github.com/fiyazbinhasan) - Fiyaz Bin Hasan (8)
-- [GitHubPang](https://github.com/GitHubPang) (4)
-- [sammychinedu2ky](https://github.com/sammychinedu2ky) (4)
-- [benjaminsampica](https://github.com/benjaminsampica) - Ben Sampica (1)
-- [bretmcg](https://github.com/bretmcg) - Bret McGowen (1)
-- [breyed](https://github.com/breyed) - Edward Brey (1)
-- [JuergenGutsch](https://github.com/JuergenGutsch) - Juergen Gutsch (1)
-- [martincostello](https://github.com/martincostello) - Martin Costello (1)
-- [pea-sys](https://github.com/pea-sys) - pea-sys (1)
-- [tlynch001](https://github.com/tlynch001) - Tom Lynch (1)
-- [w-syss](https://github.com/w-syss) - Ole Wiedemann (1)
-- [xavierpinho](https://github.com/xavierpinho) - Xavier Pinho (1)
-- [yhscherber](https://github.com/yhscherber) - Yanisa Haley Scherber (1)
-- [zedy-wj](https://github.com/zedy-wj) - Wenjie Yu（MSFT） (1)
+- [guardrex](https://github.com/guardrex) - Luke Latham ![There were 55 pull requests merged by Luke Latham.](https://img.shields.io/badge/Merged%20Pull%20Requests-55-green)
+- [AnkitSharma-007](https://github.com/AnkitSharma-007) - Ankit ![There were 2 pull requests merged by Ankit.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
+- [AbbasiMohamad](https://github.com/AbbasiMohamad) - Mohamad Abbasi ![There were 1 pull requests merged by Mohamad Abbasi.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [Adam-S-Daniel](https://github.com/Adam-S-Daniel) - Adam Daniel ![There were 1 pull requests merged by Adam Daniel.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [asbjornu](https://github.com/asbjornu) - Asbjørn Ulsberg ![There were 1 pull requests merged by Asbjørn Ulsberg.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [burtonrodman](https://github.com/burtonrodman) - Burton Rodman ![There were 1 pull requests merged by Burton Rodman.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [cloudhal](https://github.com/cloudhal) ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [damienbod](https://github.com/damienbod) - damienbod ![There were 1 pull requests merged by damienbod.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [david-szabo97](https://github.com/david-szabo97) - Dávid Szabó ![There were 1 pull requests merged by Dávid Szabó.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [jaychapani](https://github.com/jaychapani) ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [jooooel](https://github.com/jooooel) ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [kaldren](https://github.com/kaldren) - Kaloyan Drenski ![There were 1 pull requests merged by Kaloyan Drenski.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [maroonedsia](https://github.com/maroonedsia) ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [MarounMaroun](https://github.com/MarounMaroun) - Maroun Maroun ![There were 1 pull requests merged by Maroun Maroun.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [mrtnbrst](https://github.com/mrtnbrst) - Martin ![There were 1 pull requests merged by Martin.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [nichtmonti](https://github.com/nichtmonti) - Sebastian Clermont ![There were 1 pull requests merged by Sebastian Clermont.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [sei-jmattson](https://github.com/sei-jmattson) - Jeff Mattson ![There were 1 pull requests merged by Jeff Mattson.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [ThibaultLesuisse](https://github.com/ThibaultLesuisse) - Thibault ![There were 1 pull requests merged by Thibault.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [tomma-a](https://github.com/tomma-a) - tomma ![There were 1 pull requests merged by tomma.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [vadzimdv](https://github.com/vadzimdv) ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
