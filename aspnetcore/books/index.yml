@@ -5,7 +5,7 @@ summary: Learn how to develop ASP.NET Core apps
 brand: dotnet
 
 metadata:
-  title: Books for getting started developing ASP.NET Core apps
+  title: Books for learning ASP.NET Core
   description: Learn how to develop ASP.NET Core apps.
   ms.topic: hub-page
   ms.date: 01/31/2023
@@ -25,10 +25,10 @@ conceptualContent:
       links:
           - text: Choose minimal or controller-based APIs
             itemType: get-started
-            url: learn.microsoft.com/aspnet/core/books
+            url: /aspnet/core/books
           - text: Get started with ASP.NET Core minimal APIs
             itemType: get-started
             url: minimal-apis/index.md
           - text: Get started with ASP.NET Core controller-based APIs
             itemType: get-started
-            url: learn.microsoft.com/aspnet/core/books
+            url: controller-based-apis/index.md
