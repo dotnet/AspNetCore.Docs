@@ -22,7 +22,6 @@ When `string id` contains the following encoded values, unexpected results might
 | ASCII  | Encoded |
 | ----| ---------- |
 | `/` | `%2F`  |
-| `+` | `%2B`  |
 | ` ` | `+`  |
 
 Route parameters are not always URL decoded. This problem may be addressed in the future. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/11544);
