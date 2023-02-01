@@ -55,4 +55,4 @@ This guide begins by defining gRPC and introducing a reference application built
 This guide is available both in PDF form and online. Feel free to forward this document or links to its online version to your team to help ensure common understanding of these topics. Most of these topics benefit from a consistent understanding of the underlying principles and patterns, as well as the trade-offs involved in decisions related to these topics. Our goal with this document is to equip teams and their leaders with the information they need to make well-informed decisions for their applications' architecture, development, and hosting.
 
 >[!div class="step-by-step"]
->[Next](index.md)
+>[Next](chapter1.md)
