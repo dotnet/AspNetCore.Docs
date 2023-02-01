@@ -24,6 +24,7 @@ conceptualContent:
     - title: Develop ASP.NET Core APIs
       links:
           - text: Choose minimal or controller-based APIs
+            itemType: get-started
             url: learn.microsoft.com/aspnet/core/books
           - text: Get started with ASP.NET Core minimal APIs
             itemType: get-started
