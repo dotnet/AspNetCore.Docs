@@ -29,11 +29,11 @@ In ASP.NET Core, both strategies are captured into an authorization requirement.
 
 To enable authentication, call [`AddAuthentication`](/dotnet/api/microsoft.extensions.dependencyinjection.authenticationservicecollectionextensions.addauthentication) to register the required authentication services on the app's service provider.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_1" highlight="2-3":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_1" highlight="2":::
 
 Typically, a specific authentication strategy is used. In the following sample, the app is configured with support for JWT bearer-based authentication.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_jwt1" highlight="2":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_jwt1" highlight="2-3":::
 
 By default, the [`WebApplication`](/dotnet/api/microsoft.aspnetcore.builder.webapplication) automatically registers the authentication and authorization middlewares if certain authentication and authorization services are enabled. In the following sample, it's not necessary to invoke [`UseAuthentication`](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication) or [`UseAuthorization`](/dotnet/api/microsoft.aspnetcore.builder.authorizationappbuilderextensions.useauthorization) to register the middlewares because [`WebApplication`](/dotnet/api/microsoft.aspnetcore.builder.webapplication) does this automatically after `AddAuthentication` or `AddAuthorization` are called.
 
@@ -108,7 +108,7 @@ The code creates a new authorization policy, named `policy_greetings`, that enca
 
 The `admin_greetings` policy is provided as a required policy to the `/hello` endpoint.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_greet" highlight="3,11-12":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_greet" highlight="5-9,13-14":::
 
 ## Use `dotnet user-jwts` for development testing
 
