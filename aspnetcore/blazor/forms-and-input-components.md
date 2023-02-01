@@ -137,7 +137,6 @@ The earlier `FormExample1` component is modified:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample1.razor":::
 
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
