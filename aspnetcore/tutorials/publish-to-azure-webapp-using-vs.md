@@ -58,7 +58,8 @@ Visual Studio creates the solution.
 
 ![A database operation failed while processing the request](publish-to-azure-webapp-using-vs/_static/mig.png)
 
-* In the **Register confirmation page**, select **Click here to confirm your account**.
+* A **Register confirmation** page is displayed, select **Click here to confirm your account**.
+* A **Confirm email** page is displayed.
 * Login as the new user.
 
 The app displays the email used to register the new user and a **Logout** link.
@@ -83,7 +84,7 @@ In the **Publish** dialog:
 
 In the **Publish** dialog:
 
-* Select **Azure App Service (Linux)**.
+* Select **Azure App Service (Windows)**.
 * Select **Next**.
 
 ![Publish Dialog: select Azure Service](publish-to-azure-webapp-using-vs/_static/maas2.png)
