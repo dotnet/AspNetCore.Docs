@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to invoke .NET methods from JavaScript functions in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: mvc 
+ms.custom: mvc
 ms.date: 11/08/2022
 uid: blazor/js-interop/call-dotnet-from-javascript
 ---
@@ -174,7 +174,8 @@ To invoke an instance .NET method from JavaScript (JS):
   ```
 
   > [!NOTE]
-  > `invokeMethodAsync`/`invokeMethod` doesn't accept an assembly name parameter when invoking an instance method.
+  >   > [!NOTE]
+  > `invokeMethodAsync` and `invokeMethod` don't accept an assembly name parameter when invoking an instance method.
 
   `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `DotNet.invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
 
@@ -1044,7 +1045,8 @@ To invoke an instance .NET method from JavaScript (JS):
   ```
 
   > [!NOTE]
-  > `invokeMethodAsync`/`invokeMethod` doesn't accept an assembly name parameter when invoking an instance method.
+  >   > [!NOTE]
+  > `invokeMethodAsync` and `invokeMethod` don't accept an assembly name parameter when invoking an instance method.
 
   `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `DotNet.invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
 
@@ -1892,7 +1894,8 @@ To invoke an instance .NET method from JavaScript (JS):
   ```
 
   > [!NOTE]
-  > `invokeMethodAsync`/`invokeMethod` doesn't accept an assembly name parameter when invoking an instance method.
+  >   > [!NOTE]
+  > `invokeMethodAsync` and `invokeMethod` don't accept an assembly name parameter when invoking an instance method.
 
   `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `DotNet.invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
 
@@ -2350,7 +2353,8 @@ To invoke an instance .NET method from JavaScript (JS):
   ```
 
   > [!NOTE]
-  > `invokeMethodAsync`/`invokeMethod` doesn't accept an assembly name parameter when invoking an instance method.
+  >   > [!NOTE]
+  > `invokeMethodAsync` and `invokeMethod` don't accept an assembly name parameter when invoking an instance method.
 
   `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `DotNet.invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
 
