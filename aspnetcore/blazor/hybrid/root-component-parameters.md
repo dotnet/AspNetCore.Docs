@@ -12,7 +12,11 @@ uid: blazor/hybrid/root-component-parameters
 
 This article explains how to pass root component parameters in a Blazor Hybrid app.
 
-The <xref:Microsoft.AspNetCore.Components.WebView.Maui.RootComponent?displayProperty=nameWithType>/<xref:Microsoft.AspNetCore.Components.WebView.Wpf.RootComponent?displayProperty=nameWithType>/<xref:Microsoft.AspNetCore.Components.WebView.WindowsForms.RootComponent?displayProperty=nameWithType> class of a `BlazorWebView` defines a `Parameters` property of type `IDictionary<string, object?>?`, which represents an optional dictionary of parameters to pass to the root component.
+The `RootComponent` class of a `BlazorWebView` defines a `Parameters` property of type `IDictionary<string, object?>?`, which represents an optional dictionary of parameters to pass to the root component:
+
+* .NET MAUI: <xref:Microsoft.AspNetCore.Components.WebView.Maui.RootComponent?displayProperty=nameWithType>
+* WPF: <xref:Microsoft.AspNetCore.Components.WebView.Wpf.RootComponent?displayProperty=nameWithType>
+* Windows Forms: <xref:Microsoft.AspNetCore.Components.WebView.WindowsForms.RootComponent?displayProperty=nameWithType>
 
 The following example passes a view model to the root component, which further passes the view model as a cascading type to a Razor component in the Blazor portion of the app. The example is based on the keypad example in the .NET MAUI documentation:
 

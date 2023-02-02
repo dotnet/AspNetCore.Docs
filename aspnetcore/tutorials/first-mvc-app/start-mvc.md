@@ -3,9 +3,9 @@ title: Get started with ASP.NET Core MVC
 author: wadepickett
 description: Learn how to get started with ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 10/24/2022
+ms.date: 01/25/2023
 uid: tutorials/first-mvc-app/start-mvc
-ms.custom: contperf-fy21q3
+ms.custom: contperf-fy21q3, engagement-fy23
 ---
 # Get started with ASP.NET Core MVC
 
@@ -39,12 +39,8 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
 
-<!--
-[!INCLUDE[](~/includes/net-core-prereqs-mac-5.0.md)]
--->
->
 ---
 
 ## Create a web app
@@ -89,27 +85,14 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
-
-<!--
-* Select **File** > **New Solution**.
-
-  ![macOS New solution](start-mvc/_static/new_project_vsmac.png)
-
-* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application (Model-View-Controller)** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Next**.
-
-  ![macOS web app template selection](start-mvc/_static/web_app_template_vsmac.png)
-
-* In the **Configure your new Web Application** dialog:
-
-  * Confirm that **Authentication** is set to **No Authentication**.
-  * If an option to select a **Target Framework** is presented, select the latest 5.x version.
-  * Select **Next**.
-
-* Name the project **MvcMovie**, and then select **Create**.
-
-  ![macOS name the project](start-mvc/_static/MvcMovie.png)
--->
+* Start Visual Studio for Mac and select **File** > **New Project...**.
+* In Visual Studio for Mac select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Continue**.
+* In the **Configure your new Web Application (Model-View-Controller)** dialog:
+  * Select **.NET 7.0** for the **Target Framework**.
+  * Verify that **Do not use top-level statements** is unchecked.
+* Select **Continue**.
+* Enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` when code is copied.
+* Select **Create**.
 
 ---
 
@@ -167,27 +150,23 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
-
-<!--
-* Select **Run** > **Start Without Debugging** to launch the app.
+* Select Option+Command+Return to run the app without the debugger.
 
   Visual Studio for Mac:
 
   * Starts [Kestrel](xref:fundamentals/servers/index#kestrel) server.
   * Launches a browser.
-  * Navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
+  * Navigates to `http://localhost:port`, where *port* is a randomly chosen port number, set when Visual Studio creates a web project.
 
-  [!INCLUDE[](~/includes/trustCertMac.md)]
+  [!INCLUDE[](~/includes/trustCertMacVS22.md)]
 
-  The address bar shows `localhost:port#` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
+  The address bar shows `localhost:<port#>` and not something like `example.com`. The standard hostname for your local computer is `localhost`. Localhost only serves web requests from the local computer.
 
-You can launch the app in debug or non-debug mode from the **Run** menu.
+You can launch the app in debug or non-debug mode from the **Debug** menu.
 
 The following image shows the app:
 
-![Home or Index page](./start-mvc/_static/output_macos.png)
--->
+![Home or Index page](./start-mvc/_static/output_macos_VS22.png)
 
 ---
 
@@ -228,7 +207,7 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
 <!--
 [!INCLUDE[](~/includes/net-core-prereqs-mac-5.0.md)]
@@ -276,7 +255,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
 <!--
 * Select **File** > **New Solution**.
@@ -354,7 +333,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 5 version of this tutorial.
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
 <!--
 * Select **Run** > **Start Without Debugging** to launch the app.

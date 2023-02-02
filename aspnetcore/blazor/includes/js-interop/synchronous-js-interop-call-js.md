@@ -20,12 +20,37 @@ To make a synchronous call from .NET to JavaScript in a Blazor WebAssembly app, 
 }
 ```
 
-When working with <xref:Microsoft.JSInterop.IJSObjectReference> in ASP.NET Core 5.0 or later Blazor WebAssembly apps, you can use <xref:Microsoft.JSInterop.IJSInProcessObjectReference> synchronously instead:
+When working with <xref:Microsoft.JSInterop.IJSObjectReference> in ASP.NET Core 5.0 or later Blazor WebAssembly apps, you can use <xref:Microsoft.JSInterop.IJSInProcessObjectReference> synchronously instead. <xref:Microsoft.JSInterop.IJSInProcessObjectReference> implements <xref:System.IAsyncDisposable>/<xref:System.IDisposable> and should be disposed for garbage collection to prevent a memory leak, as the following example demonstrates:
 
-```csharp
-private IJSInProcessObjectReference module;
+```razor
+...
+
+@inject IJSRuntime JS
+@implements IAsyncDisposable
 
 ...
 
-module = await JS.InvokeAsync<IJSInProcessObjectReference>("import", "./scripts.js");
+@code {
+    ...
+    private IJSInProcessObjectReference? module;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            module = await JS.InvokeAsync<IJSInProcessObjectReference>("import", 
+            "./scripts.js");
+        }
+    }
+
+    ...
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (module is not null)
+        {
+            await module.DisposeAsync();
+        }
+    }
+}
 ```

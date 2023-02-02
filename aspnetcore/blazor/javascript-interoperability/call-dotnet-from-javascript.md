@@ -4,7 +4,7 @@ author: guardrex
 description: Learn how to invoke .NET methods from JavaScript functions in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: mvc 
+ms.custom: mvc
 ms.date: 11/08/2022
 uid: blazor/js-interop/call-dotnet-from-javascript
 ---
@@ -123,10 +123,10 @@ In the call to `DotNet.invokeMethodAsync` or `DotNet.invokeMethod` (Blazor WebAs
 
 ## Create JavaScript object and data references to pass to .NET
 
-Call `DotNet.createJSObjectReference(jsObject)` to construct a JS object reference so that it can be passed to .NET, where `jsObject` is the JS object used to create the JS object reference. The following example passes a reference to the non-serializable `window` object to .NET, which receives it in the `ReceiveWindowObject` C# method as an <xref:Microsoft.JSInterop.IJSObjectReference>:
+Call `DotNet.createJSObjectReference(jsObject)` to construct a JS object reference so that it can be passed to .NET, where `jsObject` is the [JS `Object`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object) used to create the JS object reference. The following example passes a reference to the non-serializable `window` object to .NET, which receives it in the `ReceiveWindowObject` C# method as an <xref:Microsoft.JSInterop.IJSObjectReference>:
 
 ```javascript
-DotNet.invokeMethodAsync('{APP NAMESPACE}', 'ReceiveWindowObject', 
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject', 
   DotNet.createJSObjectReference(window));
 ```
 
@@ -138,7 +138,22 @@ public void ReceiveWindowObject(IJSObjectReference objRef)
 }
 ```
 
-In the preceding example, the `{APP NAMESPACE}` placeholder is the app's namespace.
+In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
+
+> [!NOTE]
+> The preceding example doesn't require disposal of the `JSObjectReference`, as a reference to the `window` object isn't held in JS.
+
+Maintaining a reference to a `JSObjectReference` requires disposing of it to avoid leaking JS memory on the client. The following example refactors the preceding code to capture a reference to the `JSObjectReference`, followed by a call to `DotNet.disposeJSObjectReference()` to dispose of the reference:
+
+```javascript
+var jsObjectReference = DotNet.createJSObjectReference(window);
+
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject', jsObjectReference);
+
+DotNet.disposeJSObjectReference(jsObjectReference);
+```
+
+In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
 
 Call `DotNet.createJSStreamReference(streamReference)` to construct a JS stream reference so that it can be passed to .NET, where `streamReference` is an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer), [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob), or any [typed array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/TypedArray), such as [`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) or [`Float32Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float32Array), used to create the JS stream reference.
 
@@ -147,7 +162,25 @@ Call `DotNet.createJSStreamReference(streamReference)` to construct a JS stream 
 To invoke an instance .NET method from JavaScript (JS):
 
 * Pass the .NET instance by reference to JS by wrapping the instance in a <xref:Microsoft.JSInterop.DotNetObjectReference> and calling <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A> on it.
-* Invoke a .NET instance method from JS using `invokeMethodAsync` or `invokeMethod` (Blazor WebAssembly only) from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
+* Invoke a .NET instance method from JS using `invokeMethodAsync` (*Recommended*) or `invokeMethod` (Blazor WebAssembly only) from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. Pass the identifier of the instance .NET method and any arguments. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
+
+  In the following example:
+
+  * The `{.NET METHOD ID}` placeholder is the .NET method identifier.
+  * The `{ARGUMENTS}` placeholder are optional, comma-separated arguments to pass to the method, each of which must be JSON-serializable.
+
+  ```javascript
+  DotNet.invokeMethodAsync('{.NET METHOD ID}', {ARGUMENTS});
+  ```
+
+  > [!NOTE]
+  > `invokeMethodAsync` and `invokeMethod` don't accept an assembly name parameter when invoking an instance method.
+
+  `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `DotNet.invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
+
+  > [!IMPORTANT]
+  > The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) to support Blazor Server scenarios.
+
 * Dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference>.
 
 The following sections of this article demonstrate various approaches for invoking an instance .NET method:
@@ -550,7 +583,7 @@ In the preceding `CallDotNetExample5` component, the .NET object reference is di
 
 ```javascript
 window.{JS FUNCTION NAME} = (dotNetHelper) => {
-  dotNetHelper.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD ID}');
+  dotNetHelper.invokeMethodAsync('{.NET METHOD ID}');
   dotNetHelper.dispose();
 }
 ```
@@ -559,7 +592,6 @@ In the preceding example:
 
 * The `{JS FUNCTION NAME}` placeholder is the JS function's name.
 * The variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
-* The `{ASSEMBLY NAME}` placeholder is the app's assembly name.
 * The `{.NET METHOD ID}` placeholder is the .NET method identifier.
 
 ## Component instance .NET method helper class
@@ -575,18 +607,18 @@ In the following example:
 * Each `ListItem1` component is composed of a message and a button.
 * When a `ListItem1` component button is selected, that `ListItem1`'s `UpdateMessage` method changes the list item text and hides the button.
 
-The following `MessageUpdateInvokeHelper` class maintains a JS-invokable .NET method, `UpdateMessageCaller`, to invoke the <xref:System.Action> specified when the class is instantiated. `BlazorSample` is the app's assembly name.
+The following `MessageUpdateInvokeHelper` class maintains a JS-invokable .NET method, `UpdateMessageCaller`, to invoke the <xref:System.Action> specified when the class is instantiated.
 
 `MessageUpdateInvokeHelper.cs`:
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs":::
 
-The following `updateMessageCaller` JS function invokes the `UpdateMessageCaller` .NET method. `BlazorSample` is the app's assembly name.
+The following `updateMessageCaller` JS function invokes the `UpdateMessageCaller` .NET method.
 
 ```html
 <script>
   window.updateMessageCaller = (dotNetHelper) => {
-    dotNetHelper.invokeMethodAsync('BlazorSample', 'UpdateMessageCaller');
+    dotNetHelper.invokeMethodAsync('UpdateMessageCaller');
     dotNetHelper.dispose();
   }
 </script>
@@ -721,14 +753,14 @@ Objects that contain circular references can't be serialized on the client for e
 
 Blazor supports optimized byte array JavaScript (JS) interop that avoids encoding/decoding byte arrays into Base64. The following example uses JS interop to pass a byte array to .NET.
 
-Provide a `sendByteArray` JS function. The function is called by a button in the component and doesn't return a value:
+Provide a `sendByteArray` JS function. The function is called statically, which includes the assembly name parameter in the `invokeMethodAsync` call, by a button in the component and doesn't return a value:
 
 ```html
 <script>
   window.sendByteArray = () => {
     const data = new Uint8Array([0x45,0x76,0x65,0x72,0x79,0x74,0x68,0x69,
       0x6e,0x67,0x27,0x73,0x20,0x73,0x68,0x69,0x6e,0x79,0x2c,
-      0x20,0x43,0x61,0x70,0x74,0x69,0x61,0x6e,0x2e,0x20,0x4e,
+      0x20,0x43,0x61,0x70,0x74,0x61,0x69,0x6e,0x2e,0x20,0x4e,
       0x6f,0x74,0x20,0x74,0x6f,0x20,0x66,0x72,0x65,0x74,0x2e]);
     DotNet.invokeMethodAsync('BlazorSample', 'ReceiveByteArray', data)
       .then(str => {
@@ -819,7 +851,19 @@ In the preceding example:
 
 As an alternative to interacting with JavaScript (JS) in Blazor WebAssembly apps using Blazor's JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface, a JS `[JSImport]`/`[JSExport]` interop API is available to apps targeting .NET 7 or later.
 
-For more information, see <xref:blazor/js-interop/import-export-interop>. 
+For more information, see <xref:blazor/js-interop/import-export-interop>.
+
+## Disposal of JavaScript interop object references
+
+Examples throughout the JavaScript (JS) interop articles demonstrate typical object disposal patterns:
+
+* When calling .NET from JS, as described in this article, dispose of a created <xref:Microsoft.JSInterop.DotNetObjectReference> either from .NET or from JS to avoid leaking .NET memory.
+
+* When calling JS from .NET, as described in <xref:blazor/js-interop/call-javascript-from-dotnet>, dispose any created <xref:Microsoft.JSInterop.IJSObjectReference>/<xref:Microsoft.JSInterop.IJSInProcessObjectReference>/`JSObjectReference` either from .NET or from JS to avoid leaking JS memory.
+
+JS interop object references are implemented as a map keyed by an identifier on the side of the JS interop call that creates the reference. When object disposal is initiated from either the .NET or JS side, Blazor removes the entry from the map, and the object can be garbage collected as long as no other strong reference to the object is present.
+
+At a minimum, always dispose objects created on the .NET side to avoid leaking .NET managed memory.
 
 ## Document Object Model (DOM) cleanup tasks during component disposal
 
@@ -949,10 +993,10 @@ In the call to `DotNet.invokeMethodAsync` or `DotNet.invokeMethod` (Blazor WebAs
 
 ## Create JavaScript object and data references to pass to .NET
 
-Call `DotNet.createJSObjectReference(jsObject)` to construct a JS object reference so that it can be passed to .NET, where `jsObject` is the JS object used to create the JS object reference. The following example passes a reference to the non-serializable `window` object to .NET, which receives it in the `ReceiveWindowObject` C# method as an <xref:Microsoft.JSInterop.IJSObjectReference>:
+Call `DotNet.createJSObjectReference(jsObject)` to construct a JS object reference so that it can be passed to .NET, where `jsObject` is the [JS `Object`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object) used to create the JS object reference. The following example passes a reference to the non-serializable `window` object to .NET, which receives it in the `ReceiveWindowObject` C# method as an <xref:Microsoft.JSInterop.IJSObjectReference>:
 
 ```javascript
-DotNet.invokeMethodAsync('{APP NAMESPACE}', 'ReceiveWindowObject', 
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject', 
   DotNet.createJSObjectReference(window));
 ```
 
@@ -964,7 +1008,22 @@ public void ReceiveWindowObject(IJSObjectReference objRef)
 }
 ```
 
-In the preceding example, the `{APP NAMESPACE}` placeholder is the app's namespace.
+In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
+
+> [!NOTE]
+> The preceding example doesn't require disposal of the `JSObjectReference`, as a reference to the `window` object isn't held in JS.
+
+Maintaining a reference to a `JSObjectReference` requires disposing of it to avoid leaking JS memory on the client. The following example refactors the preceding code to capture a reference to the `JSObjectReference`, followed by a call to `DotNet.disposeJSObjectReference()` to dispose of the reference:
+
+```javascript
+var jsObjectReference = DotNet.createJSObjectReference(window);
+
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject', jsObjectReference);
+
+DotNet.disposeJSObjectReference(jsObjectReference);
+```
+
+In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
 
 Call `DotNet.createJSStreamReference(streamReference)` to construct a JS stream reference so that it can be passed to .NET, where `streamReference` is an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer), [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob), or any [typed array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/TypedArray), such as [`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) or [`Float32Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float32Array), used to create the JS stream reference.
 
@@ -973,7 +1032,25 @@ Call `DotNet.createJSStreamReference(streamReference)` to construct a JS stream 
 To invoke an instance .NET method from JavaScript (JS):
 
 * Pass the .NET instance by reference to JS by wrapping the instance in a <xref:Microsoft.JSInterop.DotNetObjectReference> and calling <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A> on it.
-* Invoke a .NET instance method from JS using `invokeMethodAsync` or `invokeMethod` (Blazor WebAssembly only) from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
+* Invoke a .NET instance method from JS using `invokeMethodAsync` (*Recommended*) or `invokeMethod` (Blazor WebAssembly only) from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. Pass the identifier of the instance .NET method and any arguments. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
+
+  In the following example:
+
+  * The `{.NET METHOD ID}` placeholder is the .NET method identifier.
+  * The `{ARGUMENTS}` placeholder are optional, comma-separated arguments to pass to the method, each of which must be JSON-serializable.
+
+  ```javascript
+  DotNet.invokeMethodAsync('{.NET METHOD ID}', {ARGUMENTS});
+  ```
+
+  > [!NOTE]
+  > `invokeMethodAsync` and `invokeMethod` don't accept an assembly name parameter when invoking an instance method.
+
+  `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `DotNet.invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
+
+  > [!IMPORTANT]
+  > The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) to support Blazor Server scenarios.
+
 * Dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference>.
 
 The following sections of this article demonstrate various approaches for invoking an instance .NET method:
@@ -1376,7 +1453,7 @@ In the preceding `CallDotNetExample5` component, the .NET object reference is di
 
 ```javascript
 window.{JS FUNCTION NAME} = (dotNetHelper) => {
-  dotNetHelper.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD ID}');
+  dotNetHelper.invokeMethodAsync('{.NET METHOD ID}');
   dotNetHelper.dispose();
 }
 ```
@@ -1385,7 +1462,6 @@ In the preceding example:
 
 * The `{JS FUNCTION NAME}` placeholder is the JS function's name.
 * The variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
-* The `{ASSEMBLY NAME}` placeholder is the app's assembly name.
 * The `{.NET METHOD ID}` placeholder is the .NET method identifier.
 
 ## Component instance .NET method helper class
@@ -1401,18 +1477,18 @@ In the following example:
 * Each `ListItem1` component is composed of a message and a button.
 * When a `ListItem1` component button is selected, that `ListItem1`'s `UpdateMessage` method changes the list item text and hides the button.
 
-The following `MessageUpdateInvokeHelper` class maintains a JS-invokable .NET method, `UpdateMessageCaller`, to invoke the <xref:System.Action> specified when the class is instantiated. `BlazorSample` is the app's assembly name.
+The following `MessageUpdateInvokeHelper` class maintains a JS-invokable .NET method, `UpdateMessageCaller`, to invoke the <xref:System.Action> specified when the class is instantiated.
 
 `MessageUpdateInvokeHelper.cs`:
 
 :::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs":::
 
-The following `updateMessageCaller` JS function invokes the `UpdateMessageCaller` .NET method. `BlazorSample` is the app's assembly name.
+The following `updateMessageCaller` JS function invokes the `UpdateMessageCaller` .NET method.
 
 ```html
 <script>
   window.updateMessageCaller = (dotNetHelper) => {
-    dotNetHelper.invokeMethodAsync('BlazorSample', 'UpdateMessageCaller');
+    dotNetHelper.invokeMethodAsync('UpdateMessageCaller');
     dotNetHelper.dispose();
   }
 </script>
@@ -1547,14 +1623,14 @@ Objects that contain circular references can't be serialized on the client for e
 
 Blazor supports optimized byte array JavaScript (JS) interop that avoids encoding/decoding byte arrays into Base64. The following example uses JS interop to pass a byte array to .NET.
 
-Provide a `sendByteArray` JS function. The function is called by a button in the component and doesn't return a value:
+Provide a `sendByteArray` JS function. The function is called statically, which includes the assembly name parameter in the `invokeMethodAsync` call, by a button in the component and doesn't return a value:
 
 ```html
 <script>
   window.sendByteArray = () => {
     const data = new Uint8Array([0x45,0x76,0x65,0x72,0x79,0x74,0x68,0x69,
       0x6e,0x67,0x27,0x73,0x20,0x73,0x68,0x69,0x6e,0x79,0x2c,
-      0x20,0x43,0x61,0x70,0x74,0x69,0x61,0x6e,0x2e,0x20,0x4e,
+      0x20,0x43,0x61,0x70,0x74,0x61,0x69,0x6e,0x2e,0x20,0x4e,
       0x6f,0x74,0x20,0x74,0x6f,0x20,0x66,0x72,0x65,0x74,0x2e]);
     DotNet.invokeMethodAsync('BlazorSample', 'ReceiveByteArray', data)
       .then(str => {
@@ -1765,10 +1841,10 @@ In the call to `DotNet.invokeMethodAsync` or `DotNet.invokeMethod` (Blazor WebAs
 
 ## Create JavaScript object and data references to pass to .NET
 
-Call `DotNet.createJSObjectReference(jsObject)` to construct a JS object reference so that it can be passed to .NET, where `jsObject` is the JS object used to create the JS object reference. The following example passes a reference to the non-serializable `window` object to .NET, which receives it in the `ReceiveWindowObject` C# method as an <xref:Microsoft.JSInterop.IJSObjectReference>:
+Call `DotNet.createJSObjectReference(jsObject)` to construct a JS object reference so that it can be passed to .NET, where `jsObject` is the [JS `Object`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object) used to create the JS object reference. The following example passes a reference to the non-serializable `window` object to .NET, which receives it in the `ReceiveWindowObject` C# method as an <xref:Microsoft.JSInterop.IJSObjectReference>:
 
 ```javascript
-DotNet.invokeMethodAsync('{APP NAMESPACE}', 'ReceiveWindowObject', 
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject', 
   DotNet.createJSObjectReference(window));
 ```
 
@@ -1780,7 +1856,22 @@ public void ReceiveWindowObject(IJSObjectReference objRef)
 }
 ```
 
-In the preceding example, the `{APP NAMESPACE}` placeholder is the app's namespace.
+In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
+
+> [!NOTE]
+> The preceding example doesn't require disposal of the `JSObjectReference`, as a reference to the `window` object isn't held in JS.
+
+Maintaining a reference to a `JSObjectReference` requires disposing of it to avoid leaking JS memory on the client. The following example refactors the preceding code to capture a reference to the `JSObjectReference`, followed by a call to `DotNet.disposeJSObjectReference()` to dispose of the reference:
+
+```javascript
+var jsObjectReference = DotNet.createJSObjectReference(window);
+
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject', jsObjectReference);
+
+DotNet.disposeJSObjectReference(jsObjectReference);
+```
+
+In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
 
 Call `DotNet.createJSStreamReference(streamReference)` to construct a JS stream reference so that it can be passed to .NET, where `streamReference` is an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer), [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob), or any [typed array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/TypedArray), such as [`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) or [`Float32Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float32Array), used to create the JS stream reference.
 
@@ -1789,7 +1880,25 @@ Call `DotNet.createJSStreamReference(streamReference)` to construct a JS stream 
 To invoke an instance .NET method from JavaScript (JS):
 
 * Pass the .NET instance by reference to JS by wrapping the instance in a <xref:Microsoft.JSInterop.DotNetObjectReference> and calling <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A> on it.
-* Invoke a .NET instance method from JS using `invokeMethodAsync` or `invokeMethod` (Blazor WebAssembly only) from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
+* Invoke a .NET instance method from JS using `invokeMethodAsync` (*Recommended*) or `invokeMethod` (Blazor WebAssembly only) from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. Pass the identifier of the instance .NET method and any arguments. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
+
+  In the following example:
+
+  * The `{.NET METHOD ID}` placeholder is the .NET method identifier.
+  * The `{ARGUMENTS}` placeholder are optional, comma-separated arguments to pass to the method, each of which must be JSON-serializable.
+
+  ```javascript
+  DotNet.invokeMethodAsync('{.NET METHOD ID}', {ARGUMENTS});
+  ```
+
+  > [!NOTE]
+  > `invokeMethodAsync` and `invokeMethod` don't accept an assembly name parameter when invoking an instance method.
+
+  `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `DotNet.invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
+
+  > [!IMPORTANT]
+  > The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) to support Blazor Server scenarios.
+
 * Dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference>.
 
 The following sections of this article demonstrate various approaches for invoking an instance .NET method:
@@ -1899,7 +2008,7 @@ In the preceding `CallDotNetExample5` component, the .NET object reference is di
 
 ```javascript
 window.{JS FUNCTION NAME} = (dotNetHelper) => {
-  dotNetHelper.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD ID}');
+  dotNetHelper.invokeMethodAsync('{.NET METHOD ID}');
   dotNetHelper.dispose();
 }
 ```
@@ -1908,7 +2017,6 @@ In the preceding example:
 
 * The `{JS FUNCTION NAME}` placeholder is the JS function's name.
 * The variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
-* The `{ASSEMBLY NAME}` placeholder is the app's assembly name.
 * The `{.NET METHOD ID}` placeholder is the .NET method identifier.
 
 ## Component instance .NET method helper class
@@ -1924,20 +2032,20 @@ In the following example:
 * Each `ListItem1` component is composed of a message and a button.
 * When a `ListItem1` component button is selected, that `ListItem1`'s `UpdateMessage` method changes the list item text and hides the button.
 
-The following `MessageUpdateInvokeHelper` class maintains a JS-invokable .NET method, `UpdateMessageCaller`, to invoke the <xref:System.Action> specified when the class is instantiated. `BlazorSample` is the app's assembly name.
+The following `MessageUpdateInvokeHelper` class maintains a JS-invokable .NET method, `UpdateMessageCaller`, to invoke the <xref:System.Action> specified when the class is instantiated.
 
 `MessageUpdateInvokeHelper.cs`:
 
 :::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs" highlight="8,13-17":::
 
-The following `updateMessageCaller` JS function invokes the `UpdateMessageCaller` .NET method. `BlazorSample` is the app's assembly name.
+The following `updateMessageCaller` JS function invokes the `UpdateMessageCaller` .NET method.
 
 Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
 ```html
 <script>
   window.updateMessageCaller = (dotNetHelper) => {
-    dotNetHelper.invokeMethodAsync('BlazorSample', 'UpdateMessageCaller');
+    dotNetHelper.invokeMethodAsync('UpdateMessageCaller');
     dotNetHelper.dispose();
   }
 </script>
@@ -2191,10 +2299,10 @@ In the call to `DotNet.invokeMethodAsync` or `DotNet.invokeMethod` (Blazor WebAs
 
 ## Create JavaScript object and data references to pass to .NET
 
-Call `DotNet.createJSObjectReference(jsObject)` to construct a JS object reference so that it can be passed to .NET, where `jsObject` is the JS object used to create the JS object reference. The following example passes a reference to the non-serializable `window` object to .NET, which receives it in the `ReceiveWindowObject` C# method as an <xref:Microsoft.JSInterop.IJSObjectReference>:
+Call `DotNet.createJSObjectReference(jsObject)` to construct a JS object reference so that it can be passed to .NET, where `jsObject` is the [JS `Object`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object) used to create the JS object reference. The following example passes a reference to the non-serializable `window` object to .NET, which receives it in the `ReceiveWindowObject` C# method as an <xref:Microsoft.JSInterop.IJSObjectReference>:
 
 ```javascript
-DotNet.invokeMethodAsync('{APP NAMESPACE}', 'ReceiveWindowObject', 
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject', 
   DotNet.createJSObjectReference(window));
 ```
 
@@ -2206,7 +2314,22 @@ public void ReceiveWindowObject(IJSObjectReference objRef)
 }
 ```
 
-In the preceding example, the `{APP NAMESPACE}` placeholder is the app's namespace.
+In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
+
+> [!NOTE]
+> The preceding example doesn't require disposal of the `JSObjectReference`, as a reference to the `window` object isn't held in JS.
+
+Maintaining a reference to a `JSObjectReference` requires disposing of it to avoid leaking JS memory on the client. The following example refactors the preceding code to capture a reference to the `JSObjectReference`, followed by a call to `DotNet.disposeJSObjectReference()` to dispose of the reference:
+
+```javascript
+var jsObjectReference = DotNet.createJSObjectReference(window);
+
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject', jsObjectReference);
+
+DotNet.disposeJSObjectReference(jsObjectReference);
+```
+
+In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
 
 Call `DotNet.createJSStreamReference(streamReference)` to construct a JS stream reference so that it can be passed to .NET, where `streamReference` is an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer), [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob), or any [typed array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/TypedArray), such as [`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) or [`Float32Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float32Array), used to create the JS stream reference.
 
@@ -2215,7 +2338,25 @@ Call `DotNet.createJSStreamReference(streamReference)` to construct a JS stream 
 To invoke an instance .NET method from JavaScript (JS):
 
 * Pass the .NET instance by reference to JS by wrapping the instance in a <xref:Microsoft.JSInterop.DotNetObjectReference> and calling <xref:Microsoft.JSInterop.DotNetObjectReference.Create%2A> on it.
-* Invoke a .NET instance method from JS using `invokeMethodAsync` or `invokeMethod` (Blazor WebAssembly only) from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
+* Invoke a .NET instance method from JS using `invokeMethodAsync` (*Recommended*) or `invokeMethod` (Blazor WebAssembly only) from the passed <xref:Microsoft.JSInterop.DotNetObjectReference>. Pass the identifier of the instance .NET method and any arguments. The .NET instance can also be passed as an argument when invoking other .NET methods from JS.
+
+  In the following example:
+
+  * The `{.NET METHOD ID}` placeholder is the .NET method identifier.
+  * The `{ARGUMENTS}` placeholder are optional, comma-separated arguments to pass to the method, each of which must be JSON-serializable.
+
+  ```javascript
+  DotNet.invokeMethodAsync('{.NET METHOD ID}', {ARGUMENTS});
+  ```
+
+  > [!NOTE]
+  > `invokeMethodAsync` and `invokeMethod` don't accept an assembly name parameter when invoking an instance method.
+
+  `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `DotNet.invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
+
+  > [!IMPORTANT]
+  > The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) to support Blazor Server scenarios.
+
 * Dispose of the <xref:Microsoft.JSInterop.DotNetObjectReference>.
 
 The following sections of this article demonstrate various approaches for invoking an instance .NET method:
@@ -2325,7 +2466,7 @@ In the preceding `CallDotNetExample5` component, the .NET object reference is di
 
 ```javascript
 window.{JS FUNCTION NAME} = (dotNetHelper) => {
-  dotNetHelper.invokeMethodAsync('{ASSEMBLY NAME}', '{.NET METHOD ID}');
+  dotNetHelper.invokeMethodAsync('{.NET METHOD ID}');
   dotNetHelper.dispose();
 }
 ```
@@ -2334,7 +2475,6 @@ In the preceding example:
 
 * The `{JS FUNCTION NAME}` placeholder is the JS function's name.
 * The variable name `dotNetHelper` is arbitrary and can be changed to any preferred name.
-* The `{ASSEMBLY NAME}` placeholder is the app's assembly name.
 * The `{.NET METHOD ID}` placeholder is the .NET method identifier.
 
 ## Component instance .NET method helper class
@@ -2350,20 +2490,20 @@ In the following example:
 * Each `ListItem1` component is composed of a message and a button.
 * When a `ListItem1` component button is selected, that `ListItem1`'s `UpdateMessage` method changes the list item text and hides the button.
 
-The following `MessageUpdateInvokeHelper` class maintains a JS-invokable .NET method, `UpdateMessageCaller`, to invoke the <xref:System.Action> specified when the class is instantiated. `BlazorSample` is the app's assembly name.
+The following `MessageUpdateInvokeHelper` class maintains a JS-invokable .NET method, `UpdateMessageCaller`, to invoke the <xref:System.Action> specified when the class is instantiated.
 
 `MessageUpdateInvokeHelper.cs`:
 
 :::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/MessageUpdateInvokeHelper.cs" highlight="8,13-17":::
 
-The following `updateMessageCaller` JS function invokes the `UpdateMessageCaller` .NET method. `BlazorSample` is the app's assembly name.
+The following `updateMessageCaller` JS function invokes the `UpdateMessageCaller` .NET method.
 
 Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server):
 
 ```html
 <script>
   window.updateMessageCaller = (dotNetHelper) => {
-    dotNetHelper.invokeMethodAsync('BlazorSample', 'UpdateMessageCaller');
+    dotNetHelper.invokeMethodAsync('UpdateMessageCaller');
     dotNetHelper.dispose();
   }
 </script>
