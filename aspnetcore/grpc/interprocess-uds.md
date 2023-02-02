@@ -30,7 +30,7 @@ var socketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
-    serverOptions.ListenUnixSocket(SocketPath, listenOptions =>
+    serverOptions.ListenUnixSocket(socketPath, listenOptions =>
     {
         listenOptions.Protocols = HttpProtocols.Http2;
     });
