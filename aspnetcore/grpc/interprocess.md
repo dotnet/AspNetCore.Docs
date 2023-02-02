@@ -42,10 +42,33 @@ gRPC calls between a client and server on different machines are usually sent ov
 
 There are transports optimized for IPC workloads. .NET supports multiple IPC transports:
 
-* [Unix domain sockets (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) is a widely supported IPC technology that's more efficient than TCP when the client and server are on the same machine. UDS is usable on Linux, macOS, and [Windows 10/Windows Server 2019 or later](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/).
-* [Named pipes](https://wikipedia.org/wiki/Named_pipe) are supported by all versions of Windows. Named pipes integrate well with [Windows security](/windows/win32/ipc/named-pipe-security-and-access-rights) to control client access to the pipe.
+* [Unix domain sockets (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) is a widely supported IPC technology that's more efficient than TCP when the client and server are on the same machine. UDS is the best choice for building cross-platform apps, and it is usable on Linux, macOS, and [Windows 10/Windows Server 2019 or later](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/).
+* [Named pipes](https://wikipedia.org/wiki/Named_pipe) are supported by all versions of Windows. Named pipes integrate well with [Windows security](/windows/win32/ipc/named-pipe-security-and-access-rights), which can be used to control client access to the pipe.
+* Other IPC transports by implementing <xref:Microsoft.AspNetCore.Connections.IConnectionListenerFactory> and register the implementation at app startup.
 
-Implement other IPC technologies using the extensibility in Kestrel and `SocketsHttpHandler`.
+Cross-platform apps may want to use different IPC transports, depending on the current OS. An app can check the current operating system on startup and chose the desired transport for that platform:
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    if (OperatingSystem.IsWindows())
+    {
+        serverOptions.ListenNamedPipe("MyPipeName", listenOptions =>
+        {
+            listenOptions.Protocols = HttpProtocols.Http2;
+        });
+    }
+    else
+    {
+        var socketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");
+        serverOptions.ListenUnixSocket(socketPath, listenOptions =>
+        {
+            listenOptions.Protocols = HttpProtocols.Http2;
+        });
+    }
+});
+```
 
 ## Configure client and server
 
