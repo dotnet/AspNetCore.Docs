@@ -31,7 +31,7 @@
 
   - name: ASP.NET Core
     tocHref: /aspnet/core/books/
-    topicHref: /aspnet/core/books/index
+    topicHref: /aspnet/core/index
     items:
       - name: ASP.NET Core books
         tocHref: /aspnet/core/books/grpc
