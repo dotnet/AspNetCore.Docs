@@ -126,7 +126,7 @@ In the call to `DotNet.invokeMethodAsync` or `DotNet.invokeMethod` (Blazor WebAs
 Call `DotNet.createJSObjectReference(jsObject)` to construct a JS object reference so that it can be passed to .NET, where `jsObject` is the [JS `Object`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object) used to create the JS object reference. The following example passes a reference to the non-serializable `window` object to .NET, which receives it in the `ReceiveWindowObject` C# method as an <xref:Microsoft.JSInterop.IJSObjectReference>:
 
 ```javascript
-DotNet.invokeMethodAsync('{APP ASSEMBLY}', 'ReceiveWindowObject', 
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject', 
   DotNet.createJSObjectReference(window));
 ```
 
@@ -138,7 +138,7 @@ public void ReceiveWindowObject(IJSObjectReference objRef)
 }
 ```
 
-In the preceding example, the `{APP ASSEMBLY}` placeholder is the app's namespace.
+In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
 
 > [!NOTE]
 > The preceding example doesn't require disposal of the `JSObjectReference`, as a reference to the `window` object isn't assigned and maintained in JS.
@@ -148,12 +148,12 @@ Maintaining a reference to a `JSObjectReference` requires disposing of it to avo
 ```javascript
 var jsObjectReference = DotNet.createJSObjectReference(window);
 
-DotNet.invokeMethodAsync('{APP ASSEMBLY}', 'ReceiveWindowObject', jsObjectReference);
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject', jsObjectReference);
 
 DotNet.disposeJSObjectReference(jsObjectReference);
 ```
 
-In the preceding example, the `{APP ASSEMBLY}` placeholder is the app's namespace.
+In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
 
 Call `DotNet.createJSStreamReference(streamReference)` to construct a JS stream reference so that it can be passed to .NET, where `streamReference` is an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer), [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob), or any [typed array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/TypedArray), such as [`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) or [`Float32Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float32Array), used to create the JS stream reference.
 
@@ -979,7 +979,7 @@ In the call to `DotNet.invokeMethodAsync` or `DotNet.invokeMethod` (Blazor WebAs
 Call `DotNet.createJSObjectReference(jsObject)` to construct a JS object reference so that it can be passed to .NET, where `jsObject` is the [JS `Object`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object) used to create the JS object reference. The following example passes a reference to the non-serializable `window` object to .NET, which receives it in the `ReceiveWindowObject` C# method as an <xref:Microsoft.JSInterop.IJSObjectReference>:
 
 ```javascript
-DotNet.invokeMethodAsync('{APP ASSEMBLY}', 'ReceiveWindowObject', 
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject', 
   DotNet.createJSObjectReference(window));
 ```
 
@@ -991,7 +991,7 @@ public void ReceiveWindowObject(IJSObjectReference objRef)
 }
 ```
 
-In the preceding example, the `{APP ASSEMBLY}` placeholder is the app's namespace.
+In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
 
 > [!NOTE]
 > The preceding example doesn't require disposal of the `JSObjectReference`, as a reference to the `window` object isn't assigned and maintained in JS.
@@ -1001,12 +1001,12 @@ Maintaining a reference to a `JSObjectReference` requires disposing of it to avo
 ```javascript
 var jsObjectReference = DotNet.createJSObjectReference(window);
 
-DotNet.invokeMethodAsync('{APP ASSEMBLY}', 'ReceiveWindowObject', jsObjectReference);
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject', jsObjectReference);
 
 DotNet.disposeJSObjectReference(jsObjectReference);
 ```
 
-In the preceding example, the `{APP ASSEMBLY}` placeholder is the app's namespace.
+In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
 
 Call `DotNet.createJSStreamReference(streamReference)` to construct a JS stream reference so that it can be passed to .NET, where `streamReference` is an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer), [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob), or any [typed array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/TypedArray), such as [`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) or [`Float32Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float32Array), used to create the JS stream reference.
 
@@ -1810,7 +1810,7 @@ In the call to `DotNet.invokeMethodAsync` or `DotNet.invokeMethod` (Blazor WebAs
 Call `DotNet.createJSObjectReference(jsObject)` to construct a JS object reference so that it can be passed to .NET, where `jsObject` is the [JS `Object`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object) used to create the JS object reference. The following example passes a reference to the non-serializable `window` object to .NET, which receives it in the `ReceiveWindowObject` C# method as an <xref:Microsoft.JSInterop.IJSObjectReference>:
 
 ```javascript
-DotNet.invokeMethodAsync('{APP ASSEMBLY}', 'ReceiveWindowObject', 
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject', 
   DotNet.createJSObjectReference(window));
 ```
 
@@ -1822,7 +1822,7 @@ public void ReceiveWindowObject(IJSObjectReference objRef)
 }
 ```
 
-In the preceding example, the `{APP ASSEMBLY}` placeholder is the app's namespace.
+In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
 
 > [!NOTE]
 > The preceding example doesn't require disposal of the `JSObjectReference`, as a reference to the `window` object isn't assigned and maintained in JS.
@@ -1832,12 +1832,12 @@ Maintaining a reference to a `JSObjectReference` requires disposing of it to avo
 ```javascript
 var jsObjectReference = DotNet.createJSObjectReference(window);
 
-DotNet.invokeMethodAsync('{APP ASSEMBLY}', 'ReceiveWindowObject', jsObjectReference);
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject', jsObjectReference);
 
 DotNet.disposeJSObjectReference(jsObjectReference);
 ```
 
-In the preceding example, the `{APP ASSEMBLY}` placeholder is the app's namespace.
+In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
 
 Call `DotNet.createJSStreamReference(streamReference)` to construct a JS stream reference so that it can be passed to .NET, where `streamReference` is an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer), [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob), or any [typed array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/TypedArray), such as [`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) or [`Float32Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float32Array), used to create the JS stream reference.
 
@@ -2251,7 +2251,7 @@ In the call to `DotNet.invokeMethodAsync` or `DotNet.invokeMethod` (Blazor WebAs
 Call `DotNet.createJSObjectReference(jsObject)` to construct a JS object reference so that it can be passed to .NET, where `jsObject` is the [JS `Object`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object) used to create the JS object reference. The following example passes a reference to the non-serializable `window` object to .NET, which receives it in the `ReceiveWindowObject` C# method as an <xref:Microsoft.JSInterop.IJSObjectReference>:
 
 ```javascript
-DotNet.invokeMethodAsync('{APP ASSEMBLY}', 'ReceiveWindowObject', 
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject', 
   DotNet.createJSObjectReference(window));
 ```
 
@@ -2263,7 +2263,7 @@ public void ReceiveWindowObject(IJSObjectReference objRef)
 }
 ```
 
-In the preceding example, the `{APP ASSEMBLY}` placeholder is the app's namespace.
+In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
 
 > [!NOTE]
 > The preceding example doesn't require disposal of the `JSObjectReference`, as a reference to the `window` object isn't assigned and maintained in JS.
@@ -2273,12 +2273,12 @@ Maintaining a reference to a `JSObjectReference` requires disposing of it to avo
 ```javascript
 var jsObjectReference = DotNet.createJSObjectReference(window);
 
-DotNet.invokeMethodAsync('{APP ASSEMBLY}', 'ReceiveWindowObject', jsObjectReference);
+DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject', jsObjectReference);
 
 DotNet.disposeJSObjectReference(jsObjectReference);
 ```
 
-In the preceding example, the `{APP ASSEMBLY}` placeholder is the app's namespace.
+In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
 
 Call `DotNet.createJSStreamReference(streamReference)` to construct a JS stream reference so that it can be passed to .NET, where `streamReference` is an [`ArrayBuffer`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer), [`Blob`](https://developer.mozilla.org/docs/Web/API/Blob), or any [typed array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/TypedArray), such as [`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) or [`Float32Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Float32Array), used to create the JS stream reference.
 
