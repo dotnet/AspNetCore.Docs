@@ -1,3 +1,17 @@
+items:
+- name: ASP.NET Core books
+  tocHref: /aspnet/core/books/
+  topicHref: /aspnet/core/books/index
+- name: ASP.NET Core books
+  tocHref: /aspnet/core/books/grpc
+  topicHref: /aspnet/core/books/index
+- name: ASP.NET Core books
+  tocHref: /aspnet/core/books/controller-based-apis
+  topicHref: /aspnet/core/books/index
+- name: ASP.NET Core books
+  tocHref: /aspnet/core/books/grpc
+  topicHref: /aspnet/core/books/index
+
 - name: Docs
   tocHref: /
   topicHref: /
@@ -28,19 +42,6 @@
       - name: ASP.NET Core
         tocHref: /ef/core/
         topicHref: /aspnet/core/index
-
-  - name: ASP.NET Core
-    tocHref: /aspnet/core/books/
-    topicHref: /aspnet/core/books/index
-  - name: ASP.NET Core
-    tocHref: /aspnet/core/books/grpc
-    topicHref: /aspnet/core/books/index
-  - name: ASP.NET Core
-    tocHref: /aspnet/core/books/controller-based-apis
-    topicHref: /aspnet/core/books/index
-  - name: ASP.NET Core
-    tocHref: /aspnet/core/books/grpc
-    topicHref: /aspnet/core/books/index
 
   - name: ASP.NET
     tocHref: /visualstudio/
