@@ -141,9 +141,9 @@ public void ReceiveWindowObject(IJSObjectReference objRef)
 In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
 
 > [!NOTE]
-> The preceding example doesn't require disposal of the `JSObjectReference`, as a reference to the `window` object isn't assigned and maintained in JS.
+> The preceding example doesn't require disposal of the `JSObjectReference`, as a reference to the `window` object isn't held in JS.
 
-Maintaining a reference to a `JSObjectReference` requires disposing of it to avoid leaking JS memory on the client. The following example refactors the preceding code to capture a reference to the `JSObjectReference` with a call to `DotNet.disposeJSObjectReference()` for disposal of the `window` object:
+Maintaining a reference to a `JSObjectReference` requires disposing of it to avoid leaking JS memory on the client. The following example refactors the preceding code to capture a reference to the `JSObjectReference`, followed by a call to `DotNet.disposeJSObjectReference()` to dispose of the reference:
 
 ```javascript
 var jsObjectReference = DotNet.createJSObjectReference(window);
@@ -994,9 +994,9 @@ public void ReceiveWindowObject(IJSObjectReference objRef)
 In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
 
 > [!NOTE]
-> The preceding example doesn't require disposal of the `JSObjectReference`, as a reference to the `window` object isn't assigned and maintained in JS.
+> The preceding example doesn't require disposal of the `JSObjectReference`, as a reference to the `window` object isn't held in JS.
 
-Maintaining a reference to a `JSObjectReference` requires disposing of it to avoid leaking JS memory on the client. The following example refactors the preceding code to capture a reference to the `JSObjectReference` with a call to `DotNet.disposeJSObjectReference()` for disposal of the `window` object:
+Maintaining a reference to a `JSObjectReference` requires disposing of it to avoid leaking JS memory on the client. The following example refactors the preceding code to capture a reference to the `JSObjectReference`, followed by a call to `DotNet.disposeJSObjectReference()` to dispose of the reference:
 
 ```javascript
 var jsObjectReference = DotNet.createJSObjectReference(window);
@@ -1825,9 +1825,9 @@ public void ReceiveWindowObject(IJSObjectReference objRef)
 In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
 
 > [!NOTE]
-> The preceding example doesn't require disposal of the `JSObjectReference`, as a reference to the `window` object isn't assigned and maintained in JS.
+> The preceding example doesn't require disposal of the `JSObjectReference`, as a reference to the `window` object isn't held in JS.
 
-Maintaining a reference to a `JSObjectReference` requires disposing of it to avoid leaking JS memory on the client. The following example refactors the preceding code to capture a reference to the `JSObjectReference` with a call to `DotNet.disposeJSObjectReference()` for disposal of the `window` object:
+Maintaining a reference to a `JSObjectReference` requires disposing of it to avoid leaking JS memory on the client. The following example refactors the preceding code to capture a reference to the `JSObjectReference`, followed by a call to `DotNet.disposeJSObjectReference()` to dispose of the reference:
 
 ```javascript
 var jsObjectReference = DotNet.createJSObjectReference(window);
@@ -2266,9 +2266,9 @@ public void ReceiveWindowObject(IJSObjectReference objRef)
 In the preceding example, the `{ASSEMBLY NAME}` placeholder is the app's namespace.
 
 > [!NOTE]
-> The preceding example doesn't require disposal of the `JSObjectReference`, as a reference to the `window` object isn't assigned and maintained in JS.
+> The preceding example doesn't require disposal of the `JSObjectReference`, as a reference to the `window` object isn't held in JS.
 
-Maintaining a reference to a `JSObjectReference` requires disposing of it to avoid leaking JS memory on the client. The following example refactors the preceding code to capture a reference to the `JSObjectReference` with a call to `DotNet.disposeJSObjectReference()` for disposal of the `window` object:
+Maintaining a reference to a `JSObjectReference` requires disposing of it to avoid leaking JS memory on the client. The following example refactors the preceding code to capture a reference to the `JSObjectReference`, followed by a call to `DotNet.disposeJSObjectReference()` to dispose of the reference:
 
 ```javascript
 var jsObjectReference = DotNet.createJSObjectReference(window);
