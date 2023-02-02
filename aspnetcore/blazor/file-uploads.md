@@ -757,7 +757,7 @@ The following `FileUpload4` component shows the full working example.
 @page "/file-upload-4"
 @inject IJSRuntime JS
 
-<h3>File Upload 3</h3>
+<h3>File Upload Example</h3>
 
 <InputFile @ref="inputFile" OnChange="@ShowPreview" />
 
