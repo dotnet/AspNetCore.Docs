@@ -166,17 +166,18 @@ To invoke an instance .NET method from JavaScript (JS):
 
   In the following example:
 
+  * `dotNetHelper` is a <xref:Microsoft.JSInterop.DotNetObjectReference>.
   * The `{.NET METHOD ID}` placeholder is the .NET method identifier.
   * The `{ARGUMENTS}` placeholder are optional, comma-separated arguments to pass to the method, each of which must be JSON-serializable.
 
   ```javascript
-  DotNet.invokeMethodAsync('{.NET METHOD ID}', {ARGUMENTS});
+  dotNetHelper.invokeMethodAsync('{.NET METHOD ID}', {ARGUMENTS});
   ```
 
   > [!NOTE]
   > `invokeMethodAsync` and `invokeMethod` don't accept an assembly name parameter when invoking an instance method.
 
-  `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `DotNet.invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
+  `invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
 
   > [!IMPORTANT]
   > The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) to support Blazor Server scenarios.
@@ -1036,17 +1037,18 @@ To invoke an instance .NET method from JavaScript (JS):
 
   In the following example:
 
+  * `dotNetHelper` is a <xref:Microsoft.JSInterop.DotNetObjectReference>.
   * The `{.NET METHOD ID}` placeholder is the .NET method identifier.
   * The `{ARGUMENTS}` placeholder are optional, comma-separated arguments to pass to the method, each of which must be JSON-serializable.
 
   ```javascript
-  DotNet.invokeMethodAsync('{.NET METHOD ID}', {ARGUMENTS});
+  dotNetHelper.invokeMethodAsync('{.NET METHOD ID}', {ARGUMENTS});
   ```
 
   > [!NOTE]
   > `invokeMethodAsync` and `invokeMethod` don't accept an assembly name parameter when invoking an instance method.
 
-  `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `DotNet.invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
+  `invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
 
   > [!IMPORTANT]
   > The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) to support Blazor Server scenarios.
@@ -1884,17 +1886,18 @@ To invoke an instance .NET method from JavaScript (JS):
 
   In the following example:
 
+  * `dotNetHelper` is a <xref:Microsoft.JSInterop.DotNetObjectReference>.
   * The `{.NET METHOD ID}` placeholder is the .NET method identifier.
   * The `{ARGUMENTS}` placeholder are optional, comma-separated arguments to pass to the method, each of which must be JSON-serializable.
 
   ```javascript
-  DotNet.invokeMethodAsync('{.NET METHOD ID}', {ARGUMENTS});
+  dotNetHelper.invokeMethodAsync('{.NET METHOD ID}', {ARGUMENTS});
   ```
 
   > [!NOTE]
   > `invokeMethodAsync` and `invokeMethod` don't accept an assembly name parameter when invoking an instance method.
 
-  `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `DotNet.invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
+  `invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
 
   > [!IMPORTANT]
   > The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) to support Blazor Server scenarios.
@@ -2342,17 +2345,18 @@ To invoke an instance .NET method from JavaScript (JS):
 
   In the following example:
 
+  * `dotNetHelper` is a <xref:Microsoft.JSInterop.DotNetObjectReference>.
   * The `{.NET METHOD ID}` placeholder is the .NET method identifier.
   * The `{ARGUMENTS}` placeholder are optional, comma-separated arguments to pass to the method, each of which must be JSON-serializable.
 
   ```javascript
-  DotNet.invokeMethodAsync('{.NET METHOD ID}', {ARGUMENTS});
+  dotNetHelper.invokeMethodAsync('{.NET METHOD ID}', {ARGUMENTS});
   ```
 
   > [!NOTE]
   > `invokeMethodAsync` and `invokeMethod` don't accept an assembly name parameter when invoking an instance method.
 
-  `DotNet.invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `DotNet.invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
+  `invokeMethodAsync` returns a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) representing the result of the operation. `invokeMethod` (Blazor WebAssembly only) returns the result of the operation.
 
   > [!IMPORTANT]
   > The asynchronous function (`invokeMethodAsync`) is preferred over the synchronous version (`invokeMethod`) to support Blazor Server scenarios.
