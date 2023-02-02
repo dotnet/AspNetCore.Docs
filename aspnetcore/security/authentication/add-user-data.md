@@ -126,7 +126,7 @@ Update the `Areas/Identity/Pages/Account/Manage/Index.cshtml` with the following
 
 Update the `InputModel` in `Areas/Identity/Pages/Account/Register.cshtml.cs` with the following highlighted code:
 
-[!code-csharp[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=39-47)]
+[!code-csharp[](add-user-data/samples/6.x/SampleApp/Areas/Identity/Pages/Account/Register.cshtml.cs?name=snippet&highlight=39-47,81-82)]
 
 Update the `Areas/Identity/Pages/Account/Register.cshtml` with the following highlighted markup:
 

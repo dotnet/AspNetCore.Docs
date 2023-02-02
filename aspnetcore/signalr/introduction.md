@@ -52,7 +52,7 @@ Hubs call client-side code by sending messages that contain the name and paramet
 
 ## Additional resources
 
-* [Introduction to ASP.NET Core SignalR](/learn/modules/aspnet-core-signalr)
+* [Introduction to ASP.NET Core SignalR](/training/modules/aspnet-core-signalr)
 * [Get started with SignalR for ASP.NET Core](xref:tutorials/signalr)
 * [Supported Platforms](xref:signalr/supported-platforms)
 * [Hubs](xref:signalr/hubs)

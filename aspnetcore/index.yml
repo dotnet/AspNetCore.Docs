@@ -80,7 +80,7 @@ conceptualContent:
         - url: tutorials/min-web-api.md
           itemType: get-started
           text: "Create a minimal web API with ASP.NET Core"
-        - url: /learn/modules/build-web-api-net-core/
+        - url: /training/modules/build-web-api-net-core/
           itemType: learn
           text: "Create a web API with ASP.NET Core Controllers"
         - url: tutorials/web-api-help-pages-using-swagger.md
@@ -105,7 +105,7 @@ conceptualContent:
         - url: tutorials/razor-pages/razor-pages-start.md
           itemType: get-started
           text: "Create your first Razor Pages web app"
-        - url: /learn/modules/create-razor-pages-aspnet-core/
+        - url: /training/modules/create-razor-pages-aspnet-core/
           itemType: tutorial
           text: "Create a page-focused web UI that consumes a web API"
         - url: mvc/views/razor.md
@@ -117,7 +117,7 @@ conceptualContent:
         - url: razor-pages/razor-pages-conventions.md
           itemType: concept
           text: "Routing"
-        - url: /learn/modules/aspnet-core-accessibility
+        - url: /training/modules/aspnet-core-accessibility
           itemType: concept
           text: "Accessible ASP.NET Core web apps"
     # Card
@@ -220,7 +220,7 @@ conceptualContent:
         - url: data/ef-mvc/intro.md
           itemType: tutorial
           text: "Entity Framework Core with ASP.NET Core MVC"
-        - url: /visualstudio/azure/azure/vs-azure-tools-connected-services-storage?view=vs-2022
+        - url: /visualstudio/azure/vs-azure-tools-connected-services-storage?view=vs-2022
           itemType: tutorial
           text: "Azure Storage"
         - url: /azure/storage/blobs/storage-quickstart-blobs-dotnet
@@ -229,7 +229,7 @@ conceptualContent:
         - url: /azure/storage/tables/table-storage-overview?bc=%252faspnet%252fcore%252fbreadcrumb%252ftoc.json&toc=%252faspnet%252fcore%252ftoc.json&view=aspnetcore-6.0
           itemType: concept
           text: "Azure Table Storage"
-        - url: /learn/paths/m365-msgraph-dotnet-core-scenarios
+        - url: /training/paths/m365-msgraph-dotnet-core-scenarios
           itemType: concept
           text: "Microsoft Graph scenarios for ASP.NET Core"
       # Card
@@ -297,7 +297,7 @@ additionalContent:
             text: "Authentication"
           - url: security/authorization/introduction.md
             text: "Authorization"
-          - url: /learn/modules/secure-aspnet-core-identity/
+          - url: /training/modules/secure-aspnet-core-identity/
             text: "Course: Secure an ASP.NET Core web app with the Identity framework"
           - url: security/data-protection/introduction.md
             text: "Data protection"
@@ -335,7 +335,7 @@ additionalContent:
             text: "Troubleshoot and debug"
           - url: fundamentals/logging/index.md
             text: "Logging"
-          - url: /learn/modules/load-test-web-app-azure-devops/
+          - url: /training/modules/load-test-web-app-azure-devops/
             text: "Load test Azure web apps by using Azure DevOps"
       # Card
       - title: Azure and ASP.NET Core
@@ -344,7 +344,7 @@ additionalContent:
             text: "Deploy an ASP.NET Core web app"
           - url: /visualstudio/containers/container-tools?view=vs-2022
             text: "ASP.NET Core and Docker"
-          - url: /learn/modules/host-a-web-app-with-azure-app-service/
+          - url: /training/modules/host-a-web-app-with-azure-app-service/
             text: "Host a web application with Azure App Service"
           - url: /azure/app-service/app-service-web-tutorial-dotnet-sqldatabase
             text: "App Service and Azure SQL Database"
@@ -352,7 +352,7 @@ additionalContent:
             text: "Managed identity with ASP.NET Core and Azure SQL Database"
           - url: /azure/app-service/app-service-web-tutorial-rest-api
             text: "Web API with CORS in Azure App Service"
-          - url: /learn/modules/capture-application-logs-app-service/
+          - url: /training/modules/capture-application-logs-app-service/
             text: "Capture Web Application Logs with App Service Diagnostics Logging"
       # Card
       - title: Performance

@@ -5,7 +5,7 @@ description: Learn how to enable Blazor WebAssembly deployments in environments 
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 11/08/2022
 uid: blazor/host-and-deploy/webassembly-deployment-layout
 ---
 # Deployment layout for ASP.NET Core Blazor WebAssembly apps
@@ -40,11 +40,11 @@ Later in this article, the [Customize the Blazor WebAssembly loading process via
 
 1. Use an existing hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) or create a new solution from the Blazor WebAssembly project template using Visual Studio or by passing the [`-ho|--hosted` option](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) command (`dotnet new blazorwasm -ho`). For more information, see <xref:blazor/tooling>.
 
-1. In the **`Client`** project, add the experimental `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package.
+1. In the **:::no-loc text="Client":::** project, add the experimental `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package.
 
    [!INCLUDE[](~/includes/package-reference.md)]
 
-1. In the **`Server`** project, add an endpoint for serving the bundle file (`app.bundle`). Example code can be found in the [Serve the bundle from the host server app](#serve-the-bundle-from-the-host-server-app) section of this article.
+1. In the **:::no-loc text="Server":::** project, add an endpoint for serving the bundle file (`app.bundle`). Example code can be found in the [Serve the bundle from the host server app](#serve-the-bundle-from-the-host-server-app) section of this article.
 
 1. Publish the app in Release configuration.
 
@@ -60,7 +60,7 @@ Four customizations are required to how a default published Blazor app loads:
 * An MSBuild task to transform the publish files.
 * A NuGet package with MSBuild targets that hooks into the Blazor publishing process, transforms the output, and defines one or more Blazor Publish Extension files (in this case, a single bundle).
 * A JS initializer to update the Blazor WebAssembly resource loader callback so that it loads the bundle and provides the app with the individual files.
-* A helper on the host **`Server`** app to ensure that the bundle is served to clients on request.
+* A helper on the host **:::no-loc text="Server":::** app to ensure that the bundle is served to clients on request.
 
 ### Create an MSBuild task to customize the list of published files and define new extensions
 
@@ -349,7 +349,7 @@ Due to security restrictions, ASP.NET Core doesn't serve the `app.bundle` file b
 > [!NOTE]
 > Since the same optimizations are transparently applied to the Publish Extensions that are applied to the app's files, the `app.bundle.gz` and `app.bundle.br` compressed asset files are produced automatically on publish.
 
-Place C# code in `Program.cs` of the **`Server`** project immediately before the line that sets the fallback file to `index.html` (`app.MapFallbackToFile("index.html");`) to respond to a request for the bundle file (for example, `app.bundle`):
+Place C# code in `Program.cs` of the **:::no-loc text="Server":::** project immediately before the line that sets the fallback file to `index.html` (`app.MapFallbackToFile("index.html");`) to respond to a request for the bundle file (for example, `app.bundle`):
 
 ```csharp
 app.MapGet("app.bundle", (HttpContext context) =>

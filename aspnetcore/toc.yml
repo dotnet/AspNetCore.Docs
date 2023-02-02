@@ -1,8 +1,6 @@
 items:
   - name: ASP.NET Core documentation
     href: index.yml
-  - name: What's new in ASP.NET Core docs
-    href: whats-new/index.yml
   - name: Overview
     items:
       - name: About ASP.NET Core
@@ -15,6 +13,8 @@ items:
     uid: getting-started
   - name: What's new
     items:
+      - name: What's new in docs
+        href: whats-new/index.yml
       - name: What's new in 7.0
         uid: aspnetcore-7
       - name: What's new in 6.0
@@ -171,39 +171,39 @@ items:
         items:
           - name: Web apps >>
             displayName: tutorial, razor, razor pages, ui
-            href: /learn/modules/create-razor-pages-aspnet-core/
+            href: /training/modules/create-razor-pages-aspnet-core/
           - name: Web API apps >>
             displayName: tutorial
-            href: /learn/modules/build-web-api-aspnet-core/
+            href: /training/modules/build-web-api-aspnet-core/
           - name: Cloud-native microservices
             items:
               - name: Create and deploy >>
                 displayName: tutorial, kubernetes, aks, acr, docker
-                href: /learn/modules/microservices-aspnet-core/
+                href: /training/modules/microservices-aspnet-core/
               - name: Implement resiliency >>
                 displayName: tutorial, kubernetes, aks, acr, docker
-                href: /learn/modules/microservices-resiliency-aspnet-core/
+                href: /training/modules/microservices-resiliency-aspnet-core/
               - name: Deploy with GitHub Actions >>
                 displayName: tutorial, kubernetes, aks, acr, docker, devops
-                href: /learn/modules/microservices-devops-aspnet-core/
+                href: /training/modules/microservices-devops-aspnet-core/
               - name: Log and monitor >>
                 displayName: tutorial, kubernetes, aks, acr, docker, serilog
-                href: /learn/modules/microservices-logging-aspnet-core/
+                href: /training/modules/microservices-logging-aspnet-core/
               - name: Implement feature flags >>
                 displayName: tutorial, kubernetes, aks, acr, docker
-                href: /learn/modules/microservices-configuration-aspnet-core/
+                href: /training/modules/microservices-configuration-aspnet-core/
               - name: Use managed data stores >>
                 displayName: tutorial, kubernetes, aks, acr, docker
-                href: /learn/modules/microservices-data-aspnet-core/
+                href: /training/modules/microservices-data-aspnet-core/
               - name: Implement API gateways >>
                 displayName: tutorial, kubernetes, aks, acr, docker
-                href: /learn/modules/microservices-apigateway-aspnet-core/
+                href: /training/modules/microservices-apigateway-aspnet-core/
           - name: Data access >>
             displayName: tutorial, ef, entity framework
-            href: /learn/modules/persist-data-ef-core/
+            href: /training/modules/persist-data-ef-core/
           - name: Web app security >>
             displayName: tutorial, identity
-            href: /learn/modules/secure-aspnet-core-identity/
+            href: /training/modules/secure-aspnet-core-identity/
   - name: Fundamentals
     items:
       - name: Overview
@@ -218,6 +218,8 @@ items:
             uid: fundamentals/middleware/index
           - name: Rate limiting middleware
             uid: performance/rate-limit
+          - name: Middleware in Minimal API apps
+            uid: fundamentals/minimal-apis/middleware
           - name: Test middleware
             uid: test/middleware
           - name: Response caching middleware
@@ -254,6 +256,8 @@ items:
         uid: fundamentals/http-logging/index
       - name: W3C Logger
         uid: fundamentals/w3c-logger/index
+      - name: HttpContext
+        uid: fundamentals/use-httpcontext
       - name: Routing
         uid: fundamentals/routing
       - name: Handle errors
@@ -354,7 +358,7 @@ items:
               - name: SignalR with Blazor
                 uid: blazor/tutorials/signalr-blazor
               - name: Learn modules
-                href: /learn/paths/build-web-apps-with-blazor/
+                href: /training/paths/build-web-apps-with-blazor/
           - name: Hosting models
             uid: blazor/hosting-models
           - name: Blazor Hybrid
@@ -379,6 +383,8 @@ items:
                 uid: blazor/hybrid/developer-tools
               - name: Reuse Razor components
                 uid: blazor/hybrid/reuse-razor-components
+              - name: Class libraries
+                uid: blazor/hybrid/class-libraries
               - name: Security and Identity
                 items:
                   - name: Overview
@@ -453,10 +459,12 @@ items:
             items:
               - name: Overview
                 uid: blazor/js-interop/index
-              - name: Call JavaScript from .NET
+              - name: Call JS from .NET
                 uid: blazor/js-interop/call-javascript-from-dotnet
-              - name: Call .NET from JavaScript
+              - name: Call .NET from JS
                 uid: blazor/js-interop/call-dotnet-from-javascript
+              - name: JSImport/JSExport interop
+                uid: blazor/js-interop/import-export-interop
           - name: Call a web API
             uid: blazor/call-web-api
           - name: Images
@@ -553,6 +561,8 @@ items:
                 uid: client-side/libman/libman-cli
               - name: Visual Studio
                 uid: client-side/libman/libman-vs
+          - name: Run .NET from JavaScript
+            uid: client-side/dotnet-interop
           - name: Grunt
             uid: client-side/using-grunt
           - name: Bundle and minify
@@ -687,11 +697,29 @@ items:
   - name: Minimal APIs
     items:
       - name: Minimal APIs overview
+        uid: fundamentals/minimal-apis/overview
+      - name: Minimal APIs quick reference
         uid: fundamentals/minimal-apis
-      - name: OpenAPI in Minimal API apps
+      - name: WebApplication and WebApplicationBuilder
+        uid: fundamentals/minimal-apis/webapplication
+      - name: Route Handlers
+        uid: fundamentals/minimal-apis/route-handlers
+      - name: Parameter binding
+        uid: fundamentals/minimal-apis/parameter-binding
+      - name: Create responses
+        uid: fundamentals/minimal-apis/responses
+      - name: OpenAPI
         uid: fundamentals/minimal-apis/openapi
-      - name: Filters in Minimal API apps
+      - name: Filters
         uid: fundamentals/minimal-apis/min-api-filters
+      - name: Unit and integration tests
+        uid: fundamentals/minimal-apis/test-min-api
+      - name: Middleware
+        uid: fundamentals/minimal-apis/middleware
+      - name: Handle errors
+        uid: fundamentals/minimal-apis/handle-errors
+      - name: Authentication and authorization
+        uid: fundamentals/minimal-apis/security
   - name: Real-time apps
     displayName: signalr
     items:
@@ -848,7 +876,13 @@ items:
           - name: gRPC-Web
             uid: grpc/grpcweb
           - name: gRPC JSON transcoding
-            uid: grpc/httpapi
+            items:
+              - name: Overview
+                uid: grpc/json-transcoding
+              - name: HTTP rules and JSON
+                uid: grpc/json-transcoding-binding
+              - name: Swagger / OpenAPI
+                uid: grpc/json-transcoding-openapi
       - name: Configuration
         uid: grpc/configuration
       - name: Authentication and authorization
@@ -869,7 +903,7 @@ items:
         uid: grpc/health-checks
       - name: Manage Protobuf references with dotnet-grpc
         uid: grpc/dotnet-grpc
-      - name: Test services with gRPCurl
+      - name: Test services with Postman and gRPCurl
         uid: grpc/test-tools
       - name: Migrate from C-core to gRPC for .NET
         uid: grpc/migration
@@ -881,79 +915,117 @@ items:
         href: https://github.com/grpc/grpc-dotnet/tree/master/examples
       - name: Troubleshoot
         uid: grpc/troubleshoot
-  - name: Test, debug, and troubleshoot
+  - name: Test
     items:
       - name: .NET Hot Reload
         uid: test/hot-reload
-      - name: Debug .NET and ASP.NET Core source code
-        uid: test/debug-aspnetcore-source
+      - name: Test with HttpRepl
+        items:
+          - name: Overview
+            displayName: httprepl
+            uid: web-api/http-repl
+          - name: Telemetry
+            displayName: httprepl
+            uid: web-api/http-repl/telemetry
+      - name: Test Minimal API
+        uid: fundamentals/minimal-apis/test-min-api
       - name: Razor Pages unit tests
         uid: test/razor-pages-tests
-      - name: Test controllers
+      - name: MVC controllers unit tests
         uid: mvc/controllers/testing
-      - name: Test middleware
-        uid: test/middleware
-      - name: Remote debugging
-        href: /visualstudio/debugger/remote-debugging-azure
-      - name: Snapshot debugging
-        href: /azure/azure-monitor/app/snapshot-debugger?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-      - name: Snapshot debugging in Visual Studio
-        href: /visualstudio/debugger/debug-live-azure-applications
       - name: Integration tests
         uid: test/integration-tests
       - name: Load and stress testing
         uid: test/loadtests
+      - name: Test middleware
+        uid: test/middleware
+  - name: Debug
+    items:
+      - name: Debug with Visual Studio
+        uid: test/debug-aspnetcore-source
+      - name: Remote debugging
+        href: /visualstudio/debugger/remote-debugging-azure
+      - name: Snapshot debugging in Azure
+        href: /azure/azure-monitor/app/snapshot-debugger?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
+      - name: Snapshot debugging in Visual Studio
+        href: /visualstudio/debugger/debug-live-azure-applications
+      - name: Port tunneling in Visual Studio
+        href: /connectors/custom-connectors/port-tunneling
+  - name: Troubleshoot
+    items:
       - name: Troubleshoot and debug
         uid: test/troubleshoot
-      - name: Logging
-        uid: fundamentals/logging/index
       - name: Troubleshoot Azure and IIS
         uid: test/troubleshoot-azure-iis
       - name: Azure and IIS errors reference
         uid: host-and-deploy/azure-iis-errors-reference
-      - name: Code analysis
-        uid: diagnostics/code-analysis
-        items:
-          - name: ASP0000
-            uid: diagnostics/asp0000
-          - name: ASP0001
-            uid: diagnostics/asp0001
-          - name: ASP0003
-            uid: diagnostics/asp0003
-          - name: ASP0004
-            uid: diagnostics/asp0004
-          - name: ASP0005
-            uid: diagnostics/asp0005
-          - name: ASP0006
-            uid: diagnostics/asp0006
-          - name: ASP0007
-            uid: diagnostics/asp0007
-          - name: BL0001
-            uid: diagnostics/bl0001
-          - name: BL0002
-            uid: diagnostics/bl0002
-          - name: BL0003
-            uid: diagnostics/bl0003
-          - name: BL0004
-            uid: diagnostics/bl0004
-          - name: BL0005
-            uid: diagnostics/bl0005
-          - name: BL0006
-            uid: diagnostics/bl0006
-          - name: MVC1000
-            uid: diagnostics/mvc1000
-          - name: MVC1001
-            uid: diagnostics/mvc1001
-          - name: MVC1002
-            uid: diagnostics/mvc1002
-          - name: MVC1003
-            uid: diagnostics/mvc1003
-          - name: MVC1004
-            uid: diagnostics/mvc1004
-          - name: MVC1005
-            uid: diagnostics/mvc1005
-          - name: MVC1006
-            uid: diagnostics/mvc1006
+  - name: Code analysis
+    uid: diagnostics/code-analysis
+    items:
+      - name: ASP0000
+        uid: diagnostics/asp0000
+      - name: ASP0001
+        uid: diagnostics/asp0001
+      - name: ASP0003
+        uid: diagnostics/asp0003
+      - name: ASP0004
+        uid: diagnostics/asp0004
+      - name: ASP0005
+        uid: diagnostics/asp0005
+      - name: ASP0006
+        uid: diagnostics/asp0006
+      - name: ASP0007
+        uid: diagnostics/asp0007
+      - name: ASP0008
+        uid: diagnostics/asp0008
+      - name: ASP0009
+        uid: diagnostics/asp0009
+      - name: ASP0010
+        uid: diagnostics/asp0010
+      - name: ASP0011
+        uid: diagnostics/asp0011
+      - name: ASP0012
+        uid: diagnostics/asp0012
+      - name: ASP0013
+        uid: diagnostics/asp0013
+      - name: ASP0014
+        uid: diagnostics/asp0014
+      - name: ASP0015
+        uid: diagnostics/asp0015
+      - name: ASP0016
+        uid: diagnostics/asp0016
+      - name: ASP0017
+        uid: diagnostics/asp0017
+      - name: ASP0018
+        uid: diagnostics/asp0018
+      - name: ASP0019
+        uid: diagnostics/asp0019
+      - name: BL0001
+        uid: diagnostics/bl0001
+      - name: BL0002
+        uid: diagnostics/bl0002
+      - name: BL0003
+        uid: diagnostics/bl0003
+      - name: BL0004
+        uid: diagnostics/bl0004
+      - name: BL0005
+        uid: diagnostics/bl0005
+      - name: BL0006
+        uid: diagnostics/bl0006
+      - name: MVC1000
+        uid: diagnostics/mvc1000
+      - name: MVC1001
+        uid: diagnostics/mvc1001
+      - name: MVC1002
+        uid: diagnostics/mvc1002
+      - name: MVC1003
+        uid: diagnostics/mvc1003
+      - name: MVC1004
+        uid: diagnostics/mvc1004
+      - name: MVC1005
+        uid: diagnostics/mvc1005
+      - name: MVC1006
+        uid: diagnostics/mvc1006
   - name: Data access
     items:
       - name: Tutorials
@@ -1178,6 +1250,9 @@ items:
       - name: Proxy and load balancer configuration
         displayName: deploy, publish
         uid: host-and-deploy/proxy-load-balancer
+      - name: Scaling apps on Azure
+        displayName: azure, deploy, publish, scale
+        uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
       - name: Web farm
         displayName: deploy, publish
         uid: host-and-deploy/web-farm
@@ -1446,20 +1521,31 @@ items:
         uid: performance/rate-limit
       - name: Memory and GC
         uid: performance/memory
+      - name: Scaling apps on Azure
+        displayName: azure, deploy, publish, scale
+        uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
       - name: Caching
         items:
           - name: Overview
+            displayName: cache, caching
             uid: performance/caching/overview
           - name: In-memory cache
+            displayName: caching
             uid: performance/caching/memory
           - name: Distributed caching
+            displayName: cache
             uid: performance/caching/distributed
+          - name: Output caching
+            displayName: cache
+            uid: performance/caching/output
           - name: Response caching
+            displayName: cache
             uid: performance/caching/response
           - name: Response caching middleware
+            displayName: cache
             uid: performance/caching/middleware
-          - name: Object reuse with ObjectPool
-            uid: performance/ObjectPool
+      - name: Object reuse with ObjectPool
+        uid: performance/ObjectPool
       - name: Response compression
         uid: performance/response-compression
       - name: Diagnostic tools
@@ -1532,6 +1618,9 @@ items:
         uid: fundamentals/middleware/extensibility-third-party-container
   - name: Migration
     items:
+      - name: 6.0 to 7.0
+        displayName: migrate, migration
+        uid: migration/60-to-70
       - name: 5.0 to 6.0
         displayName: migrate, migration
         uid: migration/50-to-60
@@ -1566,6 +1655,27 @@ items:
       - name: ASP.NET to ASP.NET Core
         displayName: migrate, migration
         items:
+          - name: Incremental migration
+            displayName: migrate, migration
+            items:
+            - name: Overview
+              uid: migration/inc/overview
+            - name: Get started
+              uid: migration/inc/start
+            - name: System.Web adapters
+              uid: migration/inc/adapters
+            - name: Remote app setup
+              uid: migration/inc/remote-app-setup
+            - name: Usage Guidance
+              uid: migration/inc/usage_guidance
+            - name: Wrapped session state
+              uid: migration/inc/wrapped
+            - name: Session state migration
+              uid: migration/inc/session
+            - name: Remote app session state
+              uid: migration/inc/remote-session
+            - name: Remote Authentication
+              uid: migration/inc/remote-authentication 
           - name: Overview
             uid: migration/proper-to-2x/index
           - name: MVC

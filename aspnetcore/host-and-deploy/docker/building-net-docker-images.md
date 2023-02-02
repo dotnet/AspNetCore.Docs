@@ -10,16 +10,9 @@ uid: host-and-deploy/docker/building-net-docker-images
 
 # Docker images for ASP.NET Core
 
-This tutorial shows how to run an ASP.NET Core app in Docker containers.
+This article shows how to run an ASP.NET Core app in Docker containers.
 
-In this tutorial, you:
-> [!div class="checklist"]
-> * Learn about ASP.NET Core Docker images
-> * Download an ASP.NET Core sample app
-> * Run the sample app locally
-> * Run the sample app in Linux containers
-> * Run the sample app in Windows containers
-> * Build and deploy manually
+Windows Home Edition doesn't support Hyper-V, and Hyper-V is needed for Docker.
 
 ## ASP.NET Core Docker images
 

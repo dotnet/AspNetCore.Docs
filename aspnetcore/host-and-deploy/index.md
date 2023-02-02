@@ -22,6 +22,10 @@ In general, to deploy an ASP.NET Core app to a hosting environment:
 
 The [dotnet publish](/dotnet/core/tools/dotnet-publish) command compiles app code and copies the files required to run the app into a *publish* folder. When deploying from Visual Studio, the `dotnet publish` step occurs automatically before the files are copied to the deployment destination.
 
+### Run the published app locally
+
+To run the published app locally, run `dotnet <ApplicationName>.dll` from the *publish* folder.
+
 ## Publish settings files
 
 `*.json` files are published by default. To publish other settings files, specify them in an [`<ItemGroup><Content Include= ... />`](/visualstudio/msbuild/common-msbuild-project-items#content) element in the project file. The following example publishes XML files:

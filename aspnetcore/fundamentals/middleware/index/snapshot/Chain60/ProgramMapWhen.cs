@@ -5,7 +5,7 @@ app.MapWhen(context => context.Request.Query.ContainsKey("branch"), HandleBranch
 
 app.Run(async context =>
 {
-    await context.Response.WriteAsync("Hello from non-Map delegate. <p>");
+    await context.Response.WriteAsync("Hello from non-Map delegate.");
 });
 
 app.Run();

@@ -490,7 +490,7 @@ The change from `"Microsoft": "Warning"` to `"Microsoft.AspNetCore": "Warning"` 
 <!-- TODO add and routing -->
 ### Developer exception page Middleware added automatically
 
-In the [develoment environment](xref:fundamentals/environments), the <xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware> is added by default. It's no longer necessary to add the following code to web UI apps:
+In the [development environment](xref:fundamentals/environments), the <xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware> is added by default. It's no longer necessary to add the following code to web UI apps:
 
 ```csharp
 if (app.Environment.IsDevelopment())

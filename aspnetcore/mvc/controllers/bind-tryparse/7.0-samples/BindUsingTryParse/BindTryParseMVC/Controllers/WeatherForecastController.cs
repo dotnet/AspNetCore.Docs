@@ -63,7 +63,7 @@ namespace BindTryParseMVC.Controllers
 
         // <snippet_22>
         // GET /WeatherForecast/ByRangeTP?range=7/24/2022,07/26/2022
-        public IActionResult ByRangeTP([FromQuery] DateRange range)
+        public IActionResult ByRangeTP([FromQuery] DateRangeTP range)
         {
             if (!ModelState.IsValid)
                 return View("Error", ModelState.Values.SelectMany(v => v.Errors));

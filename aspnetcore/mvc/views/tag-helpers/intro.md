@@ -152,7 +152,7 @@ The preceding code can be written as:
        disabled="@(Model?.LicenseId == null)" />
 ```
 
-Normally, the `@` operator inserts a textual representation of an expression into the rendered HTML markup. However, when an expression evaluates to logical `false`, the framework removes the attribute instead. In the preceding example, the `disabled` attribute is removed if `Model` or `LicenseId` is `null`.
+Normally, the `@` operator inserts a textual representation of an expression into the rendered HTML markup. However, when an expression evaluates to logical `false`, the framework removes the attribute instead. In the preceding example, the `disabled` attribute is set to `true` if either `Model` or `LicenseId` is `null`.
 
 ## Tag helper initializers
 

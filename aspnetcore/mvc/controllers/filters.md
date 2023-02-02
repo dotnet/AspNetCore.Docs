@@ -57,6 +57,22 @@ Each filter type is executed at a different stage in the filter pipeline:
   * Can change the result returned from the action.
   * Are **not** supported in Razor Pages.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
+* [Endpoint filters](/aspnet/core/fundamentals/minimal-apis/min-api-filters):
+
+  * Run immediately before and after an action method is called.
+  * Can change the arguments passed into an action.
+  * Can change the result returned from the action.
+  * Are **not** supported in Razor Pages.
+  * Can be invoked on both actions and route handler-based endpoints.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
 * [Exception filters](#exception-filters) apply global policies to unhandled exceptions that occur before the response body has been written to.
 
 * [Result filters](#result-filters):
@@ -332,7 +348,7 @@ Resource filter examples:
 
 ## Action filters
 
-Action filters do **not** apply to Razor Pages. Razor Pages supports <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
+Action filters do **not** apply to Razor Pages. Razor Pages supports <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter>. For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
 
 Action filters:
 
@@ -919,7 +935,7 @@ Resource filter examples:
 
 ## Action filters
 
-Action filters do **not** apply to Razor Pages. Razor Pages supports <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter> . For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
+Action filters do **not** apply to Razor Pages. Razor Pages supports <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter>. For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
 
 Action filters:
 

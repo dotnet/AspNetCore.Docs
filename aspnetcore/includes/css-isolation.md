@@ -3,7 +3,7 @@ Isolate CSS styles to individual pages, views, and components to reduce or avoid
 * Dependencies on global styles that can be challenging to maintain.
 * Style conflicts in nested content.
 
-To add a *scoped CSS file* for a page or view, place the CSS styles in a companion `.cshtml.css` file matching the name of the `.cshtml` file. In the following example, a `Index.cshtml.css` file supplies CSS styles that are only applied to the `Index.cshtml` page or view.
+To add a *scoped CSS file* for a page or view, place the CSS styles in a companion `.cshtml.css` file matching the name of the `.cshtml` file. In the following example, an `Index.cshtml.css` file supplies CSS styles that are only applied to the `Index.cshtml` page or view.
 
 `Pages/Index.cshtml.css` (Razor Pages) or `Views/Index.cshtml.css` (MVC):
 

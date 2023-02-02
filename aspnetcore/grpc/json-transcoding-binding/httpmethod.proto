@@ -1,0 +1,8 @@
+service Address {
+  rpc CreateAddress (CreateAddressRequest) returns (CreateAddressReply) {
+    option (google.api.http) = {
+      post: "/v1/address",
+      body: "*"
+    };
+  }
+}

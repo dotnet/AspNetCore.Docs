@@ -1,0 +1,17 @@
+service Repository {
+  rpc GetIssue (GetIssueRequest) returns (GetIssueReply) {
+    option (google.api.http) = {
+      get: "/{apiVersion}/{params.org}/{params.repo}/issue/{params.issueId}"
+    };
+  }
+}
+
+message GetIssueRequest {
+  int32 api_version = 1;
+  IssueParams params = 2;
+}
+message IssueParams {
+  string org = 1;
+  string repo = 2;
+  int32 issueId = 3;
+}

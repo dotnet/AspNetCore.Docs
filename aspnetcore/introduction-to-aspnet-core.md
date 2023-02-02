@@ -7,7 +7,7 @@ ms.custom: mvc
 ms.date: 03/02/2022
 uid: index
 ---
-# Overview to ASP.NET Core
+# Overview of ASP.NET Core
 
 By [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Shaun Luttin](https://mvp.microsoft.com/en-us/PublicProfile/5001182)
 
@@ -48,7 +48,7 @@ ASP.NET Core integrates seamlessly with popular client-side frameworks and libra
 
 ## ASP.NET Core target frameworks
 
-ASP.NET Core 3.x and later can only target .NET Core. Generally, ASP.NET Core is composed of [.NET Standard](/dotnet/standard/net-standard) libraries. Libraries written with .NET Standard 2.0 run on any [.NET platform that implements .NET Standard 2.0](/dotnet/standard/net-standard#net-implementation-support).
+ASP.NET Core 3.x or later can only target .NET Core. Generally, ASP.NET Core is composed of [.NET Standard](/dotnet/standard/net-standard) libraries. Libraries written with .NET Standard 2.0 run on any [.NET platform that implements .NET Standard 2.0](/dotnet/standard/net-standard#net-implementation-support).
 
 There are several advantages to targeting .NET Core, and these advantages increase with each release. Some advantages of .NET Core over .NET Framework include:
 
@@ -84,7 +84,7 @@ We recommend the following sequence of tutorials for an introduction to developi
 
 1. Browse the table of contents for other topics of interest.
 
-&dagger;There's also an [interactive web API tutorial](/learn/modules/build-web-api-net-core). No local installation of development tools is required. The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/) in your browser, and [curl](https://curl.haxx.se/) is used for testing.
+&dagger;There's also an [interactive web API tutorial](/training/modules/build-web-api-net-core). No local installation of development tools is required. The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/) in your browser, and [curl](https://curl.haxx.se/) is used for testing.
 
 ## Migrate from .NET Framework
 
@@ -132,9 +132,9 @@ ASP.NET Core 2.x can target .NET Core or .NET Framework. ASP.NET Core apps targe
 ASP.NET Core 2.x is supported on .NET Framework versions that implement .NET Standard 2.0:
 
 * .NET Framework latest version is recommended.
-* .NET Framework 4.6.1 and later.
+* .NET Framework 4.6.1 or later.
 
-ASP.NET Core 3.0 and later will only run on .NET Core. For more details regarding this change, see [A first look at changes coming in ASP.NET Core 3.0](https://blogs.msdn.microsoft.com/webdev/2018/10/29/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
+ASP.NET Core 3.0 or later only run on .NET Core. For more details regarding this change, see [A first look at changes coming in ASP.NET Core 3.0](https://blogs.msdn.microsoft.com/webdev/2018/10/29/a-first-look-at-changes-coming-in-asp-net-core-3-0/).
 
 There are several advantages to targeting .NET Core, and these advantages increase with each release. Some advantages of .NET Core over .NET Framework include:
 
@@ -170,7 +170,7 @@ We recommend the following sequence of tutorials and articles for an introductio
 
 1. Browse the Table of Contents for other topics of interest.
 
-&dagger;There's also a [web API tutorial that you follow entirely in the browser](/learn/modules/build-web-api-net-core), no local IDE installation required. The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), and [curl](https://curl.haxx.se/) is used for testing.
+&dagger;There's also a [web API tutorial that you follow entirely in the browser](/training/modules/build-web-api-net-core), no local IDE installation required. The code runs in an [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), and [curl](https://curl.haxx.se/) is used for testing.
 
 ## Migrate from .NET Framework
 

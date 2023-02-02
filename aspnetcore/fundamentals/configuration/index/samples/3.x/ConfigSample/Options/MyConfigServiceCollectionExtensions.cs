@@ -15,5 +15,14 @@ namespace Microsoft.Extensions.DependencyInjection
 
             return services;
         }
+
+        public static IServiceCollection AddMyDependencyGroup(
+             this IServiceCollection services)
+        {
+            services.AddScoped<IMyDependency, MyDependency>();
+            services.AddScoped<IMyDependency2, MyDependency2>();
+
+            return services;
+        }
     }
 }

@@ -284,7 +284,8 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 * <xref:web-api/advanced/formatting>
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:mvc/controllers/routing>
-* [Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)
+* [Use port tunneling Visual Studio to debug web APIs](/connectors/custom-connectors/port-tunneling)
+* [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 
 :::moniker-end
 
@@ -446,6 +447,7 @@ A binding source attribute defines the location at which an action parameter's v
 |[`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)   | Request query string parameter |
 |[`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)   | Route data from the current request |
 |[`[FromServices]`](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) | The request service injected as an action parameter |
+|[`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) | [Method parameters](xref:fundamentals/minimal-apis#asparam7) |
 
 > [!WARNING]
 > Don't use `[FromRoute]` when values might contain `%2f` (that is `/`). `%2f` won't be unescaped to `/`. Use `[FromQuery]` if the value might contain `%2f`.
@@ -589,7 +591,8 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 * <xref:web-api/advanced/formatting>
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:mvc/controllers/routing>
-* [Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)
+* [Use port tunneling Visual Studio to debug web APIs](/connectors/custom-connectors/port-tunneling)
+* [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 
 :::moniker-end
 
@@ -878,7 +881,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 * <xref:web-api/advanced/formatting>
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:mvc/controllers/routing>
-* [Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)
+* [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 
 :::moniker-end
 
@@ -1114,5 +1117,5 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 * <xref:web-api/advanced/formatting>
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:mvc/controllers/routing>
-* [Create a web API with ASP.NET Core](/learn/modules/build-web-api-aspnet-core/)
+* [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 :::moniker-end

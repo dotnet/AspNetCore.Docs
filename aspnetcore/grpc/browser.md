@@ -33,7 +33,7 @@ gRPC JSON transcoding allows browser apps to call gRPC services as if they were 
 * RESTful APIs are automatically created from gRPC services by annotating the `.proto` file with HTTP metadata.
 * Allows an app to support both gRPC and JSON web APIs without duplicating the effort of building separate services for both.
 
-.NET has built-in support for creating JSON web APIs from gRPC services. For more information, see <xref:grpc/httpapi>.
+.NET has built-in support for creating JSON web APIs from gRPC services. For more information, see <xref:grpc/json-transcoding>.
 
 > [!NOTE]
 > gRPC JSON transcoding requires .NET 7 or later.
@@ -41,4 +41,4 @@ gRPC JSON transcoding allows browser apps to call gRPC services as if they were 
 ## Additional resources
 
 * <xref:grpc/grpcweb>
-* <xref:grpc/httpapi>
+* <xref:grpc/json-transcoding>

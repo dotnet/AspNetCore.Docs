@@ -106,14 +106,14 @@ Exposing `ConnectionId` can lead to malicious impersonation if the SignalR serve
 
 ## Access token logging
 
-When using WebSockets or Server-Sent Events, the browser client sends the access token in the query string. Receiving the access token via query string is generally secure as using the standard `Authorization` header. Always use HTTPS to ensure a secure end-to-end connection between the client and the server. Many web servers log the URL for each request, including the query string. Logging the URLs may log the access token. ASP.NET Core logs the URL for each request by default, which will include the query string. For example:
+When using WebSockets or Server-Sent Events, the browser client sends the access token in the query string. Receiving the access token via query string is generally as secure as using the standard `Authorization` header. Always use HTTPS to ensure a secure end-to-end connection between the client and the server. Many web servers log the URL for each request, including the query string. Logging the URLs may log the access token. ASP.NET Core logs the URL for each request by default, which includes the query string. For example:
 
 ```
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
       Request starting HTTP/1.1 GET http://localhost:5000/chathub?access_token=1234
 ```
 
-If you have concerns about logging this data with your server logs, you can disable this logging entirely by configuring the `Microsoft.AspNetCore.Hosting` logger to the `Warning` level or above (these messages are written at `Info` level). For more information, see [Apply log filter rules in code](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) for more information. If you still want to log certain request information, you can [write a middleware](xref:fundamentals/middleware/write) to log the data you require and filter out the `access_token` query string value (if present).
+If you have concerns about logging this data with your server logs, you can disable this logging entirely by configuring the `Microsoft.AspNetCore.Hosting` logger to the `Warning` level or above (these messages are written at `Info` level). For more information, see [Apply log filter rules in code](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) for more information. If you still want to log certain request information, you can [write middleware](xref:fundamentals/middleware/write) to log the data that you require and filter out the `access_token` query string value (if present).
 
 ## Exceptions
 

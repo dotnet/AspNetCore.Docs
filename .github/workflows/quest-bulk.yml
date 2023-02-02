@@ -1,0 +1,34 @@
+name: "bulk quest import"
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "The reason for running the bulk import workflow"
+        required: true
+        default: "Initial import into Quest (Azure DevOps)"
+
+jobs:
+  bulk-import:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+
+    steps:
+      - name: "Print manual bulk import run reason"
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          echo "Reason: ${{ github.event.inputs.reason }}"
+
+      - name: bulk-sequester
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        id: bulk-sequester
+        uses: dotnet/docs-tools/actions/sequester@main
+        env:
+          ImportOptions__ApiKeys__GitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          ImportOptions__ApiKeys__OSPOKey: ${{ secrets.OSPO_KEY }}
+          ImportOptions__ApiKeys__QuestKey: ${{ secrets.QUEST_KEY }}
+        with:
+          org: ${{ github.repository_owner }}
+          repo: ${{ github.repository }}
+          issue: '-1'

@@ -1,1 +1,0 @@
-Delete after adding 7.x version.

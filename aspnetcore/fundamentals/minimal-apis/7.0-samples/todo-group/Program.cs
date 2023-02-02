@@ -1,55 +1,112 @@
-using Data;
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-
+using MinApiRouteGroupSample;
 var builder = WebApplication.CreateBuilder(args);
-var connection = new SqliteConnection("DataSource=:memory:");
-connection.Open();
 
+// Add services to the container.
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<TodoGroupDbContext>(options =>
+builder.Services.AddDbContext<TodoDb>(options =>
 {
-    options.UseSqlite(connection);
+    options.UseSqlite($"Data Source={Path.Join(AppContext.BaseDirectory, "WebMinRouteGroup.db")}");
 });
+
+builder.Services.AddAuthentication().AddJwtBearer();
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<TodoDb>();
+    db.Database.EnsureCreated();
+}
+
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    // localhost:{port}/swagger
     app.UseSwagger();
+    // http://localhost:5000/swagger
     app.UseSwaggerUI();
 }
 
-app.MapGet("/", () => "Hello World!");
+// <snippet_MapGroup>
+app.MapGroup("/public/todos")
+    .MapTodosApi()
+    .WithTags("Public");
 
-// todo endpoints
-var todos = app.MapGroup("/todos").WithTags("Todo Endpoints").AddRouteHandlerFilter(async (context, next) =>
+app.MapGroup("/private/todos")
+    .MapTodosApi()
+    .WithTags("Private")
+    .AddEndpointFilterFactory(QueryPrivateTodos)
+    .RequireAuthorization();
+
+
+EndpointFilterDelegate QueryPrivateTodos(EndpointFilterFactoryContext factoryContext, EndpointFilterDelegate next)
 {
-    app.Logger.LogInformation("Accessing todo endpoints");
-    return await next(context);
-});
-todos.MapGet("/", RouteHandlers.GetAllTodos);
-todos.MapGet("/{id}", RouteHandlers.GetTodo);
-todos.MapPost("/", RouteHandlers.CreateTodo).AddRouteHandlerFilter(async (context, next) =>
+    var dbContextIndex = -1;
+
+    foreach (var argument in factoryContext.MethodInfo.GetParameters())
+    {
+        if (argument.ParameterType == typeof(TodoDb))
+        {
+            dbContextIndex = argument.Position;
+            break;
+        }
+    }
+
+    // Skip filter if the method doesn't have a TodoDb parameter.
+    if (dbContextIndex < 0)
+    {
+        return next;
+    }
+
+    return async invocationContext =>
+    {
+        var dbContext = invocationContext.GetArgument<TodoDb>(dbContextIndex);
+        dbContext.IsPrivate = true;
+
+        try
+        {
+            return await next(invocationContext);
+        }
+        finally
+        {
+            // This should only be relevant if you're pooling or otherwise reusing the DbContext instance.
+            dbContext.IsPrivate = false;
+        }
+    };
+}
+// </snippet_MapGroup>
+
+// <snippet_NestedMapGroup1>
+var all = app.MapGroup("").WithOpenApi();
+var org = all.MapGroup("{org}");
+var user = org.MapGroup("{user}");
+user.MapGet("", (string org, string user) => $"{org}/{user}");
+// </snippet_NestedMapGroup1>
+
+// <snippet_NestedMapGroup2>
+var outer = app.MapGroup("/outer");
+var inner = outer.MapGroup("/inner");
+
+inner.AddEndpointFilter((context, next) =>
 {
-    // log time taken to process
-    var start = DateTime.Now;
-    var result = await next(context);
-    var end = DateTime.Now;
-    app.Logger.LogInformation($"{context.HttpContext.Request.Path.Value} took {(end - start).TotalMilliseconds}ms");
-    return result;
+    app.Logger.LogInformation("/inner group filter");
+    return next(context);
 });
-todos.MapPut("/{id}", RouteHandlers.UpdateTodo).AddRouteHandlerFilter(async (context, next) =>
+
+outer.AddEndpointFilter((context, next) =>
 {
-    // log time taken to process
-    var start = DateTime.Now;
-    var result = await next(context);
-    var end = DateTime.Now;
-    app.Logger.LogInformation($"{context.HttpContext.Request.Path.Value} took {(end - start).TotalMilliseconds}ms");
-    return result;
+    app.Logger.LogInformation("/outer group filter");
+    return next(context);
 });
-todos.MapDelete("/{id}", RouteHandlers.DeleteTodo);
+
+inner.MapGet("/", () => "Hi!").AddEndpointFilter((context, next) =>
+{
+    app.Logger.LogInformation("MapGet filter");
+    return next(context);
+});
+// </snippet_NestedMapGroup2>
 
 app.Run();

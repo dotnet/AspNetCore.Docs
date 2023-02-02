@@ -5,7 +5,7 @@ description: Learn how to consume static asset files in Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/23/2022
+ms.date: 11/08/2022
 uid: blazor/hybrid/static-files
 ---
 # ASP.NET Core Blazor Hybrid static files
@@ -33,7 +33,7 @@ This is text from a static text file resource.
 
 The following Razor component:
 
-* Calls `Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync` to obtain a <xref:System.IO.Stream> for the resource.
+* Calls <xref:Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync%2A> to obtain a <xref:System.IO.Stream> for the resource.
 * Reads the <xref:System.IO.Stream> with a <xref:System.IO.StreamReader>.
 * Calls <xref:System.IO.StreamReader.ReadToEndAsync%2A?displayProperty=nameWithType> to read the file.
 
@@ -200,7 +200,7 @@ The following Jeep&reg; image is also used in this section's example. You can ri
 In a Razor component:
 
 * The static text file contents can be read using the following techniques:
-  * .NET MAUI: [:::no-loc text=".NET MAUI file system helpers":::](/dotnet/maui/platform-integration/storage/file-system-helpers) (`Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync`)
+  * .NET MAUI: [:::no-loc text=".NET MAUI file system helpers":::](/dotnet/maui/platform-integration/storage/file-system-helpers) (<xref:Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync%2A>)
   * WPF and Windows Forms: <xref:System.IO.StreamReader.ReadToEndAsync%2A?displayProperty=nameWithType>
 * The image can be the source attribute (`src`) of an image tag (`<img>`).
 

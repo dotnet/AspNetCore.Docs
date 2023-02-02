@@ -16,7 +16,7 @@ Visual Studio 2017 and later versions support building, debugging, and running c
 ## Prerequisites
 
 * [Docker for Windows](https://docs.docker.com/desktop/windows/install/)
-* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=docs.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **.NET Core cross-platform development** workload
+* [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **.NET Core cross-platform development** workload
 
 ## Installation and setup
 

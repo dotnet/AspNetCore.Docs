@@ -31,7 +31,7 @@ Suppose you have the following action method:
 
 And the app receives a request with this URL:
 
-```
+```http
 https://contoso.com/api/pets/2?DogsOnly=true
 ```
 
@@ -46,7 +46,7 @@ Model binding goes through the following steps after the routing system selects 
 
 The framework then calls the `GetById` method, passing in 2 for the `id` parameter, and `true` for the `dogsOnly` parameter.
 
-In the preceding example, the model binding targets are method parameters that are simple types. Targets may also be the properties of a complex type. After each property is successfully bound, [model validation](xref:mvc/models/validation) occurs for that property. The record of what data is bound to the model, and any binding or validation errors, is stored in [ControllerBase.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState) or [PageModel.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState). To find out if this process was successful, the app checks the [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid) flag.
+In the preceding example, the model binding targets are method parameters that are [simple](#simp-comp7) types. Targets may also be the properties of a complex type. After each property is successfully bound, [model validation](xref:mvc/models/validation) occurs for that property. The record of what data is bound to the model, and any binding or validation errors, is stored in [ControllerBase.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState) or [PageModel.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState). To find out if this process was successful, the app checks the [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid) flag.
 
 ## Targets
 
@@ -74,6 +74,13 @@ By default, properties are not bound for HTTP GET requests. Typically, all you n
 
 :::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_SupportsGet" highlight="1":::
 
+<!-- Duplicated in uid: mvc/advanced/custom-model-binding -->
+<a name="simp-comp7"></a>
+
+## Model binding simple and complex types
+
+Model binding uses specific definitions for the types it operates on. A *simple type* is converted from a single string using <xref:System.ComponentModel.TypeConverter> or a `TryParse` method. A *complex type* is converted from multiple input values. The framework determines the difference based on the existence of a `TypeConverter` or `TryParse`. We recommend creating a type converter or using `TryParse` for a `string` to `SomeType` conversion that doesn't require external resources or multiple inputs.
+
 ## Sources
 
 By default, model binding gets data in the form of key-value pairs from the following sources in an HTTP request:
@@ -86,7 +93,7 @@ By default, model binding gets data in the form of key-value pairs from the foll
 
 For each target parameter or property, the sources are scanned in the order indicated in the preceding list. There are a few exceptions:
 
-* Route data and query string values are used only for simple types.
+* Route data and query string values are used only for [simple](#simp-comp7) types.
 * Uploaded files are bound only to target types that implement `IFormFile` or `IEnumerable<IFormFile>`.
 
 If the default source is not correct, use one of the following attributes to specify the source:
@@ -146,7 +153,7 @@ The preceding code puts the custom value provider after all built-in value provi
 
 By default, a model state error isn't created if no value is found for a model property. The property is set to null or a default value:
 
-* Nullable simple types are set to `null`.
+* Nullable [simple](#simp-comp7) types are set to `null`.
 * Non-nullable value types are set to `default(T)`. For example, a parameter `int id` is set to 0.
 * For complex Types, model binding creates an instance by using the default constructor, without setting properties.
 * Arrays are set to `Array.Empty<T>()`, except that `byte[]` arrays are set to `null`.
@@ -169,7 +176,11 @@ When the page is redisplayed by the preceding code, the invalid input isn't show
 
 The same strategy is recommended if you don't want type conversion errors to result in model state errors. In that case, make the model property a string.
 
+<a name="simp7"></a>
+
 ## Simple types
+
+See [Model binding simple and complex types](#simp-comp7) for explanation of simple and complex types.
 
 The simple types that the model binder can convert source strings into include the following:
 
@@ -241,7 +252,7 @@ The following `DateRangeTP` class implements `TryParse`:
 
 :::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Models/DateRangeTP.cs" id="snippet":::
 
-The following controller action uses the `DateRDateRangeTPange` class to bind a date range:
+The following controller action uses the `DateRangeTP` class to bind a date range:
 
 :::code language="csharp" source="~/mvc/controllers/bind-tryparse/7.0-samples/BindUsingTryParse/BindTryParseMVC/Controllers/WeatherForecastController.cs" id="snippet_22":::
 
@@ -399,7 +410,7 @@ For targets that are collections of simple types, model binding looks for matche
   [a]=1050&[b]=2000&index=a&index=b
   ```
 
- Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding attempts to use `index` as the index for the collection which might result in incorrect binding. For example, consider the following action:
+  Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding attempts to use `index` as the index for the collection which might result in incorrect binding. For example, consider the following action:
   
   ```csharp
   public IActionResult Post(string index, List<Product> products)
@@ -408,6 +419,8 @@ For targets that are collections of simple types, model binding looks for matche
   ```csharp
   public IActionResult Post(string productIndex, List<Product> products)
   ```
+
+* The following format is supported only in form data:
 
   ```
   selectedCourses[]=1050&selectedCourses[]=2000
@@ -1030,7 +1043,7 @@ For targets that are collections of simple types, model binding looks for matche
   [a]=1050&[b]=2000&index=a&index=b
   ```
 
- Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding attempts to use `index` as the index for the collection which might result in incorrect binding. For example, consider the following action:
+  Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding attempts to use `index` as the index for the collection which might result in incorrect binding. For example, consider the following action:
   
   ```csharp
   public IActionResult Post(string index, List<Product> products)
@@ -1039,6 +1052,8 @@ For targets that are collections of simple types, model binding looks for matche
   ```csharp
   public IActionResult Post(string productIndex, List<Product> products)
   ```
+
+* The following format is supported only in form data:
 
   ```
   selectedCourses[]=1050&selectedCourses[]=2000

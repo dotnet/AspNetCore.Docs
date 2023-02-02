@@ -49,7 +49,7 @@ Run [dotnet run](/dotnet/core/tools/dotnet-run) to start the app.
 
 The project template creates an ASP.NET Core app and an Angular app. The ASP.NET Core app is intended to be used for data access, authorization, and other server-side concerns. The Angular app, residing in the `ClientApp` subdirectory, is intended to be used for all UI concerns.
 
-## Add pages, images, styles, modules, etc.
+## Add pages, images, styles, and modules
 
 The `ClientApp` directory contains a standard Angular CLI app. See the official [Angular documentation](https://angular.io) for more information.
 
@@ -98,6 +98,8 @@ npm start
 ```
 
 When you start your ASP.NET Core app, it won't launch an Angular CLI server. The instance you started manually is used instead. This enables it to start and restart faster. It's no longer waiting for Angular CLI to rebuild your client app each time.
+
+When the proxy is launched, the target URL and port is inferred from the environment variables set by .NET, `ASPNETCORE_URLS` and `ASPNETCORE_HTTPS_PORT`. To set the URLs or HTTPS port, use one of the environment variables or change the value in `proxy.conf.json`.
 
 [!INCLUDE[](~/includes/spa-proxy.md)]
 
@@ -152,7 +154,7 @@ Navigate to this URL in a browser.
 
 The project template creates an ASP.NET Core app and an Angular app. The ASP.NET Core app is intended to be used for data access, authorization, and other server-side concerns. The Angular app, residing in the `ClientApp` subdirectory, is intended to be used for all UI concerns.
 
-## Add pages, images, styles, modules, etc.
+## Add pages, images, styles, and modules
 
 The `ClientApp` directory contains a standard Angular CLI app. See the official [Angular documentation](https://angular.io) for more information.
 
@@ -210,6 +212,8 @@ There's a drawback to this default setup. Each time you modify your C# code and 
     ```
 
 When you start your ASP.NET Core app, it won't launch an Angular CLI server. The instance you started manually is used instead. This enables it to start and restart faster. It's no longer waiting for Angular CLI to rebuild your client app each time.
+
+When the proxy is launched, the target URL and port is inferred from the environment variables set by .NET, `ASPNETCORE_URLS` and `ASPNETCORE_HTTPS_PORT`. To set the URLs or HTTPS port, use one of the environment variables or change the value in `proxy.conf.json`.
 
 ### Pass data from .NET code into TypeScript code
 

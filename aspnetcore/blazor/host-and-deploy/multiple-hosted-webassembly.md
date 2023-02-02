@@ -5,7 +5,7 @@ description: Learn how to configure a hosted Blazor WebAssembly app to host mult
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/27/2022
+ms.date: 11/08/2022
 uid: blazor/host-and-deploy/multiple-hosted-webassembly
 ---
 # Multiple hosted ASP.NET Core Blazor WebAssembly apps
@@ -19,7 +19,7 @@ Hosted Blazor [solutions](xref:blazor/tooling#visual-studio-solution-file-sln) c
 In the following example:
 
 * The project name of the hosted Blazor WebAssembly app is `MultipleBlazorApps` in a folder named `MultipleBlazorApps`.
-* The three projects in the solution before a second client app is added are `MultipleBlazorApps.Client` in the `Client` folder, `MultipleBlazorApps.Server` in the `Server` folder, and `MultipleBlazorApps.Shared` in the `Shared` folder.
+* The three projects in the solution before a second client app is added are `MultipleBlazorApps.Client` in the :::no-loc text="Client"::: folder, `MultipleBlazorApps.Server` in the :::no-loc text="Server"::: folder, and `MultipleBlazorApps.Shared` in the `Shared` folder.
 * The initial (first) client app is the default client project of the solution created from the Blazor WebAssembly project template. The first client app is accessible in a browser at port 5001 or with a host of `firstapp.com`.
 * A second client app is added to the solution, `MultipleBlazorApps.SecondClient` in a folder named `SecondClient`. The second client app is accessible in a browser at port 5002 or with a host of `secondapp.com`.
 * Optionally, the server project (`MultipleBlazorApps.Server`) can serve pages or views as a formal Razor Pages or MVC app.
@@ -44,8 +44,8 @@ Use a folder for the solution named `MultipleBlazorApps` and name the project `M
 
 Initial projects in the solution and their folders:
 
-* `MultipleBlazorApps.Client` is a Blazor WebAssembly client app in the `Client` folder.
-* `MultipleBlazorApps.Server` is an ASP.NET Core server app that serves Blazor WebAssembly apps) in the `Server` folder. Optionally, the server app can also serve pages or views, as a traditional Razor Pages or MVC app.
+* `MultipleBlazorApps.Client` is a Blazor WebAssembly client app in the :::no-loc text="Client"::: folder.
+* `MultipleBlazorApps.Server` is an ASP.NET Core server app that serves Blazor WebAssembly apps) in the :::no-loc text="Server"::: folder. Optionally, the server app can also serve pages or views, as a traditional Razor Pages or MVC app.
 * `MultipleBlazorApps.Shared` is a shared resources project for the client and server projects in the `Shared` folder.
 
 In the client app's project file (`MultipleBlazorApps.Client.csproj`), add a [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to a `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
@@ -61,9 +61,9 @@ Add a second client app to the solution. Add the project as a standalone Blazor 
 
 * Name the project `MultipleBlazorApps.SecondClient` and place the app into a folder named `SecondClient`.
 * The solution folder created from the project template contains the following solution file and folders after the `SecondClient` folder is added:
-  * `Client` (folder)
+  * :::no-loc text="Client"::: (folder)
   * `SecondClient` (folder)
-  * `Server` (folder)
+  * :::no-loc text="Server"::: (folder)
   * `Shared` (folder)
   * `MultipleBlazorApps.sln` (file)
 

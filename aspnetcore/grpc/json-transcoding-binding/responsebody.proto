@@ -1,0 +1,18 @@
+service Address {
+  rpc GetAddress (GetAddressRequest) returns (GetAddressReply) {
+    option (google.api.http) = {
+      get: "/v1/address/{id}",
+      response_body: "address"
+    };
+  }
+}
+
+message GetAddressReply {
+  int32 version = 1;
+  Address address = 2;
+}
+message Address {
+  string street = 1;
+  string city = 2;
+  string country = 3;
+}

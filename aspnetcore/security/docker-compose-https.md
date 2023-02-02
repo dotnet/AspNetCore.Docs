@@ -3,7 +3,7 @@ title: Hosting ASP.NET Core image in container using docker compose with HTTPS
 author: ravipal
 description: Learn how to host ASP.NET Core Images with Docker Compose over HTTPS
 monikerRange: '>= aspnetcore-2.1'
-ms.author: ravipal
+ms.author: riande
 ms.custom: mvc
 ms.date: 03/28/2020
 uid: security/docker-compose-https
@@ -63,7 +63,7 @@ version: '3.4'
 
 services:
   webapp:
-    image: mcr.microsoft.com/dotnet/core/samples:aspnetapp
+    image: mcr.microsoft.com/dotnet/samples:aspnetapp
     ports:
       - 80
       - 443

@@ -5,7 +5,7 @@ description: Learn about configuration of Blazor apps, including app settings, a
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/09/2021
+ms.date: 11/08/2022
 uid: blazor/fundamentals/configuration
 ---
 # ASP.NET Core Blazor configuration
@@ -21,6 +21,9 @@ Blazor WebAssembly loads configuration from the following app settings files by 
 
 * `wwwroot/appsettings.json`.
 * `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments).
+
+> [!NOTE]
+> Logging configuration placed into an app settings file in `wwwroot` of a Blazor WebAssembly app isn't loaded by default. For for information, see the [Logging configuration](#logging-configuration) section later in this article.
 
 Other configuration providers registered by the app can also provide configuration, but not all providers or provider features are appropriate for Blazor WebAssembly apps:
 
@@ -189,6 +192,8 @@ builder.Services.AddOidcAuthentication(options =>
 ```
 
 ## Logging configuration
+
+*This section applies to Blazor WebAssembly apps that configure logging via an app settings file in the `wwwroot` folder.*
 
 Add the [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) package to the app.
 
@@ -262,6 +267,9 @@ Blazor WebAssembly loads configuration from the following app settings files by 
 * `wwwroot/appsettings.json`.
 * `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments).
 
+> [!NOTE]
+> Logging configuration placed into an app settings file in `wwwroot` of a Blazor WebAssembly app isn't loaded by default. For for information, see the [Logging configuration](#logging-configuration) section later in this article.
+
 Other configuration providers registered by the app can also provide configuration, but not all providers or provider features are appropriate for Blazor WebAssembly apps:
 
 * [Azure Key Vault configuration provider](xref:security/key-vault-configuration): The provider isn't supported for managed identity and application ID (client ID) with client secret scenarios. Application ID with a client secret isn't recommended for any ASP.NET Core app, especially Blazor WebAssembly apps because the client secret can't be secured client-side to access the Azure Key Vault service.
@@ -429,6 +437,8 @@ builder.Services.AddOidcAuthentication(options =>
 ```
 
 ## Logging configuration
+
+*This section applies to Blazor WebAssembly apps that configure logging via an app settings file in the `wwwroot` folder.*
 
 Add the [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) package to the app.
 
@@ -509,6 +519,9 @@ Blazor WebAssembly loads configuration from the following app settings files by 
 * `wwwroot/appsettings.json`.
 * `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments).
 
+> [!NOTE]
+> Logging configuration placed into an app settings file in `wwwroot` of a Blazor WebAssembly app isn't loaded by default. For for information, see the [Logging configuration](#logging-configuration) section later in this article.
+
 Other configuration providers registered by the app can also provide configuration, but not all providers or provider features are appropriate for Blazor WebAssembly apps:
 
 * [Azure Key Vault configuration provider](xref:security/key-vault-configuration): The provider isn't supported for managed identity and application ID (client ID) with client secret scenarios. Application ID with a client secret isn't recommended for any ASP.NET Core app, especially Blazor WebAssembly apps because the client secret can't be secured client-side to access the Azure Key Vault service.
@@ -676,6 +689,8 @@ builder.Services.AddOidcAuthentication(options =>
 ```
 
 ## Logging configuration
+
+*This section applies to Blazor WebAssembly apps that configure logging via an app settings file in the `wwwroot` folder.*
 
 Add the [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) package to the app.
 

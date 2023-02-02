@@ -357,7 +357,7 @@ An application can first check the <xref:Microsoft.AspNetCore.Http.ConnectionInf
 
 #### Kestrel
 
-Kestrel controls client certificate negotation with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> option.
+Kestrel controls client certificate negotiation with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> option.
 
 <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode.DelayCertificate?displayProperty=nameWithType> is new option available in .NET 6 or later. When set, an app can check the <xref:Microsoft.AspNetCore.Http.ConnectionInfo.ClientCertificate> property to see if the certificate is available. If it isn't available, ensure the request body has been consumed before calling <xref:Microsoft.AspNetCore.Http.ConnectionInfo.GetClientCertificateAsync%2A> to negotiate one. Note `GetClientCertificateAsync` can return a null certificate if the client declines to provide one.
 
@@ -1023,7 +1023,7 @@ There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) wher
 
 #### Kestrel
 
-Kestrel controls client certificate negotation with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> option.
+Kestrel controls client certificate negotiation with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> option.
 
 For .NET 5 and earlier Kestrel does not support renegotiating after the start of a connection to acquire a client certificate. This feature has been added in .NET 6.
 
@@ -1681,7 +1681,7 @@ There is a [known issue](https://github.com/dotnet/aspnetcore/issues/33586) wher
 
 #### Kestrel
 
-Kestrel controls client certificate negotation with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> option.
+Kestrel controls client certificate negotiation with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode> option.
 
 For .NET 5 and earlier Kestrel does not support renegotiating after the start of a connection to acquire a client certificate. This feature has been added in .NET 6.
 

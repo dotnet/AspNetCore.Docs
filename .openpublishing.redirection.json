@@ -1178,6 +1178,35 @@
             "source_path": "aspnetcore/blazor/forms-validation.md",
             "redirect_url": "/aspnet/core/blazor/forms-and-input-components",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/grpc/httpapi.md",
+            "redirect_url": "/aspnet/core/grpc/json-transcoding",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-2022-03-01.md",
+            "redirect_url": "/aspnet/whats-new/dotnet-AspNetCore.Docs-mod5"
+        },
+        {
+            "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-2022-04-01.md",
+            "redirect_url": "/aspnet/whats-new/dotnet-AspNetCore.Docs-mod0"
+        },
+        {
+            "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-2022-07-01.md",
+            "redirect_url": "/aspnet/whats-new/dotnet-AspNetCore.Docs-mod1"
+        },
+        {
+            "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-2022-08-01.md",
+            "redirect_url": "/aspnet/whats-new/dotnet-AspNetCore.Docs-mod2"
+        },
+        {
+            "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-2022-09-01.md",
+            "redirect_url": "/aspnet/whats-new/dotnet-AspNetCore.Docs-mod3"
+        },
+        {
+            "source_path": "aspnetcore/whats-new/dotnet-AspNetCore.Docs-2022-10-01.md",
+            "redirect_url": "/aspnet/whats-new/dotnet-AspNetCore.Docs-mod4"
         }
     ]
 }

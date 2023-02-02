@@ -444,7 +444,7 @@ public class RequireMfaHandler : AuthorizationHandler<RequireMfa>
 }
 ```
 
-In the program file , the `AddOpenIdConnect` method is used as the default challenge scheme. The authorization handler, which is used to check the `amr` claim, is added to the Inversion of Control container. A policy is then created which adds the `RequireMfa` requirement.
+In the program file, the `AddOpenIdConnect` method is used as the default challenge scheme. The authorization handler, which is used to check the `amr` claim, is added to the Inversion of Control container. A policy is then created which adds the `RequireMfa` requirement.
 
 ```csharp
 builder.Services.ConfigureApplicationCookie(options =>

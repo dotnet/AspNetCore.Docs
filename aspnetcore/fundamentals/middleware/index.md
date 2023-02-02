@@ -260,6 +260,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 | [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) | Security enhancement middleware that adds a special response header. | Before responses are sent and after components that modify requests. Examples: Forwarded Headers, URL Rewriting. |
 | [MVC](xref:mvc/overview) | Processes requests with MVC/Razor Pages. | Terminal if a request matches a route. |
 | [OWIN](xref:fundamentals/owin) | Interop with OWIN-based apps, servers, and middleware. | Terminal if the OWIN Middleware fully processes the request. |
+| [Rate Limiting](xref:performance/rate-limit) | Provides support for rate limiting endpoints. | Before components that should be limited. |
 | [Request Decompression](xref:fundamentals/middleware/request-decompression) | Provides support for decompressing requests. | Before components that read the request body. |
 | [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | Before components that require caching. `UseCORS` must come before `UseResponseCaching`.|
 | [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | Before components that require compression. |

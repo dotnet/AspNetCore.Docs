@@ -12,8 +12,6 @@ uid: grpc/basics
 :::moniker range=">= aspnetcore-6.0"
 This document outlines the concepts needed to write [gRPC](https://grpc.io/docs/guides/) apps in C#. The topics covered here apply to both [C-core](https://grpc.io/blog/grpc-stacks)-based and ASP.NET Core-based gRPC apps.
 
-[!INCLUDE[](~/includes/gRPCazure.md)]
-
 ## proto file
 
 gRPC uses a contract-first approach to API development. Protocol buffers (protobuf) are used as the Interface Definition Language (IDL) by default. The `.proto` file contains:
@@ -89,8 +87,6 @@ Similarly, the attribute is set to `Client` in client projects.
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 This document outlines the concepts needed to write [gRPC](https://grpc.io/docs/guides/) apps in C#. The topics covered here apply to both [C-core](https://grpc.io/blog/grpc-stacks)-based and ASP.NET Core-based gRPC apps.
-
-[!INCLUDE[](~/includes/gRPCazure.md)]
 
 ## proto file
 

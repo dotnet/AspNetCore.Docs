@@ -16,7 +16,7 @@
 
         app.Run(async context =>
         {
-            await context.Response.WriteAsync("Hello from non-Map delegate. <p>");
+            await context.Response.WriteAsync("Hello from non-Map delegate.");
         });
     }
 }

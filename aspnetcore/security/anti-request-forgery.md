@@ -79,6 +79,8 @@ Although `example1.contoso.net` and `example2.contoso.net` are different hosts, 
 
 Attacks that exploit trusted cookies between apps hosted on the same domain can be prevented by not sharing domains. When each app is hosted on its own domain, there's no implicit cookie trust relationship to exploit.
 
+<a name="anti7"></a>
+
 ## Antiforgery in ASP.NET Core
 
 > [!WARNING]
@@ -252,6 +254,8 @@ The following example adds a protected endpoint that writes the request token to
 The following example uses JavaScript to make an AJAX request to obtain the token and make another request with the appropriate header:
 
 :::code language="javascript" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Index.js" highlight="1,15":::
+
+<a name="antimin7"></a>
 
 ### Antiforgery with Minimal APIs
 

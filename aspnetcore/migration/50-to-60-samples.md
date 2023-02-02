@@ -87,9 +87,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 [!code-csharp[](50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_root)]
 
-<!-- TODO, uncomment the following link when article is updated for .NET 6
-For more information, see <xref:fundamentals/index/?view=aspnetcore-6.0>
--->
+For more information, see <xref:fundamentals/index>
 
 #### Change the content root, app name, and environment by environment variables or command line
 

@@ -190,7 +190,7 @@ If the project targets .NET Core 3.x, it requires:
 * An `AddRazorSupportForMvc` MSBuild property set to `true`.
 * A `<FrameworkReference>` element for the shared framework.
 
-The **Razor Class Library** project template satisfies the preceding requirements for projects targeting .NET Core 3.x. Use the following instructions for your editor.
+The **Razor Class Library** project template satisfies the preceding requirements for projects targeting .NET Core. Use the following instructions for your editor.
 
 # [Visual Studio](#tab/visual-studio)
 

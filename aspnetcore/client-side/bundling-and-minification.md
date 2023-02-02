@@ -31,14 +31,14 @@ Consider the following JavaScript function:
 
 ```javascript
 AddAltToImg = function (imageTagAndImageID, imageContext) {
-    ///<signature>
-    ///<summary> Adds an alt tab to the image
-    // </summary>
-    //<param name="imgElement" type="String">The image selector.</param>
-    //<param name="ContextForImage" type="String">The image context.</param>
-    ///</signature>
-    var imageElement = $(imageTagAndImageID, imageContext);
-    imageElement.attr('alt', imageElement.attr('id').replace(/ID/, ''));
+  ///<signature>
+  ///<summary> Adds an alt tab to the image
+  // </summary>
+  //<param name="imgElement" type="String">The image selector.</param>
+  //<param name="ContextForImage" type="String">The image context.</param>
+  ///</signature>
+  var imageElement = $(imageTagAndImageID, imageContext);
+  imageElement.attr('alt', imageElement.attr('id').replace(/ID/, ''));
 }
 ```
 
@@ -58,21 +58,23 @@ Original | Renamed
 
 ## Impact of bundling and minification
 
-The following table outlines differences between individually loading assets and using bundling and minification:
+The following table outlines differences between individually loading assets and using bundling and minification for a typical web app.
 
-Action | With B/M | Without B/M | Change
+Action | Without B/M | With B/M | Reduction
 --- | :---: | :---: | :---:
-File Requests  | 7   | 18     | 157%
-KB Transferred | 156 | 264.68 | 70%
-Load Time (ms) | 885 | 2360   | 167%
+File Requests | 18 | 7 | 61%
+Bytes Transferred (KB) | 265 | 156 | 41%
+Load Time (ms) | 2360 | 885 | 63%
 
-Browsers are fairly verbose regarding HTTP request headers. The total bytes sent metric saw a significant reduction when bundling. The load time shows a significant improvement, however this example ran locally. Greater performance gains are realized when using bundling and minification with assets transferred over a network.
+The load time improved, but this example ran locally. Greater performance gains are realized when using bundling and minification with assets transferred over a network.
+
+The test app used to generate the figures in the preceding table demonstrates typical improvements that might not apply to a given app. We recommend testing an app to determine if bundling and minification yields an improved load time.
 
 ## Choose a bundling and minification strategy
 
 ASP.NET Core is compatible with WebOptimizer, an open-source bundling and minification solution. For set up instructions and sample projects, see [WebOptimizer](https://github.com/ligershark/WebOptimizer). ASP.NET Core doesn't provide a native bundling and minification solution.
 
-Third-party tools, such as [Gulp](https://gulpjs.com) and [Webpack](https://webpack.js.org), provide workflow automation for bundling and minification, as well as linting and image optimization. By using design-time bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that design-time bundling and minification increases build complexity and only works with static files.
+Third-party tools, such as [Gulp](https://gulpjs.com) and [Webpack](https://webpack.js.org), provide workflow automation for bundling and minification, as well as linting and image optimization. By using bundling and minification, the minified files are created prior to the app's deployment. Bundling and minifying before deployment provides the advantage of reduced server load. However, it's important to recognize that bundling and minification increases build complexity and only works with static files.
 
 ## Environment-based bundling and minification
 

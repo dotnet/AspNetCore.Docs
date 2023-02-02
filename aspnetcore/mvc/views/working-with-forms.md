@@ -505,8 +505,6 @@ The generated HTML (when the model is valid):
 
 ```html
 <form action="/DemoReg/Register" method="post">
-  <div class="validation-summary-valid" data-valmsg-summary="true">
-  <ul><li style="display:none"></li></ul></div>
   Email:  <input name="Email" id="Email" type="email" value=""
    data-val-required="The Email field is required."
    data-val-email="The Email field is not a valid email address."

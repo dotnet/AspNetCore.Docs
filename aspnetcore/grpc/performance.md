@@ -171,7 +171,7 @@ Flow control performance issues can be fixed by increasing buffer window size. I
 builder.WebHost.ConfigureKestrel(options =>
 {
     var http2 = options.Limits.Http2;
-    http2.InitialConnectionWindowSize = 2 * 1024 * 1024 * 2; // 2 MB
+    http2.InitialConnectionWindowSize = 1024 * 1024 * 2; // 2 MB
     http2.InitialStreamWindowSize = 1024 * 1024; // 1 MB
 });
 ```

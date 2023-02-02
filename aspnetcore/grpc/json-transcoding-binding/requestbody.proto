@@ -1,0 +1,18 @@
+service Address {
+  rpc AddAddress (AddAddressRequest) returns (AddAddressReply) {
+    option (google.api.http) = {
+      post: "/{apiVersion}/address",
+      body: "address"
+    };
+  }
+}
+
+message AddAddressRequest {
+  int32 api_version = 1;
+  Address address = 2;
+}
+message Address {
+  string street = 1;
+  string city = 2;
+  string country = 3;
+}

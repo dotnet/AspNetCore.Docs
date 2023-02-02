@@ -2,7 +2,8 @@
 title: Get started with ASP.NET Core SignalR
 author: bradygaster
 description: In this tutorial, you create a chat app that uses ASP.NET Core SignalR.
-ms.author: bradyg
+<!-- ms.author: bradyg -->
+ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
 ms.date: 11/21/2021
@@ -336,7 +337,7 @@ The SignalR server library is included in the ASP.NET Core 3.1 shared framework.
   * In **Solution Explorer**, right-click the project, and select **Add** > **Client-Side Library**.
   * In the **Add Client-Side Library** dialog, for **Provider** select **unpkg**.
   * For **Library**, enter `@microsoft/signalr@latest`.
-  * Select **Choose specific files**, expand the *dist/browser* folder, and select `signalr.js` and `signalr.js`.
+  * Select **Choose specific files**, expand the *dist/browser* folder, and select `signalr.js` and `signalr.min.js`.
   * Set **Target Location** to *wwwroot/js/signalr/*
   * Select **Install**
 
