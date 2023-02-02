@@ -38,11 +38,11 @@ The preceding project file:
 
 ## Inter-process communication (IPC) transports
 
-gRPC calls between a client and server on different machines are usually sent over TCP sockets. TCP is a great choice for communicating across a network or the Internet.
+gRPC calls between a client and server on different machines are usually sent over TCP sockets. TCP is a great choice for communicating across a network or the Internet. However, IPC transports can offer performance advantages and better integration with OS features when the client and server are on the same machine.
 
-There are transports optimized for IPC workloads. .NET supports multiple IPC transports:
+.NET supports multiple IPC transports:
 
-* [Unix domain sockets (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) is a widely supported IPC technology that's more efficient than TCP when the client and server are on the same machine. UDS is the best choice for building cross-platform apps, and it's usable on Linux, macOS, and [Windows 10/Windows Server 2019 or later](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/).
+* [Unix domain sockets (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) is a widely supported IPC technology. UDS is the best choice for building cross-platform apps, and it's usable on Linux, macOS, and [Windows 10/Windows Server 2019 or later](https://devblogs.microsoft.com/commandline/af_unix-comes-to-windows/).
 * [Named pipes](https://wikipedia.org/wiki/Named_pipe) are supported by all versions of Windows. Named pipes integrate well with [Windows security](/windows/win32/ipc/named-pipe-security-and-access-rights), which can be used to control client access to the pipe.
 * Other IPC transports by implementing <xref:Microsoft.AspNetCore.Connections.IConnectionListenerFactory> and registering the implementation at app startup.
 
@@ -54,19 +54,18 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 {
     if (OperatingSystem.IsWindows())
     {
-        serverOptions.ListenNamedPipe("MyPipeName", listenOptions =>
-        {
-            listenOptions.Protocols = HttpProtocols.Http2;
-        });
+        serverOptions.ListenNamedPipe("MyPipeName");
     }
     else
     {
         var socketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");
-        serverOptions.ListenUnixSocket(socketPath, listenOptions =>
-        {
-            listenOptions.Protocols = HttpProtocols.Http2;
-        });
+        serverOptions.ListenUnixSocket(socketPath);
     }
+
+    serverOptions.ConfigureEndpointDefaults(listenOptions =>
+    {
+        listenOptions.Protocols = HttpProtocols.Http2;
+    });
 });
 ```
 
