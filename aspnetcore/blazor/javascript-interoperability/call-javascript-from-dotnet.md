@@ -751,7 +751,19 @@ For more information, see <xref:blazor/js-interop/import-export-interop>.
 
 Unmarshalled interop using the <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> interface is obsolete and should be replaced with JavaScript `[JSImport]`/`[JSExport]` interop.
 
-For more information, see <xref:blazor/js-interop/import-export-interop>. 
+For more information, see <xref:blazor/js-interop/import-export-interop>.
+
+## Disposal of JavaScript interop object references
+
+Examples throughout the JavaScript (JS) interop articles demonstrate typical object disposal patterns:
+
+* When calling JS from .NET, as described in this article, dispose any created <xref:Microsoft.JSInterop.IJSObjectReference>/<xref:Microsoft.JSInterop.IJSInProcessObjectReference>/`JSObjectReference` either from .NET or from JS to avoid leaking JS memory.
+
+* When calling .NET from JS, as described in <xref:blazor/js-interop/call-dotnet-from-javascript>, dispose of a created <xref:Microsoft.JSInterop.DotNetObjectReference> either from .NET or from JS to avoid leaking .NET memory.
+
+JS interop object references are implemented as a map keyed by an identifier on the side of the JS interop call that creates the reference. When object disposal is initiated from either the .NET or JS side, Blazor removes the entry from the map, and the object can be garbage collected as long as no other strong reference to the object is present.
+
+At a minimum, always dispose objects created on the .NET side to avoid leaking .NET managed memory.
 
 ## Document Object Model (DOM) cleanup tasks during component disposal
 
