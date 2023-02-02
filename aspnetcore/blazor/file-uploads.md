@@ -58,7 +58,7 @@ If you need access to a <xref:System.IO.Stream> that represents the file's bytes
 * On the server of a hosted Blazor WebAssembly app or a Blazor Server app, copy the stream directly to a file on disk without reading it into memory. Note that Blazor apps aren't able to access the client's file system directly. 
 * Upload files from the client directly to an external service. For more information, see the [Upload files to an external service](#upload-files-to-an-external-service) section.
 
-In the following examples, `browserFile` represents the uploaded file and implements <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile>. Working implementations for <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> are shown in the `FileUpload1` and `FileUpload2` components later in this article.
+In the following examples, `browserFile` represents the uploaded file and implements <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile>. Working implementations for <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> are shown in the file upload components later in this article.
 
 <span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> The following approach is **NOT recommended** because the file's <xref:System.IO.Stream> content is read into a <xref:System.String> in memory (`reader`):
 
@@ -725,7 +725,7 @@ In JavaScript, add a function called with an HTML [`input`](https://developer.mo
 * Sets the `img` element's source to display the image.
 
 ```javascript
-function previewImage(inputElem, imgElem) {
+window.previewImage = (inputElem, imgElem) => {
   const url = URL.createObjectURL(inputElem.files[0]);
   imgElem.addEventListener('load', () => URL.revokeObjectURL(url), { once: true });
   imgElem.src = url;
@@ -740,12 +740,37 @@ Finally, use an injected <xref:Microsoft.JSInterop.IJSRuntime> to add the `OnCha
 ...
 
 @code {
-    private ValueTask ShowPreview()
-        => JS.InvokeVoidAsync("previewImage", inputFile!.Element, previewImageElem);
+    ...
+
+    private async Task ShowPreview() => await JS.InvokeVoidAsync(
+        "previewImage", inputFile!.Element, previewImageElem);
 }
 ```
 
 The preceding example is for uploading a single image. The approach can be expanded to support `multiple` images.
+
+The following `FileUpload4` component shows the full working example.
+
+`Pages/FileUpload4.razor`:
+
+```razor
+@page "/file-upload-4"
+@inject IJSRuntime JS
+
+<h3>File Upload 3</h3>
+
+<InputFile @ref="inputFile" OnChange="@ShowPreview" />
+
+<img style="max-width:200px;max-height:200px" @ref="previewImageElem" />
+
+@code {
+    private InputFile? inputFile;
+    private ElementReference previewImageElem;
+
+    private async Task ShowPreview() => await JS.InvokeVoidAsync(
+        "previewImage", inputFile!.Element, previewImageElem);
+}
+```
 
 :::moniker-end
 
