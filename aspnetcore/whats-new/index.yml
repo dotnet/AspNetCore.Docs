@@ -5,13 +5,15 @@ summary: Welcome to what's new in ASP.NET Core docs. Use this page to quickly fi
 metadata:
   title: ASP.NET Core documentation - What's new?
   description: Learn about new and updated content in ASP.NET Core docs.
-  ms.date: 01/01/2023
+  ms.date: 02/01/2023
   ms.topic: landing-page
 landingContent:
 - title: Find ASP.NET Core docs updates
   linkLists:
   - linkListType: whats-new
     links:
+    - text: January 2023
+      url: dotnet-AspNetCore.Docs-mod1.md
     - text: December 2022
       url: dotnet-AspNetCore.Docs-mod0.md
     - text: November 2022
@@ -22,8 +24,6 @@ landingContent:
       url: dotnet-AspNetCore.Docs-mod3.md
     - text: August 2022
       url: dotnet-AspNetCore.Docs-mod2.md
-    - text: July 2022
-      url: dotnet-AspNetCore.Docs-mod1.md
 - title: Get involved - contribute to ASP.NET Core docs
   linkLists:
   - linkListType: overview
