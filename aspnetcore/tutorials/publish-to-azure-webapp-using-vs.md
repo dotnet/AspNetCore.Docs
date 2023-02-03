@@ -159,9 +159,11 @@ On the **Settings** tab of the **Publish** dialog:
 
 ![Publish dialog: Settings panel:Save](publish-to-azure-webapp-using-vs/_static/pp_settings.png)
 
-Click **Publish**. Visual Studio publishes your app to Azure. When the deployment completes, the app is opened in a browser.
+Click **Publish**. Visual Studio publishes your app to Azure. When the deployment completes.
 
 ![Last step](publish-to-azure-webapp-using-vs/_static/pp_publish.png)
+
+The app is opened in a browser. Register a new user and log in as the new user to validate the database deployment and run-time connection.
 
 ### Update the app
 
