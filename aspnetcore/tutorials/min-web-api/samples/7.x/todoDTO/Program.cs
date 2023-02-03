@@ -26,6 +26,10 @@ static async Task<IResult> GetAllTodos(TodoDb db)
 }
 // </snippet_getalltodos>
 
+static async Task<IResult> GetCompleteTodos(TodoDb db) {
+    return TypedResults.Ok(await db.Todos.Where(t => t.IsComplete).Select(x => new TodoItemDTO(x)).ToListAsync());
+}
+
 static async Task<IResult> GetTodo(int id, TodoDb db)
 {
     return await db.Todos.FindAsync(id)
@@ -44,6 +48,8 @@ static async Task<IResult> CreateTodo(TodoItemDTO todoItemDTO, TodoDb db)
 
     db.Todos.Add(todoItem);
     await db.SaveChangesAsync();
+
+    todoItemDTO = new TodoItemDTO(todoItem);
 
     return TypedResults.Created($"/todoitems/{todoItem.Id}", todoItemDTO);
 }
