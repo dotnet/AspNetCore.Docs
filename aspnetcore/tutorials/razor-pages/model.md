@@ -125,13 +125,7 @@ The `appsettings.json` file is updated with the connection string used to connec
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Open a command shell to the project directory, which contains the `Program.cs` and `.csproj` files. On Windows, run the following command:
-
-  ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovie.Data.RazorPagesMovieContext -udl -outDir Pages\Movies --referenceScriptLibraries -sqlite
-  ```
-
-  On non-Windows machines, run the following command:
+* Open a command shell to the project directory, which contains the `Program.cs` and `.csproj` files. Run the following command:
 
   ```dotnetcli
   dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovie.Data.RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries -sqlite
@@ -274,7 +268,7 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 The preceding commands:
 
-* Install the latest [the Entity Framework Core tools](/ef/core/get-started/overview/install#get-the-entity-framework-core-tools) after uninstalling any previous version, if it exists.
+* Install the latest [Entity Framework Core tools](/ef/core/get-started/overview/install#get-the-entity-framework-core-tools) after uninstalling any previous version, if it exists.
 * Run the `migrations` command to generate code that creates the initial database schema.
 
 The following warning is displayed, which is addressed in a later step:
