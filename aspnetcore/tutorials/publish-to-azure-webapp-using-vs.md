@@ -56,7 +56,7 @@ Visual Studio creates the solution.
 
 ![A database operation failed while processing the request](publish-to-azure-webapp-using-vs/_static/mig.png)
 
-* A **Register confirmation** page is displayed, select **Click here to confirm your account**.
+* A **Register confirmation** page is displayed. Select **Click here to confirm your account**.
 * A **Confirm email** page is displayed.
 * Log in as the new user.
 
