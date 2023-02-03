@@ -56,15 +56,15 @@ Visual Studio creates the solution.
 
 ![A database operation failed while processing the request](publish-to-azure-webapp-using-vs/_static/mig.png)
 
-* A **Register confirmation** page is displayed, select **Click here to confirm your account**.
+* A **Register confirmation** page is displayed. Select **Click here to confirm your account**.
 * A **Confirm email** page is displayed.
-* Login as the new user.
+* Log in as the new user.
 
 The app displays the email used to register the new user and a **Logout** link.
 
 ![Web application open in Microsoft Edge. The Register link is replaced by the text Hello user@example.com!](publish-to-azure-webapp-using-vs/_static/hello.png)
 
-* Stop the application by either closing the browser or in Visual Studio select **Debug** > **Stop Debugging**.
+* Stop the application by closing the browser, or in Visual Studio select **Debug** > **Stop Debugging**.
 * In Visual Studio select **Build** > **Clean Solution** to  clean project items  and avoid file contention.
 
 ## Deploy the app to Azure
@@ -107,7 +107,7 @@ After creation is completed the dialog is automatically closed and the **Publish
 
 The **Publish profile creation progress** dialog confirms the publish profile was created. Select **Close**.
 
-Next you see the **Publish Profile summary** page. Visual Studio has detected that this application requires a SQL Server database which it has listed in the Service Dependencies pane. Select **...** and then **Connect**.
+Next you see the **Publish Profile summary** page. Visual Studio has detected that this application requires a SQL Server database which it has listed in the Service Dependencies pane. Select the ellipsis (**...**) and then **Connect**.
 
 ![Publish Profile summary page: configure SQL Server dependency](publish-to-azure-webapp-using-vs/_static/sql.png)
 
@@ -139,7 +139,7 @@ After creation is completed the dialog is automatically closed and the **Connect
 
 In the next step of the **Connect to Azure SQL Database** dialog:
 
-* Enter the **Database connection user name** and **Database connection password** fields. These are the details your application will use to connect to the database at runtime. Best practice is to avoid using the same details as the admin username & password used in the previous step.
+* Enter the **Database connection user name** and **Database connection password** fields. These are the details your application will use to connect to the database at runtime. Best practice is to avoid using the same details as the admin username and password used in the previous step.
 * Select **Finish**.
 
 ![Configure Azure SQL Database dialog, connection string details](publish-to-azure-webapp-using-vs/_static/sql_connection.png)
@@ -153,7 +153,7 @@ In the **Publish Profile summary** page select **More actions** > **Edit**:
 On the **Settings** pane of the **Publish** dialog:
 
 * Expand **Databases** and check **Use this connection string at runtime**.
-* Expand **Entity Framework Migrations** and check **Apply this migration on publish**.
+* Expand **Entity Framework Migrations** and select **Apply this migration on publish**.
 
 * Select **Save**. Visual Studio returns to the **Publish** dialog.
 
@@ -173,7 +173,7 @@ Click **Publish**. Visual Studio publishes your app to Azure. When the deploymen
 
 ![Publish profile summary page](publish-to-azure-webapp-using-vs/_static/pp_publish.png)
 
-* After the app is published, refresh the page and verify the changes you made are available on Azure.
+* After the app is published, refresh the page and verify that the changes you made are available on Azure.
 
 ![Verify task is complete](publish-to-azure-webapp-using-vs/_static/final.png)
 
@@ -185,7 +185,7 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 
 ![Azure Portal: Resource Groups in sidebar menu](publish-to-azure-webapp-using-vs/_static/portalrg.png)
 
-* In the **Resource groups** page, select **Delete resource group**.
+* In the **Resource group** page, select **Delete resource group**.
 
 ![Azure Portal: Resource Groups page](publish-to-azure-webapp-using-vs/_static/rgd.png)
 
