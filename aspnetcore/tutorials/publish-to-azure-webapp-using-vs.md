@@ -87,7 +87,7 @@ In the **Publish** dialog:
 
 ![Publish Dialog: select Azure Service](publish-to-azure-webapp-using-vs/_static/maas2.png)
 
-In the **Publish** dialog, in the **App Service** pane, select **Create new**.
+In the **Publish** dialog, in the **App Service** tab, select **Create new**.
 
 ![Publish dialog: select Azure Service instance](publish-to-azure-webapp-using-vs/_static/maas3.png)
 
@@ -193,7 +193,6 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 
 ## Additional resources
 
-* For Visual Studio Code, see [Publish profiles](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles).
 * [Azure App Service](/azure/app-service/app-service-web-overview)
 * [Azure resource groups](/azure/azure-resource-manager/resource-group-overview#resource-groups)
 * [Azure SQL Database](/azure/sql-database/)
