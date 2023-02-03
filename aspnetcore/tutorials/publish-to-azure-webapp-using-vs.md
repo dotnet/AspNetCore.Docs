@@ -150,7 +150,7 @@ In the **Publish Profile summary** page select **More actions** > **Edit**:
 
 ![Publish profile summary page: edit settings](publish-to-azure-webapp-using-vs/_static/pp_configured.png)
 
-On the **Settings** pane of the **Publish** dialog:
+On the **Settings** tab of the **Publish** dialog:
 
 * Expand **Databases** and check **Use this connection string at runtime**.
 * Expand **Entity Framework Migrations** and select **Apply this migration on publish**.
