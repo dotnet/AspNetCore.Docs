@@ -85,7 +85,7 @@ await blobContainerClient.UploadBlobAsync(
 
 A component that receives an image file can call the <xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync%2A?displayProperty=nameWithType> convenience method on the file to resize the image data within the browser's JavaScript runtime before the image is streamed into the app. Use cases for calling <xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync%2A> are most appropriate for Blazor WebAssembly apps.
 
-## Limitations on file upload size
+## File size limit
 
 :::moniker range=">= aspnetcore-6.0"
 
