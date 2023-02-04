@@ -5,7 +5,7 @@ description: Learn how to upload files in Blazor with the InputFile component.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/17/2022
+ms.date: 02/04/2023
 uid: blazor/file-uploads
 zone_pivot_groups: blazor-hosting-models
 ---
@@ -46,13 +46,6 @@ To read data from a user-selected file, call <xref:Microsoft.AspNetCore.Componen
 
 <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> enforces a maximum size in bytes of its <xref:System.IO.Stream>. Reading one file or multiple files larger than 500 KB results in an exception. This limit prevents developers from accidentally reading large files into memory. The `maxAllowedSize` parameter of <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> can be used to specify a larger size if required.
 
-:::moniker range="< aspnetcore-6.0"
-
-> [!NOTE]
-> In ASP.NET Core 5.0, the maximum supported file size is 2 GB. In ASP.NET Core 6.0 or later, the framework doesn't limit the maximum file size.
-
-:::moniker-end
-
 If you need access to a <xref:System.IO.Stream> that represents the file's bytes, use <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType>. Avoid reading the incoming file stream directly into memory all at once. For example, don't copy all of the file's bytes into a <xref:System.IO.MemoryStream> or read the entire stream into a byte array all at once. These approaches can result in performance and security problems, especially for Blazor Server apps. Instead, consider adopting either of the following approaches:
 
 * On the server of a hosted Blazor WebAssembly app or a Blazor Server app, copy the stream directly to a file on disk without reading it into memory. Note that Blazor apps aren't able to access the client's file system directly. 
@@ -91,6 +84,38 @@ await blobContainerClient.UploadBlobAsync(
 ```
 
 A component that receives an image file can call the <xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync%2A?displayProperty=nameWithType> convenience method on the file to resize the image data within the browser's JavaScript runtime before the image is streamed into the app. Use cases for calling <xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync%2A> are most appropriate for Blazor WebAssembly apps.
+
+## Limitations on file upload size
+
+:::moniker range=">= aspnetcore-6.0"
+
+:::zone pivot="server"
+
+There's no a limit on the maximum file size for the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component in Blazor Server apps.
+
+:::zone-end
+
+:::zone pivot="webassembly"
+
+There's no a limit on the maximum file size for the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component in Blazor WebAssembly apps. However, <xref:System.Net.Http.BrowserHttpHandler.SendAsync> ([reference source](https://github.com/dotnet/runtime/blob/main/src/libraries/System.Net.Http/src/System/Net/Http/BrowserHttpHandler/BrowserHttpHandler.cs)) reads the file's bytes into a single JavaScript array buffer when marshalling the data from JavaScript to C#, so large file uploads (> 250 MB) may fail. For more information, see [Net6P7: Blazor WASM can't upload large files (500MB, 1GB, 2GB) (dotnet/aspnetcore #35899)](https://github.com/dotnet/aspnetcore/issues/35899).
+
+In a future runtime release, <xref:System.Net.Http.BrowserHttpHandler> may receive updates to take advantage of *request streaming* to resolve this limitation. For more information, see [[browser][wasm] Request Streaming upload via http handler (dotnet/runtime #36634)](https://github.com/dotnet/runtime/issues/36634), where you can express your interest in the proposal by adding a thumbs-up (&#128077;) to the issue's opening comment.
+
+To workaround file size limitations in Blazor WebAssembly apps, we recommend implementing file uploads entirely in JavaScript using [HTTP Range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests). Using Ranges avoids the file limitation problem and is more reliable, allowing the app to avoid re-uploading entire files when a file upload fails (only the missing chunk is updated).
+
+:::zone-end
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+The maximum supported file size of the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component is 2 GB.
+
+To workaround file size limitations in Blazor WebAssembly apps, we recommend implementing file uploads entirely in JavaScript using [HTTP Range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests). Using Ranges avoids the file limitation problem and is more reliable, allowing the app to avoid re-uploading entire files when a file upload fails (only the missing chunk is updated).
+
+:::moniker-end
+
+## Upload files example
 
 The following example demonstrates multiple file upload in a component. <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs.GetMultipleFiles%2A?displayProperty=nameWithType> allows reading multiple files. Specify the maximum number of files to prevent a malicious user from uploading a larger number of files than the app expects. <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs.File?displayProperty=nameWithType> allows reading the first and only file if the file upload doesn't support multiple files.
 
