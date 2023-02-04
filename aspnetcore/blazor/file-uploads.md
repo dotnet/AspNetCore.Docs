@@ -111,7 +111,7 @@ To workaround file size limitations in Blazor WebAssembly apps, we recommend imp
 
 The maximum supported file size of the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component is 2 GB.
 
-To workaround file size limitations in Blazor WebAssembly apps, we recommend implementing file uploads entirely in JavaScript using [HTTP Range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests). Using Ranges avoids the file limitation problem and is more reliable, allowing the app to avoid re-uploading entire files when a file upload fails (only the missing chunk is updated).
+To workaround file size limitations, we recommend implementing file uploads entirely in JavaScript using [HTTP Range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests). Using Ranges avoids the file limitation problem and is more reliable, allowing the app to avoid re-uploading entire files when a file upload fails (only the missing chunk is updated).
 
 :::moniker-end
 
