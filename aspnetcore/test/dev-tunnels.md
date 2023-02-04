@@ -117,7 +117,7 @@ The context menu for a tunnel provides the following options:
 
 * **Clear Active Tunnel**: Shown when a tunnel is configured as active (indicated by the checkmark on the left hand side), this resets it so the project is not using a tunnel.
 * **Make Active Tunnel**: Shown for tunnels that are not configured as active.
-* **Copy Tunnel Access Token**: Provided for scenarios where a tunnel is created with private or organizational access, and the app is a Web API. To authenticate for the tunnel, users need to copy and paste the tunnel access token as a header of the form `X-Tunnel-Authorization tunnel <TOKEN>` in the request. If this header is not specified, the request will be blocked because the authentication check failed.
+* **Copy Tunnel Access Token**: Provided for scenarios where a tunnel is created with private or organizational access, and the app is a web API. To authenticate for the tunnel, copy and paste the tunnel access token as a header of the form `X-Tunnel-Authorization tunnel <TOKEN>` in the request. If this header is not specified, the request will be blocked because the authentication check failed.
 * **Remove**
 
 ## Tunnel URL environment variables
