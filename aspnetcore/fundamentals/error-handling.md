@@ -144,8 +144,10 @@ This method is commonly used when the app:
 
 The <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute%2A> extension method:
 
-* Returns the original status code to the client.
 * Generates the response body by re-executing the request pipeline using an alternate path.
+* Does not alter the status code before or after re-executing the pipeline.
+
+The new pipeline execution may alter the response's status code, as the new pipeline has full control of the status code. If the new pipeline does not alter the status code, the original status code will be sent to the client.
 
 :::code language="csharp" source="error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesReExecute" highlight="9":::
 
