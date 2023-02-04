@@ -101,6 +101,8 @@ Prior to the release of ASP.NET Core 6.0, the <xref:Microsoft.AspNetCore.Compone
 
 In all versions of ASP.NET Core to date, `BrowserHttpHandler.SendAsync` ([reference source](https://github.com/dotnet/runtime/blob/main/src/libraries/System.Net.Http/src/System/Net/Http/BrowserHttpHandler/BrowserHttpHandler.cs)) reads the file's bytes into a single JavaScript array buffer when marshalling the data from JavaScript to C#, so large file uploads (> 250 MB) may fail. For more information, see [Net6P7: Blazor WASM can't upload large files (500MB, 1GB, 2GB) (dotnet/aspnetcore #35899)](https://github.com/dotnet/aspnetcore/issues/35899).
 
+[!INCLUDE[](~/includes/package-reference.md)]
+
 In a future runtime release, `BrowserHttpHandler` may receive updates to take advantage of *request streaming* to resolve this limitation. For more information, see [[browser][wasm] Request Streaming upload via http handler (dotnet/runtime #36634)](https://github.com/dotnet/runtime/issues/36634), where you can express your interest in the proposal by adding a thumbs-up (&#128077;) to the issue's opening comment.
 
 To workaround file size limitations in Blazor WebAssembly apps, we recommend implementing file uploads entirely in JavaScript using [HTTP Range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests). Using Ranges avoids the file limitation problem and is more reliable, allowing the app to avoid re-uploading entire files when a file upload fails, only missing chunks are updated.
