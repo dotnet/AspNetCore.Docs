@@ -103,7 +103,7 @@ In all versions of ASP.NET Core to date, `BrowserHttpHandler.SendAsync` ([refere
 
 In a future runtime release, `BrowserHttpHandler` may receive updates to take advantage of *request streaming* to resolve this limitation. For more information, see [[browser][wasm] Request Streaming upload via http handler (dotnet/runtime #36634)](https://github.com/dotnet/runtime/issues/36634), where you can express your interest in the proposal by adding a thumbs-up (&#128077;) to the issue's opening comment.
 
-To workaround file size limitations in Blazor WebAssembly apps, we recommend implementing file uploads entirely in JavaScript using [HTTP Range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests). Using Ranges avoids the file limitation problem and is more reliable, allowing the app to avoid re-uploading entire files when a file upload fails (only the missing chunk is updated).
+To workaround file size limitations in Blazor WebAssembly apps, we recommend implementing file uploads entirely in JavaScript using [HTTP Range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests). Using Ranges avoids the file limitation problem and is more reliable, allowing the app to avoid re-uploading entire files when a file upload fails, only missing chunks are updated.
 
 :::zone-end
 
