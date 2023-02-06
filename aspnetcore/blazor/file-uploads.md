@@ -99,7 +99,7 @@ There's no file size read or upload limit for the <xref:Microsoft.AspNetCore.Com
 
 Prior to the release of ASP.NET Core 6.0, the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component had a file size read limit of 2 GB. In ASP.NET Core 6.0 or later, the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component has no file size read limit.
 
-In all versions of ASP.NET Core to date, Blazor WebAssembly reads the file's bytes into a single JavaScript array buffer when marshalling the data from JavaScript to C#, so large file uploads (> 250 MB) may fail. For more information, see [Net6P7: Blazor WASM can't upload large files (500MB, 1GB, 2GB) (dotnet/aspnetcore #35899)](https://github.com/dotnet/aspnetcore/issues/35899).
+In all versions of ASP.NET Core to date, Blazor WebAssembly reads the file's bytes into a single JavaScript array buffer when marshalling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads (> 250 MB) may fail. For more information, see [Net6P7: Blazor WASM can't upload large files (500MB, 1GB, 2GB) (dotnet/aspnetcore #35899)](https://github.com/dotnet/aspnetcore/issues/35899).
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
