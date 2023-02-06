@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn how to use dev tunnels in Visual Studio with ASPNET Core apps.
 monikerRange: '>= aspnetcore-7.0'
 ms.author: tdykstra
-ms.date: 01/06/2023
+ms.date: 02/03/2023
 uid: test/tunnels
 ---
 # How to use dev tunnels in Visual Studio 2022 with ASP.NET Core apps
@@ -22,7 +22,7 @@ Some of the scenarios that dev tunnels enable:
 
 ## Prerequisites
 
-* [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) version 17.5 Preview 2 or later with the **ASP.NET and web development** workload installed. You need to be signed in to Visual Studio to create and use dev tunnels. The feature isn't available in Visual Studio for Mac.
+* [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) version 17.5 Preview 3 or later with the **ASP.NET and web development** workload installed. You need to be signed in to Visual Studio to create and use dev tunnels. The feature isn't available in Visual Studio for Mac.
 * Dev tunnels preview feature enabled. Select **Tools** > **Options** > **Environment** > **Preview Features** > **Enable dev tunnels for Web Applications**.
 * One or more ASP.NET Core projects. This article uses a solution with two sample projects to demonstrate the feature.
 
@@ -109,11 +109,18 @@ View and manage dev tunnels in the **Dev Tunnels** tool window:
 
 To open the **Dev Tunnels** window, select the **Show Dev Tunnels Window** menu option in the debug dropdown. Alternatively, select **View** > **Other Windows** > **Dev Tunnels**.
 
-From the **Dev Tunnels**  window, create a new tunnel by selecting the green `+` button. When a tunnel is created from the **Dev Tunnels** window, it isn't automatically set as the active tunnel like it is when a tunnel is created from the debug dropdown.
+From the **Dev Tunnels**  window, create a new tunnel by selecting the green `+` button.
 
 Delete a tunnel by using the red `x` button to the right of the tunnel.
 
-## Tunnel URL environment variable support
+The context menu for a tunnel provides the following options:
+
+* **Clear Active Tunnel**: Shown when a tunnel is configured as active (indicated by the checkmark on the left hand side), this resets it so the project is not using a tunnel.
+* **Make Active Tunnel**: Shown for tunnels that are not configured as active.
+* **Copy Tunnel Access Token**: Provided for scenarios where a tunnel is created with private or organizational access, and the app is a web API. To authenticate for the tunnel, copy and paste the tunnel access token as a header of the form `X-Tunnel-Authorization tunnel <TOKEN>` in the request. If this header is not specified, the request will be blocked because the authentication check failed.
+* **Remove**
+
+## Tunnel URL environment variables
 
 The dev tunnels feature provides a way to get the tunnel URL of a project programmatically at run time. When an app is launched that uses a tunnel, Visual Studio creates the environment variable `VS_TUNNEL_URL`. The `VS_TUNNEL_URL` value is the URL for the tunnel that is used for the current project. `VS_TUNNEL_URL` can be useful when integrating the app with an external service, where the tunnel URL needs to be passed to the external service.
 
