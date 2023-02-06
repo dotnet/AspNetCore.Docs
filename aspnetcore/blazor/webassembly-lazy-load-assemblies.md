@@ -55,6 +55,8 @@ In the following example:
 
 `App.razor`:
 
+:::moniker range=">= aspnetcore-6.0"
+
 ```razor
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.WebAssembly.Services
@@ -85,6 +87,43 @@ In the following example:
     }
 }
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+```razor
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
+@using Microsoft.Extensions.Logging
+@inject LazyAssemblyLoader AssemblyLoader
+@inject ILogger<App> Logger
+
+<Router AppAssembly="@typeof(Program).Assembly" 
+    OnNavigateAsync="@OnNavigateAsync">
+    ...
+</Router>
+
+@code {
+    private async Task OnNavigateAsync(NavigationContext args)
+    {
+        try
+           {
+               if (args.Path == "{PATH}")
+               {
+                   var assemblies = await AssemblyLoader.LoadAssembliesAsync(
+                       new[] { {LIST OF ASSEMBLIES} });
+               }
+           }
+           catch (Exception ex)
+           {
+               Logger.LogError("Error: {Message}", ex.Message);
+           }
+    }
+}
+```
+
+:::moniker-end
 
 > [!NOTE]
 > The preceding example doesn't show the contents of the `Router` component's Razor markup (`...`). For a demonstration with complete code, see the [Complete example](#complete-example) section of this article.
@@ -157,7 +196,7 @@ In the following example:
 @inject LazyAssemblyLoader AssemblyLoader
 @inject ILogger<App> Logger
 
-<Router AppAssembly="@typeof(App).Assembly" 
+<Router AppAssembly="@typeof(Program).Assembly" 
     AdditionalAssemblies="@lazyLoadedAssemblies" 
     OnNavigateAsync="@OnNavigateAsync">
     ...
@@ -471,7 +510,7 @@ Configure the app to lazy load the `GrantImaharaRobotControls.dll` assembly:
    @inject LazyAssemblyLoader AssemblyLoader
    @inject ILogger<App> Logger
 
-   <Router AppAssembly="@typeof(App).Assembly"
+   <Router AppAssembly="@typeof(Program).Assembly"
            AdditionalAssemblies="@lazyLoadedAssemblies" 
            OnNavigateAsync="@OnNavigateAsync">
        <Navigating>
