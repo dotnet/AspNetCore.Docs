@@ -105,7 +105,7 @@ In all versions of ASP.NET Core to date, `BrowserHttpHandler.SendAsync` ([refere
 
 In a future runtime release, `BrowserHttpHandler` may receive updates to take advantage of *request streaming* to resolve the file upload limitation. For more information, see [[browser][wasm] Request Streaming upload via http handler (dotnet/runtime #36634)](https://github.com/dotnet/runtime/issues/36634), where you can express your interest in the proposal by adding a thumbs-up (&#128077;) to the issue's opening comment.
 
-To work around file size upload limitation in Blazor WebAssembly apps, we recommend implementing file uploads entirely in JavaScript using [HTTP Range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests). Using Ranges avoids the problem and is more reliable, allowing the app to avoid re-uploading entire files when a file upload fails, only missing chunks are updated.
+To resolve the file size upload limitation in Blazor WebAssembly apps, we recommend implementing file uploads entirely in JavaScript using [HTTP Range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests). Using Ranges avoids the problem and is more reliable, allowing the app to avoid re-uploading entire files when a file upload fails, only missing chunks are updated.
 
 :::zone-end
 
@@ -115,7 +115,7 @@ To work around file size upload limitation in Blazor WebAssembly apps, we recomm
 
 The maximum supported file size for the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component is 2 GB.
 
-To work around file size read limitation, we recommend implementing file uploads entirely in JavaScript using [HTTP Range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests). Using Ranges avoids the file limitation problem and is more reliable, allowing the app to avoid re-uploading entire files when a file upload fails (only the missing chunk is updated).
+To resolve the file size read limitation, we recommend implementing file uploads entirely in JavaScript using [HTTP Range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests). Using Ranges avoids the file limitation problem and is more reliable, allowing the app to avoid re-uploading entire files when a file upload fails (only the missing chunk is updated).
 
 :::moniker-end
 
