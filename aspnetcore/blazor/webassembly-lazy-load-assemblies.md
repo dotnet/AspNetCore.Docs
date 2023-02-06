@@ -262,6 +262,8 @@ To rectify this:
 
 The framework's lazy loading implementation supports lazy loading with prerendering in a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). During prerendering, all assemblies, including those marked for lazy loading, are assumed to be loaded. Manually register the <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service in the **:::no-loc text="Server":::** project.
 
+:::moniker range=">= aspnetcore-6.0"
+
 At the top of the `Program.cs` file of the **:::no-loc text="Server":::** project, add the namespace for <xref:Microsoft.AspNetCore.Components.WebAssembly.Services?displayProperty=fullName>:
 
 ```csharp
@@ -273,6 +275,24 @@ In `Program.cs` of the **:::no-loc text="Server":::** project, register the serv
 ```csharp
 builder.Services.AddScoped<LazyAssemblyLoader>();
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+At the top of the `Startup.cs` file of the **:::no-loc text="Server":::** project, add the namespace for <xref:Microsoft.AspNetCore.Components.WebAssembly.Services?displayProperty=fullName>:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Services;
+```
+
+In `Startup.ConfigureServices` (`Startup.cs`) of the **:::no-loc text="Server":::** project, register the service:
+
+```csharp
+services.AddScoped<LazyAssemblyLoader>();
+```
+
+:::moniker-end
 
 ## Complete example
 
