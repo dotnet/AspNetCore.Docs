@@ -99,13 +99,13 @@ There's no file size read or upload limit for the <xref:Microsoft.AspNetCore.Com
 
 Prior to the release of ASP.NET Core 6.0, the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component had a file size read limit of 2 GB. In ASP.NET Core 6.0 or later, the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component has no file size read limit.
 
-In all versions of ASP.NET Core to date, `BrowserHttpHandler.SendAsync` ([reference source](https://github.com/dotnet/runtime/blob/main/src/libraries/System.Net.Http/src/System/Net/Http/BrowserHttpHandler/BrowserHttpHandler.cs)) reads the file's bytes into a single JavaScript array buffer when marshalling the data from JavaScript to C#, so large file uploads (> 250 MB) may fail. For more information, see [Net6P7: Blazor WASM can't upload large files (500MB, 1GB, 2GB) (dotnet/aspnetcore #35899)](https://github.com/dotnet/aspnetcore/issues/35899).
+In all versions of ASP.NET Core to date, Blazor WebAssembly reads the file's bytes into a single JavaScript array buffer when marshalling the data from JavaScript to C#, so large file uploads (> 250 MB) may fail. For more information, see [Net6P7: Blazor WASM can't upload large files (500MB, 1GB, 2GB) (dotnet/aspnetcore #35899)](https://github.com/dotnet/aspnetcore/issues/35899).
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-In a future runtime release, `BrowserHttpHandler` may receive updates to take advantage of *request streaming* to resolve the file upload limitation. For more information, see [[browser][wasm] Request Streaming upload via http handler (dotnet/runtime #36634)](https://github.com/dotnet/runtime/issues/36634), where you can express your interest in the proposal by adding a thumbs-up (&#128077;) to the issue's opening comment.
+A future runtime release may address the file upload limitation. For more information, see [[browser][wasm] Request Streaming upload via http handler (dotnet/runtime #36634)](https://github.com/dotnet/runtime/issues/36634), where you can express your interest in the proposal by adding a thumbs-up (&#128077;) to the issue's opening comment.
 
-To resolve the file size upload limitation in Blazor WebAssembly apps, we recommend implementing file uploads entirely in JavaScript using [HTTP Range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests). Using Ranges avoids the problem and is more reliable, allowing the app to avoid re-uploading entire files when a file upload fails, only missing chunks are updated.
+To resolve the file size upload limitation in Blazor WebAssembly apps, we recommend implementing file uploads entirely in JavaScript by [streaming requests with the fetch API](https://developer.chrome.com/articles/fetch-streaming-requests/). Using Ranges avoids the problem and is more reliable, allowing the app to avoid re-uploading entire files when a file upload fails, only missing chunks are updated.
 
 :::zone-end
 
@@ -115,7 +115,7 @@ To resolve the file size upload limitation in Blazor WebAssembly apps, we recomm
 
 The maximum supported file size for the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component is 2 GB.
 
-To resolve the file size read limitation, we recommend implementing file uploads entirely in JavaScript using [HTTP Range requests](https://developer.mozilla.org/docs/Web/HTTP/Range_requests). Using Ranges avoids the file limitation problem and is more reliable, allowing the app to avoid re-uploading entire files when a file upload fails (only the missing chunk is updated).
+To resolve the file size read limitation, we recommend implementing file uploads entirely in JavaScript by [streaming requests with the fetch API](https://developer.chrome.com/articles/fetch-streaming-requests/). Using Ranges avoids the file limitation problem and is more reliable, allowing the app to avoid re-uploading entire files when a file upload fails (only the missing chunk is updated).
 
 :::moniker-end
 
