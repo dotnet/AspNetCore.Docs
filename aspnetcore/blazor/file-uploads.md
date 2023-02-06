@@ -105,7 +105,7 @@ In all versions of ASP.NET Core to date, Blazor WebAssembly reads the file's byt
 
 A future runtime release may address the file upload limitation. For more information, see [[browser][wasm] Request Streaming upload via http handler (dotnet/runtime #36634)](https://github.com/dotnet/runtime/issues/36634), where you can express your interest in the proposal by adding a thumbs-up (&#128077;) to the issue's opening comment.
 
-To resolve the file size upload limitation in Blazor WebAssembly apps, we recommend implementing file uploads entirely in JavaScript by [streaming requests with the fetch API](https://developer.chrome.com/articles/fetch-streaming-requests/). Using Ranges avoids the problem and is more reliable, allowing the app to avoid re-uploading entire files when a file upload fails, only missing chunks are updated.
+To resolve the file size upload limitation in Blazor WebAssembly apps, we recommend implementing file uploads entirely in JavaScript by [streaming requests with the fetch API](https://developer.chrome.com/articles/fetch-streaming-requests/).
 
 :::zone-end
 
