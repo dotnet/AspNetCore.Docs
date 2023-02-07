@@ -1,6 +1,11 @@
 {
     "redirections": [
         {
+            "source_path": "aspnetcore/client-side/spa/react-with-redux.md",
+            "redirect_url": "/aspnet/core/client-side/spa/intro",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnet/core/host-and-deploy/azure-apps/azure-continuous-deployment.md",
             "redirect_url": "/azure/app-service/deploy-continuous-deployment",
             "redirect_document_id": false
