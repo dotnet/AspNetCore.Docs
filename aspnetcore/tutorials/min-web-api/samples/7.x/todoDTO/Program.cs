@@ -10,6 +10,7 @@ var app = builder.Build();
 RouteGroupBuilder todoItems = app.MapGroup("/todoitems");
 
 todoItems.MapGet("/", GetAllTodos);
+todoItems.MapGet("/complete", GetCompleteTodos);
 todoItems.MapGet("/{id}", GetTodo);
 todoItems.MapPost("/", CreateTodo);
 todoItems.MapPut("/{id}", UpdateTodo);
@@ -25,6 +26,10 @@ static async Task<IResult> GetAllTodos(TodoDb db)
     return TypedResults.Ok(await db.Todos.Select(x => new TodoItemDTO(x)).ToArrayAsync());
 }
 // </snippet_getalltodos>
+
+static async Task<IResult> GetCompleteTodos(TodoDb db) {
+    return TypedResults.Ok(await db.Todos.Where(t => t.IsComplete).Select(x => new TodoItemDTO(x)).ToListAsync());
+}
 
 static async Task<IResult> GetTodo(int id, TodoDb db)
 {
@@ -44,6 +49,8 @@ static async Task<IResult> CreateTodo(TodoItemDTO todoItemDTO, TodoDb db)
 
     db.Todos.Add(todoItem);
     await db.SaveChangesAsync();
+
+    todoItemDTO = new TodoItemDTO(todoItem);
 
     return TypedResults.Created($"/todoitems/{todoItem.Id}", todoItemDTO);
 }
