@@ -135,7 +135,7 @@ The <xref:System.Threading.RateLimiting.PartitionedRateLimiter.CreateChained%2A>
 
 The following code uses `CreateChained`:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRate2/Program.cs" id="snippet_3" highlight="51":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRate2/Program.cs" id="snippet_3" highlight="21,51":::
 
 For more information, see the [CreateChained source code](https://github.com/dotnet/runtime/blob/79874806d246670ee5fe76e73ce566578fe675c0/src/libraries/System.Threading.RateLimiting/src/System/Threading/RateLimiting/PartitionedRateLimiter.cs#L52-L64)
 
