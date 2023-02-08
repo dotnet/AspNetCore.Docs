@@ -62,7 +62,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 :::moniker range="= aspnetcore-6.0"
 
-* [.NET SDK 7.0](https://dotnet.microsoft.com/download)
+* [.NET SDK 6.0](https://dotnet.microsoft.com/download)
 
 :::moniker-end
 
