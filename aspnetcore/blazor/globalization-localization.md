@@ -25,7 +25,7 @@ A limited set of ASP.NET Core's localization features are supported:
 
 :::zone pivot="webassembly"
 
-Blazor WebAssembly has a reduced globalization API and uses a reduced set of built-in locales. For information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+Blazor WebAssembly has a reduced globalization API and uses a reduced set of built-in locales. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
 
 :::zone-end
 
@@ -953,7 +953,7 @@ A limited set of ASP.NET Core's localization features are supported:
 
 :::zone pivot="webassembly"
 
-Blazor WebAssembly has a reduced globalization API and uses a reduced set of built-in locales. For information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+Blazor WebAssembly has a reduced globalization API and uses a reduced set of built-in locales. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
 
 :::zone-end
 
@@ -1889,7 +1889,7 @@ A limited set of ASP.NET Core's localization features are supported:
 
 :::zone pivot="webassembly"
 
-Blazor WebAssembly has a reduced globalization API and uses a reduced set of built-in locales. For information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+Blazor WebAssembly has a reduced globalization API and uses a reduced set of built-in locales. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
 
 :::zone-end
 
@@ -2815,7 +2815,7 @@ A limited set of ASP.NET Core's localization features are supported:
 
 :::zone pivot="webassembly"
 
-Blazor WebAssembly has a reduced globalization API and uses a reduced set of built-in locales. For information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+Blazor WebAssembly has a reduced globalization API and uses a reduced set of built-in locales. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
 
 :::zone-end
 
