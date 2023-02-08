@@ -1096,7 +1096,7 @@ items:
       - name: EF 6 with ASP.NET Core
         uid: data/entity-framework-6
       - name: Azure SQL Database with Azure App Service
-        href: /azure/app-service/tutorial-connect-msi-sql-database?tabs=windowsclient%2Cefcore%2Cdotnetcore
+        href: /azure/app-service/tutorial-connect-msi-sql-database?tabs=efcore%2Cdotnetcore
       - name: Azure Storage with Visual Studio
         items:
           - name: Connected Services
