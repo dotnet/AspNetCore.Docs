@@ -58,3 +58,4 @@ Hubs call client-side code by sending messages that contain the name and paramet
 * [Supported Platforms](xref:signalr/supported-platforms)
 * [Hubs](xref:signalr/hubs)
 * [JavaScript client](xref:signalr/javascript-client)
+* [Browsers that don't support ECMAScript 6 (ES6)](xref:signalr/supported-platforms#es6)
