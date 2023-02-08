@@ -335,6 +335,7 @@ If you need to transform *web.config* on publish (for example, set environment v
 * [App Service overview](/azure/app-service/app-service-web-overview)
 * [Azure App Service diagnostics overview](/azure/app-service/app-service-diagnostics)
 * <xref:host-and-deploy/web-farm>
+* [Tutorial: Connect to SQL Database from .NET App Service without secrets using a managed identity](/azure/app-service/tutorial-connect-msi-sql-database?tabs=efcore%2Cdotnetcore)
 
 Azure App Service on Windows Server uses [Internet Information Services (IIS)](https://www.iis.net/). The following topics pertain to the underlying IIS technology:
 
