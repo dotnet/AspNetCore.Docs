@@ -23,6 +23,12 @@ A limited set of ASP.NET Core's localization features are supported:
 
 ❌ <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and *not supported* in Blazor apps.
 
+:::zone pivot="webassembly"
+
+Blazor WebAssembly has a reduced globalization API and uses a reduced set of built-in locales. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+
+:::zone-end
+
 This article describes how to use Blazor's globalization and localization features based on:
 
 * The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language), which is set by the browser based on a user's language preferences in browser settings.
@@ -944,6 +950,12 @@ A limited set of ASP.NET Core's localization features are supported:
 ✔️ <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> are supported in Blazor apps.
 
 ❌ <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and *not supported* in Blazor apps.
+
+:::zone pivot="webassembly"
+
+Blazor WebAssembly has a reduced globalization API and uses a reduced set of built-in locales. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+
+:::zone-end
 
 This article describes how to use Blazor's globalization and localization features based on:
 
@@ -1875,6 +1887,12 @@ A limited set of ASP.NET Core's localization features are supported:
 
 ❌ <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and *not supported* in Blazor apps.
 
+:::zone pivot="webassembly"
+
+Blazor WebAssembly has a reduced globalization API and uses a reduced set of built-in locales. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+
+:::zone-end
+
 This article describes how to use Blazor's globalization and localization features based on:
 
 * The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language), which is set by the browser based on a user's language preferences in browser settings.
@@ -2794,6 +2812,12 @@ A limited set of ASP.NET Core's localization features are supported:
 ✔️ <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> are supported in Blazor apps.
 
 ❌ <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and *not supported* in Blazor apps.
+
+:::zone pivot="webassembly"
+
+Blazor WebAssembly has a reduced globalization API and uses a reduced set of built-in locales. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+
+:::zone-end
 
 This article describes how to use Blazor's globalization and localization features based on:
 
