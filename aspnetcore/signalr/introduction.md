@@ -51,6 +51,8 @@ A hub is a high-level pipeline that allows a client and server to call methods o
 
 Hubs call client-side code by sending messages that contain the name and parameters of the client-side method. Objects sent as method parameters are deserialized using the configured protocol. The client tries to match the name to a method in the client-side code. When the client finds a match, it calls the method and passes to it the deserialized parameter data.
 
+[!INCLUDE[](~/includes/SignalR/es6.md)]
+
 ## Additional resources
 
 * [Introduction to ASP.NET Core SignalR](/training/modules/aspnet-core-signalr)
