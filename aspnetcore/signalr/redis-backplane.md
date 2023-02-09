@@ -104,7 +104,7 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
   
 * Configure options as needed:
  
-  Most options can be set in the connection string or in the [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) object. Options specified in `ConfigurationOptions` override the ones set in the connection string.
+  Most options can be set in the connection string or in the [`ConfigurationOptions`](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) object. Options specified in `ConfigurationOptions` override the ones set in the connection string.
 
   The following example shows how to set options in the `ConfigurationOptions` object. This example adds a channel prefix so that multiple apps can share the same Redis instance, as explained in the following step.
 
@@ -212,9 +212,16 @@ services.AddSignalR()
 
 :::moniker-end
 
-## Redis Clustering
+## Redis Cluster
 
-[Redis Clustering](https://redis.io/topics/cluster-spec) is a method for achieving high availability by using multiple Redis servers. Clustering is supported without any code modifications to the app.
+[Redis Cluster](https://redis.io/topics/cluster-spec) utilizes multiple simultaneously active Redis servers to achieve high availability. When Redis Cluster is used as the backplane for SignalR, messages are delivered to all of the nodes of the cluster without code modifications to the app.
+
+There's a tradeoff between the number of nodes in the cluster and the throughput of the backplane. Increasing the number of nodes increases the availability of the cluster but decreases the throughput because messages must be transmitted to all of the nodes in the cluster.
+
+In the SignalR app, include all of the possible Redis nodes using either of the following approaches:
+
+* List the nodes in the connection string delimited with commas.
+* If using custom behavior for connection failures, add the nodes to [`ConfigurationOptions.Endpoints`](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options).
 
 ## Next steps
 
