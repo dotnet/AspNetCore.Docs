@@ -17,7 +17,7 @@ HTTP is a stateless protocol. By default, HTTP requests are independent messages
 
 ## State management
 
-State can be stored using several approaches. Each approach is described later in this topic.
+State can be stored using several approaches. Each approach is described later in this article.
 
 | Storage approach | Storage mechanism |
 | ---------------- | ----------------- |
@@ -260,6 +260,12 @@ Cached data isn't associated with a specific request, user, or session. **Do not
 
 To cache application wide data, see <xref:performance/caching/memory>.
 
+## Checking session state
+
+[ISession.IsAvailable](xref:Microsoft.AspNetCore.Http.ISession.IsAvailable) is intended to check for transient failures. Calling `IsAvailable` before the session middleware runs throws an `InvalidOperationException`.
+
+Libraries that need to test session availability can use `HttpContext.Features.Get<ISessionFeature>()?.Session != null`.
+
 ## Common errors
 
 * "Unable to resolve service for type 'Microsoft.Extensions.Caching.Distributed.IDistributedCache' while attempting to activate 'Microsoft.AspNetCore.Session.DistributedSessionStore'."
@@ -293,7 +299,7 @@ HTTP is a stateless protocol. By default, HTTP requests are independent messages
 
 ## State management
 
-State can be stored using several approaches. Each approach is described later in this topic.
+State can be stored using several approaches. Each approach is described later in this article.
 
 | Storage approach | Storage mechanism |
 | ---------------- | ----------------- |
