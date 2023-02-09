@@ -212,15 +212,12 @@ services.AddSignalR()
 
 :::moniker-end
 
-## Redis high availability
+## Redis Cluster
 
-Redis offers two options for achieving high availability:
-
-1. [Redis Cluster](https://redis.io/topics/cluster-spec) utilizes multiple simultaneously active Redis servers. When Redis Cluster is used as the backplane for SignalR, all messages will get delivered to all the nodes of the Cluster without any code modifications to the app. However, there is a trade-off in that increasing the number of nodes in the Cluster decreases the message throughput of the backplane. This is because each message has to be sent N times where N is the number of active nodes in the Cluster.
-
-2. [Redis Sentinel](https://redis.io/docs/management/sentinel/) utilizes one or more Sentinel nodes to appoint a single active node out of multiple replicas. If the active node fails, another node will be promoted to be the active node. This achieves high availability without the message throughput trade-off.
+[Redis Cluster](https://redis.io/topics/cluster-spec) utilizes multiple simultaneously active Redis servers. When Redis Cluster is used as the backplane for SignalR, all messages will get delivered to all the nodes of the Cluster without any code modifications to the app. However, there is a trade-off in that increasing the number of nodes in the Cluster decreases the message throughput of the backplane. This is because each message has to be sent N times where N is the number of active nodes in the Cluster.
 
 In the SignalR app, you should include all the possible Redis nodes either in the connection string using a comma as the delimiter, or by adding them as `EndPoints` in the `ConfigurationOptions` object if using a custom behavior for connection failures.
+
 
 ## Next steps
 
