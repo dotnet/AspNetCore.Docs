@@ -5,7 +5,7 @@ description: Learn how to configure Blazor Server for additional security scenar
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 02/09/2023
 uid: blazor/security/server/additional-scenarios
 ---
 # ASP.NET Core Blazor Server additional security scenarios
@@ -16,9 +16,33 @@ This article explains how to configure Blazor Server for additional security sce
 
 Tokens available outside of the Razor components in a Blazor Server app can be passed to components with the approach described in this section.
 
-Authenticate the Blazor Server app as you would with a regular Razor Pages or MVC app. Provision and save the tokens to the authentication cookie. For example:
+Authenticate the Blazor Server app as you would with a regular Razor Pages or MVC app. Provision and save the tokens to the authentication cookie.
 
-:::moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-6.0"
+
+In `Program.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+
+...
+
+builder.Services.Configure<OpenIdConnectOptions>(
+    OpenIdConnectDefaults.AuthenticationScheme, options =>
+{
+    options.ResponseType = OpenIdConnectResponseType.Code;
+    options.SaveTokens = true;
+
+    options.Scope.Add("offline_access");
+});
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+In `Startup.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -40,6 +64,8 @@ services.Configure<OpenIdConnectOptions>(
 
 :::moniker range="< aspnetcore-5.0"
 
+In `Startup.cs`:
+
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
@@ -59,7 +85,9 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =
 
 Optionally, additional scopes are added with `options.Scope.Add("{SCOPE}");`, where the placeholder `{SCOPE}` is the additional scope to add.
 
-Define a **scoped** token provider service that can be used within the Blazor app to resolve the tokens from [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection):
+Define a **scoped** token provider service that can be used within the Blazor app to resolve the tokens from [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection).
+
+`TokenProvider.cs`:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -89,7 +117,7 @@ public class TokenProvider
 
 In `Program.cs`, add services for:
 
-* `IHttpClientFactory`
+* <xref:System.Net.Http.IHttpClientFactory>
 * `TokenProvider`
 
 ```csharp
@@ -103,7 +131,7 @@ builder.Services.AddScoped<TokenProvider>();
 
 In `Startup.ConfigureServices`, add services for:
 
-* `IHttpClientFactory`
+* <xref:System.Net.Http.IHttpClientFactory>
 * `TokenProvider`
 
 ```csharp
@@ -113,7 +141,9 @@ services.AddScoped<TokenProvider>();
 
 :::moniker-end
 
-Define a class to pass in the initial app state with the access and refresh tokens:
+Define a class to pass in the initial app state with the access and refresh tokens.
+
+`InitialApplicationState.cs`:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -157,7 +187,6 @@ In the `Pages/_Host.cshtml` file, create and instance of `InitialApplicationStat
 
 :::moniker-end
 
-
 ```cshtml
 @using Microsoft.AspNetCore.Authentication
 
@@ -171,8 +200,7 @@ In the `Pages/_Host.cshtml` file, create and instance of `InitialApplicationStat
     };
 }
 
-<component type="typeof(App)" param-InitialState="tokens" 
-    render-mode="ServerPrerendered" />
+<component ... param-InitialState="tokens" ... />
 ```
 
 In the `App` component (`App.razor`), resolve the service and initialize it with the data from the parameter:
@@ -243,7 +271,7 @@ public class WeatherForecastService
     private readonly HttpClient http;
     private readonly TokenProvider tokenProvider;
 
-    public WeatherForecastService(IHttpClientFactory clientFactory,
+    public WeatherForecastService(IHttpClientFactory clientFactory, 
         TokenProvider tokenProvider)
     {
         http = clientFactory.CreateClient();
@@ -253,7 +281,7 @@ public class WeatherForecastService
     public async Task<WeatherForecast[]> GetForecastAsync()
     {
         var token = tokenProvider.AccessToken;
-        var request = new HttpRequestMessage(HttpMethod.Get,
+        var request = new HttpRequestMessage(HttpMethod.Get, 
             "https://localhost:5003/WeatherForecast");
         request.Headers.Add("Authorization", $"Bearer {token}");
         var response = await http.SendAsync(request);
@@ -304,9 +332,19 @@ public class WeatherForecastService
 
 ## Set the authentication scheme
 
-:::moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-6.0"
 
 For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Program.cs`. The following example sets the OpenID Connect (OIDC) scheme:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+For an app that uses more than one Authentication Middleware and thus has more than one authentication scheme, the scheme that Blazor uses can be explicitly set in the endpoint configuration of `Startup.cs`. The following example sets the OpenID Connect (OIDC) scheme:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0"
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -333,6 +371,10 @@ endpoints.MapBlazorHub().RequireAuthorization(
         AuthenticationSchemes = AzureADDefaults.AuthenticationScheme
     });
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
 
 ## Use OpenID Connect (OIDC) v2.0 endpoints
 
