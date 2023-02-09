@@ -233,6 +233,11 @@ In the service that makes a secure API request, inject the token provider and re
 
 :::moniker range=">= aspnetcore-6.0"
 
+```csharp
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+
 public class WeatherForecastService
 {
     private readonly HttpClient http;
@@ -258,6 +263,7 @@ public class WeatherForecastService
             Array.Empty<WeatherForecast>();
     }
 }
+```
 
 :::moniker-end
 
