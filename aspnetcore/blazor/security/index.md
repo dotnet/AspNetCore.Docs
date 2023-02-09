@@ -583,7 +583,6 @@ In the following example, an `EditUser` policy is created in <xref:Microsoft.Asp
 * In a variable named `id`, store `value` as a string or set an empty string value (`string.Empty`).
 * If `id` isn't an empty string, assert that the policy is satisfied (return `true`) if the string's value starts with `EMP`. Otherwise, assert that the policy fails (return `false`).
 
-
 In either `Program.cs` or `Startup.cs` (depending on the hosting model and framework version):
 
 * Add namespaces for <xref:Microsoft.AspNetCore.Components?displayProperty=fullName> and <xref:System.Linq?displayProperty=fullName>:
@@ -621,6 +620,8 @@ The preceding example is an oversimplified authorization policy, merely used to 
 In the following `EditUser` component, the resource at `/users/{id}/edit` has a route parameter for the user's identifier (`{id}`). The component uses the preceding `EditUser` authorization policy to determine if the route value for `id` starts with `EMP`. If `id` starts with `EMP`, the policy succeeds and access to the component is authorized. If `id` starts with a value other than `EMP` or if `id` is an empty string, the policy fails, and the component doesn't load.
 
 `Pages/EditUser.razor`:
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 
