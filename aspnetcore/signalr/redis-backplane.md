@@ -221,7 +221,7 @@ There's a tradeoff between the number of nodes in the cluster and the throughput
 In the SignalR app, include all of the possible Redis nodes using either of the following approaches:
 
 * List the nodes in the connection string delimited with commas.
-* If using a custom behavior for connection failures, add the nodes to [`ConfigurationOptions.Endpoints`](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options).
+* If using custom behavior for connection failures, add the nodes to [`ConfigurationOptions.Endpoints`](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options).
 
 ## Next steps
 
