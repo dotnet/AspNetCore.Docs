@@ -262,7 +262,7 @@ To cache application wide data, see <xref:performance/caching/memory>.
 
 ## Checking session state
 
-[ISession.IsAvailable](xref:Microsoft.AspNetCore.Http.ISession.IsAvailable) is intended to check for transient failures. Calling `IsAvailable` before the session middleware runs will throw an `InvalidOperationException`.
+[ISession.IsAvailable](xref:Microsoft.AspNetCore.Http.ISession.IsAvailable) is intended to check for transient failures. Calling `IsAvailable` before the session middleware runs throws an `InvalidOperationException`.
 
 Libraries that need to test session availability can use `HttpContext.Features.Get<ISessionFeature>()?.Session != null`.
 
