@@ -253,7 +253,7 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
 :::moniker range=">= aspnetcore-6.0"
 
-   Examine the `Properties/launchSettings.json` file and determine the URL of the app from the `applicationUrl` property. The URL protocol is either secure (HTTPS) `https://localhost:{PORT}` or insecure (HTTP) `http://localhost:{PORT}` depending on the framework version, where the `{PORT}` placeholder is an assigned port. Note the URL for use in the `launch.json` file.
+   Examine the `Properties/launchSettings.json` file and determine the URL of the app from the `applicationUrl` property. Depending on the framework version, the URL protocol is either secure (HTTPS) `https://localhost:{PORT}` or insecure (HTTP) `http://localhost:{PORT}`, where the `{PORT}` placeholder is an assigned port. Note the URL for use in the `launch.json` file.
 
    In the launch configuration of the `.vscode/launch.json` file:
 
