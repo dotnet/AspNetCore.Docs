@@ -104,7 +104,7 @@ This article explains SignalR-specific aspects of setting up a [Redis](https://r
   
 * Configure options as needed:
  
-  Most options can be set in the connection string or in the [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) object. Options specified in `ConfigurationOptions` override the ones set in the connection string.
+  Most options can be set in the connection string or in the [`ConfigurationOptions`](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options) object. Options specified in `ConfigurationOptions` override the ones set in the connection string.
 
   The following example shows how to set options in the `ConfigurationOptions` object. This example adds a channel prefix so that multiple apps can share the same Redis instance, as explained in the following step.
 
@@ -214,10 +214,12 @@ services.AddSignalR()
 
 ## Redis Cluster
 
-[Redis Cluster](https://redis.io/topics/cluster-spec) utilizes multiple simultaneously active Redis servers. When Redis Cluster is used as the backplane for SignalR, all messages will get delivered to all the nodes of the Cluster without any code modifications to the app. However, there is a trade-off in that increasing the number of nodes in the Cluster decreases the message throughput of the backplane. This is because each message has to be sent N times where N is the number of active nodes in the Cluster.
+[Redis Cluster](https://redis.io/topics/cluster-spec) utilizes multiple simultaneously active Redis servers. When Redis Cluster is used as the backplane for SignalR, all messages are delivered to all of the nodes of the cluster without code modifications to the app. However, there's a tradeoff in that increasing the number of nodes in the cluster decreases the message throughput of the backplane. This is because each message must be sent to every active node in the cluster.
 
-In the SignalR app, you should include all the possible Redis nodes either in the connection string using a comma as the delimiter, or by adding them as `EndPoints` in the `ConfigurationOptions` object if using a custom behavior for connection failures.
+In the SignalR app, include all of the possible Redis nodes using either of the following approaches:
 
+* List the nodes in the connection string delimited with commas.
+* If using a custom behavior for connection failures, add the nodes to [`ConfigurationOptions.Endpoints`](https://stackexchange.github.io/StackExchange.Redis/Configuration#configuration-options).
 
 ## Next steps
 
