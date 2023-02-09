@@ -302,7 +302,7 @@ Build the project.
 Run the following command:
 
   ```dotnetcli
-  dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
+  dotnet-aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
   ```
 
 The preceding command scaffolds the `TodoItemsController`.
