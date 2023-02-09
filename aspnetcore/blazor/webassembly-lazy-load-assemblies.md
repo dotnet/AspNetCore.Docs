@@ -128,7 +128,7 @@ In the following example:
 > [!NOTE]
 > The preceding example doesn't show the contents of the `Router` component's Razor markup (`...`). For a demonstration with complete code, see the [Complete example](#complete-example) section of this article.
 
-:::moniker range="< aspnetcore-6.0"
+:::moniker range="= aspnetcore-5.0"
 
 [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
@@ -229,7 +229,7 @@ In the following example:
 > [!NOTE]
 > The preceding example doesn't show the contents of the `Router` component's Razor markup (`...`). For a demonstration with complete code, see the [Complete example](#complete-example) section of this article.
 
-:::moniker range="< aspnetcore-6.0"
+:::moniker range="= aspnetcore-5.0"
 
 [!INCLUDE[](~/blazor/includes/prefer-exact-matches.md)]
 
