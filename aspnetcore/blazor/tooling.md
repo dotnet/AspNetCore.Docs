@@ -253,7 +253,7 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
 :::moniker range=">= aspnetcore-6.0"
 
-   Examine the `Properties/launchSettings.json` file and determine the URL of the app from the `applicationUrl` property (for example, `https://localhost:7268`). Note this value for use in the `launch.json` file.
+   Examine the `Properties/launchSettings.json` file and determine the URL of the app from the `applicationUrl` property. The URL format is either secure (HTTPS) `https://localhost:7268` or insecure (HTTP) `http://localhost:7268` depending on the framework version. Note this value for use in the `launch.json` file.
 
    In the launch configuration of the `.vscode/launch.json` file:
 
@@ -275,12 +275,12 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
    The following example `.vscode/launch.json` file:
 
    * Sets the current working directory to the :::no-loc text="Server"::: folder.
-   * Sets the URL for the app to `https://localhost:7268`.
+   * Sets the URL for the app to `http://localhost:7268`.
    * Changes the default browser from Microsoft Edge to Google Chrome.
 
    ```json
    "cwd": "${workspaceFolder}/Server",
-   "url": "https://localhost:7268",
+   "url": "http://localhost:7268",
    "browser": "chrome"
    ```
 
@@ -295,7 +295,7 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
          "name": "Launch and Debug Blazor WebAssembly Application",
          "request": "launch",
          "cwd": "${workspaceFolder}/Server",
-         "url": "https://localhost:7268",
+         "url": "http://localhost:7268",
          "browser": "chrome"
        }
      ]
