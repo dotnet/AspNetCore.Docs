@@ -5,7 +5,7 @@ description: Learn how to secure Blazor Server apps as ASP.NET Core applications
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 02/09/2023
 uid: blazor/security/server/index
 ---
 # Secure ASP.NET Core Blazor Server apps
@@ -22,9 +22,7 @@ The [Blazor Server project template](xref:blazor/project-structure) can be confi
 
 Follow the Visual Studio guidance in <xref:blazor/tooling> to create a new Blazor Server project with an authentication mechanism.
 
-After choosing the **Blazor Server App** template and configuring the project, select the app's authentication under **Authentication type**.
-
-A dialog opens to offer the same set of authentication mechanisms available for other ASP.NET Core projects:
+After choosing the **Blazor Server App** template and configuring the project, select the app's authentication under **Authentication type**:
 
 * **Individual Accounts**: User accounts are stored within the app using ASP.NET Core [Identity](xref:security/authentication/identity).
 * **Microsoft identity platform**: For more information, see <xref:blazor/security/index#additional-resources>.
@@ -38,7 +36,7 @@ Follow the Visual Studio Code guidance in <xref:blazor/tooling> to create a new 
 dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 ```
 
-Permissible authentication values for the `{AUTHENTICATION}` placeholder in the preceding command are shown in the following table.
+Permissible authentication values for the `{AUTHENTICATION}` placeholder are shown in the following table.
 
 | Authentication mechanism | Description |
 | ------------------------ | ----------- |
@@ -72,7 +70,7 @@ Create a new Blazor Server project with an authentication mechanism using the fo
 dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
 ```
 
-Permissible authentication values (`{AUTHENTICATION}`) are shown in the following table.
+Permissible authentication values for the `{AUTHENTICATION}` placeholder are shown in the following table.
 
 | Authentication mechanism | Description |
 | ------------------------ | ----------- |
