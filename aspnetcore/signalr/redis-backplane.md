@@ -214,7 +214,7 @@ services.AddSignalR()
 
 ## Redis Cluster
 
-[Redis Cluster](https://redis.io/topics/cluster-spec) utilizes multiple simultaneously active Redis servers. When Redis Cluster is used as the backplane for SignalR, all messages are delivered to all of the nodes of the cluster without code modifications to the app. However, there's a tradeoff in that increasing the number of nodes in the cluster decreases the message throughput of the backplane. This is because each message must be sent to every active node in the cluster.
+[Redis Cluster](https://redis.io/topics/cluster-spec) utilizes multiple simultaneously active Redis servers. When Redis Cluster is used as the backplane for SignalR, all messages are delivered to all of the nodes of the cluster without code modifications to the app. There's a tradeoff between the number of nodes in the cluster and the message throughput of the backplane, increasing one decreases the other.
 
 In the SignalR app, include all of the possible Redis nodes using either of the following approaches:
 
