@@ -3,7 +3,7 @@ title: Part 2, add a model
 author: wadepickett
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.author: wpickett
-ms.date: 02/03/2023
+ms.date: 02/09/2023
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: contperf-fy21q2, engagement-fy23
 uid: tutorials/razor-pages/model
@@ -248,7 +248,7 @@ In this section, the **Package Manager Console** (PMC) window is used to:
    ```
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-* In the **Solution Tool Window**, right-click the *RazorPagesMovie* project, and then select **Open in Terminal**. 
+* Right-click the *RazorPagesMovie* project, and then select **Open in Terminal**. 
 
   The **Terminal** window opens with the command prompt at the project directory, which contains the Program.cs and .csproj files.
 
