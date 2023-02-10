@@ -45,3 +45,5 @@ The following clients are available but are experimental or unofficial. The foll
 
 * [C++ client](https://github.com/aspnet/SignalR-Client-Cpp)
 * [Swift client](https://github.com/moozzyk/SignalR-Client-Swift)
+
+[!INCLUDE[](~/includes/SignalR/es6.md)]
