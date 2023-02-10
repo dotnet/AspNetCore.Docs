@@ -348,98 +348,16 @@ A default event handler for an authorized element, such as the `SecureMethod` me
 > [!WARNING]
 > Client-side markup and methods associated with an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> are only protected from view and execution in the ***rendered UI*** in Blazor WebAssembly apps. In order to protect authorized content and secure methods for Blazor WebAssembly apps, the content is usually supplied by a secure, authorized web API call to a server API and never stored in the app. For more information, see <xref:blazor/call-web-api> and <xref:blazor/security/webassembly/additional-scenarios>.
 
-The content of `<Authorized>` and `<NotAuthorized>` tags can include arbitrary items, such as other interactive components. For example, the Blazor WebAssembly template with authentication enabled includes a [`RedirectToLogin` component (`Shared/RedirectToLogin.razor`)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/Shared/RedirectToLogin.razor), which is positioned in the `<NotAuthorized>` content of the Blazor Router in the template's [`App` component](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/App.razor). When a user isn't authenticated (`context.User.Identity?.IsAuthenticated != true`), the `RedirectToLogin` component redirects the browser to the `authentication/login` endpoint for authentication. The user is returned to the requested URL after authenticating with the identity provider.
-
-[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+The content of `<Authorized>` and `<NotAuthorized>` tags can include arbitrary items, such as other interactive components.
 
 Authorization conditions, such as roles or policies that control UI options or access, are covered in the [Authorization](#authorization) section.
 
-If authorization conditions aren't specified, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> uses a default policy and treats:
+If authorization conditions aren't specified, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> uses a default policy:
 
-* Authenticated (signed-in) users as authorized.
-* Unauthenticated (signed-out) users as unauthorized.
+* Authenticated (signed-in) users are authorized.
+* Unauthenticated (signed-out) users are unauthorized.
 
 The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component can be used in the `NavMenu` component (`Shared/NavMenu.razor`) to display a [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), but note that this approach only removes the list item from the rendered output. It doesn't prevent the user from navigating to the component. Implement authorization separately in the destination component.
-
-Apps created from a [Blazor project template](xref:blazor/project-structure) that include authentication use a `LoginDisplay` component that depends on an `AuthorizeView` component. The `AuthorizeView` component selectively displays content to users for Identity-related work. The following example is from the [Blazor WebAssembly project template](xref:blazor/project-structure).
-
-`Shared/LoginDisplay.razor`:
-
-:::moniker range=">= aspnetcore-7.0"
-
-```razor
-@using Microsoft.AspNetCore.Components.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-@inject NavigationManager Navigation
-
-<AuthorizeView>
-    <Authorized>
-        Hello, @context.User.Identity?.Name!
-        <button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
-    </Authorized>
-    <NotAuthorized>
-        <a href="authentication/login">Log in</a>
-    </NotAuthorized>
-</AuthorizeView>
-
-@code{
-    public void BeginLogOut()
-    {
-        Navigation.NavigateToLogout("authentication/logout");
-    }
-}
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-7.0"
-
-```razor
-@using Microsoft.AspNetCore.Components.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
-
-@inject NavigationManager Navigation
-@inject SignOutSessionStateManager SignOutManager
-
-<AuthorizeView>
-    <Authorized>
-        Hello, @context.User.Identity.Name!
-        <button class="nav-link btn btn-link" @onclick="BeginLogout">Log out</button>
-    </Authorized>
-    <NotAuthorized>
-        <a href="authentication/login">Log in</a>
-    </NotAuthorized>
-</AuthorizeView>
-
-@code{
-    private async Task BeginLogout(MouseEventArgs args)
-    {
-        await SignOutManager.SetSignOutState();
-        Navigation.NavigateTo("authentication/logout");
-    }
-}
-```
-
-:::moniker-end
-
-The following example is from the [Blazor Server project template](xref:blazor/project-structure) and uses ASP.NET Core Identity endpoints in the `Identity` area of the app to process Identity-related work.
-
-`Shared/LoginDisplay.razor`:
-
-```razor
-<AuthorizeView>
-    <Authorized>
-        <a href="Identity/Account/Manage">Hello, @context.User.Identity.Name!</a>
-        <form method="post" action="Identity/Account/LogOut">
-            <button type="submit" class="nav-link btn btn-link">Log out</button>
-        </form>
-    </Authorized>
-    <NotAuthorized>
-        <a href="Identity/Account/Register">Register</a>
-        <a href="Identity/Account/Login">Log in</a>
-    </NotAuthorized>
-</AuthorizeView>
-```
 
 ### Role-based and policy-based authorization
 
@@ -473,7 +391,7 @@ For policy-based authorization, use the <xref:Microsoft.AspNetCore.Components.Au
 </AuthorizeView>
 ```
 
-To handle the case where the user should satisfy one of several policies, create and use a policy that confirms that the user satisfies the other policies.
+To handle the case where the user should satisfy one of several policies, create a policy that confirms that the user satisfies other policies.
 
 To handle the case where the user must satisfy several policies simultaneously, take *either* of the following approaches:
 
@@ -490,11 +408,14 @@ To handle the case where the user must satisfy several policies simultaneously, 
 
 Claims-based authorization is a special case of policy-based authorization. For example, you can define a policy that requires users to have a certain claim. For more information, see <xref:security/authorization/policies>.
 
-If neither <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> nor <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> is specified, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> uses the default policy.
+If neither <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles> nor <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Policy> is specified, <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> uses the default policy:
+
+* Authenticated (signed-in) users are authorized.
+* Unauthenticated (signed-out) users are unauthorized.
 
 Because .NET string comparisons are case-sensitive by default, matching role and policy names is also case-sensitive. For example, `Admin` (uppercase `A`) is not treated as the same role as `admin` (lowercase `a`).
 
-Pascal case is typically used for role and policy names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirement. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role and policy names is unusual but permitted by the framework. For example, `billing administrator` is an unusual role or policy name format in .NET apps, but it is a valid role or policy name.
+Pascal case is typically used for role and policy names (for example, `BillingAdministrator`), but the use of Pascal case isn't a strict requirement. Different casing schemes, such as camel case, kebab case, and snake case, are permitted. Using spaces in role and policy names is unusual but permitted by the framework. For example, `billing administrator` is an unusual role or policy name format in .NET apps, but it's a valid role or policy name.
 
 ### Content displayed during asynchronous authentication
 
@@ -549,12 +470,12 @@ For policy-based authorization, use the <xref:Microsoft.AspNetCore.Authorization
 <p>You can only see this if you satisfy the 'Over21' policy.</p>
 ```
 
-If neither <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> nor <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> is specified, [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) uses the default policy, which by default is to treat:
+If neither <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Roles> nor <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> is specified, [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) uses the default policy:
 
-* Authenticated (signed-in) users as authorized.
-* Unauthenticated (signed-out) users as unauthorized.
+* Authenticated (signed-in) users are authorized.
+* Unauthenticated (signed-out) users are unauthorized.
 
-When the user isn't authorized, the framework automatically displays the following fallback message:
+When the user isn't authorized and if the app doesn't [customize unauthorized content with the Router component](#customize-unauthorized-content-with-the-router-component), the framework automatically displays the following fallback message:
 
 ```html
 Not authorized.
@@ -701,6 +622,10 @@ If the `<NotAuthorized>` tag isn't specified, the <xref:Microsoft.AspNetCore.Com
 Not authorized.
 ```
 
+An app created from the Blazor WebAssembly project template with authentication enabled includes a [`RedirectToLogin` component (`Shared/RedirectToLogin.razor` reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/Shared/RedirectToLogin.razor), which is positioned in the `<NotAuthorized>` content of the Blazor Router in the template's [`App` component (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/App.razor). When a user isn't authenticated (`context.User.Identity?.IsAuthenticated != true`), the `RedirectToLogin` component redirects the browser to the `authentication/login` endpoint for authentication. The user is returned to the requested URL after authenticating with the identity provider.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
 ## Procedural logic
 
 If the app is required to check authorization rules as part of procedural logic, use a cascaded parameter of type `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` to obtain the user's <xref:System.Security.Claims.ClaimsPrincipal>. `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>` can be combined with other services, such as `IAuthorizationService`, to evaluate policies.
@@ -711,13 +636,19 @@ In the following example:
 * The `user.IsInRole("admin")` executes code for users in the 'Admin' role.
 * The `(await AuthorizationService.AuthorizeAsync(user, "content-editor")).Succeeded` executes code for users satisfying the 'content-editor' policy.
 
+A Blazor Server app include the appropriate namespaces by default when created from the Blazor Server project template. In a Blazor WebAssembly app, confirm the presence of the <xref:Microsoft.AspNetCore.Authorization> and <xref:Microsoft.AspNetCore.Components.Authorization> namespaces either in the component or in the app's `_Imports.razor` file:
+
+```razor
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+```
+
 `Pages/ProceduralLogic.razor`:
 
 :::moniker range=">= aspnetcore-6.0"
 
 ```razor
 @page "/procedural-logic"
-@using Microsoft.AspNetCore.Authorization
 @inject IAuthorizationService AuthorizationService
 
 <h1>Procedural Logic Example</h1>
@@ -739,18 +670,18 @@ In the following example:
             {
                 if (user.Identity is not null && user.Identity.IsAuthenticated)
                 {
-                    ...
+                    // ...
                 }
 
                 if (user.IsInRole("Admin"))
                 {
-                    ...
+                    // ...
                 }
 
                 if ((await AuthorizationService.AuthorizeAsync(user, "content-editor"))
                     .Succeeded)
                 {
-                    ...
+                    // ...
                 }
             }
         }
@@ -763,8 +694,10 @@ In the following example:
 :::moniker range="< aspnetcore-6.0"
 
 ```razor
-@using Microsoft.AspNetCore.Authorization
+@page "/procedural-logic"
 @inject IAuthorizationService AuthorizationService
+
+<h1>Procedural Logic Example</h1>
 
 <button @onclick="@DoSomething">Do something important</button>
 
@@ -778,32 +711,24 @@ In the following example:
 
         if (user.Identity.IsAuthenticated)
         {
-            ...
+            // ...
         }
 
         if (user.IsInRole("Admin"))
         {
-            ...
+            // ...
         }
 
         if ((await AuthorizationService.AuthorizeAsync(user, "content-editor"))
             .Succeeded)
         {
-            ...
+            // ...
         }
     }
 }
 ```
 
 :::moniker-end
-
-> [!NOTE]
-> In a Blazor WebAssembly app, confirm the presence of the <xref:Microsoft.AspNetCore.Authorization> and <xref:Microsoft.AspNetCore.Components.Authorization> namespaces either in the component or in the app's `_Imports.razor` file:
->
-> ```razor
-> @using Microsoft.AspNetCore.Authorization
-> @using Microsoft.AspNetCore.Components.Authorization
-> ```
 
 ## Troubleshoot errors
 
