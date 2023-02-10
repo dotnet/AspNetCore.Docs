@@ -198,7 +198,7 @@ Consider a counter component that should allow a user to increment a counter a m
 A client can dispatch one or more increment events before the framework produces a new render of this component. The result is that the `count` can be incremented *over three times* by the user because the button isn't removed by the UI quickly enough. The correct way to achieve the limit of three `count` increments is shown in the following example:
 
 ```razor
-<p>Count: @count<p>
+<p>Count: @count</p>
 
 @if (count < 3)
 {
