@@ -235,5 +235,6 @@ OWIN depends on an `IDictionary<string,object>` object to communicate informatio
 
 ## Additional resources
 
+* See the [source on GitHub](https://github.com/aspnet/HttpAbstractions/blob/524a0227e5b7945b9520855d37881dabf7e5da32/src/Microsoft.AspNetCore.Owin/OwinFeatureCollection.cs) for OWIN keys supported in the translation layer.
 * [Middleware](xref:fundamentals/middleware/index)
 * [Servers](xref:fundamentals/servers/index)
