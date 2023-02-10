@@ -94,6 +94,8 @@ The URI segment `/signin-google` is set as the default callback of the Google au
 * If the sign-in doesn't work and you aren't getting any errors, switch to development mode to make the issue easier to debug.
 * If Identity isn't configured by calling `services.AddIdentity` in `ConfigureServices`, attempting to authenticate results in *ArgumentException: The 'SignInScheme' option must be provided*. The project template used in this tutorial ensures Identity is configured.
 * If the site database has not been created by applying the initial migration, you get *A database operation failed while processing the request* error. Select **Apply Migrations** to create the database, and refresh the page to continue past the error.
+* HTTP 500 error after successfully authenticating the request by the OAuth 2.0 provider such as Google: See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/14169).
+* How to implement external authentication with Google for React and other SPA apps: See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/14169).
 
 ## Next steps
 
