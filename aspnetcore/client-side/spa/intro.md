@@ -128,7 +128,7 @@ STS releases are released in even-numbered years and LTS releases are releases i
 
 SPA frameworks typically have a shorter release cycle than .NET. Because of the two different release cycles, the supported version of the SPA framework and .NET can get out of sync:
 
-* The major SPA framework version, that a .NET major release depends on, can out of support.
+* The major SPA framework version, that a .NET major release depends on, can go out of support.
 * The .NET version the SPA framework shipped with is still supported.
 
 The ASP.NET Core SPA templates can be updated in a patch release to a new SPA framework version to keep the templates in a supported and safe state.
