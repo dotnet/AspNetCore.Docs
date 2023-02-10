@@ -282,6 +282,7 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 > [!NOTE]
 > For SQLite, column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
+
 ---
 
 The preceding commands:
