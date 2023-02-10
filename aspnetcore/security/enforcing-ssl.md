@@ -10,7 +10,7 @@ uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [David Galvan](https://github.com/djgalvan) [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This document shows how to:
 
@@ -306,6 +306,8 @@ The path in the preceding command is specific for Ubuntu. For other distribution
 
 ### Trust HTTPS certificate on Linux using Edge or Chrome
 
+# [Ubuntu](#tab/linux-ubuntu)
+
 For chromium browsers on Linux:
 
 * Install the `libnss3-tools` for your distribution.
@@ -330,7 +332,7 @@ For chromium browsers on Linux:
 
 <a name="trust-ff-linux"></a>
 
-### Trust the certificate with Firefox on Linux
+#### Trust the certificate with Firefox on Linux
 
 * Export the certificate with the following command:
 
@@ -358,6 +360,72 @@ EOF
 ```
   
 See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) in this document for an alternative way to configure the policy file using the browser.
+
+# [Red Hat Enterprise Linux](#tab/linux-rhel)
+
+Install RHEL Dependencies:
+
+``` bash
+dnf install dotnet-sdk-6.0 nss-tools
+```
+
+Create and run an ASP.NET Core Web App:
+
+``` bash
+dotnet new web -o ~/web
+cd ~/web
+dotnet run
+```
+
+Note the location of the HTTPS and HTTP URLs and test them with curl:
+
+```bash
+curl https://{url}
+curl http://{url}
+```
+
+The HTTP endpoint succeeds while the HTTPS endpoint is not trusted.
+
+Export The ASP.NET Core Development Certificate:
+
+``` bash
+dotnet dev-certs https -ep ~/localhost.crt --format PEM
+```
+
+Import The ASP.NET Core Development Certificate:
+
+``` bash
+# Chromium-based Browsers
+certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n localhost -i ~/web/localhost.crt
+certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n localhost -i ~/web/localhost.crt
+
+# Mozilla Firefox
+certutil -d sql:$HOME/.mozilla/firefox/{userprofile}/ -A -t "P,," -n localhost -i ~/web/ocalhost.crt
+certutil -d sql:$HOME/.mozilla/firefox/{userprofile}/ -A -t "C,," -n localhost -i ~/web/ocalhost.crt
+```
+
+Create An Alias To Test With Curl:
+
+``` bash
+# Curl doesn't support the NSS database so hold on to the `localhost.crt` file and note it's ocation.
+# Create an alias in ~/.bashrc
+alias curl="curl --cacert /*{pathto}*/localhost.crt"
+# Run the ASP.NET Core Web App
+cd ~/web
+dotnet run
+# Note the location of the https url
+# Open a new terminal
+curl https://{url}
+```
+
+Cleanup:
+
+``` bash
+certutil -d sql:$HOME/.pki/nssdb -D -n localhost
+certutil -d sql:$HOME/.mozilla/firefox/{userprofiles}/ -D -n localhost
+# Remove The Curl Alias
+```
+---
 
 <a name="wsl"></a>
 
