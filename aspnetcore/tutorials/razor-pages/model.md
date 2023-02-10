@@ -247,8 +247,9 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
    ```
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-* Right-click the *RazorPagesMovie* project, and then select **Open in Terminal**. 
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* Right-click the *RazorPagesMovie.csproj* project, and then select **Open in Integrated Terminal**.
 
   The **Terminal** window opens with the command prompt at the project directory, which contains the Program.cs and .csproj files.
 
@@ -264,6 +265,23 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 > [!NOTE]
 > For SQLite, column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
 
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* Control-click the *RazorPagesMovie* project, and then select **Open in Terminal**.
+
+  The **Terminal** window opens with the command prompt at the project directory, which contains the Program.cs and .csproj files.
+
+* Run the following .NET CLI commands:
+
+  ```dotnetcli
+  dotnet tool uninstall --global dotnet-ef
+  dotnet tool install --global dotnet-ef
+  dotnet ef migrations add InitialCreate
+  dotnet ef database update
+  ```
+
+> [!NOTE]
+> For SQLite, column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
 ---
 
 The preceding commands:
