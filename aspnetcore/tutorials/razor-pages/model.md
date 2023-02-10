@@ -247,6 +247,12 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
    ```
 
+The preceding commands:
+
+* The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
+
+* The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the `Migrations/<time-stamp>_InitialCreate.cs` file, which creates the database.
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 * Right-click the *RazorPagesMovie.csproj* project, and then select **Open in Integrated Terminal**.
@@ -264,6 +270,14 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 > [!NOTE]
 > For SQLite, column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
+
+The preceding commands:
+
+* Install the latest [Entity Framework Core tools](/ef/core/get-started/overview/install#get-the-entity-framework-core-tools) after uninstalling any previous version, if it exists.
+
+* The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
+
+* The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the `Migrations/<time-stamp>_InitialCreate.cs` file, which creates the database.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -283,20 +297,19 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 > [!NOTE]
 > For SQLite, column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
 
----
-
 The preceding commands:
 
 * Install the latest [Entity Framework Core tools](/ef/core/get-started/overview/install#get-the-entity-framework-core-tools) after uninstalling any previous version, if it exists.
-* Run the `migrations` command to generate code that creates the initial database schema.
+
+* The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
+
+* The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the `Migrations/<time-stamp>_InitialCreate.cs` file, which creates the database.
+
+---
 
 The following warning is displayed, which is addressed in a later step:
 
 > No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
-
-The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
-
-The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the `Migrations/<time-stamp>_InitialCreate.cs` file, which creates the database.
 
 ### Examine the context registered with dependency injection
 
