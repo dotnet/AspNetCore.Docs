@@ -123,13 +123,9 @@ The following highlighted code in `ClientApp/src/setupProxy.js` uses logic based
 
 ## Supported SPA framework version in ASP.NET Core SPA templates
 
-Each ASP.NET Core release includes the latest supported SPA framework with the SPA templates. Each .NET release is defined as either [Standard Term Support (STS) or Long Term Support (LTS)](https://dotnet.microsoft.com/platform/support/policy), at the beginning of the release.
-STS releases are released in even-numbered years and LTS releases are releases in odd-numbered years. Patch updates are released monthly. Within a release's support lifecycle, systems must remain current on released patch updates.
+The SPA project templates that ship with each ASP.NET Core release reference the latest version of the appropriate SPA framework.
 
-SPA frameworks typically have a shorter release cycle than .NET. Because of the two different release cycles, the supported version of the SPA framework and .NET can get out of sync:
-
-* The major SPA framework version, that a .NET major release depends on, can go out of support.
-* The .NET version the SPA framework shipped with is still supported.
+SPA frameworks typically have a shorter release cycle than .NET. Because of the two different release cycles, the supported version of the SPA framework and .NET can get out of sync: the major SPA framework version, that a .NET major release depends on, can go out of support, while the .NET version the SPA framework shipped with is still supported.
 
 The ASP.NET Core SPA templates can be updated in a patch release to a new SPA framework version to keep the templates in a supported and safe state.
 
