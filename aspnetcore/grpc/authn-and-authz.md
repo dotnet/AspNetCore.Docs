@@ -26,10 +26,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapGrpcService<GreeterService>();
-});
+app.MapGrpcService<GreeterService>();
 ```
 
 > [!NOTE]
