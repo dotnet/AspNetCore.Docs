@@ -44,6 +44,8 @@ The table below shows the features and support for the clients that offer real-t
 
 Support for enabling additional client features is tracked in [our issue tracker](https://github.com/dotnet/AspNetCore/issues).
 
+[!INCLUDE[](~/includes/SignalR/es6.md)]
+
 ## Additional resources
 
 * [Get started with SignalR for ASP.NET Core](xref:tutorials/signalr)
