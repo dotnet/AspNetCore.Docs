@@ -262,8 +262,6 @@ The preceding commands:
 * Run the following .NET CLI commands:
 
   ```dotnetcli
-  dotnet tool uninstall --global dotnet-ef
-  dotnet tool install --global dotnet-ef
   dotnet ef migrations add InitialCreate
   dotnet ef database update
   ```
@@ -272,8 +270,6 @@ The preceding commands:
 > For SQLite, column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
 
 The preceding commands:
-
-* Install the latest [Entity Framework Core tools](/ef/core/get-started/overview/install#get-the-entity-framework-core-tools) after uninstalling any previous version, if it exists.
 
 * The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
 
