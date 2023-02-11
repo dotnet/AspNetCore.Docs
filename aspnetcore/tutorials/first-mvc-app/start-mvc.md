@@ -43,6 +43,11 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 ---
 
+<!-- 
+Each new version, change the layout file to use the non-minified CSS. 
+See https://github.com/dotnet/AspNetCore.Docs/issues/21193
+-->
+
 ## Create a web app
 
 # [Visual Studio](#tab/visual-studio)
