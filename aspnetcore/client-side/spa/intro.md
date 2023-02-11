@@ -4,7 +4,7 @@ author: rick-anderson
 ms.author: jacalvar
 monikerRange: '>= aspnetcore-6.0'
 description: Overview of Single Page Applications (SPA) in ASP.NET Core
-ms.date: 1/11/2023
+ms.date: 2/11/2023
 uid: spa/intro
 ---
 <!-- Content from https://github.com/dotnet/AspNetCore.Docs/issues/26373 -->
@@ -120,6 +120,14 @@ The `src/setupProxy.js` configures the SPA proxy to forward the requests to the 
 The following highlighted code in `ClientApp/src/setupProxy.js` uses logic based on the environment variables set during development to determine the port the backend is running on:
 
   :::code language="javascript" source="~/client-side/spa/intro/samples/setupProxy.js" highlight="4-5":::
+
+## Supported SPA framework version in ASP.NET Core SPA templates
+
+The SPA project templates that ship with each ASP.NET Core release reference the latest version of the appropriate SPA framework.
+
+SPA frameworks typically have a shorter release cycle than .NET. Because of the two different release cycles, the supported version of the SPA framework and .NET can get out of sync: the major SPA framework version, that a .NET major release depends on, can go out of support, while the .NET version the SPA framework shipped with is still supported.
+
+The ASP.NET Core SPA templates can be updated in a patch release to a new SPA framework version to keep the templates in a supported and safe state.
 
 ## Additional resources
 
