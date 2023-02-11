@@ -492,7 +492,7 @@ The following `LoginComponent` component demonstrates how to log in a user. In a
     public async Task Login()
     {
         await ((ExternalAuthStateProvider)AuthenticationStateProvider)
-            .LoginAsync();
+            .LogInAsync();
     }
 }
 ```
