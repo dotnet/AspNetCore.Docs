@@ -3,7 +3,7 @@ title: Part 2, add a model
 author: wadepickett
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
 ms.author: wpickett
-ms.date: 02/03/2023
+ms.date: 02/09/2023
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: contperf-fy21q2, engagement-fy23
 uid: tutorials/razor-pages/model
@@ -244,11 +244,35 @@ In this section, the **Package Manager Console** (PMC) window is used to:
    ```powershell
    Add-Migration InitialCreate
    Update-Database
-
    ```
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-* In the **Solution Tool Window**, right-click the *RazorPagesMovie* project, and then select **Open in Terminal**. 
+* The `Add-Migration` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migration. Any name can be used, but by convention a name is selected that describes the migration.
+
+* The `Update-Database` command runs the `Up` method in migrations that have not been applied. In this case, the command runs the `Up` method in the `Migrations/<time-stamp>_InitialCreate.cs` file, which creates the database.
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+* Right-click the *RazorPagesMovie.csproj* project, and then select **Open in Integrated Terminal**.
+
+  The **Terminal** window opens with the command prompt at the project directory, which contains the Program.cs and .csproj files.
+
+* Run the following .NET CLI commands:
+
+  ```dotnetcli
+  dotnet ef migrations add InitialCreate
+  dotnet ef database update
+  ```
+
+* The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
+
+* The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the `Migrations/<time-stamp>_InitialCreate.cs` file, which creates the database.
+
+> [!NOTE]
+> For SQLite, column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* Control-click the *RazorPagesMovie* project, and then select **Open in Terminal**.
 
   The **Terminal** window opens with the command prompt at the project directory, which contains the Program.cs and .csproj files.
 
@@ -261,23 +285,20 @@ In this section, the **Package Manager Console** (PMC) window is used to:
   dotnet ef database update
   ```
 
+* The `tool` commands install the latest [Entity Framework Core tools](/ef/core/get-started/overview/install#get-the-entity-framework-core-tools) after uninstalling any previous version, if one exists.
+
+* The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
+
+* The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the `Migrations/<time-stamp>_InitialCreate.cs` file, which creates the database.
+
 > [!NOTE]
 > For SQLite, column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
 
 ---
 
-The preceding commands:
-
-* Install the latest [Entity Framework Core tools](/ef/core/get-started/overview/install#get-the-entity-framework-core-tools) after uninstalling any previous version, if it exists.
-* Run the `migrations` command to generate code that creates the initial database schema.
-
 The following warning is displayed, which is addressed in a later step:
 
 > No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
-
-The `migrations` command generates code to create the initial database schema. The schema is based on the model specified in `DbContext`. The `InitialCreate` argument is used to name the migrations. Any name can be used, but by convention a name is selected that describes the migration.
-
-The `update` command runs the `Up` method in migrations that have not been applied. In this case, `update` runs the `Up` method in the `Migrations/<time-stamp>_InitialCreate.cs` file, which creates the database.
 
 ### Examine the context registered with dependency injection
 
