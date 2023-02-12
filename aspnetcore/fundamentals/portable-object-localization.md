@@ -215,7 +215,7 @@ You can use the more generic `Plural(int count, string[] pluralForms, params obj
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-5.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 By [Sébastien Ros](https://github.com/sebastienros), [Scott Addie](https://twitter.com/Scott_Addie) and [Hisham Bin Ateya](https://github.com/hishamco)
 
