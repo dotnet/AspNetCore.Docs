@@ -99,6 +99,7 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 
 ## Additional resources for Blazor WebAssembly apps
 
+* [Hosted Blazor WebAssembly: Secure a SignalR hub](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * <xref:blazor/host-and-deploy/webassembly#signalr-configuration>
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
@@ -593,6 +594,7 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 
 ## Additional resources for Blazor WebAssembly apps
 
+* [Hosted Blazor WebAssembly: Secure a SignalR hub](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * <xref:blazor/host-and-deploy/webassembly#signalr-configuration>
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
@@ -983,6 +985,7 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 
 ## Additional resources for Blazor WebAssembly apps
 
+* [Hosted Blazor WebAssembly: Secure a SignalR hub](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
@@ -1368,6 +1371,7 @@ For more information, see <xref:signalr/configuration#configure-additional-optio
 
 ## Additional resources for Blazor WebAssembly apps
 
+* [Hosted Blazor WebAssembly: Secure a SignalR hub](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
