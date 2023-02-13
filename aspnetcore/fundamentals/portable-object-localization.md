@@ -10,7 +10,7 @@ uid: fundamentals/portable-object-localization
 
 :::moniker range=">= aspnetcore-6.0"
 
-By [Sébastien Ros](https://github.com/sebastienros), [Scott Addie](https://twitter.com/Scott_Addie) and [Hisham Bin Ateya](https://github.com/hishamco)
+By [Sébastien Ros](https://github.com/sebastienros) and [Hisham Bin Ateya](https://github.com/hishamco)
 
 This article walks through the steps for using Portable Object (PO) files in an ASP.NET Core application with the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) framework.
 
