@@ -26,7 +26,7 @@ A limited set of ASP.NET Core's localization features are supported:
 :::zone pivot="webassembly"
 
 > [!IMPORTANT]
-> Blazor WebAssembly uses a reduced globalization API and set of built-in locales. Adding locales to a Blazor WebAssembly app isn't currently supported but is under consideration for .NET 8, which is targeted for release in late 2023. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+> Blazor WebAssembly uses a reduced globalization API and set of built-in locales. Adding locales to a Blazor WebAssembly app isn't supported but is under consideration for .NET 8, which is targeted for release in late 2023. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
 
 :::zone-end
 
@@ -955,7 +955,7 @@ A limited set of ASP.NET Core's localization features are supported:
 :::zone pivot="webassembly"
 
 > [!IMPORTANT]
-> Blazor WebAssembly uses a reduced globalization API and set of built-in locales. Adding locales to a Blazor WebAssembly app isn't currently supported but is under consideration for .NET 8, which is targeted for release in late 2023. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+> Blazor WebAssembly uses a reduced globalization API and set of built-in locales. Adding locales to a Blazor WebAssembly app isn't supported but is under consideration for .NET 8, which is targeted for release in late 2023. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
 
 :::zone-end
 
@@ -1892,7 +1892,7 @@ A limited set of ASP.NET Core's localization features are supported:
 :::zone pivot="webassembly"
 
 > [!IMPORTANT]
-> Blazor WebAssembly uses a reduced globalization API and set of built-in locales. Adding locales to a Blazor WebAssembly app isn't currently supported but is under consideration for .NET 8, which is targeted for release in late 2023. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+> Blazor WebAssembly uses a reduced globalization API and set of built-in locales. Adding locales to a Blazor WebAssembly app isn't supported but is under consideration for .NET 8, which is targeted for release in late 2023. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
 
 :::zone-end
 
@@ -2819,7 +2819,7 @@ A limited set of ASP.NET Core's localization features are supported:
 :::zone pivot="webassembly"
 
 > [!IMPORTANT]
-> Blazor WebAssembly uses a reduced globalization API and set of built-in locales. Adding locales to a Blazor WebAssembly app isn't currently supported but is under consideration for .NET 8, which is targeted for release in late 2023. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+> Blazor WebAssembly uses a reduced globalization API and set of built-in locales. Adding locales to a Blazor WebAssembly app isn't supported but is under consideration for .NET 8, which is targeted for release in late 2023. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
 
 :::zone-end
 
