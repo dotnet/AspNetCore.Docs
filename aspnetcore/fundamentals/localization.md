@@ -9,33 +9,6 @@ uid: fundamentals/localization
 ---
 # Globalization and localization in ASP.NET Core
 
-<!-- Stub for 6.0 version 
-:::moniker range=">= aspnetcore-6.0"
-
-By [Ponant](https://github.com/Ponant), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
-
-A multilingual website allows the site to reach a wider audience. ASP.NET Core provides services and middleware for localizing into different languages and cultures.
-
-Internationalization involves <xref:System.Globalization> and [Localization](/dotnet/standard/globalization-localization/localization). Globalization is the process of designing apps that support different cultures. Globalization adds support for input, display, and output of a defined set of language scripts that relate to specific geographic areas.
-
-Localization is the process of adapting a globalized app, which you have already processed for localizability, to a particular culture/locale. For more information see **Globalization and localization terms** near the end of this document.
-
-App localization involves the following:
-
-1. Make the app's content localizable
-1. Provide localized resources for the languages and cultures you support
-1. Implement a strategy to select the language/culture for each request
-
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/6.x/) ([how to download](xref:index#how-to-download-a-sample))
-
-// Add new content
-## AddLocalization, Configure RequestLocalizationOptions, UseRequestLocalization.
-
-Replace next moniker,  :::moniker range=">= aspnetcore-5.0  with the following
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
--->
-
 :::moniker range=">= aspnetcore-5.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
