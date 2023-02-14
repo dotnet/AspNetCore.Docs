@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
+#region snippet_LocalizationServices
 builder.Services.AddPortableObjectLocalization();
 
 builder.Services
@@ -14,6 +15,7 @@ builder.Services
 builder.Services
     .AddRazorPages()
     .AddViewLocalization();
+#endregion
 
 var app = builder.Build();
 
