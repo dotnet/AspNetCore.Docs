@@ -5,7 +5,7 @@ description: Learn how to use the ASP.NET Core SignalR HubContext service for se
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 02/09/2023
+ms.date: 02/13/2023
 uid: signalr/hubcontext
 ---
 # Send messages from outside a hub
@@ -55,14 +55,11 @@ app.Use(async (context, next) =>
 > [!NOTE]
 > When client methods are called from outside of the `Hub` class, there's no caller associated with the invocation. Therefore, there's no access to the `ConnectionId`, `Caller`, and `Others` properties.
 >
-> If your application needs to map a user to the connection id and persist that mapping, you can use one of the following:
+> If your application needs to map a user to the connection ID and persist that mapping, you can do one of the following:
 >
-> - [The User ID Provider](#IUserIdProvider)
-> - [In-memory storage](#inmemory), such as a dictionary
-> - [SignalR group for each user](#groups)
-> - [Permanent, external storage](#database), such as a database table or Azure table storage
->
-> For more information see, [Mapping SignalR Users to Connections](xref:signalr/overview/guide-to-the-api/mapping-users-to-connections).
+> Persist mapping of single or multiple connections as groups. See [Groups in SignalR](xref:signalr/groups#groups-in-signalr) for more information.
+> Store the Connection ID in a Singleton service. See [Inject services into a hub](signalr/hubs#inject-services-into-a-hub) for more information.
+> Pass the connection ID between clients.
 
 ### Get an instance of `IHubContext` from IHost
 
@@ -142,6 +139,7 @@ async Task CommonHubContextMethod(IHubContext context)
 ```
 
 This is useful when:
+
 * Writing libraries that don't have a reference to the specific `Hub` type the app is using.
 * Writing code that is generic and can apply to multiple different `Hub` implementations
 
