@@ -287,7 +287,8 @@ Add the required middleware to the `Configure` method of `Startup.cs`:
 
 Add the following code to your Razor page of choice. `Index.cshtml` is used in this example.
 
-[!code-cshtml[](localization/sample/3.x/POLocalization/Pages/Index.cshtml)]
+<!-- FIX this invalid file reference
+[!code-cshtml[](localization/sample/3.x/POLocalization/Pages/Index.cshtml)] -->
 
 An `IViewLocalizer` instance is injected and used to translate the text "Hello world!".
 
