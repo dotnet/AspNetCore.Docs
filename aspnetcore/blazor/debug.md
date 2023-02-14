@@ -1538,6 +1538,9 @@ The **:::no-loc text="Server":::** project's `Properties/launchSettings.json` fi
 }
 ```
 
+> [!NOTE]
+> When the app is launched from the :::no-loc text="Server"::: project, only the `Properties/launchSettings.json` file in the :::no-loc text="Server"::: project is used. The `Properties/launchSettings.json` file in the :::no-loc text="Client"::: project is ***not*** used.
+
 ## Attach to an existing debugging session
 
 To attach to a running Blazor app, create a `.vscode/launch.json` file with the following configuration. Replace the `{URL}` placeholder with the URL where the app is running:

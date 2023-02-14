@@ -47,6 +47,8 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
 
 > [!IMPORTANT]
 > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
+>
+> When the app is launched, only the `Properties/launchSettings.json` file in the :::no-loc text="Server"::: project is used.
 
 :::zone-end
 
@@ -250,6 +252,8 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
    > [!IMPORTANT]
    > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
+   >
+   > When the app is launched, only the `Properties/launchSettings.json` file in the :::no-loc text="Server"::: project is used.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -446,6 +450,8 @@ If a prompt appears to trust the development certificate, trust the certificate 
 
 > [!IMPORTANT]
 > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
+>
+> When the app is launched, only the `Properties/launchSettings.json` file in the :::no-loc text="Server"::: project is used.
 
 :::zone-end
 
