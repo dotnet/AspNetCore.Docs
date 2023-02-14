@@ -41,4 +41,4 @@ Additional configuration might be required for apps hosted behind proxy servers 
 [GC using Docker and small containers](xref:performance/memory#sc)
 Discusses GC selection with small containers.
 
-[!INCLUDE[](~/includes/d128.md)]
+[!INCLUDE[](~/includes/128.md)]
