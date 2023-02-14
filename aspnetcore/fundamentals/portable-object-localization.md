@@ -14,7 +14,7 @@ By  [Hisham Bin Ateya](https://github.com/hishamco) and [Sébastien Ros](https:/
 
 This article walks through the steps for using Portable Object (PO) files in an ASP.NET Core application with the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) framework.
 
-**Note:** Orchard Core isn't a Microsoft product. Consequently, Microsoft provides no support for this feature.
+**Note:** Orchard Core isn't a Microsoft product. Microsoft provides no support for this feature.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/6.x/POLocalization) ([how to download](xref:index#how-to-download-a-sample))
 
@@ -27,7 +27,7 @@ PO files are distributed as text files containing the translated strings for a g
 
 ### Example
 
-Here is a sample PO file containing the translation for two strings in French, including one with its plural form:
+The following sample PO file contains the translation for two strings in French, including one with its plural form:
 
 *cz.po*
 
@@ -48,7 +48,7 @@ This example uses the following syntax:
 - `msgid`: The untranslated string.
 - `msgstr`: The translated string.
 
-In the case of pluralization support, more entries can be defined.
+For pluralization support, more entries can be defined.
 
 - `msgid_plural`: The untranslated plural string.
 - `msgstr[0]`: The translated string for the case 0.
@@ -140,7 +140,7 @@ Edit the `Pages/Index.cshtml` file to render localized, plural strings for sever
 <p>@Localizer.Plural(5, "There is one item.", "There are {0} items.")</p>
 ```
 
-**Note:** In a real world scenario, a variable would be used to represent the count. Here, we repeat the same code with three different values to expose a very specific case.
+**Note:** In a real world scenario, a variable would be used to represent the count. Here, we repeat the same code with three different values to expose a specific case.
 
 Upon switching cultures, you see the following:
 
@@ -168,7 +168,7 @@ Existují 2 položky.
 Existuje 5 položek.
 ```
 
-Note that for the Czech culture, the three translations are different. The French and English cultures share the same construction for the two last translated strings.
+For the Czech culture, the three translations are different. The French and English cultures share the same construction for the two last translated strings.
 
 ## Advanced tasks
 
@@ -186,7 +186,7 @@ msgid "Hello world!"
 msgstr "Bonjour le monde!"
 ```
 
-With the `msgctxt` set as such, text translation occurs when navigating to `/Index?culture=fr-FR`. The translation won't occur when navigating to `/Privacy?culture=fr-FR`.
+With the `msgctxt` set as such, text translation occurs when navigating to `/Index?culture=fr-FR`. The translation doesn't occur when navigating to `/Privacy?culture=fr-FR`.
 
 When no specific entry is matched with a given file context, Orchard Core's fallback mechanism looks for an appropriate PO file without a context. Assuming there's no specific file context defined for `Pages/Privacy.cshtml`, navigating to `/Privacy?culture=fr-FR` loads a PO file such as:
 
