@@ -145,6 +145,11 @@ Visual Studio for Mac launches a browser and navigates to `https://localhost:<po
 
 ---
 
+<!-- 
+Each new version, change the layout file to use the non-minified CSS. 
+See https://github.com/dotnet/AspNetCore.Docs/issues/21193
+-->
+
 ## Examine the project files
 
 The following sections contain an overview of the main project folders and files that you'll work with in later tutorials.
