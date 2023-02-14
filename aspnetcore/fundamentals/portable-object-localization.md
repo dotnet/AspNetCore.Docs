@@ -66,17 +66,17 @@ Add a reference to the `OrchardCore.Localization.Core` NuGet package.
 
 The `.csproj` file now contains a line similar to the following (version number may vary):
 
-[!code-xml[](localization/sample/6.x/POLocalization/POLocalization.csproj?range=8)]
+[!code-xml[](~/fundamentals/localization/sample/6.x/POLocalization/POLocalization.csproj?range=8)]
 
 ### Registering the service
 
 Add the required services to `Program.cs`:
 
-[!code-csharp[](localization/sample/6.x/POLocalization/Program.cs?name=snippet_LocalizationServices&highlight=9-16)]
+[!code-csharp[](~/fundamentals/localization/sample/6.x/POLocalization/Program.cs?name=snippet_LocalizationServices&highlight=9-16)]
 
 Add the following code to your Razor page of choice. `Index.cshtml` is used in this example.
 
-[!code-cshtml[](localization/sample/6.x/POLocalization/Pages/Index.cshtml)]
+[!code-cshtml[](~/fundamentals/localization/sample/6.x/POLocalization/Pages/Index.cshtml)]
 
 An `IViewLocalizer` instance is injected and used to translate the text "Hello world!".
 
@@ -84,7 +84,7 @@ An `IViewLocalizer` instance is injected and used to translate the text "Hello w
 
 Create a file named *\<culture code>.po* in your application root folder. In this example, the file name is *fr.po* because the French language is used:
 
-[!code-text[](localization/sample/6.x/POLocalization/fr.po)]
+[!code-text[](~/fundamentals/localization/sample/6.x/POLocalization/fr.po)]
 
 This file stores both the string to translate and the French-translated string. Translations revert to their parent culture, if necessary. In this example, the *fr.po* file is used if the requested culture is `fr-FR` or `fr-CA`.
 
@@ -121,7 +121,7 @@ Not all languages share the same rules. This is illustrated with the Czech langu
 
 Create the `cs.po` file as follows, and note how the pluralization needs three different translations:
 
-[!code-text[](localization/sample/6.x/POLocalization/cs.po)]
+[!code-text[](~/fundamentals/localization/sample/6.x/POLocalization/cs.po)]
 
 To accept Czech localizations, add `"cs"` to the list of supported cultures in the `Configure` method:
 
@@ -190,7 +190,7 @@ With the `msgctxt` set as such, text translation occurs when navigating to `/Ind
 
 When no specific entry is matched with a given file context, Orchard Core's fallback mechanism looks for an appropriate PO file without a context. Assuming there's no specific file context defined for `Pages/Privacy.cshtml`, navigating to `/Privacy?culture=fr-FR` loads a PO file such as:
 
-[!code-text[](localization/sample/6.x/POLocalization/fr.po)]
+[!code-text[](~/fundamentals/localization/sample/6.x/POLocalization/fr.po)]
 
 ### Changing the location of PO files
 
@@ -273,22 +273,21 @@ Add a reference to the `OrchardCore.Localization.Core` NuGet package.
 
 The `.csproj` file now contains a line similar to the following (version number may vary):
 
-[!code-xml[](localization/sample/5.x/POLocalization/POLocalization.csproj?range=8)]
+[!code-xml[](~/fundamentals/localization/sample/5.x/POLocalization/POLocalization.csproj?range=8)]
 
 ### Registering the service
 
 Add the required services to the `ConfigureServices` method of `Startup.cs`:
 
-[!code-csharp[](localization/sample/5.x/POLocalization/Startup.cs?name=snippet_ConfigureServices&highlight=4-21)]
+[!code-csharp[](~/fundamentals/localization/sample/5.x/POLocalization/Startup.cs?name=snippet_ConfigureServices&highlight=4-21)]
 
 Add the required middleware to the `Configure` method of `Startup.cs`:
 
-[!code-csharp[](localization/sample/3.x/POLocalization/Startup.cs?name=snippet_Configure&highlight=15)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/POLocalization/Startup.cs?name=snippet_Configure&highlight=15)]
 
 Add the following code to your Razor page of choice. `Index.cshtml` is used in this example.
 
-<!-- FIX this invalid file reference
-[!code-cshtml[](localization/sample/3.x/POLocalization/Pages/Index.cshtml)] -->
+[!code-cshtml[](~/fundamentals/localization/sample/5.x/POLocalization/Pages/Index.cshtml)]
 
 An `IViewLocalizer` instance is injected and used to translate the text "Hello world!".
 
@@ -296,7 +295,7 @@ An `IViewLocalizer` instance is injected and used to translate the text "Hello w
 
 Create a file named *\<culture code>.po* in your application root folder. In this example, the file name is *fr.po* because the French language is used:
 
-[!code-text[](localization/sample/5.x/POLocalization/fr.po)]
+[!code-text[](~/fundamentals/localization/sample/5.x/POLocalization/fr.po)]
 
 This file stores both the string to translate and the French-translated string. Translations revert to their parent culture, if necessary. In this example, the *fr.po* file is used if the requested culture is `fr-FR` or `fr-CA`.
 
@@ -333,7 +332,7 @@ Not all languages share the same rules. This is illustrated with the Czech langu
 
 Create the `cs.po` file as follows, and note how the pluralization needs three different translations:
 
-[!code-text[](localization/sample/5.x/POLocalization/cs.po)]
+[!code-text[](~/fundamentals/localization/sample/5.x/POLocalization/cs.po)]
 
 To accept Czech localizations, add `"cs"` to the list of supported cultures in the `ConfigureServices` method:
 
@@ -402,7 +401,7 @@ With the `msgctxt` set as such, text translation occurs when navigating to `/Ind
 
 When no specific entry is matched with a given file context, Orchard Core's fallback mechanism looks for an appropriate PO file without a context. Assuming there's no specific file context defined for `Pages/Privacy.cshtml`, navigating to `/Privacy?culture=fr-FR` loads a PO file such as:
 
-[!code-text[](localization/sample/5.x/POLocalization/fr.po)]
+[!code-text[](~/fundamentals/localization/sample/5.x/POLocalization/fr.po)]
 
 ### Changing the location of PO files
 
@@ -486,21 +485,21 @@ Add a reference to the `OrchardCore.Localization.Core` NuGet package.
 
 The `.csproj` file now contains a line similar to the following (version number may vary):
 
-[!code-xml[](localization/sample/3.x/POLocalization/POLocalization.csproj?range=8)]
+[!code-xml[](~/fundamentals/localization/sample/3.x/POLocalization/POLocalization.csproj?range=8)]
 
 ### Registering the service
 
 Add the required services to the `ConfigureServices` method of `Startup.cs`:
 
-[!code-csharp[](localization/sample/3.x/POLocalization/Startup.cs?name=snippet_ConfigureServices&highlight=4-21)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/POLocalization/Startup.cs?name=snippet_ConfigureServices&highlight=4-21)]
 
 Add the required middleware to the `Configure` method of `Startup.cs`:
 
-[!code-csharp[](localization/sample/3.x/POLocalization/Startup.cs?name=snippet_Configure&highlight=15)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/POLocalization/Startup.cs?name=snippet_Configure&highlight=15)]
 
 Add the following code to your Razor view of choice. `About.cshtml` is used in this example.
 
-[!code-cshtml[](localization/sample/3.x/POLocalization/Views/Home/About.cshtml)]
+[!code-cshtml[](~/fundamentals/localization/sample/3.x/POLocalization/Views/Home/About.cshtml)]
 
 An `IViewLocalizer` instance is injected and used to translate the text "Hello world!".
 
@@ -508,7 +507,7 @@ An `IViewLocalizer` instance is injected and used to translate the text "Hello w
 
 Create a file named *\<culture code>.po* in your application root folder. In this example, the file name is *fr.po* because the French language is used:
 
-[!code-text[](localization/sample/3.x/POLocalization/fr.po)]
+[!code-text[](~/fundamentals/localization/sample/3.x/POLocalization/fr.po)]
 
 This file stores both the string to translate and the French-translated string. Translations revert to their parent culture, if necessary. In this example, the *fr.po* file is used if the requested culture is `fr-FR` or `fr-CA`.
 
@@ -545,7 +544,7 @@ Not all languages share the same rules. This is illustrated with the Czech langu
 
 Create the `cs.po` file as follows, and note how the pluralization needs three different translations:
 
-[!code-text[](localization/sample/3.x/POLocalization/cs.po)]
+[!code-text[](~/fundamentals/localization/sample/3.x/POLocalization/cs.po)]
 
 To accept Czech localizations, add `"cs"` to the list of supported cultures in the `ConfigureServices` method:
 
@@ -618,7 +617,7 @@ With the `msgctxt` set as such, text translation occurs when navigating to `/Hom
 
 When no specific entry is matched with a given file context, Orchard Core's fallback mechanism looks for an appropriate PO file without a context. Assuming there's no specific file context defined for `Views/Home/Contact.cshtml`, navigating to `/Home/Contact?culture=fr-FR` loads a PO file such as:
 
-[!code-text[](localization/sample/3.x/POLocalization/fr.po)]
+[!code-text[](~/fundamentals/localization/sample/3.x/POLocalization/fr.po)]
 
 ### Changing the location of PO files
 
