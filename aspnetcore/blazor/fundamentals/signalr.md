@@ -5,7 +5,7 @@ description: Learn how to configure and manage Blazor SignalR connections.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 02/15/2023
 uid: blazor/fundamentals/signalr
 ---
 # ASP.NET Core Blazor SignalR guidance
@@ -486,22 +486,6 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
 
-## Avoid `IHttpContextAccessor` in Razor components
-
-Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
-
-## Additional resources for Blazor Server apps
-
-* <xref:blazor/host-and-deploy/server#signalr-configuration>
-* <xref:signalr/introduction>
-* <xref:signalr/configuration>
-* <xref:blazor/security/server/threat-mitigation>
-* [Blazor Server reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
-* [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
-* [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
-* <xref:signalr/publish-to-azure-web-app>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
@@ -907,22 +891,6 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
 
-## Avoid `IHttpContextAccessor` in Razor components
-
-Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
-
-## Additional resources for Blazor Server apps
-
-* <xref:blazor/host-and-deploy/server#signalr-configuration>
-* <xref:signalr/introduction>
-* <xref:signalr/configuration>
-* <xref:blazor/security/server/threat-mitigation>
-* [Blazor Server reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
-* [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
-* [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
-* <xref:signalr/publish-to-azure-web-app>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
@@ -1301,21 +1269,6 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
 
-## Avoid `IHttpContextAccessor` in Razor components
-
-Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
-
-## Additional resources for Blazor Server apps
-
-* <xref:signalr/introduction>
-* <xref:signalr/configuration>
-* <xref:blazor/security/server/threat-mitigation>
-* [Blazor Server reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
-* [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
-* [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
-* <xref:signalr/publish-to-azure-web-app>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
@@ -1646,19 +1599,284 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
 
-## Avoid `IHttpContextAccessor` in Razor components
+:::moniker-end
 
-Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
+## Blazor Server circuit handler to capture users for custom services
+
+<!--
+     When dropping Whole-topic Versioning, move this section up above
+     the "Avoid `IHttpContextAccessor`/`HttpContext` in Razor components"
+     section.
+-->
+
+Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to capture a user from the `AuthenticationStateProvider` and set that user in a service. If you want to update the user, register a callback to `AuthenticationStateChanged` and queue a `Task` to get the new user and update the service. The following example demonstrates the approach.
+
+In the following example:
+
+* `OnConnectionUpAsync` is called every time the circuit reconnects, setting the user for the lifetime of the connection. Only the `OnConnectionUpAsync` method is required unless you implement updates via `AuthenticationChanged`.
+* `OnCircuitOpenedAsync` is called to attach the event handler, `AuthenticationChanged`, to update the user. 
+* The `UpdateAuthentication` task swallows all exceptions because there's no way to report them. If an exception is thrown from the task, the exception is reported elsewhere.
+
+`UserService.cs`:
+
+:::moniker range=">= aspnetcore-5.0"
+
+```csharp
+using System.Security.Claims;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server.Circuits;
+
+public class UserService
+{
+    private ClaimsPrincipal currentUser = new(new ClaimsIdentity());
+
+    public ClaimsPrincipal GetUser()
+    {
+        return currentUser;
+    }
+
+    internal void SetUser(ClaimsPrincipal user)
+    {
+        if (currentUser != user)
+        {
+            currentUser = user;
+        }
+    }
+}
+
+internal sealed class UserCircuitHandler : CircuitHandler, IDisposable
+{
+    private readonly AuthenticationStateProvider authenticationStateProvider;
+    private readonly UserService userService;
+
+    public UserCircuitHandler(
+        AuthenticationStateProvider authenticationStateProvider,
+        UserService userService)
+    {
+        this.authenticationStateProvider = authenticationStateProvider;
+        this.userService = userService;
+    }
+
+    public override Task OnCircuitOpenedAsync(Circuit circuit, 
+        CancellationToken cancellationToken)
+    {
+        authenticationStateProvider.AuthenticationStateChanged += 
+            AuthenticationChanged;
+
+        return base.OnCircuitOpenedAsync(circuit, cancellationToken);
+    }
+
+    private void AuthenticationChanged(Task<AuthenticationState> task)
+    {
+        _ = UpdateAuthentication(task);
+
+        async Task UpdateAuthentication(Task<AuthenticationState> task)
+        {
+            try
+            {
+                var state = await task;
+                userService.SetUser(state.User);
+            }
+            catch
+            {
+            }
+        }
+    }
+
+    public override async Task OnConnectionUpAsync(Circuit circuit, 
+        CancellationToken cancellationToken)
+    {
+        var state = await authenticationStateProvider.GetAuthenticationStateAsync();
+        userService.SetUser(state.User);
+    }
+
+    public void Dispose()
+    {
+        authenticationStateProvider.AuthenticationStateChanged -= 
+            AuthenticationChanged;
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+```csharp
+using System.Security.Claims;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server.Circuits;
+
+public class UserService
+{
+    private ClaimsPrincipal currentUser = new ClaimsPrincipal(new ClaimsIdentity());
+
+    public ClaimsPrincipal GetUser()
+    {
+        return currentUser;
+    }
+
+    internal void SetUser(ClaimsPrincipal user)
+    {
+        if (currentUser != user)
+        {
+            currentUser = user;
+        }
+    }
+}
+
+internal sealed class UserCircuitHandler : CircuitHandler, IDisposable
+{
+    private readonly AuthenticationStateProvider authenticationStateProvider;
+    private readonly UserService userService;
+
+    public UserCircuitHandler(
+        AuthenticationStateProvider authenticationStateProvider,
+        UserService userService)
+    {
+        this.authenticationStateProvider = authenticationStateProvider;
+        this.userService = userService;
+    }
+
+    public override Task OnCircuitOpenedAsync(Circuit circuit, 
+        CancellationToken cancellationToken)
+    {
+        authenticationStateProvider.AuthenticationStateChanged += 
+            AuthenticationChanged;
+
+        return base.OnCircuitOpenedAsync(circuit, cancellationToken);
+    }
+
+    private void AuthenticationChanged(Task<AuthenticationState> task)
+    {
+        _ = UpdateAuthentication(task);
+
+        async Task UpdateAuthentication(Task<AuthenticationState> task)
+        {
+            try
+            {
+                var state = await task;
+                userService.SetUser(state.User);
+            }
+            catch
+            {
+            }
+        }
+    }
+
+    public override async Task OnConnectionUpAsync(Circuit circuit, 
+        CancellationToken cancellationToken)
+    {
+        var state = await authenticationStateProvider.GetAuthenticationStateAsync();
+        userService.SetUser(state.User);
+    }
+
+    public void Dispose()
+    {
+        authenticationStateProvider.AuthenticationStateChanged -= 
+            AuthenticationChanged;
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
+In `Program.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components.Server.Circuits;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+
+...
+
+builder.Services.AddScoped<UserService>();
+builder.Services.TryAddEnumerable(
+    ServiceDescriptor.Scoped<CircuitHandler, UserCircuitHandler>());
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+In `Startup.ConfigureServices` of `Startup.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components.Server.Circuits;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+
+...
+
+services.AddScoped<UserService>();
+services.TryAddEnumerable(
+    ServiceDescriptor.Scoped<CircuitHandler, UserCircuitHandler>());
+```
+
+:::moniker-end
+
+Use the service in a component to obtain the user:
+
+```razor
+@inject UserService UserService
+
+<h1>Hello, @(UserService.GetUser().Identity.Name ?? "world")!</h1>
+```
+
+To set the user in middleware for MVC, Razor Pages, and in other ASP.NET Core scenarios, call `SetUser` on the `UserService` in custom middleware after the authentication middleware runs, or set the user with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation.
+
+:::moniker range=">= aspnetcore-6.0"
+
+After the call `app.UseAuthorization()` in `Program.cs`:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+After the call `app.UseAuthorization()` in `Startup.Configure` of `Startup.cs`:
+
+:::moniker-end
+
+```csharp
+app.UseMiddleware<UserServiceMiddleware>();
+```
+
+`UserServiceMiddleware.cs`:
+
+```csharp
+public class UserServiceMiddleware
+{
+    private readonly RequestDelegate next;
+
+    public UserServiceMiddleware(RequestDelegate next)
+    {
+        this.next = next ?? throw new ArgumentNullException(nameof(next));
+    }
+
+    public async Task InvokeAsync(HttpContext context, UserService service)
+    {
+        service.SetUser(context.User);
+        await next(context);
+    }
+}
+```
+
+## Avoid `IHttpContextAccessor`/`HttpContext` in Razor components
+
+[!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
 
 ## Additional resources for Blazor Server apps
 
+* [Blazor Server host and deployment guidance: SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
-* <xref:blazor/security/server/threat-mitigation>
+* Blazor Server security documentation
+  * <xref:blazor/security/index>
+  * <xref:blazor/security/server/index>
+  * <xref:blazor/security/server/threat-mitigation>
+  * <xref:blazor/security/server/additional-scenarios>
 * [Blazor Server reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
 * <xref:signalr/publish-to-azure-web-app>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-
-:::moniker-end

@@ -5,7 +5,7 @@ description: Learn how to mitigate security threats to Blazor Server apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/10/2023
+ms.date: 02/15/2023
 uid: blazor/security/server/threat-mitigation
 ---
 # Threat mitigation guidance for ASP.NET Core Blazor Server
@@ -23,9 +23,13 @@ In constrained environments, such as inside corporate networks or intranets, som
 * Doesn't apply in the constrained environment.
 * Isn't worth the cost to implement because the security risk is low in a constrained environment.
 
-## Blazor and shared state
+## Shared state
 
-[!INCLUDE[](~/blazor/security/includes/blazor-shared-state.md)]
+[!INCLUDE[](~/blazor/security/includes/shared-state.md)]
+
+## Avoid `IHttpContextAccessor`/`HttpContext` in Razor components
+
+[!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
 
 ## Resource exhaustion
 

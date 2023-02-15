@@ -5,7 +5,7 @@ description: Learn how to configure Blazor Server for additional security scenar
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/09/2023
+ms.date: 02/15/2023
 uid: blazor/security/server/additional-scenarios
 ---
 # ASP.NET Core Blazor Server additional security scenarios
@@ -14,7 +14,7 @@ This article explains how to configure Blazor Server for additional security sce
 
 ## Pass tokens to a Blazor Server app
 
-Tokens available outside of the Razor components in a Blazor Server app can be passed to components with the approach described in this section.
+Tokens available outside of the Razor components in a Blazor Server app can be passed to components with the approach described in this section. The example in this section focuses on passing access and refresh tokens to the Blazor app, but the approach is valid for any other HTTP context state to pass on initialization of the circuit.
 
 Authenticate the Blazor Server app as you would with a regular Razor Pages or MVC app. Provision and save the tokens to the authentication cookie.
 
@@ -117,8 +117,8 @@ public class TokenProvider
 
 In `Program.cs`, add services for:
 
-* <xref:System.Net.Http.IHttpClientFactory>
-* `TokenProvider`
+* <xref:System.Net.Http.IHttpClientFactory>: Used in a `WeatherForecastService` class that obtains weather data from a server API with an access token.
+* `TokenProvider`: Holds the access and refresh tokens.
 
 ```csharp
 builder.Services.AddHttpClient();
@@ -131,8 +131,8 @@ builder.Services.AddScoped<TokenProvider>();
 
 In `Startup.ConfigureServices`, add services for:
 
-* <xref:System.Net.Http.IHttpClientFactory>
-* `TokenProvider`
+* <xref:System.Net.Http.IHttpClientFactory>: Used in a `WeatherForecastService` class that obtains weather data from a server API with an access token.
+* `TokenProvider`: Holds the access and refresh tokens.
 
 ```csharp
 services.AddHttpClient();
@@ -250,6 +250,9 @@ In the `App` component (`App.razor`), resolve the service and initialize it with
 ```
 
 :::moniker-end
+
+> [!NOTE]
+> An alternative to assigning the initial state to the `TokenProvider` in the preceding example is to copy the data into a scoped service within <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> for use across the app.
 
 Add a package reference to the app for the [`Microsoft.AspNet.WebApi.Client`](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Client) NuGet package.
 
