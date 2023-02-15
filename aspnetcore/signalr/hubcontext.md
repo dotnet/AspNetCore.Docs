@@ -58,7 +58,8 @@ app.Use(async (context, next) =>
 > If your application needs to map a user to the connection ID and persist that mapping, you can do one of the following:
 >
 > - Persist mapping of single or multiple connections as groups. See [Groups in SignalR](xref:signalr/groups#groups-in-signalr) for more information.
-> - Store the connection ID in a singleton service. See [Inject services into a hub](xref:signalr/hubs#inject-services-into-a-hub) for more information.
+> - Retain connection and user information in a singleton service. See [Inject services into a hub](xref:signalr/hubs#inject-services-into-a-hub) for more information.
+> - Retain connection and user information in a dictionary that is stored in memory.
 > - Pass the connection ID between clients.
 
 ### Get an instance of `IHubContext` from IHost
