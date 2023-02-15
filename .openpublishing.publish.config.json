@@ -31,7 +31,7 @@
   "git_repository_branch_open_to_public_contributors": "main",
   "skip_source_output_uploading": false,
   "need_preview_pull_request": true,
-  "need_pr_comments": false,
+  "need_pr_comments": true,
   "contribution_branch_mappings": null,
   "dependent_repositories": [
     {
