@@ -55,38 +55,6 @@ If the SUT's [environment](xref:fundamentals/environments) isn't set, the enviro
 
 ## Basic tests with the default WebApplicationFactory
 
-ASP.NET Core 6 introduced <xref:Microsoft.AspNetCore.Builder.WebApplication> which removed the need for a `Startup` class. To test with `WebApplicationFactory` without a `Startup` class, an ASP.NET Core 6 app needs to expose the implicitly defined `Program` class to the test project by doing one of the following:
-
-* Expose internal types from the web app to the test project. This can be done in the project file (`.csproj`):
-  ```xml
-  <ItemGroup>
-       <InternalsVisibleTo Include="MyTestProject" />
-  </ItemGroup>
-  ```
-* Make the `Program` class public using a partial class declaration:
-  ```diff
-  var builder = WebApplication.CreateBuilder(args);
-  // ... Configure services, routes, etc.
-  app.Run();
-  + public partial class Program { }
-  ```
-
-After making the changes in the web application, the test project now can use the `Program` class for the `WebApplicationFactory`.
-
-```csharp
-[Fact]
-public async Task HelloWorldTest()
-{
-    var application = new WebApplicationFactory<Program>()
-        .WithWebHostBuilder(builder =>
-        {
-            // ... Configure test services
-        });
-        
-    var client = application.CreateClient();
-    //...
-}
-```
 
 Expose the implicitly defined `Program` class to the test project by doing one of the following:
 
