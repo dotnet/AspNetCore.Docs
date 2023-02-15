@@ -5,7 +5,7 @@ description: Learn how to use hubs in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 03/31/2022
+ms.date: 02/14/2023
 uid: signalr/hubs
 ---
 
@@ -23,6 +23,9 @@ To register the services required by SignalR hubs, call <xref:Microsoft.Extensio
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Program.cs" id="snippet_AddSignalR" highlight="4":::
 
+> [!NOTE]
+> With the release of .NET Core 3.0, many ASP.NET Core assemblies, including those of SignalR, are no longer published to NuGet as packages. Instead, the assemblies are included in the Microsoft.AspNetCore.App shared framework, which is installed with the .NET Core SDK and runtime installers. See [Use the ASP.NET Core shared framework](xref:fundamentals/target-aspnetcore#use-the-aspnet-core-shared-framework) for more information.
+
 To configure SignalR endpoints, call <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A>, also in `Program.cs`:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Program.cs" id="snippet_MapHub" highlight="2":::
@@ -32,7 +35,6 @@ To configure SignalR endpoints, call <xref:Microsoft.AspNetCore.Builder.HubEndpo
 Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.SignalR.Hub>. Add `public` methods to the class to make them callable from clients:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Hubs/ChatHub.cs" id="snippet_Class":::
-
 
 > [!NOTE]
 > Hubs are [transient](/dotnet/core/extensions/dependency-injection#transient):
