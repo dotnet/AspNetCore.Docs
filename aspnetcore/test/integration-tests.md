@@ -419,7 +419,7 @@ public async Task HelloWorldTest()
 ```
 
 :::moniker-end
-:::moniker range="<= aspnetcore-6.0"
+:::moniker range="< aspnetcore-6.0"
 
 <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> is used to create a <xref:Microsoft.AspNetCore.TestHost.TestServer> for the integration tests. `TEntryPoint` is the entry point class of the SUT, usually the `Startup` class.
 
