@@ -63,7 +63,7 @@
                 </td>
                 <td>
                     @if ((await AuthorizationService.AuthorizeAsync(
-                     User, item,
+                     User, @item,
                      ContactOperations.Update)).Succeeded)
                     {
                         <a asp-page="./Edit" asp-route-id="@item.ContactId">Edit</a>
@@ -73,7 +73,7 @@
                     <a asp-page="./Details" asp-route-id="@item.ContactId">Details</a>
 
                     @if ((await AuthorizationService.AuthorizeAsync(
-                     User, item,
+                     User, @item,
                      ContactOperations.Delete)).Succeeded)
                     {
                         <text> | </text>
