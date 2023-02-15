@@ -5,7 +5,7 @@ description: Advanced configuration with the ASP.NET Core Module and Internet In
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/7/2020
+ms.date: 02/13/2023
 uid: host-and-deploy/iis/advanced
 ---
 # Advanced configuration of the ASP.NET Core Module and IIS
@@ -29,6 +29,24 @@ Configure the managed stack size using the `stackSize` setting in bytes in the `
   </handlerSettings>
 </aspNetCore>
 ```
+
+## Disallow rotation on config
+
+The `disallowRotationOnConfigChange` setting is intended for blue/green scenarios where a change to global config should not cause all sites to recycle. When this flag is true, only changes relevant to the site itself will cause it to recycle. For example, a site recycles if its *web.config* changes or something changes that is relevant to the site's path from IIS's perspective. But a general change to *applicationHost.config* would not cause an app to recycle. The following example sets this setting to true:
+
+```xml
+<aspNetCore processPath="dotnet"
+    arguments=".\MyApp.dll"
+    stdoutLogEnabled="false"
+    stdoutLogFile="\\?\%home%\LogFiles\stdout"
+    hostingModel="inprocess">
+  <handlerSettings>
+    <handlerSetting name="disallowRotationOnConfigChange" value="true" />
+  </handlerSettings>
+</aspNetCore>
+```
+
+This setting corresponds to the API <xref:Microsoft.Web.Administration.ApplicationPoolRecycling.DisallowRotationOnConfigChange?displayProperty=nameWithType>
 
 ## Proxy configuration uses HTTP protocol and a pairing token
 
