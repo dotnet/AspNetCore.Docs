@@ -14,7 +14,7 @@ By [Jos van der Til](https://jvandertil.nl), [Martin Costello](https://martincos
 
 Integration tests ensure that an app's components function correctly at a level that includes the app's supporting infrastructure, such as the database, file system, and network. ASP.NET Core supports integration tests using a unit test framework with a test web host and an in-memory test server.
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-6.0"
 
 This article assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Unit Testing in .NET Core and .NET Standard](/dotnet/core/testing/) article and its linked content.
 
@@ -334,7 +334,7 @@ The SUT's database context is registered in `Program.cs`. The test app's `builde
 
 :::moniker-end
 
-:::moniker range="<= aspnetcore-6.0"
+:::moniker range="<= aspnetcore-5.0"
 
 This topic assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Unit Testing in .NET Core and .NET Standard](/dotnet/core/testing/) topic and its linked content.
 
