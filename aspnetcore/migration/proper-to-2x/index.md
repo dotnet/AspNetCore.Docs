@@ -12,7 +12,7 @@ By [Isaac Levin](https://isaaclevin.com)
 
  :::moniker range=">= aspnetcore-7.0"
 
-Most non-trivial ASP.NET Framework apps should consider using the [incremental migration](xref:migration/inc/overview) approach.
+Most non-trivial ASP.NET Framework apps should consider using the [incremental migration](xref:migration/inc/overview) approach. For more information, see [Incremental ASP.NET to ASP.NET Core migration](/aspnet/core/migration/inc/overview).
 
 Visual Studio has tooling to help migrate ASP.NET apps to ASP.NET Core. For more information, see [Migrating from ASP.NET to ASP.NET Core in Visual Studio](/aspnet/core/migration/inc/overview).
 
