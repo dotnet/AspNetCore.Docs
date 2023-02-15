@@ -29,7 +29,7 @@ PO files are distributed as text files containing the translated strings for a g
 
 The following sample PO file contains the translation for two strings in French, including one with its plural form:
 
-*cz.po*
+*fr.po*
 
 ```text
 #: Pages/Index.cshtml:13
@@ -66,7 +66,7 @@ Add a reference to the `OrchardCore.Localization.Core` NuGet package.
 
 The `.csproj` file now contains a line similar to the following (version number may vary):
 
-[!code-xml[](~/fundamentals/localization/sample/6.x/POLocalization/POLocalization.csproj?range=8)]
+[!code-xml[](~/fundamentals/localization/sample/6.x/POLocalization/POLocalization.csproj?range=9)]
 
 ### Registering the service
 
@@ -279,7 +279,7 @@ The `.csproj` file now contains a line similar to the following (version number 
 
 Add the required services to the `ConfigureServices` method of `Startup.cs`:
 
-[!code-csharp[](~/fundamentals/localization/sample/5.x/POLocalization/Startup.cs?name=snippet_ConfigureServices&highlight=4-21)]
+[!code-csharp[](~/fundamentals/localization/sample/5.x/POLocalization/Startup.cs?name=snippet_ConfigureServices&highlight=4-11)]
 
 Add the required middleware to the `Configure` method of `Startup.cs`:
 
