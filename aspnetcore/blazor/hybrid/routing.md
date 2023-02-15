@@ -224,3 +224,16 @@ For more information, see the following resources:
 * [`NavigationPage` (API documentation)](xref:Microsoft.Maui.Controls.NavigationPage)
 
 :::zone-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+:::zone pivot="maui"
+
+## Deep linking
+
+Coverage of deep linking support is forthcoming. In the meantime, see [Support deep linking into .NET MAUI Blazor apps (dotnet/maui #3788)](https://github.com/dotnet/maui/issues/3788#issuecomment-1421550198) for more information.
+
+:::zone-end
+
+:::moniker-end
+
