@@ -59,8 +59,10 @@ app.Use(async (context, next) =>
 >
 > - Persist mapping of single or multiple connections as groups. See [Groups in SignalR](xref:signalr/groups#groups-in-signalr) for more information.
 > - Retain connection and user information in a singleton service. See [Inject services into a hub](xref:signalr/hubs#inject-services-into-a-hub) for more information.
-> - Retain connection and user information in a dictionary that is stored in memory.
 > - Pass the connection ID between clients.
+> - Retain connection and user information using any storage method, such as:
+>   - In-memory storage in a dictionary.
+>   - Permanent external storage.  For example, a database or Azure Table storage using the [Azure.Data.Tables NuGet package](https://www.nuget.org/packages/Azure.Data.Tables/).
 
 ### Get an instance of `IHubContext` from IHost
 
