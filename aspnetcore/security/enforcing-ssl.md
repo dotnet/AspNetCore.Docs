@@ -422,6 +422,11 @@ certutil -d sql:$HOME/.pki/nssdb -D -n localhost
 certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -D -n localhost
 # Remove The Curl Alias
 ```
+
+# [SUSE Linux Enterprise Server](#tab/linux-sles)
+
+See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/28292)
+
 ---
 
 <a name="wsl"></a>
