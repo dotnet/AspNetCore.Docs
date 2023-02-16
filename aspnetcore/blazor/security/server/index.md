@@ -18,7 +18,7 @@ In Blazor Server apps, the authentication context is only established when the a
 
 If the app must capture users for custom services or react to updates to the user, see <xref:blazor/security/server/additional-scenarios#circuit-handler-to-capture-users-for-custom-services>.
 
-Authentication is checked during navigation events. However, cookies aren't involved. Cookies are only sent when making an HTTP request to the server, which isn't what happens when the user navigates in a Blazor Server app. During navigation, the user's authentication state is checked within the circuit, which you can update at any time on the server using the [`RevalidatingAuthenticationStateProvider` abstraction](#additional-security-abstractions) or via custom code. This differs from a traditional server-rendered web apps that make new HTTP requests with cookies on every page navigation.
+Blazor Server differs from a traditional server-rendered web apps that make new HTTP requests with cookies on every page navigation. Authentication is checked during navigation events. However, cookies aren't involved. Cookies are only sent when making an HTTP request to a server, which isn't what happens when the user navigates in a Blazor Server app. During navigation, the user's authentication state is checked within the Blazor circuit, which you can update at any time on the server using the [`RevalidatingAuthenticationStateProvider` abstraction](#additional-security-abstractions).
 
 > [!NOTE]
 > Implementing a custom `NavigationManager` to achieve authentication validation during navigation isn't recommended for Blazor Server apps. If the app must execute custom authentication state logic during navigation, use a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider).
@@ -181,7 +181,7 @@ builder.Services.AddScoped<AuthenticationStateProvider,
 
 :::moniker range="< aspnetcore-6.0"
 
-The `CustomAuthenticationStateProvider` service is registered in `Startup.ConfigureServices` ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>:
+The `CustomAuthenticationStateProvider` service is registered in `Startup.ConfigureServices` of `Startup.cs` ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -275,11 +275,11 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
 }
 ```
 
-For demonstration purposes in a component that contains an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>:
+In a component:
 
 * Inject <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>.
 * Add a field to hold the user's identifier.
-* Add a button and a method to cast the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to `CustomAuthenticationStateProvider` and call `AuthenticateUser` with the user's identifier:
+* Add a button and a method to cast the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to `CustomAuthenticationStateProvider` and call `AuthenticateUser` with the user's identifier.
 
 ```razor
 @inject AuthenticationStateProvider AuthenticationStateProvider
@@ -422,7 +422,7 @@ The following component's `SignIn` method creates a claims principal for the use
 
 Don't attempt to resolve <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> within a custom scope because it results in the creation of a new instance of the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> that isn't correctly initialized.
 
-To access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> within a service scoped to a component, we inject the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> with the [`@inject` directive](xref:mvc/views/razor#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) and pass it to the service as a parameter. This approach ensures that the correct, initialized instance of the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is used for each user app instance.
+To access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> within a service scoped to a component, inject the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> with the [`@inject` directive](xref:mvc/views/razor#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) and pass it to the service as a parameter. This approach ensures that the correct, initialized instance of the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> is used for each user app instance.
   
 `ExampleService.cs`:
 
@@ -446,7 +446,7 @@ public class ExampleService
 }
 ```
   
-Register the service as scoped in `Program.cs`. In a Blazor Server app, scoped services have a lifetime equal to the duration of the client connection [circuit](xref:blazor/hosting-models#blazor-server).
+Register the service as scoped. In a Blazor Server app, scoped services have a lifetime equal to the duration of the client connection [circuit](xref:blazor/hosting-models#blazor-server).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -536,9 +536,9 @@ To avoid showing unauthorized content during prerendering, implement <xref:Micro
 
 ## User state management
 
-In spite of the word "state" in the name, <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> isn't for storing *user state*. <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> only indicates the user's authentication state to the app, whether they are signed into the app and who they are signed in as.
+In spite of the word "state" in the name, <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> isn't for storing *general user state*. <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> only indicates the user's authentication state to the app, whether they are signed into the app and who they are signed in as.
 
-In Blazor Server apps, authentication uses the same ASP.NET Core Identity authentication as Razor Pages and MVC apps. The user state stored for ASP.NET Identity flows to Blazor without adding additional code to the app. Follow the guidance in the ASP.NET Core Identity articles and tutorials for the Identity features to take effect in the Blazor parts of the app.
+In Blazor Server apps, authentication uses the same ASP.NET Core Identity authentication as Razor Pages and MVC apps. The user state stored for ASP.NET Core Identity flows to Blazor without adding additional code to the app. Follow the guidance in the ASP.NET Core Identity articles and tutorials for the Identity features to take effect in the Blazor parts of the app.
 
 For guidance on general state management outside of ASP.NET Core Identity, see <xref:blazor/state-management?pivots=server>.
 

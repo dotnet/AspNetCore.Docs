@@ -14,7 +14,7 @@ This article explains how to configure Blazor Server for additional security sce
 
 ## Pass tokens to a Blazor Server app
 
-Tokens available outside of the Razor components in a Blazor Server app can be passed to components with the approach described in this section. The example in this section focuses on passing access and refresh tokens to the Blazor app, but the approach is valid for any other HTTP context state.
+Tokens available outside of the Razor components in a Blazor Server app can be passed to components with the approach described in this section. The example in this section focuses on passing access and refresh tokens to the Blazor app, but the approach is valid for other HTTP context state.
 
 Authenticate the Blazor Server app as you would with a regular Razor Pages or MVC app. Provision and save the tokens to the authentication cookie.
 
@@ -129,7 +129,7 @@ builder.Services.AddScoped<TokenProvider>();
 
 :::moniker range="< aspnetcore-6.0"
 
-In `Startup.ConfigureServices`, add services for:
+In `Startup.ConfigureServices` of `Startup.cs`, add services for:
 
 * <xref:System.Net.Http.IHttpClientFactory>: Used in a `WeatherForecastService` class that obtains weather data from a server API with an access token.
 * `TokenProvider`: Holds the access and refresh tokens.
@@ -450,7 +450,7 @@ In the following example:
 
 * <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnConnectionUpAsync%2A> is called every time the circuit reconnects, setting the user for the lifetime of the connection. Only the <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnConnectionUpAsync%2A> method is required unless you implement updates via a handler for authentication changes (`AuthenticationChanged` in the following example).
 * <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnCircuitOpenedAsync%2A> is called to attach the authentication changed handler, `AuthenticationChanged`, to update the user. 
-* The `UpdateAuthentication` task swallows all exceptions because there's no way to report them. If an exception is thrown from the task, the exception is reported elsewhere.
+* The `catch` block of the `UpdateAuthentication` task takes no action on exceptions because there's no way to report them at this point in code execution. If an exception is thrown from the task, the exception is reported elsewhere in app.
 
 `UserService.cs`:
 

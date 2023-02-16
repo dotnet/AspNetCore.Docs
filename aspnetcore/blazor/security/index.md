@@ -421,7 +421,6 @@ While authentication is in progress, <xref:Microsoft.AspNetCore.Components.Autho
         <p>Hello, @context.User.Identity.Name!</p>
     </Authorized>
     <Authorizing>
-        <h2>Authentication in progress</h2>
         <p>You can only see this content while authentication is in progress.</p>
     </Authorizing>
 </AuthorizeView>
