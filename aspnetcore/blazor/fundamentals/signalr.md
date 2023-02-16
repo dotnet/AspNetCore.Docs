@@ -5,7 +5,7 @@ description: Learn how to configure and manage Blazor SignalR connections.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 02/16/2023
 uid: blazor/fundamentals/signalr
 ---
 # ASP.NET Core Blazor SignalR guidance
@@ -99,6 +99,7 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 
 ## Additional resources for Blazor WebAssembly apps
 
+* [Hosted Blazor WebAssembly: Secure a SignalR hub](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * <xref:blazor/host-and-deploy/webassembly#signalr-configuration>
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
@@ -485,22 +486,6 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
 
-## Avoid `IHttpContextAccessor` in Razor components
-
-Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
-
-## Additional resources for Blazor Server apps
-
-* <xref:blazor/host-and-deploy/server#signalr-configuration>
-* <xref:signalr/introduction>
-* <xref:signalr/configuration>
-* <xref:blazor/security/server/threat-mitigation>
-* [Blazor Server reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
-* [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
-* [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
-* <xref:signalr/publish-to-azure-web-app>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
@@ -593,6 +578,7 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 
 ## Additional resources for Blazor WebAssembly apps
 
+* [Hosted Blazor WebAssembly: Secure a SignalR hub](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * <xref:blazor/host-and-deploy/webassembly#signalr-configuration>
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
@@ -905,22 +891,6 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
 
-## Avoid `IHttpContextAccessor` in Razor components
-
-Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
-
-## Additional resources for Blazor Server apps
-
-* <xref:blazor/host-and-deploy/server#signalr-configuration>
-* <xref:signalr/introduction>
-* <xref:signalr/configuration>
-* <xref:blazor/security/server/threat-mitigation>
-* [Blazor Server reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
-* [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
-* [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
-* <xref:signalr/publish-to-azure-web-app>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
@@ -983,6 +953,7 @@ If a Blazor WebAssembly app that uses SignalR is configured to prerender on the 
 
 ## Additional resources for Blazor WebAssembly apps
 
+* [Hosted Blazor WebAssembly: Secure a SignalR hub](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
@@ -1298,21 +1269,6 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
 
-## Avoid `IHttpContextAccessor` in Razor components
-
-Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
-
-## Additional resources for Blazor Server apps
-
-* <xref:signalr/introduction>
-* <xref:signalr/configuration>
-* <xref:blazor/security/server/threat-mitigation>
-* [Blazor Server reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
-* [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
-* [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
-* <xref:signalr/publish-to-azure-web-app>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
@@ -1368,6 +1324,7 @@ For more information, see <xref:signalr/configuration#configure-additional-optio
 
 ## Additional resources for Blazor WebAssembly apps
 
+* [Hosted Blazor WebAssembly: Secure a SignalR hub](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
@@ -1642,19 +1599,28 @@ If a custom circuit handler's methods throw an unhandled exception, the exceptio
 
 When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
 
-## Avoid `IHttpContextAccessor` in Razor components
+:::moniker-end
 
-Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
+## Blazor Server circuit handler to capture users for custom services
+
+Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to capture a user from the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and set that user in a service. For more information and example code, see <xref:blazor/security/server/additional-scenarios#circuit-handler-to-capture-users-for-custom-services>.
+
+## Avoid `IHttpContextAccessor`/`HttpContext` in Razor components
+
+[!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
 
 ## Additional resources for Blazor Server apps
 
+* [Blazor Server host and deployment guidance: SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
 * <xref:signalr/introduction>
 * <xref:signalr/configuration>
-* <xref:blazor/security/server/threat-mitigation>
+* Blazor Server security documentation
+  * <xref:blazor/security/index>
+  * <xref:blazor/security/server/index>
+  * <xref:blazor/security/server/threat-mitigation>
+  * <xref:blazor/security/server/additional-scenarios>
 * [Blazor Server reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
 * <xref:signalr/publish-to-azure-web-app>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-
-:::moniker-end

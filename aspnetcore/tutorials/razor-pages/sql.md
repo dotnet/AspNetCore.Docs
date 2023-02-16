@@ -21,7 +21,7 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_di_sl&highlight=5-6)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_di_sl&highlight=7-8)]
 
 ---
 

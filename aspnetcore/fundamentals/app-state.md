@@ -173,6 +173,10 @@ The following example shows how to set and get a serializable object with the `S
 
 [!code-csharp[](app-state/6.0samples/SessionSample/Pages/Index6.cshtml.cs)]
 
+> [!WARNING]
+> Storing live object in session should be used with caution as there are many problems than can occur with searilized objects. For more information [see this GitHub issue](https://github.com/dotnet/aspnetcore/issues/18159)
+
+
 ## TempData
 
 ASP.NET Core exposes the Razor Pages [TempData](xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel.TempData) or Controller <xref:Microsoft.AspNetCore.Mvc.Controller.TempData>. This property stores data until it's read in another request. The [Keep(String)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) and [Peek(string)](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Peek*) methods can be used to examine the data without deletion at the end of the request. [Keep](xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ITempDataDictionary.Keep*) marks all items in the dictionary for retention. `TempData` is:

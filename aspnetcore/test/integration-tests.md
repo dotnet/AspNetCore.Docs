@@ -14,7 +14,7 @@ By [Jos van der Til](https://jvandertil.nl), [Martin Costello](https://martincos
 
 Integration tests ensure that an app's components function correctly at a level that includes the app's supporting infrastructure, such as the database, file system, and network. ASP.NET Core supports integration tests using a unit test framework with a test web host and an in-memory test server.
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-6.0"
 
 This article assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Unit Testing in .NET Core and .NET Standard](/dotnet/core/testing/) article and its linked content.
 
@@ -54,6 +54,7 @@ Entity Framework Core is also used in the tests. See the [project file in GitHub
 If the SUT's [environment](xref:fundamentals/environments) isn't set, the environment defaults to Development.
 
 ## Basic tests with the default WebApplicationFactory
+
 
 Expose the implicitly defined `Program` class to the test project by doing one of the following:
 
@@ -108,13 +109,13 @@ Web host configuration can be created independently of the test classes by inher
 
    The sample app finds the service descriptor for the database context and uses the descriptor to remove the service registration. The factory then adds a new `ApplicationDbContext` that uses an in-memory database for the tests..
 
-   To connect to a different database than the in-memory database, change the `UseInMemoryDatabase` call to connect the context to a different database. To use a SQL Server test database:
+   To connect to a different database, change the `DbConnection`. To use a SQL Server test database:
 
    * Reference the [`Microsoft.EntityFrameworkCore.SqlServer`](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/) NuGet package in the project file.
-   * Call `UseInMemoryDatabase`:
-
-    [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1)]
-
+   * Call `UseInMemoryDatabase`.
+<!--
+    [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/src/RazorPagesProject/Program.cs?name=snippet_all)]
+-->
 2. Use the custom `CustomWebApplicationFactory` in test classes. The following example uses the factory in the `IndexPageTests` class:
 
    [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet1)]
@@ -334,7 +335,7 @@ The SUT's database context is registered in `Program.cs`. The test app's `builde
 
 :::moniker-end
 
-:::moniker range="<= aspnetcore-6.0"
+:::moniker range="<= aspnetcore-5.0"
 
 This topic assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Unit Testing in .NET Core and .NET Standard](/dotnet/core/testing/) topic and its linked content.
 
@@ -381,45 +382,6 @@ Entity Framework Core is also used in the tests. The app references:
 If the SUT's [environment](xref:fundamentals/environments) isn't set, the environment defaults to Development.
 
 ## Basic tests with the default WebApplicationFactory
-
-:::moniker-end
-:::moniker range="= aspnetcore-6.0"
-
-ASP.NET Core 6 introduced <xref:Microsoft.AspNetCore.Builder.WebApplication> which removed the need for a `Startup` class. To test with `WebApplicationFactory` without a `Startup` class, an ASP.NET Core 6 app needs to expose the implicitly defined `Program` class to the test project by doing one of the following:
-
-* Expose internal types from the web app to the test project. This can be done in the project file (`.csproj`):
-  ```xml
-  <ItemGroup>
-       <InternalsVisibleTo Include="MyTestProject" />
-  </ItemGroup>
-  ```
-* Make the `Program` class public using a partial class declaration:
-  ```diff
-  var builder = WebApplication.CreateBuilder(args);
-  // ... Configure services, routes, etc.
-  app.Run();
-  + public partial class Program { }
-  ```
-
-After making the changes in the web application, the test project now can use the `Program` class for the `WebApplicationFactory`.
-
-```csharp
-[Fact]
-public async Task HelloWorldTest()
-{
-    var application = new WebApplicationFactory<Program>()
-        .WithWebHostBuilder(builder =>
-        {
-            // ... Configure test services
-        });
-        
-    var client = application.CreateClient();
-    //...
-}
-```
-
-:::moniker-end
-:::moniker range="<= aspnetcore-6.0"
 
 <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> is used to create a <xref:Microsoft.AspNetCore.TestHost.TestServer> for the integration tests. `TEntryPoint` is the entry point class of the SUT, usually the `Startup` class.
 
