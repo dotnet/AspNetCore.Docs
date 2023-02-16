@@ -5,7 +5,7 @@ description: Learn how to mitigate security threats to Blazor Server apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/15/2023
+ms.date: 02/16/2023
 uid: blazor/security/server/threat-mitigation
 ---
 # Threat mitigation guidance for ASP.NET Core Blazor Server

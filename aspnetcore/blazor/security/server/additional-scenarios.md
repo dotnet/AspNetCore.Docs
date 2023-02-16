@@ -5,7 +5,7 @@ description: Learn how to configure Blazor Server for additional security scenar
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/15/2023
+ms.date: 02/16/2023
 uid: blazor/security/server/additional-scenarios
 ---
 # ASP.NET Core Blazor Server additional security scenarios
@@ -14,7 +14,7 @@ This article explains how to configure Blazor Server for additional security sce
 
 ## Pass tokens to a Blazor Server app
 
-Tokens available outside of the Razor components in a Blazor Server app can be passed to components with the approach described in this section. The example in this section focuses on passing access and refresh tokens to the Blazor app, but the approach is valid for any other HTTP context state to pass on initialization of the circuit.
+Tokens available outside of the Razor components in a Blazor Server app can be passed to components with the approach described in this section. The example in this section focuses on passing access and refresh tokens to the Blazor app, but the approach is valid for any other HTTP context state.
 
 Authenticate the Blazor Server app as you would with a regular Razor Pages or MVC app. Provision and save the tokens to the authentication cookie.
 
@@ -444,12 +444,12 @@ You can find the App ID URI to use in the OIDC provider app registration descrip
 
 ## Circuit handler to capture users for custom services
 
-Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to capture a user from the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and set that user in a service. If you want to update the user, register a callback to <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.AuthenticationStateChanged> and queue a `Task` to get the new user and update the service. The following example demonstrates the approach.
+Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to capture a user from the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and set the user in a service. If you want to update the user, register a callback to <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.AuthenticationStateChanged> and queue a <xref:System.Threading.Tasks.Task> to obtain the new user and update the service. The following example demonstrates the approach.
 
 In the following example:
 
-* <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnConnectionUpAsync%2A> is called every time the circuit reconnects, setting the user for the lifetime of the connection. Only the <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnConnectionUpAsync%2A> method is required unless you implement updates via `AuthenticationChanged`.
-* <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnCircuitOpenedAsync%2A> is called to attach the event handler, `AuthenticationChanged`, to update the user. 
+* <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnConnectionUpAsync%2A> is called every time the circuit reconnects, setting the user for the lifetime of the connection. Only the <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnConnectionUpAsync%2A> method is required unless you implement updates via a handler for authentication changes (`AuthenticationChanged` in the following example).
+* <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnCircuitOpenedAsync%2A> is called to attach the authentication changed handler, `AuthenticationChanged`, to update the user. 
 * The `UpdateAuthentication` task swallows all exceptions because there's no way to report them. If an exception is thrown from the task, the exception is reported elsewhere.
 
 `UserService.cs`:

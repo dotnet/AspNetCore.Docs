@@ -5,7 +5,7 @@ description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/15/2023
+ms.date: 02/16/2023
 uid: blazor/security/index
 ---
 # ASP.NET Core Blazor authentication and authorization
@@ -313,8 +313,7 @@ The component exposes a `context` variable of type <xref:Microsoft.AspNetCore.Co
 
 ```razor
 <AuthorizeView>
-    <h1>Hello, @context.User.Identity.Name!</h1>
-    <p>You can only see this content if you're authenticated.</p>
+    <p>Hello, @context.User.Identity.Name!</p>
 </AuthorizeView>
 ```
 
@@ -323,13 +322,11 @@ You can also supply different content for display if the user isn't authorized:
 ```razor
 <AuthorizeView>
     <Authorized>
-        <h1>Hello, @context.User.Identity.Name!</h1>
-        <p>You can only see this content if you're authorized.</p>
-        <button @onclick="SecureMethod">Authorized Only Button</button>
+        <p>Hello, @context.User.Identity.Name!</p>
+        <p><button @onclick="SecureMethod">Authorized Only Button</button></p>
     </Authorized>
     <NotAuthorized>
-        <h1>Authentication Failure!</h1>
-        <p>You're not signed in.</p>
+        <p>You're not authorized.</p>
     </NotAuthorized>
 </AuthorizeView>
 
@@ -421,11 +418,10 @@ While authentication is in progress, <xref:Microsoft.AspNetCore.Components.Autho
 ```razor
 <AuthorizeView>
     <Authorized>
-        <h1>Hello, @context.User.Identity.Name!</h1>
-        <p>You can only see this content if you're authenticated.</p>
+        <p>Hello, @context.User.Identity.Name!</p>
     </Authorized>
     <Authorizing>
-        <h1>Authentication in progress</h1>
+        <h2>Authentication in progress</h2>
         <p>You can only see this content while authentication is in progress.</p>
     </Authorizing>
 </AuthorizeView>
