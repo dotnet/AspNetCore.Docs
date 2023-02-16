@@ -363,66 +363,63 @@ See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) i
 
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
-Install RHEL Dependencies:
+## Install Dependencies
 
-``` bash
-dnf install dotnet-sdk-6.0 nss-tools
+```sh
+dnf install nss-tools
 ```
 
-Create and run an ASP.NET Core Web App:
+## Create an ASP.NET Core Web App
 
-``` bash
-dotnet new web -o ~/web
-cd ~/web
-dotnet run
+>[!NOTE]
+> Replace `${ProjectDir}` with a directory of your choosing.
+
+```sh
+dotnet new web -o ${ProjectDir}
+cd ${ProjectDir}
 ```
 
-Note the location of the HTTPS and HTTP URLs and test them with curl:
+## Export The ASP.NET Core Development Certificate:
 
-```bash
-curl https://{url}
-curl http://{url}
-```
+>[!NOTE]
+> Replace `${CertificateName}` with a name of your choosing.
 
-The HTTP endpoint succeeds while the HTTPS endpoint is not trusted.
-
-Export The ASP.NET Core Development Certificate:
-
-``` bash
-dotnet dev-certs https -ep ~/localhost.crt --format PEM
+```sh
+dotnet dev-certs https -ep ./${CertificateName}.crt --format PEM
 ```
 
 Import The ASP.NET Core Development Certificate:
 
-``` bash
-# Chromium-based Browsers
-certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n localhost -i ~/web/localhost.crt
-certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n localhost -i ~/web/localhost.crt
+## Chromium-based Browsers
 
-# Mozilla Firefox
-certutil -d sql:$HOME/.mozilla/firefox/{userprofile}/ -A -t "P,," -n localhost -i ~/web/ocalhost.crt
-certutil -d sql:$HOME/.mozilla/firefox/{userprofile}/ -A -t "C,," -n localhost -i ~/web/ocalhost.crt
+```sh
+certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n ${CertificateName} -i ./${CertificateName}.crt
+certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n ${CertificateName} -i ./${CertificateName}.crt
 ```
 
-Create An Alias To Test With Curl:
+## Mozilla Firefox
 
-``` bash
-# Curl doesn't support the NSS database so hold on to the `localhost.crt` file and note it's ocation.
-# Create an alias in ~/.bashrc
-alias curl="curl --cacert /*{pathto}*/localhost.crt"
-# Run the ASP.NET Core Web App
-cd ~/web
-dotnet run
-# Note the location of the https url
-# Open a new terminal
-curl https://{url}
+```sh
+certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "P,," -n localhost -i ./localhost.crt
+certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "C,," -n localhost -i ./localhost.crt
 ```
 
-Cleanup:
+## Create An Alias To Test With Curl
 
-``` bash
+>[!NOTE]
+> 
+> Don't remove the exported certificate if you plan to test with curl.
+> You'll need to create an alias in your `$SHELL`'s profile
+
+```sh
+alias curl="curl --cacert ${ProjectDir}/${CertificateName}.crt"
+```
+
+## Cleanup
+
+```sh
 certutil -d sql:$HOME/.pki/nssdb -D -n localhost
-certutil -d sql:$HOME/.mozilla/firefox/{userprofiles}/ -D -n localhost
+certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -D -n localhost
 # Remove The Curl Alias
 ```
 ---
