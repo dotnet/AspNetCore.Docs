@@ -393,7 +393,7 @@ dnf install nss-tools
 > Replace `${CertificateName}` with a name you'll be able to identify in the future.
 
 ```sh
-cd ${ProjectDir}
+cd ${ProjectDirectory}
 dotnet dev-certs https -ep ${ProjectDirectory}/${CertificateName}.crt --format PEM
 ```
 
