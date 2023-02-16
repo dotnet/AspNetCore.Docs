@@ -369,7 +369,7 @@ See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) i
 > [!CAUTION]
 > Do not use the certificates generated in these instructions for a production environment.
 
-> [!NOTE]
+> [!TIP]
 > Instructions for valid production certificates can be found in the RHEL Documentation.
 > [RHEL8 TLS Certificates](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/securing_networks/index#creating-and-managing-tls-keys-and-certificates_securing-networks)
 > [RHEL9 TLS Certificates](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/securing_networks/index#creating-and-managing-tls-keys-and-certificates_securing-networks)
@@ -383,10 +383,8 @@ dnf install nss-tools
 
 ### Export The ASP.NET Core Development Certificate:
 
->[!NOTE]
+> [!IMPORTANT]
 > Replace `${ProjectDirectory}` with your projects directory.
-
->[!NOTE]
 > Replace `${CertificateName}` with a name you'll be able to identify in the future.
 
 ```sh
@@ -403,6 +401,10 @@ dotnet dev-certs https -ep ${ProjectDirectory}/${CertificateName}.crt --format P
 
 ### Import The ASP.NET Core Development Certificate
 
+> [!IMPORTANT]
+> Replace `${UserProfile}` with the profile you intend to use.
+> Do not replace `$HOME`, it is the environment variable to your user directory.
+
 #### Chromium-based Browsers
 
 ```sh
@@ -412,10 +414,6 @@ certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n ${CertificateName} -i ${ProjectD
 
 #### Mozilla Firefox
 
->[!NOTE]
-> Replace `${UserProfile}` with the profile you intend to use.
-> Do not replace `$HOME`, it is the environment variable to your user directory.
-
 ```sh
 certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "P,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
 certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "C,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
@@ -423,16 +421,16 @@ certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "C,," -n ${Certific
 
 #### Create An Alias To Test With Curl
 
->[!NOTE]
+> [!IMPORTANT]
 > 
 > Don't delete the exported certificate if you plan to test with curl.
-> You'll need to create an alias in your `$SHELL`'s profile
+> You'll need to create an alias referencing it in your `$SHELL`'s profile
 
 ```sh
 alias curl="curl --cacert ${ProjectDirectory}/${CertificateName}.crt"
 ```
 
-### Cleanup
+### Cleaning up the Development Certificates
 
 ```sh
 certutil -d sql:$HOME/.pki/nssdb -D -n ${CertificateName}
