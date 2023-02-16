@@ -400,8 +400,8 @@ certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n localhost -i ~/web/localhost.crt
 certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n localhost -i ~/web/localhost.crt
 
 # Mozilla Firefox
-certutil -d sql:$HOME/.mozilla/firefox/{userprofile}/ -A -t "P,," -n localhost -i ~/web/ocalhost.crt
-certutil -d sql:$HOME/.mozilla/firefox/{userprofile}/ -A -t "C,," -n localhost -i ~/web/ocalhost.crt
+certutil -d sql:$HOME/.mozilla/firefox/{userprofile}/ -A -t "P,," -n localhost -i ~/web/localhost.crt
+certutil -d sql:$HOME/.mozilla/firefox/{userprofile}/ -A -t "C,," -n localhost -i ~/web/localhost.crt
 ```
 
 Create An Alias To Test With Curl:
