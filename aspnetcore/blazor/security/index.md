@@ -5,7 +5,7 @@ description: Learn about Blazor authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/07/2023
+ms.date: 02/16/2023
 uid: blazor/security/index
 ---
 # ASP.NET Core Blazor authentication and authorization
@@ -31,21 +31,17 @@ Blazor uses the existing ASP.NET Core authentication mechanisms to establish the
 
 ### Blazor Server authentication
 
-Blazor Server operates over a real-time connection that's created using SignalR. [Authentication in SignalR-based apps](xref:signalr/authn-and-authz) is handled when the connection is established. Authentication can be based on a cookie or some other bearer token.
+Blazor Server operates over a SignalR connection with the client. [Authentication in SignalR-based apps](xref:signalr/authn-and-authz) is handled when the connection is established. Authentication can be based on a cookie or some other bearer token, but authentication is managed via the SignalR hub and entirely within the [circuit](xref:blazor/hosting-models#blazor-server).
 
 The built-in <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service for Blazor Server apps obtains authentication state data from ASP.NET Core's `HttpContext.User`. This is how authentication state integrates with existing ASP.NET Core authentication mechanisms.
 
-Two additional abstractions participate in managing authentication state:
+#### Avoid `IHttpContextAccessor`/`HttpContext` in Razor components
 
-* <xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/ServerAuthenticationStateProvider.cs)): An <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> used by the Blazor framework to obtain authentication state from the server.
-* <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/RevalidatingServerAuthenticationStateProvider.cs)): A base class for <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> services used by the Blazor framework to receive an authentication state from the host environment and revalidate it at regular intervals.
+[!INCLUDE[](~/blazor/security/includes/httpcontext.md)]
 
-[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+#### Shared state
 
-> [!IMPORTANT]
-> Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in Razor components of Blazor Server apps. Blazor apps run outside of the context of the ASP.NET Core pipeline. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app. For more information, see [Security implications of using `IHttpContextAccessor` in Blazor Server (dotnet/aspnetcore #45699)](https://github.com/dotnet/aspnetcore/issues/45699). For more information on maintaining user state in Blazor Server apps, see <xref:blazor/state-management?pivots=server>.
-
-For more information, see <xref:blazor/security/server/index>.
+[!INCLUDE[](~/blazor/security/includes/shared-state.md)]
 
 ### Blazor WebAssembly authentication
 
@@ -272,11 +268,10 @@ Set up the `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.Authentica
         <Found ...>
             <AuthorizeRouteView RouteData="@routeData" 
                 DefaultLayout="@typeof(MainLayout)" />
+            ...
         </Found>
         <NotFound>
-            <LayoutView ...>
-                ...
-            </LayoutView>
+            ...
         </NotFound>
     </Router>
 </CascadingAuthenticationState>
@@ -318,8 +313,7 @@ The component exposes a `context` variable of type <xref:Microsoft.AspNetCore.Co
 
 ```razor
 <AuthorizeView>
-    <h1>Hello, @context.User.Identity.Name!</h1>
-    <p>You can only see this content if you're authenticated.</p>
+    <p>Hello, @context.User.Identity.Name!</p>
 </AuthorizeView>
 ```
 
@@ -328,13 +322,11 @@ You can also supply different content for display if the user isn't authorized:
 ```razor
 <AuthorizeView>
     <Authorized>
-        <h1>Hello, @context.User.Identity.Name!</h1>
-        <p>You can only see this content if you're authorized.</p>
-        <button @onclick="SecureMethod">Authorized Only Button</button>
+        <p>Hello, @context.User.Identity.Name!</p>
+        <p><button @onclick="SecureMethod">Authorized Only Button</button></p>
     </Authorized>
     <NotAuthorized>
-        <h1>Authentication Failure!</h1>
-        <p>You're not signed in.</p>
+        <p>You're not authorized.</p>
     </NotAuthorized>
 </AuthorizeView>
 
@@ -426,11 +418,9 @@ While authentication is in progress, <xref:Microsoft.AspNetCore.Components.Autho
 ```razor
 <AuthorizeView>
     <Authorized>
-        <h1>Hello, @context.User.Identity.Name!</h1>
-        <p>You can only see this content if you're authenticated.</p>
+        <p>Hello, @context.User.Identity.Name!</p>
     </Authorized>
     <Authorizing>
-        <h1>Authentication in progress</h1>
         <p>You can only see this content while authentication is in progress.</p>
     </Authorizing>
 </AuthorizeView>
