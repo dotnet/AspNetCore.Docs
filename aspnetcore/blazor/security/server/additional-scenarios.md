@@ -655,26 +655,10 @@ Use the service in a component to obtain the user:
 ```razor
 @inject UserService UserService
 
-<h1>Hello, @(UserService.GetUser().Identity.Name ?? "world")!</h1>
+<h1>Hello, @(UserService.GetUser().Identity?.Name ?? "world")!</h1>
 ```
 
-To set the user in middleware for MVC, Razor Pages, and in other ASP.NET Core scenarios, call `SetUser` on the `UserService` in custom middleware after the authentication middleware runs, or set the user with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation.
-
-:::moniker range=">= aspnetcore-6.0"
-
-After the call `app.UseAuthorization()` in `Program.cs`:
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-After the call `app.UseAuthorization()` in `Startup.Configure` of `Startup.cs`:
-
-:::moniker-end
-
-```csharp
-app.UseMiddleware<UserServiceMiddleware>();
-```
+To set the user in middleware for MVC, Razor Pages, and in other ASP.NET Core scenarios, call `SetUser` on the `UserService` in custom middleware after the authentication middleware runs, or set the user with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation. The following example adopts the middleware approach.
 
 `UserServiceMiddleware.cs`:
 
@@ -694,4 +678,20 @@ public class UserServiceMiddleware
         await next(context);
     }
 }
+```
+
+:::moniker range=">= aspnetcore-6.0"
+
+Immediately before the call to `app.MapBlazorHub()` in `Program.cs`, call the middleware:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+Immediately before the call to `app.MapBlazorHub()` in `Startup.Configure` of `Startup.cs`, call the middleware:
+
+:::moniker-end
+
+```csharp
+app.UseMiddleware<UserServiceMiddleware>();
 ```
