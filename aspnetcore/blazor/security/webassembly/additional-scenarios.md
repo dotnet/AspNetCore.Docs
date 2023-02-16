@@ -99,10 +99,10 @@ In the following `LoginDisplay` component example, additional parameters are add
 <AuthorizeView>
     <Authorized>
         Hello, @context.User.Identity?.Name!
-        <button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
+        <button @onclick="BeginLogOut">Log out</button>
     </Authorized>
     <NotAuthorized>
-        <button class="nav-link btn btn-link" @onclick="BeginLogIn">Log in</button>
+        <button @onclick="BeginLogIn">Log in</button>
     </NotAuthorized>
 </AuthorizeView>
 
