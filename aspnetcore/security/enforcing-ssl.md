@@ -363,59 +363,77 @@ See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) i
 
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
+> [!WARNING]
+> The following instructions are intended for development purposes only.
+
+---
+> [!CAUTION]
+> Do not use the certificates generated in these instructions for a production environment.
+
+---
+> [!NOTE]
+> Instructions for valid production certificates can be found in the RHEL Documentation.
+> [RHEL8 TLS Certificates](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/securing_networks/index#creating-and-managing-tls-keys-and-certificates_securing-networks)
+> [RHEL9 TLS Certificates](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/securing_networks/index#creating-and-managing-tls-keys-and-certificates_securing-networks)
+> [RHEL9 Certificate System](https://access.redhat.com/documentation/en-us/red_hat_certificate_system/9)
+
 ## Install Dependencies
 
 ```sh
 dnf install nss-tools
 ```
 
-## Create an ASP.NET Core Web App
-
->[!NOTE]
-> Replace `${ProjectDir}` with a directory of your choosing.
-
-```sh
-dotnet new web -o ${ProjectDir}
-cd ${ProjectDir}
-```
-
 ## Export The ASP.NET Core Development Certificate:
 
 >[!NOTE]
-> Replace `${CertificateName}` with a name of your choosing.
+> Replace `${ProjectDirectory}` with your projects directory.
+
+---
+>[!NOTE]
+> Replace `${CertificateName}` with a name you'll be able to identify in the future.
 
 ```sh
-dotnet dev-certs https -ep ./${CertificateName}.crt --format PEM
+cd ${ProjectDir}
+dotnet dev-certs https -ep ${ProjectDirectory}/${CertificateName}.crt --format PEM
 ```
+
+> [!CAUTION]
+> If using git, add your certificate to your `${ProjectDirectory}/.gitignore` or `${ProjectDirectory}/.git/info/exclude`.
+> View the [git documentation](https://git-scm.com/docs/gitignore) for information about these files.
+
+---
+> [!TIP]
+> You can move your exported certificate outside of your Git repository and replace the occurrences of `${ProjectDirectory}`, in the following instructions, with the new location.
 
 Import The ASP.NET Core Development Certificate:
 
 ## Chromium-based Browsers
 
 ```sh
-certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n ${CertificateName} -i ./${CertificateName}.crt
-certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n ${CertificateName} -i ./${CertificateName}.crt
+certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
+certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
 ```
 
 ## Mozilla Firefox
 
 >[!NOTE]
 > Replace `${UserProfile}` with the profile you intend to use.
+> Do not replace `$HOME`, it is the environment variable to your user directory.
 
 ```sh
-certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "P,," -n ${CertificateName} -i ./${CertificateName}.crt
-certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "C,," -n ${CertificateName} -i ./${CertificateName}.crt
+certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "P,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
+certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "C,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
 ```
 
 ## Create An Alias To Test With Curl
 
 >[!NOTE]
 > 
-> Don't remove the exported certificate if you plan to test with curl.
+> Don't delete the exported certificate if you plan to test with curl.
 > You'll need to create an alias in your `$SHELL`'s profile
 
 ```sh
-alias curl="curl --cacert ${ProjectDir}/${CertificateName}.crt"
+alias curl="curl --cacert ${ProjectDirectory}/${CertificateName}.crt"
 ```
 
 ## Cleanup
@@ -423,6 +441,8 @@ alias curl="curl --cacert ${ProjectDir}/${CertificateName}.crt"
 ```sh
 certutil -d sql:$HOME/.pki/nssdb -D -n ${CertificateName}
 certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -D -n ${CertificateName}
+rm ${ProjectDirectory}/${CertificateName}.crt
+dotnet dev-certs https --clean
 ```
 
 >[!NOTE]
