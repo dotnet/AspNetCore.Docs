@@ -101,7 +101,12 @@ Prior to the release of ASP.NET Core 6.0, the <xref:Microsoft.AspNetCore.Compone
 
 In all versions of ASP.NET Core to date, Blazor WebAssembly reads the file's bytes into a single JavaScript array buffer when marshalling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads (> 250 MB) may fail.
 
+<!-- TRACKED BY https://github.com/dotnet/AspNetCore.Docs/issues/28161 
+     for potential update at the .NET 8 release and/or when Safari/FF support Fetch streaming.
+
 To resolve the file size upload limitation in Blazor WebAssembly apps, we recommend implementing file uploads entirely in JavaScript by [streaming requests with the Fetch API](https://developer.chrome.com/articles/fetch-streaming-requests/).
+
+-->
 
 :::zone-end
 
