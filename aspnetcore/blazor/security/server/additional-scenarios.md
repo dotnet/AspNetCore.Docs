@@ -441,3 +441,257 @@ If tacking on a segment to the authority isn't appropriate for the app's OIDC pr
 You can find the App ID URI to use in the OIDC provider app registration description.
 
 :::moniker-end
+
+## Circuit handler to capture users for custom services
+
+Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to capture a user from the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and set that user in a service. If you want to update the user, register a callback to <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.AuthenticationStateChanged> and queue a `Task` to get the new user and update the service. The following example demonstrates the approach.
+
+In the following example:
+
+* <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnConnectionUpAsync%2A> is called every time the circuit reconnects, setting the user for the lifetime of the connection. Only the <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnConnectionUpAsync%2A> method is required unless you implement updates via `AuthenticationChanged`.
+* <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler.OnCircuitOpenedAsync%2A> is called to attach the event handler, `AuthenticationChanged`, to update the user. 
+* The `UpdateAuthentication` task swallows all exceptions because there's no way to report them. If an exception is thrown from the task, the exception is reported elsewhere.
+
+`UserService.cs`:
+
+:::moniker range=">= aspnetcore-5.0"
+
+```csharp
+using System.Security.Claims;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server.Circuits;
+
+public class UserService
+{
+    private ClaimsPrincipal currentUser = new(new ClaimsIdentity());
+
+    public ClaimsPrincipal GetUser()
+    {
+        return currentUser;
+    }
+
+    internal void SetUser(ClaimsPrincipal user)
+    {
+        if (currentUser != user)
+        {
+            currentUser = user;
+        }
+    }
+}
+
+internal sealed class UserCircuitHandler : CircuitHandler, IDisposable
+{
+    private readonly AuthenticationStateProvider authenticationStateProvider;
+    private readonly UserService userService;
+
+    public UserCircuitHandler(
+        AuthenticationStateProvider authenticationStateProvider,
+        UserService userService)
+    {
+        this.authenticationStateProvider = authenticationStateProvider;
+        this.userService = userService;
+    }
+
+    public override Task OnCircuitOpenedAsync(Circuit circuit, 
+        CancellationToken cancellationToken)
+    {
+        authenticationStateProvider.AuthenticationStateChanged += 
+            AuthenticationChanged;
+
+        return base.OnCircuitOpenedAsync(circuit, cancellationToken);
+    }
+
+    private void AuthenticationChanged(Task<AuthenticationState> task)
+    {
+        _ = UpdateAuthentication(task);
+
+        async Task UpdateAuthentication(Task<AuthenticationState> task)
+        {
+            try
+            {
+                var state = await task;
+                userService.SetUser(state.User);
+            }
+            catch
+            {
+            }
+        }
+    }
+
+    public override async Task OnConnectionUpAsync(Circuit circuit, 
+        CancellationToken cancellationToken)
+    {
+        var state = await authenticationStateProvider.GetAuthenticationStateAsync();
+        userService.SetUser(state.User);
+    }
+
+    public void Dispose()
+    {
+        authenticationStateProvider.AuthenticationStateChanged -= 
+            AuthenticationChanged;
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+```csharp
+using System.Security.Claims;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server.Circuits;
+
+public class UserService
+{
+    private ClaimsPrincipal currentUser = new ClaimsPrincipal(new ClaimsIdentity());
+
+    public ClaimsPrincipal GetUser()
+    {
+        return currentUser;
+    }
+
+    internal void SetUser(ClaimsPrincipal user)
+    {
+        if (currentUser != user)
+        {
+            currentUser = user;
+        }
+    }
+}
+
+internal sealed class UserCircuitHandler : CircuitHandler, IDisposable
+{
+    private readonly AuthenticationStateProvider authenticationStateProvider;
+    private readonly UserService userService;
+
+    public UserCircuitHandler(
+        AuthenticationStateProvider authenticationStateProvider,
+        UserService userService)
+    {
+        this.authenticationStateProvider = authenticationStateProvider;
+        this.userService = userService;
+    }
+
+    public override Task OnCircuitOpenedAsync(Circuit circuit, 
+        CancellationToken cancellationToken)
+    {
+        authenticationStateProvider.AuthenticationStateChanged += 
+            AuthenticationChanged;
+
+        return base.OnCircuitOpenedAsync(circuit, cancellationToken);
+    }
+
+    private void AuthenticationChanged(Task<AuthenticationState> task)
+    {
+        _ = UpdateAuthentication(task);
+
+        async Task UpdateAuthentication(Task<AuthenticationState> task)
+        {
+            try
+            {
+                var state = await task;
+                userService.SetUser(state.User);
+            }
+            catch
+            {
+            }
+        }
+    }
+
+    public override async Task OnConnectionUpAsync(Circuit circuit, 
+        CancellationToken cancellationToken)
+    {
+        var state = await authenticationStateProvider.GetAuthenticationStateAsync();
+        userService.SetUser(state.User);
+    }
+
+    public void Dispose()
+    {
+        authenticationStateProvider.AuthenticationStateChanged -= 
+            AuthenticationChanged;
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
+In `Program.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components.Server.Circuits;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+
+...
+
+builder.Services.AddScoped<UserService>();
+builder.Services.TryAddEnumerable(
+    ServiceDescriptor.Scoped<CircuitHandler, UserCircuitHandler>());
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+In `Startup.ConfigureServices` of `Startup.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components.Server.Circuits;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+
+...
+
+services.AddScoped<UserService>();
+services.TryAddEnumerable(
+    ServiceDescriptor.Scoped<CircuitHandler, UserCircuitHandler>());
+```
+
+:::moniker-end
+
+Use the service in a component to obtain the user:
+
+```razor
+@inject UserService UserService
+
+<h1>Hello, @(UserService.GetUser().Identity.Name ?? "world")!</h1>
+```
+
+To set the user in middleware for MVC, Razor Pages, and in other ASP.NET Core scenarios, call `SetUser` on the `UserService` in custom middleware after the authentication middleware runs, or set the user with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation.
+
+:::moniker range=">= aspnetcore-6.0"
+
+After the call `app.UseAuthorization()` in `Program.cs`:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+After the call `app.UseAuthorization()` in `Startup.Configure` of `Startup.cs`:
+
+:::moniker-end
+
+```csharp
+app.UseMiddleware<UserServiceMiddleware>();
+```
+
+`UserServiceMiddleware.cs`:
+
+```csharp
+public class UserServiceMiddleware
+{
+    private readonly RequestDelegate next;
+
+    public UserServiceMiddleware(RequestDelegate next)
+    {
+        this.next = next ?? throw new ArgumentNullException(nameof(next));
+    }
+
+    public async Task InvokeAsync(HttpContext context, UserService service)
+    {
+        service.SetUser(context.User);
+        await next(context);
+    }
+}
+```
