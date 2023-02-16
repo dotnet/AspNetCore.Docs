@@ -364,10 +364,12 @@ See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) i
 # [Red Hat Enterprise Linux](#tab/linux-rhel)
 
 > [!WARNING]
-> The following instructions are intended for development purposes only.
+> The following instructions are intended for development purposes only. Do not use the certificates generated in these instructions for a production environment.
+
+These instructions use Mozilla's *legacy* tool [certutil](https://firefox-source-docs.mozilla.org/security/nss/legacy/tools/nss_tools_certutil/index.html). Instructions may be updated as modern utilities and practices are discovered.
 
 > [!CAUTION]
-> Do not use the certificates generated in these instructions for a production environment.
+> Improper use of TLS certificates could lead to spoofing.
 
 > [!TIP]
 > Instructions for valid production certificates can be found in the RHEL Documentation.
