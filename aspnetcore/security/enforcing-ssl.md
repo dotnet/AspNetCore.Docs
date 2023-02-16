@@ -399,9 +399,12 @@ certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n ${CertificateName} -i ./${Certif
 
 ## Mozilla Firefox
 
+>[!NOTE]
+> Replace `${UserProfile}` with the profile you intend to use.
+
 ```sh
-certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "P,," -n localhost -i ./localhost.crt
-certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "C,," -n localhost -i ./localhost.crt
+certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "P,," -n ${CertificateName} -i ./${CertificateName}.crt
+certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "C,," -n ${CertificateName} -i ./${CertificateName}.crt
 ```
 
 ## Create An Alias To Test With Curl
@@ -418,10 +421,12 @@ alias curl="curl --cacert ${ProjectDir}/${CertificateName}.crt"
 ## Cleanup
 
 ```sh
-certutil -d sql:$HOME/.pki/nssdb -D -n localhost
-certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -D -n localhost
-# Remove The Curl Alias
+certutil -d sql:$HOME/.pki/nssdb -D -n ${CertificateName}
+certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -D -n ${CertificateName}
 ```
+
+>[!NOTE]
+> Remove the curl alias you created earlier
 
 # [SUSE Linux Enterprise Server](#tab/linux-sles)
 
