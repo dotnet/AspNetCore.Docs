@@ -32,6 +32,7 @@ builder.Services.AddMvc()
 builder.Services.AddTransient<IEmailSender, AuthMessageSender>();
 builder.Services.AddTransient<ISmsSender, AuthMessageSender>();
 
+#region snippet_RequestLocalizationOptionsConfiguration
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
     var supportedCultures = new[] { "en-US", "fr" };
@@ -39,6 +40,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
         .AddSupportedCultures(supportedCultures)
         .AddSupportedUICultures(supportedCultures);
 });
+#endregion
 
 var app = builder.Build();
 
