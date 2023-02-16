@@ -5,7 +5,7 @@ description: Learn how to upload files in Blazor with the InputFile component.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/17/2022
+ms.date: 02/04/2023
 uid: blazor/file-uploads
 zone_pivot_groups: blazor-hosting-models
 ---
@@ -46,13 +46,6 @@ To read data from a user-selected file, call <xref:Microsoft.AspNetCore.Componen
 
 <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> enforces a maximum size in bytes of its <xref:System.IO.Stream>. Reading one file or multiple files larger than 500 KB results in an exception. This limit prevents developers from accidentally reading large files into memory. The `maxAllowedSize` parameter of <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A> can be used to specify a larger size if required.
 
-:::moniker range="< aspnetcore-6.0"
-
-> [!NOTE]
-> In ASP.NET Core 5.0, the maximum supported file size is 2 GB. In ASP.NET Core 6.0 or later, the framework doesn't limit the maximum file size.
-
-:::moniker-end
-
 If you need access to a <xref:System.IO.Stream> that represents the file's bytes, use <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream%2A?displayProperty=nameWithType>. Avoid reading the incoming file stream directly into memory all at once. For example, don't copy all of the file's bytes into a <xref:System.IO.MemoryStream> or read the entire stream into a byte array all at once. These approaches can result in performance and security problems, especially for Blazor Server apps. Instead, consider adopting either of the following approaches:
 
 * On the server of a hosted Blazor WebAssembly app or a Blazor Server app, copy the stream directly to a file on disk without reading it into memory. Note that Blazor apps aren't able to access the client's file system directly. 
@@ -91,6 +84,43 @@ await blobContainerClient.UploadBlobAsync(
 ```
 
 A component that receives an image file can call the <xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync%2A?displayProperty=nameWithType> convenience method on the file to resize the image data within the browser's JavaScript runtime before the image is streamed into the app. Use cases for calling <xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync%2A> are most appropriate for Blazor WebAssembly apps.
+
+## File size read and upload limits
+
+:::moniker range=">= aspnetcore-6.0"
+
+:::zone pivot="server"
+
+There's no file size read or upload limit for the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component in Blazor Server apps.
+
+:::zone-end
+
+:::zone pivot="webassembly"
+
+Prior to the release of ASP.NET Core 6.0, the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component had a file size read limit of 2 GB. In ASP.NET Core 6.0 or later, the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component has no file size read limit.
+
+In all versions of ASP.NET Core to date, Blazor WebAssembly reads the file's bytes into a single JavaScript array buffer when marshalling the data from JavaScript to C#, which is limited to 2 GB or to the device's available memory. Large file uploads (> 250 MB) may fail.
+
+<!-- TRACKED BY https://github.com/dotnet/AspNetCore.Docs/issues/28161 
+     for potential update at the .NET 8 release and/or when Safari/FF support Fetch streaming.
+
+To resolve the file size upload limitation in Blazor WebAssembly apps, we recommend implementing file uploads entirely in JavaScript by [streaming requests with the Fetch API](https://developer.chrome.com/articles/fetch-streaming-requests/).
+
+-->
+
+:::zone-end
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+The maximum supported file size for the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component is 2 GB.
+
+To resolve the file size read limitation, we recommend implementing file uploads entirely in JavaScript by [streaming requests with the Fetch API](https://developer.chrome.com/articles/fetch-streaming-requests/).
+
+:::moniker-end
+
+## Upload files example
 
 The following example demonstrates multiple file upload in a component. <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs.GetMultipleFiles%2A?displayProperty=nameWithType> allows reading multiple files. Specify the maximum number of files to prevent a malicious user from uploading a larger number of files than the app expects. <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs.File?displayProperty=nameWithType> allows reading the first and only file if the file upload doesn't support multiple files.
 
