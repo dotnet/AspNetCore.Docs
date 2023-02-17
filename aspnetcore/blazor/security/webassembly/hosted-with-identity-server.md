@@ -159,14 +159,14 @@ In the app settings file (`appsettings.json`) at the project root, the `Identity
 ```json
 "IdentityServer": {
   "Clients": {
-    "{APP ASSEMBLY}.Client": {
+    "{ASSEMBLY NAME}.Client": {
       "Profile": "IdentityServerSPA"
     }
   }
 }
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample.Client`).
 
 ## **:::no-loc text="Client":::** app configuration
 
@@ -180,18 +180,18 @@ If adding authentication to an app, manually add the [`Microsoft.AspNetCore.Comp
 
 ### `HttpClient` configuration
 
-In `Program.cs`, a named <xref:System.Net.Http.HttpClient> (`{APP ASSEMBLY}.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
+In `Program.cs`, a named <xref:System.Net.Http.HttpClient> (`{ASSEMBLY NAME}.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
 
 ```csharp
-builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", 
+builder.Services.AddHttpClient("{ASSEMBLY NAME}.ServerAPI", 
         client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
-    .CreateClient("{APP ASSEMBLY}.ServerAPI"));
+    .CreateClient("{ASSEMBLY NAME}.ServerAPI"));
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample.Client`).
 
 > [!NOTE]
 > If you're configuring a Blazor WebAssembly app to use an existing Identity Server instance that isn't part of a hosted Blazor solution, change the <xref:System.Net.Http.HttpClient> base address registration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`builder.HostEnvironment.BaseAddress`) to the server app's API authorization endpoint URL.
@@ -702,14 +702,14 @@ In the app settings file (`appsettings.json`) at the project root, the `Identity
 ```json
 "IdentityServer": {
   "Clients": {
-    "{APP ASSEMBLY}.Client": {
+    "{ASSEMBLY NAME}.Client": {
       "Profile": "IdentityServerSPA"
     }
   }
 }
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample.Client`).
 
 ## **:::no-loc text="Client":::** app configuration
 
@@ -723,18 +723,18 @@ If adding authentication to an app, manually add the [`Microsoft.AspNetCore.Comp
 
 ### `HttpClient` configuration
 
-In `Program.cs`, a named <xref:System.Net.Http.HttpClient> (`{APP ASSEMBLY}.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
+In `Program.cs`, a named <xref:System.Net.Http.HttpClient> (`{ASSEMBLY NAME}.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
 
 ```csharp
-builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", 
+builder.Services.AddHttpClient("{ASSEMBLY NAME}.ServerAPI", 
         client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
-    .CreateClient("{APP ASSEMBLY}.ServerAPI"));
+    .CreateClient("{ASSEMBLY NAME}.ServerAPI"));
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample.Client`).
 
 > [!NOTE]
 > If you're configuring a Blazor WebAssembly app to use an existing Identity Server instance that isn't part of a hosted Blazor solution, change the <xref:System.Net.Http.HttpClient> base address registration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`builder.HostEnvironment.BaseAddress`) to the server app's API authorization endpoint URL.
@@ -1242,14 +1242,14 @@ In the app settings file (`appsettings.json`) at the project root, the `Identity
 ```json
 "IdentityServer": {
   "Clients": {
-    "{APP ASSEMBLY}.Client": {
+    "{ASSEMBLY NAME}.Client": {
       "Profile": "IdentityServerSPA"
     }
   }
 }
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample.Client`).
 
 ## **:::no-loc text="Client":::** app configuration
 
@@ -1263,18 +1263,18 @@ If adding authentication to an app, manually add the [`Microsoft.AspNetCore.Comp
 
 ### `HttpClient` configuration
 
-In `Program.cs`, a named <xref:System.Net.Http.HttpClient> (`{APP ASSEMBLY}.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
+In `Program.cs`, a named <xref:System.Net.Http.HttpClient> (`{ASSEMBLY NAME}.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
 
 ```csharp
-builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", 
+builder.Services.AddHttpClient("{ASSEMBLY NAME}.ServerAPI", 
         client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
-    .CreateClient("{APP ASSEMBLY}.ServerAPI"));
+    .CreateClient("{ASSEMBLY NAME}.ServerAPI"));
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample.Client`).
 
 > [!NOTE]
 > If you're configuring a Blazor WebAssembly app to use an existing Identity Server instance that isn't part of a hosted Blazor solution, change the <xref:System.Net.Http.HttpClient> base address registration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`builder.HostEnvironment.BaseAddress`) to the server app's API authorization endpoint URL.
@@ -1952,14 +1952,14 @@ In the app settings file (`appsettings.json`) at the project root, the `Identity
 ```json
 "IdentityServer": {
   "Clients": {
-    "{APP ASSEMBLY}.Client": {
+    "{ASSEMBLY NAME}.Client": {
       "Profile": "IdentityServerSPA"
     }
   }
 }
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample.Client`).
 
 ## **:::no-loc text="Client":::** app configuration
 
@@ -1973,18 +1973,18 @@ If adding authentication to an app, manually add the [`Microsoft.AspNetCore.Comp
 
 ### `HttpClient` configuration
 
-In `Program.cs`, a named <xref:System.Net.Http.HttpClient> (`{APP ASSEMBLY}.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
+In `Program.cs`, a named <xref:System.Net.Http.HttpClient> (`{ASSEMBLY NAME}.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
 
 ```csharp
-builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", 
+builder.Services.AddHttpClient("{ASSEMBLY NAME}.ServerAPI", 
         client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
-    .CreateClient("{APP ASSEMBLY}.ServerAPI"));
+    .CreateClient("{ASSEMBLY NAME}.ServerAPI"));
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample.Client`).
 
 > [!NOTE]
 > If you're configuring a Blazor WebAssembly app to use an existing Identity Server instance that isn't part of a hosted Blazor solution, change the <xref:System.Net.Http.HttpClient> base address registration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`builder.HostEnvironment.BaseAddress`) to the server app's API authorization endpoint URL.

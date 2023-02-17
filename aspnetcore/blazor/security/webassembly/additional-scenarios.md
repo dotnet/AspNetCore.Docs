@@ -347,7 +347,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using static {APP ASSEMBLY}.Data;
+using static {ASSEMBLY NAME}.Data;
 
 public class WeatherForecastClient
 {
@@ -377,7 +377,7 @@ public class WeatherForecastClient
 }
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
 
 In `Program.cs`:
 
@@ -1146,7 +1146,7 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
-using {APP ASSEMBLY}.Shared;
+using {ASSEMBLY NAME}.Shared;
 
 ...
 
@@ -1164,14 +1164,14 @@ builder.Services.AddScoped(sp =>
 });
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample`). Place the `.proto` file in the `Shared` project of the hosted Blazor solution.
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample`). Place the `.proto` file in the `Shared` project of the hosted Blazor solution.
 
 A component in the client app can make gRPC calls using the gRPC client (`Pages/Grpc.razor`):
 
 ```razor
 @page "/grpc"
 @using Microsoft.AspNetCore.Authorization
-@using {APP ASSEMBLY}.Shared
+@using {ASSEMBLY NAME}.Shared
 @attribute [Authorize]
 @inject Greeter.GreeterClient GreeterClient
 
@@ -1206,7 +1206,7 @@ Server response: <strong>@serverResponse</strong>
 }
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample`). To use the `Status.DebugException` property, use [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) version 2.30.0 or later.
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample`). To use the `Status.DebugException` property, use [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) version 2.30.0 or later.
 
 For more information, see <xref:grpc/grpcweb>.
 
@@ -1576,7 +1576,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using static {APP ASSEMBLY}.Data;
+using static {ASSEMBLY NAME}.Data;
 
 public class WeatherForecastClient
 {
@@ -1606,7 +1606,7 @@ public class WeatherForecastClient
 }
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
 
 In `Program.cs`:
 
@@ -2377,7 +2377,7 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
-using {APP ASSEMBLY}.Shared;
+using {ASSEMBLY NAME}.Shared;
 
 ...
 
@@ -2395,14 +2395,14 @@ builder.Services.AddScoped(sp =>
 });
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample`). Place the `.proto` file in the `Shared` project of the hosted Blazor solution.
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample`). Place the `.proto` file in the `Shared` project of the hosted Blazor solution.
 
 A component in the client app can make gRPC calls using the gRPC client (`Pages/Grpc.razor`):
 
 ```razor
 @page "/grpc"
 @using Microsoft.AspNetCore.Authorization
-@using {APP ASSEMBLY}.Shared
+@using {ASSEMBLY NAME}.Shared
 @attribute [Authorize]
 @inject Greeter.GreeterClient GreeterClient
 
@@ -2437,7 +2437,7 @@ Server response: <strong>@serverResponse</strong>
 }
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample`). To use the `Status.DebugException` property, use [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) version 2.30.0 or later.
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample`). To use the `Status.DebugException` property, use [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) version 2.30.0 or later.
 
 For more information, see <xref:grpc/grpcweb>.
 
@@ -2805,7 +2805,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using static {APP ASSEMBLY}.Data;
+using static {ASSEMBLY NAME}.Data;
 
 public class WeatherForecastClient
 {
@@ -2835,7 +2835,7 @@ public class WeatherForecastClient
 }
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
 
 In `Program.cs`:
 
@@ -3608,7 +3608,7 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
-using {APP ASSEMBLY}.Shared;
+using {ASSEMBLY NAME}.Shared;
 
 ...
 
@@ -3626,14 +3626,14 @@ builder.Services.AddScoped(sp =>
 });
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample`). Place the `.proto` file in the `Shared` project of the hosted Blazor solution.
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample`). Place the `.proto` file in the `Shared` project of the hosted Blazor solution.
 
 A component in the client app can make gRPC calls using the gRPC client (`Pages/Grpc.razor`):
 
 ```razor
 @page "/grpc"
 @using Microsoft.AspNetCore.Authorization
-@using {APP ASSEMBLY}.Shared
+@using {ASSEMBLY NAME}.Shared
 @attribute [Authorize]
 @inject Greeter.GreeterClient GreeterClient
 
@@ -3668,7 +3668,7 @@ Server response: <strong>@serverResponse</strong>
 }
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample`). To use the `Status.DebugException` property, use [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) version 2.30.0 or later.
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample`). To use the `Status.DebugException` property, use [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) version 2.30.0 or later.
 
 For more information, see <xref:grpc/grpcweb>.
 
@@ -4036,7 +4036,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using static {APP ASSEMBLY}.Data;
+using static {ASSEMBLY NAME}.Data;
 
 public class WeatherForecastClient
 {
@@ -4066,7 +4066,7 @@ public class WeatherForecastClient
 }
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
 
 In `Program.cs`:
 
@@ -4835,7 +4835,7 @@ using System.Net.Http;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Grpc.Net.Client;
 using Grpc.Net.Client.Web;
-using {APP ASSEMBLY}.Shared;
+using {ASSEMBLY NAME}.Shared;
 
 ...
 
@@ -4853,14 +4853,14 @@ builder.Services.AddScoped(sp =>
 });
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample`). Place the `.proto` file in the `Shared` project of the hosted Blazor solution.
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample`). Place the `.proto` file in the `Shared` project of the hosted Blazor solution.
 
 A component in the client app can make gRPC calls using the gRPC client (`Pages/Grpc.razor`):
 
 ```razor
 @page "/grpc"
 @using Microsoft.AspNetCore.Authorization
-@using {APP ASSEMBLY}.Shared
+@using {ASSEMBLY NAME}.Shared
 @attribute [Authorize]
 @inject Greeter.GreeterClient GreeterClient
 
@@ -4895,7 +4895,7 @@ Server response: <strong>@serverResponse</strong>
 }
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample`). To use the `Status.DebugException` property, use [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) version 2.30.0 or later.
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample`). To use the `Status.DebugException` property, use [`Grpc.Net.Client`](https://www.nuget.org/packages/Grpc.Net.Client) version 2.30.0 or later.
 
 For more information, see <xref:grpc/grpcweb>.
 
