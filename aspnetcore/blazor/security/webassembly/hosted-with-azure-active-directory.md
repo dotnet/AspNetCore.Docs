@@ -248,15 +248,15 @@ Support for <xref:System.Net.Http.HttpClient> instances is added that include ac
 `Program.cs`:
 
 ```csharp
-builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", client => 
+builder.Services.AddHttpClient("{ASSEMBLY NAME}.ServerAPI", client => 
         client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
-    .CreateClient("{APP ASSEMBLY}.ServerAPI"));
+    .CreateClient("{ASSEMBLY NAME}.ServerAPI"));
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample.Client`).
 
 Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package. This method sets up the services required for the app to interact with the Identity Provider (IP).
 
@@ -651,15 +651,15 @@ Support for <xref:System.Net.Http.HttpClient> instances is added that include ac
 `Program.cs`:
 
 ```csharp
-builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", client => 
+builder.Services.AddHttpClient("{ASSEMBLY NAME}.ServerAPI", client => 
         client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
-    .CreateClient("{APP ASSEMBLY}.ServerAPI"));
+    .CreateClient("{ASSEMBLY NAME}.ServerAPI"));
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample.Client`).
 
 Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package. This method sets up the services required for the app to interact with the Identity Provider (IP).
 
@@ -1054,15 +1054,15 @@ Support for <xref:System.Net.Http.HttpClient> instances is added that include ac
 `Program.cs`:
 
 ```csharp
-builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", client => 
+builder.Services.AddHttpClient("{ASSEMBLY NAME}.ServerAPI", client => 
         client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
-    .CreateClient("{APP ASSEMBLY}.ServerAPI"));
+    .CreateClient("{ASSEMBLY NAME}.ServerAPI"));
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample.Client`).
 
 Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package. This method sets up the services required for the app to interact with the Identity Provider (IP).
 
@@ -1451,15 +1451,15 @@ Support for <xref:System.Net.Http.HttpClient> instances is added that include ac
 `Program.cs`:
 
 ```csharp
-builder.Services.AddHttpClient("{APP ASSEMBLY}.ServerAPI", client => 
+builder.Services.AddHttpClient("{ASSEMBLY NAME}.ServerAPI", client => 
         client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
-    .CreateClient("{APP ASSEMBLY}.ServerAPI"));
+    .CreateClient("{ASSEMBLY NAME}.ServerAPI"));
 ```
 
-The placeholder `{APP ASSEMBLY}` is the app's assembly name (for example, `BlazorSample.Client`).
+The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample.Client`).
 
 Support for authenticating users is registered in the service container with the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method provided by the [`Microsoft.Authentication.WebAssembly.Msal`](https://www.nuget.org/packages/Microsoft.Authentication.WebAssembly.Msal) package. This method sets up the services required for the app to interact with the Identity Provider (IP).
 
