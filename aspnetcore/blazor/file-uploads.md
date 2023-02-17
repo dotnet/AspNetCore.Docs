@@ -288,15 +288,14 @@ The following `UploadResult` class in the **:::no-loc text="Shared":::** project
 :::moniker range=">= aspnetcore-6.0"
 
 ```csharp
-namespace BlazorSample.Shared
+namespace BlazorSample.Shared;
+
+public class UploadResult
 {
-    public class UploadResult
-    {
-        public bool Uploaded { get; set; }
-        public string? FileName { get; set; }
-        public string? StoredFileName { get; set; }
-        public int ErrorCode { get; set; }
-    }
+    public bool Uploaded { get; set; }
+    public string? FileName { get; set; }
+    public string? StoredFileName { get; set; }
+    public int ErrorCode { get; set; }
 }
 ```
 
@@ -779,7 +778,7 @@ Finally, use an injected <xref:Microsoft.JSInterop.IJSRuntime> to add the `OnCha
 
 The preceding example is for uploading a single image. The approach can be expanded to support `multiple` images.
 
-The following `FileUpload4` component shows the full working example.
+The following `FileUpload4` component shows the complete example.
 
 `Pages/FileUpload4.razor`:
 

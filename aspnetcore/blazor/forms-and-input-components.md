@@ -258,12 +258,6 @@ The components in the table are also supported outside of a form in Razor compon
 
 For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads>.
 
-<!-- 
-* <xref:blazor/file-uploads>
-* [Preview an image provided by the `InputFile` component](#preview-an-image-provided-by-the-inputfile-component) (this article)
-
--->
-
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
@@ -293,14 +287,7 @@ Some components include useful parsing logic. For example, <xref:Microsoft.AspNe
 
 :::moniker range=">= aspnetcore-5.0"
 
-The <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component is a bit more complex and is detailed in <xref:blazor/file-uploads>.
-
-<!--
-
-* <xref:blazor/file-uploads>
-* [Preview an image provided by the `InputFile` component](#preview-an-image-provided-by-the-inputfile-component) (this article)
-
--->
+For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads>.
 
 :::moniker-end
 
@@ -414,85 +401,6 @@ In the following example:
 
 > [!NOTE]
 > Changing the <xref:Microsoft.AspNetCore.Components.Forms.EditContext> after it's assigned is **not** supported.
-
-<!--
-
-## Preview an image provided by the `InputFile` component
-
-VERSION THIS 5.0 or later
-
-UNCOMMENT the cross-links to this section further down the topic --AND-- in the Additional Resources of the Images article.
-
-ALSO FROM THE DISCUSSION, NOT INCLUDED YET ...
-
-You may elect to create an event listener for the `InputFile` component that captures the [`FileList`](https://developer.mozilla.org/docs/Web/API/FileList) and displays a preview using JavaScript.
-
-
-
-
-The <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component reads browser file data into .NET code. An image preview can be shown to the user prior to submitting the form using the approach in this section, which doesn't rely upon round-tripping the file's data between JS and .NET code.
-
-Provide a JS function that:
-
-* Receives an <xref:Microsoft.AspNetCore.Components.Forms.InputFile> element reference and the image preview element's ID.
-* Sets the image source of the image preview element to the image file's object data.
-
-The preceding tasks are shown in the following `setImage` JS function example:
-
-```html
-<script>
-  window.setImage = async (inputFileElement, imageElementId) => {
-    document.getElementById(imageElementId).src = inputFileElement.files[0];
-  }
-</script>
-```
-
-[!INCLUDE[](~/blazor/includes/js-location.md)]
-
-The following `PreviewInputFileImage` component uses:
-
-* An <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component to obtain an image from the user in an <xref:Microsoft.AspNetCore.Components.Forms.EditForm>.
-* An `<img>` tag (`id="image"`) for displaying an image preview.
-
-When a file is selected, the `UpdateImagePreview` method is called with <xref:Microsoft.AspNetCore.Components.Forms.InputFileChangeEventArgs>. The method invokes the `setImage` function with the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> element reference and the image preview element's ID.
-
-`Pages/PreviewInputFileImage.razor`:
-
-```razor
-@page "/preview-inputfile-image"
-@inject IJSRuntime JS
-
-<h1><code>InputFile</code> with Image Preview Example</h1>
-
-<EditForm OnValidSubmit="@HandleValidSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-
-    <p>
-        <InputFile @ref="inputFileElement" OnChange="UpdateImagePreview" /> <img id="image" />
-    </p>
-
-    <button type="submit">Submit</button>
-</EditForm>
-
-@code {
-    private ElementReference inputFileElement;
-
-    private async Task UpdateImagePreview(InputFileChangeEventArgs e)
-    {
-        await JS.InvokeVoidAsync("setImage", inputFileElement, "image");
-    }
-
-    private void HandleValidSubmit()
-    {
-        // Process the valid form
-    }
-}
-```
-
-For additional guidance on JS interop, see <xref:blazor/js-interop/call-javascript-from-dotnet>.
-
--->
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -864,6 +772,72 @@ The validation for the `Defense` ship classification only occurs server-side in 
 
 `Controllers/StarshipValidation.cs`:
 
+:::moniker range=">= aspnetcore-6.0"
+
+```csharp
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Microsoft.Identity.Web.Resource;
+using BlazorSample.Shared;
+
+namespace BlazorSample.Server.Controllers;
+
+[Authorize]
+[ApiController]
+[Route("[controller]")]
+public class StarshipValidationController : ControllerBase
+{
+    private readonly ILogger<StarshipValidationController> logger;
+
+    public StarshipValidationController(
+        ILogger<StarshipValidationController> logger)
+    {
+        this.logger = logger;
+    }
+
+    static readonly string[] scopeRequiredByApi = new[] { "API.Access" };
+
+    [HttpPost]
+    public async Task<IActionResult> Post(Starship starship)
+    {
+        HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
+
+        try
+        {
+            if (starship.Classification == "Defense" && 
+                string.IsNullOrEmpty(starship.Description))
+            {
+                ModelState.AddModelError(nameof(starship.Description),
+                    "For a 'Defense' ship " +
+                    "classification, 'Description' is required.");
+            }
+            else
+            {
+                logger.LogInformation("Processing the form asynchronously");
+
+                // Process the valid form
+                // async ...
+
+                return Ok(ModelState);
+            }
+        }
+        catch (Exception ex)
+        {
+            logger.LogError("Validation Error: {Message}", ex.Message);
+        }
+
+        return BadRequest(ModelState);
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
 ```csharp
 using System;
 using System.Threading.Tasks;
@@ -924,6 +898,8 @@ namespace BlazorSample.Server.Controllers
     }
 }
 ```
+
+:::moniker-end
 
 If using the preceding controller in a hosted Blazor WebAssembly app, update the namespace (`BlazorSample.Server.Controllers`) to match the app's controllers namespace.
 

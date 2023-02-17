@@ -119,15 +119,14 @@ The example uses the following specifications and conventions:
 `Data/WeatherForecast.cs` in the RCL:
 
 ```csharp
-namespace SharedLibrary.Data
+namespace SharedLibrary.Data;
+
+public class WeatherForecast
 {
-    public class WeatherForecast
-    {
-        public DateTime Date { get; set; }
-        public int TemperatureC { get; set; }
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-        public string? Summary { get; set; }
-    }
+    public DateTime Date { get; set; }
+    public int TemperatureC { get; set; }
+    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    public string? Summary { get; set; }
 }
 ```
 
@@ -136,12 +135,11 @@ namespace SharedLibrary.Data
 ```csharp
 using SharedLibrary.Data;
 
-namespace SharedLibrary.Interfaces
+namespace SharedLibrary.Interfaces;
+
+public interface IWeatherForecastService
 {
-    public interface IWeatherForecastService
-    {
-        Task<WeatherForecast[]?> GetForecastAsync(DateTime startDate);
-    }
+    Task<WeatherForecast[]?> GetForecastAsync(DateTime startDate);
 }
 ```
 
@@ -159,20 +157,19 @@ using System.Net.Http.Json;
 using SharedLibrary.Data;
 using SharedLibrary.Interfaces;
 
-namespace {APP NAMESPACE}.Services
+namespace {APP NAMESPACE}.Services;
+
+public class WeatherForecastService : IWeatherForecastService
 {
-    public class WeatherForecastService : IWeatherForecastService
+    private readonly HttpClient http;
+
+    public WeatherForecastService(HttpClient http)
     {
-        private readonly HttpClient http;
-
-        public WeatherForecastService(HttpClient http)
-        {
-            this.http = http;
-        }
-
-        public async Task<WeatherForecast[]?> GetForecastAsync(DateTime startDate) =>
-            await http.GetFromJsonAsync<WeatherForecast[]?>("WeatherForecast");
+        this.http = http;
     }
+
+    public async Task<WeatherForecast[]?> GetForecastAsync(DateTime startDate) =>
+        await http.GetFromJsonAsync<WeatherForecast[]?>("WeatherForecast");
 }
 ```
 
@@ -184,24 +181,23 @@ In the preceding example, the `{APP NAMESPACE}` placeholder is the app's namespa
 using SharedLibrary.Data;
 using SharedLibrary.Interfaces;
 
-namespace {APP NAMESPACE}.Services
-{
-    public class WeatherForecastService : IWeatherForecastService
-    {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot"
-        };
+namespace {APP NAMESPACE}.Services;
 
-        public async Task<WeatherForecast[]?> GetForecastAsync(DateTime startDate) =>
-            await Task.FromResult(Enumerable.Range(1, 5)
-                .Select(index => new WeatherForecast
-                {
-                    Date = startDate.AddDays(index),
-                    TemperatureC = Random.Shared.Next(-20, 55),
-                    Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-                }).ToArray());
-    }
+public class WeatherForecastService : IWeatherForecastService
+{
+    private static readonly string[] Summaries = new[]
+    {
+        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot"
+    };
+
+    public async Task<WeatherForecast[]?> GetForecastAsync(DateTime startDate) =>
+        await Task.FromResult(Enumerable.Range(1, 5)
+            .Select(index => new WeatherForecast
+            {
+                Date = startDate.AddDays(index),
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            }).ToArray());
 }
 ```
 
@@ -274,12 +270,11 @@ The following example:
 `Interfaces/ICustomService.cs` in the RCL:
 
 ```csharp
-namespace SharedLibrary.Interfaces
+namespace SharedLibrary.Interfaces;
+
+public interface ICustomService
 {
-    public interface ICustomService
-    {
-        string GetMessage();
-    }
+    string GetMessage();
 }
 ```
 
@@ -290,14 +285,13 @@ In the following examples, the RCL implements the `ICustomService` interface for
 ```csharp
 using SharedLibrary.Interfaces;
 
-namespace SharedLibrary.Platforms.Android
+namespace SharedLibrary.Platforms.Android;
+
+public class CustomService : ICustomService
 {
-    public class CustomService : ICustomService
+    public string GetMessage()
     {
-        public string GetMessage()
-        {
-            return "Android implementation of ICustomService.";
-        }
+        return "Android implementation of ICustomService.";
     }
 }
 ```
@@ -307,14 +301,13 @@ namespace SharedLibrary.Platforms.Android
 ```csharp
 using SharedLibrary.Interfaces;
 
-namespace SharedLibrary.Platforms.MacCatalyst
+namespace SharedLibrary.Platforms.MacCatalyst;
+
+public class CustomService : ICustomService
 {
-    public class CustomService : ICustomService
+    public string GetMessage()
     {
-        public string GetMessage()
-        {
-            return "Mac Catalyst implementation of ICustomService.";
-        }
+        return "Mac Catalyst implementation of ICustomService.";
     }
 }
 ```
@@ -324,14 +317,13 @@ namespace SharedLibrary.Platforms.MacCatalyst
 ```csharp
 using SharedLibrary.Interfaces;
 
-namespace SharedLibrary.Platforms.Windows
+namespace SharedLibrary.Platforms.Windows;
+
+public class CustomService : ICustomService
 {
-    public class CustomService : ICustomService
+    public string GetMessage()
     {
-        public string GetMessage()
-        {
-            return "Windows implementation of ICustomService.";
-        }
+        return "Windows implementation of ICustomService.";
     }
 }
 ```
@@ -341,14 +333,13 @@ namespace SharedLibrary.Platforms.Windows
 ```csharp
 using SharedLibrary.Interfaces;
 
-namespace SharedLibrary.Platforms.iOS
+namespace SharedLibrary.Platforms.iOS;
+
+public class CustomService : ICustomService
 {
-    public class CustomService : ICustomService
+    public string GetMessage()
     {
-        public string GetMessage()
-        {
-            return "iOS implementation of ICustomService.";
-        }
+        return "iOS implementation of ICustomService.";
     }
 }
 ```
@@ -360,14 +351,13 @@ In the following example, the RCL implements the `ICustomService` interface for 
 ```csharp
 using SharedLibrary.Interfaces;
 
-namespace SharedLibrary.Web
+namespace SharedLibrary.Web;
+
+public class CustomService : ICustomService
 {
-    public class CustomService : ICustomService
+    public string GetMessage()
     {
-        public string GetMessage()
-        {
-            return "Web implementation of ICustomService.";
-        }
+        return "Web implementation of ICustomService.";
     }
 }
 ```

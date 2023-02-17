@@ -124,12 +124,11 @@ Create an `ITab` interface that tabs implement in a folder named `UIInterfaces`.
 ```csharp
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorSample.UIInterfaces
+namespace BlazorSample.UIInterfaces;
+
+public interface ITab
 {
-    public interface ITab
-    {
-        RenderFragment ChildContent { get; }
-    }
+    RenderFragment ChildContent { get; }
 }
 ```
 
@@ -368,12 +367,11 @@ Create an `ITab` interface that tabs implement in a folder named `UIInterfaces`.
 ```csharp
 using Microsoft.AspNetCore.Components;
 
-namespace BlazorSample.UIInterfaces
+namespace BlazorSample.UIInterfaces;
+
+public interface ITab
 {
-    public interface ITab
-    {
-        RenderFragment ChildContent { get; }
-    }
+    RenderFragment ChildContent { get; }
 }
 ```
 
