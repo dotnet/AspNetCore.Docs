@@ -314,6 +314,32 @@ The demonstration in this section:
 
    `HandGesture.cs`:
 
+:::moniker range=">= aspnetcore-6.0"
+
+   ```csharp
+   using Microsoft.Extensions.Logging;
+
+   namespace GrantImaharaRobotControls;
+
+   public static class HandGesture
+   {
+       public static bool ThumbUp(Axis axis, ILogger logger)
+       {
+           logger.LogInformation("Thumb up gesture. Axis: {Axis}", axis);
+
+           // Code to make robot perform gesture
+
+           return true;
+       }
+   }
+
+   public enum Axis { Left, Right }
+   ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
    ```csharp
    using Microsoft.Extensions.Logging;
 
@@ -334,6 +360,8 @@ The demonstration in this section:
        public enum Axis { Left, Right }
    }
    ```
+
+:::moniker-end
 
 1. Add the following component to the root of the RCL project. The component permits the user to submit a left or right hand thumb-up gesture request.
 

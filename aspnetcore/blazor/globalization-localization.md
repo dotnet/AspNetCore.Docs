@@ -893,11 +893,10 @@ To create localization shared resources, adopt the following approach.
   `Localization/SharedResource.cs`:
 
   ```csharp
-  namespace BlazorSample.Localization
+  namespace BlazorSample.Localization;
+  
+  public class SharedResource
   {
-      public class SharedResource
-      {
-      }
   }
   ```
 
@@ -1830,11 +1829,10 @@ To create localization shared resources, adopt the following approach.
   `Localization/SharedResource.cs`:
 
   ```csharp
-  namespace BlazorSample.Localization
+  namespace BlazorSample.Localization;
+
+  public class SharedResource
   {
-      public class SharedResource
-      {
-      }
   }
   ```
 
