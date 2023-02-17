@@ -10,7 +10,7 @@ uid: security/enforcing-ssl
 ---
 # Enforce HTTPS in ASP.NET Core
 
-By [David Galvan](https://github.com/djgalvan) [Rick Anderson](https://twitter.com/RickAndMSFT)
+By [David Galvan](https://github.com/djgalvan) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This document shows how to:
 
