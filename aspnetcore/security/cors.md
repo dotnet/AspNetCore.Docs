@@ -11,6 +11,8 @@ uid: security/cors
 
 :::moniker range=">= aspnetcore-7.0"
 
+<!-- Currently an exact duplicate of 6.0, but ready for https://github.com/dotnet/AspNetCore.Docs/issues/28420
+-->
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
 This article shows how to enable CORS in an ASP.NET Core app.
