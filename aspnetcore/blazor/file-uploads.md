@@ -288,15 +288,14 @@ The following `UploadResult` class in the **:::no-loc text="Shared":::** project
 :::moniker range=">= aspnetcore-6.0"
 
 ```csharp
-namespace BlazorSample.Shared
+namespace BlazorSample.Shared;
+
+public class UploadResult
 {
-    public class UploadResult
-    {
-        public bool Uploaded { get; set; }
-        public string? FileName { get; set; }
-        public string? StoredFileName { get; set; }
-        public int ErrorCode { get; set; }
-    }
+    public bool Uploaded { get; set; }
+    public string? FileName { get; set; }
+    public string? StoredFileName { get; set; }
+    public int ErrorCode { get; set; }
 }
 ```
 
