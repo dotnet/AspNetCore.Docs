@@ -772,6 +772,72 @@ The validation for the `Defense` ship classification only occurs server-side in 
 
 `Controllers/StarshipValidation.cs`:
 
+:::moniker range=">= aspnetcore-6.0"
+
+```csharp
+using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Microsoft.Identity.Web.Resource;
+using BlazorSample.Shared;
+
+namespace BlazorSample.Server.Controllers;
+
+[Authorize]
+[ApiController]
+[Route("[controller]")]
+public class StarshipValidationController : ControllerBase
+{
+    private readonly ILogger<StarshipValidationController> logger;
+
+    public StarshipValidationController(
+        ILogger<StarshipValidationController> logger)
+    {
+        this.logger = logger;
+    }
+
+    static readonly string[] scopeRequiredByApi = new[] { "API.Access" };
+
+    [HttpPost]
+    public async Task<IActionResult> Post(Starship starship)
+    {
+        HttpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
+
+        try
+        {
+            if (starship.Classification == "Defense" && 
+                string.IsNullOrEmpty(starship.Description))
+            {
+                ModelState.AddModelError(nameof(starship.Description),
+                    "For a 'Defense' ship " +
+                    "classification, 'Description' is required.");
+            }
+            else
+            {
+                logger.LogInformation("Processing the form asynchronously");
+
+                // Process the valid form
+                // async ...
+
+                return Ok(ModelState);
+            }
+        }
+        catch (Exception ex)
+        {
+            logger.LogError("Validation Error: {Message}", ex.Message);
+        }
+
+        return BadRequest(ModelState);
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
 ```csharp
 using System;
 using System.Threading.Tasks;
@@ -832,6 +898,8 @@ namespace BlazorSample.Server.Controllers
     }
 }
 ```
+
+:::moniker-end
 
 If using the preceding controller in a hosted Blazor WebAssembly app, update the namespace (`BlazorSample.Server.Controllers`) to match the app's controllers namespace.
 

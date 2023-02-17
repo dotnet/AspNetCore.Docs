@@ -178,16 +178,15 @@ The following `Counter` component splits HTML and Razor markup from  C# code usi
 `Pages/CounterPartialClass.razor.cs`:
 
 ```csharp
-namespace BlazorSample.Pages
-{
-    public partial class CounterPartialClass
-    {
-        private int currentCount = 0;
+namespace BlazorSample.Pages;
 
-        private void IncrementCount()
-        {
-            currentCount++;
-        }
+public partial class CounterPartialClass
+{
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
     }
 }
 ```
@@ -1938,16 +1937,15 @@ The following `Counter` component splits HTML and Razor markup from  C# code usi
 `Pages/CounterPartialClass.razor.cs`:
 
 ```csharp
-namespace BlazorSample.Pages
-{
-    public partial class CounterPartialClass
-    {
-        private int currentCount = 0;
+namespace BlazorSample.Pages;
 
-        private void IncrementCount()
-        {
-            currentCount++;
-        }
+public partial class CounterPartialClass
+{
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
     }
 }
 ```
