@@ -5,7 +5,7 @@ description: Learn how to use the ASP.NET Core SignalR HubContext service for se
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 02/13/2023
 uid: signalr/hubcontext
 ---
 # Send messages from outside a hub
@@ -54,6 +54,14 @@ app.Use(async (context, next) =>
 
 > [!NOTE]
 > When client methods are called from outside of the `Hub` class, there's no caller associated with the invocation. Therefore, there's no access to the `ConnectionId`, `Caller`, and `Others` properties.
+>
+> Apps that need to map a user to the connection ID and persist that mapping can do one of the following:
+>
+> - Persist mapping of single or multiple connections as groups. See [Groups in SignalR](xref:signalr/groups#groups-in-signalr) for more information.
+> - Retain connection and user information through a singleton service. See [Inject services into a hub](xref:signalr/hubs#inject-services-into-a-hub) for more information. The singleton service can use any storage method, such as:
+>   - In-memory storage in a dictionary.
+>   - Permanent external storage.  For example, a database or Azure Table storage using the [Azure.Data.Tables NuGet package](https://www.nuget.org/packages/Azure.Data.Tables/).
+> - Pass the connection ID between clients.
 
 ### Get an instance of `IHubContext` from IHost
 
@@ -133,6 +141,7 @@ async Task CommonHubContextMethod(IHubContext context)
 ```
 
 This is useful when:
+
 * Writing libraries that don't have a reference to the specific `Hub` type the app is using.
 * Writing code that is generic and can apply to multiple different `Hub` implementations
 
