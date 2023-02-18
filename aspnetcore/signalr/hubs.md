@@ -23,9 +23,7 @@ To register the services required by SignalR hubs, call <xref:Microsoft.Extensio
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Program.cs" id="snippet_AddSignalR" highlight="4":::
 
-> [!NOTE]
-> With the release of .NET Core 3.0, many ASP.NET Core assemblies, including those of SignalR, are no longer published to NuGet as packages. Instead, the assemblies are included in the Microsoft.AspNetCore.App shared framework, which is installed with the .NET Core SDK and runtime installers. See [Use the ASP.NET Core shared framework](xref:fundamentals/target-aspnetcore#use-the-aspnet-core-shared-framework) for more information.
-
+SignalR no longer depends on getting many assemblies from NuGet, those assemblies are implicitly referenced in the `Microsoft.NET.Sdk.Web`. For more information, see [Microsoft.AspNetCore.App replaces many NuGet packages](xref:the/right/migration/doc#H2).
 To configure SignalR endpoints, call <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A>, also in `Program.cs`:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Program.cs" id="snippet_MapHub" highlight="2":::
