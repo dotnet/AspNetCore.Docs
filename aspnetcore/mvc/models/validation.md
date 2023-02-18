@@ -10,6 +10,10 @@ uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
 
+<!-- Ready for https://github.com/dotnet/AspNetCore.Docs/issues/27861 
+code from https://github.com/dotnet/AspNetCore.Docs.Samples/pull/115
+https://github.com/dotnet/AspNetCore.Docs.Samples/issues/92
+-->
 :::moniker range=">= aspnetcore-7.0"
 
 This article explains how to validate user input in an ASP.NET Core MVC or Razor Pages app.
