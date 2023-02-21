@@ -224,6 +224,26 @@ If you plan to serve pages from the server app, add an `Index` Razor page to the
 
 `Pages/Index.cshtml.cs`:
 
+:::moniker range=">= aspnetcore-6.0"
+
+```csharp
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace MultipleBlazorApps.Server.Pages;
+
+public class IndexModel : PageModel
+{
+    public void OnGet()
+    {
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
 ```csharp
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -238,6 +258,8 @@ namespace MultipleBlazorApps.Server.Pages
     }
 }
 ```
+
+:::moniker-end
 
 > [!NOTE]
 > If the app requires additional Razor Pages assets, such as a layout, styles, scripts, and imports, obtain them from an app created from the Razor Pages project template. For more information, see <xref:razor-pages/index>.
@@ -259,6 +281,8 @@ If you plan to serve MVC views from the server app, add an `Index` view and a `H
 
 `Controllers/HomeController.cs`:
 
+:::moniker range=">= aspnetcore-6.0"
+
 ```csharp
 using Microsoft.AspNetCore.Mvc;
 
@@ -272,6 +296,27 @@ public class HomeController : Controller
     }
 }
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+```csharp
+using Microsoft.AspNetCore.Mvc;
+
+namespace MultipleBlazorApps.Server.Controllers
+{
+    public class HomeController : Controller
+    {
+        public IActionResult Index()
+        {
+            return View();
+        }
+    }
+}
+```
+
+:::moniker-end
 
 > [!NOTE]
 > If the app requires additional MVC assets, such as a layout, styles, scripts, and imports, obtain them from an app created from the MVC project template. For more information, see <xref:tutorials/first-mvc-app/start-mvc>.

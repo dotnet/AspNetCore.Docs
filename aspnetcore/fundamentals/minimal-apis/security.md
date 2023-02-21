@@ -101,7 +101,7 @@ In the following code, <xref:Microsoft.Extensions.DependencyInjection.PolicyServ
 - Adds authorization-related services to the DI container.
 - Returns an <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder> that can be used to directly register authentication policies.
 
-The code creates a new authorization policy, named `policy_greetings`, that encapsulates two authorization requirements:
+The code creates a new authorization policy, named `admin_greetings`, that encapsulates two authorization requirements:
 
 - A role-based requirement via <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole%2A> for users with an `admin` role.
 - A claim-based requirement via <xref:Microsoft.Identity.Web.PolicyBuilderExtensions.RequireScope%2A> that the user must provide a `greetings_api` scope.

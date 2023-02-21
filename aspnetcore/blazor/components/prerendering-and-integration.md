@@ -13,6 +13,9 @@ zone_pivot_groups: blazor-hosting-models
 
 This article explains Razor component integration scenarios for Blazor apps, including prerendering of Razor components on the server.
 
+> [!IMPORTANT]
+> Framework changes across ASP.NET Core releases led to different sets of instructions in this article. Before using this article's guidance, confirm that the document version selector on this page matches the version of ASP.NET Core that you intend to use for your app.
+
 :::moniker range=">= aspnetcore-7.0"
 
 :::zone pivot="webassembly"
@@ -299,7 +302,7 @@ After [configuring the solution](#solution-configuration), including the [additi
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssembly>
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>
 
-In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections). To avoid using the full namespace for the `Counter` component with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) (`{APP ASSEMBLY}.Pages.Counter`), add an [`@using`](xref:mvc/views/razor#using) directive for the client project's `Pages` namespace. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
+In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections). To avoid using the full namespace for the `Counter` component with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) (`{ASSEMBLY NAME}.Pages.Counter`), add an [`@using`](xref:mvc/views/razor#using) directive for the client project's `Pages` namespace. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
 
 In the **:::no-loc text="Server":::** project, `Pages/RazorPagesCounter1.cshtml`:
 
@@ -1221,7 +1224,7 @@ After [configuring the solution](#solution-configuration), including the [additi
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssembly>
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>
 
-In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections). To avoid using the full namespace for the `Counter` component with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) (`{APP ASSEMBLY}.Pages.Counter`), add an [`@using`](xref:mvc/views/razor#using) directive for the client project's `Pages` namespace. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
+In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections). To avoid using the full namespace for the `Counter` component with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) (`{ASSEMBLY NAME}.Pages.Counter`), add an [`@using`](xref:mvc/views/razor#using) directive for the client project's `Pages` namespace. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
 
 In the **:::no-loc text="Server":::** project, `Pages/RazorPagesCounter1.cshtml`:
 
@@ -2035,7 +2038,7 @@ After [configuring the solution](#solution-configuration), including the [additi
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssembly>
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>
 
-In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections). To avoid using the full namespace for the `Counter` component with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) (`{APP ASSEMBLY}.Pages.Counter`), add an [`@using`](xref:mvc/views/razor#using) directive for the client project's `Pages` namespace. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
+In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections). To avoid using the full namespace for the `Counter` component with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) (`{ASSEMBLY NAME}.Pages.Counter`), add an [`@using`](xref:mvc/views/razor#using) directive for the client project's `Pages` namespace. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
 
 In the **:::no-loc text="Server":::** project, `Pages/RazorPagesCounter1.cshtml`:
 
