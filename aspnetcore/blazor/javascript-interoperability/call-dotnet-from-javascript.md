@@ -886,6 +886,7 @@ The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObse
 * [Interaction with the Document Object Model (DOM)](xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 * <xref:blazor/fundamentals/handle-errors> (*JavaScript interop* section) <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
+* [Blazor Server threat mitigation: .NET methods invoked from the browser](xref:blazor/security/server/threat-mitigation#net-methods-invoked-from-the-browser)
 
 :::moniker-end
 
@@ -1737,6 +1738,7 @@ The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObse
 * [Interaction with the Document Object Model (DOM)](xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 * <xref:blazor/fundamentals/handle-errors> (*JavaScript interop* section) <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
+* [Blazor Server threat mitigation: .NET methods invoked from the browser](xref:blazor/security/server/threat-mitigation#net-methods-invoked-from-the-browser)
 
 :::moniker-end
 
@@ -2196,6 +2198,7 @@ The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObse
 * [Interaction with the Document Object Model (DOM)](xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 * <xref:blazor/fundamentals/handle-errors> (*JavaScript interop* section) <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
+* [Blazor Server threat mitigation: .NET methods invoked from the browser](xref:blazor/security/server/threat-mitigation#net-methods-invoked-from-the-browser)
 
 :::moniker-end
 
@@ -2641,5 +2644,6 @@ The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObse
 * [Interaction with the Document Object Model (DOM)](xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 * <xref:blazor/fundamentals/handle-errors> (*JavaScript interop* section) <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
+* [Blazor Server threat mitigation: .NET methods invoked from the browser](xref:blazor/security/server/threat-mitigation#net-methods-invoked-from-the-browser)
 
 :::moniker-end
