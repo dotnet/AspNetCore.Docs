@@ -5,7 +5,7 @@ description: Learn how to use the ASP.NET Core SignalR HubContext service for se
 monikerRange: '>= aspnetcore-2.1'
 ms.author: bradyg
 ms.custom: mvc
-ms.date: 11/12/2019
+ms.date: 02/20/2023
 uid: signalr/hubcontext
 ---
 # Send messages from outside a hub
@@ -133,10 +133,13 @@ async Task CommonHubContextMethod(IHubContext context)
 ```
 
 This is useful when:
+
 * Writing libraries that don't have a reference to the specific `Hub` type the app is using.
 * Writing code that is generic and can apply to multiple different `Hub` implementations
 
 :::moniker-end
+> [!NOTE]
+> ASP.NET Core SignalR no longer depends on getting many assemblies from NuGet, those assemblies are implicitly referenced in the `Microsoft.NET.Sdk.Web`. For more information, see [Differences between ASP.NET SignalR and ASP.NET Core SignalR](xref:signalr/version-differences#how-to-identify-the-signalr-version).
 
 ## Additional resources
 

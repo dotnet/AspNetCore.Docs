@@ -33,7 +33,6 @@ Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Hubs/ChatHub.cs" id="snippet_Class":::
 
-
 > [!NOTE]
 > Hubs are [transient](/dotnet/core/extensions/dependency-injection#transient):
 >
@@ -269,7 +268,7 @@ Exceptions thrown in hub methods are sent to the client that invoked the method.
 
 Connections aren't closed when a hub throws an exception. By default, SignalR returns a generic error message to the client, as shown in the following example:
 
-```
+```text
 Microsoft.AspNetCore.SignalR.HubException: An unexpected error occurred invoking 'SendMessage' on the server.
 ```
 
