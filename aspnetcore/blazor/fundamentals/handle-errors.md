@@ -593,7 +593,7 @@ In prerendered Blazor WebAssembly, prerendering works by:
 
 If a component throws an unhandled exception during prerendering, for example, during a lifecycle method or in rendering logic:
 
-* In Blazor Sever apps, the exception is fatal to the circuit. In prerendered Blazor WebAssembly apps, the exception prevents rendering the component.
+* In Blazor Server apps, the exception is fatal to the circuit. In prerendered Blazor WebAssembly apps, the exception prevents rendering the component.
 * The exception is thrown up the call stack from the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>.
 
 Under normal circumstances when prerendering fails, continuing to build and render the component doesn't make sense because a working component can't be rendered.
