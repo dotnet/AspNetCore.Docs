@@ -5,7 +5,7 @@ description: Learn how to mitigate security threats to Blazor Server apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/16/2023
+ms.date: 02/21/2023
 uid: blazor/security/server/threat-mitigation
 ---
 # Threat mitigation guidance for ASP.NET Core Blazor Server
@@ -59,11 +59,18 @@ For example, consider a Blazor-server side app with a component that accepts and
 
 Consider the following scenario for maintaining and displaying a list of items that pertain to a potential memory exhaustion scenario on the server:
 
-* The items in a `List<MyItem>` property or field use the server's memory. If the app allows the list of items to grow unbounded, there's a risk of the server running out of memory. Running out of memory causes the current session to end (crash) and all of the concurrent sessions in that server instance receive an out-of-memory exception. To prevent this scenario from occurring, the app must use a data structure that imposes an item limit on concurrent users.
+* The items in a `List<T>` property or field use the server's memory. If the app allows the list of items to grow unbounded, there's a risk of the server running out of memory. Running out of memory causes the current session to end (crash) and all of the concurrent sessions in that server instance receive an out-of-memory exception. To prevent this scenario from occurring, the app must use a data structure that imposes an item limit on concurrent users.
 * If a paging scheme isn't used for rendering, the server uses additional memory for objects that aren't visible in the UI. Without a limit on the number of items, memory demands may exhaust the available server memory. To prevent this scenario, use one of the following approaches:
   * Use paginated lists when rendering.
   * Only display the first 100 to 1,000 items and require the user to enter search criteria to find items beyond the items displayed.
   * For a more advanced rendering scenario, implement lists or grids that support *virtualization*. Using virtualization, lists only render a subset of items currently visible to the user. When the user interacts with the scrollbar in the UI, the component renders only those items required for display. The items that aren't currently required for display can be held in secondary storage, which is the ideal approach. Undisplayed items can also be held in memory, which is less ideal.
+
+:::moniker range=">= aspnetcore-5.0"
+
+> [!NOTE]
+> Blazor has built-in support for virtualization. For more information, see <xref:blazor/components/virtualization>.
+
+:::moniker-end
 
 Blazor Server apps offer a similar programming model to other UI frameworks for stateful apps, such as WPF, Windows Forms, or Blazor WebAssembly. The main difference is that in several of the UI frameworks the memory consumed by the app belongs to the client and only affects that individual client. For example, a Blazor WebAssembly app runs entirely on the client and only uses client memory resources. In the Blazor Server scenario, the memory consumed by the app belongs to the server and is shared among clients on the server instance.
 
@@ -76,7 +83,7 @@ Server-side memory demands are a consideration for all Blazor Server apps. Howev
 
 Connection exhaustion can occur when one or more clients open too many concurrent connections to the server, preventing other clients from establishing new connections.
 
-Blazor clients establish a single connection per session and keep the connection open for as long as the browser window is open. The demands on the server of maintaining all of the connections isn't specific to Blazor apps. Given the persistent nature of the connections and the stateful nature of Blazor Server apps, connection exhaustion is a greater risk to availability of the app.
+Blazor clients establish a single connection per session and keep the connection open for as long as the browser window is open. Given the persistent nature of the connections and the stateful nature of Blazor Server apps, connection exhaustion is a greater risk to availability of the app.
 
 By default, there's no limit on the number of connections per user for a Blazor Server app. If the app requires a connection limit, take one or more of the following approaches:
 
@@ -92,7 +99,7 @@ By default, there's no limit on the number of connections per user for a Blazor 
   * At the server level: Use a proxy/gateway in front of the app. For example, [Azure Front Door](/azure/frontdoor/front-door-overview) enables you to define, manage, and monitor the global routing of web traffic to an app and works when Blazor Server apps are configured to use Long Polling.
   
     > [!NOTE]
-    > Although Long Polling is supported for Blazor Server apps, [WebSockets is the recommended transport protocol](xref:blazor/host-and-deploy/server#azure-signalr-service). [Azure Front Door](/azure/frontdoor/front-door-overview) doesn't support WebSockets at this time, but support for WebSockets is under consideration for a future release of the service.
+    > Although Long Polling is supported for Blazor Server apps, [WebSockets is the recommended transport protocol](xref:blazor/host-and-deploy/server#azure-signalr-service). As of February, 2023, [Azure Front Door](/azure/frontdoor/front-door-overview) doesn't support WebSockets, but support for WebSockets is under development for a future release of the service. For more information, see [Support WebSocket connections on Azure Front Door](https://feedback.azure.com/d365community/idea/c8b1d257-8a26-ec11-b6e6-000d3a4f0789).
 
 :::moniker-end
 
@@ -160,9 +167,9 @@ Don't trust calls from JavaScript to .NET methods. When a .NET method is exposed
     * Ensure that the user has permission to perform the action requested.
   * Don't allocate an excessive quantity of resources as part of the .NET method invocation. For example, perform checks and place limits on CPU and memory use.
   * Take into account that static and instance methods can be exposed to JavaScript clients. Avoid sharing state across sessions unless the design calls for sharing state with appropriate constraints.
-    * For instance methods exposed through `DotNetReference` objects that are originally created through dependency injection (DI), the objects should be registered as scoped objects. This applies to any DI service that the Blazor Server app uses.
+    * For instance methods exposed through <xref:Microsoft.JSInterop.DotNetObjectReference> objects that are originally created through dependency injection (DI), the objects should be registered as scoped objects. This applies to any DI service that the Blazor Server app uses.
     * For static methods, avoid establishing state that can't be scoped to the client unless the app is explicitly sharing state by-design across all users on a server instance.
-  * Avoid passing user-supplied data in parameters to JavaScript calls. If passing data in parameters is absolutely required, ensure that the JavaScript code handles passing the data without introducing [Cross-site scripting (XSS)](#cross-site-scripting-xss) vulnerabilities. For example, don't write user-supplied data to the Document Object Model (DOM) by setting the `innerHTML` property of an element. Consider using [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) to disable `eval` and other unsafe JavaScript primitives.
+  * Avoid passing user-supplied data in parameters to JavaScript calls. If passing data in parameters is absolutely required, ensure that the JavaScript code handles passing the data without introducing [Cross-site scripting (XSS)](#cross-site-scripting-xss) vulnerabilities. For example, don't write user-supplied data to the Document Object Model (DOM) by setting the `innerHTML` property of an element. Consider using [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) to disable `eval` and other unsafe JavaScript primitives. For more information, see <xref:blazor/security/content-security-policy>.
 * Avoid implementing custom dispatching of .NET invocations on top of the framework's dispatching implementation. Exposing .NET methods to the browser is an advanced scenario, not recommended for general Blazor development.
 
 ### Events
@@ -290,7 +297,7 @@ Some DOM events, such as `oninput` or `onscroll`, can produce a large amount of 
 
 ## Additional security guidance
 
-The guidance for securing ASP.NET Core apps apply to Blazor Server apps and are covered in the following sections:
+The guidance for securing ASP.NET Core apps apply to Blazor Server apps and are covered in the following sections of this article:
 
 * [Logging and sensitive data](#logging-and-sensitive-data)
 * [Protect information in transit with HTTPS](#protect-information-in-transit-with-https)
@@ -347,7 +354,7 @@ In addition to the safeguards that the framework implements, the app must be cod
 * Take appropriate action upon receiving invalid data:
   * Ignore the data and return. This allows the app to continue processing requests.
   * If the app determines that the input is illegitimate and couldn't be produced by legitimate client, throw an exception. Throwing an exception tears down the circuit and ends the session.
-* Don't trust the error message provided by render batch completions included in the logs. The error is provided by the client and can't generally be trusted, as the client might be compromised.
+* Don't trust the error message provided by render batch completions included in the logs. The error is ***provided by the client*** and can't generally be trusted, as the client might be compromised.
 * Don't trust the input on JS interop calls in either direction between JavaScript and .NET methods.
 * The app is responsible for validating that the content of arguments and results are valid, even if the arguments or results are correctly deserialized.
 
@@ -357,7 +364,7 @@ For a XSS vulnerability to exist, the app must incorporate user input in the ren
 * Script tags aren't allowed and shouldn't be included in the app's component render tree. If a script tag is included in a component's markup, a compile-time error is generated.
 * Component authors can author components in C# without using Razor. The component author is responsible for using the correct APIs when emitting output. For example, use `builder.AddContent(0, someUserSuppliedString)` and *not* `builder.AddMarkupContent(0, someUserSuppliedString)`, as the latter could create a XSS vulnerability.
 
-As part of protecting against XSS attacks, consider implementing XSS mitigations, such as [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP).
+Consider further mitigating XSS vulnerabilities. For example, implement a restrictive [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP). For more information, see <xref:blazor/security/content-security-policy>.
 
 For more information, see <xref:security/cross-site-scripting>.
 
@@ -365,7 +372,7 @@ For more information, see <xref:security/cross-site-scripting>.
 
 Cross-origin attacks involve a client from a different origin performing an action against the server. The malicious action is typically a GET request or a form POST (Cross-Site Request Forgery, CSRF), but opening a malicious WebSocket is also possible. Blazor Server apps offer [the same guarantees that any other SignalR app using the hub protocol offer](xref:signalr/security):
 
-* Blazor Server apps can be accessed cross-origin unless additional measures are taken to prevent it. To disable cross-origin access, either disable CORS in the endpoint by adding the CORS middleware to the pipeline and adding the <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> to the Blazor endpoint metadata or limit the set of allowed origins by [configuring SignalR for cross-origin resource sharing](xref:signalr/security#cross-origin-resource-sharing).
+* Blazor Server apps can be accessed cross-origin unless additional measures are taken to prevent it. To disable cross-origin access, either disable CORS in the endpoint by adding the CORS middleware to the pipeline and adding the <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> to the Blazor endpoint metadata or limit the set of allowed origins by [configuring SignalR for cross-origin resource sharing](xref:signalr/security#cross-origin-resource-sharing). For guidance on WebSocket origin restrictions, see <xref:fundamentals/websockets#websocket-origin-restriction>.
 * If CORS is enabled, extra steps might be required to protect the app depending on the CORS configuration. If CORS is globally enabled, CORS can be disabled for the Blazor Server hub by adding the <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> metadata to the endpoint metadata after calling <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> on the endpoint route builder.
 
 For more information, see <xref:security/anti-request-forgery>.
@@ -374,7 +381,12 @@ For more information, see <xref:security/anti-request-forgery>.
 
 Click-jacking involves rendering a site as an `<iframe>` inside a site from a different origin in order to trick the user into performing actions on the site under attack.
 
-To protect an app from rendering inside of an `<iframe>`, use [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) and the `X-Frame-Options` header. For more information, see [MDN web docs: X-Frame-Options](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Frame-Options).
+To protect an app from rendering inside of an `<iframe>`, use [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) and the `X-Frame-Options` header.
+
+For more information, see the following resources:
+
+* <xref:blazor/security/content-security-policy>
+* [MDN web docs: X-Frame-Options](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Frame-Options)
 
 ### Open redirects
 
@@ -407,13 +419,13 @@ The following list of security considerations isn't comprehensive:
 * Avoid using (or validate beforehand) user input for .NET to JS interop calls.
 * Prevent the client from allocating an unbound amount of memory.
   * Data within the component.
-  * `DotNetObject` references returned to the client.
+  * <xref:Microsoft.JSInterop.DotNetObjectReference> objects returned to the client.
 * Guard against multiple dispatches.
 * Cancel long-running operations when the component is disposed.
 * Avoid events that produce large amounts of data.
 * Avoid using user input as part of calls to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> and validate user input for URLs against a set of allowed origins first if unavoidable.
 * Don't make authorization decisions based on the state of the UI but only from component state.
-* Consider using [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) to protect against XSS attacks.
+* Consider using [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) to protect against XSS attacks. For more information, see <xref:blazor/security/content-security-policy>.
 * Consider using CSP and [X-Frame-Options](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Frame-Options) to protect against click-jacking.
 * Ensure CORS settings are appropriate when enabling CORS or explicitly disable CORS for Blazor apps.
 * Test to ensure that the server-side limits for the Blazor app provide an acceptable user experience without unacceptable levels of risk.
