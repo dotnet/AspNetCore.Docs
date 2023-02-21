@@ -3,7 +3,7 @@ title: Work with images in ASP.NET Core Blazor
 author: guardrex
 description: Learn how to work with images in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
-ms.author: taparik
+ms.author: riande
 ms.custom: mvc
 ms.date: 11/08/2022
 uid: blazor/images

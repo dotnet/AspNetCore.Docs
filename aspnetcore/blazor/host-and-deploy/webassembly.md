@@ -730,7 +730,12 @@ Blazor performs Intermediate Language (IL) trimming on each Release build to rem
 
 ## Change the filename extension of DLL files
 
-In case you have a need to change the filename extensions of the app's published `.dll` files, follow the guidance in this section.
+If a firewall, anti-virus program, or network security appliance is blocking the trasmission of the app's dynamic-link library (DLL) files (`.dll`), you can follow the guidance in this section to change the filename extensions of the app's published DLL files.
+
+> [!NOTE]
+> Changing the filename extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions. For a more robust approach in environments that block the download and execution of DLL files, see <xref:blazor/host-and-deploy/webassembly-deployment-layout>.
+>
+> Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
 
 After publishing the app, use a shell script or DevOps build pipeline to rename `.dll` files to use a different file extension in the directory of the app's published output.
 
@@ -1799,7 +1804,12 @@ Blazor performs Intermediate Language (IL) trimming on each Release build to rem
 
 ## Change the filename extension of DLL files
 
-In case you have a need to change the filename extensions of the app's published `.dll` files, follow the guidance in this section.
+If a firewall, anti-virus program, or network security appliance is blocking the trasmission of the app's dynamic-link library (DLL) files (`.dll`), you can follow the guidance in this section to change the filename extensions of the app's published DLL files.
+
+> [!NOTE]
+> Changing the filename extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions. For a more robust approach in environments that block the download and execution of DLL files, see <xref:blazor/host-and-deploy/webassembly-deployment-layout>.
+>
+> Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
 
 After publishing the app, use a shell script or DevOps build pipeline to rename `.dll` files to use a different file extension in the directory of the app's published output.
 
@@ -2693,7 +2703,12 @@ Blazor performs Intermediate Language (IL) trimming on each Release build to rem
 
 ## Change the filename extension of DLL files
 
-In case you have a need to change the filename extensions of the app's published `.dll` files, follow the guidance in this section.
+If a firewall, anti-virus program, or network security appliance is blocking the trasmission of the app's dynamic-link library (DLL) files (`.dll`), you can follow the guidance in this section to change the filename extensions of the app's published DLL files.
+
+> [!NOTE]
+> Changing the filename extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions.
+>
+> Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
 
 After publishing the app, use a shell script or DevOps build pipeline to rename `.dll` files to use a different file extension in the directory of the app's published output.
 
