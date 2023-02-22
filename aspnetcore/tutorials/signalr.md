@@ -124,7 +124,7 @@ The SignalR server library is included in the ASP.NET Core shared framework. The
 
 # [Visual Studio Code](#tab/visual-studio-code/)
 
-  * In the integrated terminal, run the following command to install LibMan after uninstalling any previous version, if one exists.
+  * In the integrated terminal, run the following commands to install LibMan after uninstalling any previous version, if one exists.
 
   ```dotnetcli
   dotnet tool uninstall -g Microsoft.Web.LibraryManager.Cli
@@ -152,9 +152,10 @@ The SignalR server library is included in the ASP.NET Core shared framework. The
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-  * In the **Terminal**, run the following command to install LibMan.
+  * In the **Terminal**, run the following commands to install LibMan after uninstalling any previous version, if one exists.
 
   ```dotnetcli
+  dotnet tool uninstall -g Microsoft.Web.LibraryManager.Cli
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
 
