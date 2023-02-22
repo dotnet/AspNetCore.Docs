@@ -263,11 +263,11 @@ Razor will automatically omit attributes that are not needed. If the value passe
 For example, the following razor code:
 
 ```cshtml
-<div class="@false" >False</div>
-<div class="@null" >Null</div>
-<div class="@("")" >Empty</div>
-<div class="@("false")" >False String</div>
-<div class="@("active")" >String</div>
+<div class="@false">False</div>
+<div class="@null">Null</div>
+<div class="@("")">Empty</div>
+<div class="@("false")">False String</div>
+<div class="@("active")">String</div>
 <input type="checkbox" checked="@true" name="true" />
 <input type="checkbox" checked="@false" name="false" />
 <input type="checkbox" checked="@null" name="null" />
@@ -281,9 +281,9 @@ Will produce the following output:
 <div class="">Empty</div>
 <div class="False">False String</div>
 <div class="active">String</div>
-<input type="checkbox" checked="checked">
-<input type="checkbox">
-<input type="checkbox">
+<input type="checkbox" checked="checked" name="true">
+<input type="checkbox" name="false">
+<input type="checkbox" name="null">
 ```
 
 ## Control structures
