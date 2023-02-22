@@ -256,6 +256,36 @@ Without the `@:` in the code, a Razor runtime error is generated.
 
 Extra `@` characters in a Razor file can cause compiler errors at statements later in the block. These compiler errors can be difficult to understand because the actual error occurs before the reported error. This error is common after combining multiple implicit/explicit expressions into a single code block.
 
+### Conditional attribute rendering
+
+Razor will automatically omit attributes that are not needed. If the value passed in is `null` or `false` the attribute won't be rendered.
+
+For example, the following razor code:
+
+```cshtml
+<div class="@false" >False</div>
+<div class="@null" >Null</div>
+<div class="@("")" >Empty</div>
+<div class="@("false")" >False String</div>
+<div class="@("active")" >String</div>
+<input type="checkbox" checked="@true" name="true" />
+<input type="checkbox" checked="@false" name="false" />
+<input type="checkbox" checked="@null" name="null" />
+```
+
+Will produce the following output:
+
+```html
+<div>False</div>
+<div>Null</div>
+<div class="">Empty</div>
+<div class="False">False String</div>
+<div class="active">String</div>
+<input type="checkbox" checked="checked">
+<input type="checkbox">
+<input type="checkbox">
+```
+
 ## Control structures
 
 Control structures are an extension of code blocks. All aspects of code blocks (transitioning to markup, inline C#) also apply to the following structures:
