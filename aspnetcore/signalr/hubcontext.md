@@ -146,8 +146,6 @@ This is useful when:
 * Writing code that is generic and can apply to multiple different `Hub` implementations
 
 :::moniker-end
-> [!NOTE]
-> ASP.NET Core SignalR no longer depends on getting many assemblies from NuGet, those assemblies are implicitly referenced in the `Microsoft.NET.Sdk.Web`. For more information, see [Differences between ASP.NET SignalR and ASP.NET Core SignalR](xref:signalr/version-differences#how-to-identify-the-signalr-version).
 
 ## Additional resources
 
