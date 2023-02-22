@@ -151,7 +151,7 @@ This is useful when:
 
 ## Additional resources
 
-* <xref:migration/22-to-30#signalr-assemblies-in-shared-framework>
+* [Signalr assemblies in shared framework]<xref:migration/22-to-30#signalr-assemblies-in-shared-framework>
 * <xref:tutorials/signalr>
 * <xref:signalr/hubs>
 * <xref:signalr/publish-to-azure-web-app>
