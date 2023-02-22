@@ -202,6 +202,3 @@ The `HubLifetimeContext` contains information for the `OnConnectedAsync` and `On
 ## Authorization and filters
 
 [Authorize attributes on hub methods](xref:signalr/authn-and-authz#use-authorization-handlers-to-customize-hub-method-authorization) run before hub filters.
-
-> [!NOTE]
-> SignalR no longer depends on getting many assemblies from NuGet, those assemblies are implicitly referenced in the `Microsoft.NET.Sdk.Web`. For more information, see [Differences between ASP.NET SignalR and ASP.NET Core SignalR](xref:signalr/version-differences#how-to-identify-the-signalr-version).

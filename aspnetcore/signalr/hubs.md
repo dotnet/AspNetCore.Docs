@@ -281,8 +281,7 @@ If an exceptional condition must be propagated to the client, use the <xref:Micr
 > [!NOTE]
 > SignalR only sends the `Message` property of the exception to the client. The stack trace and other properties on the exception aren't available to the client.
 
-> [!NOTE]
-> SignalR no longer depends on getting many assemblies from NuGet, those assemblies are implicitly referenced in the `Microsoft.NET.Sdk.Web`. For more information, see [Differences between ASP.NET SignalR and ASP.NET Core SignalR](xref:signalr/version-differences#how-to-identify-the-signalr-version).
+[!INCLUDE[](~/includes/signalr-in-shared-framework.md)]
 
 ## Additional resources
 
@@ -434,8 +433,7 @@ If an exceptional condition must be propagated to the client, use the <xref:Micr
 > [!NOTE]
 > SignalR only sends the `Message` property of the exception to the client. The stack trace and other properties on the exception aren't available to the client.
 
-> [!NOTE]
-> SignalR no longer depends on getting many assemblies from NuGet, those assemblies are implicitly referenced in the `Microsoft.NET.Sdk.Web`. For more information, see [Differences between ASP.NET SignalR and ASP.NET Core SignalR](xref:signalr/version-differences#how-to-identify-the-signalr-version).
+[!INCLUDE[](~/includes/signalr-in-shared-framework.md)]
 
 ## Additional resources
 
@@ -618,6 +616,8 @@ If you have an exceptional condition you *do* want to propagate to the client, y
 
 > [!NOTE]
 > SignalR only sends the `Message` property of the exception to the client. The stack trace and other properties on the exception aren't available to the client.
+
+[!INCLUDE[](~/includes/signalr-in-shared-framework.md)]
 
 ## Additional resources
 

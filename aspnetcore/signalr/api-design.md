@@ -76,5 +76,6 @@ The older clients won't be expecting the `Sender` value, so they'll ignore it. A
 
 In this case, the new client is also tolerant of an old server that doesn't provide the `Sender` value. Since the old server won't provide the `Sender` value, the client checks to see if it exists before accessing it.
 
-> [!NOTE]
-> ASP.NET Core SignalR no longer depends on getting many assemblies from NuGet, those assemblies are implicitly referenced in the `Microsoft.NET.Sdk.Web`. For more information, see [Differences between ASP.NET SignalR and ASP.NET Core SignalR](xref:signalr/version-differences#how-to-identify-the-signalr-version).
+## Additional resources
+
+* <xref:migration/22-to-30#signalr-assemblies-in-shared-framework>
