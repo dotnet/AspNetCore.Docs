@@ -208,7 +208,7 @@ In the `<head>` markup ([location of `<head>` content](xref:blazor/project-struc
 
 :::moniker range=">= aspnetcore-6.0"
 
-```cshtml
+```html
 <meta http-equiv="Content-Security-Policy" 
       content="base-uri 'self';
                default-src 'self';
@@ -223,7 +223,7 @@ In the `<head>` markup ([location of `<head>` content](xref:blazor/project-struc
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-```cshtml
+```html
 <meta http-equiv="Content-Security-Policy" 
       content="base-uri 'self';
                default-src 'self';
@@ -241,7 +241,7 @@ In the `<head>` markup ([location of `<head>` content](xref:blazor/project-struc
 
 :::moniker range="< aspnetcore-5.0"
 
-```cshtml
+```html
 <meta http-equiv="Content-Security-Policy" 
       content="base-uri 'self';
                default-src 'self';
