@@ -550,6 +550,7 @@ This header prevents most browsers from MIME-sniffing a response away from the d
 
 After upgrading the shared framework on the server, restart the ASP.NET Core apps hosted by the server.
 
+## Additional resources
 * [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites)
 * [Nginx: Binary Releases: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages)
 * <xref:test/troubleshoot>
