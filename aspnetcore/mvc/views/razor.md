@@ -254,13 +254,16 @@ To render the rest of an entire line as HTML inside a code block, use `@:` synta
 
 Without the `@:` in the code, a Razor runtime error is generated.
 
-Extra `@` characters in a Razor file can cause compiler errors at statements later in the block. These compiler errors can be difficult to understand because the actual error occurs before the reported error. This error is common after combining multiple implicit/explicit expressions into a single code block.
+Extra `@` characters in a Razor file can cause compiler errors at statements later in the block. These extra `@` compiler errors:
+
+* Can be difficult to understand because the actual error occurs before the reported error.
+* Is common after combining multiple implicit and explicit expressions into a single code block.
 
 ### Conditional attribute rendering
 
-Razor will automatically omit attributes that are not needed. If the value passed in is `null` or `false` the attribute won't be rendered.
+Razor automatically omits attributes that aren't needed. If the value passed in is `null` or `false`, the attribute won't be rendered.
 
-For example, the following razor code:
+For example,  consider the following razor code:
 
 ```cshtml
 <div class="@false">False</div>
@@ -273,7 +276,7 @@ For example, the following razor code:
 <input type="checkbox" checked="@null" name="null" />
 ```
 
-Will produce the following output:
+The preceding Razor markup generates the following HTML:
 
 ```html
 <div>False</div>
