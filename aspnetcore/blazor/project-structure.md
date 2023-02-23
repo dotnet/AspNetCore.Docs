@@ -413,7 +413,23 @@ The project structure of the client-side app in a hosted Blazor Webassembly solu
 
 ## Location of `<head>` content
 
+:::moniker range=">= aspnetcore-7.0"
+
 In Blazor Server apps, `<head>` content is located in the `Pages/_Host.cshtml` file.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+In Blazor Server apps, `<head>` content is located in the `Pages/_Layout.cshtml` file.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+In Blazor Server apps, `<head>` content is located in the `Pages/_Host.cshtml` file.
+
+:::moniker-end
 
 In Blazor WebAssembly apps, `<head>` content is located in the `wwwroot/index.html` file.
 
