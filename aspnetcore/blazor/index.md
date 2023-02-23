@@ -4,7 +4,7 @@ author: guardrex
 description: Explore ASP.NET Core Blazor, a way to build interactive client-side web UI with .NET in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.custom: "mvc, seoapril2019"
+ms.custom: "mvc"
 ms.date: 11/08/2022
 uid: blazor/index
 ---
