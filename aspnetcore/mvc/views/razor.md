@@ -261,7 +261,7 @@ Extra `@` characters in a Razor file can cause compiler errors at statements lat
 
 ### Conditional attribute rendering
 
-Razor automatically omits attributes that aren't needed. If the value passed in is `null` or `false`, the attribute won't be rendered.
+Razor automatically omits attributes that aren't needed. If the value passed in is `null` or `false`, the attribute isn't rendered.
 
 For example,  consider the following razor code:
 
