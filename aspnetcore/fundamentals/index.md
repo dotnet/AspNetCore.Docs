@@ -68,15 +68,15 @@ On startup, an ASP.NET Core app builds a *host*. The host encapsulates all of th
 * Dependency injection (DI) services
 * Configuration
 
-There are three different hosts:
+There are three different hosts capable of running an ASP.NET Core app:
 
-* [.NET WebApplication Host](xref:migration/50-to-60#new-hosting-model), also known as the [Minimal Host](xref:fundamentals/minimal-apis/webapplication)
-* [.NET Generic Host](xref:fundamentals/host/generic-host)
-* <xref:fundamentals/host/web-host>
+* [ASP.NET Core WebApplication](xref:fundamentals/minimal-apis/webapplication), also known as the [Minimal Host](xref:migration/50-to-60#new-hosting-model)
+* [.NET Generic Host](xref:fundamentals/host/generic-host) combined with ASP.NET Core's <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A>
+* [ASP.NET Core WebHost](xref:fundamentals/host/web-host)
 
-The .NET WebApplication Host is recommended and used in all the ASP.NET Core templates. The .NET WebApplication Host and .NET Generic Host share many of the same interfaces and classes. The ASP.NET Core Web Host is available only for backward compatibility.
+The ASP.NET Core <xref:Microsoft.AspNetCore.Builder.WebApplication> and <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> types are recommended and used in all the ASP.NET Core templates. `WebApplication` behaves similarly to the .NET Generic Host and exposes many of the same interfaces but requires less callbacks to configure. The ASP.NET Core <xref:Microsoft.AspNetCore.WebHost> is available only for backward compatibility.
 
-The following example instantiates a WebApplication  Host:
+The following example instantiates a `WebApplication`:
 
 [!code-csharp[](~/fundamentals/startup/6.0_samples/WebAll/Program.cs?name=snippet2&highlight=7)]
 

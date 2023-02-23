@@ -242,6 +242,8 @@ items:
             uid: fundamentals/middleware/extensibility-third-party-container
       - name: Host
         items:
+          - name: WebApplication and WebApplicationBuilder
+            uid: fundamentals/minimal-apis/webapplication
           - name: Generic Host
             uid: fundamentals/host/generic-host
           - name: Web Host
