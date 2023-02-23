@@ -254,7 +254,40 @@ To render the rest of an entire line as HTML inside a code block, use `@:` synta
 
 Without the `@:` in the code, a Razor runtime error is generated.
 
-Extra `@` characters in a Razor file can cause compiler errors at statements later in the block. These compiler errors can be difficult to understand because the actual error occurs before the reported error. This error is common after combining multiple implicit/explicit expressions into a single code block.
+Extra `@` characters in a Razor file can cause compiler errors at statements later in the block. These extra `@` compiler errors:
+
+* Can be difficult to understand because the actual error occurs before the reported error.
+* Is common after combining multiple implicit and explicit expressions into a single code block.
+
+### Conditional attribute rendering
+
+Razor automatically omits attributes that aren't needed. If the value passed in is `null` or `false`, the attribute isn't rendered.
+
+For example,  consider the following razor:
+
+```cshtml
+<div class="@false">False</div>
+<div class="@null">Null</div>
+<div class="@("")">Empty</div>
+<div class="@("false")">False String</div>
+<div class="@("active")">String</div>
+<input type="checkbox" checked="@true" name="true" />
+<input type="checkbox" checked="@false" name="false" />
+<input type="checkbox" checked="@null" name="null" />
+```
+
+The preceding Razor markup generates the following HTML:
+
+```html
+<div>False</div>
+<div>Null</div>
+<div class="">Empty</div>
+<div class="False">False String</div>
+<div class="active">String</div>
+<input type="checkbox" checked="checked" name="true">
+<input type="checkbox" name="false">
+<input type="checkbox" name="null">
+```
 
 ## Control structures
 
