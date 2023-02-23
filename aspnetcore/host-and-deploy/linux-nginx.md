@@ -546,8 +546,6 @@ This header prevents most browsers from MIME-sniffing a response away from the d
 1. Save the file.
 1. Restart Nginx.
 
-## Additional resources
-
 ## Additional Nginx suggestions
 
 After upgrading the shared framework on the server, restart the ASP.NET Core apps hosted by the server.
