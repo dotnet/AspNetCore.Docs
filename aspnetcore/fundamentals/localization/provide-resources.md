@@ -23,19 +23,19 @@ A resource file is a useful mechanism for separating localizable strings from co
 
 1. In **Solution Explorer**, right click on the folder that will contain the resource file, and then select **Add** > **New Item**.
 
-   ![Nested contextual menu: In Solution Explorer, a contextual menu is open for Resources. A second contextual menu is open for Add showing the New Item command highlighted.](localization/_static/newi.png)
+   ![Nested contextual menu: In Solution Explorer, a contextual menu is open for Resources. A second contextual menu is open for Add showing the New Item command highlighted.](~/fundamentals/localization/_static/newi.png)
 
 1. In the **Search installed templates** box, enter "resource" and name the file.
 
-   ![Add New Item dialog](localization/_static/res.png)
+   ![Add New Item dialog](~/fundamentals/localization/_static/res.png)
 
 1. Enter the key value (native string) in the **Name** column and the translated string in the **Value** column.
 
-   ![Welcome.es.resx file (the Welcome resource file for Spanish) with the word Hello in the Name column and the word Hola (Hello in Spanish) in the Value column](localization/_static/hola.png)
+   ![Welcome.es.resx file (the Welcome resource file for Spanish) with the word Hello in the Name column and the word Hola (Hello in Spanish) in the Value column](~/fundamentals/localization/_static/hola.png)
 
    Visual Studio shows the *Welcome.es.resx* file.
 
-   ![Solution Explorer showing the Welcome Spanish (es) resource file](localization/_static/se.png)
+   ![Solution Explorer showing the Welcome Spanish (es) resource file](~/fundamentals/localization/_static/se.png)
 
 ## Resource file naming
 
@@ -111,7 +111,7 @@ Localizing an app also involves the following tasks:
 
 * <xref:fundamentals/localization>
 * <xref:fundamentals/localization/make-content-localizable>
-* <xref:fundamentals/localization-select-language-culture>
+* <xref:fundamentals/localization/select-language-culture>
 * <xref:fundamentals/troubleshoot-aspnet-core-localization>
 * [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
 * [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.

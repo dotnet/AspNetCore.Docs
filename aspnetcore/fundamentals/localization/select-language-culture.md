@@ -152,7 +152,7 @@ The `SetLanguage` method sets the culture cookie.
 
 [!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/HomeController.cs?range=57-67)]
 
-You can't plug in the `_SelectLanguagePartial.cshtml` to sample code for this project. The **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) has code to flow the `RequestLocalizationOptions` to a Razor partial through the [Dependency Injection](dependency-injection.md) container.
+You can't plug in the `_SelectLanguagePartial.cshtml` to sample code for this project. The **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) has code to flow the `RequestLocalizationOptions` to a Razor partial through the [Dependency Injection](../dependency-injection.md) container.
 
 ## Model binding route data and query strings
 
@@ -169,7 +169,7 @@ Localizing an app also involves the following tasks:
 
 * <xref:fundamentals/localization>
 * <xref:fundamentals/localization/make-content-localizable>
-* <xref:fundamentals/localization-provide-resources>
+* <xref:fundamentals/localization/provide-resources>
 * <xref:fundamentals/troubleshoot-aspnet-core-localization>
 * [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
 * [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.

@@ -40,7 +40,7 @@ Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHt
 
 At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](../dependency-injection.md):
 
-[!code-csharp[](localization/sample/3.x/Localization/Controllers/TestController.cs?start=9&end=26&highlight=7-13)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/TestController.cs?start=9&end=26&highlight=7-13)]
 
 The preceding code demonstrates each of the two factory create methods.
 

@@ -42,7 +42,7 @@ Globalizing and localizing an app involves the following tasks:
 
 ## Additional resources
 
-* <xref:fundamentals/localization/make-content-localizable)>
+* <xref:fundamentals/localization/make-content-localizable>
 * <xref:fundamentals/localization/provide-resources>
 * <xref:fundamentals/localization/select-language-culture>
 * <xref:fundamentals/troubleshoot-aspnet-core-localization>
