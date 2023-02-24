@@ -7,7 +7,7 @@ monikerRange: '>= aspnetcore-5.0'
 ms.date: 02/23/2023
 uid: fundamentals/localization/make-content-localizable
 ---
-## Make an ASP.NET Core app's content localizable
+# Make an ASP.NET Core app's content localizable
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
@@ -21,7 +21,7 @@ The following code example shows how to wrap the string "About Title" for locali
 
 [!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/AboutController.cs)]
 
-In the preceding code, the `IStringLocalizer<T>` implementation comes from [Dependency Injection](dependency-injection.md). If the localized value of "About Title" isn't found, then the indexer key is returned, that is, the string "About Title".
+In the preceding code, the `IStringLocalizer<T>` implementation comes from [Dependency Injection](../dependency-injection.md). If the localized value of "About Title" isn't found, then the indexer key is returned, that is, the string "About Title".
 
 You can leave the default language literal strings in the app and wrap them in the localizer, so that you can focus on developing the app. You develop an app with your default language and prepare it for the localization step without first creating a default resource file.
 
@@ -38,7 +38,7 @@ Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHt
 
 ## `IStringLocalizerFactory`
 
-At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](dependency-injection.md):
+At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](../dependency-injection.md):
 
 [!code-csharp[](localization/sample/3.x/Localization/Controllers/TestController.cs?start=9&end=26&highlight=7-13)]
 
@@ -48,17 +48,17 @@ The preceding code demonstrates each of the two factory create methods.
 
 You can partition your localized strings by controller or area, or have just one container. In the sample app, a dummy class named `SharedResource` is used for shared resources.
 
-[!code-csharp[](localization/sample/3.x/Localization/SharedResource.cs)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/SharedResource.cs)]
 
 Some developers use the `Startup` class to contain global or shared strings. In the following sample, the `InfoController` and the `SharedResource` localizers are used:
 
-[!code-csharp[](localization/sample/3.x/Localization/Controllers/InfoController.cs?range=9-26)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/InfoController.cs?range=9-26)]
 
 ## View localization
 
 The `IViewLocalizer` service provides localized strings for a [view](xref:mvc/views/overview). The `ViewLocalizer` class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of `IViewLocalizer`:
 
-[!code-cshtml[](localization/sample/3.x/Localization/Views/Home/About.cshtml)]
+[!code-cshtml[](~/fundamentals/localization/sample/3.x/Localization/Views/Home/About.cshtml)]
 
 The default implementation of `IViewLocalizer` finds the resource file based on the view's file name. There's no option to use a global shared resource file. `ViewLocalizer` implements the localizer using `IHtmlLocalizer`, so Razor doesn't HTML-encode the localized string. You can parameterize resource strings, and `IViewLocalizer` HTML-encodes the parameters but not the resource string. Consider the following Razor markup:
 
@@ -88,7 +88,7 @@ DataAnnotations error messages are localized with `IStringLocalizer<T>`. Using t
 * *Resources/ViewModels.Account.RegisterViewModel.fr.resx*
 * *Resources/ViewModels/Account/RegisterViewModel.fr.resx*
 
-[!code-csharp[](localization/sample/3.x/Localization/ViewModels/Account/RegisterViewModel.cs?start=9&end=26)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/ViewModels/Account/RegisterViewModel.cs?start=9&end=26)]
 
 In ASP.NET Core MVC 1.1.0 and later, non-validation attributes are localized.
 
