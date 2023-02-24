@@ -27,6 +27,8 @@ To configure SignalR endpoints, call <xref:Microsoft.AspNetCore.Builder.HubEndpo
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Program.cs" id="snippet_MapHub" highlight="2":::
 
+[!INCLUDE[](~/includes/signalr-in-shared-framework.md)]
+
 ## Create and use hubs
 
 Create a hub by declaring a class that inherits from <xref:Microsoft.AspNetCore.SignalR.Hub>. Add `public` methods to the class to make them callable from clients:
@@ -281,8 +283,6 @@ If an exceptional condition must be propagated to the client, use the <xref:Micr
 > [!NOTE]
 > SignalR only sends the `Message` property of the exception to the client. The stack trace and other properties on the exception aren't available to the client.
 
-[!INCLUDE[](~/includes/signalr-in-shared-framework.md)]
-
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/signalr/hubs/samples/) [(how to download)](xref:index#how-to-download-a-sample)
@@ -307,6 +307,8 @@ To register the services required by SignalR hubs, call <xref:Microsoft.Extensio
 To configure SignalR endpoints, call <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A>, also in `Program.cs`:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Program.cs" id="snippet_MapHub" highlight="2":::
+
+[!INCLUDE[](~/includes/signalr-in-shared-framework.md)]
 
 ## Create and use hubs
 
@@ -433,8 +435,6 @@ If an exceptional condition must be propagated to the client, use the <xref:Micr
 > [!NOTE]
 > SignalR only sends the `Message` property of the exception to the client. The stack trace and other properties on the exception aren't available to the client.
 
-[!INCLUDE[](~/includes/signalr-in-shared-framework.md)]
-
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/signalr/hubs/samples/) [(how to download)](xref:index#how-to-download-a-sample)
@@ -470,6 +470,8 @@ app.UseEndpoints(endpoints =>
     endpoints.MapHub<ChatHub>("/chathub");
 });
 ```
+
+[!INCLUDE[](~/includes/signalr-in-shared-framework.md)]
 
 ## Create and use hubs
 
@@ -604,7 +606,7 @@ Exceptions thrown in your hub methods are sent to the client that invoked the me
 
 If your Hub throws an exception, connections aren't closed. By default, SignalR returns a generic error message to the client. For example:
 
-```
+```text
 Microsoft.AspNetCore.SignalR.HubException: An unexpected error occurred invoking 'MethodName' on the server.
 ```
 
@@ -616,8 +618,6 @@ If you have an exceptional condition you *do* want to propagate to the client, y
 
 > [!NOTE]
 > SignalR only sends the `Message` property of the exception to the client. The stack trace and other properties on the exception aren't available to the client.
-
-[!INCLUDE[](~/includes/signalr-in-shared-framework.md)]
 
 ## Additional resources
 
