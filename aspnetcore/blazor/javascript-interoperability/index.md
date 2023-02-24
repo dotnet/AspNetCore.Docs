@@ -190,6 +190,8 @@ JS isolation provides the following benefits:
 * Imported JS no longer pollutes the global namespace.
 * Consumers of a library and components aren't required to import the related JS.
 
+Both `.js` and `.mjs` module extensions are supported by ASP.NET Core and Blazor, which are sent with a MIME type of `text/javascript`.
+
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
 
 ## Cached JavaScript files
@@ -388,6 +390,8 @@ JS isolation provides the following benefits:
 * Imported JS no longer pollutes the global namespace.
 * Consumers of a library and components aren't required to import the related JS.
 
+Both `.js` and `.mjs` module extensions are supported by ASP.NET Core and Blazor, which are sent with a MIME type of `text/javascript`.
+
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
 
 ## Cached JavaScript files
@@ -576,6 +580,8 @@ JS isolation provides the following benefits:
 
 * Imported JS no longer pollutes the global namespace.
 * Consumers of a library and components aren't required to import the related JS.
+
+Both `.js` and `.mjs` module extensions are supported by ASP.NET Core and Blazor, which are sent with a MIME type of `text/javascript`.
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
 

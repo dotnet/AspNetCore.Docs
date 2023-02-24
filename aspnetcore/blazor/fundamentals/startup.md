@@ -36,8 +36,8 @@ To define a JS initializer, add a JS module to the project named `{NAME}.lib.mod
 The module exports either or both of the following conventional functions:
 
 * `beforeStart(options, extensions)`: Called before Blazor starts. For example, `beforeStart` is used to customize the loading process, logging level, and other options specific to the hosting model.
-  * In Blazor WebAssembly, `beforeStart` receives the Blazor WebAssembly options (`options` in this section's example) and any extensions (`extensions` in this section's example) added during publishing. For example, options can specify the use of a custom [boot resource loader](xref:blazor/fundamentals/startup#load-boot-resources).
-  * In Blazor Server, `beforeStart` receives SignalR circuit start options (`options` in this section's example).
+  * In Blazor WebAssembly, `beforeStart` receives the Blazor WebAssembly options (`options` in this section's examples) and any extensions (`extensions` in this section's examples) added during publishing. For example, options can specify the use of a custom [boot resource loader](xref:blazor/fundamentals/startup#load-boot-resources).
+  * In Blazor Server, `beforeStart` receives SignalR circuit start options (`options` in this section's examples).
   * In [`BlazorWebViews`](/mobile-blazor-bindings/walkthroughs/hybrid-hello-world#mainrazor-native-ui-page), no options are passed.
 * `afterStarted`: Called after Blazor is ready to receive calls from JS. For example, `afterStarted` is used to initialize libraries by making JS interop calls and registering custom elements. The Blazor instance is passed to `afterStarted` as an argument (`blazor` in this section's example).
 
@@ -46,7 +46,7 @@ For the filename:
 * If the JS initializers are consumed as a static asset in the project, use the format `{ASSEMBLY NAME}.lib.module.js`, where the `{ASSEMBLY NAME}` placeholder is the app's assembly name. For example, name the file `BlazorSample.lib.module.js` for a project with an assembly name of `BlazorSample`. Place the file in the app's `wwwroot` folder.
 * If the JS initializers are consumed from an RCL, use the format `{LIBRARY NAME/PACKAGE ID}.lib.module.js`, where the `{LIBRARY NAME/PACKAGE ID}` placeholder is the project's library name or package identifier. For example, name the file `RazorClassLibrary1.lib.module.js` for an RCL with a package identifier of `RazorClassLibrary1`. Place the file in the library's `wwwroot` folder.
 
-The following example demonstrates JS initializers that load custom scripts before and after Blazor has started:
+The following example demonstrates JS initializers that load custom scripts before and after Blazor has started by appending them to the `<head>` in `beforeStart` and `afterStarted`:
 
 ```javascript
 export function beforeStart(options, extensions) {
@@ -62,6 +62,8 @@ export function afterStarted(blazor) {
 }
 ```
 
+The preceding `beforeStart` example only guarantees that the custom script loads before Blazor starts. It doesn't guarantee that awaited promises in the script complete their execution before Blazor starts.
+
 > [!NOTE]
 > MVC and Razor Pages apps don't automatically load JS initializers. However, developer code can include a script to fetch the app's manifest and trigger the load of the JS initializers.
 
@@ -71,6 +73,94 @@ For an examples of JS initializers, see the following resources:
 * [Basic Test App in the ASP.NET Core GitHub repository (`BasicTestApp.lib.module.js`)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/wwwroot/BasicTestApp.lib.module.js)
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+### Ensure libraries are loaded in a specific order
+
+Append custom scripts to the `<head>` in `beforeStart` and `afterStarted` in the order that they should load.
+
+The following example loads `script1.js` before `script2.js` and `script3.js` before `script4.js`:
+
+```javascript
+export function beforeStart(options, extensions) {
+    var customScript1 = document.createElement('script');
+    customScript1.setAttribute('src', 'script1.js');
+    document.head.appendChild(customScript1);
+
+    var customScript2 = document.createElement('script');
+    customScript2.setAttribute('src', 'script2.js');
+    document.head.appendChild(customScript2);
+}
+
+export function afterStarted(blazor) {
+    var customScript1 = document.createElement('script');
+    customScript1.setAttribute('src', 'script3.js');
+    document.head.appendChild(customScript1);
+
+    var customScript2 = document.createElement('script');
+    customScript2.setAttribute('src', 'script4.js');
+    document.head.appendChild(customScript2);
+}
+```
+
+### Import additional modules
+
+Use top-level [`import`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import) statements in the JS initializers file (`*.lib.module.js`) to import additional modules.
+
+`additionalModule.js`:
+
+```javascript
+export function logMessage() {
+  console.log('logMessage is logging');
+}
+```
+
+```javascript
+import { logMessage } from "/additionalModule.js";
+
+export function beforeStart(options, extensions) {
+  ...
+
+  logMessage();
+}
+```
+
+For browser compatibility, see [Can I use: JavaScript statement: import](https://caniuse.com/?search=JavaScript%20statement%3A%20import).
+
+[Dynamic import with the `import()` operator](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import) is supported with ASP.NET Core and Blazor:
+
+```javascript
+import("additionalModule.js");
+```
+
+For browser compatibility, see [Can I use: JavaScript modules: dynamic import](https://caniuse.com/es6-module-dynamic-import).
+
+### Export additional JavaScript in the JavaScript initializers file
+
+Because the JS initializers file (`*.lib.module.js`) is an ordinary ES6 module, exporting additional JS side-by-side with `beforeStart` and `afterStarted` is supported:
+
+```javascript
+export function beforeStart(options, extensions) {
+  ...
+}
+
+export function afterStarted(blazor) {
+  ...
+}
+
+export function customFunction() {
+  ...
+}
+```
+
+### Import map
+
+[Import maps](https://developer.mozilla.org/docs/Web/HTML/Element/script/type/importmap) are supported by ASP.NET Core and Blazor.
+
+For browser compatibility, see [Can I use: import maps](https://caniuse.com/import-maps).
+
+### Module extension (`.js`/`.mjs`)
+
+Both `.js` and `.mjs` module extensions are supported by ASP.NET Core and Blazor, which are sent with a MIME type of `text/javascript`.
 
 :::moniker-end
 
@@ -112,8 +202,12 @@ To perform additional tasks, such as JS interop initialization, use [`then`](htt
 
 The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
 
+:::moniker range=">= aspnetcore-6.0"
+
 > [!NOTE]
 > For a library to automatically execute additional tasks after Blazor has started, use a [JavaScript initializer](#javascript-initializers). Use of a JS initializer doesn't require the consumer of the library to chain JS calls to Blazor's manual start.
+
+:::moniker-end
 
 ## Load boot resources
 
