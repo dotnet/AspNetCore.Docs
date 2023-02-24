@@ -383,7 +383,7 @@ These instructions use Mozilla's *legacy* tool [certutil](https://firefox-source
 dnf install nss-tools
 ```
 
-### Export The ASP.NET Core Development Certificate:
+### Export The ASP.NET Core Development Certificate
 
 > [!IMPORTANT]
 > Replace `${ProjectDirectory}` with your projects directory.
@@ -424,7 +424,7 @@ certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "C,," -n ${Certific
 #### Create An Alias To Test With Curl
 
 > [!IMPORTANT]
-> 
+>
 > Don't delete the exported certificate if you plan to test with curl.
 > You'll need to create an alias referencing it in your `$SHELL`'s profile
 
@@ -447,6 +447,89 @@ dotnet dev-certs https --clean
 # [SUSE Linux Enterprise Server](#tab/linux-sles)
 
 See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/28292)
+
+<!--
+> [!WARNING]
+> The following instructions are intended for development purposes only. Do not use the certificates generated in these instructions for a production environment.
+
+These instructions use Mozilla's *legacy* tool [certutil](https://firefox-source-docs.mozilla.org/security/nss/legacy/tools/nss_tools_certutil/index.html). Instructions may be updated as modern utilities and practices are discovered.
+
+> [!CAUTION]
+> Improper use of TLS certificates could lead to spoofing.
+
+> [!TIP]
+> Instructions for valid production certificates can be found in the RHEL Documentation.
+> [RHEL8 TLS Certificates](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/securing_networks/index#creating-and-managing-tls-keys-and-certificates_securing-networks)
+> [RHEL9 TLS Certificates](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/securing_networks/index#creating-and-managing-tls-keys-and-certificates_securing-networks)
+> [RHEL9 Certificate System](https://access.redhat.com/documentation/en-us/red_hat_certificate_system/9)
+
+### Install Dependencies
+
+```sh
+dnf install nss-tools
+```
+
+### Export The ASP.NET Core Development Certificate
+
+> [!IMPORTANT]
+> Replace `${ProjectDirectory}` with your projects directory.
+> Replace `${CertificateName}` with a name you'll be able to identify in the future.
+
+```sh
+cd ${ProjectDirectory}
+dotnet dev-certs https -ep ${ProjectDirectory}/${CertificateName}.crt --format PEM
+```
+
+> [!CAUTION]
+> If using git, add your certificate to your `${ProjectDirectory}/.gitignore` or `${ProjectDirectory}/.git/info/exclude`.
+> View the [git documentation](https://git-scm.com/docs/gitignore) for information about these files.
+
+> [!TIP]
+> You can move your exported certificate outside of your Git repository and replace the occurrences of `${ProjectDirectory}`, in the following instructions, with the new location.
+
+### Import The ASP.NET Core Development Certificate
+
+> [!IMPORTANT]
+> Replace `${UserProfile}` with the profile you intend to use.
+> Do not replace `$HOME`, it is the environment variable to your user directory.
+
+#### Chromium-based Browsers
+
+```sh
+certutil -d sql:$HOME/.pki/nssdb -A -t "P,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
+certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
+```
+
+#### Mozilla Firefox
+
+```sh
+certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "P,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
+certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -A -t "C,," -n ${CertificateName} -i ${ProjectDirectory}/${CertificateName}.crt
+```
+
+#### Create An Alias To Test With Curl
+
+> [!IMPORTANT]
+>
+> Don't delete the exported certificate if you plan to test with curl.
+> You'll need to create an alias referencing it in your `$SHELL`'s profile
+
+```sh
+alias curl="curl --cacert ${ProjectDirectory}/${CertificateName}.crt"
+```
+
+### Cleaning up the Development Certificates
+
+```sh
+certutil -d sql:$HOME/.pki/nssdb -D -n ${CertificateName}
+certutil -d sql:$HOME/.mozilla/firefox/${UserProfile}/ -D -n ${CertificateName}
+rm ${ProjectDirectory}/${CertificateName}.crt
+dotnet dev-certs https --clean
+```
+
+>[!NOTE]
+> Remove the curl alias you created earlier
+-->
 
 ---
 
