@@ -129,7 +129,7 @@ For browser compatibility, see [Can I use: JavaScript statement: import](https:/
 [Dynamic import with the `import()` operator](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import) is supported with ASP.NET Core and Blazor:
 
 ```javascript
-import("additionalModule.js");
+import("/additionalModule.js");
 ```
 
 For browser compatibility, see [Can I use: JavaScript modules: dynamic import](https://caniuse.com/es6-module-dynamic-import).
