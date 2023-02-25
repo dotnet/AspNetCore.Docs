@@ -149,7 +149,7 @@ For an advanced example with additional features, see the example in the `BasicT
 
 ## Blazor custom elements
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-7.0"
 
 Use Blazor custom elements to dynamically render Razor components from other SPA frameworks, such as Angular or React.
 
@@ -159,7 +159,7 @@ Blazor custom elements:
 * Eliminate the need to manually manage the state and lifecycle of root Razor components using JavaScript APIs.
 * Are useful for gradually introducing Razor components into existing projects written in other SPA frameworks.
 
-Custom elements don't support [child content](#child-content-render-fragments) or [templated components](xref:blazor/components/templated-components).
+Custom elements don't support [child content](xref:blazor/components/index#child-content-render-fragments) or [templated components](xref:blazor/components/templated-components).
 
 ### Element name
 
@@ -266,7 +266,7 @@ Supported parameter types:
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-6.0"
+:::moniker range="< aspnetcore-7.0"
 
 *Experimental* support is available for building custom elements using the [`Microsoft.AspNetCore.Components.CustomElements` NuGet package](https://www.nuget.org/packages/microsoft.aspnetcore.components.customelements). Custom elements use standard HTML interfaces to implement custom HTML elements.
 
