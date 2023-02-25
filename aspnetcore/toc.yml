@@ -1585,6 +1585,15 @@ items:
       - name: Overview
         displayName: globalization, localization
         uid: fundamentals/localization
+      - name: Make an app's content localizable
+        displayName: globalization, localization
+        uid: fundamentals/localization/make-content-localizable
+      - name: Provide resources
+        displayName: globalization, localization
+        uid: fundamentals/localization/provide-resources
+      - name: Select language/culture
+        displayName: globalization, localization
+        uid: fundamentals/localization/select-language-culture
       - name: Portable Object localization
         uid: fundamentals/portable-object-localization
       - name: Extensibility
