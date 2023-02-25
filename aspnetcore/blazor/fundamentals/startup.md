@@ -12,7 +12,23 @@ uid: blazor/fundamentals/startup
 
 This article explains how to configure Blazor startup.
 
-The Blazor startup process via the Blazor script (`blazor.{webassembly|server}.js`) is automatic and asynchronous. The Blazor `<script>` tag is found in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server), except for the ASP.NET Core 6.0 release of Blazor Server (`Pages/_Layout.cshtml`).
+:::moniker range=">= aspnetcore-7.0"
+
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.{server|webassembly}.js`), where the `{server|webassembly}` placeholder is either `server` for Blazor Server or `webassembly` for Blazor WebAssembly. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Host.cshtml` file of a Blazor Server app.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.{server|webassembly}.js`), where the `{server|webassembly}` placeholder is either `server` for Blazor Server or `webassembly` for Blazor WebAssembly. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Layout.cshtml` file of a Blazor Server app.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.{server|webassembly}.js`), where the `{server|webassembly}` placeholder is either `server` for Blazor Server or `webassembly` for Blazor WebAssembly. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Host.cshtml` file of a Blazor Server app.
+
+:::moniker-end
 
 To manually start Blazor:
 
