@@ -188,7 +188,7 @@ The following example starts Blazor when the document is ready:
 <body>
     ...
 
-    <script src="_framework/blazor.{webassembly|server}.js" autostart="false"></script>
+    <script src="_framework/blazor.{server|webassembly}.js" autostart="false"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         Blazor.start();
@@ -197,7 +197,7 @@ The following example starts Blazor when the document is ready:
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
+The `{server|webassembly}` placeholder in the preceding markup is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
 
 ## Chain to the `Promise` that results from a manual start
 
@@ -207,7 +207,7 @@ To perform additional tasks, such as JS interop initialization, use [`then`](htt
 <body>
     ...
 
-    <script src="_framework/blazor.{webassembly|server}.js" autostart="false"></script>
+    <script src="_framework/blazor.{server|webassembly}.js" autostart="false"></script>
     <script>
       Blazor.start().then(function () {
         ...
@@ -216,7 +216,7 @@ To perform additional tasks, such as JS interop initialization, use [`then`](htt
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
+The `{server|webassembly}` placeholder in the preceding markup is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
 
 :::moniker range=">= aspnetcore-6.0"
 
