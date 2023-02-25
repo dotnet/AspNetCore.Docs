@@ -455,6 +455,8 @@ items:
                 uid: blazor/components/prerendering-and-integration
               - name: Class libraries
                 uid: blazor/components/class-libraries
+              - name: JavaScript apps and SPA frameworks
+                uid: blazor/components/js-spa-frameworks
               - name: Built-in components
                 uid: blazor/components/built-in-components
           - name: Globalization and localization

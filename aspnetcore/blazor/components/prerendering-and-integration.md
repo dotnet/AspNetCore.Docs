@@ -761,7 +761,7 @@ When using a custom folder to hold the project's Razor components, add the names
 
 The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages app or the `Views` folder of an MVC app.
 
-For more information, see <xref:blazor/components/index#namespaces>.
+For more information, see <xref:blazor/components/index#class-name-and-namespace>.
 
 :::zone-end
 
@@ -1704,7 +1704,7 @@ When using a custom folder to hold the project's Razor components, add the names
 
 The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages app or the `Views` folder of an MVC app.
 
-For more information, see <xref:blazor/components/index#namespaces>.
+For more information, see <xref:blazor/components/index#class-name-and-namespace>.
 
 :::zone-end
 
@@ -2512,7 +2512,7 @@ When using a custom folder to hold the project's Razor components, add the names
 
 The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages app or the `Views` folder of an MVC app.
 
-For more information, see <xref:blazor/components/index#namespaces>.
+For more information, see <xref:blazor/components/index#class-name-and-namespace>.
 
 :::zone-end
 
@@ -2975,7 +2975,7 @@ When using a custom folder to hold the project's Razor components, add the names
 
 The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages app or the `Views` folder of an MVC app.
 
-For more information, see <xref:blazor/components/index#namespaces>.
+For more information, see <xref:blazor/components/index#class-name-and-namespace>.
 
 ## Prerendered state size and SignalR message size limit
 
