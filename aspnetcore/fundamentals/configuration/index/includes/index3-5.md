@@ -1,4 +1,4 @@
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+:::moniker range="= aspnetcore-3.1"
 
 <a name="kestrel"></a>
 
