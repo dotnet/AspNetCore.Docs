@@ -5,7 +5,7 @@ description: Learn how to secure Blazor WebAssembly apps as single-page applicat
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/21/2022
+ms.date: 02/28/2023
 uid: blazor/security/webassembly/index
 ---
 # Secure ASP.NET Core Blazor WebAssembly
@@ -26,7 +26,7 @@ Other options for authenticating SPAs exist, such as the use of SameSite cookies
 * Tokens have a short lifetime, one hour by default, which limits the attack window. Tokens can also be revoked at any time.
 * Self-contained JWTs offer guarantees to the client and server about the authentication process. For example, a client has the means to detect and validate that the tokens it receives are legitimate and were emitted as part of a given authentication process. If a third party attempts to switch a token in the middle of the authentication process, the client can detect the switched token and avoid using it.
 * Tokens with OAuth and OIDC don't rely on the user agent behaving correctly to ensure that the app is secure.
-* Token-based protocols, such as OAuth and OIDC, allow for authenticating and authorizing hosted and standalone apps with the same set of security characteristics.
+* Token-based protocols, such as OAuth and OIDC, allow for authenticating and authorizing users of hosted Blazor WebAssembly solution clients and standalone Blazor Webassembly apps with the same set of security characteristics.
 
 > [!IMPORTANT]
 > For versions of ASP.NET Core that adopt Duende Identity Server in Blazor project templates, [Duende Software](https://duendesoftware.com/) might require you to pay a license fee for production use of Duende Identity Server. For more information, see <xref:migration/50-to-60#project-templates-use-duende-identity-server>.
@@ -35,13 +35,13 @@ Other options for authenticating SPAs exist, such as the use of SameSite cookies
 
 The [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library offers several primitives to implement authentication and authorization using OIDC. In broad terms, authentication works as follows:
 
-* When an anonymous user selects the login button or requests a page with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied, the user is redirected to the app's login page (`/authentication/login`).
+* When an anonymous user selects the login button or requests a Razor component or page with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied, the user is redirected to the app's login page (`/authentication/login`).
 * In the login page, the authentication library prepares for a redirect to the authorization endpoint. The authorization endpoint is outside of the Blazor WebAssembly app and can be hosted at a separate origin. The endpoint is responsible for determining whether the user is authenticated and for issuing one or more tokens in response. The authentication library provides a login callback to receive the authentication response.
   * If the user isn't authenticated, the user is redirected to the underlying authentication system, which is usually ASP.NET Core Identity.
   * If the user was already authenticated, the authorization endpoint generates the appropriate tokens and redirects the browser back to the login callback endpoint (`/authentication/login-callback`).
 * When the Blazor WebAssembly app loads the login callback endpoint (`/authentication/login-callback`), the authentication response is processed.
   * If the authentication process completes successfully, the user is authenticated and optionally sent back to the original protected URL that the user requested.
-  * If the authentication process fails for any reason, the user is sent to the login failed page (`/authentication/login-failed`), and an error is displayed.
+  * If the authentication process fails for any reason, the user is sent to the login failed page (`/authentication/login-failed`), where an error is displayed.
 
 ## `Authentication` component
 
@@ -220,7 +220,7 @@ For more information, see <xref:signalr/authn-and-authz#bearer-token-authenticat
 
 *This section applies to Blazor WebAssembly apps in ASP.NET Core 7.0 or later.*
 
-To enable debug or trace logging, see the *Authentication logging (Blazor WebAssembly)* section in the 7.0 version of the <xref:blazor/fundamentals/logging> article.
+To enable debug or trace logging, see the *Authentication logging (Blazor WebAssembly)* section in a 7.0 or later version of the <xref:blazor/fundamentals/logging> article.
 
 ## The WebAssembly sandbox
 
