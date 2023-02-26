@@ -121,7 +121,7 @@ In the preceding code:
 
 The [[DisableCors]](#dc6) attribute does **not**  disable CORS that has been enabled by endpoint routing with `RequireCors`.
 
-See [Test CORS with endpoint routing and [HttpOptions]](#tcer) for instructions on testing code similar to the preceding.
+See [Test CORS with [EnableCors] attribute and RequireCors method](#tcer) for instructions on testing code similar to the preceding.
 
 <a name="attr"></a>
 
@@ -403,7 +403,7 @@ The following code uses the [[HttpOptions]](xref:Microsoft.AspNetCore.Mvc.HttpOp
 
 [!code-csharp[](cors/8.0sample/Cors/Web2API/Controllers/TodoItems2Controller.cs?name=snippet&highlight=5-17)]
 
-See [Test CORS with endpoint routing and [HttpOptions]](#tcer) for instructions on testing the preceding code.
+See [Test CORS with [EnableCors] attribute and RequireCors method](#tcer) for instructions on testing the preceding code.
 
 ### Set the preflight expiration time
 
