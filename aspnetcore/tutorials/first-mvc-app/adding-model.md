@@ -497,3 +497,9 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 > [Next Working with SQL]((~/tutorials/first-mvc-app/working-with-sql.md)
 
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model6.md)]
+
+[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model5.md)]
+
+[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model3.md)]
