@@ -181,6 +181,6 @@ The following image shows the app:
 In the next tutorial in this series, you learn about MVC and start writing some code.
 
 > [!div class="step-by-step"]
-> [Next: Add a controller](adding-controller.md)
+> [Next: Add a controller](~/tutorials/first-mvc-app/adding-controller.md)
 
 :::moniker-end

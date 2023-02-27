@@ -165,7 +165,7 @@ You can launch the app in debug or non-debug mode from the **Run** menu.
 
 The following image shows the app:
 
-![Home or Index page](./start-mvc/_static/output_macos.png)
+![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/output_macos.png)
 
 ---
 
@@ -174,6 +174,6 @@ The following image shows the app:
 In the next part of this tutorial, you learn about MVC and start writing some code.
 
 > [!div class="step-by-step"]
-> [Next: Add a controller](adding-controller.md)
+> [Next](~/tutorials/first-mvc-app/adding-controller.md)
 
 :::moniker-end
