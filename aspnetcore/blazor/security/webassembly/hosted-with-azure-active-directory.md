@@ -998,7 +998,7 @@ The `appsettings.json` file contains the options to configure the JWT bearer han
 {
   "AzureAd": {
     "Instance": "https://login.microsoftonline.com/",
-    "Domain": "{DOMAIN}",
+    "Domain": "{TENANT DOMAIN}",
     "TenantId": "{TENANT ID}",
     "ClientId": "{SERVER API APP CLIENT ID}",
     "CallbackPath": "/signin-oidc"
@@ -1402,7 +1402,7 @@ The `appsettings.json` file contains the options to configure the JWT bearer han
 {
   "AzureAd": {
     "Instance": "https://login.microsoftonline.com/",
-    "Domain": "{DOMAIN}",
+    "Domain": "{TENANT DOMAIN}",
     "TenantId": "{TENANT ID}",
     "ClientId": "{SERVER API APP CLIENT ID}",
   }
