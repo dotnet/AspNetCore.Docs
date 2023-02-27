@@ -419,7 +419,8 @@ Run the app from the Server project. When using Visual Studio, either:
 * <xref:blazor/security/webassembly/aad-groups-roles>
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
-* [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)
+* [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)* * * * [Security best practices for application properties in Azure Active Directory](/azure/active-directory/develop/security-best-practices-for-app-registration)
+
 
 :::moniker-end
 
@@ -827,6 +828,7 @@ Run the app from the Server project. When using Visual Studio, either:
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
 * [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)
+* [Security best practices for application properties in Azure Active Directory](/azure/active-directory/develop/security-best-practices-for-app-registration)
 
 :::moniker-end
 
@@ -1232,6 +1234,7 @@ Run the app from the Server project. When using Visual Studio, either:
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
 * [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)
+* [Security best practices for application properties in Azure Active Directory](/azure/active-directory/develop/security-best-practices-for-app-registration)
 
 :::moniker-end
 
@@ -1629,5 +1632,6 @@ Run the app from the Server project. When using Visual Studio, either:
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
 * [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)
+* [Security best practices for application properties in Azure Active Directory](/azure/active-directory/develop/security-best-practices-for-app-registration)
 
 :::moniker-end
