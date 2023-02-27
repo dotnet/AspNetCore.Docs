@@ -105,7 +105,7 @@ Configuration is supplied by the `wwwroot/appsettings.json` file:
 ```json
 {
   "AzureAdB2C": {
-    "Authority": "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}",
+    "Authority": "{AAD B2C INSTANCE}{TENANT DOMAIN}/{SIGN UP OR SIGN IN POLICY}",
     "ClientId": "{CLIENT ID}",
     "ValidateAuthority": false
   }
@@ -286,7 +286,7 @@ Configuration is supplied by the `wwwroot/appsettings.json` file:
 ```json
 {
   "AzureAdB2C": {
-    "Authority": "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}",
+    "Authority": "{AAD B2C INSTANCE}{TENANT DOMAIN}/{SIGN UP OR SIGN IN POLICY}",
     "ClientId": "{CLIENT ID}",
     "ValidateAuthority": false
   }
@@ -467,7 +467,7 @@ Configuration is supplied by the `wwwroot/appsettings.json` file:
 ```json
 {
   "AzureAdB2C": {
-    "Authority": "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}",
+    "Authority": "{AAD B2C INSTANCE}{TENANT DOMAIN}/{SIGN UP OR SIGN IN POLICY}",
     "ClientId": "{CLIENT ID}",
     "ValidateAuthority": false
   }
@@ -644,7 +644,7 @@ Configuration is supplied by the `wwwroot/appsettings.json` file:
 ```json
 {
   "AzureAdB2C": {
-    "Authority": "{AAD B2C INSTANCE}{DOMAIN}/{SIGN UP OR SIGN IN POLICY}",
+    "Authority": "{AAD B2C INSTANCE}{TENANT DOMAIN}/{SIGN UP OR SIGN IN POLICY}",
     "ClientId": "{CLIENT ID}",
     "ValidateAuthority": false
   }
