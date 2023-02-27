@@ -237,6 +237,10 @@ If the app runs on the server but fails to respond over the internet, check the 
 
 When done testing the app, shut down the app with <kbd>Ctrl</kbd>+<kbd>C</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>C</kbd> (macOS) at the command prompt.
 
+### Increase keepalive_requests
+
+[`keepalive_requests`](http://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests) can be increased for [higher performance](https://www.nginx.com/blog/10-tips-for-10x-application-performance/#web-server-tuning), For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/22141#issuecomment-1442435506).
+
 ## Monitor the app
 
 The server is set up to forward requests made to `http://<serveraddress>:80` on to the ASP.NET Core app running on Kestrel at `http://127.0.0.1:5000`. However, Nginx isn't set up to manage the Kestrel process. [`systemd`](https://systemd.io/) can be used to create a service file to start and monitor the underlying web app. `systemd` is an init system that provides many powerful features for starting, stopping, and managing processes.
