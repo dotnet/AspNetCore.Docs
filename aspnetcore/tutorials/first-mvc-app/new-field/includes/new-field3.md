@@ -1,18 +1,4 @@
----
-title: Part 8, add a new field to an ASP.NET Core MVC app
-author: wadepickett
-description: Part 8 of tutorial series on ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
-ms.date: 01/29/2023
-ms.custom: engagement-fy23
-uid: tutorials/first-mvc-app/new-field
----
-# Part 8, add a new field to an ASP.NET Core MVC app
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-3.1 < aspnetcore-5.0"
 
 In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:
 
@@ -28,7 +14,7 @@ When EF Code First is used to automatically create a database, Code First:
 
 Add a `Rating` property to `Models/Movie.cs`:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/Movie.cs?name=AddRating&highlight=19)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie22/Models/MovieDateRating.cs?name=snippet)]
 
 Build the app
 
@@ -46,19 +32,19 @@ dotnet build
 
 Command ⌘ + B
 
----
+------
 
 Because you've added a new field to the `Movie` class, you need to update the property binding list so this new property will be included. In `MoviesController.cs`, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
 
 ```csharp
 [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")]
-```
+   ```
 
 Update the view templates in order to display, create, and edit the new `Rating` property in the browser view.
 
 Edit the `/Views/Movies/Index.cshtml` file and add a `Rating` field:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Movies/IndexGenreRating.cshtml?highlight=16-18,38-40&range=24-72)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Views/Movies/IndexGenreRating.cshtml?highlight=16,38&range=24-63)]
 
 Update the `/Views/Movies/Create.cshtml` with a `Rating` field.
 
@@ -78,7 +64,7 @@ Update the remaining templates.
 
 Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but you'll want to make this change for each `new Movie`.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie/Models/SeedDataRating.cs?name=snippet1&highlight=6)]
+[!code-csharp[](start-mvc/sample/MvcMovie/Models/SeedDataRating.cs?name=snippet1&highlight=6)]
 
 The app won't work until the DB is updated to include the new field. If it's run now, the following `SqlException` is thrown:
 
@@ -119,17 +105,7 @@ If all the records in the DB are deleted, the initialize method will seed the DB
 
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
-Delete the Migrations folder and the database file, and then run the following .NET CLI commands:
-
-```dotnetcli
-dotnet ef migrations add InitialCreate
-```
-
-```dotnetcli
-dotnet ef database update
-```
-
-For more information, see [Resetting all migrations](/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli#resetting-all-migrations).
+See [Resetting all migrations](/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli#resetting-all-migrations) to remove all migrations and start over. 
 
 ---
 <!-- End of VS tabs -->
