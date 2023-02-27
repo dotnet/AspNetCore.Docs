@@ -219,6 +219,7 @@ The WeatherForecast controller (`Controllers/WeatherForecastController.cs`) expo
 [Authorize]
 [ApiController]
 [Route("[controller]")]
+[RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
 public class WeatherForecastController : ControllerBase
 {
     [HttpGet]
@@ -627,6 +628,7 @@ The WeatherForecast controller (`Controllers/WeatherForecastController.cs`) expo
 [Authorize]
 [ApiController]
 [Route("[controller]")]
+[RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
 public class WeatherForecastController : ControllerBase
 {
     [HttpGet]
