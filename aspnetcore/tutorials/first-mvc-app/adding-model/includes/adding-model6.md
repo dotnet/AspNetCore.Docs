@@ -1,19 +1,4 @@
----
-title: Part 4, add a model to an ASP.NET Core MVC app
-author: wadepickett
-description: Part 4 of tutorial series on ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
-ms.date: 01/30/2023
-uid: tutorials/first-mvc-app/adding-model
-ms.custom: contperf-fy21q3, engagement-fy23
----
-
-# Part 4, add a model to an ASP.NET Core MVC app
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Jon P Smith](https://twitter.com/thereformedprog).
-
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range="= aspnetcore-6.0"
 
 In this tutorial, classes are added for managing movies in a database. These classes are the "**M**odel" part of the **M**VC app.
 
@@ -35,13 +20,17 @@ Add a file named `Movie.cs` to the *Models* folder.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Control-click the **Models** folder and select **Add** > **New Class** > **Empty Class**. Name the file `Movie.cs`.
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
+
+<!-- 
+Control-click the *Models* folder > **Add** > **New Class** > **Empty Class**. Name the file `Movie.cs`.
+ -->
 
 ---
 
 Update the `Models/Movie.cs` file with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/Movie.cs?name=First)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=First)]
 
 The `Movie` class contains an `Id` field, which is required by the database for the primary key.
 
@@ -62,15 +51,11 @@ From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Co
 
 ![PMC menu](~/tutorials/first-mvc-app/adding-model/_static/pmc5.png)
 
-<!-- 
-This has been fixed, need to test and see what's required.
-see https://dev.azure.com/devdiv/DevDiv/_workitems/edit/1323715
-When https://dev.azure.com/devdiv/DevDiv/_workitems/edit/1320544 is fixed, we can remove the following install package instruction for Microsoft.EntityFrameworkCore.Design  -->
+<!-- When https://dev.azure.com/devdiv/DevDiv/_workitems/edit/1320544 is fixed, we can remove the following install package instruction for Microsoft.EntityFrameworkCore.Design  -->
 
-In the PMC, run the following commands:
+In the PMC, run the following command:
 
 ```powershell
-Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design
 Install-Package Microsoft.EntityFrameworkCore.Design
 Install-Package Microsoft.EntityFrameworkCore.SqlServer
 ```
@@ -82,10 +67,13 @@ The preceding commands add:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-7.md)]
+[!INCLUDE[](~/includes/add-EF-NuGet-SQLite-CLI-6.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
+
+<!--
 From the **Project** menu, select **Manage NuGet Packages**.
 
 In the **Search** field in the upper right:
@@ -94,7 +82,7 @@ In the **Search** field in the upper right:
 * Press the <kbd>Return</kbd> key to search.
 * Select the matching NuGet package and select the **Add Package** button.
 
-![Add Entity Framework Core NuGet Package](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages_VS22.png)
+![Add Entity Framework Core NuGet Package](~/tutorials/first-mvc-app-mac/adding-model/_static/add-nuget-packages.png)
 
 The **Select Projects** dialog displays, with the `MvcMovie` project selected. Select the **Ok** button.
 
@@ -106,25 +94,14 @@ Repeat the above steps to install the following NuGet packages:
 * `Microsoft.EntityFrameworkCore.SqlServer`
 * `Microsoft.EntityFrameworkCore.Design`
 
-The preceding packages include:
-
-* The EF Core SQLite provider, which installs the EF Core package as a dependency.
-* Packages needed for scaffolding: `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.SqlServer`.
-* Design time tools for EF Core.
-
-Run the following .NET CLI commands:
+Run the following .NET CLI command:
 
 ```dotnetcli
-dotnet tool uninstall --global dotnet-aspnet-codegenerator
 dotnet tool install --global dotnet-aspnet-codegenerator
-dotnet tool uninstall --global dotnet-ef
-dotnet tool install --global dotnet-ef
 ```
 
-The preceding commands add:
-
-* The [command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
-* The [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+The preceding command adds the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+-->
 
 ---
 
@@ -140,7 +117,7 @@ In **Solution Explorer**, right-click the *Controllers* folder and select **Add 
 
 ![view of above step](~/tutorials/first-mvc-app/adding-model/_static/add_controller5.png)
 
-In the **Add New Scaffolded Item** dialog, select **MVC Controller with views, using Entity Framework > Add**.
+In the **Add Scaffold** dialog, select **MVC Controller with views, using Entity Framework > Add**.
 
 ![Add Scaffold dialog](~/tutorials/first-mvc-app/adding-model/_static/add_scaffold5.png)
 
@@ -159,23 +136,11 @@ If you get an error message, select **Add** a second time to try it again.
 
 <a name="scaffolding-created"></a>
 
-Scaffolding creates the following:
-
-* A movies controller: `Controllers/MoviesController.cs`
-* Razor view files for **Create**, **Delete**, **Details**, **Edit**, and **Index** pages: `Views/Movies/*.cshtml`
-* A database context class: `Data/MvcMovieContext.cs`
-
 Scaffolding updates the following:
 
 * Inserts required package references in the `MvcMovie.csproj` project file.
 * Registers the database context in the `Program.cs` file.
 * Adds a database connection string to the `appsettings.json` file.
-
-The automatic creation of these files and file updates is known as *scaffolding*.
-
-The scaffolded pages can't be used yet because the database doesn't exist. Running the app and selecting the **Movie App** link results in a *Cannot open database* or *no such table: Movie* error message.
-
-Build the app to verify that there are no errors.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -190,29 +155,10 @@ export PATH=$HOME/.dotnet/tools:$PATH
 Run the following command:
 
 ```dotnetcli
-dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovie.Data.MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
 ```
 
 [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
-
-<a name="scaffolding-created"></a>
-
-Scaffolding creates the following:
-
-* A movies controller: `Controllers/MoviesController.cs`
-* Razor view files for **Create**, **Delete**, **Details**, **Edit**, and **Index** pages: `Views/Movies/*.cshtml`
-* A database context class: `Data/MvcMovieContext.cs`
-
-Scaffolding updates the following:
-
-* Registers the database context in the `Program.cs` file
-* Adds a database connection string to the `appsettings.json` file.
-
-The automatic creation of these files and file updates is known as *scaffolding*.
-
-The scaffolded pages can't be used yet because the database doesn't exist. Running the app and selecting the **Movie App** link results in a *Cannot open database* or *no such table: Movie* error message.
-
-Build the app to verify that there are no errors.
 
 <a name="sqlite-dev-vsc"></a>
 
@@ -222,9 +168,19 @@ The following highlighted code in `Program.cs` shows how to use SQLite in develo
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLiteDevProd&highlight=3-99)]
 
+<a name="scaffolding-created"></a>
+
+Scaffolding updates the following:
+
+* Registers the database context in the `Program.cs` file
+* Adds a database connection string to the `appsettings.json` file.
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Open a command window in the project directory. The project directory is the directory that contains the `.csproj` file.
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
+
+<!--
+Open a command window in the project directory. The project directory is the directory that contains the `Program.cs`, `Startup.cs`, and `.csproj` files.
 
 Export the scaffold tool path:
 
@@ -235,10 +191,30 @@ export PATH=$HOME/.dotnet/tools:$PATH
 Run the following command:
 
 ```dotnetcli
-dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovie.Data.MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
 ```
 
 [!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
+
+<a name="sqlite-dev-vs-mac"></a>
+
+### Use SQLite for development, SQL Server for production
+
+When SQLite is selected, the template generated code is ready for development. The following code shows how to inject <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup`. `IWebHostEnvironment` is injected so `ConfigureServices` can use SQLite in development and SQL Server in production.
+
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/StartupDevProd.cs?name=snippet_StartupClass&highlight=3,5,10,16-28)]
+
+<a name="scaffolding-created"></a>
+
+Scaffolding updates the following:
+
+* Registers the database context in `Startup.ConfigureServices` of the `Startup.cs` file.
+* Adds a database connection string to the `appsettings.json` file.
+-->
+
+---
+
+<!-- End of tabs                  -->
 
 Scaffolding creates the following:
 
@@ -246,33 +222,23 @@ Scaffolding creates the following:
 * Razor view files for **Create**, **Delete**, **Details**, **Edit**, and **Index** pages: `Views/Movies/*.cshtml`
 * A database context class: `Data/MvcMovieContext.cs`
 
-Scaffolding updates the following:
-
-* Registers the database context in the `Program.cs` file
-* Adds a database connection string to the `appsettings.json` file.
-
 The automatic creation of these files and file updates is known as *scaffolding*.
 
 The scaffolded pages can't be used yet because the database doesn't exist. Running the app and selecting the **Movie App** link results in a *Cannot open database* or *no such table: Movie* error message.
 
-Build the app to verify that there are no errors.
-
-<a name="sqlite-dev-vs-mac"></a>
-
-### Use SQLite for development, SQL Server for production
-
-The following highlighted code in `Program.cs` shows how to use SQLite in development and SQL Server in production.
-
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLiteDevProd&highlight=3-99)]
-
-<a name="scaffolding-created"></a>
-
----
-
-<!-- End of tabs                  -->
-
-
 <a name="migration"></a>
+
+## Build the app
+
+Build the app. The compiler generates several warnings about how `null` values are handled. See [this GitHub issue](https://github.com/dotnet/Scaffolding/issues/1594) and [Nullable reference types](/dotnet/csharp/nullable-references) for more information.
+
+To eliminate the warnings from nullable reference types, remove the following line from the `MvcMovie.csproj` file:
+
+```xml
+<Nullable>enable</Nullable>
+```
+
+We hope to fix this issue in the next release.
 
 ## Initial migration
 
@@ -304,13 +270,12 @@ Ignore the preceding warning, it's fixed in a later tutorial.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
+[!INCLUDE [more information on the CLI for EF Core](~/includes/ef-cli.md)]
+
 Run the following .NET CLI commands:
 
 ```dotnetcli
 dotnet ef migrations add InitialCreate
-```
-
-```dotnetcli
 dotnet ef database update
 ```
 
@@ -325,7 +290,7 @@ dotnet ef database update
 
 Run the app and select the **Movie App** link.
 
-If you get an exception similar to the following, you may have missed the `dotnet ef database update` command in the [migrations step](#migration):
+If you get an exception similar to the following, you may have missed the [migrations step](#migration):
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -368,9 +333,17 @@ Scaffolding generated the following highlighted code in `Program.cs`:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=FirstSQLServer&highlight=3-4)]
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
+# [Visual Studio Code](#tab/visual-studio-code)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=FirstSQLite&highlight=3-4)]
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
+
+<!--
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie3/Startup.cs?name=snippet_UseSqlite&highlight=5-6)]
+-->
 
 ---
 
@@ -470,9 +443,7 @@ This `@model` directive allows access to the movie that the controller passed to
 
 Examine the `Index.cshtml` view and the `Index` method in the Movies controller. Notice how the code creates a `List` object when it calls the `View` method. The code passes this `Movies` list from the `Index` action method to the view:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Controllers/MoviesController.cs?name=FirstIndex)]
-
-The code returns [problem details](xref:web-api/handle-errors#problem-details-service) if the `Movie` property of the data context is null.
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/MoviesController.cs?name=FirstIndex)]
 
 When the movies controller was created, scaffolding included the following `@model` statement at the top of the `Index.cshtml` file:
 

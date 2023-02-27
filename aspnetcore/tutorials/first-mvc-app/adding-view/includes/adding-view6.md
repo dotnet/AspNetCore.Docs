@@ -200,7 +200,7 @@ In the preceding sample, the `ViewData` dictionary was used to pass data from th
 In the next tutorial, a database of movies is created.
 
 > [!div class="step-by-step"]
-> [Previous: Add a Controller](adding-controller.md)
-> [Next: Add a Model](adding-model.md)
+> [Previous: Add a Controller](~/tutorials/first-mvc-app/adding-controller.md)
+> [Next: Add a Model](~/tutorials/first-mvc-app/adding-model.md)
 
 :::moniker-end

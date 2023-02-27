@@ -1,4 +1,4 @@
-:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range="= aspnetcore-3.1"
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
 
