@@ -38,15 +38,15 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 * Select **ASP.NET Core Web Application** > **Next**.
 
-  ![Create a new ASP.NET Core Web Application project](start-mvc/_static/np_2.1.png)
+  ![Create a new ASP.NET Core Web Application project](~/tutorials/first-mvc-app/start-mvc/_static/np_2.1.png)
 
 * Name the project **MvcMovie** and select **Create**. It's important to name the project **MvcMovie** so when you copy code, the namespace will match.
 
-  ![Configure your new project](start-mvc/_static/config.png)
+  ![Configure your new project](~/tutorials/first-mvc-app/start-mvc/_static/config.png)
 
 * Select **Web Application(Model-View-Controller)**. From the dropdown boxes, select **.NET Core** and **ASP.NET Core 3.1**, then select **Create**.
 
-  ![New project dialog, .NET Core in left pane, ASP.NET Core web](start-mvc/_static/new_project30.png)
+  ![New project dialog, .NET Core in left pane, ASP.NET Core web](~/tutorials/first-mvc-app/start-mvc/_static/new_project30.png)
 
 Visual Studio used the default project template for the created MVC project. The created project:
 
@@ -75,11 +75,11 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 * Select **File** > **New Solution**.
 
-  ![macOS New solution](start-mvc/_static/new_project_vsmac.png)
+  ![macOS New solution](~/tutorials/first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application (Model-View-Controller)** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Next**.
 
-  ![macOS web app template selection](start-mvc/_static/web_app_template_vsmac.png)
+  ![macOS web app template selection](~/tutorials/first-mvc-app/start-mvc/_static/web_app_template_vsmac.png)
 
 * In the **Configure your new Web Application** dialog:
 
@@ -89,7 +89,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 * Name the project **MvcMovie**, and then select **Create**.
 
-  ![macOS name the project](start-mvc/_static/MvcMovie.png)
+  ![macOS name the project](~/tutorials/first-mvc-app/start-mvc/_static/MvcMovie.png)
 
 ---
 
@@ -116,15 +116,15 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 You can launch the app in debug or non-debug mode from the **Debug** menu item:
 
-![Debug menu](start-mvc/_static/debug_menu.png)
+![Debug menu](~/tutorials/first-mvc-app/start-mvc/_static/debug_menu.png)
 
 You can debug the app by selecting the **IIS Express** button
 
-![IIS Express](start-mvc/_static/iis_express.png)
+![IIS Express](~/tutorials/first-mvc-app/start-mvc/_static/iis_express.png)
 
 The following image shows the app:
 
-![Home or Index page](start-mvc/_static/home2.2.png)
+![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home2.2.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -146,7 +146,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 * Save the file.
 * Quickly refresh the browser and see the code changes.
 
-  ![Home or Index page](start-mvc/_static/home2.2.png)
+  ![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home2.2.png)
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

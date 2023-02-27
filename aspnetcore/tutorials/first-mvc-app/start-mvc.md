@@ -62,7 +62,7 @@ See https://github.com/dotnet/AspNetCore.Docs/issues/21193
   * Verify that **Do not use top-level statements** is unchecked.
 * Select **Create**.
 
-![Additional info dialog](start-mvc/_static/net7-additional-info.png)
+![Additional info dialog](~/tutorials/first-mvc-app/start-mvc/_static/net7-additional-info.png)
 
 For more information, including alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
@@ -122,15 +122,15 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 You can launch the app in debug or non-debug mode from the **Debug** menu:
 
-![Debug menu](start-mvc/_static/debug_menu50.png)
+![Debug menu](~/tutorials/first-mvc-app/start-mvc/_static/debug_menu50.png)
 
 You can debug the app by selecting the **https** button in the toolbar:
 
-![MvcMovie debug button](start-mvc/_static/net7-debug-button.png)
+![MvcMovie debug button](~/tutorials/first-mvc-app/start-mvc/_static/net7-debug-button.png)
 
 The following image shows the app:
 
-![Home or Index page](start-mvc/_static/home50-vs.png)
+![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home50-vs.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -152,7 +152,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 * Save the file.
 * Quickly refresh the browser and see the code changes.
 
-  ![Home or Index page](start-mvc/_static/home50-port5001.png)
+  ![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home50-port5001.png)
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -172,7 +172,7 @@ You can launch the app in debug or non-debug mode from the **Debug** menu.
 
 The following image shows the app:
 
-![Home or Index page](./start-mvc/_static/output_macos_VS22.png)
+![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/output_macos_VS22.png)
 
 ---
 

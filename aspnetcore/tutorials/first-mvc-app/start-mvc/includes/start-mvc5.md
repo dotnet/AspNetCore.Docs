@@ -43,7 +43,7 @@ At the end of the series, you'll have an app that manages and displays movie dat
   * **ASP.NET Core Web App (Model-View-Controller)**.
   * **Create**.
 
-![Create a new ASP.NET Core web application](start-mvc/_static/mvcVS19v16.9.png)
+![Create a new ASP.NET Core web application](~/tutorials/first-mvc-app/start-mvc/_static/mvcVS19v16.9.png)
 
 For alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
@@ -74,11 +74,11 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 * Select **File** > **New Solution**.
 
-  ![macOS New solution](start-mvc/_static/new_project_vsmac.png)
+  ![macOS New solution](~/tutorials/first-mvc-app/start-mvc/_static/new_project_vsmac.png)
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application (Model-View-Controller)** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Next**.
 
-  ![macOS web app template selection](start-mvc/_static/web_app_template_vsmac.png)
+  ![macOS web app template selection](~/tutorials/first-mvc-app/start-mvc/_static/web_app_template_vsmac.png)
 
 * In the **Configure your new Web Application** dialog:
 
@@ -88,7 +88,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 * Name the project **MvcMovie**, and then select **Create**.
 
-  ![macOS name the project](start-mvc/_static/MvcMovie.png)
+  ![macOS name the project](~/tutorials/first-mvc-app/start-mvc/_static/MvcMovie.png)
 
 ---
 
@@ -115,15 +115,15 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 You can launch the app in debug or non-debug mode from the **Debug** menu item:
 
-![Debug menu](start-mvc/_static/debug_menu50.png)
+![Debug menu](~/tutorials/first-mvc-app/start-mvc/_static/debug_menu50.png)
 
 You can debug the app by selecting the **IIS Express** button
 
-![IIS Express](start-mvc/_static/iis_express50.png)
+![IIS Express](~/tutorials/first-mvc-app/start-mvc/_static/iis_express50.png)
 
 The following image shows the app:
 
-![Home or Index page](start-mvc/_static/home50-vs.png)
+![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home50-vs.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -145,7 +145,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 * Save the file.
 * Quickly refresh the browser and see the code changes.
 
-  ![Home or Index page](start-mvc/_static/home50-port5001.png)
+  ![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home50-port5001.png)
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
