@@ -5,7 +5,7 @@ description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app wi
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 11/08/2022
+ms.date: 02/27/2023
 uid: blazor/security/webassembly/hosted-with-azure-active-directory
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory
@@ -117,7 +117,7 @@ dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}"
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name. **Avoid using dashes (`-`) in the app name that break the formation of the OIDC app identifier (see the earlier WARNING).**
 
 > [!NOTE]
-> A configuration change might be required when using an Azure tenant with an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), which is described in the [App settings](#app-settings) section.
+> A configuration change might be required when using an Azure tenant with an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), which is described in the [App settings](#app-settings-server-project) section.
 
 ## **:::no-loc text="Server":::** app configuration
 
@@ -174,7 +174,7 @@ To configure the app to receive the value from the `name` claim type:
       });
   ```
 
-### App settings
+### App settings (**`Server`** project)
 
 The `appsettings.json` file contains the options to configure the JWT bearer handler used to validate access tokens:
 
@@ -182,10 +182,12 @@ The `appsettings.json` file contains the options to configure the JWT bearer han
 {
   "AzureAd": {
     "Instance": "https://login.microsoftonline.com/",
-    "Domain": "{DOMAIN}",
+    "Domain": "{TENANT DOMAIN}",
     "TenantId": "{TENANT ID}",
     "ClientId": "{SERVER API APP CLIENT ID}",
-    "CallbackPath": "/signin-oidc"
+    "CallbackPath": "/signin-oidc",
+    "Scopes": "{SCOPES}",
+    "Audience": "https://guardrexorg.onmicrosoft.com/{SERVER API APP CLIENT ID}"
   }
 }
 ```
@@ -199,12 +201,12 @@ Example:
     "Domain": "contoso.onmicrosoft.com",
     "TenantId": "e86c78e2-8bb4-4c41-aefd-918e0565a45e",
     "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
-    "CallbackPath": "/signin-oidc"
+    "CallbackPath": "/signin-oidc",
+    "Scopes": "API.Access",
+    "Audience": "https://guardrexorg.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd"
   }
 }
 ```
-
-[!INCLUDE[](~/blazor/security/includes/azure-scope.md)]
 
 ### WeatherForecast controller
 
@@ -217,6 +219,7 @@ The WeatherForecast controller (`Controllers/WeatherForecastController.cs`) expo
 [Authorize]
 [ApiController]
 [Route("[controller]")]
+[RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
 public class WeatherForecastController : ControllerBase
 {
     [HttpGet]
@@ -271,6 +274,8 @@ builder.Services.AddMsalAuthentication(options =>
 ```
 
 The <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Azure Portal AAD configuration when you register the app.
+
+### App settings (**`Client`** project)
 
 Configuration is supplied by the `wwwroot/appsettings.json` file:
 
@@ -415,7 +420,8 @@ Run the app from the Server project. When using Visual Studio, either:
 * <xref:blazor/security/webassembly/aad-groups-roles>
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
-* [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)
+* [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)* * * * [Security best practices for application properties in Azure Active Directory](/azure/active-directory/develop/security-best-practices-for-app-registration)
+
 
 :::moniker-end
 
@@ -522,7 +528,7 @@ dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}"
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name. **Avoid using dashes (`-`) in the app name that break the formation of the OIDC app identifier (see the earlier WARNING).**
 
 > [!NOTE]
-> A configuration change might be required when using an Azure tenant with an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), which is described in the [App settings](#app-settings) section.
+> A configuration change might be required when using an Azure tenant with an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), which is described in the [App settings](#app-settings-server-project) section.
 
 ## **:::no-loc text="Server":::** app configuration
 
@@ -577,7 +583,7 @@ To configure the app to receive the value from the `name` claim type:
       });
   ```
 
-### App settings
+### App settings (**`Server`** project)
 
 The `appsettings.json` file contains the options to configure the JWT bearer handler used to validate access tokens:
 
@@ -585,10 +591,12 @@ The `appsettings.json` file contains the options to configure the JWT bearer han
 {
   "AzureAd": {
     "Instance": "https://login.microsoftonline.com/",
-    "Domain": "{DOMAIN}",
+    "Domain": "{TENANT DOMAIN}",
     "TenantId": "{TENANT ID}",
     "ClientId": "{SERVER API APP CLIENT ID}",
-    "CallbackPath": "/signin-oidc"
+    "CallbackPath": "/signin-oidc",
+    "Scopes": "{SCOPES}",
+    "Audience": "https://guardrexorg.onmicrosoft.com/{SERVER API APP CLIENT ID}"
   }
 }
 ```
@@ -602,12 +610,12 @@ Example:
     "Domain": "contoso.onmicrosoft.com",
     "TenantId": "e86c78e2-8bb4-4c41-aefd-918e0565a45e",
     "ClientId": "41451fa7-82d9-4673-8fa5-69eff5a761fd",
-    "CallbackPath": "/signin-oidc"
+    "CallbackPath": "/signin-oidc",
+    "Scopes": "API.Access",
+    "Audience": "https://guardrexorg.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd"
   }
 }
 ```
-
-[!INCLUDE[](~/blazor/security/includes/azure-scope.md)]
 
 ### WeatherForecast controller
 
@@ -620,6 +628,7 @@ The WeatherForecast controller (`Controllers/WeatherForecastController.cs`) expo
 [Authorize]
 [ApiController]
 [Route("[controller]")]
+[RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
 public class WeatherForecastController : ControllerBase
 {
     [HttpGet]
@@ -674,6 +683,8 @@ builder.Services.AddMsalAuthentication(options =>
 ```
 
 The <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Azure Portal AAD configuration when you register the app.
+
+### App settings (**`Client`** project)
 
 Configuration is supplied by the `wwwroot/appsettings.json` file:
 
@@ -819,6 +830,7 @@ Run the app from the Server project. When using Visual Studio, either:
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
 * [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)
+* [Security best practices for application properties in Azure Active Directory](/azure/active-directory/develop/security-best-practices-for-app-registration)
 
 :::moniker-end
 
@@ -925,7 +937,7 @@ dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}"
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name. **Avoid using dashes (`-`) in the app name that break the formation of the OIDC app identifier (see the earlier WARNING).**
 
 > [!NOTE]
-> A configuration change might be required when using an Azure tenant with an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), which is described in the [App settings](#app-settings) section.
+> A configuration change might be required when using an Azure tenant with an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), which is described in the [App settings](#app-settings-server-project) section.
 
 ## **:::no-loc text="Server":::** app configuration
 
@@ -980,7 +992,7 @@ To configure the app to receive the value from the `name` claim type:
       });
   ```
 
-### App settings
+### App settings (**`Server`** project)
 
 The `appsettings.json` file contains the options to configure the JWT bearer handler used to validate access tokens:
 
@@ -988,7 +1000,7 @@ The `appsettings.json` file contains the options to configure the JWT bearer han
 {
   "AzureAd": {
     "Instance": "https://login.microsoftonline.com/",
-    "Domain": "{DOMAIN}",
+    "Domain": "{TENANT DOMAIN}",
     "TenantId": "{TENANT ID}",
     "ClientId": "{SERVER API APP CLIENT ID}",
     "CallbackPath": "/signin-oidc"
@@ -1077,6 +1089,8 @@ builder.Services.AddMsalAuthentication(options =>
 ```
 
 The <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Azure Portal AAD configuration when you register the app.
+
+### App settings (**`Client`** project)
 
 Configuration is supplied by the `wwwroot/appsettings.json` file:
 
@@ -1222,6 +1236,7 @@ Run the app from the Server project. When using Visual Studio, either:
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
 * [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)
+* [Security best practices for application properties in Azure Active Directory](/azure/active-directory/develop/security-best-practices-for-app-registration)
 
 :::moniker-end
 
@@ -1381,7 +1396,7 @@ To configure the app to receive the value from the `name` claim type:
       });
   ```
 
-### App settings
+### App settings (**`Server`** project)
 
 The `appsettings.json` file contains the options to configure the JWT bearer handler used to validate access tokens:
 
@@ -1389,7 +1404,7 @@ The `appsettings.json` file contains the options to configure the JWT bearer han
 {
   "AzureAd": {
     "Instance": "https://login.microsoftonline.com/",
-    "Domain": "{DOMAIN}",
+    "Domain": "{TENANT DOMAIN}",
     "TenantId": "{TENANT ID}",
     "ClientId": "{SERVER API APP CLIENT ID}",
   }
@@ -1474,6 +1489,8 @@ builder.Services.AddMsalAuthentication(options =>
 ```
 
 The <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Azure Portal AAD configuration when you register the app.
+
+### App settings (**`Client`** project)
 
 Configuration is supplied by the `wwwroot/appsettings.json` file:
 
@@ -1617,5 +1634,6 @@ Run the app from the Server project. When using Visual Studio, either:
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
 * [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)
+* [Security best practices for application properties in Azure Active Directory](/azure/active-directory/develop/security-best-practices-for-app-registration)
 
 :::moniker-end

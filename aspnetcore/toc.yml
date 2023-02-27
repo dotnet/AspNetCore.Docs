@@ -455,6 +455,8 @@ items:
                 uid: blazor/components/prerendering-and-integration
               - name: Class libraries
                 uid: blazor/components/class-libraries
+              - name: JavaScript apps and SPA frameworks
+                uid: blazor/components/js-spa-frameworks
               - name: Built-in components
                 uid: blazor/components/built-in-components
           - name: Globalization and localization
@@ -1585,6 +1587,15 @@ items:
       - name: Overview
         displayName: globalization, localization
         uid: fundamentals/localization
+      - name: Make an app's content localizable
+        displayName: globalization, localization
+        uid: fundamentals/localization/make-content-localizable
+      - name: Provide resources
+        displayName: globalization, localization
+        uid: fundamentals/localization/provide-resources
+      - name: Select language/culture
+        displayName: globalization, localization
+        uid: fundamentals/localization/select-language-culture
       - name: Portable Object localization
         uid: fundamentals/portable-object-localization
       - name: Extensibility
