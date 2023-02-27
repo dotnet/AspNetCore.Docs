@@ -8,7 +8,7 @@ The `MvcMovieContext` object handles the task of connecting to the database and 
 
 The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString` key. For local development, it gets the connection string from the `appsettings.json` file:
 
-[!code-json[](start-mvc/sample/MvcMovie60/appsettings.json?highlight=2&range=9-11)]
+[!code-json[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/appsettings.json?highlight=2&range=9-11)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
