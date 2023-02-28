@@ -150,3 +150,7 @@ Test the app by searching by genre, by movie title, and by both:
 > [Next](~/tutorials/first-mvc-app/new-field.md)
 
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/first-mvc-app/search/includes/search6.md)]
+
+[!INCLUDE[](~/tutorials/first-mvc-app/search/includes/search3-5.md)]
