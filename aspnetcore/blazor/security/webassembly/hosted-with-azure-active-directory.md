@@ -171,7 +171,7 @@ When generating an app from the [Blazor project template](xref:blazor/project-st
   + "api://..."
   ```
 
-  **Inspect the value for a double scheme (`api://api://...`). If a double scheme is present, **remove the first `api://` scheme from the value**.
+  **Inspect the value for a double scheme (`api://api://...`). If a double scheme is present, remove the first `api://` scheme from the value.**
 
 * When the publisher domain of the directory is **untrusted**, the default access token scope is typically a value similar to the following example, where `API.Access` is the default scope name:
 
@@ -180,7 +180,7 @@ When generating an app from the [Blazor project template](xref:blazor/project-st
       "https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access");
   ```
 
-  **Inspect the value for a double scheme (`api://https://...`). If a double scheme is present, **remove the first `api://` scheme from the value**.
+  **Inspect the value for a double scheme (`api://https://...`). If a double scheme is present, remove the first `api://` scheme from the value.**
 
   ```diff
   - "api://https://..."
@@ -638,7 +638,7 @@ When generating an app from the [Blazor project template](xref:blazor/project-st
   + "api://..."
   ```
 
-  **Inspect the value for a double scheme (`api://api://...`). If a double scheme is present, **remove the first `api://` scheme from the value**.
+  **Inspect the value for a double scheme (`api://api://...`). If a double scheme is present, remove the first `api://` scheme from the value.**
 
 * When the publisher domain of the directory is **untrusted**, the default access token scope is typically a value similar to the following example, where `API.Access` is the default scope name:
 
@@ -647,7 +647,7 @@ When generating an app from the [Blazor project template](xref:blazor/project-st
       "https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access");
   ```
 
-  **Inspect the value for a double scheme (`api://https://...`). If a double scheme is present, **remove the first `api://` scheme from the value**.
+  **Inspect the value for a double scheme (`api://https://...`). If a double scheme is present, remove the first `api://` scheme from the value.**
 
   ```diff
   - "api://https://..."
