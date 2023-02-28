@@ -1,18 +1,4 @@
----
-title: Get started with ASP.NET Core MVC
-author: wadepickett
-description: Learn how to get started with ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
-ms.date: 01/25/2023
-uid: tutorials/first-mvc-app/start-mvc
-ms.custom: contperf-fy21q3, engagement-fy23
----
-# Get started with ASP.NET Core MVC
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range="= aspnetcore-6.0"
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
 
@@ -32,22 +18,21 @@ At the end of the series, you'll have an app that manages and displays movie dat
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
----
-
-<!-- 
-Each new version, change the layout file to use the non-minified CSS. 
-See https://github.com/dotnet/AspNetCore.Docs/issues/21193
+<!--
+[!INCLUDE[](~/includes/net-core-prereqs-mac-5.0.md)]
 -->
+>
+---
 
 ## Create a web app
 
@@ -57,14 +42,12 @@ See https://github.com/dotnet/AspNetCore.Docs/issues/21193
 * In the **Create a new project** dialog, select **ASP.NET Core Web App (Model-View-Controller)** > **Next**.
 * In the **Configure your new project** dialog, enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` when code is copied.
 * Select **Next**.
-* In the **Additional information** dialog:
-  * Select **.NET 7.0**.
-  * Verify that **Do not use top-level statements** is unchecked.
+* In the **Additional information** dialog, select **.NET 6.0 (Long-term support)**.
 * Select **Create**.
 
-![Additional info dialog](~/tutorials/first-mvc-app/start-mvc/_static/net7-additional-info.png)
+![Additional info dialog](~/tutorials/first-mvc-app/start-mvc/_static/net6-additional-info.png)
 
-For more information, including alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
+For alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
 Visual Studio uses the default project template for the created MVC project. The created project:
 
@@ -91,14 +74,27 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Start Visual Studio for Mac and select **File** > **New Project...**.
-* In Visual Studio for Mac select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Continue**.
-* In the **Configure your new Web Application (Model-View-Controller)** dialog:
-  * Select **.NET 7.0** for the **Target Framework**.
-  * Verify that **Do not use top-level statements** is unchecked.
-* Select **Continue**.
-* Enter `MvcMovie` for **Project name**. It's important to name the project *MvcMovie*. Capitalization needs to match each `namespace` when code is copied.
-* Select **Create**.
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
+
+<!--
+* Select **File** > **New Solution**.
+
+  ![macOS New solution](~/tutorials/first-mvc-app/start-mvc/_static/new_project_vsmac.png)
+
+* In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **Web Application (Model-View-Controller)** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **Web Application (Model-View-Controller)** > **Next**.
+
+  ![macOS web app template selection](~/tutorials/first-mvc-app/start-mvc/_static/web_app_template_vsmac.png)
+
+* In the **Configure your new Web Application** dialog:
+
+  * Confirm that **Authentication** is set to **No Authentication**.
+  * If an option to select a **Target Framework** is presented, select the latest 5.x version.
+  * Select **Next**.
+
+* Name the project **MvcMovie**, and then select **Create**.
+
+  ![macOS name the project](~/tutorials/first-mvc-app/start-mvc/_static/MvcMovie.png)
+-->
 
 ---
 
@@ -124,9 +120,9 @@ You can launch the app in debug or non-debug mode from the **Debug** menu:
 
 ![Debug menu](~/tutorials/first-mvc-app/start-mvc/_static/debug_menu50.png)
 
-You can debug the app by selecting the **https** button in the toolbar:
+You can debug the app by selecting the **MvcMovie** button in the toolbar:
 
-![MvcMovie debug button](~/tutorials/first-mvc-app/start-mvc/_static/net7-debug-button.png)
+![MvcMovie debug button](~/tutorials/first-mvc-app/start-mvc/_static/net6-debug-button.png)
 
 The following image shows the app:
 
@@ -156,23 +152,27 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Select Option+Command+Return to run the app without the debugger.
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
+
+<!--
+* Select **Run** > **Start Without Debugging** to launch the app.
 
   Visual Studio for Mac:
 
   * Starts [Kestrel](xref:fundamentals/servers/index#kestrel) server.
   * Launches a browser.
-  * Navigates to `http://localhost:port`, where *port* is a randomly chosen port number, set when Visual Studio creates a web project.
+  * Navigates to `http://localhost:port`, where *port* is a randomly chosen port number.
 
-  [!INCLUDE[](~/includes/trustCertMacVS22.md)]
+  [!INCLUDE[](~/includes/trustCertMac.md)]
 
-  The address bar shows `localhost:<port#>` and not something like `example.com`. The standard hostname for your local computer is `localhost`. Localhost only serves web requests from the local computer.
+  The address bar shows `localhost:port#` and not something like `example.com`. The standard hostname for your local computer is `localhost`. When Visual Studio creates a web project, a random port is used for the web server.
 
-You can launch the app in debug or non-debug mode from the **Debug** menu.
+You can launch the app in debug or non-debug mode from the **Run** menu.
 
 The following image shows the app:
 
-![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/output_macos_VS22.png)
+![Home or Index page](./~/tutorials/first-mvc-app/start-mvc/_static/output_macos.png)
+-->
 
 ---
 
@@ -184,9 +184,3 @@ In the next tutorial in this series, you learn about MVC and start writing some 
 > [Next: Add a controller](~/tutorials/first-mvc-app/adding-controller.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/start-mvc/includes/start-mvc6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/start-mvc/includes/start-mvc5.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/start-mvc/includes/start-mvc3.md)]

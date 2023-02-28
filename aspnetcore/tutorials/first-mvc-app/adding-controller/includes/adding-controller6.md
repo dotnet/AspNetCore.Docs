@@ -1,19 +1,4 @@
----
-title: Part 2, add a controller to an ASP.NET Core MVC app
-author: wadepickett
-description: Part 2 of tutorial series on ASP.NET Core MVC.
-ms.author: wpickett
-ms.date: 01/25/2023
-monikerRange: '>= aspnetcore-3.1'
-uid: tutorials/first-mvc-app/adding-controller
-ms.custom: contperf-fy21q3, engagement-fy23
----
-
-# Part 2, add a controller to an ASP.NET Core MVC app
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range="= aspnetcore-6.0"
 
 The Model-View-Controller (MVC) architectural pattern separates an app into three main components: **M**odel, **V**iew, and **C**ontroller. The MVC pattern helps you create apps that are more testable and easier to update than traditional monolithic apps.
 
@@ -59,21 +44,25 @@ Select the **EXPLORER** icon and then control-click (right-click) **Controllers 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-In **Solution Explorer**, control-click **Controllers** and select **Add > New File**.
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
-![Contextual menu for adding a controller](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller_MacVS22.png)
+<!--
+In **Solution Explorer**, right-click **Controllers > Add > New File**.
+
+![Contextual menu](~/tutorials/first-mvc-app-mac/adding-controller/_static/add_controller.png)
 
 Select **ASP.NET Core** and **Controller Class**.
 
 Name the controller **HelloWorldController**.
 
-![Add MVC controller and name it](~/tutorials/first-mvc-app-mac/adding-controller/_static/ac_MacVS22.png)
+![Add MVC controller and name it](~/tutorials/first-mvc-app-mac/adding-controller/_static/ac.png)
+-->
 
 ---
 
 Replace the contents of `Controllers/HelloWorldController.cs` with the following code:
 
-  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Controllers/HelloWorldController.cs?name=First)]
+  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/HelloWorldController.cs?name=First)]
 
 Every `public` method in a controller is callable as an HTTP endpoint. In the sample above, both methods return a string. Note the comments preceding each method.
 
@@ -91,7 +80,7 @@ The second comment specifies an [HTTP GET](https://developer.mozilla.org/docs/We
 
 Run the app without the debugger.
 
-Append `/HelloWorld` to the path in the address bar. The `Index` method returns a string.
+Append "HelloWorld" to the path in the address bar. The `Index` method returns a string.
 
 ![Browser window showing an app response of This is my default action](~/tutorials/first-mvc-app/adding-controller/_static/hell1.png)
 
@@ -119,7 +108,7 @@ Modify the code to pass some parameter information from the URL to the controlle
 
 Change the `Welcome` method to include two parameters as shown in the following code.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Controllers/HelloWorldController.cs?name=Second)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/HelloWorldController.cs?name=Second)]
 
 The preceding code:
 
@@ -142,13 +131,13 @@ In the previous image:
 
 Replace the `Welcome` method with the following code:
 
-  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Controllers/HelloWorldController.cs?name=Third)]
+  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/HelloWorldController.cs?name=Third)]
 
 Run the app and enter the following URL: `https://localhost:{PORT}/HelloWorld/Welcome/3?name=Rick`
 
 In the preceding URL:
 
-* The third URL segment matched the route parameter `id`.
+* The third URL segment matched the route parameter `id`. 
 * The `Welcome` method contains a parameter `id` that matched the URL template in the `MapControllerRoute` method.
 * The trailing `?` starts the [query string](https://wikipedia.org/wiki/Query_string).
 
@@ -165,7 +154,3 @@ In the preceding example:
 > [Next: Add a View](~/tutorials/first-mvc-app/adding-view.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-controller/includes/adding-controller6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-controller/includes/adding-controller3-5.md)]
