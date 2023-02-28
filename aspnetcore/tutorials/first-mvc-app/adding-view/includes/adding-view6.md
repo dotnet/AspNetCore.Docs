@@ -1,19 +1,4 @@
----
-title: Part 3, add a view to an ASP.NET Core MVC app
-author: wadepickett
-description: Part 3 of tutorial series on ASP.NET Core MVC.
-ms.author: wpickett
-ms.date: 01/26/2023
-monikerRange: '>= aspnetcore-3.1'
-uid: tutorials/first-mvc-app/adding-view
-ms.custom: contperf-fy21q3, engagement-fy23
----
-
-# Part 3, add a view to an ASP.NET Core MVC app
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range="= aspnetcore-6.0"
 
 In this section, you modify the `HelloWorldController` class to use [Razor](xref:mvc/views/razor) view files. This cleanly encapsulates the process of generating HTML responses to a client.
 
@@ -62,9 +47,11 @@ Add an `Index` view for the `HelloWorldController`:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Control-click the *Views* folder and select **Add > New Folder** and name the folder *HelloWorld*.
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
-Control-click the *Views/HelloWorld* folder and select **Add > New File**.
+Control-click on the *Views* folder, and then **Add > New Folder** and name the folder *HelloWorld*.
+
+Control-click on the *Views/HelloWorld* folder, and then **Add > New File**.
 
 In the **New File** dialog:
 
@@ -73,7 +60,7 @@ In the **New File** dialog:
 * Type *Index* in the **Name** box.
 * Select **Create**.
 
-![Add New Item dialog](~/tutorials/first-mvc-app/adding-view/_static/add_view_macVS22.png)
+  ![Add New Item dialog](~/tutorials/first-mvc-app/adding-view/_static/add_view_macVS22.png)
 
 ---
 
@@ -106,7 +93,7 @@ Find the `@RenderBody()` line. `RenderBody` is a placeholder where all the view-
 
 Replace the content of the `Views/Shared/_Layout.cshtml` file with the following markup. The changes are highlighted:
 
-[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Views/Shared/_Layout.cshtml?highlight=6,14,40)]
+[!code-cshtml[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Views/Shared/_Layout.cshtml?highlight=6,14,40)]
 
 The preceding markup made the following changes:
 
@@ -190,7 +177,7 @@ In `HelloWorldController.cs`, change the `Welcome` method to add a `Message` and
 
 The `ViewData` dictionary is a dynamic object, which means any type can be used. The `ViewData` object has no defined properties until something is added. The [MVC model binding system](xref:mvc/models/model-binding) automatically maps the named parameters `name` and `numTimes` from the query string to parameters in the method. The complete `HelloWorldController`:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Controllers/HelloWorldController.cs?name=ViewData&highlight=12-17)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Controllers/HelloWorldController.cs?name=ViewData&highlight=13-19)]
 
 The `ViewData` dictionary object contains data that will be passed to the view.
 
@@ -217,9 +204,3 @@ In the next tutorial, a database of movies is created.
 > [Next: Add a Model](~/tutorials/first-mvc-app/adding-model.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-view/includes/adding-view6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-view/includes/adding-view5.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-view/includes/adding-view3.md)]

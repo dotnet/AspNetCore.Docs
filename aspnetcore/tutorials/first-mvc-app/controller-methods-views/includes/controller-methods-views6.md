@@ -1,19 +1,4 @@
----
-title: Part 6, controller methods and views in ASP.NET Core
-author: wadepickett
-description: Part 6, add a model to an ASP.NET Core MVC app
-monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
-ms.date: 01/29/2023
-ms.custom: engagement-fy23
-uid: tutorials/first-mvc-app/controller-methods-views
----
-
-# Part 6, controller methods and views in ASP.NET Core
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range="= aspnetcore-6.0"
 
 We have a good start to the movie app, but the presentation isn't ideal, for example, **ReleaseDate** should be two words.
 
@@ -21,7 +6,7 @@ We have a good start to the movie app, but the presentation isn't ideal, for exa
 
 Open the `Models/Movie.cs` file and add the highlighted lines shown below:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/Movie.cs?name=Second&highlight=2,3,12-13,17)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=Second&highlight=2,3,12-13,17)]
 
 `DataAnnotations` are explained in the next tutorial. The [Display](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) attribute specifies what to display for the name of a field (in this case "Release Date" instead of "ReleaseDate"). The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (Date), so the time information stored in the field isn't displayed.
 
@@ -51,7 +36,7 @@ Recall the format for [routing](xref:mvc/controllers/routing) set in the `Progra
 
 ASP.NET Core translates `https://localhost:5001/Movies/Edit/4` into a request to the `Edit` action method of the `Movies` controller with the parameter `Id` of 4. (Controller methods are also known as action methods.)
 
-[Tag Helpers](xref:mvc/views/tag-helpers/intro) are one of the most popular new features in ASP.NET Core. For more information, see [Additional resources](#additional-resources).
+[Tag Helpers](xref:mvc/views/tag-helpers/intro) are a popular feature in ASP.NET Core. For more information about them, see [Additional resources](#additional-resources).
 
 <a name="get-post"></a>
 
@@ -130,7 +115,3 @@ All the `HttpGet` methods in the movie controller follow a similar pattern. They
 > [Next](~/tutorials/first-mvc-app/search.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/controller-methods-views/includes/controller-methods-views6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/controller-methods-views/includes/controller-methods-views3-5.md)]
