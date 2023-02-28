@@ -141,3 +141,9 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 > [Next](~/tutorials/first-mvc-app/validation.md)
 
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/first-mvc-app/new-field/includes/new-field6.md)]
+
+[!INCLUDE[](~/tutorials/first-mvc-app/new-field/includes/new-field5.md)]
+
+[!INCLUDE[](~/tutorials/first-mvc-app/new-field/includes/new-field3.md)]
