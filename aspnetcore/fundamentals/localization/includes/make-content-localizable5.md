@@ -1,15 +1,4 @@
----
-title: Make an ASP.NET Core app's content localizable
-author: rick-anderson
-description: Learn how to make an ASP.NET Core app's content localizable to prepare the app for localizing content into different languages and cultures.
-ms.author: riande
-monikerRange: '>= aspnetcore-5.0'
-ms.date: 02/23/2023
-uid: fundamentals/localization/make-content-localizable
----
-# Make an ASP.NET Core app's content localizable
-
-:::moniker range="> aspnetcore-5.0"
+:::moniker range="= aspnetcore-5.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
@@ -147,5 +136,3 @@ Localizing an app also involves the following tasks:
 * [Localization & Generics](http://hishambinateya.com/localization-and-generics)
 
 :::moniker-end
-
-[!INCLUDE [make-content-localizable5](~/fundamentals/includes/make-content-localizable5.md)]

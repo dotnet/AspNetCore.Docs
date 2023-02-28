@@ -1,15 +1,4 @@
----
-title: Globalization and localization in ASP.NET Core
-author: rick-anderson
-description: Learn how ASP.NET Core provides services and middleware for localizing content into different languages and cultures.
-ms.author: riande
-monikerRange: '>= aspnetcore-3.1'
-ms.date: 02/23/2023
-uid: fundamentals/localization
----
-# Globalization and localization in ASP.NET Core
-
-:::moniker range="> aspnetcore-5.0"
+:::moniker range="= aspnetcore-5.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
@@ -53,8 +42,4 @@ Globalizing and localizing an app involves the following tasks:
 * [Localization & Generics](http://hishambinateya.com/localization-and-generics)
 
 :::moniker-end
-
-[!INCLUDE [localization5](~/fundamentals/localization/includes/localization3.md)]
-
-[!INCLUDE [localization3](~/fundamentals/localization/includes/localization3.md)]
 
