@@ -58,7 +58,3 @@ For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core and 
 > [Previous](~/tutorials/first-mvc-app/validation.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/details/includes/details6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/details/includes/details3-5.md)]
