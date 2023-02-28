@@ -1049,9 +1049,6 @@ dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}"
 
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name. **Avoid using dashes (`-`) in the app name that break the formation of the OIDC app identifier (see the earlier WARNING).**
 
-> [!NOTE]
-> A configuration change might be required when using an Azure tenant with an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), which is described in the [App settings](#app-settings-server-project) section.
-
 ## **:::no-loc text="Server":::** app configuration
 
 *This section pertains to the solution's **:::no-loc text="Server":::** app.*
