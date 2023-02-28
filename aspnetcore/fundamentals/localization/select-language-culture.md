@@ -181,4 +181,4 @@ Localizing an app also involves the following tasks:
 
 :::moniker-end
 
-[!INCLUDE [select-language-culture5](~/fundamentals/includes/select-language-culture5.md)]
+[!INCLUDE [select-language-culture5](~/fundamentals/localization/includes/select-language-culture5.md)]

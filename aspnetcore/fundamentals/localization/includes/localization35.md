@@ -1,4 +1,49 @@
-:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+:::moniker range="= aspnetcore-5.0"
+
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
+
+A multilingual website allows a website to reach a wider audience. ASP.NET Core provides services and middleware for localizing into different languages and cultures.
+
+## Terms
+
+* Globalization (G11N): The process of making an app support different languages and regions. The abbreviation comes from the first and last letters and the number of letters between them.
+* Localization (L10N): The process of customizing a globalized app for specific languages and regions.
+* Internationalization (I18N): Both globalization and localization.
+* Culture: A language and, optionally, a region.
+* Neutral culture: A culture that has a specified language, but not a region (for example "en", "es").
+* Specific culture: A culture that has a specified language and region (for example, "en-US", "en-GB", "es-CL").
+* Parent culture: The neutral culture that contains a specific culture (for example, "en" is the parent culture of "en-US" and "en-GB").
+* Locale: A locale is the same as a culture.
+
+## Language and country/region codes
+
+The [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) format for the culture name is `<language code>-<country/region code>`, where `<language code>` identifies the language and `<country/region code>` identifies the subculture. For example, `es-CL` for Spanish (Chile), `en-US` for English (United States), and `en-AU` for English (Australia). [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) is a combination of an ISO 639 two-letter lowercase culture code associated with a language and an ISO 3166 two-letter uppercase subculture code associated with a country or region. For more information, see <xref:System.Globalization.CultureInfo?displayProperty=fullName>.
+
+## Tasks to localize an app
+
+Globalizing and localizing an app involves the following tasks:
+
+* [Make an ASP.NET Core app's content localizable](xref:fundamentals/localization/make-content-localizable).
+* [Provide localized resources for the cultures the app supports](xref:fundamentals/localization/provide-resources)
+* [Implement a strategy to select the culture for each request](xref:fundamentals/localization/select-language-culture)
+
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/3.x/) ([how to download](xref:index#how-to-download-a-sample))
+
+## Additional resources
+
+* <xref:fundamentals/localization/make-content-localizable>
+* <xref:fundamentals/localization/provide-resources>
+* <xref:fundamentals/localization/select-language-culture>
+* <xref:fundamentals/troubleshoot-aspnet-core-localization>
+* [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
+* [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
+* [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
+* [Microsoft Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
+* [Localization & Generics](http://hishambinateya.com/localization-and-generics)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-3.1 < aspnetcore-5.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
@@ -20,7 +65,7 @@ App localization involves the following:
 
 <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> were architected to improve productivity when developing localized apps. `IStringLocalizer` uses the <xref:System.Resources.ResourceManager> and <xref:System.Resources.ResourceReader> to provide culture-specific resources at run time. The interface has an indexer and an `IEnumerable` for returning localized strings. `IStringLocalizer` doesn't require storing the default language strings in a resource file. You can develop an app targeted for localization and not need to create resource files early in development. The code below shows how to wrap the string "About Title" for localization.
 
-[!code-csharp[](localization/sample/3.x/Localization/Controllers/AboutController.cs)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/AboutController.cs)]
 
 In the preceding code, the `IStringLocalizer<T>` implementation comes from [Dependency Injection](dependency-injection.md). If the localized value of "About Title" isn't found, then the indexer key is returned, that is, the string "About Title". You can leave the default language literal strings in the app and wrap them in the localizer, so that you can focus on developing the app. You develop your app with your default language and prepare it for the localization step without first creating a default resource file. Alternatively, you can use the traditional approach and provide a key to retrieve the default language string. For many developers the new workflow of not having a default language *.resx* file and simply wrapping the string literals can reduce the overhead of localizing an app. Other developers will prefer the traditional work flow as it can make it easier to work with longer string literals and make it easier to update localized strings.
 
@@ -33,23 +78,23 @@ Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHt
 
 At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](dependency-injection.md):
 
-[!code-csharp[](localization/sample/3.x/Localization/Controllers/TestController.cs?start=9&end=26&highlight=7-13)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/TestController.cs?start=9&end=26&highlight=7-13)]
 
 The code above demonstrates each of the two factory create methods.
 
 You can partition your localized strings by controller, area, or have just one container. In the sample app, a dummy class named `SharedResource` is used for shared resources.
 
-[!code-csharp[](localization/sample/3.x/Localization/SharedResource.cs)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/SharedResource.cs)]
 
 Some developers use the `Startup` class to contain global or shared strings. In the sample below, the `InfoController` and the `SharedResource` localizers are used:
 
-[!code-csharp[](localization/sample/3.x/Localization/Controllers/InfoController.cs?range=9-26)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/InfoController.cs?range=9-26)]
 
 ## View localization
 
 The `IViewLocalizer` service provides localized strings for a [view](xref:mvc/views/overview). The `ViewLocalizer` class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of `IViewLocalizer`:
 
-[!code-cshtml[](localization/sample/3.x/Localization/Views/Home/About.cshtml)]
+[!code-cshtml[](~/fundamentals/localization/sample/3.x/Localization/Views/Home/About.cshtml)]
 
 The default implementation of `IViewLocalizer` finds the resource file based on the view's file name. There's no option to use a global shared resource file. `ViewLocalizer` implements the localizer using `IHtmlLocalizer`, so Razor doesn't HTML encode the localized string. You can parameterize resource strings and `IViewLocalizer` will HTML encode the parameters, but not the resource string. Consider the following Razor markup:
 
@@ -79,7 +124,7 @@ DataAnnotations error messages are localized with `IStringLocalizer<T>`. Using t
 * *Resources/ViewModels.Account.RegisterViewModel.fr.resx*
 * *Resources/ViewModels/Account/RegisterViewModel.fr.resx*
 
-[!code-csharp[](localization/sample/3.x/Localization/ViewModels/Account/RegisterViewModel.cs?start=9&end=26)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/ViewModels/Account/RegisterViewModel.cs?start=9&end=26)]
 
 Non-validation attributes are localized.
 
@@ -197,7 +242,7 @@ Each language and culture combination (other than the default language) requires
 
 Localization is configured in the `Startup.ConfigureServices` method:
 
-[!code-csharp[](localization/sample/3.x/Localization/Startup.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Startup.cs?name=snippet1)]
 
 * `AddLocalization` adds the localization services to the services container. The code above also sets the resources path to "Resources".
 
@@ -209,7 +254,7 @@ Localization is configured in the `Startup.ConfigureServices` method:
 
 The current culture on a request is set in the localization [Middleware](xref:fundamentals/middleware/index). The localization middleware is enabled in the `Startup.Configure` method. The localization middleware must be configured before any middleware that might check the request culture (for example, `app.UseMvcWithDefaultRoute()`). Localization Middleware must appear after Routing Middleware if using <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider>. For more information on middleware order, see <xref:fundamentals/middleware/index#middleware-order>.
 
-[!code-csharp[](localization/sample/3.x/Localization/Startup.cs?name=snippet2)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Startup.cs?name=snippet2)]
 
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
@@ -317,15 +362,15 @@ As previously mentioned, add a custom provider via <xref:Microsoft.AspNetCore.Bu
 
 This sample **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) contains UI to set the `Culture`. The `Views/Shared/_SelectLanguagePartial.cshtml` file allows you to select the culture from the list of supported cultures:
 
-[!code-cshtml[](localization/sample/3.x/Localization/Views/Shared/_SelectLanguagePartial.cshtml)]
+[!code-cshtml[](~/fundamentals/localization/sample/3.x/Localization/Views/Shared/_SelectLanguagePartial.cshtml)]
 
 The `Views/Shared/_SelectLanguagePartial.cshtml` file is added to the `footer` section of the layout file so it will be available to all views:
 
-[!code-cshtml[](localization/sample/3.x/Localization/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
+[!code-cshtml[](~/fundamentals/localization/sample/3.x/Localization/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
 
 The `SetLanguage` method sets the culture cookie.
 
-[!code-csharp[](localization/sample/3.x/Localization/Controllers/HomeController.cs?range=57-67)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/HomeController.cs?range=57-67)]
 
 You can't plug in the `_SelectLanguagePartial.cshtml` to sample code for this project. The **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) has code to flow the `RequestLocalizationOptions` to a Razor partial through the [Dependency Injection](dependency-injection.md) container.
 

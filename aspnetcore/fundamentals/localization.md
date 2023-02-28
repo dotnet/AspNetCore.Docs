@@ -54,7 +54,4 @@ Globalizing and localizing an app involves the following tasks:
 
 :::moniker-end
 
-[!INCLUDE [localization5](~/fundamentals/localization/includes/localization3.md)]
-
-[!INCLUDE [localization3](~/fundamentals/localization/includes/localization3.md)]
-
+[!INCLUDE [localization35](~/fundamentals/localization/includes/localization35.md)]

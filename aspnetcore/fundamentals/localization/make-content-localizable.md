@@ -148,4 +148,4 @@ Localizing an app also involves the following tasks:
 
 :::moniker-end
 
-[!INCLUDE [make-content-localizable5](~/fundamentals/includes/make-content-localizable5.md)]
+[!INCLUDE [make-content-localizable5](~/fundamentals/localization/includes/make-content-localizable5.md)]

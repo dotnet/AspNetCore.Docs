@@ -123,4 +123,4 @@ Localizing an app also involves the following tasks:
 
 :::moniker-end
 
-[!INCLUDE [provide-resources5](~/fundamentals/includes/provide-resources5.md)]
+[!INCLUDE [provide-resources5](~/fundamentals/localization/includes/provide-resources5.md)]
