@@ -67,7 +67,7 @@ App localization involves the following:
 
 [!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/AboutController.cs)]
 
-In the preceding code, the `IStringLocalizer<T>` implementation comes from [Dependency Injection](dependency-injection.md). If the localized value of "About Title" isn't found, then the indexer key is returned, that is, the string "About Title". You can leave the default language literal strings in the app and wrap them in the localizer, so that you can focus on developing the app. You develop your app with your default language and prepare it for the localization step without first creating a default resource file. Alternatively, you can use the traditional approach and provide a key to retrieve the default language string. For many developers the new workflow of not having a default language *.resx* file and simply wrapping the string literals can reduce the overhead of localizing an app. Other developers will prefer the traditional work flow as it can make it easier to work with longer string literals and make it easier to update localized strings.
+In the preceding code, the `IStringLocalizer<T>` implementation comes from [Dependency Injection](~/fundamentals/localization/dependency-injection.md). If the localized value of "About Title" isn't found, then the indexer key is returned, that is, the string "About Title". You can leave the default language literal strings in the app and wrap them in the localizer, so that you can focus on developing the app. You develop your app with your default language and prepare it for the localization step without first creating a default resource file. Alternatively, you can use the traditional approach and provide a key to retrieve the default language string. For many developers the new workflow of not having a default language *.resx* file and simply wrapping the string literals can reduce the overhead of localizing an app. Other developers will prefer the traditional work flow as it can make it easier to work with longer string literals and make it easier to update localized strings.
 
 Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHtmlLocalizer` HTML encodes arguments that are formatted in the resource string, but doesn't HTML encode the resource string itself. In the sample highlighted below, only the value of `name` parameter is HTML encoded.
 
@@ -76,7 +76,7 @@ Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHt
 > [!NOTE]
 > Generally, only localize text, not HTML.
 
-At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](dependency-injection.md):
+At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](~/fundamentals/localization/dependency-injection.md):
 
 [!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/TestController.cs?start=9&end=26&highlight=7-13)]
 
@@ -159,19 +159,19 @@ A resource file is a useful mechanism for separating localizable strings from co
 
 1. In **Solution Explorer**, right click on the folder which will contain the resource file > **Add** > **New Item**.
 
-   ![Nested contextual menu: In Solution Explorer, a contextual menu is open for Resources. A second contextual menu is open for Add showing the New Item command highlighted.](localization/_static/newi.png)
+   ![Nested contextual menu: In Solution Explorer, a contextual menu is open for Resources. A second contextual menu is open for Add showing the New Item command highlighted.](~/fundamentals/localization/_static/newi.png)
 
 1. In the **Search installed templates** box, enter "resource" and name the file.
 
-   ![Add New Item dialog](localization/_static/res.png)
+   ![Add New Item dialog](~/fundamentals/localization/_static/res.png)
 
 1. Enter the key value (native string) in the **Name** column and the translated string in the **Value** column.
 
-   ![Welcome.es.resx file (the Welcome resource file for Spanish) with the word Hello in the Name column and the word Hola (Hello in Spanish) in the Value column](localization/_static/hola.png)
+   ![Welcome.es.resx file (the Welcome resource file for Spanish) with the word Hello in the Name column and the word Hola (Hello in Spanish) in the Value column](~/fundamentals/localization/_static/hola.png)
 
    Visual Studio shows the *Welcome.es.resx* file.
 
-   ![Solution Explorer showing the Welcome Spanish (es) resource file](localization/_static/se.png)
+   ![Solution Explorer showing the Welcome Spanish (es) resource file](~/fundamentals/localization/_static/se.png)
 
 ## Resource file naming
 
@@ -302,7 +302,7 @@ The [Accept-Language header](https://www.w3.org/International/questions/qa-accep
 
 1. Tap **Languages**.
 
-   ![Internet Options](localization/_static/lang.png)
+   ![Internet Options](~/fundamentals/localization/_static/lang.png)
 
 1. Tap **Set Language Preferences**.
 
@@ -372,7 +372,7 @@ The `SetLanguage` method sets the culture cookie.
 
 [!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/HomeController.cs?range=57-67)]
 
-You can't plug in the `_SelectLanguagePartial.cshtml` to sample code for this project. The **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) has code to flow the `RequestLocalizationOptions` to a Razor partial through the [Dependency Injection](dependency-injection.md) container.
+You can't plug in the `_SelectLanguagePartial.cshtml` to sample code for this project. The **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) has code to flow the `RequestLocalizationOptions` to a Razor partial through the [Dependency Injection](~/fundamentals/localization/dependency-injection.md) container.
 
 ## Model binding route data and query strings
 

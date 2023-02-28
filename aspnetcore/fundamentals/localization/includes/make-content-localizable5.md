@@ -12,7 +12,7 @@ The following code example shows how to wrap the string "About Title" for locali
 
 [!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/AboutController.cs)]
 
-In the preceding code, the `IStringLocalizer<T>` implementation comes from [Dependency Injection](../dependency-injection.md). If the localized value of "About Title" isn't found, then the indexer key is returned, that is, the string "About Title".
+In the preceding code, the `IStringLocalizer<T>` implementation comes from [Dependency Injection](~/fundamentals/localization/dependency-injection.md). If the localized value of "About Title" isn't found, then the indexer key is returned, that is, the string "About Title".
 
 You can leave the default language literal strings in the app and wrap them in the localizer, so that you can focus on developing the app. You develop an app with your default language and prepare it for the localization step without first creating a default resource file.
 
@@ -29,7 +29,7 @@ Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHt
 
 ## `IStringLocalizerFactory`
 
-At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](../dependency-injection.md):
+At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](~/fundamentals/localization/dependency-injection.md):
 
 [!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/TestController.cs?start=9&end=26&highlight=7-13)]
 
