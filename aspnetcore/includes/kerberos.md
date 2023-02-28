@@ -1,4 +1,3 @@
-Replace this with the contents from https://github.com/dotnet/AspNetCore.Docs/issues/28432#issuecomment-1442603702
 Overview
 The Negotiate package on Kestrel for ASP.NET Core 6.0/7.0 attempts by default to use Kerberos, which is a more secure and peformant authentication scheme than NTLM.  
 You can see this configuration in services configuration in Program.cs.
