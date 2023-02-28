@@ -2,9 +2,9 @@
 title: Part 5, work with a database in an ASP.NET Core MVC app
 author: wadepickett
 description: Part 5 of tutorial series on ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
 ms.date: 01/29/2023
+monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/working-with-sql
 ms.custom: contperf-fy21q3, engagement-fy23
 ---
