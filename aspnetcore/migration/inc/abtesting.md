@@ -10,17 +10,17 @@ ms.prod: aspnet-core
 uid: migration/inc/ab-testing
 ---
 
-# A/B Testing Endpoints during Migration
+# A/B Testing endpoints during migration
 
-During incremental migration, new endpoints will be brought over to a YARP-enabled ASP.NET Core application. With the default setup, these will automatically be served for all requests once deployed. In order to test these endpoints, or be able to turn them off if needed, we need to add some additional setup for the application.
+During incremental migration, new endpoints are brought over to a [YARP](https://microsoft.github.io/reverse-proxy/) enabled ASP.NET Core app. With the default setup, these endpoints are automatically served for all requests once deployed. In order to test these endpoints, or be able to turn them off if needed, additional setup is needed.
 
-This document will describe how to setup a conditional endpoint selection system to enable A/B testing during incremental migration. It assumes a setup as described [incremental migration overview](xref:migration/inc/overview) as a starting point.
+This document describes how to setup a conditional endpoint selection system to enable A/B testing during incremental migration. It assumes a setup as described in [incremental migration overview](xref:migration/inc/overview) as a starting point.
 
-## Conditional Endpoint Selection
+## Conditional endpoint selection
 
 To enable conditional endpoint selection, a few services need to be defined:
 
-1. Metadata that can be added to an endpoint (controllers, minimal APIs, etc) to turn on any conditional related logic. If this is not present on an endpoint, that endpoint will not incur any potential cost with checks that may be performed.
+1. Metadata that can be added to an endpoint to turn on any conditional related logic. If this metadata isn't present on an endpoint, that endpoint won't incur any potential cost with checks that may be performed.
 
     ```CSharp
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
