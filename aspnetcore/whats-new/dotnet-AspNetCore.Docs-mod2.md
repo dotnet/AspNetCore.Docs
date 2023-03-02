@@ -65,7 +65,6 @@ Welcome to what's new in the ASP.NET Core docs for February 2023. This article l
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham ![There were 40 pull requests merged by Luke Latham.](https://img.shields.io/badge/Merged%20Pull%20Requests-40-green)
 - [hishamco](https://github.com/hishamco) - Hisham Bin Ateya ![There were 4 pull requests merged by Hisham Bin Ateya.](https://img.shields.io/badge/Merged%20Pull%20Requests-4-green)
 - [dersonmutemba](https://github.com/dersonmutemba) - Derson Mutemba ![There were 3 pull requests merged by Derson Mutemba.](https://img.shields.io/badge/Merged%20Pull%20Requests-3-green)
 - [axekan](https://github.com/axekan) -  ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
