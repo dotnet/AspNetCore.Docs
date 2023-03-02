@@ -12,9 +12,9 @@ uid: migration/inc/ab-testing
 
 # A/B Testing Endpoints during Migration
 
-During incremental migration, new endpoints will be brought over to a YARP-enabled ASP.NET Core application. With the default setup, these will automatically be served for all requests once deployed. In order to test these endpoints, or be able to turn them off if needed, we need to add some additional setup for the application.
+During incremental migration, new endpoints are brought over to a [YARP](https://microsoft.github.io/reverse-proxy/) enabled ASP.NET Core app. With the default setup, these endpoints are automatically served for all requests once deployed. In order to test these endpoints, or be able to turn them off if needed, additional setup is needed.
 
-This document will describe how to setup a conditional endpoint selection system to enable A/B testing during incremental migration. It assumes a setup as described [incremental migration overview](xref:migration/inc/overview) as a starting point.
+This article describes how to setup a conditional endpoint selection system to enable A/B testing during incremental migration. It assumes the setup, described in [incremental migration overview](xref:migration/inc/overview) as the starting point.
 
 ## Conditional Endpoint Selection
 
@@ -26,7 +26,7 @@ To enable conditional endpoint selection, a few services need to be defined:
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class ConditionalRouteAttribute : Attribute
     {
-        public bool IsConditional { get; set; }
+        public bool IsConditional { get; set; } = true;
     }
     ```
 
