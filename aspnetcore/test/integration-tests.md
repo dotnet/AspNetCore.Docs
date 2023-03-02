@@ -325,6 +325,137 @@ The sample app seeds the database with three messages in `Utilities.cs` that tes
 
 The SUT's database context is registered in `Program.cs`. The test app's `builder.ConfigureServices` callback is executed *after* the app's `Program.cs` code is executed. To use a different database for the tests, the app's database context must be replaced in `builder.ConfigureServices`. For more information, see the [Customize WebApplicationFactory](#customize-webapplicationfactory) section.
 
+## Test against real dependencies
+
+[Testcontainers for .NET](https://github.com/testcontainers/testcontainers-dotnet) is an open-source library that allows developers to easily run integration tests for applications and services that rely on external dependencies, such as a database. Developers can spin up containers for databases, message queues, web servers, and any other dependencies they need to test their applications or services.
+
+The following section builds upon the knowledge we acquired in the previous section. It explains how we can replace SQLite with a database provider that is used in production. This will help us to increase our confidence in our tests and to enable testing in an environment that closely resembles reality.
+
+> [!NOTE]
+> Testcontainers requires a Docker-API compatible container runtime.
+
+Change to the `tests/RazorPagesProject.Tests` directory and install the `Microsoft.EntityFrameworkCore.SqlServer` and `Testcontainers` NuGet dependency.
+
+```console
+cd AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.1.0
+dotnet add package Testcontainers --version 2.4.0
+```
+
+Now that all dependencies have been set up, we can proceed to add another test class to the project. First, we will create a `MsSqlTests` class that will be responsible for configuring, creating, and starting the dependent Microsoft SQL Server container. The `MsSqlTests` class will contain a nested `IndexPageTests` class that will run the tests. This will allow us to access the private container field and follow a neat hierarchy in the test explorer.
+
+```csharp
+public sealed class MsSqlTests : IAsyncLifetime
+{
+    private const string Database = "master";
+
+    private const string Username = "sa";
+
+    private const string Password = "yourStrong(!)Password";
+
+    private const ushort MsSqlPort = 1433;
+
+    private readonly IContainer _mssqlContainer = new ContainerBuilder()
+        .WithImage("mcr.microsoft.com/mssql/server:2022-CU1-ubuntu-20.04")
+        .WithPortBinding(MsSqlPort, true)
+        .WithEnvironment("ACCEPT_EULA", "Y")
+        .WithEnvironment("SQLCMDUSER", Username)
+        .WithEnvironment("SQLCMDPASSWORD", Password)
+        .WithEnvironment("MSSQL_SA_PASSWORD", Password)
+        .WithWaitStrategy(Wait.ForUnixContainer().UntilCommandIsCompleted("/opt/mssql-tools/bin/sqlcmd", "-Q", "SELECT 1;"))
+        .Build();
+
+    public Task InitializeAsync()
+    {
+        return _mssqlContainer.StartAsync();
+    }
+
+    public Task DisposeAsync()
+    {
+        return _mssqlContainer.DisposeAsync().AsTask();
+    }
+
+    public sealed class IndexPageTests : IClassFixture<MsSqlTests>, IDisposable
+    {
+        private readonly WebApplicationFactory<Program> _webApplicationFactory;
+
+        private readonly HttpClient _httpClient;
+
+        public IndexPageTests(MsSqlTests fixture)
+        {
+            var clientOptions = new WebApplicationFactoryClientOptions();
+            clientOptions.AllowAutoRedirect = false;
+
+            _webApplicationFactory = new CustomWebApplicationFactory(fixture);
+            _httpClient = _webApplicationFactory.CreateClient(clientOptions);
+        }
+
+        public void Dispose()
+        {
+            _webApplicationFactory.Dispose();
+        }
+
+        private sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
+        {
+            private readonly string _connectionString;
+
+            public CustomWebApplicationFactory(MsSqlTests fixture)
+            {
+                _connectionString = $"Server={fixture._mssqlContainer.Hostname},{fixture._mssqlContainer.GetMappedPublicPort(MsSqlPort)};Database={Database};User Id={Username};Password={Password};TrustServerCertificate=True";
+            }
+
+            protected override void ConfigureWebHost(IWebHostBuilder builder)
+            {
+                builder.ConfigureServices(services =>
+                {
+                    services.Remove(services.SingleOrDefault(service => typeof(DbContextOptions<ApplicationDbContext>) == service.ServiceType));
+                    services.Remove(services.SingleOrDefault(service => typeof(DbConnection) == service.ServiceType));
+                    services.AddDbContext<ApplicationDbContext>((_, option) => option.UseSqlServer(_connectionString));
+                });
+            }
+        }
+    }
+}
+```
+
+> [!NOTE]
+> The Microsoft SQL Server image is not compatible with Arm64 devices, you can use the [Azure SQL Edge](https://github.com/testcontainers/testcontainers-dotnet/blob/a1e14cbf8002aea59b3ee0a9fcb4130fdd578792/src/Testcontainers.SqlEdge/SqlEdgeBuilder.cs#L60-L67) image instead.
+
+Creating a new `ContainerBuilder()` instance allows us to configure the dependent service. The above code snippet sets the required configurations and adds a wait strategy that indicates readiness of the service running inside the container. [xUnit.net](https://xunit.net) calls `IAsyncLifetime.InitializeAsync` immediately after the class has been created. Our test uses this mechanism to start the Microsoft SQL Server instance before any test run.
+
+The `IndexPageTests` class creates a custom instance of `WebApplicationFactory<TEntryPoint>`. Instead of adding a database context that relies on SQLite, we simply pass our Microsoft SQL Server connection string to `UseSqlServer(string)` to add a new database context. With Testcontainers, you can even shift this entire configuration to the web application entry point class and start dependent services together with your application.
+
+Now that the test class is ready, we can move the original tests to it. For example, copy the following test to our new `IndexPageTests` class and run the test against a Microsoft SQL Server instance:
+
+```csharp
+[Fact]
+public async Task Post_DeleteAllMessagesHandler_ReturnsRedirectToRoot()
+{
+    // Arrange
+    var defaultPage = await _httpClient.GetAsync("/")
+        .ConfigureAwait(false);
+
+    var document = await HtmlHelpers.GetDocumentAsync(defaultPage)
+        .ConfigureAwait(false);
+
+    // Act
+    var form = (IHtmlFormElement)document.QuerySelector("form[id='messages']");
+    var submitButton = (IHtmlButtonElement)document.QuerySelector("button[id='deleteAllBtn']");
+
+    var response = await _httpClient.SendAsync(form, submitButton)
+        .ConfigureAwait(false);
+
+    // Assert
+    Assert.Equal(HttpStatusCode.OK, defaultPage.StatusCode);
+    Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+    Assert.Equal("/", response.Headers.Location.OriginalString);
+}
+```
+
+Please note that the first test run might take a few seconds longer since we need to pull the required image first.
+
+By replacing SQLite with a database provider used in production, developers can further increase their confidence in their tests. The `MsSqlTests` class uses Testcontainers to configure, create and start a Microsoft SQL Server container, allowing the `IndexPageTests` class to test the application against the real database. This approach allows developers to test their application in a production-like environment and helps to identify issues early in the development cycle.
+
 ## Additional resources
 
 * [Unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
@@ -661,137 +792,6 @@ The sample app seeds the database with three messages in `Utilities.cs` that tes
 The SUT's database context is registered in its `Startup.ConfigureServices` method. The test app's `builder.ConfigureServices` callback is executed *after* the app's `Startup.ConfigureServices` code is executed. To use a different database for the tests, the app's database context must be replaced in `builder.ConfigureServices`. For more information, see the [Customize WebApplicationFactory](#customize-webapplicationfactory) section.
 
 For SUTs that still use the [Web Host](xref:fundamentals/host/web-host), the test app's `builder.ConfigureServices` callback is executed *before* the SUT's `Startup.ConfigureServices` code. The test app's `builder.ConfigureTestServices` callback is executed *after*.
-
-## Test against real dependencies
-
-[Testcontainers for .NET](https://github.com/testcontainers/testcontainers-dotnet) is an open-source library that allows developers to easily run integration tests for applications and services that rely on external dependencies, such as a database. Developers can spin up containers for databases, message queues, web servers, and any other dependencies they need to test their applications or services.
-
-The following section builds upon the knowledge we acquired in the previous section. It explains how we can replace SQLite with a database provider that is used in production. This will help us to increase our confidence in our tests and to enable testing in an environment that closely resembles reality.
-
-> [!NOTE]
-> Testcontainers requires a Docker-API compatible container runtime.
-
-Change to the `tests/RazorPagesProject.Tests` directory and install the `Microsoft.EntityFrameworkCore.SqlServer` and `Testcontainers` NuGet dependency.
-
-```console
-cd AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.1.0
-dotnet add package Testcontainers --version 2.4.0
-```
-
-Now that all dependencies have been set up, we can proceed to add another test class to the project. First, we will create a `MsSqlTests` class that will be responsible for configuring, creating, and starting the dependent Microsoft SQL Server container. The `MsSqlTests` class will contain a nested `IndexPageTests` class that will run the tests. This will allow us to access the private container field and follow a neat hierarchy in the test explorer.
-
-```csharp
-public sealed class MsSqlTests : IAsyncLifetime
-{
-    private const string Database = "master";
-
-    private const string Username = "sa";
-
-    private const string Password = "yourStrong(!)Password";
-
-    private const ushort MsSqlPort = 1433;
-
-    private readonly IContainer _mssqlContainer = new ContainerBuilder()
-        .WithImage("mcr.microsoft.com/mssql/server:2022-CU1-ubuntu-20.04")
-        .WithPortBinding(MsSqlPort, true)
-        .WithEnvironment("ACCEPT_EULA", "Y")
-        .WithEnvironment("SQLCMDUSER", Username)
-        .WithEnvironment("SQLCMDPASSWORD", Password)
-        .WithEnvironment("MSSQL_SA_PASSWORD", Password)
-        .WithWaitStrategy(Wait.ForUnixContainer().UntilCommandIsCompleted("/opt/mssql-tools/bin/sqlcmd", "-Q", "SELECT 1;"))
-        .Build();
-
-    public Task InitializeAsync()
-    {
-        return _mssqlContainer.StartAsync();
-    }
-
-    public Task DisposeAsync()
-    {
-        return _mssqlContainer.DisposeAsync().AsTask();
-    }
-
-    public sealed class IndexPageTests : IClassFixture<MsSqlTests>, IDisposable
-    {
-        private readonly WebApplicationFactory<Program> _webApplicationFactory;
-
-        private readonly HttpClient _httpClient;
-
-        public IndexPageTests(MsSqlTests fixture)
-        {
-            var clientOptions = new WebApplicationFactoryClientOptions();
-            clientOptions.AllowAutoRedirect = false;
-
-            _webApplicationFactory = new CustomWebApplicationFactory(fixture);
-            _httpClient = _webApplicationFactory.CreateClient(clientOptions);
-        }
-
-        public void Dispose()
-        {
-            _webApplicationFactory.Dispose();
-        }
-
-        private sealed class CustomWebApplicationFactory : WebApplicationFactory<Program>
-        {
-            private readonly string _connectionString;
-
-            public CustomWebApplicationFactory(MsSqlTests fixture)
-            {
-                _connectionString = $"Server={fixture._mssqlContainer.Hostname},{fixture._mssqlContainer.GetMappedPublicPort(MsSqlPort)};Database={Database};User Id={Username};Password={Password};TrustServerCertificate=True";
-            }
-
-            protected override void ConfigureWebHost(IWebHostBuilder builder)
-            {
-                builder.ConfigureServices(services =>
-                {
-                    services.Remove(services.SingleOrDefault(service => typeof(DbContextOptions<ApplicationDbContext>) == service.ServiceType));
-                    services.Remove(services.SingleOrDefault(service => typeof(DbConnection) == service.ServiceType));
-                    services.AddDbContext<ApplicationDbContext>((_, option) => option.UseSqlServer(_connectionString));
-                });
-            }
-        }
-    }
-}
-```
-
-> [!NOTE]
-> The Microsoft SQL Server image is not compatible with Arm64 devices, you can use the [Azure SQL Edge](https://github.com/testcontainers/testcontainers-dotnet/blob/a1e14cbf8002aea59b3ee0a9fcb4130fdd578792/src/Testcontainers.SqlEdge/SqlEdgeBuilder.cs#L60-L67) image instead.
-
-Creating a new `ContainerBuilder()` instance allows us to configure the dependent service. The above code snippet sets the required configurations and adds a wait strategy that indicates readiness of the service running inside the container. [xUnit.net](https://xunit.net) calls `IAsyncLifetime.InitializeAsync` immediately after the class has been created. Our test uses this mechanism to start the Microsoft SQL Server instance before any test run.
-
-The `IndexPageTests` class creates a custom instance of `WebApplicationFactory<TEntryPoint>`. Instead of adding a database context that relies on SQLite, we simply pass our Microsoft SQL Server connection string to `UseSqlServer(string)` to add a new database context. With Testcontainers, you can even shift this entire configuration to the web application entry point class and start dependent services together with your application.
-
-Now that the test class is ready, we can move the original tests to it. For example, copy the following test to our new `IndexPageTests` class and run the test against a Microsoft SQL Server instance:
-
-```csharp
-[Fact]
-public async Task Post_DeleteAllMessagesHandler_ReturnsRedirectToRoot()
-{
-    // Arrange
-    var defaultPage = await _httpClient.GetAsync("/")
-        .ConfigureAwait(false);
-
-    var document = await HtmlHelpers.GetDocumentAsync(defaultPage)
-        .ConfigureAwait(false);
-
-    // Act
-    var form = (IHtmlFormElement)document.QuerySelector("form[id='messages']");
-    var submitButton = (IHtmlButtonElement)document.QuerySelector("button[id='deleteAllBtn']");
-
-    var response = await _httpClient.SendAsync(form, submitButton)
-        .ConfigureAwait(false);
-
-    // Assert
-    Assert.Equal(HttpStatusCode.OK, defaultPage.StatusCode);
-    Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
-    Assert.Equal("/", response.Headers.Location.OriginalString);
-}
-```
-
-Please note that the first test run might take a few seconds longer since we need to pull the required image first.
-
-By replacing SQLite with a database provider used in production, developers can further increase their confidence in their tests. The `MsSqlTests` class uses Testcontainers to configure, create and start a Microsoft SQL Server container, allowing the `IndexPageTests` class to test the application against the real database. This approach allows developers to test their application in a production-like environment and helps to identify issues early in the development cycle.
 
 ## Additional resources
 
