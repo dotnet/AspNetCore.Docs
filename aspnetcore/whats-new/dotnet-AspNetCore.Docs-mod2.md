@@ -45,7 +45,7 @@ Welcome to what's new in the ASP.NET Core docs for February 2023. This article l
 
 ### Updated articles
 
-- <xref:fundamentals/portable-object-localization> - Ra/po loc/hishamco /8
+- <xref:fundamentals/portable-object-localization> - update to .NET 6
 
 ## Security
 
