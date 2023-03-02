@@ -26,7 +26,7 @@ To enable conditional endpoint selection, a few services need to be defined:
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public sealed class ConditionalRouteAttribute : Attribute
     {
-        public bool IsConditional { get; set; }
+        public bool IsConditional { get; set; } = true;
     }
     ```
 
