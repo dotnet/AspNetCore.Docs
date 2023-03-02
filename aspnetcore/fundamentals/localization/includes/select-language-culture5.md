@@ -1,15 +1,4 @@
----
-title: Strategies for selecting language and culture in a localized ASP.NET Core app
-author: rick-anderson
-description: Learn how to select a language and culture when localizing content into different languages and cultures in an ASP.NET Core app.
-ms.author: riande
-monikerRange: '>= aspnetcore-5.0'
-ms.date: 02/23/2023
-uid: fundamentals/localization/select-language-culture
----
-# Implement a strategy to select the language/culture for each request in a localized ASP.NET Core app
-
-:::moniker range="> aspnetcore-5.0"
+:::moniker range="= aspnetcore-5.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
@@ -180,5 +169,3 @@ Localizing an app also involves the following tasks:
 * [Localization & Generics](http://hishambinateya.com/localization-and-generics)
 
 :::moniker-end
-
-[!INCLUDE [select-language-culture5](~/fundamentals/localization/includes/select-language-culture5.md)]

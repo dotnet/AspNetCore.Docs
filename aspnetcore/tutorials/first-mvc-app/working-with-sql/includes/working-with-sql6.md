@@ -1,19 +1,4 @@
----
-title: Part 5, work with a database in an ASP.NET Core MVC app
-author: wadepickett
-description: Part 5 of tutorial series on ASP.NET Core MVC.
-ms.author: wpickett
-ms.date: 01/29/2023
-monikerRange: '>= aspnetcore-3.1'
-uid: tutorials/first-mvc-app/working-with-sql
-ms.custom: contperf-fy21q3, engagement-fy23
----
-
-# Part 5, work with a database in an ASP.NET Core MVC app
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Jon P Smith](https://twitter.com/thereformedprog).
-
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range="= aspnetcore-6.0"
 
 The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `Program.cs` file:
 
@@ -83,7 +68,7 @@ Right-click on the `Movie` table **> View Data**
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/SeedData.cs?name=FirstVersion)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/SeedData.cs?name=FirstVersion)]
 
 If there are any movies in the database, the seed initializer returns and no movies are added.
 
@@ -127,9 +112,4 @@ The app shows the seeded data.
 > [!div class="step-by-step"]
 > [Previous: Adding a model](~/tutorials/first-mvc-app/adding-model.md)
 > [Next: Adding controller methods and views](~/tutorials/first-mvc-app/controller-methods-views.md)
-
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql3-5.md)]

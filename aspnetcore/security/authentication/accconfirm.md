@@ -52,7 +52,7 @@ The `Click here to confirm your account` link is displayed because an [IEmailSen
 
 ### Configure an email provider
 
-In this tutorial, [SendGrid](https://sendgrid.com) is used to send email. A SendGrid account and key is needed to send email. Other email providers. We recommend using SendGrid or another email service to send email rather than SMTP. SMTP is difficult to secure and set up correctly.
+In this tutorial, [SendGrid](https://sendgrid.com) is used to send email. A SendGrid account and key is needed to send email. We recommend using SendGrid or another email service to send email rather than SMTP. SMTP is difficult to secure and set up correctly.
 
 The SendGrid account may require [adding a Sender](https://sendgrid.com/docs/ui/sending-email/senders/).
 

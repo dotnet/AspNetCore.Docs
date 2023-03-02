@@ -1,19 +1,4 @@
----
-title: Part 9, add validation to an ASP.NET Core MVC app
-author: wadepickett
-description: Part 9 of tutorial series on ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
-ms.date: 01/29/2023
-ms.custom: engagement-fy23
-uid: tutorials/first-mvc-app/validation
----
-
-# Part 9, add validation to an ASP.NET Core MVC app
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range="= aspnetcore-6.0"
 
 In this section:
 
@@ -26,7 +11,7 @@ One of the design tenets of MVC is [DRY](https://wikipedia.org/wiki/Don%27t_repe
 
 The validation support provided by MVC and Entity Framework Core Code First is a good example of the DRY principle in action. You can declaratively specify validation rules in one place (in the model class) and the rules are enforced everywhere in the app.
 
-[!INCLUDE[](~/includes/RP-MVC/validation-net7.md)]
+[!INCLUDE[](~/includes/RP-MVC/validation-net6.md)]
 
 ## Validation Error UI
 
@@ -82,7 +67,7 @@ When you need to change validation logic, you can do so in exactly one place by 
 
 Open the `Movie.cs` file and examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. We've already applied a `DataType` enumeration value to the release date and to the price fields. The following code shows the `ReleaseDate` and `Price` properties with the appropriate `DataType` attribute.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/Movie.cs?highlight=2,6&name=DataType)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?highlight=2,6&name=DataType)]
 
 The `DataType` attributes only provide hints for the view engine to format the data and supplies elements/attributes such as `<a>` for URL's and `<a href="mailto:EmailAddress.com">` for email. You can use the `RegularExpression` attribute to validate the format of the data. The `DataType` attribute is used to specify a data type that's more specific than the database intrinsic type, they're not validation attributes. In this case we only want to keep track of the date, not the time. The `DataType` Enumeration provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress and more. The `DataType` attribute can also enable the application to automatically provide type-specific features. For example, a `mailto:` link can be created for `DataType.EmailAddress`, and a date selector can be provided for `DataType.Date` in browsers that support HTML5. The `DataType` attributes emit HTML 5 `data-` (pronounced data dash) attributes that HTML 5 browsers can understand. The
 `DataType` attributes do **not** provide any validation.
@@ -115,7 +100,7 @@ You will need to disable jQuery date validation to use the `Range` attribute wit
 
 The following code shows combining attributes on one line:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/Movie.cs?name=AttrOneLine)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Models/Movie.cs?name=AttrOneLine)]
 
 In the next part of the series, we review the app and make some improvements to the automatically generated `Details` and `Delete` methods.
 
@@ -128,10 +113,6 @@ In the next part of the series, we review the app and make some improvements to 
 
 > [!div class="step-by-step"]
 > [Previous](~/tutorials/first-mvc-app/new-field.md)
-> [Next](~/tutorials/first-mvc-app/details.md)  
+> [Next](~/tutorials/first-mvc-app/details.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/validation/includes/validation6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/validation/includes/validation3-5.md)]
