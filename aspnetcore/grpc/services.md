@@ -82,10 +82,7 @@ The `ServerCallContext` gives the context for a server-side call.
 The service implementation is registered with the app. If the service is hosted by ASP.NET Core gRPC, it should be added to the routing pipeline with the `MapGrpcService` method.
 
 ```csharp
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapGrpcService<GreeterService>();
-});
+app.MapGrpcService<GreeterService>();
 ```
 
 See <xref:grpc/aspnetcore> for more information.
