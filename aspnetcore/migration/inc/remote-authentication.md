@@ -22,7 +22,7 @@ First, follow the [remote app setup](xref:migration/inc/remote-app-setup) instru
 
 ### ASP.NET app configuration
 
-First, the ASP.NET app needs to be configured to add the authentication endpoint. This is done by calling the `AddRemoteAuthentication` extension method to set up the HTTP module that will watch for requests to the authentication endpoint. Note that remote authentication scenarios typically want to add proxy support as well, so that any auth-related redirects will correctly route to the ASP.NET Core app rather than the ASP.NET one.
+First, the ASP.NET app needs to be configured to add the authentication endpoint. This is done by calling the `AddAuthenticationServer` extension method to set up the HTTP module that will watch for requests to the authentication endpoint. Note that remote authentication scenarios typically want to add proxy support as well, so that any auth-related redirects will correctly route to the ASP.NET Core app rather than the ASP.NET one.
 
 ```CSharp
 SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
@@ -31,12 +31,12 @@ SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
     {
         options.ApiKey = ConfigurationManager.AppSettings["RemoteAppApiKey"];
     })
-    .AddRemoteAppAuthentication();
+    .AddAuthenticationServer();
 ```
 
 ### ASP.NET Core app configuration
 
-Next, the ASP.NET Core app needs to be configured to enable the authentication handler that will authenticate users by making an HTTP request to the ASP.NET app. Again, this is done by calling `AddRemoteAppAuthentication` when registering System.Web adapters services:
+Next, the ASP.NET Core app needs to be configured to enable the authentication handler that will authenticate users by making an HTTP request to the ASP.NET app. Again, this is done by calling `AddAuthenticationClient` when registering System.Web adapters services:
 
 ```CSharp
 builder.Services.AddSystemWebAdapters()
@@ -45,12 +45,12 @@ builder.Services.AddSystemWebAdapters()
         options.RemoteAppUrl = new(builder.Configuration["ReverseProxy:Clusters:fallbackCluster:Destinations:fallbackApp:Address"]);
         options.ApiKey = builder.Configuration("RemoteAppApiKey");
     })
-    .AddRemoteAppAuthentication(true);
+    .AddAuthenticationClient(true);
 ```
 
-The boolean that is passed to the `AddRemoteAuthentication` call specifies whether remote app authentication should be the default authentication scheme. Passing `true` will cause the user to be authenticated via remote app authentication for all requests, whereas passing `false` means that the user will only be authenticated with remote app authentication if the remote app scheme is specifically requested (with `[Authorize(AuthenticationSchemes = RemoteAppAuthenticationDefaults.AuthenticationScheme)]` on a controller or action method, for example). Passing false for this parameter has the advantage of only making HTTP requests to the original ASP.NET app for authentication for endpoints that require remote app authentication but has the disadvantage of requiring annotating all such endpoints to indicate that they will use remote app auth.
+The boolean that is passed to the `AddAuthenticationClient` call specifies whether remote app authentication should be the default authentication scheme. Passing `true` will cause the user to be authenticated via remote app authentication for all requests, whereas passing `false` means that the user will only be authenticated with remote app authentication if the remote app scheme is specifically requested (with `[Authorize(AuthenticationSchemes = RemoteAppAuthenticationDefaults.AuthenticationScheme)]` on a controller or action method, for example). Passing false for this parameter has the advantage of only making HTTP requests to the original ASP.NET app for authentication for endpoints that require remote app authentication but has the disadvantage of requiring annotating all such endpoints to indicate that they will use remote app auth.
 
-In addition to the require boolean, an optional callback may be passed to `AddRemoteAppAuthentication` to modify some other aspects of the remote authentication process's behavior:
+In addition to the require boolean, an optional callback may be passed to `AddAuthenticationClient` to modify some other aspects of the remote authentication process's behavior:
 
 * `RequestHeadersToForward`: This property contains headers that should be forwarded from a request when calling the authenticate API. By default, the only headers forwarded are `Authorization` and `Cookie`. Additional headers can be forwarded by adding them to this list. Alternatively, if the list is cleared (so that no headers are specified), then all headers will be forwarded.
 * `ResponseHeadersToForward`: This property lists response headers that should be propagated back from the authenticate request to the original call that prompted authentication in scenarios where identity is challenged. By default, this includes `Location`, `Set-Cookie`, and `WWW-Authenticate` headers.
