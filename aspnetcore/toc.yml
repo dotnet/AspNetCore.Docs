@@ -1712,7 +1712,9 @@ items:
             - name: Remote app session state
               uid: migration/inc/remote-session
             - name: Remote Authentication
-              uid: migration/inc/remote-authentication 
+              uid: migration/inc/remote-authentication             
+            - name: A/B Testing endpoints
+              uid: migration/inc/ab-testing 
           - name: Overview
             uid: migration/proper-to-2x/index
           - name: MVC
