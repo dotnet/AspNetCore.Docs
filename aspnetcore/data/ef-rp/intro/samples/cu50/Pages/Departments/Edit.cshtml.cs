@@ -116,7 +116,6 @@ namespace ContosoUniversity.Pages.Departments
 
         private IActionResult HandleDeletedDepartment()
         {
-            var deletedDepartment = new Department();
             // ModelState contains the posted data because of the deletion error
             // and overides the Department instance values when displaying Page().
             ModelState.AddModelError(string.Empty,
@@ -126,7 +125,7 @@ namespace ContosoUniversity.Pages.Departments
         }
 
         #region snippet_Error
-        private async Task setDbErrorMessage(Department dbValues,
+        private async Task SetDbErrorMessage(Department dbValues,
                 Department clientValues, SchoolContext context)
         {
 
@@ -259,7 +258,7 @@ namespace ContosoUniversity.Pages.Departments
                     }
 
                     var dbValues = (Department)databaseEntry.ToObject();
-                    await setDbErrorMessage(dbValues, clientValues, _context);
+                    await SetDbErrorMessage(dbValues, clientValues, _context);
 
                     // Save the current ConcurrencyToken so next postback
                     // matches unless an new concurrency issue happens.
