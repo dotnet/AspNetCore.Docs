@@ -1645,8 +1645,8 @@ items:
         uid: fundamentals/metapackage-app
       - name: Microsoft.AspNetCore.All metapackage
         uid: fundamentals/metapackage
-      - name: Logging with LoggerMessage
-        uid: fundamentals/logging/loggermessage
+      - name: High performance logging
+        uid: /dotnet/core/extensions/high-performance-logging?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
       - name: Use a file watcher
         uid: tutorials/dotnet-watch
       - name: Factory-based middleware
