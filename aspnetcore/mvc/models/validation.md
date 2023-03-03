@@ -227,6 +227,8 @@ The following code implements the validation test in a controller:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/models/ModelStateError/Controllers/ContactsController.cs" id="snippet_4":::
 
+Checking for a unique phone number or email is typically also done with [remote validation](#remote-attribute).
+
 ## Top-level node validation
 
 Top-level nodes include:
