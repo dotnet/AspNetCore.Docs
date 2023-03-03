@@ -10,10 +10,6 @@ uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
 
-<!-- Ready for https://github.com/dotnet/AspNetCore.Docs/issues/27861 
-code from https://github.com/dotnet/AspNetCore.Docs.Samples/pull/115
-https://github.com/dotnet/AspNetCore.Docs.Samples/issues/92
--->
 :::moniker range=">= aspnetcore-7.0"
 
 This article explains how to validate user input in an ASP.NET Core MVC or Razor Pages app.
@@ -212,6 +208,24 @@ The `movie` variable in the preceding example represents a `Movie` object that c
 The preceding example works only with `Movie` types. Another option for class-level validation is to implement <xref:System.ComponentModel.DataAnnotations.IValidatableObject> in the model class, as shown in the following example:
 
 :::code language="csharp" source="~/mvc/models/validation/samples/6.x/ValidationSample/Models/ValidatableMovie.cs" id="snippet_Class" highlight="1,26-34":::
+
+## Custom validation
+
+The following code shows how to add a model error after examining the model:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/RazorPages/models/ModelStateError/Pages/Contacts/Create.cshtml.cs" id="snippet_5"":::
+
+The following code implements the validation test in a controller:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/models/ModelStateError/Controllers/ContactsController.cs" id="snippet_5"":::
+
+The following code verifies the phone number and email are unique:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/RazorPages/models/ModelStateError/Pages/Contacts/Create.cshtml.cs" id="snippet_5"":::
+
+The following code implements the validation test in a controller:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/models/ModelStateError/Controllers/ContactsController.cs" id="snippet_5"":::
 
 ## Top-level node validation
 
