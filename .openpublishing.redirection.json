@@ -1,6 +1,11 @@
 {
     "redirections": [
         {
+            "source_path": "aspnetcore/fundamentals/logging/loggermessage.md",
+            "redirect_url": "/dotnet/core/extensions/high-performance-logging",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/client-side/spa/react-with-redux.md",
             "redirect_url": "/aspnet/core/client-side/spa/intro",
             "redirect_document_id": false
