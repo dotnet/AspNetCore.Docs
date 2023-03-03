@@ -217,7 +217,7 @@ The following code shows how to add a model error after examining the model:
 
 The following code implements the validation test in a controller:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/models/ModelStateError/Controllers/ContactsController.cs" id="snippet_1":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/models/ModelStateError/Controllers/ContactsController.cs" id="snippet_5":::
 
 The following code verifies the phone number and email are unique:
 
