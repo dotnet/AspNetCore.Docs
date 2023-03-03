@@ -213,19 +213,19 @@ The preceding example works only with `Movie` types. Another option for class-le
 
 The following code shows how to add a model error after examining the model:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/RazorPages/models/ModelStateError/Pages/Contacts/Create.cshtml.cs" id="snippet_5"":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/RazorPages/models/ModelStateError/Pages/Contacts/Create.cshtml.cs" id="snippet_5":::
 
 The following code implements the validation test in a controller:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/models/ModelStateError/Controllers/ContactsController.cs" id="snippet_5"":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/models/ModelStateError/Controllers/ContactsController.cs" id="snippet_1":::
 
 The following code verifies the phone number and email are unique:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/RazorPages/models/ModelStateError/Pages/Contacts/Create.cshtml.cs" id="snippet_5"":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/RazorPages/models/ModelStateError/Pages/Contacts/Create.cshtml.cs" id="snippet_1":::
 
 The following code implements the validation test in a controller:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/models/ModelStateError/Controllers/ContactsController.cs" id="snippet_5"":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/models/ModelStateError/Controllers/ContactsController.cs" id="snippet_4":::
 
 ## Top-level node validation
 
