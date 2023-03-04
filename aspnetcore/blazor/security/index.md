@@ -367,11 +367,16 @@ To require a user have both `Admin` and `Superuser` role claims, nest <xref:Micr
 
 ```razor
 <AuthorizeView Roles="Admin">
-    <AuthorizeView Roles="Superuser">
+    <p>User: @context.User</p>
+    <p>You have the 'Admin' role claim.</p>
+    <AuthorizeView Roles="Superuser" Context="innerContext">
+        <p>User: @innerContext.User</p>
         <p>You have both 'Admin' or 'Superuser' role claims.</p>
     </AuthorizeView>
 </AuthorizeView>
 ```
+
+The preceding code establishes a `Context` for the inner <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component to prevent an <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> context collision. The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> context is accessed in the outer <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> with the standard approach for accessing the context (`@context.User`). The context is accessed in the inner <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> with the named `innerContext` context (`@innerContext.User`).
 
 For more information, including configuration guidance, see <xref:security/authorization/roles>.
 
