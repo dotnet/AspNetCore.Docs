@@ -113,6 +113,8 @@ Custom events with custom event arguments are generally enabled with the followi
 1. Define a class for the event arguments:
 
    ```csharp
+   namespace BlazorSample.CustomEvents;
+
    public class CustomEventArgs : EventArgs
    {
        public string? CustomProperty1 {get; set;}
@@ -120,9 +122,20 @@ Custom events with custom event arguments are generally enabled with the followi
    }
    ```
 
-1. Wire up the custom event with the event arguments by adding an <xref:Microsoft.AspNetCore.Components.EventHandlerAttribute> attribute annotation for the custom event. The class doesn't require members. Note that the class *must* be called `EventHandlers` in order to be found by the Razor compiler, but you should put it in a namespace specific to your app:
+1. Wire up the custom event with the event arguments by adding an <xref:Microsoft.AspNetCore.Components.EventHandlerAttribute> attribute annotation for the custom event:
+
+   * In order for the compiler to find the `[EventHandler]` class, it must be placed into a C# class file (`.cs`), making it a normal top-level class.
+   * Mark the class `public`.
+   * The class doesn't require members.
+   * The class *must* be called "`EventHandlers`" in order to be found by the Razor compiler.
+   * Place the class under a namespace specific to your app.
+   * Import the namespace into the Razor component (`.razor`) where the event is used.
 
    ```csharp
+   using Microsoft.AspNetCore.Components;
+
+   namespace BlazorSample.CustomEvents;
+
    [EventHandler("oncustomevent", typeof(CustomEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
    public static class EventHandlers
    {
@@ -132,6 +145,8 @@ Custom events with custom event arguments are generally enabled with the followi
 1. Register the event handler on one or more HTML elements. Access the data that was passed in from JavaScript in the delegate handler method:
 
    ```razor
+   @using BlazorSample.CustomEvents
+
    <button @oncustomevent="HandleCustomEvent">Handle</button>
 
    @code
@@ -434,7 +449,7 @@ Custom events with custom event arguments are generally enabled with the followi
    }
    ```
 
-1. Register the custom event with the preceding handler in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server) immediately after the Blazor `<script>`:
+1. Register the custom event with the preceding handler in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server) immediately after the Blazor `<script>`:
 
    ```html
    <script>
@@ -450,6 +465,8 @@ Custom events with custom event arguments are generally enabled with the followi
 1. Define a class for the event arguments:
 
    ```csharp
+   namespace BlazorSample.CustomEvents;
+
    public class CustomEventArgs : EventArgs
    {
        public string? CustomProperty1 {get; set;}
@@ -457,9 +474,20 @@ Custom events with custom event arguments are generally enabled with the followi
    }
    ```
 
-1. Wire up the custom event with the event arguments by adding an <xref:Microsoft.AspNetCore.Components.EventHandlerAttribute> attribute annotation for the custom event. The class doesn't require members. Note that the class *must* be called `EventHandlers` in order to be found by the Razor compiler, but you should put it in a namespace specific to your app:
+1. Wire up the custom event with the event arguments by adding an <xref:Microsoft.AspNetCore.Components.EventHandlerAttribute> attribute annotation for the custom event:
+
+   * In order for the compiler to find the `[EventHandler]` class, it must be placed into a C# class file (`.cs`), making it a normal top-level class.
+   * Mark the class `public`.
+   * The class doesn't require members.
+   * The class *must* be called "`EventHandlers`" in order to be found by the Razor compiler.
+   * Place the class under a namespace specific to your app.
+   * Import the namespace into the Razor component (`.razor`) where the event is used.
 
    ```csharp
+   using Microsoft.AspNetCore.Components;
+
+   namespace BlazorSample.CustomEvents;
+
    [EventHandler("oncustomevent", typeof(CustomEventArgs), enableStopPropagation: true, enablePreventDefault: true)]
    public static class EventHandlers
    {
@@ -469,6 +497,8 @@ Custom events with custom event arguments are generally enabled with the followi
 1. Register the event handler on one or more HTML elements. Access the data that was passed in from JavaScript in the delegate handler method:
 
    ```razor
+   @using namespace BlazorSample.CustomEvents
+
    <button @oncustomevent="HandleCustomEvent">Handle</button>
 
    @code

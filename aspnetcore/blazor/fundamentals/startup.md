@@ -140,43 +140,11 @@ export function beforeStart(options, extensions) {
 }
 ```
 
-For browser compatibility, see [Can I use: JavaScript statement: import](https://caniuse.com/?search=JavaScript%20statement%3A%20import).
-
-[Dynamic import with the `import()` operator](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import) is supported with ASP.NET Core and Blazor:
-
-```javascript
-import("/additionalModule.js");
-```
-
-For browser compatibility, see [Can I use: JavaScript modules: dynamic import](https://caniuse.com/es6-module-dynamic-import).
-
-### Export additional JavaScript in the JavaScript initializers file
-
-Because the JS initializers file (`*.lib.module.js`) is an ordinary ES6 module, exporting additional JS side-by-side with `beforeStart` and `afterStarted` is supported:
-
-```javascript
-export function beforeStart(options, extensions) {
-  ...
-}
-
-export function afterStarted(blazor) {
-  ...
-}
-
-export function customFunction() {
-  ...
-}
-```
-
 ### Import map
 
 [Import maps](https://developer.mozilla.org/docs/Web/HTML/Element/script/type/importmap) are supported by ASP.NET Core and Blazor.
 
 For browser compatibility, see [Can I use: import maps](https://caniuse.com/import-maps).
-
-### Module extension (`.js`/`.mjs`)
-
-Both `.js` and `.mjs` module extensions are supported by ASP.NET Core and Blazor, which are sent with a MIME type of `text/javascript`.
 
 :::moniker-end
 
