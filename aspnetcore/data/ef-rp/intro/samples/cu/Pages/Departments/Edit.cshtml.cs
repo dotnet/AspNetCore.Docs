@@ -95,7 +95,7 @@ namespace ContosoUniversity.Pages.Departments
                     }
 
                     var dbValues = (Department)databaseEntry.ToObject();
-                    await setDbErrorMessage(dbValues, clientValues, _context);
+                    await SetDbErrorMessage(dbValues, clientValues, _context);
 
                     // Save the current RowVersion so next postback
                     // matches unless an new concurrency issue happens.
@@ -114,7 +114,6 @@ namespace ContosoUniversity.Pages.Departments
 
         private IActionResult HandleDeletedDepartment()
         {
-            var deletedDepartment = new Department();
             // ModelState contains the posted data because of the deletion error and will overide the Department instance values when displaying Page().
             ModelState.AddModelError(string.Empty,
                 "Unable to save. The department was deleted by another user.");
@@ -123,7 +122,7 @@ namespace ContosoUniversity.Pages.Departments
         }
 
         #region snippet_err
-        private async Task setDbErrorMessage(Department dbValues,
+        private async Task SetDbErrorMessage(Department dbValues,
                 Department clientValues, SchoolContext context)
         {
 
