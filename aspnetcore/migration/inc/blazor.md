@@ -1,7 +1,7 @@
 ---
 title: Enable ASP.NET Core Blazor support with Yarp in incremental migration
 author: twsouthwick
-description: Blazor Support in Incremental Migration
+description: Learn how to enable ASP.NET Core Blazor support with Yarp in incremental migration.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: tasou
 ms.custom: "mvc"
