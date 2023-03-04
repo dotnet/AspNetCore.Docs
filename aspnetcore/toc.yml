@@ -1715,7 +1715,9 @@ items:
             - name: Remote Authentication
               uid: migration/inc/remote-authentication             
             - name: A/B Testing endpoints
-              uid: migration/inc/ab-testing 
+              uid: migration/inc/ab-testing
+            - name: Blazor support with YARP 
+              uid: migration/inc/blazor
           - name: Overview
             uid: migration/proper-to-2x/index
           - name: MVC
