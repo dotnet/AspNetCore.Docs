@@ -10,17 +10,17 @@ ms.prod: aspnet-core
 uid: migration/inc/ab-testing
 ---
 
-# A/B Testing Endpoints during Migration
+# A/B Testing endpoints during migration
 
-During incremental migration, new endpoints will be brought over to a YARP-enabled ASP.NET Core application. With the default setup, these will automatically be served for all requests once deployed. In order to test these endpoints, or be able to turn them off if needed, we need to add some additional setup for the application.
+During incremental migration, new endpoints are brought over to a [YARP](https://microsoft.github.io/reverse-proxy/) enabled ASP.NET Core app. With the default setup, these endpoints are automatically served for all requests once deployed. In order to test these endpoints, or be able to turn them off if needed, additional setup is needed.
 
-This document will describe how to setup a conditional endpoint selection system to enable A/B testing during incremental migration. It assumes a setup as described [incremental migration overview](xref:migration/inc/overview) as a starting point.
+This document describes how to setup a conditional endpoint selection system to enable A/B testing during incremental migration. It assumes a setup as described in [incremental migration overview](xref:migration/inc/overview) as a starting point.
 
-## Conditional Endpoint Selection
+## Conditional endpoint selection
 
 To enable conditional endpoint selection, a few services need to be defined:
 
-1. Metadata that can be added to an endpoint (controllers, minimal APIs, etc) to turn on any conditional related logic. If this is not present on an endpoint, that endpoint will not incur any potential cost with checks that may be performed.
+1. Metadata that can be added to an endpoint to turn on any conditional related logic. Endpoints include controllers, minimal APIs, Razor Page, etc. If this metadata isn't added to an endpoint, no conditional checks are performed for it.
 
     ```CSharp
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
@@ -30,7 +30,7 @@ To enable conditional endpoint selection, a few services need to be defined:
     }
     ```
 
-    The property `IsConditional` is useful if you want to set it `true` at a global level, and then allow lower levels (i.e. controllers or routes) to turn off the conditional checks.
+    The property `IsConditional` is useful to set it `true` at a global level, and then allow lower levels, such as controllers or routes, to turn off the conditional checks.
 
 2. The API we want to implement to make a decision per request and endpoint selection:
 
@@ -41,13 +41,13 @@ To enable conditional endpoint selection, a few services need to be defined:
     }
     ```
 
-3. A `MatcherPolicy` that will be used to hook into routing and call our custom selector:
+3. A `MatcherPolicy` that is used to hook into routing and call the custom selector:
 
     ```CSharp
     public static class ConditionalEndpointExtensions
     {
         /// <summary>
-        /// Registers a <see cref="IConditionalEndpointSelector"/> that will be called when selecting
+        /// Registers a <see cref="IConditionalEndpointSelector"/> that is called when selecting
         /// an endpoint that has been marked as conditional by <see cref="WithConditionalRoute{TBuilder}(TBuilder)"/>.
         /// </summary>
         /// <typeparam name="T">Type of selector</typeparam>
@@ -105,7 +105,7 @@ To enable conditional endpoint selection, a few services need to be defined:
     }
     ```
 
-4. Implement a custom selector. As an example, this will define a check for the presence of a query parameter (`IgnoreLocal`) that will turn off the local endpoint and use the Yarp endpoint instead.
+4. Implement a custom selector. As an example, this defines a check for the presence of a query parameter (`IgnoreLocal`) that turns off the local endpoint and uses the YARP endpoint instead.
 
     ```CSharp
     public class QueryConditionalSelector : IConditionalEndpointSelector
@@ -121,7 +121,7 @@ To enable conditional endpoint selection, a few services need to be defined:
         }
     ```
 
-5. Register the services in the program startup and mark the controllers for conditional selection. This marking can also be done using attribute marking on controllers or routes if needed. 
+5. Register the services in the program startup and mark the controllers for conditional selection. This marking can also be done using attribute marking on controllers or routes if needed.
 
     ```diff
     using Microsoft.AspNetCore.SystemWebAdapters;
