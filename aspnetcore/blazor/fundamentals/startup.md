@@ -85,6 +85,8 @@ The preceding `beforeStart` example only guarantees that the custom script loads
 
 For an examples of JS initializers, see the following resources:
 
+* <xref:blazor/components/index#render-razor-components-from-javascript> (*`quoteContainer2` example*)
+* <xref:blazor/components/event-handling#custom-event-arguments> (*Custom clipboard paste event example*)
 * <xref:blazor/host-and-deploy/webassembly-deployment-layout>
 * [Basic Test App in the ASP.NET Core GitHub repository (`BasicTestApp.lib.module.js`)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/wwwroot/BasicTestApp.lib.module.js)
 

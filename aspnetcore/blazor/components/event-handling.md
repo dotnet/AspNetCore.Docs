@@ -97,18 +97,24 @@ Custom events with custom event arguments are generally enabled with the followi
    }
    ```
 
-1. Register the custom event with the preceding handler in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server) immediately after the Blazor `<script>`:
+1. Register the custom event with the preceding handler in a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers).
 
-   ```html
-   <script>
-     Blazor.registerCustomEventType('customevent', {
+   `wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js`:
+
+   ```javascript
+   export function afterStarted(blazor) {
+     blazor.registerCustomEventType('customevent', {
        createEventArgs: eventArgsCreator
      });
-   </script>
+   }
    ```
+
+   In the preceding example, the `{PACKAGE ID/ASSEMBLY NAME}` placeholder of the file name represents the package ID or assembly name of the app.
 
    > [!NOTE]
    > The call to `registerCustomEventType` is performed in a script only once per event.
+   >
+   > For the call to `registerCustomEventType`, use the `blazor` parameter (lowercase `b`) provided by `afterStarted`. Although the registration is valid when using the `Blazor` object (uppercase `B`), the preferred approach is to use the parameter.
 
 1. Define a class for the event arguments:
 
@@ -145,7 +151,7 @@ Custom events with custom event arguments are generally enabled with the followi
 1. Register the event handler on one or more HTML elements. Access the data that was passed in from JavaScript in the delegate handler method:
 
    ```razor
-   @using BlazorSample.CustomEvents
+   @using namespace BlazorSample.CustomEvents
 
    <button @oncustomevent="HandleCustomEvent">Handle</button>
 
@@ -174,6 +180,10 @@ Declare a custom name (`oncustompaste`) for the event and a .NET class (`CustomP
 `CustomEvents.cs`:
 
 ```csharp
+using Microsoft.AspNetCore.Components;
+
+namespace BlazorSample.CustomEvents;
+
 [EventHandler("oncustompaste", typeof(CustomPasteEventArgs), 
     enableStopPropagation: true, enablePreventDefault: true)]
 public static class EventHandlers
@@ -187,23 +197,28 @@ public class CustomPasteEventArgs : EventArgs
 }
 ```
 
-Add JavaScript code to supply data for the <xref:System.EventArgs> subclass. In the `wwwroot/index.html` or `Pages/_Host.cshtml` file, add the following `<script>` tag and content immediately after the Blazor script. The following example only handles pasting text, but you could use arbitrary JavaScript APIs to deal with users pasting other types of data, such as images.
+Add JavaScript code to supply data for the <xref:System.EventArgs> subclass with the preceding handler in a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers). The following example only handles pasting text, but you could use arbitrary JavaScript APIs to deal with users pasting other types of data, such as images.
 
-`wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server) immediately after the Blazor script:
+`wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js`:
 
-```html
-<script>
-  Blazor.registerCustomEventType('custompaste', {
-      browserEventName: 'paste',
-      createEventArgs: event => {
-        return {
-          eventTimestamp: new Date(),
-          pastedData: event.clipboardData.getData('text')
-        };
-      }
+```javascript
+export function afterStarted(blazor) {
+  blazor.registerCustomEventType('custompaste', {
+    browserEventName: 'paste',
+    createEventArgs: event => {
+      return {
+        eventTimestamp: new Date(),
+        pastedData: event.clipboardData.getData('text')
+      };
+    }
   });
-</script>
+}
 ```
+
+In the preceding example, the `{PACKAGE ID/ASSEMBLY NAME}` placeholder of the file name represents the package ID or assembly name of the app.
+
+> [!NOTE]
+> For the call to `registerCustomEventType`, use the `blazor` parameter (lowercase `b`) provided by `afterStarted`. Although the registration is valid when using the `Blazor` object (uppercase `B`), the preferred approach is to use the parameter.
 
 The preceding code tells the browser that when a native [`paste`](https://developer.mozilla.org/docs/Web/API/Element/paste_event) event occurs:
 
@@ -223,6 +238,7 @@ In a Razor component, attach the custom handler to an element.
 
 ```razor
 @page "/custom-paste-arguments"
+@using BlazorSample.CustomEvents
 
 <label>
     Try pasting into the following text box:
@@ -449,18 +465,24 @@ Custom events with custom event arguments are generally enabled with the followi
    }
    ```
 
-1. Register the custom event with the preceding handler in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server) immediately after the Blazor `<script>`:
+1. Register the custom event with the preceding handler in a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers).
 
-   ```html
-   <script>
-     Blazor.registerCustomEventType('customevent', {
+   `wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js`:
+
+   ```javascript
+   export function afterStarted(blazor) {
+     blazor.registerCustomEventType('customevent', {
        createEventArgs: eventArgsCreator
      });
-   </script>
+   }
    ```
+
+   In the preceding example, the `{PACKAGE ID/ASSEMBLY NAME}` placeholder of the file name represents the package ID or assembly name of the app.
 
    > [!NOTE]
    > The call to `registerCustomEventType` is performed in a script only once per event.
+   >
+   > For the call to `registerCustomEventType`, use the `blazor` parameter (lowercase `b`) provided by `afterStarted`. Although the registration is valid when using the `Blazor` object (uppercase `B`), the preferred approach is to use the parameter.
 
 1. Define a class for the event arguments:
 
@@ -526,6 +548,10 @@ Declare a custom name (`oncustompaste`) for the event and a .NET class (`CustomP
 `CustomEvents.cs`:
 
 ```csharp
+using Microsoft.AspNetCore.Components;
+
+namespace BlazorSample.CustomEvents;
+
 [EventHandler("oncustompaste", typeof(CustomPasteEventArgs), 
     enableStopPropagation: true, enablePreventDefault: true)]
 public static class EventHandlers
@@ -539,23 +565,28 @@ public class CustomPasteEventArgs : EventArgs
 }
 ```
 
-Add JavaScript code to supply data for the <xref:System.EventArgs> subclass. In the `wwwroot/index.html` or `Pages/_Layout.cshtml` file, add the following `<script>` tag and content immediately after the Blazor script. The following example only handles pasting text, but you could use arbitrary JavaScript APIs to deal with users pasting other types of data, such as images.
+Add JavaScript code to supply data for the <xref:System.EventArgs> subclass with the preceding handler in a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers). The following example only handles pasting text, but you could use arbitrary JavaScript APIs to deal with users pasting other types of data, such as images.
 
-`wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor Server) immediately after the Blazor script:
+`wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js`:
 
-```html
-<script>
-  Blazor.registerCustomEventType('custompaste', {
-      browserEventName: 'paste',
-      createEventArgs: event => {
-        return {
-          eventTimestamp: new Date(),
-          pastedData: event.clipboardData.getData('text')
-        };
-      }
+```javascript
+export function afterStarted(blazor) {
+  blazor.registerCustomEventType('custompaste', {
+    browserEventName: 'paste',
+    createEventArgs: event => {
+      return {
+        eventTimestamp: new Date(),
+        pastedData: event.clipboardData.getData('text')
+      };
+    }
   });
-</script>
+}
 ```
+
+In the preceding example, the `{PACKAGE ID/ASSEMBLY NAME}` placeholder of the file name represents the package ID or assembly name of the app.
+
+> [!NOTE]
+> For the call to `registerCustomEventType`, use the `blazor` parameter (lowercase `b`) provided by `afterStarted`. Although the registration is valid when using the `Blazor` object (uppercase `B`), the preferred approach is to use the parameter.
 
 The preceding code tells the browser that when a native [`paste`](https://developer.mozilla.org/docs/Web/API/Element/paste_event) event occurs:
 
@@ -575,6 +606,7 @@ In a Razor component, attach the custom handler to an element.
 
 ```razor
 @page "/custom-paste-arguments"
+@using BlazorSample.CustomEvents
 
 <label>
     Try pasting into the following text box:
