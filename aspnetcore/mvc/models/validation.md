@@ -5,7 +5,7 @@ description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/02/2022
+ms.date: 02/17/2023
 uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
@@ -158,7 +158,9 @@ To implement remote validation:
 1. In the model class, annotate the property with a `[Remote]` attribute that points to the validation action method, as shown in the following example:
 
    :::code language="csharp" source="~/mvc/models/validation/samples/6.x/ValidationSample/Models/User.cs" id="snippet_Email":::
-   
+
+[Server side validation](#custom-validation) also needs to be implemented for clients that have disabled JavaScript.
+
 ### Additional fields
 
 The <xref:Microsoft.AspNetCore.Mvc.RemoteAttribute.AdditionalFields%2A> property of the `[Remote]` attribute lets you validate combinations of fields against data on the server. For example, if the `User` model had `FirstName` and `LastName` properties, you might want to verify that no existing users already have that pair of names. The following example shows how to use `AdditionalFields`:
@@ -208,6 +210,26 @@ The `movie` variable in the preceding example represents a `Movie` object that c
 The preceding example works only with `Movie` types. Another option for class-level validation is to implement <xref:System.ComponentModel.DataAnnotations.IValidatableObject> in the model class, as shown in the following example:
 
 :::code language="csharp" source="~/mvc/models/validation/samples/6.x/ValidationSample/Models/ValidatableMovie.cs" id="snippet_Class" highlight="1,26-34":::
+
+## Custom validation
+
+The following code shows how to add a model error after examining the model:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/RazorPages/models/ModelStateError/Pages/Contacts/Create.cshtml.cs" id="snippet_5":::
+
+The following code implements the validation test in a controller:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/models/ModelStateError/Controllers/ContactsController.cs" id="snippet_5":::
+
+The following code verifies the phone number and email are unique:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/RazorPages/models/ModelStateError/Pages/Contacts/Create.cshtml.cs" id="snippet_1":::
+
+The following code implements the validation test in a controller:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/models/ModelStateError/Controllers/ContactsController.cs" id="snippet_4":::
+
+Checking for a unique phone number or email is typically also done with [remote validation](#remote-attribute).
 
 ## Top-level node validation
 

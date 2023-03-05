@@ -613,7 +613,23 @@ A hosted Blazor WebAssembly app that [prerenders its content](xref:blazor/compon
 
 ## SignalR client logging (Blazor Server)
 
-On the client builder in `Pages/_Layout.cshtml`, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
+:::moniker range=">= aspnetcore-7.0"
+
+On the SignalR client builder in `Pages/_Host.cshtml`, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+On the SignalR client builder in `Pages/_Layout.cshtml`, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+On the SignalR client builder in `Pages/_Host.cshtml`, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
+
+:::moniker-end
 
 For the `configureLogging` log level value, pass the argument as either the string or integer log level shown in the following table.
 

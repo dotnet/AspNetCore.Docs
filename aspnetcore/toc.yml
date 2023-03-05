@@ -455,6 +455,8 @@ items:
                 uid: blazor/components/prerendering-and-integration
               - name: Class libraries
                 uid: blazor/components/class-libraries
+              - name: JavaScript apps and SPA frameworks
+                uid: blazor/components/js-spa-frameworks
               - name: Built-in components
                 uid: blazor/components/built-in-components
           - name: Globalization and localization
@@ -1585,6 +1587,15 @@ items:
       - name: Overview
         displayName: globalization, localization
         uid: fundamentals/localization
+      - name: Make an app's content localizable
+        displayName: globalization, localization
+        uid: fundamentals/localization/make-content-localizable
+      - name: Provide resources
+        displayName: globalization, localization
+        uid: fundamentals/localization/provide-resources
+      - name: Select language/culture
+        displayName: globalization, localization
+        uid: fundamentals/localization/select-language-culture
       - name: Portable Object localization
         uid: fundamentals/portable-object-localization
       - name: Extensibility
@@ -1634,8 +1645,9 @@ items:
         uid: fundamentals/metapackage-app
       - name: Microsoft.AspNetCore.All metapackage
         uid: fundamentals/metapackage
-      - name: Logging with LoggerMessage
-        uid: fundamentals/logging/loggermessage
+      - name: High performance logging
+        displayName: loggermessage
+        href: /dotnet/core/extensions/high-performance-logging?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
       - name: Use a file watcher
         uid: tutorials/dotnet-watch
       - name: Factory-based middleware
@@ -1701,7 +1713,11 @@ items:
             - name: Remote app session state
               uid: migration/inc/remote-session
             - name: Remote Authentication
-              uid: migration/inc/remote-authentication 
+              uid: migration/inc/remote-authentication             
+            - name: A/B Testing endpoints
+              uid: migration/inc/ab-testing
+            - name: Blazor support with YARP 
+              uid: migration/inc/blazor
           - name: Overview
             uid: migration/proper-to-2x/index
           - name: MVC
