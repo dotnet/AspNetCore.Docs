@@ -493,8 +493,8 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 * [Globalization and localization](xref:fundamentals/localization)
 
 > [!div class="step-by-step"]
-> [Previous Adding a View]((~/tutorials/first-mvc-app/adding-view.md)
-> [Next Working with SQL]((~/tutorials/first-mvc-app/working-with-sql.md)
+> [Previous: Adding a View](~/tutorials/first-mvc-app/adding-view.md)
+> [Next: Working with SQL](~/tutorials/first-mvc-app/working-with-sql.md)
 
 :::moniker-end
 
