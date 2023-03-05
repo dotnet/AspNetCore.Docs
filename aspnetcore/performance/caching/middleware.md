@@ -30,8 +30,8 @@ In `Program.cs`, add the Response Caching Middleware services <xref:Microsoft.Ex
 
 The sample app adds headers to control caching on subsequent requests:
 
-* [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2): Caches cacheable responses for up to 10 seconds.
-* [Vary](https://tools.ietf.org/html/rfc7231#section-7.1.4): Configures the middleware to serve a cached response only if the [Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4) header of subsequent requests matches that of the original request.
+* [Cache-Control](https://www.rfc-editor.org/rfc/rfc9111#field.cache-control): Caches cacheable responses for up to 10 seconds.
+* [Vary](https://www.rfc-editor.org/rfc/rfc9110#field.vary): Configures the middleware to serve a cached response only if the [Accept-Encoding](https://www.rfc-editor.org/rfc/rfc9110#field.accept-encoding) header of subsequent requests matches that of the original request.
 
 [!code-csharp[](middleware/samples/6.x/ResponseCachingMiddleware/Program.cs?name=snippet1&highlight=14-26)]
 
@@ -87,7 +87,7 @@ The following table provides information on HTTP headers that affect response ca
 | Header | Details |
 | ------ | ------- |
 | `Authorization` | The response isn't cached if the header exists. |
-| `Cache-Control` | The middleware only considers caching responses marked with the `public` cache directive. Control caching with the following parameters:<ul><li>max-age</li><li>max-stale&#8224;</li><li>min-fresh</li><li>must-revalidate</li><li>no-cache</li><li>no-store</li><li>only-if-cached</li><li>private</li><li>public</li><li>s-maxage</li><li>proxy-revalidate&#8225;</li></ul>&#8224;If no limit is specified to `max-stale`, the middleware takes no action.<br>&#8225;`proxy-revalidate` has the same effect as `must-revalidate`.<br><br>For more information, see [RFC 7231: Request Cache-Control Directives](https://tools.ietf.org/html/rfc7234#section-5.2.1). |
+| `Cache-Control` | The middleware only considers caching responses marked with the `public` cache directive. Control caching with the following parameters:<ul><li>max-age</li><li>max-stale&#8224;</li><li>min-fresh</li><li>must-revalidate</li><li>no-cache</li><li>no-store</li><li>only-if-cached</li><li>private</li><li>public</li><li>s-maxage</li><li>proxy-revalidate&#8225;</li></ul>&#8224;If no limit is specified to `max-stale`, the middleware takes no action.<br>&#8225;`proxy-revalidate` has the same effect as `must-revalidate`.<br><br>For more information, see [RFC 9111: Request Directives](https://www.rfc-editor.org/rfc/rfc9111.html#name-request-directives). |
 | `Pragma` | A `Pragma: no-cache` header in the request produces the same effect as `Cache-Control: no-cache`. This header is overridden by the relevant directives in the `Cache-Control` header, if present. Considered for backward compatibility with HTTP/1.0. |
 | `Set-Cookie` | The response isn't cached if the header exists. Any middleware in the request processing pipeline that sets one or more cookies prevents the Response Caching Middleware from caching the response (for example, the [cookie-based TempData provider](xref:fundamentals/app-state#tempdata)).  |
 | `Vary` | The `Vary` header is used to vary the cached response by another header. For example, cache responses by encoding by including the `Vary: Accept-Encoding` header, which caches responses for requests with headers `Accept-Encoding: gzip` and `Accept-Encoding: text/plain` separately. A response with a header value of `*` is never stored. |
@@ -100,7 +100,7 @@ The following table provides information on HTTP headers that affect response ca
 
 ## Caching respects request Cache-Control directives
 
-The middleware respects the rules of the [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234#section-5.2). The rules require a cache to honor a valid `Cache-Control` header sent by the client. Under the specification, a client can make requests with a `no-cache` header value and force the server to generate a new response for every request. Currently, there's no developer control over this caching behavior when using the middleware because the middleware adheres to the official caching specification.
+The middleware respects the rules of [RFC 9111: HTTP Caching (Section 5.2. Cache-Control)](https://www.rfc-editor.org/rfc/rfc9111#field.cache-control). The rules require a cache to honor a valid `Cache-Control` header sent by the client. Under the specification, a client can make requests with a `no-cache` header value and force the server to generate a new response for every request. Currently, there's no developer control over this caching behavior when using the middleware because the middleware adheres to the official caching specification.
 
 For more control over caching behavior, explore other caching features of ASP.NET Core. See the following topics:
 
@@ -133,7 +133,7 @@ When testing and troubleshooting caching behavior, a browser typically sets requ
 * The <xref:Microsoft.AspNetCore.Http.Features.IHttpSendFileFeature> isn't used.
 * The response must not be stale as specified by the `Expires` header and the `max-age` and `s-maxage` cache directives.
 * Response buffering must be successful. The size of the response must be smaller than the configured or default <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.SizeLimit>. The body size of the response must be smaller than the configured or default <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.MaximumBodySize>.
-* The response must be cacheable according to the [RFC 7234](https://tools.ietf.org/html/rfc7234) specifications. For example, the `no-store` directive must not exist in request or response header fields. See *Section 3: Storing Responses in Caches* of [RFC 7234](https://tools.ietf.org/html/rfc7234) for details.
+* The response must be cacheable according to [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111). For example, the `no-store` directive must not exist in request or response header fields. See [RFC 9111: HTTP Caching (Section 3: *Storing Responses in Caches*](https://www.rfc-editor.org/rfc/rfc9111#name-storing-responses-in-caches) for details.
 
 > [!NOTE]
 > The Antiforgery system for generating secure tokens to prevent Cross-Site Request Forgery (CSRF) attacks sets the `Cache-Control` and `Pragma` headers to `no-cache` so that responses aren't cached. For information on how to disable antiforgery tokens for HTML form elements, see <xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration>.
@@ -177,8 +177,8 @@ Configure the app to use the middleware with the <xref:Microsoft.AspNetCore.Buil
 
 The sample app adds headers to control caching on subsequent requests:
 
-* [Cache-Control](https://tools.ietf.org/html/rfc7234#section-5.2): Caches cacheable responses for up to 10 seconds.
-* [Vary](https://tools.ietf.org/html/rfc7231#section-7.1.4): Configures the middleware to serve a cached response only if the [Accept-Encoding](https://tools.ietf.org/html/rfc7231#section-5.3.4) header of subsequent requests matches that of the original request.
+* [Cache-Control](https://www.rfc-editor.org/rfc/rfc9111#field.cache-control): Caches cacheable responses for up to 10 seconds.
+* [Vary](https://www.rfc-editor.org/rfc/rfc9110#field.vary): Configures the middleware to serve a cached response only if the [Accept-Encoding](https://www.rfc-editor.org/rfc/rfc9110#field.accept-encoding) header of subsequent requests matches that of the original request.
 
 [!code-csharp[](middleware/samples_snippets/3.x/AddHeaders.cs)]
 
@@ -238,7 +238,7 @@ The following table provides information on HTTP headers that affect response ca
 | Header | Details |
 | ------ | ------- |
 | `Authorization` | The response isn't cached if the header exists. |
-| `Cache-Control` | The middleware only considers caching responses marked with the `public` cache directive. Control caching with the following parameters:<ul><li>max-age</li><li>max-stale&#8224;</li><li>min-fresh</li><li>must-revalidate</li><li>no-cache</li><li>no-store</li><li>only-if-cached</li><li>private</li><li>public</li><li>s-maxage</li><li>proxy-revalidate&#8225;</li></ul>&#8224;If no limit is specified to `max-stale`, the middleware takes no action.<br>&#8225;`proxy-revalidate` has the same effect as `must-revalidate`.<br><br>For more information, see [RFC 7231: Request Cache-Control Directives](https://tools.ietf.org/html/rfc7234#section-5.2.1). |
+| `Cache-Control` | The middleware only considers caching responses marked with the `public` cache directive. Control caching with the following parameters:<ul><li>max-age</li><li>max-stale&#8224;</li><li>min-fresh</li><li>must-revalidate</li><li>no-cache</li><li>no-store</li><li>only-if-cached</li><li>private</li><li>public</li><li>s-maxage</li><li>proxy-revalidate&#8225;</li></ul>&#8224;If no limit is specified to `max-stale`, the middleware takes no action.<br>&#8225;`proxy-revalidate` has the same effect as `must-revalidate`.<br><br>For more information, see [RFC 9111: Request Directives](https://www.rfc-editor.org/rfc/rfc9111.html#name-request-directives). |
 | `Pragma` | A `Pragma: no-cache` header in the request produces the same effect as `Cache-Control: no-cache`. This header is overridden by the relevant directives in the `Cache-Control` header, if present. Considered for backward compatibility with HTTP/1.0. |
 | `Set-Cookie` | The response isn't cached if the header exists. Any middleware in the request processing pipeline that sets one or more cookies prevents the Response Caching Middleware from caching the response (for example, the [cookie-based TempData provider](xref:fundamentals/app-state#tempdata)).  |
 | `Vary` | The `Vary` header is used to vary the cached response by another header. For example, cache responses by encoding by including the `Vary: Accept-Encoding` header, which caches responses for requests with headers `Accept-Encoding: gzip` and `Accept-Encoding: text/plain` separately. A response with a header value of `*` is never stored. |
@@ -251,7 +251,7 @@ The following table provides information on HTTP headers that affect response ca
 
 ## Caching respects request Cache-Control directives
 
-The middleware respects the rules of the [HTTP 1.1 Caching specification](https://tools.ietf.org/html/rfc7234#section-5.2). The rules require a cache to honor a valid `Cache-Control` header sent by the client. Under the specification, a client can make requests with a `no-cache` header value and force the server to generate a new response for every request. Currently, there's no developer control over this caching behavior when using the middleware because the middleware adheres to the official caching specification.
+The middleware respects the rules of [RFC 9111: HTTP Caching (Section 5.2. Cache-Control)](https://www.rfc-editor.org/rfc/rfc9111#field.cache-control). The rules require a cache to honor a valid `Cache-Control` header sent by the client. Under the specification, a client can make requests with a `no-cache` header value and force the server to generate a new response for every request. Currently, there's no developer control over this caching behavior when using the middleware because the middleware adheres to the official caching specification.
 
 For more control over caching behavior, explore other caching features of ASP.NET Core. See the following topics:
 
@@ -283,7 +283,7 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 * The <xref:Microsoft.AspNetCore.Http.Features.IHttpSendFileFeature> isn't used.
 * The response must not be stale as specified by the `Expires` header and the `max-age` and `s-maxage` cache directives.
 * Response buffering must be successful. The size of the response must be smaller than the configured or default <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.SizeLimit>. The body size of the response must be smaller than the configured or default <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingOptions.MaximumBodySize>.
-* The response must be cacheable according to the [RFC 7234](https://tools.ietf.org/html/rfc7234) specifications. For example, the `no-store` directive must not exist in request or response header fields. See *Section 3: Storing Responses in Caches* of [RFC 7234](https://tools.ietf.org/html/rfc7234) for details.
+* The response must be cacheable according to [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111). For example, the `no-store` directive must not exist in request or response header fields. See [RFC 9111: HTTP Caching (Section 3: *Storing Responses in Caches*](https://www.rfc-editor.org/rfc/rfc9111#name-storing-responses-in-caches) for details.
 
 > [!NOTE]
 > The Antiforgery system for generating secure tokens to prevent Cross-Site Request Forgery (CSRF) attacks sets the `Cache-Control` and `Pragma` headers to `no-cache` so that responses aren't cached. For information on how to disable antiforgery tokens for HTML form elements, see <xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration>.

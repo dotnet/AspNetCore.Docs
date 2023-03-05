@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy23
-ms.date: 12/05/2022
+ms.date: 01/11/2023
 uid: tutorials/first-web-api
 ---
 
@@ -12,7 +12,7 @@ uid: tutorials/first-web-api
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
-This tutorial teaches the basics of building a web API using a database.
+This tutorial teaches the basics of building a cocntroller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *minimal APIs*. For help in choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a minimal API, see <xref:tutorials/min-web-api>.
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -410,7 +410,7 @@ Examine the `PutTodoItem` method:
 
 [!code-csharp[](first-web-api/samples/7.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
 
-`PutTodoItem` is similar to `PostTodoItem`, except it uses `HTTP PUT`. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a `PUT` request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
+`PutTodoItem` is similar to `PostTodoItem`, except it uses `HTTP PUT`. The response is [204 (No Content)](https://www.rfc-editor.org/rfc/rfc9110#status.204). According to the HTTP specification, a `PUT` request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
 ### Test the PutTodoItem method
 
@@ -987,7 +987,7 @@ Examine the `PutTodoItem` method:
 
 [!code-csharp[](first-web-api/samples/6.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
 
-`PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
+`PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.rfc-editor.org/rfc/rfc9110#status.204). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
 If you get an error calling `PutTodoItem` in the following section, call `GET` to ensure there's an item in the database.
 
@@ -1406,7 +1406,7 @@ For more information, see [Attribute routing with Http[Verb] attributes](xref:mv
 The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 
 * Returns an [HTTP 201 status code](https://developer.mozilla.org/docs/Web/HTTP/Status/201) if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
-* Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+* Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [201 Created](https://www.rfc-editor.org/rfc/rfc9110#status.201).
 * References the `GetTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
 
 <a name="post5"></a>
@@ -1526,7 +1526,7 @@ Examine the `PutTodoItem` method:
 
 [!code-csharp[](first-web-api/samples/5.x/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
 
-`PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
+`PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.rfc-editor.org/rfc/rfc9110#status.204). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
 If you get an error calling `PutTodoItem`, call `GET` to ensure there's an item in the database.
 
@@ -1899,7 +1899,7 @@ For more information, see [Attribute routing with Http[Verb] attributes](xref:mv
 The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 
 * Returns an HTTP 201 status code if successful. HTTP 201 is the standard response for an HTTP POST method that creates a new resource on the server.
-* Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [10.2.2 201 Created](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html).
+* Adds a [Location](https://developer.mozilla.org/docs/Web/HTTP/Headers/Location) header to the response. The `Location` header specifies the [URI](https://developer.mozilla.org/docs/Glossary/URI) of the newly created to-do item. For more information, see [201 Created](https://www.rfc-editor.org/rfc/rfc9110#status.201).
 * References the `GetTodoItem` action to create the `Location` header's URI. The C# `nameof` keyword is used to avoid hard-coding the action name in the `CreatedAtAction` call.
 
 ### Install Postman
@@ -2013,7 +2013,7 @@ Examine the `PutTodoItem` method:
 
 [!code-csharp[](first-web-api/samples/3.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Update)]
 
-`PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
+`PutTodoItem` is similar to `PostTodoItem`, except it uses HTTP PUT. The response is [204 (No Content)](https://www.rfc-editor.org/rfc/rfc9110#status.204). According to the HTTP specification, a PUT request requires the client to send the entire updated entity, not just the changes. To support partial updates, use [HTTP PATCH](xref:Microsoft.AspNetCore.Mvc.HttpPatchAttribute).
 
 If you get an error calling `PutTodoItem`, call `GET` to ensure there's an item in the database.
 
