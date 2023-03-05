@@ -257,8 +257,8 @@ To configure Apache as a reverse proxy to forward HTTP requests to your ASP.NET 
     ProxyPassReverse / http://127.0.0.1:5000/
     ServerName www.example.com
     ServerAlias *.example.com
-    ErrorLog ${APACHE_LOG_DIR}helloapp-error.log
-    CustomLog ${APACHE_LOG_DIR}helloapp-access.log common
+    ErrorLog ${APACHE_LOG_DIR}/helloapp-error.log
+    CustomLog ${APACHE_LOG_DIR}/helloapp-access.log common
 </VirtualHost>
 
 ```
