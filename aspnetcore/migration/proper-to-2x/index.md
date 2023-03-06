@@ -10,6 +10,12 @@ uid: migration/proper-to-2x/index
 
  :::moniker range=">= aspnetcore-7.0"
 
+## Why upgrade to the latest .NET
+
+ASP.NET Core is the modern web framework for .NET. While ASP.NET Core has many similarities to ASP.NET in the .NET Framework, it is a completely new framework completely rewritten. ASP.NET apps migrated to ASP.NET Core can benefit from improved performance and access to the latest web development features.
+
+## ASP.NET Framework update approaches
+
 Most non-trivial ASP.NET Framework apps should consider using the [incremental upgrade](xref:migration/inc/overview) approach. For more information, see [Incremental ASP.NET to ASP.NET Core upgrade](/aspnet/core/migration/inc/overview).
 
 <!--
