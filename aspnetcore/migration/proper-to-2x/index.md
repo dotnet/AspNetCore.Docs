@@ -6,16 +6,15 @@ ms.author: riande
 ms.date: 10/18/2019
 uid: migration/proper-to-2x/index
 ---
-# Migrate from ASP.NET Framework to ASP.NET Core
-
-By [Isaac Levin](https://isaaclevin.com)
+# Upgrade from ASP.NET Framework to ASP.NET Core
 
  :::moniker range=">= aspnetcore-7.0"
 
-Most non-trivial ASP.NET Framework apps should consider using the [incremental migration](xref:migration/inc/overview) approach. For more information, see [Incremental ASP.NET to ASP.NET Core migration](/aspnet/core/migration/inc/overview).
+Most non-trivial ASP.NET Framework apps should consider using the [incremental upgrade](xref:migration/inc/overview) approach. For more information, see [Incremental ASP.NET to ASP.NET Core upgrade](/aspnet/core/migration/inc/overview).
 
 Visual Studio has tooling to help migrate ASP.NET apps to ASP.NET Core. For more information, see [Migrating from ASP.NET to ASP.NET Core in Visual Studio](/aspnet/core/migration/inc/overview).
 
+The Visual Studio [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) chan help upgrade ASP.NET Framework web apps to ASP.NET Core. For more information 
 The [.NET Upgrade Assistant](https://dotnet.microsoft.com/platform/upgrade-assistant) is a command-line tool that can help migrate ASP.NET to ASP.NET Core. For more information, see [Overview of the .NET Upgrade Assistant](/dotnet/architecture/porting-existing-aspnet-apps/) and [Upgrade an ASP.NET MVC app to .NET 6 with the .NET Upgrade Assistant](/dotnet/core/porting/upgrade-assistant-aspnetmvc).
 
 ## URI decoding differences between ASP.NET to ASP.NET Core
