@@ -58,7 +58,7 @@ Once the ASP.NET Framework app is no longer needed and deleted:
 
 ![final pic](~/migration/inc/overview/static/final.png)
 
-[Microsoft Project Migrations](https://marketplace.visualstudio.com/items?itemName=WebToolsTeam.aspnetprojectmigrations) is an experimental [Visual Studio extension](/visualstudio/ide/finding-and-using-visual-studio-extensions) that can assist in incremental migration from ASP.NET Framework to ASP.NET Core.
+The Visual Studio extension [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) can help upgrade ASP.NET Framework web apps to ASP.NET Core. For more information see the blog post [Upgrading your .NET projects with Visual Studio](https://devblogs.microsoft.com/dotnet/upgrade-assistant-now-in-visual-studio/).
 
 ## System.Web Adapters
 
