@@ -249,7 +249,7 @@ dotnet watch run --project SignalRChat.csproj
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. From the menu, select **Run > Start Without Debugging**.
+From the menu, select **Run > Start Without Debugging**.
 
 ---
 
