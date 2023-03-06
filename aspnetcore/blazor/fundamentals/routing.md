@@ -955,7 +955,7 @@ In the following `App` component example:
         }
         else if (context.Path == "/store")
         {
-            var productIds = [345, 789, 135, 689];
+            var productIds = new[] { 345, 789, 135, 689 };
 
             foreach (var productId in productIds) 
             {
@@ -991,7 +991,7 @@ In the following `App` component example:
         }
         else if (context.Path == "/store")
         {
-            var productIds = [345, 789, 135, 689];
+            var productIds = new[] { 345, 789, 135, 689 };
 
             foreach (var productId in productIds) 
             {
