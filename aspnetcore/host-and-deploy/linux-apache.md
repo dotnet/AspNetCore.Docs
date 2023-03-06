@@ -156,8 +156,8 @@ Create a configuration file, named *helloapp.conf*, for the app:
     ProxyPassReverse / http://127.0.0.1:5000/
     ServerName www.example.com
     ServerAlias *.example.com
-    ErrorLog ${APACHE_LOG_DIR}helloapp-error.log
-    CustomLog ${APACHE_LOG_DIR}helloapp-access.log common
+    ErrorLog ${APACHE_LOG_DIR}/helloapp-error.log
+    CustomLog ${APACHE_LOG_DIR}/helloapp-access.log common
 </VirtualHost>
 ```
 
