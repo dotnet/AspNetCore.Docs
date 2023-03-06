@@ -371,7 +371,7 @@ To require a user have both `Admin` and `Superuser` role claims, nest <xref:Micr
     <p>You have the 'Admin' role claim.</p>
     <AuthorizeView Roles="Superuser" Context="innerContext">
         <p>User: @innerContext.User</p>
-        <p>You have both 'Admin' or 'Superuser' role claims.</p>
+        <p>You have both 'Admin' and 'Superuser' role claims.</p>
     </AuthorizeView>
 </AuthorizeView>
 ```
