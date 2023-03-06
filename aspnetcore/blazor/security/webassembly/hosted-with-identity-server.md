@@ -544,6 +544,8 @@ If troubleshooting an Identity Server key-signing certificate loading problem, e
 Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
 ```
 
+## Troubleshoot
+
 [!INCLUDE[](~/blazor/security/includes/7.0/troubleshoot.md)]
 
 ## Additional resources
@@ -1086,6 +1088,8 @@ If troubleshooting an Identity Server key-signing certificate loading problem, e
 ```powershell
 Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
 ```
+
+## Troubleshoot
 
 [!INCLUDE[](~/blazor/security/includes/6.0/troubleshoot.md)]
 
@@ -1798,6 +1802,8 @@ If troubleshooting an Identity Server key-signing certificate loading problem, e
 Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
 ```
 
+## Troubleshoot
+
 [!INCLUDE[](~/blazor/security/includes/5.0/troubleshoot.md)]
 
 ## Additional resources
@@ -2336,6 +2342,8 @@ If troubleshooting an Identity Server key-signing certificate loading problem, e
 ```powershell
 Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
 ```
+
+## Troubleshoot
 
 [!INCLUDE[](~/blazor/security/includes/3.1/troubleshoot.md)]
 

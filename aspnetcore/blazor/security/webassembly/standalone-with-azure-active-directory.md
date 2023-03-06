@@ -163,6 +163,8 @@ For more information, see the following sections of the *Additional scenarios* a
 
 [!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
+## Troubleshoot
+
 [!INCLUDE[](~/blazor/security/includes/7.0/troubleshoot.md)]
 
 ## Additional resources
@@ -327,6 +329,8 @@ For more information, see the following sections of the *Additional scenarios* a
 ## Authentication component
 
 [!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
+
+## Troubleshoot
 
 [!INCLUDE[](~/blazor/security/includes/6.0/troubleshoot.md)]
 
@@ -493,6 +497,8 @@ For more information, see the following sections of the *Additional scenarios* a
 
 [!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
+## Troubleshoot
+
 [!INCLUDE[](~/blazor/security/includes/5.0/troubleshoot.md)]
 
 ## Additional resources
@@ -653,6 +659,8 @@ For more information, see the following sections of the *Additional scenarios* a
 ## Authentication component
 
 [!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
+
+## Troubleshoot
 
 [!INCLUDE[](~/blazor/security/includes/3.1/troubleshoot.md)]
 

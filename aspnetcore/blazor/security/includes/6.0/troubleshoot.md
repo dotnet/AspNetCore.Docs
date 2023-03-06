@@ -1,5 +1,3 @@
-## Troubleshoot
-
 ### Common errors
 
 * Misconfiguration of the app or Identity Provider (IP)

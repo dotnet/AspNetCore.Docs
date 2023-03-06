@@ -164,6 +164,8 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 [!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
+## Troubleshoot
+
 [!INCLUDE[](~/blazor/security/includes/7.0/troubleshoot.md)]
 
 ## Additional resources
@@ -327,6 +329,8 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 ## Authentication component
 
 [!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
+
+## Troubleshoot
 
 [!INCLUDE[](~/blazor/security/includes/6.0/troubleshoot.md)]
 
@@ -492,6 +496,8 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 [!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
+## Troubleshoot
+
 [!INCLUDE[](~/blazor/security/includes/5.0/troubleshoot.md)]
 
 ## Additional resources
@@ -655,6 +661,8 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 ## Authentication component
 
 [!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
+
+## Troubleshoot
 
 [!INCLUDE[](~/blazor/security/includes/3.1/troubleshoot.md)]
 

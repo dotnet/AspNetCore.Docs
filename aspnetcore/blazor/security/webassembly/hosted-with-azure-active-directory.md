@@ -12,13 +12,13 @@ uid: blazor/security/webassembly/hosted-with-azure-active-directory
 
 This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication. This article focuses on a single tenant app with a single tenant Azure app registration.
 
-Security articles for Blazor WebAssembly in this node don't cover a *hosted Blazor WebAssembly solution* with a *multi-tenant Azure registration*. Multi-tenant guidance found in <xref:blazor/security/webassembly/standalone-with-microsoft-accounts> for configuring a standalone Blazor WebAssembly app applies to the :::no-loc text="Client"::: app of a hosted Blazor WebAssembly solution. For additional information, see [Making your application multi-tenant](/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant).
+This article doesn't cover a *multi-tenant Azure Active Directory registration*. The multi-tenant guidance found in <xref:blazor/security/webassembly/standalone-with-microsoft-accounts> for configuring a standalone Blazor WebAssembly app applies to the :::no-loc text="Client"::: app of a hosted Blazor WebAssembly solution. For additional information, see [Making your application multi-tenant](/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant).
 
 :::moniker range=">= aspnetcore-7.0"
 
 ## Walkthrough
 
-The subsections of this node explain how to:
+The subsections of walkthrough explain how to:
 
 * Create a tenant in Azure
 * Register a server API app in Azure
@@ -155,6 +155,8 @@ A complete example of `AzureAd` configuration follows, where:
 
 ### Modify the default access token scope scheme
 
+*This section pertains to the solution's **:::no-loc text="Client":::** app.*
+
 The Blazor WebAssembly template automatically adds a scheme of `api://` to the App ID URI argument passed in the `dotnet new` command. 
 
 When generating an app from the [Blazor project template](xref:blazor/project-structure), confirm that the value of the default access token scope in `Program.cs` of the **:::no-loc text="Client":::** app uses either the correct custom App ID URI value that you provided in the Azure portal or a value with **one** of the following formats:
@@ -269,11 +271,11 @@ app.UseAuthentication();
 app.UseAuthorization();
 ```
 
-### WeatherForecast controller
+### :::no-loc text="WeatherForecast"::: controller
 
 *This section pertains to the solution's **:::no-loc text="Server":::** app.*
 
-The WeatherForecast controller (`Controllers/WeatherForecastController.cs`) exposes a protected API with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied to the controller. It's **important** to understand that:
+The `WeatherForecast` controller (`Controllers/WeatherForecastController.cs`) exposes a protected API with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied to the controller. It's **important** to understand that:
 
 * The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protect this API from unauthorized access.
 * The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) used in the Blazor WebAssembly app only serves as a hint to the app that the user should be authorized for the app to work correctly.
@@ -466,6 +468,8 @@ To configure the app to receive the value from the `name` claim type:
       });
   ```
 
+## Troubleshoot
+
 [!INCLUDE[](~/blazor/security/includes/7.0/troubleshoot.md)]
 
 ## Additional resources
@@ -476,7 +480,7 @@ To configure the app to receive the value from the `name` claim type:
 * <xref:blazor/security/webassembly/aad-groups-roles>
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
-* [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)* * * * [Security best practices for application properties in Azure Active Directory](/azure/active-directory/develop/security-best-practices-for-app-registration)
+* [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)* * [Security best practices for application properties in Azure Active Directory](/azure/active-directory/develop/security-best-practices-for-app-registration)
 
 
 :::moniker-end
@@ -933,6 +937,8 @@ To configure the app to receive the value from the `name` claim type:
       });
   ```
 
+## Troubleshoot
+
 [!INCLUDE[](~/blazor/security/includes/6.0/troubleshoot.md)]
 
 ## Additional resources
@@ -943,7 +949,7 @@ To configure the app to receive the value from the `name` claim type:
 * <xref:blazor/security/webassembly/aad-groups-roles>
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
-* [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)* * * * [Security best practices for application properties in Azure Active Directory](/azure/active-directory/develop/security-best-practices-for-app-registration)
+* [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)* * [Security best practices for application properties in Azure Active Directory](/azure/active-directory/develop/security-best-practices-for-app-registration)
 
 :::moniker-end
 
@@ -1316,24 +1322,7 @@ Run the app from the Server project. When using Visual Studio, either:
 * Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
 * Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
-<!-- 
-
-    HOLD FOR ADDITIONAL WORK TO FULLY FLESH OUT THE SCENARIO FOR HOSTED WASM APPS
-
-    Place a dedicated INCLUDE for this because the existing INCLUDE is really written
-    for the Identity Server-based hosted WASM topic.
-
-    In the *Custom Identity components* section of the scaffold identity topic at ...
-
-    \security\authentication\scaffold-identity.md
-
-    ... there's a commented-out remark on Identity components for hosted WASM apps.
-    That statement can be brought back (with perhaps a revised heading bookmark)
-    after this content is resolved.
-
-[!INCLUDE[](~/blazor/security/includes/usermanager-signinmanager.md)]
-
--->
+## Troubleshoot
 
 [!INCLUDE[](~/blazor/security/includes/5.0/troubleshoot.md)]
 
@@ -1714,24 +1703,7 @@ Run the app from the Server project. When using Visual Studio, either:
 * Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
 * Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
-<!-- 
-
-    HOLD FOR ADDITIONAL WORK TO FULLY FLESH OUT THE SCENARIO FOR HOSTED WASM APPS
-
-    Place a dedicated INCLUDE for this because the existing INCLUDE is really written
-    for the Identity Server-based hosted WASM topic.
-
-    In the *Custom Identity components* section of the scaffold identity topic at ...
-
-    \security\authentication\scaffold-identity.md
-
-    ... there's a commented-out remark on Identity components for hosted WASM apps.
-    That statement can be brought back (with perhaps a revised heading bookmark)
-    after this content is resolved.
-
-[!INCLUDE[](~/blazor/security/includes/usermanager-signinmanager.md)]
-
--->
+## Troubleshoot
 
 [!INCLUDE[](~/blazor/security/includes/3.1/troubleshoot.md)]
 
