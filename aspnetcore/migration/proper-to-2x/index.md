@@ -12,10 +12,9 @@ uid: migration/proper-to-2x/index
 
 Most non-trivial ASP.NET Framework apps should consider using the [incremental upgrade](xref:migration/inc/overview) approach. For more information, see [Incremental ASP.NET to ASP.NET Core upgrade](/aspnet/core/migration/inc/overview).
 
-Visual Studio has tooling to help migrate ASP.NET apps to ASP.NET Core. For more information, see [Migrating from ASP.NET to ASP.NET Core in Visual Studio](/aspnet/core/migration/inc/overview).
-
-The Visual Studio [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) chan help upgrade ASP.NET Framework web apps to ASP.NET Core. For more information 
-The [.NET Upgrade Assistant](https://dotnet.microsoft.com/platform/upgrade-assistant) is a command-line tool that can help migrate ASP.NET to ASP.NET Core. For more information, see [Overview of the .NET Upgrade Assistant](/dotnet/architecture/porting-existing-aspnet-apps/) and [Upgrade an ASP.NET MVC app to .NET 6 with the .NET Upgrade Assistant](/dotnet/core/porting/upgrade-assistant-aspnetmvc).
+<!--
+Visual Studio has tooling to help migrate ASP.NET apps to ASP.NET Core. For more information, see [Upgrading your .NET projects with Visual Studio](https://devblogs.microsoft.com/dotnet/upgrade-assistant-now-in-visual-studio/).  Update this link to https://learn.microsoft.com/en-us/dotnet/core/porting/ when those doc's are updated.-->
+The Visual Studio extension [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) can help upgrade ASP.NET Framework web apps to ASP.NET Core. For more information see the blog post [Upgrading your .NET projects with Visual Studio](https://devblogs.microsoft.com/dotnet/upgrade-assistant-now-in-visual-studio/).
 
 ## URI decoding differences between ASP.NET to ASP.NET Core
 
@@ -36,10 +35,11 @@ To generate the value for `HttpRequest.Url`, use `new Uri(this.AspNetCoreHttpReq
 
 See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/27611).
 
+<!-- remove these comments when the topic is updated
 ## Additional resources
 
 - [Overview of porting from .NET Framework to .NET](/dotnet/core/porting/libraries)
-
+-->
 :::moniker-end
 
 [!INCLUDE[](~/migration/proper-to-2x/includes/index5.md)]
