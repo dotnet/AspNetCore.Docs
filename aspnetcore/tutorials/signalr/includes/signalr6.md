@@ -1,20 +1,4 @@
----
-title: Get started with ASP.NET Core SignalR
-author: bradygaster
-description: In this tutorial, you create a chat app that uses ASP.NET Core SignalR.
-<!-- ms.author: bradyg -->
-ms.author: wpickett
-monikerRange: '>= aspnetcore-3.1'
-ms.custom: mvc
-ms.date: 03/04/2023
-uid: tutorials/signalr
-
-# Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
----
-
-# Tutorial: Get started with ASP.NET Core SignalR
-
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range="= aspnetcore-6.0"
 
 This tutorial teaches the basics of building a real-time app using SignalR. You learn how to:
 
@@ -197,7 +181,7 @@ In the SignalRChat project folder, create a `Hubs` folder.
 
 In the `Hubs` folder, create the `ChatHub` class with the following code:
 
-[!code-csharp[ChatHub](~/tutorials/signalr/samples/7.x/SignalRChat/Hubs/ChatHub.cs)]
+[!code-csharp[ChatHub](~/tutorials/signalr/samples/6.x/SignalRChat/Hubs/ChatHub.cs)]
 
 The `ChatHub` class inherits from the SignalR <xref:Microsoft.AspNetCore.SignalR.Hub> class. The `Hub` class manages connections, groups, and messaging.
 
@@ -207,7 +191,7 @@ The `SendMessage` method can be called by a connected client to send a message t
 
 The SignalR server must be configured to pass SignalR requests to SignalR. Add the following highlighted code to the `Program.cs` file.
 
-[!code-csharp[Startup](~/tutorials/signalr/samples/7.x/SignalRChat/Program.cs?highlight=1,6,24)]
+[!code-csharp[Startup](~/tutorials/signalr/samples/6.x/SignalRChat/Program.cs?highlight=1,6,24)]
 
 The preceding highlighted code adds SignalR to the ASP.NET Core dependency injection and routing systems.
 
@@ -215,7 +199,7 @@ The preceding highlighted code adds SignalR to the ASP.NET Core dependency injec
 
 Replace the content in `Pages/Index.cshtml` with the following code:
 
-[!code-cshtml[Index](~/tutorials/signalr/samples/7.x/SignalRChat/Pages/Index.cshtml)]
+[!code-cshtml[Index](~/tutorials/signalr/samples/6.x/SignalRChat/Pages/Index.cshtml)]
 
 The preceding markup:
 
@@ -225,7 +209,7 @@ The preceding markup:
 
 In the `wwwroot/js` folder, create a `chat.js` file with the following code:
 
-[!code-javascript[chat](~/tutorials/signalr/samples/7.x/SignalRChat/wwwroot/js/chat.js)]
+[!code-javascript[chat](~/tutorials/signalr/samples/6.x/SignalRChat/wwwroot/js/chat.js)]
 
 The preceding JavaScript:
 
@@ -276,7 +260,3 @@ The name and message are displayed on both pages instantly.
 For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore). For more information on Azure SignalR Service, see [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview).
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/signalr/includes/signalr6.md)]
-
-[!INCLUDE[](~/tutorials/signalr/includes/signalr3-5.md)]
