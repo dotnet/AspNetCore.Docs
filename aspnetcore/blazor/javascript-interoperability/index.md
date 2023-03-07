@@ -570,7 +570,7 @@ To inject a script after Blazor starts, chain to the `Promise` that results from
 
 ## JavaScript isolation in JavaScript modules
 
-Blazor enables JavaScript (JS) isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) ([ECMAScript specification](https://tc39.es/ecma262/#sec-modules)).
+Blazor enables JavaScript (JS) isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) ([ECMAScript specification](https://tc39.es/ecma262/#sec-modules)). JavaScript module loading works the same way in Blazor as it does for other types of web apps, and you're free to customize how modules are defined in your app. For a guide on how to use JavaScript modules, see [MDN Web Docs: JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules).
 
 JS isolation provides the following benefits:
 
@@ -578,6 +578,16 @@ JS isolation provides the following benefits:
 * Consumers of a library and components aren't required to import the related JS.
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
+
+[Dynamic import with the `import()` operator](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import) is supported with ASP.NET Core and Blazor:
+
+```javascript
+if ({CONDITION}) import("/additionalModule.js");
+```
+
+In the preceding example, the `{CONDITION}` placeholder represents a conditional check to determine if the module should be loaded.
+
+For browser compatibility, see [Can I use: JavaScript modules: dynamic import](https://caniuse.com/es6-module-dynamic-import).
 
 ## Cached JavaScript files
 

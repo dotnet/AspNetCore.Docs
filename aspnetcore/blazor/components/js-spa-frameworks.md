@@ -139,6 +139,34 @@ Quote &copy;1988-1999 Satellite of Love LLC: [*Mystery Science Theater 3000*](ht
 > rootComponent.dispose();
 > ```
 
+The preceding example dynamically renders the root component when the `showQuote()` JS function is called. To render a root component into a container element when Blazor starts, use a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers) to render the component, as the following example demonstrates.
+
+The following example builds on the preceding example, using the `Quote` component, the root component registration in `Program.cs`, and the initialization of `jsComponentInitializers.js`. The `showQuote()` function (and the `script.js` file) aren't used.
+
+In HTML, place the target container element, `quoteContainer2` for this example:
+
+```html
+<div id="quoteContainer2"></div>
+```
+
+Using a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers), add the root component to the target container element.
+
+`wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js`:
+
+```javascript
+export function afterStarted(blazor) {
+  let targetElement = document.getElementById('quoteContainer2');
+  blazor.rootComponents.add(targetElement, 'quote',
+    {
+      text: "Crow: I have my doubts that this movie is actually 'starring' " +
+          "anybody. More like, 'camera is generally pointed at.'"
+    });
+}
+```
+
+> [!NOTE]
+> For the call to `rootComponents.add`, use the `blazor` parameter (lowercase `b`) provided by `afterStarted`. Although the registration is valid when using the `Blazor` object (uppercase `B`), the preferred approach is to use the parameter.
+
 For an advanced example with additional features, see the example in the `BasicTestApp` of the ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository):
 
 * [`JavaScriptRootComponents.razor`](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/JavaScriptRootComponents.razor)

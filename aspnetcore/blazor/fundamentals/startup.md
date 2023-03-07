@@ -12,7 +12,23 @@ uid: blazor/fundamentals/startup
 
 This article explains how to configure Blazor startup.
 
-The Blazor startup process via the Blazor script (`blazor.{webassembly|server}.js`) is automatic and asynchronous. The Blazor `<script>` tag is found in the `wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server), except for the ASP.NET Core 6.0 release of Blazor Server (`Pages/_Layout.cshtml`).
+:::moniker range=">= aspnetcore-7.0"
+
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.{server|webassembly}.js`), where the `{server|webassembly}` placeholder is either `server` for Blazor Server or `webassembly` for Blazor WebAssembly. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Host.cshtml` file of a Blazor Server app.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.{server|webassembly}.js`), where the `{server|webassembly}` placeholder is either `server` for Blazor Server or `webassembly` for Blazor WebAssembly. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Layout.cshtml` file of a Blazor Server app.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.{server|webassembly}.js`), where the `{server|webassembly}` placeholder is either `server` for Blazor Server or `webassembly` for Blazor WebAssembly. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Host.cshtml` file of a Blazor Server app.
+
+:::moniker-end
 
 To manually start Blazor:
 
@@ -36,8 +52,8 @@ To define a JS initializer, add a JS module to the project named `{NAME}.lib.mod
 The module exports either or both of the following conventional functions:
 
 * `beforeStart(options, extensions)`: Called before Blazor starts. For example, `beforeStart` is used to customize the loading process, logging level, and other options specific to the hosting model.
-  * In Blazor WebAssembly, `beforeStart` receives the Blazor WebAssembly options (`options` in this section's example) and any extensions (`extensions` in this section's example) added during publishing. For example, options can specify the use of a custom [boot resource loader](xref:blazor/fundamentals/startup#load-boot-resources).
-  * In Blazor Server, `beforeStart` receives SignalR circuit start options (`options` in this section's example).
+  * In Blazor WebAssembly, `beforeStart` receives the Blazor WebAssembly options (`options` in this section's examples) and any extensions (`extensions` in this section's examples) added during publishing. For example, options can specify the use of a custom [boot resource loader](xref:blazor/fundamentals/startup#load-boot-resources).
+  * In Blazor Server, `beforeStart` receives SignalR circuit start options (`options` in this section's examples).
   * In [`BlazorWebViews`](/mobile-blazor-bindings/walkthroughs/hybrid-hello-world#mainrazor-native-ui-page), no options are passed.
 * `afterStarted`: Called after Blazor is ready to receive calls from JS. For example, `afterStarted` is used to initialize libraries by making JS interop calls and registering custom elements. The Blazor instance is passed to `afterStarted` as an argument (`blazor` in this section's example).
 
@@ -46,7 +62,7 @@ For the filename:
 * If the JS initializers are consumed as a static asset in the project, use the format `{ASSEMBLY NAME}.lib.module.js`, where the `{ASSEMBLY NAME}` placeholder is the app's assembly name. For example, name the file `BlazorSample.lib.module.js` for a project with an assembly name of `BlazorSample`. Place the file in the app's `wwwroot` folder.
 * If the JS initializers are consumed from an RCL, use the format `{LIBRARY NAME/PACKAGE ID}.lib.module.js`, where the `{LIBRARY NAME/PACKAGE ID}` placeholder is the project's library name or package identifier. For example, name the file `RazorClassLibrary1.lib.module.js` for an RCL with a package identifier of `RazorClassLibrary1`. Place the file in the library's `wwwroot` folder.
 
-The following example demonstrates JS initializers that load custom scripts before and after Blazor has started:
+The following example demonstrates JS initializers that load custom scripts before and after Blazor has started by appending them to the `<head>` in `beforeStart` and `afterStarted`:
 
 ```javascript
 export function beforeStart(options, extensions) {
@@ -62,15 +78,73 @@ export function afterStarted(blazor) {
 }
 ```
 
+The preceding `beforeStart` example only guarantees that the custom script loads before Blazor starts. It doesn't guarantee that awaited promises in the script complete their execution before Blazor starts.
+
 > [!NOTE]
 > MVC and Razor Pages apps don't automatically load JS initializers. However, developer code can include a script to fetch the app's manifest and trigger the load of the JS initializers.
 
 For an examples of JS initializers, see the following resources:
 
+* <xref:blazor/components/js-spa-frameworks#render-razor-components-from-javascript> (*`quoteContainer2` example*)
+* <xref:blazor/components/event-handling#custom-event-arguments> (*Custom clipboard paste event example*)
 * <xref:blazor/host-and-deploy/webassembly-deployment-layout>
 * [Basic Test App in the ASP.NET Core GitHub repository (`BasicTestApp.lib.module.js`)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/wwwroot/BasicTestApp.lib.module.js)
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+### Ensure libraries are loaded in a specific order
+
+Append custom scripts to the `<head>` in `beforeStart` and `afterStarted` in the order that they should load.
+
+The following example loads `script1.js` before `script2.js` and `script3.js` before `script4.js`:
+
+```javascript
+export function beforeStart(options, extensions) {
+    var customScript1 = document.createElement('script');
+    customScript1.setAttribute('src', 'script1.js');
+    document.head.appendChild(customScript1);
+
+    var customScript2 = document.createElement('script');
+    customScript2.setAttribute('src', 'script2.js');
+    document.head.appendChild(customScript2);
+}
+
+export function afterStarted(blazor) {
+    var customScript1 = document.createElement('script');
+    customScript1.setAttribute('src', 'script3.js');
+    document.head.appendChild(customScript1);
+
+    var customScript2 = document.createElement('script');
+    customScript2.setAttribute('src', 'script4.js');
+    document.head.appendChild(customScript2);
+}
+```
+
+### Import additional modules
+
+Use top-level [`import`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import) statements in the JS initializers file (`*.lib.module.js`) to import additional modules.
+
+`additionalModule.js`:
+
+```javascript
+export function logMessage() {
+  console.log('logMessage is logging');
+}
+```
+
+```javascript
+import { logMessage } from "/additionalModule.js";
+
+export function beforeStart(options, extensions) {
+  ...
+
+  logMessage();
+}
+```
+
+### Import map
+
+[Import maps](https://developer.mozilla.org/docs/Web/HTML/Element/script/type/importmap) are supported by ASP.NET Core and Blazor.
 
 :::moniker-end
 
@@ -82,7 +156,7 @@ The following example starts Blazor when the document is ready:
 <body>
     ...
 
-    <script src="_framework/blazor.{webassembly|server}.js" autostart="false"></script>
+    <script src="_framework/blazor.{server|webassembly}.js" autostart="false"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         Blazor.start();
@@ -91,7 +165,7 @@ The following example starts Blazor when the document is ready:
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
+The `{server|webassembly}` placeholder in the preceding markup is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
 
 ## Chain to the `Promise` that results from a manual start
 
@@ -101,7 +175,7 @@ To perform additional tasks, such as JS interop initialization, use [`then`](htt
 <body>
     ...
 
-    <script src="_framework/blazor.{webassembly|server}.js" autostart="false"></script>
+    <script src="_framework/blazor.{server|webassembly}.js" autostart="false"></script>
     <script>
       Blazor.start().then(function () {
         ...
@@ -110,10 +184,14 @@ To perform additional tasks, such as JS interop initialization, use [`then`](htt
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or `server` for a Blazor Server app (`blazor.server.js`).
+The `{server|webassembly}` placeholder in the preceding markup is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
+
+:::moniker range=">= aspnetcore-6.0"
 
 > [!NOTE]
 > For a library to automatically execute additional tasks after Blazor has started, use a [JavaScript initializer](#javascript-initializers). Use of a JS initializer doesn't require the consumer of the library to chain JS calls to Blazor's manual start.
+
+:::moniker-end
 
 ## Load boot resources
 
