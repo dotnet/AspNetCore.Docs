@@ -41,7 +41,7 @@ To migrate business logic that relies on `HttpContext`, the libraries need to be
 
 Once the ASP.NET Core app using YARP is set up, you can start migrating routes from ASP.NET Framework to ASP.NET Core. For example, WebAPI or MVC controller action methods,handlers, or some other implementation of a route. If the route is available in the ASP.NET Core app, it's matched and served.
 
-During the migration process, additional services and infrastructure are identified that must be migrated to run on .NET Core. Options listed in order of maintainability include:
+During the migration process, additional services and infrastructure are identified that must be updated to run on .NET Core. Options listed in order of maintainability include:
 
 1. Move the code to shared libraries
 1. Link the code in the new project
