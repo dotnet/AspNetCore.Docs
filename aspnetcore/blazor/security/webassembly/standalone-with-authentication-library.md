@@ -142,7 +142,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ## RedirectToLogin component
 
-[!INCLUDE[](~/blazor/security/includes/7.0/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ## LoginDisplay component
 
@@ -166,7 +166,7 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 ## Troubleshoot
 
-[!INCLUDE[](~/blazor/security/includes/7.0/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -308,7 +308,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ## RedirectToLogin component
 
-[!INCLUDE[](~/blazor/security/includes/6.0/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ## LoginDisplay component
 
@@ -332,7 +332,7 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 ## Troubleshoot
 
-[!INCLUDE[](~/blazor/security/includes/6.0/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -474,7 +474,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ## RedirectToLogin component
 
-[!INCLUDE[](~/blazor/security/includes/5.0/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ## LoginDisplay component
 
@@ -498,7 +498,7 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 ## Troubleshoot
 
-[!INCLUDE[](~/blazor/security/includes/5.0/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 

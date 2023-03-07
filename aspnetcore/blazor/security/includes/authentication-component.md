@@ -18,4 +18,4 @@ The <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthe
 ```
 
 > [!NOTE]
-> ASP.NET Core 6.0 or later adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis). Prior to the release of ASP.NET Core 6.0, the string type appears without the null type designation (`?`).
+> [Nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis) is supported in ASP.NET Core 6.0 or later. Prior to the release of ASP.NET Core 6.0, the `string` type appears without the null type designation (`?`).

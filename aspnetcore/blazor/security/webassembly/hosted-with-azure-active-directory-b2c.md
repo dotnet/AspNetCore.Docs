@@ -5,7 +5,7 @@ description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app wi
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/05/2023
+ms.date: 03/07/2023
 uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C
@@ -21,7 +21,7 @@ The subsections of walkthrough explain how to:
 * Create a tenant in Azure
 * Register a server API app in Azure
 * Register a client app in Azure
-* Create the Blazor app <!-- HOLD * ?????? Modify the **:::no-loc text="Server":::** `appsettings.json` configuration -->
+* Create the Blazor app
 * Modify the default access token scope scheme
 * Run the app
 
@@ -69,7 +69,7 @@ Register an AAD B2C app for the *Client app*:
 1. Navigate to **Azure AD B2C** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Client AAD B2C**).
 1. For **Supported account types**, select the multi-tenant option: **Accounts in any identity provider or organizational directory (for authenticating users with user flows)**
-1. Set the **Redirect URI** drop down to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost/authentication/login-callback` for the value. If you know the production redirect URI for the Azure default host (for example, `azurewebsites.net`) or the custom domain host (for example, `contoso.com`), you can also add the production redirect URI at the same time that you're providing the `localhost` redirect URI. Be sure to include the port number for non-`:443` ports in any production redirect URIs that you add.
+1. Set the **Redirect URI** drop down to **Single-page application (SPA)** and provide a redirect URI value of `https://localhost/authentication/login-callback`. If you know the production redirect URI for the Azure default host (for example, `azurewebsites.net`) or the custom domain host (for example, `contoso.com`), you can also add the production redirect URI at the same time that you're providing the `localhost` redirect URI. Be sure to include the port number for non-`:443` ports in any production redirect URIs that you add.
 1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), confirm that **Permissions** > **Grant admin consent to openid and offline_access permissions** is selected. If the publisher domain is verified, this checkbox isn't present.
 1. Select **Register**.
 
@@ -96,9 +96,7 @@ In **API permissions** from the sidebar:
 
 [!INCLUDE[](~/blazor/security/includes/authorize-client-app.md)]
 
-Return to **Azure AD B2C** in the Azure portal. Select **User flows** and use the following guidance: [Create a sign-up and sign-in user flow](/azure/active-directory-b2c/tutorial-create-user-flows).
-
-At a minimum, select **Application claims** for the sign-up/sign-in user flow and then the **Display Name** user attribute checkbox to populate the `context.User.Identity.Name` in the `LoginDisplay` component (`Shared/LoginDisplay.razor`).
+Return to **Azure AD B2C** in the Azure portal. Select **User flows** and use the following guidance: [Create a sign-up and sign-in user flow](/azure/active-directory-b2c/tutorial-create-user-flows). At a minimum, select **Application claims** for the sign-up/sign-in user flow and then the **Display Name** user attribute checkbox to populate the `context.User.Identity.Name` in the `LoginDisplay` component (`Shared/LoginDisplay.razor`).
 
 Record the sign-up and sign-in user flow name created for the app (for example, `B2C_1_signupsignin1`).
 
@@ -113,16 +111,16 @@ dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" 
 > [!WARNING]
 > **Avoid using dashes (`-`) in the app name `{APP NAME}` that break the formation of the OIDC app identifier.** Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives. For more information, see [Dashes in a hosted Blazor WebAssembly project name break OIDC security (dotnet/aspnetcore #35337)](https://github.com/dotnet/aspnetcore/issues/35337).
 
-| Placeholder                    | Azure portal name                                     | Example                                                       |
-| ------------------------------ | ----------------------------------------------------- | ------------------------------------------------------------- |
-| `{AAD B2C INSTANCE}`           | Instance                                              | `https://contoso.b2clogin.com/` (includes the trailing slash) |
-| `{APP NAME}`                   | &mdash;                                               | `BlazorSample`                                                |
-| `{CLIENT APP CLIENT ID}`       | Application (client) ID for the **:::no-loc text="Client":::** app | `4369008b-21fa-427c-abaa-9b53bf58e538`           |
-| `{DEFAULT SCOPE}`              | Scope name                                            | `API.Access`                                                  |
-| `{SERVER API APP CLIENT ID}`   | Application (client) ID for the **:::no-loc text="Server":::** app | `41451fa7-82d9-4673-8fa5-69eff5a761fd`           |
-| `{SERVER API APP ID URI GUID}` | Application ID URI                                    | `41451fa7-82d9-4673-8fa5-69eff5a761fd` (GUID ONLY)            |
-| `{SIGN UP OR SIGN IN POLICY}`  | Sign-up/sign-in user flow                             | `B2C_1_signupsignin1`                                         |
-| `{TENANT DOMAIN}`              | Primary/Publisher/Tenant domain                       | `contoso.onmicrosoft.com`                                     |
+| Placeholder | Azure portal name | Example |
+| --- | --- | --- |
+| `{AAD B2C INSTANCE}` | Instance | `https://contoso.b2clogin.com/` (includes the trailing slash) |
+| `{APP NAME}` | &mdash; | `BlazorSample` |
+| `{CLIENT APP CLIENT ID}` | Application (client) ID for the **:::no-loc text="Client":::** app | `4369008b-21fa-427c-abaa-9b53bf58e538` |
+| `{DEFAULT SCOPE}` | Scope name | `API.Access` |
+| `{SERVER API APP CLIENT ID}` | Application (client) ID for the **:::no-loc text="Server":::** app | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
+| `{SERVER API APP ID URI GUID}` | Application ID URI | `41451fa7-82d9-4673-8fa5-69eff5a761fd` (GUID ONLY) |
+| `{SIGN UP OR SIGN IN POLICY}` | Sign-up/sign-in user flow | `B2C_1_signupsignin1` |
+| `{TENANT DOMAIN}` | Primary/Publisher/Tenant domain | `contoso.onmicrosoft.com` |
 
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name. **Avoid using dashes (`-`) in the app name that break the formation of the OIDC app identifier (see the earlier WARNING).**
 
@@ -160,9 +158,33 @@ Run the app from the **:::no-loc text="Server":::** app. When using Visual Studi
 
 [!INCLUDE[](~/blazor/security/includes/wasm-aad-b2c-userflows.md)]
 
+## Configure `User.Identity.Name`
+
+*The guidance in this section covers optionally populating `User.Identity.Name` with the value from the `name` claim.*
+
+By default, the **:::no-loc text="Server":::** app API populates `User.Identity.Name` with the value from the `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name` claim type (for example, `2d64b3da-d9d5-42c6-9352-53d8df33d770@contoso.onmicrosoft.com`).
+
+To configure the app to receive the value from the `name` claim type:
+
+* Add a namespace for <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> to `Program.cs`:
+
+  ```csharp
+  using Microsoft.AspNetCore.Authentication.JwtBearer;
+  ```
+
+* Configure the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Program.cs`:
+
+  ```csharp
+  builder.Services.Configure<JwtBearerOptions>(
+      JwtBearerDefaults.AuthenticationScheme, options =>
+      {
+          options.TokenValidationParameters.NameClaimType = "name";
+      });
+  ```
+
 ## Parts of the solution
 
-The following subsections explain the parts of a project generated from the Blazor WebAssembly project template.
+The following subsections in *Parts of the solution* explain the parts of a solution generated from the Blazor WebAssembly project template and describe how the solution's **:::no-loc text="Client":::** and **:::no-loc text="Server":::** projects are configured for reference. There's no specific guidance to follow in these sections for a basic working application if you created the app using the guidance earlier in this article. The guidance in this section is helpful if you're attempting to convert an app that doesn't authenticate and authorize users into one that does. However, an alternative approach to updating an app is to create a new app from the earlier guidance in this article and move your app's components, classes, and resources to the newly-created app. Either approach is viable.
 
 ### `appsettings.json` configuration
 
@@ -234,7 +256,7 @@ app.UseAuthorization();
 
 The `WeatherForecast` controller (`Controllers/WeatherForecastController.cs`) exposes a protected API with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied to the controller. It's **important** to understand that:
 
-* The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protect this API from unauthorized access.
+* The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protects this API from unauthorized access.
 * The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) used in the Blazor WebAssembly app only serves as a hint to the app that the user should be authorized for the app to work correctly.
 
 ```csharp
@@ -387,21 +409,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 *This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0"
-
-[!INCLUDE[](~/blazor/security/includes/7.0/redirecttologin-component.md)]
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-[!INCLUDE[](~/blazor/security/includes/6.0/redirecttologin-component.md)]
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0"
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -421,45 +429,21 @@ For more information, see the following sections of the *Additional scenarios* a
 
 [!INCLUDE[](~/blazor/security/includes/fetchdata-component.md)]
 
-## Configure User.Identity.Name
-
-By default, the **:::no-loc text="Server":::** app API populates `User.Identity.Name` with the value from the `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name` claim type (for example, `2d64b3da-d9d5-42c6-9352-53d8df33d770@contoso.onmicrosoft.com`).
-
-To configure the app to receive the value from the `name` claim type:
-
-* Add a namespace for <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> to `Program.cs`:
-
-  ```csharp
-  using Microsoft.AspNetCore.Authentication.JwtBearer;
-  ```
-
-* Configure the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Program.cs`:
-
-  ```csharp
-  builder.Services.Configure<JwtBearerOptions>(
-      JwtBearerDefaults.AuthenticationScheme, options =>
-      {
-          options.TokenValidationParameters.NameClaimType = "name";
-      });
-  ```
-
 ## Troubleshoot
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
 
-[!INCLUDE[](~/blazor/security/includes/7.0/troubleshoot.md)]
+### Logging
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-[!INCLUDE[](~/blazor/security/includes/6.0/troubleshoot.md)]
+To enable debug or trace logging for Blazor WebAssembly authentication in ASP.NET Core 7.0 or later, see <xref:blazor/fundamentals/logging#authentication-logging-blazor-webassembly>.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
+
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -670,7 +654,7 @@ Example:
 
 The WeatherForecast controller (`Controllers/WeatherForecastController.cs`) exposes a protected API with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied to the controller. It's **important** to understand that:
 
-* The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protect this API from unauthorized access.
+* The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protects this API from unauthorized access.
 * The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) used in the Blazor WebAssembly app only serves as a hint to the app that the user should be authorized for the app to work correctly.
 
 ```csharp
@@ -825,7 +809,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/blazor/security/includes/5.0/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -850,7 +834,7 @@ Run the app from the Server project. When using Visual Studio, either:
 
 ## Troubleshoot
 
-[!INCLUDE[](~/blazor/security/includes/5.0/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -1059,7 +1043,7 @@ Example:
 
 The WeatherForecast controller (`Controllers/WeatherForecastController.cs`) exposes a protected API with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied to the controller. It's **important** to understand that:
 
-* The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protect this API from unauthorized access.
+* The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protects this API from unauthorized access.
 * The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) used in the Blazor WebAssembly app only serves as a hint to the app that the user should be authorized for the app to work correctly.
 
 ```csharp
