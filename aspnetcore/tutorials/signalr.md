@@ -197,7 +197,7 @@ In the SignalRChat project folder, create a `Hubs` folder.
 
 In the `Hubs` folder, create the `ChatHub` class with the following code:
 
-[!code-csharp[ChatHub](~/tutorials/signalr/samples/SignalRChat/Hubs/ChatHub.cs)]
+[!code-csharp[ChatHub](~/tutorials/signalr/samples/7.x/SignalRChat/Hubs/ChatHub.cs)]
 
 The `ChatHub` class inherits from the SignalR <xref:Microsoft.AspNetCore.SignalR.Hub> class. The `Hub` class manages connections, groups, and messaging.
 
@@ -207,7 +207,7 @@ The `SendMessage` method can be called by a connected client to send a message t
 
 The SignalR server must be configured to pass SignalR requests to SignalR. Add the following highlighted code to the `Program.cs` file.
 
-[!code-csharp[Startup](~/tutorials/signalr/samples/SignalRChat/Program.cs?highlight=1,6,24)]
+[!code-csharp[Startup](~/tutorials/signalr/7.x/SignalRChat/Program.cs?highlight=1,6,24)]
 
 The preceding highlighted code adds SignalR to the ASP.NET Core dependency injection and routing systems.
 
@@ -215,7 +215,7 @@ The preceding highlighted code adds SignalR to the ASP.NET Core dependency injec
 
 Replace the content in `Pages/Index.cshtml` with the following code:
 
-[!code-cshtml[Index](~/tutorials/signalr/samples/SignalRChat/Pages/Index.cshtml)]
+[!code-cshtml[Index](~/tutorials/signalr/7.x/SignalRChat/Pages/Index.cshtml)]
 
 The preceding markup:
 
@@ -225,7 +225,7 @@ The preceding markup:
 
 In the `wwwroot/js` folder, create a `chat.js` file with the following code:
 
-[!code-javascript[chat](~/tutorials/signalr/samples/SignalRChat/wwwroot/js/chat.js)]
+[!code-javascript[chat](~/tutorials/signalr/samples/7.x/SignalRChat/wwwroot/js/chat.js)]
 
 The preceding JavaScript:
 
