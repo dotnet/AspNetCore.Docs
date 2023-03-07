@@ -146,8 +146,6 @@ export function beforeStart(options, extensions) {
 
 [Import maps](https://developer.mozilla.org/docs/Web/HTML/Element/script/type/importmap) are supported by ASP.NET Core and Blazor.
 
-For browser compatibility, see [Can I use: import maps](https://caniuse.com/import-maps).
-
 :::moniker-end
 
 ## Initialize Blazor when the document is ready

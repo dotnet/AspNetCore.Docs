@@ -149,7 +149,7 @@ In HTML, place the target container element, `quoteContainer2` for this example:
 <div id="quoteContainer2"></div>
 ```
 
-In a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers). The following example only handles pasting text, but you could use arbitrary JavaScript APIs to deal with users pasting other types of data, such as images.
+Using a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers), add the root component to the target container element.
 
 `wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js`:
 
