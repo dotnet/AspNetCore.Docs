@@ -5,20 +5,20 @@ description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app wi
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 02/28/2023
+ms.date: 03/07/2023
 uid: blazor/security/webassembly/hosted-with-azure-active-directory
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory
 
 This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication. This article focuses on a single tenant app with a single tenant Azure app registration.
 
-Security articles for Blazor WebAssembly in this node don't cover a *hosted Blazor WebAssembly solution* with a *multi-tenant Azure registration*. Multi-tenant guidance found in <xref:blazor/security/webassembly/standalone-with-microsoft-accounts> for configuring a standalone Blazor WebAssembly app applies to the :::no-loc text="Client"::: app of a hosted Blazor WebAssembly solution. For additional information, see [Making your application multi-tenant](/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant).
+This article doesn't cover a *multi-tenant Azure Active Directory registration*. For more information, see [Making your application multi-tenant](/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant).
 
 :::moniker range=">= aspnetcore-7.0"
 
 ## Walkthrough
 
-The subsections of this node explain how to:
+The subsections of walkthrough explain how to:
 
 * Create a tenant in Azure
 * Register a server API app in Azure
@@ -155,6 +155,8 @@ A complete example of `AzureAd` configuration follows, where:
 
 ### Modify the default access token scope scheme
 
+*This section pertains to the solution's **:::no-loc text="Client":::** app.*
+
 The Blazor WebAssembly template automatically adds a scheme of `api://` to the App ID URI argument passed in the `dotnet new` command. 
 
 When generating an app from the [Blazor project template](xref:blazor/project-structure), confirm that the value of the default access token scope in `Program.cs` of the **:::no-loc text="Client":::** app uses either the correct custom App ID URI value that you provided in the Azure portal or a value with **one** of the following formats:
@@ -196,9 +198,33 @@ Run the app from the **:::no-loc text="Server":::** app. When using Visual Studi
 * Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
 * Select the **:::no-loc text="Server":::** app in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
+## Configure `User.Identity.Name`
+
+*The guidance in this section covers optionally populating `User.Identity.Name` with the value from the `name` claim.*
+
+By default, the **:::no-loc text="Server":::** app API populates `User.Identity.Name` with the value from the `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name` claim type (for example, `2d64b3da-d9d5-42c6-9352-53d8df33d770@contoso.onmicrosoft.com`).
+
+To configure the app to receive the value from the `name` claim type:
+
+* Add a namespace for <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> to `Program.cs`:
+
+  ```csharp
+  using Microsoft.AspNetCore.Authentication.JwtBearer;
+  ```
+
+* Configure the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Program.cs`:
+
+  ```csharp
+  builder.Services.Configure<JwtBearerOptions>(
+      JwtBearerDefaults.AuthenticationScheme, options =>
+      {
+          options.TokenValidationParameters.NameClaimType = "name";
+      });
+  ```
+
 ## Parts of the solution
 
-The following subsections explain the parts of a project generated from the Blazor WebAssembly project template.
+The following subsections in *Parts of the solution* explain the parts of a solution generated from the Blazor WebAssembly project template and describe how the solution's **:::no-loc text="Client":::** and **:::no-loc text="Server":::** projects are configured for reference. There's no specific guidance to follow in these sections for a basic working application if you created the app using the guidance earlier in this article. The guidance in this section is helpful if you're attempting to convert an app that doesn't authenticate and authorize users into one that does. However, an alternative approach to updating an app is to create a new app from the earlier guidance in this article and move your app's components, classes, and resources to the newly-created app. Either approach is viable.
 
 ### `appsettings.json` configuration
 
@@ -269,13 +295,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 ```
 
-### WeatherForecast controller
+### :::no-loc text="WeatherForecast"::: controller
 
 *This section pertains to the solution's **:::no-loc text="Server":::** app.*
 
-The WeatherForecast controller (`Controllers/WeatherForecastController.cs`) exposes a protected API with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied to the controller. It's **important** to understand that:
+The `WeatherForecast` controller (`Controllers/WeatherForecastController.cs`) exposes a protected API with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied to the controller. It's **important** to understand that:
 
-* The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protect this API from unauthorized access.
+* The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protects this API from unauthorized access.
 * The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) used in the Blazor WebAssembly app only serves as a hint to the app that the user should be authorized for the app to work correctly.
 
 ```csharp
@@ -424,7 +450,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 *This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
-[!INCLUDE[](~/blazor/security/includes/7.0/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -444,29 +470,9 @@ For more information, see the following sections of the *Additional scenarios* a
 
 [!INCLUDE[](~/blazor/security/includes/fetchdata-component.md)]
 
-## Configure User.Identity.Name
+## Troubleshoot
 
-By default, the **:::no-loc text="Server":::** app API populates `User.Identity.Name` with the value from the `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name` claim type (for example, `2d64b3da-d9d5-42c6-9352-53d8df33d770@contoso.onmicrosoft.com`).
-
-To configure the app to receive the value from the `name` claim type:
-
-* Add a namespace for <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> to `Program.cs`:
-
-  ```csharp
-  using Microsoft.AspNetCore.Authentication.JwtBearer;
-  ```
-
-* Configure the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.NameClaimType?displayProperty=nameWithType> of the <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerOptions> in `Program.cs`:
-
-  ```csharp
-  builder.Services.Configure<JwtBearerOptions>(
-      JwtBearerDefaults.AuthenticationScheme, options =>
-      {
-          options.TokenValidationParameters.NameClaimType = "name";
-      });
-  ```
-
-[!INCLUDE[](~/blazor/security/includes/7.0/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -476,7 +482,8 @@ To configure the app to receive the value from the `name` claim type:
 * <xref:blazor/security/webassembly/aad-groups-roles>
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
-* [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)* * * * [Security best practices for application properties in Azure Active Directory](/azure/active-directory/develop/security-best-practices-for-app-registration)
+* [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)
+* [Security best practices for application properties in Azure Active Directory](/azure/active-directory/develop/security-best-practices-for-app-registration)
 
 
 :::moniker-end
@@ -742,7 +749,7 @@ app.UseAuthorization();
 
 The WeatherForecast controller (`Controllers/WeatherForecastController.cs`) exposes a protected API with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied to the controller. It's **important** to understand that:
 
-* The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protect this API from unauthorized access.
+* The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protects this API from unauthorized access.
 * The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) used in the Blazor WebAssembly app only serves as a hint to the app that the user should be authorized for the app to work correctly.
 
 ```csharp
@@ -891,7 +898,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 *This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
-[!INCLUDE[](~/blazor/security/includes/6.0/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -933,7 +940,9 @@ To configure the app to receive the value from the `name` claim type:
       });
   ```
 
-[!INCLUDE[](~/blazor/security/includes/6.0/troubleshoot.md)]
+## Troubleshoot
+
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -943,7 +952,8 @@ To configure the app to receive the value from the `name` claim type:
 * <xref:blazor/security/webassembly/aad-groups-roles>
 * <xref:security/authentication/azure-active-directory/index>
 * [Microsoft identity platform documentation](/azure/active-directory/develop/)
-* [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)* * * * [Security best practices for application properties in Azure Active Directory](/azure/active-directory/develop/security-best-practices-for-app-registration)
+* [Quickstart: Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app)
+* [Security best practices for application properties in Azure Active Directory](/azure/active-directory/develop/security-best-practices-for-app-registration)
 
 :::moniker-end
 
@@ -1138,7 +1148,7 @@ Example:
 
 The WeatherForecast controller (`Controllers/WeatherForecastController.cs`) exposes a protected API with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied to the controller. It's **important** to understand that:
 
-* The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protect this API from unauthorized access.
+* The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protects this API from unauthorized access.
 * The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) used in the Blazor WebAssembly app only serves as a hint to the app that the user should be authorized for the app to work correctly.
 
 ```csharp
@@ -1295,7 +1305,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/blazor/security/includes/5.0/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -1316,26 +1326,9 @@ Run the app from the Server project. When using Visual Studio, either:
 * Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
 * Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
-<!-- 
+## Troubleshoot
 
-    HOLD FOR ADDITIONAL WORK TO FULLY FLESH OUT THE SCENARIO FOR HOSTED WASM APPS
-
-    Place a dedicated INCLUDE for this because the existing INCLUDE is really written
-    for the Identity Server-based hosted WASM topic.
-
-    In the *Custom Identity components* section of the scaffold identity topic at ...
-
-    \security\authentication\scaffold-identity.md
-
-    ... there's a commented-out remark on Identity components for hosted WASM apps.
-    That statement can be brought back (with perhaps a revised heading bookmark)
-    after this content is resolved.
-
-[!INCLUDE[](~/blazor/security/includes/usermanager-signinmanager.md)]
-
--->
-
-[!INCLUDE[](~/blazor/security/includes/5.0/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -1538,7 +1531,7 @@ Example:
 
 The WeatherForecast controller (`Controllers/WeatherForecastController.cs`) exposes a protected API with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) applied to the controller. It's **important** to understand that:
 
-* The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protect this API from unauthorized access.
+* The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in this API controller is the only thing that protects this API from unauthorized access.
 * The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) used in the Blazor WebAssembly app only serves as a hint to the app that the user should be authorized for the app to work correctly.
 
 ```csharp
@@ -1693,7 +1686,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/blazor/security/includes/3.1/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -1714,26 +1707,9 @@ Run the app from the Server project. When using Visual Studio, either:
 * Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
 * Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
 
-<!-- 
+## Troubleshoot
 
-    HOLD FOR ADDITIONAL WORK TO FULLY FLESH OUT THE SCENARIO FOR HOSTED WASM APPS
-
-    Place a dedicated INCLUDE for this because the existing INCLUDE is really written
-    for the Identity Server-based hosted WASM topic.
-
-    In the *Custom Identity components* section of the scaffold identity topic at ...
-
-    \security\authentication\scaffold-identity.md
-
-    ... there's a commented-out remark on Identity components for hosted WASM apps.
-    That statement can be brought back (with perhaps a revised heading bookmark)
-    after this content is resolved.
-
-[!INCLUDE[](~/blazor/security/includes/usermanager-signinmanager.md)]
-
--->
-
-[!INCLUDE[](~/blazor/security/includes/3.1/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 

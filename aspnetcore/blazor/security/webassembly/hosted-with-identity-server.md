@@ -220,7 +220,7 @@ By default, configuration for the app is loaded by convention from `_configurati
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/blazor/security/includes/7.0/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -544,7 +544,9 @@ If troubleshooting an Identity Server key-signing certificate loading problem, e
 Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
 ```
 
-[!INCLUDE[](~/blazor/security/includes/7.0/troubleshoot.md)]
+## Troubleshoot
+
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -763,7 +765,7 @@ By default, configuration for the app is loaded by convention from `_configurati
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/blazor/security/includes/6.0/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -1087,7 +1089,9 @@ If troubleshooting an Identity Server key-signing certificate loading problem, e
 Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
 ```
 
-[!INCLUDE[](~/blazor/security/includes/6.0/troubleshoot.md)]
+## Troubleshoot
+
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -1303,7 +1307,7 @@ By default, configuration for the app is loaded by convention from `_configurati
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/blazor/security/includes/5.0/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -1798,7 +1802,9 @@ If troubleshooting an Identity Server key-signing certificate loading problem, e
 Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
 ```
 
-[!INCLUDE[](~/blazor/security/includes/5.0/troubleshoot.md)]
+## Troubleshoot
+
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
@@ -2013,7 +2019,7 @@ By default, configuration for the app is loaded by convention from `_configurati
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/blazor/security/includes/3.1/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -2337,7 +2343,9 @@ If troubleshooting an Identity Server key-signing certificate loading problem, e
 Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Subject, Thumbprint, EnhancedKeyUsageList
 ```
 
-[!INCLUDE[](~/blazor/security/includes/3.1/troubleshoot.md)]
+## Troubleshoot
+
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
