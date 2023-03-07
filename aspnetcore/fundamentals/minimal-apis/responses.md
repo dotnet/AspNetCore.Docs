@@ -4,7 +4,7 @@ author: brunolins16
 description: Learn how to create responses for minimal APIs in ASP.NET Core.
 ms.author: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 11/07/2022
+ms.date: 03/14/2023
 uid: fundamentals/minimal-apis/responses
 ---
 
@@ -122,6 +122,10 @@ The following sections demonstrate the usage of the common result helpers.
 app.MapGet("/hello", () => Results.Json(new { Message = "Hello World" }));
 ```
 
+<xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync%2A> is an alternative way to return JSON:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_writeasjsonasync":::
+
 #### Custom Status Code
 
 ```csharp
@@ -214,15 +218,23 @@ public static void PopulateMetadata(MethodInfo method, EndpointBuilder builder)
 
 By default, Minimal API apps use [`Web defaults`](/dotnet/standard/serialization/system-text-json-configure-options#web-defaults-for-jsonserializeroptions) options during JSON serialization and deserialization.
 
-Options can be configured by invoking <xref:Microsoft.Extensions.DependencyInjection.HttpJsonServiceExtensions.ConfigureHttpJsonOptions%2A>, and the configured options are applied when the app calls extension methods defined in <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions> or <xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions>.
+### Configure JSON serialization options globally
 
-The following example invokes `ConfigureHttpJsonOptions` to configure options that apply wherever the app serializes or deserializes JSON for HTTP requests and responses:
+Options can be configured globally for an app by invoking <xref:Microsoft.Extensions.DependencyInjection.HttpJsonServiceExtensions.ConfigureHttpJsonOptions%2A>. The following example specifies that public fields should be included when serializing and deserializing, and JSON output should be formatted.
 
-[!code-csharp[](7.0-samples/WebMinJson/Program.cs?name=snippet_1)]
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_confighttpjsonoptions":::
 
-To make more localized changes to the serialization options, pass modified versions of <xref:System.Text.Json.JsonSerializerOptions> directly into the responses that are being sent from endpoints, as shown in the following example:
+By default, [System.Text.Json ignores fields](/dotnet/standard/serialization/system-text-json/how-to#serialization-behavior). If the posted JSON contains a value only in `NameField`, the returned JSON shows that value in the `Name` property and includes `NameField` only if the `IncludeFields` option has been set.
 
-[!code-csharp[](7.0-samples/WebMinJson/Program.cs?name=snippet_2&highlight=12,13)]
+### Configure JSON serialization options for an endpoint
+
+To configure serialization options for an endpoint, invoke <xref:Microsoft.AspNetCore.Http.Results.Json%2A> and pass to it a <xref:System.Text.Json.JsonSerializerOptions> object, as shown in the following example:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_resultsjsonwithoptions":::
+
+As an alternative, use an overload of <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync%2A>that accepts a <xref:System.Text.Json.JsonSerializerOptions> object. The following example uses this overload:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_writeasjsonasyncwithoptions":::
 
 ## Additional Resources
 

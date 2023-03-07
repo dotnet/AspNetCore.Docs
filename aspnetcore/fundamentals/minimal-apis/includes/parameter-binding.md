@@ -11,7 +11,7 @@ Supported binding sources:
 
 Binding from form values is ***not*** natively supported in .NET.
 
-The following `GET ` route handler uses some of these parameter binding sources:
+The following `GET` route handler uses some of these parameter binding sources:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_pbg&highlight=8-11)]
 
@@ -318,26 +318,22 @@ The rules for determining a binding source from a parameter:
 1. If the parameter type is a service provided by dependency injection, it uses that service as the source.
 1. The parameter is from the body.
 
-### Customize JSON binding
+## Configure body binding JSON deserialization options
 
-The body binding source uses <xref:System.Text.Json?displayProperty=fullName> for de-serialization. It is ***not*** possible to change this default, but the binding can be customized using other techniques described previously. To customize JSON serializer options, use code similar to the following:
+The body binding source uses <xref:System.Text.Json?displayProperty=fullName> for deserialization. It is ***not*** possible to change this default, but JSON serialization and deserialization options can be configured.
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cjson)]
+### Configure JSON deserialization options globally
 
-The preceding code:
+Options that apply globally for an app can be configured by invoking <xref:Microsoft.Extensions.DependencyInjection.HttpJsonServiceExtensions.ConfigureHttpJsonOptions%2A>. The following example specifies that public fields should be included when serializing and deserializing, and JSON output should be formatted.
 
-* Configures both the input and output default JSON options.
-* Returns the following JSON
-  ```json
-  {
-    "id": 1,
-    "name": "Joe Smith"
-  }
-  ```
-  When posting 
-  ```json
-  {
-    "Id": 1,
-    "Name": "Joe Smith"
-  }
-  ```
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_confighttpjsonoptions":::
+
+By default, [System.Text.Json ignores fields](/dotnet/standard/serialization/system-text-json/how-to#serialization-behavior). If the posted JSON contains a value only in `NameField`, the returned JSON shows that value in the `Name` property and includes `NameField` only if the `IncludeFields` option has been set.
+
+### Configure JSON deserialization options for an endpoint
+
+<xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions.ReadFromJsonAsync%2A> has overloads that accept a <xref:System.Text.Json.JsonSerializerOptions> object. This options object overrides the default options. The following example specifies that public fields should be included when deserializing, and JSON output should be formatted.
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_readfromjsonasyncwithoptions":::
+
+Since the customized options apply only to deserialization, the output JSON excludes `NameField`.
