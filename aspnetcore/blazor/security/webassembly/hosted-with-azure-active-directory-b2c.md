@@ -1194,7 +1194,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/blazor/security/includes/3.1/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -1219,7 +1219,7 @@ Run the app from the Server project. When using Visual Studio, either:
 
 ## Troubleshoot
 
-[!INCLUDE[](~/blazor/security/includes/3.1/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 

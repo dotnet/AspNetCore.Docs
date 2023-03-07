@@ -2019,7 +2019,7 @@ By default, configuration for the app is loaded by convention from `_configurati
 
 ### RedirectToLogin component
 
-[!INCLUDE[](~/blazor/security/includes/3.1/redirecttologin-component.md)]
+[!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### LoginDisplay component
 
@@ -2345,7 +2345,7 @@ Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Sub
 
 ## Troubleshoot
 
-[!INCLUDE[](~/blazor/security/includes/3.1/troubleshoot.md)]
+[!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
