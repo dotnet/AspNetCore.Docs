@@ -29,7 +29,7 @@ JSON Patch support in ASP.NET Core web API is based on `Newtonsoft.Json` and req
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A>
 
-JsonPatch requires setting the `Content-Type` Header to `application/json-patch+json`
+JsonPatch requires setting the `Content-Type` header to `application/json-patch+json`.
 
 ## Add support for JSON Patch when using System.Text.Json
 
