@@ -1,6 +1,6 @@
 ---
-title: Incremental ASP.NET to ASP.NET Core Migration
-description: Incremental ASP.NET to ASP.NET Core Migration
+title: Incremental ASP.NET to ASP.NET Core update
+description: Incremental ASP.NET to ASP.NET Core migration
 author: rick-anderson
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
@@ -12,9 +12,9 @@ uid: migration/inc/overview
 
 <!-- see mermaid.txt to change diagrams -->
 
-# Incremental ASP.NET to ASP.NET Core migration
+# Incremental ASP.NET to ASP.NET Core update
 
-Migrating an app from ASP.NET Framework to ASP.NET Core is non-trivial for the majority of production apps. These apps often incorporate new technologies as they become available and are often composed of many legacy decisions. This article provides guidance and links to tools for migrating ASP.NET Framework apps to ASP.NET Core with as little change as possible.
+Updating an app from ASP.NET Framework to ASP.NET Core is non-trivial for the majority of production apps. These apps often incorporate new technologies as they become available and are often composed of many legacy decisions. This article provides guidance and links to tools for migrating ASP.NET Framework apps to ASP.NET Core with as little change as possible.
 
 One of the larger challenges is the pervasive use of <xref:System.Web.HttpContext> throughout a code base. Without the incremental approach and tools, a large scale rewrite is required to remove the `System.Web.HttpContext` dependency. The adapters in [dotnet/systemweb-adapters](https://github.com/dotnet/systemweb-adapters) provide a set of runtime helpers to access the types used in the ASP.NET Framework app in a way that works in ASP.NET Core with minimal changes.
 
