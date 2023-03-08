@@ -159,7 +159,7 @@ To see how offline support works:
    * Shut down the web server and see how the app continues to function normally, which includes page reloads. Likewise, the app continues to function normally when there's a slow network connection.
    * Instruct the browser to simulate offline mode in the **Network** tab:
 
-   ![Google Chrome developer tools 'Network' tab with the browser mode drop down being changed from 'Online' to 'Offline'.](~/blazor/progressive-web-app/_static/image6.png)
+   ![Google Chrome developer tools 'Network' tab with the browser mode dropdown list changed from 'Online' to 'Offline'.](~/blazor/progressive-web-app/_static/image6.png)
 
 Offline support using a service worker is a web standard, not specific to Blazor. For more information on service workers, see [MDN web docs: Service Worker API](https://developer.mozilla.org/docs/Web/API/Service_Worker_API). To learn more about common usage patterns for service workers, see [Google Web: The Service Worker Lifecycle](https://web.dev/service-worker-lifecycle/).
 
