@@ -91,19 +91,9 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 > [!NOTE]
 > Use of package versions incompatible with the app's target framework isn't supported. For information on a package, use the [NuGet Gallery](https://www.nuget.org) or [FuGet Package Explorer](https://www.fuget.org).
 
-### Run the Server app
+### Run the `Server` app
 
 When testing and troubleshooting a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), make sure that you're running the app from the **`Server`** project.
-
-For example in Visual Studio, adopt ***one*** of the following approaches:
-
-* Select the dropdown arrow next to the **Run** button. Open **Configure Startup Projects** from the dropdown list. Select the **Single startup project** option. Confirm or change the project for the startup project to the **`Server`** project.
-
-* Confirm that the Server project is highlighted in **Solution Explorer** before you start the app with any of the following approaches:
-
-  * Select the **Run** button.
-  * Use **Debug** > **Start Debugging** from the menu.
-  * Press <kbd>F5</kbd>.
 
 ### Inspect the user
 

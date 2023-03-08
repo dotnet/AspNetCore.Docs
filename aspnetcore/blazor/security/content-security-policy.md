@@ -112,7 +112,7 @@ Use a `<meta>` tag to apply the policy:
 * Place the directives in the `content` attribute value. Separate directives with a semicolon (`;`).
 * Always place the `meta` tag in the `<head>` content.
 
-The following sections show example policies for Blazor WebAssembly and Blazor Server. These examples are versioned with this article for each release of Blazor. To use a version appropriate for your release, select the document version with the **Version** drop down selector on this webpage.
+The following sections show example policies for Blazor WebAssembly and Blazor Server. These examples are versioned with this article for each release of Blazor. To use a version appropriate for your release, select the document version with the **Version** dropdown selector on this webpage.
 
 ### Blazor WebAssembly
 
