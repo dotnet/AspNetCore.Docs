@@ -216,9 +216,9 @@ Add the preceding JS module to an app or class library as a static web asset in 
 In the preceding example:
 
 * By convention, the `import` identifier is a special identifier used specifically for importing a JS module.
-* Specify the module's external JS file using its stable static web asset path: `./{SCRIPT PATH AND FILENAME (.js)}`, where:
+* Specify the module's external JS file using its stable static web asset path: `./{SCRIPT PATH AND FILE NAME (.js)}`, where:
   * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
-  * The `{SCRIPT PATH AND FILENAME (.js)}` placeholder is the path and file name under `wwwroot`.
+  * The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name under `wwwroot`.
 * Disposes the <xref:Microsoft.JSInterop.IJSObjectReference> for [garbage collection](xref:blazor/components/lifecycle#asynchronous-iasyncdisposable) in <xref:System.IAsyncDisposable.DisposeAsync%2A?displayProperty=nameWithType>.
 
 Dynamically importing a module requires a network request, so it can only be achieved asynchronously by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>.
@@ -226,11 +226,11 @@ Dynamically importing a module requires a network request, so it can only be ach
 `IJSInProcessObjectReference` represents a reference to a JS object whose functions can be invoked synchronously in Blazor WebAssembly apps. For more information, see the [Synchronous JS interop in Blazor WebAssembly apps](#synchronous-js-interop-in-blazor-webassembly-apps) section.
 
 > [!NOTE]
-> When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the module's JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILENAME (.js)}`:
+> When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the module's JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}`:
 >
 > * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
 > * The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. In the following example, the library's assembly name is `ComponentLibrary` and the library's project file doesn't specify `<PackageId>`.
-> * The `{SCRIPT PATH AND FILENAME (.js)}` placeholder is the path and file name under `wwwroot`. In the following example, the external JS file (`script.js`) is placed in the class library's `wwwroot` folder.
+> * The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name under `wwwroot`. In the following example, the external JS file (`script.js`) is placed in the class library's `wwwroot` folder.
 >
 > ```csharp
 > var module = await js.InvokeAsync<IJSObjectReference>(
@@ -1002,9 +1002,9 @@ Add the preceding JS module to an app or class library as a static web asset in 
 In the preceding example:
 
 * By convention, the `import` identifier is a special identifier used specifically for importing a JS module.
-* Specify the module's external JS file using its stable static web asset path: `./{SCRIPT PATH AND FILENAME (.js)}`, where:
+* Specify the module's external JS file using its stable static web asset path: `./{SCRIPT PATH AND FILE NAME (.js)}`, where:
   * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
-  * The `{SCRIPT PATH AND FILENAME (.js)}` placeholder is the path and file name under `wwwroot`.
+  * The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name under `wwwroot`.
 * Disposes the <xref:Microsoft.JSInterop.IJSObjectReference> for [garbage collection](xref:blazor/components/lifecycle#asynchronous-iasyncdisposable) in <xref:System.IAsyncDisposable.DisposeAsync%2A?displayProperty=nameWithType>.
 
 Dynamically importing a module requires a network request, so it can only be achieved asynchronously by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>.
@@ -1012,11 +1012,11 @@ Dynamically importing a module requires a network request, so it can only be ach
 `IJSInProcessObjectReference` represents a reference to a JS object whose functions can be invoked synchronously in Blazor WebAssembly apps. For more information, see the [Synchronous JS interop in Blazor WebAssembly apps](#synchronous-js-interop-in-blazor-webassembly-apps) section.
 
 > [!NOTE]
-> When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the module's JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILENAME (.js)}`:
+> When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the module's JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}`:
 >
 > * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
 > * The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. In the following example, the library's assembly name is `ComponentLibrary` and the library's project file doesn't specify `<PackageId>`.
-> * The `{SCRIPT PATH AND FILENAME (.js)}` placeholder is the path and file name under `wwwroot`. In the following example, the external JS file (`script.js`) is placed in the class library's `wwwroot` folder.
+> * The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name under `wwwroot`. In the following example, the external JS file (`script.js`) is placed in the class library's `wwwroot` folder.
 >
 > ```csharp
 > var module = await js.InvokeAsync<IJSObjectReference>(
@@ -1832,20 +1832,20 @@ Add the preceding JS module to an app or class library as a static web asset in 
 In the preceding example:
 
 * By convention, the `import` identifier is a special identifier used specifically for importing a JS module.
-* Specify the module's external JS file using its stable static web asset path: `./{SCRIPT PATH AND FILENAME (.js)}`, where:
+* Specify the module's external JS file using its stable static web asset path: `./{SCRIPT PATH AND FILE NAME (.js)}`, where:
   * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
-  * The `{SCRIPT PATH AND FILENAME (.js)}` placeholder is the path and file name under `wwwroot`.
+  * The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name under `wwwroot`.
 
 Dynamically importing a module requires a network request, so it can only be achieved asynchronously by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A>.
 
 `IJSInProcessObjectReference` represents a reference to a JS object whose functions can be invoked synchronously in Blazor WebAssembly apps. For more information, see the [Synchronous JS interop in Blazor WebAssembly apps](#synchronous-js-interop-in-blazor-webassembly-apps) section.
 
 > [!NOTE]
-> When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the module's JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILENAME (.js)}`:
+> When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the module's JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}`:
 >
 > * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
 > * The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. In the following example, the library's assembly name is `ComponentLibrary` and the library's project file doesn't specify `<PackageId>`.
-> * The `{SCRIPT PATH AND FILENAME (.js)}` placeholder is the path and file name under `wwwroot`. In the following example, the external JS file (`script.js`) is placed in the class library's `wwwroot` folder.
+> * The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name under `wwwroot`. In the following example, the external JS file (`script.js`) is placed in the class library's `wwwroot` folder.
 >
 > ```csharp
 > var module = await js.InvokeAsync<IJSObjectReference>(

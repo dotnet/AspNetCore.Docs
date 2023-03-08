@@ -728,12 +728,12 @@ For more information and configuration guidance, consult the following resources
 
 Blazor performs Intermediate Language (IL) trimming on each Release build to remove unnecessary IL from the output assemblies. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
 
-## Change the filename extension of DLL files
+## Change the file name extension of DLL files
 
-If a firewall, anti-virus program, or network security appliance is blocking the trasmission of the app's dynamic-link library (DLL) files (`.dll`), you can follow the guidance in this section to change the filename extensions of the app's published DLL files.
+If a firewall, anti-virus program, or network security appliance is blocking the transmission of the app's dynamic-link library (DLL) files (`.dll`), you can follow the guidance in this section to change the file name extensions of the app's published DLL files.
 
 > [!NOTE]
-> Changing the filename extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions. For a more robust approach in environments that block the download and execution of DLL files, see <xref:blazor/host-and-deploy/webassembly-deployment-layout>.
+> Changing the file name extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions. For a more robust approach in environments that block the download and execution of DLL files, see <xref:blazor/host-and-deploy/webassembly-deployment-layout>.
 >
 > Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
 
@@ -1802,12 +1802,12 @@ For more information and configuration guidance, consult the following resources
 
 Blazor performs Intermediate Language (IL) trimming on each Release build to remove unnecessary IL from the output assemblies. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
 
-## Change the filename extension of DLL files
+## Change the file name extension of DLL files
 
-If a firewall, anti-virus program, or network security appliance is blocking the trasmission of the app's dynamic-link library (DLL) files (`.dll`), you can follow the guidance in this section to change the filename extensions of the app's published DLL files.
+If a firewall, anti-virus program, or network security appliance is blocking the transmission of the app's dynamic-link library (DLL) files (`.dll`), you can follow the guidance in this section to change the file name extensions of the app's published DLL files.
 
 > [!NOTE]
-> Changing the filename extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions. For a more robust approach in environments that block the download and execution of DLL files, see <xref:blazor/host-and-deploy/webassembly-deployment-layout>.
+> Changing the file name extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions. For a more robust approach in environments that block the download and execution of DLL files, see <xref:blazor/host-and-deploy/webassembly-deployment-layout>.
 >
 > Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
 
@@ -2701,12 +2701,12 @@ The `--urls` argument sets the IP addresses or host addresses with ports and pro
 
 Blazor performs Intermediate Language (IL) trimming on each Release build to remove unnecessary IL from the output assemblies. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
 
-## Change the filename extension of DLL files
+## Change the file name extension of DLL files
 
-If a firewall, anti-virus program, or network security appliance is blocking the trasmission of the app's dynamic-link library (DLL) files (`.dll`), you can follow the guidance in this section to change the filename extensions of the app's published DLL files.
+If a firewall, anti-virus program, or network security appliance is blocking the transmission of the app's dynamic-link library (DLL) files (`.dll`), you can follow the guidance in this section to change the file name extensions of the app's published DLL files.
 
 > [!NOTE]
-> Changing the filename extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions.
+> Changing the file name extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions.
 >
 > Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
 
