@@ -32,7 +32,7 @@ Migration starts by introducing a new app based on ASP.NET Core that becomes the
 
 ![start updating routes](~/migration/inc/overview/static/nop.png)
 
-To migrate business logic that relies on `HttpContext`, the libraries need to be built with `Microsoft.AspNetCore.SystemWebAdapters`. Building the libraries with `Microsoft.AspNetCore.SystemWebAdapters` allows:
+To migrate business logic that relies on `HttpContext`, the libraries need to be built with `Microsoft.AspNetCore.SystemWebAdapters`. Building the libraries with `SystemWebAdapters` allows:
 
 * The libraries to be built against .NET Framework, .NET Core, or .NET Standard 2.0.
 * Ensures that the libraries are using APIs that are available on both ASP.NET Framework and ASP.NET Core.
