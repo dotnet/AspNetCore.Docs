@@ -14,7 +14,7 @@ uid: migration/inc/adapters
 
 The main use case of the adapters in the [dotnet/systemweb-adapters](https://github.com/dotnet/systemweb-adapters) repository is to help developers who have taken a reliance on `System.Web` types within their class libraries as they want to move to ASP.NET Core.
 
-An important feature of the adapters is the adapters allow the library to be used from ***both*** ASP.NET Framework and ASP.NET Core projects. Migrating multiple ASP.NET Framework apps to ASP.NET Core often involves intermediate states where not all the apps have been fully migrated. By using the `System.Web` adapters, the library can be used both from ASP.NET Core callers and ASP.NET Framework callers that haven't been upgraded.
+An important feature of the adapters is the adapters allow the library to be used from ***both*** ASP.NET Framework and ASP.NET Core projects. Updating multiple ASP.NET Framework apps to ASP.NET Core often involves intermediate states where not all the apps have been fully updated. By using the `System.Web` adapters, the library can be used both from ASP.NET Core callers and ASP.NET Framework callers that haven't been upgraded.
 
 Let's take a look at an example using the adapters moving from .NET Framework to ASP.NET Core.
 

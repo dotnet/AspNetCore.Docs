@@ -20,14 +20,7 @@ To understand how this is helpful in the migration process, see [Incremental ASP
 
 ## Set up ASP.NET Core Project
 
-1. Install the [experimental Visual Studio extension](https://marketplace.visualstudio.com/items?itemName=WebToolsTeam.aspnetprojectmigrations) that helps configure the solution.
-2. Right click the ASP.NET Framework app and select **Migrate Project**:
-   ![Migrate Menu](~/migration/inc/start/static/migrate_menu.png)
-1. This will open a menu that will offer to start a migration. Click the link to begin:
-   ![Migrate Options](~/migration/inc/start/static/migrate_options.png)
-1. A wizard will now appear that allows you to create a new project or select an existing project.
-   ![Migrate Wizard](~/migration/inc/start/static/migrate_wizard.png)
-1. After completing the wizard, you have an ASP.NET Core project that proxies requests to routes that do not exist there onto the ASP.NET Framework app.
+Install the Visual Studio extension [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant). For more information see the blog post [Upgrading your .NET projects with Visual Studio](https://devblogs.microsoft.com/dotnet/upgrade-assistant-now-in-visual-studio/). <!-- TODO: update  https://github.com/dotnet/AspNetCore.Docs/issues/28608 -->
 
 ## Upgrade supporting libraries
 
@@ -52,4 +45,4 @@ It is possible to share authentication between the original ASP.NET app and the 
 
 ## General Usage Guidance
 
-There are a number of differences between ASP.NET and ASP.NET Core that the adapters are able to help migrate. However, there are some features that require an opt-in as they incur some cost. There are also behaviors that cannot be adapted. See [usage guidance](xref:migration/inc/usage_guidance) for a list of these.
+There are a number of differences between ASP.NET and ASP.NET Core that the adapters are able to help update. However, there are some features that require an opt-in as they incur some cost. There are also behaviors that cannot be adapted. See [usage guidance](xref:migration/inc/usage_guidance) for a list of these.

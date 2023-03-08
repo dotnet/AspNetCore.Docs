@@ -159,7 +159,7 @@ To see how offline support works:
    * Shut down the web server and see how the app continues to function normally, which includes page reloads. Likewise, the app continues to function normally when there's a slow network connection.
    * Instruct the browser to simulate offline mode in the **Network** tab:
 
-   ![Google Chrome developer tools 'Network' tab with the browser mode drop down being changed from 'Online' to 'Offline'.](~/blazor/progressive-web-app/_static/image6.png)
+   ![Google Chrome developer tools 'Network' tab with the browser mode dropdown list changed from 'Online' to 'Offline'.](~/blazor/progressive-web-app/_static/image6.png)
 
 Offline support using a service worker is a web standard, not specific to Blazor. For more information on service workers, see [MDN web docs: Service Worker API](https://developer.mozilla.org/docs/Web/API/Service_Worker_API). To learn more about common usage patterns for service workers, see [Google Web: The Service Worker Lifecycle](https://web.dev/service-worker-lifecycle/).
 
@@ -265,7 +265,7 @@ By default, this manifest lists:
 * Any Blazor-managed resources, such as .NET assemblies and the .NET WebAssembly runtime files required to function offline.
 * All resources for publishing to the app's `wwwroot` directory, such as images, stylesheets, and JavaScript files, including static web assets supplied by external projects and NuGet packages.
 
-You can control which of these resources are fetched and cached by the service worker by editing the logic in `onInstall` in `service-worker.published.js`. By default, the service worker fetches and caches files matching typical web filename extensions such as `.html`, `.css`, `.js`, and `.wasm`, plus file types specific to Blazor WebAssembly (`.dll`, `.pdb`).
+You can control which of these resources are fetched and cached by the service worker by editing the logic in `onInstall` in `service-worker.published.js`. By default, the service worker fetches and caches files matching typical web file name extensions such as `.html`, `.css`, `.js`, and `.wasm`, plus file types specific to Blazor WebAssembly (`.dll`, `.pdb`).
 
 To include additional resources that aren't present in the app's `wwwroot` directory, define extra MSBuild `ItemGroup` entries, as shown in the following example:
 

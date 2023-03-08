@@ -66,7 +66,7 @@ var reader =
 var memoryStream = new MemoryStream();
 browserFile.OpenReadStream().CopyToAsync(memoryStream);
 await blobContainerClient.UploadBlobAsync(
-    trustedFilename, memoryStream));
+    trustedFileName, memoryStream));
 ```
 
 <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> The following approach is **recommended** because the file's <xref:System.IO.Stream> is provided directly to the consumer, a <xref:System.IO.FileStream> that creates the file at the provided path:
@@ -80,7 +80,7 @@ await browserFile.OpenReadStream().CopyToAsync(fs);
 
 ```csharp
 await blobContainerClient.UploadBlobAsync(
-    trustedFilename, browserFile.OpenReadStream());
+    trustedFileName, browserFile.OpenReadStream());
 ```
 
 A component that receives an image file can call the <xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync%2A?displayProperty=nameWithType> convenience method on the file to resize the image data within the browser's JavaScript runtime before the image is streamed into the app. Use cases for calling <xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync%2A> are most appropriate for Blazor WebAssembly apps.
@@ -646,7 +646,7 @@ public class FilesaveController : ControllerBase
 
 :::zone-end
 
-In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure filename. Never trust the filename provided by the browser, as an attacker may choose an existing filename that overwrites an existing file or send a path that attempts to write outside of the app.
+In the preceding code, <xref:System.IO.Path.GetRandomFileName%2A> is called to generate a secure file name. Never trust the file name provided by the browser, as an attacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
 
 ## Cancel a file upload
 

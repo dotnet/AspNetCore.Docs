@@ -76,13 +76,13 @@ Component namespaces are derived from the RCL's package ID or assembly name and 
 
 Place shared static assets in the RCL's `wwwroot` folder and update static asset paths in the app to use the following path format:
 
-> :::no-loc text="_content/{PACKAGE ID/ASSEMBLY}/{PATH}/{FILENAME}":::
+> :::no-loc text="_content/{PACKAGE ID/ASSEMBLY NAME}/{PATH}/{FILE NAME}":::
 
 Placeholders:
 
-* `{PACKAGE ID/ASSEMBLY}`: The package ID or assembly name of the RCL.
+* `{PACKAGE ID/ASSEMBLY NAME}`: The package ID or assembly name of the RCL.
 * `{PATH}`: Optional path within the RCL's `wwwroot` folder.
-* `{FILENAME}`: The filename of the static asset.
+* `{FILE NAME}`: The file name of the static asset.
 
 The preceding path format is also used in the app for static assets supplied by a NuGet package added to the RCL.
 

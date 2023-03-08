@@ -151,18 +151,18 @@ In the following example of the preceding `<script>` tag, the `scripts.js` file 
 <script src="js/scripts.js"></script>
 ```
 
-When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILENAME (.js)}`:
+When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}`:
 
 * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
 * The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file.
-* The `{SCRIPT PATH AND FILENAME (.js)}` placeholder is the path and file name under `wwwroot`.
+* The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name under `wwwroot`.
 
 ```html
 <body>
     ...
 
     <script src="_framework/blazor.{webassembly|server}.js"></script>
-    <script src="./_content/{PACKAGE ID}/{SCRIPT PATH AND FILENAME (.js)}"></script>
+    <script src="./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}"></script>
 </body>
 ```
 
@@ -349,18 +349,18 @@ In the following example of the preceding `<script>` tag, the `scripts.js` file 
 <script src="js/scripts.js"></script>
 ```
 
-When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILENAME (.js)}`:
+When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}`:
 
 * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
 * The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file.
-* The `{SCRIPT PATH AND FILENAME (.js)}` placeholder is the path and file name under `wwwroot`.
+* The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name under `wwwroot`.
 
 ```html
 <body>
     ...
 
     <script src="_framework/blazor.{webassembly|server}.js"></script>
-    <script src="./_content/{PACKAGE ID}/{SCRIPT PATH AND FILENAME (.js)}"></script>
+    <script src="./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}"></script>
 </body>
 ```
 
@@ -538,18 +538,18 @@ In the following example of the preceding `<script>` tag, the `scripts.js` file 
 <script src="js/scripts.js"></script>
 ```
 
-When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILENAME (.js)}`:
+When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}`:
 
 * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
 * The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file.
-* The `{SCRIPT PATH AND FILENAME (.js)}` placeholder is the path and file name under `wwwroot`.
+* The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name under `wwwroot`.
 
 ```html
 <body>
     ...
 
     <script src="_framework/blazor.{webassembly|server}.js"></script>
-    <script src="./_content/{PACKAGE ID}/{SCRIPT PATH AND FILENAME (.js)}"></script>
+    <script src="./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}"></script>
 </body>
 ```
 
@@ -570,7 +570,7 @@ To inject a script after Blazor starts, chain to the `Promise` that results from
 
 ## JavaScript isolation in JavaScript modules
 
-Blazor enables JavaScript (JS) isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) ([ECMAScript specification](https://tc39.es/ecma262/#sec-modules)).
+Blazor enables JavaScript (JS) isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) ([ECMAScript specification](https://tc39.es/ecma262/#sec-modules)). JavaScript module loading works the same way in Blazor as it does for other types of web apps, and you're free to customize how modules are defined in your app. For a guide on how to use JavaScript modules, see [MDN Web Docs: JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules).
 
 JS isolation provides the following benefits:
 
@@ -578,6 +578,16 @@ JS isolation provides the following benefits:
 * Consumers of a library and components aren't required to import the related JS.
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
+
+[Dynamic import with the `import()` operator](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import) is supported with ASP.NET Core and Blazor:
+
+```javascript
+if ({CONDITION}) import("/additionalModule.js");
+```
+
+In the preceding example, the `{CONDITION}` placeholder represents a conditional check to determine if the module should be loaded.
+
+For browser compatibility, see [Can I use: JavaScript modules: dynamic import](https://caniuse.com/es6-module-dynamic-import).
 
 ## Cached JavaScript files
 
@@ -722,18 +732,18 @@ In the following example of the preceding `<script>` tag, the `scripts.js` file 
 <script src="js/scripts.js"></script>
 ```
 
-When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILENAME (.js)}`:
+When the external JS file is supplied by a [Razor class library](xref:blazor/components/class-libraries), specify the JS file using its stable static web asset path: `./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}`:
 
 * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
 * The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file.
-* The `{SCRIPT PATH AND FILENAME (.js)}` placeholder is the path and file name under `wwwroot`.
+* The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name under `wwwroot`.
 
 ```html
 <body>
     ...
 
     <script src="_framework/blazor.{webassembly|server}.js"></script>
-    <script src="./_content/{PACKAGE ID}/{SCRIPT PATH AND FILENAME (.js)}"></script>
+    <script src="./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}"></script>
 </body>
 ```
 
