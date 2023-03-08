@@ -39,12 +39,10 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`NavLink`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
 * [`NavMenu`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
 * [`PageTitle`](xref:blazor/components/control-head-content)
-* [`QuickGrid`&dagger;](xref:blazor/components/index#quickgrid-component)
+* [`QuickGrid`](xref:blazor/components/index#quickgrid-component)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
 * [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
 * [`Virtualize`](xref:blazor/components/virtualization)
-
-&dagger;The `QuickGrid` component is in preview. You're welcome to use it in production if it meets your needs, but it isn't officially supported and may change in future releases.
 
 :::moniker-end
 
