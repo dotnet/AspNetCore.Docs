@@ -251,10 +251,7 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 ## Run the app
 
-Run the app from the Server project. When using Visual Studio, either:
-
-* Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
-* Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
+[!INCLUDE[](~/blazor/security/includes/run-the-app.md)]
 
 ## Name and role claim with API authorization
 
@@ -796,10 +793,7 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 ## Run the app
 
-Run the app from the Server project. When using Visual Studio, either:
-
-* Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
-* Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
+[!INCLUDE[](~/blazor/security/includes/run-the-app.md)]
 
 ## Name and role claim with API authorization
 
@@ -1338,10 +1332,7 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 ## Run the app
 
-Run the app from the Server project. When using Visual Studio, either:
-
-* Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
-* Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
+[!INCLUDE[](~/blazor/security/includes/run-the-app.md)]
 
 ## Name and role claim with API authorization
 
@@ -2050,10 +2041,7 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 ## Run the app
 
-Run the app from the Server project. When using Visual Studio, either:
-
-* Set the **Startup Projects** drop down list in the toolbar to the *Server API app* and select the **Run** button.
-* Select the Server project in **Solution Explorer** and select the **Run** button in the toolbar or start the app from the **Debug** menu.
+[!INCLUDE[](~/blazor/security/includes/run-the-app.md)]
 
 ## Name and role claim with API authorization
 
