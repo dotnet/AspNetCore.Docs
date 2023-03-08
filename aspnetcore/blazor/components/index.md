@@ -1466,6 +1466,18 @@ For more information, see the following resources:
 
 ## `QuickGrid` component
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+The `QuickGrid` component is a Razor component for quickly and efficiently displaying data in tabular form. `QuickGrid` provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. `QuickGrid` is highly optimized and uses advanced techniques to achieve optimal rendering performance.
+
+To get started with `QuickGrid`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
 The `QuickGrid` component is an experimental Razor component for quickly and efficiently displaying data in tabular form. `QuickGrid` provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. `QuickGrid` is highly optimized and uses advanced techniques to achieve optimal rendering performance.
 
 To get started with `QuickGrid`:
@@ -1473,6 +1485,10 @@ To get started with `QuickGrid`:
 1. Add package reference for [`Microsoft.AspNetCore.Components.QuickGrid`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid). If using the .NET CLI to add the package reference, include the `--prerelease` option when you execute the [`dotnet add package` command](/dotnet/core/tools/dotnet-add-package).
 
    [!INCLUDE[](~/includes/package-reference.md)]
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 1. Add the following component to render a grid.
 
@@ -1508,6 +1524,10 @@ To get started with `QuickGrid`:
 For various `QuickGrid` demonstrations, see the [**QuickGrid for Blazor** app](https://aspnet.github.io/quickgridsamples/). The demo site is built using Blazor WebAssembly and is hosted on GitHub Pages. The site loads fast thanks to static prerendering using the community-maintained [`BlazorWasmPrerendering.Build` GitHub project](https://github.com/jsakamoto/BlazorWasmPreRendering.Build).
 
 There aren't current plans to extend `QuickGrid` with features that full-blown commercial grids tend to offer, for example, hierarchical rows, drag-to-reorder columns, or Excel-like range selections. If you require advanced features that you don't wish to develop on your own, continue using third-party grids.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 > [!WARNING]
 > The `QuickGrid` component is in preview. You're welcome to use it in production if it meets your needs, but it isn't officially supported and may change in future releases.
