@@ -99,7 +99,7 @@ In the following example for IIS, the custom header (`Blazor-Environment`) is ad
 
 Use the following guidance for hosted Blazor WebAssembly solutions hosted by Azure App Service:
 
-1. Confirm that the casing of environment segments in app settings filenames matches their environment name casing ***exactly***. For example, the matching app settings filename for the `Staging` environment is `appsettings.Staging.json`. If the filename is `appsettings.staging.json` (lowercase "`s`"), the file isn't located, and the settings in the file aren't used in the `Staging` environment.
+1. Confirm that the casing of environment segments in app settings file names matches their environment name casing ***exactly***. For example, the matching app settings file name for the `Staging` environment is `appsettings.Staging.json`. If the file name is `appsettings.staging.json` (lowercase "`s`"), the file isn't located, and the settings in the file aren't used in the `Staging` environment.
 
 1. In the Azure portal for the environment's deployment slot, set the environment with the `ASPNETCORE_ENVIRONMENT` app setting. For an app named `BlazorAzureAppSample`, the staging App Service Slot is named `BlazorAzureAppSample/Staging`. For the `Staging` slot's configuration, create an app setting for `ASPNETCORE_ENVIRONMENT` with a value of `Staging`. **Deployment slot setting** is enabled for the setting.
 

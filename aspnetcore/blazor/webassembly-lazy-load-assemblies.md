@@ -51,7 +51,7 @@ In the following example:
 * The namespace for <xref:Microsoft.AspNetCore.Components.WebAssembly.Services?displayProperty=fullName> is specified.
 * The <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service is injected (`AssemblyLoader`).
 * The `{PATH}` placeholder is the path where the list of assemblies should load. The example uses a conditional check for a single path that loads a single set of assemblies.
-* The `{LIST OF ASSEMBLIES}` placeholder is the comma-separated list of assembly filename strings, including their `.dll` extensions (for example, `"Assembly1.dll", "Assembly2.dll"`).
+* The `{LIST OF ASSEMBLIES}` placeholder is the comma-separated list of assembly file name strings, including their `.dll` extensions (for example, `"Assembly1.dll", "Assembly2.dll"`).
 
 `App.razor`:
 
@@ -142,7 +142,7 @@ In the following example:
 
 * The [List](xref:System.Collections.Generic.List%601)\<<xref:System.Reflection.Assembly>> in `lazyLoadedAssemblies` passes the assembly list to <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies>. The framework searches the assemblies for routes and updates the route collection if new routes are found. To access the <xref:System.Reflection.Assembly> type, the namespace for <xref:System.Reflection?displayProperty=fullName> is included at the top of the `App.razor` file.
 * The `{PATH}` placeholder is the path where the list of assemblies should load. The example uses a conditional check for a single path that loads a single set of assemblies.
-* The `{LIST OF ASSEMBLIES}` placeholder is the comma-separated list of assembly filename strings, including their `.dll` extensions (for example, `"Assembly1.dll", "Assembly2.dll"`).
+* The `{LIST OF ASSEMBLIES}` placeholder is the comma-separated list of assembly file name strings, including their `.dll` extensions (for example, `"Assembly1.dll", "Assembly2.dll"`).
 
 `App.razor`:
 
@@ -251,7 +251,7 @@ For more information, see <xref:blazor/fundamentals/routing#handle-cancellations
 
 ## `OnNavigateAsync` events and renamed assembly files
 
-The resource loader relies on the assembly names that are defined in the `blazor.boot.json` file. If [assemblies are renamed](xref:blazor/host-and-deploy/webassembly#change-the-filename-extension-of-dll-files), the assembly names used in an <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback and the assembly names in the `blazor.boot.json` file are out of sync.
+The resource loader relies on the assembly names that are defined in the `blazor.boot.json` file. If [assemblies are renamed](xref:blazor/host-and-deploy/webassembly#change-the-file-name-extension-of-dll-files), the assembly names used in an <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback and the assembly names in the `blazor.boot.json` file are out of sync.
 
 To rectify this:
 
