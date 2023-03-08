@@ -1,22 +1,26 @@
 ---
-title: Migrate from ASP.NET to ASP.NET Core
+title: Update from ASP.NET to ASP.NET Core
 author: isaacrlevin
 description: Guidance for migrating existing ASP.NET MVC or Web API apps to ASP.NET Core.web
 ms.author: riande
 ms.date: 10/18/2019
 uid: migration/proper-to-2x/index
 ---
-# Migrate from ASP.NET Framework to ASP.NET Core
-
-By [Isaac Levin](https://isaaclevin.com)
+# Upgrade from ASP.NET Framework to ASP.NET Core
 
  :::moniker range=">= aspnetcore-7.0"
 
-Most non-trivial ASP.NET Framework apps should consider using the [incremental migration](xref:migration/inc/overview) approach. For more information, see [Incremental ASP.NET to ASP.NET Core migration](/aspnet/core/migration/inc/overview).
+## Why upgrade to the latest .NET
 
-Visual Studio has tooling to help migrate ASP.NET apps to ASP.NET Core. For more information, see [Migrating from ASP.NET to ASP.NET Core in Visual Studio](/aspnet/core/migration/inc/overview).
+ASP.NET Core is the modern web framework for .NET. While ASP.NET Core has many similarities to ASP.NET in the .NET Framework, it's a new framework that's completely rewritten. ASP.NET apps updated to ASP.NET Core can benefit from improved performance and access to the latest web development features and capabilities.
 
-The [.NET Upgrade Assistant](https://dotnet.microsoft.com/platform/upgrade-assistant) is a command-line tool that can help migrate ASP.NET to ASP.NET Core. For more information, see [Overview of the .NET Upgrade Assistant](/dotnet/architecture/porting-existing-aspnet-apps/) and [Upgrade an ASP.NET MVC app to .NET 6 with the .NET Upgrade Assistant](/dotnet/core/porting/upgrade-assistant-aspnetmvc).
+## ASP.NET Framework update approaches
+
+Most non-trivial ASP.NET Framework apps should consider using the [incremental upgrade](/aspnet/core/migration/inc/overview) approach. For more information, see [Incremental ASP.NET to ASP.NET Core upgrade](/aspnet/core/migration/inc/overview).
+
+The Visual Studio extension [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) can help upgrade ASP.NET Framework web apps to ASP.NET Core. For more information see the blog post [Upgrading your .NET projects with Visual Studio](https://devblogs.microsoft.com/dotnet/upgrade-assistant-now-in-visual-studio/).
+
+<!-- TODO: replace link to blog to article when the blog is migrated -->
 
 ## URI decoding differences between ASP.NET to ASP.NET Core
 
@@ -37,10 +41,11 @@ To generate the value for `HttpRequest.Url`, use `new Uri(this.AspNetCoreHttpReq
 
 See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/27611).
 
+<!-- remove these comments when the following overview topic is updated
 ## Additional resources
 
 - [Overview of porting from .NET Framework to .NET](/dotnet/core/porting/libraries)
-
+-->
 :::moniker-end
 
 [!INCLUDE[](~/migration/proper-to-2x/includes/index5.md)]
