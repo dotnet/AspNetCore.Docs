@@ -10,7 +10,7 @@ uid: migration/mvc
 
  :::moniker range=">= aspnetcore-7.0"
 
-This article show how to upgrade an ASP.NET Framework MVC app to ASP.NET Core MVC using the Visual Studio [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) and the [incremental update](migration/inc/overview) approach.
+This article show how to upgrade an ASP.NET Framework MVC app to ASP.NET Core MVC using the Visual Studio [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) and the [incremental update](xref:migration/inc/overview) approach.
 
 ## Upgrade using  the .NET Upgrade Assistant
 
