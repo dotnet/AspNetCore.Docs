@@ -8,4 +8,4 @@ uid: migration/mvc
 ---
 # Migrate from ASP.NET MVC to ASP.NET Core MVC
 
-[!INCLUDE[](~/migration/includes/mvc6.md)]
+[!INCLUDE[](~/migration/mvc/includes/mvc6.md)]
