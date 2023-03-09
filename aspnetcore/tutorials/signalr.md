@@ -6,7 +6,7 @@ description: In this tutorial, you create a chat app that uses ASP.NET Core Sign
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
-ms.date: 03/04/2023
+ms.date: 03/08/2023
 uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
@@ -33,15 +33,15 @@ At the end, you'll have a working chat app:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
 
 ---
 
@@ -61,7 +61,7 @@ In the **Configure your new project** dialog, enter `SignalRChat` for **Project 
 
 Select **Next**.
 
-In the **Additional information** dialog, select **.NET 6.0 (Long-term support)** and then select **Create**.
+In the **Additional information** dialog, select **.NET 7.0 (Standard Term Support)** and then select **Create**.
 
 ![Additional information](~/tutorials/razor-pages/razor-pages-start/_static/6/additional-info.png)
 
@@ -89,7 +89,7 @@ The `code` command opens the `SignalRChat1 folder in the current instance of Vis
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **File** > **New Solution**.
+Select **File** > **New Project**.
 
 ![macOS New solution](~/tutorials/razor-pages/razor-pages-start/_static/6/new_project_vsmac6.png)
 
@@ -100,7 +100,7 @@ In Visual Studio 2022 for Mac select **Web and Console** > **App** > **Web Appli
 In the **Configure your new Web Application** dialog:
 
 * Confirm that **Authentication** is set to **No Authentication**.
-* Confirm that **Target framework** is set to the latest .NET 6.x version.
+* Confirm that **Target framework** is set to the latest .NET 7.x version.
 * Select **Continue**.
 
 Name the project `SignalRChat` and select **Continue**.
@@ -118,12 +118,12 @@ In **Solution Explorer**, right-click the project, and select **Add** > **Client
 In the **Add Client-Side Library** dialog:
 
 * Select **unpkg** for **Provider**
-* Enter `@microsoft/signalr@lates`* for **Library**.
+* Enter `@microsoft/signalr@latest`* for **Library**.
 * Select **Choose specific files**, expand the *dist/browser* folder, and select `signalr.js` and `signalr.min.js`.
 * Set **Target Location** to `wwwroot/js/signalr/`.
 * Select **Install**.
 
-![Add Client-Side Library dialog - select library](~/tutorials/signalr/_static/3.x/find-signalr-client-libs-select-files.png)
+![Add Client-Side Library dialog - select library](~/tutorials/signalr/_static/7.x/find-signalr-client-libs-select-files.png)
 
 LibMan creates a `wwwroot/js/signalr` folder and copies the selected files to it.
 
@@ -135,6 +135,8 @@ In the integrated terminal, run the following commands to install LibMan after u
 dotnet tool uninstall -g Microsoft.Web.LibraryManager.Cli
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 ```
+
+Navigate to the project folder (the one that contains the SignalRChat.csproj file).
 
 Run the following command to get the SignalR client library by using LibMan. It may take a few seconds before displaying output.
 
@@ -207,7 +209,7 @@ The `SendMessage` method can be called by a connected client to send a message t
 
 The SignalR server must be configured to pass SignalR requests to SignalR. Add the following highlighted code to the `Program.cs` file.
 
-[!code-csharp[Startup](~/tutorials/signalr/samples/7.x/SignalRChat/Program.cs?highlight=1,6,24)]
+[!code-csharp[Startup](~/tutorials/signalr/samples/7.x/SignalRChat/Program.cs?highlight=1,7,27)]
 
 The preceding highlighted code adds SignalR to the ASP.NET Core dependency injection and routing systems.
 
@@ -259,11 +261,11 @@ Choose either browser, enter a name and message, and select the **Send Message**
 
 The name and message are displayed on both pages instantly.
 
-![SignalR sample app](~/tutorials/signalr/_static/3.x/signalr-get-started-finished.png)
+![SignalR sample app](~/tutorials/signalr/_static/7.x/signalr-get-started-finished.png)
 
 > [!TIP]
 > If the app doesn't work, open the browser developer tools (F12) and go to the console. Look for possible errors related to HTML and JavaScript code. For example, if `signalr.js` was put in a different folder than directed, the reference to that file won't work resulting in a 404 error in the console.
-> ![signalr.js not found error](~/tutorials/signalr/_static/3.x/f12-console.png)
+> ![signalr.js not found error](~/tutorials/signalr/_static/7.x/f12-console.png)
 > If an `ERR_SPDY_INADEQUATE_TRANSPORT_SECURITY` error has occurred in Chrome, run the following commands to update the development certificate:
 >
 > ```dotnetcli
