@@ -63,7 +63,7 @@ Select **Next**.
 
 In the **Additional information** dialog, select **.NET 7.0 (Standard Term Support)** and then select **Create**.
 
-![Additional information](~/tutorials/razor-pages/razor-pages-start/_static/6/additional-info.png)
+![Additional information](~/tutorials/razor-pages/razor-pages-start/_static/7/additional-info.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
