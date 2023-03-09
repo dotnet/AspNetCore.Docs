@@ -95,6 +95,45 @@ When the **`Trigger .NET static method`** button is selected, the browser's deve
 Array(3) [ 1, 2, 3 ]
 ```
 
+Pass data to the `ReturnArrayAsync` .NET method when calling the `invokeMethodAsync` function by passing the data as arguments.
+
+To demonstrate passing data to .NET, make the preceding `returnArrayAsync` JS function receive a starting position when the function is called and pass the value as an argument to the `invokeMethodAsync` function:
+
+```html
+<script>
+  window.returnArrayAsync = (startPosition) => {
+    DotNet.invokeMethodAsync('BlazorSample', 'ReturnArrayAsync', startPosition)
+      .then(data => {
+        console.log(data);
+      });
+    };
+</script>
+```
+
+In the `CallDotNetExample1` component, change the function call to include a starting position. The following example uses a value of `5`:
+
+```html
+<button onclick="returnArrayAsync(5)">
+    ...
+</button>
+```
+
+The component's invokable `ReturnArrayAsync` method receives the starting position and constructs the array from it. The array is returned for logging to the console:
+
+```csharp
+[JSInvokable]
+public static Task<int[]> ReturnArrayAsync(int startPosition)
+{
+    return Task.FromResult(Enumerable.Range(startPosition, 3).ToArray());
+}
+```
+
+After the app is recompiled and the browser is refreshed, the following output appears in the browser's console when the button is selected:
+
+```console
+Array(3) [ 5, 6, 7 ]
+```
+
 By default, the .NET method identifier for the JS call is the .NET method name, but you can specify a different identifier using the [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute) constructor. In the following example, `DifferentMethodName` is the assigned method identifier for the `ReturnArrayAsync` method:
 
 ```csharp
@@ -132,7 +171,7 @@ DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject',
 
 ```csharp
 [JSInvokable]
-public void ReceiveWindowObject(IJSObjectReference objRef)
+public static void ReceiveWindowObject(IJSObjectReference objRef)
 {
     ...
 }
@@ -977,6 +1016,45 @@ When the **`Trigger .NET static method`** button is selected, the browser's deve
 Array(3) [ 1, 2, 3 ]
 ```
 
+Pass data to the `ReturnArrayAsync` .NET method when calling the `invokeMethodAsync` function by passing the data as arguments.
+
+To demonstrate passing data to .NET, make the preceding `returnArrayAsync` JS function receive a starting position when the function is called and pass the value as an argument to the `invokeMethodAsync` function:
+
+```html
+<script>
+  window.returnArrayAsync = (startPosition) => {
+    DotNet.invokeMethodAsync('BlazorSample', 'ReturnArrayAsync', startPosition)
+      .then(data => {
+        console.log(data);
+      });
+    };
+</script>
+```
+
+In the `CallDotNetExample1` component, change the function call to include a starting position. The following example uses a value of `5`:
+
+```html
+<button onclick="returnArrayAsync(5)">
+    ...
+</button>
+```
+
+The component's invokable `ReturnArrayAsync` method receives the starting position and constructs the array from it. The array is returned for logging to the console:
+
+```csharp
+[JSInvokable]
+public static Task<int[]> ReturnArrayAsync(int startPosition)
+{
+    return Task.FromResult(Enumerable.Range(startPosition, 3).ToArray());
+}
+```
+
+After the app is recompiled and the browser is refreshed, the following output appears in the browser's console when the button is selected:
+
+```console
+Array(3) [ 5, 6, 7 ]
+```
+
 By default, the .NET method identifier for the JS call is the .NET method name, but you can specify a different identifier using the [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute) constructor. In the following example, `DifferentMethodName` is the assigned method identifier for the `ReturnArrayAsync` method:
 
 ```csharp
@@ -1014,7 +1092,7 @@ DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject',
 
 ```csharp
 [JSInvokable]
-public void ReceiveWindowObject(IJSObjectReference objRef)
+public static void ReceiveWindowObject(IJSObjectReference objRef)
 {
     ...
 }
@@ -1837,6 +1915,45 @@ When the **`Trigger .NET static method`** button is selected, the browser's deve
 Array(3) [ 1, 2, 3 ]
 ```
 
+Pass data to the `ReturnArrayAsync` .NET method when calling the `invokeMethodAsync` function by passing the data as arguments.
+
+To demonstrate passing data to .NET, make the preceding `returnArrayAsync` JS function receive a starting position when the function is called and pass the value as an argument to the `invokeMethodAsync` function:
+
+```html
+<script>
+  window.returnArrayAsync = (startPosition) => {
+    DotNet.invokeMethodAsync('BlazorSample', 'ReturnArrayAsync', startPosition)
+      .then(data => {
+        console.log(data);
+      });
+    };
+</script>
+```
+
+In the `CallDotNetExample1` component, change the function call to include a starting position. The following example uses a value of `5`:
+
+```html
+<button onclick="returnArrayAsync(5)">
+    ...
+</button>
+```
+
+The component's invokable `ReturnArrayAsync` method receives the starting position and constructs the array from it. The array is returned for logging to the console:
+
+```csharp
+[JSInvokable]
+public static Task<int[]> ReturnArrayAsync(int startPosition)
+{
+    return Task.FromResult(Enumerable.Range(startPosition, 3).ToArray());
+}
+```
+
+After the app is recompiled and the browser is refreshed, the following output appears in the browser's console when the button is selected:
+
+```console
+Array(3) [ 5, 6, 7 ]
+```
+
 By default, the .NET method identifier for the JS call is the .NET method name, but you can specify a different identifier using the [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute) constructor. In the following example, `DifferentMethodName` is the assigned method identifier for the `ReturnArrayAsync` method:
 
 ```csharp
@@ -1874,7 +1991,7 @@ DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject',
 
 ```csharp
 [JSInvokable]
-public void ReceiveWindowObject(IJSObjectReference objRef)
+public static void ReceiveWindowObject(IJSObjectReference objRef)
 {
     ...
 }
@@ -2307,6 +2424,84 @@ When the **`Trigger .NET static method`** button is selected, the browser's deve
 Array(3) [ 1, 2, 3 ]
 ```
 
+Pass data to the `ReturnArrayAsync` .NET method when calling the `invokeMethodAsync` function by passing the data as arguments.
+
+To demonstrate passing data to .NET, make the preceding `returnArrayAsync` JS function receive a starting position when the function is called and pass the value as an argument to the `invokeMethodAsync` function:
+
+```html
+<script>
+  window.returnArrayAsync = (startPosition) => {
+    DotNet.invokeMethodAsync('BlazorSample', 'ReturnArrayAsync', startPosition)
+      .then(data => {
+        console.log(data);
+      });
+    };
+</script>
+```
+
+In the `CallDotNetExample1` component, change the function call to include a starting position. The following example uses a value of `5`:
+
+```html
+<button onclick="returnArrayAsync(5)">
+    ...
+</button>
+```
+
+The component's invokable `ReturnArrayAsync` method receives the starting position and constructs the array from it. The array is returned for logging to the console:
+
+```csharp
+[JSInvokable]
+public static Task<int[]> ReturnArrayAsync(int startPosition)
+{
+    return Task.FromResult(Enumerable.Range(startPosition, 3).ToArray());
+}
+```
+
+After the app is recompiled and the browser is refreshed, the following output appears in the browser's console when the button is selected:
+
+```console
+Array(3) [ 5, 6, 7 ]
+```
+
+Pass data to the `ReturnArrayAsync` .NET method when calling the `invokeMethodAsync` function by passing the data as arguments.
+
+To demonstrate passing data to .NET, make the preceding `returnArrayAsync` JS function receive a starting position when the function is called and pass the value as an argument to the `invokeMethodAsync` function:
+
+```html
+<script>
+  window.returnArrayAsync = (startPosition) => {
+    DotNet.invokeMethodAsync('BlazorSample', 'ReturnArrayAsync', startPosition)
+      .then(data => {
+        console.log(data);
+      });
+    };
+</script>
+```
+
+In the `CallDotNetExample1` component, change the function call to include a starting position. The following example uses a value of `5`:
+
+```html
+<button onclick="returnArrayAsync(5)">
+    ...
+</button>
+```
+
+The component's invokable `ReturnArrayAsync` method receives the starting position and constructs the array from it. The array is returned for logging to the console:
+
+```csharp
+[JSInvokable]
+public static Task<int[]> ReturnArrayAsync(int startPosition)
+{
+    return Task.FromResult(Enumerable.Range(startPosition, 3).ToArray());
+}
+```
+
+After the app is recompiled and the browser is refreshed, the following output appears in the browser's console when the button is selected:
+
+```console
+Array(3) [ 5, 6, 7 ]
+```
+
 By default, the .NET method identifier for the JS call is the .NET method name, but you can specify a different identifier using the [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute) constructor. In the following example, `DifferentMethodName` is the assigned method identifier for the `ReturnArrayAsync` method:
 
 ```csharp
@@ -2344,7 +2539,7 @@ DotNet.invokeMethodAsync('{ASSEMBLY NAME}', 'ReceiveWindowObject',
 
 ```csharp
 [JSInvokable]
-public void ReceiveWindowObject(IJSObjectReference objRef)
+public static void ReceiveWindowObject(IJSObjectReference objRef)
 {
     ...
 }
