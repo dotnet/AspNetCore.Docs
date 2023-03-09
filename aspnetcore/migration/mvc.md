@@ -21,6 +21,8 @@ This article show how to upgrade an ASP.NET Framework MVC app to ASP.NET Core MV
 1. Name the project and select the template.
 1. Select the target framework.
 1. On the **Summary of changes** step, select **Finish**.
+1. The **Summary** step displays **`<Framework Project>` is now connected to `<Framework ProjectCore>`  via Yarp proxy.** and a pie chart showing the migrated endpoints. Select **Upgrade Controller** and then select a controller to upgrade.
+1. Select the components to upgrade, then select **Upgrade selection**.
 
 
 
