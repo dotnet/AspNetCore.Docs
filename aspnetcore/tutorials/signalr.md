@@ -27,7 +27,7 @@ This tutorial teaches the basics of building a real-time app using SignalR. You 
 
 At the end, you'll have a working chat app:
 
-![SignalR sample app](~/tutorials/signalr/_static/3.x/signalr-get-started-finished.png)
+![SignalR sample app](~/tutorials/signalr/_static/7.x/signalr-get-started-finished.png)
 
 ## Prerequisites
 
@@ -261,7 +261,7 @@ Choose either browser, enter a name and message, and select the **Send Message**
 
 The name and message are displayed on both pages instantly.
 
-![SignalR sample app](~/tutorials/signalr/_static/7.x/signalr-get-started-finished.png)
+![Completed SignalR sample app](~/tutorials/signalr/_static/7.x/signalr-get-started-finished.png)
 
 > [!TIP]
 > If the app doesn't work, open the browser developer tools (F12) and go to the console. Look for possible errors related to HTML and JavaScript code. For example, if `signalr.js` was put in a different folder than directed, the reference to that file won't work resulting in a 404 error in the console.
