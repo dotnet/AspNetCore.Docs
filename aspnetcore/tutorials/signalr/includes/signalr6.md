@@ -102,7 +102,7 @@ In **Solution Explorer**, right-click the project, and select **Add** > **Client
 In the **Add Client-Side Library** dialog:
 
 * Select **unpkg** for **Provider**
-* Enter `@microsoft/signalr@latest`* for **Library**.
+* Enter `@microsoft/signalr@latest` for **Library**.
 * Select **Choose specific files**, expand the *dist/browser* folder, and select `signalr.js` and `signalr.min.js`.
 * Set **Target Location** to `wwwroot/js/signalr/`.
 * Select **Install**.
