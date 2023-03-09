@@ -1,5 +1,6 @@
 <!--
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-7.0"
+
 -->
 :::moniker range=">= aspnetcore-3.0"
 
@@ -16,7 +17,7 @@ For migrating configuration and Identity code, see [Migrate configuration to ASP
 
 ## Prerequisites
 
-[!INCLUDE [prerequisites](../includes/net-core-prereqs-vs-3.1.md)]
+[!INCLUDE [prerequisites](~/includes/net-core-prereqs-vs-3.1.md)]
 
 ## Create the starter ASP.NET MVC project
 
@@ -57,7 +58,7 @@ For more information, see <xref:fundamentals/startup>.
 
 In the ASP.NET Core project, open the `Startup.cs` file:
 
-[!code-csharp[](mvc/samples/3.x/Startup.cs?highlight=13,30,32&name=snippet)]
+[!code-csharp[](~/aspnetcore/migration/mvc/samples/3.x/Startup.cs?highlight=13,30,32&name=snippet)]
 
 ASP.NET Core apps must opt in to framework features with middleware. The previous template-generated code adds the following services and middleware:
 
@@ -142,7 +143,7 @@ The completed replacement markup for jQuery and Bootstrap JavaScript inclusion:
 
 The updated `_Layout.cshtml` file is shown below:
 
-[!code-cshtml[](mvc/samples/3.x/Views/Shared/_Layout.cshtml?highlight=7-10,40-42)]
+[!code-cshtml[](~/aspnetcore/migration/mvc/samples/3.x/Views/Shared/_Layout.cshtml?highlight=7-10,40-42)]
 
 View the site in the browser. It should render with the expected styles in place.
 
@@ -154,7 +155,7 @@ ASP.NET Core is compatible with several open-source bundling and minification so
 
 There are many problems that can cause an HTTP 500 error message that contains no information on the source of the problem. For example, if the `Views/_ViewImports.cshtml` file contains a namespace that doesn't exist in the project, an HTTP 500 error is generated. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the environment is *Development*. This is detailed in the following code:
 
-[!code-csharp[](mvc/samples/3.x/Startup.cs?highlight=17-21&name=snippet)]
+[!code-csharp[](~/aspnetcore/migration/mvc/samples/3.x/Startup.cs?highlight=17-21&name=snippet)]
 
 ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page).
 
@@ -187,9 +188,9 @@ For migrating configuration and Identity code, see <xref:migration/configuration
 
 To demonstrate the upgrade, we'll start by creating an ASP.NET MVC app. Create it with the name *WebApp1* so the namespace matches the ASP.NET Core project created in the next step.
 
-![Visual Studio New Project dialog](mvc/_static/new-project.png)
+![Visual Studio New Project dialog](~/aspnetcore/migration/mvc/_static/new-project.png)
 
-![New Web Application dialog: MVC project template selected in ASP.NET templates panel](mvc/_static/new-project-select-mvc-template.png)
+![New Web Application dialog: MVC project template selected in ASP.NET templates panel](~/aspnetcore/migration/mvc/_static/new-project-select-mvc-template.png)
 
 *Optional:* Change the name of the Solution from *WebApp1* to *Mvc5*. Visual Studio displays the new solution name (*Mvc5*), which makes it easier to tell this project from the next project.
 
@@ -197,9 +198,9 @@ To demonstrate the upgrade, we'll start by creating an ASP.NET MVC app. Create i
 
 Create a new *empty* ASP.NET Core web app with the same name as the previous project (*WebApp1*) so the namespaces in the two projects match. Having the same namespace makes it easier to copy code between the two projects. Create this project in a different directory than the previous project to use the same name.
 
-![New Project dialog](mvc/_static/new_core.png)
+![New Project dialog](~/aspnetcore/migration/mvc/_static/new_core.png)
 
-![New ASP.NET Web Application dialog: Empty project template selected in ASP.NET Core Templates panel](mvc/_static/new-project-select-empty-aspnet5-template.png)
+![New ASP.NET Web Application dialog: Empty project template selected in ASP.NET Core Templates panel](~/aspnetcore/migration/mvc/_static/new-project-select-empty-aspnet5-template.png)
 
 * *Optional:* Create a new ASP.NET Core app using the *Web Application* project template. Name the project *WebApp1*, and select an authentication option of **Individual User Accounts**. Rename this app to *FullAspNetCore*. Creating this project saves time in the conversion. The end result can be viewed in the template-generated code, code can be copied to the conversion project, or compared with the template-generated project.
 
@@ -211,7 +212,7 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 * Open the `Startup.cs` file and change the code to match the following:
 
-[!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
+[!code-csharp[](~/aspnetcore/migration/mvc/samples/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
 
 The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler. For more information, see [Application Startup](xref:fundamentals/startup) and [Routing](xref:fundamentals/routing).
 
@@ -223,7 +224,7 @@ In this section, a minimal controller and view are added to serve as placeholder
 
 * Add a **Controller Class** named `HomeController.cs` to the *Controllers* directory.
 
-![Add New Item dialog with MVC Controller Class selected](mvc/_static/add_mvc_ctl.png)
+![Add New Item dialog with MVC Controller Class selected](~/aspnetcore/migration/mvc/_static/add_mvc_ctl.png)
 
 * Add a *Views* directory.
 
@@ -231,11 +232,11 @@ In this section, a minimal controller and view are added to serve as placeholder
 
 * Add a **Razor View** named `Index.cshtml` to the *Views/Home* directory.
 
-![Add New Item dialog with MVC View Page selected](mvc/_static/view.png)
+![Add New Item dialog with MVC View Page selected](~/aspnetcore/migration/mvc/_static/view.png)
 
 The project structure is shown below:
 
-![Solution Explorer showing files and directories of WebApp1](mvc/_static/project-structure-controller-view.png)
+![Solution Explorer showing files and directories of WebApp1](~/aspnetcore/migration/mvc/_static/project-structure-controller-view.png)
 
 Replace the contents of the `Views/Home/Index.cshtml` file with the following markup:
 
@@ -245,7 +246,7 @@ Replace the contents of the `Views/Home/Index.cshtml` file with the following ma
 
 Run the app.
 
-![Web app open in Microsoft Edge](mvc/_static/hello-world.png)
+![Web app open in Microsoft Edge](~/aspnetcore/migration/mvc/_static/hello-world.png)
 
 For more information, see [Controllers](xref:mvc/controllers/actions) and [Views](xref:mvc/views/overview).
 
@@ -277,7 +278,7 @@ The layout file and styles have not been migrated yet, so the rendered views onl
 
 Invoke the rendered views from the browser on the running ASP.NET core app by replacing the current port number with the port number used in the ASP.NET core project. For example: `https://localhost:44375/home/about`.
 
-![Contact page](mvc/_static/contact-page.png)
+![Contact page](~/aspnetcore/migration/mvc/_static/contact-page.png)
 
 Note the lack of styling and menu items. The styling will be fixed in the next section.
 
@@ -330,7 +331,7 @@ The replacement markup for jQuery and Bootstrap JavaScript inclusion:
 
 The updated `_Layout.cshtml` file is shown below:
 
-[!code-cshtml[](mvc/samples/2.x/Views/Shared/_Layout.cshtml?highlight=7-10,29,41-44)]
+[!code-cshtml[](~/aspnetcore/migration/mvc/samples/2.x/Views/Shared/_Layout.cshtml?highlight=7-10,29,41-44)]
 
 View the site in the browser. It should now load correctly, with the expected styles in place.
 
@@ -344,7 +345,7 @@ For information about how to configure bundling and minification, see [Bundling 
 
 There are many problems that can cause an HTTP 500 error messages that contain no information on the source of the problem. For example, if the `Views/_ViewImports.cshtml` file contains a namespace that doesn't exist in the project, a HTTP 500 error is generated. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the configuration is *Development*. See an example in the following code:
 
-[!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=11-15&name=snippet)]
+[!code-csharp[](~/aspnetcore/migration/mvc/samples/2.x/Startup.cs?highlight=11-15&name=snippet)]
 
 ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page).
 
@@ -373,9 +374,9 @@ For migrating configuration and Identity code, see [Migrate configuration to ASP
 
 To demonstrate the upgrade, we'll start by creating an ASP.NET MVC app. Create it with the name *WebApp1* so the namespace matches the ASP.NET Core project created in the next step.
 
-![Visual Studio New Project dialog](mvc/_static/new-project.png)
+![Visual Studio New Project dialog](~/aspnetcore/migration/mvc/_static/new-project.png)
 
-![New Web Application dialog: MVC project template selected in ASP.NET templates panel](mvc/_static/new-project-select-mvc-template.png)
+![New Web Application dialog: MVC project template selected in ASP.NET templates panel](~/aspnetcore/migration/mvc/_static/new-project-select-mvc-template.png)
 
 *Optional:* Change the name of the Solution from *WebApp1* to *Mvc5*. Visual Studio displays the new solution name (*Mvc5*), which makes it easier to tell this project from the next project.
 
@@ -383,9 +384,9 @@ To demonstrate the upgrade, we'll start by creating an ASP.NET MVC app. Create i
 
 Create a new *empty* ASP.NET Core web app with the same name as the previous project (*WebApp1*) so the namespaces in the two projects match. Having the same namespace makes it easier to copy code between the two projects. Create this project in a different directory than the previous project to use the same name.
 
-![New Project dialog](mvc/_static/new_core.png)
+![New Project dialog](~/aspnetcore/migration/mvc/_static/new_core.png)
 
-![New ASP.NET Web Application dialog: Empty project template selected in ASP.NET Core Templates panel](mvc/_static/new-project-select-empty-aspnet5-template.png)
+![New ASP.NET Web Application dialog: Empty project template selected in ASP.NET Core Templates panel](~/aspnetcore/migration/mvc/_static/new-project-select-empty-aspnet5-template.png)
 
 * *Optional:* Create a new ASP.NET Core app using the *Web Application* project template. Name the project *WebApp1*, and select an authentication option of **Individual User Accounts**. Rename this app to *FullAspNetCore*. Creating this project saves time in the conversion. The end result can be viewed in the template-generated code, code can be copied to the conversion project, or compared with the template-generated project.
 
@@ -397,7 +398,7 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 * Open the `Startup.cs` file and change the code to match the following:
 
-[!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
+[!code-csharp[](~/aspnetcore/migration/mvc/samples/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
 
 The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler. The `UseMvc` extension method adds routing. For more information, see [Application Startup](xref:fundamentals/startup) and [Routing](xref:fundamentals/routing).
 
@@ -409,7 +410,7 @@ In this section, a minimal controller and view are added to serve as placeholder
 
 * Add a **Controller Class** named `HomeController.cs` to the *Controllers* directory.
 
-![Add New Item dialog with MVC Controller Class selected (prior to the release of ASP.NET Core 2.1)](mvc/_static/add_mvc_ctl.png)
+![Add New Item dialog with MVC Controller Class selected (prior to the release of ASP.NET Core 2.1)](~/aspnetcore/migration/mvc/_static/add_mvc_ctl.png)
 
 * Add a *Views* directory.
 
@@ -417,11 +418,11 @@ In this section, a minimal controller and view are added to serve as placeholder
 
 * Add a **Razor View** named `Index.cshtml` to the *Views/Home* directory.
 
-![Add New Item dialog with MVC View Page selected (prior to the release of ASP.NET Core 2.1)](mvc/_static/view.png)
+![Add New Item dialog with MVC View Page selected (prior to the release of ASP.NET Core 2.1)](~/aspnetcore/migration/mvc/_static/view.png)
 
 The project structure is shown below:
 
-![Solution Explorer showing files and directories of WebApp1](mvc/_static/project-structure-controller-view.png)
+![Solution Explorer showing files and directories of WebApp1](~/aspnetcore/migration/mvc/_static/project-structure-controller-view.png)
 
 Replace the contents of the `Views/Home/Index.cshtml` file with the following markup:
 
@@ -431,7 +432,7 @@ Replace the contents of the `Views/Home/Index.cshtml` file with the following ma
 
 Run the app.
 
-![Web app open in Microsoft Edge](mvc/_static/hello-world.png)
+![Web app open in Microsoft Edge](~/aspnetcore/migration/mvc/_static/hello-world.png)
 
 For more information, see [Controllers](xref:mvc/controllers/actions) and [Views](xref:mvc/views/overview).
 
@@ -463,7 +464,7 @@ The layout file and styles have not been migrated yet, so the rendered views onl
 
 * Invoke the rendered views from the browser on the running ASP.NET core app by replacing the current port number with the port number used in the ASP.NET core project. For example: `https://localhost:44375/home/about`.
 
-![Contact page](mvc/_static/contact-page.png)
+![Contact page](~/aspnetcore/migration/mvc/_static/contact-page.png)
 
 Note the lack of styling and menu items. The styling will be fixed in the next section.
 
@@ -516,7 +517,7 @@ The replacement markup for jQuery and Bootstrap JavaScript inclusion:
 
 The updated `_Layout.cshtml` file is shown below:
 
-[!code-cshtml[](mvc/samples/2.x/Views/Shared/_Layout.cshtml?highlight=7-10,29,41-44)]
+[!code-cshtml[](~/aspnetcore/migration/mvc/samples/2.x/Views/Shared/_Layout.cshtml?highlight=7-10,29,41-44)]
 
 View the site in the browser. It should now load correctly, with the expected styles in place.
 
@@ -530,7 +531,7 @@ For information about how to configure bundling and minification, see [Bundling 
 
 There are many problems that can cause an HTTP 500 error messages that contain no information on the source of the problem. For example, if the `Views/_ViewImports.cshtml` file contains a namespace that doesn't exist in the project, a HTTP 500 error is generated. By default in ASP.NET Core apps, the `UseDeveloperExceptionPage` extension is added to the `IApplicationBuilder` and executed when the configuration is *Development*. See an example in the following code:
 
-[!code-csharp[](mvc/samples/2.x/Startup.cs?highlight=11-15&name=snippet)]
+[!code-csharp[](~/aspnetcore/migration/mvc/samples/2.x/Startup.cs?highlight=11-15&name=snippet)]
 
 ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page).
 
