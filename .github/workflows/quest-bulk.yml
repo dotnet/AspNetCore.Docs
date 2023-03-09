@@ -1,5 +1,7 @@
 name: "bulk quest import"
 on:
+  schedule:
+    - cron: '0 10 * * *' # UTC time, that's 5:00 am EST, 2:00 am PST.
   workflow_dispatch:
     inputs:
       reason:
@@ -11,7 +13,6 @@ jobs:
   bulk-import:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
       issues: write
 
     steps:
@@ -21,7 +22,6 @@ jobs:
           echo "Reason: ${{ github.event.inputs.reason }}"
 
       - name: bulk-sequester
-        if: ${{ github.event_name == 'workflow_dispatch' }}
         id: bulk-sequester
         uses: dotnet/docs-tools/actions/sequester@main
         env:
