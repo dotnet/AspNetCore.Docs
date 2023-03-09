@@ -231,6 +231,33 @@ The following sections of this article demonstrate various approaches for invoki
 * [Class instance examples](#class-instance-examples)
 * [Component instance .NET method helper class](#component-instance-net-method-helper-class)
 
+## Avoid trimming JavaScript-invokable .NET methods
+
+*This section applies to Blazor WebAssembly apps with [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) and [runtime relinking](xref:blazor/host-and-deploy/webassembly#runtime-relinking) enabled.*
+
+Several of the examples in the following sections are based on a class instance approach, where the JavaScript-invokable .NET method marked with the [`[JSInvokable]` attribute](xref:Microsoft.JSInterop.JSInvokableAttribute) is a member of a class that isn't a Razor component. When such .NET methods are located in a Razor component, they're protected from [runtime relinking/trimming](xref:blazor/host-and-deploy/webassembly#runtime-relinking). In order to protect the .NET methods from trimming outside of Razor components, implement the methods with the [`DynamicDependency` attribute](xref:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute) on the class's constructor, as the following example demonstrates:
+
+```csharp
+using System.Diagnostics.CodeAnalysis;
+using Microsoft.JSInterop;
+
+public class ExampleClass {
+
+    [DynamicDependency(nameof(ExampleJSInvokableMethod))]
+    public ExampleClass()
+    {
+    }
+
+    [JSInvokable]
+    public string ExampleJSInvokableMethod()
+    {
+        ...
+    }
+}
+```
+
+For more information, see [Prepare .NET libraries for trimming: DynamicDependency](/dotnet/core/deploying/trimming/prepare-libraries-for-trimming#dynamicdependency).
+
 ## Pass a `DotNetObjectReference` to an individual JavaScript function
 
 The example in this section demonstrates how to pass a <xref:Microsoft.JSInterop.DotNetObjectReference> to an individual JavaScript (JS) function.
