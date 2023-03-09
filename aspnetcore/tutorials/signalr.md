@@ -136,7 +136,7 @@ dotnet tool uninstall -g Microsoft.Web.LibraryManager.Cli
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 ```
 
-Navigate to the project folder (the one that contains the SignalRChat.csproj file).
+Navigate to the project folder, which contains the `SignalRChat.csproj` file.
 
 Run the following command to get the SignalR client library by using LibMan. It may take a few seconds before displaying output.
 
@@ -167,7 +167,7 @@ dotnet tool uninstall -g Microsoft.Web.LibraryManager.Cli
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 ```
 
-Navigate to the project folder (the one that contains the `SignalRChat.csproj` file).
+Navigate to the project folder, which contains the `SignalRChat.csproj` file.
 
 Run the following command to get the SignalR client library by using LibMan:
 
