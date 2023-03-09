@@ -95,7 +95,7 @@ When the **`Trigger .NET static method`** button is selected, the browser's deve
 Array(3) [ 1, 2, 3 ]
 ```
 
-Pass data to the `ReturnArrayAsync` .NET method when calling the `invokeMethodAsync` function by passing the data as arguments.
+Pass data to a .NET method when calling the `invokeMethodAsync` function by passing the data as arguments.
 
 To demonstrate passing data to .NET, make the preceding `returnArrayAsync` JS function receive a starting position when the function is called and pass the value as an argument to the `invokeMethodAsync` function:
 
@@ -1016,7 +1016,7 @@ When the **`Trigger .NET static method`** button is selected, the browser's deve
 Array(3) [ 1, 2, 3 ]
 ```
 
-Pass data to the `ReturnArrayAsync` .NET method when calling the `invokeMethodAsync` function by passing the data as arguments.
+Pass data to a .NET method when calling the `invokeMethodAsync` function by passing the data as arguments.
 
 To demonstrate passing data to .NET, make the preceding `returnArrayAsync` JS function receive a starting position when the function is called and pass the value as an argument to the `invokeMethodAsync` function:
 
@@ -2424,7 +2424,7 @@ When the **`Trigger .NET static method`** button is selected, the browser's deve
 Array(3) [ 1, 2, 3 ]
 ```
 
-Pass data to the `ReturnArrayAsync` .NET method when calling the `invokeMethodAsync` function by passing the data as arguments.
+Pass data to a .NET method when calling the `invokeMethodAsync` function by passing the data as arguments.
 
 To demonstrate passing data to .NET, make the preceding `returnArrayAsync` JS function receive a starting position when the function is called and pass the value as an argument to the `invokeMethodAsync` function:
 
@@ -2463,7 +2463,7 @@ After the app is recompiled and the browser is refreshed, the following output a
 Array(3) [ 5, 6, 7 ]
 ```
 
-Pass data to the `ReturnArrayAsync` .NET method when calling the `invokeMethodAsync` function by passing the data as arguments.
+Pass data to a .NET method when calling the `invokeMethodAsync` function by passing the data as arguments.
 
 To demonstrate passing data to .NET, make the preceding `returnArrayAsync` JS function receive a starting position when the function is called and pass the value as an argument to the `invokeMethodAsync` function:
 
