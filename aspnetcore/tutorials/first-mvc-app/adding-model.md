@@ -58,27 +58,7 @@ The question mark after `string` indicates that the property is nullable. For mo
 
 # [Visual Studio](#tab/visual-studio)
 
-From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console** (PMC).
-
-![PMC menu](~/tutorials/first-mvc-app/adding-model/_static/pmc5.png)
-
-<!-- 
-This has been fixed, need to test and see what's required.
-see https://dev.azure.com/devdiv/DevDiv/_workitems/edit/1323715
-When https://dev.azure.com/devdiv/DevDiv/_workitems/edit/1320544 is fixed, we can remove the following install package instruction for Microsoft.EntityFrameworkCore.Design  -->
-
-In the PMC, run the following commands:
-
-```powershell
-Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design
-Install-Package Microsoft.EntityFrameworkCore.Design
-Install-Package Microsoft.EntityFrameworkCore.SqlServer
-```
-
-The preceding commands add:
-
-* The EF Core SQL Server provider. The provider package installs the EF Core package as a dependency.
-* The utilities used by the packages installed automatically in the scaffolding step, later in the tutorial.
+Visual Studio automatically installs the required packages.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
