@@ -51,11 +51,11 @@ At the end, you'll have a working chat app:
 
 Start Visual Studio 2022 and select **Create a new project**.
 
-![Create a new project from the start window](~/tutorials/razor-pages/razor-pages-start/_static/6/start-window-create-new-project.png)
+![Create a new project from the start window](~/tutorials/signalr/_static/7.x/start-window-create-new-project.png)
 
 In the **Create a new project** dialog, select **ASP.NET Core Web App**, and then select **Next**.
 
-![Create an ASP.NET Core Web App](~/tutorials/razor-pages/razor-pages-start/_static/6/np.png)
+![Create an ASP.NET Core Web App](~/tutorials/signalr/_static/7.x/np.png)
 
 In the **Configure your new project** dialog, enter `SignalRChat` for **Project name**. It's important to name the project `SignalRChat`, including matching the capitalization, so the namespaces match the code in the tutorial.
 
@@ -63,7 +63,7 @@ Select **Next**.
 
 In the **Additional information** dialog, select **.NET 7.0 (Standard Term Support)** and then select **Create**.
 
-![Additional information](~/tutorials/razor-pages/razor-pages-start/_static/7/additional_info.png)
+![Additional information](~/tutorials/signalr/_static/7.x/additional_info.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -91,11 +91,11 @@ The `code` command opens the `SignalRChat1 folder in the current instance of Vis
 
 Select **File** > **New Project**.
 
-![macOS New solution](~/tutorials/razor-pages/razor-pages-start/_static/6/new_project_vsmac6.png)
+![macOS New solution](~/tutorials/signalr/_static/7.x/new_project_vsmac.png)
 
 In Visual Studio 2022 for Mac select **Web and Console** > **App** > **Web Application** > **Continue**.
 
-![macOS web app template selection](~/tutorials/razor-pages/razor-pages-start/_static/6/web_app_template_vsmac6.png)
+![macOS web app template selection](~/tutorials/signalr/_static/7.x/web_app_template_vsmac.png)
 
 In the **Configure your new Web Application** dialog:
 
@@ -243,11 +243,7 @@ Press CTRL+F5 to run the app without debugging.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-In the integrated terminal, run the following command:
-
-```dotnetcli
-dotnet watch run --project SignalRChat.csproj
-```
+Select Ctrl+F5 to run the app without the debugger.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
