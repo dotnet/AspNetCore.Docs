@@ -74,6 +74,8 @@ Add the Swagger generator to the services collection in `Program.cs`:
 
 :::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs" id="snippet_ServicesDefault" highlight="4":::
 
+The call to <xref:Microsoft.Extensions.DependencyInjection.EndpointMetadataApiExplorerServiceCollectionExtensions.AddEndpointsApiExplorer%2A> shown in the preceding example is required only for [minimal APIs](/aspnet/core/fundamentals/minimal-apis/overview). For more information, see [this StackOverflow post](https://stackoverflow.com/a/71933535).
+
 Enable the middleware for serving the generated JSON document and the Swagger UI, also in `Program.cs`:
 
 :::code language="csharp" source="web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Program.cs" id="snippet_Middleware" highlight="3,4":::
