@@ -367,6 +367,58 @@ The following rendered HTML markup is produced by the preceding nested layout. E
 
 When routable components are integrated into a Razor Pages app, the app's shared layout can be used with the components. For more information, see <xref:blazor/components/prerendering-and-integration>.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Layout sections
+
+To control the content in layouts from Razor components, Blazor supports *sections* using the following built-in components:
+
+* `SectionOutlet`: Renders content provided by `SectionContent` components with matching `SectionId` arguments. A `SectionOutlet` component can render the content of several `SectionContent` components.
+
+* `SectionContent`: Provides content to `SectionOutlet` components with a matching `SectionId`. Only one `SectionOutlet` component can render the content of a `SectionContent` instance.
+
+In the following example, the `MainLayout` component implements an increment counter button for the app's `Counter` component.
+
+Add a `TopbarSection` static `object` to the `MainLayout` component (`Shared/MainLayout.razor`) in an `@code` block:
+
+```razor
+@code {
+    internal static object TopbarSection = new();
+}
+```
+
+In the `MainLayout` component's Razor markup above the `About` hyperlink's `<a>` element , add the following markup to render `SectionContent` components that specify the `TopbarSection` section ID:
+
+```razor
+<SectionOutlet SectionId="TopbarSection" />
+```
+
+Add a `SectionContent` component to the app's `Counter` component that renders an increment count button. Use the `MainLayout` component's `TopbarSection` section static `object` as the `SectionID` (`MainLayout.TopbarSection`).
+
+In `Pages/Counter.razor`:
+
+```razor
+<SectionContent SectionId="MainLayout.TopbarSection">
+    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+</SectionContent>
+```
+
+An alternative approach to using a static field in the `Mainlayout` component is to pass a string to `SectionId`. The following example uses `"topbar"`:
+
+```razor
+<SectionOutlet SectionId="@("topbar")" />
+```
+
+In the `Counter` component, the matching string (`"topbar"`) is passed to the `SectionId` parameter of the `SectionContent` component:
+
+```razor
+<SectionContent SectionId="@("topbar")">
+    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+</SectionContent>
+```
+
+:::moniker-end
+
 ## Additional resources
 
 * <xref:mvc/views/layout>
