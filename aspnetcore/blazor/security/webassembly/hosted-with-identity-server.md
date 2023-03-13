@@ -2236,7 +2236,7 @@ The following guidance explains:
 * How to deploy a hosted Blazor WebAssembly app with Identity Server to [Azure App Service](https://azure.microsoft.com/services/app-service/) with a custom domain.
 * How to create and use a TLS certificate for HTTPS protocol communication with browsers. Although the guidance focuses on using the certificate with a custom domain, the guidance is equally applicable to using a default Azure Apps domain, for example `contoso.azurewebsites.net`.
 
-For this hosting scenario, do **not** use the same certificate for [Identity Server's token signing key](https://docs.identityserver.io/en/latest/topics/crypto.html#token-signing-and-validation) and the site's HTTPS secure communication with browsers:
+For this hosting scenario, do **not** use the same certificate for Identity Server's token signing key and the site's HTTPS secure communication with browsers:
 
 * Using different certificates for these two requirements is a good security practice because it isolates private keys for each purpose.
 * TLS certificates for communication with browsers is managed independently without affecting Identity Server's token signing.
