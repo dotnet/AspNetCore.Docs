@@ -291,7 +291,7 @@ For more information, see <xref:blazor/components/index?view=aspnetcore-7.0#blaz
 ### Bind modifiers (`@bind:after`, `@bind:get`, `@bind:set`)
 
 > [!IMPORTANT]
-> The `@bind:after`/`@bind:get`/`@bind:set` features are receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](/download/dotnet/7.0).
+> The `@bind:after`/`@bind:get`/`@bind:set` features are receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](https://dotnet.microsoft.com/download/dotnet/7.0).
 >
 > Using an event callback parameter (`[Parameter] public EventCallback<string> ValueChanged { get; set; }`) isn't supported. Instead, pass an <xref:System.Action>-returning or <xref:System.Threading.Tasks.Task>-returning method to `@bind:set`/`@bind:after`.
 >
