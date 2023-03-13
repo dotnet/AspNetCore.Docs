@@ -17,25 +17,20 @@ if (app.Environment.IsDevelopment()) {
     app.UseSwaggerUI();
 }
 
-app.UseRouting();
+app.MapGet("/hello", () => new { Message = "Hello World" });
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapGet("/weatherforecast/{from}/{to}", async (DateTime from, DateTime to, HttpContext context, AppDbContext db) =>
-    {
-        var forecasts = await db.Forecasts.Where(f => f.Date >= from && f.Date <= to).ToListAsync();
-        await context.Response.WriteAsJsonAsync<IEnumerable<WeatherForecast>>(forecasts);
-    });
-    
-    endpoints.MapPost("/weatherforecast", async (HttpContext context, AppDbContext db) =>
-    {
-        if (!context.Request.HasJsonContentType()) return Results.BadRequest();
-        var forecasts = await context.Request.ReadFromJsonAsync<IEnumerable<WeatherForecast>>();
-        await db.Forecasts.AddRangeAsync(forecasts);
-        return await db.SaveChangesAsync() > 0 ? Results.Ok() : Results.BadRequest();
-    });
+app.MapGet("/hello2", () => TypedResults.Ok(new { Message = "Hello World" }));
 
-    endpoints.MapControllers();
+app.MapGet("/weatherforecast/{from}/{to}", async (DateTime from, DateTime to, HttpContext context, AppDbContext db) => {
+    var forecasts = await db.Forecasts.Where(f => f.Date >= from && f.Date <= to).ToListAsync();
+    await context.Response.WriteAsJsonAsync<IEnumerable<WeatherForecast>>(forecasts);
+});
+
+app.MapPost("/weatherforecast", async (HttpContext context, AppDbContext db) => {
+    if (!context.Request.HasJsonContentType()) return Results.BadRequest();
+    var forecasts = await context.Request.ReadFromJsonAsync<IEnumerable<WeatherForecast>>();
+    await db.Forecasts.AddRangeAsync(forecasts);
+    return await db.SaveChangesAsync() > 0 ? Results.Ok() : Results.BadRequest();
 });
 
 app.Run();
