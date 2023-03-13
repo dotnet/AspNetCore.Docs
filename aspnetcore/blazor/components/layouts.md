@@ -375,7 +375,7 @@ To control the content in layouts from Razor components, Blazor supports *sectio
 
 * `SectionOutlet`: Renders content provided by `SectionContent` components with matching `SectionId` arguments. A `SectionOutlet` component can render the content of several `SectionContent` components.
 
-* `SectionContent`: Provides content to `SectionOutlet` components with a matching `SectionId`. Only one `SectionOutlet` component can render the content of a `SectionContent` instance.
+* `SectionContent`: Provides content as a <xref:Microsoft.AspNetCore.Components.RenderFragment> to `SectionOutlet` components with a matching `SectionId`. Only one `SectionOutlet` component can render the content of a `SectionContent` instance.
 
 In the following example, the `MainLayout` component implements an increment counter button for the app's `Counter` component.
 
