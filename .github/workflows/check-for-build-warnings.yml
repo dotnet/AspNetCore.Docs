@@ -17,4 +17,4 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         docs-path: "aspnetcore"
-        vanity-slug: "aspnet/core"
+        url-base-path: "aspnet/core"
