@@ -116,7 +116,7 @@ Components support two-way data binding by defining a pair of parameters:
 * `@bind:set`: Specifies a callback for when the value changes.
 
 > [!IMPORTANT]
-> The `@bind:get` and `@bind:set` features are receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](/download/dotnet/7.0). Visual Studio updates to support the feature are planned for the mid-February Visual Studio release.
+> The `@bind:get` and `@bind:set` features are receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](https://dotnet.microsoft.com/download/dotnet/7.0). Visual Studio updates to support the feature are planned for the mid-February Visual Studio release.
 >
 > For more information, see [Blazor `@bind:after` not working on .NET 7 RTM release (dotnet/aspnetcore #44957)](https://github.com/dotnet/aspnetcore/issues/44957).
 
@@ -441,7 +441,7 @@ In the following example, the `PasswordUpdated` method executes asynchronously a
 <!-- HOLD: See https://github.com/dotnet/AspNetCore.Docs/issues/27848
 
 > [!IMPORTANT]
-> The `@bind:get` and `@bind:set` features demonstrated in this section are receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](/download/dotnet/7.0).
+> The `@bind:get` and `@bind:set` features demonstrated in this section are receiving further updates at this time. To take advantage of the latest updates, confirm that you've installed the [latest SDK](https://dotnet.microsoft.com/download/dotnet/7.0).
 >
 > For more information, see the following resources:
 >

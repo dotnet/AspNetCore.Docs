@@ -64,7 +64,7 @@ By default, links to URLs outside of the app are opened in an appropriate extern
 
 ## Keep the Web View current in deployed apps
 
-By default, the [`BlazorWebView`](/maui/user-interface/controls/blazorwebview) control uses the currently-installed, platform-specific native Web View. Since the native Web View is periodically updated with support for new APIs and fixes for security issues, it may be necessary to ensure that an app is using a Web View version that meets the app's requirements.
+By default, the <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> control uses the currently-installed, platform-specific native Web View. Since the native Web View is periodically updated with support for new APIs and fixes for security issues, it may be necessary to ensure that an app is using a Web View version that meets the app's requirements.
 
 Use one of the following approaches to keep the Web View current in deployed apps:
 
