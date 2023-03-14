@@ -336,4 +336,4 @@ Since the sample code configures both serialization and deserialization, it can 
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_readfromjsonasyncwithoptions" highlight="7-10,14":::
 
-Since the customized options apply only to deserialization in this example, the output JSON excludes `NameField`.
+Since the preceding code applies the customized options only to deserialization, the output JSON excludes `NameField`.
