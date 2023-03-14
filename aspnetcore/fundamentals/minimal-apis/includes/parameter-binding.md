@@ -332,7 +332,7 @@ By default, [System.Text.Json ignores fields](/dotnet/standard/serialization/sys
 
 ### Configure JSON deserialization options for an endpoint
 
-<xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions.ReadFromJsonAsync%2A> has overloads that accept a <xref:System.Text.Json.JsonSerializerOptions> object. This options object overrides the default options. The following example specifies that public fields should be included when deserializing, and JSON output should be formatted.
+<xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions.ReadFromJsonAsync%2A> has overloads that accept a <xref:System.Text.Json.JsonSerializerOptions> object. The following example includes public fields and formats JSON output.
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_readfromjsonasyncwithoptions":::
 

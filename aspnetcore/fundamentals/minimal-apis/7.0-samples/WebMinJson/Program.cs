@@ -1,5 +1,5 @@
 #define writeasjsonasyncwithoptions
-// First Second autojson iresult writeasjsonasync autojsondeserialization
+// First Second writeasjsonasync autojsondeserialization
 // readfromjsonasync confighttpjsonoptions jsonoptions writeasjsonasyncwithoptions
 // readfromjsonasyncwithoptions resultsjsonwithoptions
 #if First
@@ -47,46 +47,6 @@ class Todo
     public bool IsComplete { get; set; }
 }
 // </snippet_2>
-#elif autojson
-// <snippet_autojson>
-var builder = WebApplication.CreateBuilder(args);
-
-var app = builder.Build();
-app.UseHttpsRedirection();
-
-app.MapGet("/", () => new Todo { Name = "Walk dog", IsComplete = false });
-
-app.Run();
-
-class Todo
-{
-    
-    public string? Name { get; set; }
-    public bool IsComplete { get; set; }
-}
-// The endpoint returns the following JSON:
-// {"name":"Walk dog","isComplete":false}
-// </snippet_autojson>
-#elif iresult
-// <snippet_iresult>
-var builder = WebApplication.CreateBuilder(args);
-
-var app = builder.Build();
-
-app.MapGet("/resultsjson", () => Results.Json(new Todo { Name = "Walk dog", IsComplete = false }));
-app.MapGet("/resultsok", () => Results.Ok<Todo>(new Todo { Name = "Walk dog", IsComplete = false }));
-
-app.Run();
-
-class Todo
-{
-    
-    public string? Name { get; set; }
-    public bool IsComplete { get; set; }
-}
-// Both endpoints return the following JSON:
-// {"name":"Walk dog","isComplete":false}
-// </snippet_iresult>
 #elif writeasjsonasync
 var builder = WebApplication.CreateBuilder(args);
 
@@ -108,28 +68,6 @@ class Todo
 }
 // The endpoint returns the following JSON:
 // {"name":"Walk dog","isComplete":false}
-#elif autojsondeserialization
-// <snippet_autojsondeserialization>
-using System.Diagnostics;
-
-var builder = WebApplication.CreateBuilder(args);
-
-var app = builder.Build();
-
-app.MapPost("/", (Todo todo) => todo.Name);
-
-app.Run();
-
-class Todo
-{
-    
-    public string? Name { get; set; }
-    public bool IsComplete { get; set; }
-}
-// If the request body contains the following JSON:
-// {"name":"Walk dog","isComplete":false}
-// the endpoint returns the string "Walk dog"
-// </snippet_autojsondeserialization>
 #elif readfromjsonasync
 // <snippet_readfromjsonasync>
 using System.Diagnostics;
@@ -157,8 +95,10 @@ class Todo
     public bool IsComplete { get; set; }
 }
 // If the request body contains the following JSON:
+//
 // {"name":"Walk dog","isComplete":false}
-// the endpoint returns the string "Walk dog"
+//
+// The endpoint returns the string "Walk dog"
 // </snippet_readfromjsonasync>
 #elif confighttpjsonoptions
 // <snippet_confighttpjsonoptions>
@@ -221,6 +161,7 @@ class Todo
     public bool IsComplete { get; set; }
 }
 // The endpoint returns the following JSON:
+//
 // {
 //   "name": "Walk dog",
 //   "isComplete": false
@@ -248,6 +189,7 @@ class Todo
     public bool IsComplete { get; set; }
 }
 // The endpoint returns the following JSON:
+//
 // {
 //   "name":"Walk dog",
 //   "isComplete":false
