@@ -1,7 +1,7 @@
 ---
-title: Build a .NET MAUI Blazor app
+title: Build a .NET MAUI Blazor Hybrid app
 author: guardrex
-description: Build a .NET MAUI Blazor app step-by-step.
+description: Build a .NET MAUI Blazor Hybrid app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: mvc
@@ -9,14 +9,14 @@ ms.date: 11/18/2022
 uid: blazor/hybrid/tutorials/maui
 zone_pivot_groups: blazor-hybrid-tutorial-vs-operating-systems
 ---
-# Build a .NET MAUI Blazor app
+# Build a .NET MAUI Blazor Hybrid app
 
 :::zone pivot="windows"
 
-This tutorial shows you how to build and run a .NET MAUI Blazor app. You learn how to:
+This tutorial shows you how to build and run a .NET MAUI Blazor Hybrid app. You learn how to:
 
 > [!div class="checklist"]
-> * Create a .NET MAUI Blazor app project in Visual Studio
+> * Create a .NET MAUI Blazor Hybrid app project in Visual Studio
 > * Run the app on Windows
 > * Run the app on an emulated mobile device in the Android Emulator
 
@@ -24,7 +24,7 @@ This tutorial shows you how to build and run a .NET MAUI Blazor app. You learn h
 
 * [Supported platforms (.NET MAUI documentation)](/dotnet/maui/supported-platforms)
 * [Visual Studio](https://visualstudio.microsoft.com/vs/) with the **.NET Multi-platform App UI development** workload.
-* [Microsoft Edge :::no-loc text="WebView2":::](https://developer.microsoft.com/microsoft-edge/webview2/): :::no-loc text="WebView2"::: is required on Windows when running a native app. When developing .NET MAUI Blazor apps and only running them in Visual Studio's emulators, :::no-loc text="WebView2"::: isn't required.
+* [Microsoft Edge :::no-loc text="WebView2":::](https://developer.microsoft.com/microsoft-edge/webview2/): :::no-loc text="WebView2"::: is required on Windows when running a native app. When developing .NET MAUI Blazor Hybrid apps and only running them in Visual Studio's emulators, :::no-loc text="WebView2"::: isn't required.
 * [Enable hardware acceleration](/dotnet/maui/android/emulator/hardware-acceleration) to improve the performance of the Android emulator.
 
 For more information on prerequisites and installing software for this tutorial, see the following resources in the .NET MAUI documentation:
@@ -32,7 +32,7 @@ For more information on prerequisites and installing software for this tutorial,
 * [Supported platforms for .NET MAUI apps](/dotnet/maui/supported-platforms)
 * [Installation (Visual Studio)](/dotnet/maui/get-started/installation?tabs=vswin)
 
-## Create a .NET MAUI Blazor app
+## Create a .NET MAUI Blazor Hybrid app
 
 Launch Visual Studio. In the **Start Window**, select **Create a new project**:
 
@@ -41,6 +41,34 @@ Launch Visual Studio. In the **Start Window**, select **Create a new project**:
 In the **Create a new project** window, use the **Project type** dropdown to filter **MAUI** templates:
 
 :::image type="content" source="maui/_static/win/new-project-1.png" alt-text="Filter templates to .NET MAUI.":::
+
+
+
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXX CHANGES FOR PROJECT TEMPLATE NAME
+
+:::moniker range=">= aspnetcore-8.0"
+
+Select the **.NET MAUI Blazor Hybrid App** template and then select the **Next** button:
+
+:::image type="content" source="maui/_static/win/new-project-2.png" alt-text="Choose a template.":::
+
+In the **Configure your new project** dialog:
+
+* Set the **Project name** to **:::no-loc text="MauiBlazor":::**.
+* Choose a suitable location for the project.
+* Select the **Next** button.
+
+:::image type="content" source="maui/_static/win/configure-project.png" alt-text="Configure the project.":::
+
+In the **Additional information** dialog, select the framework version with the **Framework** dropdown list. Select the **Create** button:
+
+:::image type="content" source="maui/_static/win/additional-information.png" alt-text="Additional information dialog for selecting the framework version and creating the project.":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 Select the **.NET MAUI Blazor App** template and then select the **Next** button:
 
@@ -57,6 +85,14 @@ In the **Configure your new project** dialog:
 In the **Additional information** dialog, select the framework version with the **Framework** dropdown list. Select the **Create** button:
 
 :::image type="content" source="maui/_static/win/additional-information.png" alt-text="Additional information dialog for selecting the framework version and creating the project.":::
+
+:::moniker-end
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+
+
 
 Wait for Visual Studio to create the project and restore the project's dependencies. Monitor the progress in **Solution Explorer** by opening the **Dependencies** entry.
 
@@ -149,7 +185,7 @@ The app running in the Android Emulator:
 In this tutorial, you learned how to:
 
 > [!div class="checklist"]
-> * Create a .NET MAUI Blazor app project in Visual Studio
+> * Create a .NET MAUI Blazor Hybrid app project in Visual Studio
 > * Run the app on Windows
 > * Run the app on an emulated mobile device in the Android Emulator
 
@@ -157,10 +193,10 @@ In this tutorial, you learned how to:
 
 :::zone pivot="macos"
 
-This tutorial shows you how to build and run a .NET MAUI Blazor app. You learn how to:
+This tutorial shows you how to build and run a .NET MAUI Blazor Hybrid app. You learn how to:
 
 > [!div class="checklist"]
-> * Create a .NET MAUI Blazor app project in Visual Studio for Mac
+> * Create a .NET MAUI Blazor Hybrid app project in Visual Studio for Mac
 > * Run the app on macOS with Mac Catalyst
 > * Run the app on an emulated mobile device in the Android Emulator
 
@@ -185,7 +221,7 @@ For more information on prerequisites and installing software on macOS for this 
 * [Supported platforms for .NET MAUI apps](/dotnet/maui/supported-platforms)
 * [Installation (Visual Studio for Mac)](/dotnet/maui/get-started/installation?tabs=vsmac)
 
-## Create a .NET MAUI Blazor app
+## Create a .NET MAUI Blazor Hybrid app
 
 Launch Visual Studio for Mac. If the **Start Window** isn't open, select **Show Start Window** from the **File** menu.
 
@@ -193,17 +229,48 @@ Select the **New** button to create a new app:
 
 :::image type="content" source="maui/_static/mac/step01.png" alt-text="Visual Studio for Mac Start .":::
 
-Select the **.NET MAUI Blazor App** project template and select the **Continue** button:
 
-:::image type="content" source="maui/_static/mac/step02.png" alt-text="Choose a template for your new project dialog with the .NET MAUI Blazor App project template selected.":::
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXX CHANGES FOR PROJECT TEMPLATE NAME
+
+:::moniker range=">= aspnetcore-8.0"
+
+Select the **.NET MAUI Blazor Hybrid App** project template and select the **Continue** button:
+
+:::image type="content" source="maui/_static/mac/step02.png" alt-text="Choose a template for your new project dialog with the .NET MAUI Blazor Hybrid App project template selected.":::
 
 Select the target framework with the **Target framework** dropdown and select the **Continue** button:
 
-:::image type="content" source="maui/_static/mac/step03.png" alt-text="Configure your new .NET MAUI Blazor App dialog with the .NET 7.0 target framework selected.":::
+:::image type="content" source="maui/_static/mac/step03.png" alt-text="Configure your new .NET MAUI Blazor Hybrid App dialog with the .NET 7.0 target framework selected.":::
 
 Name the project in the **Project name** field and select the **Create** button. The project name for this demonstration is `MauiBlazor`:
 
-:::image type="content" source="maui/_static/mac/step04.png" alt-text="Configure your new .NET MAUI Blazor App dialog with an project name of MauiBlazor.":::
+:::image type="content" source="maui/_static/mac/step04.png" alt-text="Configure your new .NET MAUI Blazor Hybrid App dialog with an project name of MauiBlazor.":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+Select the **.NET MAUI Blazor App** project template and select the **Continue** button:
+
+:::image type="content" source="maui/_static/mac/step02.png" alt-text="Choose a template for your new project dialog with the .NET MAUI Blazor Hybrid App project template selected.":::
+
+Select the target framework with the **Target framework** dropdown and select the **Continue** button:
+
+:::image type="content" source="maui/_static/mac/step03.png" alt-text="Configure your new .NET MAUI Blazor Hybrid App dialog with the .NET 7.0 target framework selected.":::
+
+Name the project in the **Project name** field and select the **Create** button. The project name for this demonstration is `MauiBlazor`:
+
+:::image type="content" source="maui/_static/mac/step04.png" alt-text="Configure your new .NET MAUI Blazor Hybrid App dialog with an project name of MauiBlazor.":::
+
+:::moniker-end
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+
+
 
 ## Run the app on macOS with Mac Catalyst
 
@@ -215,7 +282,7 @@ An alternative to using the play button to build and start the app is to select 
 
 The app running on macOS with Mac Catalyst:
 
-:::image type="content" source="maui/_static/mac/step06.png" alt-text="The .NET MAUI Blazor app running in Apple Safari.":::
+:::image type="content" source="maui/_static/mac/step06.png" alt-text="The .NET MAUI Blazor Hybrid app running in Apple Safari.":::
 
 ## Run the app in the Android Emulator
 
@@ -274,7 +341,7 @@ The app running on the emulated Android mobile device:
 In this tutorial, you learned how to:
 
 > [!div class="checklist"]
-> * Create a .NET MAUI Blazor app project in Visual Studio for Mac
+> * Create a .NET MAUI Blazor Hybrid app project in Visual Studio for Mac
 > * Run the app on macOS with Mac Catalyst
 > * Run the app on an emulated mobile device in the Android Emulator
 
