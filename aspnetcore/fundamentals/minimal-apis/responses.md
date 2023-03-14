@@ -234,7 +234,7 @@ To configure serialization options for an endpoint, invoke <xref:Microsoft.AspNe
 
 As an alternative, use an overload of <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync%2A> that accepts a <xref:System.Text.Json.JsonSerializerOptions> object. The following example uses this overload to format the output JSON:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_writeasjsonasyncwithoptions" highlight="7-10,13":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_writeasjsonasyncwithoptions" highlight="7-8,12":::
 
 ## Additional Resources
 
