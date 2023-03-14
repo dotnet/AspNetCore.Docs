@@ -1,4 +1,4 @@
-#define writeasjsonasyncwithoptions
+#define writeasjsonasync
 // First Second writeasjsonasync autojsondeserialization
 // readfromjsonasync confighttpjsonoptions jsonoptions writeasjsonasyncwithoptions
 // readfromjsonasyncwithoptions resultsjsonwithoptions
@@ -53,21 +53,15 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 // <snippet_writeasjsonasync>
-app.MapGet("/", (HttpContext context) =>
-    context.Response.WriteAsJsonAsync<Todo>(
-        new Todo { Name = "Walk dog", IsComplete = false }));
+app.MapGet("/", (HttpContext context) => context.Response.WriteAsJsonAsync
+    (new { Message = "HelloWorld" }));
 // </snippet_writeasjsonasync>
 
 app.Run();
 
-class Todo
-{
-    
-    public string? Name { get; set; }
-    public bool IsComplete { get; set; }
-}
 // The endpoint returns the following JSON:
-// {"name":"Walk dog","isComplete":false}
+//
+// {"message":"HelloWorld"}
 #elif readfromjsonasync
 // <snippet_readfromjsonasync>
 using System.Diagnostics;
