@@ -318,22 +318,22 @@ The rules for determining a binding source from a parameter:
 1. If the parameter type is a service provided by dependency injection, it uses that service as the source.
 1. The parameter is from the body.
 
-## Configure body binding JSON deserialization options
+### Configure JSON deserialization options for body binding
 
 The body binding source uses <xref:System.Text.Json?displayProperty=fullName> for deserialization. It is ***not*** possible to change this default, but JSON serialization and deserialization options can be configured.
 
-### Configure JSON deserialization options globally
+#### Configure JSON deserialization options globally
 
-Options that apply globally for an app can be configured by invoking <xref:Microsoft.Extensions.DependencyInjection.HttpJsonServiceExtensions.ConfigureHttpJsonOptions%2A>. The following example specifies that public fields should be included when serializing and deserializing, and JSON output should be formatted.
+Options that apply globally for an app can be configured by invoking <xref:Microsoft.Extensions.DependencyInjection.HttpJsonServiceExtensions.ConfigureHttpJsonOptions%2A>. The following example includes public fields and formats JSON output.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_confighttpjsonoptions":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_confighttpjsonoptions" highlight="3-6":::
 
-By default, [System.Text.Json ignores fields](/dotnet/standard/serialization/system-text-json/how-to#serialization-behavior). If the posted JSON contains a value only in `NameField`, the returned JSON shows that value in the `Name` property and includes `NameField` only if the `IncludeFields` option has been set.
+Since the sample code configures both serialization and deserialization, it can read `NameField` and include `NameField` in the output JSON.
 
-### Configure JSON deserialization options for an endpoint
+#### Configure JSON deserialization options for an endpoint
 
 <xref:Microsoft.AspNetCore.Http.HttpRequestJsonExtensions.ReadFromJsonAsync%2A> has overloads that accept a <xref:System.Text.Json.JsonSerializerOptions> object. The following example includes public fields and formats JSON output.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_readfromjsonasyncwithoptions":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_readfromjsonasyncwithoptions" highlight="7-10,14":::
 
-Since the customized options apply only to deserialization, the output JSON excludes `NameField`.
+Since the customized options apply only to deserialization in this example, the output JSON excludes `NameField`.
