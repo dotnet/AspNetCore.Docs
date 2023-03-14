@@ -355,7 +355,7 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#ja
 
 ## Avoid trimming JavaScript-invokable .NET methods
 
-[Runtime relinking](xref:blazor/host-and-deploy/webassembly#runtime-relinking) trims class instance JavaScript-invokable .NET methods unless they're protected. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#avoid-trimming-javascript-invokable-net-methods>.
+[Runtime relinking](xref:blazor/host-and-deploy/webassembly#runtime-relinking) trims class instance JavaScript-invokable .NET methods unless they're explicitly preserved. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#avoid-trimming-javascript-invokable-net-methods>.
 
 ## Build, pack, and ship to NuGet
 
