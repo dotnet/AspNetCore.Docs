@@ -1,4 +1,4 @@
-#define writeasjsonasync
+#define writeasjsonasyncwithoptions
 // First Second writeasjsonasync autojsondeserialization
 // readfromjsonasync confighttpjsonoptions jsonoptions writeasjsonasyncwithoptions
 // readfromjsonasyncwithoptions resultsjsonwithoptions
@@ -169,7 +169,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 
-var options = new JsonSerializerOptions(JsonSerializerDefaults.Web) { WriteIndented = true };
+var options = new JsonSerializerOptions(JsonSerializerDefaults.Web) {
+    WriteIndented = true };
 
 app.MapGet("/", (HttpContext context) =>
     context.Response.WriteAsJsonAsync<Todo>(
