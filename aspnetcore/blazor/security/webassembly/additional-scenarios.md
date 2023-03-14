@@ -1302,7 +1302,7 @@ export interface InteractiveAuthenticationRequest {
 
 You can import the library by removing the original `<script>` tag and adding a `<script>` tag that loads the custom library. The following example demonstrates replacing the default `<script>` tag with one that loads a library named `CustomAuthenticationService.js` from the `wwwroot/js` folder.
 
-In `wwwroot/index.html` inside the closing `</body>` tag:
+In `wwwroot/index.html` before the Blazor script (`_framework/blazor.webassembly.js`) inside the closing `</body>` tag:
 
 ```diff
 - <script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
@@ -2533,7 +2533,7 @@ export interface InteractiveAuthenticationRequest {
 
 You can import the library by removing the original `<script>` tag and adding a `<script>` tag that loads the custom library. The following example demonstrates replacing the default `<script>` tag with one that loads a library named `CustomAuthenticationService.js` from the `wwwroot/js` folder.
 
-In `wwwroot/index.html` inside the closing `</body>` tag:
+In `wwwroot/index.html` before the Blazor script (`_framework/blazor.webassembly.js`) inside the closing `</body>` tag:
 
 ```diff
 - <script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
@@ -3764,7 +3764,7 @@ export interface InteractiveAuthenticationRequest {
 
 You can import the library by removing the original `<script>` tag and adding a `<script>` tag that loads the custom library. The following example demonstrates replacing the default `<script>` tag with one that loads a library named `CustomAuthenticationService.js` from the `wwwroot/js` folder.
 
-In `wwwroot/index.html` inside the closing `</body>` tag:
+In `wwwroot/index.html` before the Blazor script (`_framework/blazor.webassembly.js`) inside the closing `</body>` tag:
 
 ```diff
 - <script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
@@ -4991,7 +4991,7 @@ export interface InteractiveAuthenticationRequest {
 
 You can import the library by removing the original `<script>` tag and adding a `<script>` tag that loads the custom library. The following example demonstrates replacing the default `<script>` tag with one that loads a library named `CustomAuthenticationService.js` from the `wwwroot/js` folder.
 
-In `wwwroot/index.html` inside the closing `</body>` tag:
+In `wwwroot/index.html` before the Blazor script (`_framework/blazor.webassembly.js`) inside the closing `</body>` tag:
 
 ```diff
 - <script src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>

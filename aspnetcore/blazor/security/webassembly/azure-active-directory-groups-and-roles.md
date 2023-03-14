@@ -63,7 +63,7 @@ In the app's manifest in the Azure portal for **CLIENT** and **SERVER** apps, se
 1. Select **Manage** > **Manifest** in the sidebar.
 1. Find the `groupMembershipClaims` attribute.
 1. Set the value to `All` (`"groupMembershipClaims": "All"`).
-1. Select the **Save** button.
+1. Select the **Save** button if you made changes.
 
 ## Custom user account
 

@@ -44,12 +44,12 @@ Record the following information:
 * Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd`)
 * Directory (tenant) ID (for example, `e86c78e2-8bb4-4c41-aefd-918e0565a45e`)
 
-In **Authentication** > **Platform configurations** > **Single-page application (SPA)**:
+In **Authentication** > **Platform configurations** > **Single-page application**:
 
-1. Confirm the **Redirect URI** of `https://localhost/authentication/login-callback` is present.
+1. Confirm the redirect URI of `https://localhost/authentication/login-callback` is present.
 1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
 1. The remaining defaults for the app are acceptable for this experience.
-1. Select the **Save** button.
+1. Select the **Save** button if you made changes.
 
 ### Create the Blazor app
 
