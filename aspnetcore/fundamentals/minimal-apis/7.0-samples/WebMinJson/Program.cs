@@ -194,7 +194,7 @@ class Todo
 //   "name":"Walk dog",
 //   "isComplete":false
 // }
-// </snippet_readfromjsonasyncwithoptions>
+// </snippet_writeasjsonasyncwithoptions>
 #elif readfromjsonasyncwithoptions
 // <snippet_readfromjsonasyncwithoptions>
 using System.Text.Json;
