@@ -77,7 +77,7 @@ Record the *Client app* Application (client) ID (for example, `4369008b-21fa-427
 
 In **Authentication** > **Platform configurations** > **Single-page application**:
 
-1. Confirm the **Redirect URI** of `https://localhost/authentication/login-callback` is present.
+1. Confirm the redirect URI of `https://localhost/authentication/login-callback` is present.
 1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button if you made changes.

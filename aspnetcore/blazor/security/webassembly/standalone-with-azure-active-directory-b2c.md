@@ -45,12 +45,12 @@ Record the following information:
 * AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash): The instance is the scheme and host of an Azure B2C app registration, which can be found by opening the **Endpoints** window from the **App registrations** page in the Azure portal.
 * AAD B2C Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
 
-In **Authentication** > **Platform configurations** > **Single-page application (SPA)**:
+In **Authentication** > **Platform configurations** > **Single-page application**:
 
-1. Confirm the **Redirect URI** of `https://localhost/authentication/login-callback` is present.
+1. Confirm the redirect URI of `https://localhost/authentication/login-callback` is present.
 1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
 1. The remaining defaults for the app are acceptable for this experience.
-1. Select the **Save** button.
+1. Select the **Save** button if you made changes.
 
 In **Home** > **Azure AD B2C** > **User flows**:
 
