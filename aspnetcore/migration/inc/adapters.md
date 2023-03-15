@@ -62,4 +62,4 @@ public class SomeController : Controller
 }
 ```
 
-Notice that since there's a <xref:Microsoft.AspNetCore.Mvc.Controller.HttpContext/> property, they can pass that through, but it generally looks the same. Using implicit conversions, the <xref:Microsoft.AspNetCore.Http.HttpContext/> can be converted into the adapter that could then be passed around through the levels utilizing the code in the same way.
+Notice that since there's a <xref:Microsoft.AspNetCore.Mvc.Controller.HttpContext> property, they can pass that through, but it generally looks the same. Using implicit conversions, the <xref:Microsoft.AspNetCore.Http.HttpContext> can be converted into the adapter that could then be passed around through the levels utilizing the code in the same way.
