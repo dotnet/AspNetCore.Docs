@@ -16,7 +16,7 @@ Remote app session state will enable communication between the ASP.NET Core and 
 
 ## HttpSessionState serialization
 
-The `System.Web.SessionState.HttpSessionState` object must be serialized for remote app session state to be enabled. This is accomplished through implementation of the type `Microsoft.AspNetCore.SystemWebAdapters.SessionState.Serialization.ISessionSerializer`, of which a default binary writer implementation is provided. This is added by the following code:
+The <xref:System.Web.SessionState.HttpSessionState/> object must be serialized for remote app session state to be enabled. This is accomplished through implementation of the type `Microsoft.AspNetCore.SystemWebAdapters.SessionState.Serialization.ISessionSerializer`, of which a default binary writer implementation is provided. This is added by the following code:
 
 ```csharp
 builder.Services.AddSystemWebAdapters()
