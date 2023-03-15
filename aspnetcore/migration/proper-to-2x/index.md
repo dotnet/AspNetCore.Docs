@@ -18,7 +18,7 @@ ASP.NET Core is the modern web framework for .NET. While ASP.NET Core has many s
 
 Most non-trivial ASP.NET Framework apps should consider using the [incremental upgrade](/aspnet/core/migration/inc/overview) approach. For more information, see [Incremental ASP.NET to ASP.NET Core upgrade](/aspnet/core/migration/inc/overview).
 
-For ASP.NET MVC and Web API apps, see <xref:migration/mvc>. For ASP.NET Framework Web Forms apps, see <xref:igration/web_forms>.
+For ASP.NET MVC and Web API apps, see <xref:migration/mvc>. For ASP.NET Framework Web Forms apps, see <xref:migration/web_forms>.
 
 ## URI decoding differences between ASP.NET to ASP.NET Core
 

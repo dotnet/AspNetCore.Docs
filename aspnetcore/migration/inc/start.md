@@ -12,15 +12,16 @@ uid: migration/inc/start
 
 # Get started with incremental ASP.NET to ASP.NET Core migration
 
-In order to start a large migration, we recommend setting up a ASP.NET Core app that will proxy to the original .NET Framework app. This set up will look like this:
+For a large migration, we recommend setting up a ASP.NET Core app that proxies to the original .NET Framework app. The new proxy enabled app in shown in the following image:
 
 ![start migrating routes](~/migration/inc/overview/static/nop.png)
 
-To understand how this is helpful in the migration process, see [Incremental ASP.NET to ASP.NET Core migration](xref:migration/inc/overview). The rest of this article provides the steps to set this up and how to proceed with an incremental migration.
+To understand how this approach is helpful in the migration process, see [Incremental ASP.NET to ASP.NET Core migration](xref:migration/inc/overview). The rest of this article provides the steps to proceed with an incremental migration.
 
 ## Set up ASP.NET Core Project
 
-Install the Visual Studio extension [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant). For more information see the blog post [Upgrading your .NET projects with Visual Studio](https://devblogs.microsoft.com/dotnet/upgrade-assistant-now-in-visual-studio/). <!-- TODO: update  https://github.com/dotnet/AspNetCore.Docs/issues/28608 -->
+For ASP.NET MVC and Web API apps, see <xref:migration/mvc>.
+For ASP.NET Framework Web Forms apps, see <xref:igration/web_forms>.
 
 ## Upgrade supporting libraries
 
