@@ -29,7 +29,7 @@ If your .NET Framework project has supporting libraries in it's solution that ar
 1. In **Solution Explorer**, right click on the project to upgrade and select **Upgrade**. Select **Side-by-side incremental project upgrade**, which is the only upgrade option.
 1. For the upgrade target, select **New project**.
 1. Name the project and select the **ASP.NET Core** template and then select **Next**
-1. Select the target framework version and then select **Next**. For more information, see [.NET and .NET Core Support Policy](/platform/support/policy/dotnet-core).
+1. Select the target framework version and then select **Next**. For more information, see [.NET and .NET Core Support Policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
 1. Select **Done**, then select **Finish**.
 1. The **Summary** step displays **`<Framework Project>` is now connected to `<Framework ProjectCore>`  via Yarp proxy.**.
 1. Select the component to upgrade, then select **Upgrade selection**.
