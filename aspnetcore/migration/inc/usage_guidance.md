@@ -76,7 +76,7 @@ app.MapDefaultControllerRoute()
 
 ## <xref:System.Web.HttpContext.Response> may require buffering
 
-Some APIs on <xref:System.Web.HttpContext.Response> require that the output stream is buffered, such as <xref:System.Web.HttpResponse.Output>, <xref:System.Web.HttpResponse.End()>, <xref:System.Web.HttpResponse.Clear()>, and <xref:System.Web.HttpResponse.SuppressContent>.
+Some APIs on <xref:System.Web.HttpContext.Response> require that the output stream is buffered, such as <xref:System.Web.HttpResponse.Output>, <xref:System.Web.HttpResponse.End>, <xref:System.Web.HttpResponse.Clear>, and <xref:System.Web.HttpResponse.SuppressContent>.
 
 **Recommendation**: In order to support behavior for <xref:System.Web.HttpContext.Response> that requires buffering the response before sending, endpoints must opt-into it with endpoint metadata implementing `IBufferResponseStreamMetadata`.
 
