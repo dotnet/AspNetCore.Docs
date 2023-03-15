@@ -170,7 +170,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    [!INCLUDE [http-ports](~/includes/http-ports.md)]
 
-   The HTTP_PORTS and HTTPS_PORTS configuration keys are equivalent to top-level wildcard bindings. They're convenient for development and container scenarios, but avoid wildcards when running on a machine that may also host other services.
+   These configuration keys are equivalent to top-level wildcard bindings. They're convenient for development and container scenarios, but avoid wildcards when running on a machine that may also host other services.
 
 1. Preregister URL prefixes on the server.
 
