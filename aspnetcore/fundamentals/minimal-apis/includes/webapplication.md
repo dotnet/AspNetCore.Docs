@@ -86,6 +86,17 @@ The preceding samples can use `ASPNETCORE_URLS`
 ASPNETCORE_URLS=http://*:3000;https://+:5000;http://0.0.0.0:5005
 ```
 
+### Listen on all interfaces using ASPNETCORE_HTTPS_PORTS
+
+The preceding samples can use `ASPNETCORE_HTTPS_PORTS` and `ASPNETCORE_HTTP_PORTS`.
+
+```
+ASPNETCORE_HTTP_PORTS=3000;5005
+ASPNETCORE_HTTPS_PORTS=5000
+```
+
+For more information, see [Configure endpoints for the ASP.NET Core Kestrel web server](xref:fundamentals/servers/kestrel/endpoints)
+
 ### Specify HTTPS with development certificate
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_cert)]
