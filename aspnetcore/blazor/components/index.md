@@ -281,7 +281,7 @@ The following `ParameterParent2` component displays four instances of the preced
 * The current local date in long format with <xref:System.DateTime.ToLongDateString%2A>, which uses an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions).
 * The `panelData` object's `Title` property.
 
-The `@` prefix is required for string parameters in a C# context. Otherwise, the framework assumes that a string literal is set. The `@` prefix is ***never*** required for other, non-literal types.
+The `@` prefix is required for string-typed parameters in a C# context. Otherwise, the framework assumes that a string literal is set. The `@` prefix is ***never*** required for other, non-literal types.
 
 We don't recommend the use of the `@` prefix for literals (for example, boolean values), keywords (for example, `this`), or `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
 
@@ -1813,7 +1813,7 @@ The following `ParameterParent2` component displays four instances of the preced
 * The current local date in long format with <xref:System.DateTime.ToLongDateString%2A>, which uses an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions).
 * The `panelData` object's `Title` property.
 
-The `@` prefix is required for string parameters in a C# context. Otherwise, the framework assumes that a string literal is set. The `@` prefix is ***never*** required for other, non-literal types.
+The `@` prefix is required for string-typed parameters in a C# context. Otherwise, the framework assumes that a string literal is set. The `@` prefix is ***never*** required for other, non-literal types.
 
 We don't recommend the use of the `@` prefix for literals (for example, boolean values), keywords (for example, `this`), or `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
 
@@ -3286,7 +3286,7 @@ The following `ParameterParent2` component displays four instances of the preced
 * The current local date in long format with <xref:System.DateTime.ToLongDateString%2A>, which uses an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions).
 * The `panelData` object's `Title` property.
 
-The `@` prefix is required for string parameters in a C# context. Otherwise, the framework assumes that a string literal is set. The `@` prefix is ***never*** required for other, non-literal types.
+The `@` prefix is required for string-typed parameters in a C# context. Otherwise, the framework assumes that a string literal is set. The `@` prefix is ***never*** required for other, non-literal types.
 
 We don't recommend the use of the `@` prefix for literals (for example, boolean values), keywords (for example, `this`), or `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
 
@@ -4309,7 +4309,7 @@ The following `ParameterParent2` component displays four instances of the preced
 * The current local date in long format with <xref:System.DateTime.ToLongDateString%2A>, which uses an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions).
 * The `panelData` object's `Title` property.
 
-The `@` prefix is required for string parameters in a C# context. Otherwise, the framework assumes that a string literal is set. The `@` prefix is ***never*** required for other, non-literal types.
+The `@` prefix is required for string-typed parameters in a C# context. Otherwise, the framework assumes that a string literal is set. The `@` prefix is ***never*** required for other, non-literal types.
 
 We don't recommend the use of the `@` prefix for literals (for example, boolean values), keywords (for example, `this`), or `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
 
