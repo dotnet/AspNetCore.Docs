@@ -1720,8 +1720,10 @@ items:
               uid: migration/inc/blazor
           - name: Overview
             uid: migration/proper-to-2x/index
-          - name: MVC
+          - name: MVC and Web API
             uid: migration/mvc
+          - name: Web Forms
+            uid: migration/web_forms
           - name: Web API
             uid: migration/webapi
           - name: Configuration
