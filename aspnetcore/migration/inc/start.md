@@ -21,7 +21,7 @@ To understand how this approach is helpful in the migration process, see [Increm
 ## Set up ASP.NET Core Project
 
 For ASP.NET MVC and Web API apps, see <xref:migration/mvc>.
-For ASP.NET Framework Web Forms apps, see <xref:igration/web_forms>.
+For ASP.NET Framework Web Forms apps, see <xref:migration/web_forms>.
 
 ## Upgrade supporting libraries
 
