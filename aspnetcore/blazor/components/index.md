@@ -270,16 +270,18 @@ The following rendered HTML markup from the `ParameterParent` component shows `P
 </div>
 ```
 
-Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value using [Razor's reserved `@` symbol](xref:mvc/views/razor#razor-syntax). The following `ParameterParent2` component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
+Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value.
+
+A leading [Razor reserved `@` symbol](xref:mvc/views/razor#razor-syntax) isn't required for component parameters of any type. A leading `@` symbol is optional for non-string parameters and is only required for string parameters if you want a C# context instead of assigning a string literal value.
+
+The following `ParameterParent2` component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
 
 * The value of the `title` field.
 * The result of the `GetTitle` C# method.
 * The current local date in long format with <xref:System.DateTime.ToLongDateString%2A>, which uses an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions).
 * The `panelData` object's `Title` property.
 
-The `@` prefix is required for string parameters. Otherwise, the framework assumes that a string literal is set.
-
-Outside of string parameters, we recommend the use of the `@` prefix for nonliterals, even when they aren't strictly required.
+The `@` prefix is required for string parameters in a C# context. Otherwise, the framework assumes that a string literal is set. The `@` prefix is ***never*** required for other, non-literal types.
 
 We don't recommend the use of the `@` prefix for literals (for example, boolean values), keywords (for example, `this`), or `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
 
@@ -288,7 +290,7 @@ Quotes around parameter attribute values are optional in most cases per the HTML
 Throughout the documentation, code examples:
 
 * Always use quotes. Example: `Value="this"`.
-* Nonliterals always use the `@` prefix, even when it's optional. Examples: `Title="@title"`, where `title` is a string-typed variable. `Count="@ct"`, where `ct` is a number-typed variable.
+* Nonliterals always use the `@` prefix, ***even when it's optional***. Example: `Count="@ct"`, where `ct` is a number-typed variable. `Count="ct"` is a valid stylistic approach, but the documentation and examples don't adopt the convention.
 * Literals, outside of Razor expressions, always avoid `@`. Example: `IsFixed="true"`.
 
 `Pages/ParameterParent2.razor`:
@@ -296,18 +298,26 @@ Throughout the documentation, code examples:
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/index/ParameterParent2.razor":::
 
 > [!NOTE]
-> When assigning a C# member to a component parameter, prefix the member with the `@` symbol and never prefix the parameter's HTML attribute.
+> When assigning a C# member to a component parameter, don't prefix the parameter's HTML attribute with `@`.
 >
-> Correct:
+> Correct (`Title` is a string parameter, `Count` is a number-typed parameter):
 >
 > ```razor
-> <ParameterChild Title="@title" />
+> <ParameterChild Title="@title" Count="@ct" />
+> ```
+>
+> ```razor
+> <ParameterChild Title="@title" Count="ct" />
 > ```
 >
 > Incorrect:
 >
 > ```razor
-> <ParameterChild @Title="title" />
+> <ParameterChild @Title="@title" @Count="@ct" />
+> ```
+>
+> ```razor
+> <ParameterChild @Title="@title" @Count="ct" />
 > ```
 
 Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. This is because Blazor is designed for rendering interactive UIs. In an interactive UI, the screen must always display something, so it doesn't make sense to block the rendering flow. Instead, asynchronous work is performed during one of the [asynchronous lifecycle events](xref:blazor/components/lifecycle). After each asynchronous lifecycle event, the component may render again. The following Razor syntax is **not** supported:
@@ -1792,16 +1802,18 @@ The following rendered HTML markup from the `ParameterParent` component shows `P
 </div>
 ```
 
-Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value using [Razor's reserved `@` symbol](xref:mvc/views/razor#razor-syntax). The following `ParameterParent2` component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
+Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value.
+
+A leading [Razor reserved `@` symbol](xref:mvc/views/razor#razor-syntax) isn't required for component parameters of any type. A leading `@` symbol is optional for non-string parameters and is only required for string parameters if you want a C# context instead of assigning a string literal value.
+
+The following `ParameterParent2` component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
 
 * The value of the `title` field.
 * The result of the `GetTitle` C# method.
 * The current local date in long format with <xref:System.DateTime.ToLongDateString%2A>, which uses an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions).
 * The `panelData` object's `Title` property.
 
-The `@` prefix is required for string parameters. Otherwise, the framework assumes that a string literal is set.
-
-Outside of string parameters, we recommend the use of the `@` prefix for nonliterals, even when they aren't strictly required.
+The `@` prefix is required for string parameters in a C# context. Otherwise, the framework assumes that a string literal is set. The `@` prefix is ***never*** required for other, non-literal types.
 
 We don't recommend the use of the `@` prefix for literals (for example, boolean values), keywords (for example, `this`), or `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
 
@@ -1810,7 +1822,7 @@ Quotes around parameter attribute values are optional in most cases per the HTML
 Throughout the documentation, code examples:
 
 * Always use quotes. Example: `Value="this"`.
-* Nonliterals always use the `@` prefix, even when it's optional. Examples: `Title="@title"`, where `title` is a string-typed variable. `Count="@ct"`, where `ct` is a number-typed variable.
+* Nonliterals always use the `@` prefix, ***even when it's optional***. Example: `Count="@ct"`, where `ct` is a number-typed variable. `Count="ct"` is a valid stylistic approach, but the documentation and examples don't adopt the convention.
 * Literals, outside of Razor expressions, always avoid `@`. Example: `IsFixed="true"`.
 
 `Pages/ParameterParent2.razor`:
@@ -1818,18 +1830,26 @@ Throughout the documentation, code examples:
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/ParameterParent2.razor":::
 
 > [!NOTE]
-> When assigning a C# member to a component parameter, prefix the member with the `@` symbol and never prefix the parameter's HTML attribute.
+> When assigning a C# member to a component parameter, don't prefix the parameter's HTML attribute with `@`.
 >
-> Correct:
+> Correct (`Title` is a string parameter, `Count` is a number-typed parameter):
 >
 > ```razor
-> <ParameterChild Title="@title" />
+> <ParameterChild Title="@title" Count="@ct" />
+> ```
+>
+> ```razor
+> <ParameterChild Title="@title" Count="ct" />
 > ```
 >
 > Incorrect:
 >
 > ```razor
-> <ParameterChild @Title="title" />
+> <ParameterChild @Title="@title" @Count="@ct" />
+> ```
+>
+> ```razor
+> <ParameterChild @Title="@title" @Count="ct" />
 > ```
 
 Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. This is because Blazor is designed for rendering interactive UIs. In an interactive UI, the screen must always display something, so it doesn't make sense to block the rendering flow. Instead, asynchronous work is performed during one of the [asynchronous lifecycle events](xref:blazor/components/lifecycle). After each asynchronous lifecycle event, the component may render again. The following Razor syntax is **not** supported:
@@ -3255,16 +3275,18 @@ The following rendered HTML markup from the `ParameterParent` component shows `P
 </div>
 ```
 
-Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value using [Razor's reserved `@` symbol](xref:mvc/views/razor#razor-syntax). The following `ParameterParent2` component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
+Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value.
+
+A leading [Razor reserved `@` symbol](xref:mvc/views/razor#razor-syntax) isn't required for component parameters of any type. A leading `@` symbol is optional for non-string parameters and is only required for string parameters if you want a C# context instead of assigning a string literal value.
+
+The following `ParameterParent2` component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
 
 * The value of the `title` field.
 * The result of the `GetTitle` C# method.
 * The current local date in long format with <xref:System.DateTime.ToLongDateString%2A>, which uses an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions).
 * The `panelData` object's `Title` property.
 
-The `@` prefix is required for string parameters. Otherwise, the framework assumes that a string literal is set.
-
-Outside of string parameters, we recommend the use of the `@` prefix for nonliterals, even when they aren't strictly required.
+The `@` prefix is required for string parameters in a C# context. Otherwise, the framework assumes that a string literal is set. The `@` prefix is ***never*** required for other, non-literal types.
 
 We don't recommend the use of the `@` prefix for literals (for example, boolean values), keywords (for example, `this`), or `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
 
@@ -3273,7 +3295,7 @@ Quotes around parameter attribute values are optional in most cases per the HTML
 Throughout the documentation, code examples:
 
 * Always use quotes. Example: `Value="this"`.
-* Nonliterals always use the `@` prefix, even when it's optional. Examples: `Title="@title"`, where `title` is a string-typed variable. `Count="@ct"`, where `ct` is a number-typed variable.
+* Nonliterals always use the `@` prefix, ***even when it's optional***. Example: `Count="@ct"`, where `ct` is a number-typed variable. `Count="ct"` is a valid stylistic approach, but the documentation and examples don't adopt the convention.
 * Literals, outside of Razor expressions, always avoid `@`. Example: `IsFixed="true"`.
 
 `Pages/ParameterParent2.razor`:
@@ -3281,18 +3303,26 @@ Throughout the documentation, code examples:
 :::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/ParameterParent2.razor":::
 
 > [!NOTE]
-> When assigning a C# member to a component parameter, prefix the member with the `@` symbol and never prefix the parameter's HTML attribute.
+> When assigning a C# member to a component parameter, don't prefix the parameter's HTML attribute with `@`.
 >
-> Correct:
+> Correct (`Title` is a string parameter, `Count` is a number-typed parameter):
 >
 > ```razor
-> <ParameterChild Title="@title" />
+> <ParameterChild Title="@title" Count="@ct" />
+> ```
+>
+> ```razor
+> <ParameterChild Title="@title" Count="ct" />
 > ```
 >
 > Incorrect:
 >
 > ```razor
-> <ParameterChild @Title="title" />
+> <ParameterChild @Title="@title" @Count="@ct" />
+> ```
+>
+> ```razor
+> <ParameterChild @Title="@title" @Count="ct" />
 > ```
 
 Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. This is because Blazor is designed for rendering interactive UIs. In an interactive UI, the screen must always display something, so it doesn't make sense to block the rendering flow. Instead, asynchronous work is performed during one of the [asynchronous lifecycle events](xref:blazor/components/lifecycle). After each asynchronous lifecycle event, the component may render again. The following Razor syntax is **not** supported:
@@ -4268,16 +4298,18 @@ The following rendered HTML markup from the `ParameterParent` component shows `P
 </div>
 ```
 
-Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value using [Razor's reserved `@` symbol](xref:mvc/views/razor#razor-syntax). The following `ParameterParent2` component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
+Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value.
+
+A leading [Razor reserved `@` symbol](xref:mvc/views/razor#razor-syntax) isn't required for component parameters of any type. A leading `@` symbol is optional for non-string parameters and is only required for string parameters if you want a C# context instead of assigning a string literal value.
+
+The following `ParameterParent2` component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
 
 * The value of the `title` field.
 * The result of the `GetTitle` C# method.
 * The current local date in long format with <xref:System.DateTime.ToLongDateString%2A>, which uses an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions).
 * The `panelData` object's `Title` property.
 
-The `@` prefix is required for string parameters. Otherwise, the framework assumes that a string literal is set.
-
-Outside of string parameters, we recommend the use of the `@` prefix for nonliterals, even when they aren't strictly required.
+The `@` prefix is required for string parameters in a C# context. Otherwise, the framework assumes that a string literal is set. The `@` prefix is ***never*** required for other, non-literal types.
 
 We don't recommend the use of the `@` prefix for literals (for example, boolean values), keywords (for example, `this`), or `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
 
@@ -4286,7 +4318,7 @@ Quotes around parameter attribute values are optional in most cases per the HTML
 Throughout the documentation, code examples:
 
 * Always use quotes. Example: `Value="this"`.
-* Nonliterals always use the `@` prefix, even when it's optional. Examples: `Title="@title"`, where `title` is a string-typed variable. `Count="@ct"`, where `ct` is a number-typed variable.
+* Nonliterals always use the `@` prefix, ***even when it's optional***. Example: `Count="@ct"`, where `ct` is a number-typed variable. `Count="ct"` is a valid stylistic approach, but the documentation and examples don't adopt the convention.
 * Literals, outside of Razor expressions, always avoid `@`. Example: `IsFixed="true"`.
 
 `Pages/ParameterParent2.razor`:
@@ -4294,18 +4326,26 @@ Throughout the documentation, code examples:
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/ParameterParent2.razor":::
 
 > [!NOTE]
-> When assigning a C# member to a component parameter, prefix the member with the `@` symbol and never prefix the parameter's HTML attribute.
+> When assigning a C# member to a component parameter, don't prefix the parameter's HTML attribute with `@`.
 >
-> Correct:
+> Correct (`Title` is a string parameter, `Count` is a number-typed parameter):
 >
 > ```razor
-> <ParameterChild Title="@title" />
+> <ParameterChild Title="@title" Count="@ct" />
+> ```
+>
+> ```razor
+> <ParameterChild Title="@title" Count="ct" />
 > ```
 >
 > Incorrect:
 >
 > ```razor
-> <ParameterChild @Title="title" />
+> <ParameterChild @Title="@title" @Count="@ct" />
+> ```
+>
+> ```razor
+> <ParameterChild @Title="@title" @Count="ct" />
 > ```
 
 Unlike in Razor pages (`.cshtml`), Blazor can't perform asynchronous work in a Razor expression while rendering a component. This is because Blazor is designed for rendering interactive UIs. In an interactive UI, the screen must always display something, so it doesn't make sense to block the rendering flow. Instead, asynchronous work is performed during one of the [asynchronous lifecycle events](xref:blazor/components/lifecycle). After each asynchronous lifecycle event, the component may render again. The following Razor syntax is **not** supported:
