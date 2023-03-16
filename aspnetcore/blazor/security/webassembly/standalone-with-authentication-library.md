@@ -30,13 +30,14 @@ Record the following information:
 
 * Authority (for example, `https://accounts.google.com/`).
 * Application (client) ID (for example, `2...7-e...q.apps.googleusercontent.com`).
+* Additional IP configuration (see the IP's documentation).
 
 > [!NOTE]
 > The IP must use OIDC. For example, Facebook's IP isn't an OIDC-compliant provider, so the guidance in this topic doesn't work with the Facebook IP. For more information, see <xref:blazor/security/webassembly/index#authentication-library>.
 
 ### Create the Blazor app
 
-To create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library, follow the guidance for your choice of tooling. If adding support for authentication, see the following sections of this article for guidance on setting up and configuring the app.
+To create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library, follow the guidance for your choice of tooling. If adding support for authentication, see the [Parts of the app](#parts-of-the-app) section of this article for guidance on setting up and configuring the app.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -85,7 +86,7 @@ Configure the app following the IP's guidance. At a minimum, the app requires th
 }
 ```
 
-Google OAuth 2.0 OIDC example for an app that runs on the localhost address at port 5001:
+Google OAuth 2.0 OIDC example for an app that runs on the `localhost` address at port 5001:
 
 ```json
 {
@@ -102,7 +103,7 @@ Google OAuth 2.0 OIDC example for an app that runs on the localhost address at p
 The redirect URI (`https://localhost:5001/authentication/login-callback`) is registered in the [Google APIs console](https://console.developers.google.com/apis/dashboard) in **Credentials** > **`{NAME}`** > **Authorized redirect URIs**, where `{NAME}` is the app's client name in the **OAuth 2.0 Client IDs** app list of the Google APIs console.
 
 > [!NOTE]
-> Supplying the port number for a `localhost` redirect URI isn't required for some OIDC IPs per the [OAuth 2.0 specification](https://datatracker.ietf.org/doc/html/rfc8252#section-7.3). Some IPs permit the redirect URI for loopback addresses to omit the port. Others allow the use of a wildcard for the port number (for example, `*`). For additional information, check the IP's documentation.
+> Supplying the port number for a `localhost` redirect URI isn't required for some OIDC IPs per the [OAuth 2.0 specification](https://datatracker.ietf.org/doc/html/rfc8252#section-7.3). Some IPs permit the redirect URI for loopback addresses to omit the port. Others allow the use of a wildcard for the port number (for example, `*`). For additional information, see the IP's documentation.
 
 ### Run the app
 
@@ -116,7 +117,7 @@ Use one of the following approaches to run the app:
 
 ## Parts of the app
 
-The following subsections in *Parts of the app* explain the parts of an app generated from the Blazor WebAssembly project template and how the app is configured. There's no specific guidance to follow in these sections for a basic working application if you created the app using the guidance earlier in this article. The guidance in this section is helpful if you're attempting to convert an app that doesn't authenticate and authorize users into one that does. However, an alternative approach to updating an app is to create a new app from the earlier guidance in this article and move your app's components, classes, and resources to the newly-created app. Either approach is viable.
+The following subsections in *Parts of the app* explain the parts of an app generated from the Blazor WebAssembly project template and how the app is configured. There's no specific guidance to follow in these sections for a basic working application if you created the app using the guidance earlier in this article. The guidance in this section is helpful if you're enhancing an app to authenticate and authorize users. However, an alternative approach to updating an app is to create a new app from the earlier guidance in this article and move your app's components, classes, and resources to the new app.
 
 ### Authentication package
 

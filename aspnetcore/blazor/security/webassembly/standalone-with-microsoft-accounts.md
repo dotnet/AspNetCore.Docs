@@ -77,7 +77,7 @@ Use one of the following approaches to run the app:
 
 ## Parts of the app
 
-The following subsections in *Parts of the app* explain the parts of an app generated from the Blazor WebAssembly project template and how the app is configured. There's no specific guidance to follow in these sections for a basic working application if you created the app using the guidance earlier in this article. The guidance in this section is helpful if you're attempting to convert an app that doesn't authenticate and authorize users into one that does. However, an alternative approach to updating an app is to create a new app from the earlier guidance in this article and move your app's components, classes, and resources to the newly-created app. Either approach is viable.
+The following subsections in *Parts of the app* explain the parts of an app generated from the Blazor WebAssembly project template and how the app is configured. There's no specific guidance to follow in these sections for a basic working application if you created the app using the guidance earlier in this article. The guidance in this section is helpful if you're enhancing an app to authenticate and authorize users. However, an alternative approach to updating an app is to create a new app from the earlier guidance in this article and move your app's components, classes, and resources to the new app.
 
 ### Authentication package
 
