@@ -12,7 +12,7 @@ uid: migration/inc/start
 
 # Get started with incremental ASP.NET to ASP.NET Core migration
 
-For a large migration, we recommend setting up a ASP.NET Core app that proxies to the original .NET Framework app. The new proxy enabled app in shown in the following image:
+For a large migration, we recommend setting up a ASP.NET Core app that proxies to the original .NET Framework app. The new proxy enabled app is shown in the following image:
 
 ![start migrating routes](~/migration/inc/overview/static/nop.png)
 
