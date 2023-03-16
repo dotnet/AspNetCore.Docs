@@ -373,9 +373,9 @@ When routable components are integrated into a Razor Pages app, the app's shared
 
 To control the content in layouts from Razor components, Blazor supports *sections* using the following built-in components:
 
-* `SectionOutlet`: Renders content provided by `SectionContent` components with matching `SectionId` arguments. A `SectionOutlet` component can render the content of several `SectionContent` components.
+* `SectionOutlet`: Renders content provided by `SectionContent` components with matching `SectionId` or `SectionName` arguments. A `SectionOutlet` component can render the content of several `SectionContent` components.
 
-* `SectionContent`: Provides content as a <xref:Microsoft.AspNetCore.Components.RenderFragment> to `SectionOutlet` components with a matching `SectionId`. Only one `SectionOutlet` component can render the content of a `SectionContent` instance.
+* `SectionContent`: Provides content as a <xref:Microsoft.AspNetCore.Components.RenderFragment> to `SectionOutlet` components with a matching `SectionId` or `SectionName`. Only one `SectionOutlet` component can render the content of a `SectionContent` instance.
 
 In the following example, the `MainLayout` component implements an increment counter button for the app's `Counter` component.
 
@@ -403,19 +403,22 @@ In `Pages/Counter.razor`:
 </SectionContent>
 ```
 
-An alternative approach to using a static field in the `Mainlayout` component is to pass a string to `SectionId`. The following example uses `"topbar"`:
+An alternative approach to using a static field in the `Mainlayout` component is to pass a string to the `SectionName` parameter. The following example uses `"topbar"`:
 
 ```razor
-<SectionOutlet SectionId="@("topbar")" />
+<SectionOutlet SectionName="topbar" />
 ```
 
-In the `Counter` component, the matching string (`"topbar"`) is passed to the `SectionId` parameter of the `SectionContent` component:
+In the `Counter` component, the matching string (`"topbar"`) is passed to the `SectionName` parameter of the `SectionContent` component:
 
 ```razor
-<SectionContent SectionId="@("topbar")">
+<SectionContent SectionName="topbar">
     <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 </SectionContent>
 ```
+
+> [!NOTE]
+> `SectionOutlet` and `SectionContent` components can only set either `SectionId` or `SectionName`, not both.
 
 :::moniker-end
 
