@@ -64,7 +64,7 @@ HTTP/2 is enabled by default. If an HTTP/2 connection isn't established, the con
 
 ## HTTP/3 support
 
-[HTTP/3](https://quicwg.org/base-drafts/draft-ietf-quic-http.html) is enabled for ASP.NET Core apps when the following base requirements are met:
+[HTTP/3](https://quicwg.org/base-drafts/v2-samples/draft-ietf-quic-http.html) is enabled for ASP.NET Core apps when the following base requirements are met:
 
 * Windows Server 2022/Windows 11 or later
 * An `https` url binding is used.
