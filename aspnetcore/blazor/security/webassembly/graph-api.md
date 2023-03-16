@@ -28,7 +28,9 @@ Using a hosted Blazor WebAssembly app is supported, where the **:::no-loc text="
 
 The examples in this article take advantage of recent .NET features released with ASP.NET Core 6.0 or later. When using the examples in ASP.NET Core 5.0 or earlier, minor modifications are required. However, the text and code examples that pertain to interacting with Microsoft Graph are the same for all versions of ASP.NET Core.
 
-:::zone pivot="graph-sdk"
+:::zone pivot="graph-sdk-4"
+
+*The following guidance applies to Microsoft Graph 5.x. If you're upgrading an app from SDK 4.x to 5.x, see the [Microsoft Graph .NET SDK v5 changelog and upgrade guide](https://github.com/microsoftgraph/msgraph-sdk-dotnet/blob/dev/docs/upgrade-to-v5.md).*
 
 The Microsoft Graph SDK for use in Blazor apps is called the *Microsoft Graph .NET Client Library*.
 
@@ -351,6 +353,268 @@ else
 When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
 
 :::zone-end
+
+
+
+
+
+
+
+
+
+:::zone pivot="graph-sdk-5"
+
+*The following guidance applies to Microsoft Graph 5.x.*
+
+The Microsoft Graph SDK for use in Blazor apps is called the *Microsoft Graph .NET Client Library*.
+
+The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app or the **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly solution:
+
+* [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http)
+* [`Microsoft.Graph`](https://www.nuget.org/packages/Microsoft.Graph)
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+After adding the Microsoft Graph API scopes in the AAD area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file, which includes the Graph base URL, version, and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article.
+
+```json
+"MicrosoftGraph": {
+  "BaseUrl": "https://graph.microsoft.com",
+  "Version": "v1.0",
+  "Scopes": [
+    "user.read"
+  ]
+}
+```
+
+Add the following `GraphClientExtensions` class to the standalone app or **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). The scopes are provided to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions.Scopes> property of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions> in the `AuthenticateRequestAsync` method.
+
+When an access token isn't obtained, the following code doesn't set a Bearer authorization header for Graph requests. 
+
+`GraphClientExtensions.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.Authentication.WebAssembly.Msal.Models;
+using Microsoft.Graph;
+using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Abstractions.Authentication;
+using IAccessTokenProvider = 
+    Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider;
+
+internal static class GraphClientExtensions
+{
+    public static IServiceCollection AddGraphClient(
+            this IServiceCollection services, string? baseUrl, List<string>? scopes)
+    {
+        services.Configure<RemoteAuthenticationOptions<MsalProviderOptions>>(
+            options =>
+            {
+                scopes?.ForEach((scope) =>
+                {
+                    Console.WriteLine($"Adding scope: {scope}");
+
+                    options.ProviderOptions.AdditionalScopesToConsent.Add(scope);
+                });
+            });
+
+        services.AddScoped<IAuthenticationProvider, GraphAuthenticationProvider>();
+
+        services.AddScoped(sp =>
+        {
+            return new GraphServiceClient(
+                new HttpClient(),
+                sp.GetRequiredService<IAuthenticationProvider>(),
+                baseUrl);
+        });
+
+        return services;
+    }
+
+    private class GraphAuthenticationProvider : IAuthenticationProvider
+    {
+        private readonly IConfiguration config;
+
+        public GraphAuthenticationProvider(IAccessTokenProvider tokenProvider,
+            IConfiguration config)
+        {
+            TokenProvider = tokenProvider;
+            this.config = config;
+        }
+
+        public IAccessTokenProvider TokenProvider { get; }
+
+        public async Task AuthenticateRequestAsync(RequestInformation request, 
+            Dictionary<string, object>? additionalAuthenticationContext = null, 
+            CancellationToken cancellationToken = default)
+        {
+            var result = await TokenProvider.RequestAccessToken(
+                new AccessTokenRequestOptions()
+                {
+                    Scopes = 
+                        config.GetSection("MicrosoftGraph:Scopes").Get<string[]>()
+                });
+
+            if (result.TryGetToken(out var token))
+            {
+                request.Headers.Add("Authorization", 
+                    $"{CoreConstants.Headers.Bearer} {token.Value}");
+            }
+        }
+    }
+}
+```
+
+In `Program.cs`, add the Graph client services and configuration with the `AddGraphClient` extension method:
+
+```csharp
+var baseUrl = string.Join("/", 
+    builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"], 
+    builder.Configuration.GetSection("MicrosoftGraph")["Version"]);
+var scopes = builder.Configuration.GetSection("MicrosoftGraph:Scopes")
+    .Get<List<string>>();
+
+builder.Services.AddGraphClient(baseUrl, scopes);
+```
+
+## Call Graph API from a component using the Graph SDK
+
+The following `GraphExample` component uses an injected `GraphServiceClient` to obtain the user's AAD profile data and display their mobile phone number. For any test user that you create in AAD, make sure that you give the user's AAD profile a mobile phone number in the Azure portal.
+
+`Pages/GraphExample.razor`:
+
+```razor
+@page "/graph-example"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.Graph
+@attribute [Authorize]
+@inject GraphServiceClient Client
+
+<h1>Microsoft Graph Component Example</h1>
+
+@if (!string.IsNullOrEmpty(user?.MobilePhone))
+{
+    <p>Mobile Phone: @user.MobilePhone</p>
+}
+
+@code {
+    private Microsoft.Graph.Models.User? user;
+
+    protected override async Task OnInitializedAsync()
+    {
+        user = await Client.Me.GetAsync();
+    }
+}
+```
+
+When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
+
+## Customize user claims using the Graph SDK
+
+In the following example, the app creates mobile phone number and office location claims for a user from their AAD user profile's data. The app must have the `User.Read` Graph API scope configured in AAD. Any test users for this scenario must have a mobile phone number and office location in their AAD profile, which can be added via the Azure portal.
+
+In the following custom user account factory:
+
+* An <xref:Microsoft.Extensions.Logging.ILogger> (`logger`) is included for convenience in case you wish to log information or errors in the `CreateUserAsync` method.
+* In the event that an <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> is thrown, the user is redirected to the identity provider to sign into their account. Additional or different actions can be taken when requesting an access token fails. For example, the app can log the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenNotAvailableException> and create a support ticket for further investigation.
+* The framework's <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> represents the user's account. If the app requires a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap your custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the following code.
+
+`CustomAccountFactory.cs`:
+
+```csharp
+
+```
+
+Configure the MSAL authentication to use the custom user account factory.
+
+Confirm that the `Program.cs` file uses the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> namespace:
+
+```csharp
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+```
+
+The example in this section builds on the approach of reading the base URL, version, and scopes from app configuration via the `MicrosoftGraph` section in `wwwroot/appsettings.json` file. The following lines should already be present in `Program.cs` from following the guidance earlier in this article:
+
+```csharp
+var baseUrl = string.Join("/", 
+    builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"], 
+    builder.Configuration.GetSection("MicrosoftGraph")["Version"]);
+var scopes = builder.Configuration.GetSection("MicrosoftGraph:Scopes")
+    .Get<List<string>>();
+
+builder.Services.AddGraphClient(baseUrl, scopes);
+```
+
+In `Program.cs`, find the call to the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method. Update the code to the following, which includes a call to <xref:Microsoft.Extensions.DependencyInjection.RemoteAuthenticationBuilderExtensions.AddAccountClaimsPrincipalFactory%2A> that adds an account claims principal factory with the `CustomAccountFactory`.
+
+If the app uses a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap the custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the following code.
+
+```csharp
+builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
+    RemoteUserAccount>(options =>
+    {
+        builder.Configuration.Bind("AzureAd", 
+            options.ProviderOptions.Authentication);
+    })
+    .AddAccountClaimsPrincipalFactory<RemoteAuthenticationState, RemoteUserAccount,
+        CustomAccountFactory>();
+```
+
+You can use the following `UserClaims` component to study the user's claims after the user authenticates with AAD:
+
+`Pages/UserClaims.razor`:
+
+```razor
+@page "/user-claims"
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@attribute [Authorize]
+
+<h1>User Claims</h1>
+
+@if (claims.Any())
+{
+    <ul>
+        @foreach (var claim in claims)
+        {
+            <li>@claim.Type: @claim.Value</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No claims found.</p>
+}
+
+@code {
+    private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider
+            .GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        claims = user.Claims;
+    }
+}
+```
+
+When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-azure-active-directory#troubleshoot>.
+
+:::zone-end
+
+
+
+
+
+
+
+
+
+
+
 
 :::zone pivot="named-client-graph-api"
 
