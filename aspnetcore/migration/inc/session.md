@@ -21,8 +21,8 @@ Session state in ASP.NET Framework provided a number of features that ASP.NET Co
 
 The adapter infrastructure exposes two interfaces that can be used to implement any session storage system. These are:
 
-- `Microsoft.AspNetCore.SystemWebAdapters.ISessionManager`: This has a single method that gets passed an `HttpContext` and the session metadata and expects an `ISessionState` object to be returned.
-- `Microsoft.AspNetCore.SystemWebAdapters.ISessionState`: This describes the state of a session object. It is used as the backing of the `System.Web.SessionState.HttpSessionState` type.
+- `Microsoft.AspNetCore.SystemWebAdapters.ISessionManager`: This has a single method that gets passed an <xref:Microsoft.AspNetCore.Http.HttpContext> and the session metadata and expects an `ISessionState` object to be returned.
+- `Microsoft.AspNetCore.SystemWebAdapters.ISessionState`: This describes the state of a session object. It is used as the backing of the <xref:System.Web.SessionState.HttpSessionState> type.
 
 ## Serialization
 Since the adapters provide the ability to work with strongly-typed session state, we must be able to serialize and deserialize types. This is customized through the `Microsoft.AspNetCore.SystemWebAdapters.SessionState.Serialization.ISessionKeySerializer`.

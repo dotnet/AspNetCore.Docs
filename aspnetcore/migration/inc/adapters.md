@@ -31,7 +31,7 @@ public class SomeController : Controller
 }
 ```
 
-which then has logic in a separate assembly passing that `HttpContext` around until finally, some inner method does some logic on it such as:
+which then has logic in a separate assembly passing that <xref:System.Web.HttpContext> around until finally, some inner method does some logic on it such as:
 
 ```cs
 public class Class2
@@ -57,9 +57,9 @@ public class SomeController : Controller
   [Route("/")]
   public IActionResult Index()
   {
-    SomeOtherClass.SomeMethod(Context);
+    SomeOtherClass.SomeMethod(HttpContext);
   }
 }
 ```
 
-Notice that since there's a `Controller.Context` property, they can pass that through, but it generally looks the same. Using implicit conversions, the `Microsoft.AspNetCore.Http.HttpContext` can be converted into the adapter that could then be passed around through the levels utilizing the code in the same way.
+Notice that since there's a <xref:Microsoft.AspNetCore.Mvc.ControllerBase.HttpContext> property, they can pass that through, but it generally looks the same. Using implicit conversions, the <xref:Microsoft.AspNetCore.Http.HttpContext> can be converted into the adapter that could then be passed around through the levels utilizing the code in the same way.
