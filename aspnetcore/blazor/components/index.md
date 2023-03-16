@@ -290,8 +290,8 @@ Quotes around parameter attribute values are optional in most cases per the HTML
 Throughout the documentation, code examples:
 
 * Always use quotes. Example: `Value="this"`.
-* Nonliterals always use the `@` prefix, ***even when it's optional***. Example: `Count="@ct"`, where `ct` is a number-typed variable. `Count="ct"` is a valid stylistic approach, but the documentation and examples don't adopt the convention.
-* Literals, outside of Razor expressions, always avoid `@`. Example: `IsFixed="true"`.
+* Use the `@` prefix with nonliterals, ***even when it's optional***. Example: `Count="@ct"`, where `ct` is a number-typed variable. `Count="ct"` is a valid stylistic approach, but the documentation and examples don't adopt the convention.
+* Always avoid `@` for literals, outside of Razor expressions. Example: `IsFixed="true"`.
 
 `Pages/ParameterParent2.razor`:
 
@@ -1822,8 +1822,8 @@ Quotes around parameter attribute values are optional in most cases per the HTML
 Throughout the documentation, code examples:
 
 * Always use quotes. Example: `Value="this"`.
-* Nonliterals always use the `@` prefix, ***even when it's optional***. Example: `Count="@ct"`, where `ct` is a number-typed variable. `Count="ct"` is a valid stylistic approach, but the documentation and examples don't adopt the convention.
-* Literals, outside of Razor expressions, always avoid `@`. Example: `IsFixed="true"`.
+* Use the `@` prefix with nonliterals, ***even when it's optional***. Example: `Count="@ct"`, where `ct` is a number-typed variable. `Count="ct"` is a valid stylistic approach, but the documentation and examples don't adopt the convention.
+* Always avoid `@` for literals, outside of Razor expressions. Example: `IsFixed="true"`.
 
 `Pages/ParameterParent2.razor`:
 
@@ -3295,8 +3295,8 @@ Quotes around parameter attribute values are optional in most cases per the HTML
 Throughout the documentation, code examples:
 
 * Always use quotes. Example: `Value="this"`.
-* Nonliterals always use the `@` prefix, ***even when it's optional***. Example: `Count="@ct"`, where `ct` is a number-typed variable. `Count="ct"` is a valid stylistic approach, but the documentation and examples don't adopt the convention.
-* Literals, outside of Razor expressions, always avoid `@`. Example: `IsFixed="true"`.
+* Use the `@` prefix with nonliterals, ***even when it's optional***. Example: `Count="@ct"`, where `ct` is a number-typed variable. `Count="ct"` is a valid stylistic approach, but the documentation and examples don't adopt the convention.
+* Always avoid `@` for literals, outside of Razor expressions. Example: `IsFixed="true"`.
 
 `Pages/ParameterParent2.razor`:
 
@@ -4318,8 +4318,8 @@ Quotes around parameter attribute values are optional in most cases per the HTML
 Throughout the documentation, code examples:
 
 * Always use quotes. Example: `Value="this"`.
-* Nonliterals always use the `@` prefix, ***even when it's optional***. Example: `Count="@ct"`, where `ct` is a number-typed variable. `Count="ct"` is a valid stylistic approach, but the documentation and examples don't adopt the convention.
-* Literals, outside of Razor expressions, always avoid `@`. Example: `IsFixed="true"`.
+* Use the `@` prefix with nonliterals, ***even when it's optional***. Example: `Count="@ct"`, where `ct` is a number-typed variable. `Count="ct"` is a valid stylistic approach, but the documentation and examples don't adopt the convention.
+* Always avoid `@` for literals, outside of Razor expressions. Example: `IsFixed="true"`.
 
 `Pages/ParameterParent2.razor`:
 
