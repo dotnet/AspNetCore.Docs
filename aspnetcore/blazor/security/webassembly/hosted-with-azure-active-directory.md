@@ -80,12 +80,12 @@ Register an AAD app for the *Client app*:
 
 Record the **:::no-loc text="Client":::** app Application (client) ID (for example, `4369008b-21fa-427c-abaa-9b53bf58e538`).
 
-In **Authentication** > **Platform configurations** > **Single-page application (SPA)**:
+In **Authentication** > **Platform configurations** > **Single-page application**:
 
-1. Confirm the **Redirect URI** of `https://localhost/authentication/login-callback` is present.
+1. Confirm the redirect URI of `https://localhost/authentication/login-callback` is present.
 1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
 1. The remaining defaults for the app are acceptable for this experience.
-1. Select the **Save** button.
+1. Select the **Save** button if you made changes.
 
 In **API permissions**:
 
@@ -219,7 +219,7 @@ To configure the app to receive the value from the `name` claim type:
 
 ## Parts of the solution
 
-The following subsections in *Parts of the solution* explain the parts of a solution generated from the Blazor WebAssembly project template and describe how the solution's **:::no-loc text="Client":::** and **:::no-loc text="Server":::** projects are configured for reference. There's no specific guidance to follow in these sections for a basic working application if you created the app using the guidance earlier in this article. The guidance in this section is helpful if you're attempting to convert an app that doesn't authenticate and authorize users into one that does. However, an alternative approach to updating an app is to create a new app from the earlier guidance in this article and move your app's components, classes, and resources to the newly-created app. Either approach is viable.
+This section describes the parts of a solution generated from the Blazor WebAssembly project template and describes how the solution's **:::no-loc text="Client":::** and **:::no-loc text="Server":::** projects are configured for reference. There's no specific guidance to follow in this section for a basic working application if you created the app using the guidance in the [Walkthrough](#walkthrough) section. The guidance in this section is helpful for updating an app to authenticate and authorize users. However, an alternative approach to updating an app is to create a new app from the guidance in the [Walkthrough](#walkthrough) section and moving the app's components, classes, and resources to the new app.
 
 ### `appsettings.json` configuration
 

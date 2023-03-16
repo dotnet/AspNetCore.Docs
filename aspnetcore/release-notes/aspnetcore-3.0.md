@@ -324,7 +324,7 @@ IdentityServer4 is an OpenID Connect and OAuth 2.0 framework for ASP.NET Core 3.
 * Access control for APIs
 * Federation Gateway
 
-For more information, see [the IdentityServer4 documentation](http://docs.identityserver.io/en/latest/index.html) or [Authentication and authorization for SPAs](xref:security/authentication/identity/spa).
+For more information, see [the IdentityServer4 documentation](https://identityserver4.readthedocs.io/en/latest/) or [Authentication and authorization for SPAs](xref:security/authentication/identity/spa).
 
 ## Certificate and Kerberos authentication
 

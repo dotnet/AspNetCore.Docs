@@ -353,6 +353,10 @@ Blazor enables JavaScript isolation in standard [JavaScript modules](https://dev
 
 For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
 
+## Avoid trimming JavaScript-invokable .NET methods
+
+[Runtime relinking](xref:blazor/host-and-deploy/webassembly#runtime-relinking) trims class instance JavaScript-invokable .NET methods unless they're explicitly preserved. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#avoid-trimming-javascript-invokable-net-methods>.
+
 ## Build, pack, and ship to NuGet
 
 Because Razor class libraries that contain Razor components are standard .NET libraries, packing and shipping them to NuGet is no different from packing and shipping any library to NuGet. Packing is performed using the [`dotnet pack`](/dotnet/core/tools/dotnet-pack) command in a command shell:

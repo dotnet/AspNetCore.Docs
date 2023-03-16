@@ -108,7 +108,7 @@ In some scenarios, it might be necessary to cache some of the information provid
 In the preceding code:
 
 * The `EndpointFilterFactoryContext` object provides access to the [`MethodInfo`](/dotnet/api/system.reflection.methodinfo) associated with the endpoint's handler.
-* The signature of the handler is examined by inspecting [`MethodInfo.Parameters`](/dotnet/api/system.reflection.methodinfo.parameters) for the expected type signature. If the expected signature is found, the validation filter is registered onto the endpoint. This factory pattern is useful to register a filter that depends on the signature of the target endpoint handler.
+* The signature of the handler is examined by inspecting `MethodInfo` for the expected type signature. If the expected signature is found, the validation filter is registered onto the endpoint. This factory pattern is useful to register a filter that depends on the signature of the target endpoint handler.
 * If a matching signature isn't found, then a pass-through filter is registered.
 
 ## Register a filter on controller actions

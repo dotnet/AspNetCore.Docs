@@ -53,7 +53,7 @@ Other cache headers that play a role in caching are shown in the following table
 
 Always honoring client `Cache-Control` request headers makes sense if you consider the goal of HTTP caching. Under the official specification, caching is meant to reduce the latency and network overhead of satisfying requests across a network of clients, proxies, and servers. It isn't necessarily a way to control the load on an origin server.
 
-There's no developer control over this caching behavior when using the [Response Caching Middleware](xref:performance/caching/middleware) because the middleware adheres to the official caching specification. Support for *output caching* to better control server load is a design proposal for a future release of ASP.NET Core. For more information, see [Add support for Output Caching (dotnet/aspnetcore #27387)](https://github.com/dotnet/aspnetcore/issues/27387).
+There's no developer control over this caching behavior when using the [Response Caching Middleware](xref:performance/caching/middleware) because the middleware adheres to the official caching specification. Support for *output caching* to better control server load was added in .NET 7. For more information, see [Output caching](xref:performance/caching/overview#output-caching).
 
 ## ResponseCache attribute
 
