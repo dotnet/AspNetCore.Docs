@@ -53,8 +53,8 @@ groups:
   prompt: Choose an approach for interacting with Microsoft Graph
   pivots:
     - id: graph-sdk-4
-      title: Graph SDK 4.x
+      title: Graph SDK v4
     - id: graph-sdk-5
-      title: Graph SDK 5.x
+      title: Graph SDK v5
     - id: named-client-graph-api
       title: Named HttpClient with Graph API

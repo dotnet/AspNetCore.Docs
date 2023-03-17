@@ -30,7 +30,7 @@ The examples in this article take advantage of recent .NET features released wit
 
 :::zone pivot="graph-sdk-5"
 
-*The following guidance applies to Microsoft Graph 5.x.*
+*The following guidance applies to Microsoft Graph v5.*
 
 The Microsoft Graph SDK for use in Blazor apps is called the *Microsoft Graph .NET Client Library*.
 
@@ -338,7 +338,7 @@ When testing with the Graph SDK locally, we recommend using a new in-private/inc
 
 :::zone pivot="graph-sdk-4"
 
-*The following guidance applies to Microsoft Graph 5.x. If you're upgrading an app from SDK 4.x to 5.x, see the [Microsoft Graph .NET SDK v5 changelog and upgrade guide](https://github.com/microsoftgraph/msgraph-sdk-dotnet/blob/dev/docs/upgrade-to-v5.md).*
+*The following guidance applies to Microsoft Graph v4. If you're upgrading an app from SDK v4 to v5, see the [Microsoft Graph .NET SDK v5 changelog and upgrade guide](https://github.com/microsoftgraph/msgraph-sdk-dotnet/blob/dev/docs/upgrade-to-v5.md).*
 
 The Microsoft Graph SDK for use in Blazor apps is called the *Microsoft Graph .NET Client Library*.
 
