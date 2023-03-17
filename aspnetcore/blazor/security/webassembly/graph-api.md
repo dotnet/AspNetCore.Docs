@@ -41,7 +41,7 @@ The Graph SDK examples require the following package references in the standalon
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-After adding the Microsoft Graph API scopes in the AAD area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file, which includes the Graph base URL, version, and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article.
+After adding the Microsoft Graph API scopes in the AAD area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file, which includes the Graph base URL with Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article.
 
 ```json
 "MicrosoftGraph": {
@@ -280,7 +280,7 @@ Confirm that the `Program.cs` file uses the <xref:Microsoft.AspNetCore.Component
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 ```
 
-The example in this section builds on the approach of reading the base URL, version, and scopes from app configuration via the `MicrosoftGraph` section in `wwwroot/appsettings.json` file. The following lines should already be present in `Program.cs` from following the guidance earlier in this article:
+The example in this section builds on the approach of reading the base URL with version and scopes from app configuration via the `MicrosoftGraph` section in `wwwroot/appsettings.json` file. The following lines should already be present in `Program.cs` from following the guidance earlier in this article:
 
 ```csharp
 var baseUrl = string.Join("/", 
@@ -351,14 +351,6 @@ When testing with the Graph SDK locally, we recommend using a new in-private/inc
 
 :::zone-end
 
-
-
-
-
-
-
-
-
 :::zone pivot="graph-sdk-5"
 
 *The following guidance applies to Microsoft Graph 5.x.*
@@ -372,7 +364,7 @@ The Graph SDK examples require the following package references in the standalon
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-After adding the Microsoft Graph API scopes in the AAD area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file, which includes the Graph base URL, version, and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article.
+After adding the Microsoft Graph API scopes in the AAD area of the Azure portal, add the following app settings configuration to the `wwwroot/appsettings.json` file, which includes the Graph base URL with Graph version and scopes. In the following example, the `User.Read` scope is specified for the examples in later sections of this article.
 
 ```json
 "MicrosoftGraph": {
@@ -594,7 +586,7 @@ Confirm that the `Program.cs` file uses the <xref:Microsoft.AspNetCore.Component
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 ```
 
-The example in this section builds on the approach of reading the base URL, version, and scopes from app configuration via the `MicrosoftGraph` section in `wwwroot/appsettings.json` file. The following lines should already be present in `Program.cs` from following the guidance earlier in this article:
+The example in this section builds on the approach of reading the base URL with version and scopes from app configuration via the `MicrosoftGraph` section in `wwwroot/appsettings.json` file. The following lines should already be present in `Program.cs` from following the guidance earlier in this article:
 
 ```csharp
 var baseUrl = builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"];
@@ -739,7 +731,7 @@ public class UserInfo
 }
 ```
 
-In the following `GraphExample` component, an <xref:System.Net.Http.HttpClient> is created for Graph API to issue a request for the user's profile data. The Graph version, provided by configuration, and `me` resource (`/v1.0/me`) are added to the base URL for the Graph API request. JSON data returned by Graph is deserialized into the `UserInfo` class properties. In the following example, the mobile phone number is obtained. You can add similar code to include the user's AAD profile office location if you wish (`userInfo.OfficeLocation`). If the access token request fails, the user is redirected to sign into the app for a new access token.
+In the following `GraphExample` component, an <xref:System.Net.Http.HttpClient> is created for Graph API to issue a request for the user's profile data. The `me` resource (`/me`) are added to the base URL with version for the Graph API request. JSON data returned by Graph is deserialized into the `UserInfo` class properties. In the following example, the mobile phone number is obtained. You can add similar code to include the user's AAD profile office location if you wish (`userInfo.OfficeLocation`). If the access token request fails, the user is redirected to sign into the app for a new access token.
 
 `Pages/GraphExample.razor`:
 
@@ -767,8 +759,7 @@ In the following `GraphExample` component, an <xref:System.Net.Http.HttpClient> 
         {
             var client = ClientFactory.CreateClient("GraphAPI");
 
-            userInfo = await client.GetFromJsonAsync<UserInfo>(
-                $"{Config.GetSection("MicrosoftGraph")["Version"]}/me");
+            userInfo = await client.GetFromJsonAsync<UserInfo>("/me");
         }
         catch (AccessTokenNotAvailableException exception)
         {
@@ -847,8 +838,7 @@ public class CustomAccountFactory
                 {
                     var client = clientFactory.CreateClient("GraphAPI");
 
-                    var userInfo = await client.GetFromJsonAsync<UserInfo>(
-                        "/me");
+                    var userInfo = await client.GetFromJsonAsync<UserInfo>("/me");
 
                     if (userInfo is not null)
                     {
