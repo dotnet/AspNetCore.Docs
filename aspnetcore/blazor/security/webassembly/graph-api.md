@@ -72,13 +72,16 @@ internal static class GraphClientExtensions
     public static IServiceCollection AddGraphClient(
             this IServiceCollection services, string? baseUrl, List<string>? scopes)
     {
+        if (string.IsNullOrEmpty(baseUrl) || scopes.IsNullOrEmpty())
+        {
+            return services;
+        }
+
         services.Configure<RemoteAuthenticationOptions<MsalProviderOptions>>(
             options =>
             {
                 scopes?.ForEach((scope) =>
                 {
-                    Console.WriteLine($"Adding scope: {scope}");
-
                     options.ProviderOptions.AdditionalScopesToConsent.Add(scope);
                 });
             });
@@ -196,7 +199,7 @@ public class CustomAccountFactory
 {
     private readonly ILogger<CustomAccountFactory> logger;
     private readonly IServiceProvider serviceProvider;
-    private readonly string baseUrl;
+    private readonly string? baseUrl;
 
     public CustomAccountFactory(IAccessTokenProviderAccessor accessor,
         IServiceProvider serviceProvider,
@@ -220,7 +223,7 @@ public class CustomAccountFactory
         {
             var userIdentity = initialUser.Identity as ClaimsIdentity;
 
-            if (userIdentity is not null)
+            if (userIdentity is not null && !string.IsNullOrEmpty(baseUrl))
             {
                 try
                 {
@@ -374,6 +377,11 @@ internal static class GraphClientExtensions
     public static IServiceCollection AddGraphClient(
         this IServiceCollection services, string? baseUrl, List<string>? scopes)
     {
+        if (string.IsNullOrEmpty(baseUrl) || scopes.IsNullOrEmpty())
+        {
+            return services;
+        }
+
         services.Configure<RemoteAuthenticationOptions<MsalProviderOptions>>(
             options =>
             {
