@@ -45,12 +45,12 @@ Record the following information:
 * AAD B2C instance (for example, `https://contoso.b2clogin.com/`, which includes the trailing slash): The instance is the scheme and host of an Azure B2C app registration, which can be found by opening the **Endpoints** window from the **App registrations** page in the Azure portal.
 * AAD B2C Primary/Publisher/Tenant domain (for example, `contoso.onmicrosoft.com`): The domain is available as the **Publisher domain** in the **Branding** blade of the Azure portal for the registered app.
 
-In **Authentication** > **Platform configurations** > **Single-page application (SPA)**:
+In **Authentication** > **Platform configurations** > **Single-page application**:
 
-1. Confirm the **Redirect URI** of `https://localhost/authentication/login-callback` is present.
+1. Confirm the redirect URI of `https://localhost/authentication/login-callback` is present.
 1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
 1. The remaining defaults for the app are acceptable for this experience.
-1. Select the **Save** button.
+1. Select the **Save** button if you made changes.
 
 In **Home** > **Azure AD B2C** > **User flows**:
 
@@ -99,7 +99,7 @@ Use one of the following approaches to run the app:
 
 ## Parts of the app
 
-The following subsections in *Parts of the app* explain the parts of an app generated from the Blazor WebAssembly project template and how the app is configured. There's no specific guidance to follow in these sections for a basic working application if you created the app using the guidance earlier in this article. The guidance in this section is helpful if you're attempting to convert an app that doesn't authenticate and authorize users into one that does. However, an alternative approach to updating an app is to create a new app from the earlier guidance in this article and move your app's components, classes, and resources to the newly-created app. Either approach is viable.
+This section describes the parts of an app generated from the Blazor WebAssembly project template and how the app is configured. There's no specific guidance to follow in this section for a basic working application if you created the app using the guidance in the [Walkthrough](#walkthrough) section. The guidance in this section is helpful for updating an app to authenticate and authorize users. However, an alternative approach to updating an app is to create a new app from the guidance in the [Walkthrough](#walkthrough) section and moving the app's components, classes, and resources to the new app.
 
 ### Authentication package
 

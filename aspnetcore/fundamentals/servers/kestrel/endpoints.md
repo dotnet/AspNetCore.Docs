@@ -26,7 +26,7 @@ The value provided using these approaches can be one or more HTTP and HTTPS endp
 
 For more information on these approaches, see [Server URLs](xref:fundamentals/host/web-host#server-urls) and [Override configuration](xref:fundamentals/host/web-host#override-configuration).
 
-
+[!INCLUDE [http-ports](~/includes/http-ports.md)]
 
 A development certificate is created:
 

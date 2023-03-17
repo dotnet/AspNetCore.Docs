@@ -18,9 +18,7 @@ ASP.NET Core is the modern web framework for .NET. While ASP.NET Core has many s
 
 Most non-trivial ASP.NET Framework apps should consider using the [incremental upgrade](/aspnet/core/migration/inc/overview) approach. For more information, see [Incremental ASP.NET to ASP.NET Core upgrade](/aspnet/core/migration/inc/overview).
 
-The Visual Studio extension [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) can help upgrade ASP.NET Framework web apps to ASP.NET Core. For more information see the blog post [Upgrading your .NET projects with Visual Studio](https://devblogs.microsoft.com/dotnet/upgrade-assistant-now-in-visual-studio/).
-
-<!-- TODO: replace link to blog to article when the blog is migrated -->
+For ASP.NET MVC and Web API apps, see <xref:migration/mvc>. For ASP.NET Framework Web Forms apps, see <xref:migration/web_forms>.
 
 ## URI decoding differences between ASP.NET to ASP.NET Core
 

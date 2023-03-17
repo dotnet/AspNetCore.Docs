@@ -60,7 +60,7 @@ If other projects are utilized, such as NuGet packages or [Razor class libraries
 
 CSS preprocessors are useful for improving CSS development by utilizing features such as variables, nesting, modules, mixins, and inheritance. While CSS isolation doesn't natively support CSS preprocessors such as Sass or Less, integrating CSS preprocessors is seamless as long as preprocessor compilation occurs before the framework rewrites the CSS selectors during the build process. Using Visual Studio for example, configure existing preprocessor compilation as a **Before Build** task in the Visual Studio Task Runner Explorer.
 
-Many third-party NuGet packages, such as [`Delegate.SassBuilder`](https://www.nuget.org/packages/Delegate.SassBuilder), can compile SASS/SCSS files at the beginning of the build process before CSS isolation occurs, and no additional configuration is required.
+Many third-party NuGet packages, such as [`AspNetCore.SassCompiler`](https://www.nuget.org/packages/AspNetCore.SassCompiler#readme-body-tab), can compile SASS/SCSS files at the beginning of the build process before CSS isolation occurs, and no additional configuration is required.
 
 ## CSS isolation configuration
 

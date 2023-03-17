@@ -72,8 +72,6 @@ Expose the implicitly defined `Program` class to the test project by doing one o
   app.Run();
   + public partial class Program { }
   ```
-  
-  [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
 
   The [sample app](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/IntegrationTestsSample) uses the `Program` partial class approach.
 
@@ -84,7 +82,7 @@ Test classes implement a *class fixture* interface ([`IClassFixture`](https://xu
 The following test class, `BasicTests`, uses the `WebApplicationFactory` to bootstrap the SUT and provide an <xref:System.Net.Http.HttpClient> to a test method, `Get_EndpointsReturnSuccessAndCorrectContentType`. The method verifies the response status code is successful (200-299) and the `Content-Type` header is `text/html; charset=utf-8` for several app pages.
 
 <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.CreateClient> creates an instance of `HttpClient` that automatically follows redirects and handles cookies.
-
+  
 [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
 
 By default, non-essential cookies aren't preserved across requests when the [General Data Protection Regulation consent policy](xref:security/gdpr) is enabled. To preserve non-essential cookies, such as those used by the TempData provider, mark them as essential in your tests. For instructions on marking a cookie as essential, see [Essential cookies](xref:security/gdpr#essential-cookies).
