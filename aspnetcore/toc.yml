@@ -1614,8 +1614,6 @@ items:
         uid: mvc/compatibility-version
       - name: Write middleware
         uid: fundamentals/middleware/write
-      - name: Basic JSON APIs with Route-to-code
-        uid: web-api/route-to-code
       - name: Request and response operations
         displayName: middleware
         uid: fundamentals/middleware/request-response
