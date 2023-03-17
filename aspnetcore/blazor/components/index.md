@@ -281,7 +281,6 @@ The following `ParameterParent2` component displays four instances of the preced
 * The current local date in long format with <xref:System.DateTime.ToLongDateString%2A>, which uses an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions).
 * The `panelData` object's `Title` property.
 
-
 We don't recommend the use of the `@` prefix for literals (for example, boolean values), keywords (for example, `this`), or `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
 
 Quotes around parameter attribute values are optional in most cases per the HTML5 specification. For example, `Value=this` is supported, instead of `Value="this"`. However, we recommend using quotes because it's easier to remember and widely adopted across web-based technologies.
@@ -1801,9 +1800,9 @@ The following rendered HTML markup from the `ParameterParent` component shows `P
 </div>
 ```
 
-Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value.
+Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value. The value of the attribute can typically be any C# expression that matches the type of the parameter. The value of the attribute can optionally lead with a [Razor reserved `@` symbol](xref:mvc/views/razor#razor-syntax), but it isn't required.
 
-A leading [Razor reserved `@` symbol](xref:mvc/views/razor#razor-syntax) isn't required for component parameters of any type. A leading `@` symbol is optional for non-string parameters and is only required for string parameters if you want a C# context instead of assigning a string literal value.
+If the component parameter is of type string, then the attribute value is instead treated as a C# string literal by default. If you want to specify a C# expression instead, then use the `@` prefix.
 
 The following `ParameterParent2` component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
 
@@ -1811,8 +1810,6 @@ The following `ParameterParent2` component displays four instances of the preced
 * The result of the `GetTitle` C# method.
 * The current local date in long format with <xref:System.DateTime.ToLongDateString%2A>, which uses an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions).
 * The `panelData` object's `Title` property.
-
-The `@` prefix is required for string-typed parameters in a C# context. Otherwise, the framework assumes that a string literal is set. The `@` prefix is ***never*** required for other, non-literal types.
 
 We don't recommend the use of the `@` prefix for literals (for example, boolean values), keywords (for example, `this`), or `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
 
@@ -3274,9 +3271,9 @@ The following rendered HTML markup from the `ParameterParent` component shows `P
 </div>
 ```
 
-Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value.
+Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value. The value of the attribute can typically be any C# expression that matches the type of the parameter. The value of the attribute can optionally lead with a [Razor reserved `@` symbol](xref:mvc/views/razor#razor-syntax), but it isn't required.
 
-A leading [Razor reserved `@` symbol](xref:mvc/views/razor#razor-syntax) isn't required for component parameters of any type. A leading `@` symbol is optional for non-string parameters and is only required for string parameters if you want a C# context instead of assigning a string literal value.
+If the component parameter is of type string, then the attribute value is instead treated as a C# string literal by default. If you want to specify a C# expression instead, then use the `@` prefix.
 
 The following `ParameterParent2` component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
 
@@ -3284,8 +3281,6 @@ The following `ParameterParent2` component displays four instances of the preced
 * The result of the `GetTitle` C# method.
 * The current local date in long format with <xref:System.DateTime.ToLongDateString%2A>, which uses an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions).
 * The `panelData` object's `Title` property.
-
-The `@` prefix is required for string-typed parameters in a C# context. Otherwise, the framework assumes that a string literal is set. The `@` prefix is ***never*** required for other, non-literal types.
 
 We don't recommend the use of the `@` prefix for literals (for example, boolean values), keywords (for example, `this`), or `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
 
@@ -4297,9 +4292,9 @@ The following rendered HTML markup from the `ParameterParent` component shows `P
 </div>
 ```
 
-Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value.
+Assign a C# field, property, or result of a method to a component parameter as an HTML attribute value. The value of the attribute can typically be any C# expression that matches the type of the parameter. The value of the attribute can optionally lead with a [Razor reserved `@` symbol](xref:mvc/views/razor#razor-syntax), but it isn't required.
 
-A leading [Razor reserved `@` symbol](xref:mvc/views/razor#razor-syntax) isn't required for component parameters of any type. A leading `@` symbol is optional for non-string parameters and is only required for string parameters if you want a C# context instead of assigning a string literal value.
+If the component parameter is of type string, then the attribute value is instead treated as a C# string literal by default. If you want to specify a C# expression instead, then use the `@` prefix.
 
 The following `ParameterParent2` component displays four instances of the preceding `ParameterChild` component and sets their `Title` parameter values to:
 
@@ -4307,8 +4302,6 @@ The following `ParameterParent2` component displays four instances of the preced
 * The result of the `GetTitle` C# method.
 * The current local date in long format with <xref:System.DateTime.ToLongDateString%2A>, which uses an [implicit C# expression](xref:mvc/views/razor#implicit-razor-expressions).
 * The `panelData` object's `Title` property.
-
-The `@` prefix is required for string-typed parameters in a C# context. Otherwise, the framework assumes that a string literal is set. The `@` prefix is ***never*** required for other, non-literal types.
 
 We don't recommend the use of the `@` prefix for literals (for example, boolean values), keywords (for example, `this`), or `null`, but you can choose to use them if you wish. For example, `IsFixed="@true"` is uncommon but supported.
 
