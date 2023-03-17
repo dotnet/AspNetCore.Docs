@@ -471,7 +471,7 @@ When an environment variable is discovered and loaded into configuration with an
 
 The <xref:Microsoft.Extensions.Configuration.Ini.IniConfigurationProvider> loads configuration from INI file key-value pairs at runtime.
 
-The following code clears all the configuration providers and adds several configuration providers:
+The following code adds several configuration providers:
 [!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_ini)]
 
 In the preceding code, settings in the `MyIniConfig.ini` and  `MyIniConfig.{Environment}.ini` files are overridden by settings in the:
@@ -534,7 +534,7 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 
 The <xref:Microsoft.Extensions.Configuration.Xml.XmlConfigurationProvider> loads configuration from XML file key-value pairs at runtime.
 
-The following code clears all the configuration providers and adds several configuration providers:
+The following code adds several configuration providers:
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Program.cs?name=snippet_xml)]
 

@@ -216,23 +216,13 @@ app.Run();
 #region snippet_ini
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.Sources.Clear();
+builder.Configuration
+    .AddIniFile("MyIniConfig.ini", optional: true, reloadOnChange: true)
+    .AddIniFile($"MyIniConfig.{builder.Environment.EnvironmentName}.ini",
+                optional: true, reloadOnChange: true);
 
-    var env = hostingContext.HostingEnvironment;
-
-    config.AddIniFile("MyIniConfig.ini", optional: true, reloadOnChange: true)
-          .AddIniFile($"MyIniConfig.{env.EnvironmentName}.ini",
-                         optional: true, reloadOnChange: true);
-
-    config.AddEnvironmentVariables();
-
-    if (args != null)
-    {
-        config.AddCommandLine(args);
-    }
-});
+builder.Configuration.AddEnvironmentVariables();
+builder.Configuration.AddCommandLine(args);
 
 builder.Services.AddRazorPages();
 
@@ -258,23 +248,13 @@ app.Run();
 #region snippet_xml
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.Sources.Clear();
+builder.Configuration
+    .AddXmlFile("MyXMLFile.xml", optional: true, reloadOnChange: true)
+    .AddXmlFile($"MyXMLFile.{builder.Environment.EnvironmentName}.xml",
+                optional: true, reloadOnChange: true);
 
-    var env = hostingContext.HostingEnvironment;
-
-    config.AddXmlFile("MyXMLFile.xml", optional: true, reloadOnChange: true)
-          .AddXmlFile($"MyXMLFile.{env.EnvironmentName}.xml",
-                         optional: true, reloadOnChange: true);
-
-    config.AddEnvironmentVariables();
-
-    if (args != null)
-    {
-        config.AddCommandLine(args);
-    }
-});
+builder.Configuration.AddEnvironmentVariables();
+builder.Configuration.AddCommandLine(args);
 
 builder.Services.AddRazorPages();
 
@@ -308,19 +288,9 @@ var Dict = new Dictionary<string, string>
            {"Logging:LogLevel:Default", "Warning"}
         };
 
-builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.Sources.Clear();
-
-    config.AddInMemoryCollection(Dict);
-
-    config.AddEnvironmentVariables();
-
-    if (args != null)
-    {
-        config.AddCommandLine(args);
-    }
-});
+builder.Configuration.AddInMemoryCollection(Dict);
+builder.Configuration.AddEnvironmentVariables();
+builder.Configuration.AddCommandLine(args);
 
 builder.Services.AddRazorPages();
 
@@ -346,43 +316,10 @@ app.Run();
 #region snippet_sub
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.AddJsonFile("MySubsection.json",
-                       optional: true,
-                       reloadOnChange: true);
-});
-
-builder.Services.AddRazorPages();
-
-var app = builder.Build();
-#endregion
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapRazorPages();
-
-app.Run();
-#elif RAY
-#region snippet_ray
-var builder = WebApplication.CreateBuilder(args);
-
-builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.AddJsonFile("MyArray.json",
-                        optional: true,
-                        reloadOnChange: true);
-});
+builder.Configuration
+    .AddJsonFile("MySubsection.json",
+                 optional: true,
+                 reloadOnChange: true);
 
 builder.Services.AddRazorPages();
 
@@ -408,12 +345,10 @@ app.Run();
 #region snippet_ba
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.ConfigureAppConfiguration((hostingContext, config) =>
-{
-    config.AddJsonFile("MyArray.json",
-                        optional: true,
-                        reloadOnChange: true); ;
-});
+builder.Configuration
+    .AddJsonFile("MyArray.json",
+                 optional: true,
+                 reloadOnChange: true);
 
 builder.Services.AddRazorPages();
 
