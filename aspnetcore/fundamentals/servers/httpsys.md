@@ -125,7 +125,7 @@ If using Visual Studio, make sure the app isn't configured to run IIS or IIS Exp
 
 In Visual Studio, the default launch profile is for IIS Express. To run the project as a console app, manually change the selected profile, as shown in the following screenshot:
 
-![Select console app profile](httpsys/_static/vs-choose-profile.png)
+:::image type="content" source="~/fundamentals/servers/httpsys/_static/vs-choose-profile.png" alt-text="Select console app profile":::
 
 ### Configure Windows Server
 
