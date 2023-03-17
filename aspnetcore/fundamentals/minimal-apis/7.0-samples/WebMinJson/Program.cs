@@ -50,7 +50,7 @@ class Todo
 #elif writeasjsonasync
 var builder = WebApplication.CreateBuilder(args);
 
-var app = builder.Build();
+var app = WebApplication.Create();
 
 // <snippet_writeasjsonasync>
 app.MapGet("/", (HttpContext context) => context.Response.WriteAsJsonAsync
