@@ -42,7 +42,7 @@ The following properties control the Razor's SDK behavior as part of a project b
 * `UseRazorSourceGenerator`: Defaults to `true`. When `true`:
   * Compiles using source generation.
   * Doesn't create `<app_name>.Views.dll`. Views are included in `<app_name>.dll`.
-  * Supports [.NET hot reload](xref:test/hot-reload).
+  * Supports [.NET Hot Reload](xref:test/hot-reload).
 
 The properties and items in the following table are used to configure inputs and output to the Razor SDK.
 
