@@ -65,7 +65,7 @@ The Distributed Memory Cache is a useful implementation:
 
 The sample app makes use of the Distributed Memory Cache when the app is run in the Development environment in `Program.cs`:
 
-[!code-csharp[](distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddDistributedMemoryCache)]
+[!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddDistributedMemoryCache)]
 
 ### Distributed SQL Server Cache
 
@@ -85,14 +85,14 @@ Table and index were created successfully.
 
 The table created by the `sql-cache` tool has the following schema:
 
-![SqlServer Cache Table](distributed/_static/SqlServerCacheTable.png)
+![SqlServer Cache Table](~/performance/caching/distributed/_static/SqlServerCacheTable.png)
 
 > [!NOTE]
 > An app should manipulate cache values using an instance of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache>, not a <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCache>.
 
 The sample app implements <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCache> in a non-Development environment in `Program.cs`:
 
-[!code-csharp[](distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddDistributedSqlServerCache)]
+[!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
 > A <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*> (and optionally, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> and <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*>) are typically stored outside of source control (for example, stored by the [Secret Manager](xref:security/app-secrets) or in `appsettings.json`/`appsettings.{Environment}.json` files). The connection string may contain credentials that should be kept out of source control systems.
@@ -110,7 +110,7 @@ An app configures the cache implementation using a <xref:Microsoft.Extensions.Ca
 
 The following code enables the Azure Cache for Redis:
 
-[!code-csharp[](distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddStackExchangeRedisCache)]
+[!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddStackExchangeRedisCache)]
 
 The preceding code assumes the Primary connection string (StackExchange.Redis) was saved in configuration with the key name `MyRedisConStr`.
 
@@ -130,7 +130,7 @@ To configure NCache:
 1. Configure the cache cluster in [client.ncconf](https://www.alachisoft.com/resources/docs/ncache/admin-guide/client-config.html).
 1. Add the following code to `Program.cs`:
 
-[!code-csharp[](distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddNCache_Cache)]
+[!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddNCache_Cache)]
 
 ## Use the distributed cache
 
@@ -138,7 +138,7 @@ To use the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> int
 
 When the sample app starts, <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> is injected into `Program.cs`. The current time is cached using <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> (for more information, see [Generic Host: IHostApplicationLifetime](xref:fundamentals/host/generic-host#ihostapplicationlifetime)):
 
-[!code-csharp[](distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_Configure)]
+[!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_Configure)]
 
 The sample app injects <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> into the `IndexModel` for use by the Index page.
 
@@ -146,7 +146,7 @@ Each time the Index page is loaded, the cache is checked for the cached time in 
 
 Immediately update the cached time to the current time by selecting the **Reset Cached Time** button. The button triggers the `OnPostResetCachedTime` handler method.
 
-[!code-csharp[](distributed/samples/6.x/DistCacheSample/Pages/Index.cshtml.cs?name=snippet_IndexModel&highlight=7,14-20,25-29)]
+[!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Pages/Index.cshtml.cs?name=snippet_IndexModel&highlight=7,14-20,25-29)]
 
 > There's  ***no*** need to use a Singleton or Scoped lifetime for <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> instances with the built-in implementations.
 >
