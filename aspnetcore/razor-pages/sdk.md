@@ -5,7 +5,7 @@ description: Learn how Razor Pages in ASP.NET Core makes coding page-focused sce
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: "mvc, seodec18"
-ms.date: 03/26/2020
+ms.date: 03/17/2023
 uid: razor-pages/sdk
 ---
 # ASP.NET Core Razor SDK
@@ -39,6 +39,9 @@ The following properties control the Razor's SDK behavior as part of a project b
 
 * `RazorCompileOnBuild`: When `true`, compiles and emits the Razor assembly as part of building the project. Defaults to `true`.
 * `RazorCompileOnPublish`: When `true`, compiles and emits the Razor assembly as part of publishing the project. Defaults to `true`.
+* `UseRazorSourceGenerator`: Defaults to `true`. When `true`:
+  * Compiles using source generation.
+  * Doesn't create `<app_name>.Views.dll`. Views are included in `<app_name>.dll`
 
 The properties and items in the following table are used to configure inputs and output to the Razor SDK.
 
