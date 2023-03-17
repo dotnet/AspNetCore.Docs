@@ -5,7 +5,7 @@ description: Learn how to use the Microsoft Graph SDK/API with Blazor WebAssembl
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/12/2022
+ms.date: 03/17/2023
 uid: blazor/security/webassembly/graph-api
 zone_pivot_groups: blazor-graph-api
 ---
@@ -45,8 +45,7 @@ After adding the Microsoft Graph API scopes in the AAD area of the Azure portal,
 
 ```json
 "MicrosoftGraph": {
-  "BaseUrl": "https://graph.microsoft.com",
-  "Version": "v1.0",
+  "BaseUrl": "https://graph.microsoft.com/v1.0",
   "Scopes": [
     "user.read"
   ]
@@ -159,9 +158,8 @@ internal static class GraphClientExtensions
 In `Program.cs`, add the Graph client services and configuration with the `AddGraphClient` extension method:
 
 ```csharp
-var baseUrl = string.Join("/", 
-    builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"], 
-    builder.Configuration.GetSection("MicrosoftGraph")["Version"]);
+var baseUrl = builder.Configuration
+    .GetSection("MicrosoftGraph")["BaseUrl"];
 var scopes = builder.Configuration.GetSection("MicrosoftGraph:Scopes")
     .Get<List<string>>();
 
@@ -286,8 +284,7 @@ The example in this section builds on the approach of reading the base URL, vers
 
 ```csharp
 var baseUrl = string.Join("/", 
-    builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"], 
-    builder.Configuration.GetSection("MicrosoftGraph")["Version"]);
+    builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"];
 var scopes = builder.Configuration.GetSection("MicrosoftGraph:Scopes")
     .Get<List<string>>();
 
@@ -379,8 +376,7 @@ After adding the Microsoft Graph API scopes in the AAD area of the Azure portal,
 
 ```json
 "MicrosoftGraph": {
-  "BaseUrl": "https://graph.microsoft.com",
-  "Version": "v1.0",
+  "BaseUrl": "https://graph.microsoft.com/v1.0",
   "Scopes": [
     "user.read"
   ]
@@ -468,9 +464,7 @@ internal static class GraphClientExtensions
 In `Program.cs`, add the Graph client services and configuration with the `AddGraphClient` extension method:
 
 ```csharp
-var baseUrl = string.Join("/", 
-    builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"], 
-    builder.Configuration.GetSection("MicrosoftGraph")["Version"]);
+var baseUrl = builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"];
 var scopes = builder.Configuration.GetSection("MicrosoftGraph:Scopes")
     .Get<List<string>>();
 
@@ -522,7 +516,74 @@ In the following custom user account factory:
 `CustomAccountFactory.cs`:
 
 ```csharp
+using System.Security.Claims;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
+using Microsoft.Graph;
+using Microsoft.Kiota.Abstractions.Authentication;
 
+public class CustomAccountFactory
+    : AccountClaimsPrincipalFactory<RemoteUserAccount>
+{
+    private readonly ILogger<CustomAccountFactory> logger;
+    private readonly IServiceProvider serviceProvider;
+    private readonly string baseUrl;
+
+    public CustomAccountFactory(IAccessTokenProviderAccessor accessor,
+        IServiceProvider serviceProvider,
+        ILogger<CustomAccountFactory> logger,
+        IConfiguration config)
+        : base(accessor)
+    {
+        this.serviceProvider = serviceProvider;
+        this.logger = logger;
+        baseUrl = config.GetSection("MicrosoftGraph")["BaseUrl"];
+    }
+
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
+        RemoteUserAccount account,
+        RemoteAuthenticationUserOptions options)
+    {
+        var initialUser = await base.CreateUserAsync(account, options);
+
+        if (initialUser.Identity is not null &&
+            initialUser.Identity.IsAuthenticated)
+        {
+            var userIdentity = initialUser.Identity as ClaimsIdentity;
+
+            if (userIdentity is not null)
+            {
+                try
+                {
+                    var client = ActivatorUtilities
+                        .CreateInstance<GraphServiceClient>(
+                            serviceProvider, 
+                            new HttpClient(), 
+                            serviceProvider
+                                .GetRequiredService<IAuthenticationProvider>(), 
+                            baseUrl);
+
+                    var user = await client.Me.GetAsync();
+              
+                    if (user is not null)
+                    {
+                        userIdentity.AddClaim(new Claim("mobilephone",
+                            user.MobilePhone ?? "(000) 000-0000"));
+                        userIdentity.AddClaim(new Claim("officelocation",
+                            user.OfficeLocation ?? "Not set"));
+                    }
+                    
+                }
+                catch (AccessTokenNotAvailableException exception)
+                {
+                    exception.Redirect();
+                }
+            }
+        }
+
+        return initialUser;
+    }
+}
 ```
 
 Configure the MSAL authentication to use the custom user account factory.
@@ -536,9 +597,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 The example in this section builds on the approach of reading the base URL, version, and scopes from app configuration via the `MicrosoftGraph` section in `wwwroot/appsettings.json` file. The following lines should already be present in `Program.cs` from following the guidance earlier in this article:
 
 ```csharp
-var baseUrl = string.Join("/", 
-    builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"], 
-    builder.Configuration.GetSection("MicrosoftGraph")["Version"]);
+var baseUrl = builder.Configuration.GetSection("MicrosoftGraph")["BaseUrl"];
 var scopes = builder.Configuration.GetSection("MicrosoftGraph:Scopes")
     .Get<List<string>>();
 
@@ -605,17 +664,6 @@ When testing with the Graph SDK locally, we recommend using a new in-private/inc
 
 :::zone-end
 
-
-
-
-
-
-
-
-
-
-
-
 :::zone pivot="named-client-graph-api"
 
 The following examples use a named <xref:System.Net.Http.HttpClient> for Graph API calls to obtain a user's mobile phone number to process a call or to customize a user's claims to include a mobile phone number claim and an office location claim.
@@ -628,8 +676,7 @@ After adding the Microsoft Graph API scopes in the AAD area of the Azure portal,
 
 ```json
 "MicrosoftGraph": {
-  "BaseUrl": "https://graph.microsoft.com",
-  "Version": "v1.0",
+  "BaseUrl": "https://graph.microsoft.com/v1.0",
   "Scopes": [
     "user.read"
   ]
@@ -773,17 +820,14 @@ public class CustomAccountFactory
 {
     private readonly ILogger<CustomAccountFactory> logger;
     private readonly IHttpClientFactory clientFactory;
-    private readonly IConfiguration config;
 
     public CustomAccountFactory(IAccessTokenProviderAccessor accessor,
         IHttpClientFactory clientFactory,
-        ILogger<CustomAccountFactory> logger,
-        IConfiguration config)
+        ILogger<CustomAccountFactory> logger)
         : base(accessor)
     {
         this.clientFactory = clientFactory;
         this.logger = logger;
-        this.config = config;
     }
 
     public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
@@ -804,7 +848,7 @@ public class CustomAccountFactory
                     var client = clientFactory.CreateClient("GraphAPI");
 
                     var userInfo = await client.GetFromJsonAsync<UserInfo>(
-                        $"{config.GetSection("MicrosoftGraph")["Version"]}/me");
+                        "/me");
 
                     if (userInfo is not null)
                     {
