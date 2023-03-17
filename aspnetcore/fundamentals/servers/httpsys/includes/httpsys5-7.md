@@ -28,11 +28,11 @@ HTTP.sys is useful for deployments where:
 
 * There's a need to expose the server directly to the Internet without using IIS.
 
-  ![HTTP.sys communicates directly with the Internet]~/fundamentals/servers/httpsys/_static/httpsys-to-internet.png)
+  ![HTTP.sys communicates directly with the Internet](~/fundamentals/servers/httpsys/_static/httpsys-to-internet.png)
 
 * An internal deployment requires a feature not available in Kestrel. For more information, see [Kestrel vs. HTTP.sys](xref:fundamentals/servers/index#kestrel-vs-httpsys)
 
-  ![HTTP.sys communicates directly with the internal network]~/fundamentals/servers/httpsys/_static/httpsys-to-internal.png)
+  ![HTTP.sys communicates directly with the internal network](~/fundamentals/servers/httpsys/_static/httpsys-to-internal.png)
 
 HTTP.sys is mature technology that protects against many types of attacks and provides the robustness, security, and scalability of a full-featured web server. IIS itself runs as an HTTP listener on top of HTTP.sys.
 
@@ -82,7 +82,7 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
 
 Call the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> extension method when building the host, specifying any required <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>. The following example sets options to their default values:
 
-[!code-csharp[]~/fundamentals/servers/httpsys/samples/3.x/SampleApp/Program.cs?name=snippet1&highlight=5-13)]
+[!code-csharp[](~/fundamentals/servers/httpsys/samples/3.x/SampleApp/Program.cs?name=snippet1&highlight=5-13)]
 
 Additional HTTP.sys configuration is handled through [registry settings](https://support.microsoft.com/help/820129/http-sys-registry-settings-for-windows).
 
@@ -105,13 +105,13 @@ An exception is thrown if the app attempts to configure the limit on a request a
 
 If the app should override <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> per-request, use the <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature>:
 
-[!code-csharp[]~/fundamentals/servers/httpsys/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=6-7)]
+[!code-csharp[](~/fundamentals/servers/httpsys/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=6-7)]
 
 If using Visual Studio, make sure the app isn't configured to run IIS or IIS Express.
 
 In Visual Studio, the default launch profile is for IIS Express. To run the project as a console app, manually change the selected profile, as shown in the following screenshot:
 
-![Select console app profile]~/fundamentals/servers/httpsys/_static/vs-choose-profile.png)
+![Select console app profile](~/fundamentals/servers/httpsys/_static/vs-choose-profile.png)
 
 ### Configure Windows Server
 
@@ -143,7 +143,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    The following code example shows how to use <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> with the server's local IP address `10.0.0.4` on port 443:
 
-   [!code-csharp[]~/fundamentals/servers/httpsys/samples_snapshot/3.x/Program.cs?highlight=7)]
+   [!code-csharp[](~/fundamentals/servers/httpsys/samples_snapshot/3.x/Program.cs?highlight=7)]
 
    An advantage of `UrlPrefixes` is that an error message is generated immediately for improperly formatted prefixes.
 
@@ -243,7 +243,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    A development certificate is used in this example. The page loads securely after bypassing the browser's untrusted certificate warning.
 
-   ![Browser window showing the app's Index page loaded]~/fundamentals/servers/httpsys/_static/browser.png)
+   ![Browser window showing the app's Index page loaded](~/fundamentals/servers/httpsys/_static/browser.png)
 
 ## Proxy server and load balancer scenarios
 
@@ -307,11 +307,11 @@ HTTP.sys is useful for deployments where:
 
 * There's a need to expose the server directly to the Internet without using IIS.
 
-  ![HTTP.sys communicates directly with the Internet]~/fundamentals/servers/httpsys/_static/httpsys-to-internet.png)
+  ![HTTP.sys communicates directly with the Internet](~/fundamentals/servers/httpsys/_static/httpsys-to-internet.png)
 
 * An internal deployment requires a feature not available in Kestrel. For more information, see [Kestrel vs. HTTP.sys](xref:fundamentals/servers/index#kestrel-vs-httpsys)
 
-  ![HTTP.sys communicates directly with the internal network]~/fundamentals/servers/httpsys/_static/httpsys-to-internal.png)
+  ![HTTP.sys communicates directly with the internal network](~/fundamentals/servers/httpsys/_static/httpsys-to-internal.png)
 
 HTTP.sys is mature technology that protects against many types of attacks and provides the robustness, security, and scalability of a full-featured web server. IIS itself runs as an HTTP listener on top of HTTP.sys.
 
@@ -337,7 +337,7 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
 
 Call the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> extension method when building the host, specifying any required <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>. The following example sets options to their default values:
 
-[!code-csharp[]~/fundamentals/servers/httpsys/samples/3.x/SampleApp/Program.cs?name=snippet1&highlight=5-13)]
+[!code-csharp[](~/fundamentals/servers/httpsys/samples/3.x/SampleApp/Program.cs?name=snippet1&highlight=5-13)]
 
 Additional HTTP.sys configuration is handled through [registry settings](https://support.microsoft.com/help/820129/http-sys-registry-settings-for-windows).
 
@@ -377,13 +377,13 @@ An exception is thrown if the app attempts to configure the limit on a request a
 
 If the app should override <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> per-request, use the <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature>:
 
-[!code-csharp[]~/fundamentals/servers/httpsys/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=6-7)]
+[!code-csharp[](~/fundamentals/servers/httpsys/samples/3.x/SampleApp/Startup.cs?name=snippet1&highlight=6-7)]
 
 If using Visual Studio, make sure the app isn't configured to run IIS or IIS Express.
 
 In Visual Studio, the default launch profile is for IIS Express. To run the project as a console app, manually change the selected profile, as shown in the following screen shot:
 
-![Select console app profile]~/fundamentals/servers/httpsys/_static/vs-choose-profile.png)
+![Select console app profile](~/fundamentals/servers/httpsys/_static/vs-choose-profile.png)
 
 ### Configure Windows Server
 
@@ -415,7 +415,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    The following code example shows how to use <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> with the server's local IP address `10.0.0.4` on port 443:
 
-   [!code-csharp[]~/fundamentals/servers/httpsys/samples_snapshot/3.x/Program.cs?highlight=7)]
+   [!code-csharp[](~/fundamentals/servers/httpsys/samples_snapshot/3.x/Program.cs?highlight=7)]
 
    An advantage of `UrlPrefixes` is that an error message is generated immediately for improperly formatted prefixes.
 
@@ -515,7 +515,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    A development certificate is used in this example. The page loads securely after bypassing the browser's untrusted certificate warning.
 
-   ![Browser window showing the app's Index page loaded]~/fundamentals/servers/httpsys/_static/browser.png)
+   ![Browser window showing the app's Index page loaded](~/fundamentals/servers/httpsys/_static/browser.png)
 
 ## Proxy server and load balancer scenarios
 
