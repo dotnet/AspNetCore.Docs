@@ -1,4 +1,4 @@
-#define writeasjsonasyncwithoptions
+#define writeasjsonasync
 // First Second writeasjsonasync autojsondeserialization
 // readfromjsonasync confighttpjsonoptions jsonoptions writeasjsonasyncwithoptions
 // readfromjsonasyncwithoptions resultsjsonwithoptions
@@ -27,8 +27,7 @@ class Todo
 // <snippet_2>
 using System.Text.Json;
 
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+var app = WebApplication.Create();
 
 var options = new JsonSerializerOptions
 {
@@ -48,27 +47,23 @@ class Todo
 }
 // </snippet_2>
 #elif writeasjsonasync
-var builder = WebApplication.CreateBuilder(args);
-
 var app = WebApplication.Create();
 
 // <snippet_writeasjsonasync>
 app.MapGet("/", (HttpContext context) => context.Response.WriteAsJsonAsync
-    (new { Message = "HelloWorld" }));
+    (new { Message = "Hello World" }));
 // </snippet_writeasjsonasync>
 
 app.Run();
 
 // The endpoint returns the following JSON:
 //
-// {"message":"HelloWorld"}
+// {"message":"Hello World"}
 #elif readfromjsonasync
 // <snippet_readfromjsonasync>
 using System.Diagnostics;
 
-var builder = WebApplication.CreateBuilder(args);
-
-var app = builder.Build();
+var app = WebApplication.Create();
 
 app.MapPost("/", async (HttpContext context) => {
     if (context.Request.HasJsonContentType()) {
@@ -165,9 +160,7 @@ class Todo
 // <snippet_writeasjsonasyncwithoptions>
 using System.Text.Json;
 
-var builder = WebApplication.CreateBuilder(args);
-
-var app = builder.Build();
+var app = WebApplication.Create();
 
 var options = new JsonSerializerOptions(JsonSerializerDefaults.Web) {
     WriteIndented = true };
@@ -194,9 +187,7 @@ class Todo
 // <snippet_readfromjsonasyncwithoptions>
 using System.Text.Json;
 
-var builder = WebApplication.CreateBuilder(args);
-
-var app = builder.Build();
+var app = WebApplication.Create();
 
 var options = new JsonSerializerOptions(JsonSerializerDefaults.Web) { 
     IncludeFields = true, 
@@ -239,9 +230,7 @@ class Todo
 // <snippet_resultsjsonwithoptions>
 using System.Text.Json;
 
-var builder = WebApplication.CreateBuilder(args);
-
-var app = builder.Build();
+var app = WebApplication.Create();
 
 var options = new JsonSerializerOptions(JsonSerializerDefaults.Web)
     { WriteIndented = true };
