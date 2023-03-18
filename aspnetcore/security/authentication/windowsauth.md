@@ -163,7 +163,7 @@ Anonymous requests are allowed. Use [ASP.NET Core Authorization](xref:security/a
 
 The [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) component performs [User Mode](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) authentication. Service Principal Names (SPNs) must be added to the user account running the service, not the machine account. Execute `setspn -S HTTP/myservername.mydomain.com myuser` in an administrative command shell.
 
-<!--Overview
+
 The Negotiate package on Kestrel for ASP.NET Core 6.0/7.0 attempts by default to use Kerberos, which is a more secure and peformant authentication scheme than NTLM.  
 You can see this configuration in services configuration in Program.cs.
 builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
@@ -264,7 +264,7 @@ docker run --security-opt "credentialspec=file://example_myhost1.json" --hostnam
 10.	Now exit from the command line and fire up the application again in a web browser.
 11.	You should be able to successfully able to navigate within the web site without login prompts or 401 errors.
 12.	You can confirm this by analyzing the request in Fiddler, noticing the WWW-Authenticate: Negotiate header.
--->
+
 
 ### Linux and macOS environment configuration
 
