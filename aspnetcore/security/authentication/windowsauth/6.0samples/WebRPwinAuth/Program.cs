@@ -2,6 +2,7 @@
 #if NEVER
 #elif DEFAULT
 // <snippet1>
+// <snippet11>
 using Microsoft.AspNetCore.Authentication.Negotiate;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +17,7 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
-
+// </snippet11>
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
