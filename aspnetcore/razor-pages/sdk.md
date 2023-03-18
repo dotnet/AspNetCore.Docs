@@ -39,6 +39,10 @@ The following properties control the Razor's SDK behavior as part of a project b
 
 * `RazorCompileOnBuild`: When `true`, compiles and emits the Razor assembly as part of building the project. Defaults to `true`.
 * `RazorCompileOnPublish`: When `true`, compiles and emits the Razor assembly as part of publishing the project. Defaults to `true`.
+* `UseRazorSourceGenerator`: Defaults to `true`. When `true`:
+  * Compiles using source generation.
+  * Doesn't create `<app_name>.Views.dll`. Views are included in `<app_name>.dll`.
+  * Supports [.NET Hot Reload](xref:test/hot-reload).
 
 The properties and items in the following table are used to configure inputs and output to the Razor SDK.
 
