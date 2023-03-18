@@ -163,16 +163,9 @@ Anonymous requests are allowed. Use [ASP.NET Core Authorization](xref:security/a
 
 The [Microsoft.AspNetCore.Authentication.Negotiate](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) component performs [User Mode](/windows-hardware/drivers/gettingstarted/user-mode-and-kernel-mode) authentication. Service Principal Names (SPNs) must be added to the user account running the service, not the machine account. Execute `setspn -S HTTP/myservername.mydomain.com myuser` in an administrative command shell.
 
+The Negotiate package on Kestrel for ASP.NET Core attempts to use Kerberos, which is a more secure and peformant authentication scheme than NTLM:
 
-The Negotiate package on Kestrel for ASP.NET Core 6.0/7.0 attempts by default to use Kerberos, which is a more secure and peformant authentication scheme than NTLM.  
-You can see this configuration in services configuration in Program.cs.
-builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
-   .AddNegotiate();
-builder.Services.AddAuthorization(options =>
-{
-    options.FallbackPolicy = options.DefaultPolicy;
-});
-
+[!code-csharp[](windowsauth/6.0samples/WebRPwinAuth/Program.cs?name=snippet11&highlight=5-6)]
 
 NegotiateDefaults.AuthenticationScheme says to use Kerberos by default.  The FallbackPolicy will use the DefaultPolicy meaning if Kerberos not available, Kestrel will fall back to NTLM.
 Kerberos is known as the Negotiate AuthenticationType, whereas NTLM is known as the NTLM AuthenticationType.  This can be seen by analyzing a request in Fiddler where you will the WWW-Authenticate header will contain either Negotiate or NTLM.
@@ -227,8 +220,9 @@ setspn -L MySiteAccount
 10.	You should be able to successfully able to navigate within the web site without login prompts or 401 errors.
 11.	You can confirm this by analyzing the request in Fiddler, noticing the WWW-Authenticate: Negotiate header.
 
-        For a Docker container you will need to check whether the Group Managed Service Account (gMSA)  account you set up Kerberos has a valid service principal name (SPN) registered with the container host for the http service class.  For this example, the assumption is that you have have already created a gMSA account, named MyGMSA.
-        To Create a gMSA account with credential spec file, please refer to the article Create gMSAs for Windows containers, https://learn.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/manage-serviceaccounts.
+  For a Docker container you will need to check whether the Group Managed Service Account (gMSA)  ccount you set up Kerberos has a valid service principal name (SPN) registered with the container ost for the http service class.  For this example, the assumption is that you have have already reated a gMSA account, named MyGMSA.
+  To Create a gMSA account with credential spec file, please refer to the article Create gMSAs for Windows containers, https://learn.microsoft.com/virtualization/windowscontainers/manage-containers/manage-serviceaccounts.
+
        Steps for Windows container environments
 1.	The first step is to verify whether the gMSA account has a valid SPN on the container host.
 2.	Run the setspn -L command to list all of the services your computer has an SPN registration for.

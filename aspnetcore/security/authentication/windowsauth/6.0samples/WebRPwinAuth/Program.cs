@@ -1,7 +1,7 @@
-#define RBAC  // DEFAULT RBAC LDAP HTS IMP
+#define DEFAULT  // DEFAULT RBAC LDAP HTS IMP
 #if NEVER
 #elif DEFAULT
-#region snippet1
+// <snippet1>
 using Microsoft.AspNetCore.Authentication.Negotiate;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,9 +34,9 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
-#endregion
+// </snippet1>
 #elif RBAC
-#region snippet_rbac
+// <snippet_rbac>
 using Microsoft.AspNetCore.Authentication.Negotiate;
 using System.Runtime.InteropServices;
 
@@ -50,7 +50,7 @@ builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
             options.EnableLdap("contoso.com");
         }
     });
-#endregion
+// </snippet_rbac>
 
 builder.Services.AddRazorPages();
 
@@ -74,7 +74,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif LDAP
-#region snippet_ldap
+// <snippet_ldap>
 using Microsoft.AspNetCore.Authentication.Negotiate;
 using System.Runtime.InteropServices;
 
@@ -96,7 +96,7 @@ builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
         });
 
 builder.Services.AddRazorPages();
-#endregion
+// </snippet_ldap>
 
 var app = builder.Build();
 
@@ -118,7 +118,7 @@ app.MapRazorPages();
 
 app.Run();
 #elif HTS
-#region snippet_hts
+// <snippet_hts>
 using Microsoft.AspNetCore.Server.HttpSys;
 using System.Runtime.InteropServices;
 
@@ -136,7 +136,7 @@ if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             options.Authentication.AllowAnonymous = false;
         });
 }
-#endregion
+// </snippet_hts>
 
 builder.Services.AddRazorPages();
 
@@ -193,7 +193,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
-#region snippet_imp
+// <snippet_imp>
 app.Run(async (context) =>
 {
     try
@@ -220,6 +220,6 @@ app.Run(async (context) =>
     }
 });
 
-#endregion
+// </snippet_imp>
 #pragma warning restore CA1416 // Validate platform compatibility
 #endif
