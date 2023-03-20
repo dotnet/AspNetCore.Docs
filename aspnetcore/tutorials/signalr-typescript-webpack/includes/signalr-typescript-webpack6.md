@@ -199,7 +199,7 @@ Confirm that the app works with the following steps:
 
 1. Run Webpack in `release` mode. Using the **Package Manager Console** window, run the following command in the project root. If you aren't in the project root, enter `cd SignalRWebpack` before entering the command.
 
-    [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
+    [!INCLUDE [npm-run-release](~/includes/signalr-typescript-webpack/npm-run-release.md)]
 
 1. Select **Debug** > **Start without debugging** to launch the app in a browser without attaching the debugger. The `wwwroot/index.html` file is served at `https://localhost:<port>`.
 
@@ -213,7 +213,7 @@ Confirm that the app works with the following steps:
 
 1. Run Webpack in `release` mode by executing the following command in the project root:
 
-    [!INCLUDE [npm-run-release](../includes/signalr-typescript-webpack/npm-run-release.md)]
+    [!INCLUDE [npm-run-release](~/includes/signalr-typescript-webpack/npm-run-release.md)]
 
 1. Build and run the app by executing the following command in the project root:
 
