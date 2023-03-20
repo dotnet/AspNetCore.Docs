@@ -144,7 +144,7 @@ The following services are registered.
 
 :::moniker range=">= aspnetcore-7.0"
 
-    [!INCLUDE[](~/blazor/includes/default-scheme.md)]
+[!INCLUDE[](~/blazor/includes/default-scheme.md)]
 
 :::moniker-end
 
