@@ -5,7 +5,7 @@ description: Learn how compilation of Razor files occurs in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2023
+ms.date: 03/20/2023
 uid: mvc/views/view-compilation
 ---
 # Razor file compilation in ASP.NET Core
@@ -20,6 +20,7 @@ Razor files with a `.cshtml` extension are compiled at both build and publish ti
 > * Doesn't support [global using directives](/dotnet/csharp/whats-new/csharp-10#global-using-directives).
 > * Doesn't support [implicit using directives](/dotnet/core/tutorials/top-level-templates#implicit-using-directives).
 > * Disables [.NET Hot Reload](xref:test/hot-reload).
+> * Is recommended for development, not for production.
 
 ## Razor compilation
 
@@ -28,7 +29,7 @@ Build-time and publish-time compilation of Razor files is enabled by default by 
 In addition to build-time compilation, updating Razor views and Razor Pages is supported using [.NET Hot Reload](xref:test/hot-reload).
 
 > [!NOTE]
-> When enabled, runtime compilation disables [.NET Hot Reload](xref:test/hot-reload). We recommend enabling runtime compilation only if recompiling is needed in production after deployment. Use .NET Hot Reload during development.
+> When enabled, runtime compilation disables [.NET Hot Reload](xref:test/hot-reload). We recommend using Hot Reload instead of Razor runtime compilation during development, but we understand that may not be feasible because of Hot Reload's limitations. We're working to improve Hot Reload so that Razor runtime compilation will no longer be necessary, but we don't expect that to happen in .NET 8.
 
 ## Enable runtime compilation for all environments
 
