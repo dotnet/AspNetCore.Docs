@@ -5,7 +5,7 @@ description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app wi
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/20/2023
+ms.date: 03/21/2023
 uid: blazor/security/webassembly/hosted-with-identity-server
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Identity Server
@@ -22,6 +22,15 @@ This article explains how to create a [hosted Blazor WebAssembly solution](xref:
 > [!NOTE]
 > To configure a standalone or hosted Blazor WebAssembly app to use an existing, external Identity Server instance, follow the guidance in <xref:blazor/security/webassembly/standalone-with-authentication-library>.
 
+## Walkthrough
+
+The subsections of the walkthrough explain how to:
+
+* Create the Blazor app
+* Run the app
+
+### Create a Blazor app
+
 # [Visual Studio](#tab/visual-studio)
 
 To create a new Blazor WebAssembly project with an authentication mechanism:
@@ -34,9 +43,11 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 
    Avoid using dashes (`-`) in the project name that break the formation of the OIDC app identifier. Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration, and dashes aren't permitted in an OIDC app identifier. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives.
 
-1. In the **Additional information** dialog, select **Individual Accounts** as the **Authentication Type** to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system.
+1. In the **Additional information** dialog, select **Individual Accounts** as the **Authentication type** to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system.
 
 1. Select the **ASP.NET Core Hosted** checkbox.
+
+1. Select the **Create** button to create the app.
 
 # [Visual Studio Code / .NET Core CLI](#tab/visual-studio-code+netcore-cli)
 
@@ -64,17 +75,23 @@ To create a new hosted Blazor WebAssembly solution with an authentication mechan
 
    Avoid using dashes (`-`) in the project name that break the formation of the OIDC app identifier. Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration, and dashes aren't permitted in an OIDC app identifier. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives.
 
-1. Select **Individual Authentication (in-app)** from the **Authentication** dropdown list when creating the app with the **ASP.NET Core Hosted** checkbox. For guidance on creating a hosted Blazor WebAssembly solution, see <xref:blazor/tooling>.
+1. Select **Individual Authentication (in-app)** from the **Authentication** dropdown to store users in the app with ASP.NET Core [Identity](xref:security/authentication/identity). Select the **ASP.NET Core Hosted** checkbox. For guidance on creating a hosted Blazor WebAssembly solution, see <xref:blazor/tooling>.
 
-1. The app is created for individual users stored in the app with ASP.NET Core [Identity](xref:security/authentication/identity).
+1. Select the **Create** button to create the app.
 
 ---
 
-## **:::no-loc text="Server":::** app configuration
+### Run the app
 
-The following sections describe additions to the project when authentication support is included.
+[!INCLUDE[](~/blazor/security/includes/run-the-app.md)]
 
-### Services
+## Parts of the solution
+
+This section describes the parts of a solution generated from the Blazor WebAssembly project template and describes how the solution's **:::no-loc text="Client":::** and **:::no-loc text="Server":::** projects are configured for reference. There's no specific guidance to follow in this section for a basic working application if you created the app using the guidance in the [Walkthrough](#walkthrough) section. The guidance in this section is helpful for updating an app to authenticate and authorize users. However, an alternative approach to updating an app is to create a new app from the guidance in the [Walkthrough](#walkthrough) section and moving the app's components, classes, and resources to the new app.
+
+### **:::no-loc text="Server":::** app services
+
+*This section pertains to the solution's **:::no-loc text="Server":::** app.*
 
 The following services are registered.
 
@@ -86,15 +103,15 @@ The following services are registered.
 
     ```csharp
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlite(
-            Configuration.GetConnectionString("DefaultConnection")));
+        options.UseSqlite( ... ));
+    builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
     builder.Services.AddDefaultIdentity<ApplicationUser>(options => 
             options.SignIn.RequireConfirmedAccount = true)
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
-  * IdentityServer with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method that sets up default ASP.NET Core conventions on top of IdentityServer:
+  * Identity Server with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method that sets up default ASP.NET Core conventions on top of IdentityServer:
 
     ```csharp
     builder.Services.AddIdentityServer()
@@ -126,7 +143,7 @@ The following services are registered.
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
-  * IdentityServer with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method that sets up default ASP.NET Core conventions on top of IdentityServer:
+  * Identity Server with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method that sets up default ASP.NET Core conventions on top of IdentityServer:
 
     ```csharp
     services.AddIdentityServer()
@@ -160,17 +177,21 @@ The following services are registered.
 
 :::moniker-end
 
-  * The IdentityServer middleware exposes the OpenID Connect (OIDC) endpoints:
+  * The Identity Server Middleware exposes the OpenID Connect (OIDC) endpoints:
 
     ```csharp
     app.UseIdentityServer();
     ```
 
-  * The Authentication middleware is responsible for validating request credentials and setting the user on the request context:
+:::moniker range="< aspnetcore-7.0"
+
+  * The Authentication Middleware is responsible for validating request credentials and setting the user on the request context:
 
     ```csharp
     app.UseAuthentication();
     ```
+
+:::moniker-end
 
   * Authorization Middleware enables authorization capabilities:
 
@@ -178,54 +199,62 @@ The following services are registered.
     app.UseAuthorization();
     ```
 
-### Azure App Service on Linux
+### API authorization
 
-Specify the issuer explicitly when deploying to Azure App Service on Linux. For more information, see <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
+*This section pertains to the solution's **:::no-loc text="Server":::** app.*
 
-### `AddApiAuthorization`
+The <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method configures [Identity Server](https://docs.duendesoftware.com) for ASP.NET Core scenarios. Identity Server is a powerful and extensible framework for handling app security concerns. Identity Server exposes unnecessary complexity for the most common scenarios. Consequently, a set of conventions and configuration options is provided that we consider a good starting point. Once your authentication needs change, the full power of Identity Server is available to customize authentication to suit an app's requirements.
 
-The <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method configures [Identity Server](https://docs.duendesoftware.com) for ASP.NET Core scenarios. Identity Server is a powerful and extensible framework for handling app security concerns. IdentityServer exposes unnecessary complexity for the most common scenarios. Consequently, a set of conventions and configuration options is provided that we consider a good starting point. Once your authentication needs change, the full power of IdentityServer is available to customize authentication to suit an app's requirements.
+### Add an authentication handler for an API that coexists with Identity Server
 
-### `AddIdentityServerJwt`
+*This section pertains to the solution's **:::no-loc text="Server":::** app.*
 
-The <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method configures a policy scheme for the app as the default authentication handler. The policy is configured to allow Identity to handle all requests routed to any subpath in the Identity URL space `/Identity`. The <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> handles all other requests. Additionally, this method:
+The <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method configures a policy scheme for the app as the default authentication handler. The policy is configured to allow Identity to handle all requests routed to any subpath in the Identity URL space under `/Identity`. The <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> handles all other requests. Additionally, this method:
 
-* Registers an `{APPLICATION NAME}API` API resource with IdentityServer with a default scope of `{APPLICATION NAME}API`.
-* Configures the JWT Bearer Token Middleware to validate tokens issued by IdentityServer for the app.
+* Registers an API resource with Identity Server with a default scope of `{PROJECT NAME}API`, where the `{PROJECT NAME}` placeholder is the project's name at app creation.
+* Configures the JWT Bearer Token Middleware to validate tokens issued by Identity Server for the app.
 
-### `WeatherForecastController`
+### Weather forecast controller
+
+*This section pertains to the solution's **:::no-loc text="Server":::** app.*
 
 In the `WeatherForecastController` (`Controllers/WeatherForecastController.cs`), the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) is applied to the class. The attribute indicates that the user must be authorized based on the default policy to access the resource. The default authorization policy is configured to use the default authentication scheme, which is set up by <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A>. The helper method configures <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> as the default handler for requests to the app.
 
-### `ApplicationDbContext`
+### Application database context
 
-In the `ApplicationDbContext` (`Data/ApplicationDbContext.cs`), <xref:Microsoft.EntityFrameworkCore.DbContext> extends <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> to include the schema for IdentityServer. <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> is derived from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.
+*This section pertains to the solution's **:::no-loc text="Server":::** app.*
+
+In the `ApplicationDbContext` (`Data/ApplicationDbContext.cs`), <xref:Microsoft.EntityFrameworkCore.DbContext> extends <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> to include the schema for Identity Server. <xref:Microsoft.AspNetCore.ApiAuthorization.IdentityServer.ApiAuthorizationDbContext%601> is derived from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext>.
 
 To gain full control of the database schema, inherit from one of the available Identity <xref:Microsoft.EntityFrameworkCore.DbContext> classes and configure the context to include the Identity schema by calling `builder.ConfigurePersistedGrantContext(_operationalStoreOptions.Value)` in the <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A> method.
 
-### `OidcConfigurationController`
+### OIDC configuration controller
+
+*This section pertains to the solution's **:::no-loc text="Server":::** app.*
 
 In the `OidcConfigurationController` (`Controllers/OidcConfigurationController.cs`), the client endpoint is provisioned to serve OIDC parameters.
 
 ### App settings
+
+*This section pertains to the solution's **:::no-loc text="Server":::** app.*
 
 In the app settings file (`appsettings.json`) at the project root, the `IdentityServer` section describes the list of configured clients. In the following example, there's a single client. The client name corresponds to the app name and is mapped by convention to the OAuth `ClientId` parameter. The profile indicates the app type being configured. The profile is used internally to drive conventions that simplify the configuration process for the server.
 
 ```json
 "IdentityServer": {
   "Clients": {
-    "{ASSEMBLY NAME}.Client": {
+    "{ASSEMBLY NAME}": {
       "Profile": "IdentityServerSPA"
     }
   }
 }
 ```
 
-The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample.Client`).
-
-## **:::no-loc text="Client":::** app configuration
+The placeholder `{ASSEMBLY NAME}` is the **:::no-loc text="Client":::** app's assembly name (for example, `BlazorSample.Client`).
 
 ### Authentication package
+
+*This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
 When an app is created to use Individual User Accounts (`Individual`), the app automatically receives a package reference for the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package. The package provides a set of primitives that help the app authenticate users and obtain tokens to call protected APIs.
 
@@ -235,23 +264,27 @@ If adding authentication to an app, manually add the [`Microsoft.AspNetCore.Comp
 
 ### `HttpClient` configuration
 
-In `Program.cs`, a named <xref:System.Net.Http.HttpClient> (`{ASSEMBLY NAME}.ServerAPI`) is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API:
+*This section pertains to the solution's **:::no-loc text="Client":::** app.*
+
+In `Program.cs`, a named <xref:System.Net.Http.HttpClient> is configured to supply <xref:System.Net.Http.HttpClient> instances that include access tokens when making requests to the server API. By default at solution creation, the named <xref:System.Net.Http.HttpClient> is `{PROJECT NAME}.ServerAPI`, where the `{PROJECT NAME}` placeholder is the project's name.
 
 ```csharp
-builder.Services.AddHttpClient("{ASSEMBLY NAME}.ServerAPI", 
+builder.Services.AddHttpClient("{PROJECT NAME}.ServerAPI", 
         client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress))
     .AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
 
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
-    .CreateClient("{ASSEMBLY NAME}.ServerAPI"));
+    .CreateClient("{PROJECT NAME}.ServerAPI"));
 ```
 
-The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `BlazorSample.Client`).
+The placeholder `{PROJECT NAME}` is the project name at solution creation. For example, providing a project name of `BlazorSample` produces a named <xref:System.Net.Http.HttpClient> of `BlazorSample.ServerAPI`.
 
 > [!NOTE]
 > If you're configuring a Blazor WebAssembly app to use an existing Identity Server instance that isn't part of a hosted Blazor solution, change the <xref:System.Net.Http.HttpClient> base address registration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`builder.HostEnvironment.BaseAddress`) to the server app's API authorization endpoint URL.
 
 ### API authorization support
+
+*This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
 The support for authenticating users is plugged into the service container by the extension method provided inside the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) package. This method sets up the services required by the app to interact with the existing authorization system.
 
@@ -263,21 +296,31 @@ By default, configuration for the app is loaded by convention from `_configurati
 
 ### `Imports` file
 
+*This section pertains to the solution's **:::no-loc text="Client":::** app.*
+
 [!INCLUDE[](~/blazor/security/includes/imports-file-hosted.md)]
 
 ### `Index` page
+
+*This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
 [!INCLUDE[](~/blazor/security/includes/index-page-authentication.md)]
 
 ### `App` component
 
+*This section pertains to the solution's **:::no-loc text="Client":::** app.*
+
 [!INCLUDE[](~/blazor/security/includes/app-component.md)]
 
 ### `RedirectToLogin` component
 
+*This section pertains to the solution's **:::no-loc text="Client":::** app.*
+
 [!INCLUDE[](~/blazor/security/includes/redirecttologin-component.md)]
 
 ### `LoginDisplay` component
+
+*This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
 The `LoginDisplay` component (`Shared/LoginDisplay.razor`) is rendered in the `MainLayout` component (`Shared/MainLayout.razor`) and manages the following behaviors:
 
@@ -298,15 +341,19 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 ### `Authentication` component
 
+*This section pertains to the solution's **:::no-loc text="Client":::** app.*
+
 [!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
 ### `FetchData` component
 
+*This section pertains to the solution's **:::no-loc text="Client":::** app.*
+
 [!INCLUDE[](~/blazor/security/includes/fetchdata-component.md)]
 
-## Run the app
+## Azure App Service on Linux
 
-[!INCLUDE[](~/blazor/security/includes/run-the-app.md)]
+Specify the issuer explicitly when deploying to Azure App Service on Linux. For more information, see <xref:security/authentication/identity/spa#azure-app-service-on-linux>.
 
 ## Name and role claim with API authorization
 
@@ -381,9 +428,11 @@ builder.Services.AddApiAuthorization()
     .AddAccountClaimsPrincipalFactory<CustomUserFactory>();
 ```
 
-In the **:::no-loc text="Server":::** app, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> on the Identity builder, which adds role-related services:
+In the **:::no-loc text="Server":::** app, call <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles%2A> on the Identity builder, which adds role-related services.
 
 :::moniker range=">= aspnetcore-6.0"
+
+In `Program.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Identity;
@@ -399,6 +448,8 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
+
+In `Startup.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Identity;
@@ -429,6 +480,8 @@ In the **:::no-loc text="Server":::** app:
 
 :::moniker range=">= aspnetcore-6.0"
 
+In `Program.cs`:
+
 ```csharp
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -449,6 +502,8 @@ JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
+
+In `Startup.cs`:
 
 ```csharp
 using System.IdentityModel.Tokens.Jwt;
