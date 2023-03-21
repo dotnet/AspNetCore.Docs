@@ -52,7 +52,7 @@ For guidance on how to create a server-side web API, see <xref:tutorials/first-w
 
 The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package provides extension methods for [`System.Net.Http.HttpClient`](https://www.nuget.org/packages/System.Net.Http.HttpClient) and [`System.Net.Http.HttpContent`](https://www.nuget.org/packages/System.Net.Http.HttpContent) that perform automatic serialization and deserialization using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json).
 
-The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package is provided by the .NET Core shared framework and doesn't require adding a package reference to the app.
+The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package is provided by the .NET shared framework and doesn't require adding a package reference to the app.
 
 ## Add the `HttpClient` service
 
@@ -679,7 +679,7 @@ For guidance on how to create a server-side web API, see <xref:tutorials/first-w
 
 The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package provides extension methods for [`System.Net.Http.HttpClient`](https://www.nuget.org/packages/System.Net.Http.HttpClient) and [`System.Net.Http.HttpContent`](https://www.nuget.org/packages/System.Net.Http.HttpContent) that perform automatic serialization and deserialization using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json).
 
-The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package is provided by the .NET Core shared framework and doesn't require adding a package reference to the app.
+The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package is provided by the .NET shared framework and doesn't require adding a package reference to the app.
 
 ## Add the `HttpClient` service
 
