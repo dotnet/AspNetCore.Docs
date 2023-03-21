@@ -75,6 +75,8 @@ When working with a load balancer several steps can ensure a smooth transition o
 (need specific examples for different environments)
 -->
 
+For detailed information on Generic host shutdown, see [Host shutdown](/dotnet/core/extensions/generic-host#host-shutdown). Although the [minimal hosting model has some differences with the generic host](/aspnet/core/migration/50-to-60#faq), the generic host underpins the minimal hosting model and behaves similarly on shutdown.
+
 ## Additional resources
 
 <a name="endpoint-configuration"></a>
