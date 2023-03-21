@@ -1,7 +1,5 @@
 :::moniker range=">= aspnetcore-3.1 < aspnetcore-6.0"
 
-[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
-
 This tutorial teaches the basics of building a real-time app using SignalR. You learn how to:
 
 > [!div class="checklist"]

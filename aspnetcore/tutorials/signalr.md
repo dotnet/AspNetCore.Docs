@@ -6,7 +6,7 @@ description: In this tutorial, you create a chat app that uses ASP.NET Core Sign
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
-ms.date: 03/08/2023
+ms.date: 03/21/2023
 uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
@@ -272,6 +272,12 @@ The name and message are displayed on both pages instantly.
 ## Publish to Azure
 
 For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore). For more information on Azure SignalR Service, see [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-7.0"
+
+[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
 
 :::moniker-end
 
