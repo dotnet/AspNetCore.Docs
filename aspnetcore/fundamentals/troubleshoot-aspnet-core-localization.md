@@ -101,3 +101,7 @@ When the root namespace of an assembly is different than the assembly name, loca
 ## Resources & Build Action
 
 If you use resource files for localization, it's important that they have an appropriate build action. They should be **Embedded Resource**, otherwise the `ResourceStringLocalizer` is not able to find these resources.
+
+## GitHub issues with helpful problem solving tips
+
+* [AspNetCore.Docs/issues/28674](https://github.com/dotnet/AspNetCore.Docs/issues/28674)
