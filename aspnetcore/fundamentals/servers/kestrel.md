@@ -49,21 +49,31 @@ The following timeouts and rate limits aren't enforced when a debugger is attach
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinRequestBodyDataRateFeature>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Features.IHttpMinResponseDataRateFeature>
 
-## Graceful shutdown
+## Shutdown
 
-- The Host receives a shutdown signal (e.g. CTL+C, StopAsync, etc.)
-- IHostApplicationLifetime.ApplicationStopping is signaled to notify the application. Long running operations should subscribe to this event.
-- The Host calls IServer.StopAsync with a configurable shutdown timeout (default 30s)
-- Kestrel (and Http.Sys) close their port bindings and stop accepting new connections. They also signal current connections to stop processing new requests. For HTTP/2 and HTTP/3 this involves sending a preliminary GoAway message to the client. For HTTP/1.1 requests are processed in order so it stops that connection loop.
-  - IIS is a little different, it rejects new requests with a 503.
-- Active requests are given until the shutdown timeout to complete. If everything completes before the timeout then the server returns control to the host sooner. If the timeout expires then pending connections & requests are forcibly aborted which can cause errors to be reported in the logs and to the clients.
+The following list details server shutdown:
 
-When working with a load balancer several steps can ensure a smooth transition of clients to a new destination.
-- Bring up the new instance and start balancing traffic to it (you may already be running several instances for scale purposes)
-- Disable or remove the old instance in the load balancer config so it stops receiving new traffic.
-- Signal the old instance to shut down
-- Wait for it to drain or timeout
+* The Host receives a shutdown signal, for example, from `CTL+C`, [StopAsync](/aspnet/core/fundamentals/host/hosted-services#stopasync), etc.
+* [IHostApplicationLifetime.ApplicationStopping](xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping) is signaled to notify the app. Long running operations should subscribe to this event.
+* The Host calls [IServer.StopAsync](xref:Microsoft.AspNetCore.Hosting.Server.IServer.StopAsync%2A) with a configurable shutdown timeout. The default shutdown is 30 seconds.
+* Kestrel (and [Http.Sys](/aspnet/core/fundamentals/servers/#kestrel-vs-httpsys)):
+  * Close their port bindings and stop accepting new connections.
+  * Signal current connections to stop processing new requests. For HTTP/2 and HTTP/3 this involves sending a preliminary GoAway message to the client. For HTTP/1.1, requests are processed in order so it stops that connection loop.
+    * IIS is a little different, it rejects new requests with a [503](https://developer.mozilla.org/docs/Web/HTTP/Status/503) status.
+* Active requests are given until the shutdown timeout to complete. If everything completes before the timeout then the server returns control to the host sooner. If the timeout expires then pending connections and requests are forcibly aborted. Aborting connections and requests can cause errors to be reported in the logs and to the clients.
+
+### Using a load balancer for graceful shutdown
+
+When working with a load balancer several steps can ensure a smooth transition of clients to a new destination:
+
+* If other instances aren't running and able to meet demand, start a new server instance.
+* Start balancing traffic to the other instances. Many apps run multiple instances and [auto scaling](/azure/azure-monitor/autoscale/autoscale-get-started?toc=%2Fazure%2Fapp-service%2Ftoc.json) to meet demand.
+* Disable or remove the old instance in the load balancer configuration so it stops receiving new traffic.
+* Signal the old instance to shut down.
+* Wait for the shutting down server to drain or timeout.
+<!--
 (need specific examples for different environments)
+-->
 
 ## Additional resources
 
