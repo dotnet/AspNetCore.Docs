@@ -48,11 +48,11 @@ public class TodoItem
 
 For guidance on how to create a server-side web API, see <xref:tutorials/first-web-api>. For information on Cross-origin resource sharing (CORS), see the *Cross-origin resource sharing (CORS)* section later in this article.
 
-## Packages
+## Package
 
-Add a package reference for [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json).
+The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package provides extension methods for [`System.Net.Http.HttpClient`](https://www.nuget.org/packages/System.Net.Http.HttpClient) and [`System.Net.Http.HttpContent`](https://www.nuget.org/packages/System.Net.Http.HttpContent) that perform automatic serialization and deserialization using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json).
 
-[!INCLUDE[](~/includes/package-reference.md)]
+The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package is provided by the shared framework and doesn't require adding a package reference to the app.
 
 ## Add the `HttpClient` service
 
@@ -675,11 +675,11 @@ public class TodoItem
 
 For guidance on how to create a server-side web API, see <xref:tutorials/first-web-api>. For information on Cross-origin resource sharing (CORS), see the *Cross-origin resource sharing (CORS)* section later in this article.
 
-## Packages
+## Package
 
-Add a package reference for [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json).
+The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package provides extension methods for [`System.Net.Http.HttpClient`](https://www.nuget.org/packages/System.Net.Http.HttpClient) and [`System.Net.Http.HttpContent`](https://www.nuget.org/packages/System.Net.Http.HttpContent) that perform automatic serialization and deserialization using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json).
 
-[!INCLUDE[](~/includes/package-reference.md)]
+The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package is provided by the shared framework and doesn't require adding a package reference to the app.
 
 ## Add the `HttpClient` service
 
@@ -1302,9 +1302,11 @@ public class TodoItem
 
 For guidance on how to create a server-side web API, see <xref:tutorials/first-web-api>. For information on Cross-origin resource sharing (CORS), see the *Cross-origin resource sharing (CORS)* section later in this article.
 
-## Packages
+## Package
 
-Add a package reference for [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json).
+The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package provides extension methods for [`System.Net.Http.HttpClient`](https://www.nuget.org/packages/System.Net.Http.HttpClient) and [`System.Net.Http.HttpContent`](https://www.nuget.org/packages/System.Net.Http.HttpContent) that perform automatic serialization and deserialization using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json).
+
+Confirm or add a package reference for [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json).
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -1931,9 +1933,11 @@ public class TodoItem
 
 For guidance on how to create a server-side web API, see <xref:tutorials/first-web-api>. For information on Cross-origin resource sharing (CORS), see the *Cross-origin resource sharing (CORS)* section later in this article.
 
-## Packages
+## Package
 
-Add a package reference for [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json).
+The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package provides extension methods for [`System.Net.Http.HttpClient`](https://www.nuget.org/packages/System.Net.Http.HttpClient) and [`System.Net.Http.HttpContent`](https://www.nuget.org/packages/System.Net.Http.HttpContent) that perform automatic serialization and deserialization using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json).
+
+Confirm or add a package reference for [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json).
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
