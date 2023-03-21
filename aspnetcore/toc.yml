@@ -1700,6 +1700,8 @@ items:
       - name: ASP.NET to ASP.NET Core
         displayName: migrate, migration
         items:
+          - name: Overview
+            uid: migration/proper-to-2x/index
           - name: Incremental migration
             displayName: migrate, migration
             items:
@@ -1725,8 +1727,6 @@ items:
               uid: migration/inc/ab-testing
             - name: Blazor support with YARP 
               uid: migration/inc/blazor
-          - name: Migration overview
-            uid: migration/proper-to-2x/index
           - name: MVC and Web API
             uid: migration/mvc
           - name: Web Forms
