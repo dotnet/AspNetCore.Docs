@@ -14,6 +14,10 @@ uid: tutorials/signalr
 
 # Tutorial: Get started with ASP.NET Core SignalR
 
+:::moniker range="< aspnetcore-7.0"
+[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
+:::moniker-end
+
 :::moniker range=">= aspnetcore-7.0"
 
 This tutorial teaches the basics of building a real-time app using SignalR. You learn how to:
@@ -272,12 +276,6 @@ The name and message are displayed on both pages instantly.
 ## Publish to Azure
 
 For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore). For more information on Azure SignalR Service, see [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview).
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-7.0"
-
-[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
 
 :::moniker-end
 
