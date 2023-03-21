@@ -5074,6 +5074,14 @@ For more information, see the following articles:
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-6.0"
+
+## Blazor custom elements
+
+Coverage on Blazor custom elements has been moved to <xref:blazor/components/js-spa-frameworks#blazor-custom-elements>.
+
+:::moniker-end
+
 <!--Reference links in article-->
 [1]: <xref:mvc/views/razor#code>
 [2]: <xref:mvc/views/razor#using>
