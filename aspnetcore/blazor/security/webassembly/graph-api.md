@@ -5,7 +5,7 @@ description: Learn how to use the Microsoft Graph SDK/API with Blazor WebAssembl
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2023
+ms.date: 03/22/2023
 uid: blazor/security/webassembly/graph-api
 zone_pivot_groups: blazor-graph-api
 ---
@@ -227,13 +227,11 @@ public class CustomAccountFactory
             {
                 try
                 {
-                    var client = ActivatorUtilities
-                        .CreateInstance<GraphServiceClient>(
-                            serviceProvider, 
-                            new HttpClient(), 
-                            serviceProvider
-                                .GetRequiredService<IAuthenticationProvider>(), 
-                            baseUrl);
+                    var client = new GraphServiceClient(
+                        new HttpClient(),
+                        serviceProvider
+                            .GetRequiredService<IAuthenticationProvider>(),
+                        baseUrl);
 
                     var user = await client.Me.GetAsync();
               
