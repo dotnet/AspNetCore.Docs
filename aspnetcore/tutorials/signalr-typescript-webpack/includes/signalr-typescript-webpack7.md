@@ -238,6 +238,12 @@ Confirm that the app works with the following steps:
 
 ![Message displayed in both browser windows](~/tutorials/signalr-typescript-webpack/_static/browsers-message-broadcast.png)
 
+## Next steps
+
+* [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs)
+* [Authentication and authorization in ASP.NET Core SignalR](xref:signalr/authn-and-authz)
+* [MessagePack Hub Protocol in SignalR for ASP.NET Core](xref:signalr/messagepackhubprotocol)
+
 ## Additional resources
 
 * <xref:signalr/javascript-client>
