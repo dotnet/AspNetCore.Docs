@@ -337,7 +337,7 @@ If you need to transform *web.config* on publish (for example, set environment v
 * <xref:host-and-deploy/web-farm>
 * [Tutorial: Connect to SQL Database from .NET App Service without secrets using a managed identity](/azure/app-service/tutorial-connect-msi-sql-database?tabs=efcore%2Cdotnetcore)
 
-Azure App Service on Windows Server uses [Kestrel and YARP](https://devblogs.microsoft.com/dotnet/bringing-kestrel-and-yarp-to-azure-app-services/).
+Azure App Service on Windows Server uses [Internet Information Services (IIS)](https://www.iis.net/). [Kestrel and YARP](https://devblogs.microsoft.com/dotnet/bringing-kestrel-and-yarp-to-azure-app-services/) on the front end provides the load balancer. The following topics pertain to the underlying IIS technology:
 
 The following topics pertain to IIS technology:
 
