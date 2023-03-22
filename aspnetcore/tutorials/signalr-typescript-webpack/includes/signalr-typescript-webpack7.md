@@ -1,4 +1,4 @@
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range="= aspnetcore-7.0"
 
 This tutorial demonstrates using [Webpack](https://webpack.js.org/) in an ASP.NET Core SignalR web app to bundle and build a client written in [TypeScript](https://www.typescriptlang.org/). Webpack enables developers to bundle and build the client-side resources of a web app.
 
