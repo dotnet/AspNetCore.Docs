@@ -151,6 +151,12 @@ The services are registered in `IHostBuilder.ConfigureServices` (`Program.cs`). 
 
 :::code language="csharp" source="~/fundamentals/host/hosted-services/samples/6.0/BackgroundTasksSample/Program.cs" id="snippet4":::
 
+## Asynchronous timed background task
+
+The following code creates an asynchronous timed background task:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/blob/main/fundamentals/host/TimedBackgroundTasks/TimedHostedService.cs":::
+
 ## Additional resources
 
 * [Background services unit tests on GitHub](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/tests/UnitTests/BackgroundServiceTests.cs).
