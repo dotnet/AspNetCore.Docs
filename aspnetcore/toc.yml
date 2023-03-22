@@ -1646,51 +1646,60 @@ items:
       - name: High performance logging
         displayName: loggermessage
         href: /dotnet/core/extensions/high-performance-logging?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
+      - name: Logging (not ASP.NET Core)
+        displayName: migrate, migration
+        uid: migration/logging-nonaspnetcore
       - name: Use a file watcher
         uid: tutorials/dotnet-watch
       - name: Factory-based middleware
         uid: fundamentals/middleware/extensibility
       - name: Factory-based middleware with third-party container
         uid: fundamentals/middleware/extensibility-third-party-container
-  - name: Migration
+  - name: Migration and updates
     items:
-      - name: 6.0 to 7.0
-        displayName: migrate, migration
-        uid: migration/60-to-70
-      - name: 5.0 to 6.0
-        displayName: migrate, migration
-        uid: migration/50-to-60
-      - name: 3.1/5.0 Code to 6.0
-        displayName: migrate, migration
-        uid: migration/50-to-60-samples
-      - name: 3.1 to 6.0 LTS
-        displayName: migrate, migration, LTS
-        uid: migration/31-to-60
-      - name: 3.1 to 5.0
-        displayName: migrate, migration
-        uid: migration/31-to-50
-      - name: 3.0 to 3.1
-        displayName: migrate, migration
-        uid: migration/30-to-31
-      - name: 2.2 to 3.0
-        displayName: migrate, migration
-        uid: migration/22-to-30
-      - name: 2.1 to 2.2
-        displayName: migrate, migration
-        uid: migration/21-to-22
-      - name: 2.0 to 2.1
-        displayName: migrate, migration
-        uid: migration/20_21
-      - name: 1.x to 2.0
-        displayName: migrate, migration
+      - name: Version updates
         items:
-          - name: Overview
-            uid: migration/1x-to-2x/index
-          - name: Authentication and Identity
-            uid: migration/1x-to-2x/identity-2x
+          - name: 6.0 to 7.0
+            displayName: migrate, migration
+            uid: migration/60-to-70
+          - name: 5.0 to 6.0
+            displayName: migrate, migration
+            uid: migration/50-to-60
+          - name: 3.1/5.0 Code to 6.0
+            displayName: migrate, migration
+            uid: migration/50-to-60-samples
+          - name: 3.1 to 6.0 LTS
+            displayName: migrate, migration, LTS
+            uid: migration/31-to-60
+          - name: Older versions
+            items:
+              - name: 3.1 to 5.0
+                displayName: migrate, migration
+                uid: migration/31-to-50
+              - name: 3.0 to 3.1
+                displayName: migrate, migration
+                uid: migration/30-to-31
+              - name: 2.2 to 3.0
+                displayName: migrate, migration
+                uid: migration/22-to-30
+              - name: 2.1 to 2.2
+                displayName: migrate, migration
+                uid: migration/21-to-22
+              - name: 2.0 to 2.1
+                displayName: migrate, migration
+                uid: migration/20_21
+              - name: 1.x to 2.0
+                displayName: migrate, migration
+                items:
+                  - name: Overview
+                    uid: migration/1x-to-2x/index
+                  - name: Authentication and Identity
+                    uid: migration/1x-to-2x/identity-2x
       - name: ASP.NET to ASP.NET Core
         displayName: migrate, migration
         items:
+          - name: Overview
+            uid: migration/proper-to-2x/index
           - name: Incremental migration
             displayName: migrate, migration
             items:
@@ -1716,8 +1725,6 @@ items:
               uid: migration/inc/ab-testing
             - name: Blazor support with YARP 
               uid: migration/inc/blazor
-          - name: Overview
-            uid: migration/proper-to-2x/index
           - name: MVC and Web API
             uid: migration/mvc
           - name: Web Forms
@@ -1734,9 +1741,6 @@ items:
             uid: migration/proper-to-2x/membership-to-core-identity
           - name: HTTP modules to middleware
             uid: migration/http-modules
-      - name: Logging (not ASP.NET Core)
-        displayName: migrate, migration
-        uid: migration/logging-nonaspnetcore
   - name: API reference
     href: /dotnet/api/
   - name: Contribute
