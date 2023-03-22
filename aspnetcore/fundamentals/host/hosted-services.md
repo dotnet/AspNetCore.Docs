@@ -160,3 +160,5 @@ The services are registered in `IHostBuilder.ConfigureServices` (`Program.cs`). 
 * <xref:System.Threading.Timer>
 
 :::moniker-end
+
+[!INCLUDE[](~/fundamentals/host/hosted-services/includes/hosted-services5.md)]
