@@ -133,7 +133,7 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
 
 1. Replace the `scripts` property of `package.json` file with the following code:
 
-   [!code-json[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/package.json?range=7-11)
+   [!code-json[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/6.x/SignalRWebpack/package.json?range=7-11)]
 
    The following scripts are defined:
 

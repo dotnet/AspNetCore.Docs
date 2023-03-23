@@ -139,6 +139,8 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
 
 1. Replace the `scripts` property of `package.json` file with the following code:
 
+   [!code-json[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/7.x/SignalRWebpack/package.json?range=7-11)]
+
    The following scripts are defined:
 
    * `build`: Bundles the client-side resources in development mode and watches for file changes. The file watcher causes the bundle to regenerate each time a project file changes. The `mode` option disables production optimizations, such as tree shaking and minification. use `build` in development only.

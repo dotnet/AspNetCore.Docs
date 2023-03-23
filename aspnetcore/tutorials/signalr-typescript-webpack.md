@@ -154,22 +154,22 @@ In this section, you create a [Node.js](https://nodejs.org/) project to convert 
 
 1. Replace the `scripts` property of `package.json` file with the following code:
 
-    [!code-json[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/package.json?range=7-11)]
+   [!code-json[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/package.json?range=7-11)]
 
-    The following scripts are defined:
+   The following scripts are defined:
 
-    * `build`: Bundles the client-side resources in development mode and watches for file changes. The file watcher causes the bundle to regenerate each time a project file changes. The `mode` option disables production optimizations, such as tree shaking and minification. use `build` in development only.
-    * `release`: Bundles the client-side resources in production mode.
-    * `publish`: Runs the `release` script to bundle the client-side resources in production mode. It calls the .NET CLI's [publish](/dotnet/core/tools/dotnet-publish) command to publish the app.
+   * `build`: Bundles the client-side resources in development mode and watches for file changes. The file watcher causes the bundle to regenerate each time a project file changes. The `mode` option disables production optimizations, such as tree shaking and minification. use `build` in development only.
+   * `release`: Bundles the client-side resources in production mode.
+   * `publish`: Runs the `release` script to bundle the client-side resources in production mode. It calls the .NET CLI's [publish](/dotnet/core/tools/dotnet-publish) command to publish the app.
 
 1. Create a file named `webpack.config.js` in the project root, with the following code:
 
-    [!code-javascript[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/webpack.config.js)]
+   [!code-javascript[](~/../AspNetCore.Docs.Samples/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/webpack.config.js)]
 
-    The preceding file configures the Webpack compilation process:
+   The preceding file configures the Webpack compilation process:
 
-    * The `output` property overrides the default value of `dist`. The bundle is instead emitted in the `wwwroot` directory.
-    * The `resolve.extensions` array includes `.js` to import the SignalR client JavaScript.
+   * The `output` property overrides the default value of `dist`. The bundle is instead emitted in the `wwwroot` directory.
+   * The `resolve.extensions` array includes `.js` to import the SignalR client JavaScript.
 
 1. Copy the `src` directory from the [sample project](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/tutorials/signalr-typescript-webpack/samples/8.x/SignalRWebpack/src/) into the project root. The `src` directory contains the following files:
 
