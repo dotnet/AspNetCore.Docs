@@ -302,7 +302,7 @@ Using `page` as a route parameter with attribute routing is a common error. Doin
 
 The special parameter names are used by the URL generation to determine if a URL generation operation refers to a Razor Page or to a Controller.
 
-* The following keywords are reserved in the context of a Razor view or a Razor Page:
+The following keywords are reserved in the context of a Razor view or a Razor Page:
 
 * `page`
 * `using`
