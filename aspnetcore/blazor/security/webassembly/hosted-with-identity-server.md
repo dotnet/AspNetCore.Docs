@@ -5,7 +5,7 @@ description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app wi
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/21/2023
+ms.date: 03/23/2023
 uid: blazor/security/webassembly/hosted-with-identity-server
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Identity Server
@@ -61,7 +61,7 @@ dotnet new blazorwasm -au Individual -ho -o {APP NAME}
 | ------------ | -------------- |
 | `{APP NAME}` | `BlazorSample` |
 
-The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
+The output location specified with the optional `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
 
 Avoid using dashes (`-`) in the project name that break the formation of the OIDC app identifier. Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration, and dashes aren't permitted in an OIDC app identifier. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives.
 
@@ -99,7 +99,7 @@ The following services are registered.
 
 * In `Program.cs`:
 
-  * ASP.NET Core Identity:
+  * Entity Framework Core and ASP.NET Core Identity:
 
     ```csharp
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -111,14 +111,14 @@ The following services are registered.
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
-  * Identity Server with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method that sets up default ASP.NET Core conventions on top of IdentityServer:
+  * Identity Server with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method that sets up default ASP.NET Core conventions on top of Identity Server:
 
     ```csharp
     builder.Services.AddIdentityServer()
         .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
     ```
 
-  * Authentication with an additional <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method that configures the app to validate JWT tokens produced by IdentityServer:
+  * Authentication with an additional <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method that configures the app to validate JWT tokens produced by Identity Server:
 
     ```csharp
     builder.Services.AddAuthentication()
@@ -131,7 +131,7 @@ The following services are registered.
 
 * In `Startup.ConfigureServices` of `Startup.cs`:
 
-  * ASP.NET Core Identity:
+  * Entity Framework Core and ASP.NET Core Identity:
 
     ```csharp
     services.AddDbContext<ApplicationDbContext>(options =>
@@ -143,14 +143,14 @@ The following services are registered.
         .AddEntityFrameworkStores<ApplicationDbContext>();
     ```
 
-  * Identity Server with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method that sets up default ASP.NET Core conventions on top of IdentityServer:
+  * Identity Server with an additional <xref:Microsoft.Extensions.DependencyInjection.IdentityServerBuilderConfigurationExtensions.AddApiAuthorization%2A> helper method that sets up default ASP.NET Core conventions on top of Identity Server:
 
     ```csharp
     services.AddIdentityServer()
         .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
     ```
 
-  * Authentication with an additional <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method that configures the app to validate JWT tokens produced by IdentityServer:
+  * Authentication with an additional <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilderExtensions.AddIdentityServerJwt%2A> helper method that configures the app to validate JWT tokens produced by Identity Server:
 
     ```csharp
     services.AddAuthentication()
@@ -173,7 +173,7 @@ The following services are registered.
 
 :::moniker range="< aspnetcore-6.0"
 
-* In `Startup.Configure`:
+* In `Startup.Configure` of `Startup.cs`:
 
 :::moniker-end
 
@@ -238,7 +238,7 @@ In the `OidcConfigurationController` (`Controllers/OidcConfigurationController.c
 
 *This section pertains to the solution's **:::no-loc text="Server":::** app.*
 
-In the app settings file (`appsettings.json`) at the project root, the `IdentityServer` section describes the list of configured clients. In the following example, there's a single client. The client name corresponds to the app name and is mapped by convention to the OAuth `ClientId` parameter. The profile indicates the app type being configured. The profile is used internally to drive conventions that simplify the configuration process for the server.
+In the app settings file (`appsettings.json`) at the project root, the `IdentityServer` section describes the list of configured clients. In the following example, there's a single client. The client name corresponds to the **:::no-loc text="Client":::** app's assembly name and is mapped by convention to the OAuth `ClientId` parameter. The profile indicates the app type being configured. The profile is used internally to drive conventions that simplify the configuration process for the server.
 
 ```json
 "IdentityServer": {
@@ -322,22 +322,7 @@ By default, configuration for the app is loaded by convention from `_configurati
 
 *This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
-The `LoginDisplay` component (`Shared/LoginDisplay.razor`) is rendered in the `MainLayout` component (`Shared/MainLayout.razor`) and manages the following behaviors:
-
-* For authenticated users:
-  * Displays the current user name.
-  * Offers a link to the user profile page in ASP.NET Core Identity.
-  * Offers a button to log out of the app.
-* For anonymous users:
-  * Offers the option to register.
-  * Offers the option to log in.
-
-Due to changes in the framework across releases of ASP.NET Core, Razor markup for the `LoginDisplay` component isn't shown in this section. To inspect the markup of the component for a given release, use ***either*** of the following approaches:
-
-* Create an app provisioned for authentication from the default Blazor WebAssembly project template for the version of ASP.NET Core that you intend to use. Inspect the `LoginDisplay` component in the generated app.
-* Inspect the `LoginDisplay` component in [reference source](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/Shared/LoginDisplay.IndividualLocalAuth.razor). The templated content for `Hosted` equal to `true` is used.
-
-  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+[!INCLUDE[](~/blazor/security/includes/logindisplay-component.md)]
 
 ### `Authentication` component
 
@@ -362,6 +347,82 @@ Specify the issuer explicitly when deploying to Azure App Service on Linux. For 
 In the **:::no-loc text="Client":::** app, create a custom user factory. Identity Server sends multiple roles as a JSON array in a single `role` claim. A single role is sent as a string value in the claim. The factory creates an individual `role` claim for each of the user's roles.
 
 `CustomUserFactory.cs`:
+
+:::moniker range=">= aspnetcore-6.0"
+
+```csharp
+using System.Security.Claims;
+using System.Text.Json;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication.Internal;
+
+public class CustomUserFactory
+    : AccountClaimsPrincipalFactory<RemoteUserAccount>
+{
+    public CustomUserFactory(IAccessTokenProviderAccessor accessor)
+        : base(accessor)
+    {
+    }
+
+    public override async ValueTask<ClaimsPrincipal> CreateUserAsync(
+        RemoteUserAccount account,
+        RemoteAuthenticationUserOptions options)
+    {
+        var user = await base.CreateUserAsync(account, options);
+
+        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        {
+            var identity = (ClaimsIdentity)user.Identity;
+            var roleClaims = identity.FindAll(identity.RoleClaimType).ToArray();
+
+            if (roleClaims.Any())
+            {
+                foreach (var existingClaim in roleClaims)
+                {
+                    identity.RemoveClaim(existingClaim);
+                }
+
+                var rolesElem = 
+                    account.AdditionalProperties[identity.RoleClaimType];
+
+                if (options.RoleClaim is not null && rolesElem is JsonElement roles)
+                {
+                    if (roles.ValueKind == JsonValueKind.Array)
+                    {
+                        foreach (var role in roles.EnumerateArray())
+                        {
+                            var roleValue = role.GetString();
+
+                            if (!string.IsNullOrEmpty(roleValue))
+                            {
+                                identity.AddClaim(
+                                  new Claim(options.RoleClaim, roleValue));
+                            }
+        
+                        }
+                    }
+                    else
+                    {
+                        var roleValue = roles.GetString();
+
+                        if (!string.IsNullOrEmpty(roleValue))
+                        {
+                            identity.AddClaim(
+                              new Claim(options.RoleClaim, roleValue));
+                        }
+                    }
+                }
+            }
+        }
+
+        return user;
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
 
 ```csharp
 using System.Linq;
@@ -420,6 +481,8 @@ public class CustomUserFactory
     }
 }
 ```
+
+:::moniker-end
 
 In the **:::no-loc text="Client":::** app, register the factory in `Program.cs`:
 
@@ -484,7 +547,6 @@ In `Program.cs`:
 
 ```csharp
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 
 ...
 
@@ -530,6 +592,41 @@ In the **:::no-loc text="Server":::** app, create a `ProfileService` implementat
 
 `ProfileService.cs`:
 
+:::moniker range=">= aspnetcore-6.0"
+
+```csharp
+using IdentityModel;
+using Duende.IdentityServer.Models;
+using Duende.IdentityServer.Services;
+
+public class ProfileService : IProfileService
+{
+    public ProfileService()
+    {
+    }
+
+    public async Task GetProfileDataAsync(ProfileDataRequestContext context)
+    {
+        var nameClaim = context.Subject.FindAll(JwtClaimTypes.Name);
+        context.IssuedClaims.AddRange(nameClaim);
+
+        var roleClaims = context.Subject.FindAll(JwtClaimTypes.Role);
+        context.IssuedClaims.AddRange(roleClaims);
+
+        await Task.CompletedTask;
+    }
+
+    public async Task IsActiveAsync(IsActiveContext context)
+    {
+        await Task.CompletedTask;
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
 ```csharp
 using IdentityModel;
 using Duende.IdentityServer.Models;
@@ -559,6 +656,8 @@ public class ProfileService : IProfileService
     }
 }
 ```
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 
