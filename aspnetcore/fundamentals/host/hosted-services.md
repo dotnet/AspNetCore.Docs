@@ -155,7 +155,9 @@ The services are registered in `IHostBuilder.ConfigureServices` (`Program.cs`). 
 
 The following code creates an asynchronous timed background task:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/blob/main/fundamentals/host/TimedBackgroundTasks/TimedHostedService.cs":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/host/TimedBackgroundTasks/TimedHostedService.cs":::
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/signalr/hubs/samples/6.x/SignalRHubsSample/Snippets/Hubs/ChatHub.cs" id="snippet_OnDisconnectedAsync":::
 
 ## Additional resources
 
