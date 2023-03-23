@@ -175,7 +175,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
 1. In `Startup.ConfigureServices`, call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A>.
 
-   [!code-csharp[](~/tutorials/signalr-typescript-webpack/samples/3.x/Startup.cs?snippet_AddSignalR)]
+   [!code-csharp[](~/tutorials/signalr-typescript-webpack/samples/3.x/Startup.cs?name=snippet_AddSignalR)]
 
 1. Create a new directory named *Hubs* in the project root *SignalRWebPack/* to store the SignalR hub.
 
