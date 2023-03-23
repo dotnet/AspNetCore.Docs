@@ -447,7 +447,7 @@ In the preceding example:
 
 :::zone pivot="maui"
 
-In the `MauiProgram.CreateMauiApp` method of `MainWindow.cs`, add the authorization services and the Blazor abstraction to the service collection:
+In the `MauiProgram.CreateMauiApp` method of `MauiProgram.cs`, add the authorization services and the Blazor abstraction to the service collection:
 
 ```csharp
 builder.Services.AddAuthorizationCore();
@@ -636,7 +636,7 @@ The following steps describe how to:
 * Resolve the `AuthenticatedUser` service to set the authenticated user's claims principal. See your identity provider's documentation for details.
 * Return the built host.
 
-In the `MauiProgram.CreateMauiApp` method of `MainWindow.cs`, add namespaces for <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> and <xref:System.Security.Claims?displayProperty=fullName>:
+In the `MauiProgram.CreateMauiApp` method of `MauiProgram.cs`, add namespaces for <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> and <xref:System.Security.Claims?displayProperty=fullName>:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -831,7 +831,7 @@ public class ExternalAuthService
 
 :::zone pivot="maui"
 
-In the `MauiProgram.CreateMauiApp` method of `MainWindow.cs`, add a namespace for <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName>:
+In the `MauiProgram.CreateMauiApp` method of `MauiProgram.cs`, add a namespace for <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName>:
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -979,7 +979,7 @@ In the preceding example:
 
 :::zone pivot="maui"
 
-In the `MauiProgram.CreateMauiApp` method of `MainWindow.cs`, add the authorization services and the Blazor abstraction to the service collection:
+In the `MauiProgram.CreateMauiApp` method of `MauiProgram.cs`, add the authorization services and the Blazor abstraction to the service collection:
 
 ```csharp
 builder.Services.AddAuthorizationCore();
