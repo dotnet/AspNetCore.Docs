@@ -10,6 +10,10 @@ uid: mvc/controllers/routing
 
 By [Ryan Nowak](https://github.com/rynowak), [Kirk Larkin](https://twitter.com/serpent5), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
+:::moniker range="< aspnetcore-6.0"
+[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
+:::moniker-end
+
 :::moniker range=">= aspnetcore-6.0"
 
 ASP.NET Core controllers use the Routing [middleware](xref:fundamentals/middleware/index) to match the URLs of incoming requests and map them to [actions](#action).  Route templates:
