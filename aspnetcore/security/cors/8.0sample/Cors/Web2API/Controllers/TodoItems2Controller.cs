@@ -6,8 +6,8 @@ using Microsoft.Docs.Samples;
 
 namespace Web2API.Controllers;
 
-#region snippet2
-#region snippet
+// <snippet2> 
+// <snippet> 
 [Route("api/[controller]")]
 [ApiController]
 public class TodoItems2Controller : ControllerBase
@@ -36,14 +36,17 @@ public class TodoItems2Controller : ControllerBase
 
         return ControllerContext.MyDisplayRouteInfo(id);
     }
-    #endregion
+   // </snippet> 
 
-    // [EnableCors] // Not needed as OPTIONS path provided
+    // [EnableCors] // Not needed as OPTIONS path provided.
     [HttpDelete("{id}")]
     public IActionResult MyDelete(int id) =>
         ControllerContext.MyDisplayRouteInfo(id);
 
-    [EnableCors("MyPolicy")] // Rquired for this path
+    // [EnableCors] //  Warning ASP0023 Route '{id}' conflicts with another action route.
+    //                  An HTTP request that matches multiple routes results in an ambiguous
+    //                  match error.
+    [EnableCors("MyPolicy")] // Required for this path.
     [HttpGet]
     public IActionResult GetTodoItems() =>
         ControllerContext.MyDisplayRouteInfo();
@@ -52,9 +55,9 @@ public class TodoItems2Controller : ControllerBase
     public IActionResult GetTodoItems2() =>
         ControllerContext.MyDisplayRouteInfo();
 
-    [EnableCors("MyPolicy")]  // Rquired for this path
+    [EnableCors("MyPolicy")]  // Required for this path.
     [HttpDelete("{action}/{id}")]
     public IActionResult MyDelete2(int id) =>
         ControllerContext.MyDisplayRouteInfo(id);
 }
-#endregion
+// </snippet2> 

@@ -112,7 +112,9 @@ The [[DisableCors]](#dc6) attribute does **not**  disable CORS that has been ena
 
 In ASP.NET Core 7.0, the 
 
-In ASP.NET Core 9.0 and higher, 
+[!code-csharp[](~/security/cors/8.0sample/Cors/Web2API/Controllers/TodoItems2Controller.cs?name=snippet2&highlight=5-17)]
+
+In ASP.NET Core 8.0 and higher, 
 
 See [Test CORS with [EnableCors] attribute and RequireCors method](#tcer) for instructions on testing code similar to the preceding.
 
