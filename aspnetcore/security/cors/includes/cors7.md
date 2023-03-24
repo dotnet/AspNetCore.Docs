@@ -112,6 +112,8 @@ The [[DisableCors]](#dc6) attribute does **not**  disable CORS that has been ena
 
 In ASP.NET Core 7.0, the 
 
+In ASP.NET Core 9.0 and higher, 
+
 See [Test CORS with [EnableCors] attribute and RequireCors method](#tcer) for instructions on testing code similar to the preceding.
 
 <a name="attr"></a>
