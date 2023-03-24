@@ -1,7 +1,7 @@
 #define TESTE // FIRST SECOND THIRD ENDP ATTR DC DCORS AA SA AAH ERH CCO WHX AAH AAH2 PFX
 // PFX TEST TESTE
 #if FIRST
-#region snippet
+// <snippet>
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,9 +32,9 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-#endregion
+// </snippet>
 #elif SECOND
-#region snippet2
+// <snippet2>
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -65,9 +65,9 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-#endregion
+// </snippet2>
 #elif THIRD
-#region snippet3
+// <snippet3>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
@@ -95,9 +95,9 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-#endregion
+// </snippet3>
 #elif ENDP
-#region snippet_endp
+// <snippet_endp>
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -141,9 +141,9 @@ app.UseEndpoints(endpoints =>
 });
 
 app.Run();
-#endregion
+// </snippet_endp>
 #elif ATTR
-#region snippet_attr
+// <snippet_attr>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
@@ -179,9 +179,9 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-#endregion
+// </snippet_attr>
 #elif DC
-#region snippet_dc
+// <snippet_dc>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
@@ -212,9 +212,9 @@ app.MapControllers();
 app.MapRazorPages();
 
 app.Run();
-#endregion
+// </snippet_dc>
 #elif DCORS
-#region snippet_dcors
+// <snippet_dcors>
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -249,9 +249,9 @@ app.UseEndpoints(endpoints => {
 });
 
 app.Run();
-#endregion
+// </snippet_dcors>
 #elif AA
-#region snippet_aa
+// <snippet_aa>
 var MyAllowSpecificOrigins = "_MyAllowSubdomainPolicy";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -269,7 +269,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 var app = builder.Build();
-#endregion
+// </snippet_aa>
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -283,7 +283,7 @@ app.MapControllers();
 
 app.Run();
 #elif SA
-#region snippet_sa
+// <snippet_sa>
 using Microsoft.Net.Http.Headers;
 
 var MyAllowSpecificOrigins = "_MyAllowSubdomainPolicy";
@@ -303,7 +303,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 var app = builder.Build();
-#endregion
+// </snippet_sa>
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -317,7 +317,7 @@ app.MapControllers();
 
 app.Run();
 #elif AAH
-#region snippet_aah
+// <snippet_aah>
 var MyAllowSpecificOrigins = "_MyAllowSubdomainPolicy";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -335,7 +335,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 var app = builder.Build();
-#endregion
+// </snippet_aah>
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -348,7 +348,7 @@ app.MapControllers();
 
 app.Run();
 #elif ERH
-#region snippet_erh
+// <snippet_erh>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
@@ -364,7 +364,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 var app = builder.Build();
-#endregion
+// </snippet_erh>
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -377,7 +377,7 @@ app.MapControllers();
 
 app.Run();
 #elif CCO
-#region snippet_cco
+// <snippet_cco>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
@@ -393,7 +393,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 var app = builder.Build();
-#endregion
+// </snippet_cco>
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -406,7 +406,7 @@ app.MapControllers();
 
 app.Run();
 #elif WHX
-#region snippet_whx
+// <snippet_whx>
 using Microsoft.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -424,7 +424,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 var app = builder.Build();
-#endregion
+// </snippet_whx>
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -437,7 +437,7 @@ app.MapControllers();
 
 app.Run();
 #elif AAH2
-#region snippet_aah2
+// <snippet_aah2>
 using Microsoft.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -455,7 +455,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 var app = builder.Build();
-#endregion
+// </snippet_aah2>
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -468,7 +468,7 @@ app.MapControllers();
 
 app.Run();
 #elif PFX
-#region snippet_pfx
+// <snippet_pfx>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
@@ -484,7 +484,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 var app = builder.Build();
-#endregion
+// </snippet_pfx>
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

@@ -1,19 +1,4 @@
----
-title: Enable Cross-Origin Requests (CORS) in ASP.NET Core
-author: rick-anderson
-description: Learn how CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
-ms.author: riande
-ms.custom: mvc
-ms.date: 3/16/2023
-uid: security/cors
----
-# Enable Cross-Origin Requests (CORS) in ASP.NET Core
-
-:::moniker range="< aspnetcore-7.0"
-[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-7.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
@@ -124,6 +109,10 @@ In the preceding code:
 * The `/echo2` and Razor Pages endpoints do **not** allow cross-origin requests because no default policy was specified.
 
 The [[DisableCors]](#dc6) attribute does **not**  disable CORS that has been enabled by endpoint routing with `RequireCors`.
+
+In ASP.NET Core 7.0, the `[EnableCors]` attribute must pass a parameter or an [ASP0023](xref:diagnostics/code-analysis) <!-- [ASP0023](xref:diagnostics/asp0023) --> Warning is generated from a ambiguous match on the route. ASP.NET Core 8.0 and later doesn't generate the `ASP0023` warning.
+
+[!code-csharp[](~/security/cors/8.0sample/Cors/Web2API/Controllers/TodoItems2Controller.cs?name=snippet2&highlight=35-38,47)]
 
 See [Test CORS with [EnableCors] attribute and RequireCors method](#tcer) for instructions on testing code similar to the preceding.
 
@@ -624,6 +613,3 @@ Test the preceding code from the [test page](https://cors1.azurewebsites.net/tes
 * [Getting started with the IIS CORS module](https://blogs.iis.net/iisteam/getting-started-with-the-iis-cors-module)
 
 :::moniker-end
-
-[!INCLUDE[](~/security/cors/includes/cors56.md)]
-[!INCLUDE[](~/security/cors/includes/cors7.md)]
