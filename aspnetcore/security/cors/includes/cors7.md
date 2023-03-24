@@ -110,6 +110,8 @@ In the preceding code:
 
 The [[DisableCors]](#dc6) attribute does **not**  disable CORS that has been enabled by endpoint routing with `RequireCors`.
 
+In ASP.NET Core 7.0, the 
+
 See [Test CORS with [EnableCors] attribute and RequireCors method](#tcer) for instructions on testing code similar to the preceding.
 
 <a name="attr"></a>
