@@ -577,6 +577,10 @@ Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is 
 
 The `?` following `handler` means the route parameter is optional.
 
+## Collocation of JavaScript (JS) files
+
+[!INCLUDE[](~/includes/js-collocation.md)]
+
 ## Advanced configuration and settings
 
 The configuration and settings in following sections is not required by most apps.
