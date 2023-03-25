@@ -60,8 +60,8 @@ public class BirthdayMiddleware
             }
             finally // Ensure this runs even if the main code throws.
             {
-                // Clear the string builder and return it to the pool.
-                stringBuilder.Clear();
+                // return the stringBuilder to the pool
+                builderPool.Return(stringBuilder);
             }
 
             return;
