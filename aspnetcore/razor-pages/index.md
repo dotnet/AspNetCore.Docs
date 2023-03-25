@@ -8,10 +8,6 @@ ms.date: 04/14/2022
 uid: razor-pages/index
 ---
 
-:::moniker range="< aspnetcore-6.0"
-[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
-:::moniker-end
-
 # Introduction to Razor Pages in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Dave Brock](https://twitter.com/daveabrock), and [Kirk Larkin](https://twitter.com/serpent5)
@@ -23,6 +19,10 @@ If you're looking for a tutorial that uses the Model-View-Controller approach, s
 This document provides an introduction to Razor Pages. It's not a step by step tutorial. If you find some of the sections too advanced, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start). For an overview of ASP.NET Core, see the [Introduction to ASP.NET Core](xref:index).
 
 ## Prerequisites
+
+:::moniker range="< aspnetcore-6.0"
+[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
+:::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 
