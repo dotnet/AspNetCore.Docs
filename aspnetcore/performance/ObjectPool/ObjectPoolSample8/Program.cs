@@ -27,11 +27,11 @@ app.Run();
 
 public class ReusableStringBuilder : IResettable
 {
-    public StringBuilder Data { get; } = new StringBuilder();
+    public StringBuilder StringBuilder { get; } = new StringBuilder();
 
     public bool TryReset()
     {
-        Data.Clear();
+        StringBuilder.Clear();
         return true;
     }
 }

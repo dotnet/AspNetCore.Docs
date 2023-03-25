@@ -27,7 +27,7 @@ public class BirthdayMiddleware
 
             // Request a StringBuilder from the pool.
             var reusableStringBuilder = builderPool.Get();
-            var stringBuilder = reusableStringBuilder.Data;
+            var stringBuilder = reusableStringBuilder.StringBuilder;
 
             try
             {
