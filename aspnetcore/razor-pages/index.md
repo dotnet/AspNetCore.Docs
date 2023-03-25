@@ -4,7 +4,7 @@ author: Rick-Anderson
 description: Explains how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.date: 04/14/2022
+ms.date: 3/14/2023
 uid: razor-pages/index
 ---
 
@@ -576,6 +576,10 @@ If you don't like the query string `?handler=JoinList` in the URL, change the ro
 Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is `https://localhost:5001/Customers/CreateFATH/JoinList`. The URL path that submits to `OnPostJoinListUCAsync` is `https://localhost:5001/Customers/CreateFATH/JoinListUC`.
 
 The `?` following `handler` means the route parameter is optional.
+
+## Collocation of JavaScript (JS) files
+
+[!INCLUDE[](~/includes/js-collocation.md)]
 
 ## Advanced configuration and settings
 
