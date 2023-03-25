@@ -1,44 +1,39 @@
----
-title: Introduction to Razor Pages in ASP.NET Core
-author: Rick-Anderson
-description: Explains how Razor Pages in ASP.NET Core makes coding page-focused scenarios easier and more productive than using MVC.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.date: 3/14/2023
-uid: razor-pages/index
----
-
-# Introduction to Razor Pages in ASP.NET Core
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Dave Brock](https://twitter.com/daveabrock), and [Kirk Larkin](https://twitter.com/serpent5)
-
-Razor Pages can make coding page-focused scenarios easier and more productive than using controllers and views.
-
-If you're looking for a tutorial that uses the Model-View-Controller approach, see [Get started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc).
-
-This document provides an introduction to Razor Pages. It's not a step by step tutorial. If you find some of the sections too advanced, see [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start). For an overview of ASP.NET Core, see the [Introduction to ASP.NET Core](xref:index).
-
-## Prerequisites
-
-:::moniker range="< aspnetcore-6.0"
-[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range="= aspnetcore-3.1"
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-6.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vs-3.1.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.1.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-6.0.md)]
+[!INCLUDE[](~/includes/net-core-prereqs-mac-3.1.md)]
 
 ---
+
+:::moniker-end
+
+:::moniker range="= aspnetcore-5.0"
+
+# [Visual Studio](#tab/visual-studio)
+
+[!INCLUDE[](~/includes/net-core-prereqs-vs-5.0.md)]
+
+# [Visual Studio Code](#tab/visual-studio-code)
+
+[!INCLUDE[](~/includes/net-core-prereqs-vsc-5.0.md)]
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+[!INCLUDE[](~/includes/net-core-prereqs-mac-5.0.md)]
+
+---
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
 
 <a name="rpvs17"></a>
 
@@ -60,21 +55,16 @@ See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 
 ## Razor Pages
 
-Razor Pages is enabled in `Program.cs`:
+Razor Pages is enabled in `Startup.cs`:
 
-[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesIntro/Program.cs?highlight=3,20)]
-
-In the preceding code:
-
-* <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> adds services for Razor Pages to the app.
-* <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapRazorPages%2A> adds endpoints for Razor Pages to the <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>. 
+[!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesIntro/Startup.cs?name=snippet_Startup&highlight=12,36)]
 
 Consider a basic page:
 <a name="OnGet"></a>
 
-[!code-cshtml[](~/razor-pages/index/6.0sample/RazorPagesIntro/Pages/Index.cshtml?highlight=1)]
+[!code-cshtml[](~/razor-pages/index/3.0sample/RazorPagesIntro/Pages/Index.cshtml?highlight=1)]
 
-The preceding code looks a lot like a [Razor view file](xref:tutorials/first-mvc-app/adding-view) used in an ASP.NET Core app with controllers and views. What makes it different is the [`@page`](xref:mvc/views/razor#page) directive. `@page` makes the file into an MVC action, which means that it handles requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other [Razor](xref:mvc/views/razor) constructs. Razor Pages file names have a `.cshtml` suffix.
+The preceding code looks a lot like a [Razor view file](xref:tutorials/first-mvc-app/adding-view) used in an ASP.NET Core app with controllers and views. What makes it different is the [`@page`](xref:mvc/views/razor#page) directive. `@page` makes the file into an MVC action - which means that it handles requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other [Razor](xref:mvc/views/razor) constructs. Razor Pages file names have a `.cshtml` suffix.
 
 A similar page, using a `PageModel` class, is shown in the following two files. The `Pages/Index2.cshtml` file:
 
@@ -102,29 +92,29 @@ Notes:
 
 ## Write a basic form
 
-Razor Pages is designed to make common patterns used with web browsers easy to implement when building an app. [Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers work with the properties defined in a Razor Page class. Consider a page that implements a basic "contact us" form for the `Contact` model:
+Razor Pages is designed to make common patterns used with web browsers easy to implement when building an app. [Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in a Razor Page class. Consider a page that implements a basic "contact us" form for the `Contact` model:
 
 For the samples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/razor-pages/index/3.0sample/RazorPagesContacts/Startup.cs#L23-L24) file.
 
 The in memory database requires the `Microsoft.EntityFrameworkCore.InMemory` NuGet package.
 
-[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Program.cs?name=snippet1&highlight=7-8)]
+[!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/Startup.cs?name=snippet)]
 
 The data model:
 
-[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Models/Customer.cs)]
+[!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/Models/Customer.cs)]
 
 The db context:
 
-[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Data/CustomerDbContext.cs?name=snippet)]
+[!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/Data/CustomerDbContext.cs)]
 
-The `Pages/Customers/Create.cshtml` view file:
+The `Pages/Create.cshtml` view file:
 
-[!code-cshtml[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml)]
+[!code-cshtml[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml)]
 
-The `Pages/Customers/Create.cshtml.cs` page model:
+The `Pages/Create.cshtml.cs` page model:
 
-[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet)]
+[!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_ALL)]
 
 By convention, the `PageModel` class is called `<PageName>Model` and is in the same namespace as the page.
 
@@ -147,7 +137,7 @@ If you're familiar with ASP.NET apps using controllers and views:
 
 The previous `OnPostAsync` method:
 
-[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_OnPostAsync)]
+[!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_OnPostAsync)]
 
 The basic flow of `OnPostAsync`:
 
@@ -156,11 +146,11 @@ Check for validation errors.
 * If there are no errors, save the data and redirect.
 * If there are errors, show the page again with validation messages. In many cases, validation errors would be detected on the client, and never submitted to the server.
 
-The `Pages/Customers/Create.cshtml` view file:
+The `Pages/Create.cshtml` view file:
 
-[!code-cshtml[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml)]
+[!code-cshtml[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml)]
 
-The rendered HTML from `Pages/Customers/Create.cshtml`:
+The rendered HTML from `Pages/Create.cshtml`:
 
 [!code-html[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.html)]
 
@@ -179,7 +169,7 @@ In the previous code, posting the form:
   * The `OnPostAsync` handler method calls the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageBase.Page%2A> helper method. `Page` returns an instance of <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageResult>. Returning `Page` is similar to how actions in controllers return `View`. `PageResult` is the default return type for a handler method. A handler method that returns `void` renders the page.
   * In the preceding example, posting the form with no value results in [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid) returning false. In this sample, no validation errors are displayed on the client. Validation error handling is covered later in this document.
 
-  [!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=6-9)]
+  [!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_OnPostAsync&highlight=3-6)]
 
 * With validation errors detected by client side validation:
 
@@ -188,7 +178,7 @@ In the previous code, posting the form:
 
 The `Customer` property uses [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.BindPropertyAttribute) attribute to opt in to model binding:
 
-[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet&highlight=15-16)]
+[!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=15-16)]
 
 `[BindProperty]` should **not** be used on models containing properties that should not be changed by the client. For more information, see [Overposting](xref:data/ef-rp/crud#overposting).
 
@@ -196,9 +186,9 @@ Razor Pages, by default, bind properties only with non-`GET` verbs. Binding to p
 
 [!INCLUDE[](~/includes/bind-get.md)]
 
-Reviewing the `Pages/Customers/Create.cshtml` view file:
+Reviewing the `Pages/Create.cshtml` view file:
 
-[!code-cshtml[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml?highlight=3,9)]
+[!code-cshtml[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Create.cshtml?highlight=3,9)]
 
 * In the preceding code, the [input tag helper](xref:mvc/views/working-with-forms#the-input-tag-helper) `<input asp-for="Customer.Name" />` binds the HTML `<input>` element to the `Customer.Name` model expression.
 * [`@addTagHelper`](xref:mvc/views/tag-helpers/intro#addtaghelper-makes-tag-helpers-available) makes Tag Helpers available.
@@ -207,21 +197,21 @@ Reviewing the `Pages/Customers/Create.cshtml` view file:
 
 `Index.cshtml` is the home page:
 
-[!code-cshtml[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml)]
+[!code-cshtml[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml)]
 
 The associated `PageModel` class (`Index.cshtml.cs`):
 
-[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml.cs?name=snippet)]
+[!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml.cs?name=snippet)]
 
 The `Index.cshtml` file contains the following markup:
 
-[!code-cshtml[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?name=snippet_Edit)]
+[!code-cshtml[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?name=snippet_Edit)]
 
 The `<a /a>` [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `https://localhost:5001/Edit/1`. [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
 
 The `Index.cshtml` file contains markup to create a delete button for each customer contact:
 
-[!code-cshtml[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?name=snippet_Delete)]
+[!code-cshtml[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml?name=snippet_Delete)]
 
 The rendered HTML:
 
@@ -238,7 +228,7 @@ When the button is selected, a form `POST` request is sent to the server. By con
 
 Because the `handler` is `delete` in this example, the `OnPostDeleteAsync` handler method is used to process the `POST` request. If the `asp-page-handler` is set to a different value, such as `remove`, a handler method with the name `OnPostRemoveAsync` is selected.
 
-[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml.cs?name=snippet2)]
+[!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Index.cshtml.cs?name=snippet2)]
 
 The `OnPostDeleteAsync` method:
 
@@ -249,7 +239,7 @@ The `OnPostDeleteAsync` method:
 
 ### The Edit.cshtml file
 
-[!code-cshtml[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml?highlight=1)]
+[!code-cshtml[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml?highlight=1)]
 
 The first line contains the `@page "{id:int}"` directive. The routing constraint `"{id:int}"` tells the page to accept requests to the page that contain `int` route data. If a request to the page doesn't contain route data that can be converted to an `int`, the runtime returns an HTTP 404 (not found) error. To make the ID optional, append `?` to the route constraint:
 
@@ -259,7 +249,7 @@ The first line contains the `@page "{id:int}"` directive. The routing constraint
 
 The `Edit.cshtml.cs` file:
 
-[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml.cs?name=snippet)]
+[!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Edit.cshtml.cs?name=snippet)]
 
 ## Validation
 
@@ -272,7 +262,7 @@ The <xref:System.ComponentModel.DataAnnotations> namespace provides a set of bui
 
 Consider the `Customer` model:
 
-[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Models/Customer.cs)]
+[!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/Models/Customer.cs)]
 
 Using the following `Create.cshtml` view file:
 
@@ -327,10 +317,6 @@ For more information, see:
 
 * [Add validation to the Movie app](xref:tutorials/razor-pages/validation)
 * [Model validation in ASP.NET Core](xref:mvc/models/validation).
-
-## CSS isolation
-
-[!INCLUDE[](~/includes/css-isolation.md)]
 
 ## Handle HEAD requests with an OnGet handler fallback
 
@@ -408,11 +394,11 @@ The generated namespace for the `Pages/Customers/Edit.cshtml` Razor Page is the 
 
 `@namespace` *also works with conventional Razor views.*
 
-Consider the `Pages/Customers/Create.cshtml` view file:
+Consider the `Pages/Create.cshtml` view file:
 
 [!code-cshtml[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Create3.cshtml?highlight=2-3)]
 
-The updated `Pages/Customers/Create.cshtml` view file with `_ViewImports.cshtml` and the preceding layout file:
+The updated `Pages/Create.cshtml` view file with `_ViewImports.cshtml` and the preceding layout file:
 
 [!code-cshtml[](~/razor-pages/index/3.0sample/RazorPagesContacts/Pages/Customers/Create4.cshtml?highlight=2)]
 
@@ -577,16 +563,13 @@ Using the preceding code, the URL path that submits to `OnPostJoinListAsync` is 
 
 The `?` following `handler` means the route parameter is optional.
 
-## Collocation of JavaScript (JS) files
-
-[!INCLUDE[](~/includes/js-collocation.md)]
-
 ## Advanced configuration and settings
 
 The configuration and settings in following sections is not required by most apps.
 
 To configure advanced options, use the <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A> overload that configures <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions>:
-[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Program.cs?name=snippet_ac&highlight=5-9)]
+
+[!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/StartupRPoptions.cs?name=snippet)]
 
 Use the <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> to set the root directory for pages, or add application model conventions for pages. For more information on conventions, see [Razor Pages authorization conventions](xref:security/authorization/razor-pages-authorization).
 
@@ -596,13 +579,13 @@ To precompile views, see [Razor view compilation](xref:mvc/views/view-compilatio
 
 By default, Razor Pages are rooted in the */Pages* directory. Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.WithRazorPagesAtContentRoot%2A> to specify that your Razor Pages are at the [content root](xref:fundamentals/index#content-root) (<xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath>) of the app:
 
-[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Program.cs?name=snippet_cr&highlight=5-9)]
+[!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/StartupWithRazorPagesAtContentRoot.cs?name=snippet)]
 
 ### Specify that Razor Pages are at a custom root directory
 
 Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderExtensions.WithRazorPagesRoot%2A> to specify that Razor Pages are at a custom root directory in the app (provide a relative path):
 
-[!code-csharp[](~/razor-pages/index/6.0sample/RazorPagesContacts/Program.cs?name=snippet_crd&highlight=5-9)]
+[!code-csharp[](~/razor-pages/index/3.0sample/RazorPagesContacts/StartupWithRazorPagesRoot.cs?name=snippet)]
 
 ## Additional resources
 
@@ -620,5 +603,3 @@ Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderEx
 * <xref:blazor/components/prerendering-and-integration>
 
 :::moniker-end
-
-[!INCLUDE[](~/razor-pages/index/includes/index35.md)]

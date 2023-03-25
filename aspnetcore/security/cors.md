@@ -13,6 +13,8 @@ uid: security/cors
 [!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
 :::moniker-end
 
+[!INCLUDE[](~/security/cors/includes/cors7.md)]
+
 :::moniker range=">= aspnetcore-8.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
@@ -626,4 +628,3 @@ Test the preceding code from the [test page](https://cors1.azurewebsites.net/tes
 :::moniker-end
 
 [!INCLUDE[](~/security/cors/includes/cors56.md)]
-[!INCLUDE[](~/security/cors/includes/cors7.md)]
