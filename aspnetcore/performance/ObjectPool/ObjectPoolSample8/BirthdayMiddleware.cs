@@ -14,7 +14,7 @@ public class BirthdayMiddleware
     }
 
     public async Task InvokeAsync(HttpContext context, 
-                                  ObjectPool<StringBuilder> builderPool)
+                                  ObjectPool<ReusableStringBuilder> builderPool)
     {
         if (context.Request.Query.TryGetValue("firstName", out var firstName) &&
             context.Request.Query.TryGetValue("lastName", out var lastName) && 
@@ -26,7 +26,8 @@ public class BirthdayMiddleware
             var now = DateTime.UtcNow; // Ignoring timezones.
 
             // Request a StringBuilder from the pool.
-            var stringBuilder = builderPool.Get();
+            var reusableStringBuilder = builderPool.Get();
+            var stringBuilder = reusableStringBuilder.Data;
 
             try
             {
@@ -60,8 +61,8 @@ public class BirthdayMiddleware
             }
             finally // Ensure this runs even if the main code throws.
             {
-                // return the stringBuilder to the pool
-                builderPool.Return(stringBuilder);
+                // return the reusableStringBuilder to the pool
+                builderPool.Return(reusableStringBuilder);
             }
 
             return;

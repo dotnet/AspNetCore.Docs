@@ -5,10 +5,10 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.TryAddSingleton<ObjectPoolProvider, DefaultObjectPoolProvider>();
-builder.Services.TryAddSingleton<ObjectPool<StringBuilder>>(serviceProvider =>
+builder.Services.TryAddSingleton<ObjectPool<ReusableStringBuilder>>(serviceProvider =>
 {
     var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-    var policy = new StringBuilderPolicy();
+    var policy = new ReusableStringBuilderPolicy();
     return provider.Create(policy);
 });
 
@@ -36,17 +36,17 @@ public class ReusableStringBuilder : IResettable
     }
 }
 
-class StringBuilderPolicy : IPooledObjectPolicy<StringBuilder>
+class ReusableStringBuilderPolicy : IPooledObjectPolicy<ReusableStringBuilder>
 {
     public ReusableStringBuilder? reusableStringBuilder;
-    public StringBuilder Create()
+    public ReusableStringBuilder Create()
     {
         reusableStringBuilder = new ReusableStringBuilder();
-        return reusableStringBuilder.Data;
+        return reusableStringBuilder;
     }
 
-    public bool Return(StringBuilder obj)
+    public bool Return(ReusableStringBuilder obj)
     {
-        return reusableStringBuilder!.TryReset();
+        return obj.TryReset();
     }
 }
