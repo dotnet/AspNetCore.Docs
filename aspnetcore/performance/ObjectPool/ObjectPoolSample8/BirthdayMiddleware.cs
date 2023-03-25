@@ -62,7 +62,6 @@ public class BirthdayMiddleware
             {
                 // Clear the string builder and return it to the pool.
                 stringBuilder.Clear();
-
             }
 
             return;
