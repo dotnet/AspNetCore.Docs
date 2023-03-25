@@ -7,6 +7,11 @@ ms.author: riande
 ms.date: 04/14/2022
 uid: razor-pages/index
 ---
+
+:::moniker range="< aspnetcore-6.0"
+[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
+:::moniker-end
+
 # Introduction to Razor Pages in ASP.NET Core
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Dave Brock](https://twitter.com/daveabrock), and [Kirk Larkin](https://twitter.com/serpent5)
