@@ -1536,7 +1536,7 @@ The `QuickGrid` component is an experimental Razor component for quickly and eff
 
 To get started with `QuickGrid`:
 
-Add package reference for [`Microsoft.AspNetCore.Components.QuickGrid`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid). If using the .NET CLI to add the package reference, include the `--prerelease` option when you execute the [`dotnet add package` command](/dotnet/core/tools/dotnet-add-package).
+Add package reference for [`Microsoft.AspNetCore.Components.QuickGrid`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid). To use an <xref:System.Linq.IQueryable> interface with Entity Framework Core as a data source, also add a package reference for the [`Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter) package. If using the .NET CLI to add the package reference, include the `--prerelease` option when you execute the [`dotnet add package` command](/dotnet/core/tools/dotnet-add-package).
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
