@@ -51,7 +51,7 @@ The following timeouts and rate limits aren't enforced when a debugger is attach
 
 ## Shutdown
 
-The following list details server shutdown:
+When an ASP.NET Core app receives a shutdown signal, it goes through a series of steps to gracefully shut down the server:
 
 * The Host receives a shutdown signal, for example, from `CTL+C`, [StopAsync](/aspnet/core/fundamentals/host/hosted-services#stopasync), etc.
 * [IHostApplicationLifetime.ApplicationStopping](xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping) is signaled to notify the app. Long running operations should subscribe to this event.
