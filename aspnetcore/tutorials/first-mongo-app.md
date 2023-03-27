@@ -60,7 +60,7 @@ Enable MongoDB and Mongo DB Shell access from anywhere on the development machin
 
 Use the previously installed MongoDB Shell in the following steps to create a database, make collections, and store documents. For more information on MongoDB Shell commands, see [`mongosh`](https://docs.mongodb.com/mongodb-shell/run-commands/).
 
-1. Open a MongoDB command shell instance by launching mongosh.exe.
+1. Open a MongoDB command shell instance by launching `mongosh.exe`.
 1. In the command shell connect to the default test database by running the following command:
 
    ```console
@@ -384,7 +384,7 @@ In this tutorial, you learn how to:
 
 If using Windows, MongoDB is installed at *C:\\Program Files\\MongoDB* by default. Add *C:\\Program Files\\MongoDB\\Server\\\<version_number>\\bin* to the `Path` environment variable. This change enables MongoDB access from anywhere on your development machine.
 
-Use the mongo Shell in the following steps to create a database, make collections, and store documents. For more information on mongo Shell commands, see [Working with the mongo Shell](https://docs.mongodb.com/manual/mongo/#working-with-the-mongo-shell).
+Use the mongo Shell in the following steps to create a database, make collections, and store documents. For more information on mongo Shell commands, see [Working with the mongo Shell](https://www.mongodb.com/docs/mongodb-shell).
 
 1. Choose a directory on your development machine for storing the data. For example, *C:\\BooksData* on Windows. Create the directory if it doesn't exist. The mongo Shell doesn't create new directories.
 1. Open a command shell. Run the following command to connect to MongoDB on default port 27017. Remember to replace `<data_directory_path>` with the directory you chose in the previous step.
