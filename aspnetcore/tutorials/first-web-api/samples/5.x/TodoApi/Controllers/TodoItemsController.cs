@@ -43,7 +43,7 @@ namespace TodoApi.Controllers
             return todoItem;
         }
 
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?LinkId=317598
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         #region snippet_Update
         // PUT: api/TodoItems/5
         [HttpPut("{id}")]
@@ -76,7 +76,7 @@ namespace TodoApi.Controllers
         }
         #endregion
 
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?LinkId=317598
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         #region snippet_Create
         // POST: api/TodoItems
         [HttpPost]
