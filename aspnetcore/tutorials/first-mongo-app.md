@@ -5,8 +5,8 @@ author: wadepickett
 description: This tutorial demonstrates how to create an ASP.NET Core web API using a MongoDB NoSQL database.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.custom: "mvc, seodec18"
-ms.date: 03/24/2022
+ms.custom: "mvc, seodec18, engagement-fy23"
+ms.date: 03/24/2023
 uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
@@ -28,7 +28,7 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-* [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
+* [MongoDB 6.0.5 or later](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/)
 * [MongoDB Shell](https://www.mongodb.com/docs/mongodb-shell/install/)
 
 # [Visual Studio](#tab/visual-studio)
@@ -47,24 +47,27 @@ In this tutorial, you learn how to:
 
 ## Configure MongoDB
 
-On Windows, MongoDB is installed at *C:\\Program Files\\MongoDB* by default. Add *C:\\Program Files\\MongoDB\\Server\\\<version_number>\\bin* to the `Path` environment variable. This change enables MongoDB access from anywhere on your development machine.
+Enable MongoDB and Mongo DB Shell access from anywhere on the development machine:
 
-Use the previously installed MongoDB Shell in the following steps to create a database, make collections, and store documents. For more information on MongoDB Shell commands, see [`mongosh`](https://docs.mongodb.com/mongodb-shell/run-commands/).
-
-1. Choose a directory on your development machine for storing the data. For example, *C:\\BooksData* on Windows. Create the directory if it doesn't exist. The mongo Shell doesn't create new directories.
-1. Open a command shell. Run the following command to connect to MongoDB on default port 27017. Remember to replace `<data_directory_path>` with the directory you chose in the previous step.
+1. On Windows, MongoDB is installed at *C:\\Program Files\\MongoDB* by default. Add *C:\\Program Files\\MongoDB\\Server\\\<version_number>\\bin* to the `Path` environment variable.
+1. Download and choose a directory to extract the MongoDB Shell directory to. Add the resulting path for the mongosh.exe to the `Path` environment variable.
+1. Choose a directory on the development machine for storing the data. For example, *C:\\BooksData* on Windows. Create the directory if it doesn't exist. The mongo Shell doesn't create new directories.
+1. In the OS command shell (not the MongoDB Shell), use the following command to connect to MongoDB on default port 27017. Remember to replace `<data_directory_path>` with the directory chosen in the previous step.
 
    ```console
    mongod --dbpath <data_directory_path>
    ```
 
-1. Open another command shell instance. Connect to the default test database by running the following command:
+Use the previously installed MongoDB Shell in the following steps to create a database, make collections, and store documents. For more information on MongoDB Shell commands, see [`mongosh`](https://docs.mongodb.com/mongodb-shell/run-commands/).
+
+1. Open a MongoDB command shell instance by launching mongosh.exe.
+1. In the command shell connect to the default test database by running the following command:
 
    ```console
    mongosh
    ```
 
-1. Run the following command in a command shell:
+1. Run the following command in the command shell:
 
    ```console
    use BookStore
@@ -103,7 +106,7 @@ Use the previously installed MongoDB Shell in the following steps to create a da
    ```
   
    > [!NOTE]
-   > The `ObjectId`s shown in the preceding result won't match those shown in your command shell.
+   > The `ObjectId`s shown in the preceding result won't match those shown in the command shell.
 
 1. View the documents in the database using the following command:
 
