@@ -41,7 +41,7 @@ public class TodoItemsController : ControllerBase
     // </snippet_GetByID>
 
     // PUT: api/TodoItems/5
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?LinkId=317598
     // <snippet_Update>
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTodoItem(long id, TodoItemDTO todoDTO)
@@ -74,7 +74,7 @@ public class TodoItemsController : ControllerBase
     // </snippet_Update>
 
     // POST: api/TodoItems
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?LinkId=317598
     // <snippet_Create>
     [HttpPost]
     public async Task<ActionResult<TodoItemDTO>> PostTodoItem(TodoItemDTO todoDTO)
