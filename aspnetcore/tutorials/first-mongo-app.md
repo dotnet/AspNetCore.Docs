@@ -50,7 +50,7 @@ In this tutorial, you learn how to:
 Enable MongoDB and Mongo DB Shell access from anywhere on the development machine:
 
 1. On Windows, MongoDB is installed at *C:\\Program Files\\MongoDB* by default. Add *C:\\Program Files\\MongoDB\\Server\\\<version_number>\\bin* to the `PATH` environment variable.
-1. Download the MongoDB Shell and choose a directory to extract it to. Add the resulting path for `mongosh.exe` to the `Path` environment variable.
+1. Download the MongoDB Shell and choose a directory to extract it to. Add the resulting path for `mongosh.exe` to the `PATH` environment variable.
 1. Choose a directory on the development machine for storing the data. For example, *C:\\BooksData* on Windows. Create the directory if it doesn't exist. The mongo Shell doesn't create new directories.
 1. In the OS command shell (not the MongoDB Shell), use the following command to connect to MongoDB on default port 27017. Replace `<data_directory_path>` with the directory chosen in the previous step.
 
