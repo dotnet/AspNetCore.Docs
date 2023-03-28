@@ -439,6 +439,7 @@ For instructions on these tools, see the following links:
 
 For more information on `http-repl`, see <xref:web-api/http-repl>.
 
+<!-- Verify https://go.microsoft.com/fwlink/?linkid=2123754 goes to this H2. Verify the latest released version is on top so this anchor works -->
 <a name="over-post"></a>
 
 ## Prevent over-posting
