@@ -327,7 +327,7 @@ Update the return statement in the `PostTodoItem` to use the [nameof](/dotnet/cs
 
 [!code-csharp[](first-web-api/samples/7.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
-The preceding code is an `HTTP POST` method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the `TodoItem`from the body of the HTTP request.
+The preceding code is an `HTTP POST` method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the `TodoItem` from the body of the HTTP request.
 
 For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#verb).
 
@@ -426,7 +426,7 @@ Examine the `DeleteTodoItem` method:
 
 ### Test the DeleteTodoItem method
 
-Use the Swagger UI to delete the `TodoItem`that has Id = 1. Note the response is [`HTTP 204 No Content`](https://developer.mozilla.org/docs/Web/HTTP/Status/204).
+Use the Swagger UI to delete the `TodoItem` that has Id = 1. Note the response is [`HTTP 204 No Content`](https://developer.mozilla.org/docs/Web/HTTP/Status/204).
 
 ## Test with http-repl, Postman, or curl
 
