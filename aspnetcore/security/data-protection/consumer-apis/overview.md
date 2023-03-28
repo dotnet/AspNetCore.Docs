@@ -41,7 +41,7 @@ The following sample demonstrates three concepts:
 
 ## Console Application Example
 
-[!code-csharp[](../using-data-protection/samples/consoleappexample.cs?highlight=26,34,35,36,37,38,39,40)]
+[!code-csharp[](../using-data-protection/samples/protectunprotect.cs?highlight=26,34,35,36,37,38,39,40)]
 
 ## Web Application Example
 
