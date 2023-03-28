@@ -128,7 +128,7 @@ The `appsettings.json` file is updated with the connection string used to connec
 * Open a command shell to the project directory, which contains the `Program.cs` and `.csproj` files. Run the following command:
 
   ```dotnetcli
-  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovie.Data.RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries --databaseProvider SQLite
+  dotnet aspnet-codegenerator razorpage -m Movie -dc RazorPagesMovie.Data.RazorPagesMovieContext -udl -outDir Pages/Movies --referenceScriptLibraries --databaseProvider sqlite
   ```
 
 <a name="codegenerator"></a>
