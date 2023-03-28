@@ -93,7 +93,7 @@ The following example configures [SQLite](https://www.sqlite.org/index.html) and
 
 The factory is injected into components and used to create new `DbContext` instances.
 
-In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/7.0/BlazorServerEFCoreSample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
+In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blob/main/blazor-samples/7.0/BlazorServerEFCoreSample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
 
 ```razor
 @inject IDbContextFactory<ContactContext> DbFactory
@@ -104,7 +104,7 @@ A `DbContext` is created using the factory (`DbFactory`) to delete a contact in 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/6.0/BlazorServerEFCoreSample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/Pages/Index.razor).
 
 ## Scope to the component lifetime
 
@@ -231,7 +231,7 @@ The following example configures [SQLite](https://www.sqlite.org/index.html) and
 
 The factory is injected into components and used to create new `DbContext` instances.
 
-In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/6.0/BlazorServerEFCoreSample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
+In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
 
 ```razor
 @inject IDbContextFactory<ContactContext> DbFactory
@@ -242,7 +242,7 @@ A `DbContext` is created using the factory (`DbFactory`) to delete a contact in 
 :::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/6.0/BlazorServerEFCoreSample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/Pages/Index.razor).
 
 ## Scope to the component lifetime
 
@@ -369,7 +369,7 @@ The following example configures [SQLite](https://www.sqlite.org/index.html) and
 
 The factory is injected into components and used to create new `DbContext` instances.
 
-In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/5.0/BlazorServerEFCoreSample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
+In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/5.0/BlazorServerEFCoreSample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
 
 ```razor
 @inject IDbContextFactory<ContactContext> DbFactory
@@ -380,7 +380,7 @@ A `DbContext` is created using the factory (`DbFactory`) to delete a contact in 
 :::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/5.0/BlazorServerEFCoreSample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/5.0/BlazorServerEFCoreSample/Pages/Index.razor).
 
 ## Scope to the component lifetime
 
@@ -514,7 +514,7 @@ The following example configures [SQLite](https://www.sqlite.org/index.html) and
 
 The factory is injected into components and used to create new `DbContext` instances.
 
-In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/3.1/BlazorServerEFCoreSample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
+In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/3.1/BlazorServerEFCoreSample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
 
 ```razor
 @inject IDbContextFactory<ContactContext> DbFactory
@@ -525,7 +525,7 @@ A `DbContext` is created using the factory (`DbFactory`) to delete a contact in 
 :::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/3.1/BlazorServerEFCoreSample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/3.1/BlazorServerEFCoreSample/Pages/Index.razor).
 
 ## Scope to the component lifetime
 
