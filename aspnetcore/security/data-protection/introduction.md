@@ -35,7 +35,7 @@ We started by identifying problems with the existing stack. Once we had that, we
 
 * Offer a simple consumer-facing API. The APIs should be easy to use correctly and difficult to use incorrectly.
 
-* Developers shouldn't learn key management principles. The system should handle algorithm selection and key lifetime on the developer's behalf. Ideally the developer should never even have access to the raw key material.
+* Developers shouldn't have to learn key management principles. The system should handle algorithm selection and key lifetime on the developer's behalf. Ideally the developer should never even have access to the raw key material.
 
 * Keys should be protected at rest when possible. The system should figure out an appropriate default protection mechanism and apply it automatically.
 
