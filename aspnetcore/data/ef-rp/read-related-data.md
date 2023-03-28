@@ -107,8 +107,7 @@ The preceding code changes the `Course` property to `Courses` and adds `AsNoTrac
 No-tracking queries are useful when the results are used in a read-only scenario. They're generally quicker to execute because there's no need to set up the change tracking information. If the entities retrieved from the database don't need to be updated, then a no-tracking query is likely to perform better than a tracking query.
 
 In some cases a tracking query is more efficient than a no-tracking query. For more information, see [Tracking vs. No-Tracking Queries](/ef/core/querying/tracking).
-
-In the preceding code, `AsNoTracking` improves performance because the entities returned are not tracked. The entities don't need to be tracked because they're not updated in the current context.
+In the preceding code, `AsNoTracking` is called because the entities aren't updated in the current context.
 
 Update `Pages/Courses/Index.cshtml` with the following code.
 
