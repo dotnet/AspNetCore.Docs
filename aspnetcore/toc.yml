@@ -1031,6 +1031,8 @@ items:
         uid: diagnostics/asp0021
       - name: ASP0022
         uid: diagnostics/asp0022
+      - name: ASP0023
+        uid: diagnostics/asp0023
       - name: BL0001
         uid: diagnostics/bl0001
       - name: BL0002
