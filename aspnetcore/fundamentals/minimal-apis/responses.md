@@ -38,7 +38,7 @@ Hello World
 
 |Behavior|Content-Type|
 |--|--|
-| The framework will JSON serialize the response.| `application/json`
+| The framework JSON-serializes the response.| `application/json`
 
 Consider the following route handler, which returns an anonymous type containing a `Message` string property.
 
