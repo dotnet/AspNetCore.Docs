@@ -49,9 +49,11 @@ The following sections cover request handling: routing, parameter binding, and r
 
 ## Routing
 
-A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A>:
+A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A> where `{Verb}` is a camel-cased HTTP method like `Get`, `Post`, `Put` or `Delete`:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_r1)]
+
+The <xref:System.Delegate> arguments passed to these methods are called "route handlers".
 
 ### Route Handlers
 
