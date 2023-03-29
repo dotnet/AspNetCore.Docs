@@ -40,7 +40,7 @@ Address of the external script to use.
 
 ### asp-append-version
 
-When `asp-append-version` is specified with a `true` value along with a `src` attribute, a unique version is generated.
+When `asp-append-version` is specified with a `true` value along with a [`src`](https://github.com/dotnet/aspnetcore/blob/main/src/Mvc/Mvc.TagHelpers/src/ScriptTagHelper.cs#L116) attribute, a unique version is generated.
 
 [!INCLUDE[](~/includes/th_version.md)]
 
