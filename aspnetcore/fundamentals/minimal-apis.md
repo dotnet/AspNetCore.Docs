@@ -57,7 +57,7 @@ A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCor
 
 [!INCLUDE [route handling](~/fundamentals/minimal-apis/includes/route-handlers.md)]
 
-## Parameter Binding
+## Parameter binding
 
 [!INCLUDE [parameter binding](~/fundamentals/minimal-apis/includes/parameter-binding.md)]
 
