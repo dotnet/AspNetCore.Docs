@@ -163,7 +163,7 @@ The following code sets the content root, application name, and environment:
 
 For more information, see <xref:fundamentals/index?view=aspnetcore-6.0>
 
-### Change the content root, app name, and environment by environment variables or command line
+### Change the content root, app name, and environment by using environment variables or command line
 
 The following table shows the environment variable and command-line argument used to change the content root, app name, and environment:
 

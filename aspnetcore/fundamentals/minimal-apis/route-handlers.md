@@ -16,6 +16,8 @@ A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCor
 
 The <xref:System.Delegate> arguments passed to these methods are called "route handlers".
 
+## Route handlers
+
 [!INCLUDE [route handling](includes/route-handlers.md)]
 
 ## Parameter binding

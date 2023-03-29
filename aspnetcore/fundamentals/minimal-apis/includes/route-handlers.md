@@ -1,18 +1,18 @@
 Route handlers are methods that execute when the route matches. Route handlers can be a function of any shape, including synchronous or asynchronous. Route handlers can be a lambda expression, a local function, an instance method or a static method.
 
-#### Lambda expression
+### Lambda expression
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_le)]
 
-#### Local function
+### Local function
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_lf)]
 
-#### Instance method
+### Instance method
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_im)]
 
-#### Static method
+### Static method
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_sm)]
 
