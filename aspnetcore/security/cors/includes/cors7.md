@@ -110,7 +110,7 @@ In the preceding code:
 
 The [[DisableCors]](#dc6) attribute does **not**  disable CORS that has been enabled by endpoint routing with `RequireCors`.
 
-In ASP.NET Core 7.0, the `[EnableCors]` attribute must pass a parameter or an [ASP0023](xref:diagnostics/code-analysis) <!-- [ASP0023](xref:diagnostics/asp0023) --> Warning is generated from a ambiguous match on the route. ASP.NET Core 8.0 and later doesn't generate the `ASP0023` warning.
+In ASP.NET Core 7.0, the `[EnableCors]` attribute must pass a parameter or an [ASP0023](xref:diagnostics/asp0023) Warning is generated from a ambiguous match on the route. ASP.NET Core 8.0 and later doesn't generate the `ASP0023` warning.
 
 [!code-csharp[](~/security/cors/8.0sample/Cors/Web2API/Controllers/TodoItems2Controller.cs?name=snippet2&highlight=35-38,47)]
 
