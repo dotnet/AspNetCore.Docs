@@ -261,7 +261,7 @@ The following example shows capturing a reference to the `username` `<input>` el
 > [!WARNING]
 > Only use an element reference to mutate the contents of an empty element that doesn't interact with Blazor. This scenario is useful when a third-party API supplies content to the element. Because Blazor doesn't interact with the element, there's no possibility of a conflict between Blazor's representation of the element and the Document Object Model (DOM).
 >
-> In the following example, it's *dangerous* to mutate the contents of the unordered list (`ul`) because Blazor interacts with the DOM to populate this element's list items (`<li>`) from the `Todos` object:
+> In the following example, it's *dangerous* to mutate the contents of the unordered list (`ul`) using `MyList` via JS interop because Blazor interacts with the DOM to populate this element's list items (`<li>`) from the `Todos` object:
 >
 > ```razor
 > <ul @ref="MyList">
@@ -272,7 +272,10 @@ The following example shows capturing a reference to the `username` `<input>` el
 > </ul>
 > ```
 >
-> If JS interop mutates the contents of element `MyList` and Blazor attempts to apply diffs to the element, the diffs won't match the DOM.
+>
+> Using the `MyList` element reference to merely read DOM content or trigger an event is supported.
+>
+> If JS interop *mutates the contents* of element `MyList` and Blazor attempts to apply diffs to the element, the diffs won't match the DOM. Modifying the contents of the list via JS interop with the `MyList` element reference is ***not supported***.
 >
 > For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
 
@@ -1058,7 +1061,9 @@ The following example shows capturing a reference to the `username` `<input>` el
 > </ul>
 > ```
 >
-> If JS interop mutates the contents of element `MyList` and Blazor attempts to apply diffs to the element, the diffs won't match the DOM.
+> Using the `MyList` element reference to merely read DOM content or trigger an event is supported.
+>
+> If JS interop *mutates the contents* of element `MyList` and Blazor attempts to apply diffs to the element, the diffs won't match the DOM. Modifying the contents of the list via JS interop with the `MyList` element reference is ***not supported***.
 >
 > For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
 
@@ -1887,7 +1892,9 @@ The following example shows capturing a reference to the `username` `<input>` el
 > </ul>
 > ```
 >
-> If JS interop mutates the contents of element `MyList` and Blazor attempts to apply diffs to the element, the diffs won't match the DOM.
+> Using the `MyList` element reference to merely read DOM content or trigger an event is supported.
+>
+> If JS interop *mutates the contents* of element `MyList` and Blazor attempts to apply diffs to the element, the diffs won't match the DOM. Modifying the contents of the list via JS interop with the `MyList` element reference is ***not supported***.
 >
 > For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
 
@@ -2467,7 +2474,9 @@ The following example shows capturing a reference to the `username` `<input>` el
 > </ul>
 > ```
 >
-> If JS interop mutates the contents of element `MyList` and Blazor attempts to apply diffs to the element, the diffs won't match the DOM.
+> Using the `MyList` element reference to merely read DOM content or trigger an event is supported.
+>
+> If JS interop *mutates the contents* of element `MyList` and Blazor attempts to apply diffs to the element, the diffs won't match the DOM. Modifying the contents of the list via JS interop with the `MyList` element reference is ***not supported***.
 >
 > For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
 
