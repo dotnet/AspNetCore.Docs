@@ -457,7 +457,7 @@ Several additional changes were made to the Blazor project templates. It isn't f
 
 The new `QuickGrid` component provides a convenient data grid component for most common requirements and as a reference architecture and performance baseline for anyone building Blazor data grid components.
 
-For more information, see <xref:blazor/components/index?view=aspnetcore-7.0#quickgrid-component>.
+For more information, see <xref:blazor/components/quickgrid>.
 
 Live demo: [QuickGrid for Blazor sample app](https://aspnet.github.io/quickgridsamples/)
 

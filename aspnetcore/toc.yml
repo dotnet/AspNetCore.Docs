@@ -451,6 +451,8 @@ items:
                 uid: blazor/components/css-isolation
               - name: Dynamically-rendered components
                 uid: blazor/components/dynamiccomponent
+              - name: QuickGrid component
+                uid: blazor/components/quickgrid
               - name: Prerender and integrate components
                 uid: blazor/components/prerendering-and-integration
               - name: Class libraries
