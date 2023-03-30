@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about source code analysis in ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.date: 11/22/2022
+ms.date: 5/2/2023
 uid: diagnostics/code-analysis
 ---
 # Code analysis in ASP.NET Core apps
@@ -32,6 +32,11 @@ uid: diagnostics/code-analysis
 | [ASP0017](xref:diagnostics/asp0017) | Non-breaking             | Invalid route pattern |
 | [ASP0018](xref:diagnostics/asp0018) | Non-breaking             | Unused route parameter |
 | [ASP0019](xref:diagnostics/asp0019) | Non-breaking             | Suggest using IHeaderDictionary.Append or the indexer |
+| [ASP0020](xref:diagnostics/asp0020) | Non-breaking             | Suggest using IHeaderDictionary.Append or the indexer |
+| [ASP0021](xref:diagnostics/asp0021) | Non-breaking             | Suggest using IHeaderDictionary.Append or the indexer |
+| [ASP0022](xref:diagnostics/asp0022) | Non-breaking             | Suggest using IHeaderDictionary.Append or the indexer |
+| [ASP0023](xref:diagnostics/asp0023) | Non-breaking             | Suggest using IHeaderDictionary.Append or the indexer |
+| [ASP0024](xref:diagnostics/asp0024) | Non-breaking             | Suggest using IHeaderDictionary.Append or the indexer |
 | [BL0001](xref:diagnostics/bl0001)   | Breaking                 | Component parameter should have public setters                               |
 | [BL0002](xref:diagnostics/bl0002)   | Non-breaking             | Component has multiple CaptureUnmatchedValues parameters                     |
 | [BL0003](xref:diagnostics/bl0003)   | Breaking                 | Component parameter with CaptureUnmatchedValues has the wrong type           |
