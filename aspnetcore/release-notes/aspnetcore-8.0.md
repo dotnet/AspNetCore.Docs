@@ -27,8 +27,11 @@ The following new analyzers are available in ASP.NET Core 8.0:
 
 | Diagnostic ID    | Breaking or non-breaking | Description |
 |-------|-------|----------------------------|
-| [ASP0019](xref:diagnostics/asp0019) | Non-breaking | Suggest using  |  
-|   |   |   |
+| [ASP0020](xref:diagnostics/asp0020) | Non-breaking             | Suggest using IHeaderDictionary.Append or the indexer |
+| [ASP0021](xref:diagnostics/asp0021) | Non-breaking             | Suggest using IHeaderDictionary.Append or the indexer |
+| [ASP0022](xref:diagnostics/asp0022) | Non-breaking             | Suggest using IHeaderDictionary.Append or the indexer |
+| [ASP0023](xref:diagnostics/asp0023) | Non-breaking             | Suggest using IHeaderDictionary.Append or the indexer |
+| [ASP0024](xref:diagnostics/asp0024) | Non-breaking             | Suggest using IHeaderDictionary.Append or the indexer |
 
 
 ## API controllers
