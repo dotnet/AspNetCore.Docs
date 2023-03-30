@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about source code analysis in ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.date: 5/2/2023
+ms.date: 4/2/2023
 uid: diagnostics/code-analysis
 ---
 # Code analysis in ASP.NET Core apps
