@@ -1532,6 +1532,26 @@ For an example that uses an <xref:System.Linq.IQueryable> with Entity Framework 
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
+To use EF Core as the data source:
+
+* Add a package reference to the app for the [`Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter) package.
+
+  [!INCLUDE[](~/includes/package-reference.md)]
+
+* Call `AddQuickGridEntityFrameworkAdapter` on the service collection in `Startup.ConfigureServices` of `Startup.cs` (Blazor Server) or `Program.cs` (Blazor WebAssembly) to register an EF-aware implementation of `IAsyncQueryExecutor`.
+
+  * Blazor Server:
+  
+    ```csharp
+    services.AddQuickGridEntityFrameworkAdapter();
+    ```
+    
+  * Blazor WebAssembly:
+  
+    ```csharp
+    builder.Services.AddQuickGridEntityFrameworkAdapter();
+    ```
+
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
