@@ -22,6 +22,10 @@ highlightedContent:
     - title: "Create an ASP.NET Core app on any platform in 5 minutes"
       itemType: get-started
       url: getting-started/index.md
+      # Card
+    - title: "Give feedback on ASP.NET docs"
+      itemType: whats-new
+      url: https://www.research.net/r/JKSX8BM
     # Card
     - title: "ASP.NET Core overview"
       itemType: overview
@@ -30,10 +34,6 @@ highlightedContent:
     - title: "Download .NET"
       itemType: download
       url: https://dotnet.microsoft.com/download
-    # Card
-    - title: "What's new in ASP.NET Core docs"
-      itemType: whats-new
-      url: whats-new/index.yml
     # Card
     - title: "Create your first web UI"
       itemType: get-started
