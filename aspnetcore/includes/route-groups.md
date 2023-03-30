@@ -24,7 +24,7 @@ Adding filters or metadata to a group behaves the same way as adding them indivi
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/todo-group/Program.cs" id="snippet_NestedMapGroup2":::
 
-In the above example, the outer filter will log the incoming request before the inner filter even though it was added second. Because the filters were applied to different groups, the order they were added relative to each other does not matter. The order filters are added do matter if applied to the same group or specific endpoint.
+In the above example, the outer filter will log the incoming request before the inner filter even though it was added second. Because the filters were applied to different groups, the order they were added relative to each other does not matter. The order filters are added does matter if applied to the same group or specific endpoint.
 
 A request to `/outer/inner/` will log the following:
 
