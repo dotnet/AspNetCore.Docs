@@ -23,10 +23,11 @@ This article is under development and not complete. More information may be foun
 
 ### Code analysis in ASP.NET Core apps
 
-The following new analyzers are available in ASP.NET Core 8.0
-| Diagnostic ID    | Breaking or non-breaking | Description       |
+The following new analyzers are available in ASP.NET Core 8.0:
+
+| Diagnostic ID    | Breaking or non-breaking | Description |
 |-------|-------|----------------------------|
-| [ASP0019](xref:diagnostics/asp0019) | Non-breaking | Suggest using  |    |
+| [ASP0019](xref:diagnostics/asp0019) | Non-breaking | Suggest using  |  
 |   |   |   |
 
 
