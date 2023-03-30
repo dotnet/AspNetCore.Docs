@@ -72,19 +72,11 @@ To use EF Core as the data source:
 
   [!INCLUDE[](~/includes/package-reference.md)]
 
-* Call `AddQuickGridEntityFrameworkAdapter` on the service collection in `Startup.ConfigureServices` of `Startup.cs` (Blazor Server) or `Program.cs` (Blazor WebAssembly) to register an EF-aware implementation of `IAsyncQueryExecutor`.
+* Call `AddQuickGridEntityFrameworkAdapter` on the service collection in `Program.cs` to register an EF-aware implementation of `IAsyncQueryExecutor`.
 
-  * Blazor Server:
-  
-    ```csharp
-    services.AddQuickGridEntityFrameworkAdapter();
-    ```
-    
-  * Blazor WebAssembly:
-  
-    ```csharp
-    builder.Services.AddQuickGridEntityFrameworkAdapter();
-    ```
+  ```csharp
+  builder.Services.AddQuickGridEntityFrameworkAdapter();
+  ```
 
 :::moniker-end
 
