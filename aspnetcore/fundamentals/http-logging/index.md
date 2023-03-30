@@ -54,7 +54,8 @@ To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.Depend
 
 [!code-csharp[](samples/6.x/Program.cs?name=snippet_Addservices)]
 
-In the preceding sample and following samples, `UseHttpLogging` is called after `UseStaticFiles`, so HTTP logging is not enabled for static file. To enable static file HTTP logging, call `UseHttpLogging` before `UseStaticFiles`.
+> [!NOTE]
+> In the preceding sample and following samples, `UseHttpLogging` is called after `UseStaticFiles`, so HTTP logging is not enabled for static file. To enable static file HTTP logging, call `UseHttpLogging` before `UseStaticFiles`.
 
 ### `LoggingFields`
 
