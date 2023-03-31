@@ -8,7 +8,7 @@ ms.date: 4/1/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
-
+<!-- The next update of this needs to add this topic to the TOC -->
 This article highlights the most significant changes in ASP.NET Core 8.0 with links to relevant documentation.
 
 This article is under development and not complete. More information may be found in the ASP.NET Core 8.0 preview blogs and GitHub issue:
@@ -32,9 +32,10 @@ The following new analyzers are available in ASP.NET Core 8.0:
 | [ASP0022](xref:diagnostics/asp0022) | Non-breaking             | Route conflict detected between route handlers |
 | [ASP0023](xref:diagnostics/asp0023) | Non-breaking             | MVC: Route conflict detected between route handlers |
 | [ASP0024](xref:diagnostics/asp0024) | Non-breaking             | Route handler has multiple parameters with the `[FromBody]` attribute |
-
+<!--
 ## API controllers
 
 ## Minimal APIs
 
 ## gRPC
+-->
