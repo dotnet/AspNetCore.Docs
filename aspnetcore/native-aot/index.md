@@ -128,7 +128,10 @@ internal partial class AppJsonSerializerContext : JsonSerializerContext
 }
 ```
 
-The first key difference is that creating the web application builder is achieved by calling <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilderSlim%2A>. This method initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder%2A> with any incompatable ASP.NET Core features disabled.
+A significant difference is that `Microsoft.AspNetCore.Builder.WebApplication.CreateBuilderSlim` is used to create the web application builder.  The `CreateBuilderSlim` method initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with incompatible ASP.NET Core features that are disabled.
+<!-- Update the preceding with the following when the .NET 8 API is published :
+<xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilderSlim%2A>
+-->
 
 Because .NET native AOT is unable to use reflection at runtime we also need to use the source generator to generate the JSON serializer code to support the custom types that are being returned from the minimal API routes.
 
