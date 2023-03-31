@@ -45,9 +45,7 @@ Debugging requires either of the following browsers:
 
 Ensure that firewalls or proxies don't block communication with the debug proxy (`NodeJS` process). For more information, see the [Firewall configuration](#firewall-configuration) section.
 
-Visual Studio Code users require the following extensions:
-
-* [C# for Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
+Visual Studio Code users require the [C# for Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
 
 Visual Studio for Mac requires version 8.8 (build 1532) or later:
 
