@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core support for .NET native AOT
 author: mitchdenny
-description: Learn the basics of creating a web API in ASP.NET Core.
+description: Learn about ASP.NET Core support for .NET native AOT
 monikerRange: '>= aspnetcore-8.0'
 ms.author: midenn
 ms.custom: mvc
