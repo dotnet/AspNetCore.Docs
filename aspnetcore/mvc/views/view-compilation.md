@@ -24,12 +24,12 @@ Razor files with a `.cshtml` extension are compiled at both build and publish ti
 
 ## Razor compilation
 
-Build-time and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they're edited.
+Build-time and publish-time compilation of Razor files is enabled by default by the Razor SDK. When enabled, runtime compilation complements build-time compilation, allowing Razor files to be updated if they're edited while the app is running.
 
-In addition to build-time compilation, updating Razor views and Razor Pages is supported using [.NET Hot Reload](xref:test/hot-reload).
+Updating Razor views and Razor Pages during development while the app is running is also supported using [.NET Hot Reload](xref:test/hot-reload).
 
 > [!NOTE]
-> When enabled, runtime compilation disables [.NET Hot Reload](xref:test/hot-reload). We recommend using Hot Reload instead of Razor runtime compilation during development, but we understand that may not be feasible because of Hot Reload's limitations. We're working to improve Hot Reload so that Razor runtime compilation will no longer be necessary, but we don't expect that to happen in .NET 8.
+> When enabled, runtime compilation disables [.NET Hot Reload](xref:test/hot-reload). We recommend using Hot Reload instead of Razor runtime compilation during development.
 
 ## Enable runtime compilation for all environments
 
