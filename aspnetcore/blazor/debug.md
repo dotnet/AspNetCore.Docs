@@ -445,8 +445,6 @@ Ensure that firewalls or proxies don't block communication with the debug proxy 
 
 Visual Studio Code users require the [C# for Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
 
-After opening a project in VS Code, you may receive a notification that additional setup is required to enable debugging. If requested, install the required extensions from the Visual Studio Marketplace. To inspect the installed extensions, open **View** > **Extensions** from the menu bar or select the **Extensions** icon in the **Activity** sidebar.
-
 Visual Studio for Mac requires version 8.8 (build 1532) or later:
 
 Install the latest release of Visual Studio for Mac by selecting the **Download Visual Studio for Mac** button at [Microsoft: Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/).
