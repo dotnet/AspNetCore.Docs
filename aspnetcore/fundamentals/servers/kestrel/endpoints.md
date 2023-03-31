@@ -523,8 +523,6 @@ Protocols specified in code override values set by configuration.
 
 When using `UseUrls`, `--urls` command-line argument, `urls` host configuration key, or `ASPNETCORE_URLS` environment variable, the URL prefixes can be in any of the following formats.
 
-Only HTTP URL prefixes are valid. Kestrel doesn't support HTTPS when configuring URL bindings using `UseUrls`.
-
 * IPv4 address with port number
 
   ```
