@@ -1306,7 +1306,7 @@ Examine the `Up` method.
 
 ### Test the app
 
-* Run the app and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
+* Run the app `dotnet run` and append `/Movies` to the URL in the browser (`http://localhost:port/movies`).
 
 If you get the error:
 
