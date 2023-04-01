@@ -34,9 +34,13 @@ Don't use the `<script>` element's [defer](https://developer.mozilla.org/docs/We
 
 See [Script Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ScriptTagHelper) for all the Script Tag Helper attributes, properties, and methods.
 
+### src
+
+Address of the external script to use.
+
 ### asp-append-version
 
-When `asp-append-version` is specified with a `true` value along with a `src` attribute, a unique version is generated.
+When `asp-append-version` is specified with a `true` value along with a [`src`](https://github.com/dotnet/aspnetcore/blob/main/src/Mvc/Mvc.TagHelpers/src/ScriptTagHelper.cs#L116) attribute, a unique version is generated.
 
 [!INCLUDE[](~/includes/th_version.md)]
 
@@ -59,10 +63,6 @@ The script method defined in the primary script to use for the fallback test. Fo
 ### asp-order
 
 When a set of `ITagHelper` instances are executed, their `Init(TagHelperContext)` methods are first invoked in the specified order; then their `ProcessAsync(TagHelperContext, TagHelperOutput)` methods are invoked in the specified order. Lower values are executed first.
-
-### asp-src
-
-Address of the external script to use.
 
 ### asp-src-exclude
 
