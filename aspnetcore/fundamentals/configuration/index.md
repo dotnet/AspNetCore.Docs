@@ -407,7 +407,7 @@ The preferred way to read hierarchical configuration data is using the options p
 Configuration keys:
 
 * Are case-insensitive. For example, `ConnectionString` and `connectionstring` are treated as equivalent keys.
-* If a key and value is set in more than one configuration providers, the value from the last provider added is used. For more information, see [Default configuration](#default).
+* If a key and value is set in more than one configuration provider, the value from the last provider added is used. For more information, see [Default configuration](#default).
 * Hierarchical keys
   * Within the Configuration API, a colon separator (`:`) works on all platforms.
   * In environment variables, a colon separator may not work on all platforms. A double underscore, `__`, is supported by all platforms and is automatically converted into a colon `:`.
