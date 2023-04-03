@@ -279,15 +279,10 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 
 ## Next steps
 
+* [Use hubs](xref:signalr/hubs)
 * [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs)
 * [Authentication and authorization in ASP.NET Core SignalR](xref:signalr/authn-and-authz)
-* [MessagePack Hub Protocol in SignalR for ASP.NET Core](xref:signalr/messagepackhubprotocol)
-
-## Additional resources
-
-* <xref:signalr/javascript-client>
-* <xref:signalr/hubs>
-* <xref:signalr/supported-platforms>
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 :::moniker-end
 
