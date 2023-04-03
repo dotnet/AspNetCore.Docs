@@ -117,8 +117,6 @@ A significant difference is that `Microsoft.AspNetCore.Builder.WebApplication.Cr
 <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilderSlim%2A>
 -->
 
-Native AOT is unable to use reflection at runtime, therefore the source generator is used to generate the JSON serializer code. The JSON serializer code supports the custom types that are being returned from the minimal API routes.
-
 Native AOT is unable to use reflection at runtime. Source generators are used to produce code to avoid the need for reflection. In some cases source generators produce code optimized for AOT even when a generator is not strictly required. To view source code that is generated based on the code in ```Program.cs``` modify the ```MyFirstAotWebApi.csproj``` to include the ```<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>``` property. Example:
 
 ```xml
@@ -161,14 +159,16 @@ Not all features in ASP.NET Core are currently compatible with .NET native AOT. 
 | SignalR                       |                 |                     | No                   |
 | Authentication                |                 |                     | No (JWT coming soon) |
 
+It is important to test application functionality thoroughly when moving to a native AOT deployment model to ensure that functionality observed during developmnet (using the runtime) is preserved in the native executable.
+
 In addition to API compatability, deploying ASP.NET Core apps (without native AOT) can be more efficient in some scenarios. For example, when a container image is created for an app that is based on the ASP.NET Core base images, an additional layer is created containing just the binaries which are often smaller than the native AOT binary. The nodes that host the container images might contain a cached copy of the base layers of the container image. If they do, the time to download the additional layer can be small.The benefits of .NET native AOT deployment of ASP.NET Core apps depends heavily on the details of the deployment strategy.
 
 
-# Known issues
+## Known issues
 
-## 8.0-preview3
+### 8.0-preview3
 
-### Request Delegate Generator
+#### Request Delegate Generator
 - The `Produces` and `Accepts` metadata are not automatically added to endpoint metadata for a given endpoint. See https://github.com/dotnet/aspnetcore/issues/46277.
 - The generated code will not log, or throw exceptions in development mode, when parameter binding fails. Instead, the request will return a `400` status code. See https://github.com/dotnet/aspnetcore/issues/46362.
 - The generated code does not support parameters marked with `AsParameters`. See https://github.com/dotnet/aspnetcore/issues/46336.
@@ -182,7 +182,7 @@ In addition to API compatability, deploying ASP.NET Core apps (without native AO
 - The generated code does not respect configured `JsonSerializerOptions` when reading from the request body. See https://github.com/dotnet/aspnetcore/issues/47145.
 - Generation fails when default parameter values are provided. See https://github.com/dotnet/aspnetcore/issues/47266
 
-### System.Text.Json
+#### System.Text.Json
 - Publishing for Native AOT requires that all JSON (de)serialization use the JSON Source Generator. Any existing issues with the JSON Source Generator is also an issue for Native AOT.
    - Anonymous Types cannot be source generated
    - Compiler generated types, for example for `IAsyncEnumerable`, do not work. https://github.com/dotnet/runtime/issues/82457
