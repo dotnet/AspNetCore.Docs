@@ -12,29 +12,10 @@ uid: native-aot/index
 
 :::moniker range=">= aspnetcore-8.0"
 
-In .NET 8.0 the ASP.NET Core team is introducing support for .NET native AOT. Not all ASP.NET Core features are compatible with native AOT at this time. This article shows how to get started with native AOT support in ASP.NET Core, pros and cons of using .NET native AOT, and what limitations exist. For more information on .NET native in general please refer to (TODO: insert native AOT link).
-
-## Why use .NET native AOT with ASP.NET Core?
-
-Using the .NET native AOT deployment model provides the following benefits:
-
-* **Minimize disk footprint**; when publishing using native AOT a single executable is produced containing just the code from external dependencies that is used to support the program. Reduced executable size can lead to smaller container images (in containerized deployment scenarios) which can reduce deployment time.
-* **Reduced startup time**; native AOT applications can show reduced start-up times which means the application is ready to service requests quicker. This can also help during deployment where container orchestrators need manage transition from one version of the application to another.
-* **Reduce memory demand**; native AOT applications can have reduced memory demands depending on the nature of the work being performed by the application. This reduced memory consumption can lead to greater deployment density and improved scalability.
-
-## When using .NET native AOT with ASP.NET Core should be avoided
-
-Not all features in ASP.NET Core are currently compatible with .NET native AOT. The following table summarizes ASP.NET Core feature compatibility with .NET native AOT:
-
-| Feature                       | Fully Supported | Partially Supported | Not Supported        |
-| ----------------------------- | --------------- | ------------------- | -------------------- |
-| Minimal APIs                  |                 | Yes                 |                      |
-| MVC                           |                 |                     | No                   |
-| Blazor                        |                 |                     | No                   |
-| SignalR                       |                 |                     | No                   |
-| Authentication                |                 |                     | No (JWT coming soon) |
-
-In addition to API compatability, deploying ASP.NET Core apps (without native AOT) can be more efficient in some scenarios. For example, when a container image is created for an app that is based on the ASP.NET Core base images, an additional layer is created containing just the binaries which are often smaller than the native AOT binary. The nodes that host the container images might contain a cached copy of the base layers of the container image. If they do, the time to download the additional layer can be small.The benefits of .NET native AOT deployment of ASP.NET Core apps depends heavily on the details of the deployment strategy.
+ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/). Not all ASP.NET Core features are compatible with native AOT at this time. This article shows the following for native AOT support in ASP.NET Core:
+* How to get started.
+* The benefits and potential drawbacks.
+* The limitations.
 
 ## Getting started with .NET native AOT deployment in ASP.NET Core
 
@@ -97,8 +78,6 @@ info: Microsoft.Hosting.Lifetime[0]
       Content root path: C:\Code\Demos\MyFirstAotWebApi
 ```
 
-##  Requirements
-
 The `Program.cs` source file contains some changes for publishing to .NET native AOT:
 
 ```csharp
@@ -159,6 +138,31 @@ Native AOT is unable to use reflection at runtime. Source generators are used to
 ```
 
 With the project file updated, run the ```dotnet build``` command (```publish``` isn't necessary to view generated code). In the built output file there will be a ```obj/Debug/net8.0/generated/``` directory which contains all the generated files for the project.
+
+When ```dotnet publish``` is run, the project source files and generated source files are compiled as normal and then outputted assemblies are passed into an native IL linker which produces the native executable which no longer requires the .NET runtime to be installed.
+
+## Benefits of using .NET native AOT with ASP.NET Core
+
+Using the .NET native AOT deployment model provides the following benefits:
+
+* **Minimize disk footprint**; when publishing using native AOT a single executable is produced containing just the code from external dependencies that is used to support the program. Reduced executable size can lead to smaller container images (in containerized deployment scenarios) which can reduce deployment time.
+* **Reduced startup time**; native AOT applications can show reduced start-up times which means the application is ready to service requests quicker. This can also help during deployment where container orchestrators need manage transition from one version of the application to another.
+* **Reduce memory demand**; native AOT applications can have reduced memory demands depending on the nature of the work being performed by the application. This reduced memory consumption can lead to greater deployment density and improved scalability.
+
+## When using .NET native AOT with ASP.NET Core should be avoided
+
+Not all features in ASP.NET Core are currently compatible with .NET native AOT. The following table summarizes ASP.NET Core feature compatibility with .NET native AOT:
+
+| Feature                       | Fully Supported | Partially Supported | Not Supported        |
+| ----------------------------- | --------------- | ------------------- | -------------------- |
+| Minimal APIs                  |                 | Yes                 |                      |
+| MVC                           |                 |                     | No                   |
+| Blazor                        |                 |                     | No                   |
+| SignalR                       |                 |                     | No                   |
+| Authentication                |                 |                     | No (JWT coming soon) |
+
+In addition to API compatability, deploying ASP.NET Core apps (without native AOT) can be more efficient in some scenarios. For example, when a container image is created for an app that is based on the ASP.NET Core base images, an additional layer is created containing just the binaries which are often smaller than the native AOT binary. The nodes that host the container images might contain a cached copy of the base layers of the container image. If they do, the time to download the additional layer can be small.The benefits of .NET native AOT deployment of ASP.NET Core apps depends heavily on the details of the deployment strategy.
+
 
 # Known issues
 
