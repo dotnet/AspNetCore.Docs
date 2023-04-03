@@ -22,9 +22,9 @@ Using the .NET native AOT deployment model provides the following benefits:
 * **Reduced startup time**; native AOT applications can show reduced start-up times which means the application is ready to service requests quicker. This can also help during deployment where container orchestrators need manage transition from one version of the application to another.
 * **Reduce memory demand**; native AOT applications can have reduced memory demands depending on the nature of the work being performed by the application. This reduced memory consumption can lead to greater deployment density and improved scalability.
 
-## When to avoid using .NET native AOT with ASP.NET Core?
+## When using .NET native AOT with ASP.NET Core should be avoided
 
-Not all features in ASP.NET Core are currently compatible with .NET native AOT. The following table summarizes ASP.NET Core feature compatability with .NET native AOT:
+Not all features in ASP.NET Core are currently compatible with .NET native AOT. The following table summarizes ASP.NET Core feature compatibility with .NET native AOT:
 
 | Feature                       | Fully Supported | Partially Supported | Not Supported |
 | ----------------------------- | --------------- | ------------------- | ------------- |
@@ -33,13 +33,16 @@ Not all features in ASP.NET Core are currently compatible with .NET native AOT. 
 | ASP.NET Core Blazor           |                 |                     | No[^2]        |
 | ... TODO                      |                 |                     |               |
 
-In addition to API compatability, deploying ASP.NET Core applications can still be more efficient in some scenarios. For example when a container image is created for your application that is based on the ASP.NET Core base images, an additional layer is created containing just your binaries which will often be smaller than the native AOT binary. If the nodes that host your container images already contain a cached copy of the base layers of the container image the time to download the additiona layer can be quite small. The benefits of .NET native AOT deployment of ASP.NET Core applications will depend heavily on the exact details of your deployment strategy.
+In addition to API compatability, deploying ASP.NET Core apps can be more efficient in some scenarios. For example, when a container image is created for an app that is based on the ASP.NET Core base images, an additional layer is created containing just the binaries which are often smaller than the native AOT binary. The nodes that host the container images might contain a cached copy of the base layers of the container image. If they do, the time to download the additional layer can be small.The benefits of .NET native AOT deployment of ASP.NET Core apps depends heavily on the details of the deployment strategy.
 
 ## Getting started with .NET native AOT deployment in ASP.NET Core
 
-To help developers get started deploying with .NET native AOT in ASP.NET Core, we have created a variant of the API template which includes customizations to remove unsupported components from the application. Use the ```dotnet new``` command to create a new ASP.NET Core API application that is configured to work with .NET native AOT:
+To help developers get started deploying with .NET native AOT in ASP.NET Core, use the:
 
-```
+* AOT API template which includes customizations to remove unsupported components from the app.
+* ```dotnet new``` command to create a new ASP.NET Core API app that is configured to work with .NET native AOT:
+
+```powershell
 PS> dotnet new api -aot -n MyFirstAotWebApi && cd MyFirstAotWebApi
 The template "ASP.NET Core API" was created successfully.
 
@@ -54,10 +57,10 @@ Before we look more closely at the code in the template, let's make sure that it
 
 ```
 PS> dotnet publish /p:PublishAot=true
-MSBuild version 17.6.0-preview-23171-02+b84faa7d0 for .NET
+MSBuild version 17.<version> for .NET
   Determining projects to restore...
   Restored C:\Code\Demos\MyFirstAotWebApi\MyFirstAotWebApi.csproj (in 241 ms).
-C:\Code\dotnet\aspnetcore\.dotnet\sdk\8.0.100-preview.4.23176.5\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIde
+C:\Code\dotnet\aspnetcore\.dotnet\sdk\8.0.<version>\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET.RuntimeIde
 ntifierInference.targets(287,5): message NETSDK1057: You are using a preview version of .NET. See: https://aka.ms/dotne
 t-support-policy [C:\Code\Demos\MyFirstAotWebApi\MyFirstAotWebApi.csproj]
   MyFirstAotWebApi -> C:\Code\Demos\MyFirstAotWebApi\bin\Release\net8.0\win-x64\MyFirstAotWebApi.dll
@@ -65,7 +68,8 @@ t-support-policy [C:\Code\Demos\MyFirstAotWebApi\MyFirstAotWebApi.csproj]
   MyFirstAotWebApi -> C:\Code\Demos\MyFirstAotWebApi\bin\Release\net8.0\win-x64\publish\
 ```
 
-Once the publish command finishes executing review the contents of output directory:
+Note: The preceding output my differ from what you see depending on the version of  .NET 8 used.
+Review the contents of output directory:
 
 ```
 PS> dir bin\Release\net8.0\win-x64\publish
@@ -78,7 +82,7 @@ Mode                 LastWriteTime         Length Name
 -a---          30/03/2023  1:41 PM       43044864 MyFirstAotWebApi.pdb
 ```
 
-At time of publishing the API template with AOT enabled produces a binary of about 9.4MB on Windows, although size may vary depending on the exact build of .NET 8.0 you are using as we are constantly making improvements and adjustments. This executable could be moved to a machine without the .NET Core runtime installed and it would execute.
+The API template with AOT enabled produces a binary of about 9.4MB on Windows, although the size may vary depending on the build of .NET 8.0 used. The executable can be run to a machine without the .NET Core runtime installed.
 
 ```
 PS> .\bin\Release\net8.0\win-x64\publish\MyFirstAotWebApi.exe
@@ -92,9 +96,9 @@ info: Microsoft.Hosting.Lifetime[0]
       Content root path: C:\Code\Demos\MyFirstAotWebApi
 ```
 
-## Specific coding requirements
+##  Requirements
 
-The ```Program.cs``` source file contains some important changes to make publishing to .NET native AOT error free:
+The `Program.cs` source file contains some changes for publishing to .NET native AOT:
 
 ```csharp
 using System.Text.Json.Serialization;
@@ -133,7 +137,7 @@ A significant difference is that `Microsoft.AspNetCore.Builder.WebApplication.Cr
 <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilderSlim%2A>
 -->
 
-Because .NET native AOT is unable to use reflection at runtime we also need to use the source generator to generate the JSON serializer code to support the custom types that are being returned from the minimal API routes.
+The .NET native AOT is unable to use reflection at runtime, therefore the source generator is used to generate the JSON serializer code. The JSON serializer code supports the custom types that are being returned from the minimal API routes.
 
 TODO: WIP
 
