@@ -255,4 +255,11 @@ The name and message are displayed on both pages instantly.
 
 For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore). For more information on Azure SignalR Service, see [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview).
 
+## Next steps
+
+* [Use hubs](xref:signalr/hubs)
+* [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs)
+* [Authentication and authorization in ASP.NET Core SignalR](xref:signalr/authn-and-authz)
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:index#how-to-download-a-sample))
+
 :::moniker-end

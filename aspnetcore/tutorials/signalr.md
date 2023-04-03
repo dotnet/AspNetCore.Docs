@@ -5,8 +5,8 @@ description: In this tutorial, you create a chat app that uses ASP.NET Core Sign
 <!-- ms.author: bradyg -->
 ms.author: wpickett
 monikerRange: '>= aspnetcore-3.1'
-ms.custom: mvc
-ms.date: 03/21/2023
+ms.custom: mvc, engagement-fy23
+ms.date: 03/31/2023
 uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
@@ -276,6 +276,13 @@ The name and message are displayed on both pages instantly.
 ## Publish to Azure
 
 For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web app](/azure/app-service/quickstart-dotnetcore). For more information on Azure SignalR Service, see [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview).
+
+## Next steps
+
+* [Use hubs](xref:signalr/hubs)
+* [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs)
+* [Authentication and authorization in ASP.NET Core SignalR](xref:signalr/authn-and-authz)
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:index#how-to-download-a-sample))
 
 :::moniker-end
 
