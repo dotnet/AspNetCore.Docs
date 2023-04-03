@@ -280,3 +280,6 @@ var reply = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
 Alternatively, a client factory can be configured with `Http3Handler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
 
 :::moniker-end
+
+[!INCLUDE[](~/grpc/includes/troubleshoot3-7.md)]
+
