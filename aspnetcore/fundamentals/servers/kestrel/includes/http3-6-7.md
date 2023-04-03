@@ -33,7 +33,7 @@ HTTP/3 isn't currently supported on macOS and may be available in a future relea
 
 HTTP/3 is not enabled by default. Add configuration to `Program.cs` to enable HTTP/3.
 
-:::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_Http3" highlight="7-8":::
+:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_Http3" highlight="7-8":::
 
 The preceding code configures port 5001 to:
 
