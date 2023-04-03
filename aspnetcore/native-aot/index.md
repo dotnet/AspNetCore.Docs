@@ -26,14 +26,15 @@ Using the .NET native AOT deployment model provides the following benefits:
 
 Not all features in ASP.NET Core are currently compatible with .NET native AOT. The following table summarizes ASP.NET Core feature compatibility with .NET native AOT:
 
-| Feature                       | Fully Supported | Partially Supported | Not Supported |
-| ----------------------------- | --------------- | ------------------- | ------------- |
-| ASP.NET Core Minimal APIs     |                 | Yes[^1]             |               |
-| ASP.NET Core MVC              |                 |                     | No            |
-| ASP.NET Core Blazor           |                 |                     | No[^2]        |
-| ... TODO                      |                 |                     |               |
+| Feature                       | Fully Supported | Partially Supported | Not Supported        |
+| ----------------------------- | --------------- | ------------------- | -------------------- |
+| Minimal APIs                  |                 | Yes                 |                      |
+| MVC                           |                 |                     | No                   |
+| Blazor                        |                 |                     | No                   |
+| SignalR                       |                 |                     | No                   |
+| Authentication                |                 |                     | No (JWT coming soon) |
 
-In addition to API compatability, deploying ASP.NET Core apps can be more efficient in some scenarios. For example, when a container image is created for an app that is based on the ASP.NET Core base images, an additional layer is created containing just the binaries which are often smaller than the native AOT binary. The nodes that host the container images might contain a cached copy of the base layers of the container image. If they do, the time to download the additional layer can be small.The benefits of .NET native AOT deployment of ASP.NET Core apps depends heavily on the details of the deployment strategy.
+In addition to API compatability, deploying ASP.NET Core apps (without native AOT) can be more efficient in some scenarios. For example, when a container image is created for an app that is based on the ASP.NET Core base images, an additional layer is created containing just the binaries which are often smaller than the native AOT binary. The nodes that host the container images might contain a cached copy of the base layers of the container image. If they do, the time to download the additional layer can be small.The benefits of .NET native AOT deployment of ASP.NET Core apps depends heavily on the details of the deployment strategy.
 
 ## Getting started with .NET native AOT deployment in ASP.NET Core
 
@@ -56,7 +57,7 @@ Restore succeeded.
 Before we look more closely at the code in the template, let's make sure that it can but published using .NET native AOT correctly by using the following command (note the versions of .NET 8.0+ that you are using may vary from the output shown below):
 
 ```
-PS> dotnet publish /p:PublishAot=true
+PS> dotnet publish
 MSBuild version 17.<version> for .NET
   Determining projects to restore...
   Restored C:\Code\Demos\MyFirstAotWebApi\MyFirstAotWebApi.csproj (in 241 ms).
@@ -137,11 +138,49 @@ A significant difference is that `Microsoft.AspNetCore.Builder.WebApplication.Cr
 <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilderSlim%2A>
 -->
 
-The .NET native AOT is unable to use reflection at runtime, therefore the source generator is used to generate the JSON serializer code. The JSON serializer code supports the custom types that are being returned from the minimal API routes.
+Native AOT is unable to use reflection at runtime, therefore the source generator is used to generate the JSON serializer code. The JSON serializer code supports the custom types that are being returned from the minimal API routes.
 
-TODO: WIP
+Native AOT is unable to use reflection at runtime. Source generators are used to produce code to avoid the need for reflection. In some cases source generators produce code optimized for AOT even when a generator is not strictly required. To view source code that is generated based on the code in ```Program.cs``` modify the ```MyFirstAotWebApi.csproj``` to include the ```<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>``` property. Example:
 
-[^1]: TODO: List out support for specific minimal API operations.
-[^2]: TODO: Add mention that Blazor web assembly can still call native AOT compiled backends.
+```xml
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <PublishAot>true</PublishAot>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles> <!-- Added to emit generated files -->
+  </PropertyGroup>
+
+</Project>
+```
+
+With the project file updated, run the ```dotnet build``` command (```publish``` isn't necessary to view generated code). In the built output file there will be a ```obj/Debug/net8.0/generated/``` directory which contains all the generated files for the project.
+
+# Known issues
+
+## 8.0-preview3
+
+### Request Delegate Generator
+- The `Produces` and `Accepts` metadata are not automatically added to endpoint metadata for a given endpoint. See https://github.com/dotnet/aspnetcore/issues/46277.
+- The generated code will not log, or throw exceptions in development mode, when parameter binding fails. Instead, the request will return a `400` status code. See https://github.com/dotnet/aspnetcore/issues/46362.
+- The generated code does not support parameters marked with `AsParameters`. See https://github.com/dotnet/aspnetcore/issues/46336.
+- The generated code does not support parameters processed as form data via `IFormCollection`, `IFormFile`, or `FromForm`. See https://github.com/dotnet/aspnetcore/issues/47200.
+- The generated code does not support route handlers that return an anonymous type. See https://github.com/dotnet/aspnetcore/issues/47244.
+- The generated code does not support generic types from outer scope. See https://github.com/dotnet/aspnetcore/issues/47338
+- The generated code does not support private parameter and return types. See https://github.com/dotnet/aspnetcore/issues/47339
+- The generated code does not respect the `RouteHandlerOptions.ThrowOnBadRequest` property. See https://github.com/dotnet/aspnetcore/issues/46362.
+- The generated code does not support having two endpoints with the route handlers that only differ in nullability annotations. See https://github.com/dotnet/aspnetcore/issues/46622.
+- The `IEndpointRouteBuilder.Map` and `IEndpointRouteBuilder.MapMethods` overloads are not supported. See https://github.com/dotnet/aspnetcore/issues/47196.
+- The generated code does not respect configured `JsonSerializerOptions` when reading from the request body. See https://github.com/dotnet/aspnetcore/issues/47145.
+- Generation fails when default parameter values are provided. See https://github.com/dotnet/aspnetcore/issues/47266
+
+### System.Text.Json
+- Publishing for Native AOT requires that all JSON (de)serialization use the JSON Source Generator. Any existing issues with the JSON Source Generator is also an issue for Native AOT.
+   - Anonymous Types cannot be source generated
+   - Compiler generated types, for example for `IAsyncEnumerable`, do not work. https://github.com/dotnet/runtime/issues/82457
 
 :::moniker-end
