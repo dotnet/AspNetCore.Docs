@@ -10,7 +10,7 @@ uid: blazor/fundamentals/startup
 ---
 # ASP.NET Core Blazor startup
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to configure Blazor startup.
 

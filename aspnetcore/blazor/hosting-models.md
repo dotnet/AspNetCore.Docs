@@ -10,7 +10,7 @@ uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 <!-- 
 

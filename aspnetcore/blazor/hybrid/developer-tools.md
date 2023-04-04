@@ -11,7 +11,7 @@ zone_pivot_groups: blazor-hybrid-operating-systems
 ---
 # Use browser developer tools with ASP.NET Core Blazor Hybrid
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 <!-- This topic drops loc for "Mac Catalyst" -->
 

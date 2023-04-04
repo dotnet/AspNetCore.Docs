@@ -10,7 +10,7 @@ uid: blazor/security/server/additional-scenarios
 ---
 # ASP.NET Core Blazor Server additional security scenarios
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to configure Blazor Server for additional security scenarios, including how to pass tokens to a Blazor Server app.
 
