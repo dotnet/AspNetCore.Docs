@@ -179,5 +179,4 @@ For more information on AOT warnings and how to address them see; [Introduction 
 ## Known issues
 
 We are keeping track of a number of known issues with native AOT support in ASP.NET Core in [a GitHub issue](https://github.com/dotnet/core/issues/8288).
-
 :::moniker-end
