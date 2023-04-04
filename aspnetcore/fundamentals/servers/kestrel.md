@@ -53,9 +53,9 @@ The following timeouts and rate limits aren't enforced when a debugger is attach
 
 When an ASP.NET Core app receives a shutdown signal, it goes through a series of steps to gracefully shut down the server:
 
-* The Host receives a shutdown signal, for example, from `CTL+C`, [StopAsync](/aspnet/core/fundamentals/host/hosted-services#stopasync), etc.
+* The Host receives a shutdown signal, for example, from `CTL+C`, [StopAsync](/aspnet/core/fundamentals/host/generic-host#manage-the-host-lifetime), etc.
 * [IHostApplicationLifetime.ApplicationStopping](xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime.ApplicationStopping) is signaled to notify the app. Long running operations should subscribe to this event.
-* The Host calls [IServer.StopAsync](xref:Microsoft.AspNetCore.Hosting.Server.IServer.StopAsync%2A) with a configurable shutdown timeout. The default shutdown is 30 seconds.
+* The Host calls [ShutdownTimeout](/aspnet/core/fundamentals/host/generic-host#shutdowntimeout) with a configurable shutdown timeout. The default shutdown is 30 seconds.
 * Kestrel (and [Http.Sys](/aspnet/core/fundamentals/servers/#kestrel-vs-httpsys)):
   * Close their port bindings and stop accepting new connections.
   * Signal current connections to stop processing new requests. For HTTP/2 and HTTP/3 this involves sending a preliminary GoAway message to the client. For HTTP/1.1, requests are processed in order so it stops that connection loop.
