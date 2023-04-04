@@ -10,6 +10,8 @@ uid: blazor/host-and-deploy/configure-trimmer
 ---
 # Configure the Trimmer for ASP.NET Core Blazor
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 This article explains how to control the Intermediate Language (IL) Linker (Trimmer) when building a Blazor app.
 
 :::moniker range=">= aspnetcore-6.0"

@@ -10,6 +10,8 @@ uid: blazor/security/webassembly/additional-scenarios
 ---
 # ASP.NET Core Blazor WebAssembly additional security scenarios
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 This article describes additional security scenarios for Blazor WebAssembly apps.
 
 ## Attach tokens to outgoing requests

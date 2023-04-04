@@ -10,6 +10,8 @@ uid: blazor/index
 ---
 # ASP.NET Core Blazor
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 *Welcome to Blazor!*
 
 Blazor is a framework for building interactive client-side web UI with [.NET](/dotnet/standard/tour):

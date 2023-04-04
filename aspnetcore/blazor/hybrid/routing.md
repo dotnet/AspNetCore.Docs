@@ -11,6 +11,8 @@ zone_pivot_groups: blazor-hybrid-frameworks
 ---
 # ASP.NET Core Blazor Hybrid routing and navigation
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 This article explains how to manage request routing and navigation in Blazor Hybrid apps.
 
 ## URI request routing behavior

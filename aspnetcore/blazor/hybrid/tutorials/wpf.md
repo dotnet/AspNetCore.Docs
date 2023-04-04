@@ -10,6 +10,8 @@ uid: blazor/hybrid/tutorials/wpf
 ---
 # Build a Windows Presentation Foundation (WPF) Blazor app
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 This tutorial shows you how to build and run a WPF Blazor app. You learn how to:
 
 > [!div class="checklist"]

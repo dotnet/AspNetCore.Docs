@@ -10,6 +10,8 @@ uid: blazor/security/index
 ---
 # ASP.NET Core Blazor authentication and authorization
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 This article describes ASP.NET Core's support for the configuration and management of security in Blazor apps.
 
 Security scenarios differ between Blazor Server and Blazor WebAssembly apps. Because Blazor Server apps run on the server, authorization checks are able to determine:

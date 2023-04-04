@@ -10,6 +10,8 @@ uid: blazor/hybrid/publish/index
 ---
 # Publish ASP.NET Core Blazor Hybrid apps
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 This article explains how to publish Blazor Hybrid apps.
 
 ## Publish for a specific framework

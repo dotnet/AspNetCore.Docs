@@ -10,6 +10,8 @@ uid: blazor/hybrid/tutorials/index
 ---
 # ASP.NET Core Blazor Hybrid tutorials
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 * <xref:blazor/hybrid/tutorials/maui>
 
 * <xref:blazor/hybrid/tutorials/windows-forms>

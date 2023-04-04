@@ -10,6 +10,8 @@ uid: blazor/tutorials/index
 ---
 # ASP.NET Core Blazor tutorials
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 The following tutorials are available for ASP.NET Core Blazor:
 
 * [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) (Blazor Server)

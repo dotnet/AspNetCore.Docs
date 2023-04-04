@@ -10,6 +10,8 @@ uid: blazor/js-interop/call-dotnet-from-javascript
 ---
 # Call .NET methods from JavaScript functions in ASP.NET Core Blazor
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 <!--
 
 NOTE: The console output block quotes in this topic use a double-space at the ends of lines to generate a bare return in block quote output.

@@ -11,6 +11,8 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor file uploads
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 This article explains how to upload files in Blazor with the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component.
 
 > [!WARNING]

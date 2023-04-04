@@ -10,6 +10,8 @@ uid: blazor/fundamentals/dependency-injection
 ---
 # ASP.NET Core Blazor dependency injection
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 By [Rainer Stropek](https://www.timecockpit.com) and [Mike Rousos](https://github.com/mjrousos)
 
 This article explains how Blazor apps can inject services into components.

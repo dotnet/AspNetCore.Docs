@@ -10,6 +10,8 @@ uid: blazor/security/server/threat-mitigation
 ---
 # Threat mitigation guidance for ASP.NET Core Blazor Server
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 This article explains how to mitigate security threats to Blazor Server apps.
 
 Blazor Server apps adopt a *stateful* data processing model, where the server and client maintain a long-lived relationship. The persistent state is maintained by a [circuit](xref:blazor/state-management), which can span connections that are also potentially long-lived.
