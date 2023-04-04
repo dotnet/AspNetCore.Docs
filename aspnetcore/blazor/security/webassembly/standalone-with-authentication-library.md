@@ -10,6 +10,8 @@ uid: blazor/security/webassembly/standalone-with-authentication-library
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with the Authentication library
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 This article explains how to secure an ASP.NET Core Blazor WebAssembly standalone app with the Blazor WebAssembly Authentication library.
 
 *For Azure Active Directory (AAD) and Azure Active Directory B2C (AAD B2C) guidance, don't follow the guidance in this topic. See <xref:blazor/security/webassembly/standalone-with-azure-active-directory> or <xref:blazor/security/webassembly/standalone-with-azure-active-directory-b2c>.*
