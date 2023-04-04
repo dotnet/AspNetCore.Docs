@@ -13,9 +13,7 @@ uid: grpc/troubleshoot
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-:::moniker range="< aspnetcore-7.0"
-[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
-:::moniker-end
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
 
 :::moniker range="= aspnetcore-8.0"
 
