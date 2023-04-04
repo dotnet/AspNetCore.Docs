@@ -10,6 +10,8 @@ uid: blazor/components/css-isolation
 ---
 # ASP.NET Core Blazor CSS isolation
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 By [Dave Brock](https://twitter.com/daveabrock)
 
 This article explains how CSS isolation scopes CSS to Razor components, which can simplify CSS and avoid collisions with other components or libraries.

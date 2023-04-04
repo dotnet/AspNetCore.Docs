@@ -10,6 +10,8 @@ uid: blazor/test
 ---
 # Test Razor components in ASP.NET Core Blazor
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 By: [Egil Hansen](https://egilhansen.com/)
 
 Testing Razor components is an important aspect of releasing stable and maintainable Blazor apps.

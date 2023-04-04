@@ -10,6 +10,8 @@ uid: blazor/blazor-server-ef-core
 ---
 # ASP.NET Core Blazor Server with Entity Framework Core (EF Core)
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 This article explains how to use [Entity Framework Core (EF Core)](/ef/core/) in Blazor Server apps.
 
 :::moniker range=">= aspnetcore-7.0"

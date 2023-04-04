@@ -11,6 +11,8 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor globalization and localization
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 :::zone pivot="server"
 
 This article explains how to render globalized and localized content to users in different cultures and languages in a Blazor Server app. See the [Blazor WebAssembly version](?pivots=webassembly) of this article for guidance on standalone and hosted Blazor WebAssembly apps.

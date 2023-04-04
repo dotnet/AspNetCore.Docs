@@ -10,6 +10,8 @@ uid: blazor/debug
 ---
 # Debug ASP.NET Core Blazor WebAssembly
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 This article describes how to debug Blazor WebAssembly with browser developer tools and an integrated development environment (IDE).
 
 :::moniker range=">= aspnetcore-7.0"

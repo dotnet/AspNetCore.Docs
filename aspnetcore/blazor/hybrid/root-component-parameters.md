@@ -10,6 +10,8 @@ uid: blazor/hybrid/root-component-parameters
 ---
 # Pass root component parameters in ASP.NET Core Blazor Hybrid
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 This article explains how to pass root component parameters in a Blazor Hybrid app.
 
 The `RootComponent` class of a `BlazorWebView` defines a `Parameters` property of type `IDictionary<string, object?>?`, which represents an optional dictionary of parameters to pass to the root component:

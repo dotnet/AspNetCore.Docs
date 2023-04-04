@@ -10,6 +10,8 @@ uid: blazor/host-and-deploy/server
 ---
 # Host and deploy Blazor Server
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 This article explains how to host and deploy a Blazor Server app using ASP.NET Core.
 
 :::moniker range=">= aspnetcore-7.0"

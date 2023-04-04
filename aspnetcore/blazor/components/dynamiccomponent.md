@@ -10,6 +10,8 @@ uid: blazor/components/dynamiccomponent
 ---
 # Dynamically-rendered ASP.NET Core Razor components
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 By [Dave Brock](https://twitter.com/daveabrock)
 
 Use the built-in <xref:Microsoft.AspNetCore.Components.DynamicComponent> component to render components by type.

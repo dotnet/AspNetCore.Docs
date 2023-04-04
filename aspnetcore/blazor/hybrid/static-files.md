@@ -10,6 +10,8 @@ uid: blazor/hybrid/static-files
 ---
 # ASP.NET Core Blazor Hybrid static files
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 This article describes how to consume static asset files in Blazor Hybrid apps.
 
 In a Blazor Hybrid app, static files are *app resources*, accessed by Razor components using the following approaches:

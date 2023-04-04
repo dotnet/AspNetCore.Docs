@@ -10,6 +10,8 @@ uid: blazor/security/webassembly/hosted-with-azure-active-directory
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication. This article focuses on a single tenant app with a single tenant Azure app registration.
 
 This article doesn't cover a *multi-tenant Azure Active Directory registration*. For more information, see [Making your application multi-tenant](/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant).
