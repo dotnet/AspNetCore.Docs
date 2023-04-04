@@ -143,14 +143,11 @@ async Task SaveFileWithCustomFileName(IFormFile file, string directoryAlias, str
 
 app.MapGet("/files/{fileName}", (string fileName, HttpContext context) =>
     {
+        string filePath;
+        
         if (context.User.Claims.Any(u => u.Subject.HasClaim("isAdmin", "true")))
         {
-            var filePath = GetOrCreateFilePath("Admin", fileName);
-
-            if (File.Exists(filePath))
-                return TypedResults.PhysicalFile(filePath, fileDownloadName: $"{fileName}");
-
-            return TypedResults.NotFound("No file found with the supplied file name");
+            filePath = GetOrCreateFilePath("Admin", fileName);
         }
         else
         {
@@ -159,13 +156,13 @@ app.MapGet("/files/{fileName}", (string fileName, HttpContext context) =>
             if (string.IsNullOrEmpty(alias))
                 return Results.Unauthorized();
 
-            var filePath = GetOrCreateFilePath(alias, fileName);
-
-            if (File.Exists(filePath))
-                return TypedResults.PhysicalFile(filePath, fileDownloadName: $"{fileName}");
-
-            return TypedResults.NotFound("No file found with the supplied file name");
+            filePath = GetOrCreateFilePath(alias, fileName);
         }
+        
+        if (File.Exists(filePath))
+            return TypedResults.PhysicalFile(filePath, fileDownloadName: $"{fileName}");
+
+        return TypedResults.NotFound("No file found with the supplied file name");
     })
     .WithName("GetFileByName")
     .RequireAuthorization("PrivateFiles");
@@ -186,12 +183,7 @@ app.MapPost("/files", async (IFormFile file, LinkGenerator linker, HttpContext c
         var fileSaveName = Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName);
         
         if (context.User.Claims.Any(u => u.Subject.HasClaim("isAdmin", "true")))
-        {
             await SaveFileWithCustomFileName(file, "Admin", fileSaveName);
-            
-            context.Response.Headers.Add("Location", linker.GetPathByName(context, "GetFileByName", new { fileName = fileSaveName}));
-            return TypedResults.Ok("File Uploaded Successfully!");
-        }
 
         var alias = context.User.FindFirstValue("alias");
 
