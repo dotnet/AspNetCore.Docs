@@ -33,6 +33,8 @@ ASP.NET Core includes many compiler platform analyzers that inspect application 
 
 The ASP.NET Core request pipeline consists of a sequence of request delegates, called one after the other. The following diagram demonstrates the concept. The thread of execution follows the black arrows.
 
+![request-delegate-pipeline](https://user-images.githubusercontent.com/17564001/229694701-c89c99e4-c9e0-4772-a6d6-f763b35494a8.png)
+
 ![Request processing pattern showing a request arriving, processing through three middlewares, and the response leaving the app. Each middleware runs its logic and hands off the request to the next middleware at the next() statement. After the third middleware processes the request, the request passes back through the prior two middlewares in reverse order for additional processing after their next() statements before leaving the app as a response to the client.](index/_static/request-delegate-pipeline.png)
 
 Each delegate can perform operations before and after the next delegate. Exception-handling delegates should be called early in the pipeline, so they can catch exceptions that occur in later stages of the pipeline.
