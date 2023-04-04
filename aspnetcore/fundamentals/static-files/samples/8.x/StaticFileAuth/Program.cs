@@ -32,8 +32,6 @@ var securityReq = new OpenApiSecurityRequirement
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(o => {
     o.AddSecurityDefinition("Bearer", securityScheme);
@@ -64,7 +62,6 @@ builder.Services.AddAuthorization(o =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
     app.UseSwagger();
     app.UseSwaggerUI();
@@ -122,44 +119,76 @@ app.MapGet("/token", (HttpContext context) => {
     });
 }).AllowAnonymous();
 
-
-app.MapGet("/files/{filename}", async (string fileName, HttpContext context) =>
+string GetOrCreateFilePath(string nestedFilesDirectory, string fileName, string rootFilesDirectory = "PrivateFiles")
 {
-    if (context.User.Claims.Any(u => u.Subject.HasClaim("isAdmin", "true")))
-    {
-        var filePath = Path.Combine(app.Environment.ContentRootPath, "PrivateFiles", "Admin", fileName); 
-        
-        if (File.Exists(filePath))
-            return TypedResults.File(await File.ReadAllBytesAsync(filePath), fileDownloadName: $"{fileName}");
-        return TypedResults.NotFound("No file found with the supplied file name");
-    }
-    else
-    {
-        var alias = context.User.FindFirstValue("alias");
+    var rootFilesDirectoryPath = Path.Combine(app.Environment.ContentRootPath, rootFilesDirectory);
+    
+    if (!Directory.Exists(rootFilesDirectoryPath))
+        Directory.CreateDirectory(rootFilesDirectoryPath);
+    
+    var nestedFilesDirectoryPath = Path.Combine(app.Environment.ContentRootPath, rootFilesDirectory, nestedFilesDirectory);
+    
+    if (!Directory.Exists(nestedFilesDirectoryPath))
+        Directory.CreateDirectory(nestedFilesDirectoryPath);
 
-        if (string.IsNullOrEmpty(alias))
-            return Results.Unauthorized();
+    return Path.Combine(app.Environment.ContentRootPath, rootFilesDirectory, nestedFilesDirectory, fileName);
+}
 
-        var filePath = Path.Combine(app.Environment.ContentRootPath, "PrivateFiles", alias, fileName);
-
-        if (File.Exists(filePath))
-            return TypedResults.File(await File.ReadAllBytesAsync(filePath), fileDownloadName: $"{fileName}");
-        return TypedResults.NotFound("No file found with the supplied file name");
-    }
-}).RequireAuthorization("PrivateFiles");
-
-app.MapPost("/files", async (IFormFile file, HttpContext context) =>
+app.MapGet("/files/{filename}", (string fileName, HttpContext context) =>
     {
         if (context.User.Claims.Any(u => u.Subject.HasClaim("isAdmin", "true")))
         {
-            var filePath = Path.Combine(app.Environment.ContentRootPath, "PrivateFiles", "Admin",
-                Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName));
+            var filePath = GetOrCreateFilePath("Admin", fileName);
+
+            if (File.Exists(filePath))
+                return TypedResults.PhysicalFile(filePath, fileDownloadName: $"{fileName}");
+
+            return TypedResults.NotFound("No file found with the supplied file name");
+        }
+        else
+        {
+            var alias = context.User.FindFirstValue("alias");
+
+            if (string.IsNullOrEmpty(alias))
+                return Results.Unauthorized();
+
+            var filePath = GetOrCreateFilePath(alias, fileName);
+
+            if (File.Exists(filePath))
+                return TypedResults.PhysicalFile(filePath, fileDownloadName: $"{fileName}");
+
+            return TypedResults.NotFound("No file found with the supplied file name");
+        }
+    })
+    .WithName("GetFileByName")
+    .RequireAuthorization("PrivateFiles");
+
+app.MapPost("/files", async (IFormFile file, LinkGenerator linker, HttpContext context) =>
+    {
+        if (!Utilities.IsFileValid(file))
+            return Results.ValidationProblem(new Dictionary<string, string[]>
+            {
+                {
+                    "invalid.extensions", new[]
+                    {
+                        $"Only allowed file types are [{string.Join(", ", Utilities.AllowedFileSignatures.Keys)}]"
+                    }
+                }
+            });
+
+        var fileSaveName = Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName);
+        
+        if (context.User.Claims.Any(u => u.Subject.HasClaim("isAdmin", "true")))
+        {
+            var filePath =
+                GetOrCreateFilePath("Admin", fileSaveName);
 
             await using (var fileStream = new FileStream(filePath, FileMode.Create))
-            {
                 await file.CopyToAsync(fileStream);
-            }
 
+            context.Response.Headers.Add("Location",
+                linker.GetPathByName(context, "GetFileByName", new {fileName = fileSaveName}));
+            
             return TypedResults.Ok("File Uploaded Successfully!");
         }
         else
@@ -169,74 +198,19 @@ app.MapPost("/files", async (IFormFile file, HttpContext context) =>
             if (string.IsNullOrEmpty(alias))
                 return Results.Unauthorized();
 
-            var directoryPath = Path.Combine(app.Environment.ContentRootPath, "PrivateFiles", alias);
-            var filePath = Path.Combine(app.Environment.ContentRootPath, "PrivateFiles", alias,
-                Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName));
-
-            if (!Directory.Exists(directoryPath))
-                Directory.CreateDirectory(directoryPath);
+            var filePath =
+                GetOrCreateFilePath(alias, fileSaveName);
 
             await using (var fileStream = new FileStream(filePath, FileMode.Create))
-            {
                 await file.CopyToAsync(fileStream);
-            }
 
+            context.Response.Headers.Add("Location",
+                linker.GetPathByName(context, "GetFileByName", new {fileName = fileSaveName}));
+            
             return TypedResults.Ok("File Uploaded Successfully!");
         }
     })
-    .RequireAuthorization("PrivateFiles")
-    .AddEndpointFilter(async (efiContext, next) =>
-    {
-        var file = efiContext.GetArgument<IFormFile>(0);
-
-        var fileSignatures =
-            new Dictionary<string, List<byte[]>>
-            {
-                {
-                    ".jpeg", new List<byte[]>
-                    {
-                        new byte[] {0xFF, 0xD8, 0xFF, 0xE0},
-                        new byte[] {0xFF, 0xD8, 0xFF, 0xE2},
-                        new byte[] {0xFF, 0xD8, 0xFF, 0xE3}
-                    }
-                },
-                {
-                    ".png", new List<byte[]>
-                    {
-                        new byte[] {0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A}
-                    }
-                }
-            };
-
-        using var reader = new BinaryReader(file.OpenReadStream());
-
-        var signatures = fileSignatures
-            .Values
-            .SelectMany(x => x)
-            .ToList();
-        
-        var headerBytes = reader.ReadBytes(fileSignatures
-            .Max(m => m.Value.Max(n => n.Length)));
-
-        var isValidSignature = signatures
-            .Any(signature => headerBytes
-                .Take(signature.Length)
-                .SequenceEqual(signature));
-
-        if (!isValidSignature)
-        {
-            return Results.ValidationProblem(new Dictionary<string, string[]>
-            {
-                {
-                    "invalid.extensions", new[]
-                    {
-                        "only allowed file types are [jpeg, png]"
-                    }
-                }
-            });
-        }
-
-        return await next(efiContext);
-    });
+    .RequireAuthorization("PrivateFiles");
 
 app.Run();
+
