@@ -1,4 +1,3 @@
-
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
 * The project templates include extension points and stubbed markup that you can replace with your privacy and cookie use policy.
@@ -101,8 +100,6 @@ Notes:
 * Saved tokens for the user that are stored in the Identity database table `AspNetUserTokens` are deleted when the user is deleted via the cascading delete behavior due to the [foreign key](https://github.com/aspnet/Identity/blob/release/2.1/src/EF/IdentityUserContext.cs#L152).
 * [External provider authentication](xref:security/authentication/social/index), such as Facebook and Google, isn't available before the cookie policy is accepted.
 
-:::moniker-end
-
 ## Encryption at rest
 
 Some databases and storage mechanisms allow for encryption at rest. Encryption at rest:
@@ -128,3 +125,4 @@ For databases that don't provide built-in encryption at rest, you may be able to
 ## Additional resources
 
 * [Microsoft.com/GDPR](https://www.microsoft.com/trustcenter/Privacy/GDPR)
+:::moniker-end
