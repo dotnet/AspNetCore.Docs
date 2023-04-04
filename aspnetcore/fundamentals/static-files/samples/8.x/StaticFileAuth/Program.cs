@@ -1,7 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using StaticFilesAuth;
@@ -73,13 +72,6 @@ app.UseFileServer();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseStaticFiles(new StaticFileOptions
-{
-    FileProvider = new PhysicalFileProvider(
-        Path.Combine(builder.Environment.ContentRootPath, "PrivateFiles")),
-    RequestPath = "/files"
-});
-
 var securityKey = new SymmetricSecurityKey(Convert.FromBase64String(jwtAuthOpts.SymmetricSecurityKey));
 var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 var tokenDescriptor = new SecurityTokenDescriptor {
@@ -93,7 +85,6 @@ app.MapGet("/token", (HttpContext context) => {
     var username = context.Request.Headers["username"].ToString();
     var password = context.Request.Headers["password"].ToString();
 
-    
     switch (username)
     {
         case "admin" when password.Equals("admin"):
@@ -122,14 +113,18 @@ app.MapGet("/token", (HttpContext context) => {
 string GetOrCreateFilePath(string nestedFilesDirectory, string fileName, string rootFilesDirectory = "PrivateFiles")
 {
     var rootFilesDirectoryPath = Path.Combine(app.Environment.ContentRootPath, rootFilesDirectory);
-    
+
     if (!Directory.Exists(rootFilesDirectoryPath))
+    {
         Directory.CreateDirectory(rootFilesDirectoryPath);
+    }
     
     var nestedFilesDirectoryPath = Path.Combine(app.Environment.ContentRootPath, rootFilesDirectory, nestedFilesDirectory);
-    
+
     if (!Directory.Exists(nestedFilesDirectoryPath))
+    {
         Directory.CreateDirectory(nestedFilesDirectoryPath);
+    }
 
     return Path.Combine(app.Environment.ContentRootPath, rootFilesDirectory, nestedFilesDirectory, fileName);
 }
@@ -154,22 +149,29 @@ app.MapGet("/files/{fileName}", (string fileName, HttpContext context) =>
             var alias = context.User.FindFirstValue("alias");
 
             if (string.IsNullOrEmpty(alias))
+            {
                 return Results.Unauthorized();
+            }
 
             filePath = GetOrCreateFilePath(alias, fileName);
         }
-        
+
         if (File.Exists(filePath))
+        {
             return TypedResults.PhysicalFile(filePath, fileDownloadName: $"{fileName}");
+        }
 
         return TypedResults.NotFound("No file found with the supplied file name");
     })
     .WithName("GetFileByName")
     .RequireAuthorization("PrivateFiles");
 
+// IFormFile uses memory buffer for uploading. For handling large file use streaming instead.
+// https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-7.0#upload-large-files-with-streaming
 app.MapPost("/files", async (IFormFile file, LinkGenerator linker, HttpContext context) =>
     {
         if (!Utilities.IsFileValid(file))
+        {
             return Results.ValidationProblem(new Dictionary<string, string[]>
             {
                 {
@@ -179,16 +181,21 @@ app.MapPost("/files", async (IFormFile file, LinkGenerator linker, HttpContext c
                     }
                 }
             });
-
-        var fileSaveName = Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName);
+        }
         
+        var fileSaveName = Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName);
+
         if (context.User.Claims.Any(u => u.Subject.HasClaim("isAdmin", "true")))
+        {
             await SaveFileWithCustomFileName(file, "Admin", fileSaveName);
+        }
 
         var alias = context.User.FindFirstValue("alias");
 
         if (string.IsNullOrEmpty(alias))
+        {
             return Results.Unauthorized();
+        }
             
         await SaveFileWithCustomFileName(file, alias, fileSaveName);
         
