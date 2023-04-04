@@ -134,7 +134,14 @@ string GetOrCreateFilePath(string nestedFilesDirectory, string fileName, string 
     return Path.Combine(app.Environment.ContentRootPath, rootFilesDirectory, nestedFilesDirectory, fileName);
 }
 
-app.MapGet("/files/{filename}", (string fileName, HttpContext context) =>
+async Task SaveFileWithCustomFileName(IFormFile file, string directoryAlias, string fileSaveName)
+{
+    var filePath = GetOrCreateFilePath(directoryAlias, fileSaveName);
+    await using var fileStream = new FileStream(filePath, FileMode.Create);
+    await file.CopyToAsync(fileStream);
+}
+
+app.MapGet("/files/{fileName}", (string fileName, HttpContext context) =>
     {
         if (context.User.Claims.Any(u => u.Subject.HasClaim("isAdmin", "true")))
         {
@@ -180,35 +187,21 @@ app.MapPost("/files", async (IFormFile file, LinkGenerator linker, HttpContext c
         
         if (context.User.Claims.Any(u => u.Subject.HasClaim("isAdmin", "true")))
         {
-            var filePath =
-                GetOrCreateFilePath("Admin", fileSaveName);
-
-            await using (var fileStream = new FileStream(filePath, FileMode.Create))
-                await file.CopyToAsync(fileStream);
-
-            context.Response.Headers.Add("Location",
-                linker.GetPathByName(context, "GetFileByName", new {fileName = fileSaveName}));
+            await SaveFileWithCustomFileName(file, "Admin", fileSaveName);
             
+            context.Response.Headers.Add("Location", linker.GetPathByName(context, "GetFileByName", new { fileName = fileSaveName}));
             return TypedResults.Ok("File Uploaded Successfully!");
         }
-        else
-        {
-            var alias = context.User.FindFirstValue("alias");
 
-            if (string.IsNullOrEmpty(alias))
-                return Results.Unauthorized();
+        var alias = context.User.FindFirstValue("alias");
 
-            var filePath =
-                GetOrCreateFilePath(alias, fileSaveName);
-
-            await using (var fileStream = new FileStream(filePath, FileMode.Create))
-                await file.CopyToAsync(fileStream);
-
-            context.Response.Headers.Add("Location",
-                linker.GetPathByName(context, "GetFileByName", new {fileName = fileSaveName}));
+        if (string.IsNullOrEmpty(alias))
+            return Results.Unauthorized();
             
-            return TypedResults.Ok("File Uploaded Successfully!");
-        }
+        await SaveFileWithCustomFileName(file, alias, fileSaveName);
+        
+        context.Response.Headers.Add("Location", linker.GetPathByName(context, "GetFileByName", new { fileName = fileSaveName}));
+        return TypedResults.Ok("File Uploaded Successfully!");
     })
     .RequireAuthorization("PrivateFiles");
 
