@@ -11,6 +11,8 @@ uid: fundamentals/servers/kestrel/endpoints
 
 # Configure endpoints for the ASP.NET Core Kestrel web server
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-8.0"
 
 ASP.NET Core projects are configured to bind to a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300. This default configuration is specified in the generated `Properties/launchSettings.json` file and can be overridden. If no ports are specified, Kestrel binds to `http://localhost:5000`.
@@ -456,7 +458,7 @@ The `Protocols` property establishes the HTTP protocols (`HttpProtocols`) enable
 | `Http1AndHttp2` | HTTP/1.1 and HTTP/2. HTTP/2 requires the client to select HTTP/2 in the TLS [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) handshake; otherwise, the connection defaults to HTTP/1.1. |
 | `Http1AndHttp2AndHttp3` | HTTP/1.1, HTTP/2 and HTTP/3. The first client request normally uses HTTP/1.1 or HTTP/2, and the [`alt-svc` response header](xref:fundamentals/servers/kestrel/http3#alt-svc) prompts the client to upgrade to HTTP/3. HTTP/2 and HTTP/3 requires TLS; otherwise, the connection defaults to HTTP/1.1. |
 
-The default `ListenOptions.Protocols` value for any endpoint is `HttpProtocols.Http1AndHttp2`.
+The default `ListenOptions.Protocols` value for any endpoint is `HttpProtocols.Http1AndHttp2AndHttp3`.
 
 TLS restrictions for HTTP/2:
 
@@ -470,7 +472,7 @@ TLS restrictions for HTTP/2:
 
 `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256` &lbrack;`TLS-ECDHE`&rbrack; with the P-256 elliptic curve &lbrack;`FIPS186`&rbrack; is supported by default.
 
-The following example permits HTTP/1.1 and HTTP/2 connections on port 8000. Connections are secured by TLS with a supplied certificate:
+The following example permits HTTP/1.1, HTTP/2, and HTTP/3 connections on port 8000. Connections are secured by TLS with a supplied certificate:
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelProtocols":::
 
