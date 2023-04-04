@@ -23,17 +23,17 @@ Razor Pages and MVC projects created with the project templates include the foll
 
 <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> are initialized in `Startup.ConfigureServices`:
 
-[!code-csharp[Main](gdpr/sample/Startup.cs?name=snippet1&highlight=14-20)]
+[!code-csharp[Main](~/security/gdpr/sample/Startup.cs?name=snippet1&highlight=14-20)]
 
 <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A> is called in `Startup.Configure`:
 
-[!code-csharp[](gdpr/sample/Startup.cs?name=snippet1&highlight=51)]
+[!code-csharp[](~/security/gdpr/sample/Startup.cs?name=snippet1&highlight=51)]
 
 ### \_CookieConsentPartial.cshtml partial view
 
 The *\_CookieConsentPartial.cshtml* partial view:
 
-[!code-cshtml[](gdpr/sample/RP2.2/Pages/Shared/_CookieConsentPartial.cshtml)]
+[!code-cshtml[](~/security/gdpr/sample/RP2.2/Pages/Shared/_CookieConsentPartial.cshtml)]
 
 This partial:
 
@@ -45,7 +45,7 @@ This partial:
 
 If consent to store cookies hasn't been provided, only cookies marked essential are sent to the browser. The following code makes a cookie essential:
 
-[!code-csharp[Main](gdpr/sample/RP2.2/Pages/Cookie.cshtml.cs?name=snippet1&highlight=5)]
+[!code-csharp[Main](~/security/gdpr/sample/RP2.2/Pages/Cookie.cshtml.cs?name=snippet1&highlight=5)]
 
 <a name="tempdata"></a>
 
@@ -53,11 +53,11 @@ If consent to store cookies hasn't been provided, only cookies marked essential 
 
 The [TempData provider](xref:fundamentals/app-state#tempdata) cookie isn't essential. If tracking is disabled, the TempData provider isn't functional. To enable the TempData provider when tracking is disabled, mark the TempData cookie as essential in `Startup.ConfigureServices`:
 
-[!code-csharp[Main](gdpr/sample/RP2.2/Startup.cs?name=snippet1)]
+[!code-csharp[Main](~/security/gdpr/sample/RP2.2/Startup.cs?name=snippet1)]
 
 [Session state](xref:fundamentals/app-state) cookies are not essential. Session state isn't functional when tracking is disabled. The following code makes session cookies essential:
 
-[!code-csharp[](gdpr/sample/RP2.2/Startup.cs?name=snippet2)]
+[!code-csharp[](~/security/gdpr/sample/RP2.2/Startup.cs?name=snippet2)]
 
 <a name="pd"></a>
 
@@ -67,7 +67,7 @@ ASP.NET Core apps created with individual user accounts include code to download
 
 Select the user name and then select **Personal data**:
 
-![Manage personal data page](gdpr/_static/pd.png)
+![Manage personal data page](~/security/gdpr/_static/pd.png)
 
 Notes:
 
