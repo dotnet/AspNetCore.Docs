@@ -81,38 +81,6 @@ info: Microsoft.Hosting.Lifetime[0]
       Content root path: C:\Code\Demos\MyFirstAotWebApi
 ```
 
-```csharp
-using System.Text.Json.Serialization;
-using MyFirstAotWebApi;
-
-var builder = WebApplication.CreateSlimBuilder(args);
-builder.Logging.AddConsole();
-
-builder.Services.ConfigureHttpJsonOptions(options =>
-{
-    options.SerializerOptions.AddContext<AppJsonSerializerContext>();
-});
-
-var app = builder.Build();
-
-var sampleTodos = TodoGenerator.GenerateTodos().ToArray();
-
-var todosApi = app.MapGroup("/todos");
-todosApi.MapGet("/", () => sampleTodos);
-todosApi.MapGet("/{id}", (int id) =>
-    sampleTodos.FirstOrDefault(a => a.Id == id) is { } todo
-        ? Results.Ok(todo)
-        : Results.NotFound());
-
-app.Run();
-
-[JsonSerializable(typeof(Todo[]))]
-internal partial class AppJsonSerializerContext : JsonSerializerContext
-{
-
-}
-```
-
 The `Program.cs` source file contains some changes for publishing to .NET native AOT. A significant difference is that `Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder` is used to create the web application builder.  The `CreateSlimBuilder` method initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimal ASP.NET Core features necessary to run an application.
 <!-- Update the preceding with the following when the .NET 8 API is published :
 <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilderSlim%2A>
@@ -122,7 +90,22 @@ The `Program.cs` source file contains some changes for publishing to .NET native
 var builder = WebApplication.CreateSlimBuilder(args);
 ```
 
+Because this template uses JSON to serialize responses, we need to explicitly provide a `JsonSerializerContext` which specifies the custom types that we need to serialize so that the JSON source generator knows what to produce code for.
 
+```csharp
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.AddContext<AppJsonSerializerContext>();
+});
+
+// Other code trimmed for brevity.
+
+[JsonSerializable(typeof(Todo[]))]
+internal partial class AppJsonSerializerContext : JsonSerializerContext
+{
+
+}
+```
 
 Because unused code is trimmed during publishing for Native AOT, the application cannot use unbounded reflection at runtime. Source generators are used to produce code to avoid the need for reflection. In some cases source generators produce code optimized for AOT even when a generator is not strictly required. To view source code that is generated based on the code in ```Program.cs``` modify the ```MyFirstAotWebApi.csproj``` to include the ```<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>``` property. Example:
 
@@ -146,7 +129,7 @@ When `dotnet publish` is run, the project source files and generated source file
 
 Using the .NET native AOT deployment model provides the following benefits:
 
-** **Minimize disk footprint**: When publishing using native AOT a single executable is produced containing just the code from external dependencies that is used to support the program. Reduced executable size can lead to:
+* **Minimize disk footprint**: When publishing using native AOT a single executable is produced containing just the code from external dependencies that is used to support the program. Reduced executable size can lead to:
   * Smaller container images, for example in containerized deployment scenarios.
   * Reduce deployment time from smaller images.
 * **Reduced startup time**: Native AOT applications can show reduced start-up times. Reduced start-up means:
@@ -154,6 +137,11 @@ Using the .NET native AOT deployment model provides the following benefits:
   * Improved deployment where container orchestrators need manage transition from one version of the app to another.
 * **Reduce memory demand**: Native AOT apps can have reduced memory demands depending on the work being performed by the app. Reduced memory consumption can lead to greater deployment density and improved scalability.
 
+We ran the template application in our benchmarking lab to see what the differences were in terms of application size, memory use, and CPU and observed the following results:
+
+![Chart showing comparison of application size, memory use and startup time metrics of an AOT published app, a runtime app that is trimmed, and an untrimmed runtime app.](_static/aot-runtime-trimmed-perf-chart.png)
+
+You can see that native AOT has a dramatically lower application size on disk and memory utilization is also lower for our template scenario. Startup time is also significantly reduced. 🚀
 
 ## ASP.NET Core and AoT Supportability
 
@@ -167,6 +155,20 @@ Not all features in ASP.NET Core are currently compatible with .NET native AOT. 
 | Blazor Server | | |<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
 | SignalR | | | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
 | Authentication | | | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> (JWT soon) |
+| CORS | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
+| HealthChecks | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
+| HttpLogging | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
+| Localization | | |<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
+| OutputCaching | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
+| RateLimiting | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
+| RequestDecompression | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
+| ResponseCaching | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
+| ResponseCompression | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
+| Rewrite | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
+| Session | | |<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
+| Spa | | |<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
+| StaticFiles | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
+| WebSockets | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 
 It is important to test application functionality thoroughly when moving to a native AOT deployment model to ensure that functionality observed during developmnet (using the runtime) is preserved in the native executable. When building your application, keep an eye out for AOT warnings. An application that produces AOT warnings during publishing is not guaranteed to work correctly. If you don't get any AOT warnings at publish time, you should be confident that your application will work consistently after publishing for AOT as it did during your F5 / `dotnet run` develoment workflow.
 
