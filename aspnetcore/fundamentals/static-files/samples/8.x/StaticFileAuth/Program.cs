@@ -56,7 +56,8 @@ builder.Services.AddAuthentication(o => {
 
 builder.Services.AddAuthorization(o =>
 {
-    o.AddPolicy("PrivateFiles", b => b.RequireAuthenticatedUser());
+    o.AddPolicy("AuthenticatedUsers", b => b.RequireAuthenticatedUser());
+    o.AddPolicy("AdminsOnly", b => b.RequireRole("admin"));
 });
 
 var app = builder.Build();
@@ -77,32 +78,27 @@ var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha
 var tokenDescriptor = new SecurityTokenDescriptor {
     Issuer = jwtAuthOpts.ValidIssuer,
     Audience = jwtAuthOpts.ValidAudience,
-    SigningCredentials = credentials,
-    Expires = DateTime.UtcNow.AddMinutes(jwtAuthOpts.TokenExpirationInMinutes)
+    SigningCredentials = credentials
 };
 
 app.MapGet("/token", (HttpContext context) => {
     var username = context.Request.Headers["username"].ToString();
     var password = context.Request.Headers["password"].ToString();
 
-    switch (username)
+    var claimsIdentity = new ClaimsIdentity(new[]
     {
-        case "admin" when password.Equals("admin"):
-            tokenDescriptor.Subject = new ClaimsIdentity(new[]
-            {
-                new Claim("isAdmin", "true")
-            });
-            break;
-        case "user" when password.Equals("user"):
-            tokenDescriptor.Subject = new ClaimsIdentity(new[]
-            {
-                new Claim("alias", username)
-            });
-            break;
-        default:
-            return Results.Unauthorized();
+        new Claim(JwtRegisteredClaimNames.Sub, username),
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+    });
+    
+    if(username.Equals("admin") && password.Equals("admin"))
+    {
+        claimsIdentity.AddClaim(new Claim(ClaimTypes.Role, "admin"));
     }
 
+    tokenDescriptor.Subject = claimsIdentity;
+    tokenDescriptor.Expires = DateTime.UtcNow.AddMinutes(jwtAuthOpts.TokenExpirationInMinutes);
+    
     var jwtTokenHandler = new JwtSecurityTokenHandler();
     
     return Results.Ok(new {
@@ -110,51 +106,28 @@ app.MapGet("/token", (HttpContext context) => {
     });
 }).AllowAnonymous();
 
-string GetOrCreateFilePath(string nestedFilesDirectory, string fileName, string rootFilesDirectory = "PrivateFiles")
+string GetOrCreateFilePath(string fileName, string filesDirectory = "PrivateFiles")
 {
-    var rootFilesDirectoryPath = Path.Combine(app.Environment.ContentRootPath, rootFilesDirectory);
+    var directoryPath = Path.Combine(app.Environment.ContentRootPath, filesDirectory);
 
-    if (!Directory.Exists(rootFilesDirectoryPath))
+    if (!Directory.Exists(directoryPath))
     {
-        Directory.CreateDirectory(rootFilesDirectoryPath);
-    }
-    
-    var nestedFilesDirectoryPath = Path.Combine(app.Environment.ContentRootPath, rootFilesDirectory, nestedFilesDirectory);
-
-    if (!Directory.Exists(nestedFilesDirectoryPath))
-    {
-        Directory.CreateDirectory(nestedFilesDirectoryPath);
+        Directory.CreateDirectory(directoryPath);
     }
 
-    return Path.Combine(app.Environment.ContentRootPath, rootFilesDirectory, nestedFilesDirectory, fileName);
+    return Path.Combine(app.Environment.ContentRootPath, directoryPath, fileName);
 }
 
-async Task SaveFileWithCustomFileName(IFormFile file, string directoryAlias, string fileSaveName)
+async Task SaveFileWithCustomFileName(IFormFile file, string fileSaveName)
 {
-    var filePath = GetOrCreateFilePath(directoryAlias, fileSaveName);
+    var filePath = GetOrCreateFilePath(fileSaveName);
     await using var fileStream = new FileStream(filePath, FileMode.Create);
     await file.CopyToAsync(fileStream);
 }
 
-app.MapGet("/files/{fileName}", (string fileName, HttpContext context) =>
+app.MapGet("/files/{fileName}",  IResult (string fileName) => 
     {
-        string filePath;
-        
-        if (context.User.Claims.Any(u => u.Subject.HasClaim("isAdmin", "true")))
-        {
-            filePath = GetOrCreateFilePath("Admin", fileName);
-        }
-        else
-        {
-            var alias = context.User.FindFirstValue("alias");
-
-            if (string.IsNullOrEmpty(alias))
-            {
-                return Results.Unauthorized();
-            }
-
-            filePath = GetOrCreateFilePath(alias, fileName);
-        }
+        var filePath = GetOrCreateFilePath(fileName);
 
         if (File.Exists(filePath))
         {
@@ -164,45 +137,22 @@ app.MapGet("/files/{fileName}", (string fileName, HttpContext context) =>
         return TypedResults.NotFound("No file found with the supplied file name");
     })
     .WithName("GetFileByName")
-    .RequireAuthorization("PrivateFiles");
+    .RequireAuthorization("AuthenticatedUsers");
 
 // IFormFile uses memory buffer for uploading. For handling large file use streaming instead.
-// https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-7.0#upload-large-files-with-streaming
+// https://learn.microsoft.com/aspnet/core/mvc/models/file-uploads#upload-large-files-with-streaming
 app.MapPost("/files", async (IFormFile file, LinkGenerator linker, HttpContext context) =>
     {
-        if (!Utilities.IsFileValid(file))
-        {
-            return Results.ValidationProblem(new Dictionary<string, string[]>
-            {
-                {
-                    "invalid.extensions", new[]
-                    {
-                        $"Only allowed file types are [{string.Join(", ", Utilities.AllowedFileSignatures.Keys)}]"
-                    }
-                }
-            });
-        }
+        // Don't rely on the file.FileName as it is only metadata that can be manipulated by the end-user
+        // Take a look at the `Utilities.IsFileValid` method that takes an IFormFile and validates its signature within the AllowedFileSignatures
         
         var fileSaveName = Guid.NewGuid().ToString("N") + Path.GetExtension(file.FileName);
-
-        if (context.User.Claims.Any(u => u.Subject.HasClaim("isAdmin", "true")))
-        {
-            await SaveFileWithCustomFileName(file, "Admin", fileSaveName);
-        }
-
-        var alias = context.User.FindFirstValue("alias");
-
-        if (string.IsNullOrEmpty(alias))
-        {
-            return Results.Unauthorized();
-        }
-            
-        await SaveFileWithCustomFileName(file, alias, fileSaveName);
+        await SaveFileWithCustomFileName(file, fileSaveName);
         
-        context.Response.Headers.Add("Location", linker.GetPathByName(context, "GetFileByName", new { fileName = fileSaveName}));
+        context.Response.Headers.Append("Location", linker.GetPathByName(context, "GetFileByName", new { fileName = fileSaveName}));
         return TypedResults.Ok("File Uploaded Successfully!");
     })
-    .RequireAuthorization("PrivateFiles");
+    .RequireAuthorization("AdminsOnly");
 
 app.Run();
 

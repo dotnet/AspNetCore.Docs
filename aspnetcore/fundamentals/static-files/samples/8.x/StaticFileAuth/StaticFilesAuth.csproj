@@ -14,8 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="PrivateFiles\Admin\" />
-    <Folder Include="PrivateFiles\user\" />
+    <Folder Include="PrivateFiles" />
   </ItemGroup>
 
 </Project>
