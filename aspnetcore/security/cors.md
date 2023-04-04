@@ -9,7 +9,7 @@ uid: security/cors
 ---
 # Enable Cross-Origin Requests (CORS) in ASP.NET Core
 
-[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 [!INCLUDE[](~/security/cors/includes/cors7.md)]
 

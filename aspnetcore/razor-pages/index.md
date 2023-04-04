@@ -20,7 +20,7 @@ This document provides an introduction to Razor Pages. It's not a step by step t
 
 ## Prerequisites
 
-[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-6.0"
 

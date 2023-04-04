@@ -13,7 +13,7 @@ uid: tutorials/signalr-typescript-webpack
 
 By [Sébastien Sougnez](https://twitter.com/ssougnez)
 
-[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-8.0"
 

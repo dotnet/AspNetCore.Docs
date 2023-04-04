@@ -13,7 +13,7 @@ uid: grpc/troubleshoot
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range="= aspnetcore-8.0"
 
