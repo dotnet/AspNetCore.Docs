@@ -11,6 +11,8 @@ zone_pivot_groups: blazor-hybrid-operating-systems
 ---
 # Use browser developer tools with ASP.NET Core Blazor Hybrid
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 <!-- This topic drops loc for "Mac Catalyst" -->
 
 This article explains how to use [browser developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) with Blazor Hybrid apps.

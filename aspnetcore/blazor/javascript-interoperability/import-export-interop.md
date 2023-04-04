@@ -10,6 +10,8 @@ uid: blazor/js-interop/import-export-interop
 ---
 # JavaScript `[JSImport]`/`[JSExport]` interop with ASP.NET Core Blazor
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 <!--
 
     AUTHOR NOTE: This topic is configured in metadata for ONLY the 7.0 release

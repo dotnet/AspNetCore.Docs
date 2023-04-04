@@ -10,6 +10,8 @@ uid: blazor/hybrid/security/security-considerations
 ---
 # ASP.NET Core Blazor Hybrid security considerations
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 <!-- This topic drops loc for "Mac Catalyst" -->
 
 This article describes security considerations for Blazor Hybrid apps.

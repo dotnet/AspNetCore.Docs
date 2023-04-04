@@ -10,6 +10,8 @@ uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 <!-- 
 
 NOTE: Daggered lines under the table (&dagger;, &Dagger;) use a double-space at the ends of lines to generate a bare return across rendered lines.

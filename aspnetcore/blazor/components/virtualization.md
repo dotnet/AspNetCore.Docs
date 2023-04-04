@@ -10,6 +10,8 @@ uid: blazor/components/virtualization
 ---
 # ASP.NET Core Razor component virtualization
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 This article explains how to use component virtualization in ASP.NET Core Blazor apps.
 
 :::moniker range=">= aspnetcore-7.0"

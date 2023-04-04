@@ -11,6 +11,8 @@ zone_pivot_groups: blazor-hybrid-frameworks
 ---
 # ASP.NET Core Blazor Hybrid authentication and authorization
 
+[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+
 This article describes ASP.NET Core's support for the configuration and management of security and ASP.NET Core Identity in Blazor Hybrid apps.
 
 ::: moniker range=">= aspnetcore-7.0"
