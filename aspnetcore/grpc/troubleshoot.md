@@ -13,8 +13,6 @@ uid: grpc/troubleshoot
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
-
 :::moniker range="= aspnetcore-8.0"
 
 This document discusses commonly encountered problems when developing gRPC apps on .NET.

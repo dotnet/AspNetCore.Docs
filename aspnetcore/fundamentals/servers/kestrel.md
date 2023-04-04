@@ -12,8 +12,6 @@ uid: fundamentals/servers/kestrel
 
 By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
-
 :::moniker range=">= aspnetcore-8.0"
 
 Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the web server that's included and enabled by default in ASP.NET Core project templates.
