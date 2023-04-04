@@ -10,8 +10,6 @@ uid: native-aot/index
 ---
 # ASP.NET Core support for .NET native AOT.
 
-:::moniker range=">= aspnetcore-8.0"
-
 ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/). Not all ASP.NET Core features are compatible with native AOT at this time. 
 
 * How to get started.
