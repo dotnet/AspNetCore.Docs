@@ -5,7 +5,7 @@ description: Learn how to configure Blazor WebAssembly for additional security s
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/03/2023
+ms.date: 04/04/2023
 uid: blazor/security/webassembly/additional-scenarios
 ---
 # ASP.NET Core Blazor WebAssembly additional security scenarios
@@ -195,7 +195,8 @@ var tokenResult = await TokenProvider.RequestAccessToken(
 if (!tokenResult.TryGetToken(out var token))
 {
     tokenResult.InteractionOptions.TryAddAdditionalParameter("prompt", "login");
-    tokenResult.InteractionOptions.TryAddAdditionalParameter("loginHint", "peter@contoso.com");
+    tokenResult.InteractionOptions.TryAddAdditionalParameter("loginHint", 
+        "peter@contoso.com");
 
     Navigation.NavigateToLogin(accessTokenResult.InteractiveRequestUrl, 
         accessTokenResult.InteractionOptions);
@@ -225,7 +226,8 @@ Navigation.NavigateToLogout("authentication/logout", "goodbye");
 Obtain the configured login path from <xref:Microsoft.AspNetCore.Builder.RemoteAuthenticationOptions>:
 
 ```csharp
-var loginPath = RemoteAuthOptions.Get(Options.DefaultName).AuthenticationPaths.LogInPath;
+var loginPath = 
+    RemoteAuthOptions.Get(Options.DefaultName).AuthenticationPaths.LogInPath;
 ```
 
 The preceding example assumes:
@@ -344,26 +346,25 @@ A typed client can be defined that handles all of the HTTP and token acquisition
 
 `WeatherForecastClient.cs`:
 
+:::moniker range=">= aspnetcore-6.0"
+
 ```csharp
-using System.Net.Http;
 using System.Net.Http.Json;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using static {ASSEMBLY NAME}.Data;
 
 public class WeatherForecastClient
 {
     private readonly HttpClient http;
- 
+    private WeatherForecast[]? forecasts;
+
     public WeatherForecastClient(HttpClient http)
     {
         this.http = http;
     }
- 
+
     public async Task<WeatherForecast[]> GetForecastAsync()
     {
-        var forecasts = new WeatherForecast[0];
-
         try
         {
             forecasts = await http.GetFromJsonAsync<WeatherForecast[]>(
@@ -374,12 +375,52 @@ public class WeatherForecastClient
             exception.Redirect();
         }
 
-        return forecasts;
+        return forecasts ?? Array.Empty<WeatherForecast>();
     }
 }
 ```
 
-The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+```csharp
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using static {ASSEMBLY NAME}.Data;
+
+public class WeatherForecastClient
+{
+    private readonly HttpClient http;
+    private WeatherForecast[] forecasts;
+ 
+    public WeatherForecastClient(HttpClient http)
+    {
+        this.http = http;
+    }
+ 
+    public async Task<WeatherForecast[]> GetForecastAsync()
+    {
+        try
+        {
+            forecasts = await http.GetFromJsonAsync<WeatherForecast[]>(
+                "WeatherForecast");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        }
+
+        return forecasts ?? Array.Empty<WeatherForecast>();
+    }
+}
+```
+
+:::moniker-end
+
+In the preceding example, the `WeatherForecast` type is a static class that holds weather forecast data. The placeholder `{ASSEMBLY NAME}` is the app's assembly name (for example, `using static BlazorSample.Data;`).
 
 In the following example, <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A?displayProperty=nameWithType> is an extension in <xref:Microsoft.Extensions.Http?displayProperty=fullName>.
 
@@ -437,7 +478,7 @@ For a hosted Blazor solution based on the [Blazor WebAssembly project template](
 
 ## Unauthenticated or unauthorized web API requests in an app with a secure default client
 
-If the Blazor WebAssembly app ordinarily uses a secure default <xref:System.Net.Http.HttpClient>, the app can also make unauthenticated or unauthorized web API requests by configuring a named <xref:System.Net.Http.HttpClient>.
+An app that ordinarily uses a secure default <xref:System.Net.Http.HttpClient> can also make unauthenticated or unauthorized web API requests by configuring a named <xref:System.Net.Http.HttpClient>.
 
 In the following example, <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A?displayProperty=nameWithType> is an extension in <xref:Microsoft.Extensions.Http?displayProperty=fullName>.
 
@@ -541,11 +582,12 @@ The following policy includes configuration for:
 app.UseCors(policy => 
     policy.WithOrigins("http://localhost:5000", "https://localhost:5001")
         .AllowAnyMethod()
-        .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization, "x-custom-header")
+        .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization, 
+            "x-custom-header")
         .AllowCredentials());
 ```
 
-A hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure) uses the same base address for the client and server apps. The client app's <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> is set to a URI of `builder.HostEnvironment.BaseAddress` by default. CORS configuration is **not** required in the default configuration of a hosted Blazor solution. Additional client apps that aren't hosted by the server project and don't share the server app's base address **do** require CORS configuration in the server project.
+A hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure) uses the same base address for the client and server apps. The client app's <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> is set to a URI of `builder.HostEnvironment.BaseAddress` by default. CORS configuration is ***not*** required in the default configuration of a hosted Blazor solution. Additional client apps that aren't hosted by the server project and don't share the server app's base address ***do*** require CORS configuration in the server project.
 
 For more information, see <xref:security/cors> and the sample app's HTTP Request Tester component (`Components/HTTPRequestTester.razor`).
 
@@ -569,16 +611,18 @@ When the app requests a token, there are two possible outcomes:
 * The request succeeds, and the app has a valid token.
 * The request fails, and the app must authenticate the user again to obtain a new token.
 
-When a token request fails, you need to decide whether you want to save any current state before you perform a redirection. Several approaches exist with increasing levels of complexity:
+When a token request fails, you need to decide whether you want to save any current state before you perform a redirection. Several approaches exist to store state with increasing levels of complexity:
 
 * Store the current page state in session storage. During the [`OnInitializedAsync` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) (<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>), check if state can be restored before continuing.
 * Add a query string parameter and use that as a way to signal the app that it needs to re-hydrate the previously saved state.
 * Add a query string parameter with a unique identifier to store data in session storage without risking collisions with other items.
 
+## Save app state before an authentication operation with session storage
+
 The following example shows how to:
 
 * Preserve state before redirecting to the login page.
-* Recover the previous state afterward authentication using the query string parameter.
+* Recover the previous state after authentication using a query string parameter.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -718,7 +762,7 @@ The following example shows how to:
 
 :::moniker-end
 
-## Save app state before an authentication operation
+## Save app state before an authentication operation with session storage and a state container
 
 During an authentication operation, there are cases where you want to save the app state before the browser is redirected to the IP. This can be the case when you're using a state container and want to restore the state after the authentication succeeds. You can use a custom authentication state object to preserve app-specific state or a reference to it and restore that state after the authentication operation successfully completes. The following example demonstrates the approach.
 
@@ -917,8 +961,6 @@ The `Authentication` component (`Pages/Authentication.razor`) saves and restores
 
 :::moniker-end
 
-In the preceding example, `JS` is an injected <xref:Microsoft.JSInterop.IJSRuntime> instance. <xref:Microsoft.JSInterop.IJSRuntime> is registered by the Blazor framework.
-
 This example uses Azure Active Directory (AAD) for authentication. In `Program.cs`:
 
 * The `ApplicationAuthenticationState` is configured as the Microsoft Authentication Library (MSAL) `RemoteAuthenticationState` type.
@@ -951,7 +993,7 @@ By default, the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](h
 
 The routes shown in the preceding table are configurable via <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationOptions%601.AuthenticationPaths%2A?displayProperty=nameWithType>. When setting options to provide custom routes, confirm that the app has a route that handles each path.
 
-In the following example, all the paths are prefixed with `/security`.
+In the following example, all of the paths are prefixed with `/security`.
 
 `Authentication` component (`Pages/Authentication.razor`):
 
@@ -1015,7 +1057,7 @@ You're allowed to break the UI into different pages if you choose to do so.
 
 ## Customize the authentication user interface
 
-<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorView> includes a default set of UI pieces for each authentication state. Each state can be customized by passing in a custom <xref:Microsoft.AspNetCore.Components.RenderFragment>. To customize the displayed text during the initial login process, can change the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorView> as follows.
+<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorView> includes a default set of UI fragments for each authentication state. Each state can be customized by passing in a custom <xref:Microsoft.AspNetCore.Components.RenderFragment>. To customize the displayed text during the initial login process, can change the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorView> as follows.
 
 `Authentication` component (`Pages/Authentication.razor`):
 
@@ -1079,7 +1121,7 @@ Users bound to the app can be customized.
 
 ### Customize the user with a payload claim
 
-In the following example, the app's authenticated users receive an `amr` claim for each of the user's authentication methods. The `amr` claim identifies how the subject of the token was authenticated in Microsoft Identity Platform v1.0 [payload claims](/azure/active-directory/develop/access-tokens#the-amr-claim). The example uses a custom user account class based on <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>.
+In the following example, the app's authenticated users receive an `amr` claim for each of the user's authentication methods. The `amr` claim identifies how the subject of the token was authenticated in Microsoft Identity Platform v1.0 [payload claims](/azure/active-directory/develop/access-tokens#amr-claim). The example uses a custom user account class based on <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>.
 
 Create a class that extends the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> class. The following example sets the `AuthenticationMethod` property to the user's array of `amr` JSON property values. `AuthenticationMethod` is populated automatically by the framework when the user is authenticated.
 
@@ -1378,7 +1420,7 @@ When a user logs in, Identity collects access and refresh tokens as part of the 
 
 Use the access token generated on the server to retrieve the third-party access token from a server API endpoint. From there, use the third-party access token to call third-party API resources directly from Identity on the client.
 
-We don't recommend this approach. This approach requires treating the third-party access token as if it were generated for a public client. In OAuth terms, the public app doesn't have a client secret because it can't be trusted to store secrets safely, and the access token is produced for a confidential client. A confidential client is a client that has a client secret and is assumed to be able to safely store secrets.
+***We don't recommend this approach.*** This approach requires treating the third-party access token as if it were generated for a public client. In OAuth terms, the public app doesn't have a client secret because it can't be trusted to store secrets safely, and the access token is produced for a confidential client. A confidential client is a client that has a client secret and is assumed to be able to safely store secrets.
 
 * The third-party access token might be granted additional scopes to perform sensitive operations based on the fact that the third-party emitted the token for a more trusted client.
 * Similarly, refresh tokens shouldn't be issued to a client that isn't trusted, as doing so gives the client unlimited access unless other restrictions are put into place.
@@ -1387,7 +1429,7 @@ We don't recommend this approach. This approach requires treating the third-part
 
 Make an API call from the client to the server API. From the server, retrieve the access token for the third-party API resource and issue whatever call is necessary.
 
-While this approach requires an extra network hop through the server to call a third-party API, it ultimately results in a safer experience:
+***We recommend this approach.*** While this approach requires an extra network hop through the server to call a third-party API, it ultimately results in a safer experience:
 
 * The server can store refresh tokens and ensure that the app doesn't lose access to third-party resources.
 * The app can't leak access tokens from the server that might contain more sensitive permissions.
@@ -1654,7 +1696,7 @@ For more information, see [`AuthenticationService.ts` in the `dotnet/aspnetcore`
 If an app requires a custom version of the [Microsoft Authentication Library for JavaScript (`MSAL.js`)](https://www.npmjs.com/package/@azure/msal-browser), perform the following steps:
 
 1. Confirm the system has the latest developer .NET SDK or obtain and install the latest developer SDK from [.NET Core SDK: Installers and Binaries](https://github.com/dotnet/installer#installers-and-binaries). Configuration of internal NuGet feeds isn't required for this scenario.
-1. Set up the `dotnet/aspnetcore` GitHub repository for development per the docs at [Build ASP.NET Core from Source](https://github.com/dotnet/aspnetcore/blob/main/docs/BuildFromSource.md). Fork and clone or download a ZIP archive of the [dotnet/aspnetcore GitHub repository](https://github.com/dotnet/aspnetcore).
+1. Set up the `dotnet/aspnetcore` GitHub repository for development following the documentation at [Build ASP.NET Core from Source](https://github.com/dotnet/aspnetcore/blob/main/docs/BuildFromSource.md). Fork and clone or download a ZIP archive of the [`dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore).
 1. Open the `src/Components/WebAssembly/Authentication.Msal/src/Interop/package.json` file and set the desired version of `@azure/msal-browser`. For a list of released versions, visit the [`@azure/msal-browser` npm website](https://www.npmjs.com/package/@azure/msal-browser) and select the **Versions** tab.
 1. Build the `Authentication.Msal` project in the `src/Components/WebAssembly/Authentication.Msal/src` folder with the `yarn build` command in a command shell.
 1. If the app uses [compressed assets (Brotli/Gzip)](xref:blazor/host-and-deploy/webassembly#compression), compress the `Interop/dist/Release/AuthenticationService.js` file.
@@ -1750,7 +1792,9 @@ The preceding example sets redirect URIs with regular string literals. The follo
 * <xref:System.Uri.TryCreate%2A> using <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType>:
 
   ```csharp
-  Uri.TryCreate($"{builder.HostEnvironment.BaseAddress}authentication/login-callback", UriKind.Absolute, out var redirectUri);
+  Uri.TryCreate(
+      $"{builder.HostEnvironment.BaseAddress}authentication/login-callback", 
+      UriKind.Absolute, out var redirectUri);
   options.RedirectUri = redirectUri;
   ```
   
