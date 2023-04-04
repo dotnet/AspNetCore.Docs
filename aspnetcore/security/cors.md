@@ -9,9 +9,7 @@ uid: security/cors
 ---
 # Enable Cross-Origin Requests (CORS) in ASP.NET Core
 
-:::moniker range="< aspnetcore-7.0"
 [!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
-:::moniker-end
 
 [!INCLUDE[](~/security/cors/includes/cors7.md)]
 

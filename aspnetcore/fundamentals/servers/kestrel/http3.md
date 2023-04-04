@@ -11,9 +11,7 @@ uid: fundamentals/servers/kestrel/http3
 
 # Use HTTP/3 with the ASP.NET Core Kestrel web server
 
-:::moniker range="< aspnetcore-7.0"
 [!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
-:::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 

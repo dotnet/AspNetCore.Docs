@@ -13,7 +13,7 @@ uid: fundamentals/host/hosted-services
 By [Jeow Li Huan](https://github.com/huan086)
 
 :::moniker range="< aspnetcore-6.0"
-[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
+[!INCLUDE [not-latest-version](~/includes/not-latest-versionNM.md)]
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
