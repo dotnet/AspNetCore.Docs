@@ -70,7 +70,7 @@ The MSBuild project or solution to apply a command on. If a project or solution 
 
 Usage: `dotnet user-jwts create [options]`
 
-| Option  | Description |
+| Option (- and --)  | Description |
 | ------------- | ------------- |
 |  -p \| --project | The path of the project to operate on. Defaults to the project in the current directory. |
 | --scheme | The scheme name to use for the generated token. Defaults to 'Bearer'. |
