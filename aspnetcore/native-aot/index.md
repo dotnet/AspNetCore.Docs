@@ -19,7 +19,7 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
 > [!WARNING]
 > In .NET 8, not all ASP.NET Core features are compatible with native AOT.
 
-## Getting started with .NET native AOT deployment in ASP.NET Core
+## Getting started with native AOT deployment in ASP.NET Core
 
 Native AOT is a publishing option. AOT compilation happens when the app is published. A project that uses Native AOT publishing will use JIT compilation when debugging/running, but there are some observable differences:
 
