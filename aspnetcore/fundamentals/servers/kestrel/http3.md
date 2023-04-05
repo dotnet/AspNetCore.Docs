@@ -5,7 +5,7 @@ description: Learn about using HTTP/3 with Kestrel, the cross-platform web serve
 monikerRange: '>= aspnetcore-6.0'
 ms.author: wigodbe
 ms.custom: mvc
-ms.date: 04/03/2023
+ms.date: 04/04/2023
 uid: fundamentals/servers/kestrel/http3
 ---
 
@@ -22,7 +22,7 @@ uid: fundamentals/servers/kestrel/http3
 
 ## HTTP/3 requirements
 
-HTTP/3 has different requirements depending on the operating system. If the platform that Kestrel is running on doesn't have all the requirements for HTTP/3 then it's disabled, and Kestrel will fallback to other HTTP protocols.
+HTTP/3 has different requirements depending on the operating system. If the platform that Kestrel is running on doesn't have all the requirements for HTTP/3 then it's disabled, and Kestrel will fall back to other HTTP protocols.
 
 ### Windows
 
@@ -46,18 +46,9 @@ HTTP/3 isn't currently supported on macOS and may be available in a future relea
 
 ## Getting started
 
-HTTP/3 is not enabled by default. Add configuration to `Program.cs` to enable HTTP/3.
+HTTP/3 is enabled by default. Because not all routers, firewalls, and proxies properly support HTTP/3, by default HTTP/3 is configured together with HTTP/1.1 and HTTP/2.
 
-:::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_Http3" highlight="7-8":::
-
-The preceding code configures port 5001 to:
-
-* Use HTTP/3 alongside HTTP/1.1 and HTTP/2 by specifying `HttpProtocols.Http1AndHttp2AndHttp3`.
-* Enable HTTPS with `UseHttps`. HTTP/3 requires HTTPS.
-
-Because not all routers, firewalls, and proxies properly support HTTP/3, HTTP/3 should be configured together with HTTP/1.1 and HTTP/2. This can be done by specifying [`HttpProtocols.Http1AndHttp2AndHttp3`](xref:Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http1AndHttp2AndHttp3) as an endpoint's supported protocols.
-
-For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
+For more information, see <xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols>.
 
 ## Alt-svc
 
@@ -79,7 +70,7 @@ HTTP/3 and QUIC have a number of benefits compared to HTTP/1.1 and HTTP/2:
 
 * Faster response time of the first request. QUIC and HTTP/3 negotiates the connection in fewer round-trips between the client and the server. The first request reaches the server faster.
 * Improved experience when there is connection packet loss. HTTP/2 multiplexes multiple requests via one TCP connection. Packet loss on the connection affects all requests. This problem is called "head-of-line blocking". Because QUIC provides native multiplexing, lost packets only impact the requests where data has been lost.
-* Supports transitioning between networks. This feature is useful for mobile devices where it is common to switch between WIFI and cellular networks as a mobile device changes location. Currently HTTP/1.1 and HTTP/2 connections fail with an error when switching networks. An app or web browsers must retry any failed HTTP requests. HTTP/3 allows the app or web browser to seamlessly continue when a network changes. Kestrel doesn't support network transitions in .NET 6. It may be available in a future release.
+* Supports transitioning between networks. This feature is useful for mobile devices where it is common to switch between WIFI and cellular networks as a mobile device changes location. Currently HTTP/1.1 and HTTP/2 connections fail with an error when switching networks. An app or web browsers must retry any failed HTTP requests. HTTP/3 allows the app or web browser to seamlessly continue when a network changes. Kestrel doesn't support network transitions in .NET 8. It may be available in a future release.
 
 :::moniker-end
 
