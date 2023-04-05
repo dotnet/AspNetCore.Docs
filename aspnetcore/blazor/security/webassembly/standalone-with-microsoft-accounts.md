@@ -55,15 +55,15 @@ In **Authentication** > **Platform configurations** > **Single-page application*
 Create the app. Replace the placeholders in the following command with the information recorded earlier and execute the following command in a command shell:
 
 ```dotnetcli
-dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "common" -o {APP NAME}
+dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" --tenant-id "common" -o {PROJECT NAME}
 ```
 
-| Placeholder   | Azure portal name       | Example                                |
-| ------------- | ----------------------- | -------------------------------------- |
-| `{APP NAME}`  | &mdash;                 | `BlazorSample`                         |
-| `{CLIENT ID}` | Application (client) ID | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
+| Placeholder      | Azure portal name       | Example                                |
+| ---------------- | ----------------------- | -------------------------------------- |
+| `{PROJECT NAME}` | &mdash;                 | `BlazorSample`                         |
+| `{CLIENT ID}`    | Application (client) ID | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
 
-The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
+The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the project's name.
 
 [!INCLUDE[](~/blazor/security/includes/additional-scopes-standalone-nonAAD.md)]
 
