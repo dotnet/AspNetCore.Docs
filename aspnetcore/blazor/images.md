@@ -10,7 +10,7 @@ uid: blazor/images
 ---
 # Work with images in ASP.NET Core Blazor
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article describes common scenarios for working with images in Blazor apps. 
 

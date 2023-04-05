@@ -10,7 +10,7 @@ uid: blazor/webassembly-lazy-load-assemblies
 ---
 # Lazy load assemblies in ASP.NET Core Blazor WebAssembly
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 Blazor WebAssembly app startup performance can be improved by waiting to load app assemblies until the assemblies are required, which is called *lazy loading*.
 

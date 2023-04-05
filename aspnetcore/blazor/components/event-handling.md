@@ -10,7 +10,7 @@ uid: blazor/components/event-handling
 ---
 # ASP.NET Core Blazor event handling
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains Blazor's event handling features, including event argument types, event callbacks, and managing default browser events.
 

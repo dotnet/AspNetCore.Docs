@@ -10,7 +10,7 @@ uid: blazor/components/cascading-values-and-parameters
 ---
 # ASP.NET Core Blazor cascading values and parameters
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to flow data from an ancestor Razor component to descendent components.
 

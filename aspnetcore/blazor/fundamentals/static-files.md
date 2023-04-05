@@ -10,7 +10,7 @@ uid: blazor/fundamentals/static-files
 ---
 # ASP.NET Core Blazor static files
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article describes the configuration for serving static files in Blazor apps.
 

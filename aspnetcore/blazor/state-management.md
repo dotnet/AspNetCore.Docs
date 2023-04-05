@@ -11,7 +11,7 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor state management
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article describes common approaches for maintaining a user's data (state) while they use an app and across browser sessions.
 
