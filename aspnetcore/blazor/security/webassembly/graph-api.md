@@ -84,7 +84,7 @@ internal static class GraphClientExtensions
             {
                 scopes?.ForEach((scope) =>
                 {
-                    options.ProviderOptions.AdditionalScopesToConsent.Add(scope);
+                    options.ProviderOptions.DefaultAccessTokenScopes.Add(scope);
                 });
             });
 
@@ -387,7 +387,7 @@ internal static class GraphClientExtensions
             {
                 scopes?.ForEach((scope) =>
                 {
-                    options.ProviderOptions.AdditionalScopesToConsent.Add(scope);
+                    options.ProviderOptions.DefaultAccessTokenScopes.Add(scope);
                 });
             });
 
