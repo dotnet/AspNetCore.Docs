@@ -1,34 +1,37 @@
 ---
-title: ASP.NET Core support for .NET native AOT
+title: ASP.NET Core support for native AOT
 author: mitchdenny
-description: Learn about ASP.NET Core support for .NET native AOT
+description: Learn about ASP.NET Core support for native AOT
 monikerRange: '>= aspnetcore-8.0'
 ms.author: midenn
 ms.custom: mvc
 ms.date: 04/10/2023
 uid: native-aot/index
 ---
-# ASP.NET Core support for .NET native AOT.
+# ASP.NET Core support for native AOT.
 
-ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/). Not all ASP.NET Core features are compatible with native AOT at this time. This article covers:
+ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/). This article covers:
 
 * How to get started.
 * The benefits and potential drawbacks.
-* The limitations and compatibility.
+* Compatibility requirements.
+
+> [!WARNING]
+> In .NET 8, not all ASP.NET Core features are compatible with native AOT.
 
 ## Getting started with .NET native AOT deployment in ASP.NET Core
 
-Native AOT is a publishing option. AOT compilation happens when the app is published. A project opted into Native AOT publishing still uses JIT for F5 debugging, dotnet run, or dotnet build. There are some observable differences:
+Native AOT is a publishing option. AOT compilation happens when the app is published. A project that uses Native AOT publishing will use JIT compilation when debugging/running, but there are some observable differences:
 
-* Some run time features that aren't compatible with Native AOT are disabled and throw exceptions at run time.
+* Some features that aren't compatible with native AOT are disabled and throw exceptions at runtime.
 * A source analyzer is enabled to highlight code that isn't compatible with Native AOT. At publish time, the entire app, including NuGet packages, are analyzed for compatibility again.
 
-Native AOT analysis includes all of the app's code and the libraries the app depends on. Review Native AOT warnings and take corrective steps. It's a good idea to test publishing apps frequently to discover issues early in the development lifecycle.
+Native AOT analysis includes all of the app's code and the libraries the app depends on. Review native AOT warnings and take corrective steps. It's a good idea to test publishing apps frequently to discover issues early in the development lifecycle.
 
-To help developers get started deploying with .NET native AOT in ASP.NET Core, use the:
+To help developers get started deploying with native AOT in ASP.NET Core, use the:
 
 * AOT API template which includes customizations to remove unsupported components from the app.
-* ```dotnet new``` command to create a new ASP.NET Core API app that is configured to work with .NET native AOT:
+* ```dotnet new``` command to create a new ASP.NET Core API app that is configured to work with native AOT:
 
 ```
 $ dotnet new api -aot -o MyFirstAotWebApi && cd MyFirstAotWebApi
@@ -41,7 +44,7 @@ Restoring C:\Code\Demos\MyFirstAotWebApi\MyFirstAotWebApi.csproj:
 Restore succeeded.
 ```
 
-Use the following command to verify an app can but published using .NET native AOT:
+Use the following command to verify an app can but published using native AOT:
 
 ```
 PS> dotnet publish
@@ -84,7 +87,7 @@ info: Microsoft.Hosting.Lifetime[0]
       Content root path: C:\Code\Demos\MyFirstAotWebApi
 ```
 
-The `Program.cs` source file contains some changes for publishing to .NET native AOT. A significant difference is that `Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder` is used to create the web application builder.  The `CreateSlimBuilder` method initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimal ASP.NET Core features necessary to run an application.
+The `Program.cs` source file contains some changes for publishing to native AOT. A significant difference is that `Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder` is used to create the web application builder.  The `CreateSlimBuilder` method initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimal ASP.NET Core features necessary to run an application.
 <!-- Update the preceding with the following when the .NET 8 API is published :
 <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilderSlim%2A>
 -->
@@ -128,9 +131,9 @@ With the project file updated, run the `dotnet build` command (`publish` isn't n
 When `dotnet publish` is run, the project source files and generated source files are compiled as normal and then outputted assemblies are passed into an native IL compiler which produces the native executable which contains the native machine code to run the application.
 
 
-## Benefits of using .NET native AOT with ASP.NET Core
+## Benefits of using native AOT with ASP.NET Core
 
-Using the .NET native AOT deployment model provides the following benefits:
+Publishing and deploying a native AOT app provides the following benefits:
 
 * **Minimize disk footprint**: When publishing using native AOT a single executable is produced containing just the code from external dependencies that is used to support the program. Reduced executable size can lead to:
   * Smaller container images, for example in containerized deployment scenarios.
@@ -146,9 +149,9 @@ We ran the template application in our benchmarking lab to see what the differen
 
 You can see that native AOT has a dramatically lower application size on disk and memory utilization is also lower for our template scenario. Startup time is also significantly reduced. 🚀
 
-## ASP.NET Core and Native AOT Supportability
+## ASP.NET Core and native AOT compatibility
 
-Not all features in ASP.NET Core are currently compatible with .NET native AOT. The following table summarizes ASP.NET Core feature compatibility with .NET native AOT:
+Not all features in ASP.NET Core are currently compatible with native AOT. The following table summarizes ASP.NET Core feature compatibility with native AOT:
 
 | Feature | Fully Supported | Partially Supported | Not Supported |
 | - | - | - | - |
@@ -180,4 +183,3 @@ For more information on AOT warnings and how to address them see; [Introduction 
 ## Known issues
 
 We are keeping track of a number of known issues with native AOT support in ASP.NET Core in [a GitHub issue](https://github.com/dotnet/core/issues/8288).
-:::moniker-end
