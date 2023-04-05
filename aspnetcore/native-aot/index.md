@@ -73,7 +73,7 @@ Mode                 LastWriteTime         Length Name
 -a---          30/03/2023  1:41 PM       43044864 MyFirstAotWebApi.pdb
 ```
 
-The executable that is produced can be executed on a machine without the runtime installed. When launched it should behave as expected:
+The executable is self-contained and doesn't require a .NET runtime to run. When launched it should behave as expected:
 
 ```
 $ .\bin\Release\net8.0\win-x64\publish\MyFirstAotWebApi.exe
