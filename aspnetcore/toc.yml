@@ -1595,7 +1595,7 @@ items:
       - name: Event counters
         href: /dotnet/core/diagnostics/event-counter-perf
       - name: Native AOT
-        href: native-aot/index
+        uid: native-aot/index
   - name: Globalization and localization
     items:
       - name: Overview
