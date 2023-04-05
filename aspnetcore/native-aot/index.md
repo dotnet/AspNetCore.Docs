@@ -176,7 +176,7 @@ Not all features in ASP.NET Core are currently compatible with .NET native AOT. 
 | StaticFiles | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | WebSockets | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 
-It is important to test application functionality thoroughly when moving to a native AOT deployment model to ensure that functionality observed during developmnet (using the runtime) is preserved in the native executable. When building your application, keep an eye out for AOT warnings. An application that produces AOT warnings during publishing is not guaranteed to work correctly. If you don't get any AOT warnings at publish time, you should be confident that your application will work consistently after publishing for AOT as it did during your F5 / `dotnet run` develoment workflow.
+It is important to test application functionality thoroughly when moving to a native AOT deployment model to ensure that functionality observed during development (when the app is untrimmed and JIT-compiled) is preserved in the native executable. When building your application, keep an eye out for AOT warnings. An application that produces AOT warnings during publishing is not guaranteed to work correctly. If you don't get any AOT warnings at publish time, you should be confident that your application will work consistently after publishing for AOT as it did during your F5 / `dotnet run` develoment workflow.
 
 For more information on AOT warnings and how to address them see; [Introduction to AOT warnings](/dotnet/core/deploying/native-aot/fixing-warnings).
 
