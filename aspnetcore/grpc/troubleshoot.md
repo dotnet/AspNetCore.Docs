@@ -230,16 +230,6 @@ Alternatively, a client factory can be configured with `SubdirectoryHandler` by 
 
 The .NET gRPC client supports HTTP/3 with .NET 6 or later. If the server sends an `alt-svc` response header to the client that indicates the server supports HTTP/3, the client will automatically upgrade its connection to HTTP/3. The Kestrel server supports HTTP/3 by default. For more information, see <xref:fundamentals/servers/kestrel/http3>.
 
-HTTP/3 support is in preview in .NET 8, and needs to be enabled via a configuration flag in the project file:
-
-```xml
-<ItemGroup>
-  <RuntimeHostConfigurationOption Include="System.Net.SocketsHttpHandler.Http3Support" Value="true" />
-</ItemGroup>
-```
-
-`System.Net.SocketsHttpHandler.Http3Support` can also be set using [AppContext.SetSwitch](xref:System.AppContext.SetSwitch%2A).
-
 A <xref:System.Net.Http.DelegatingHandler> can be used to force a gRPC client to use HTTP/3. Forcing HTTP/3 avoids the overhead of upgrading the request. Force HTTP/3 with code similar to the following:
 
 ```csharp
