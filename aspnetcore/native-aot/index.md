@@ -8,7 +8,7 @@ ms.custom: mvc
 ms.date: 04/10/2023
 uid: native-aot/index
 ---
-# ASP.NET Core support for native AOT.
+# ASP.NET Core support for native AOT
 
 ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/). This article covers:
 
