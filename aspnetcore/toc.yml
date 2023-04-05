@@ -217,7 +217,7 @@ items:
       - name: Dependency injection (services)
         uid: fundamentals/dependency-injection
       - name: Native AOT
-        uid: native-aot/index
+        uid: fundamentals/index
       - name: Middleware
         items: 
           - name: Middleware overview

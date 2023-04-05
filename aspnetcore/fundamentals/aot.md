@@ -145,7 +145,7 @@ Publishing and deploying a native AOT app provides the following benefits:
 
 We ran the template application in our benchmarking lab to see what the differences were in terms of application size, memory use, and CPU and observed the following results:
 
-![Chart showing comparison of application size, memory use and startup time metrics of an AOT published app, a runtime app that is trimmed, and an untrimmed runtime app.](~/fundamentals/aot/_static/aot-runtime-trimmed-perf-chart.png)
+![Chart showing comparison of application size, memory use and startup time metrics of an AOT published app, a runtime app that is trimmed, and an untrimmed runtime app.](_static/aot-runtime-trimmed-perf-chart.png)
 
 You can see that native AOT has a dramatically lower application size on disk and memory utilization is also lower for our template scenario. Startup time is also significantly reduced. 🚀
 
