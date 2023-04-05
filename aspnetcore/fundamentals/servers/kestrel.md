@@ -5,7 +5,7 @@ description: Learn about Kestrel, the cross-platform web server for ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/26/2023
+ms.date: 04/04/2023
 uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server implementation in ASP.NET Core
@@ -20,6 +20,7 @@ Kestrel supports the following scenarios:
 
 * HTTPS
 * [HTTP/2](xref:fundamentals/servers/kestrel/http2)
+* [HTTP/3](xref:fundamentals/servers/kestrel/http3)
 * Opaque upgrade used to enable [WebSockets](xref:fundamentals/websockets)
 * Unix sockets for high performance behind Nginx
 
