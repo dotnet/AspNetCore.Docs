@@ -11,7 +11,7 @@ uid: fundamentals/servers/kestrel/endpoints
 
 # Configure endpoints for the ASP.NET Core Kestrel web server
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-8.0"
 
