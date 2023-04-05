@@ -434,7 +434,7 @@ If tacking on a segment to the authority isn't appropriate for the app's OIDC pr
 {
   "AzureAd": {
     ...
-    "ClientId": "https://{TENANT}.onmicrosoft.com/{APP NAME}"
+    "ClientId": "https://{TENANT}.onmicrosoft.com/{PROJECT NAME}"
     ...
   }
 }
