@@ -96,7 +96,7 @@ The `Program.cs` source file contains some changes for publishing to native AOT.
 var builder = WebApplication.CreateSlimBuilder(args);
 ```
 
-Because this template uses JSON to serialize responses, we need to explicitly provide a `JsonSerializerContext` which specifies the custom types that we need to serialize so that the JSON source generator knows what to produce code for.
+This template uses JSON to serialize responses, to enable JSON serialization with native AOT, we need to explicitly provide a `JsonSerializerContext` which specifies the custom types that we need to serialize so that the JSON source generator knows what to produce code for.
 
 ```csharp
 builder.Services.ConfigureHttpJsonOptions(options =>
