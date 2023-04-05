@@ -14,7 +14,11 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
 
 * How to get started.
 * The benefits and potential drawbacks.
-* The limitations.
+ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/). Not all ASP.NET Core features are compatible with native AOT at this time. This article shows:
+
+* How to get started.
+* The benefits and potential drawbacks.
+* The limitations and compatibility.
 
 ## Getting started with .NET native AOT deployment in ASP.NET Core
 
