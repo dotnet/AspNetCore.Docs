@@ -240,6 +240,8 @@ items:
             uid: fundamentals/middleware/extensibility
           - name: Factory-based middleware with third-party container
             uid: fundamentals/middleware/extensibility-third-party-container
+      - name: Native AOT
+        uid: native-aot/index
       - name: Host
         items:
           - name: WebApplication and WebApplicationBuilder
@@ -1307,8 +1309,6 @@ items:
       - name: Health checks
         uid: host-and-deploy/health-checks
         displayName: deploy, publish
-      - name: Native AOT
-        uid: native-aot/index
   - name: Security and Identity
     displayName: authentication, authorization
     items:
