@@ -10,7 +10,7 @@ uid: blazor/performance
 ---
 # ASP.NET Core Blazor performance best practices
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 Blazor is optimized for high performance in most realistic application UI scenarios. However, the best performance depends on developers adopting the correct patterns and features.
 

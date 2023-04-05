@@ -10,7 +10,7 @@ uid: blazor/components/data-binding
 ---
 # ASP.NET Core Blazor data binding
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains data binding features for Razor components and Document Object Model (DOM) elements in Blazor apps.
 

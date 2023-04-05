@@ -11,7 +11,7 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # Call a web API from ASP.NET Core Blazor
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article describes how to call a web API from a Blazor app.
 

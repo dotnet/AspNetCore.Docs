@@ -11,7 +11,7 @@ zone_pivot_groups: blazor-hybrid-tutorial-vs-operating-systems
 ---
 # Build a .NET MAUI Blazor app
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::zone pivot="windows"
 

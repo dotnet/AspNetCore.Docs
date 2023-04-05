@@ -10,7 +10,7 @@ uid: blazor/fundamentals/environments
 ---
 # ASP.NET Core Blazor environments
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains [ASP.NET Core environments](xref:fundamentals/environments) in Blazor, including how to set the environment.
 

@@ -10,7 +10,7 @@ uid: blazor/fundamentals/logging
 ---
 # ASP.NET Core Blazor logging
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 <!--
 

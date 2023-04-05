@@ -10,7 +10,7 @@ uid: blazor/advanced-scenarios
 ---
 # ASP.NET Core Blazor advanced scenarios (render tree construction)
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article describes the advanced scenario for building Blazor render trees manually with <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder>.
 

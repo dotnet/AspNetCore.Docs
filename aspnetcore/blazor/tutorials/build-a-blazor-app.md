@@ -11,7 +11,7 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # Build a Blazor todo list app
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This tutorial shows you how to build and modify a Blazor app.
 

@@ -11,7 +11,7 @@ zone_pivot_groups: operating-systems
 ---
 # Tooling for ASP.NET Core Blazor
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article describes tools for building Blazor apps on various platforms.
 

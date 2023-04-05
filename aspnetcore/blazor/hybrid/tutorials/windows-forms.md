@@ -10,7 +10,7 @@ uid: blazor/hybrid/tutorials/windows-forms
 ---
 # Build a Windows Forms Blazor app
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This tutorial shows you how to build and run a Windows Forms Blazor app. You learn how to:
 

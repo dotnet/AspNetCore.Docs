@@ -10,7 +10,7 @@ uid: blazor/components/lifecycle
 ---
 # ASP.NET Core Razor component lifecycle
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains the ASP.NET Core Razor component lifecycle and how to use lifecycle events.
 

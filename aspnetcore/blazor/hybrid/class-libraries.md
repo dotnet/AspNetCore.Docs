@@ -10,7 +10,7 @@ uid: blazor/hybrid/class-libraries
 ---
 # Share assets across web and native clients using a Razor class library (RCL)
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 Use a Razor class library (RCL) to share Razor components, C# code, and static assets across web and native client projects.
 

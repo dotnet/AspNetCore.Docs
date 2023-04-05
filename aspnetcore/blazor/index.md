@@ -10,7 +10,7 @@ uid: blazor/index
 ---
 # ASP.NET Core Blazor
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 *Welcome to Blazor!*
 

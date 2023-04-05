@@ -10,7 +10,7 @@ uid: blazor/supported-platforms
 ---
 # ASP.NET Core Blazor supported platforms
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-5.0"
 

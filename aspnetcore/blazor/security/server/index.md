@@ -10,7 +10,7 @@ uid: blazor/security/server/index
 ---
 # Secure ASP.NET Core Blazor Server apps
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to secure Blazor Server apps as ASP.NET Core applications.
 

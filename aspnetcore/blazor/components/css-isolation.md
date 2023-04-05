@@ -10,7 +10,7 @@ uid: blazor/components/css-isolation
 ---
 # ASP.NET Core Blazor CSS isolation
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Dave Brock](https://twitter.com/daveabrock)
 

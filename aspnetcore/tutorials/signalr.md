@@ -14,9 +14,7 @@ uid: tutorials/signalr
 
 # Tutorial: Get started with ASP.NET Core SignalR
 
-:::moniker range="< aspnetcore-7.0"
-[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
-:::moniker-end
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-7.0"
 

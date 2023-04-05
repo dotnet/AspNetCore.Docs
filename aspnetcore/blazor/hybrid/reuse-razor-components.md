@@ -10,7 +10,7 @@ uid: blazor/hybrid/reuse-razor-components
 ---
 # Reuse Razor components in ASP.NET Core Blazor Hybrid
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to author and organize Razor components for the web and :::no-loc text="Web Views"::: in Blazor Hybrid apps.
 
