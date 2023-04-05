@@ -10,7 +10,7 @@ uid: blazor/components/js-spa-frameworks
 ---
 # Use Razor components in JavaScript apps and SPA frameworks
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article covers how to render Razor components from JavaScript, use Blazor custom elements, and generate Angular and React components.
 

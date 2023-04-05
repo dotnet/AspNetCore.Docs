@@ -10,7 +10,7 @@ uid: blazor/project-structure
 ---
 # ASP.NET Core Blazor project structure
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article describes the files and folders that make up a Blazor app generated from a Blazor project template.
 

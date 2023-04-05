@@ -10,7 +10,7 @@ uid: blazor/security/webassembly/hosted-with-identity-server
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Identity Server
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Duende Identity Server](https://docs.duendesoftware.com) to authenticate users and API calls.
 
@@ -56,14 +56,14 @@ To create a new Blazor WebAssembly project with an authentication mechanism:
 To create a new Blazor WebAssembly project with an authentication mechanism in an empty folder, specify the `Individual` authentication mechanism with the `-au|--auth` option to store users within the app using ASP.NET Core's [Identity](xref:security/authentication/identity) system:
 
 ```dotnetcli
-dotnet new blazorwasm -au Individual -ho -o {APP NAME}
+dotnet new blazorwasm -au Individual -ho -o {PROJECT NAME}
 ```
 
-| Placeholder  | Example        |
-| ------------ | -------------- |
-| `{APP NAME}` | `BlazorSample` |
+| Placeholder      | Example        |
+| ---------------- | -------------- |
+| `{PROJECT NAME}` | `BlazorSample` |
 
-The output location specified with the optional `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
+The output location specified with the optional `-o|--output` option creates a project folder if it doesn't exist and becomes part of the project's name.
 
 Avoid using dashes (`-`) in the project name that break the formation of the OIDC app identifier. Logic in the Blazor WebAssembly project template uses the project name for an OIDC app identifier in the solution's configuration, and dashes aren't permitted in an OIDC app identifier. Pascal case (`BlazorSample`) or underscores (`Blazor_Sample`) are acceptable alternatives.
 

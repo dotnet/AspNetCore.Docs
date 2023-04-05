@@ -10,7 +10,7 @@ uid: blazor/forms-and-input-components
 ---
 # ASP.NET Core Blazor forms and input components
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 The Blazor framework supports forms and provides built-in input components:
 

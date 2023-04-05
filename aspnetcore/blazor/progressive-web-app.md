@@ -10,7 +10,7 @@ uid: blazor/progressive-web-app
 ---
 # ASP.NET Core Blazor Progressive Web Application (PWA)
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 A Blazor Progressive Web Application (PWA) is a single-page application (SPA) that uses modern browser APIs and capabilities to behave like a desktop app.
 

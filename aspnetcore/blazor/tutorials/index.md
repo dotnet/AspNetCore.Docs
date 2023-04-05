@@ -10,7 +10,7 @@ uid: blazor/tutorials/index
 ---
 # ASP.NET Core Blazor tutorials
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 The following tutorials are available for ASP.NET Core Blazor:
 
