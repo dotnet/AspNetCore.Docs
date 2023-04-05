@@ -10,7 +10,7 @@ uid: blazor/security/server/additional-scenarios
 ---
 # ASP.NET Core Blazor Server additional security scenarios
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to configure Blazor Server for additional security scenarios, including how to pass tokens to a Blazor Server app.
 
@@ -434,7 +434,7 @@ If tacking on a segment to the authority isn't appropriate for the app's OIDC pr
 {
   "AzureAd": {
     ...
-    "ClientId": "https://{TENANT}.onmicrosoft.com/{APP NAME}"
+    "ClientId": "https://{TENANT}.onmicrosoft.com/{PROJECT NAME}"
     ...
   }
 }
@@ -660,7 +660,7 @@ Use the service in a component to obtain the user:
 <h1>Hello, @(UserService.GetUser().Identity?.Name ?? "world")!</h1>
 ```
 
-To set the user in middleware for MVC, Razor Pages, and in other ASP.NET Core scenarios, call `SetUser` on the `UserService` in custom middleware after the authentication middleware runs, or set the user with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation. The following example adopts the middleware approach.
+To set the user in middleware for MVC, Razor Pages, and in other ASP.NET Core scenarios, call `SetUser` on the `UserService` in custom middleware after the Authentication Middleware runs, or set the user with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation. The following example adopts the middleware approach.
 
 `UserServiceMiddleware.cs`:
 

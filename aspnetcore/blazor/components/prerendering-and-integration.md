@@ -11,7 +11,7 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # Prerender and integrate ASP.NET Core Razor components
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains Razor component integration scenarios for Blazor apps, including prerendering of Razor components on the server.
 
@@ -165,7 +165,7 @@ MVC:
 The preceding files can be obtained by generating an app from the ASP.NET Core project templates using:
 
 * Visual Studio's new project creation tools.
-* Opening a command shell and executing `dotnet new webapp -o {APP NAME}` (Razor Pages) or `dotnet new mvc -o {APP NAME}` (MVC). The option `-o|--output` with a value for the `{APP NAME}` placeholder provides a name for the app and creates a folder for the app.
+* Opening a command shell and executing `dotnet new webapp -o {PROJECT NAME}` (Razor Pages) or `dotnet new mvc -o {PROJECT NAME}` (MVC). The option `-o|--output` with a value for the `{PROJECT NAME}` placeholder provides a name for the app and creates a folder for the app.
 
 Update the namespaces in the imported `_ViewImports.cshtml` file to match those in use by the **:::no-loc text="Server":::** project receiving the files.
 
@@ -187,10 +187,10 @@ Update the namespaces in the imported `_ViewImports.cshtml` file to match those 
 
 Update the imported layout file, which is `Pages/Shared/_Layout.cshtml` for Razor Pages or `Views/Shared/_Layout.cshtml` for MVC.
 
-First, delete the title and the stylesheet from the donor project, which is `RPDonor.styles.css` in the following example. The `{APP NAME}` placeholder represents the donor project's app name.
+First, delete the title and the stylesheet from the donor project, which is `RPDonor.styles.css` in the following example. The `{PROJECT NAME}` placeholder represents the donor project's app name.
 
 ```diff
-- <title>@ViewData["Title"] - {APP NAME}</title>
+- <title>@ViewData["Title"] - {PROJECT NAME}</title>
 - <link rel="stylesheet" href="~/RPDonor.styles.css" asp-append-version="true" />
 ```
 
@@ -208,7 +208,7 @@ Place the following lines in the `<head>` content of the layout file:
 The imported layout contains two `Home` (`Index` page) and `Privacy` navigation links. To make the `Home` links point to the hosted Blazor WebAssembly app, change the hyperlinks:
 
 ```diff
-- <a class="navbar-brand" asp-area="" asp-page="/Index">{APP NAME}</a>
+- <a class="navbar-brand" asp-area="" asp-page="/Index">{PROJECT NAME}</a>
 + <a class="navbar-brand" href="/">BlazorHosted</a>
 ```
 
@@ -221,7 +221,7 @@ In an MVC layout file:
 
 ```diff
 - <a class="navbar-brand" asp-area="" asp-controller="Home" 
--     asp-action="Index">{APP NAME}</a>
+-     asp-action="Index">{PROJECT NAME}</a>
 + <a class="navbar-brand" href="/">BlazorHosted</a>
 ```
 
@@ -1087,7 +1087,7 @@ MVC:
 The preceding files can be obtained by generating an app from the ASP.NET Core project templates using:
 
 * Visual Studio's new project creation tools.
-* Opening a command shell and executing `dotnet new webapp -o {APP NAME}` (Razor Pages) or `dotnet new mvc -o {APP NAME}` (MVC). The option `-o|--output` with a value for the `{APP NAME}` placeholder provides a name for the app and creates a folder for the app.
+* Opening a command shell and executing `dotnet new webapp -o {PROJECT NAME}` (Razor Pages) or `dotnet new mvc -o {PROJECT NAME}` (MVC). The option `-o|--output` with a value for the `{PROJECT NAME}` placeholder provides a name for the app and creates a folder for the app.
 
 Update the namespaces in the imported `_ViewImports.cshtml` file to match those in use by the **:::no-loc text="Server":::** project receiving the files.
 
@@ -1109,10 +1109,10 @@ Update the namespaces in the imported `_ViewImports.cshtml` file to match those 
 
 Update the imported layout file, which is `Pages/Shared/_Layout.cshtml` for Razor Pages or `Views/Shared/_Layout.cshtml` for MVC.
 
-First, delete the title and the stylesheet from the donor project, which is `RPDonor.styles.css` in the following example. The `{APP NAME}` placeholder represents the donor project's app name.
+First, delete the title and the stylesheet from the donor project, which is `RPDonor.styles.css` in the following example. The `{PROJECT NAME}` placeholder represents the donor project's app name.
 
 ```diff
-- <title>@ViewData["Title"] - {APP NAME}</title>
+- <title>@ViewData["Title"] - {PROJECT NAME}</title>
 - <link rel="stylesheet" href="~/RPDonor.styles.css" asp-append-version="true" />
 ```
 
@@ -1130,7 +1130,7 @@ Place the following lines in the `<head>` content of the layout file:
 The imported layout contains two `Home` (`Index` page) and `Privacy` navigation links. To make the `Home` links point to the hosted Blazor WebAssembly app, change the hyperlinks:
 
 ```diff
-- <a class="navbar-brand" asp-area="" asp-page="/Index">{APP NAME}</a>
+- <a class="navbar-brand" asp-area="" asp-page="/Index">{PROJECT NAME}</a>
 + <a class="navbar-brand" href="/">BlazorHosted</a>
 ```
 
@@ -1143,7 +1143,7 @@ In an MVC layout file:
 
 ```diff
 - <a class="navbar-brand" asp-area="" asp-controller="Home" 
--     asp-action="Index">{APP NAME}</a>
+-     asp-action="Index">{PROJECT NAME}</a>
 + <a class="navbar-brand" href="/">BlazorHosted</a>
 ```
 

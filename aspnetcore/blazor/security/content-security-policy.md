@@ -10,7 +10,7 @@ uid: blazor/security/content-security-policy
 ---
 # Enforce a Content Security Policy for ASP.NET Core Blazor
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to use a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP) with ASP.NET Core Blazor apps to help protect against [Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) attacks.
 

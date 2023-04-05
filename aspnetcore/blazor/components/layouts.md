@@ -10,7 +10,7 @@ uid: blazor/components/layouts
 ---
 # ASP.NET Core Blazor layouts
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to create reusable layout components for Blazor apps.
 

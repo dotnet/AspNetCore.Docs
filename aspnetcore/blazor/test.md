@@ -10,7 +10,7 @@ uid: blazor/test
 ---
 # Test Razor components in ASP.NET Core Blazor
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By: [Egil Hansen](https://egilhansen.com/)
 

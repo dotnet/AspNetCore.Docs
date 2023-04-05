@@ -11,6 +11,8 @@ uid: fundamentals/servers/kestrel/http3
 
 # Use HTTP/3 with the ASP.NET Core Kestrel web server
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-8.0"
 
 [HTTP/3](https://datatracker.ietf.org/doc/rfc9114/) is a proposed standard and the third major version of HTTP. This article discusses requirements for HTTP/3. HTTP/3 is fully supported in ASP.NET Core 7.0 and later.

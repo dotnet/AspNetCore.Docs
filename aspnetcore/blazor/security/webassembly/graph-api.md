@@ -11,7 +11,7 @@ zone_pivot_groups: blazor-graph-api
 ---
 # Use Graph API with ASP.NET Core Blazor WebAssembly
 
-[!INCLUDE[](~/blazor/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to use [Microsoft Graph API](/graph/use-the-api) in Blazor WebAssembly apps, which is a RESTful web API that enables apps to access Microsoft Cloud service resources.
 
@@ -84,7 +84,7 @@ internal static class GraphClientExtensions
             {
                 scopes?.ForEach((scope) =>
                 {
-                    options.ProviderOptions.AdditionalScopesToConsent.Add(scope);
+                    options.ProviderOptions.DefaultAccessTokenScopes.Add(scope);
                 });
             });
 
@@ -387,7 +387,7 @@ internal static class GraphClientExtensions
             {
                 scopes?.ForEach((scope) =>
                 {
-                    options.ProviderOptions.AdditionalScopesToConsent.Add(scope);
+                    options.ProviderOptions.DefaultAccessTokenScopes.Add(scope);
                 });
             });
 
