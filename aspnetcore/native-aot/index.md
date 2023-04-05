@@ -28,12 +28,12 @@ Native AOT is a publishing option. AOT compilation happens when the app is publi
 
 Native AOT analysis includes all of the app's code and the libraries the app depends on. Review native AOT warnings and take corrective steps. It's a good idea to test publishing apps frequently to discover issues early in the development lifecycle.
 
-To help developers get started deploying with native AOT in ASP.NET Core, use the:
+To get started deploying with .NET native AOT in ASP.NET Core, use the:
 
-* AOT API template which includes customizations to remove unsupported components from the app.
+* SP.NET Core API Application template, which includes an option to enable publishing native AOT in the new project. The AOT option includes customizations to remove unsupported components from the app.
 * ```dotnet new``` command to create a new ASP.NET Core API app that is configured to work with native AOT:
 
-```
+```cli
 $ dotnet new api -aot -o MyFirstAotWebApi && cd MyFirstAotWebApi
 The template "ASP.NET Core API" was created successfully.
 
@@ -44,10 +44,10 @@ Restoring C:\Code\Demos\MyFirstAotWebApi\MyFirstAotWebApi.csproj:
 Restore succeeded.
 ```
 
-Use the following command to verify an app can but published using native AOT:
+Use the following command to verify an app can be published using native AOT:
 
-```
-PS> dotnet publish
+```cli
+$ dotnet publish
 MSBuild version 17.<version> for .NET
   Determining projects to restore...
   Restored C:\Code\Demos\MyFirstAotWebApi\MyFirstAotWebApi.csproj (in 241 ms).
@@ -59,8 +59,8 @@ t-support-policy [C:\Code\Demos\MyFirstAotWebApi\MyFirstAotWebApi.csproj]
   MyFirstAotWebApi -> C:\Code\Demos\MyFirstAotWebApi\bin\Release\net8.0\win-x64\publish\
 ```
 
-Note: The preceding output my differ from what you see depending on the version of  .NET 8 used.
-Review the contents of output directory:
+Note: The preceding output my differ from what you see depending on the version of .NET 8 used.
+Review the contents of the output directory:
 
 ```
 $ dir bin\Release\net8.0\win-x64\publish
