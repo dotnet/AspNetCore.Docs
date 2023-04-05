@@ -660,7 +660,7 @@ Use the service in a component to obtain the user:
 <h1>Hello, @(UserService.GetUser().Identity?.Name ?? "world")!</h1>
 ```
 
-To set the user in middleware for MVC, Razor Pages, and in other ASP.NET Core scenarios, call `SetUser` on the `UserService` in custom middleware after the authentication middleware runs, or set the user with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation. The following example adopts the middleware approach.
+To set the user in middleware for MVC, Razor Pages, and in other ASP.NET Core scenarios, call `SetUser` on the `UserService` in custom middleware after the Authentication Middleware runs, or set the user with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation. The following example adopts the middleware approach.
 
 `UserServiceMiddleware.cs`:
 

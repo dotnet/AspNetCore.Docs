@@ -408,7 +408,7 @@ For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlob
 
 The following example calls a web API. The example requires a running web API based on the sample app described by the <xref:tutorials/first-web-api> article. This example makes requests to the web API at `https://localhost:10000/api/TodoItems`. If a different web API address is used, update the `ServiceEndpoint` constant value in the component's `@code` block.
 
-The following example makes a [cross-origin resource sharing (CORS)](xref:security/cors) request from `http://localhost:5000` or `https://localhost:5001` to the web API. Add the following CORS middleware configuration to the web API's service's `Program.cs` file:
+The following example makes a [cross-origin resource sharing (CORS)](xref:security/cors) request from `http://localhost:5000` or `https://localhost:5001` to the web API. Add the following CORS Middleware configuration to the web API's service's `Program.cs` file:
 
 ```csharp
 app.UseCors(policy => 
@@ -1035,7 +1035,7 @@ For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlob
 
 The following example calls a web API. The example requires a running web API based on the sample app described by the <xref:tutorials/first-web-api> article. This example makes requests to the web API at `https://localhost:10000/api/TodoItems`. If a different web API address is used, update the `ServiceEndpoint` constant value in the component's `@code` block.
 
-The following example makes a [cross-origin resource sharing (CORS)](xref:security/cors) request from `http://localhost:5000` or `https://localhost:5001` to the web API. Add the following CORS middleware configuration to the web API's service's `Program.cs` file:
+The following example makes a [cross-origin resource sharing (CORS)](xref:security/cors) request from `http://localhost:5000` or `https://localhost:5001` to the web API. Add the following CORS Middleware configuration to the web API's service's `Program.cs` file:
 
 ```csharp
 app.UseCors(policy => 
@@ -1664,7 +1664,7 @@ For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlob
 
 The following example calls a web API. The example requires a running web API based on the sample app described by the <xref:tutorials/first-web-api> article. This example makes requests to the web API at `https://localhost:10000/api/TodoItems`. If a different web API address is used, update the `ServiceEndpoint` constant value in the component's `@code` block.
 
-The following example makes a [cross-origin resource sharing (CORS)](xref:security/cors) request from `http://localhost:5000` or `https://localhost:5001` to the web API. Add the following CORS middleware configuration to the web API's service's `Startup.Configure` method:
+The following example makes a [cross-origin resource sharing (CORS)](xref:security/cors) request from `http://localhost:5000` or `https://localhost:5001` to the web API. Add the following CORS Middleware configuration to the web API's service's `Startup.Configure` method:
 
 ```csharp
 app.UseCors(policy => 
@@ -2295,7 +2295,7 @@ For more information on Fetch API options, see [MDN web docs: WindowOrWorkerGlob
 
 The following example calls a web API. The example requires a running web API based on the sample app described by the <xref:tutorials/first-web-api> article. This example makes requests to the web API at `https://localhost:10000/api/TodoItems`. If a different web API address is used, update the `ServiceEndpoint` constant value in the component's `@code` block.
 
-The following example makes a [cross-origin resource sharing (CORS)](xref:security/cors) request from `http://localhost:5000` or `https://localhost:5001` to the web API. Add the following CORS middleware configuration to the web API's service's `Startup.Configure` method:
+The following example makes a [cross-origin resource sharing (CORS)](xref:security/cors) request from `http://localhost:5000` or `https://localhost:5001` to the web API. Add the following CORS Middleware configuration to the web API's service's `Startup.Configure` method:
 
 ```csharp
 app.UseCors(policy => 
