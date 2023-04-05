@@ -30,7 +30,7 @@ Native AOT analysis includes all of the app's code and the libraries the app dep
 
 To get started deploying with .NET native AOT in ASP.NET Core, use the:
 
-* SP.NET Core API Application template, which includes an option to enable publishing native AOT in the new project. The AOT option includes customizations to remove unsupported components from the app.
+* ASP.NET Core API Application template, which includes an option to enable publishing native AOT in the new project. The AOT option includes customizations to remove unsupported components from the app.
 * ```dotnet new``` command to create a new ASP.NET Core API app that is configured to work with native AOT:
 
 ```cli
