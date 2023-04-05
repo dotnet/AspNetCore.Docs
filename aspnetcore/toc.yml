@@ -216,6 +216,8 @@ items:
         uid: fundamentals/startup
       - name: Dependency injection (services)
         uid: fundamentals/dependency-injection
+      - name: Native AOT
+        uid: native-aot/index
       - name: Middleware
         items: 
           - name: Middleware overview
@@ -240,8 +242,6 @@ items:
             uid: fundamentals/middleware/extensibility
           - name: Factory-based middleware with third-party container
             uid: fundamentals/middleware/extensibility-third-party-container
-      - name: Native AOT
-        uid: native-aot/index
       - name: Host
         items:
           - name: WebApplication and WebApplicationBuilder
