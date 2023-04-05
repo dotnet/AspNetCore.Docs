@@ -1307,6 +1307,8 @@ items:
       - name: Health checks
         uid: host-and-deploy/health-checks
         displayName: deploy, publish
+      - name: Native AOT
+        uid: native-aot/index
   - name: Security and Identity
     displayName: authentication, authorization
     items:
@@ -1594,8 +1596,6 @@ items:
         uid: test/loadtests
       - name: Event counters
         href: /dotnet/core/diagnostics/event-counter-perf
-      - name: Native AOT
-        uid: native-aot/index
   - name: Globalization and localization
     items:
       - name: Overview
