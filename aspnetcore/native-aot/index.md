@@ -149,7 +149,7 @@ We ran the template application in our benchmarking lab to see what the differen
 
 You can see that native AOT has a dramatically lower application size on disk and memory utilization is also lower for our template scenario. Startup time is also significantly reduced. 🚀
 
-## ASP.NET Core and AoT Supportability
+## ASP.NET Core and Native AOT Supportability
 
 Not all features in ASP.NET Core are currently compatible with .NET native AOT. The following table summarizes ASP.NET Core feature compatibility with .NET native AOT:
 
