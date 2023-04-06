@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.author: midenn
 ms.custom: mvc
 ms.date: 04/10/2023
-uid: fundamentals/aot
+uid: fundamentals/native-aot
 ---
 # ASP.NET Core support for native AOT
 
