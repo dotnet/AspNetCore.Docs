@@ -22,11 +22,11 @@ gRPC supports [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-ao
 
 AOT compilation happens when the app is published. Native AOT is enabled with the `PublishAot` option.
 
-01. Add `<PublishAot>true</PublishAot>` to the gRPC client or server app's project file. This will enable native AOT compilation during publish and enable dynamic code usage analysis during build and editing.
+1. Add `<PublishAot>true</PublishAot>` to the gRPC client or server app's project file. This will enable native AOT compilation during publish and enable dynamic code usage analysis during build and editing.
 
     [!code-xml[](~/grpc/native-aot/Server.csproj?highlight=5)]
 
-02. Publish the app for a specific [runtime identifier (RID)](/dotnet/core/rid-catalog) using `dotnet publish -r <RID>`.
+2. Publish the app for a specific [runtime identifier (RID)](/dotnet/core/rid-catalog) using `dotnet publish -r <RID>`.
 
 The app is available in the publish directory and contains all the code needed to run in it.
 
