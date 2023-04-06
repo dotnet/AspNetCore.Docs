@@ -130,7 +130,6 @@ With the project file updated, run the `dotnet build` command (`publish` isn't n
 
 When `dotnet publish` is run, the project source files and generated source files are compiled as normal and then outputted assemblies are passed into an native IL compiler which produces the native executable which contains the native machine code to run the application.
 
-
 ## Benefits of using native AOT with ASP.NET Core
 
 Publishing and deploying a native AOT app provides the following benefits:
@@ -145,7 +144,7 @@ Publishing and deploying a native AOT app provides the following benefits:
 
 We ran the template application in our benchmarking lab to see what the differences were in terms of application size, memory use, and CPU and observed the following results:
 
-![Chart showing comparison of application size, memory use and startup time metrics of an AOT published app, a runtime app that is trimmed, and an untrimmed runtime app.](_static/aot-runtime-trimmed-perf-chart.png)
+![Chart showing comparison of application size, memory use and startup time metrics of an AOT published app, a runtime app that is trimmed, and an untrimmed runtime app.](~/fundamentals/aot/_static/aot-runtime-trimmed-perf-chart.png)
 
 You can see that native AOT has a dramatically lower application size on disk and memory utilization is also lower for our template scenario. Startup time is also significantly reduced. 🚀
 
