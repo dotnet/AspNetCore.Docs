@@ -362,15 +362,8 @@ public class WeatherForecastHttpClient
 
     public async Task<WeatherForecast[]> GetForecastAsync()
     {
-        try
-        {
-            forecasts = await http.GetFromJsonAsync<WeatherForecast[]>(
-                "WeatherForecast");
-        }
-        catch
-        {
-            ...
-        }
+        forecasts = await http.GetFromJsonAsync<WeatherForecast[]>(
+            "WeatherForecast");
 
         return forecasts ?? Array.Empty<WeatherForecast>();
     }
