@@ -111,7 +111,7 @@ An alternative approach to serve files based on authorization is to:
 
 The preceding approach requires a page or endpoint per file. The following code returns files or uploads files for authenticated users:
 
-:::code language="csharp" source="~/fundamentals/static-files/samples/8.x/StaticFileAuth/Program.cs" highlight="128-155":::
+:::code language="csharp" source="~/fundamentals/static-files/samples/8.x/StaticFileAuth/Program.cs" highlight="128-155" name="snippet_1":::
 
 See the [StaticFileAuth](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples/8.x/StaticFileAuth) GitHub folder for the complete sample.
 
