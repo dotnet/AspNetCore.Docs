@@ -16,7 +16,7 @@ zone_pivot_groups: blazor-hosting-models
 This article describes how to call a web API from a Blazor app.
 
 > [!NOTE]
-> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core 6.0 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from the `string`, `TodoItem[]`, and `WeatherForecast[]` types in the article's examples.
+> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core 6.0 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from the `string?`, `TodoItem[]?`, `WeatherForecast[]?`, and `IEnumerable<GitHubBranch>?` types in the article's examples.
 
 :::zone pivot="webassembly"
 
@@ -51,11 +51,13 @@ public class TodoItem
 
 For guidance on how to create a server-side web API, see <xref:tutorials/first-web-api>. For information on Cross-origin resource sharing (CORS), see the *Cross-origin resource sharing (CORS)* section later in this article.
 
+The Blazor WebAssembly examples that demonstrate obtaining weather data from a server API are based on the default [hosted Blazor WebAssembly project template](xref:blazor/project-structure#blazor-webassembly).
+
 ## Package
 
 The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package provides extension methods for <xref:System.Net.Http.HttpClient?displayProperty=fullName> and <xref:System.Net.Http.HttpContent?displayProperty=fullName> that perform automatic serialization and deserialization using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json).
 
-The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package is provided by the .NET shared framework and doesn't require adding a package reference to the app.
+The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package is provided by the .NET shared framework in ASP.NET Core 6.0 or later and doesn't require adding a package reference to the app.
 
 ## Add the `HttpClient` service
 
@@ -148,7 +150,7 @@ In the following component code, `newItemName` is provided by a bound element of
 }
 ```
 
-Calls to <xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A> return an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data:
+<xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data:
 
 ```csharp
 var content = await response.Content.ReadFromJsonAsync<WeatherForecast>();
@@ -158,7 +160,7 @@ var content = await response.Content.ReadFromJsonAsync<WeatherForecast>();
 
 <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A> sends an HTTP PUT request with JSON-encoded content.
 
-In the following component code, `editItem` values for `Name` and `IsCompleted` are provided by bound elements of the component. The item's `Id` is set when the item is selected in another part of the UI (not shown) and `EditItem` is called. The `SaveItem` method is triggered by selecting the `<button>` element. The following example doesn't show loading `todoItems` for brevity (see the [GET from JSON (`GetFromJsonAsync`)](#get-from-json-getfromjsonasync) section for an example of loading items).
+In the following component code, `editItem` values for `Name` and `IsCompleted` are provided by bound elements of the component. The item's `Id` is set when the item is selected in another part of the UI (not shown) and `EditItem` is called. The `SaveItem` method is triggered by selecting the `<button>` element. The following example doesn't show loading `todoItems` for brevity. See the [GET from JSON (`GetFromJsonAsync`)](#get-from-json-getfromjsonasync) section for an example of loading items.
 
 > [!NOTE]
 > When targeting ASP.NET Core 5.0 or earlier, add `@using` directives to the following component for <xref:System.Net.Http?displayProperty=fullName>, <xref:System.Net.Http.Json?displayProperty=fullName>, and <xref:System.Threading.Tasks?displayProperty=fullName>.
@@ -184,7 +186,7 @@ In the following component code, `editItem` values for `Name` and `IsCompleted` 
 }
 ```
 
-Calls to <xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A> return an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data:
+<xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data:
 
 ```csharp
 var content = await response.Content.ReadFromJsonAsync<WeatherForecast>();
@@ -196,12 +198,12 @@ var content = await response.Content.ReadFromJsonAsync<WeatherForecast>();
 
 <xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> sends an HTTP PATCH request with JSON-encoded content.
 
-In the following component code, an `incompleteTodoItems` is an array of `TodoItem` (not shown). The `UpdateItem` method is triggered by selecting the `<button>` element. <xref:System.Text.Json.JsonSerializerOptions.DefaultIgnoreCondition?displayProperty=nameWithType> is set to <xref:System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault?displayProperty=nameWithType> to demonstrate that only the `IsCompleted` property is serialized in the PATCH request body.
+In the following component code, `incompleteTodoItems` is an array of `TodoItem` (not shown). The `UpdateItem` method is triggered by selecting the `<button>` element. <xref:System.Text.Json.JsonSerializerOptions.DefaultIgnoreCondition?displayProperty=nameWithType> is set to <xref:System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault?displayProperty=nameWithType> to demonstrate that only the `IsCompleted` property is serialized in the PATCH request body.
 
 > [!NOTE]
 > When targeting ASP.NET Core 5.0 or earlier, add `@using` directives to the following component for <xref:System.Net.Http?displayProperty=fullName>, <xref:System.Net.Http.Json?displayProperty=fullName>, and <xref:System.Threading.Tasks?displayProperty=fullName>.
 
-The following example doesn't show loading `todoItems` for brevity (see the [GET from JSON (`GetFromJsonAsync`)](#get-from-json-getfromjsonasync) section for an example of loading items).
+The following example doesn't show loading `incompleteTodoItems` for brevity. See the [GET from JSON (`GetFromJsonAsync`)](#get-from-json-getfromjsonasync) section for an example of loading items.
 
 ```razor
 @using System.Text.Json
@@ -232,7 +234,7 @@ The following example doesn't show loading `todoItems` for brevity (see the [GET
 }
 ```
 
-Calls to <xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> return an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data:
+<xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data:
 
 ```csharp
 var content = await response.Content.ReadFromJsonAsync<WeatherForecast>();
@@ -246,9 +248,10 @@ var content = await response.Content.ReadFromJsonAsync<WeatherForecast>();
 
 In the following component code, the `<button>` element calls the `DeleteItem` method. The bound `<input>` element supplies the `id` of the item to delete.
 
+> [!NOTE]
+> When targeting ASP.NET Core 5.0 or earlier, add `@using` directives to the following component for <xref:System.Net.Http?displayProperty=fullName> and <xref:System.Threading.Tasks?displayProperty=fullName>.
+
 ```razor
-@using System.Net.Http
-@using System.Threading.Tasks
 @inject HttpClient Http
 
 <input @bind="id" />
@@ -285,13 +288,14 @@ In the following component code:
 * An instance of <xref:System.Net.Http.IHttpClientFactory> creates a named <xref:System.Net.Http.HttpClient>.
 * The named <xref:System.Net.Http.HttpClient> is used to issue a GET request for JSON weather forecast data from the web API.
 
+> [!NOTE]
+> When targeting ASP.NET Core 5.0 or earlier, add `@using` directives to the following component for <xref:System.Net.Http?displayProperty=fullName>, <xref:System.Net.Http.Json?displayProperty=fullName>, and <xref:System.Threading.Tasks?displayProperty=fullName>.
+
 `Pages/FetchDataViaFactory.razor`:
 
 ```razor
 @page "/fetch-data-via-factory"
-@using System.Net.Http
-@using System.Net.Http.Json
-@using System.Threading.Tasks
+@using {PROJECT NAME}.Shared
 @inject IHttpClientFactory ClientFactory
 
 <h1>Fetch data via <code>IHttpClientFactory</code></h1>
@@ -340,16 +344,16 @@ Add the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.E
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-`WeatherForecastClient.cs`:
+`WeatherForecastHttpClient.cs`:
 
 ```csharp
-using System.Net.Http;
 using System.Net.Http.Json;
-using System.Threading.Tasks;
+using {PROJECT NAME}.Shared;
 
 public class WeatherForecastHttpClient
 {
     private readonly HttpClient http;
+    private WeatherForecast[]? forecasts;
 
     public WeatherForecastHttpClient(HttpClient http)
     {
@@ -360,15 +364,15 @@ public class WeatherForecastHttpClient
     {
         try
         {
-            return await http.GetFromJsonAsync<WeatherForecast[]>(
+            forecasts = await http.GetFromJsonAsync<WeatherForecast[]>(
                 "WeatherForecast");
         }
         catch
         {
             ...
-
-            return new WeatherForecast[0];
         }
+
+        return forecasts ?? Array.Empty<WeatherForecast>();
     }
 }
 ```
@@ -387,11 +391,14 @@ In the following component code:
 * An instance of the preceding `WeatherForecastHttpClient` is injected, which creates a typed <xref:System.Net.Http.HttpClient>.
 * The typed <xref:System.Net.Http.HttpClient> is used to issue a GET request for JSON weather forecast data from the web API.
 
+> [!NOTE]
+> When targeting ASP.NET Core 5.0 or earlier, add an `@using` directive to the following component for <xref:System.Threading.Tasks?displayProperty=fullName>.
+
 `Pages/FetchDataViaTypedHttpClient.razor`:
 
 ```razor
 @page "/fetch-data-via-typed-httpclient"
-@using System.Threading.Tasks
+@using {PROJECT NAME}.Shared
 @inject WeatherForecastHttpClient Http
 
 <h1>Fetch data via typed <code>HttpClient</code></h1>
@@ -429,6 +436,9 @@ else
 ## `HttpClient` and `HttpRequestMessage` with Fetch API request options
 
 [`HttpClient`](xref:fundamentals/http-requests) ([API documentation](xref:System.Net.Http.HttpClient)) and <xref:System.Net.Http.HttpRequestMessage> can be used to customize requests. For example, you can specify the HTTP method and request headers. The following component makes a `POST` request to a web API endpoint and shows the response body.
+
+> [!NOTE]
+> When targeting ASP.NET Core 5.0 or earlier, add `@using` directives to the following component for <xref:System.Net.Http?displayProperty=fullName> and <xref:System.Net.Http.Json?displayProperty=fullName>.
 
 `Pages/TodoRequest.razor`:
 
@@ -486,13 +496,14 @@ The <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync%2A> cal
 
 In <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> on the client, <xref:System.NotSupportedException> is thrown when the response content is validated as non-JSON. The exception is caught in the `catch` block, where custom logic could log the error or present a friendly error message to the user.
 
+> [!NOTE]
+> When targeting ASP.NET Core 5.0 or earlier, add `@using` directives to the following component for <xref:System.Net.Http?displayProperty=fullName>, <xref:System.Net.Http.Json?displayProperty=fullName>, and <xref:System.Threading.Tasks?displayProperty=fullName>.
+
 `Pages/FetchDataReturnsHTMLOnException.razor`:
 
 ```razor
 @page "/fetch-data-returns-html-on-exception"
-@using System.Net.Http
-@using System.Net.Http.Json
-@using System.Threading.Tasks
+@using {PROJECT NAME}.Shared
 @inject HttpClient Http
 
 <h1>Fetch data but receive HTML on unhandled exception</h1>
@@ -587,7 +598,7 @@ The following Blazor Server Razor component makes a request to a web API for Git
 
 <h1>Call web API from a Blazor Server Razor component</h1>
 
-@if (getBranchesError)
+@if (getBranchesError || branches is null)
 {
     <p>Unable to get branches from GitHub. Please try again later.</p>
 }
@@ -602,7 +613,7 @@ else
 }
 
 @code {
-    private IEnumerable<GitHubBranch> branches = Array.Empty<GitHubBranch>();
+    private IEnumerable<GitHubBranch>? branches = Array.Empty<GitHubBranch>();
     private bool getBranchesError;
     private bool shouldRender;
 
@@ -636,7 +647,7 @@ else
     public class GitHubBranch
     {
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }
 ```
