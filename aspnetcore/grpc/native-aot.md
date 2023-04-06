@@ -26,7 +26,7 @@ AOT compilation happens when the app is published. Native AOT is enabled with th
 
     [!code-xml[](~/grpc/native-aot/Server.csproj?highlight=5)]
 
-02. Publish the app for a specific runtime identifier using `dotnet publish -r <RID>`.
+02. Publish the app for a specific [runtime identifier (RID)](/dotnet/core/rid-catalog) using `dotnet publish -r <RID>`.
 
 The app will be available in the publish directory and will contain all the code needed to run in it.
 
