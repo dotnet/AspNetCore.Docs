@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn about differences between controller-based APIs and minimal APIs.
 ms.author: tdykstra
 ms.date: 4/10/2023
-monikerRange: '>= aspnetcore-7.0'
+monikerRange: '>= aspnetcore-6.0'
 uid: fundamentals/apis
 ---
 
