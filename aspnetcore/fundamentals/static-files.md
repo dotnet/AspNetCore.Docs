@@ -292,7 +292,7 @@ To ensure assets from `wwwroot-custom` are returned, use one of the following ap
 
   ```xml
   <ItemGroup>
-	  <Content Remove="wwwroot/**" />
+	  <Content Remove="wwwroot\**" />
   </ItemGroup>
   ```
 
