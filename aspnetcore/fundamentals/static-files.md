@@ -109,7 +109,7 @@ An alternative approach to serve files based on authorization is to:
 
   [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFileAuth/Pages/BannerImage.cshtml.cs?name=snippet)]
 
-The preceding approach requires a page or endpoint per file. The following code returns files or uploads file for authenticated users:
+The preceding approach requires a page or endpoint per file. The following code returns files or uploads files for authenticated users:
 
 :::code language="csharp" source="~/fundamentals/static-files/samples/8.x/StaticFileAuth/Program.cs" highlight="128-155":::
 
