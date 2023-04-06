@@ -175,7 +175,7 @@ Not all features in ASP.NET Core are currently compatible with native AOT. The f
 | CORS | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | HealthChecks | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | HttpLogging | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
-| Localization | | |<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
+| Localization | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | OutputCaching | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | RateLimiting | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | RequestDecompression | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
