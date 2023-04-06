@@ -913,6 +913,8 @@ items:
         uid: grpc/security
       - name: Performance best practices
         uid: grpc/performance
+      - name: Native AOT
+        uid: grpc/native-aot
       - name: Inter-process communication
         items:
           - name: Overview
