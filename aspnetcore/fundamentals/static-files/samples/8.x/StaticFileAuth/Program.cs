@@ -124,7 +124,7 @@ async Task SaveFileWithCustomFileName(IFormFile file, string fileSaveName)
     await using var fileStream = new FileStream(filePath, FileMode.Create);
     await file.CopyToAsync(fileStream);
 }
-
+// <snippet_1>
 app.MapGet("/files/{fileName}",  IResult (string fileName) => 
     {
         var filePath = GetOrCreateFilePath(fileName);
@@ -155,4 +155,4 @@ app.MapPost("/files", async (IFormFile file, LinkGenerator linker, HttpContext c
     .RequireAuthorization("AdminsOnly");
 
 app.Run();
-
+// </snippet_1>
