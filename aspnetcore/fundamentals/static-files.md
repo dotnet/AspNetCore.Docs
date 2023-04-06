@@ -104,10 +104,16 @@ To serve static files based on authorization:
 
 An alternative approach to serve files based on authorization is to:
 
-  * Store them outside of `wwwroot` and any directory accessible to the Static File Middleware.
-  * Serve them via an action method to which authorization is applied and return a <xref:Microsoft.AspNetCore.Mvc.FileResult> object:
+* Store them outside of `wwwroot` and any directory accessible to the Static File Middleware.
+* Serve them via an action method to which authorization is applied and return a <xref:Microsoft.AspNetCore.Mvc.FileResult> object:
 
   [!code-csharp[](~/fundamentals/static-files/samples/6.x/StaticFileAuth/Pages/BannerImage.cshtml.cs?name=snippet)]
+
+The preceding approach requires a page or endpoint per file. The following code returns files or uploads file for authenticated users:
+
+:::code language="csharp" source="~/fundamentals/static-files/samples/8.x/StaticFileAuth/Program.cs" highlight="128-155":::
+
+See the [StaticFileAuth](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/static-files/samples/8.x/StaticFileAuth) GitHub folder for the complete sample.
 
 ## Directory browsing
 
@@ -286,7 +292,7 @@ To ensure assets from `wwwroot-custom` are returned, use one of the following ap
 
   ```xml
   <ItemGroup>
-	  <Content Remove="wwwroot\**" />
+	  <Content Remove="wwwroot/**" />
   </ItemGroup>
   ```
 
