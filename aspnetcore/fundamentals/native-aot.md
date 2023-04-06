@@ -131,7 +131,7 @@ Because unused code is trimmed during publishing for native AOT, the application
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <!-- Other properties ommitted for brevity -->
+    <!-- Other properties omitted for brevity -->
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
   </PropertyGroup>
 
