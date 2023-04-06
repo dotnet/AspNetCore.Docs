@@ -14,7 +14,9 @@ By [James Newton-King](https://twitter.com/jamesnk)
 gRPC supports [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) in .NET 8. Native AOT enables publishing gRPC client and server apps as small, fast native executables.
 
 > [!WARNING]
-> In .NET 8, not all ASP.NET Core features are compatible with native AOT. For more information, see [ASP.NET Core and native AOT compatibility](xref:fundamentals/native-aot#aspnet-core-and-native-aot-compatibility).
+> In .NET 8, not all ASP.NET Core features are compatible with native AOT.
+>
+> For more information, see [ASP.NET Core and native AOT compatibility](xref:fundamentals/native-aot#aspnet-core-and-native-aot-compatibility).
 
 ## Getting started
 
@@ -22,21 +24,7 @@ AOT compilation happens when the app is published. Native AOT is enabled with th
 
 01. Add `<PublishAot>true</PublishAot>` to the gRPC client or server app's project file. This will enable native AOT compilation during publish and enable dynamic code usage analysis during build and editing.
 
-    ```xml
-    <Project Sdk="Microsoft.NET.Sdk.Web">
-    
-      <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <PublishAot>true</PublishAot>
-      </PropertyGroup>
-    
-      <ItemGroup>
-        <PackageReference Include="Grpc.AspNetCore" Version="2.51.0" />
-        <PackageReference Include="Google.Protobuf" Version="3.22.0" />
-      </ItemGroup>
-    
-    </Project>
-    ```
+    [!code-xml[](~/grpc/native-aot/Server.csproj?highlight=5)]
 
 02. Publish the app for a specific runtime identifier using `dotnet publish -r <RID>`.
 
@@ -46,7 +34,11 @@ Native AOT analysis includes all of the app's code and the libraries the app dep
 
 ## Benefits of using native AOT
 
-Apps published with native AOT should have a smaller disk footprint, reduced startup time and reduce memory demand.
+Apps published with native AOT have:
+
+* Smaller disk footprint
+* Reduced startup time
+* Reduce memory demand
 
 For more information, and examples of the benefits that native AOT provides, see [Benefits of using native AOT with ASP.NET Core](xref:fundamentals/native-aot#benefits-of-using-native-aot-with-aspnet-core).
 
