@@ -1,4 +1,4 @@
-
+ :::moniker range="= aspnetcore-6.0"
 
 Here's sample code for an API based on controllers:
 
@@ -32,3 +32,5 @@ Minimal APIs have many of the same capabilities as controller-based APIs. They s
 * <xref:tutorials/first-web-api>
 * <xref:fundamentals/minimal-apis/overview>
 * <xref:tutorials/min-web-api>
+
+:::moniker-end
