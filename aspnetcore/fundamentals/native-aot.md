@@ -19,16 +19,28 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
 > [!WARNING]
 > In .NET 8, not all ASP.NET Core features are compatible with native AOT.
 
-## Getting started with native AOT deployment in ASP.NET Core
+## Native AOT publishing
 
-Native AOT is a publishing option. AOT compilation happens when the app is published. A project that uses native AOT publishing will use JIT compilation when debugging/running, but there are some observable differences:
+AOT compilation happens when the app is published. Native AOT is enabled with the `PublishAot` option:
+
+```xml
+<PropertyGroup>
+  <PublishAot>true</PublishAot>
+</PropertyGroup>
+```
+
+A project that uses native AOT publishing will use JIT compilation when debugging/running, but there are some observable differences:
 
 * Some features that aren't compatible with native AOT are disabled and throw exceptions at runtime.
 * A source analyzer is enabled to highlight code that isn't compatible with native AOT. At publish time, the entire app, including NuGet packages, are analyzed for compatibility again.
 
 Native AOT analysis includes all of the app's code and the libraries the app depends on. Review native AOT warnings and take corrective steps. It's a good idea to test publishing apps frequently to discover issues early in the development lifecycle.
 
-To get started deploying with .NET native AOT in ASP.NET Core, use the:
+## Get started
+
+Native AOT is supported by ASP.NET Core minimal APIs and gRPC. For more information about getting started using native AOT with gRPC apps, see [gRPC and native AOT](xref:grpc/native-aot).
+
+To get started with native AOT and a minimal API, use the:
 
 * ASP.NET Core API Application template, which includes an option to enable publishing native AOT in the new project. The AOT option includes customizations to remove unsupported components from the app.
 * ```dotnet new``` command to create a new ASP.NET Core API app that is configured to work with native AOT:
@@ -119,7 +131,7 @@ Because unused code is trimmed during publishing for native AOT, the application
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <!-- Other properties ommitted for brevity -->
+    <!-- Other properties omitted for brevity -->
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
   </PropertyGroup>
 
@@ -163,7 +175,7 @@ Not all features in ASP.NET Core are currently compatible with native AOT. The f
 | CORS | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | HealthChecks | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | HttpLogging | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
-| Localization | | |<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
+| Localization | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | OutputCaching | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | RateLimiting | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | RequestDecompression | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
