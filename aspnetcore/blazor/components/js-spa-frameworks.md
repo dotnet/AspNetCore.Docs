@@ -98,7 +98,7 @@ async function showQuote() {
 }
 ```
 
-Load Blazor (`blazor.server.js` or `blazor.webassembly.js`) with the preceding scripts into the JS app:
+Load Blazor (`blazor.server.js`) or `blazor.webassembly.js`) with the preceding scripts into the JS app:
 
 ```html
 <script src="_framework/blazor.{server|webassembly}.js"></script>

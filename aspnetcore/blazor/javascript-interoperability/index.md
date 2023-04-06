@@ -113,7 +113,7 @@ Place the JavaScript (JS) tags (`<script>...</script>`) inside the closing `</bo
 <body>
     ...
 
-    <script src="_framework/blazor.{webassembly|server}.js"></script>
+    <script src="_framework/blazor.{server|webassembly}.js"></script>
     <script>
       window.jsMethod = (methodParameter) => {
         ...
@@ -122,7 +122,7 @@ Place the JavaScript (JS) tags (`<script>...</script>`) inside the closing `</bo
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
+The `{server|webassembly}` placeholder in the preceding markup is either `server` for a Blazor Server app (`blazor.server.js`) or `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`).
 
 ### Load a script from an external JavaScript file (`.js`) collocated with a component
 
@@ -140,12 +140,12 @@ In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Ser
 <body>
     ...
 
-    <script src="_framework/blazor.{webassembly|server}.js"></script>
+    <script src="_framework/blazor.{server|webassembly}.js"></script>
     <script src="{SCRIPT PATH AND FILE NAME (.js)}"></script>
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`). The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and script file name under `wwwroot`.
+The `{server|webassembly}` placeholder in the preceding markup is either `server` for a Blazor Server app (`blazor.server.js`) or `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`). The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and script file name under `wwwroot`.
 
 In the following example of the preceding `<script>` tag, the `scripts.js` file is in the `wwwroot/js` folder of the app:
 
@@ -163,7 +163,7 @@ When the external JS file is supplied by a [Razor class library](xref:blazor/com
 <body>
     ...
 
-    <script src="_framework/blazor.{webassembly|server}.js"></script>
+    <script src="_framework/blazor.{server|webassembly}.js"></script>
     <script src="./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}"></script>
 </body>
 ```
@@ -311,7 +311,7 @@ Place the JavaScript (JS) tags (`<script>...</script>`) inside the closing `</bo
 <body>
     ...
 
-    <script src="_framework/blazor.{webassembly|server}.js"></script>
+    <script src="_framework/blazor.{server|webassembly}.js"></script>
     <script>
       window.jsMethod = (methodParameter) => {
         ...
@@ -320,7 +320,7 @@ Place the JavaScript (JS) tags (`<script>...</script>`) inside the closing `</bo
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
+The `{server|webassembly}` placeholder in the preceding markup is either `server` for a Blazor Server app (`blazor.server.js`) or `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`).
 
 ### Load a script from an external JavaScript file (`.js`) collocated with a component
 
@@ -338,12 +338,12 @@ In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Layout.cshtml` (Blazor S
 <body>
     ...
 
-    <script src="_framework/blazor.{webassembly|server}.js"></script>
+    <script src="_framework/blazor.{server|webassembly}.js"></script>
     <script src="{SCRIPT PATH AND FILE NAME (.js)}"></script>
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`). The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and script file name under `wwwroot`.
+The `{server|webassembly}` placeholder in the preceding markup is either `server` for a Blazor Server app (`blazor.server.js`) or `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`). The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and script file name under `wwwroot`.
 
 In the following example of the preceding `<script>` tag, the `scripts.js` file is in the `wwwroot/js` folder of the app:
 
@@ -361,7 +361,7 @@ When the external JS file is supplied by a [Razor class library](xref:blazor/com
 <body>
     ...
 
-    <script src="_framework/blazor.{webassembly|server}.js"></script>
+    <script src="_framework/blazor.{server|webassembly}.js"></script>
     <script src="./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}"></script>
 </body>
 ```
@@ -506,7 +506,7 @@ Place the script (`<script>...</script>`) inside the closing `</body>` element m
 <body>
     ...
 
-    <script src="_framework/blazor.{webassembly|server}.js"></script>
+    <script src="_framework/blazor.{server|webassembly}.js"></script>
     <script>
       window.jsMethod = (methodParameter) => {
         ...
@@ -515,7 +515,7 @@ Place the script (`<script>...</script>`) inside the closing `</body>` element m
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
+The `{server|webassembly}` placeholder in the preceding markup is either `server` for a Blazor Server app (`blazor.server.js`) or `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`).
 
 ### Load a script from an external JavaScript file (`.js`)
 
@@ -527,12 +527,12 @@ In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Ser
 <body>
     ...
 
-    <script src="_framework/blazor.{webassembly|server}.js"></script>
+    <script src="_framework/blazor.{server|webassembly}.js"></script>
     <script src="{SCRIPT PATH AND FILE NAME (.js)}"></script>
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`). The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and script file name under `wwwroot`.
+The `{server|webassembly}` placeholder in the preceding markup is either `server` for a Blazor Server app (`blazor.server.js`) or `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`). The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and script file name under `wwwroot`.
 
 In the following example of the preceding `<script>` tag, the `scripts.js` file is in the `wwwroot/js` folder of the app:
 
@@ -550,7 +550,7 @@ When the external JS file is supplied by a [Razor class library](xref:blazor/com
 <body>
     ...
 
-    <script src="_framework/blazor.{webassembly|server}.js"></script>
+    <script src="_framework/blazor.{server|webassembly}.js"></script>
     <script src="./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}"></script>
 </body>
 ```
@@ -700,7 +700,7 @@ Place the script (`<script>...</script>`) inside the closing `</body>` element m
 <body>
     ...
 
-    <script src="_framework/blazor.{webassembly|server}.js"></script>
+    <script src="_framework/blazor.{server|webassembly}.js"></script>
     <script>
       window.jsMethod = (methodParameter) => {
         ...
@@ -709,7 +709,7 @@ Place the script (`<script>...</script>`) inside the closing `</body>` element m
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`).
+The `{server|webassembly}` placeholder in the preceding markup is either `server` for a Blazor Server app (`blazor.server.js`) or `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`).
 
 ### Load a script from an external JavaScript file (`.js`)
 
@@ -721,12 +721,12 @@ In `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Ser
 <body>
     ...
 
-    <script src="_framework/blazor.{webassembly|server}.js"></script>
+    <script src="_framework/blazor.{server|webassembly}.js"></script>
     <script src="{SCRIPT PATH AND FILE NAME (.js)}"></script>
 </body>
 ```
 
-The `{webassembly|server}` placeholder in the preceding markup is either `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`) or :::no-loc text="Server"::: for a Blazor Server app (`blazor.server.js`). The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and script file name under `wwwroot`.
+The `{server|webassembly}` placeholder in the preceding markup is either `server` for a Blazor Server app (`blazor.server.js`) or `webassembly` for a Blazor WebAssembly app (`blazor.webassembly.js`). The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and script file name under `wwwroot`.
 
 In the following example of the preceding `<script>` tag, the `scripts.js` file is in the `wwwroot/js` folder of the app:
 
@@ -744,7 +744,7 @@ When the external JS file is supplied by a [Razor class library](xref:blazor/com
 <body>
     ...
 
-    <script src="_framework/blazor.{webassembly|server}.js"></script>
+    <script src="_framework/blazor.{server|webassembly}.js"></script>
     <script src="./_content/{PACKAGE ID}/{SCRIPT PATH AND FILE NAME (.js)}"></script>
 </body>
 ```
