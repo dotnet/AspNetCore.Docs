@@ -174,7 +174,7 @@ The following example shows how to set and get a serializable object with the `S
 [!code-csharp[](app-state/6.0samples/SessionSample/Pages/Index6.cshtml.cs)]
 
 > [!WARNING]
-> Storing live object in session should be used with caution as there are many problems than can occur with searilized objects. For more information [see this GitHub issue](https://github.com/dotnet/aspnetcore/issues/18159)
+> Storing a live object in the session should be used with caution as there are many problems than can occur with serialized objects. For more information [see this GitHub issue](https://github.com/dotnet/aspnetcore/issues/18159)
 
 
 ## TempData
