@@ -5,7 +5,7 @@ description: Learn how to call a web API from Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/05/2023
+ms.date: 04/06/2023
 uid: blazor/call-web-api
 zone_pivot_groups: blazor-hosting-models
 ---
@@ -51,13 +51,13 @@ public class TodoItem
 
 For guidance on how to create a server-side web API, see <xref:tutorials/first-web-api>. For information on Cross-origin resource sharing (CORS), see the *Cross-origin resource sharing (CORS)* section later in this article.
 
-The Blazor WebAssembly examples that demonstrate obtaining weather data from a server API are based on the default [hosted Blazor WebAssembly project template](xref:blazor/project-structure#blazor-webassembly).
+The Blazor WebAssembly examples that demonstrate obtaining weather data from a server API are based on a hosted Blazor WebAssembly solution created from the [Blazor WebAssembly project template](xref:blazor/project-structure#blazor-webassembly).
 
 ## Package
 
 The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package provides extension methods for <xref:System.Net.Http.HttpClient?displayProperty=fullName> and <xref:System.Net.Http.HttpContent?displayProperty=fullName> that perform automatic serialization and deserialization using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json).
 
-The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package is provided by the .NET shared framework in ASP.NET Core 6.0 or later and doesn't require adding a package reference to the app.
+The [`System.Net.Http.Json`](https://www.nuget.org/packages/System.Net.Http.Json) package is provided by the .NET shared framework and doesn't require adding a package reference to the app.
 
 ## Add the `HttpClient` service
 
