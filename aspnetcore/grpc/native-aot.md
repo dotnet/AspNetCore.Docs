@@ -27,7 +27,7 @@ AOT compilation happens when the app is published. Native AOT is enabled with th
     Native AOT can also be enabled by specifying the `-aot` option with the ASP.NET Core gRPC template:
 
     ```dotnetcli
-    dotnet new grpc -aot`
+    dotnet new grpc -aot
     ```
 
 2. Publish the app for a specific [runtime identifier (RID)](/dotnet/core/rid-catalog) using `dotnet publish -r <RID>`.
