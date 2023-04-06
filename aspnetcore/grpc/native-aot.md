@@ -18,7 +18,7 @@ gRPC supports [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-ao
 >
 > For more information, see [ASP.NET Core and native AOT compatibility](xref:fundamentals/native-aot#aspnet-core-and-native-aot-compatibility).
 
-## Getting started
+## Get started
 
 AOT compilation happens when the app is published. Native AOT is enabled with the `PublishAot` option.
 
