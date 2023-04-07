@@ -218,7 +218,7 @@ Customize how these boot resources are loaded using the `loadBootResource` API. 
 
 | Parameter    | Description |
 | ------------ | ----------- |
-| `type`       | The type of the resource. Permissible types include: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, and `timezonedata`. You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors. The `dotnetjs` boot resource (`dotnet.*.js`) must either return `null` for default loading behavior or a URL for the source of the `dotnetjs` boot resource. |
+| `type`       | The type of the resource. Permissible types include: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, and `timezonedata`. You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors. The `dotnetjs` boot resource (`dotnet.*.js`) must either return `null` for default loading behavior or a URI for the source of the `dotnetjs` boot resource. |
 | `name`       | The name of the resource. |
 | `defaultUri` | The relative or absolute URI of the resource. |
 | `integrity`  | The integrity string representing the expected content in the response. |
@@ -271,7 +271,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
 </script>
 ```
 
-When the `loadBootResource` function returns `null`, Blazor uses the default loading behavior for the resource. For example, the preceding code returns `null` for the `dotnetjs` boot resource (`dotnet.*.js`) because the `dotnetjs` boot resource must either return `null` for default loading behavior or a URL for the source of the `dotnetjs` boot resource.
+When the `loadBootResource` function returns `null`, Blazor uses the default loading behavior for the resource. For example, the preceding code returns `null` for the `dotnetjs` boot resource (`dotnet.*.js`) because the `dotnetjs` boot resource must either return `null` for default loading behavior or a URI for the source of the `dotnetjs` boot resource.
 
 The `loadBootResource` function can also return a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response). For an example, see <xref:blazor/host-and-deploy/webassembly#compression>.
 
