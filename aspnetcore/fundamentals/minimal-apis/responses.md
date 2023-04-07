@@ -86,7 +86,7 @@ As mentioned previously, when using `TypedResults`, a conversion is not needed. 
 <!-- TODO, https://github.com/dotnet/AspNetCore.Docs/issues/28916 moves the following code to a project -->
 
 ```csharp
-public static async Task<IResult> GetAllTodos(TodoDb db)
+public static async Task<Ok<Todo[]>> GetAllTodos(TodoDb db)
 {
     return TypedResults.Ok(await db.Todos.ToArrayAsync());
 }
