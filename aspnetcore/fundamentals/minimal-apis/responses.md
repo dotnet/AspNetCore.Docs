@@ -62,7 +62,7 @@ The `IResult` interface defines a contract that represents the result of an HTTP
 
 ### TypedResults vs Results
 
-The `Results` and `TypedResults` static classes provide similar sets of results helpers. However, the `Results` helpers' return type is `IResult`, while each `TypedResults` helper's return type is one of the `IResult` implementation types. The difference means that for `Results` helpers a conversion is needed when the concrete type is needed, for example, for unit testing. The implementation types are defined in the <xref:Microsoft.AspNetCore.Http.HttpResults> namespace.
+The <xref:Microsoft.AspNetCore.Http.Results> and <xref:Microsoft.AspNetCore.Http.TypedResults> static classes provide similar sets of results helpers. The `TypedResults` class is the *typed* equivalent of the `Results` class. However, the `Results` helpers' return type is <xref:Microsoft.AspNetCore.Http.IResult>, while each `TypedResults` helper's return type is one of the `IResult` implementation types. The difference means that for `Results` helpers a conversion is needed when the concrete type is needed, for example, for unit testing. The implementation types are defined in the <xref:Microsoft.AspNetCore.Http.HttpResults> namespace.
 
 An advantage of using `TypedResults` is that the implementation type automatically provides the response type metadata for OpenAPI to describe the endpoint.
 
@@ -80,6 +80,39 @@ app.MapGet("/hello", () => TypedResults.Ok(new Message() {  Text = "Hello World!
 ```
 
 For more information about describing a response type, see [OpenAPI support in minimal APIs](/aspnet/core/fundamentals/minimal-apis/openapi#describe-response-types-1).
+
+As mentioned previously, when using `TypedResults`, a conversion is not needed. Consider the following minimal API which returns a `TypedResults` class
+
+<!-- TODO, https://github.com/dotnet/AspNetCore.Docs/issues/28916 moves the following code to a project -->
+
+```csharp
+public static async Task<IResult> GetAllTodos(TodoDb db)
+{
+    return TypedResults.Ok(await db.Todos.ToArrayAsync());
+}
+```
+
+The following test checks for the full concrete type:
+
+```csharp
+[Fact]
+public async Task GetAllTodos_ReturnsOkOfObjectResult()
+{
+    // Arrange
+    var db = CreateDbContext();
+
+    // Act
+    var result = await TodosApi.GetAllTodos(db);
+
+    // Assert: Check the returned result type is correct
+    Assert.IsType<Ok<Todo[]>>(result);
+}
+```
+
+Additional advantages the `TypedResults` class has over `Results` include:
+
+* `TypedResults ` return strongly typed objects, which can improve code readability and reduce the chance of runtime errors.
+* [Automatically includes the response type metadata](/aspnet/core/fundamentals/minimal-apis/openapi#describe-response-types) for the endpoint.
 
 ### Results<TResult1, TResultN>
 
