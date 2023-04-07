@@ -371,15 +371,33 @@ When routable components are integrated into a Razor Pages app, the app's shared
 
 ## Layout sections
 
-To control the content in layouts from Razor components, Blazor supports *sections* using the following built-in components:
+To control the content in layout Razor components from child Razor components, Blazor supports *sections* using the following built-in components:
 
-* `SectionOutlet`: Renders content provided by `SectionContent` components with matching `SectionId` or `SectionName` arguments. A `SectionOutlet` component can render the content of several `SectionContent` components.
+* `SectionOutlet`: Renders content provided by `SectionContent` components with matching `SectionName` or `SectionId` arguments. Two or more `SectionOutlet` components can't have the the same `SectionName` or `SectionId`.
 
-* `SectionContent`: Provides content as a <xref:Microsoft.AspNetCore.Components.RenderFragment> to `SectionOutlet` components with a matching `SectionId` or `SectionName`. Only one `SectionOutlet` component can render the content of a `SectionContent` instance.
+* `SectionContent`: Provides content as a <xref:Microsoft.AspNetCore.Components.RenderFragment> to `SectionOutlet` components with a matching `SectionName` or `SectionId`. If several `SectionContent` components have the same `SectionName` or `SectionId`, the matching `SectionOutlet` component renders the content of the last rendered `SectionContent`.
 
-In the following example, the `MainLayout` component implements an increment counter button for the app's `Counter` component.
+In the following example, the app's main layout component implements an increment counter button for the app's `Counter` component.
 
-Add a `TopbarSection` static `object` to the `MainLayout` component (`Shared/MainLayout.razor`) in an `@code` block:
+In the `MainLayout` component (`Shared/MainLayout.razor`), place a `SectionOutlet` component and pass a string to the `SectionName` parameter to indicate the section's name. The following example uses the section name `topbar`:
+
+```razor
+<SectionOutlet SectionName="topbar" />
+```
+
+In the `Counter` component (`Pages/Counter.razor`), create a `SectionContent` component and pass the matching string (`topbar`) to its `SectionName` parameter:
+
+```razor
+<SectionContent SectionName="topbar">
+    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+</SectionContent>
+```
+
+When the app is run, the `MainLayout` component renders the increment count button from the `Counter` component where the `SectionOutlet` component is placed.
+
+Instead of using a named section, you can pass a static `object` with the `SectionId` parameter to identify the section. The following example also implements an increment counter button for the app's `Counter` component in the app's main layout.
+
+Add a `TopbarSection` static `object` to the `MainLayout` component in an `@code` block:
 
 ```razor
 @code {
@@ -387,13 +405,13 @@ Add a `TopbarSection` static `object` to the `MainLayout` component (`Shared/Mai
 }
 ```
 
-In the `MainLayout` component's Razor markup above the `About` hyperlink's `<a>` element , add the following markup to render `SectionContent` components that specify the `TopbarSection` section ID:
+In the `MainLayout` component's Razor markup, place a `SectionOutlet` component and pass `TopbarSection` to the `SectionId` parameter to indicate the section:
 
 ```razor
 <SectionOutlet SectionId="TopbarSection" />
 ```
 
-Add a `SectionContent` component to the app's `Counter` component that renders an increment count button. Use the `MainLayout` component's `TopbarSection` section static `object` as the `SectionID` (`MainLayout.TopbarSection`).
+Add a `SectionContent` component to the app's `Counter` component that renders an increment count button. Use the `MainLayout` component's `TopbarSection` section static `object` as the `SectionId` (`MainLayout.TopbarSection`).
 
 In `Pages/Counter.razor`:
 
@@ -403,19 +421,7 @@ In `Pages/Counter.razor`:
 </SectionContent>
 ```
 
-An alternative approach to using a static field in the `Mainlayout` component is to pass a string to the `SectionName` parameter. The following example uses `"topbar"`:
-
-```razor
-<SectionOutlet SectionName="topbar" />
-```
-
-In the `Counter` component, the matching string (`"topbar"`) is passed to the `SectionName` parameter of the `SectionContent` component:
-
-```razor
-<SectionContent SectionName="topbar">
-    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-</SectionContent>
-```
+When the app is run, the `MainLayout` component renders the increment count button where the `SectionOutlet` component is placed.
 
 > [!NOTE]
 > `SectionOutlet` and `SectionContent` components can only set either `SectionId` or `SectionName`, not both.
