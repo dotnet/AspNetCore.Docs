@@ -257,11 +257,15 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
 <script>
   Blazor.start({
     loadBootResource: function (type, name, defaultUri, integrity) {
-      return fetch(defaultUri, { 
-        cache: 'no-cache',
-        integrity: integrity,
-        headers: { 'Custom-Header': 'Custom Value' }
-      });
+      if (type == 'dotnetjs') {
+        return null;
+      } else {
+        return fetch(defaultUri, {
+          cache: 'no-cache',
+          integrity: integrity,
+          headers: { 'Custom-Header': 'Custom Value' }
+        });
+      }
     }
   });
 </script>
@@ -269,7 +273,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
 
 The `loadBootResource` function can also return:
 
-* `null`/`undefined`, which results in the default loading behavior.
+* `null`/`undefined`, which results in the default loading behavior. For example, the preceding code returns `null` for the `dotnetjs` boot resource because the `dotnetjs` boot resource must either return `null` for default loading behavior or a URL for the source of the `dotnetjs` boot resource.
 * A [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response). For an example, see <xref:blazor/host-and-deploy/webassembly#compression>.
 
 ## Control headers in C# code
