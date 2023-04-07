@@ -271,10 +271,9 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
 </script>
 ```
 
-The `loadBootResource` function can also return:
+When the `loadBootResource` function returns `null`, Blazor uses the default loading behavior for the resource. For example, the preceding code returns `null` for the `dotnetjs` boot resource because the `dotnetjs` boot resource must either return `null` for default loading behavior or a URL for the source of the `dotnetjs` boot resource.
 
-* `null`/`undefined`, which results in the default loading behavior. For example, the preceding code returns `null` for the `dotnetjs` boot resource because the `dotnetjs` boot resource must either return `null` for default loading behavior or a URL for the source of the `dotnetjs` boot resource.
-* A [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response). For an example, see <xref:blazor/host-and-deploy/webassembly#compression>.
+The `loadBootResource` function can also return a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response). For an example, see <xref:blazor/host-and-deploy/webassembly#compression>.
 
 ## Control headers in C# code
 
