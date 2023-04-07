@@ -14,6 +14,8 @@ uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
 
 This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
 
+For additional security scenario coverage after consuming this article, see <xref:blazor/security/webassembly/additional-scenarios>.
+
 ## Walkthrough
 
 The subsections of the walkthrough explain how to:
@@ -36,7 +38,7 @@ Register an AAD B2C app for the *Server API app*:
 1. Navigate to **Azure AD B2C** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Server AAD B2C**).
 1. For **Supported account types**, select the multi-tenant option: **Accounts in any identity provider or organizational directory (for authenticating users with user flows)**
-1. The *Server API app* doesn't require a **Redirect URI** in this scenario, so skip the **Redirect URI** setting don't enter a redirect URI.
+1. The *Server API app* doesn't require a **Redirect URI** in this scenario, so leave the **Select a platform** dropdown list unselected and don't enter a redirect URI.
 1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), confirm that **Permissions** > **Grant admin consent to openid and offline_access permissions** is selected. If the publisher domain is verified, this checkbox isn't present.
 1. Select **Register**.
 
@@ -152,9 +154,9 @@ If the scope is incorrect, update the value now.
 
 [!INCLUDE[](~/blazor/security/includes/run-the-app.md)]
 
-## Custom user flows
+## Custom policies
 
-[!INCLUDE[](~/blazor/security/includes/wasm-aad-b2c-userflows.md)]
+[!INCLUDE[](~/blazor/security/includes/wasm-aad-b2c-custom-policies.md)]
 
 ## Configure `User.Identity.Name`
 

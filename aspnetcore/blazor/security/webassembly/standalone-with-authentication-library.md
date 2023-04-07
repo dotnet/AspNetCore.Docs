@@ -16,6 +16,8 @@ This article explains how to secure an ASP.NET Core Blazor WebAssembly standalon
 
 *For Azure Active Directory (AAD) and Azure Active Directory B2C (AAD B2C) guidance, don't follow the guidance in this topic. See <xref:blazor/security/webassembly/standalone-with-azure-active-directory> or <xref:blazor/security/webassembly/standalone-with-azure-active-directory-b2c>.*
 
+For additional security scenario coverage after consuming this article, see <xref:blazor/security/webassembly/additional-scenarios>.
+
 ## Walkthrough
 
 The subsections of the walkthrough explain how to:

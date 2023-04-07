@@ -14,6 +14,8 @@ uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
 
 This article explains how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
 
+For additional security scenario coverage after consuming this article, see <xref:blazor/security/webassembly/additional-scenarios>.
+
 ## Walkthrough
 
 The subsections of the walkthrough explain how to:
@@ -205,9 +207,9 @@ For more information, see the following sections of the *Additional scenarios* a
 
 [!INCLUDE[](~/blazor/security/includes/authentication-component.md)]
 
-### Custom user flows
+### Custom policies
 
-[!INCLUDE[](~/blazor/security/includes/wasm-aad-b2c-userflows.md)]
+[!INCLUDE[](~/blazor/security/includes/wasm-aad-b2c-custom-policies.md)]
 
 ## Troubleshoot
 
