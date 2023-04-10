@@ -783,9 +783,13 @@ In the preceding example:
 > [!IMPORTANT]
 > If a Razor component defines an event that's triggered from a background thread, the component might be required to capture and restore the execution context (<xref:System.Threading.ExecutionContext>) at the time the handler is registered. For more information, see [Calling `InvokeAsync(StateHasChanged)` causes page to fallback to default culture (dotnet/aspnetcore #28521)](https://github.com/dotnet/aspnetcore/issues/28521).
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 ### Dispatch exceptions to Blazor's synchronization context
+
+<!-- ************** NOTE: https://github.com/dotnet/aspnetcore/pull/46074#issuecomment-1398108853 -->
 
 Use `DispatchExceptionAsync` to process caught exceptions thrown outside of Blazor's synchronization context (for example, outside of Blazor's lifecycle events). This permits the app's code to treat the exceptions as through they're lifecycle method exceptions. Thereafter, Blazor's error handling approaches are supported, such as [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries).
 
@@ -865,6 +869,8 @@ When the timer service executes and reaches a count of two, the unhandled except
 > :::no-loc text="Oh, dear! Oh, my! - George Takei":::
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 ## Use `@key` to control the preservation of elements and components
 
