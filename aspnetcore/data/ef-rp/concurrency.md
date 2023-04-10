@@ -1,6 +1,6 @@
 ---
 title: Part 8, Razor Pages with EF Core in ASP.NET Core - Concurrency
-author: rick-anderson
+author: tdykstra
 description: Part 8 of Razor Pages and Entity Framework tutorial series.
 ms.author: riande
 ms.custom: mvc

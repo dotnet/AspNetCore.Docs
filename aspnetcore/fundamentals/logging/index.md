@@ -1,6 +1,6 @@
 ---
 title: Logging in .NET Core and ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how to use the logging framework provided by the Microsoft.Extensions.Logging NuGet package.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande

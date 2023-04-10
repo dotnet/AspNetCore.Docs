@@ -1,6 +1,6 @@
 ---
 title: Enforce HTTPS in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how to require HTTPS/TLS in an ASP.NET Core web app.
 ms.author: riande
 monikerRange: '>= aspnetcore-3.0'

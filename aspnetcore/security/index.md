@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core security topics
-author: rick-anderson
+author: tdykstra
 description: Provides links to articles on authentication, authorization, and security in ASP.NET Core.
 ms.author: riande
 ms.custom: mvc

@@ -1,6 +1,6 @@
 ---
 title: Handle errors in ASP.NET Core web APIs
-author: rick-anderson
+author: tdykstra
 description: Learn about error handling with ASP.NET Core web APIs.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande

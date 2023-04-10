@@ -1,6 +1,6 @@
 ---
 title: Test web APIs with the HttpRepl
-author: rick-anderson
+author: tdykstra
 description: Learn how to use the HttpRepl .NET Core Global Tool to browse and test an ASP.NET Core web API.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: scaddie

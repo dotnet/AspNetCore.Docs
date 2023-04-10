@@ -1,6 +1,6 @@
 ---
 title: Safe storage of app secrets in development in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how to store and retrieve sensitive information during the development of an ASP.NET Core app.
 ms.author: riande
 monikerRange: '>= aspnetcore-3.0'

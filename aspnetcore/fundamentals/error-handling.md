@@ -1,6 +1,6 @@
 ---
 title: Handle errors in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
