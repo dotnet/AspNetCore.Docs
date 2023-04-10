@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Implement CRUD Functionality - ASP.NET MVC with EF Core"
 description: "In this tutorial, you'll review and customize the CRUD (create, read, update, delete) code that the MVC scaffolding automatically creates for you in controllers and views."
-author: rick-anderson
+author: tdykstra
 ms.author: riande
 ms.custom: mvc
 ms.date: 02/04/2019

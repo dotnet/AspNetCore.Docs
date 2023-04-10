@@ -1,6 +1,6 @@
 ---
 title: Distributed caching in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how to use an ASP.NET Core distributed cache to improve app performance and scalability, especially in a cloud or server farm environment.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande

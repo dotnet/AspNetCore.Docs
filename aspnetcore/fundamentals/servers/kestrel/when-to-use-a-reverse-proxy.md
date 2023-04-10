@@ -1,6 +1,6 @@
 ---
 title: When to use a reverse proxy with the ASP.NET Core Kestrel web server
-author: rick-anderson
+author: tdykstra
 description: Learn about when to use a reverse proxy in front of Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
