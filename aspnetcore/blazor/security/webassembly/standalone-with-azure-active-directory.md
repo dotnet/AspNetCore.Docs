@@ -14,7 +14,7 @@ uid: blazor/security/webassembly/standalone-with-azure-active-directory
 
 This article explains how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication.
 
-For additional security scenario coverage after consuming this article, see <xref:blazor/security/webassembly/additional-scenarios>.
+For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
 
 ## Walkthrough
 

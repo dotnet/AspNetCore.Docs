@@ -24,7 +24,7 @@ This article explains how to create a [hosted Blazor WebAssembly solution](xref:
 > [!NOTE]
 > To configure a standalone or hosted Blazor WebAssembly app to use an existing, external Identity Server instance, follow the guidance in <xref:blazor/security/webassembly/standalone-with-authentication-library>.
 
-For additional security scenario coverage after consuming this article, see <xref:blazor/security/webassembly/additional-scenarios>.
+For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
 
 ## Walkthrough
 
