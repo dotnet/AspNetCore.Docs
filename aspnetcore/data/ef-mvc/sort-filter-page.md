@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Add sorting, filtering, and paging - ASP.NET MVC with EF Core"
 description: "In this tutorial you'll add sorting, filtering, and paging functionality to the Students Index page. You'll also create a page that does simple grouping."
-author: rick-anderson
+author: tdykstra
 ms.author: riande
 ms.date: 03/27/2019
 ms.topic: tutorial

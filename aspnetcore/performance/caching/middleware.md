@@ -1,6 +1,6 @@
 ---
 title: Response Caching Middleware in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how to configure and use Response Caching Middleware in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande

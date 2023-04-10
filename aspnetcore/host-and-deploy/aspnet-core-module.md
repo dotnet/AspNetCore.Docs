@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core Module (ANCM) for IIS
-author: rick-anderson
+author: tdykstra
 description: Learn about the ASP.NET Core Module (ANCM) for hosting ASP.NET Core apps with IIS.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande

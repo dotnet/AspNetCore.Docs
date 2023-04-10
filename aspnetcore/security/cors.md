@@ -1,6 +1,6 @@
 ---
 title: Enable Cross-Origin Requests (CORS) in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
@@ -555,7 +555,7 @@ The following `ValuesController` provides the endpoints for testing:
 
 [!code-csharp[](~/security/cors/8.0sample/Cors/Web2API/Controllers/ValuesController.cs?name=snippet)]
 
-[MyDisplayRouteInfo](https://github.com/Rick-Anderson/RouteInfo/blob/master/Microsoft.Docs.Samples.RouteInfo/ControllerContextExtensions.cs) is provided by the [Rick.Docs.Samples.RouteInfo](https://www.nuget.org/packages/Rick.Docs.Samples.RouteInfo) NuGet package and displays route information.
+[MyDisplayRouteInfo](https://github.com/tdykstra/RouteInfo/blob/master/Microsoft.Docs.Samples.RouteInfo/ControllerContextExtensions.cs) is provided by the [Rick.Docs.Samples.RouteInfo](https://www.nuget.org/packages/Rick.Docs.Samples.RouteInfo) NuGet package and displays route information.
 
 Test the preceding sample code by using one of the following approaches:
 

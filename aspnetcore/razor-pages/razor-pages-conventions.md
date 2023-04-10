@@ -1,6 +1,6 @@
 ---
 title: Razor Pages route and app conventions in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Discover how route and app model provider conventions help you control page routing, discovery, and processing.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande

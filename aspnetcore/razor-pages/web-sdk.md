@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core Web SDK
-author: Rick-Anderson
+author: tdykstra
 description: Overview of Microsoft.NET.Sdk.Web.
 ms.author: riande
 ms.date: 01/25/2023
