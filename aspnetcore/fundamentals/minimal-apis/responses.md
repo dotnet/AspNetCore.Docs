@@ -85,6 +85,7 @@ As mentioned previously, when using `TypedResults`, a conversion is not needed. 
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_11":::
 
+Delete this
 ```csharp
 public static async Task<Ok<Todo[]>> GetAllTodos(TodoDb db)
 {
