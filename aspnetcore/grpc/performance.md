@@ -114,7 +114,7 @@ For more information, see <xref:grpc/loadbalancing>.
 
 ### Proxy load balancing
 
-An L7 (application) proxy works at a higher level than an L4 (transport) proxy. L7 proxies understand HTTP/2, and are able to distribute gRPC calls multiplexed to the proxy on one HTTP/2 connection across multiple endpoints. Using a proxy is simpler than client-side load balancing, but can add extra latency to gRPC calls.
+An L7 (application) proxy works at a higher level than an L4 (transport) proxy. L7 proxies understand HTTP/2. The proxy recieves gRPC calls multiplexed on one HTTP/2 connection and distributes them across multiple backend endpoints. Using a proxy is simpler than client-side load balancing, but adds extra latency to gRPC calls.
 
 There are many L7 proxies available. Some options are:
 
