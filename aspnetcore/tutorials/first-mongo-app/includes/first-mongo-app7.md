@@ -1,19 +1,4 @@
----
-title: Create a web API with ASP.NET Core and MongoDB
-author: wadepickett
-<!-- author: prkhandelwal -->
-description: This tutorial demonstrates how to create an ASP.NET Core web API using a MongoDB NoSQL database.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
-ms.custom: "mvc, seodec18, engagement-fy23"
-ms.date: 04/11/2023
-uid: tutorials/first-mongo-app
----
-# Create a web API with ASP.NET Core and MongoDB
-
-By [Pratik Khandelwal](https://twitter.com/K2Prk) and [Scott Addie](https://twitter.com/Scott_Addie)
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-7.0"
 
 This tutorial creates a web API that runs Create, Read, Update, and Delete (CRUD) operations on a [MongoDB](https://www.mongodb.com/what-is-mongodb) NoSQL database.
 
@@ -33,15 +18,15 @@ In this tutorial, you learn how to:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
 
 ---
 
@@ -142,7 +127,8 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 1. Go to **File** > **New** > **Project**.
 1. Select the **ASP.NET Core Web API** project type, and select **Next**.
 1. Name the project *BookStoreApi*, and select **Next**.
-1. Select the **.NET 6.0 (Long-term support)** framework and select **Create**.
+1. Select the **.NET 7.0 (Standard Term Support)** framework and select **Create**.
+1. From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
 1. In the **Package Manager Console** window, navigate to the project root. Run the following command to install the .NET driver for MongoDB:
 
    ```powershell
@@ -171,7 +157,7 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 
 1. Select **File** > **New Solution** > **Web and Console** > **App** from the sidebar.
 1. Select the **ASP.NET Core** > **API** C# project template, and select **Next**.
-1. Select **.NET 6.0** from the **Target Framework** drop-down list, and select **Next**.
+1. Select **.NET 7.0** from the **Target Framework** drop-down list, and select **Next**.
 1. Enter *BookStoreApi* for the **Project Name**, and select **Create**.
 1. In the **Solution** pad, right-click the project's **Dependencies** node and select **Add Packages**.
 1. Enter *MongoDB.Driver* in the search box, select the *MongoDB.Driver* package, and select **Add Package**.
@@ -184,7 +170,7 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 1. Add a *Models* directory to the project root.
 1. Add a `Book` class to the *Models* directory with the following code:
 
-   :::code language="csharp" source="first-mongo-app/samples_snapshot/6.x/Book.cs":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples_snapshot/7.x/Book.cs":::
 
    In the preceding class, the `Id` property is:
 
@@ -198,48 +184,48 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 
 1. Add the following database configuration values to `appsettings.json`:
 
-   :::code language="json" source="first-mongo-app/samples/6.x/BookStoreApi/appsettings.json" highlight="2-6":::
+   :::code language="json" source="~/tutorials/first-mongo-app/samples/7.x/BookStoreApi/appsettings.json" highlight="2-6":::
 
 1. Add a `BookStoreDatabaseSettings` class to the *Models* directory with the following code:
 
-   :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Models/BookStoreDatabaseSettings.cs":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/7.x/BookStoreApi/Models/BookStoreDatabaseSettings.cs":::
 
    The preceding `BookStoreDatabaseSettings` class is used to store the `appsettings.json` file's `BookStoreDatabase` property values. The JSON and C# property names are named identically to ease the mapping process.
 
 1. Add the following highlighted code to `Program.cs`:
 
-   :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_BookStoreDatabaseSettings" highlight="4-5":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/7.x/BookStoreApi/Program.cs" id="snippet_BookStoreDatabaseSettings" highlight="4-5":::
 
    In the preceding code, the configuration instance to which the `appsettings.json` file's `BookStoreDatabase` section binds is registered in the Dependency Injection (DI) container. For example, the `BookStoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookStoreDatabase:ConnectionString` property in `appsettings.json`.
 
 1. Add the following code to the top of `Program.cs` to resolve the `BookStoreDatabaseSettings` reference:
 
-   :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_UsingModels":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/7.x/BookStoreApi/Program.cs" id="snippet_UsingModels":::
 
 ## Add a CRUD operations service
 
 1. Add a *Services* directory to the project root.
 1. Add a `BooksService` class to the *Services* directory with the following code:
 
-   :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Services/BooksService.cs" id="snippet_File":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/7.x/BookStoreApi/Services/BooksService.cs" id="snippet_File":::
 
    In the preceding code, a `BookStoreDatabaseSettings` instance is retrieved from DI via constructor injection. This technique provides access to the `appsettings.json` configuration values that were added in the [Add a configuration model](#add-a-configuration-model) section.
 
 1. Add the following highlighted code to `Program.cs`:
 
-   :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_BooksService" highlight="7":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/7.x/BookStoreApi/Program.cs" id="snippet_BooksService" highlight="7":::
 
    In the preceding code, the `BooksService` class is registered with DI to support constructor injection in consuming classes. The singleton service lifetime is most appropriate because `BooksService` takes a direct dependency on `MongoClient`. Per the official [Mongo Client reuse guidelines](https://mongodb.github.io/mongo-csharp-driver/2.14/reference/driver/connecting/#re-use), `MongoClient` should be registered in DI with a singleton service lifetime.
 
 1. Add the following code to the top of `Program.cs` to resolve the `BooksService` reference:
 
-   :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_UsingServices":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/7.x/BookStoreApi/Program.cs" id="snippet_UsingServices":::
 
 The `BooksService` class uses the following `MongoDB.Driver` members to run CRUD operations against the database:
 
 * [MongoClient](https://mongodb.github.io/mongo-csharp-driver/2.14/apidocs/html/T_MongoDB_Driver_MongoClient.htm): Reads the server instance for running database operations. The constructor of this class is provided the MongoDB connection string:
 
-  :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Services/BooksService.cs" id="snippet_ctor" highlight="4-5":::
+  :::code language="csharp" source="~/tutorials/first-mongo-app/samples/7.x/BookStoreApi/Services/BooksService.cs" id="snippet_ctor" highlight="4-5":::
 
 * [IMongoDatabase](https://mongodb.github.io/mongo-csharp-driver/2.14/apidocs/html/T_MongoDB_Driver_IMongoDatabase.htm): Represents the Mongo database for running operations. This tutorial uses the generic [GetCollection\<TDocument>(collection)](https://mongodb.github.io/mongo-csharp-driver/2.14/apidocs/html/M_MongoDB_Driver_IMongoDatabase_GetCollection__1.htm) method on the interface to gain access to data in a specific collection. Run CRUD operations against the collection after this method is called. In the `GetCollection<TDocument>(collection)` method call:
 
@@ -257,7 +243,7 @@ The `BooksService` class uses the following `MongoDB.Driver` members to run CRUD
 
 Add a `BooksController` class to the *Controllers* directory with the following code:
 
-:::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Controllers/BooksController.cs":::
+:::code language="csharp" source="~/tutorials/first-mongo-app/samples/7.x/BookStoreApi/Controllers/BooksController.cs":::
 
 The preceding web API controller:
 
@@ -313,19 +299,19 @@ To satisfy the preceding requirements, make the following changes:
 
 1. In `Program.cs`, chain the following highlighted code on to the `AddControllers` method call:
 
-   :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Program.cs" id="snippet_AddControllers" highlight="10-11":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/7.x/BookStoreApi/Program.cs" id="snippet_AddControllers" highlight="10-11":::
 
    With the preceding change, property names in the web API's serialized JSON response match their corresponding property names in the CLR object type. For example, the `Book` class's `Author` property serializes as `Author` instead of `author`.
 
 1. In `Models/Book.cs`, annotate the `BookName` property with the [`[JsonPropertyName]`](xref:System.Text.Json.Serialization.JsonPropertyNameAttribute) attribute:
 
-   :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Models/Book.cs" id="snippet_BookName" highlight="2":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/7.x/BookStoreApi/Models/Book.cs" id="snippet_BookName" highlight="2":::
 
    The `[JsonPropertyName]` attribute's value of `Name` represents the property name in the web API's serialized JSON response.
 
 1. Add the following code to the top of `Models/Book.cs` to resolve the `[JsonProperty]` attribute reference:
 
-   :::code language="csharp" source="first-mongo-app/samples/6.x/BookStoreApi/Models/Book.cs" id="snippet_UsingSystemTextJsonSerialization":::
+   :::code language="csharp" source="~/tutorials/first-mongo-app/samples/7.x/BookStoreApi/Models/Book.cs" id="snippet_UsingSystemTextJsonSerialization":::
 
 1. Repeat the steps defined in the [Test the web API](#test-the-web-api) section. Notice the difference in JSON property names.
 
@@ -341,4 +327,3 @@ To satisfy the preceding requirements, make the following changes:
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 
 :::moniker-end
-
