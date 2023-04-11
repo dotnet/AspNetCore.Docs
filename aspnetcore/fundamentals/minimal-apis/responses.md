@@ -67,7 +67,7 @@ The <xref:Microsoft.AspNetCore.Http.Results> and <xref:Microsoft.AspNetCore.Http
 Returning `TypedResults` rather than `Results` has the following advantages:
 
 * `TypedResults ` return strongly typed objects, which can improve code readability, unit testing, and reduce the chance of runtime errors.
-* the implementation type [automatically provides the response type metadata for OpenAPI](/aspnet/core/fundamentals/minimal-apis/openapi#describe-response-types) to describe the endpoint.
+* The implementation type [automatically provides the response type metadata for OpenAPI](/aspnet/core/fundamentals/minimal-apis/openapi#describe-response-types) to describe the endpoint.
 
 Consider the follow endpoint, for which a `200 OK` status code with the expected JSON response is produced.
 
