@@ -83,7 +83,8 @@ For more information about describing a response type, see [OpenAPI support in m
 
 As mentioned previously, when using `TypedResults`, a conversion is not needed. Consider the following minimal API which returns a `TypedResults` class
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_11":::
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/WebMinRouteGroup/TodoEndpointsV1.cs" id="snippet_1":::
 
 Delete this
 ```csharp
@@ -95,8 +96,10 @@ public static async Task<Ok<Todo[]>> GetAllTodos(TodoDb db)
 
 The following test checks for the full concrete type:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/WebMinRouteGroup/TodoEndpointsV1.cs" id="snippet_1":::
 
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_11" highlight=11:::
+
+Delete this
 ```csharp
 [Fact]
 public async Task GetAllTodos_ReturnsOkOfObjectResult()
@@ -118,6 +121,8 @@ The following method compiles because both [`Results.Ok`](xref:Microsoft.AspNetC
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_1b":::
 
+delete
+
 ```csharp
 app.MapGet("/todos/{id}", async (int id, Db db) =>
     await db.FirstOrDefaultAsync(id) is { } todo
@@ -128,6 +133,8 @@ app.MapGet("/todos/{id}", async (int id, Db db) =>
 The following method does not compile, because `TypedResults.Ok` and `TypedResults.NotFound` are declared as returning different types and the compiler won't attempt to infer the best matching type:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_111":::
+
+delete
 
 ```csharp
 app.MapGet("/todos/{id}", async (int id, Db db) =>
