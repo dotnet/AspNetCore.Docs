@@ -104,6 +104,16 @@ app.MapGet("/hello", () => "Hello World");
 app.MapGet("/hello", () => new { Message = "Hello World" });
 ```
 
+#### Return TypedResults
+
+The following code returns a <xref:Microsoft.AspNetCore.Http.TypedResults>:
+
+```csharp
+app.MapGet("/hello", () => TypedResults.Ok(new Message() {  Text = "Hello World!" }));
+```
+
+Returning `TypedResults` is preferred to returning <xref:Microsoft.AspNetCore.Http.Results>. For more information, see [TypedResults vs Results](/aspnet/core/fundamentals/minimal-apis/responses#typedresults-vs-results).
+
 #### IResult return values
 
 ```csharp
