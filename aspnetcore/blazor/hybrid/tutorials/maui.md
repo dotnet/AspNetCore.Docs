@@ -42,37 +42,12 @@ In the **Create a new project** window, use the **Project type** dropdown to fil
 
 :::image type="content" source="maui/_static/win/new-project-1.png" alt-text="Filter templates to .NET MAUI.":::
 
-
-
-
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXX CHANGES FOR PROJECT TEMPLATE NAME
-
-:::moniker range=">= aspnetcore-8.0"
-
 Select the **.NET MAUI Blazor Hybrid App** template and then select the **Next** button:
 
 :::image type="content" source="maui/_static/win/new-project-2.png" alt-text="Choose a template.":::
 
-In the **Configure your new project** dialog:
-
-* Set the **Project name** to **:::no-loc text="MauiBlazor":::**.
-* Choose a suitable location for the project.
-* Select the **Next** button.
-
-:::image type="content" source="maui/_static/win/configure-project.png" alt-text="Configure the project.":::
-
-In the **Additional information** dialog, select the framework version with the **Framework** dropdown list. Select the **Create** button:
-
-:::image type="content" source="maui/_static/win/additional-information.png" alt-text="Additional information dialog for selecting the framework version and creating the project.":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-Select the **.NET MAUI Blazor App** template and then select the **Next** button:
-
-:::image type="content" source="maui/_static/win/new-project-2.png" alt-text="Choose a template.":::
+> [!NOTE]
+> In .NET prior 7.0 or earlier, the template is named **.NET MAUI Blazor App**.
 
 In the **Configure your new project** dialog:
 
@@ -85,14 +60,6 @@ In the **Configure your new project** dialog:
 In the **Additional information** dialog, select the framework version with the **Framework** dropdown list. Select the **Create** button:
 
 :::image type="content" source="maui/_static/win/additional-information.png" alt-text="Additional information dialog for selecting the framework version and creating the project.":::
-
-:::moniker-end
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-
-
-
 
 Wait for Visual Studio to create the project and restore the project's dependencies. Monitor the progress in **Solution Explorer** by opening the **Dependencies** entry.
 
@@ -229,32 +196,12 @@ Select the **New** button to create a new app:
 
 :::image type="content" source="maui/_static/mac/step01.png" alt-text="Visual Studio for Mac Start .":::
 
-
-
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXXX CHANGES FOR PROJECT TEMPLATE NAME
-
-:::moniker range=">= aspnetcore-8.0"
-
 Select the **.NET MAUI Blazor Hybrid App** project template and select the **Continue** button:
 
 :::image type="content" source="maui/_static/mac/step02.png" alt-text="Choose a template for your new project dialog with the .NET MAUI Blazor Hybrid App project template selected.":::
 
-Select the target framework with the **Target framework** dropdown and select the **Continue** button:
-
-:::image type="content" source="maui/_static/mac/step03.png" alt-text="Configure your new .NET MAUI Blazor Hybrid App dialog with the .NET 7.0 target framework selected.":::
-
-Name the project in the **Project name** field and select the **Create** button. The project name for this demonstration is `MauiBlazor`:
-
-:::image type="content" source="maui/_static/mac/step04.png" alt-text="Configure your new .NET MAUI Blazor Hybrid App dialog with an project name of MauiBlazor.":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-Select the **.NET MAUI Blazor App** project template and select the **Continue** button:
-
-:::image type="content" source="maui/_static/mac/step02.png" alt-text="Choose a template for your new project dialog with the .NET MAUI Blazor Hybrid App project template selected.":::
+> [!NOTE]
+> In .NET prior 7.0 or earlier, the template is named **.NET MAUI Blazor App**.
 
 Select the target framework with the **Target framework** dropdown and select the **Continue** button:
 
@@ -263,14 +210,6 @@ Select the target framework with the **Target framework** dropdown and select th
 Name the project in the **Project name** field and select the **Create** button. The project name for this demonstration is `MauiBlazor`:
 
 :::image type="content" source="maui/_static/mac/step04.png" alt-text="Configure your new .NET MAUI Blazor Hybrid App dialog with an project name of MauiBlazor.":::
-
-:::moniker-end
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-
-
-
 
 ## Run the app on macOS with Mac Catalyst
 
