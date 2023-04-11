@@ -26,7 +26,10 @@ At the end, you'll have a working web app running on your local machine.
 
 ## Prerequisites
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-7.0"
+[!INCLUDE[](~/includes/7.0-SDK.md)]
+:::moniker-end
+:::moniker range=">= aspnetcore-6.0  < aspnetcore-7.0"
 [!INCLUDE[](~/includes/6.0-SDK.md)]
 :::moniker-end
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
