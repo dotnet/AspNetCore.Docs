@@ -30,7 +30,7 @@ Some of the features of ASP.NET Core Kestrel server include:
 * **Integration with ASP.NET Core:** Seamless integration with other ASP.NET Core components, such as the middleware pipeline, dependency injection, and configuration system.
 * **Flexible workloads**: Kestrel supports many workloads:
   * ASP.NET app frameworks such as Minimal APIs, MVC, Razor pages, SignalR, Blazor and gRPC.
-  * Building a reverse proxy hosted by Kestrel with [YARP](https://github.com/microsoft/reverse-proxy).
+  * Building a reverse proxy with [YARP](https://github.com/microsoft/reverse-proxy).
 * **Extensibility:** Kestrel allows developers to customize its behavior through configuration, middleware and custom transports.
 * **Performance diagnostics:** Kestrel provides built-in performance diagnostics features, such as logging and metrics. Developers can monitor and troubleshoot the performance of web apps.
 
