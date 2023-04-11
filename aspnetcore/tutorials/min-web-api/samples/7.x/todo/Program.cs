@@ -80,6 +80,7 @@ app.Run();
 #elif TYPEDR
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using TodoApi;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
@@ -99,7 +100,7 @@ app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
             : Results.NotFound());
 
 // <snippet_1b>
-app.MapGet("/todoitems/{id}", async Task<Results<Ok<Todo>, NotFound>> (int id, TodoDb db) =>
+ app.MapGet("/todos/{id}", async Task<Results<Ok<Todo>, NotFound>> (int id, TodoDb db) =>
     await db.Todos.FindAsync(id)
      is Todo todo
         ? TypedResults.Ok(todo)
@@ -115,6 +116,16 @@ app.MapGet("/todos/{id}", async (int id, TodoDb db) =>
         : TypedResults.NotFound());
 // </snippet_111>
 */
+
+// <snippet_11b>
+app.MapGet("/hello", () => Results.Ok(new Message() { Text = "Hello World!" }))
+    .Produces<Message>();
+// </snippet_11b>
+
+// <snippet_112b>
+app.MapGet("/hello2", () => TypedResults.Ok(new Message() { Text = "Hello World!" }));
+// </snippet_112b>
+
 app.Run();
 #endif
 

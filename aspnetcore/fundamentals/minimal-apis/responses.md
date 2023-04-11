@@ -64,25 +64,31 @@ The `IResult` interface defines a contract that represents the result of an HTTP
 
 The <xref:Microsoft.AspNetCore.Http.Results> and <xref:Microsoft.AspNetCore.Http.TypedResults> static classes provide similar sets of results helpers. The `TypedResults` class is the *typed* equivalent of the `Results` class. However, the `Results` helpers' return type is <xref:Microsoft.AspNetCore.Http.IResult>, while each `TypedResults` helper's return type is one of the `IResult` implementation types. The difference means that for `Results` helpers a conversion is needed when the concrete type is needed, for example, for unit testing. The implementation types are defined in the <xref:Microsoft.AspNetCore.Http.HttpResults> namespace.
 
-An advantage of using `TypedResults` is that the implementation type automatically provides the response type metadata for OpenAPI to describe the endpoint.
+Returning `TypedResults` rather than `Results` has the following advantages:
+
+* `TypedResults ` return strongly typed objects, which can improve code readability, unit testing, and reduce the chance of runtime errors.
+* the implementation type [automatically provides the response type metadata for OpenAPI](/aspnet/core/fundamentals/minimal-apis/openapi#describe-response-types) to describe the endpoint.
 
 Consider the follow endpoint, for which a `200 OK` status code with the expected JSON response is produced.
 
-```csharp
+:::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_11b":::
+
+```delete 
 app.MapGet("/hello", () => Results.Ok(new Message() {  Text = "Hello World!" }))
     .Produces<Message>();
 ```
 
 In order to document this endpoint correctly the extensions method `Produces` is called. However, it's not necessary to call `Produces` if `TypedResults` is used instead of `Results`, as shown in the following code. `TypedResults` automatically provides the metadata for the endpoint.
 
-```csharp
+:::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_112b":::
+
+```delete
 app.MapGet("/hello", () => TypedResults.Ok(new Message() {  Text = "Hello World!" }));
 ```
 
 For more information about describing a response type, see [OpenAPI support in minimal APIs](/aspnet/core/fundamentals/minimal-apis/openapi#describe-response-types-1).
 
 As mentioned previously, when using `TypedResults`, a conversion is not needed. Consider the following minimal API which returns a `TypedResults` class
-
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/WebMinRouteGroup/TodoEndpointsV1.cs" id="snippet_1":::
 
@@ -120,27 +126,9 @@ The following method compiles because both [`Results.Ok`](xref:Microsoft.AspNetC
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_1b":::
 
-delete
-
-```csharp
-app.MapGet("/todos/{id}", async (int id, Db db) =>
-    await db.FirstOrDefaultAsync(id) is { } todo
-        ? Results.Ok(todo)
-        : Results.NotFound());
-```
-
 The following method does not compile, because `TypedResults.Ok` and `TypedResults.NotFound` are declared as returning different types and the compiler won't attempt to infer the best matching type:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_111":::
-
-delete
-
-```csharp
-app.MapGet("/todos/{id}", async (int id, Db db) =>
-    await db.FirstOrDefaultAsync(id) is { } todo
-        ? TypedResults.Ok(todo)
-        : TypedResults.NotFound());
-```
 
 To use `TypedResults`, the return type must be fully declared, which when async also necessitates the `Task<>` wrapper. So it's quite a bit more verbose, but that's the trade-off for having the type information be statically available and thus capable of self-describing to OpenAPI:
 
@@ -152,11 +140,6 @@ app.MapGet("/todos/{id}", async Task<Results<Ok<Todo>, NotFound>> (int id, Db db
         ? TypedResults.Ok(todo)
         : TypedResults.NotFound());
 ```
-
-Additional advantages the `TypedResults` class has over `Results` include:
-
-* `TypedResults ` return strongly typed objects, which can improve code readability and reduce the chance of runtime errors.
-* [Automatically includes the response type metadata](/aspnet/core/fundamentals/minimal-apis/openapi#describe-response-types) for the endpoint.
 
 ### Results<TResult1, TResultN>
 
