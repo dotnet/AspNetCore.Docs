@@ -14,17 +14,25 @@ By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/T
 
 :::moniker range=">= aspnetcore-8.0"
 
-Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the web server that's included and enabled by default in ASP.NET Core project templates.
+Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the recommended server for ASP.NET Core, and it's configured by default in ASP.NET Core project templates.
 
-Kestrel supports the following scenarios:
+Some of the best features of ASP.NET Core Kestrel server include:
 
-* HTTPS
-* [HTTP/2](xref:fundamentals/servers/kestrel/http2)
-* [HTTP/3](xref:fundamentals/servers/kestrel/http3)
-* Opaque upgrade used to enable [WebSockets](xref:fundamentals/websockets)
-* Unix sockets for high performance behind Nginx
+* **Cross-platform:** Kestrel is a cross-platform web server that can run on Windows, Linux, and macOS, making it highly versatile and allowing developers to choose their preferred operating system for hosting ASP.NET Core applications.
 
-Kestrel is supported on all platforms and versions that .NET Core supports.
+* **High performance:** Kestrel is designed for high performance and is optimized to handle a large number of concurrent connections efficiently, making it ideal for building high-performance web applications and APIs.
+
+* **Lightweight:** Kestrel is a lightweight web server that has a small footprint, making it suitable for running in resource-constrained environments, such as containers and edge devices.
+
+* **Extensibility:** Kestrel is highly extensible, allowing developers to customize its behavior through middleware, which can be used to handle authentication, routing, caching, and other functionalities.
+
+* **Protocol support:** Kestrel supports HTTP/1.1, [HTTP/2](xref:fundamentals/servers/kestrel/http2) and [HTTP/3](xref:fundamentals/servers/kestrel/http3). It also provides built-in support for [WebSockets](xref:fundamentals/websockets), enabling real-time communication between clients and servers.
+
+* **Integration with ASP.NET Core:** Kestrel is the default web server used by ASP.NET Core applications, providing seamless integration with other ASP.NET Core components, such as the middleware pipeline, dependency injection, and configuration system.
+
+* **Secure by default:** Kestrel includes several security features, such as support for HTTPS out of the box, integration with ASP.NET Core security middleware, and protection against common web vulnerabilities, making it a secure choice for hosting web applications.
+
+* **Performance diagnostics:** Kestrel provides built-in performance diagnostics features, such as logging and metrics, which allow developers to monitor and troubleshoot the performance of their web applications.
 
 ## Get started
 
