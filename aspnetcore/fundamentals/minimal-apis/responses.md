@@ -83,7 +83,7 @@ For more information about describing a response type, see [OpenAPI support in m
 
 As mentioned previously, when using `TypedResults`, a conversion is not needed. Consider the following minimal API which returns a `TypedResults` class
 
-<!-- TODO, https://github.com/dotnet/AspNetCore.Docs/issues/28916 moves the following code to a project -->
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_11":::
 
 ```csharp
 public static async Task<IResult> GetAllTodos(TodoDb db)
@@ -93,6 +93,8 @@ public static async Task<IResult> GetAllTodos(TodoDb db)
 ```
 
 The following test checks for the full concrete type:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/WebMinRouteGroup/TodoEndpointsV1.cs" id="snippet_1":::
 
 ```csharp
 [Fact]
