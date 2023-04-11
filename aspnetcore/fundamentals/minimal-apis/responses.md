@@ -96,8 +96,7 @@ public static async Task<Ok<Todo[]>> GetAllTodos(TodoDb db)
 
 The following test checks for the full concrete type:
 
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_11" highlight=11:::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_11" highlight="11":::
 
 Delete this
 ```csharp
