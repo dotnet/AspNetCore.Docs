@@ -83,33 +83,9 @@ As mentioned previously, when using `TypedResults`, a conversion is not needed. 
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/WebMinRouteGroup/TodoEndpointsV1.cs" id="snippet_1":::
 
-Delete this when updated
-```csharp
-public static async Task<Ok<Todo[]>> GetAllTodos(TodoDb db)
-{
-    return TypedResults.Ok(await db.Todos.ToArrayAsync());
-}
-```
-
 The following test checks for the full concrete type:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_11" highlight="11":::
-
-Delete this
-```csharp
-[Fact]
-public async Task GetAllTodos_ReturnsOkOfObjectResult()
-{
-    // Arrange
-    var db = CreateDbContext();
-
-    // Act
-    var result = await TodosApi.GetAllTodos(db);
-
-    // Assert: Check the returned result type is correct
-    Assert.IsType<Ok<Todo[]>>(result);
-}
-```
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_11" highlight="26":::
 
 Because all methods on `Results` return `IResult` in their signature, the compiler automatically infers that as the request delegate return type when returning different results from a single endpoint. `TypedResults` requires the use of `Results<T1, TN>` from such delegates.
 
