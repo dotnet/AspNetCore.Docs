@@ -16,7 +16,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/T
 
 Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the recommended server for ASP.NET Core, and it's configured by default in ASP.NET Core project templates.
 
-Some of the features of ASP.NET Core Kestrel server include:
+Kestrel's features include:
 
 * **Cross-platform:** Kestrel is a cross-platform web server that runs on Windows, Linux, and macOS. Developers can choose their preferred operating system for hosting ASP.NET Core apps.
 * **High performance:** Kestrel is optimized to handle a large number of concurrent connections efficiently. It's ideal for building high-performance web apps and APIs.
@@ -27,9 +27,9 @@ Some of the features of ASP.NET Core Kestrel server include:
   * [WebSockets](xref:fundamentals/websockets)
 * **Integration with ASP.NET Core:** Seamless integration with other ASP.NET Core components, such as the middleware pipeline, dependency injection, and configuration system.
 * **Flexible workloads**: Kestrel supports many workloads:
-  * ASP.NET app frameworks such as Minimal APIs, MVC, Razor pages, SignalR, Blazor and gRPC.
+  * ASP.NET app frameworks such as Minimal APIs, MVC, Razor pages, SignalR, Blazor, and gRPC.
   * Building a reverse proxy with [YARP](https://github.com/microsoft/reverse-proxy).
-* **Extensibility:** Kestrel allows developers to customize its behavior through configuration, middleware and custom transports.
+* **Extensibility:** Kestrel allows developers to customize its behavior through configuration, middleware, and custom transports.
 * **Performance diagnostics:** Kestrel provides built-in performance diagnostics features, such as logging and metrics. Developers can monitor and troubleshoot the performance of web apps.
 
 ## Get started
