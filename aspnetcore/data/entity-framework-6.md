@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core and Entity Framework 6
-author: rick-anderson
+author: tdykstra
 description: Entity Framework 6.3 and later works with ASP.NET Core 3.1 and later.
 ms.author: riande
 ms.custom: mvc

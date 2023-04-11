@@ -1,6 +1,6 @@
 ---
 title: Code analysis in ASP.NET Core apps
-author: rick-anderson
+author: tdykstra
 description: Learn about source code analysis in ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande

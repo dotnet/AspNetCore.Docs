@@ -1,6 +1,6 @@
 ---
 title: Overview of caching in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Overview of caching in ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande

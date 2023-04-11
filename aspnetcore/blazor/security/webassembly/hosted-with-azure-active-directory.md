@@ -16,6 +16,8 @@ This article explains how to create a [hosted Blazor WebAssembly solution](xref:
 
 This article doesn't cover a *multi-tenant Azure Active Directory registration*. For more information, see [Making your application multi-tenant](/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant).
 
+For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
+
 ## Walkthrough
 
 The subsections of the walkthrough explain how to:
@@ -39,7 +41,7 @@ Register an AAD app for the *Server API app*:
 1. Navigate to **Azure Active Directory** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Server AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
-1. The *Server API app* doesn't require a **Redirect URI** in this scenario, so leave the dropdown list set to **Web** and don't enter a redirect URI.
+1. The *Server API app* doesn't require a **Redirect URI** in this scenario, so leave the **Select a platform** dropdown list unselected and don't enter a redirect URI.
 1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox. If the publisher domain is verified, this checkbox isn't present.
 1. Select **Register**.
 

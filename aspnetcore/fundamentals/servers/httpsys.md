@@ -1,6 +1,6 @@
 ---
 title: HTTP.sys web server implementation in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Built on the HTTP.sys kernel-mode driver, HTTP.sys is an alternative to Kestrel that can be used for direct connection to the Internet without IIS.
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande

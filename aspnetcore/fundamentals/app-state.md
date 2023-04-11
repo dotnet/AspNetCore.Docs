@@ -1,6 +1,6 @@
 ---
 title: Session in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Discover approaches to preserve session between requests.
 ms.author: riande
 ms.custom: mvc
