@@ -77,13 +77,3 @@ static async Task<IResult> DeleteTodo(int id, TodoDb db)
 }
 // </snippet_handlers>
 // </snippet_all>
-
-
-/*
-// <snippet_111>
-app.MapGet("/todos/{id}", async (int id, TodoDb db) =>
-    await db.FirstOrDefaultAsync(id) is { } todo
-        ? TypedResults.Ok(todo)
-        : TypedResults.NotFound());
-// </snippet_111>
-*/

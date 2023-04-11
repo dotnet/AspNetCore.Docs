@@ -127,7 +127,7 @@ app.MapGet("/todos/{id}", async (int id, Db db) =>
 
 The following method does not compile, because `TypedResults.Ok` and `TypedResults.NotFound` are declared as returning different types and the compiler won't attempt to infer the best matching type:
 
-:::code language="csharp" source="~/aspnetcore/tutorials/min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_111":::
+:::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_111":::
 
 ```csharp
 app.MapGet("/todos/{id}", async (int id, Db db) =>
@@ -137,6 +137,8 @@ app.MapGet("/todos/{id}", async (int id, Db db) =>
 ```
 
 To use `TypedResults`, the return type must be fully declared, which when async also necessitates the `Task<>` wrapper. So it's quite a bit more verbose, but that's the trade-off for having the type information be statically available and thus capable of self-describing to OpenAPI:
+
+:::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_1b":::
 
 ```csharp
 app.MapGet("/todos/{id}", async Task<Results<Ok<Todo>, NotFound>> (int id, Db db) =>

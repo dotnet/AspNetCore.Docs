@@ -1,4 +1,4 @@
-#define FINAL // MINIMAL FINAL
+#define TYPEDR // MINIMAL FINAL TYPEDR
 #if MINIMAL
 // <snippet_min>
 var builder = WebApplication.CreateBuilder(args);
@@ -77,4 +77,44 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 
 app.Run();
 // </snippet_all>
+#elif TYPEDR
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+var app = builder.Build();
+
+app.MapGet("/todoitems", async (TodoDb db) =>
+    await db.Todos.ToListAsync());
+
+app.MapGet("/todoitems/complete", async (TodoDb db) =>
+    await db.Todos.Where(t => t.IsComplete).ToListAsync());
+
+app.MapGet("/todoitems/{id}", async (int id, TodoDb db) =>
+    await db.Todos.FindAsync(id)
+        is Todo todo
+            ? Results.Ok(todo)
+            : Results.NotFound());
+
+// <snippet_1b>
+app.MapGet("/todoitems/{id}", async Task<Results<Ok<Todo>, NotFound>> (int id, TodoDb db) =>
+    await db.Todos.FindAsync(id)
+     is Todo todo
+        ? TypedResults.Ok(todo)
+        : TypedResults.NotFound());
+// </snippet_1b>
+
+/*
+// <snippet_111>
+app.MapGet("/todos/{id}", async (int id, TodoDb db) =>
+     await db.Todos.FindAsync(id)
+     is Todo todo
+        ? TypedResults.Ok(todo)
+        : TypedResults.NotFound());
+// </snippet_111>
+*/
+app.Run();
 #endif
+
