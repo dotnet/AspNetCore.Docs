@@ -32,6 +32,7 @@ static async Task<IResult> GetCompleteTodos(TodoDb db)
     return TypedResults.Ok(await db.Todos.Where(t => t.IsComplete).ToListAsync());
 }
 
+// <snippet_11>
 static async Task<IResult> GetTodo(int id, TodoDb db)
 {
     return await db.Todos.FindAsync(id)
@@ -39,6 +40,7 @@ static async Task<IResult> GetTodo(int id, TodoDb db)
             ? TypedResults.Ok(todo)
             : TypedResults.NotFound();
 }
+// </snippet_11>
 
 static async Task<IResult> CreateTodo(Todo todo, TodoDb db)
 {

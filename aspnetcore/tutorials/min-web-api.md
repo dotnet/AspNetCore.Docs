@@ -363,6 +363,8 @@ Test the endpoints to verify that they work the same.
 
 ## Use the TypedResults API
 
+Returning <xref:Microsoft.AspNetCore.Http.TypedResults> rather than <xref:Microsoft.AspNetCore.Http.Results> has several advantages, including testability and automatically returning the response type metadata for OpenAPI to describe the endpoint. For more information, see [TypedResults vs Results](/aspnet/core/fundamentals/minimal-apis/responses#typedresults-vs-results).
+
 The `Map<HttpVerb>` methods can call route handler methods instead of using lambdas. To see an example, update *Program.cs* with the following code:
 
 :::code language="csharp" source="min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_all":::
