@@ -789,9 +789,10 @@ In the preceding example:
 
 ### Dispatch exceptions to Blazor's synchronization context
 
-<!-- ************** NOTE: https://github.com/dotnet/aspnetcore/pull/46074#issuecomment-1398108853 -->
+Use `ComponentBase.DispatchExceptionAsync` in Razor components to process exceptions thrown outside of Blazor's synchronization context. This permits the app's code to treat the exceptions as through they're lifecycle method exceptions. Thereafter, Blazor's error handling mechanisms, such as [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries), can process the exceptions.
 
-Use `DispatchExceptionAsync` to process caught exceptions thrown outside of Blazor's synchronization context (for example, outside of Blazor's lifecycle events). This permits the app's code to treat the exceptions as through they're lifecycle method exceptions. Thereafter, Blazor's error handling approaches are supported, such as [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries).
+> [!NOTE]
+> `ComponentBase.DispatchExceptionAsync` is used in Razor component files (`.razor`) that inherit from <xref:Microsoft.AspNetCore.Components.ComponentBase>. When creating components that [implement <xref:Microsoft.AspNetCore.Components.IComponent> directly](#component-classes), use `RenderHandle.DispatchExceptionAsync`.
 
 To dispatch exceptions to Blazor's synchronization context, use a `try-catch` block to pass the exception to `DispatchExceptionAsync` and await the result:
 
@@ -809,9 +810,9 @@ catch (Exception ex)
 }
 ```
 
-For an example use of `DispatchExceptionAsync` API, implement the timer notification example in the [Invoke component methods externally to update state](#invoke-component-methods-externally-to-update-state) section. The example uses a timer outside of Blazor's synchronization context, where an exception normally doesn't affect Blazor's error handling mechanisms, such as an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries).
+For an example use of `DispatchExceptionAsync` API, implement the timer notification example in the [Invoke component methods externally to update state](#invoke-component-methods-externally-to-update-state) section. The example uses a timer outside of Blazor's synchronization context, where an exception normally doesn't reach Blazor's synchronization context and isn't processed by Blazor's error handling mechanisms, such as an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries).
 
-First, change the code in `TimerService.cs` to create an artificial exception outside of Blazor's synchronization context. In the `while (await timer.WaitForNextTickAsync())` loop of `TimerService.cs`, throw an exception when the `elapsedCount` reaches a value of `2`:
+First, change the code in `TimerService.cs` to create an artificial exception outside of Blazor's synchronization context. In the `while` loop of `TimerService.cs`, throw an exception when the `elapsedCount` reaches a value of `2`:
 
 ```csharp
 if (elapsedCount == 2)
@@ -839,11 +840,11 @@ Place an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundarie
 </article>
 ```
 
-Normally, the preceding error boundary doesn't react to unhandled exceptions thrown outside of Blazor's synchronization context.
+Normally, the preceding error boundary doesn't react to unhandled exceptions thrown outside of Blazor's synchronization context. If you run the app at this point, the exception is thrown when the elapsed count reaches a value of two, but the error boundary doesn't show the error content.
 
 Change the `OnNotify` method of the `ReceiveNotification` component (`Pages/ReceiveNotification.razor`):
 
-* Wrap the call to `InvokeAsync` in a `try-catch` block.
+* Wrap the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> in a `try-catch` block.
 * Pass any <xref:System.Exception> to `DispatchExceptionAsync` and await the result.
 
 ```csharp
