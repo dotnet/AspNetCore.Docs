@@ -73,18 +73,9 @@ Consider the follow endpoint, for which a `200 OK` status code with the expected
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_11b":::
 
-```delete 
-app.MapGet("/hello", () => Results.Ok(new Message() {  Text = "Hello World!" }))
-    .Produces<Message>();
-```
-
 In order to document this endpoint correctly the extensions method `Produces` is called. However, it's not necessary to call `Produces` if `TypedResults` is used instead of `Results`, as shown in the following code. `TypedResults` automatically provides the metadata for the endpoint.
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_112b":::
-
-```delete
-app.MapGet("/hello", () => TypedResults.Ok(new Message() {  Text = "Hello World!" }));
-```
 
 For more information about describing a response type, see [OpenAPI support in minimal APIs](/aspnet/core/fundamentals/minimal-apis/openapi#describe-response-types-1).
 
@@ -92,7 +83,7 @@ As mentioned previously, when using `TypedResults`, a conversion is not needed. 
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/WebMinRouteGroup/TodoEndpointsV1.cs" id="snippet_1":::
 
-Delete this
+Delete this when updated
 ```csharp
 public static async Task<Ok<Todo[]>> GetAllTodos(TodoDb db)
 {
@@ -130,16 +121,9 @@ The following method does not compile, because `TypedResults.Ok` and `TypedResul
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_111":::
 
-To use `TypedResults`, the return type must be fully declared, which when async also necessitates the `Task<>` wrapper. So it's quite a bit more verbose, but that's the trade-off for having the type information be statically available and thus capable of self-describing to OpenAPI:
+To use `TypedResults`, the return type must be fully declared, which when asynchronous requires the `Task<>` wrapper. Using `TypedResults` is more verbose, but that's the trade-off for having the type information be statically available and thus capable of self-describing to OpenAPI:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_1b":::
-
-```csharp
-app.MapGet("/todos/{id}", async Task<Results<Ok<Todo>, NotFound>> (int id, Db db) =>
-    await db.FirstOrDefaultAsync(id) is { } todo
-        ? TypedResults.Ok(todo)
-        : TypedResults.NotFound());
-```
 
 ### Results<TResult1, TResultN>
 
