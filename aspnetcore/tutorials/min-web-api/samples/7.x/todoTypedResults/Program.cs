@@ -32,6 +32,7 @@ static async Task<IResult> GetCompleteTodos(TodoDb db)
     return TypedResults.Ok(await db.Todos.Where(t => t.IsComplete).ToListAsync());
 }
 
+// <snippet_11>
 static async Task<IResult> GetTodo(int id, TodoDb db)
 {
     return await db.Todos.FindAsync(id)
@@ -39,6 +40,7 @@ static async Task<IResult> GetTodo(int id, TodoDb db)
             ? TypedResults.Ok(todo)
             : TypedResults.NotFound();
 }
+// </snippet_11>
 
 static async Task<IResult> CreateTodo(Todo todo, TodoDb db)
 {
@@ -75,3 +77,13 @@ static async Task<IResult> DeleteTodo(int id, TodoDb db)
 }
 // </snippet_handlers>
 // </snippet_all>
+
+
+/*
+// <snippet_111>
+app.MapGet("/todos/{id}", async (int id, TodoDb db) =>
+    await db.FirstOrDefaultAsync(id) is { } todo
+        ? TypedResults.Ok(todo)
+        : TypedResults.NotFound());
+// </snippet_111>
+*/

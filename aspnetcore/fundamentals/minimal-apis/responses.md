@@ -112,6 +112,39 @@ public async Task GetAllTodos_ReturnsOkOfObjectResult()
 }
 ```
 
+Because all methods on `Results` return `IResult` in their signature, the compiler automatically infers that as the request delegate return type when returning different results from a single endpoint. `TypedResults` requires the use of `Results<T1, TN>` from such delegates.
+
+The following method compiles because both [`Results.Ok`](xref:Microsoft.AspNetCore.Http.Results.Ok%2A) and [`Results.NotFound`](xref:Microsoft.AspNetCore.Http.Results.NotFound%2A) are declared as returning `IResult`, even though the actual concrete types of the objects returned are different:
+
+:::code language="csharp" source="~/aspnetcore/tutorials/min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_11":::
+
+```csharp
+app.MapGet("/todos/{id}", async (int id, Db db) =>
+    await db.FirstOrDefaultAsync(id) is { } todo
+        ? Results.Ok(todo)
+        : Results.NotFound());
+```
+
+The following method does not compile, because `TypedResults.Ok` and `TypedResults.NotFound` are declared as returning different types and the compiler won't attempt to infer the best matching type:
+
+:::code language="csharp" source="~/aspnetcore/tutorials/min-web-api/samples/7.x/todoTypedResults/Program.cs" id="snippet_111":::
+
+```csharp
+app.MapGet("/todos/{id}", async (int id, Db db) =>
+    await db.FirstOrDefaultAsync(id) is { } todo
+        ? TypedResults.Ok(todo)
+        : TypedResults.NotFound());
+```
+
+To use `TypedResults`, the return type must be fully declared, which when async also necessitates the `Task<>` wrapper. So it's quite a bit more verbose, but that's the trade-off for having the type information be statically available and thus capable of self-describing to OpenAPI:
+
+```csharp
+app.MapGet("/todos/{id}", async Task<Results<Ok<Todo>, NotFound>> (int id, Db db) =>
+    await db.FirstOrDefaultAsync(id) is { } todo
+        ? TypedResults.Ok(todo)
+        : TypedResults.NotFound());
+```
+
 Additional advantages the `TypedResults` class has over `Results` include:
 
 * `TypedResults ` return strongly typed objects, which can improve code readability and reduce the chance of runtime errors.
