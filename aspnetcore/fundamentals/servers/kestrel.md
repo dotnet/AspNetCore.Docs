@@ -19,9 +19,9 @@ Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/serv
 Some of the features of ASP.NET Core Kestrel server include:
 
 * **Cross-platform:** Kestrel is a cross-platform web server that runs on Windows, Linux, and macOS. Developers can choose their preferred operating system for hosting ASP.NET Core apps.
-* **High performance:** Kestrel is designed for high performance and is optimized to handle many concurrent connections efficiently, making it ideal for building high-performance web applications and APIs.
-* **Lightweight:** Kestrel is a lightweight web server with a small footprint, making it suitable for running in resource-constrained environments, such as containers and edge devices.
-* **Secure by default:** Kestrel supports HTTPS and is hardened against web server vulnerabilities, making it a secure choice for hosting web applications.
+* **High performance:** Kestrel is optimized to handle a large number of concurrent connections efficiently. It's ideal for building high-performance web apps and APIs.
+* **Lightweight:** Kestrel has a small footprint. It's optimized for running in resource-constrained environments, such as containers and edge devices.
+* **Secure by default:** Kestrel supports HTTPS and is hardened against web server vulnerabilities. It's a secure choice for hosting web applications.
 * **Wide protocol support:** Kestrel supports common web protocols, including:
   * HTTP/1.1
   * [HTTP/2](xref:fundamentals/servers/kestrel/http2)
@@ -31,8 +31,8 @@ Some of the features of ASP.NET Core Kestrel server include:
 * **Flexible workloads**: Kestrel supports many workloads:
   * ASP.NET app frameworks such as Minimal APIs, MVC, Razor pages, SignalR, Blazor and gRPC.
   * Building a reverse proxy hosted by Kestrel with [YARP](https://github.com/microsoft/reverse-proxy).
-* **Extensibility:** Kestrel is highly extensible, allowing developers to customize its connection pipeline and transports.
-* **Performance diagnostics:** Kestrel provides built-in performance diagnostics features, such as logging and metrics, which allow developers to monitor and troubleshoot the performance of their web applications.
+* **Extensibility:** Kestrel allows developers to customize its behavior through configuration, middleware and custom transports.
+* **Performance diagnostics:** Kestrel provides built-in performance diagnostics features, such as logging and metrics. Developers can monitor and troubleshoot the performance of web apps.
 
 ## Get started
 
