@@ -39,11 +39,11 @@ The following sample demonstrates three concepts:
 
 3. Creating an `IDataProtector` from an `IDataProtectionProvider` and using it to protect and unprotect data.
 
-## Console Application Example
+## Console app
 
 [!code-csharp[](../using-data-protection/samples/protectunprotect.cs?highlight=26,34,35,36,37,38,39,40)]
 
-## Web Application Example
+## Web app
 
 [!code-csharp[](~/security/data-protection/using-data-protection/samples/webappexample1.cs?highlight=5)]
 
