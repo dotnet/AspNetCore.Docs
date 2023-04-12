@@ -20,9 +20,7 @@ Most non-trivial ASP.NET Framework apps should consider using the [incremental u
 
 For ASP.NET MVC and Web API apps, see <xref:migration/mvc>. For ASP.NET Framework Web Forms apps, see <xref:migration/web_forms>.
 
-## Reliable web app pattern
-
-[!INCLUDE[](~/includes/reliableWAP.md)]
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
 
 ## URI decoding differences between ASP.NET to ASP.NET Core
 
