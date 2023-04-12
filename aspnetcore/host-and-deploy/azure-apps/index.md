@@ -14,6 +14,8 @@ uid: host-and-deploy/azure-apps/index
 
 ## Useful resources
 
+[!INCLUDE[](~/includes/reliableWAP.md)]
+
 [App Service Documentation](/azure/app-service/) is the home for Azure Apps documentation, tutorials, samples, how-to guides, and other resources. Two notable tutorials that pertain to hosting ASP.NET Core apps are:
 
 [Create an ASP.NET Core web app in Azure](/azure/app-service/app-service-web-get-started-dotnet)  
