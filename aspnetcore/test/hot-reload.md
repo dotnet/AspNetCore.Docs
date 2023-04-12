@@ -84,6 +84,7 @@ The following code changes aren't supported for Blazor WebAssembly apps:
 * Adding a new [`await` operator](/dotnet/csharp/language-reference/operators/await) or [`yield` keyword](/dotnet/csharp/language-reference/keywords/yield) expression.
 * Changing the names of method parameters.
 * Changes outside of method bodies.
+* Adding new non-`static` fields, events, or properties.
 
 ::: moniker-end
 
