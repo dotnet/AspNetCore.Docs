@@ -1180,6 +1180,36 @@ items:
           - name: Next steps
             displayName: azure, deploy, publish
             href: /dotnet/architecture/devops-for-aspnet-developers/next-steps
+      - name: Kestrel
+        displayName: deploy, publish, server, Kestrel
+        items:
+          - name: Overview
+            displayName: deploy, publish, server
+            uid: fundamentals/servers/kestrel
+          - name: Endpoints
+            displayName: deploy, publish, server, Kestrel
+            uid: fundamentals/servers/kestrel/endpoints
+          - name: Options
+            displayName: deploy, publish, server, Kestrel
+            uid: fundamentals/servers/kestrel/options
+          - name: Diagnostics
+            displayName: diagnostics
+            uid: fundamentals/servers/kestrel/diagnostics
+          - name: HTTP/2
+            displayName: deploy, publish, server, Kestrel
+            uid: fundamentals/servers/kestrel/http2
+          - name: HTTP/3
+            displayName: HTTP/3, kestrel
+            uid: fundamentals/servers/kestrel/http3
+          - name: When to use a reverse proxy
+            displayName: deploy, publish, server, Kestrel
+            uid: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy
+          - name: Host filtering
+            displayName: deploy, publish, server, Kestrel
+            uid: fundamentals/servers/kestrel/host-filtering
+          - name: Request draining
+            displayName: deploy, publish, server, Kestrel
+            uid: fundamentals/servers/kestrel/request-draining
       - name: IIS
         displayName: deploy, publish
         items:
@@ -1230,36 +1260,6 @@ items:
           - name: HTTP/3
             displayName: deploy, publish
             uid: host-and-deploy/iis/http3
-      - name: Kestrel
-        displayName: deploy, publish, server, Kestrel
-        items:
-          - name: Kestrel overview
-            displayName: deploy, publish, server
-            uid: fundamentals/servers/kestrel
-          - name: Endpoints
-            displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/endpoints
-          - name: Options
-            displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/options
-          - name: Diagnostics
-            displayName: diagnostics
-            uid: fundamentals/servers/kestrel/diagnostics
-          - name: HTTP/2
-            displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/http2
-          - name: HTTP/3
-            displayName: HTTP/3, kestrel
-            uid: fundamentals/servers/kestrel/http3
-          - name: When to use a reverse proxy
-            displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy
-          - name: Host filtering
-            displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/host-filtering
-          - name: Request draining
-            displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/request-draining
       - name: HTTP.sys
         displayName: deploy, publish, server
         uid: fundamentals/servers/httpsys
