@@ -47,7 +47,7 @@ Select the **.NET MAUI Blazor Hybrid App** template and then select the **Next**
 :::image type="content" source="maui/_static/win/new-project-2.png" alt-text="Choose a template.":::
 
 > [!NOTE]
-> In .NET prior 7.0 or earlier, the template is named **.NET MAUI Blazor App**.
+> In .NET 7.0 or earlier, the template is named **.NET MAUI Blazor App**.
 
 In the **Configure your new project** dialog:
 
@@ -196,14 +196,18 @@ Select the **New** button to create a new app:
 
 :::image type="content" source="maui/_static/mac/step01.png" alt-text="Visual Studio for Mac Start .":::
 
-<!-- In the following line, change the UI template name to ".NET MAUI Blazor Hybrid App" -->
+<!-- In the following line, change the UI template name to ".NET MAUI Blazor Hybrid App" and uncomment the NOTE. -->
 
 Select the **.NET MAUI Blazor App** project template and select the **Continue** button:
 
 :::image type="content" source="maui/_static/mac/step02.png" alt-text="Choose a template for your new project dialog with the .NET MAUI Blazor Hybrid App project template selected.":::
 
+<!--
+
 > [!NOTE]
-> In .NET prior 7.0 or earlier, the template is named **.NET MAUI Blazor App**.
+> In .NET 7.0 or earlier, the template is named **.NET MAUI Blazor App**.
+
+-->
 
 Select the target framework with the **Target framework** dropdown and select the **Continue** button:
 
