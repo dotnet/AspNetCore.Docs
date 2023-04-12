@@ -393,9 +393,13 @@ In the `Counter` component (`Pages/Counter.razor`), create a `SectionContent` co
 </SectionContent>
 ```
 
-When the app is run, the `MainLayout` component renders the increment count button from the `Counter` component where the `SectionOutlet` component is placed.
+When the `Counter` component is accessed at `/counter`, the `MainLayout` component renders the increment count button from the `Counter` component where the `SectionOutlet` component is placed. When any other component is accessed, the increment count button isn't rendered.
 
 Instead of using a named section, you can pass a static `object` with the `SectionId` parameter to identify the section. The following example also implements an increment counter button for the app's `Counter` component in the app's main layout.
+
+If you don't want other `SectionContent` components to accidentally match the name of a `SectionOutlet`, pass an object `SectionId` parameter to identify the section. This can be useful when designing a [Razor class library (RCL)](xref:blazor/components/class-libraries). When a `SectionOutlet` in the RCL uses an object reference with `SectionId` and the consumer places a `SectionContent` component with a matching `SectionId` object, an accidental match by name isn't possible when consumers of the RCL implement other `SectionContent` components.
+
+The following example also implements an increment counter button for the app's `Counter` component in the app's main layout, using an object reference instead of a section name.
 
 Add a `TopbarSection` static `object` to the `MainLayout` component in an `@code` block:
 
@@ -421,7 +425,7 @@ In `Pages/Counter.razor`:
 </SectionContent>
 ```
 
-When the app is run, the `MainLayout` component renders the increment count button where the `SectionOutlet` component is placed.
+When the `Counter` component is accessed, the `MainLayout` component renders the increment count button where the `SectionOutlet` component is placed.
 
 > [!NOTE]
 > `SectionOutlet` and `SectionContent` components can only set either `SectionId` or `SectionName`, not both.
