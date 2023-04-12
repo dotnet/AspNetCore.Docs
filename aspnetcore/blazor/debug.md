@@ -14,15 +14,15 @@ uid: blazor/debug
 
 This article describes how to debug Blazor WebAssembly with browser developer tools and an integrated development environment (IDE).
 
-Blazor WebAssembly apps can be debugged using the browser developer tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following IDEs:
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor WebAssembly apps can be debugged using the browser developer tools in Chromium-based browsers (Edge/Chrome) and Firefox. You can also debug your app using the following IDEs:
 
 * Visual Studio
 * Visual Studio for Mac
 * Visual Studio Code
 
 Available scenarios include:
-
-:::moniker range=">= aspnetcore-8.0"
 
 * Set and remove breakpoints.
 * Run the app with debugging support in IDEs.
@@ -42,6 +42,14 @@ For now, you *can't*:
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+Blazor WebAssembly apps can be debugged using the browser developer tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following IDEs:
+
+* Visual Studio
+* Visual Studio for Mac
+* Visual Studio Code
+
+Available scenarios include:
 
 * Set and remove breakpoints.
 * Run the app with debugging support in IDEs.
