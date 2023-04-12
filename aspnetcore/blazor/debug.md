@@ -14,8 +14,6 @@ uid: blazor/debug
 
 This article describes how to debug Blazor WebAssembly with browser developer tools and an integrated development environment (IDE).
 
-:::moniker range=">= aspnetcore-7.0"
-
 Blazor WebAssembly apps can be debugged using the browser developer tools in Chromium-based browsers (Edge/Chrome). You can also debug your app using the following IDEs:
 
 * Visual Studio
@@ -23,6 +21,27 @@ Blazor WebAssembly apps can be debugged using the browser developer tools in Chr
 * Visual Studio Code
 
 Available scenarios include:
+
+:::moniker range=">= aspnetcore-8.0"
+
+* Set and remove breakpoints.
+* Run the app with debugging support in IDEs.
+* Single-step through the code.
+* Resume code execution with a keyboard shortcut in IDEs.
+* In the *Locals* window, observe the values of local variables.
+* See the call stack, including call chains between JavaScript and .NET.
+* Use a [symbol server](/test/debug-aspnetcore-source) for debugging.
+
+For now, you *can't*:
+
+* Break on unhandled exceptions.
+* Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.cs` and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
+* Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/)).
+* Automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 * Set and remove breakpoints.
 * Run the app with debugging support in IDEs.
@@ -37,6 +56,11 @@ For now, you *can't*:
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.cs` and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/)).
 * Automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+* Use a [symbol server](/test/debug-aspnetcore-source) for debugging.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 ## Prerequisites
 
@@ -833,6 +857,7 @@ For now, you *can't*:
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.cs` and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/)).
 * Automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+* Use a [symbol server](/test/debug-aspnetcore-source) for debugging.
 
 ## Prerequisites
 
@@ -1284,6 +1309,7 @@ For now, you *can't*:
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in `Program.cs` and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/)).
 * Automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+* Use a [symbol server](/test/debug-aspnetcore-source) for debugging.
 
 ## Prerequisites
 
