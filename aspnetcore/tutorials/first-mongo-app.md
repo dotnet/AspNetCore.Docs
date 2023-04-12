@@ -169,9 +169,13 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-1. Select **File** > **New Solution** > **Web and Console** > **App** from the sidebar.
+1. Select **Visual Studio** > **Preferences**.
+1. Select **Preview Features** from the sidebar, enable **Use previews of the .NET SDK** and select **OK**.
+1. Restart Visual Studio.
+1. Select **File** > **New Project...**.
+1. Select **Web and Console** > **App** from the sidebar.
 1. Select the **ASP.NET Core** > **API** C# project template, and select **Next**.
-1. Select **.NET 6.0** from the **Target Framework** drop-down list, and select **Next**.
+1. Select **.NET 8.0** from the **Target Framework** drop-down list, and select **Next**.
 1. Enter *BookStoreApi* for the **Project Name**, and select **Create**.
 1. In the **Solution** pad, right-click the project's **Dependencies** node and select **Add Packages**.
 1. Enter *MongoDB.Driver* in the search box, select the *MongoDB.Driver* package, and select **Add Package**.
