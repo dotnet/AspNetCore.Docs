@@ -342,3 +342,8 @@ To satisfy the preceding requirements, make the following changes:
 
 :::moniker-end
 
+[!INCLUDE[](~/tutorials/first-mongo-app/includes/first-mongo-app7.md)]
+
+[!INCLUDE[](~/tutorials/first-mongo-app/includes/first-mongo-app6.md)]
+
+[!INCLUDE[](~/tutorials/first-mongo-app/includes/first-mongo-app3-5.md)]
