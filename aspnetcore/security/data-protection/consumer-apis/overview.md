@@ -44,8 +44,11 @@ The following sample demonstrates three concepts:
 [!code-csharp[](../using-data-protection/samples/protectunprotect.cs?highlight=26,34,35,36,37,38,39,40)]
 
 ## Web app
+Call <xref:Microsoft.Extensions.DependencyInjection.DataProtectionServiceCollectionExtensions.AddDataProtection(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.DataProtection.DataProtectionOptions})> in `Program.cs`:
 
 [!code-csharp[](~/security/data-protection/using-data-protection/samples/webappexample1.cs?highlight=5)]
+
+The following highlighted code shows how to use <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> in a controller:
 
 [!code-csharp[](~/security/data-protection/using-data-protection/samples/webappexample2.cs?highlight=3,4,5,6,7,8,18,22)]
 
