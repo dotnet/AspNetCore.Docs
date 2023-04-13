@@ -95,7 +95,7 @@ The Blazor WebAssembly hosting model has the following limitations:
 
 :::moniker range=">= aspnetcore-8.0"
 
-The .NET [Intermediate Language (IL)](/dotnet/standard/glossary#il) interpreter includes partial [just-in-time (JIT) runtime](/dotnet/standard/glossary#jit) support to achieve improved runtime performance. The JIT interpreter optimizes execution of interpreter bytecodes by replacing them with tiny blobs of WebAssembly code. The JIT interpreter is automatically enabled for Blazor WebAssembly apps.
+The .NET [Intermediate Language (IL)](/dotnet/standard/glossary#il) interpreter includes partial [just-in-time (JIT)](/dotnet/standard/glossary#jit) runtime support to achieve improved runtime performance. The JIT interpreter optimizes execution of interpreter bytecodes by replacing them with tiny blobs of WebAssembly code. The JIT interpreter is automatically enabled for Blazor WebAssembly apps.
 
 :::moniker-end
 
