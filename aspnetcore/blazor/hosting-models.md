@@ -93,6 +93,12 @@ The Blazor WebAssembly hosting model has the following limitations:
 * Capable client hardware and software (for example, WebAssembly support) is required.
 * Download size is larger, and apps take longer to load.
 
+:::moniker range=">= aspnetcore-8.0"
+
+The .NET Intermediate Language (IL) interpreter includes partial just-in-time (JIT) runtime support to achieve improved runtime performance. The JIT interpreter optimizes execution of interpreter bytecodes by replacing them with tiny blobs of WebAssembly code. The JIT interpreter is automatically enabled for Blazor WebAssembly apps.
+
+:::moniker-end
+
 :::moniker range=">= aspnetcore-6.0"
 
 Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. For more information, see <xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation>. 
