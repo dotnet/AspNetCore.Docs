@@ -218,16 +218,18 @@ Customize how these boot resources are loaded using the `loadBootResource` API. 
 
 | Parameter    | Description |
 | ------------ | ----------- |
-| `type`       | The type of the resource. Permissible types include: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, and `timezonedata`. You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors. |
+| `type`       | The type of the resource. Permissible types include: `assembly`, `pdb`, `dotnetjs`, `dotnetwasm`, and `timezonedata`. You only need to specify types for custom behaviors. Types not specified to `loadBootResource` are loaded by the framework per their default loading behaviors. The `dotnetjs` boot resource (`dotnet.*.js`) must either return `null` for default loading behavior or a URI for the source of the `dotnetjs` boot resource. |
 | `name`       | The name of the resource. |
 | `defaultUri` | The relative or absolute URI of the resource. |
 | `integrity`  | The integrity string representing the expected content in the response. |
 
-The `loadBootResource` function can return a URI string to override the loading process. In the following example, the following files from `bin/Release/net5.0/wwwroot/_framework` are served from a CDN at `https://cdn.example.com/blazorwebassembly/5.0.0/`:
+The `loadBootResource` function can return a URI string to override the loading process. In the following example, the following files from `bin/Release/{TARGET FRAMEWORK}/wwwroot/_framework` are served from a CDN at `https://cdn.example.com/blazorwebassembly/{VERSION}/`:
 
 * `dotnet.*.js`
 * `dotnet.wasm`
 * Timezone data
+
+The `{TARGET FRAMEWORK}` placeholder is the target framework moniker (for example, `net7.0`). The `{VERSION}` placeholder is the shared framework version (for example, `7.0.0`).
 
 Inside the closing `</body>` tag of `wwwroot/index.html`:
 
@@ -241,7 +243,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
         case 'dotnetjs':
         case 'dotnetwasm':
         case 'timezonedata':
-          return `https://cdn.example.com/blazorwebassembly/5.0.0/${name}`;
+          return `https://cdn.example.com/blazorwebassembly/{VERSION}/${name}`;
       }
     }
   });
@@ -257,20 +259,23 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
 <script>
   Blazor.start({
     loadBootResource: function (type, name, defaultUri, integrity) {
-      return fetch(defaultUri, { 
-        cache: 'no-cache',
-        integrity: integrity,
-        headers: { 'Custom-Header': 'Custom Value' }
-      });
+      if (type == 'dotnetjs') {
+        return null;
+      } else {
+        return fetch(defaultUri, {
+          cache: 'no-cache',
+          integrity: integrity,
+          headers: { 'Custom-Header': 'Custom Value' }
+        });
+      }
     }
   });
 </script>
 ```
 
-The `loadBootResource` function can also return:
+When the `loadBootResource` function returns `null`, Blazor uses the default loading behavior for the resource. For example, the preceding code returns `null` for the `dotnetjs` boot resource (`dotnet.*.js`) because the `dotnetjs` boot resource must either return `null` for default loading behavior or a URI for the source of the `dotnetjs` boot resource.
 
-* `null`/`undefined`, which results in the default loading behavior.
-* A [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response). For an example, see <xref:blazor/host-and-deploy/webassembly#compression>.
+The `loadBootResource` function can also return a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response). For an example, see <xref:blazor/host-and-deploy/webassembly#compression>.
 
 ## Control headers in C# code
 
