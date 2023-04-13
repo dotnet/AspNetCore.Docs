@@ -170,7 +170,7 @@ Use the previously installed MongoDB Shell in the following steps to create a da
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. Select **Visual Studio** > **Preferences**.
-1. Select **Preview Features** from the sidebar, enable **Use previews of the .NET SDK** and select **OK**.
+1. Select **Preview Features** from the sidebar, enable **Use previews of the .NET SDK**, and select **OK**.
 1. Restart Visual Studio.
 1. Select **File** > **New Project...**.
 1. Select **Web and Console** > **App** from the sidebar.
