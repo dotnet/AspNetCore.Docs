@@ -30,7 +30,7 @@ Available scenarios include:
 * Resume code execution with a keyboard shortcut in IDEs.
 * In the *Locals* window, observe the values of local variables.
 * See the call stack, including call chains between JavaScript and .NET.
-* Use a [symbol server](xref:test/debug-aspnetcore-source) for debugging.
+* Use a [symbol server](xref:test/debug-aspnetcore-source) for debugging, configured by Visual Studio preferences.
 
 For now, you *can't*:
 
