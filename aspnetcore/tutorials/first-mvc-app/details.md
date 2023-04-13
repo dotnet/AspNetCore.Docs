@@ -57,7 +57,7 @@ For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core and 
 > [!div class="step-by-step"]
 > [Previous](~/tutorials/first-mvc-app/validation.md)
 
-[!INCLUDE[](~/includes/reliableWAP_H2.md)]
+[!INCLUDE[](~/includes/reliableWAP_H2.md)] 
 
 :::moniker-end
 

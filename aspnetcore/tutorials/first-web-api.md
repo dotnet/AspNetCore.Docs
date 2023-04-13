@@ -475,7 +475,7 @@ Verify you can't post or get the secret field.
 
 See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-api-javascript).
 
-[!INCLUDE[](~/includes/reliableWAP_H2.md)]
+[!INCLUDE[](~/includes/reliableWAP_H2.md)] 
 
 ## Web API video series
 

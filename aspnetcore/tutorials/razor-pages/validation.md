@@ -712,7 +712,7 @@ For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core app 
 
 Thanks for completing this introduction to Razor Pages. [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) is an excellent follow up to this tutorial.
 
-[!INCLUDE[](~/includes/reliableWAP_H2.md)]
+[!INCLUDE[](~/includes/reliableWAP_H2.md)] 
 
 ## Additional resources
 
