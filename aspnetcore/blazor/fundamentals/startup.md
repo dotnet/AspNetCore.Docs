@@ -223,11 +223,13 @@ Customize how these boot resources are loaded using the `loadBootResource` API. 
 | `defaultUri` | The relative or absolute URI of the resource. |
 | `integrity`  | The integrity string representing the expected content in the response. |
 
-The `loadBootResource` function can return a URI string to override the loading process. In the following example, the following files from `bin/Release/net7.0/wwwroot/_framework` are served from a CDN at `https://cdn.example.com/blazorwebassembly/7.0.0/`:
+The `loadBootResource` function can return a URI string to override the loading process. In the following example, the following files from `bin/Release/{TARGET FRAMEWORK}/wwwroot/_framework` are served from a CDN at `https://cdn.example.com/blazorwebassembly/{VERSION}/`:
 
 * `dotnet.*.js`
 * `dotnet.wasm`
 * Timezone data
+
+The `{TARGET FRAMEWORK}` placeholder is the target framework moniker (for example, `net7.0`). The `{VERSION}` placeholder is the shared framework version (for example, `7.0.0`).
 
 Inside the closing `</body>` tag of `wwwroot/index.html`:
 
@@ -241,7 +243,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
         case 'dotnetjs':
         case 'dotnetwasm':
         case 'timezonedata':
-          return `https://cdn.example.com/blazorwebassembly/7.0.0/${name}`;
+          return `https://cdn.example.com/blazorwebassembly/{VERSION}/${name}`;
       }
     }
   });
