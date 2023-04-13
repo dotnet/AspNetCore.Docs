@@ -1,1 +1,1 @@
-See [The Reliable Web App Pattern for .NET](https://www.youtube.com/watch?v=hNoUT9NRzDM) YouTube videos for guidance on refactoring a monolithic ASP.NET framework app using SQL Server to a modern, reliable, performant, testable, cost-efficient, and scalable ASP.NET Core app.
+See [The Reliable Web App Pattern for .NET](https://www.youtube.com/watch?v=hNoUT9NRzDM) YouTube videos for guidance on creating a modern, reliable, performant, testable, cost-efficient, and scalable ASP.NET Core app, whether from scratch or refactoring an existing app.
