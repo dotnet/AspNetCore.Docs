@@ -119,6 +119,8 @@ The following code shows combining attributes on one line:
 
 In the next part of the series, we review the app and make some improvements to the automatically generated `Details` and `Delete` methods.
 
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
+
 ## Additional resources
 
 * [Working with Forms](xref:mvc/views/working-with-forms)
