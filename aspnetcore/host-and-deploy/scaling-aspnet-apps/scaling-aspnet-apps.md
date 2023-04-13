@@ -328,3 +328,5 @@ Repeat the previous steps to assign a role to your account so that it can access
 You may need to wait again for this role assignment to propagate.
 
 You can then return to Visual Studio and run the app locally. The code should continue to function as expected. `DefaultAzureCredential` uses your existing credentials from Visual Studio or the Azure CLI.
+
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
