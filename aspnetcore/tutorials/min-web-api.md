@@ -456,6 +456,8 @@ For information on how to deploy to Azure, see [Quickstart: Deploy an ASP.NET we
 
 For more information about minimal API apps, see <xref:fundamentals/minimal-apis>.
 
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
+
 :::moniker-end
 
 :::moniker range="= aspnetcore-6.0"
