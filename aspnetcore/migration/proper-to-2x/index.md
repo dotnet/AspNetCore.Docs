@@ -20,6 +20,8 @@ Most non-trivial ASP.NET Framework apps should consider using the [incremental u
 
 For ASP.NET MVC and Web API apps, see <xref:migration/mvc>. For ASP.NET Framework Web Forms apps, see <xref:migration/web_forms>.
 
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
+
 ## URI decoding differences between ASP.NET to ASP.NET Core
 
 ASP.NET Core has the following URI decoding differences with ASP.NET Framework:
