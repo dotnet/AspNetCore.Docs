@@ -373,6 +373,8 @@ For more information, see [Debugging with Visual Studio for Mac](/visualstudio/m
 
 Blazor provides a debugging proxy that implements the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/) and augments the protocol with .NET-specific information. When debugging keyboard shortcut is pressed, Blazor points the Chrome DevTools at the proxy. The proxy connects to the browser window you're seeking to debug (hence the need to enable remote debugging).
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 ## Debug with Firefox
@@ -386,19 +388,21 @@ To debug a Blazor WebAssembly app in Firefox during development:
 
 1. Open the Blazor WebAssembly app in Firefox.
 1. Open the Firefox Web Developer Tools and go to the `Console` tab.
-1. With Blazor WebAssembly app in focus type the debugging command <kbd>SHIFT</kbd>+<kbd>ALT</kbd>+<kbd>D</kbd>.
+1. With Blazor WebAssembly app in focus, type the debugging command <kbd>SHIFT</kbd>+<kbd>ALT</kbd>+<kbd>D</kbd>.
 1. Follow the instructions in the console output to configure Firefox for Blazor WebAssembly debugging:
    * Open `about:config` in Firefox.
    * Enable `devtools.debugger.remote-enabled`.
    * Enable `devtools.chrome.enabled`.
    * Disable `devtools.debugger.prompt-connection`.
-1. Close all Firefox instances and reopen Firefox with remote debugging enabled by running `firefox --start-debugger-server 6000 -new-tab about:debugging`.
+1. Close all Firefox instances and reopen Firefox with remote debugging enabled by running the following command in a command shell: `firefox --start-debugger-server 6000 -new-tab about:debugging`.
 1. In the new Firefox instance, leave the `about:debugging` tab open and open the Blazor WebAssembly app in a new browser tab.
 1. Type <kbd>SHIFT</kbd>+<kbd>ALT</kbd> to open the Firefox Web Developer tools and connect to the Firefox browser instance.
-1. In the Debugger tab of the Web Developer Tools, open the app source file you wish to debug under the `file://` node and set a breakpoint. For example, set a breakpoint in the `IncrementCount` method of the `Counter` component (`Pages/Counter.razor`).
+1. In the `Debugger` tab, open the app source file you wish to debug under the `file://` node and set a breakpoint. For example, set a breakpoint in the `IncrementCount` method of the `Counter` component (`Pages/Counter.razor`).
 1. Navigate to the `Counter` component page (`/counter`) and select the counter button to hit the breakpoint.
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 ## Browser source maps
 
