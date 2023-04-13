@@ -368,3 +368,5 @@ For more information, see [Host ASP.NET Core on Windows with IIS](xref:host-and-
 `HttpRequest.ContentLength` is null if the `Content-Length` header is not received. Null in that case means the length of the request body is not known; it doesn't mean the length is zero. Because all comparisons with null (except `==`) return false, the comparison `Request.ContentLength > 1024`, for example, might return `false` when the request body size is more than 1024. Not knowing this can lead to security holes in apps. You might think you're guarding against too-large requests when you aren't.
 
 For more information, see [this StackOverflow answer](https://stackoverflow.com/a/73201538/652224).
+
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
