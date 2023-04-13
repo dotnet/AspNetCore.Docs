@@ -22,6 +22,9 @@ Blazor WebAssembly apps can be debugged using the browser developer tools in Chr
 * Visual Studio for Mac
 * Visual Studio Code
 
+> [!NOTE]
+> For .NET 8 preview guidance on debugging with Firefox, see the [Debug with Firefox](#debug-with-firefox) section.
+
 Available scenarios include:
 
 * Set and remove breakpoints.
@@ -39,9 +42,6 @@ For now, you *can't*:
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/)).
 * Automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
 * Debug in Firefox from Visual Studio.
-
-> [!NOTE]
-> For .NET 8 preview guidance on debugging with Firefox, see the [Debug with Firefox](#debug-with-firefox) section.
 
 :::moniker-end
 
