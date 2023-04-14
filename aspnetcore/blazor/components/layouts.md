@@ -401,6 +401,12 @@ If you don't want other `SectionContent` components to accidentally match the na
 
 The following example also implements an increment counter button for the app's `Counter` component in the app's main layout, using an object reference instead of a section name.
 
+Add the namespace for sections to the `_Imports.razor` file:
+
+```razor
+@using Microsoft.AspNetCore.Components.Sections
+```
+
 Add a `TopbarSection` static `object` to the `MainLayout` component in an `@code` block:
 
 ```razor
