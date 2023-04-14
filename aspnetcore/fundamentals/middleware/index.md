@@ -91,7 +91,7 @@ The order that middleware components are added in the `Program.cs` file defines 
 
 The following highlighted code in `Program.cs` adds security-related middleware components in the typical recommended order:
 
-[!code-csharp[](index/snapshot/Program60All3.cs?highlight=19-43)]
+[!code-csharp[](index/snapshot/Program70All3.cs?highlight=19-44)]
 
 In the preceding code:
 
@@ -99,7 +99,8 @@ In the preceding code:
 * Not every middleware appears in this exact order, but many do. For example:
   * `UseCors`, `UseAuthentication`, and `UseAuthorization` must appear in the order shown.
   * `UseCors` currently must appear before `UseResponseCaching`. This requirement is explained in [GitHub issue dotnet/aspnetcore #23218](https://github.com/dotnet/aspnetcore/issues/23218).
-  * `UseRequestLocalization` must appear before any middleware that might check the request culture (for example, `app.UseMvcWithDefaultRoute()`).
+  * `UseRequestLocalization` must appear before any middleware that might check the request culture, for example, `app.UseMvcWithDefaultRoute`.
+  * <xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter%2A> must be called after `UseRouting`.
 
 In some scenarios, middleware has different ordering. For example, caching and compression ordering is scenario specific, and there are multiple valid orderings. For example:
 
