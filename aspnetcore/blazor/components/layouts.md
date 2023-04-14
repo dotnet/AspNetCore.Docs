@@ -379,6 +379,12 @@ To control the content in layout Razor components from child Razor components, B
 
 In the following example, the app's main layout component implements an increment counter button for the app's `Counter` component.
 
+Add the namespace for sections to the `_Imports.razor` file:
+
+```razor
+@using Microsoft.AspNetCore.Components.Sections
+```
+
 In the `MainLayout` component (`Shared/MainLayout.razor`), place a `SectionOutlet` component and pass a string to the `SectionName` parameter to indicate the section's name. The following example uses the section name `topbar`:
 
 ```razor
@@ -400,12 +406,6 @@ Instead of using a named section, you can pass a static `object` with the `Secti
 If you don't want other `SectionContent` components to accidentally match the name of a `SectionOutlet`, pass an object `SectionId` parameter to identify the section. This can be useful when designing a [Razor class library (RCL)](xref:blazor/components/class-libraries). When a `SectionOutlet` in the RCL uses an object reference with `SectionId` and the consumer places a `SectionContent` component with a matching `SectionId` object, an accidental match by name isn't possible when consumers of the RCL implement other `SectionContent` components.
 
 The following example also implements an increment counter button for the app's `Counter` component in the app's main layout, using an object reference instead of a section name.
-
-Add the namespace for sections to the `_Imports.razor` file:
-
-```razor
-@using Microsoft.AspNetCore.Components.Sections
-```
 
 Add a `TopbarSection` static `object` to the `MainLayout` component in an `@code` block:
 
