@@ -479,6 +479,8 @@ See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-
 
 See [Video: Beginner's Series to: Web APIs](/shows/beginners-series-to-web-apis/).
 
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
+
 :::moniker-end
 
 :::moniker range="= aspnetcore-6.0"
