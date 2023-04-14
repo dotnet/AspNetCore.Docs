@@ -251,6 +251,161 @@ There was a problem with the connection! (Current reconnect attempt: 3 / 8)
 
 By default, Blazor Server apps prerender the UI on the server before the client connection to the server is established. For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Monitor Blazor Server circuit activity (Blazor Server)
+
+Monitor inbound circuit activity in Blazor Server apps using the `CreateInboundActivityHandler` method on <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler>. Inbound circuit activity is any activity sent from the browser to the server, such as UI events or JavaScript-to-.NET interop calls.
+
+For example, you can use a circuit activity handler to detect if the client is idle:
+
+```csharp
+public sealed class IdleCircuitHandler : CircuitHandler, IDisposable
+{
+    readonly Timer timer;
+    readonly ILogger logger;
+
+    public IdleCircuitHandler(IOptions<IdleCircuitOptions> options, 
+        ILogger<IdleCircuitHandler> logger)
+    {
+        timer = new Timer();
+        timer.Interval = options.Value.IdleTimeout.TotalMilliseconds;
+        timer.AutoReset = false;
+        timer.Elapsed += CircuitIdle;
+        this.logger = logger;
+    }
+
+    private void CircuitIdle(object? sender, System.Timers.ElapsedEventArgs e)
+    {
+        logger.LogInformation(nameof(CircuitIdle));
+    }
+
+    public override Func<CircuitInboundActivityContext, Task> CreateInboundActivityHandler(
+        Func<CircuitInboundActivityContext, Task> next)
+    {
+        return context =>
+        {
+            timer.Stop();
+            timer.Start();
+            return next(context);
+        };
+    }
+
+    public void Dispose()
+    {
+        timer.Dispose();
+    }
+}
+
+public class IdleCircuitOptions
+{
+    public TimeSpan IdleTimeout { get; set; } = TimeSpan.FromMinutes(5);
+}
+
+public static class IdleCircuitHandlerServiceCollectionExtensions
+{
+    public static IServiceCollection AddIdleCircuitHandler(
+        this IServiceCollection services, 
+        Action<IdleCircuitOptions> configureOptions)
+    {
+        services.Configure(configureOptions);
+        services.AddIdleCircuitHandler();
+        return services;
+    }
+
+    public static IServiceCollection AddIdleCircuitHandler(
+        this IServiceCollection services)
+    {
+        services.AddScoped<CircuitHandler, IdleCircuitHandler>();
+        return services;
+    }
+}
+```
+
+Circuit activity handlers also provide a way to access scoped Blazor services from other non-Blazor dependency injection (DI) scopes, such as scopes created using <xref:System.Net.Http.IHttpClientFactory>. There's an existing pattern for accessing circuit-scoped services from other dependency injection scopes, but it requires using a custom base component type. With circuit activity handlers, we can use a better approach, which is demonstrated by the following example:
+
+```csharp
+public class CircuitServicesAccessor
+{
+    static readonly AsyncLocal<IServiceProvider> blazorServices = new();
+
+    public IServiceProvider? Services
+    {
+        get => blazorServices.Value;
+        set => blazorServices.Value = value;
+    }
+}
+
+public class ServicesAccessorCircuitHandler : CircuitHandler
+{
+    readonly IServiceProvider services;
+    readonly CircuitServicesAccessor circuitServicesAccessor;
+
+    public ServicesAccessorCircuitHandler(IServiceProvider services, 
+        CircuitServicesAccessor servicesAccessor)
+    {
+        this.services = services;
+        this.circuitServicesAccessor = servicesAccessor;
+    }
+
+    public override Func<CircuitInboundActivityContext, Task> CreateInboundActivityHandler(
+        Func<CircuitInboundActivityContext, Task> next)
+    {
+        return async context =>
+        {
+            circuitServicesAccessor.Services = services;
+            await next(context);
+            circuitServicesAccessor.Services = null;
+        };
+    }
+}
+
+public static class CircuitServicesServiceCollectionExtensions
+{
+    public static IServiceCollection AddCircuitServicesAccessor(
+        this IServiceCollection services)
+    {
+        services.AddScoped<CircuitServicesAccessor>();
+        services.AddScoped<CircuitHandler, ServicesAccessorCircuitHandler>();
+
+        return services;
+    }
+}
+```
+
+Next, access the circuit-scoped services by injecting the `CircuitServicesAccessor` where it's needed. For example, here's how you can access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> from a <xref:System.Net.Http.DelegatingHandler> setup using <xref:System.Net.Http.IHttpClientFactory>:
+
+```csharp
+public class AuthenticationStateHandler : DelegatingHandler
+{
+    readonly CircuitServicesAccessor circuitServicesAccessor;
+
+    public AuthenticationStateHandler(
+        CircuitServicesAccessor circuitServicesAccessor)
+    {
+        this.circuitServicesAccessor = circuitServicesAccessor;
+    }
+
+    protected override async Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        var authStateProvider = circuitServicesAccessor.Services
+            .GetRequiredService<AuthenticationStateProvider>();
+        var authState = await authStateProvider.GetAuthenticationStateAsync();
+
+        ...
+
+        return await base.SendAsync(request, cancellationToken);
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
 ## Blazor startup
 
 Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or `wwwroot/index.html` (hosted Blazor WebAssembly with SignalR implemented):
