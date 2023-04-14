@@ -255,7 +255,7 @@ By default, Blazor Server apps prerender the UI on the server before the client 
 
 :::moniker range=">= aspnetcore-8.0"
 
-## Monitor Blazor Server circuit activity (Blazor Server)
+## Monitor circuit activity (Blazor Server)
 
 Monitor inbound circuit activity in Blazor Server apps using the `CreateInboundActivityHandler` method on <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler>. Inbound circuit activity is any activity sent from the browser to the server, such as UI events or JavaScript-to-.NET interop calls.
 
