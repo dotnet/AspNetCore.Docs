@@ -33,6 +33,7 @@ app.UseStaticFiles();
 // app.UseCookiePolicy();
 
 app.UseRouting();
+// app.UseRateLimiter();
 // app.UseRequestLocalization();
 // app.UseCors();
 
