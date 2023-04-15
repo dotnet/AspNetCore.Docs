@@ -10,6 +10,8 @@ uid: blazor/fundamentals/handle-errors
 ---
 # Handle errors in ASP.NET Core Blazor apps
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 
 ## Detailed errors during development

@@ -11,6 +11,8 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # Use ASP.NET Core SignalR with Blazor
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This tutorial teaches the basics of building a real-time app using SignalR with Blazor.
 
 :::moniker range=">= aspnetcore-7.0"

@@ -10,6 +10,8 @@ uid: blazor/security/index
 ---
 # ASP.NET Core Blazor authentication and authorization
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article describes ASP.NET Core's support for the configuration and management of security in Blazor apps.
 
 Security scenarios differ between Blazor Server and Blazor WebAssembly apps. Because Blazor Server apps run on the server, authorization checks are able to determine:
@@ -631,7 +633,7 @@ In the following example:
 * The `user.IsInRole("admin")` executes code for users in the 'Admin' role.
 * The `(await AuthorizationService.AuthorizeAsync(user, "content-editor")).Succeeded` executes code for users satisfying the 'content-editor' policy.
 
-A Blazor Server app include the appropriate namespaces by default when created from the Blazor Server project template. In a Blazor WebAssembly app, confirm the presence of the <xref:Microsoft.AspNetCore.Authorization> and <xref:Microsoft.AspNetCore.Components.Authorization> namespaces either in the component or in the app's `_Imports.razor` file:
+A Blazor Server app includes the appropriate namespaces by default when created from the Blazor Server project template. In a Blazor WebAssembly app, confirm the presence of the <xref:Microsoft.AspNetCore.Authorization> and <xref:Microsoft.AspNetCore.Components.Authorization> namespaces either in the component or in the app's `_Imports.razor` file:
 
 ```razor
 @using Microsoft.AspNetCore.Authorization

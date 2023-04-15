@@ -327,7 +327,7 @@ Update the return statement in the `PostTodoItem` to use the [nameof](/dotnet/cs
 
 [!code-csharp[](first-web-api/samples/7.0/TodoApi/Controllers/TodoItemsController.cs?name=snippet_Create)]
 
-The preceding code is an `HTTP POST` method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the `TodoItem`from the body of the HTTP request.
+The preceding code is an `HTTP POST` method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the `TodoItem` from the body of the HTTP request.
 
 For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#verb).
 
@@ -426,7 +426,7 @@ Examine the `DeleteTodoItem` method:
 
 ### Test the DeleteTodoItem method
 
-Use the Swagger UI to delete the `TodoItem`that has Id = 1. Note the response is [`HTTP 204 No Content`](https://developer.mozilla.org/docs/Web/HTTP/Status/204).
+Use the Swagger UI to delete the `TodoItem` that has Id = 1. Note the response is [`HTTP 204 No Content`](https://developer.mozilla.org/docs/Web/HTTP/Status/204).
 
 ## Test with http-repl, Postman, or curl
 
@@ -438,6 +438,9 @@ For instructions on these tools, see the following links:
 * [Install and test APIs with `http-repl`](xref:tutorials/first-web-api?view=aspnetcore-6.0&preserve-view=true#ihr6)
 
 For more information on `http-repl`, see <xref:web-api/http-repl>.
+
+<!-- Verify https://go.microsoft.com/fwlink/?linkid=2123754 goes to this H2. Verify the latest released version is on top so this anchor works -->
+<a name="over-post"></a>
 
 ## Prevent over-posting
 
@@ -475,6 +478,8 @@ See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-
 ## Web API video series
 
 See [Video: Beginner's Series to: Web APIs](/shows/beginners-series-to-web-apis/).
+
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
 
 :::moniker-end
 

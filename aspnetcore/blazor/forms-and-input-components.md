@@ -10,6 +10,8 @@ uid: blazor/forms-and-input-components
 ---
 # ASP.NET Core Blazor forms and input components
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 The Blazor framework supports forms and provides built-in input components:
 
 * <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to a model that uses [data annotations](xref:mvc/models/validation)

@@ -1,17 +1,17 @@
 ---
 title: Enable Cross-Origin Requests (CORS) in ASP.NET Core
-author: rick-anderson
+author: tdykstra
 description: Learn how CORS as a standard for allowing or rejecting cross-origin requests in an ASP.NET Core app.
 ms.author: riande
 ms.custom: mvc
-ms.date: 1/16/2023
+ms.date: 3/16/2023
 uid: security/cors
 ---
 # Enable Cross-Origin Requests (CORS) in ASP.NET Core
 
-:::moniker range="< aspnetcore-7.0"
-[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
-:::moniker-end
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
+[!INCLUDE[](~/security/cors/includes/cors7.md)]
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -626,4 +626,3 @@ Test the preceding code from the [test page](https://cors1.azurewebsites.net/tes
 :::moniker-end
 
 [!INCLUDE[](~/security/cors/includes/cors56.md)]
-[!INCLUDE[](~/security/cors/includes/cors7.md)]

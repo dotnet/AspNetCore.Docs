@@ -10,6 +10,8 @@ uid: blazor/components/index
 ---
 # ASP.NET Core Razor components
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to create and use Razor components in Blazor apps, including guidance on Razor syntax, component naming, namespaces, and component parameters.
 
 :::moniker range=">= aspnetcore-7.0"
@@ -1471,74 +1473,6 @@ For more information, see the following resources:
 
 * <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
 * <xref:blazor/components/prerendering-and-integration>
-
-## `QuickGrid` component
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
-
-The `QuickGrid` component is a Razor component for quickly and efficiently displaying data in tabular form. `QuickGrid` provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. `QuickGrid` is highly optimized and uses advanced techniques to achieve optimal rendering performance.
-
-To get started with `QuickGrid`:
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-The `QuickGrid` component is an experimental Razor component for quickly and efficiently displaying data in tabular form. `QuickGrid` provides a simple and convenient data grid component for common grid rendering scenarios and serves as a reference architecture and performance baseline for building data grid components. `QuickGrid` is highly optimized and uses advanced techniques to achieve optimal rendering performance.
-
-To get started with `QuickGrid`:
-
-1. Add package reference for [`Microsoft.AspNetCore.Components.QuickGrid`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid). If using the .NET CLI to add the package reference, include the `--prerelease` option when you execute the [`dotnet add package` command](/dotnet/core/tools/dotnet-add-package).
-
-   [!INCLUDE[](~/includes/package-reference.md)]
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0"
-
-1. Add the following component to render a grid.
-
-   `Pages/QuickGridExample.razor`:
-
-   ```razor
-   @page "/quickgrid-example"
-   @using Microsoft.AspNetCore.Components.QuickGrid
-
-   <QuickGrid Items="@people">
-       <PropertyColumn Property="@(p => p.PersonId)" Sortable="true" />
-       <PropertyColumn Property="@(p => p.Name)" Sortable="true" />
-       <PropertyColumn Property="@(p => p.BirthDate)" Format="yyyy-MM-dd" Sortable="true" />
-   </QuickGrid>
-
-   @code {
-       private record Person(int PersonId, string Name, DateOnly BirthDate);
-
-       private IQueryable<Person> people = new[]
-       {
-           new Person(10895, "Jean Martin", new DateOnly(1985, 3, 16)),
-           new Person(10944, "António Langa", new DateOnly(1991, 12, 1)),
-           new Person(11203, "Julie Smith", new DateOnly(1958, 10, 10)),
-           new Person(11205, "Nur Sari", new DateOnly(1922, 4, 27)),
-           new Person(11898, "Jose Hernandez", new DateOnly(2011, 5, 3)),
-           new Person(12130, "Kenji Sato", new DateOnly(2004, 1, 9)),
-       }.AsQueryable();
-   }
-   ```
-
-1. Access the component in a browser at the relative path `/quickgrid-example`.
-
-For various `QuickGrid` demonstrations, see the [**QuickGrid for Blazor** app](https://aspnet.github.io/quickgridsamples/). The demo site is built using Blazor WebAssembly and is hosted on GitHub Pages. The site loads fast thanks to static prerendering using the community-maintained [`BlazorWasmPrerendering.Build` GitHub project](https://github.com/jsakamoto/BlazorWasmPreRendering.Build).
-
-There aren't current plans to extend `QuickGrid` with features that full-blown commercial grids tend to offer, for example, hierarchical rows, drag-to-reorder columns, or Excel-like range selections. If you require advanced features that you don't wish to develop on your own, continue using third-party grids.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-> [!WARNING]
-> The `QuickGrid` component is in preview. You're welcome to use it in production if it meets your needs, but it isn't officially supported and may change in future releases.
 
 :::moniker-end
 

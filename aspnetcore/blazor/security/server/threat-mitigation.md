@@ -10,6 +10,8 @@ uid: blazor/security/server/threat-mitigation
 ---
 # Threat mitigation guidance for ASP.NET Core Blazor Server
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to mitigate security threats to Blazor Server apps.
 
 Blazor Server apps adopt a *stateful* data processing model, where the server and client maintain a long-lived relationship. The persistent state is maintained by a [circuit](xref:blazor/state-management), which can span connections that are also potentially long-lived.
@@ -372,7 +374,7 @@ For more information, see <xref:security/cross-site-scripting>.
 
 Cross-origin attacks involve a client from a different origin performing an action against the server. The malicious action is typically a GET request or a form POST (Cross-Site Request Forgery, CSRF), but opening a malicious WebSocket is also possible. Blazor Server apps offer [the same guarantees that any other SignalR app using the hub protocol offer](xref:signalr/security):
 
-* Blazor Server apps can be accessed cross-origin unless additional measures are taken to prevent it. To disable cross-origin access, either disable CORS in the endpoint by adding the CORS middleware to the pipeline and adding the <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> to the Blazor endpoint metadata or limit the set of allowed origins by [configuring SignalR for cross-origin resource sharing](xref:signalr/security#cross-origin-resource-sharing). For guidance on WebSocket origin restrictions, see <xref:fundamentals/websockets#websocket-origin-restriction>.
+* Blazor Server apps can be accessed cross-origin unless additional measures are taken to prevent it. To disable cross-origin access, either disable CORS in the endpoint by adding the CORS Middleware to the pipeline and adding the <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> to the Blazor endpoint metadata or limit the set of allowed origins by [configuring SignalR for cross-origin resource sharing](xref:signalr/security#cross-origin-resource-sharing). For guidance on WebSocket origin restrictions, see <xref:fundamentals/websockets#websocket-origin-restriction>.
 * If CORS is enabled, extra steps might be required to protect the app depending on the CORS configuration. If CORS is globally enabled, CORS can be disabled for the Blazor Server hub by adding the <xref:Microsoft.AspNetCore.Cors.DisableCorsAttribute> metadata to the endpoint metadata after calling <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> on the endpoint route builder.
 
 For more information, see <xref:security/anti-request-forgery>.

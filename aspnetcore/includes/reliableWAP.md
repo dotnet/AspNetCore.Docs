@@ -1,0 +1,1 @@
+See *The Reliable Web App Pattern for.NET* [YouTube videos](https://www.youtube.com/watch?v=hNoUT9NRzDM) and [article](/azure/architecture/reference-architectures/reliable-web-app/dotnet/pattern-overview) for guidance on creating a modern, reliable, performant, testable, cost-efficient, and scalable ASP.NET Core app, whether from scratch or refactoring an existing app.

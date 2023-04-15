@@ -10,6 +10,8 @@ uid: blazor/components/templated-components
 ---
 # ASP.NET Core Blazor templated components
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how templated components can accept one or more UI templates as parameters, which can then be used as part of the component's rendering logic.
 
 :::moniker range=">= aspnetcore-7.0"

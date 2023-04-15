@@ -10,9 +10,13 @@ uid: blazor/security/webassembly/standalone-with-authentication-library
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with the Authentication library
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to secure an ASP.NET Core Blazor WebAssembly standalone app with the Blazor WebAssembly Authentication library.
 
 *For Azure Active Directory (AAD) and Azure Active Directory B2C (AAD B2C) guidance, don't follow the guidance in this topic. See <xref:blazor/security/webassembly/standalone-with-azure-active-directory> or <xref:blazor/security/webassembly/standalone-with-azure-active-directory-b2c>.*
+
+For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
 
 ## Walkthrough
 
@@ -52,14 +56,14 @@ The **Individual Accounts** selection uses ASP.NET Core's [Identity](xref:securi
 Create a new Blazor WebAssembly project with an authentication mechanism in an empty folder. Specify the `Individual` authentication mechanism with the `-au|--auth` option to use ASP.NET Core's [Identity](xref:security/authentication/identity) system. This selection adds authentication support and doesn't result in storing users in a database. The following sections of this article provide further details.
 
 ```dotnetcli
-dotnet new blazorwasm -au Individual -o {APP NAME}
+dotnet new blazorwasm -au Individual -o {PROJECT NAME}
 ```
 
-| Placeholder  | Example        |
-| ------------ | -------------- |
-| `{APP NAME}` | `BlazorSample` |
+| Placeholder      | Example        |
+| ---------------- | -------------- |
+| `{PROJECT NAME}` | `BlazorSample` |
 
-The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
+The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the project's name.
 
 For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) command in the .NET Core Guide.
 

@@ -1,29 +1,36 @@
 ---
-title: Kestrel web server implementation in ASP.NET Core
-author: rick-anderson
+title: Kestrel web server in ASP.NET Core
+author: tdykstra
 description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/26/2023
+ms.date: 04/04/2023
 uid: fundamentals/servers/kestrel
 ---
-# Kestrel web server implementation in ASP.NET Core
+# Kestrel web server in ASP.NET Core
 
 By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/Tratcher), and [Stephen Halter](https://twitter.com/halter73)
 
 :::moniker range=">= aspnetcore-8.0"
 
-Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the web server that's included and enabled by default in ASP.NET Core project templates.
+Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the recommended server for ASP.NET Core, and it's configured by default in ASP.NET Core project templates.
 
-Kestrel supports the following scenarios:
+Kestrel's features include:
 
-* HTTPS
-* [HTTP/2](xref:fundamentals/servers/kestrel/http2)
-* Opaque upgrade used to enable [WebSockets](xref:fundamentals/websockets)
-* Unix sockets for high performance behind Nginx
-
-Kestrel is supported on all platforms and versions that .NET Core supports.
+* **Cross-platform:** Kestrel is a cross-platform web server that runs on Windows, Linux, and macOS.
+* **High performance:** Kestrel is optimized to handle a large number of concurrent connections efficiently.
+* **Lightweight:** Optimized for running in resource-constrained environments, such as containers and edge devices.
+* **Security hardened:** Kestrel supports HTTPS and is hardened against web server vulnerabilities.
+* **Wide protocol support:** Kestrel supports common web protocols, including:
+  * HTTP/1.1, [HTTP/2](xref:fundamentals/servers/kestrel/http2) and [HTTP/3](xref:fundamentals/servers/kestrel/http3)
+  * [WebSockets](xref:fundamentals/websockets)
+* **Integration with ASP.NET Core:** Seamless integration with other ASP.NET Core components, such as the middleware pipeline, dependency injection, and configuration system.
+* **Flexible workloads**: Kestrel supports many workloads:
+  * ASP.NET app frameworks such as Minimal APIs, MVC, Razor pages, SignalR, Blazor, and gRPC.
+  * Building a reverse proxy with [YARP](https://github.com/microsoft/reverse-proxy).
+* **Extensibility:** Customize Kestrel through configuration, middleware, and custom transports.
+* **Performance diagnostics:** Kestrel provides built-in performance diagnostics features, such as logging and metrics.
 
 ## Get started
 

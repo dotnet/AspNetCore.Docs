@@ -10,6 +10,8 @@ uid: blazor/components/lifecycle
 ---
 # ASP.NET Core Razor component lifecycle
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains the ASP.NET Core Razor component lifecycle and how to use lifecycle events.
 
 :::moniker range=">= aspnetcore-7.0"

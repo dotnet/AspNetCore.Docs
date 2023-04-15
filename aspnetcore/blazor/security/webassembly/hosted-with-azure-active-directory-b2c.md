@@ -10,7 +10,11 @@ uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
+
+For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
 
 ## Walkthrough
 
@@ -34,7 +38,7 @@ Register an AAD B2C app for the *Server API app*:
 1. Navigate to **Azure AD B2C** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Server AAD B2C**).
 1. For **Supported account types**, select the multi-tenant option: **Accounts in any identity provider or organizational directory (for authenticating users with user flows)**
-1. The *Server API app* doesn't require a **Redirect URI** in this scenario, so skip the **Redirect URI** setting don't enter a redirect URI.
+1. The *Server API app* doesn't require a **Redirect URI** in this scenario, so leave the **Select a platform** dropdown list unselected and don't enter a redirect URI.
 1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), confirm that **Permissions** > **Grant admin consent to openid and offline_access permissions** is selected. If the publisher domain is verified, this checkbox isn't present.
 1. Select **Register**.
 
@@ -119,7 +123,7 @@ dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" 
 | `{SIGN UP OR SIGN IN POLICY}` | Sign-up/sign-in user flow | `B2C_1_signupsignin1` |
 | `{TENANT DOMAIN}` | Primary/Publisher/Tenant domain | `contoso.onmicrosoft.com` |
 
-The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name. **Avoid using dashes (`-`) in the app name that break the formation of the OIDC app identifier (see the earlier WARNING).**
+The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the project's name. **Avoid using dashes (`-`) in the app name that break the formation of the OIDC app identifier (see the earlier WARNING).**
 
 > [!NOTE]
 > The scope set up in a hosted Blazor WebAssembly solution by the [Blazor WebAssembly project template](xref:blazor/project-structure) might have the App ID URI host repeated. Confirm that the scope configured for the `DefaultAccessTokenScopes` collection is correct in `Program.cs` of the **:::no-loc text="Client":::** app.
@@ -150,9 +154,9 @@ If the scope is incorrect, update the value now.
 
 [!INCLUDE[](~/blazor/security/includes/run-the-app.md)]
 
-## Custom user flows
+## Custom policies
 
-[!INCLUDE[](~/blazor/security/includes/wasm-aad-b2c-userflows.md)]
+[!INCLUDE[](~/blazor/security/includes/wasm-aad-b2c-custom-policies.md)]
 
 ## Configure `User.Identity.Name`
 

@@ -10,6 +10,8 @@ uid: blazor/host-and-deploy/index
 ---
 # Host and deploy ASP.NET Core Blazor
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to host and deploy Blazor apps.
 
 :::moniker range=">= aspnetcore-6.0"
@@ -163,24 +165,24 @@ In other hosting scenarios, such as GitHub Pages and IIS sub-apps, the app base 
     For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>. For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
 
 > [!NOTE]
-> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after `UsePathBase` so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by `UsePathBase` as described in the [Middleware Ordering](xref:fundamentals/middleware/index#order) and [Routing](xref:fundamentals/routing) articles.
+> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after `UsePathBase` so that the Routing Middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by `UsePathBase` as described in the [Middleware Ordering](xref:fundamentals/middleware/index#order) and [Routing](xref:fundamentals/routing) articles.
 
 Do ***not*** prefix links throughout the app with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
 
-* ❌ Incorrect: `<a href="/account">`
-* ✔️ Correct: `<a href="account">`
-* ✔️ Correct: `<a href="./account">`
+* <span aria-hidden="true">❌</span> Incorrect: `<a href="/account">`
+* <span aria-hidden="true">✔️</span> Correct: `<a href="account">`
+* <span aria-hidden="true">✔️</span> Correct: `<a href="./account">`
 
 In [Blazor WebAssembly web API requests with the `HttpClient` service](xref:blazor/call-web-api?pivots=webassembly), confirm that JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions>) do ***not*** prefix URLs with a forward slash (`/`):
 
-* ❌ Incorrect: `var rsp = await client.GetFromJsonAsync("/api/Account");`
-* ✔️ Correct: `var rsp = await client.GetFromJsonAsync("api/Account");`
+* <span aria-hidden="true">❌</span> Incorrect: `var rsp = await client.GetFromJsonAsync("/api/Account");`
+* <span aria-hidden="true">✔️</span> Correct: `var rsp = await client.GetFromJsonAsync("api/Account");`
 
 Do ***not*** prefix [Navigation Manager](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers) relative links with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation (`Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>):
 
-* ❌ Incorrect: `Navigation.NavigateTo("/other");`
-* ✔️ Correct: `Navigation.NavigateTo("other");`
-* ✔️ Correct: `Navigation.NavigateTo("./other");`
+* <span aria-hidden="true">❌</span> Incorrect: `Navigation.NavigateTo("/other");`
+* <span aria-hidden="true">✔️</span> Correct: `Navigation.NavigateTo("other");`
+* <span aria-hidden="true">✔️</span> Correct: `Navigation.NavigateTo("./other");`
 
 In typical configurations for Azure/IIS hosting, additional configuration usually isn't required. In some non-IIS hosting and reverse proxy hosting scenarios, additional Static File Middleware configuration might be required to serve static files correctly (for example, `app.UseStaticFiles("/CoolApp");`). The required configuration might require further configuration to serve the Blazor script (`_framework/blazor.server.js` or `_framework/blazor.webassembly.js`). For more information, see <xref:blazor/fundamentals/static-files>.
 

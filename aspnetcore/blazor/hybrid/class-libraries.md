@@ -10,6 +10,8 @@ uid: blazor/hybrid/class-libraries
 ---
 # Share assets across web and native clients using a Razor class library (RCL)
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 Use a Razor class library (RCL) to share Razor components, C# code, and static assets across web and native client projects.
 
 This article builds on the general concepts found in the following articles:
@@ -17,7 +19,7 @@ This article builds on the general concepts found in the following articles:
 * <xref:blazor/components/class-libraries>
 * <xref:razor-pages/ui-class>
 
-The examples in this article share assets between a Blazor Server app and a .NET MAUI Blazor app in the same solution:
+The examples in this article share assets between a Blazor Server app and a .NET MAUI Blazor Hybrid app in the same solution:
 
 * Although a Blazor Server app is used, the guidance applies equally to Blazor WebAssembly apps sharing assets with a Blazor Hybrid app.
 * Projects are in the same [solution](/visualstudio/ide/solutions-and-projects-in-visual-studio#solutions), but an RCL can supply shared assets to projects outside of a solution.
@@ -264,7 +266,7 @@ HELD PER https://github.com/dotnet/AspNetCore.Docs/pull/26331#discussion_r927174
 
 The following example:
 
-* Assumes that a `CustomService` class must be implemented for each hosting model, including the platforms of a .NET MAUI Blazor app, because the code for the service differs for each platform (Android, macOS, Windows, iOS) and a Blazor Server/Blazor WebAssembly app.
+* Assumes that a `CustomService` class must be implemented for each hosting model, including the platforms of a .NET MAUI Blazor Hybrid app, because the code for the service differs for each platform (Android, macOS, Windows, iOS) and a Blazor Server/Blazor WebAssembly app.
 * Places an interface for the service in the Razor class library (RCL). The RCL is named `SharedLibrary`. The interface defines a method that returns a message.
 
 `Interfaces/ICustomService.cs` in the RCL:

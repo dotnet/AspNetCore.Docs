@@ -5,10 +5,12 @@ description: Learn how to use Entity Framework Core (EF Core) in Blazor Server a
 monikerRange: '>= aspnetcore-3.1'
 ms.author: jeliknes
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 03/27/2023
 uid: blazor/blazor-server-ef-core
 ---
 # ASP.NET Core Blazor Server with Entity Framework Core (EF Core)
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article explains how to use [Entity Framework Core (EF Core)](/ef/core/) in Blazor Server apps.
 
@@ -93,7 +95,7 @@ The following example configures [SQLite](https://www.sqlite.org/index.html) and
 
 The factory is injected into components and used to create new `DbContext` instances.
 
-In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/7.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
+In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blob/main/blazor-samples/7.0/BlazorServerEFCoreSample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
 
 ```razor
 @inject IDbContextFactory<ContactContext> DbFactory
@@ -104,7 +106,7 @@ A `DbContext` is created using the factory (`DbFactory`) to delete a contact in 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/Pages/Index.razor).
 
 ## Scope to the component lifetime
 
@@ -163,7 +165,7 @@ The sample app was built as a reference for Blazor Server apps that use EF Core.
 
 The sample uses a local [SQLite](https://www.sqlite.org/index.html) database so that it can be used on any platform. The sample also configures database logging to show the SQL queries that are generated. This is configured in `appsettings.Development.json`:
 
-:::code language="json" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.Development.json" highlight="8":::
+:::code language="json" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/appsettings.Development.json" highlight="8":::
 
 The grid, add, and view components use the "context-per-operation" pattern, where a context is created for each operation. The edit component uses the "context-per-component" pattern, where a context is created for each component.
 
@@ -227,11 +229,11 @@ The recommended approach to create a new <xref:Microsoft.EntityFrameworkCore.DbC
 
 The following example configures [SQLite](https://www.sqlite.org/index.html) and enables data logging. The code uses an extension method (`AddDbContextFactory`) to configure the database factory for DI and provide default options:
 
-:::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Program.cs" id="snippet1":::
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/Program.cs" id="snippet1":::
 
 The factory is injected into components and used to create new `DbContext` instances.
 
-In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
+In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
 
 ```razor
 @inject IDbContextFactory<ContactContext> DbFactory
@@ -239,10 +241,10 @@ In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samp
 
 A `DbContext` is created using the factory (`DbFactory`) to delete a contact in the `DeleteContactAsync` method:
 
-:::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor" id="snippet1":::
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/6.0/BlazorServerEFCoreSample/Pages/Index.razor).
 
 ## Scope to the component lifetime
 
@@ -256,11 +258,11 @@ You can use the factory to create a context and track it for the lifetime of the
 
 The sample app ensures the context is disposed when the component is disposed:
 
-:::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor" id="snippet1":::
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet1":::
 
 Finally, [`OnInitializedAsync`](xref:blazor/components/lifecycle) is overridden to create a new context. In the sample app, [`OnInitializedAsync`](xref:blazor/components/lifecycle) loads the contact in the same method:
 
-:::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor" id="snippet2":::
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet2":::
 
 ## Enable sensitive data logging
 
@@ -297,16 +299,16 @@ Blazor Server is a stateful app framework. The app maintains an ongoing connecti
 
 The sample app was built as a reference for Blazor Server apps that use EF Core. The sample app includes a grid with sorting and filtering, delete, add, and update operations. The sample demonstrates use of EF Core to handle optimistic concurrency.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:index#how-to-download-a-sample))
 
 The sample uses a local [SQLite](https://www.sqlite.org/index.html) database so that it can be used on any platform. The sample also configures database logging to show the SQL queries that are generated. This is configured in `appsettings.Development.json`:
 
-:::code language="json" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.Development.json" highlight="8":::
+:::code language="json" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/appsettings.Development.json" highlight="8":::
 
 The grid, add, and view components use the "context-per-operation" pattern, where a context is created for each operation. The edit component uses the "context-per-component" pattern, where a context is created for each component.
 
 > [!NOTE]
-> Some of the code examples in this topic require namespaces and services that aren't shown. To inspect the fully working code, including the required [`@using`](xref:mvc/views/razor#using) and [`@inject`](xref:mvc/views/razor#inject) directives for Razor examples, see the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/samples/).
+> Some of the code examples in this topic require namespaces and services that aren't shown. To inspect the fully working code, including the required [`@using`](xref:mvc/views/razor#using) and [`@inject`](xref:mvc/views/razor#inject) directives for Razor examples, see the [sample app](https://github.com/dotnet/blazor-samples).
 
 ## Database access
 
@@ -365,11 +367,11 @@ The recommended approach to create a new <xref:Microsoft.EntityFrameworkCore.DbC
 
 The following example configures [SQLite](https://www.sqlite.org/index.html) and enables data logging. The code uses an extension method (`AddDbContextFactory`) to configure the database factory for DI and provide default options:
 
-:::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs" id="snippet1":::
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/Startup.cs" id="snippet1":::
 
 The factory is injected into components and used to create new `DbContext` instances.
 
-In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
+In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/5.0/BlazorServerEFCoreSample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
 
 ```razor
 @inject IDbContextFactory<ContactContext> DbFactory
@@ -377,10 +379,10 @@ In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samp
 
 A `DbContext` is created using the factory (`DbFactory`) to delete a contact in the `DeleteContactAsync` method:
 
-:::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor" id="snippet1":::
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/5.0/BlazorServerEFCoreSample/Pages/Index.razor).
 
 ## Scope to the component lifetime
 
@@ -394,11 +396,11 @@ You can use the factory to create a context and track it for the lifetime of the
 
 The sample app ensures the context is disposed when the component is disposed:
 
-:::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor" id="snippet1":::
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet1":::
 
 Finally, [`OnInitializedAsync`](xref:blazor/components/lifecycle) is overridden to create a new context. In the sample app, [`OnInitializedAsync`](xref:blazor/components/lifecycle) loads the contact in the same method:
 
-:::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor" id="snippet2":::
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet2":::
 
 ## Enable sensitive data logging
 
@@ -435,16 +437,16 @@ Blazor Server is a stateful app framework. The app maintains an ongoing connecti
 
 The sample app was built as a reference for Blazor Server apps that use EF Core. The sample app includes a grid with sorting and filtering, delete, add, and update operations. The sample demonstrates use of EF Core to handle optimistic concurrency.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/samples/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:index#how-to-download-a-sample))
 
 The sample uses a local [SQLite](https://www.sqlite.org/index.html) database so that it can be used on any platform. The sample also configures database logging to show the SQL queries that are generated. This is configured in `appsettings.Development.json`:
 
-:::code language="json" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/appsettings.Development.json" highlight="8":::
+:::code language="json" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/appsettings.Development.json" highlight="8":::
 
 The grid, add, and view components use the "context-per-operation" pattern, where a context is created for each operation. The edit component uses the "context-per-component" pattern, where a context is created for each component.
 
 > [!NOTE]
-> Some of the code examples in this topic require namespaces and services that aren't shown. To inspect the fully working code, including the required [`@using`](xref:mvc/views/razor#using) and [`@inject`](xref:mvc/views/razor#inject) directives for Razor examples, see the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/blazor/samples/).
+> Some of the code examples in this topic require namespaces and services that aren't shown. To inspect the fully working code, including the required [`@using`](xref:mvc/views/razor#using) and [`@inject`](xref:mvc/views/razor#inject) directives for Razor examples, see the [sample app](https://github.com/dotnet/blazor-samples).
 
 ## Database access
 
@@ -501,20 +503,20 @@ The fastest way to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> i
 
 The recommended approach to create a new <xref:Microsoft.EntityFrameworkCore.DbContext> with dependencies is to use a factory. The sample app implements its own factory in `Data/DbContextFactory.cs`.
 
-:::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Data/DbContextFactory.cs":::
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/Data/DbContextFactory.cs":::
 
 In the preceding factory:
 
 * <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance%2A?displayProperty=nameWithType> satisfies any dependencies via the service provider.
-* `IDbContextFactory` is available in EF Core ASP.NET Core 5.0 or later, so the interface is [implemented in the sample app for ASP.NET Core 3.x](https://github.com/dotnet/blazor-samples/blob/main/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Data/IDbContextFactory.cs).
+* `IDbContextFactory` is available in EF Core ASP.NET Core 5.0 or later, so the interface is [implemented in the sample app for ASP.NET Core 3.x](https://github.com/dotnet/blazor-samples/3.1/BlazorServerEFCoreSample/Data/IDbContextFactory.cs).
 
 The following example configures [SQLite](https://www.sqlite.org/index.html) and enables data logging. The code uses an extension method to configure the database factory for DI and provide default options:
 
-:::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Startup.cs" id="snippet1":::
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/Startup.cs" id="snippet1":::
 
 The factory is injected into components and used to create new `DbContext` instances.
 
-In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
+In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/3.1/BlazorServerEFCoreSample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
 
 ```razor
 @inject IDbContextFactory<ContactContext> DbFactory
@@ -522,10 +524,10 @@ In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samp
 
 A `DbContext` is created using the factory (`DbFactory`) to delete a contact in the `DeleteContactAsync` method:
 
-:::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor" id="snippet1":::
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/Pages/Index.razor" id="snippet1":::
 
 > [!NOTE]
-> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/Index.razor).
+> `Filters` is an injected `IContactFilters`, and `Wrapper` is a [component reference](xref:blazor/components/index#capture-references-to-components) to the `GridWrapper` component. See the `Index` component (`Pages/Index.razor`) in the [sample app](https://github.com/dotnet/blazor-samples/blob/main/3.1/BlazorServerEFCoreSample/Pages/Index.razor).
 
 ## Scope to the component lifetime
 
@@ -539,11 +541,11 @@ You can use the factory to create a context and track it for the lifetime of the
 
 The sample app ensures the context is disposed when the component is disposed:
 
-:::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor" id="snippet1":::
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet1":::
 
 Finally, [`OnInitializedAsync`](xref:blazor/components/lifecycle) is overridden to create a new context. In the sample app, [`OnInitializedAsync`](xref:blazor/components/lifecycle) loads the contact in the same method:
 
-:::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/BlazorServerDbContextExample/Pages/EditContact.razor" id="snippet2":::
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerEFCoreSample/Pages/EditContact.razor" id="snippet2":::
 
 In the preceding example:
 

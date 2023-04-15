@@ -10,6 +10,8 @@ uid: blazor/fundamentals/signalr
 ---
 # ASP.NET Core Blazor SignalR guidance
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to configure and manage SignalR connections in Blazor apps.
 
 :::moniker range=">= aspnetcore-7.0"

@@ -10,6 +10,8 @@ uid: blazor/fundamentals/routing
 ---
 # ASP.NET Core Blazor routing and navigation
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to manage request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create navigation links in Blazor apps.
 
 > [!IMPORTANT]

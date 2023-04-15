@@ -10,6 +10,8 @@ uid: blazor/components/control-head-content
 ---
 # Control `<head>` content in ASP.NET Core Blazor apps
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 Razor components can modify the HTML `<head>` element content of a page, including setting the page's title (`<title>` element) and modifying metadata (`<meta>` elements).
 
 ## Control `<head>` content in a Razor component

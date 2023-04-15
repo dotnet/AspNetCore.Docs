@@ -10,9 +10,13 @@ uid: blazor/security/webassembly/hosted-with-azure-active-directory
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication. This article focuses on a single tenant app with a single tenant Azure app registration.
 
 This article doesn't cover a *multi-tenant Azure Active Directory registration*. For more information, see [Making your application multi-tenant](/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant).
+
+For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
 
 ## Walkthrough
 
@@ -37,7 +41,7 @@ Register an AAD app for the *Server API app*:
 1. Navigate to **Azure Active Directory** in the Azure portal. Select **App registrations** in the sidebar. Select the **New registration** button.
 1. Provide a **Name** for the app (for example, **Blazor Server AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
-1. The *Server API app* doesn't require a **Redirect URI** in this scenario, so leave the dropdown list set to **Web** and don't enter a redirect URI.
+1. The *Server API app* doesn't require a **Redirect URI** in this scenario, so leave the **Select a platform** dropdown list unselected and don't enter a redirect URI.
 1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox. If the publisher domain is verified, this checkbox isn't present.
 1. Select **Register**.
 
@@ -122,7 +126,7 @@ dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}"
 
 &dagger;The Blazor WebAssembly template automatically adds a scheme of `api://` to the App ID URI argument passed in the `dotnet new` command. When providing the App ID URI for the `{SERVER API APP ID URI}` placeholder and if the scheme is `api://`, remove the scheme (`api://`) from the argument, as the example value in the preceding table shows. If the App ID URI is a custom value or has some other scheme (for example, `https://` for an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain) similar to `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd`), you must manually update the default scope URI and remove the `api://` scheme after the **:::no-loc text="Client":::** app is created by the template. For more information, see the note in the [Access token scopes](#access-token-scopes) section. The Blazor WebAssembly template might be changed in a future release of ASP.NET Core to address these scenarios. For more information, see [Double scheme for App ID URI with Blazor WASM template (hosted, single org) (dotnet/aspnetcore #27417)](https://github.com/dotnet/aspnetcore/issues/27417).
 
-The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name. **Avoid using dashes (`-`) in the app name that break the formation of the OIDC app identifier (see the earlier WARNING).**
+The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the project's name. **Avoid using dashes (`-`) in the app name that break the formation of the OIDC app identifier (see the earlier WARNING).**
 
 ### Modify the **:::no-loc text="Server":::** `appsettings.json` configuration
 

@@ -10,6 +10,8 @@ uid: blazor/components/class-libraries
 ---
 # Consume ASP.NET Core Razor components from a Razor class library (RCL)
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-6.0"
 
 Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. Include components and static assets in an app from:

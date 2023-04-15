@@ -10,6 +10,8 @@ uid: blazor/security/webassembly/aad-groups-roles
 ---
 # Azure Active Directory (AAD) groups, Administrator Roles, and App Roles
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to configure Blazor WebAssembly to use Azure Active Directory groups and roles.
 
 Azure Active Directory (AAD) provides several authorization approaches that can be combined with ASP.NET Core Identity:

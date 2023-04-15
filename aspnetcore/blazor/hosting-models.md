@@ -10,6 +10,8 @@ uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 <!-- 
 
 NOTE: Daggered lines under the table (&dagger;, &Dagger;) use a double-space at the ends of lines to generate a bare return across rendered lines.
@@ -152,16 +154,16 @@ Blazor Hybrid apps include .NET MAUI, WPF, and Windows Forms framework apps.
 
 | Feature | Blazor Server | Blazor WebAssembly (WASM) | Blazor Hybrid |
 | --- | :---: | :---: | :---: |
-| [Complete .NET API compatibility](#complete-net-api-compatibility) | ✔️ | ❌ | ✔️ |
-| [Direct access to server and network resources](#direct-access-to-server-and-network-resources) | ✔️ | ❌&dagger; | ❌&dagger; |
-| [Small payload size with fast initial load time](#small-payload-size-with-fast-initial-load-time) | ✔️ | ❌ | ❌ |
-| [Near native execution speed](#near-native-execution-speed) | ✔️ | ✔️&Dagger; | ✔️ |
-| [App code secure and private on the server](#app-code-secure-and-private-on-the-server) | ✔️ | ❌&dagger; | ❌&dagger; |
-| [Run apps offline once downloaded](#run-apps-offline-once-downloaded) | ❌ | ✔️ | ✔️ |
-| [Static site hosting](#static-site-hosting) | ❌ | ✔️ | ❌ |
-| [Offloads processing to clients](#offloads-processing-to-clients) | ❌ | ✔️ | ✔️ |
-| [Full access to native client capabilities](#full-access-to-native-client-capabilities) | ❌ | ❌ | ✔️ |
-| [Web-based deployment](#web-based-deployment) | ✔️ | ✔️ | ❌ |
+| [Complete .NET API compatibility](#complete-net-api-compatibility) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> |
+| [Direct access to server and network resources](#direct-access-to-server-and-network-resources) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span>&dagger; | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span>&dagger; |
+| [Small payload size with fast initial load time](#small-payload-size-with-fast-initial-load-time) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
+| [Near native execution speed](#near-native-execution-speed) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span>&Dagger; | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> |
+| [App code secure and private on the server](#app-code-secure-and-private-on-the-server) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span>&dagger; | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span>&dagger; |
+| [Run apps offline once downloaded](#run-apps-offline-once-downloaded) | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> |
+| [Static site hosting](#static-site-hosting) | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
+| [Offloads processing to clients](#offloads-processing-to-clients) | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> |
+| [Full access to native client capabilities](#full-access-to-native-client-capabilities) | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> |
+| [Web-based deployment](#web-based-deployment) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
 
 &dagger;Blazor WebAssembly and Blazor Hybrid apps can use server-based APIs to access server/network resources and access private and secure app code.  
 &Dagger;Blazor WebAssembly only reaches near-native performance with [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation).
@@ -172,13 +174,13 @@ Blazor Hybrid apps include .NET MAUI, WPF, and Windows Forms framework apps.
 
 | Feature | Blazor Server | Blazor WebAssembly (WASM) |
 | --- | :---: | :---: |
-| [Complete .NET API compatibility](#complete-net-api-compatibility) | ✔️ | ❌ |
-| [Direct access to server and network resources](#direct-access-to-server-and-network-resources) | ✔️ | ❌&dagger; |
-| [Small payload size with fast initial load time](#small-payload-size-with-fast-initial-load-time) | ✔️ | ❌ |
-| [App code secure and private on the server](#app-code-secure-and-private-on-the-server) | ✔️ | ❌&dagger; |
-| [Run apps offline once downloaded](#run-apps-offline-once-downloaded) | ❌ | ✔️ |
-| [Static site hosting](#static-site-hosting) | ❌ | ✔️ |
-| [Offloads processing to clients](#offloads-processing-to-clients) | ❌ | ✔️ |
+| [Complete .NET API compatibility](#complete-net-api-compatibility) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
+| [Direct access to server and network resources](#direct-access-to-server-and-network-resources) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span>&dagger; |
+| [Small payload size with fast initial load time](#small-payload-size-with-fast-initial-load-time) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> |
+| [App code secure and private on the server](#app-code-secure-and-private-on-the-server) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span>&dagger; |
+| [Run apps offline once downloaded](#run-apps-offline-once-downloaded) | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> |
+| [Static site hosting](#static-site-hosting) | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> |
+| [Offloads processing to clients](#offloads-processing-to-clients) | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span> | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> |
 
 &dagger;Blazor WebAssembly apps can use server-based APIs to access server/network resources and access private and secure app code.
 

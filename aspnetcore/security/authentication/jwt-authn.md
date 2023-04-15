@@ -15,10 +15,6 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The `dotnet user-jwts` command line tool can create and manage app specific local [JSON Web Tokens](https://jwt.io/introduction) (JWTs).
 
-## Name
-
-`dotnet user-jwts` - Cleans the output of a project.
-
 ## Synopsis
 
 ```dotnetcli

@@ -10,7 +10,11 @@ uid: blazor/security/webassembly/standalone-with-azure-active-directory
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with Azure Active Directory
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD)](https://azure.microsoft.com/services/active-directory/) for authentication.
+
+For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
 
 ## Walkthrough
 
@@ -56,16 +60,16 @@ In **Authentication** > **Platform configurations** > **Single-page application*
 Create the app in an empty folder. Replace the placeholders in the following command with the information recorded earlier and execute the command in a command shell:
 
 ```dotnetcli
-dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" -o {APP NAME} --tenant-id "{TENANT ID}"
+dotnet new blazorwasm -au SingleOrg --client-id "{CLIENT ID}" -o {PROJECT NAME} --tenant-id "{TENANT ID}"
 ```
 
-| Placeholder   | Azure portal name       | Example                                |
-| ------------- | ----------------------- | -------------------------------------- |
-| `{APP NAME}`  | &mdash;                 | `BlazorSample`                         |
-| `{CLIENT ID}` | Application (client) ID | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
-| `{TENANT ID}` | Directory (tenant) ID   | `e86c78e2-8bb4-4c41-aefd-918e0565a45e` |
+| Placeholder      | Azure portal name       | Example                                |
+| ---------------- | ----------------------- | -------------------------------------- |
+| `{PROJECT NAME}` | &mdash;                 | `BlazorSample`                         |
+| `{CLIENT ID}`    | Application (client) ID | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
+| `{TENANT ID}`    | Directory (tenant) ID   | `e86c78e2-8bb4-4c41-aefd-918e0565a45e` |
 
-The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the app's name.
+The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the project's name.
 
 [!INCLUDE[](~/blazor/security/includes/additional-scopes-standalone-AAD.md)]
 

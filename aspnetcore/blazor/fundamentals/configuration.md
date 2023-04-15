@@ -10,6 +10,8 @@ uid: blazor/fundamentals/configuration
 ---
 # ASP.NET Core Blazor configuration
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains configuration of Blazor apps, including app settings, authentication, and logging configuration.
 
 > [!IMPORTANT]

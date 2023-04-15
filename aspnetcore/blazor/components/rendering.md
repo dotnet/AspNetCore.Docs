@@ -10,6 +10,8 @@ uid: blazor/components/rendering
 ---
 # ASP.NET Core Razor component rendering
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains Razor component rendering in ASP.NET Core Blazor apps, including when to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> to manually trigger a component to render.
 
 Components *must* render when they're first added to the component hierarchy by a parent component. This is the only time that a component must render. Components *may* render at other times according to their own logic and conventions.

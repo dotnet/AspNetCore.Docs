@@ -1,6 +1,6 @@
 ---
 title: ASP.NET Core Web Host
-author: rick-anderson
+author: tdykstra
 description: Learn about Web Host in ASP.NET Core, which is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande

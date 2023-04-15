@@ -10,6 +10,8 @@ uid: blazor/components/layouts
 ---
 # ASP.NET Core Blazor layouts
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to create reusable layout components for Blazor apps.
 
 Some app elements, such as menus, copyright messages, and company logos, are usually part of app's overall presentation. Placing a copy of the markup for these elements into all of the components of an app isn't efficient. Every time that one of these elements is updated, every component that uses the element must be updated. This approach is costly to maintain and can lead to inconsistent content if an update is missed. *Layouts* solve these problems.

@@ -45,21 +45,21 @@ The following table lists some of the middleware frequently used with minimal AP
 | [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>, <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer%2A> |
 | [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | <xref:Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions.UseWebSockets%2A> |
 
-## Request handling
+The following sections cover request handling: routing, parameter binding, and responses.
 
-The following sections cover routing, parameter binding, and responses.
+## Routing
 
-### Routing
-
-A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A>:
+A configured `WebApplication` supports `Map{Verb}` and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapMethods%2A> where `{Verb}` is a camel-cased HTTP method like `Get`, `Post`, `Put` or `Delete`:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_r1)]
+
+The <xref:System.Delegate> arguments passed to these methods are called "route handlers".
 
 ### Route Handlers
 
 [!INCLUDE [route handling](~/fundamentals/minimal-apis/includes/route-handlers.md)]
 
-### Parameter Binding
+## Parameter binding
 
 [!INCLUDE [parameter binding](~/fundamentals/minimal-apis/includes/parameter-binding.md)]
 
@@ -86,7 +86,7 @@ Route handlers support the following types of return values:
 |--|--|--|
 |`IResult` | The framework calls [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A)| Decided by the `IResult` implementation
 |`string` | The framework writes the string directly to the response | `text/plain`
-| `T` (Any other type) | The framework will JSON serialize the response| `application/json`
+| `T` (Any other type) | The framework JSON-serializes the response| `application/json`
 
 For a more in-depth guide to route handler return values see <xref:fundamentals/minimal-apis/responses>
 
@@ -104,6 +104,16 @@ app.MapGet("/hello", () => "Hello World");
 app.MapGet("/hello", () => new { Message = "Hello World" });
 ```
 
+#### Return TypedResults
+
+The following code returns a <xref:Microsoft.AspNetCore.Http.TypedResults>:
+
+```csharp
+app.MapGet("/hello", () => TypedResults.Ok(new Message() {  Text = "Hello World!" }));
+```
+
+Returning `TypedResults` is preferred to returning <xref:Microsoft.AspNetCore.Http.Results>. For more information, see [TypedResults vs Results](/aspnet/core/fundamentals/minimal-apis/responses#typedresults-vs-results).
+
 #### IResult return values
 
 ```csharp
@@ -114,26 +124,26 @@ The following example uses the built-in result types to customize the response:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/todo/Program.cs?name=snippet_getCustom)]
 
-##### JSON
+#### JSON
 
 ```csharp
 app.MapGet("/hello", () => Results.Json(new { Message = "Hello World" }));
 ```
 
-##### Custom Status Code
+#### Custom Status Code
 
 ```csharp
 app.MapGet("/405", () => Results.StatusCode(405));
 ```
 
-##### Text
+#### Text
 
 ```csharp
 app.MapGet("/text", () => Results.Text("This is some text"));
 ```
 <a name="stream7"></a>
 
-##### Stream
+#### Stream
 
 ```csharp
 var proxyClient = new HttpClient();
@@ -147,13 +157,13 @@ app.MapGet("/pokemon", async () =>
 
 See <xref:fundamentals/minimal-apis/responses#stream7> for more examples.
 
-##### Redirect
+#### Redirect
 
 ```csharp
 app.MapGet("/old-path", () => Results.Redirect("/new-path"));
 ```
 
-##### File
+#### File
 
 ```csharp
 app.MapGet("/download", () => Results.File("myfile.text"));
@@ -233,7 +243,12 @@ Moved to uid: tutorials/min-web-api
 
 ## See also
 
-[OpenAPI support in minimal APIs](xref:fundamentals/minimal-apis/openapi)
+* <xref:fundamentals/minimal-apis/openapi>
+* <xref:fundamentals/minimal-apis/responses>
+* <xref:fundamentals/minimal-apis/min-api-filters>
+* <xref:fundamentals/minimal-apis/handle-errors>
+* <xref:fundamentals/minimal-apis/security>
+* <xref:fundamentals/minimal-apis/test-min-api>
 
 :::moniker-end
 

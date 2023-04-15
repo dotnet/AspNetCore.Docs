@@ -5,10 +5,12 @@ description: Find information on Razor components provided by the Blazor framewo
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 03/30/2023
 uid: blazor/components/built-in-components
 ---
 # ASP.NET Core built-in Razor components
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 This article lists the Razor components that are provided by the Blazor framework.
 
@@ -39,7 +41,7 @@ The following built-in Razor components are provided by the Blazor framework:
 * [`NavLink`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
 * [`NavMenu`](xref:blazor/fundamentals/routing#navlink-and-navmenu-components)
 * [`PageTitle`](xref:blazor/components/control-head-content)
-* [`QuickGrid`](xref:blazor/components/index#quickgrid-component)
+* [`QuickGrid`](xref:blazor/components/quickgrid)
 * [`Router`](xref:blazor/fundamentals/routing#route-templates)
 * [`RouteView`](xref:blazor/fundamentals/routing#route-templates)
 * [`Virtualize`](xref:blazor/components/virtualization)

@@ -10,6 +10,8 @@ uid: blazor/fundamentals/index
 ---
 # ASP.NET Core Blazor fundamentals
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 *Fundamentals* articles provide guidance on foundational Blazor concepts. Some of the concepts are connected to a basic understanding of *Razor components*, which are described further in the next section of this article and covered in detail in the *Components* articles.
 
 ## Razor components

@@ -10,6 +10,8 @@ uid: blazor/hybrid/root-component-parameters
 ---
 # Pass root component parameters in ASP.NET Core Blazor Hybrid
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to pass root component parameters in a Blazor Hybrid app.
 
 The `RootComponent` class of a `BlazorWebView` defines a `Parameters` property of type `IDictionary<string, object?>?`, which represents an optional dictionary of parameters to pass to the root component:
@@ -23,12 +25,12 @@ The following example passes a view model to the root component, which further p
 * [Data binding and MVVM: Commanding (.NET MAUI documentation)](/dotnet/maui/xaml/fundamentals/mvvm#commanding): Explains data binding with MVVM using a keypad example.
 * [.NET MAUI Samples](https://github.com/dotnet/maui-samples): Provides sample code for `KeypadViewModel.cs`, which is required for this article's example. Implement the `Views/KeypadPage.xaml`/`Views/KeypadPage.xaml.cs` in the app if you wish to see the view model used in a content page.
 
-Although the keypad example focuses on implementing the MVVM pattern in .NET MAUI Blazor apps:
+Although the keypad example focuses on implementing the MVVM pattern in .NET MAUI Blazor Hybrid apps:
 
 * The dictionary of objects passed to root components can include any type for any purpose where you need to pass one or more parameters to the root component for use by Razor components in the app.
 * The concepts demonstrated by the following .NET MAUI Blazor example are the same for Windows Forms Blazor apps and WPF Blazor apps.
 
-Place the view model into the .NET MAUI Blazor app. The view model is available from the .NET MAUI sample app:
+Place the view model into the .NET MAUI Blazor Hybrid app. The view model is available from the .NET MAUI sample app:
 
 [`KeypadViewModel.cs` (`dotnet/maui-samples` GitHub repository)](https://github.com/dotnet/maui-samples/blob/main/6.0/XAML/Fundamentals/XamlSamples/ViewModels/KeypadViewModel.cs)
 

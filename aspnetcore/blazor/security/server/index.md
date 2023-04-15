@@ -10,6 +10,8 @@ uid: blazor/security/server/index
 ---
 # Secure ASP.NET Core Blazor Server apps
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to secure Blazor Server apps as ASP.NET Core applications.
 
 Blazor Server apps are configured for security in the same manner as ASP.NET Core apps. For more information, see the articles under <xref:security/index>. Topics under this overview apply specifically to Blazor Server.
@@ -42,7 +44,7 @@ After choosing the **Blazor Server App** template and configuring the project, s
 Follow the Visual Studio Code guidance in <xref:blazor/tooling> to create a new Blazor Server project with an authentication mechanism:
 
 ```dotnetcli
-dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
+dotnet new blazorserver -o {PROJECT NAME} -au {AUTHENTICATION}
 ```
 
 Permissible authentication values for the `{AUTHENTICATION}` placeholder are shown in the following table.
@@ -56,7 +58,7 @@ Permissible authentication values for the `{AUTHENTICATION}` placeholder are sho
 | `MultiOrg`               | Organizational authentication for multiple tenants |
 | `Windows`                | Windows Authentication |
 
-Using the `-o|--output` option, the command uses the value provided for the `{APP NAME}` placeholder to:
+Using the `-o|--output` option, the command uses the value provided for the `{PROJECT NAME}` placeholder to:
 
 * Create a folder for the project.
 * Name the project.
@@ -76,7 +78,7 @@ For more information, see the [`dotnet new`](/dotnet/core/tools/dotnet-new) comm
 Create a new Blazor Server project with an authentication mechanism using the following command in a command shell:
 
 ```dotnetcli
-dotnet new blazorserver -o {APP NAME} -au {AUTHENTICATION}
+dotnet new blazorserver -o {PROJECT NAME} -au {AUTHENTICATION}
 ```
 
 Permissible authentication values for the `{AUTHENTICATION}` placeholder are shown in the following table.
@@ -90,7 +92,7 @@ Permissible authentication values for the `{AUTHENTICATION}` placeholder are sho
 | `MultiOrg`               | Organizational authentication for multiple tenants |
 | `Windows`                | Windows Authentication |
 
-Using the `-o|--output` option, the command uses the value provided for the `{APP NAME}` placeholder to:
+Using the `-o|--output` option, the command uses the value provided for the `{PROJECT NAME}` placeholder to:
 
 * Create a folder for the project.
 * Name the project.

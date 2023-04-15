@@ -10,6 +10,8 @@ uid: blazor/file-downloads
 ---
 # ASP.NET Core Blazor file downloads
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to download files in Blazor Server and Blazor WebAssembly apps.
 
 Files can be downloaded from the app's own static assets or from any other location:

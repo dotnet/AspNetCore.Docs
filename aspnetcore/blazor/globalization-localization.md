@@ -11,7 +11,19 @@ zone_pivot_groups: blazor-hosting-models
 ---
 # ASP.NET Core Blazor globalization and localization
 
-This article explains how to render globalized and localized content to users in different cultures and languages.
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
+:::zone pivot="server"
+
+This article explains how to render globalized and localized content to users in different cultures and languages in a Blazor Server app. See the [Blazor WebAssembly version](?pivots=webassembly) of this article for guidance on standalone and hosted Blazor WebAssembly apps.
+
+:::zone-end
+
+:::zone pivot="webassembly"
+
+This article explains how to render globalized and localized content to users in different cultures and languages in a standalone or hosted (**:::no-loc text="Client":::** project) Blazor WebAssembly app. See the [Blazor Server version](?pivots=server) of this article for guidance on Blazor Server apps.
+
+:::zone-end
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -19,9 +31,9 @@ For [globalization](/dotnet/core/extensions/globalization), Blazor provides numb
 
 A limited set of ASP.NET Core's localization features are supported:
 
-✔️ <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> are supported in Blazor apps.
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> are supported in Blazor apps.
 
-❌ <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and *not supported* in Blazor apps.
+<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and *not supported* in Blazor apps.
 
 :::zone pivot="webassembly"
 
@@ -947,9 +959,9 @@ For [globalization](/dotnet/core/extensions/globalization), Blazor provides numb
 
 A limited set of ASP.NET Core's localization features are supported:
 
-✔️ <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> are supported in Blazor apps.
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> are supported in Blazor apps.
 
-❌ <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and *not supported* in Blazor apps.
+<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and *not supported* in Blazor apps.
 
 :::zone pivot="webassembly"
 
@@ -1883,9 +1895,9 @@ For [globalization](/dotnet/core/extensions/globalization), Blazor provides numb
 
 A limited set of ASP.NET Core's localization features are supported:
 
-✔️ <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> are supported in Blazor apps.
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> are supported in Blazor apps.
 
-❌ <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and *not supported* in Blazor apps.
+<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and *not supported* in Blazor apps.
 
 :::zone pivot="webassembly"
 
@@ -2810,9 +2822,9 @@ For [globalization](/dotnet/core/extensions/globalization), Blazor provides numb
 
 A limited set of ASP.NET Core's localization features are supported:
 
-✔️ <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> are supported in Blazor apps.
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> <xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> are supported in Blazor apps.
 
-❌ <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and *not supported* in Blazor apps.
+<span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and *not supported* in Blazor apps.
 
 :::zone pivot="webassembly"
 

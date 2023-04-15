@@ -10,6 +10,8 @@ uid: blazor/images
 ---
 # Work with images in ASP.NET Core Blazor
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article describes common scenarios for working with images in Blazor apps. 
 
 ## Dynamically set an image source

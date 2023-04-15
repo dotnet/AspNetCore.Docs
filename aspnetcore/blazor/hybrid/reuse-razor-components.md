@@ -10,6 +10,8 @@ uid: blazor/hybrid/reuse-razor-components
 ---
 # Reuse Razor components in ASP.NET Core Blazor Hybrid
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to author and organize Razor components for the web and :::no-loc text="Web Views"::: in Blazor Hybrid apps.
 
 Razor components work across hosting models (Blazor WebAssembly, Blazor Server, and in the Web View of Blazor Hybrid) and across platforms (Android, iOS, and Windows). Hosting models and platforms have unique capabilities that components can leverage, but components executing across hosting models and platforms must leverage unique capabilities separately, which the following examples demonstrate:
@@ -60,12 +62,12 @@ Where you want to pack platform-specific features into a class library that can 
 
 The following example demonstrates the concepts for images in an app that organizes photographs:
 
-* A .NET MAUI Blazor app uses `InputPhoto` from an RCL that it references.
+* A .NET MAUI Blazor Hybrid app uses `InputPhoto` from an RCL that it references.
 * The .NET MAUI app also references a .NET MAUI class library.
 * `InputPhoto` in the RCL injects an `ICameraService` interface, which is defined in the RCL.
 * `CameraService` partial class implementations for `ICameraService` are in the .NET MAUI class library (`CameraService.Windows.cs`, `CameraService.iOS.cs`, `CameraService.Android.cs`), which references the RCL.
 
-![A .NET MAUI Blazor app uses InputPhoto from a Razor class library (RCL) that it references. The .NET MAUI app also references a .NET MAUI class library. InputPhoto in the RCL injects an ICameraService interface defined in the RCL. CameraService partial class implementations for ICameraService are in the .NET MAUI class library (CameraService.Windows.cs, CameraService.iOS.cs, CameraService.Android.cs), which references the RCL.](~/blazor/hybrid/reuse-razor-components/_static/diagram4.png)
+![A .NET MAUI Blazor Hybrid app uses InputPhoto from a Razor class library (RCL) that it references. The .NET MAUI app also references a .NET MAUI class library. InputPhoto in the RCL injects an ICameraService interface defined in the RCL. CameraService partial class implementations for ICameraService are in the .NET MAUI class library (CameraService.Windows.cs, CameraService.iOS.cs, CameraService.Android.cs), which references the RCL.](~/blazor/hybrid/reuse-razor-components/_static/diagram4.png)
 
 ## Additional resources
 

@@ -10,6 +10,8 @@ uid: blazor/host-and-deploy/webassembly-deployment-layout
 ---
 # Deployment layout for ASP.NET Core Blazor WebAssembly apps
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains how to enable Blazor WebAssembly deployments in environments that block the download and execution of dynamic-link library (DLL) files.
 
 Blazor WebAssembly apps require [dynamic-link libraries (DLLs)](/windows/win32/dlls/dynamic-link-libraries) to function, but some environments block clients from downloading and executing DLLs. In a subset of these environments, [changing the file name extension of DLL files (`.dll`)](xref:blazor/host-and-deploy/webassembly#change-the-file-name-extension-of-dll-files) is sufficient to bypass security restrictions, but security products are often able to scan the content of files traversing the network and block or quarantine DLL files. This article describes one approach for enabling Blazor WebAssembly apps in these environments, where a multipart bundle file is created from the app's DLLs so that the DLLs can be downloaded together bypassing security restrictions.

@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Read related data - ASP.NET MVC with EF Core"
 description: "In this tutorial you'll read and display related data -- that is, data that the Entity Framework loads into navigation properties."
-author: rick-anderson
+author: tdykstra
 ms.author: riande
 ms.date: 09/28/2019
 ms.topic: tutorial
@@ -163,6 +163,12 @@ Instead of:
 Next, if a course was selected, the selected course is retrieved from the list of courses in the view model. Then the view model's `Enrollments` property is loaded with the Enrollment entities from that course's `Enrollments` navigation property.
 
 [!code-csharp[](intro/samples/cu/Controllers/InstructorsController.cs?range=64-69)]
+
+### Tracking vs no-tracking
+
+No-tracking queries are useful when the results are used in a read-only scenario. They're generally quicker to execute because there's no need to set up the change tracking information. If the entities retrieved from the database don't need to be updated, then a no-tracking query is likely to perform better than a tracking query.
+
+In some cases a tracking query is more efficient than a no-tracking query. For more information, see [Tracking vs. No-Tracking Queries](/ef/core/querying/tracking).
 
 ### Modify the Instructor Index view
 

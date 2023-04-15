@@ -10,6 +10,8 @@ uid: blazor/hybrid/index
 ---
 # ASP.NET Core Blazor Hybrid
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 This article explains ASP.NET Core Blazor Hybrid, a way to build interactive client-side web UI with .NET in an ASP.NET Core app.
 
 Use *Blazor Hybrid* to blend desktop and mobile native client frameworks with .NET and Blazor.
