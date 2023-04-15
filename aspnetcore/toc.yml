@@ -15,6 +15,8 @@ items:
     items:
       - name: What's new in docs
         href: whats-new/index.yml
+      - name: What's new in 8.0
+        uid: aspnetcore-8
       - name: What's new in 7.0
         uid: aspnetcore-7
       - name: What's new in 6.0
