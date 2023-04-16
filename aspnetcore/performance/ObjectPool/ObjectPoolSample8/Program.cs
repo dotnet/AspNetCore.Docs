@@ -31,12 +31,9 @@ app.MapGet("/{name}", async (string name, ObjectPool<ReusableBuffer> bufferPool)
             buffer.Data[i] = (byte)name[i];
         }
 
-        using (var sha256 = SHA256.Create())
-        {
-            // Calculate the hash of the data
-            var hash = sha256.ComputeHash(buffer.Data);
-            return "Hash: " + BitConverter.ToString(hash).Replace("-", "");
-        }
+        Span<byte> hash = stackalloc byte[32];
+        SHA256.HashData(buffer.Data.Slice(name.Length), hash);
+        return "Hash: " + Convert.ToHexString(hash);
     }
     finally
     {
