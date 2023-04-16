@@ -29,6 +29,9 @@ Built-in implementations of resolvers and load balancers are included in [`Grpc.
 
 Addresses, connections and other load balancing state is stored in a `GrpcChannel` instance. A channel must be reused when making gRPC calls for load balancing to work correctly.
 
+> [!IMPORTANT]
+> Advanced load balanacing configure uses dependency injection (DI). Apps that don't use DI can create a <xref:Microsoft.Extensions.DependencyInjection.ServiceCollection> instance. If an app already has DI setup, like an ASP.NET Core website, then types should be registered with the existing DI instance. `GrpcChannelOptions.ServiceProvider` is configured by getting an <xref:System.IServiceProvider> from DI.
+
 ## Configure resolver
 
 The resolver is configured using the address a channel is created with. The [URI scheme](https://wikipedia.org/wiki/Uniform_Resource_Identifier#Syntax) of the address specifies the resolver.
@@ -170,6 +173,26 @@ var channel = GrpcChannel.ForAddress(
 var client = new Greet.GreeterClient(channel);
 
 var response = await client.SayHelloAsync(new HelloRequest { Name = "world" });
+```
+
+## Use load balancing with gRPC client factory
+
+gRPC client factory can be configured to use load balancing. Configure clients with a load balancing address, specify channel credentials, and register any DI types required with the app's <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>:
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton<ResolverFactory>(
+    sp => new DnsResolverFactory(refreshInterval: TimeSpan.FromSeconds(30)));
+
+builder.Services
+    .AddGrpcClient<Greeter.GreeterClient>(o =>
+    {
+        o.Address = new Uri("dns:///my-example-host");
+    })
+    .ConfigureChannel(o => o.Credentials = ChannelCredentials.Insecure);
+
+var app = builder.Build();
 ```
 
 ## Write custom resolvers and load balancers
