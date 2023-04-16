@@ -32,7 +32,7 @@ app.MapGet("/hash/{name}", (string name, ObjectPool<ReusableBuffer> bufferPool) 
         }
 
         Span<byte> hash = stackalloc byte[32];
-        SHA256.HashData(new Span<byte>(buffer.Data,0,name.Length), hash);
+        SHA256.HashData(buffer.Data.AsSpan(0, name.Length), hash);
         return "Hash: " + Convert.ToHexString(hash);
     }
     finally
