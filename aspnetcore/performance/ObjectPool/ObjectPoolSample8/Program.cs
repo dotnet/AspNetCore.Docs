@@ -26,7 +26,7 @@ app.MapGet("/{name}", async (string name, ObjectPool<ReusableBuffer> bufferPool)
     try
     {
         // Set the buffer data to the ASCII values of a word
-        for (int i = 0; i < name.Length; i++)
+        for (var i = 0; i < name.Length; i++)
         {
             buffer.Data[i] = (byte)name[i];
         }
