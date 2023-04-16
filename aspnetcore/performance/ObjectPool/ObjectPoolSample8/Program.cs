@@ -19,7 +19,7 @@ app.MapGet("/", () => "Hello World!");
 
 // return the SHA256 hash of a word 
 // https://localhost:7214/SamsonAmaugo
-app.MapGet("/{name}", async (string name, ObjectPool<ReusableBuffer> bufferPool) =>
+app.MapGet("/{name}", (string name, ObjectPool<ReusableBuffer> bufferPool) =>
 {
 
     var buffer = bufferPool.Get();
@@ -32,7 +32,7 @@ app.MapGet("/{name}", async (string name, ObjectPool<ReusableBuffer> bufferPool)
         }
 
         Span<byte> hash = stackalloc byte[32];
-        SHA256.HashData(buffer.Data.Slice(name.Length), hash);
+        SHA256.HashData(new Span<byte>(buffer.Data,0,name.Length), hash);
         return "Hash: " + Convert.ToHexString(hash);
     }
     finally
