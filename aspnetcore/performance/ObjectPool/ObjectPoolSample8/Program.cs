@@ -18,8 +18,8 @@ var app = builder.Build();
 app.MapGet("/", () => "Hello World!");
 
 // return the SHA256 hash of a word 
-// https://localhost:7214/SamsonAmaugo
-app.MapGet("/{name}", (string name, ObjectPool<ReusableBuffer> bufferPool) =>
+// https://localhost:7214/hash/SamsonAmaugo
+app.MapGet("/hash/{name}", (string name, ObjectPool<ReusableBuffer> bufferPool) =>
 {
 
     var buffer = bufferPool.Get();
