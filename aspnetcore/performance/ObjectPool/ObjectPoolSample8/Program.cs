@@ -9,7 +9,7 @@ builder.Services.TryAddSingleton<ObjectPoolProvider, DefaultObjectPoolProvider>(
 builder.Services.TryAddSingleton<ObjectPool<ReusableBuffer>>(serviceProvider =>
 {
     var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-    var policy = new ReusableBufferPolicy();
+    var policy = new DefaultPooledObjectPolicy<ReusableBuffer>();
     return provider.Create(policy);
 });
 
