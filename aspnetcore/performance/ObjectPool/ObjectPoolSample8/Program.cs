@@ -56,18 +56,3 @@ public class ReusableBuffer : IResettable
         return true;
     }
 }
-
-public class ReusableBufferPolicy : IPooledObjectPolicy<ReusableBuffer>
-{
-    public ReusableBuffer? reusableBuffer;
-    public ReusableBuffer Create()
-    {
-        reusableBuffer = new ReusableBuffer();
-        return reusableBuffer;
-    }
-
-    public bool Return(ReusableBuffer obj)
-    {
-        return obj.TryReset();
-    }
-}
