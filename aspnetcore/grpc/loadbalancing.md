@@ -177,7 +177,7 @@ var response = await client.SayHelloAsync(new HelloRequest { Name = "world" });
 
 ## Use load balancing with gRPC client factory
 
-gRPC client factory can be configured to use load balancing. Configure clients with a load balancing address, specify channel credentials, and register any DI types required with the app's <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>:
+[gRPC client factory](xref:grpc/clientfactory) can be configured to use load balancing:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
