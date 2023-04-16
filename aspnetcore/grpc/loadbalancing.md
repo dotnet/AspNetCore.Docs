@@ -200,6 +200,7 @@ The proceeding code:
 * Configures the client with a load-balancing address.
 * Specifies channel credentials.
 * Registers DI types with the app's <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>.
+
 ## Write custom resolvers and load balancers
 
 Client-side load balancing is extensible:
