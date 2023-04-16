@@ -182,15 +182,15 @@ var response = await client.SayHelloAsync(new HelloRequest { Name = "world" });
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<ResolverFactory>(
-    sp => new DnsResolverFactory(refreshInterval: TimeSpan.FromSeconds(30)));
-
 builder.Services
     .AddGrpcClient<Greeter.GreeterClient>(o =>
     {
         o.Address = new Uri("dns:///my-example-host");
     })
     .ConfigureChannel(o => o.Credentials = ChannelCredentials.Insecure);
+
+builder.Services.AddSingleton<ResolverFactory>(
+    sp => new DnsResolverFactory(refreshInterval: TimeSpan.FromSeconds(30)));
 
 var app = builder.Build();
 ```
