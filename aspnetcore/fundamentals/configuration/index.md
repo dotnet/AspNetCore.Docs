@@ -12,6 +12,8 @@ uid: fundamentals/configuration/index
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 :::moniker range=">= aspnetcore-7.0" 
 
 Application configuration in ASP.NET Core is performed using one or more [configuration providers](#cp). Configuration providers read configuration data from key-value pairs using a variety of configuration sources:
