@@ -279,7 +279,7 @@ public sealed class IdleCircuitHandler : CircuitHandler, IDisposable
 
     private void CircuitIdle(object? sender, System.Timers.ElapsedEventArgs e)
     {
-        logger.LogInformation(nameof(CircuitIdle));
+        logger.LogInformation("{Circuit} is idle", nameof(CircuitIdle));
     }
 
     public override Func<CircuitInboundActivityContext, Task> CreateInboundActivityHandler(
@@ -324,83 +324,7 @@ public static class IdleCircuitHandlerServiceCollectionExtensions
 }
 ```
 
-Circuit activity handlers also provide a way to access scoped Blazor services from other non-Blazor dependency injection (DI) scopes, such as scopes created using <xref:System.Net.Http.IHttpClientFactory>. There's an existing pattern for accessing circuit-scoped services from other dependency injection scopes, but it requires using a custom base component type. With circuit activity handlers, we can use a better approach, which is demonstrated by the following example:
-
-```csharp
-public class CircuitServicesAccessor
-{
-    static readonly AsyncLocal<IServiceProvider> blazorServices = new();
-
-    public IServiceProvider? Services
-    {
-        get => blazorServices.Value;
-        set => blazorServices.Value = value;
-    }
-}
-
-public class ServicesAccessorCircuitHandler : CircuitHandler
-{
-    readonly IServiceProvider services;
-    readonly CircuitServicesAccessor circuitServicesAccessor;
-
-    public ServicesAccessorCircuitHandler(IServiceProvider services, 
-        CircuitServicesAccessor servicesAccessor)
-    {
-        this.services = services;
-        this.circuitServicesAccessor = servicesAccessor;
-    }
-
-    public override Func<CircuitInboundActivityContext, Task> CreateInboundActivityHandler(
-        Func<CircuitInboundActivityContext, Task> next)
-    {
-        return async context =>
-        {
-            circuitServicesAccessor.Services = services;
-            await next(context);
-            circuitServicesAccessor.Services = null;
-        };
-    }
-}
-
-public static class CircuitServicesServiceCollectionExtensions
-{
-    public static IServiceCollection AddCircuitServicesAccessor(
-        this IServiceCollection services)
-    {
-        services.AddScoped<CircuitServicesAccessor>();
-        services.AddScoped<CircuitHandler, ServicesAccessorCircuitHandler>();
-
-        return services;
-    }
-}
-```
-
-Next, access the circuit-scoped services by injecting the `CircuitServicesAccessor` where it's needed. For example, here's how you can access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> from a <xref:System.Net.Http.DelegatingHandler> setup using <xref:System.Net.Http.IHttpClientFactory>:
-
-```csharp
-public class AuthenticationStateHandler : DelegatingHandler
-{
-    readonly CircuitServicesAccessor circuitServicesAccessor;
-
-    public AuthenticationStateHandler(
-        CircuitServicesAccessor circuitServicesAccessor)
-    {
-        this.circuitServicesAccessor = circuitServicesAccessor;
-    }
-
-    protected override async Task<HttpResponseMessage> SendAsync(
-        HttpRequestMessage request, CancellationToken cancellationToken)
-    {
-        var authStateProvider = circuitServicesAccessor.Services
-            .GetRequiredService<AuthenticationStateProvider>();
-        var authState = await authStateProvider.GetAuthenticationStateAsync();
-
-        ...
-
-        return await base.SendAsync(request, cancellationToken);
-    }
-}
-```
+Circuit activity handlers also provide an approach for accessing scoped Blazor services from other non-Blazor dependency injection (DI) scopes. For more information, see <xref:blazor/fundamentals/dependency-injection>.
 
 :::moniker-end
 

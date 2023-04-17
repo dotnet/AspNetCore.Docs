@@ -697,3 +697,59 @@ Immediately before the call to `app.MapBlazorHub()` in `Startup.Configure` of `S
 ```csharp
 app.UseMiddleware<UserServiceMiddleware>();
 ```
+
+:::moniker range=">= aspnetcore-8.0"
+
+## Access `AuthenticationStateProvider` in outgoing request middleware
+
+The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> from a <xref:System.Net.Http.DelegatingHandler> for <xref:System.Net.Http.HttpClient> created with <xref:System.Net.Http.IHttpClientFactory> can be accessed in outgoing request middleware.
+
+> [!NOTE]
+> For general guidance on defining delegating handlers for HTTP requests by <xref:System.Net.Http.HttpClient> instances created using <xref:System.Net.Http.IHttpClientFactory> in Blazor Server, see the following sections of <xref:fundamentals/http-requests>:
+>
+> * [Outgoing request middleware](xref:fundamentals/http-requests#outgoing-request-middleware)
+> * [Use DI in outgoing request middleware](xref:fundamentals/http-requests#use-di-in-outgoing-request-middleware)
+
+The following example uses <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to attach a custom user name header for authenticated users to outgoing requests.
+
+`AuthenticationStateHandler.cs`:
+
+```csharp
+public class AuthenticationStateHandler : DelegatingHandler
+{
+    readonly CircuitServicesAccessor circuitServicesAccessor;
+
+    public AuthenticationStateHandler(
+        CircuitServicesAccessor circuitServicesAccessor)
+    {
+        this.circuitServicesAccessor = circuitServicesAccessor;
+    }
+
+    protected override async Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        var authStateProvider = circuitServicesAccessor.Services
+            .GetRequiredService<AuthenticationStateProvider>();
+        var authState = await authStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        {
+            request.Headers.Add("X-USER-IDENTITY-NAME", user.Identity.Name);
+        }
+
+        return await base.SendAsync(request, cancellationToken);
+    }
+}
+```
+
+In `Program.cs`, register the `AuthenticationStateHandler` and add the handler to the <xref:System.Net.Http.IHttpClientFactory> that creates <xref:System.Net.Http.HttpClient> instances:
+
+```csharp
+builder.Services.AddTransient<AuthenticationStateHandler>();
+
+builder.Services.AddHttpClient("HttpMessageHandler")
+    .AddHttpMessageHandler<AuthenticationStateHandler>();
+```
+
+:::moniker-end
