@@ -702,15 +702,19 @@ app.UseMiddleware<UserServiceMiddleware>();
 
 ## Access `AuthenticationStateProvider` in outgoing request middleware
 
-The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> from a <xref:System.Net.Http.DelegatingHandler> for <xref:System.Net.Http.HttpClient> created with <xref:System.Net.Http.IHttpClientFactory> can be accessed in outgoing request middleware.
+The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> from a <xref:System.Net.Http.DelegatingHandler> for <xref:System.Net.Http.HttpClient> created with <xref:System.Net.Http.IHttpClientFactory> can be accessed in outgoing request middleware using a [circuit activity handler](xref:blazor/fundamentals/signalr#monitor-circuit-activity-blazor-server).
 
 > [!NOTE]
-> For general guidance on defining delegating handlers for HTTP requests by <xref:System.Net.Http.HttpClient> instances created using <xref:System.Net.Http.IHttpClientFactory> in Blazor Server, see the following sections of <xref:fundamentals/http-requests>:
+> For general guidance on defining delegating handlers for HTTP requests by <xref:System.Net.Http.HttpClient> instances created using <xref:System.Net.Http.IHttpClientFactory> in ASP.NET Core apps, see the following sections of <xref:fundamentals/http-requests>:
 >
 > * [Outgoing request middleware](xref:fundamentals/http-requests#outgoing-request-middleware)
 > * [Use DI in outgoing request middleware](xref:fundamentals/http-requests#use-di-in-outgoing-request-middleware)
 
 The following example uses <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to attach a custom user name header for authenticated users to outgoing requests.
+
+First, implement the `CircuitServicesAccessor` class in the following section of the Blazor dependency injection (DI) article:
+
+[Access Blazor services from a different DI scope](xref:blazor/fundamentals/dependency-injection#access-blazor-services-from-a-different-di-scope)
 
 `AuthenticationStateHandler.cs`:
 

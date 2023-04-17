@@ -324,7 +324,10 @@ public static class IdleCircuitHandlerServiceCollectionExtensions
 }
 ```
 
-Circuit activity handlers also provide an approach for accessing scoped Blazor services from other non-Blazor dependency injection (DI) scopes. For more information, see <xref:blazor/fundamentals/dependency-injection>.
+Circuit activity handlers also provide an approach for accessing scoped Blazor services from other non-Blazor dependency injection (DI) scopes. For more information and examples, see:
+
+* <xref:blazor/fundamentals/dependency-injection#access-blazor-services-from-a-different-di-scope>
+* <xref:blazor/security/server/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware>
 
 :::moniker-end
 
