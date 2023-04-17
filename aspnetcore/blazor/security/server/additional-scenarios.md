@@ -716,6 +716,8 @@ First, implement the `CircuitServicesAccessor` class in the following section of
 
 [Access Blazor services from a different DI scope](xref:blazor/fundamentals/dependency-injection#access-blazor-services-from-a-different-di-scope)
 
+Use the `CircuitServicesAccessor` to access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> in the <xref:System.Net.Http.DelegatingHandler> implementation.
+
 `AuthenticationStateHandler.cs`:
 
 ```csharp
