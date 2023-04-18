@@ -29,8 +29,10 @@ Built-in implementations of resolvers and load balancers are included in [`Grpc.
 
 Addresses, connections and other load balancing state is stored in a `GrpcChannel` instance. A channel must be reused when making gRPC calls for load balancing to work correctly.
 
-> [!IMPORTANT]
-> Advanced load balancing configuration uses dependency injection (DI). Apps that don't use DI can create a <xref:Microsoft.Extensions.DependencyInjection.ServiceCollection> instance. If an app already has DI setup, like an ASP.NET Core website, then types should be registered with the existing DI instance. `GrpcChannelOptions.ServiceProvider` is configured by getting an <xref:System.IServiceProvider> from DI.
+> [!NOTE]
+> Some load balancing configuration uses dependency injection (DI). Apps that don't use DI can create a <xref:Microsoft.Extensions.DependencyInjection.ServiceCollection> instance.
+>
+> If an app already has DI setup, like an ASP.NET Core website, then types should be registered with the existing DI instance. `GrpcChannelOptions.ServiceProvider` is configured by getting an <xref:System.IServiceProvider> from DI.
 
 ## Configure resolver
 
