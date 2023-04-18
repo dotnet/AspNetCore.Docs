@@ -49,7 +49,7 @@ Apps should use [Configuration](xref:fundamentals/configuration/index) to set li
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_fixed2":::
 
-If <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> is called, `UseRateLimiter` must be called after `UseRouting`.
+<xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter%2A> must be called after `UseRouting` when rate limiting endpoint specific APIs are used. For example, if the [`[EnableRateLimiting]`](xref:Microsoft.AspNetCore.RateLimiting.EnableRateLimitingAttribute) Attribute is used, `UseRateLimiter` must be called after `UseRouting`.
 
 <a name="slide"></a>
 
