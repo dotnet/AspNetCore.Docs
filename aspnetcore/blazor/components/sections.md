@@ -18,7 +18,7 @@ To control the content in a Razor component from a child Razor component, Blazor
 
 Sections can be used in both [layouts](xref:blazor/components/layouts) and across nested parent-child components.
 
-Although the argument passed to `SectionName` can use any type of casing, the documentation adopts kebab casing (for example, `top-bar`), which is a common casing choice for HTML element IDs. `SectionId` is assigned a static `object` field, and we always recommend Pascal casing for C# fields (for example, `TopbarSection`).
+Although the argument passed to `SectionName` can use any type of casing, the documentation adopts kebab casing (for example, `top-bar`), which is a common casing choice for HTML element IDs. `SectionId` receives a static `object` field, and we always recommend Pascal casing for C# field names (for example, `TopbarSection`).
 
 In the following example, the app's main layout component implements an increment counter button for the app's `Counter` component.
 
