@@ -33,7 +33,7 @@ ASP.NET Core Identity isn't related to the [Microsoft identity platform](/azure/
 * An evolution of the Azure Active Directory (Azure AD) developer platform.
 * An alternative identity solution for authentication and authorization in ASP.NET Core apps.
 
-[!INCLUDE[](~/includes/IdentityServer4.md)]
+[!INCLUDE[](~/includes/DuendeIdentityServer.md)]
 
 [View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/sample) ([how to download](xref:index#how-to-download-a-sample)).
 
