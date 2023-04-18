@@ -21,6 +21,10 @@ This article is under development and not complete. More information may be foun
 
 ## Miscellaneous
 
+### Support for native AOT
+
+Support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) has been added. For more information, see [ASP.NET Core support for native AOT](xref:fundamentals/native-aot).
+
 ### Code analysis in ASP.NET Core apps
 
 The following new analyzers are available in ASP.NET Core 8.0:
