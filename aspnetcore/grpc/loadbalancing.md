@@ -195,7 +195,7 @@ builder.Services.AddSingleton<ResolverFactory>(
 var app = builder.Build();
 ```
 
-The proceeding code:
+The preceding code:
 
 * Configures the client with a load-balancing address.
 * Specifies channel credentials.
