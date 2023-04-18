@@ -3,9 +3,9 @@ title: Test web APIs with the HttpRepl
 author: tdykstra
 description: Learn how to use the HttpRepl .NET Core Global Tool to browse and test an ASP.NET Core web API.
 monikerRange: '>= aspnetcore-3.1'
-ms.author: scaddie
+ms.author: tdykstra
 ms.custom: mvc
-ms.date: 11/12/2020
+ms.date: 04/17/2023
 uid: web-api/http-repl
 ---
 # Test web APIs with the HttpRepl
@@ -41,6 +41,12 @@ dotnet tool install -g Microsoft.dotnet-httprepl
 ```
 
 A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [Microsoft.dotnet-httprepl](https://www.nuget.org/packages/Microsoft.dotnet-httprepl) NuGet package.
+
+On macOS, update the path:
+
+```bash
+export PATH="$HOME/.dotnet/tools:$PATH"
+```
 
 ## Usage
 

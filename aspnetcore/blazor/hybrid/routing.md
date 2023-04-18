@@ -112,6 +112,48 @@ blazorWebView.UrlLoading +=
 
 :::zone-end
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Get or set a path for initial navigation
+
+Use the `BlazorWebView.StartPath` property to get or set the path for initial navigation within the Blazor navigation context when the Razor component is finished loading. The default start path is the relative root URL path (`/`).
+
+:::zone pivot="maui"
+
+In the `MainPage` XAML markup (`MainPage.xaml`), specify the start path. The following example sets the path to a welcome page at `/welcome`:
+
+```xaml
+<BlazorWebView ... StartPath="/welcome" ...>
+    ...
+<BlazorWebView>
+```
+
+:::zone-end
+
+:::zone pivot="wpf"
+
+In the `MainWindow` designer (`MainWindow.xaml`), specify the start path. The following example sets the path to a welcome page at `/welcome`:
+
+```xaml
+<blazor:BlazorWebView ... StartPath="/welcome" ...>
+    ...
+</blazor:BlazorWebView>
+```
+
+:::zone-end
+
+:::zone pivot="winforms"
+
+Inside the `Form1` constructor of the `Form1.cs` file, specify the start path. The following example sets the path to a welcome page at `/welcome`:
+
+```csharp
+blazorWebView1.StartPath = "/welcome";
+```
+
+:::zone-end
+
+:::moniker-end
+
 :::zone pivot="maui"
 
 ## Navigation among pages and Razor components
@@ -238,4 +280,3 @@ Coverage of deep linking support is forthcoming. In the meantime, see [Support d
 :::zone-end
 
 :::moniker-end
-
