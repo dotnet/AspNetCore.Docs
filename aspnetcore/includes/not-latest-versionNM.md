@@ -2,7 +2,7 @@
 
 > [!NOTE]
 > This isn't the latest version of this article. To switch to the latest, use the ASP.NET Core version selector at the top of the table of contents.
-> Not all internal links work in older versions. If a link doesn't work, try the latest version.
+> Links to internal anchors might not work in older versions. If a link doesn't go to the intended section of the page, try the latest version.
 >
 > :::image type="content" source="~/_static/version-selector.png" alt-text="Version selector":::
 > 
