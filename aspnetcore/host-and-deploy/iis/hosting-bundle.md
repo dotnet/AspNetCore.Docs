@@ -45,6 +45,8 @@ To obtain an earlier version of the installer:
 
 > [!WARNING]
 > Some installers contain release versions that have reached their end of life (EOL) and are no longer supported by Microsoft. For more information, see the [support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
+>
+> The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is forward and backward compatible with [in-support LTS releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
 
 ## Options
 
