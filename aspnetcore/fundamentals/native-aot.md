@@ -31,7 +31,7 @@ AOT compilation happens when the app is published. Native AOT is enabled with th
 
 A project that uses native AOT publishing uses JIT compilation when running locally. The AOT app and JIT app have the following differences:
 
-* Some features that aren't compatible with native AOT are disabled and throw exceptions at runtime.
+* Features that aren't compatible with native AOT are disabled and throw exceptions at runtime.
 * A source analyzer is enabled to highlight code that isn't compatible with native AOT. At publish time, the entire app, including NuGet packages, are analyzed for compatibility again.
 
 Native AOT analysis includes all of the app's code and the libraries the app depends on. Review native AOT warnings and take corrective steps. It's a good idea to test publishing apps frequently to discover issues early in the development lifecycle.
