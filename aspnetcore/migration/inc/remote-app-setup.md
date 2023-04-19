@@ -22,7 +22,9 @@ To enable the ASP.NET Core app to communicate with the ASP.NET app, it's necessa
 
 ### ASP.NET app configuration
 
-To set up the ASP.NET app to be able to receive requests from the ASP.NET Core app, call the `AddRemoteApp` extension method on the `ISystemWebAdapterBuilder` as shown here.
+To set up the ASP.NET app to be able to receive requests from the ASP.NET Core app:
+1. Install the nuget package [`Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices`](https://www.nuget.org/packages/Microsoft.AspNetCore.SystemWebAdapters)
+2. Call the `AddRemoteApp` extension method on the `ISystemWebAdapterBuilder`:
 
 ```CSharp
 SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
