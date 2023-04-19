@@ -840,7 +840,7 @@ Place an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundarie
 </article>
 ```
 
-Normally, the preceding error boundary doesn't react to unhandled exceptions thrown outside of Blazor's synchronization context. If you run the app at this point, the exception is thrown when the elapsed count reaches a value of two, but the error boundary doesn't show the error content.
+If you run the app at this point, the exception is thrown when the elapsed count reaches a value of two. However, the UI doesn't change. The error boundary doesn't show the error content.
 
 Change the `OnNotify` method of the `ReceiveNotification` component (`Pages/ReceiveNotification.razor`):
 
