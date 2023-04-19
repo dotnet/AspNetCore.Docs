@@ -810,7 +810,13 @@ catch (Exception ex)
 }
 ```
 
-For an example use of `DispatchExceptionAsync` API, implement the timer notification example in the [Invoke component methods externally to update state](#invoke-component-methods-externally-to-update-state) section. The example uses a timer outside of Blazor's synchronization context, where an unhandled exception normally doesn't reach Blazor's synchronization context and isn't processed by Blazor's error handling mechanisms, such as an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries).
+For an example use of `DispatchExceptionAsync` API, implement the timer notification example in the [Invoke component methods externally to update state](#invoke-component-methods-externally-to-update-state) section. In a Blazor app, add the following files from the timer notification example and register the services in `Program.cs` as the text explains:
+
+* `TimerService.cs`
+* `NotifierService.cs`
+* `Pages/ReceiveNotifications.razor`
+
+The example uses a timer outside of Blazor's synchronization context, where an unhandled exception normally doesn't reach Blazor's synchronization context and isn't processed by Blazor's error handling mechanisms, such as an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries).
 
 First, change the code in `TimerService.cs` to create an artificial exception outside of Blazor's synchronization context. In the `while` loop of `TimerService.cs`, throw an exception when the `elapsedCount` reaches a value of two:
 
