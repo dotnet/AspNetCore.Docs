@@ -240,6 +240,8 @@ Dynamically importing a module requires a network request, so it can only be ach
 > ```
 >
 > For more information, see <xref:blazor/components/class-libraries>.
+  
+Throughout the Blazor documentation, examples use the `.js` file extension for module files, not the [newer `.mjs` file extension (RFC 9239)](https://www.rfc-editor.org/rfc/rfc9239). Our documentation continues to use the `.js` file extension for the same reasons the Mozilla Foundation's documentation continues to use the `.js` file extension. For more information, see [Aside — .mjs versus .js (MDN documentation)](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules#aside_%E2%80%94_.mjs_versus_.js).
 
 ## Capture references to elements
 
@@ -1033,6 +1035,8 @@ Dynamically importing a module requires a network request, so it can only be ach
 > ```
 >
 > For more information, see <xref:blazor/components/class-libraries>.
+  
+Throughout the Blazor documentation, examples use the `.js` file extension for module files, not the [newer `.mjs` file extension (RFC 9239)](https://www.rfc-editor.org/rfc/rfc9239). Our documentation continues to use the `.js` file extension for the same reasons the Mozilla Foundation's documentation continues to use the `.js` file extension. For more information, see [Aside — .mjs versus .js (MDN documentation)](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules#aside_%E2%80%94_.mjs_versus_.js).
 
 ## Capture references to elements
 
@@ -1865,6 +1869,8 @@ Dynamically importing a module requires a network request, so it can only be ach
 >
 > For more information, see <xref:blazor/components/class-libraries>.
 
+Throughout the Blazor documentation, examples use the `.js` file extension for module files, not the [newer `.mjs` file extension (RFC 9239)](https://www.rfc-editor.org/rfc/rfc9239). Our documentation continues to use the `.js` file extension for the same reasons the Mozilla Foundation's documentation continues to use the `.js` file extension. For more information, see [Aside — .mjs versus .js (MDN documentation)](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules#aside_%E2%80%94_.mjs_versus_.js).
+  
 ## Capture references to elements
 
 Some JavaScript (JS) interop scenarios require references to HTML elements. For example, a UI library may require an element reference for initialization, or you might need to call command-like APIs on an element, such as `click` or `play`.
@@ -2446,6 +2452,8 @@ Load JavaScript (JS) code using any of approaches described by the [JavaScript (
 
 > [!WARNING]
 > Don't place a `<script>` tag in a component file (`.razor`) because the `<script>` tag can't be updated dynamically.
+
+Throughout the Blazor documentation, examples use the `.js` file extension for module files, not the [newer `.mjs` file extension (RFC 9239)](https://www.rfc-editor.org/rfc/rfc9239). Our documentation continues to use the `.js` file extension for the same reasons the Mozilla Foundation's documentation continues to use the `.js` file extension. For more information, see [Aside — .mjs versus .js (MDN documentation)](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules#aside_%E2%80%94_.mjs_versus_.js).
 
 ## Capture references to elements
 
