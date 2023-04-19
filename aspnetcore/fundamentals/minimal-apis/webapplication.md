@@ -10,4 +10,4 @@ uid: fundamentals/minimal-apis/webapplication
 
 # WebApplication and WebApplicationBuilder in Minimal API apps
 
-[!INCLUDE [WebApplication and WebApplicationBuilder](includes/webapplication.md)]
+[!INCLUDE [WebApplication and WebApplicationBuilder](~/fundamentals/minimal-apis/includes/webapplication.md)]

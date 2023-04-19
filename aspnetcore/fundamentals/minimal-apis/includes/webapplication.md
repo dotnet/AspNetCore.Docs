@@ -14,6 +14,8 @@ The following code creates a <xref:Microsoft.AspNetCore.Builder.WebApplication> 
 
 [`WebApplication.Create`](xref:Microsoft.AspNetCore.Builder.WebApplication.Create%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplication> class with preconfigured defaults.
 
+[!INCLUDE [webapplication7](~/fundamentals/minimal-apis/includes/middleware.md)]
+
 ### Working with ports
 
 When a web app is created with Visual Studio or `dotnet new`, a `Properties/launchSettings.json` file is created that specifies the ports the app responds to. In the port setting samples that follow, running the app from Visual Studio returns an error dialog `Unable to connect to web server 'AppName'`.  Visual Studio returns an error because it's expecting the port specified in `Properties/launchSettings.json`, but the app is using the port specified by `app.Run("http://localhost:3000")`. Run the following port changing samples from the command line.
@@ -216,7 +218,6 @@ The following code reads `HelloKey` from configuration and displays the value at
 ### Add services
 
 [!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_svc)]
-
 
 ### Customize the IHostBuilder
 
