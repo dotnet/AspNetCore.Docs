@@ -140,11 +140,11 @@ Because unused code is trimmed during publishing for native AOT, the app can't u
 
 Run the `dotnet build` command. `publish` isn't necessary to view generated code. The built output contains an `obj/Debug/net8.0/generated/` directory and all the generated files for the project.
 
-When `dotnet publish` is run:
+The `dotnet publish` command:
 
-* The project source files and generated source files are compiled.
-* Generated assemblies are passed to an native IL compiler which produces the native executable. The native executable contains the native machine code.
-* The native app is ready to run.
+* Compiles the source files.
+* Generates files which are are compiled.
+* Passes generated assemblies to an native IL compiler. The IL compiler produces the native executable. The native executable contains the native machine code.
 
 ## Benefits of using native AOT with ASP.NET Core
 
