@@ -30,14 +30,18 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 // app.UseCookiePolicy();
+// app.UseRateLimiter();
 
 app.UseRouting();
-
-app.UseAuthentication();
-app.UseAuthorization();
-// app.UseRateLimiter();
 // app.UseRequestLocalization();
 // app.UseCors();
+
+app.UseAuthentication();
+app.UseAuthentication();
+app.UseAuthorization();
+// app.UseSession();
+// app.UseResponseCompression();
+// app.UseResponseCaching();
 
 app.MapRazorPages();
 app.MapDefaultControllerRoute();
