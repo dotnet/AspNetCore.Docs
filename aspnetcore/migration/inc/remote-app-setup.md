@@ -24,7 +24,7 @@ To enable the ASP.NET Core app to communicate with the ASP.NET app, it's necessa
 
 To set up the ASP.NET app to be able to receive requests from the ASP.NET Core app:
 1. Install the nuget package [`Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices`](https://www.nuget.org/packages/Microsoft.AspNetCore.SystemWebAdapters)
-2. Call the `AddRemoteApp` extension method on the `ISystemWebAdapterBuilder`:
+2. Call the `AddRemoteAppServer` extension method on the `ISystemWebAdapterBuilder`:
 
 ```CSharp
 SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
@@ -35,7 +35,17 @@ SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
     });
 ```
 
-In the options configuration method passed to the `AddRemoteApp` call, you must specify an API key which is used to secure the endpoint so that only trusted callers can make requests to it (this same API key will be provided to the ASP.NET Core app when it is configured). The API key is a string and must be parsable as a GUID (128-bit hex number). Hyphens in the key are optional.
+In the options configuration method passed to the `AddRemoteAppServer` call, you must specify an API key which is used to secure the endpoint so that only trusted callers can make requests to it (this same API key will be provided to the ASP.NET Core app when it is configured). The API key is a string and must be parsable as a GUID (128-bit hex number). Hyphens in the key are optional.
+
+3. Add the `SystemWebAdapterModule` HttpModule to your web.config if it wasn't already added by the [.Net Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant):
+
+```
+  <system.webServer>
+    <modules>
+      <remove name="SystemWebAdapterModule" />
+      <add name="SystemWebAdapterModule" type="Microsoft.AspNetCore.SystemWebAdapters.SystemWebAdapterModule, Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices" preCondition="managedHandler" />
+      
+```
 
 ### ASP.NET Core app
 
