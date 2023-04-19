@@ -30,15 +30,15 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 // app.UseCookiePolicy();
-// app.UseRateLimiter();
 
 app.UseRouting();
+// app.UseRateLimiter();
 // app.UseRequestLocalization();
 // app.UseCors();
 
 app.UseAuthentication();
-app.UseAuthentication();
 app.UseAuthorization();
+
 // app.UseSession();
 // app.UseResponseCompression();
 // app.UseResponseCaching();
