@@ -162,7 +162,7 @@ The template app was run in our benchmarking lab and shows the following improve
 
 ![Chart showing comparison of application size, memory use and startup time metrics of an AOT published app, a runtime app that is trimmed, and an untrimmed runtime app.](~/fundamentals/aot/_static/aot-runtime-trimmed-perf-chart.png)
 
-The preceding chart shows the native AOT has a significantly lower app size, memory used, and startup time.
+The preceding chart shows the native AOT has a significantly lower app size, memory usage, and startup time.
 
 ## ASP.NET Core and native AOT compatibility
 
