@@ -52,8 +52,8 @@ var builder = WebApplication.CreateBuilder(args);
 1. Command-line arguments using the [Command-line configuration provider](#command-line).
 1. Non-prefixed environment variables using the [Non-prefixed environment variables configuration provider](#evcp).
 1. [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment.
-1. `appsettings.{Environment}.json` using the [JSON configuration provider](#file-configuration-provider). For example, `appsettings.Production.json` and `appsettings.Development.json`.
-1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#file-configuration-provider).
+1. `appsettings.{Environment}.json` using the [JSON configuration provider](#jcp). For example, `appsettings.Production.json` and `appsettings.Development.json`.
+1. [appsettings.json](#appsettingsjson) using the [JSON configuration provider](#jcp).
 1. A fallback to the host configuration described in the [next section](#host).
 
 <a name="host"></a>
@@ -99,7 +99,7 @@ The following code displays the enabled configuration providers in the order the
 
 [!code-csharp[](~/fundamentals/configuration/index/samples/6.x/ConfigSample/Pages/Index2.cshtml.cs?name=snippet)]
 
-The preceding [list of highest to lowest priority default configuration sources](#hi2low) shows the providers in the opposite order they are added to template generated application. For example, the [JSON configuration provider](#file-configuration-provider) is added before the [Command-line configuration provider](#command-line).
+The preceding [list of highest to lowest priority default configuration sources](#hi2low) shows the providers in the opposite order they are added to template generated application. For example, the [JSON configuration provider](#jcp) is added before the [Command-line configuration provider](#command-line).
 
 Configuration providers that are added later have higher priority and override previous key settings. For example, if `MyKey` is set in both `appsettings.json` and the environment, the environment value is used. Using the default configuration providers, the  [Command-line configuration provider](#clcp) overrides all other providers.
 
