@@ -23,7 +23,7 @@ The `RootComponent` class of a `BlazorWebView` defines a `Parameters` property o
 The following example passes a view model to the root component, which further passes the view model as a cascading type to a Razor component in the Blazor portion of the app. The example is based on the keypad example in the .NET MAUI documentation:
 
 * [Data binding and MVVM: Commanding (.NET MAUI documentation)](/dotnet/maui/xaml/fundamentals/mvvm#commanding): Explains data binding with MVVM using a keypad example.
-* [.NET MAUI Samples](https://github.com/dotnet/maui-samples): Provides sample code for `KeypadViewModel.cs`, which is required for this article's example. Implement the `Views/KeypadPage.xaml`/`Views/KeypadPage.xaml.cs` in the app if you wish to see the view model used in a content page.
+* [.NET MAUI XAML Samples](https://github.com/dotnet/maui-samples/): Provides sample code for `KeypadViewModel.cs`, which is required for this article's example.
 
 Although the keypad example focuses on implementing the MVVM pattern in .NET MAUI Blazor Hybrid apps:
 
@@ -32,7 +32,7 @@ Although the keypad example focuses on implementing the MVVM pattern in .NET MAU
 
 Place the view model into the .NET MAUI Blazor Hybrid app. The view model is available from the .NET MAUI sample app:
 
-[`KeypadViewModel.cs` (`dotnet/maui-samples` GitHub repository)](https://github.com/dotnet/maui-samples/blob/main/6.0/XAML/Fundamentals/XamlSamples/ViewModels/KeypadViewModel.cs)
+[`KeypadViewModel.cs` (`dotnet/maui-samples` GitHub repository)](https://github.com/dotnet/maui-samples/): Locate the `KeypadViewModel.cs` file at the following path in the sample app: `XAML/XamlSamples/XamlSamples/ViewModels/`.
 
 Change the namespace of `KeypadViewModel.cs` file to match the app's root namespace. In the following example, the app's root namespace is `MauiBlazor`:
 
