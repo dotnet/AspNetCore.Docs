@@ -32,11 +32,15 @@ app.UseStaticFiles();
 // app.UseCookiePolicy();
 
 app.UseRouting();
-
-app.UseAuthorization();
 // app.UseRateLimiter();
 // app.UseRequestLocalization();
 // app.UseCors();
+
+app.UseAuthentication();
+app.UseAuthorization();
+// app.UseSession();
+// app.UseResponseCompression();
+// app.UseResponseCaching();
 
 app.MapRazorPages();
 app.MapDefaultControllerRoute();

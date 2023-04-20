@@ -29,9 +29,9 @@ AOT compilation happens when the app is published. Native AOT is enabled with th
 </PropertyGroup>
 ```
 
-A project that uses native AOT publishing will use JIT compilation when debugging/running, but there are some observable differences:
+A project that uses native AOT publishing uses JIT compilation when running locally. The AOT app has the following differences:
 
-* Some features that aren't compatible with native AOT are disabled and throw exceptions at runtime.
+* Features that aren't compatible with native AOT are disabled and throw exceptions at runtime.
 * A source analyzer is enabled to highlight code that isn't compatible with native AOT. At publish time, the entire app, including NuGet packages, are analyzed for compatibility again.
 
 Native AOT analysis includes all of the app's code and the libraries the app depends on. Review native AOT warnings and take corrective steps. It's a good idea to test publishing apps frequently to discover issues early in the development lifecycle.
@@ -40,10 +40,10 @@ Native AOT analysis includes all of the app's code and the libraries the app dep
 
 Native AOT is supported by ASP.NET Core minimal APIs and gRPC. For more information about getting started using native AOT with gRPC apps, see [gRPC and native AOT](xref:grpc/native-aot).
 
-To get started with native AOT and a minimal API, use the:
+To get started with native AOT and a minimal API, use either:
 
 * ASP.NET Core API Application template, which includes an option to enable publishing native AOT in the new project. The AOT option includes customizations to remove unsupported components from the app.
-* ```dotnet new``` command to create a new ASP.NET Core API app that is configured to work with native AOT:
+* `dotnet new` command to create a new ASP.NET Core API app that is configured to work with native AOT:
 
 ```cli
 $ dotnet new api -aot -o MyFirstAotWebApi && cd MyFirstAotWebApi
@@ -85,7 +85,7 @@ Mode                 LastWriteTime         Length Name
 -a---          30/03/2023  1:41 PM       43044864 MyFirstAotWebApi.pdb
 ```
 
-The executable is self-contained and doesn't require a .NET runtime to run. When launched it should behave as expected:
+The executable is self-contained and doesn't require a .NET runtime to run. When launched it should behave the same as the app run in the development environment:
 
 ```
 $ .\bin\Release\net8.0\win-x64\publish\MyFirstAotWebApi.exe
@@ -100,7 +100,7 @@ info: Microsoft.Hosting.Lifetime[0]
 ```
 
 The `Program.cs` source file contains some changes for publishing to native AOT. A significant difference is that `Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder` is used to create the web application builder.  The `CreateSlimBuilder` method initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimal ASP.NET Core features necessary to run an application.
-<!-- Update the preceding with the following when the .NET 8 API is published :
+<!-- Update the preceding with the following when the .NET 8 API is published:
 <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilderSlim%2A>
 -->
 
@@ -108,7 +108,7 @@ The `Program.cs` source file contains some changes for publishing to native AOT.
 var builder = WebApplication.CreateSlimBuilder(args);
 ```
 
-This template uses JSON to serialize responses, to enable JSON serialization with native AOT, we need to explicitly provide a `JsonSerializerContext` which specifies the custom types that we need to serialize so that the [JSON source generator](/dotnet/standard/serialization/system-text-json/source-generation) knows what to produce code for.
+This template uses JSON to serialize responses. To enable JSON serialization with native AOT, provide a `JsonSerializerContext` which specifies the custom types that are needed to serialize. The `JsonSerializerContext` is what the [JSON source generator](/dotnet/standard/serialization/system-text-json/source-generation) uses to produce code:
 
 ```csharp
 builder.Services.ConfigureHttpJsonOptions(options =>
@@ -125,7 +125,7 @@ internal partial class AppJsonSerializerContext : JsonSerializerContext
 }
 ```
 
-Because unused code is trimmed during publishing for native AOT, the application cannot use unbounded reflection at runtime. Source generators are used to produce code to avoid the need for reflection. In some cases source generators produce code optimized for AOT even when a generator is not strictly required. To view source code that is generated based on the code in ```Program.cs``` modify the ```MyFirstAotWebApi.csproj``` to include the ```<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>``` property. Example:
+Because unused code is trimmed during publishing for native AOT, the app can't use unbounded reflection at runtime. Source generators are used to produce code to avoid the need for reflection. In some cases source generators produce code optimized for AOT even when a generator is not required. To view source code that is generated based on the code in `Program.cs` modify the `MyFirstAotWebApi.csproj` to include the `<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>` property:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -138,27 +138,31 @@ Because unused code is trimmed during publishing for native AOT, the application
 </Project>
 ```
 
-With the project file updated, run the `dotnet build` command (`publish` isn't necessary to view generated code). In the built output file there will be a `obj/Debug/net8.0/generated/` directory which contains all the generated files for the project.
+Run the `dotnet build` command. `publish` isn't necessary to view generated code. The built output contains an `obj/Debug/net8.0/generated/` directory and all the generated files for the project.
 
-When `dotnet publish` is run, the project source files and generated source files are compiled as normal and then outputted assemblies are passed into an native IL compiler which produces the native executable which contains the native machine code to run the application.
+The `dotnet publish` command:
+
+* Compiles the source files.
+* Generates files which are are compiled.
+* Passes generated assemblies to a native IL compiler. The IL compiler produces the native executable. The native executable contains the native machine code.
 
 ## Benefits of using native AOT with ASP.NET Core
 
 Publishing and deploying a native AOT app provides the following benefits:
 
-* **Minimize disk footprint**: When publishing using native AOT a single executable is produced containing just the code from external dependencies that is used to support the program. Reduced executable size can lead to:
+* **Minimized disk footprint**: When publishing using native AOT a single executable is produced containing just the code from external dependencies that is used to support the program. Reduced executable size can lead to:
   * Smaller container images, for example in containerized deployment scenarios.
-  * Reduce deployment time from smaller images.
+  * Reduced deployment time from smaller images.
 * **Reduced startup time**: Native AOT applications can show reduced start-up times. Reduced start-up means:
   * The app is ready to service requests quicker.
-  * Improved deployment where container orchestrators need manage transition from one version of the app to another.
-* **Reduce memory demand**: Native AOT apps can have reduced memory demands depending on the work being performed by the app. Reduced memory consumption can lead to greater deployment density and improved scalability.
+  * Improved deployment where container orchestrators need to manage transition from one version of the app to another.
+* **Reduced memory demand**: Native AOT apps can have reduced memory demands depending on the work being performed by the app. Reduced memory consumption can lead to greater deployment density and improved scalability.
 
-We ran the template application in our benchmarking lab to see what the differences were in terms of application size, memory use, and CPU and observed the following results:
+The template app was run in our benchmarking lab and shows the following improvements in size, memory, and startup time:
 
-![Chart showing comparison of application size, memory use and startup time metrics of an AOT published app, a runtime app that is trimmed, and an untrimmed runtime app.](~/fundamentals/aot/_static/aot-runtime-trimmed-perf-chart.png)
+![Chart showing comparison of application size, memory use, and startup time metrics of an AOT published app, a runtime app that is trimmed, and an untrimmed runtime app.](~/fundamentals/aot/_static/aot-runtime-trimmed-perf-chart.png)
 
-You can see that native AOT has a dramatically lower application size on disk and memory utilization is also lower for our template scenario. Startup time is also significantly reduced. 🚀
+The preceding chart shows that native AOT has significantly lower app size, memory usage, and startup time.
 
 ## ASP.NET Core and native AOT compatibility
 
@@ -187,10 +191,10 @@ Not all features in ASP.NET Core are currently compatible with native AOT. The f
 | StaticFiles | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | WebSockets | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 
-It is important to test your application thoroughly when moving to a native AOT deployment model to ensure that functionality observed during development (when the app is untrimmed and JIT-compiled) is preserved in the native executable. When building your application, keep an eye out for AOT warnings. An application that produces AOT warnings during publishing is not guaranteed to work correctly. If you don't get any AOT warnings at publish time, you should be confident that your application will work consistently after publishing for AOT as it did during your F5 / `dotnet run` develoment workflow.
+It's important to test the app thoroughly when moving to a native AOT deployment model. The AOT deployed app should be tested to verify functionality hasn't changed fron the  untrimmed and JIT-compiled app. When building the app, examine and correct AOT warnings. An app that issues AOT warnings during publishing is not guaranteed to work correctly. If no AOT warnings are issued at publish time, the pubished AOT app should work the same as when run in development.
 
-For more information on AOT warnings and how to address them see; [Introduction to AOT warnings](/dotnet/core/deploying/native-aot/fixing-warnings).
+For more information on AOT warnings and how to address them see [Introduction to AOT warnings](/dotnet/core/deploying/native-aot/fixing-warnings).
 
 ## Known issues
 
-We are keeping track of a number of known issues with native AOT support in ASP.NET Core in [a GitHub issue](https://github.com/dotnet/core/issues/8288).
+See [this GitHub issue](https://github.com/dotnet/core/issues/8288) to report or review issues with native AOT support in ASP.NET Core.
