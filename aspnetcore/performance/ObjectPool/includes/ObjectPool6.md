@@ -1,19 +1,4 @@
----
-title: Object reuse with ObjectPool in ASP.NET Core
-author: rick-anderson
-description: Tips for increasing performance in ASP.NET Core apps using ObjectPool.
-monikerRange: '>= aspnetcore-1.1'
-ms.author: riande
-ms.date: 4/11/2023
-uid: performance/ObjectPool
----
-# Object reuse with ObjectPool in ASP.NET Core
-
-By [Steve Gordon](https://twitter.com/stevejgordon), [Ryan Nowak](https://github.com/rynowak), and [Günther Foidl](https://github.com/gfoidl)
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 <xref:Microsoft.Extensions.ObjectPool> is part of the ASP.NET Core infrastructure that supports keeping a group of objects in memory for reuse rather than allowing the objects to be garbage collected. All the static and instance methods in `Microsoft.Extensions.ObjectPool` are thread-safe.
 
@@ -67,7 +52,3 @@ The following code implements `BirthdayMiddleware`
 [!code-csharp[](~/performance/ObjectPool/ObjectPoolSample6/BirthdayMiddleware.cs)]
 
 :::moniker-end
-
-[!INCLUDE[](~/performance/ObjectPool/includes/ObjectPool6.md)]
-
-[!INCLUDE[](~/performance/ObjectPool/includes/ObjectPool1-5.md)]
