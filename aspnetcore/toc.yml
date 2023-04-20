@@ -463,6 +463,8 @@ items:
                 uid: blazor/components/class-libraries
               - name: JavaScript apps and SPA frameworks
                 uid: blazor/components/js-spa-frameworks
+              - name: Components outside of ASP.NET Core
+                uid: blazor/components/render-outside-of-aspnetcore
               - name: Built-in components
                 uid: blazor/components/built-in-components
           - name: Globalization and localization
