@@ -69,5 +69,3 @@ The following code implements `BirthdayMiddleware`
 :::moniker-end
 
 [!INCLUDE[](~/performance/ObjectPool/includes/ObjectPool6.md)]
-
-[!INCLUDE[](~/performance/ObjectPool/includes/ObjectPool1-5.md)]
