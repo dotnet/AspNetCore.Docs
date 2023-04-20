@@ -5,7 +5,7 @@ description: Learn how to pass an optional dictionary of parameters to the root 
 monikerRange: '>= aspnetcore-6.0'
 ms.author: riande
 ms.custom: "mvc"
-ms.date: 01/31/2023
+ms.date: 04/20/2023
 uid: blazor/hybrid/root-component-parameters
 ---
 # Pass root component parameters in ASP.NET Core Blazor Hybrid
@@ -68,34 +68,29 @@ public MainPage()
 }
 ```
 
-In the `Main` component (`Main.razor`), add a parameter matching the type of the object passed to the root component:
-
-```razor
-@code {
-    [Parameter]
-    public KeypadViewModel KeypadViewModel { get; set; }
-}
-```
-
 The following example [cascades](xref:blazor/components/cascading-values-and-parameters) the object (`KeypadViewModel`) down component hierarchies in the Blazor portion of the app as a [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component).
 
-In the `MainLayout` component (`MainLayout.razor`), add an `@code` block with a field for the type, which is `KeypadViewModel` in this example:
+In the `Main` component (`Main.razor`):
 
-```razor
-@code {
-    private KeypadViewModel keypadViewModel = new();
-}
-```
+* Add a parameter matching the type of the object passed to the root component:
 
-Wrap the `<article>` element of `MainLayout` with a [`CascadingValue` component](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) for the view model:
+  ```razor
+  @code {
+      [Parameter]
+      public KeypadViewModel KeypadViewModel { get; set; }
+  }
+  ```
 
-```razor
-<CascadingValue Value="@keypadViewModel">
-    <article class="content px-4">
-        @Body
-    </article>
-</CascadingValue>
-```
+* Cascade the `KeypadViewModel` with the [`CascadingValue` component](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component). Update the `<Found>` XAML content to the following markup:
+
+  ```xaml
+  <Found Context="routeData">
+      <CascadingValue Value="@KeypadViewModel">
+          <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+          <FocusOnNavigate RouteData="@routeData" Selector="h1"/>
+      </CascadingValue>
+  </Found>
+  ```
 
 At this point, the cascaded type is available to Razor components throughout the app as a [`CascadingParameter`](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute).
 
