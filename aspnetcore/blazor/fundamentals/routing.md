@@ -578,7 +578,7 @@ Use the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Compo
 > [!NOTE]
 > Component parameters can only receive query parameter values in routable components with an [`@page`](xref:mvc/views/razor#page) directive.
 >
-> Only routable components directly receive query parameters in order to avoid subverting top-down information flow and to make parameter processing order clear, both by the framework and by the app. This design avoids subtle bugs in app code that's written assuming specific parameter processing order. You're free to define custom cascading parameters or directly assign to regular component parameters in order to pass query parameter values to non-routable components.
+> Only routable components directly receive query parameters in order to avoid subverting top-down information flow and to make parameter processing order clear, both by the framework and by the app. This design avoids subtle bugs in app code that was written assuming a specific parameter processing order. You're free to define custom cascading parameters or directly assign to regular component parameters in order to pass query parameter values to non-routable components.
 
 Component parameters supplied from the query string support the following types:
 
