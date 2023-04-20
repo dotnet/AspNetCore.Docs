@@ -23,18 +23,108 @@ The `RootComponent` class of a `BlazorWebView` defines a `Parameters` property o
 The following example passes a view model to the root component, which further passes the view model as a cascading type to a Razor component in the Blazor portion of the app. The example is based on the keypad example in the .NET MAUI documentation:
 
 * [Data binding and MVVM: Commanding (.NET MAUI documentation)](/dotnet/maui/xaml/fundamentals/mvvm#commanding): Explains data binding with MVVM using a keypad example.
-* [.NET MAUI XAML Samples](https://github.com/dotnet/maui-samples/): Provides sample code for `KeypadViewModel.cs`, which is required for this article's example.
+* [.NET MAUI Samples](https://github.com/dotnet/maui-samples/)
 
 Although the keypad example focuses on implementing the MVVM pattern in .NET MAUI Blazor Hybrid apps:
 
 * The dictionary of objects passed to root components can include any type for any purpose where you need to pass one or more parameters to the root component for use by Razor components in the app.
 * The concepts demonstrated by the following .NET MAUI Blazor example are the same for Windows Forms Blazor apps and WPF Blazor apps.
 
-Place the view model into the .NET MAUI Blazor Hybrid app. The view model is available from the .NET MAUI sample app:
+Place the following view model into your .NET MAUI Blazor Hybrid app. 
 
-[`KeypadViewModel.cs` (`dotnet/maui-samples` GitHub repository)](https://github.com/dotnet/maui-samples/): Locate the `KeypadViewModel.cs` file at the following path in the sample app: `XAML/XamlSamples/XamlSamples/ViewModels/`.
+`KeypadViewModel.cs`:
 
-Change the namespace of `KeypadViewModel.cs` file to match the app's root namespace. In the following example, the app's root namespace is `MauiBlazor`:
+```csharp
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Input;
+
+namespace MauiBlazor;
+
+public class KeypadViewModel : INotifyPropertyChanged
+{
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    private string _inputString = "";
+    private string _displayText = "";
+    private char[] _specialChars = { '*', '#' };
+
+    public ICommand AddCharCommand { get; private set; }
+    public ICommand DeleteCharCommand { get; private set; }
+
+    public string InputString
+    {
+        get => _inputString;
+        private set
+        {
+            if (_inputString != value)
+            {
+                _inputString = value;
+                OnPropertyChanged();
+                DisplayText = FormatText(_inputString);
+
+                // Perhaps the delete button must be enabled/disabled.
+                ((Command)DeleteCharCommand).ChangeCanExecute();
+            }
+        }
+    }
+
+    public string DisplayText
+    {
+        get => _displayText;
+        set
+        {
+            if (_displayText != value)
+            {
+                _displayText = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public KeypadViewModel()
+    {
+        // Command to add the key to the input string
+        AddCharCommand = new Command<string>((key) => InputString += key);
+
+        // Command to delete a character from the input string when allowed
+        DeleteCharCommand =
+            new Command(
+                // Command will strip a character from the input string
+                () => InputString = InputString.Substring(0, InputString.Length - 1),
+
+                // CanExecute is processed here to return true when there's something to delete
+                () => InputString.Length > 0
+            );
+    }
+
+    string FormatText(string str)
+    {
+        bool hasNonNumbers = str.IndexOfAny(_specialChars) != -1;
+        string formatted = str;
+
+        // Format the string based on the type of data and the length
+        if (hasNonNumbers || str.Length < 4 || str.Length > 10)
+        {
+            // Special characters exist, or the string is too small or large for special formatting
+            // Do nothing
+        }
+
+        else if (str.Length < 8)
+            formatted = string.Format("{0}-{1}", str.Substring(0, 3), str.Substring(3));
+
+        else
+            formatted = string.Format("({0}) {1}-{2}", str.Substring(0, 3), str.Substring(3, 3), str.Substring(6));
+
+        return formatted;
+    }
+
+    public void OnPropertyChanged([CallerMemberName] string name = "") =>
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+}
+```
+
+In this article's example, the app's root namespace is `MauiBlazor`. Change the namespace of `KeypadViewModel` to match the app's root namespace:
 
 ```csharp
 namespace MauiBlazor;
