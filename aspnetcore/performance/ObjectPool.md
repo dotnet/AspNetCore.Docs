@@ -4,14 +4,16 @@ author: rick-anderson
 description: Tips for increasing performance in ASP.NET Core apps using ObjectPool.
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
-ms.date: 04/11/2019
+ms.date: 4/11/2023
 uid: performance/ObjectPool
 ---
 # Object reuse with ObjectPool in ASP.NET Core
 
-By [Steve Gordon](https://twitter.com/stevejgordon), [Ryan Nowak](https://github.com/rynowak), and [Günther Foidl](https://github.com/gfoidl)
+By [Steve Gordon](https://twitter.com/stevejgordon) and [Günther Foidl](https://github.com/gfoidl)
 
-:::moniker range=">= aspnetcore-6.0"
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
+:::moniker range=">= aspnetcore-8.0"
 
 <xref:Microsoft.Extensions.ObjectPool> is part of the ASP.NET Core infrastructure that supports keeping a group of objects in memory for reuse rather than allowing the objects to be garbage collected. All the static and instance methods in `Microsoft.Extensions.ObjectPool` are thread-safe.
 
@@ -32,13 +34,12 @@ Use object pooling only after collecting performance data using realistic scenar
 
 **NOTE: The ObjectPool doesn't place a limit on the number of objects that it allocates, it places a limit on the number of objects it retains.**
 
-## Concepts
+## ObjectPool concepts
 
-<xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> - the basic object pool abstraction. Used to get and return objects.
-
-<xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy%601> - implement this to customize how an object is created and how it is reset when returned to the pool. This can be passed into an object pool that you construct directly, or
-
-<xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*> acts as a factory for creating object pools.
+* <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> : The basic object pool abstraction. Used to get and return objects.
+* <xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy%601> : Implement this to customize how an object is created and how it is reset when returned to the pool. This can be passed into an object pool that is construct directly, or
+* <xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*> : Acts as a factory for creating object pools.
+* [IResettable](https://source.dot.net/#Microsoft.Extensions.ObjectPool/IResettable.cs,9f0c03a4187b92ca,references) : Automatically resets the object when returned to an object pool.
 
 The ObjectPool can be used in an app in multiple ways:
 
@@ -48,22 +49,19 @@ The ObjectPool can be used in an app in multiple ways:
 
 ## How to use ObjectPool
 
-Call <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Get*> to get an object and <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Return*> to return the object.  There's no requirement that you return every object. If you don't return an object, it will be garbage collected.
+Call <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Get*> to get an object and <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Return*> to return the object.  There's no requirement to return every object. If an object isn't returned, it will be garbage collected.
 
 ## ObjectPool sample
 
 The following code:
 
 * Adds `ObjectPoolProvider` to the [Dependency injection](xref:fundamentals/dependency-injection) (DI) container.
-* Adds and configures `ObjectPool<StringBuilder>` to the DI container.
-* Adds the `BirthdayMiddleware`.
+* Implements the `IResettable` interface to automatically clear the contents of the buffer when returned to the object pool.
 
-[!code-csharp[](~/performance/ObjectPool/ObjectPoolSample6/Program.cs)]
-
-The following code implements `BirthdayMiddleware`
-
-[!code-csharp[](~/performance/ObjectPool/ObjectPoolSample6/BirthdayMiddleware.cs)]
+[!code-csharp[](~/performance/ObjectPool/ObjectPoolSample8/Program.cs)]
 
 :::moniker-end
+
+[!INCLUDE[](~/performance/ObjectPool/includes/ObjectPool6.md)]
 
 [!INCLUDE[](~/performance/ObjectPool/includes/ObjectPool1-5.md)]
