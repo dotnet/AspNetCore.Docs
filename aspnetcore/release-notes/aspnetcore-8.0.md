@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 4/1/2023
+ms.date: 4/17/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
