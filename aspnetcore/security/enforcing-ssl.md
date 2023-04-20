@@ -343,7 +343,7 @@ For chromium browsers on Linux:
 
   The path in the preceding command is specific for Ubuntu. For other distributions, select an appropriate path or use the path for the Certificate Authorities (CAs).
 
-* Create a JSON file at `/usr/lib/firefox/distribution/policies.json` with the following contents:
+* Create a JSON file at `/usr/lib/firefox/distribution/policies.json` with the following command:
 
 ```sh
 cat <<EOF | sudo tee /usr/lib/firefox/distribution/policies.json
