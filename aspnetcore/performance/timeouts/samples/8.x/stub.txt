@@ -1,1 +1,1 @@
-Put sample code in this folder and delete this stub.txt file.
+Put sample code in this folder.
