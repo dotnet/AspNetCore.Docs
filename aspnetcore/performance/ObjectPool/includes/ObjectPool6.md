@@ -21,11 +21,22 @@ Use object pooling only after collecting performance data using realistic scenar
 
 ## Concepts
 
-<xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> - the basic object pool abstraction. Used to get and return objects.
+When <xref:Microsoft.Extensions.ObjectPool.DefaultObjectPoolProvider> is used and `T` implements `IDisposable`:
 
-<xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy%601> - implement this to customize how an object is created and how it is reset when returned to the pool. This can be passed into an object pool that you construct directly, or
+* Items that are ***not*** returned to the pool will be disposed.
+* When the pool gets disposed by DI, all items in the pool are disposed.
 
-<xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*> acts as a factory for creating object pools.
+NOTE: After the pool is disposed:
+
+* Calling `Get` throws an `ObjectDisposedException`.
+* Calling `Return` disposes the given item.
+
+Important `ObjectPool` types and interfaces:
+
+* <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> : The basic object pool abstraction. Used to get and return objects.
+* <xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy%601> : Implement this to customize how an object is created and how it is reset when returned to the pool. This can be passed into an object pool that is construct directly, or
+* <xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*> : Acts as a factory for creating object pools.
+* [IResettable](https://source.dot.net/#Microsoft.Extensions.ObjectPool/IResettable.cs,9f0c03a4187b92ca,references) : Automatically resets the object when returned to an object pool.
 
 The ObjectPool can be used in an app in multiple ways:
 
