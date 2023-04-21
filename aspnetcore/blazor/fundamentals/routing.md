@@ -573,10 +573,12 @@ For more information on obtaining the state associated with the target history e
 
 :::moniker range=">= aspnetcore-6.0"
 
-Use the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute) with the [`[Parameter]` attribute](xref:Microsoft.AspNetCore.Components.ParameterAttribute) to specify that a component parameter of a routable component can come from the query string.
+Use the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute) with the [`[Parameter]` attribute](xref:Microsoft.AspNetCore.Components.ParameterAttribute) to specify that a component parameter of a *routable* component can come from the query string.
 
 > [!NOTE]
 > Component parameters can only receive query parameter values in routable components with an [`@page`](xref:mvc/views/razor#page) directive.
+>
+> Only routable components directly receive query parameters in order to avoid subverting top-down information flow and to make parameter processing order clear, both by the framework and by the app. This design avoids subtle bugs in app code that was written assuming a specific parameter processing order. You're free to define custom cascading parameters or directly assign to regular component parameters in order to pass query parameter values to non-routable components.
 
 Component parameters supplied from the query string support the following types:
 

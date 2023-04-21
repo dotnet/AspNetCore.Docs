@@ -45,18 +45,7 @@ The ObjectPool can be used in an app in multiple ways:
 Call <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Get*> to get an object and <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1.Return*> to return the object.  There's no requirement that you return every object. If you don't return an object, it will be garbage collected.
 
 :::moniker-end
-:::moniker range=">= aspnetcore-3.0"
-When <xref:Microsoft.Extensions.ObjectPool.DefaultObjectPoolProvider> is used and `T` implements `IDisposable`:
 
-* Items that are ***not*** returned to the pool will be disposed.
-* When the pool gets disposed by DI, all items in the pool are disposed.
-
-NOTE: After the pool is disposed:
-
-* Calling `Get` throws an `ObjectDisposedException`.
-* Calling `Return` disposes the given item.
-
-:::moniker-end
 :::moniker range="< aspnetcore-6.0"
 
 ## ObjectPool sample
