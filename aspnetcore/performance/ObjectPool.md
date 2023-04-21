@@ -4,12 +4,12 @@ author: rick-anderson
 description: Tips for increasing performance in ASP.NET Core apps using ObjectPool.
 monikerRange: '>= aspnetcore-1.1'
 ms.author: riande
-ms.date: 4/11/2023
+ms.date: 4/21/2023
 uid: performance/ObjectPool
 ---
 # Object reuse with ObjectPool in ASP.NET Core
 
-By [Steve Gordon](https://twitter.com/stevejgordon) and [Günther Foidl](https://github.com/gfoidl)
+By [Günther Foidl](https://github.com/gfoidl), [Steve Gordon](https://twitter.com/stevejgordon), and [Samson Amaugo](https://github.com/sammychinedu2ky)
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -36,6 +36,18 @@ Use object pooling only after collecting performance data using realistic scenar
 
 ## ObjectPool concepts
 
+When <xref:Microsoft.Extensions.ObjectPool.DefaultObjectPoolProvider> is used and `T` implements `IDisposable`:
+
+* Items that are ***not*** returned to the pool will be disposed.
+* When the pool gets disposed by DI, all items in the pool are disposed.
+
+NOTE: After the pool is disposed:
+
+* Calling `Get` throws an `ObjectDisposedException`.
+* Calling `Return` disposes the given item.
+
+Important `ObjectPool` types and interfaces:
+
 * <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> : The basic object pool abstraction. Used to get and return objects.
 * <xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy%601> : Implement this to customize how an object is created and how it is reset when returned to the pool. This can be passed into an object pool that is construct directly, or
 * <xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*> : Acts as a factory for creating object pools.
@@ -59,6 +71,8 @@ The following code:
 * Implements the `IResettable` interface to automatically clear the contents of the buffer when returned to the object pool.
 
 [!code-csharp[](~/performance/ObjectPool/ObjectPoolSample8/Program.cs)]
+
+**NOTE:** When the pooled type `T` doesn't implement `IResettable`, then a custom `PooledObjectPolicy<T>` can be used to reset the state of the objects before they are returned to the pool.
 
 :::moniker-end
 
