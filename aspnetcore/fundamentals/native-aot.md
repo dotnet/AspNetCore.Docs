@@ -36,17 +36,23 @@ A project that uses native AOT publishing uses JIT compilation when running loca
 
 Native AOT analysis includes all of the app's code and the libraries the app depends on. Review native AOT warnings and take corrective steps. It's a good idea to test publishing apps frequently to discover issues early in the development lifecycle.
 
-## Get started
+## Create a web app wit native AOT
 
 Native AOT is supported by ASP.NET Core minimal APIs and gRPC. For more information about getting started using native AOT with gRPC apps, see [gRPC and native AOT](xref:grpc/native-aot).
 
-To get started with native AOT and a minimal API, use either:
+Create an ASP.NET Core API app that is configured to work with native AOT:
 
-* ASP.NET Core API Application template, which includes an option to enable publishing native AOT in the new project. The AOT option includes customizations to remove unsupported components from the app.
-* `dotnet new` command to create a new ASP.NET Core API app that is configured to work with native AOT:
+# [.NET Core CLI](#tab/netcore-cli) 
+
+Run the following command:
 
 ```cli
-$ dotnet new api -aot -o MyFirstAotWebApi && cd MyFirstAotWebApi
+dotnet new api -aot -o MyFirstAotWebApi && cd MyFirstAotWebApi
+```
+
+Output similar to the following is displayed:
+
+```cli
 The template "ASP.NET Core API" was created successfully.
 
 Processing post-creation actions...
@@ -56,10 +62,21 @@ Restoring C:\Code\Demos\MyFirstAotWebApi\MyFirstAotWebApi.csproj:
 Restore succeeded.
 ```
 
-Use the following command to verify an app can be published using native AOT:
+# [Visual Studio](#tab/visual-studio)
+
+* Create an ASP.NET Core Web API project.
+
+---
+
+Verify the app can be published using native AOT:
 
 ```cli
-$ dotnet publish
+dotnet publish
+```
+
+Output similar to the following is displayed:
+
+```cli
 MSBuild version 17.<version> for .NET
   Determining projects to restore...
   Restored C:\Code\Demos\MyFirstAotWebApi\MyFirstAotWebApi.csproj (in 241 ms).
@@ -71,11 +88,12 @@ t-support-policy [C:\Code\Demos\MyFirstAotWebApi\MyFirstAotWebApi.csproj]
   MyFirstAotWebApi -> C:\Code\Demos\MyFirstAotWebApi\bin\Release\net8.0\win-x64\publish\
 ```
 
-Note: The preceding output my differ from what you see depending on the version of .NET 8 used.
+Note: The preceding output my differ depending on the version of .NET 8 used, directory used, etc.
+
 Review the contents of the output directory:
 
-```
-$ dir bin\Release\net8.0\win-x64\publish
+```cli
+dir bin\Release\net8.0\win-x64\publish
 
     Directory: C:\Code\Demos\MyFirstAotWebApi\bin\Release\net8.0\win-x64\publish
 
