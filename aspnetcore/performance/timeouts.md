@@ -60,7 +60,7 @@ Specify a policy for the global default timeout configuration:
 
 :::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies1" highlight="2-3":::
 
-The default timeout applies to endpoints that don't have a timeout specified. The following endpoint code checks for a timeout although it doesn't call the extension method or apply the attribute. The global timeout configuration applies, so the code needs to check for a timeout:
+The default timeout applies to endpoints that don't have a timeout specified. The following endpoint code checks for a timeout although it doesn't call the extension method or apply the attribute. The global timeout configuration applies, so the code checks for a timeout:
 
 :::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usedefault" :::
 
