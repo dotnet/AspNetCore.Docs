@@ -43,13 +43,13 @@ using Microsoft.AspNetCore.Http.Timeouts;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRequestTimeouts();
 
-// <definepolicies1>
+// <definepolicies>
 builder.Services.AddRequestTimeouts(options => {
     options.DefaultPolicy =
         new RequestTimeoutPolicy { Timeout = TimeSpan.FromMilliseconds(1500) };
     options.AddPolicy("MyPolicy", TimeSpan.FromSeconds(1));
 });
-// <//definepolicies1>
+// </definepolicies>
 
 var app = builder.Build();
 app.UseRequestTimeouts();

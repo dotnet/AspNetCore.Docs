@@ -44,7 +44,7 @@ For apps with controllers, apply the `[RequestTimeout]` attribute to the action 
 
 Create named *policies* to specify timeout configuration that applies to multiple endpoints:
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies1" highlight="4":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies" highlight="4":::
 
 A timeout can be specified for an endpoint by policy name:
 
@@ -58,7 +58,7 @@ The named policies are in a dictionary that is managed by `AddPolicy`, `TryGetPo
 
 Specify a policy for the global default timeout configuration:
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies1" highlight="2-3":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies" highlight="2-3":::
 
 The default timeout applies to endpoints that don't have a timeout specified. The following endpoint code checks for a timeout although it doesn't call the extension method or apply the attribute. The global timeout configuration applies, so the code checks for a timeout:
 
