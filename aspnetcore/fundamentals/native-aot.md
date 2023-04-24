@@ -10,14 +10,28 @@ uid: fundamentals/native-aot
 ---
 # ASP.NET Core support for native AOT
 
-ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/). This article covers:
-
-* How to get started.
-* The benefits and potential drawbacks.
-* Compatibility requirements.
+ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/).
 
 > [!WARNING]
 > In .NET 8, not all ASP.NET Core features are compatible with native AOT.
+
+## Prerequisites
+
+# [.NET Core CLI](#tab/netcore-cli) 
+
+[!INCLUDE[](~/includes/8.0-SDK.md)]
+
+# [Visual Studio](#tab/visual-studio)
+
+* [!INCLUDE[](~/includes/8.0-SDK.md)]
+* [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) 
+  * Workloads:
+    * ASP.NET and web development
+    * Desktop development with C++
+
+![Workloads](~/fundamentals/aot/_static/ddcpp.png)
+
+---
 
 ## Native AOT publishing
 
@@ -65,6 +79,7 @@ Restore succeeded.
 # [Visual Studio](#tab/visual-studio)
 
 * Create an ASP.NET Core Web API project.
+* Unselect **Use controllers (uncheck to use minimal APIs)**
 
 ---
 
@@ -94,7 +109,9 @@ Review the contents of the output directory:
 
 ```cli
 dir bin\Release\net8.0\win-x64\publish
+```
 
+```cli
     Directory: C:\Code\Demos\MyFirstAotWebApi\bin\Release\net8.0\win-x64\publish
 
 Mode                 LastWriteTime         Length Name
@@ -103,9 +120,9 @@ Mode                 LastWriteTime         Length Name
 -a---          30/03/2023  1:41 PM       43044864 MyFirstAotWebApi.pdb
 ```
 
-The executable is self-contained and doesn't require a .NET runtime to run. When launched it should behave the same as the app run in the development environment:
+The executable is self-contained and doesn't require a .NET runtime to run. When launched it should behave the same as the app run in the development environment. Run the AOT app:
 
-```
+```cli
 $ .\bin\Release\net8.0\win-x64\publish\MyFirstAotWebApi.exe
 info: Microsoft.Hosting.Lifetime[14]
       Now listening on: http://localhost:5000
@@ -117,7 +134,7 @@ info: Microsoft.Hosting.Lifetime[0]
       Content root path: C:\Code\Demos\MyFirstAotWebApi
 ```
 
-The `Program.cs` source file contains some changes for publishing to native AOT. A significant difference is that `Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder` is used to create the web application builder.  The `CreateSlimBuilder` method initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimal ASP.NET Core features necessary to run an application.
+The `Program.cs` source file contains some changes for publishing to native AOT. A significant difference is that [`Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder`](https://source.dot.net/#Microsoft.AspNetCore/WebApplication.cs,b777c7cc80ce1389) is used to create the web application builder.  The `CreateSlimBuilder` method initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimal ASP.NET Core features necessary to run an application.
 <!-- Update the preceding with the following when the .NET 8 API is published:
 <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilderSlim%2A>
 -->
