@@ -36,7 +36,7 @@ Adding the middleware to the app doesn't automatically start triggering timeouts
 
 For minimal API apps, configure an endpoint to time out by calling `WithRequestTimeouts`, or by applying the `[RequestTimeouts]` attribute, as shown in the following example:
 
-:::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="oneendpoint" highlight="17,21":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="oneendpoint" highlight="17,21":::
 
 For apps with controllers, apply the `[RequestTimeout]` attribute to the action method. For Razor Pages apps, apply the attribute to the Razor page class.
 
@@ -44,11 +44,11 @@ For apps with controllers, apply the `[RequestTimeout]` attribute to the action 
 
 Create named *policies* to specify timeout configuration that applies to multiple endpoints:
 
-:::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="definepolicies1" highlight="4":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies1" highlight="4":::
 
 A timeout can be specified for an endpoint by policy name:
 
-:::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="usepolicy" highlight="7":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usepolicy" highlight="7":::
 
 The `[RequestTimeout]` attribute can also be used to specify a named policy.
 
@@ -58,39 +58,39 @@ The named policies are in a dictionary that is managed by `AddPolicy`, `TryGetPo
 
 Specify a policy for the global default timeout configuration:
 
-:::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="definepolicies1" highlight=2-3:::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies1" highlight="2-3":::
 
 The default timeout applies to endpoints that don't have a timeout specified. The following endpoint code checks for a timeout although it doesn't call the extension method or apply the attribute. The global timeout configuration applies, so the code needs to check for a timeout:
 
-:::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="usedefault" :::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usedefault" :::
 
 ## Specify the status code in a policy
 
 The `RequestTimeoutPolicy` has a property that can automatically set the status code when a timeout is triggered.
 
-:::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="definepolicies2" highlight="4":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies2" highlight="4":::
 
-:::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="usedefault2" highlight="4":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usedefault2" highlight="4":::
 
 ## Use a delegate in a policy
 
 The `RequestTimeoutPolicy` has a `WriteTimeoutResponse` property that can be used to customize the response when a timeout is triggered.
 
-:::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="definepolicies2" highlight="11-15":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies2" highlight="11-15":::
 
-:::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="usepolicy2" highlight="5,8":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usepolicy2" highlight="5,8":::
 
 ## Disable timeouts
 
 To disable all timeouts including the default global timeout, use the `[DisableRequestTimeout]` attribute:
 
-:::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="disableall" highlight="1":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="disableall" highlight="1":::
 
 ## Cancel a timeout
 
 To cancel a timeout that has already been triggered, use the `DisableTimeout` method on `IHttpRequestTimeoutFeature`.
 
-:::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="canceltimeout" highlight="6-7":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="canceltimeout" highlight="6-7":::
 
 ## See also
 
