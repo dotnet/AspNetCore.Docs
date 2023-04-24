@@ -97,24 +97,18 @@ using Microsoft.AspNetCore.Http.Timeouts;
 var builder = WebApplication.CreateBuilder(args);
 
 // <definepolicies2>
-builder.Services.AddRequestTimeouts(options =>
-{
-    options.DefaultPolicy =
-        new RequestTimeoutPolicy
-        {
-            Timeout = TimeSpan.FromMilliseconds(1000),
-            TimeoutStatusCode = 504
-        };
-    options.AddPolicy("MyPolicy2",
-        new RequestTimeoutPolicy
-        {
-            Timeout = TimeSpan.FromMilliseconds(1000),
-            WriteTimeoutResponse = async (HttpContext context) =>
-            {
-                context.Response.ContentType = "text/plain";
-                await context.Response.WriteAsync("Timeout!");
-            }
-        });
+builder.Services.AddRequestTimeouts(options => {
+    options.DefaultPolicy = new RequestTimeoutPolicy {
+        Timeout = TimeSpan.FromMilliseconds(1000),
+        TimeoutStatusCode = 504
+    };
+    options.AddPolicy("MyPolicy2", new RequestTimeoutPolicy {
+        Timeout = TimeSpan.FromMilliseconds(1000),
+        WriteTimeoutResponse = async (HttpContext context) => {
+            context.Response.ContentType = "text/plain";
+            await context.Response.WriteAsync("Timeout!");
+        }
+    });
 });
 // </definepolicies2>
 
@@ -129,22 +123,22 @@ app.MapGet("/", async (HttpContext context) => {
 
     return Results.Content("No timeout!", "text/plain");
 });
+// Returns status code 504 due to default policy.
 // </usedefault2>
 
 // <<usepolicy2>
-app.MapGet("/usepolicy", async (HttpContext context) =>
-{
+app.MapGet("/usepolicy2", async (HttpContext context) => { 
     await Task.Delay(TimeSpan.FromSeconds(2));
 
     context.RequestAborted.ThrowIfCancellationRequested();
 
     return Results.Content("No timeout!", "text/plain");
 }).WithRequestTimeout("MyPolicy2");
+// Returns "Timeout!" due to WriteTimeoutResponse in MyPolicy2.
 // </usepolicy2>
 
 // <<canceltimeout>
-app.MapGet("/canceltimeout", async (HttpContext context) =>
-{
+app.MapGet("/canceltimeout", async (HttpContext context) => {
     await Task.Delay(TimeSpan.FromSeconds(2));
 
     if (context.RequestAborted.IsCancellationRequested)
@@ -155,6 +149,7 @@ app.MapGet("/canceltimeout", async (HttpContext context) =>
 
     return Results.Content("No timeout!", "text/plain");
 });
+// Returns "No timeout!" although the default timeout is triggered.
 // </canceltimeout>
 
 app.Run();
