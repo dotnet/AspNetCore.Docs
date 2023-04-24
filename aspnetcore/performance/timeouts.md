@@ -48,7 +48,7 @@ Create named *policies* to specify timeout configuration that applies to multipl
 
 A timeout can be specified for an endpoint by policy name:
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usepolicy" highlight="7":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usepolicy" highlight="9":::
 
 The `[RequestTimeout]` attribute can also be used to specify a named policy.
 
@@ -76,9 +76,9 @@ The `RequestTimeoutPolicy` has a property that can automatically set the status 
 
 The `RequestTimeoutPolicy` has a `WriteTimeoutResponse` property that can be used to customize the response when a timeout is triggered.
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies2" highlight="11-15":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies2" highlight="8-11":::
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usepolicy2" highlight="5,8":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usepolicy2" highlight="4,7":::
 
 ## Disable timeouts
 

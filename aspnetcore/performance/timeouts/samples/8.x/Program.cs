@@ -1,4 +1,4 @@
-#define policies2 // oneendpoint / policies1 / policies2
+#define policies1 // oneendpoint / policies1 / policies2
 
 #if oneendpoint
 // <oneendpoint>
