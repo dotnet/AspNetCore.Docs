@@ -1,7 +1,7 @@
 #define policies2 // oneendpoint / policies1 / policies2
 
 #if oneendpoint
-// <<oneendpoint>
+// <oneendpoint>
 using Microsoft.AspNetCore.Http.Timeouts;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -54,7 +54,7 @@ builder.Services.AddRequestTimeouts(options => {
 var app = builder.Build();
 app.UseRequestTimeouts();
 
-// <<usepolicy>
+// <usepolicy>
 app.MapGet("/namedpolicy", async (HttpContext context) => {
     await Task.Delay(TimeSpan.FromSeconds(2));
 
@@ -67,7 +67,7 @@ app.MapGet("/namedpolicy", async (HttpContext context) => {
 // Returns "Timeout!"
 // </usepolicy>
 
-// <<usedefault>
+// <usedefault>
 app.MapGet("/", async (HttpContext context) => {
     await Task.Delay(TimeSpan.FromSeconds(2));
 
@@ -80,7 +80,7 @@ app.MapGet("/", async (HttpContext context) => {
 // Returns "Timeout!" due to default policy.
 // </usedefault>
 
-// <<disableall>
+// <disableall>
 app.MapGet("/disableall", [DisableRequestTimeout] async (HttpContext context) => {
     await Task.Delay(TimeSpan.FromSeconds(2));
 
@@ -115,7 +115,7 @@ builder.Services.AddRequestTimeouts(options => {
 var app = builder.Build();
 app.UseRequestTimeouts();
 
-// <<usedefault2>
+// <usedefault2>
 app.MapGet("/", async (HttpContext context) => {
     await Task.Delay(TimeSpan.FromSeconds(2));
 
@@ -126,7 +126,7 @@ app.MapGet("/", async (HttpContext context) => {
 // Returns status code 504 due to default policy.
 // </usedefault2>
 
-// <<usepolicy2>
+// <usepolicy2>
 app.MapGet("/usepolicy2", async (HttpContext context) => { 
     await Task.Delay(TimeSpan.FromSeconds(2));
 
@@ -137,7 +137,7 @@ app.MapGet("/usepolicy2", async (HttpContext context) => {
 // Returns "Timeout!" due to WriteTimeoutResponse in MyPolicy2.
 // </usepolicy2>
 
-// <<canceltimeout>
+// <canceltimeout>
 app.MapGet("/canceltimeout", async (HttpContext context) => {
     await Task.Delay(TimeSpan.FromSeconds(2));
 
