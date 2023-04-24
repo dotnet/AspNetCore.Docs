@@ -19,6 +19,7 @@ app.MapGet("/", async (HttpContext context) => {
 
     return Results.Content("No timeout!", "text/plain");
 }).WithRequestTimeout(TimeSpan.FromSeconds(1));
+// Returns "Timeout!"
 
 app.MapGet("/attribute",
     [RequestTimeout(milliseconds: 1000)] async (HttpContext context) => {
@@ -30,6 +31,7 @@ app.MapGet("/attribute",
 
         return Results.Content("No timeout!", "text/plain");
     });
+// Returns "Timeout!"
 
 app.Run();
 // </oneendpoint>
@@ -62,6 +64,7 @@ app.MapGet("/namedpolicy", async (HttpContext context) => {
 
     return Results.Content("No timeout!", "text/plain");
 }).WithRequestTimeout("MyPolicy");
+// Returns "Timeout!"
 // </usepolicy>
 
 // <<usedefault>
@@ -74,16 +77,16 @@ app.MapGet("/", async (HttpContext context) => {
 
     return Results.Content("No timeout!", "text/plain");
 });
+// Returns "Timeout!" due to default policy.
 // </usedefault>
 
 // <<disableall>
-app.MapGet("/disableall", [DisableRequestTimeout]
-    async (HttpContext context) => 
-    {
-        await Task.Delay(TimeSpan.FromSeconds(2));
+app.MapGet("/disableall", [DisableRequestTimeout] async (HttpContext context) => {
+    await Task.Delay(TimeSpan.FromSeconds(2));
 
-        return Results.Content("No timeout!", "text/plain");
-    });
+    return Results.Content("No timeout!", "text/plain");
+});
+// Returns "No timeout!", ignores default timeout.
 // </disableall>
 app.Run();
 #endif
@@ -102,7 +105,7 @@ builder.Services.AddRequestTimeouts(options =>
             Timeout = TimeSpan.FromMilliseconds(1000),
             TimeoutStatusCode = 504
         };
-    options.AddPolicy("MyPolicy",
+    options.AddPolicy("MyPolicy2",
         new RequestTimeoutPolicy
         {
             Timeout = TimeSpan.FromMilliseconds(1000),
@@ -136,7 +139,7 @@ app.MapGet("/usepolicy", async (HttpContext context) =>
     context.RequestAborted.ThrowIfCancellationRequested();
 
     return Results.Content("No timeout!", "text/plain");
-}).WithRequestTimeout("MyPolicy");
+}).WithRequestTimeout("MyPolicy2");
 // </usepolicy2>
 
 // <<canceltimeout>

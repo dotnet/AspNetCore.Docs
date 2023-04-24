@@ -37,7 +37,7 @@ Adding the middleware to the app doesn't automatically start triggering timeouts
 
 For minimal API apps, configure an endpoint to time out by calling `WithRequestTimeouts`, or by applying the `[RequestTimeouts]` attribute, as shown in the following example:
 
-:::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="oneendpoint" highlight="17,20":::
+:::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="oneendpoint" highlight="17,21":::
 
 For apps with controllers, apply the `[RequestTimeout]` attribute to the action method. For Razor Pages apps, apply the attribute to the Razor page class.
 
@@ -69,7 +69,7 @@ The default timeout applies to endpoints that don't have a timeout specified. Th
 
 The `RequestTimeoutPolicy` has a property that can automatically set the status code when a timeout is triggered.
 
-:::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="definepolicies2" highlight="6":::
+:::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="definepolicies2" highlight="4":::
 
 :::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="usedefault2" highlight="4":::
 
@@ -91,7 +91,7 @@ To disable all timeouts including the default global timeout, use the `[DisableR
 
 To cancel a timeout that has already been triggered, use the `DisableTimeout` method on `IHttpRequestTimeoutFeature`.
 
-:::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="canceltimeout" highlight="7-8":::
+:::code language="csharp" source="timeouts/samples/8.x/Program.cs" id="canceltimeout" highlight="6-7":::
 
 ## See also
 
