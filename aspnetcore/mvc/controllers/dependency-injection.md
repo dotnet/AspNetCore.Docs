@@ -10,7 +10,7 @@ uid: mvc/controllers/dependency-injection
 
 :::moniker range=">= aspnetcore-3.0"
 
-By [Shadi Namrouti](https://github.com/shadinamrouti), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Steve Smith](https://github.com/ardalis)
+By [Shadi Alnamrouti](https://stackoverflow.com/users/3380497/shadi-alnamrouti), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Steve Smith](https://github.com/ardalis)
 
 ASP.NET Core MVC controllers request dependencies explicitly via constructors. ASP.NET Core has built-in support for [dependency injection (DI)](xref:fundamentals/dependency-injection). DI makes apps easier to test and maintain.
 
