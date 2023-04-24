@@ -5,7 +5,7 @@ description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app wi
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/07/2023
+ms.date: 04/24/2023
 uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C
@@ -60,7 +60,7 @@ Select **Expose an API** from the sidebar and follow these steps:
 
 Record the following information:
 
-* App ID URI GUID (for example, `41451fa7-82d9-4673-8fa5-69eff5a761fd` from either `api://41451fa7-82d9-4673-8fa5-69eff5a761fd`, `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd`, or the custom value that you provided)
+* App ID URI GUID (for example, record `41451fa7-82d9-4673-8fa5-69eff5a761fd` from `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd` or the custom value that you provided in the Azure portal during app registration)
 * Scope name (for example, `API.Access`)
 
 ### Register a client app in Azure
@@ -119,36 +119,11 @@ dotnet new blazorwasm -au IndividualB2C --aad-b2c-instance "{AAD B2C INSTANCE}" 
 | `{CLIENT APP CLIENT ID}` | Application (client) ID for the **:::no-loc text="Client":::** app | `4369008b-21fa-427c-abaa-9b53bf58e538` |
 | `{DEFAULT SCOPE}` | Scope name | `API.Access` |
 | `{SERVER API APP CLIENT ID}` | Application (client) ID for the **:::no-loc text="Server":::** app | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
-| `{SERVER API APP ID URI GUID}` | Application ID URI | `41451fa7-82d9-4673-8fa5-69eff5a761fd` (GUID ONLY) |
+| `{SERVER API APP ID URI GUID}` | Application ID URI GUID | `41451fa7-82d9-4673-8fa5-69eff5a761fd` (GUID ONLY) |
 | `{SIGN UP OR SIGN IN POLICY}` | Sign-up/sign-in user flow | `B2C_1_signupsignin1` |
 | `{TENANT DOMAIN}` | Primary/Publisher/Tenant domain | `contoso.onmicrosoft.com` |
 
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the project's name. **Avoid using dashes (`-`) in the app name that break the formation of the OIDC app identifier (see the earlier WARNING).**
-
-> [!NOTE]
-> The scope set up in a hosted Blazor WebAssembly solution by the [Blazor WebAssembly project template](xref:blazor/project-structure) might have the App ID URI host repeated. Confirm that the scope configured for the `DefaultAccessTokenScopes` collection is correct in `Program.cs` of the **:::no-loc text="Client":::** app.
-
-### Confirm the default access token scope
-
-*This section pertains to the solution's **:::no-loc text="Client":::** app.*
-
-Confirm that the value of the default access token scope in `Program.cs` of the **:::no-loc text="Client":::** app is correct. The scope URI should match **one** of the following formats:
-
-* When the publisher domain of the directory is **trusted**, the default access token scope is typically a value similar to the following example, where `API.Access` is the default scope name:
-
-  ```csharp
-  options.ProviderOptions.DefaultAccessTokenScopes.Add(
-      "api://41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access");
-  ```
-
-* When the publisher domain of the directory is **untrusted**, the default access token scope is typically a value similar to the following example, where `API.Access` is the default scope name:
-
-  ```csharp
-  options.ProviderOptions.DefaultAccessTokenScopes.Add(
-      "https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access");
-  ```
-
-If the scope is incorrect, update the value now.
 
 ### Run the app
 
@@ -347,7 +322,7 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-The `{SCOPE URI}` is the default access token scope (for example, `api://41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access`, `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access`, or the custom URI that you configured in the Azure portal).
+The `{SCOPE URI}` is the default access token scope (for example, `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access` or the custom URI that you configured in the Azure portal).
 
 The <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> method accepts a callback to configure the parameters required to authenticate an app. The values required for configuring the app can be obtained from the Azure Portal AAD configuration when you register the app.
 
@@ -374,6 +349,13 @@ Specify additional scopes with `AdditionalScopesToConsent`:
 
 ```csharp
 options.ProviderOptions.AdditionalScopesToConsent.Add("{ADDITIONAL SCOPE URI}");
+```
+
+Example default access token scope:
+
+```csharp
+options.ProviderOptions.DefaultAccessTokenScopes.Add(
+    "https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access");
 ```
 
 For more information, see the following sections of the *Additional scenarios* article:

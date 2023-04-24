@@ -161,7 +161,6 @@ For more information, see the following resources:
 * [Request additional access tokens](xref:blazor/security/webassembly/additional-scenarios#request-additional-access-tokens)
 * [Attach tokens to outgoing requests](xref:blazor/security/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
 * [Quickstart: Configure an application to expose web APIs](/azure/active-directory/develop/quickstart-configure-app-expose-web-apis)
-* [Hosted with AAD: Access token scopes (includes guidance on AAD `App ID URI` scope formats)](xref:blazor/security/webassembly/hosted-with-azure-active-directory#access-token-scopes)
 * [Access token scopes for Microsoft Graph API](xref:blazor/security/webassembly/graph-api)
 
 ### Login mode
