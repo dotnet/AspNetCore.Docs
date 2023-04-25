@@ -80,14 +80,24 @@ app.MapGet("/", async (HttpContext context) => {
 // Returns "Timeout!" due to default policy.
 // </usedefault>
 
-// <disableall>
-app.MapGet("/disableall", [DisableRequestTimeout] async (HttpContext context) => {
+// <disablbyattr>
+app.MapGet("/disablebyattr", [DisableRequestTimeout] async (HttpContext context) => {
     await Task.Delay(TimeSpan.FromSeconds(2));
 
     return Results.Content("No timeout!", "text/plain");
 });
 // Returns "No timeout!", ignores default timeout.
-// </disableall>
+// </disablebyattr>
+
+// <disablebyext>
+app.MapGet("/disablebyext", async (HttpContext context) => {
+    await Task.Delay(TimeSpan.FromSeconds(2));
+
+    return Results.Content("No timeout!", "text/plain");
+}).DisableRequestTimeout();
+// Returns "No timeout!", ignores default timeout.
+// </disablebyext>
+
 app.Run();
 #endif
 

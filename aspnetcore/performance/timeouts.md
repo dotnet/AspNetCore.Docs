@@ -82,9 +82,11 @@ The `RequestTimeoutPolicy` has a `WriteTimeoutResponse` property that can be use
 
 ## Disable timeouts
 
-To disable all timeouts including the default global timeout, use the `[DisableRequestTimeout]` attribute:
+To disable all timeouts including the default global timeout, use the `[DisableRequestTimeout]` attribute or the `DisableRequestTimeout` extension method:
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="disableall" highlight="1":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="disablebyattr" highlight="1":::
+
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="disablebyext" highlight="5":::
 
 ## Cancel a timeout
 
