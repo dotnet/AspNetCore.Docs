@@ -149,16 +149,19 @@ app.MapGet("/usepolicy2", async (HttpContext context) => {
 
 // <canceltimeout>
 app.MapGet("/canceltimeout", async (HttpContext context) => {
-    await Task.Delay(TimeSpan.FromSeconds(2));
 
-    if (context.RequestAborted.IsCancellationRequested)
+    var timeoutFeature = context.Features.Get<IHttpRequestTimeoutFeature>();
+    timeoutFeature?.DisableTimeout();
+
+    await Task.Delay(TimeSpan.FromSeconds(2));
+    
+    if (context.RequestAborted.IsCancellationRequested) // is false
     {
-        var timeoutFeature = context.Features.Get<IHttpRequestTimeoutFeature>();
-        timeoutFeature?.DisableTimeout();
+
     }
 
     return Results.Content("No timeout!", "text/plain");
-});
+}).WithRequestTimeout(TimeSpan.FromSeconds(1));
 // Returns "No timeout!" although the default timeout is triggered.
 // </canceltimeout>
 

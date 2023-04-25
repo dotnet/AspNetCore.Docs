@@ -34,11 +34,11 @@ Adding the middleware to the app doesn't automatically start triggering timeouts
 
 ## Configure one endpoint or page
 
-For minimal API apps, configure an endpoint to time out by calling `WithRequestTimeouts`, or by applying the `[RequestTimeouts]` attribute, as shown in the following example:
+For minimal API apps, configure an endpoint to time out by calling `WithRequestTimeout`, or by applying the `[RequestTimeout]` attribute, as shown in the following example:
 
 :::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="oneendpoint" highlight="17,21":::
 
-For apps with controllers, apply the `[RequestTimeout]` attribute to the action method. For Razor Pages apps, apply the attribute to the Razor page class.
+For apps with controllers, apply the `[RequestTimeout]` attribute to the action method or the controller class. For Razor Pages apps, apply the attribute to the Razor page class.
 
 ## Configure multiple endpoints or pages
 
