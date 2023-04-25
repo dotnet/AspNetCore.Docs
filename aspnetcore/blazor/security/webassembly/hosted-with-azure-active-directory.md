@@ -16,7 +16,7 @@ This article explains how to create a [hosted Blazor WebAssembly solution](xref:
 
 This article doesn't cover a *multi-tenant AAD registration*. For more information, see [Making your application multi-tenant](/azure/active-directory/develop/howto-convert-app-to-be-multi-tenant).
 
-This article focuses on the use of an **Azure Active Directory** tenant type, as described in [Quickstart: Set up a tenant](/azure/active-directory/develop/quickstart-create-new-tenant). If the app uses an **Azure Active Directory B2C** tenant type, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by AAD. For more information, see the [Use of an Azure Active Directory B2C tenant](#use-of-an-azure-active-directory-b2c-tenant) section of this article.
+This article focuses on the use of an **Azure Active Directory** tenant, as described in [Quickstart: Set up a tenant](/azure/active-directory/develop/quickstart-create-new-tenant). If the app uses an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by AAD. For more information, see the [Use of an Azure Active Directory B2C tenant](#use-of-an-azure-active-directory-b2c-tenant) section of this article.
 
 For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
 
@@ -44,7 +44,7 @@ Register an AAD app for the *Server API app*:
 1. Provide a **Name** for the app (for example, **Blazor Server AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
 1. The *Server API app* doesn't require a **Redirect URI** in this scenario, so leave the **Select a platform** dropdown list unselected and don't enter a redirect URI.
-1. This article assumes the app is registered in an **Azure Active Directory** tenant. If the app is created in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant type, the checkbox isn't present.
+1. This article assumes the app is registered in an **Azure Active Directory** tenant. If the app is created in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant, the checkbox isn't present.
 1. Select **Register**.
 
 Record the following information:
@@ -82,7 +82,7 @@ Register an AAD app for the *Client app*:
 1. Provide a **Name** for the app (for example, **Blazor Client AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
 1. Set the **Redirect URI** dropdown list to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost/authentication/login-callback`. If you know the production redirect URI for the Azure default host (for example, `azurewebsites.net`) or the custom domain host (for example, `contoso.com`), you can also add the production redirect URI at the same time that you're providing the `localhost` redirect URI. Be sure to include the port number for non-`:443` ports in any production redirect URIs that you add.
-1. This article assumes the app is registered in an **Azure Active Directory** tenant. If the app is created in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant type, the checkbox isn't present.
+1. This article assumes the app is registered in an **Azure Active Directory** tenant. If the app is created in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant, the checkbox isn't present.
 1. Select **Register**.
 
 > [!NOTE]
@@ -202,7 +202,7 @@ Example:
 ```
 
 > [!IMPORTANT]
-> If you created the **:::no-loc text="Server":::** app with a custom App ID URI (not in the default format `api://{SERVER API APP CLIENT ID}`), see the [Use of a custom App ID URI](#use-of-a-custom-app-id-uri) section. Changes are required in both the **:::no-loc text="Server":::** and **:::no-loc text="Client":::** apps.
+> If the **:::no-loc text="Server":::** app is registered to use a custom App ID URI in AAD (not in the default format `api://{SERVER API APP CLIENT ID}`), see the [Use of a custom App ID URI](#use-of-a-custom-app-id-uri) section. Changes are required in both the **:::no-loc text="Server":::** and **:::no-loc text="Client":::** apps.
 
 ### Authentication package
 
@@ -336,14 +336,14 @@ The <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollect
 
 ### Access token scopes
 
-*This section pertains to the solution's **:::no-loc text="Server":::** and **:::no-loc text="Client":::** apps.*
+*This section pertains to the solution's **:::no-loc text="Client":::** app.*
 
 The default access token scopes represent the list of access token scopes that are:
 
 * Included by default in the sign in request.
 * Used to provision an access token immediately after authentication.
 
-All scopes must belong to the same app per Azure Active Directory rules. Additional scopes can be added for additional API apps as needed in the **:::no-loc text="Client":::** app (`Program.cs`):
+Additional scopes can be added as needed in `Program.cs`:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -421,13 +421,13 @@ For more information, see the following sections of the *Additional scenarios* a
 
 ## Use of an Azure Active Directory B2C tenant
 
-If the app uses an **Azure Active Directory B2C** tenant type, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by AAD.
+If the app uses an **Azure Active Directory B2C** tenant, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by AAD.
 
-You can check the tenant type of an existing tenant by selecting the **Manage tenants** link at the top of the AAD organization **Overview**. Examine the **Tenant type** column value for the organization. This section pertains to apps that follow the guidance in this article but that are registered in an organization with the **Azure Active Directory B2C** tenant type.
+You can check the tenant type of an existing tenant by selecting the **Manage tenants** link at the top of the AAD organization **Overview**. Examine the **Tenant type** column value for the organization. This section pertains to apps that follow the guidance in this article but that are registered in an **Azure Active Directory B2C** tenant.
 
 Instead of the App ID URI matching the format `api://{SERVER API APP CLIENT ID OR CUSTOM VALUE}`, the App ID URI has the format `https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}`. This difference affects **:::no-loc text="Client":::** and **:::no-loc text="Server":::** app configurations:
 
-* For the server API app, set the `Audience` in the app settings file (`appsettings.json`) to match the app's audience (App ID URI) provided by the Azure portal:
+* For the server API app, set the `Audience` in the app settings file (`appsettings.json`) to match the app's audience (App ID URI) provided by the Azure portal with no trailing slash:
 
   ```json
   "Audience": "https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}"
@@ -464,7 +464,7 @@ If the App ID URI is a custom value, you must manually update the default access
 > [!IMPORTANT]
 > The following configuration is ***not*** required when using the default App ID URI of `api://{SERVER API APP CLIENT ID}`.
 
-Example App ID URI of `urn://custom-app-id-uri`:
+Example App ID URI of `urn://custom-app-id-uri` and a scope name of `API.Access`:
 
 * In `Program.cs` of the **:::no-loc text="Client":::** app:
 
