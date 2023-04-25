@@ -147,7 +147,7 @@ Create a configuration file, named *helloapp.conf*, for the app:
 
 ```
 <VirtualHost *:*>
-    RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+    RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}s
 </VirtualHost>
 
 <VirtualHost *:80>
@@ -196,6 +196,8 @@ Restart Apache:
 sudo systemctl restart httpd
 sudo systemctl enable httpd
 ```
+
+For more information on header directive values, see [Apache Module mod_headers](https://httpd.apache.org/docs/2.4/mod/mod_headers.html).
 
 ## Monitor the app
 
