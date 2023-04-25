@@ -5,7 +5,7 @@ description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app wi
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: "devx-track-csharp, mvc"
-ms.date: 04/24/2023
+ms.date: 04/25/2023
 uid: blazor/security/webassembly/hosted-with-azure-active-directory
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory
@@ -44,7 +44,7 @@ Register an AAD app for the *Server API app*:
 1. Provide a **Name** for the app (for example, **Blazor Server AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
 1. The *Server API app* doesn't require a **Redirect URI** in this scenario, so leave the **Select a platform** dropdown list unselected and don't enter a redirect URI.
-1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox. If the publisher domain is verified, this checkbox isn't present.
+1. This article assumes the app is registered in an **Azure Active Directory** tenant. If the app is created in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant type, the checkbox isn't present.
 1. Select **Register**.
 
 Record the following information:
@@ -57,6 +57,7 @@ In **API permissions**, remove the **Microsoft Graph** > **User.Read** permissio
 
 In **Expose an API**:
 
+1. Confirm or add the **App ID URI** in the format `api://{SERVER API APP CLIENT ID}`.
 1. Select **Add a scope**.
 1. Select **Save and continue**.
 1. Provide a **Scope name** (for example, `API.Access`).
@@ -67,8 +68,11 @@ In **Expose an API**:
 
 Record the following information:
 
-* App ID URI GUID (for example, record `41451fa7-82d9-4673-8fa5-69eff5a761fd` from the App ID URI of `api://41451fa7-82d9-4673-8fa5-69eff5a761fd` or the custom value that you provided in the Azure portal during app registration)
+* App ID URI GUID (for example, record `41451fa7-82d9-4673-8fa5-69eff5a761fd` from the App ID URI of `api://41451fa7-82d9-4673-8fa5-69eff5a761fd`)
 * Scope name (for example, `API.Access`)
+
+> [!IMPORTANT]
+> If a custom value is used for the App ID URI, configuration changes are required to both the **:::no-loc text="Server":::** and **:::no-loc text="Client":::** apps after the apps are created from the Blazor WebAssembly project template. For more information, see the [Use of a custom App ID URI](#use-of-a-custom-app-id-uri) section.
 
 ### Register a client app in Azure
 
@@ -78,7 +82,7 @@ Register an AAD app for the *Client app*:
 1. Provide a **Name** for the app (for example, **Blazor Client AAD**).
 1. Choose a **Supported account types**. You may select **Accounts in this organizational directory only** (single tenant) for this experience.
 1. Set the **Redirect URI** dropdown list to **Single-page application (SPA)** and provide the following redirect URI: `https://localhost/authentication/login-callback`. If you know the production redirect URI for the Azure default host (for example, `azurewebsites.net`) or the custom domain host (for example, `contoso.com`), you can also add the production redirect URI at the same time that you're providing the `localhost` redirect URI. Be sure to include the port number for non-`:443` ports in any production redirect URIs that you add.
-1. If you're using an [unverified publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain), clear the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox. If the publisher domain is verified, this checkbox isn't present.
+1. This article assumes the app is registered in an **Azure Active Directory** tenant. If the app is created in an **Azure Active Directory B2C** tenant, the **Permissions** > **Grant admin consent to openid and offline_access permissions** checkbox is present and selected. Deselect the checkbox to disable the setting. When using an **Active Azure Directory** tenant type, the checkbox isn't present.
 1. Select **Register**.
 
 > [!NOTE]
@@ -122,11 +126,14 @@ dotnet new blazorwasm -au SingleOrg --api-client-id "{SERVER API APP CLIENT ID}"
 | `{CLIENT APP CLIENT ID}` | Application (client) ID for the **:::no-loc text="Client":::** app | `4369008b-21fa-427c-abaa-9b53bf58e538` |
 | `{DEFAULT SCOPE}` | Scope name | `API.Access` |
 | `{SERVER API APP CLIENT ID}` | Application (client) ID for the *Server API app* | `41451fa7-82d9-4673-8fa5-69eff5a761fd` |
-| `{SERVER API APP ID URI GUID}` | Application ID URI GUID | `41451fa7-82d9-4673-8fa5-69eff5a761fd` (GUID ONLY) |
+| `{SERVER API APP ID URI GUID}` | Application ID URI GUID | `41451fa7-82d9-4673-8fa5-69eff5a761fd` (GUID ONLY, by default matches the `{SERVER API APP CLIENT ID}`) |
 | `{TENANT DOMAIN}` | Primary/Publisher/Tenant domain | `contoso.onmicrosoft.com` |
 | `{TENANT ID}` | Directory (tenant) ID | `e86c78e2-8bb4-4c41-aefd-918e0565a45e` |
 
 The output location specified with the `-o|--output` option creates a project folder if it doesn't exist and becomes part of the project's name. **Avoid using dashes (`-`) in the app name that break the formation of the OIDC app identifier (see the earlier WARNING).**
+
+> [!IMPORTANT]
+> If a custom value is used for the App ID URI, configuration changes are required to both the **:::no-loc text="Server":::** and **:::no-loc text="Client":::** apps after the apps are created from the Blazor WebAssembly project template. For more information, see the [Use of a custom App ID URI](#use-of-a-custom-app-id-uri) section.
 
 ### Run the app
 
@@ -193,6 +200,9 @@ Example:
   }
 }
 ```
+
+> [!IMPORTANT]
+> If you created the **:::no-loc text="Server":::** app with a custom App ID URI (not in the default format `api://{SERVER API APP CLIENT ID}`), see the [Use of a custom App ID URI](#use-of-a-custom-app-id-uri) section. Changes are required in both the **:::no-loc text="Server":::** and **:::no-loc text="Client":::** apps.
 
 ### Authentication package
 
@@ -356,26 +366,6 @@ options.ProviderOptions.DefaultAccessTokenScopes.Add(
     "api://41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access");
 ```
 
-If the App ID URI is a custom value or has some other scheme, you must manually update the default access token scope URI.
-
-Example App ID URI of `urn://custom-app-id-uri`:
-
-* In `Program.cs` of the **:::no-loc text="Client":::** app:
-
-  ```csharp
-  options.ProviderOptions.DefaultAccessTokenScopes.Add(
-      "urn://custom-app-id-uri/API.Access");
-  ```
-
-* In `appsettings.json` of the **:::no-loc text="Server":::** app, add an `Audience` entry with **only** the App ID URI and no trailing slash:
-
-  ```json
-  "Audience": "urn://custom-app-id-uri"
-  ```
-
-  > [!NOTE]
-  > The `Audience` configuration shown in the preceding example is ***not*** required when using the default App ID URI of `api://{SERVER API APP CLIENT ID}`.
-
 For more information, see the following sections of the *Additional scenarios* article:
 
 * [Request additional access tokens](xref:blazor/security/webassembly/additional-scenarios#request-additional-access-tokens)
@@ -433,7 +423,7 @@ For more information, see the following sections of the *Additional scenarios* a
 
 If the app uses an **Azure Active Directory B2C** tenant type, as described in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) but follows the guidance in this article, the App ID URI is managed differently by AAD.
 
-You can check the tenant type of an existing tenant by selecting the **Manage tenants** link at the top of the AAD tenant **Overview**. Examine the **Tenant type** column value for the organization. This section pertains to apps that follow the guidance in this article but that are registered in an organization with the **Azure Active Directory B2C** tenant type.
+You can check the tenant type of an existing tenant by selecting the **Manage tenants** link at the top of the AAD organization **Overview**. Examine the **Tenant type** column value for the organization. This section pertains to apps that follow the guidance in this article but that are registered in an organization with the **Azure Active Directory B2C** tenant type.
 
 Instead of the App ID URI matching the format `api://{SERVER API APP CLIENT ID OR CUSTOM VALUE}`, the App ID URI has the format `https://{TENANT}.onmicrosoft.com/{SERVER API APP CLIENT ID OR CUSTOM VALUE}`. This difference affects **:::no-loc text="Client":::** and **:::no-loc text="Server":::** app configurations:
 
@@ -467,12 +457,36 @@ Instead of the App ID URI matching the format `api://{SERVER API APP CLIENT ID O
 
   In the preceding scope, the App ID URI/audience is the `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd` portion of the value, which doesn't include a trailing slash (`/`) and doesn't include the scope name (`API.Access`).
 
+## Use of a custom App ID URI
+
+If the App ID URI is a custom value, you must manually update the default access token scope URI in the **:::no-loc text="Client":::** app and add the audience to the **:::no-loc text="Server":::** app's AAD configuration.
+
+> [!IMPORTANT]
+> The following configuration is ***not*** required when using the default App ID URI of `api://{SERVER API APP CLIENT ID}`.
+
+Example App ID URI of `urn://custom-app-id-uri`:
+
+* In `Program.cs` of the **:::no-loc text="Client":::** app:
+
+  ```csharp
+  options.ProviderOptions.DefaultAccessTokenScopes.Add(
+      "urn://custom-app-id-uri/API.Access");
+  ```
+
+* In `appsettings.json` of the **:::no-loc text="Server":::** app, add an `Audience` entry with **only** the App ID URI and no trailing slash:
+
+  ```json
+  "Audience": "urn://custom-app-id-uri"
+  ```
+
 ## Troubleshoot
 
 [!INCLUDE[](~/blazor/security/includes/troubleshoot.md)]
 
 ## Additional resources
 
+* [Configure an app's publisher domain](/azure/active-directory/develop/howto-configure-publisher-domain)
+* [Azure Active Directory app manifest: identifierUris attribute](/azure/active-directory/develop/reference-app-manifest#identifieruris-attribute)
 * <xref:blazor/security/webassembly/additional-scenarios>
 * [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
