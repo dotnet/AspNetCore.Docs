@@ -146,8 +146,6 @@ builder.Services.AddMsalAuthentication(options =>
 });
 ```
 
-[!INCLUDE[](~/blazor/security/includes/azure-scope.md)]
-
 Specify additional scopes with `AdditionalScopesToConsent`:
 
 ```csharp
