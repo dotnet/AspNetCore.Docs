@@ -149,7 +149,6 @@ app.MapGet("/usepolicy2", async (HttpContext context) => {
 
 // <canceltimeout>
 app.MapGet("/canceltimeout", async (HttpContext context) => {
-
     var timeoutFeature = context.Features.Get<IHttpRequestTimeoutFeature>();
     timeoutFeature?.DisableTimeout();
 
@@ -162,7 +161,7 @@ app.MapGet("/canceltimeout", async (HttpContext context) => {
 
     return Results.Content("No timeout!", "text/plain");
 }).WithRequestTimeout(TimeSpan.FromSeconds(1));
-// Returns "No timeout!" although the default timeout is triggered.
+// Returns "No timeout!" since the default timeout is not triggered.
 // </canceltimeout>
 
 app.Run();
