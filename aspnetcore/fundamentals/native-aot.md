@@ -220,13 +220,12 @@ The [`Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder`](https://so
 <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilderSlim%2A>
 -->
 
-```csharp
-var builder = WebApplication.CreateSlimBuilder(args);
-```
+:::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="7-10,25-30":::
+
 
 This template uses JSON to serialize responses. To enable JSON serialization with native AOT, provide a `JsonSerializerContext` which specifies the custom types that are needed to serialize. The `JsonSerializerContext` is what the [JSON source generator](/dotnet/standard/serialization/system-text-json/source-generation) uses to produce code:
 
-:::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="7-10,25-30":::
+:::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="4":::
 
 ```removeMe
 builder.Services.ConfigureHttpJsonOptions(options =>
