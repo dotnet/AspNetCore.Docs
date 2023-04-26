@@ -22,7 +22,7 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
 * [!INCLUDE[](~/includes/8.0-SDK.md)]
 * From the Visual Studio installer, add the Desktop development with C++
 
-![Workloads](~/fundamentals/aot/_static/ddcpp.png)
+![Workloads no VS](~/fundamentals/aot/_static/ddcpp.png)
 
 # [Visual Studio](#tab/visual-studio)
 
