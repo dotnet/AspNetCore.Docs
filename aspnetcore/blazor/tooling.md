@@ -543,7 +543,7 @@ When [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#a
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-When [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) is used, [WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) is supported for all major browsers, except Apple Safari. SIMD can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. Use the `<WasmEnableSIMD>` property in the app's project file (`.csproj`) with a value of `true`:
+When [ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly#ahead-of-time-aot-compilation) is used, [WebAssembly Single Instruction, Multiple Data (SIMD)](https://github.com/WebAssembly/simd/blob/master/proposals/simd/SIMD.md) is supported for all major browsers. SIMD can improve the throughput of vectorized computations by performing an operation on multiple pieces of data in parallel using a single instruction. Use the `<WasmEnableSIMD>` property in the app's project file (`.csproj`) with a value of `true`:
 
 ```xml
 <PropertyGroup>
