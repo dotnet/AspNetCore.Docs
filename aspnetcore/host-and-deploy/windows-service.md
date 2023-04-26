@@ -47,7 +47,7 @@ Consider the following `ServiceA` class:
 
 The following `Program.cs` calls [`AddHostedService`](/dotnet/api/microsoft.extensions.dependencyinjection.servicecollectionhostedserviceextensions.addhostedservice) to register `ServiceA`:
 
-:::code language="csharp" source="~/host-and-deploy/windows-service/samples/7.x/WebAppServiceSample/Program.cs" highlight="5":::
+:::code language="csharp" source="~/host-and-deploy/windows-service/samples/7.x/WebAppServiceSample/Program.cs" highlight="8":::
 
 The following sample apps accompany this topic:
 
