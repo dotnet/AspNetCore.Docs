@@ -675,7 +675,70 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
   
 ## Access Blazor services from a different DI scope
   
-*This section only applies to Blazor Server apps.**
+*This section only applies to Blazor Server apps.*
+
+:::moniker range=">= aspnetcore-8.0"
+
+[Circuit activity handlers](xref:blazor/fundamentals/signalr#monitor-circuit-activity-blazor-server) provide an approach for accessing scoped Blazor services from other non-Blazor dependency injection (DI) scopes, such as scopes created using <xref:System.Net.Http.IHttpClientFactory>. 
+
+Prior to the release of ASP.NET Core 8.0, accessing circuit-scoped services from other dependency injection scopes required using a custom base component type. With circuit activity handlers, a custom base component type isn't required, as the following example demonstrates:
+
+```csharp
+public class CircuitServicesAccessor
+{
+    static readonly AsyncLocal<IServiceProvider> blazorServices = new();
+
+    public IServiceProvider? Services
+    {
+        get => blazorServices.Value;
+        set => blazorServices.Value = value;
+    }
+}
+
+public class ServicesAccessorCircuitHandler : CircuitHandler
+{
+    readonly IServiceProvider services;
+    readonly CircuitServicesAccessor circuitServicesAccessor;
+
+    public ServicesAccessorCircuitHandler(IServiceProvider services, 
+        CircuitServicesAccessor servicesAccessor)
+    {
+        this.services = services;
+        this.circuitServicesAccessor = servicesAccessor;
+    }
+
+    public override Func<CircuitInboundActivityContext, Task> CreateInboundActivityHandler(
+        Func<CircuitInboundActivityContext, Task> next)
+    {
+        return async context =>
+        {
+            circuitServicesAccessor.Services = services;
+            await next(context);
+            circuitServicesAccessor.Services = null;
+        };
+    }
+}
+
+public static class CircuitServicesServiceCollectionExtensions
+{
+    public static IServiceCollection AddCircuitServicesAccessor(
+        this IServiceCollection services)
+    {
+        services.AddScoped<CircuitServicesAccessor>();
+        services.AddScoped<CircuitHandler, ServicesAccessorCircuitHandler>();
+
+        return services;
+    }
+}
+```
+
+Access the circuit-scoped services by injecting the `CircuitServicesAccessor` where it's needed.
+
+For an example that shows how to access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> from a <xref:System.Net.Http.DelegatingHandler> set up using <xref:System.Net.Http.IHttpClientFactory>, see <xref:blazor/security/server/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 There may be times when a Razor component invokes asynchronous methods that execute code in a different DI scope. Without the correct approach, these DI scopes don't have access to Blazor's services, such as <xref:Microsoft.JSInterop.IJSRuntime> and <xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage>.
 
@@ -804,14 +867,27 @@ public class CustomComponentBase : ComponentBase, IHandleEvent, IHandleAfterRend
 
 Any components extending `CustomComponentBase` automatically have `BlazorServiceAccessor.Services` set to the <xref:System.IServiceProvider> in the current Blazor DI scope.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
 Finally, in `Program.cs`, add the `BlazorServiceAccessor` as a scoped service:
 
 ```csharp
-var builder = WebApplication.CreateBuilder(args);
-// ...
 builder.Services.AddScoped<BlazorServiceAccessor>();
-// ...
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+Finally, in `Startup.ConfigureServices` of `Startup.cs`, add the `BlazorServiceAccessor` as a scoped service:
+
+```csharp
+services.AddScoped<BlazorServiceAccessor>();
+```
+
+:::moniker-end
 
 ## Additional resources
 
