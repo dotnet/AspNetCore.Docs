@@ -435,6 +435,8 @@ items:
                 uid: blazor/components/index
               - name: Layouts
                 uid: blazor/components/layouts
+              - name: Sections
+                uid: blazor/components/sections
               - name: Control <head> content
                 uid: blazor/components/control-head-content
               - name: Cascading values and parameters

@@ -369,6 +369,14 @@ The following rendered HTML markup is produced by the preceding nested layout. E
 
 When routable components are integrated into a Razor Pages app, the app's shared layout can be used with the components. For more information, see <xref:blazor/components/prerendering-and-integration>.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Sections
+
+To control the content in a layout from a child Razor component, see <xref:blazor/components/sections>.
+
+:::moniker-end
+
 ## Additional resources
 
 * <xref:mvc/views/layout>
