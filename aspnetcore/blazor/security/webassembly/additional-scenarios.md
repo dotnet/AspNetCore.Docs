@@ -264,7 +264,7 @@ public class CustomAuthorizationMessageHandler : AuthorizationMessageHandler
 }
 ```
 
-In the preceding code, the scopes `example.read` and `example.write` are generic examples not meant to reflect valid scopes for any particular provider. For apps that use Azure Active Directory, scopes are similar to `api://41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access` (trusted publisher domain) or `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access` (untrusted publisher domain).
+In the preceding code, the scopes `example.read` and `example.write` are generic examples not meant to reflect valid scopes for any particular provider.
 
 In `Program.cs`, `CustomAuthorizationMessageHandler` is registered as a transient service and is configured as the <xref:System.Net.Http.DelegatingHandler> for outgoing <xref:System.Net.Http.HttpResponseMessage> instances made by a named <xref:System.Net.Http.HttpClient>.
 
@@ -335,7 +335,7 @@ builder.Services.AddScoped(sp => new HttpClient(
     });
 ```
 
-In the preceding code, the scopes `example.read` and `example.write` are generic examples not meant to reflect valid scopes for any particular provider. For apps that use Azure Active Directory, scopes are similar to `api://41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access` (trusted publisher domain) or `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access` (untrusted publisher domain).
+In the preceding code, the scopes `example.read` and `example.write` are generic examples not meant to reflect valid scopes for any particular provider.
 
 For a hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure), <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> is assigned to the following by default:
 
@@ -471,7 +471,7 @@ builder.Services.AddHttpClient<WeatherForecastClient>(
         scopes: new[] { "example.read", "example.write" }));
 ```
 
-In the preceding code, the scopes `example.read` and `example.write` are generic examples not meant to reflect valid scopes for any particular provider. For apps that use Azure Active Directory, scopes are similar to `api://41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access` (trusted publisher domain) or `https://contoso.onmicrosoft.com/41451fa7-82d9-4673-8fa5-69eff5a761fd/API.Access` (untrusted publisher domain).
+In the preceding code, the scopes `example.read` and `example.write` are generic examples not meant to reflect valid scopes for any particular provider.
 
 For a hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure), <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> is assigned to the following by default:
 
