@@ -27,6 +27,8 @@ Desktop development with C++
 
 # [Visual Studio](#tab/visual-studio)
 
+Visual Studio doesn't currently support native AOT templates. We hope a preview version will soon support AOT.
+<!--
 * [!INCLUDE[](~/includes/8.0-SDK.md)]
 * [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) 
   * Workloads:
@@ -34,6 +36,7 @@ Desktop development with C++
     * Desktop development with C++
 
 ![Workloads](~/fundamentals/aot/_static/ddcpp.png)
+-->
 
 ---
 
