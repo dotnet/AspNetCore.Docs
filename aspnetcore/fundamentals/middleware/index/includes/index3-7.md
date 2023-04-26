@@ -21,17 +21,17 @@ ASP.NET Core includes many compiler platform analyzers that inspect application 
 
 The ASP.NET Core request pipeline consists of a sequence of request delegates, called one after the other. The following diagram demonstrates the concept. The thread of execution follows the black arrows.
 
-![Request processing pattern showing a request arriving, processing through three middlewares, and the response leaving the app. Each middleware runs its logic and hands off the request to the next middleware at the next() statement. After the third middleware processes the request, the request passes back through the prior two middlewares in reverse order for additional processing after their next() statements before leaving the app as a response to the client.](index/_static/request-delegate-pipeline.png)
+![Request processing pattern showing a request arriving, processing through three middlewares, and the response leaving the app. Each middleware runs its logic and hands off the request to the next middleware at the next() statement. After the third middleware processes the request, the request passes back through the prior two middlewares in reverse order for additional processing after their next() statements before leaving the app as a response to the client.](~/fundamentals/middleware/index/_static/request-delegate-pipeline.png)
 
 Each delegate can perform operations before and after the next delegate. Exception-handling delegates should be called early in the pipeline, so they can catch exceptions that occur in later stages of the pipeline.
 
 The simplest possible ASP.NET Core app sets up a single request delegate that handles all requests. This case doesn't include an actual request pipeline. Instead, a single anonymous function is called in response to every HTTP request.
 
-[!code-csharp[](index/snapshot/Middleware60/Program.cs)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Middleware60/Program.cs)]
 
 Chain multiple request delegates together with <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A>. The `next` parameter represents the next delegate in the pipeline. You can short-circuit the pipeline by *not* calling the `next` parameter. You can typically perform actions both before and after the `next` delegate, as the following example demonstrates:
 
-[!code-csharp[](index/snapshot/Chain60/Program.cs?highlight=4-9)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/Program.cs?highlight=4-9)]
 
 When a delegate doesn't pass a request to the next delegate, it's called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, [Static File Middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the middleware that terminates further processing still processes code after their `next.Invoke` statements. However, see the following warning about attempting to write to a response that has already been sent.
 
@@ -45,7 +45,7 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 
 <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A> delegates don't receive a `next` parameter. The first `Run` delegate is always terminal and terminates the pipeline. `Run` is a convention. Some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline:
 
-[!code-csharp[](index/snapshot/Chain60/Program.cs?highlight=11-14)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/Program.cs?highlight=11-14)]
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 In the preceding example, the `Run` delegate writes `"Hello from 2nd delegate."` to the response and then terminates the pipeline. If another `Use` or `Run` delegate is added after the `Run` delegate, it's not called.
@@ -67,19 +67,19 @@ For more information, see [this GitHub issue](https://github.com/dotnet/aspnetco
 
 The following diagram shows the complete request processing pipeline for ASP.NET Core MVC and Razor Pages apps. You can see how, in a typical app, existing middlewares are ordered and where custom middlewares are added. You have full control over how to reorder existing middlewares or inject new custom middlewares as necessary for your scenarios.
 
-![ASP.NET Core middleware pipeline](index/_static/middleware-pipeline.svg)
+![ASP.NET Core middleware pipeline](~/fundamentals/middleware/index/_static/middleware-pipeline.svg)
 
 The **Endpoint** middleware in the preceding diagram executes the filter pipeline for the corresponding app type&mdash;MVC or Razor Pages.
 
 The **Routing** middleware in the preceding diagram is shown following **Static Files**. This is the order that the project templates implement by explicitly calling [app.UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A). If you don't call `app.UseRouting`, the **Routing** middleware runs at the beginning of the pipeline by default. For more information, see [Routing](xref:fundamentals/routing).
 
-![ASP.NET Core filter pipeline](index/_static/mvc-endpoint.svg)
+![ASP.NET Core filter pipeline](~/fundamentals/middleware/index/_static/mvc-endpoint.svg)
 
 The order that middleware components are added in the `Program.cs` file defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
 
 The following highlighted code in `Program.cs` adds security-related middleware components in the typical recommended order:
 
-[!code-csharp[](index/snapshot/Program70All3.cs?highlight=19-44)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Program70All3.cs?highlight=19-44)]
 
 In the preceding code:
 
@@ -181,7 +181,7 @@ The order for calling `UseCors` and `UseStaticFiles` depends on the app. For mor
 
 <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map%2A> extensions are used as a convention for branching the pipeline. `Map` branches the request pipeline based on matches of the given request path. If the request path starts with the given path, the branch is executed.
 
-[!code-csharp[](index/snapshot/Chain60/ProgramMap.cs)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/ProgramMap.cs)]
 
 The following table shows the requests and responses from `http://localhost:1234` using the preceding code.
 
@@ -209,11 +209,11 @@ app.Map("/level1", level1App => {
 
 `Map` can also match multiple segments at once:
 
-[!code-csharp[](index/snapshot/Chain60/ProgramMultiSeg.cs?highlight=4)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/ProgramMultiSeg.cs?highlight=4)]
 
 <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> branches the request pipeline based on the result of the given predicate. Any predicate of type `Func<HttpContext, bool>` can be used to map requests to a new branch of the pipeline. In the following example, a predicate is used to detect the presence of a query string variable `branch`:
 
-[!code-csharp[](index/snapshot/Chain60/ProgramMapWhen.cs?highlight=4)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/ProgramMapWhen.cs?highlight=4)]
 
 The following table shows the requests and responses from `http://localhost:1234` using the previous code:
 
@@ -224,7 +224,7 @@ The following table shows the requests and responses from `http://localhost:1234
 
 <xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen%2A> also branches the request pipeline based on the result of the given predicate. Unlike with `MapWhen`, this branch is rejoined to the main pipeline if it doesn't short-circuit or contain a terminal middleware:
 
-[!code-csharp[](index/snapshot/Chain60/ProgramUseWhen.cs?highlight=4-5)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/ProgramUseWhen.cs?highlight=4-5)]
 
 In the preceding example, a response of `Hello from non-Map delegate.` is written for all requests. If the request includes a query string variable `branch`, its value is logged before the main pipeline is rejoined.
 
@@ -299,17 +299,17 @@ ASP.NET Core includes many compiler platform analyzers that inspect application 
 
 The ASP.NET Core request pipeline consists of a sequence of request delegates, called one after the other. The following diagram demonstrates the concept. The thread of execution follows the black arrows.
 
-![Request processing pattern showing a request arriving, processing through three middlewares, and the response leaving the app. Each middleware runs its logic and hands off the request to the next middleware at the next() statement. After the third middleware processes the request, the request passes back through the prior two middlewares in reverse order for additional processing after their next() statements before leaving the app as a response to the client.](index/_static/request-delegate-pipeline.png)
+![Request processing pattern showing a request arriving, processing through three middlewares, and the response leaving the app. Each middleware runs its logic and hands off the request to the next middleware at the next() statement. After the third middleware processes the request, the request passes back through the prior two middlewares in reverse order for additional processing after their next() statements before leaving the app as a response to the client.](~/fundamentals/middleware/index/_static/request-delegate-pipeline.png)
 
 Each delegate can perform operations before and after the next delegate. Exception-handling delegates should be called early in the pipeline, so they can catch exceptions that occur in later stages of the pipeline.
 
 The simplest possible ASP.NET Core app sets up a single request delegate that handles all requests. This case doesn't include an actual request pipeline. Instead, a single anonymous function is called in response to every HTTP request.
 
-[!code-csharp[](index/snapshot/Middleware60/Program.cs)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Middleware60/Program.cs)]
 
 Chain multiple request delegates together with <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A>. The `next` parameter represents the next delegate in the pipeline. You can short-circuit the pipeline by *not* calling the `next` parameter. You can typically perform actions both before and after the `next` delegate, as the following example demonstrates:
 
-[!code-csharp[](index/snapshot/Chain60/Program.cs?highlight=4-9)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/Program.cs?highlight=4-9)]
 
 When a delegate doesn't pass a request to the next delegate, it's called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, [Static File Middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the middleware that terminates further processing still processes code after their `next.Invoke` statements. However, see the following warning about attempting to write to a response that has already been sent.
 
@@ -323,7 +323,7 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 
 <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A> delegates don't receive a `next` parameter. The first `Run` delegate is always terminal and terminates the pipeline. `Run` is a convention. Some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline:
 
-[!code-csharp[](index/snapshot/Chain60/Program.cs?highlight=11-14)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/Program.cs?highlight=11-14)]
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 In the preceding example, the `Run` delegate writes `"Hello from 2nd delegate."` to the response and then terminates the pipeline. If another `Use` or `Run` delegate is added after the `Run` delegate, it's not called.
@@ -345,19 +345,19 @@ For more information, see [this GitHub issue](https://github.com/dotnet/aspnetco
 
 The following diagram shows the complete request processing pipeline for ASP.NET Core MVC and Razor Pages apps. You can see how, in a typical app, existing middlewares are ordered and where custom middlewares are added. You have full control over how to reorder existing middlewares or inject new custom middlewares as necessary for your scenarios.
 
-![ASP.NET Core middleware pipeline](index/_static/middleware-pipeline.svg)
+![ASP.NET Core middleware pipeline](~/fundamentals/middleware/index/_static/middleware-pipeline.svg)
 
 The **Endpoint** middleware in the preceding diagram executes the filter pipeline for the corresponding app type&mdash;MVC or Razor Pages.
 
 The **Routing** middleware in the preceding diagram is shown following **Static Files**. This is the order that the project templates implement by explicitly calling [app.UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A). If you don't call `app.UseRouting`, the **Routing** middleware runs at the beginning of the pipeline by default. For more information, see [Routing](xref:fundamentals/routing).
 
-![ASP.NET Core filter pipeline](index/_static/mvc-endpoint.svg)
+![ASP.NET Core filter pipeline](~/fundamentals/middleware/index/_static/mvc-endpoint.svg)
 
 The order that middleware components are added in the `Program.cs` file defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
 
 The following highlighted code in `Program.cs` adds security-related middleware components in the typical recommended order:
 
-[!code-csharp[](index/snapshot/Program60All3.cs?highlight=19-43)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Program60All3.cs?highlight=19-43)]
 
 In the preceding code:
 
@@ -458,7 +458,7 @@ The order for calling `UseCors` and `UseStaticFiles` depends on the app. For mor
 
 <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map%2A> extensions are used as a convention for branching the pipeline. `Map` branches the request pipeline based on matches of the given request path. If the request path starts with the given path, the branch is executed.
 
-[!code-csharp[](index/snapshot/Chain60/ProgramMap.cs)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/ProgramMap.cs)]
 
 The following table shows the requests and responses from `http://localhost:1234` using the preceding code.
 
@@ -486,11 +486,11 @@ app.Map("/level1", level1App => {
 
 `Map` can also match multiple segments at once:
 
-[!code-csharp[](index/snapshot/Chain60/ProgramMultiSeg.cs?highlight=4)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/ProgramMultiSeg.cs?highlight=4)]
 
 <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> branches the request pipeline based on the result of the given predicate. Any predicate of type `Func<HttpContext, bool>` can be used to map requests to a new branch of the pipeline. In the following example, a predicate is used to detect the presence of a query string variable `branch`:
 
-[!code-csharp[](index/snapshot/Chain60/ProgramMapWhen.cs?highlight=4)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/ProgramMapWhen.cs?highlight=4)]
 
 The following table shows the requests and responses from `http://localhost:1234` using the previous code:
 
@@ -501,7 +501,7 @@ The following table shows the requests and responses from `http://localhost:1234
 
 <xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen%2A> also branches the request pipeline based on the result of the given predicate. Unlike with `MapWhen`, this branch is rejoined to the main pipeline if it doesn't short-circuit or contain a terminal middleware:
 
-[!code-csharp[](index/snapshot/Chain60/ProgramUseWhen.cs?highlight=4-5)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/ProgramUseWhen.cs?highlight=4-5)]
 
 In the preceding example, a response of `Hello from non-Map delegate.` is written for all requests. If the request includes a query string variable `branch`, its value is logged before the main pipeline is rejoined.
 
@@ -571,17 +571,17 @@ Request delegates are configured using <xref:Microsoft.AspNetCore.Builder.RunExt
 
 The ASP.NET Core request pipeline consists of a sequence of request delegates, called one after the other. The following diagram demonstrates the concept. The thread of execution follows the black arrows.
 
-![Request processing pattern showing a request arriving, processing through three middlewares, and the response leaving the app. Each middleware runs its logic and hands off the request to the next middleware at the next() statement. After the third middleware processes the request, the request passes back through the prior two middlewares in reverse order for additional processing after their next() statements before leaving the app as a response to the client.](index/_static/request-delegate-pipeline.png)
+![Request processing pattern showing a request arriving, processing through three middlewares, and the response leaving the app. Each middleware runs its logic and hands off the request to the next middleware at the next() statement. After the third middleware processes the request, the request passes back through the prior two middlewares in reverse order for additional processing after their next() statements before leaving the app as a response to the client.](~/fundamentals/middleware/index/_static/request-delegate-pipeline.png)
 
 Each delegate can perform operations before and after the next delegate. Exception-handling delegates should be called early in the pipeline, so they can catch exceptions that occur in later stages of the pipeline.
 
 The simplest possible ASP.NET Core app sets up a single request delegate that handles all requests. This case doesn't include an actual request pipeline. Instead, a single anonymous function is called in response to every HTTP request.
 
-[!code-csharp[](index/snapshot/Middleware/Startup.cs)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Middleware/Startup.cs)]
 
 Chain multiple request delegates together with <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A>. The `next` parameter represents the next delegate in the pipeline. You can short-circuit the pipeline by *not* calling the *next* parameter. You can typically perform actions both before and after the next delegate, as the following example demonstrates:
 
-[!code-csharp[](index/snapshot/Chain/Startup.cs?highlight=5-10)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain/Startup.cs?highlight=5-10)]
 
 When a delegate doesn't pass a request to the next delegate, it's called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, [Static File Middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the middleware that terminates further processing still processes code after their `next.Invoke` statements. However, see the following warning about attempting to write to a response that has already been sent.
 
@@ -595,7 +595,7 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 
 <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A> delegates don't receive a `next` parameter. The first `Run` delegate is always terminal and terminates the pipeline. `Run` is a convention. Some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline:
 
-[!code-csharp[](index/snapshot/Chain/Startup.cs?highlight=12-15)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain/Startup.cs?highlight=12-15)]
 [!INCLUDE[about the series](~/includes/code-comments-loc.md)]
 
 In the preceding example, the `Run` delegate writes `"Hello from 2nd delegate."` to the response and then terminates the pipeline. If another `Use` or `Run` delegate is added after the `Run` delegate, it's not called.
@@ -606,17 +606,17 @@ In the preceding example, the `Run` delegate writes `"Hello from 2nd delegate."`
 
 The following diagram shows the complete request processing pipeline for ASP.NET Core MVC and Razor Pages apps. You can see how, in a typical app, existing middlewares are ordered and where custom middlewares are added. You have full control over how to reorder existing middlewares or inject new custom middlewares as necessary for your scenarios.
 
-![ASP.NET Core middleware pipeline](index/_static/middleware-pipeline.svg)
+![ASP.NET Core middleware pipeline](~/fundamentals/middleware/index/_static/middleware-pipeline.svg)
 
 The **Endpoint** middleware in the preceding diagram executes the filter pipeline for the corresponding app type&mdash;MVC or Razor Pages.
 
-![ASP.NET Core filter pipeline](index/_static/mvc-endpoint.svg)
+![ASP.NET Core filter pipeline](~/fundamentals/middleware/index/_static/mvc-endpoint.svg)
 
 The order that middleware components are added in the `Startup.Configure` method defines the order in which the middleware components are invoked on requests and the reverse order for the response. The order is **critical** for security, performance, and functionality.
 
 The following `Startup.Configure` method adds security-related middleware components in the typical recommended order:
 
-[!code-csharp[](index/snapshot/StartupAll3.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/StartupAll3.cs?name=snippet)]
 
 In the preceding code:
 
@@ -732,7 +732,7 @@ For more details on SPAs, see the guides for the [React](xref:spa/react) and [An
 
 <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map%2A> extensions are used as a convention for branching the pipeline. `Map` branches the request pipeline based on matches of the given request path. If the request path starts with the given path, the branch is executed.
 
-[!code-csharp[](index/snapshot/Chain/StartupMap.cs)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain/StartupMap.cs)]
 
 The following table shows the requests and responses from `http://localhost:1234` using the previous code.
 
@@ -760,11 +760,11 @@ app.Map("/level1", level1App => {
 
 `Map` can also match multiple segments at once:
 
-[!code-csharp[](index/snapshot/Chain/StartupMultiSeg.cs?highlight=13)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain/StartupMultiSeg.cs?highlight=13)]
 
 <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen%2A> branches the request pipeline based on the result of the given predicate. Any predicate of type `Func<HttpContext, bool>` can be used to map requests to a new branch of the pipeline. In the following example, a predicate is used to detect the presence of a query string variable `branch`:
 
-[!code-csharp[](index/snapshot/Chain/StartupMapWhen.cs?highlight=14-15)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain/StartupMapWhen.cs?highlight=14-15)]
 
 The following table shows the requests and responses from `http://localhost:1234` using the previous code:
 
@@ -775,7 +775,7 @@ The following table shows the requests and responses from `http://localhost:1234
 
 <xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen%2A> also branches the request pipeline based on the result of the given predicate. Unlike with `MapWhen`, this branch is rejoined to the main pipeline if it doesn't short-circuit or contain a terminal middleware:
 
-[!code-csharp[](index/snapshot/Chain/StartupUseWhen.cs?highlight=18-19)]
+[!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain/StartupUseWhen.cs?highlight=18-19)]
 
 In the preceding example, a response of "Hello from main pipeline." is written for all requests. If the request includes a query string variable `branch`, its value is logged before the main pipeline is rejoined.
 
