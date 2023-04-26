@@ -116,7 +116,9 @@ Review the contents of the output directory:
 dir bin\Release\net8.0\win-x64\publish
 ```
 
-```cli
+Output similar to the following is displayed:
+
+```Output
     Directory: C:\Code\Demos\MyFirstAotWebApi\bin\Release\net8.0\win-x64\publish
 
 Mode                 LastWriteTime         Length Name
@@ -133,7 +135,7 @@ The executable is self-contained and doesn't require a .NET runtime to run. When
 
 Output similar to the following is displayed:
 
-```cli
+```Output
 info: Microsoft.Hosting.Lifetime[14]
       Now listening on: http://localhost:5000
 info: Microsoft.Hosting.Lifetime[0]
@@ -198,32 +200,41 @@ The AOT version of `launchSettings.json` file is simplified and has the `iisSett
       "launchBrowser": true,
       "launchUrl": "todos",
       "applicationUrl": "http://localhost:5102",
--       "environmentVariables": {
--         "ASPNETCORE_ENVIRONMENT": "Development"
--       }
--     },
+        "environmentVariables": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+        }
+      },
 -     "IIS Express": {
 -       "commandName": "IISExpress",
 -       "launchBrowser": true,
 -       "launchUrl": "todos",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    }
+-      "environmentVariables": {
+-       "ASPNETCORE_ENVIRONMENT": "Development"
+-      }
+-    }
   }
 }
 ```
 
-The [`Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder`](https://source.dot.net/#Microsoft.AspNetCore/WebApplication.cs,b777c7cc80ce1389) method creates the web application builder weither the AOT option is used or not.  The `CreateSlimBuilder` method initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimal ASP.NET Core features necessary to run an app.
+The following highlighted lines shows the additional code that AOT option adds to `Program.cs`:
+
+:::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="7-10,25-30":::
+
+`JsonSerializerContext`:
+
+* Is used in the tempate and shown in the preceding highlighted code.
+* Enables JSON serialization with native AOT.
+* Specifies the custom types that are needed to serialize.
+* Is used by the [JSON source generator](/dotnet/standard/serialization/system-text-json/source-generation) to produce code.
+
+The [`Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder`](https://source.dot.net/#Microsoft.AspNetCore/WebApplication.cs,b777c7cc80ce1389):
+
+* Initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimal ASP.NET Core features necessary to run an app.
+* I added by the template whether the AOT option is used or not.
 
 <!-- Update the preceding with the following when the .NET 8 API is published:
 <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilderSlim%2A>
 -->
-
-:::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="7-10,25-30":::
-
-
-This template uses JSON to serialize responses. To enable JSON serialization with native AOT, provide a `JsonSerializerContext` which specifies the custom types that are needed to serialize. The `JsonSerializerContext` is what the [JSON source generator](/dotnet/standard/serialization/system-text-json/source-generation) uses to produce code:
 
 :::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="4":::
 
