@@ -183,14 +183,14 @@ The AOT version of `launchSettings.json` file is simplified and has the `iisSett
 ```diff
 {
   "$schema": "http://json.schemastore.org/launchsettings.json",
-  -"iisSettings": {
-  -   "windowsAuthentication": false,
-  -   "anonymousAuthentication": true,
-  -   "iisExpress": {
-  -     "applicationUrl": "http://localhost:11152",
-  -     "sslPort": 0
-  -   }
-  - },
+-  "iisSettings": {
+-     "windowsAuthentication": false,
+-     "anonymousAuthentication": true,
+-     "iisExpress": {
+-       "applicationUrl": "http://localhost:11152",
+-       "sslPort": 0
+-     }
+-   },
   "profiles": {
     "http": {
       "commandName": "Project",
@@ -198,14 +198,14 @@ The AOT version of `launchSettings.json` file is simplified and has the `iisSett
       "launchBrowser": true,
       "launchUrl": "todos",
       "applicationUrl": "http://localhost:5102",
- -      "environmentVariables": {
- -        "ASPNETCORE_ENVIRONMENT": "Development"
- -      }
- -    },
- -    "IIS Express": {
- -      "commandName": "IISExpress",
- -      "launchBrowser": true,
- -      "launchUrl": "todos",
+-       "environmentVariables": {
+-         "ASPNETCORE_ENVIRONMENT": "Development"
+-       }
+-     },
+-     "IIS Express": {
+-       "commandName": "IISExpress",
+-       "launchBrowser": true,
+-       "launchUrl": "todos",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
