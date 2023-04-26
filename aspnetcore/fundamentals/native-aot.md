@@ -226,7 +226,9 @@ var builder = WebApplication.CreateSlimBuilder(args);
 
 This template uses JSON to serialize responses. To enable JSON serialization with native AOT, provide a `JsonSerializerContext` which specifies the custom types that are needed to serialize. The `JsonSerializerContext` is what the [JSON source generator](/dotnet/standard/serialization/system-text-json/source-generation) uses to produce code:
 
-```csharp
+:::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="7-10,25-30":::
+
+```removeMe
 builder.Services.ConfigureHttpJsonOptions(options =>
 {
     options.SerializerOptions.AddContext<AppJsonSerializerContext>();
@@ -241,7 +243,7 @@ internal partial class AppJsonSerializerContext : JsonSerializerContext
 }
 ```
 
-Because unused code is trimmed during publishing for native AOT, the app can't use unbounded reflection at runtime. Source generators are used to produce code to avoid the need for reflection. In some cases source generators produce code optimized for AOT even when a generator is not required. To view source code that is generated based on the code in `Program.cs` modify the `MyFirstAotWebApi.csproj` to include the `<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>` property:
+Because unused code is trimmed during publishing for native AOT, the app can't use unbounded reflection at runtime. Source generators are used to produce code to avoid the need for reflection. In some cases source generators produce code optimized for AOT even when a generator is not required. To view source code that is generated based on the code in `Program.cs` add the `<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>` property to `MyFirstAotWebApi.csproj`:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
