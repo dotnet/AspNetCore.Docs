@@ -293,7 +293,7 @@ Not all features in ASP.NET Core are currently compatible with native AOT. The f
 | StaticFiles | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | WebSockets | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 
-It's important to test the app thoroughly when moving to a native AOT deployment model. The AOT deployed app should be tested to verify functionality hasn't changed fron the  untrimmed and JIT-compiled app. When building the app, examine and correct AOT warnings. An app that issues AOT warnings during publishing is not guaranteed to work correctly. If no AOT warnings are issued at publish time, the pubished AOT app should work the same as when run in development.
+It's important to test the app thoroughly when moving to a native AOT deployment model. The AOT deployed app should be tested to verify functionality hasn't changed fron the  untrimmed and JIT-compiled app. When building the app, review and correct AOT warnings. An app that issues AOT warnings during publishing is not guaranteed to work correctly. If no AOT warnings are issued at publish time, the pubished AOT app should work the same as when run in development.
 
 For more information on AOT warnings and how to address them see [Introduction to AOT warnings](/dotnet/core/deploying/native-aot/fixing-warnings).
 
