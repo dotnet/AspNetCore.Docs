@@ -419,8 +419,6 @@ The preceding approach won't prevent client-side validation of ASP.NET Core Iden
 
 [!INCLUDE[](~/includes/problem-details-service.md)]
 
-For more information on 
-https://learn.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-7.0#problem-details
 ## Additional resources
 
 * <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName>
