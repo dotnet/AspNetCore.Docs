@@ -85,8 +85,11 @@ Restore succeeded.
 
 # [Visual Studio](#tab/visual-studio)
 
+Visual Studio doesn't currently support native AOT templates. We hope a preview version will soon support AOT.
+<!--
 * Create an ASP.NET Core Web API project.
 * Unselect **Use controllers (uncheck to use minimal APIs)**
+-->
 
 ---
 
@@ -130,7 +133,12 @@ Mode                 LastWriteTime         Length Name
 The executable is self-contained and doesn't require a .NET runtime to run. When launched it should behave the same as the app run in the development environment. Run the AOT app:
 
 ```cli
-$ .\bin\Release\net8.0\win-x64\publish\MyFirstAotWebApi.exe
+.\bin\Release\net8.0\win-x64\publish\MyFirstAotWebApi.exe
+```
+
+Output similar to the following is displayed:
+
+```cli
 info: Microsoft.Hosting.Lifetime[14]
       Now listening on: http://localhost:5000
 info: Microsoft.Hosting.Lifetime[0]
@@ -141,7 +149,78 @@ info: Microsoft.Hosting.Lifetime[0]
       Content root path: C:\Code\Demos\MyFirstAotWebApi
 ```
 
-The `Program.cs` source file contains some changes for publishing to native AOT. A significant difference is that [`Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder`](https://source.dot.net/#Microsoft.AspNetCore/WebApplication.cs,b777c7cc80ce1389) is used to create the web application builder.  The `CreateSlimBuilder` method initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimal ASP.NET Core features necessary to run an application.
+The following changes are made to the `Program.cs` when the `-aot` option is used:
+
+```diff
++using System.Text.Json.Serialization;
+using MyFirstAotWebApi;
+
+var builder = WebApplication.CreateSlimBuilder(args);
+builder.Logging.AddConsole();
+
++builder.Services.ConfigureHttpJsonOptions(options =>
++{
++    options.SerializerOptions.AddContext<AppJsonSerializerContext>();
++});
+
+var app = builder.Build();
+
+var sampleTodos = TodoGenerator.GenerateTodos().ToArray();
+
+var todosApi = app.MapGroup("/todos");
+todosApi.MapGet("/", () => sampleTodos);
+todosApi.MapGet("/{id}", (int id) =>
+    sampleTodos.FirstOrDefault(a => a.Id == id) is { } todo
+        ? Results.Ok(todo)
+        : Results.NotFound());
+
+app.Run();
+
++[JsonSerializable(typeof(Todo[]))]
++internal partial class AppJsonSerializerContext : JsonSerializerContext
++{
++
++}
+```
+
+The AOT version of `launchSettings.json` file is simplified and has the `iisSettings` and `IIS Exoress` profile removed:
+
+``diff
+{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  -"iisSettings": {
+  -   "windowsAuthentication": false,
+  -   "anonymousAuthentication": true,
+  -   "iisExpress": {
+  -     "applicationUrl": "http://localhost:11152",
+  -     "sslPort": 0
+  -   }
+  - },
+  "profiles": {
+    "http": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "todos",
+      "applicationUrl": "http://localhost:5102",
+ -      "environmentVariables": {
+ -        "ASPNETCORE_ENVIRONMENT": "Development"
+ -      }
+ -    },
+ -    "IIS Express": {
+ -      "commandName": "IISExpress",
+ -      "launchBrowser": true,
+ -      "launchUrl": "todos",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
+```
+
+The [`Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder`](https://source.dot.net/#Microsoft.AspNetCore/WebApplication.cs,b777c7cc80ce1389) method creates the web application builder weither the AOT option is used or not.  The `CreateSlimBuilder` method initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimal ASP.NET Core features necessary to run an app.
+
 <!-- Update the preceding with the following when the .NET 8 API is published:
 <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilderSlim%2A>
 -->
