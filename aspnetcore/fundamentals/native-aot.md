@@ -84,7 +84,7 @@ Restore succeeded.
 1. Create a new ASP.NET Core API project. ***Note:*** The ASP.NET Core API project is different than the ASP.NET Core ***Web*** API project.
 1. Select **Enable native AOT publish**
 
-![Workloads](~/fundamentals/aot/_static/aot.png)
+![Enable native AOT publish](~/fundamentals/aot/_static/aot.png)
 
 ---
 
