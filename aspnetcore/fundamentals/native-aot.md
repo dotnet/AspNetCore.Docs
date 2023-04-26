@@ -230,7 +230,7 @@ The following highlighted lines shows the additional code that AOT option adds t
 The [`Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder`](https://source.dot.net/#Microsoft.AspNetCore/WebApplication.cs,b777c7cc80ce1389):
 
 * Initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimal ASP.NET Core features necessary to run an app.
-* I added by the template whether the AOT option is used or not.
+* Is added by the template whether the AOT option is used or not.
 
 <!-- Update the preceding with the following when the .NET 8 API is published:
 <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilderSlim%2A>
