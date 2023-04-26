@@ -85,7 +85,7 @@ Restore succeeded.
 1. Select **Enable native AOT publish**
 
 ![Enable native AOT publish](~/fundamentals/aot/_static/aot.png)
-!2[Enable native AOT publish](~/fundamentals/aot/_static/aot2.png)
+
 ---
 
 Verify the app can be published using native AOT:
@@ -220,7 +220,8 @@ The following highlighted lines shows the additional code that AOT option adds t
 
 :::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="7-10,25-30":::
 
-`JsonSerializerContext`:
+<!-- replace when API is available -->
+[`JsonSerializerContext`](https://source.dot.net/#System.Text.Json/System/Text/Json/Serialization/JsonSerializerContext.cs,84fd0f71800c1d65):
 
 * Is used in the tempate and shown in the preceding highlighted code.
 * Enables JSON serialization with native AOT.
@@ -230,7 +231,7 @@ The following highlighted lines shows the additional code that AOT option adds t
 The [`Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder`](https://source.dot.net/#Microsoft.AspNetCore/WebApplication.cs,b777c7cc80ce1389):
 
 * Initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimal ASP.NET Core features necessary to run an app.
-* Is added by the template whether the AOT option is used or not.
+* Is added by the template whether or not the AOT option is used.
 
 <!-- Update the preceding with the following when the .NET 8 API is published:
 <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilderSlim%2A>
