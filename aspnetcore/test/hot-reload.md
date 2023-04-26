@@ -26,7 +26,7 @@ For more information on supported scenarios, see [Supported code changes (C# and
 
 ## Blazor WebAssembly
 
-::: moniker range=">= aspnetcore-7.0"
+::: moniker range=">= aspnetcore-8.0"
 
 Blazor WebAssembly Hot Reload supports the following code changes:
 
@@ -35,7 +35,7 @@ Blazor WebAssembly Hot Reload supports the following code changes:
 * Most changes to method bodies, such as adding, removing, and editing variables, expressions, and statements.
 * Changes to the bodies of [lambda expressions](/dotnet/csharp/language-reference/operators/lambda-expressions) and [local functions](/dotnet/csharp/programming-guide/classes-and-structs/local-functions).
 * Adding static and instance methods to existing types.
-* Adding static fields and methods to existing types.
+* Adding static and instance fields, events, and properties to existing types.
 * Adding static lambdas to existing methods.
 * Adding lambdas that capture `this` to existing methods that already captured `this` previously.
 
@@ -45,7 +45,29 @@ The following code changes aren't supported for Blazor WebAssembly apps:
 
 * Adding a new [`await` operator](/dotnet/csharp/language-reference/operators/await) or [`yield` keyword](/dotnet/csharp/language-reference/keywords/yield) expression.
 * Changing the names of method parameters.
-* Adding new non-`static` fields, events, or properties 
+
+::: moniker-end
+
+::: moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+Blazor WebAssembly Hot Reload supports the following code changes:
+
+* New types.
+* Nested classes.
+* Most changes to method bodies, such as adding, removing, and editing variables, expressions, and statements.
+* Changes to the bodies of [lambda expressions](/dotnet/csharp/language-reference/operators/lambda-expressions) and [local functions](/dotnet/csharp/programming-guide/classes-and-structs/local-functions).
+* Adding static and instance methods to existing types.
+* Adding static fields to existing types.
+* Adding static lambdas to existing methods.
+* Adding lambdas that capture `this` to existing methods that already captured `this` previously.
+
+Note that when an attribute is removed that previously set the value of a component parameter, the component is disposed and re-initialized to set the removed parameter back to its default value.
+
+The following code changes aren't supported for Blazor WebAssembly apps:
+
+* Adding a new [`await` operator](/dotnet/csharp/language-reference/operators/await) or [`yield` keyword](/dotnet/csharp/language-reference/keywords/yield) expression.
+* Changing the names of method parameters.
+* Adding instance (non-`static`) fields, events, or properties.
 
 ::: moniker-end
 
@@ -62,6 +84,7 @@ The following code changes aren't supported for Blazor WebAssembly apps:
 * Adding a new [`await` operator](/dotnet/csharp/language-reference/operators/await) or [`yield` keyword](/dotnet/csharp/language-reference/keywords/yield) expression.
 * Changing the names of method parameters.
 * Changes outside of method bodies.
+* Adding instance (non-`static`) fields, events, or properties.
 
 ::: moniker-end
 
