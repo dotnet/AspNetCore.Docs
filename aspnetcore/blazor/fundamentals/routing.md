@@ -830,6 +830,83 @@ For more information on JavaScript isolation with JavaScript modules, see <xref:
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Hashed routing to named elements
+
+Navigate to a hashed (`#`) named element using the following approaches:
+
+* Anchor element with an `href`.
+* `Navlink` component with an `href`.
+* Call `NavigateTo` on `NavigationManager` passing the URL.
+
+The following example demonstrates hashed routing to named H2 headings.
+
+In the `Index` (`Pages/Index.razor`) and `Counter` (`Pages/Counter.razor`) components, place the following markup at the bottom of the existing component markup:
+
+```razor
+<div class="border border-info rounded bg-info" style="height:500px"></div>
+
+<h2 id="targetElement">Target H2 heading</h2>
+<p>Content!</p>
+```
+
+Add the following `HashedRouting` component to the app:
+
+`Pages/HashedRouting.razor`:
+
+```razor
+@page "/hashed-routing"
+@inject NavigationManager Navigation
+
+<PageTitle>Hashed routing</PageTitle>
+
+<h1>Hashed routing to named elements</h1>
+
+<ul>
+    <li>
+        <a href="#targetElement">
+            Anchor in this component
+        </a>
+    </li>
+    <li>
+        <a href="/#targetElement">
+            Anchor to the <code>Index</code> component
+        </a>
+    </li>
+    <li>
+        <a href="/counter#targetElement">
+            Anchor to the <code>Counter</code> component
+        </a>
+    </li>
+    <li>
+        <NavLink href="#targetElement">
+            Use a `NavLink` component in this component
+        </NavLink>
+    </li>
+    <li>
+        <button @onclick="NavigateToElement">
+            Navigate with <code>NavigationManager</code> to the 
+            <code>Counter</code> component
+        </button>
+    </li>
+</ul>
+
+<div class="border border-info rounded bg-info" style="height:500px"></div>
+
+<h2 id="targetElement">Target H2 heading</h2>
+<p>Content!</p>
+
+@code {
+    private void NavigateToElement()
+    {
+        Navigation.NavigateTo("counter#targetElement");
+    }
+}
+```
+
+:::moniker-end
+
 :::moniker range=">= aspnetcore-5.0"
 
 ## User interaction with `<Navigating>` content
