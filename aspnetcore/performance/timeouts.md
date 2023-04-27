@@ -13,11 +13,11 @@ By [Tom Dykstra](https://github.com/tdykstra)
 
 :::moniker range=">= aspnetcore-8.0"
 
-A common developer request is to be able to apply timeouts selectively to requests. ASP.NET Core servers don't do this by default since request times vary widely by scenario. For example, WebSockets, static files, and calling expensive APIs would each require a different timeout limit. So there are no good ways for a web server to automatically predict how long a request should take. To give apps more control, ASP.NET Core provides middleware that configures timeouts per endpoint, as well as a global timeout. When a timeout limit is hit, a <xref:System.Threading.CancellationToken> in <xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted?displayProperty=nameWithType> has <xref:System.Threading.CancellationToken.IsCancellationRequested> set to true. The request is not aborted automatically. It's up to the app to check `RequestAborted` and decide how to handle the timeout.
+Apps can apply timeout limits selectively to requests. ASP.NET Core servers don't do this by default since request processing times vary widely by scenario. For example, WebSockets, static files, and calling expensive APIs would each require a different timeout limit. So ASP.NET Core provides middleware that configures timeouts per endpoint as well as a global timeout.
 
-This article explains how to configure the timeout middleware. You can set request timeouts for individual endpoints or controllers, and set a global default.
+When a timeout limit is hit, a <xref:System.Threading.CancellationToken> in <xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted?displayProperty=nameWithType> has <xref:System.Threading.CancellationToken.IsCancellationRequested> set to `true`. The request is not aborted automatically. It's up to the app to check `RequestAborted` and decide how to handle the timeout.
 
-The timeout middleware can be used in all types of ASP.NET Core apps: Minimal API, Web API with controllers, MVC, and Razor Pages. The sample app is a Minimal API, but every timeout feature it illustrates is also supported in the other app types.
+This article explains how to configure the timeout middleware. The timeout middleware can be used in all types of ASP.NET Core apps: Minimal API, Web API with controllers, MVC, and Razor Pages. The sample app is a Minimal API, but every timeout feature it illustrates is also supported in the other app types.
 
 Request timeouts are in the `Microsoft.AspNetCore.Http.Timeouts` namespace.
 
@@ -25,7 +25,7 @@ Request timeouts are in the `Microsoft.AspNetCore.Http.Timeouts` namespace.
 
 Add the request timeouts middleware to the service collection by calling `AddRequestTimeouts`.
 
-Add the middleware to the request processing pipeline by calling `UseRequestTimeouts`>.
+Add the middleware to the request processing pipeline by calling `UseRequestTimeouts`.
 
 > [!NOTE]
 > * In apps that explicitly call `UseRouting`, `UseRequestTimeouts` must be called after `UseRouting`.
