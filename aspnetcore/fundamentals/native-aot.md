@@ -238,14 +238,10 @@ The AOT version of `launchSettings.json` file is simplified and has the `iisSett
 * Specifies the custom types that are needed to serialize.
 * Is used by the [JSON source generator](/dotnet/standard/serialization/system-text-json/source-generation) to produce code.
 
-The [`Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder`](https://source.dot.net/#Microsoft.AspNetCore/WebApplication.cs,b777c7cc80ce1389):
+The [`Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder`](https://source.dot.net/#Microsoft.AspNetCore/WebApplication.cs,b777c7cc80ce1389), <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder%2A>:
 
 * Initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimal ASP.NET Core features necessary to run an app.
 * Is added by the template whether or not the AOT option is used.
-
-<!-- Update the preceding with the following when the .NET 8 API is published:
-<xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilderSlim%2A>
--->
 
 :::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="4":::
 
