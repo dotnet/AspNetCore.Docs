@@ -73,7 +73,10 @@ Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilder
 
 `MapShortCircuit` returns <xref:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder> so that additional route constraints like host filtering can be added to it.
 
-Any middleware that is in the pipeline before routing isn't short-circuited, and short-circuiting is disallowed for endpoints that have `[Authorize]` and `[RequireCors]` metadata.
+### Middleware that can't be short-circuited
+
+* Middleware that is in the pipeline before routing.
+* Endpoints that have `[Authorize]` or `[RequireCors]` metadata.
 
 ### `Run` delegates
 
