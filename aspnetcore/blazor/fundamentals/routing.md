@@ -836,9 +836,9 @@ For more information on JavaScript isolation with JavaScript modules, see <xref:
 
 Navigate to a hashed (`#`) named element using the following approaches:
 
-* Anchor element with an `href`.
-* `Navlink` component with an `href`.
-* Call `NavigateTo` on `NavigationManager` passing the URL.
+* Anchor element (`<a>`) with an `href`.
+* <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component with an `href`.
+* <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> passing the URL.
 
 The following example demonstrates hashed routing to named H2 headings.
 
