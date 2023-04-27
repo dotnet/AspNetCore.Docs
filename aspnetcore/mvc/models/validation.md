@@ -414,6 +414,11 @@ Other options to disable client-side validation:
 
 The preceding approach won't prevent client-side validation of ASP.NET Core Identity Razor Class Library. For more information, see <xref:security/authentication/scaffold-identity>.
 
+
+## Problem details
+
+[!INCLUDE[](~/includes/problem-details-service.md)]
+
 ## Additional resources
 
 * <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName>
