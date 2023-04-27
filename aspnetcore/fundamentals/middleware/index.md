@@ -268,6 +268,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 | [Request Decompression](xref:fundamentals/middleware/request-decompression) | Provides support for decompressing requests. | Before components that read the request body. |
 | [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | Before components that require compression. |
 | [Request Localization](xref:fundamentals/localization) | Provides localization support. | Before localization sensitive components. Must appear after Routing Middleware when using <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider>. |
+| [Request Timeouts](xref:performance/timeouts) | Provides support for configuring request timeouts, global and per endpoint. | `UseRouting` must come before `UseRequestTimeouts`. |
 | [Endpoint Routing](xref:fundamentals/routing) | Defines and constrains request routes. | Terminal for matching routes. |
 | [SPA](xref:Microsoft.AspNetCore.Builder.SpaApplicationBuilderExtensions.UseSpa%2A) | Handles all requests from this point in the middleware chain by returning the default page for the Single Page Application (SPA) | Late in the chain, so that other middleware for serving static files, MVC actions, etc., takes precedence.|
 | [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | Before components that require Session. | 

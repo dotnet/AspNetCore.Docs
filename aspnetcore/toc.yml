@@ -1589,6 +1589,8 @@ items:
             uid: performance/caching/middleware
       - name: Rate limiting middleware
         uid: performance/rate-limit
+      - name: Timeouts middleware
+        uid: performance/timeouts
       - name: Memory and GC
         uid: performance/memory
       - name: Scaling apps on Azure
