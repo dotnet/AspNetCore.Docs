@@ -28,6 +28,18 @@ Further JS interop guidance is provided in the following articles:
 >
 > For more information, see <xref:blazor/js-interop/import-export-interop>.
 
+## JavaScript interop abstractions and features package
+
+The [`@microsoft/dotnet-js-interop` package (`npmjs.com`)](https://www.npmjs.com/package/@microsoft/dotnet-js-interop) provides abstractions and features for interop between .NET and JavaScript (JS) code. Reference source is available in the [`dotnet/aspnetcore` GitHub repository (`/src/JSInterop` folder)](https://github.com/dotnet/aspnetcore/tree/main/src/JSInterop). For more information, see the GitHub repository's `README.md` file.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+Additional resources for writing JS interop scripts in TypeScript:
+
+* [TypeScript](https://www.typescriptlang.org/)
+* [Tutorial: Create an ASP.NET Core app with TypeScript in Visual Studio](/visualstudio/javascript/tutorial-aspnet-with-typescript)
+* [Manage npm packages in Visual Studio](/visualstudio/javascript/npm-package-management)
+
 ## Interaction with the Document Object Model (DOM)
 
 Only mutate the Document Object Model (DOM) with JavaScript (JS) when the object doesn't interact with Blazor. Blazor maintains representations of the DOM and interacts directly with DOM objects. If an element rendered by Blazor is modified externally using JS directly or via JS Interop, the DOM may no longer match Blazor's internal representation, which can result in undefined behavior. Undefined behavior may merely interfere with the presentation of elements or their functions but may also introduce security risks to the app or server.
@@ -223,6 +235,18 @@ Further JS interop guidance is provided in the following articles:
 
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
+
+## JavaScript interop abstractions and features package
+
+The [`@microsoft/dotnet-js-interop` package (`npmjs.com`)](https://www.npmjs.com/package/@microsoft/dotnet-js-interop) provides abstractions and features for interop between .NET and JavaScript (JS) code. Reference source is available in the [`dotnet/aspnetcore` GitHub repository (`/src/JSInterop` folder)](https://github.com/dotnet/aspnetcore/tree/main/src/JSInterop). For more information, see the GitHub repository's `README.md` file.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+Additional resources for writing JS interop scripts in TypeScript:
+
+* [TypeScript](https://www.typescriptlang.org/)
+* [Tutorial: Create an ASP.NET Core app with TypeScript in Visual Studio](/visualstudio/javascript/tutorial-aspnet-with-typescript)
+* [Manage npm packages in Visual Studio](/visualstudio/javascript/npm-package-management)
 
 ## Interaction with the Document Object Model (DOM)
 
@@ -422,6 +446,18 @@ This overview article covers general concepts. Further JS interop guidance is pr
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 
+## JavaScript interop abstractions and features package
+
+The [`@microsoft/dotnet-js-interop` package (`npmjs.com`)](https://www.npmjs.com/package/@microsoft/dotnet-js-interop) provides abstractions and features for interop between .NET and JavaScript (JS) code. Reference source is available in the [`dotnet/aspnetcore` GitHub repository (`/src/JSInterop` folder)](https://github.com/dotnet/aspnetcore/tree/main/src/JSInterop). For more information, see the GitHub repository's `README.md` file.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+Additional resources for writing JS interop scripts in TypeScript:
+
+* [TypeScript](https://www.typescriptlang.org/)
+* [Tutorial: Create an ASP.NET Core app with TypeScript in Visual Studio](/visualstudio/javascript/tutorial-aspnet-with-typescript)
+* [Manage npm packages in Visual Studio](/visualstudio/javascript/npm-package-management)
+
 ## Interaction with the Document Object Model (DOM)
 
 Only mutate the Document Object Model (DOM) with JavaScript (JS) when the object doesn't interact with Blazor. Blazor maintains representations of the DOM and interacts directly with DOM objects. If an element rendered by Blazor is modified externally using JS directly or via JS Interop, the DOM may no longer match Blazor's internal representation, which can result in undefined behavior. Undefined behavior may merely interfere with the presentation of elements or their functions but may also introduce security risks to the app or server.
@@ -620,6 +656,18 @@ This overview article covers general concepts. Further JS interop guidance is pr
 
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
+
+## JavaScript interop abstractions and features package
+
+The [`@microsoft/dotnet-js-interop` package (`npmjs.com`)](https://www.npmjs.com/package/@microsoft/dotnet-js-interop) provides abstractions and features for interop between .NET and JavaScript (JS) code. Reference source is available in the [`dotnet/aspnetcore` GitHub repository (`/src/JSInterop` folder)](https://github.com/dotnet/aspnetcore/tree/main/src/JSInterop). For more information, see the GitHub repository's `README.md` file.
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+Additional resources for writing JS interop scripts in TypeScript:
+
+* [TypeScript](https://www.typescriptlang.org/)
+* [Tutorial: Create an ASP.NET Core app with TypeScript in Visual Studio](/visualstudio/javascript/tutorial-aspnet-with-typescript)
+* [Manage npm packages in Visual Studio](/visualstudio/javascript/npm-package-management)
 
 ## Interaction with the Document Object Model (DOM)
 
