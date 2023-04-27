@@ -47,6 +47,8 @@ Chain multiple request delegates together with <xref:Microsoft.AspNetCore.Builde
 
 [!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/Program.cs?highlight=4-9)]
 
+### Short-circuiting the request pipeline
+
 When a delegate doesn't pass a request to the next delegate, it's called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, [Static File Middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the middleware that terminates further processing still processes code after their `next.Invoke` statements. However, see the following warning about attempting to write to a response that has already been sent.
 
 > [!WARNING]
@@ -56,6 +58,24 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 > * May corrupt the body format. For example, writing an HTML footer to a CSS file.
 >
 > <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted%2A> is a useful hint to indicate if headers have been sent or the body has been written to.
+
+### Short-circuiting after routing
+
+When the routing middleware matches an endpoint, it typically lets the rest of the middleware pipeline run before invoking the endpoint logic. Services can reduce resource usage and log noise by filtering out known requests early in the pipeline. Use the `ShortCircuit` extension method to cause routing to invoke the endpoint logic immediately and then end the request. For example, a given endpoint might not need to go through authentication or CORS middleware. The following example short-circuits requests that match the `/shortcircuit` route:
+
+:::code language="csharp" source="~/fundamentals/middleware/index/snapshots/Program80ShortCircuit.cs" id="mapget":::
+
+The `ShortCircuit` method can optionally take a status code to return.
+
+Short circuiting is disallowed for endpoints that have [Authorize] and [RequireCors] metadata.
+
+Use the `MapShortCircuit` method to set up short circuiting for multiple routes as once, by passing to it a params array of URL prefixes. For example, browsers and bots often probe servers for well known paths like `robots.txt` or `favicon.ico`. If the app doesn't have those files, one line of code can configure both routes:
+
+:::code language="csharp" source="~/fundamentals/middleware/index/snapshots/Program80ShortCircuit.cs" id="mapshortcircuit":::
+
+`MapShortCircuit` returns `IEndpointConventionBuilder`, so that additional route constraints like host filtering can be added to it.
+
+### `Run` delegates
 
 <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A> delegates don't receive a `next` parameter. The first `Run` delegate is always terminal and terminates the pipeline. `Run` is a convention. Some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline:
 
