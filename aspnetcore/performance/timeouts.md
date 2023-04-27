@@ -90,7 +90,7 @@ To disable all timeouts including the default global timeout, use the `[DisableR
 
 ## Cancel a timeout
 
-To cancel a timeout that has already been triggered, use the `DisableTimeout` method on `IHttpRequestTimeoutFeature`.
+To cancel a timeout that has already been started, use the `DisableTimeout` method on `IHttpRequestTimeoutFeature`. Timeouts cannot be canceled after they've expired.
 
 :::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="canceltimeout" highlight="2-3":::
 
