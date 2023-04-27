@@ -1,5 +1,7 @@
 var app = WebApplication.Create();
 
+app.UseHttpLogging();
+
 // <mapget>
 app.MapGet("/short-circuit", () => "Hello world!").ShortCircuit();
 // </mapget>
