@@ -2,7 +2,7 @@
 title: JavaScript JSImport/JSExport interop with ASP.NET Core Blazor WebAssembly
 author: guardrex
 description: Learn how to interact with JavaScript in Blazor WebAssembly apps using JavaScript `[JSImport]`/`[JSExport]` interop.
-monikerRange: '= aspnetcore-7.0'
+monikerRange: '>= aspnetcore-7.0'
 ms.author: riande
 ms.custom: mvc
 ms.date: 11/10/2022
@@ -10,17 +10,7 @@ uid: blazor/js-interop/import-export-interop
 ---
 # JavaScript `[JSImport]`/`[JSExport]` interop with ASP.NET Core Blazor
 
-<!--
-
-    AUTHOR NOTE: This topic is configured in metadata for ONLY the 7.0 release
-                 because I assume that this implementation of JS interop will
-                 be expanded to Blazor Server and will replace IJSRuntime-based
-                 JS interop. If so, this topic will disappear at 8.0 in favor
-                 of 8.0 JS interop docs adopting this API completely.
-
--->
-
-This article explains how to interact with JavaScript (JS) in Blazor WebAssembly apps using JavaScript (JS) `[JSImport]`/`[JSExport]` interop API released with .NET 7.
+This article explains how to interact with JavaScript (JS) in Blazor WebAssembly apps using JavaScript (JS) `[JSImport]`/`[JSExport]` interop API released for apps that adopt .NET 7 or later.
 
 Blazor provides its own JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface, which is uniformly supported across Blazor hosting models and described in the following articles:
 
@@ -29,18 +19,28 @@ Blazor provides its own JS interop mechanism based on the <xref:Microsoft.JSInte
 
 <xref:Microsoft.JSInterop.IJSRuntime> enables library authors to build JS interop libraries that can be shared across the Blazor ecosystem and remains the recommended approach for JS interop in Blazor.
 
-This article describes an alternative JS interop approach specific to WebAssembly-based apps available for the first time with the release of .NET 7. These approaches are appropriate when you only expect to run on client-side WebAssembly and not in the other Blazor hosting models. Library authors can use these approaches to optimize JS interop by checking at runtime if the app is running on WebAssembly in a browser (<xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>). The approaches described in this article should be used to replace the obsolete unmarshalled JS interop API when migrating to .NET 7.
+This article describes an alternative JS interop approach specific to WebAssembly-based apps available for the first time with the release of .NET 7. These approaches are appropriate when you only expect to run on client-side WebAssembly and not in the other Blazor hosting models. Library authors can use these approaches to optimize JS interop by checking at runtime if the app is running on WebAssembly in a browser (<xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>). The approaches described in this article should be used to replace the obsolete unmarshalled JS interop API when migrating to .NET 7 or later.
 
 > [!NOTE]
 > This article focuses on JS interop in Blazor WebAssembly apps. For guidance on calling .NET in JavaScript apps, see <xref:client-side/dotnet-interop>.
 
 ## Obsolete JavaScript interop API
 
-Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> API is obsolete in ASP.NET Core 7.0. Follow the guidance in this article to replace the obsolete API.
+Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> API is obsolete in ASP.NET Core 7.0 or later. Follow the guidance in this article to replace the obsolete API.
 
 ## Prerequisites
 
+:::moniker range=">= aspnetcore-8.0"
+
+[!INCLUDE[](~/includes/8.0-SDK.md)]
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 [!INCLUDE[](~/includes/7.0-SDK.md)]
+
+:::moniker-end
 
 ## Namespace
 
@@ -122,7 +122,17 @@ The app's namespace for the preceding `CallJavaScript1` partial class is `Blazor
 
 In the imported method signature, you can use .NET types for parameters and return values, which are marshalled automatically by the runtime. Use <xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute%601> to control how the imported method parameters are marshalled. For example, you might choose to marshal a `long` as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>. You can pass <xref:System.Action>/<xref:System.Func%601> callbacks as parameters, which are marshalled as callable JS functions. You can pass both JS and managed object references, and they are marshaled as proxy objects, keeping the object alive across the boundary until the proxy is garbage collected. You can also import and export asynchronous methods with a <xref:System.Threading.Tasks.Task> result, which are marshaled as [JS promises](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods, which are covered in the [Call .NET from JavaScript](#call-net-from-javascript) section later in this article.
 
+:::moniker range=">= aspnetcore-8.0"
+
+[!INCLUDE[](~/blazor/includes/js-interop/8.0/import-export-interop-mappings.md)]
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 [!INCLUDE[](~/blazor/includes/js-interop/7.0/import-export-interop-mappings.md)]
+
+:::moniker-end
 
 The module name in the `[JSImport]` attribute and the call to load the module in the component with <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> must match and be unique in the app. When authoring a library for deployment in a NuGet package, we recommend using the NuGet package namespace as a prefix in module names. In the following example, the module name reflects the `Contoso.InteropServices.JavaScript` package and a folder of user message interop classes (`UserMessages`):
 
