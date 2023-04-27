@@ -67,7 +67,7 @@ When the routing middleware matches an endpoint, it typically lets the rest of t
 
 The <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit(Microsoft.AspNetCore.Builder.IEndpointConventionBuilder,System.Nullable{System.Int32})> method can optionally take a status code.
 
-Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilderExtensions.MapShortCircuit%2A> method to set up short-circuiting for multiple routes as once, by passing to it a params array of URL prefixes. For example, browsers and bots often probe servers for well known paths like `robots.txt` or `favicon.ico`. If the app doesn't have those files, one line of code can configure both routes:
+Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilderExtensions.MapShortCircuit%2A> method to set up short-circuiting for multiple routes at once, by passing to it a params array of URL prefixes. For example, browsers and bots often probe servers for well known paths like `robots.txt` or `favicon.ico`. If the app doesn't have those files, one line of code can configure both routes:
 
 :::code language="csharp" source="~/fundamentals/middleware/index/snapshot/Program80ShortCircuit.cs" id="mapshortcircuit":::
 
