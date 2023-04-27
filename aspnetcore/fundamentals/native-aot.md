@@ -88,6 +88,8 @@ Restore succeeded.
 
 ---
 
+## Publish the native AOT app
+
 Verify the app can be published using native AOT:
 
 # [.NET Core CLI](#tab/netcore-cli) 
@@ -227,10 +229,6 @@ The AOT version of `launchSettings.json` file is simplified and has the `iisSett
   }
 }
 ```
-
-The following highlighted lines shows the additional code that AOT option adds to `Program.cs`:
-
-:::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="7-10,25-30":::
 
 <!-- replace when API is available -->
 [`JsonSerializerContext`](https://source.dot.net/#System.Text.Json/System/Text/Json/Serialization/JsonSerializerContext.cs,84fd0f71800c1d65):
