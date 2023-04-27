@@ -865,7 +865,7 @@ Add the following `HashedRouting` component to the app:
 
 <ul>
     <li>
-        <a href="#targetElement">
+        <a href="hashed-routing#targetElement">
             Anchor in this component
         </a>
     </li>
@@ -880,7 +880,7 @@ Add the following `HashedRouting` component to the app:
         </a>
     </li>
     <li>
-        <NavLink href="#targetElement">
+        <NavLink href="hashed-routing#targetElement">
             Use a `NavLink` component in this component
         </NavLink>
     </li>
