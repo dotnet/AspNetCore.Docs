@@ -14,6 +14,9 @@ The following articles provide information about how to optimize the performance
 * <xref:fundamentals/best-practices>
 * <xref:performance/caching/overview>
 * <xref:performance/rate-limit>
+:::moniker range=">= aspnetcore-8.0"
+* <xref:fundamentals/middleware/index#short-circuit-after-routing>
+:::moniker-end
 * <xref:performance/memory>
 * <xref:host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps>
 * <xref:performance/ObjectPool>
