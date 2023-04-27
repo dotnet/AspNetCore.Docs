@@ -91,6 +91,8 @@ The following diagram shows some of the middleware called in an ASP.NET Core app
 
 ![shorts mermaid ASP.NET Core middleware pipeline](~/fundamentals/middleware/index/_static/middleware-pipeline-short2.png)
 
+![shorts4 mermaid ASP.NET Core middleware pipeline](~/fundamentals/middleware/index/_static/midpipe-request.png)
+
 The **Endpoint** middleware in the preceding diagram executes the filter pipeline for the corresponding app type&mdash;MVC or Razor Pages.
 
 The **Routing** middleware in the preceding diagram is shown following **Static Files**. This is the order that the project templates implement by explicitly calling [app.UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A). If you don't call `app.UseRouting`, the **Routing** middleware runs at the beginning of the pipeline by default. For more information, see [Routing](xref:fundamentals/routing).
