@@ -90,9 +90,21 @@ Restore succeeded.
 
 Verify the app can be published using native AOT:
 
+# [.NET Core CLI](#tab/netcore-cli) 
+
 ```cli
 dotnet publish
 ```
+
+# [Visual Studio](#tab/visual-studio)
+
+Visual studio doesn't currently support publishing an AOT app. Use the CLI command:
+
+```cli
+dotnet publish
+```
+
+---
 
 Output similar to the following is displayed:
 
