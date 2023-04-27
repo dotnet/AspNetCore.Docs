@@ -61,17 +61,17 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 
 ### Short-circuit after routing
 
-When the routing middleware matches an endpoint, it typically lets the rest of the middleware pipeline run before invoking the endpoint logic. Services can reduce resource usage and log noise by filtering out known requests early in the pipeline. Use the `ShortCircuit` extension method to cause routing to invoke the endpoint logic immediately and then end the request. For example, a given endpoint might not need to go through authentication or CORS middleware. The following example short-circuits requests that match the `/short-circuit` route:
+When the routing middleware matches an endpoint, it typically lets the rest of the middleware pipeline run before invoking the endpoint logic. Services can reduce resource usage and log noise by filtering out known requests early in the pipeline. Use the <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A> extension method to cause routing to invoke the endpoint logic immediately and then end the request. For example, a given endpoint might not need to go through authentication or CORS middleware. The following example short-circuits requests that match the `/short-circuit` route:
 
 :::code language="csharp" source="~/fundamentals/middleware/index/snapshot/Program80ShortCircuit.cs" id="mapget":::
 
-The `ShortCircuit` method can optionally take a status code.
+The <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit(Microsoft.AspNetCore.Builder.IEndpointConventionBuilder,System.Nullable{System.Int32})> method can optionally take a status code.
 
-Use the `MapShortCircuit` method to set up short circuiting for multiple routes as once, by passing to it a params array of URL prefixes. For example, browsers and bots often probe servers for well known paths like `robots.txt` or `favicon.ico`. If the app doesn't have those files, one line of code can configure both routes:
+Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilderExtensions.MapShortCircuit%2A> method to set up short-circuiting for multiple routes as once, by passing to it a params array of URL prefixes. For example, browsers and bots often probe servers for well known paths like `robots.txt` or `favicon.ico`. If the app doesn't have those files, one line of code can configure both routes:
 
 :::code language="csharp" source="~/fundamentals/middleware/index/snapshot/Program80ShortCircuit.cs" id="mapshortcircuit":::
 
-`MapShortCircuit` returns `IEndpointConventionBuilder` so that additional route constraints like host filtering can be added to it.
+`MapShortCircuit` returns <xref:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder> so that additional route constraints like host filtering can be added to it.
 
 Any middleware that is in the pipeline before routing isn't short-circuited, and short-circuiting is disallowed for endpoints that have `[Authorize]` and `[RequireCors]` metadata.
 
