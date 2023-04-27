@@ -73,7 +73,7 @@ Use the `MapShortCircuit` method to set up short circuiting for multiple routes 
 
 `MapShortCircuit` returns `IEndpointConventionBuilder` so that additional route constraints like host filtering can be added to it.
 
-Any middleware that is in the pipeline before routing isn't short-circuited, and short-circuiting is disallowed for endpoints that have [Authorize] and [RequireCors] metadata.
+Any middleware that is in the pipeline before routing isn't short-circuited, and short-circuiting is disallowed for endpoints that have `[Authorize]` and `[RequireCors]` metadata.
 
 ### `Run` delegates
 
