@@ -59,21 +59,21 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 >
 > <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted%2A> is a useful hint to indicate if headers have been sent or the body has been written to.
 
-### Short-circuiting after routing
+### Short-circuit after routing
 
-When the routing middleware matches an endpoint, it typically lets the rest of the middleware pipeline run before invoking the endpoint logic. Services can reduce resource usage and log noise by filtering out known requests early in the pipeline. Use the `ShortCircuit` extension method to cause routing to invoke the endpoint logic immediately and then end the request. For example, a given endpoint might not need to go through authentication or CORS middleware. The following example short-circuits requests that match the `/shortcircuit` route:
+When the routing middleware matches an endpoint, it typically lets the rest of the middleware pipeline run before invoking the endpoint logic. Services can reduce resource usage and log noise by filtering out known requests early in the pipeline. Use the `ShortCircuit` extension method to cause routing to invoke the endpoint logic immediately and then end the request. For example, a given endpoint might not need to go through authentication or CORS middleware. The following example short-circuits requests that match the `/short-circuit` route:
 
 :::code language="csharp" source="~/fundamentals/middleware/index/snapshots/Program80ShortCircuit.cs" id="mapget":::
 
-The `ShortCircuit` method can optionally take a status code to return.
-
-Short circuiting is disallowed for endpoints that have [Authorize] and [RequireCors] metadata.
+The `ShortCircuit` method can optionally take a status code.
 
 Use the `MapShortCircuit` method to set up short circuiting for multiple routes as once, by passing to it a params array of URL prefixes. For example, browsers and bots often probe servers for well known paths like `robots.txt` or `favicon.ico`. If the app doesn't have those files, one line of code can configure both routes:
 
 :::code language="csharp" source="~/fundamentals/middleware/index/snapshots/Program80ShortCircuit.cs" id="mapshortcircuit":::
 
-`MapShortCircuit` returns `IEndpointConventionBuilder`, so that additional route constraints like host filtering can be added to it.
+`MapShortCircuit` returns `IEndpointConventionBuilder` so that additional route constraints like host filtering can be added to it.
+
+Any middleware that is in the pipeline before routing isn't short-circuited, and short-circuiting is disallowed for endpoints that have [Authorize] and [RequireCors] metadata.
 
 ### `Run` delegates
 
@@ -288,7 +288,6 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 | [Request Decompression](xref:fundamentals/middleware/request-decompression) | Provides support for decompressing requests. | Before components that read the request body. |
 | [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | Before components that require compression. |
 | [Request Localization](xref:fundamentals/localization) | Provides localization support. | Before localization sensitive components. Must appear after Routing Middleware when using <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider>. |
-| [Request Timeouts](xref:performance/timeouts) | Provides support for configuring request timeouts, global and per endpoint. | `UseRouting` must come before `UseRequestTimeouts`. |
 | [Endpoint Routing](xref:fundamentals/routing) | Defines and constrains request routes. | Terminal for matching routes. |
 | [SPA](xref:Microsoft.AspNetCore.Builder.SpaApplicationBuilderExtensions.UseSpa%2A) | Handles all requests from this point in the middleware chain by returning the default page for the Single Page Application (SPA) | Late in the chain, so that other middleware for serving static files, MVC actions, etc., takes precedence.|
 | [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | Before components that require Session. | 
