@@ -5,7 +5,7 @@ description: Troubleshoot errors when using gRPC on .NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
-ms.date: 04/04/2023
+ms.date: 04/26/2023
 uid: grpc/troubleshoot
 ---
 
@@ -269,5 +269,5 @@ Alternatively, a client factory can be configured with `Http3Handler` by using <
 
 :::moniker-end
 
-[!INCLUDE[](~/grpc/includes/troubleshoot3-7.md)]
+[!INCLUDE[](~/grpc/troubleshoot/includes/troubleshoot3-7.md)]
 
