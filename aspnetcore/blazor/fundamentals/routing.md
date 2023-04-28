@@ -830,6 +830,99 @@ For more information on JavaScript isolation with JavaScript modules, see <xref:
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Hashed routing to named elements
+
+Navigate to a named element using the following approaches with a hashed (`#`) reference to the element. Routes to elements within the component and routes to elements in external components use root-relative paths. A leading forward slash (`/`) is optional.
+
+Examples for each of the following approaches demonstrate navigation to an element with an `id` of `targetElement` in the `Counter` component:
+
+* Anchor element (`<a>`) with an `href`:
+
+  ```razor
+  <a href="/counter#targetElement">
+  ```
+
+* <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component with an `href`:
+
+  ```razor
+  <NavLink href="/counter#targetElement">
+  ```
+
+* <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> passing the relative URL:
+
+  ```csharp
+  Navigation.NavigateTo("/counter#targetElement");
+  ```
+
+The following example demonstrates hashed routing to named H2 headings within a component and to external components.
+
+In the `Index` (`Pages/Index.razor`) and `Counter` (`Pages/Counter.razor`) components, place the following markup at the bottoms of the existing component markup to serve as navigation targets. The `<div>` creates artificial vertical space to demonstrate browser scrolling behavior:
+
+```razor
+<div class="border border-info rounded bg-info" style="height:500px"></div>
+
+<h2 id="targetElement">Target H2 heading</h2>
+<p>Content!</p>
+```
+
+Add the following `HashedRouting` component to the app.
+
+`Pages/HashedRouting.razor`:
+
+```razor
+@page "/hashed-routing"
+@inject NavigationManager Navigation
+
+<PageTitle>Hashed routing</PageTitle>
+
+<h1>Hashed routing to named elements</h1>
+
+<ul>
+    <li>
+        <a href="/hashed-routing#targetElement">
+            Anchor in this component
+        </a>
+    </li>
+    <li>
+        <a href="/#targetElement">
+            Anchor to the <code>Index</code> component
+        </a>
+    </li>
+    <li>
+        <a href="/counter#targetElement">
+            Anchor to the <code>Counter</code> component
+        </a>
+    </li>
+    <li>
+        <NavLink href="/hashed-routing#targetElement">
+            Use a `NavLink` component in this component
+        </NavLink>
+    </li>
+    <li>
+        <button @onclick="NavigateToElement">
+            Navigate with <code>NavigationManager</code> to the 
+            <code>Counter</code> component
+        </button>
+    </li>
+</ul>
+
+<div class="border border-info rounded bg-info" style="height:500px"></div>
+
+<h2 id="targetElement">Target H2 heading</h2>
+<p>Content!</p>
+
+@code {
+    private void NavigateToElement()
+    {
+        Navigation.NavigateTo("/counter#targetElement");
+    }
+}
+```
+
+:::moniker-end
+
 :::moniker range=">= aspnetcore-5.0"
 
 ## User interaction with `<Navigating>` content
