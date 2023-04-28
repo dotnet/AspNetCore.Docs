@@ -1,18 +1,4 @@
----
-title: Part 8, add a new field to an ASP.NET Core MVC app
-author: wadepickett
-description: Part 8 of tutorial series on ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
-ms.date: 04/25/2023
-ms.custom: engagement-fy23
-uid: tutorials/first-mvc-app/new-field
----
-# Part 8, add a new field to an ASP.NET Core MVC app
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-7.0"
 
 In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:
 
@@ -43,13 +29,11 @@ dotnet build
 ```
 
 ### [Visual Studio for Mac](#tab/visual-studio-mac)
-
 For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
 <!--
 Command ⌘ + B
 -->
-
 ---
 
 Because you've added a new field to the `Movie` class, you need to update the property binding list so this new property will be included. In `MoviesController.cs`, update the `[Bind]` attribute for both the `Create` and `Edit` action methods to include the `Rating` property:
@@ -145,11 +129,3 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 > [Next](~/tutorials/first-mvc-app/validation.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/new-field/includes/new-field7.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/new-field/includes/new-field6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/new-field/includes/new-field5.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/new-field/includes/new-field3.md)]

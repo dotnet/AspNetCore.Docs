@@ -1,19 +1,4 @@
----
-title: Part 5, work with a database in an ASP.NET Core MVC app
-author: wadepickett
-description: Part 5 of tutorial series on ASP.NET Core MVC.
-ms.author: wpickett
-ms.date: 04/23/2023
-monikerRange: '>= aspnetcore-3.1'
-uid: tutorials/first-mvc-app/working-with-sql
-ms.custom: contperf-fy21q3, engagement-fy23
----
-
-# Part 5, work with a database in an ASP.NET Core MVC app
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Jon P Smith](https://twitter.com/thereformedprog).
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-7.0"
 
 The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `Program.cs` file:
 
@@ -125,9 +110,3 @@ The app shows the seeded data.
 > [Next: Adding controller methods and views](~/tutorials/first-mvc-app/controller-methods-views.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql7.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql3-5.md)]

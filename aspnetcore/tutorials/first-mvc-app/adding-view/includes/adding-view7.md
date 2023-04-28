@@ -1,19 +1,4 @@
----
-title: Part 3, add a view to an ASP.NET Core MVC app
-author: wadepickett
-description: Part 3 of tutorial series on ASP.NET Core MVC.
-ms.author: wpickett
-ms.date: 04/23/2023
-monikerRange: '>= aspnetcore-3.1'
-uid: tutorials/first-mvc-app/adding-view
-ms.custom: contperf-fy21q3, engagement-fy23
----
-
-# Part 3, add a view to an ASP.NET Core MVC app
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-7.0"
 
 In this section, you modify the `HelloWorldController` class to use [Razor](xref:mvc/views/razor) view files. This cleanly encapsulates the process of generating HTML responses to a client.
 
@@ -44,8 +29,6 @@ Right-click on the *Views* folder, and then **Add > New Folder** and name the fo
 
 Right-click on the *Views/HelloWorld* folder, and then **Add > New Item**.
 
-In the **Add New Item** dialog select **Show All Templates**.
-
 In the **Add New Item - MvcMovie** dialog:
 
 * In the search box in the upper-right, enter *view*
@@ -53,7 +36,7 @@ In the **Add New Item - MvcMovie** dialog:
 * Keep the **Name** box value, `Index.cshtml`.
 * Select **Add**
 
-![Add New Item dialog](~/tutorials/first-mvc-app/adding-view/_static/add_viewVS22_17.6.png)
+![Add New Item dialog](~/tutorials/first-mvc-app/adding-view/_static/add_view50.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -64,9 +47,6 @@ Add an `Index` view for the `HelloWorldController`:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 7 version of this tutorial.
-
-<!--
 Control-click the *Views* folder and select **Add > New Folder** and name the folder *HelloWorld*.
 
 Control-click the *Views/HelloWorld* folder and select **Add > New File**.
@@ -79,7 +59,6 @@ In the **New File** dialog:
 * Select **Create**.
 
 ![Add New Item dialog](~/tutorials/first-mvc-app/adding-view/_static/add_view_macVS22.png)
--->
 
 ---
 
@@ -93,7 +72,7 @@ Navigate to `https://localhost:{PORT}/HelloWorld`:
 * A view template file name wasn't specified, so MVC defaulted to using the default view file. When the view file name isn't specified, the default view is returned. The default view has the same name as the action method, `Index` in this example. The view template `/Views/HelloWorld/Index.cshtml` is used.
 * The following image shows the string "Hello from our View Template!" hard-coded in the view:
 
-  ![Browser window](~/tutorials/first-mvc-app/adding-view/_static/hello_template80.png)
+  ![Browser window](~/tutorials/first-mvc-app/adding-view/_static/hell_template.png)
 
 ## Change views and layout pages
 
@@ -125,7 +104,7 @@ In the preceding markup, the `asp-area=""` [anchor Tag Helper attribute](xref:mv
 
 Save the changes and select the **Privacy** link. Notice how the title on the browser tab displays **Privacy Policy - Movie App** instead of **Privacy Policy - MvcMovie**
 
-![Privacy tab](~/tutorials/first-mvc-app/adding-view/_static/privacy80.png)
+![Privacy tab](~/tutorials/first-mvc-app/adding-view/_static/privacy50.png)
 
 Select the **Home** link.
 
@@ -167,7 +146,7 @@ If there are no changes in the browser, it could be cached content that is being
 
 The content in the `Index.cshtml` view template is merged with the `Views/Shared/_Layout.cshtml` view template. A single HTML response is sent to the browser. Layout templates make it easy to make changes that apply across all of the pages in an app. To learn more, see [Layout](xref:mvc/views/layout).
 
-![Movie List view](~/tutorials/first-mvc-app/adding-view/_static/hello80.png)
+![Movie List view](~/tutorials/first-mvc-app/adding-view/_static/hell50.png)
 
 The small bit of "data", the "Hello from our View Template!" message, is hard-coded however. The MVC application has a "V" (view), a "C" (controller), but no "M" (model) yet.
 
@@ -223,11 +202,3 @@ In the next tutorial, a database of movies is created.
 > [Next: Add a Model](~/tutorials/first-mvc-app/adding-model.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-view/includes/adding-view7.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-view/includes/adding-view6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-view/includes/adding-view5.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-view/includes/adding-view3.md)]

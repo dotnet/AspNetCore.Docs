@@ -1,19 +1,4 @@
----
-title: Part 4, add a model to an ASP.NET Core MVC app
-author: wadepickett
-description: Part 4 of tutorial series on ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
-ms.date: 04/23/2023
-uid: tutorials/first-mvc-app/adding-model
-ms.custom: contperf-fy21q3, engagement-fy23
----
-
-# Part 4, add a model to an ASP.NET Core MVC app
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Jon P Smith](https://twitter.com/thereformedprog).
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-7.0"
 
 In this tutorial, classes are added for managing movies in a database. These classes are the "**M**odel" part of the **M**VC app.
 
@@ -35,11 +20,7 @@ Add a file named `Movie.cs` to the *Models* folder.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 7 version of this tutorial.
-
-<!--
 Control-click the **Models** folder and select **Add** > **New Class** > **Empty Class**. Name the file `Movie.cs`.
--->
 
 ---
 
@@ -70,9 +51,6 @@ Visual Studio automatically installs the required packages.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 7 version of this tutorial.
-
-<!--
 From the **Project** menu, select **Manage NuGet Packages**.
 
 In the **Search** field in the upper right:
@@ -112,7 +90,6 @@ The preceding commands add:
 
 * The [command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
 * The [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
--->
 
 ---
 
@@ -147,16 +124,9 @@ Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 * Select **Add**.
 
 ![Add Data context keep defaults](~/tutorials/first-mvc-app/adding-model/_static/dc_last_step_vs22v17.6.png)
-
 If you get an error message, select **Add** a second time to try it again.
 
 <a name="scaffolding-created"></a>
-
-Scaffolding adds the following packages:
-
-* Microsoft.EntityFrameworkCore.SqlServer
-* Microsoft.EntityFrameworkCore.Tools
-* Microsoft.VisualStudio.Web.CodeGeneration.Design
 
 Scaffolding creates the following:
 
@@ -223,9 +193,6 @@ The following highlighted code in `Program.cs` shows how to use SQLite in develo
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For Visual Studio for Mac, see the .NET 7 version of this tutorial.
-
-<!--
 Open a command window in the project directory. The project directory is the directory that contains the `.csproj` file.
 
 Export the scaffold tool path:
@@ -268,12 +235,10 @@ The following highlighted code in `Program.cs` shows how to use SQLite in develo
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie60/Program.cs?name=SQLiteDevProd&highlight=3-99)]
 
 <a name="scaffolding-created"></a>
--->
 
 ---
 
 <!-- End of tabs                  -->
-
 
 <a name="migration"></a>
 
@@ -299,7 +264,7 @@ Update-Database
 
 The `Update-Database` command generates the following warning:
 
-> No store type was specified for the decimal property 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+> No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
 
 Ignore the preceding warning, it's fixed in a later tutorial.
 
@@ -319,6 +284,8 @@ dotnet ef database update
 
 * `ef migrations add InitialCreate`: Generates a `Migrations/{timestamp}_InitialCreate.cs` migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. This is the first migration, so the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class, in the `Data/MvcMovieContext.cs` file.
 * `ef database update`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the `Migrations/{time-stamp}_InitialCreate.cs` file, which creates the database.
+
+For more information on maintaining multiple providers such as Microsoft SQL Server and SQLite, see [Migrations with Multiple Providers](xref:core/managing-schemas/migrations/providers).
 
 ---
 
@@ -504,11 +471,3 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 > [Next: Working with SQL](~/tutorials/first-mvc-app/working-with-sql.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model7.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model5.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model3.md)]

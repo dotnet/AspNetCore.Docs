@@ -1,19 +1,4 @@
----
-title: Part 7, add search to an ASP.NET Core MVC app
-author: wadepickett
-description: Part 7 of tutorial series on ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: wpickett
-ms.date: 04/25/2023
-ms.custom: engagement-fy23
-uid: tutorials/first-mvc-app/search
----
-
-# Part 7, add search to an ASP.NET Core MVC app
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-7.0"
 
 In this section, you add search capability to the `Index` action method that lets you search movies by *genre* or *name*.
 
@@ -40,7 +25,7 @@ Note: The <xref:System.Data.Objects.DataClasses.EntityCollection%601.Contains%2A
 
 Navigate to `/Movies/Index`. Append a query string such as `?searchString=Ghost` to the URL. The filtered movies are displayed.
 
-![Index view](~/tutorials/first-mvc-app/search/_static/ghost80.png)
+![Index view](~/tutorials/first-mvc-app/search/_static/ghost.png)
 
 If you change the signature of the `Index` method to have a parameter named `id`, the `id` parameter will match the optional `{id}` placeholder for the default routes set in `Program.cs`.
 
@@ -58,7 +43,7 @@ The updated `Index` method with `id` parameter:
 
 You can now pass the search title as route data (a URL segment) instead of as a query string value.
 
-![Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2](~/tutorials/first-mvc-app/search/_static/ghost2_80.png)
+![Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2](~/tutorials/first-mvc-app/search/_static/g2.png)
 
 However, you can't expect users to modify the URL every time they want to search for a movie. So now you'll add UI elements to help them filter movies. If you changed the signature of the `Index` method to test how to pass the route-bound `ID` parameter, change it back so that it takes a parameter named `searchString`:
 
@@ -70,7 +55,7 @@ Open the `Views/Movies/Index.cshtml` file, and add the `<form>` markup highlight
 
 The HTML `<form>` tag uses the [Form Tag Helper](xref:mvc/views/working-with-forms), so when you submit the form, the filter string is posted to the `Index` action of the movies controller. Save your changes and then test the filter.
 
-![Index view with the word ghost typed into the Title filter textbox](~/tutorials/first-mvc-app/search/_static/filter80.png)
+![Index view with the word ghost typed into the Title filter textbox](~/tutorials/first-mvc-app/search/_static/filter.png)
 
 There's no `[HttpPost]` overload of the `Index` method as you might expect. You don't need it, because the method isn't changing the state of the app, just filtering data.
 
@@ -96,7 +81,7 @@ Because the search parameter is in the request body and not the URL, you can't c
 
 Now when you submit a search, the URL contains the search query string. Searching will also go to the `HttpGet Index` action method, even if you have a `HttpPost Index` method.
 
-![Browser window showing the searchString=ghost in the Url and the movies returned, Ghostbusters and Ghostbusters 2, contain the word ghost](~/tutorials/first-mvc-app/search/_static/search_get80.png)
+![Browser window showing the searchString=ghost in the Url and the movies returned, Ghostbusters and Ghostbusters 2, contain the word ghost](~/tutorials/first-mvc-app/search/_static/search_get.png)
 
 The following markup shows the change to the `form` tag:
 
@@ -143,16 +128,10 @@ In the preceding code, the `DisplayNameFor` HTML Helper inspects the `Title` pro
 
 Test the app by searching by genre, by movie title, and by both:
 
-![Browser window showing results of https://localhost:5001/Movies?MovieGenre=Comedy&SearchString=2](~/tutorials/first-mvc-app/search/_static/search2_80.png)
+![Browser window showing results of https://localhost:5001/Movies?MovieGenre=Comedy&SearchString=2](~/tutorials/first-mvc-app/search/_static/s2.png)
 
 > [!div class="step-by-step"]
 > [Previous](~/tutorials/first-mvc-app/controller-methods-views.md)
 > [Next](~/tutorials/first-mvc-app/new-field.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/search/includes/search7.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/search/includes/search6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/search/includes/search3-5.md)]
