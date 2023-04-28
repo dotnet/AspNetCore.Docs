@@ -834,7 +834,9 @@ For more information on JavaScript isolation with JavaScript modules, see <xref:
 
 ## Hashed routing to named elements
 
-Navigate to a named element using the following approaches with a hashed (`#`) reference to the element. Examples for each of the following approaches demonstrate navigation to an element with an `id` of `targetElement` in the `Counter` component:
+Navigate to a named element using the following approaches with a hashed (`#`) reference to the element. Routes to elements within the component and routes to elements in external components use root-relative paths. A leading forward slash (`/`) is optional.
+
+Examples for each of the following approaches demonstrate navigation to an element with an `id` of `targetElement` in the `Counter` component:
 
 * Anchor element (`<a>`) with an `href`:
 
@@ -845,13 +847,13 @@ Navigate to a named element using the following approaches with a hashed (`#`) r
 * <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component with an `href`:
 
   ```razor
-  <NavLink href="counter#targetElement">
+  <NavLink href="/counter#targetElement">
   ```
 
 * <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> passing the relative URL:
 
   ```csharp
-  Navigation.NavigateTo("counter#targetElement");
+  Navigation.NavigateTo("/counter#targetElement");
   ```
 
 The following example demonstrates hashed routing to named H2 headings within a component and to external components.
@@ -865,7 +867,7 @@ In the `Index` (`Pages/Index.razor`) and `Counter` (`Pages/Counter.razor`) compo
 <p>Content!</p>
 ```
 
-Add the following `HashedRouting` component to the app. Routes to elements within the component must use the route template of the component, which is `hashed-routing` in the following `HashedRouting` component. Routes to elements in external components use a root-relative path, which is `/` for the `Index` component and `/counter` for the `Counter` component.
+Add the following `HashedRouting` component to the app.
 
 `Pages/HashedRouting.razor`:
 
@@ -879,7 +881,7 @@ Add the following `HashedRouting` component to the app. Routes to elements withi
 
 <ul>
     <li>
-        <a href="hashed-routing#targetElement">
+        <a href="/hashed-routing#targetElement">
             Anchor in this component
         </a>
     </li>
@@ -894,7 +896,7 @@ Add the following `HashedRouting` component to the app. Routes to elements withi
         </a>
     </li>
     <li>
-        <NavLink href="hashed-routing#targetElement">
+        <NavLink href="/hashed-routing#targetElement">
             Use a `NavLink` component in this component
         </NavLink>
     </li>
@@ -914,7 +916,7 @@ Add the following `HashedRouting` component to the app. Routes to elements withi
 @code {
     private void NavigateToElement()
     {
-        Navigation.NavigateTo("counter#targetElement");
+        Navigation.NavigateTo("/counter#targetElement");
     }
 }
 ```
