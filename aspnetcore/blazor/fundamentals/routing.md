@@ -834,15 +834,29 @@ For more information on JavaScript isolation with JavaScript modules, see <xref:
 
 ## Hashed routing to named elements
 
-Navigate to a hashed (`#`) named element using the following approaches:
+Navigate to a named element using the following approaches with a hashed (`#`) reference to the element. Examples for each of the following approaches demonstrate navigation to an element with an `id` of `targetElement` in the `Counter` component:
 
-* Anchor element (`<a>`) with an `href`.
-* <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component with an `href`.
-* <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> passing the URL.
+* Anchor element (`<a>`) with an `href`:
 
-The following example demonstrates hashed routing to named H2 headings.
+  ```razor
+  <a href="/counter#targetElement">
+  ```
 
-In the `Index` (`Pages/Index.razor`) and `Counter` (`Pages/Counter.razor`) components, place the following markup at the bottom of the existing component markup:
+* <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component with an `href`:
+
+  ```razor
+  <NavLink href="counter#targetElement">
+  ```
+
+* <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> passing the relative URL:
+
+  ```csharp
+  Navigation.NavigateTo("counter#targetElement");
+  ```
+
+The following example demonstrates hashed routing to named H2 headings within a component and to external components.
+
+In the `Index` (`Pages/Index.razor`) and `Counter` (`Pages/Counter.razor`) components, place the following markup at the bottoms of the existing component markup to serve as navigation targets. The `<div>` creates artificial vertical space to demonstrate browser scrolling behavior:
 
 ```razor
 <div class="border border-info rounded bg-info" style="height:500px"></div>
@@ -851,7 +865,7 @@ In the `Index` (`Pages/Index.razor`) and `Counter` (`Pages/Counter.razor`) compo
 <p>Content!</p>
 ```
 
-Add the following `HashedRouting` component to the app:
+Add the following `HashedRouting` component to the app. Routes to elements within the component must use the route template of the component, which is `hashed-routing` in the following `HashedRouting` component. Routes to elements in external components use a root-relative path, which is `/` for the `Index` component and `/counter` for the `Counter` component.
 
 `Pages/HashedRouting.razor`:
 
