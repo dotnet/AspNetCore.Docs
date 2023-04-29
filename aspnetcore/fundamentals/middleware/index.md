@@ -82,8 +82,10 @@ For more information, see [this GitHub issue](https://github.com/dotnet/aspnetco
 The following diagram shows the complete request processing pipeline for ASP.NET Core MVC and Razor Pages apps. You can see how, in a typical app, existing middlewares are ordered and where custom middlewares are added. You have full control over how to reorder existing middlewares or inject new custom middlewares as necessary for your scenarios.
 
 ![ASP.NET Core middleware pipeline](~/fundamentals/middleware/index/_static/middleware-pipeline.svg)
-
-<!-- See mermaid diagrams in https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/index/includes
+![ASP.NET SVG  middleware pipeline](~/fundamentals/middleware/index/includes/x.md.svg)
+<!-- 
+                                     \fundamentals\middleware\index\includes\x.md.svg"
+See mermaid diagrams in https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/index/includes
 
 Install CLI mermaid to make SVGs
 npm install -g mermaid-cli
@@ -92,8 +94,6 @@ remove ```mermaid and closing ```
 mermaid -s x.md
 preceding creates the x.md.svg file
 -->
-
-![short mermaid ASP.NET Core middleware pipeline](~/fundamentals/middleware/index/includes/x.md.svg)
 
 The **Endpoint** middleware in the preceding diagram executes the filter pipeline for the corresponding app type&mdash;MVC or Razor Pages.
 
