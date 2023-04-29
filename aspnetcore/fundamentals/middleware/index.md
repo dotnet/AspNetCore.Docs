@@ -83,6 +83,20 @@ The following diagram shows the complete request processing pipeline for ASP.NET
 
 ![ASP.NET Core middleware pipeline](~/fundamentals/middleware/index/_static/middleware-pipeline.svg)
 
+<!-- 
+See mermaid diagrams in https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/index/includes
+
+Install CLI mermaid to make SVGs
+npm install -g mermaid-cli
+
+remove ```mermaid and closing ```
+mermaid -s x.md
+preceding creates the x.md.svg file
+
+![ASP.NET SVG  middleware pipeline](~/fundamentals/middleware/index/includes/x.md.svg)
+Line 85: [Warning] File 'fundamentals/middleware/index/includes/x.md.svg' referenced by link '~/fundamentals/middleware/index/includes/x.md.svg' will not be built because it is not included in build scope.
+-->
+
 The **Endpoint** middleware in the preceding diagram executes the filter pipeline for the corresponding app type&mdash;MVC or Razor Pages.
 
 The **Routing** middleware in the preceding diagram is shown following **Static Files**. This is the order that the project templates implement by explicitly calling [app.UseRouting](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A). If you don't call `app.UseRouting`, the **Routing** middleware runs at the beginning of the pipeline by default. For more information, see [Routing](xref:fundamentals/routing).
