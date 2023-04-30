@@ -16,7 +16,11 @@ app.UseExceptionHandler(exceptionHandlerApp =>
         if (problemDetailsService == null
             || !await problemDetailsService.TryWriteAsync(new() { HttpContext = httpContext }))
         {
-            // Your fallback behavior, since problem details were not able to be written.
+            // The ProblemDetails may not be able to be written.
+            // Example: the Accept request header specifies a media type which 
+            // the DefaulProblemDetailsWriter does not support, e.g. Accept: text/plain
+
+            // Fallback behavior
             await httpContext.Response.WriteAsync("An error occurred.");
         }
     });
@@ -45,7 +49,11 @@ app.UseStatusCodePages(statusCodeHandlerApp =>
         if (problemDetailsService == null
             || !await problemDetailsService.TryWriteAsync(new() { HttpContext = httpContext }))
         {
-            // Your fallback behavior, since problem details were not able to be written.
+            // The ProblemDetails may not be able to be written.
+            // Example: the Accept request header specifies a media type which 
+            // the DefaulProblemDetailsWriter does not support, e.g. Accept: text/plain
+
+            // Fallback behavior
             await httpContext.Response.WriteAsync("An error occurred.");
         }
     });
