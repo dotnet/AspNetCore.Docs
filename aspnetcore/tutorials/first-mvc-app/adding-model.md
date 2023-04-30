@@ -189,10 +189,10 @@ export PATH=$HOME/.dotnet/tools:$PATH
 Run the following command:
 
 ```dotnetcli
-dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovie.Data.MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries -sqlite
+dotnet aspnet-codegenerator controller -name MoviesController -m Movie -dc MvcMovie.Data.MvcMovieContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries --databaseProvider sqlite
 ```
 
-[!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model4.md)]
+[!INCLUDE [explains scaffold generated params](~/includes/mvc-intro/model7.md)]
 
 <a name="scaffolding-created"></a>
 
