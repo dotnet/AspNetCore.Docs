@@ -286,7 +286,7 @@ Deploy a Blazor WebAssembly app to Azure Static Web Apps using either of the fol
 
 #### Deploy from Visual Studio
 
-To deploy from Visual Studio:
+To deploy from Visual Studio, create a publish profile for Azure Static Web Apps:
 
 1. Save any unsaved work in the project, as a Visual Studio restart might be required during the process.
 
