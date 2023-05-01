@@ -96,7 +96,7 @@ public class Movie
     [Required]
     [StringLength(30)]
     public string? Genre { get; set; }
-    
+
     [RegularExpression(@"^[A-Z]+[a-zA-Z0-9""'\s-]*$")]
     [StringLength(5)]
     [Required]
