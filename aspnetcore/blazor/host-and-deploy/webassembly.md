@@ -279,7 +279,30 @@ Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn
 
 ### Azure Static Web Apps
 
-For more information, see [Tutorial: Building a static web app with Blazor in Azure Static Web Apps](/azure/static-web-apps/deploy-blazor).
+Deploy a Blazor WebAssembly app to Azure Static Web Apps using either of the following approaches:
+
+* [Deploy from Visual Studio](#deploy-from-visual-studio)
+* [Deploy from GitHub](#deploy-from-github)
+
+#### Deploy from Visual Studio
+
+To deploy from Visual Studio:
+
+1. Save any unsaved work in the project, as a Visual Studio restart might be required during the process.
+
+1. In Visual Studio's **Publish** UI, select **Target** > **Azure** > **Specific Target** > **Azure Static Web Apps** to create a [publish profile](xref:host-and-deploy/visual-studio-publish-profiles).
+
+1. If the **Azure WebJobs Tools** component for Visual Studio isn't installed, a prompt appears to install the **ASP.NET and web development** component. Follow the prompts to install the tools using the Visual Studio Installer. Visual Studio closes and re-opens automatically while installing the tools. After the tools are installed, start over at the first step to create the publish profile.
+
+1. In the publish profile configuration, provide the **Subscription name**. Select an existing instance, or select **Create a new instance**. When creating a new instance in the Azure portal's **Create Static Web App** UI, set the **Deployment details** > **Source** to **Other**. Wait for the deployment to complete in the Azure portal before proceeding.
+
+1. In the publish profile configuration, select the Azure Static Web Apps instance from the instance's resource group. Select **Finish** to create the publish profile. If Visual Studio prompts to install the Static Web Apps (SWA) CLI, install the CLI by following the prompts. The SWA CLI requires [NPM/Node.js (Visual Studio documentation)](/visualstudio/javascript/npm-package-management).
+
+After the publish profile is created, deploy the app to the Azure Static Web Apps instance using the publish profile by selecting the **Publish** button.
+
+#### Deploy from GitHub
+
+To deploy from a GitHub repository, see [Tutorial: Building a static web app with Blazor in Azure Static Web Apps](/azure/static-web-apps/deploy-blazor).
 
 ### IIS
 
