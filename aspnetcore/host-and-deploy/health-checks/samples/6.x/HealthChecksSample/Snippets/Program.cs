@@ -125,7 +125,7 @@ public static class Program
         // <snippet_MapHealthChecksAllowCachingResponses>
         app.MapHealthChecks("/healthz", new HealthCheckOptions
         {
-            AllowCachingResponses = false
+            AllowCachingResponses = true
         });
         // </snippet_MapHealthChecksAllowCachingResponses>
     }
