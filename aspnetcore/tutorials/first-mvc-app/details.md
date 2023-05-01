@@ -27,15 +27,15 @@ EF makes it easy to search for data using the `FirstOrDefaultAsync` method. An i
 
 Examine the `Delete` and `DeleteConfirmed` methods.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Controllers/MoviesController.cs?name=Delete)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie80/Controllers/MoviesController.cs?name=Delete)]
 
 Note that the `HTTP GET Delete` method doesn't delete the specified movie, it returns a view of the movie where you can submit (HttpPost) the deletion. Performing a delete operation in response to a GET request (or for that matter, performing an edit operation, create operation, or any other operation that changes data) opens up a security hole.
 
 The `[HttpPost]` method that deletes the data is named `DeleteConfirmed` to give the HTTP POST method a unique signature or name. The two method signatures are shown below:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Controllers/MoviesController.cs?name=DeleteSignature)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie80/Controllers/MoviesController.cs?name=DeleteSignature)]
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Controllers/MoviesController.cs?name=DeleteConfirmedSignature)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie80/Controllers/MoviesController.cs?name=DeleteConfirmedSignature)]
 
 The common language runtime (CLR) requires overloaded methods to have a unique parameter signature (same method name but different list of parameters). However, here you need two `Delete` methods -- one for GET and one for POST -- that both have the same parameter signature. (They both need to accept a single integer as a parameter.)
 

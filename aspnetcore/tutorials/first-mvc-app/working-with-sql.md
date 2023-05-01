@@ -79,7 +79,7 @@ Right-click on the `Movie` table **> View Data**
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/SeedData.cs?name=FirstVersion)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie80/Models/SeedData.cs?name=FirstVersion)]
 
 If there are any movies in the database, the seed initializer returns and no movies are added.
 

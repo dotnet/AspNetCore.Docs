@@ -72,11 +72,12 @@ Name the controller **HelloWorldController**.
 
 ![Add MVC controller and name it](~/tutorials/first-mvc-app-mac/adding-controller/_static/ac_MacVS22.png)
 -->
+
 ---
 
 Replace the contents of `Controllers/HelloWorldController.cs` with the following code:
 
-  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Controllers/HelloWorldController.cs?name=First)]
+  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie80/Controllers/HelloWorldController.cs?name=First)]
 
 Every `public` method in a controller is callable as an HTTP endpoint. In the sample above, both methods return a string. Note the comments preceding each method.
 
@@ -122,7 +123,7 @@ Modify the code to pass some parameter information from the URL to the controlle
 
 Change the `Welcome` method to include two parameters as shown in the following code.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Controllers/HelloWorldController.cs?name=Second)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie80/Controllers/HelloWorldController.cs?name=Second)]
 
 The preceding code:
 
@@ -145,7 +146,7 @@ In the previous image:
 
 Replace the `Welcome` method with the following code:
 
-  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Controllers/HelloWorldController.cs?name=Third)]
+  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie80/Controllers/HelloWorldController.cs?name=Third)]
 
 Run the app and enter the following URL: `https://localhost:{PORT}/HelloWorld/Welcome/3?name=Rick`
 

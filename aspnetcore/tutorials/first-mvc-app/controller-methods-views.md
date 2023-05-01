@@ -21,7 +21,7 @@ We have a good start to the movie app, but the presentation isn't ideal, for exa
 
 Open the `Models/Movie.cs` file and add the highlighted lines shown below:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/Movie.cs?name=Second&highlight=2,3,12-13,16)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie80/Models/Movie.cs?name=Second&highlight=2,3,12-13,16)]
 
 `DataAnnotations` are explained in the next tutorial. The [Display](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) attribute specifies what to display for the name of a field (in this case "Release Date" instead of "ReleaseDate"). The [DataType](xref:System.ComponentModel.DataAnnotations.DataTypeAttribute) attribute specifies the type of the data (Date), so the time information stored in the field isn't displayed.
 
