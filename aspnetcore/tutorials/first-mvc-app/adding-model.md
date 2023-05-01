@@ -320,7 +320,7 @@ dotnet ef database update
 * `ef migrations add InitialCreate`: Generates a `Migrations/{timestamp}_InitialCreate.cs` migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. This is the first migration, so the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class, in the `Data/MvcMovieContext.cs` file.
 * `ef database update`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the `Migrations/{time-stamp}_InitialCreate.cs` file, which creates the database.
 
-For more information on maintaining multiple providers such as Microsoft SQL Server and SQLite, see [Migrations with Multiple Providers](https://learn.microsoft.com/ef/core/managing-schemas/migrations/providers).
+For more information on maintaining multiple providers such as Microsoft SQL Server and SQLite, see [Migrations with Multiple Providers](/ef/core/managing-schemas/migrations/providers).
 
 ---
 
