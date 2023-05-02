@@ -35,9 +35,13 @@ SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
     });
 ```
 
-In the options configuration method passed to the `AddRemoteAppServer` call, you must specify an API key which is used to secure the endpoint so that only trusted callers can make requests to it (this same API key will be provided to the ASP.NET Core app when it is configured). The API key is a string and must be parsable as a GUID (128-bit hex number). Hyphens in the key are optional.
+In the options configuration method passed to the `AddRemoteAppServer` call, an API key must be specified. The API key is:
 
-3. [Optional] Add the `SystemWebAdapterModule` module to your web.config if it wasn't already added by NuGet (such as using SDK style projects for ASP.NET Core).
+* Used to secure the endpoint so that only trusted callers can make requests to it.
+* The same API key provided to the ASP.NET Core app when it is configured.
+* A string and must be parsable as a [GUID](/dotnet/api/system.guid). Hyphens in the key are optional.
+
+3. **Optional :** Add the `SystemWebAdapterModule` module to to the `web.config` if it wasn't already added by NuGet. The `SystemWebAdapterModule` module added automatically when using SDK style projects for ASP.NET Core.
 
 ```diff
   <system.webServer>
