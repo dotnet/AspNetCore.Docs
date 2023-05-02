@@ -166,7 +166,7 @@ For more information on using `AddProblemDetails`, see [Problem Details](/aspnet
 
 ## ProblemDetailsService fallback
 
-In the following code, `httpContext.Response.WriteAsync("An error occurred.")` is called to generate an error if the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation isn't able to generate a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>:
+In the following code, `httpContext.Response.WriteAsync("An error occurred.")` returns an error if the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation isn't able to generate a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_WithUseExceptionHandler" highlight="16":::
 
