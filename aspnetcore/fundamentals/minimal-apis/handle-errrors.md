@@ -165,4 +165,4 @@ For more information on using `AddProblemDetails`, see [Problem Details](/aspnet
 
 :::moniker-end
 
-[!INCLUDE[](~\fundamentals\minimal-apis\handle-errrors\includes\handle-errrors7.md)]
+[!INCLUDE[](~/fundamentals/minimal-apis/handle-errrors/includes/handle-errrors7.md)]
