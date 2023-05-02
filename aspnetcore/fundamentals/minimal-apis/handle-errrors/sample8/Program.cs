@@ -1,4 +1,4 @@
-#define WithStatusCodesPage // WithUseExceptionHandler, WithStatusCodesPage
+#define WithUseExceptionHandler // WithUseExceptionHandler, WithStatusCodesPage
 
 #if WithUseExceptionHandler
 // <snippet_WithUseExceptionHandler>
@@ -12,12 +12,12 @@ app.UseExceptionHandler(exceptionHandlerApp =>
 {
     exceptionHandlerApp.Run(async httpContext =>
     {
-        var problemDetailsService = httpContext.RequestServices.GetService<IProblemDetailsService>();
-        if (problemDetailsService == null
-            || !await problemDetailsService.TryWriteAsync(new() { HttpContext = httpContext }))
+        var pds = httpContext.RequestServices.GetService<IProblemDetailsService>();
+        if (pds == null
+            || !await pds.TryWriteAsync(new() { HttpContext = httpContext }))
         {
             // Fallback behavior
-            await httpContext.Response.WriteAsync("Fallback message: An error occurred.");
+            await httpContext.Response.WriteAsync("Fallback: An error occurred.");
         }
     });
 });
@@ -43,12 +43,12 @@ app.UseStatusCodePages(statusCodeHandlerApp =>
 {
     statusCodeHandlerApp.Run(async httpContext =>
     {
-        var problemDetailsService = httpContext.RequestServices.GetService<IProblemDetailsService>();
-        if (problemDetailsService == null
-            || !await problemDetailsService.TryWriteAsync(new() { HttpContext = httpContext }))
+        var pds = httpContext.RequestServices.GetService<IProblemDetailsService>();
+        if (pds == null
+            || !await pds.TryWriteAsync(new() { HttpContext = httpContext }))
         {
             // Fallback behavior
-            await httpContext.Response.WriteAsync("Fallback message: An error occurred.");
+            await httpContext.Response.WriteAsync("Fallback: An error occurred.");
         }
     });
 });
