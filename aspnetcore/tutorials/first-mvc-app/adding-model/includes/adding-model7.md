@@ -128,6 +128,12 @@ If you get an error message, select **Add** a second time to try it again.
 
 <a name="scaffolding-created"></a>
 
+Scaffolding adds the following packages:
+
+* `Microsoft.EntityFrameworkCore.SqlServer`
+* `Microsoft.EntityFrameworkCore.Tools`
+* `Microsoft.VisualStudio.Web.CodeGeneration.Design`
+
 Scaffolding creates the following:
 
 * A movies controller: `Controllers/MoviesController.cs`
