@@ -34,7 +34,7 @@ Welcome to what's new in the ASP.NET Core docs for April 2023. This article list
 
 ### Updated articles
 
-- <xref:fundamentals/native-aot> - AOT  /5
+- <xref:fundamentals/native-aot> -
 
 ## gRPC
 
@@ -52,7 +52,6 @@ Welcome to what's new in the ASP.NET Core docs for April 2023. This article list
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham ![There were 36 pull requests merged by Luke Latham.](https://img.shields.io/badge/Merged%20Pull%20Requests-36-green)
 - [AlbertoPa](https://github.com/AlbertoPa) - Alberto Passalacqua ![There were 2 pull requests merged by Alberto Passalacqua.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
 - [explunit](https://github.com/explunit) - Steve P ![There were 2 pull requests merged by Steve P.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
 - [fiyazbinhasan](https://github.com/fiyazbinhasan) - Fiyaz Bin Hasan ![There were 2 pull requests merged by Fiyaz Bin Hasan.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
