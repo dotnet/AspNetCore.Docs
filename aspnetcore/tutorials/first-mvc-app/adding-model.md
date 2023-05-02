@@ -154,9 +154,9 @@ If you get an error message, select **Add** a second time to try it again.
 
 Scaffolding adds the following packages:
 
-* Microsoft.EntityFrameworkCore.SqlServer
-* Microsoft.EntityFrameworkCore.Tools
-* Microsoft.VisualStudio.Web.CodeGeneration.Design
+* `Microsoft.EntityFrameworkCore.SqlServer`
+* `Microsoft.EntityFrameworkCore.Tools`
+* `Microsoft.VisualStudio.Web.CodeGeneration.Design`
 
 Scaffolding creates the following:
 
