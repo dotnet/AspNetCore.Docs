@@ -4,11 +4,19 @@ author: brunolins16
 description: Learn about error handling with minimal APIs in ASP.NET Core.
 ms.author: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 10/24/2022
+ms.date: 5/2/2023
 uid: fundamentals/minimal-apis/handle-errors
 ---
 
+<!-- Can't add this until 8 is released and not-latest-version.md is updated to 8.0
+[!INCLUDE[](~/includes/not-latest-version.md)]
+--> 
+
 # How to handle errors in Minimal API apps
+
+With contributions by [David Acker](https://github.com/david-acker)
+
+ :::moniker range=">= aspnetcore-8.0"
 
 This article describes how to handle errors in Minimal API apps.
 
@@ -33,7 +41,7 @@ app.Run();
 
 ### Developer Exception Page
 
-The [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page) shows detailed stack traces for server errors. It uses <xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware> to capture synchronous and asynchronous exceptions from the HTTP pipeline and to generate error responses. 
+The [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page) shows detailed stack traces for server errors. It uses <xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware> to capture synchronous and asynchronous exceptions from the HTTP pipeline and to generate error responses.
 
 ASP.NET Core apps enable the developer exception page by default when both:
 
@@ -70,10 +78,9 @@ Accept-Encoding: gzip, deflate, br
 
 ### Exception handler
 
-In non-development environments, use the [Exception Handler Middleware](xref:fundamentals/error-handling#exception-handler-page) to produce an error payload. To configure the `Exception Handler Middleware`, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>. 
+In non-development environments, use the [Exception Handler Middleware](xref:fundamentals/error-handling#exception-handler-page) to produce an error payload. To configure the `Exception Handler Middleware`, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A>.
 
 For example, the following code changes the app to respond with an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client. For more information, see [Problem Details](#problem-details) section.
-
 
 ``` csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -133,7 +140,7 @@ public record User(int Id);
 
 [!INCLUDE[](~/includes/problem-details-service.md)]
 
-Minimal API apps can be configured to generate problem details response for all HTTP client and server error responses that ***don't have a body content yet*** by using the `AddProblemDetails` extension method. 
+Minimal API apps can be configured to generate problem details response for all HTTP client and server error responses that ***don't have a body content yet*** by using the `AddProblemDetails` extension method.
 
 The following code configures the app to generate problem details:
 
@@ -156,3 +163,22 @@ app.Run();
 ```
 
 For more information on using `AddProblemDetails`, see [Problem Details](/aspnet/core/fundamentals/error-handling?view=aspnetcore-7.0&preserve-view=true#pds7)
+
+## IProblemDetailsService fallback
+
+In the following code, `httpContext.Response.WriteAsync("An error occurred.")` returns an error if the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation isn't able to generate a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_WithUseExceptionHandler" highlight="16":::
+
+The preceding code:
+
+* Writes an error message with the fallback code if the `problemDetailsService` is unable to write a `ProblemDetails`. For example, an endpoint where the [Accept request header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept) specifies a media type that the `DefaulProblemDetailsWriter` does not support.
+* Uses the [Exception Handler Middleware](xref:fundamentals/error-handling#exception-handler-page).
+
+The following sample is similar to the preceding except that it calls the The [`Status Code Pages middleware`](xref:fundamentals/error-handling#usestatuscodepages).
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_WithStatusCodesPage" highlight="16":::
+
+:::moniker-end
+
+[!INCLUDE[](~/fundamentals/minimal-apis/handle-errrors/includes/handle-errrors7.md)]
