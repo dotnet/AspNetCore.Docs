@@ -1,7 +1,7 @@
 #define WithUseExceptionHandler // WithUseExceptionHandler, WithStatusCodesPage
 
 #if WithUseExceptionHandler
-#region snippet_WithUseExceptionHandler
+// <snippet_WithUseExceptionHandler>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddProblemDetails();
@@ -12,16 +12,12 @@ app.UseExceptionHandler(exceptionHandlerApp =>
 {
     exceptionHandlerApp.Run(async httpContext =>
     {
-        var problemDetailsService = httpContext.RequestServices.GetService<IProblemDetailsService>();
-        if (problemDetailsService == null
-            || !await problemDetailsService.TryWriteAsync(new() { HttpContext = httpContext }))
+        var pds = httpContext.RequestServices.GetService<IProblemDetailsService>();
+        if (pds == null
+            || !await pds.TryWriteAsync(new() { HttpContext = httpContext }))
         {
-            // The ProblemDetails may not be able to be written.
-            // Example: the Accept request header specifies a media type which 
-            // the DefaulProblemDetailsWriter does not support, e.g. Accept: text/plain
-
             // Fallback behavior
-            await httpContext.Response.WriteAsync("An error occurred.");
+            await httpContext.Response.WriteAsync("Fallback: An error occurred.");
         }
     });
 });
@@ -31,10 +27,12 @@ app.MapGet("/exception", () =>
     throw new InvalidOperationException("Sample Exception");
 });
 
+app.MapGet("/", () => "Test by calling /exception");
+
 app.Run();
-#endregion
+// </snippet_WithUseExceptionHandler>
 #elif WithStatusCodesPage
-#region snippet_WithStatusCodesPage
+// <snippet_WithStatusCodesPage>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddProblemDetails();
@@ -45,16 +43,12 @@ app.UseStatusCodePages(statusCodeHandlerApp =>
 {
     statusCodeHandlerApp.Run(async httpContext =>
     {
-        var problemDetailsService = httpContext.RequestServices.GetService<IProblemDetailsService>();
-        if (problemDetailsService == null
-            || !await problemDetailsService.TryWriteAsync(new() { HttpContext = httpContext }))
+        var pds = httpContext.RequestServices.GetService<IProblemDetailsService>();
+        if (pds == null
+            || !await pds.TryWriteAsync(new() { HttpContext = httpContext }))
         {
-            // The ProblemDetails may not be able to be written.
-            // Example: the Accept request header specifies a media type which 
-            // the DefaulProblemDetailsWriter does not support, e.g. Accept: text/plain
-
             // Fallback behavior
-            await httpContext.Response.WriteAsync("An error occurred.");
+            await httpContext.Response.WriteAsync("Fallback: An error occurred.");
         }
     });
 });
@@ -64,8 +58,9 @@ app.MapGet("/users/{id:int}", (int id) =>
     return id <= 0 ? Results.BadRequest() : Results.Ok(new User(id));
 });
 
-app.Run();
-#endregion
-#endif 
+app.MapGet("/", () => "Test by calling //users/{id:int}");
 
+app.Run();
+// </snippet_WithStatusCodesPage>
+#endif 
 public record User(int Id);
