@@ -164,7 +164,7 @@ app.Run();
 
 For more information on using `AddProblemDetails`, see [Problem Details](/aspnet/core/fundamentals/error-handling?view=aspnetcore-7.0&preserve-view=true#pds7)
 
-## ProblemDetailsService fallback
+## IProblemDetailsService fallback
 
 In the following code, `httpContext.Response.WriteAsync("An error occurred.")` returns an error if the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation isn't able to generate a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>:
 
