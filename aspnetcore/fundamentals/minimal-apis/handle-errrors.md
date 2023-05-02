@@ -14,6 +14,8 @@ uid: fundamentals/minimal-apis/handle-errors
 
 # How to handle errors in Minimal API apps
 
+With contributions by [David Acker](https://github.com/david-acker)
+
  :::moniker range=">= aspnetcore-8.0"
 
 This article describes how to handle errors in Minimal API apps.
@@ -166,7 +168,7 @@ For more information on using `AddProblemDetails`, see [Problem Details](/aspnet
 
 In the following code, `httpContext.Response.WriteAsync("An error occurred.")` is called to generate an error if the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation isn't able to generate a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_WithUseExceptionHandler" highight="16":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_WithUseExceptionHandler" highlight="16":::
 
 The preceding code:
 
@@ -175,7 +177,7 @@ The preceding code:
 
 The following sample is similar to the preceding except that it calls the The [`Status Code Pages middleware`](xref:fundamentals/error-handling#usestatuscodepages).
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_WithStatusCodesPage" highight="16":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_WithStatusCodesPage" highlight="16":::
 
 :::moniker-end
 
