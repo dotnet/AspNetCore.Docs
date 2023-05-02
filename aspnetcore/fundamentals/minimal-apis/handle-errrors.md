@@ -8,7 +8,9 @@ ms.date: 5/2/2023
 uid: fundamentals/minimal-apis/handle-errors
 ---
 
+<!-- Can't add this until 8 is released and not-latest-version.md is updated to 8.0
 [!INCLUDE[](~/includes/not-latest-version.md)]
+--> 
 
 # How to handle errors in Minimal API apps
 
