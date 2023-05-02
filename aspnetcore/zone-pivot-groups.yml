@@ -58,3 +58,11 @@ groups:
       title: Graph SDK v5
     - id: named-client-graph-api
       title: Named HttpClient with Graph API
+- id: blazor-multiple-hosted-wasm-apps
+  title: Hosting approach
+  prompt: Choose a hosting approach for the client apps
+  pivots:
+    - id: port-domain
+      title: Port/domain hosting (5001/5002 or firstapp.com/secondapp.com)
+    - id: route-subpath
+      title: Route subpath hosting (/FirstApp and /SecondApp)
