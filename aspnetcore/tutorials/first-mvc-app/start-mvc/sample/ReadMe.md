@@ -1,1 +1,1 @@
-The completed sample is in the *2.2-completed* folder. The *MvcMovie22* sample is used for documentation and is difficult to use.
+The completed sample is in the *<.NET version>-completed* folder. The *MvcMovie<.NET version>* sample is used for documentation and is difficult to use.

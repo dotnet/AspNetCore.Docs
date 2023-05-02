@@ -4,7 +4,7 @@ author: wadepickett
 description: Part 8 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: wpickett
-ms.date: 01/29/2023
+ms.date: 04/25/2023
 ms.custom: engagement-fy23
 uid: tutorials/first-mvc-app/new-field
 ---
@@ -12,7 +12,7 @@ uid: tutorials/first-mvc-app/new-field
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
 
 In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:
 
@@ -28,7 +28,7 @@ When EF Code First is used to automatically create a database, Code First:
 
 Add a `Rating` property to `Models/Movie.cs`:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/Movie.cs?name=AddRating&highlight=19)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie80/Models/Movie.cs?name=AddRating&highlight=19)]
 
 Build the app
 
@@ -44,7 +44,11 @@ dotnet build
 
 ### [Visual Studio for Mac](#tab/visual-studio-mac)
 
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
+
+<!--
 Command ⌘ + B
+-->
 
 ---
 
@@ -141,6 +145,8 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 > [Next](~/tutorials/first-mvc-app/validation.md)
 
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/first-mvc-app/new-field/includes/new-field7.md)]
 
 [!INCLUDE[](~/tutorials/first-mvc-app/new-field/includes/new-field6.md)]
 

@@ -3,7 +3,7 @@ title: Part 5, work with a database in an ASP.NET Core MVC app
 author: wadepickett
 description: Part 5 of tutorial series on ASP.NET Core MVC.
 ms.author: wpickett
-ms.date: 01/29/2023
+ms.date: 04/23/2023
 monikerRange: '>= aspnetcore-3.1'
 uid: tutorials/first-mvc-app/working-with-sql
 ms.custom: contperf-fy21q3, engagement-fy23
@@ -13,7 +13,7 @@ ms.custom: contperf-fy21q3, engagement-fy23
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Jon P Smith](https://twitter.com/thereformedprog).
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
 
 The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `Program.cs` file:
 
@@ -48,27 +48,23 @@ LocalDB:
 * Is targeted for program development. It runs in user mode, so there's no complex configuration.
 * By default creates *.mdf* files in the *C:/Users/{user}* directory.
 
-<!--
-Temporarily commented out because SSOX isn't available in VS 2022 Preview
 ### Examine the database
 
 From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
-![View menu](~/tutorials/first-mvc-app/working-with-sql/_static/ssox5.png)
+Right-click on the `Movie` table (`dbo.Movie`) **> View Designer**
 
-Right-click on the `Movie` table **> View Designer**
+![Right-click on the Movie table > View Designer.](~/tutorials/first-mvc-app/working-with-sql/_static/designvs22v17.6.png)
 
-![Right-click on the Movie table > View Designer.](~/tutorials/first-mvc-app/working-with-sql/_static/design.png)
-
-![Movie table open in Designer](~/tutorials/first-mvc-app/working-with-sql/_static/dv.png)
+![Movie table open in Designer](~/tutorials/first-mvc-app/working-with-sql/_static/dv_vs22v17.6.png)
 
 Note the key icon next to `ID`. By default, EF makes a property named `ID` the primary key.
 
 Right-click on the `Movie` table **> View Data**
 
-![Right-click on the Movie table > View Data.](~/tutorials/first-mvc-app/working-with-sql/_static/ssox2.png)
+![Right-click on the Movie table > View Data.](~/tutorials/first-mvc-app/working-with-sql/_static/ssox2_vs22v17.6.png)
 
-![Movie table open showing table data](~/tutorials/first-mvc-app/working-with-sql/_static/vd22.png)
+![Movie table open showing table data](~/tutorials/first-mvc-app/working-with-sql/_static/vd_VS22_17.6.png)
 -->
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
@@ -83,7 +79,7 @@ Right-click on the `Movie` table **> View Data**
 
 Create a new class named `SeedData` in the *Models* folder. Replace the generated code with the following:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/MvcMovie70/Models/SeedData.cs?name=FirstVersion)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/sample/mvcmovie80/Models/SeedData.cs?name=FirstVersion)]
 
 If there are any movies in the database, the seed initializer returns and no movies are added.
 
@@ -122,13 +118,15 @@ Test the app. Stop it and restart it so the `SeedData.Initialize` method runs an
 
 The app shows the seeded data.
 
-![MVC Movie app open in Microsoft Edge showing movie data](~/tutorials/first-mvc-app/working-with-sql/_static/m55.png)
+![MVC Movie app open in Microsoft Edge showing movie data](~/tutorials/first-mvc-app/working-with-sql/_static/m80.png)
 
 > [!div class="step-by-step"]
 > [Previous: Adding a model](~/tutorials/first-mvc-app/adding-model.md)
 > [Next: Adding controller methods and views](~/tutorials/first-mvc-app/controller-methods-views.md)
 
 :::moniker-end
+
+[!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql7.md)]
 
 [!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql6.md)]
 
