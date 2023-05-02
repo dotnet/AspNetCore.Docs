@@ -10,9 +10,9 @@ uid: fundamentals/minimal-apis/handle-errors
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
- :::moniker range=">= aspnetcore-8.0"
-
 # How to handle errors in Minimal API apps
+
+ :::moniker range=">= aspnetcore-8.0"
 
 This article describes how to handle errors in Minimal API apps.
 

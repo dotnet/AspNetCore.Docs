@@ -1,7 +1,5 @@
  :::moniker range="= aspnetcore-7.0"
 
-# How to handle errors in Minimal API apps
-
 This article describes how to handle errors in Minimal API apps.
 
 ## Exceptions
