@@ -59,25 +59,6 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 >
 > <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted%2A> is a useful hint to indicate if headers have been sent or the body has been written to.
 
-### Short-circuit after routing
-
-When the routing middleware matches an endpoint, it typically lets the rest of the middleware pipeline run before invoking the endpoint logic. Services can reduce resource usage by filtering out known requests early in the pipeline. Use the <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A> extension method to cause routing to invoke the endpoint logic immediately and then end the request. For example, a given endpoint might not need to go through authentication or CORS middleware. The following example short-circuits requests that match the `/short-circuit` route:
-
-:::code language="csharp" source="~/fundamentals/middleware/index/snapshot/Program80ShortCircuit.cs" id="mapget":::
-
-The <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit(Microsoft.AspNetCore.Builder.IEndpointConventionBuilder,System.Nullable{System.Int32})> method can optionally take a status code.
-
-Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilderExtensions.MapShortCircuit%2A> method to set up short-circuiting for multiple routes at once, by passing to it a params array of URL prefixes. For example, browsers and bots often probe servers for well known paths like `robots.txt` or `favicon.ico`. If the app doesn't have those files, one line of code can configure both routes:
-
-:::code language="csharp" source="~/fundamentals/middleware/index/snapshot/Program80ShortCircuit.cs" id="mapshortcircuit":::
-
-`MapShortCircuit` returns <xref:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder> so that additional route constraints like host filtering can be added to it.
-
-The `ShortCircuit` and `MapShortCircuit` methods don't short-circuit in the following scenarios:
-
-* Middleware that is in the pipeline before routing.
-* Endpoints that have `[Authorize]` or `[RequireCors]` metadata.
-
 ### `Run` delegates
 
 <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A> delegates don't receive a `next` parameter. The first `Run` delegate is always terminal and terminates the pipeline. `Run` is a convention. Some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline:

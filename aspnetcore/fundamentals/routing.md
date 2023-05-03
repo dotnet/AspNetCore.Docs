@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core routing is responsible for matching HTTP 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/02/2023
+ms.date: 05/03/2023
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -930,6 +930,22 @@ There are several techniques and optimizations can be applied to routes that wil
   * This reduces the number of possible "paths" to match an endpoint given a path.
 * Use a dynamic route and perform the mapping to a controller/page dynamically.
   * This can be achieved using `MapDynamicControllerRoute` and `MapDynamicPageRoute`.
+
+### Short-circuit after routing
+
+When routing matches an endpoint, it typically lets the rest of the middleware pipeline run before invoking the endpoint logic. Services can reduce resource usage by filtering out known requests early in the pipeline. Use the <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A> extension method to cause routing to invoke the endpoint logic immediately and then end the request. For example, a given route might not need to go through authentication or CORS middleware. The following example short-circuits requests that match the `/short-circuit` route:
+
+:::code language="csharp" source="~/fundamentals/middleware/index/snapshot/Program80ShortCircuit.cs" id="mapget":::
+
+The <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit(Microsoft.AspNetCore.Builder.IEndpointConventionBuilder,System.Nullable{System.Int32})> method can optionally take a status code.
+
+Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilderExtensions.MapShortCircuit%2A> method to set up short-circuiting for multiple routes at once, by passing to it a params array of URL prefixes. For example, browsers and bots often probe servers for well known paths like `robots.txt` and `favicon.ico`. If the app doesn't have those files, one line of code can configure both routes:
+
+:::code language="csharp" source="~/fundamentals/middleware/index/snapshot/Program80ShortCircuit.cs" id="mapshortcircuit":::
+
+`MapShortCircuit` returns <xref:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder> so that additional route constraints like host filtering can be added to it.
+
+The `ShortCircuit` and `MapShortCircuit` methods do not affect middleware placed before `UseRouting`. Trying to use these methods with endpoints that also have `[Authorize]` or `[RequireCors]` metadata will cause requests to fail with an `InvalidOperationException`. This metadata is applied by [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) or [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attributes or by <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors%2A> or <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> methods.
 
 ## Guidance for library authors
 
