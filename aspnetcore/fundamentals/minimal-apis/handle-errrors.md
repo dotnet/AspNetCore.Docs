@@ -166,7 +166,7 @@ For more information on using `AddProblemDetails`, see [Problem Details](/aspnet
 
 ## IProblemDetailsService fallback
 
-In the following code, `httpContext.Response.WriteAsync("An error occurred.")` returns an error if the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation isn't able to generate a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>:
+In the following code, `httpContext.Response.WriteAsync("Fallback: An error occurred.")` returns an error if the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation isn't able to generate a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_WithUseExceptionHandler" highlight="16":::
 
@@ -175,7 +175,7 @@ The preceding code:
 * Writes an error message with the fallback code if the `problemDetailsService` is unable to write a `ProblemDetails`. For example, an endpoint where the [Accept request header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept) specifies a media type that the `DefaulProblemDetailsWriter` does not support.
 * Uses the [Exception Handler Middleware](xref:fundamentals/error-handling#exception-handler-page).
 
-The following sample is similar to the preceding except that it calls the The [`Status Code Pages middleware`](xref:fundamentals/error-handling#usestatuscodepages).
+The following sample is similar to the preceding except that it calls the [`Status Code Pages middleware`](xref:fundamentals/error-handling#usestatuscodepages).
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_WithStatusCodesPage" highlight="16":::
 
