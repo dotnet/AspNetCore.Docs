@@ -949,7 +949,7 @@ The `ShortCircuit` and `MapShortCircuit` methods do not affect middleware placed
 
 To see the effect of short-circuiting middleware, set the "Microsoft" logging category to "Information" in `appsettings.Development.json`:
 
-:::code language="json" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/appsettings.Development.json" highlight="6":::
+:::code language="json" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/appsettings.Development.json" highlight="5":::
 
 Run the following code:
 
