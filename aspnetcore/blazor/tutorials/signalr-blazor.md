@@ -33,20 +33,20 @@ At the end of this tutorial, you'll have a working chat app.
 # [Visual Studio](#tab/visual-studio)
 
 * [Visual Studio 2022 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
-* [!INCLUDE [.NET Core 6.0 SDK](~/includes/6.0-SDK.md)]
+* [!INCLUDE [.NET Core 7.0 SDK](~/includes/7.0-SDK.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 * [Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/)
-* [!INCLUDE [.NET Core 6.0 SDK](~/includes/6.0-SDK.md)]
+* [!INCLUDE [.NET Core 7.0 SDK](~/includes/7.0-SDK.md)]
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-[!INCLUDE[](~/includes/6.0-SDK.md)]
+[!INCLUDE[](~/includes/7.0-SDK.md)]
 
 ---
 
