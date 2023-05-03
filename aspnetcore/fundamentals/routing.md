@@ -947,11 +947,13 @@ Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilder
 
 The `ShortCircuit` and `MapShortCircuit` methods do not affect middleware placed before `UseRouting`. Trying to use these methods with endpoints that also have `[Authorize]` or `[RequireCors]` metadata will cause requests to fail with an `InvalidOperationException`. This metadata is applied by [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) or [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attributes or by <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors%2A> or <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> methods.
 
-To see the effect of short-circuiting middleware, run the following code with the following `appsettings.Development.json`:
+To see the effect of short-circuiting middleware, add the following highlighted line to `appsettings.Development.json`:
+
+:::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/appsettings.Development.json" highlight="6":::
+
+Run the following code:
 
 :::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/Program.cs" id="all":::
-
-:::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/appsettings.Development.json":::
 
 The following example is from the console logs produced by running the `/` endpoint. It includes output from the logging middleware:
 
