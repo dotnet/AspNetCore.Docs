@@ -41,7 +41,7 @@ In the options configuration method passed to the `AddRemoteAppServer` call, an 
 * The same API key provided to the ASP.NET Core app when it is configured.
 * A string and must be parsable as a [GUID](/dotnet/api/system.guid). Hyphens in the key are optional.
 
-3. **Optional :** Add the `SystemWebAdapterModule` module to to the `web.config` if it wasn't already added by NuGet. The `SystemWebAdapterModule` module added automatically when using SDK style projects for ASP.NET Core.
+3. **Optional :** Add the `SystemWebAdapterModule` module to to the `web.config` if it wasn't already added by NuGet. The `SystemWebAdapterModule` module is not added automatically when using SDK style projects for ASP.NET Core.
 
 ```diff
   <system.webServer>
