@@ -931,21 +931,53 @@ There are several techniques and optimizations can be applied to routes that wil
 * Use a dynamic route and perform the mapping to a controller/page dynamically.
   * This can be achieved using `MapDynamicControllerRoute` and `MapDynamicPageRoute`.
 
-### Short-circuit after routing
+### Short-circuit middleware after routing
 
 When routing matches an endpoint, it typically lets the rest of the middleware pipeline run before invoking the endpoint logic. Services can reduce resource usage by filtering out known requests early in the pipeline. Use the <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A> extension method to cause routing to invoke the endpoint logic immediately and then end the request. For example, a given route might not need to go through authentication or CORS middleware. The following example short-circuits requests that match the `/short-circuit` route:
 
-:::code language="csharp" source="~/fundamentals/middleware/index/snapshot/Program80ShortCircuit.cs" id="mapget":::
+:::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/Program.cs" id="mapget":::
 
 The <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit(Microsoft.AspNetCore.Builder.IEndpointConventionBuilder,System.Nullable{System.Int32})> method can optionally take a status code.
 
 Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilderExtensions.MapShortCircuit%2A> method to set up short-circuiting for multiple routes at once, by passing to it a params array of URL prefixes. For example, browsers and bots often probe servers for well known paths like `robots.txt` and `favicon.ico`. If the app doesn't have those files, one line of code can configure both routes:
 
-:::code language="csharp" source="~/fundamentals/middleware/index/snapshot/Program80ShortCircuit.cs" id="mapshortcircuit":::
+:::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/Program.cs" id="mapshortcircuit":::
 
 `MapShortCircuit` returns <xref:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder> so that additional route constraints like host filtering can be added to it.
 
 The `ShortCircuit` and `MapShortCircuit` methods do not affect middleware placed before `UseRouting`. Trying to use these methods with endpoints that also have `[Authorize]` or `[RequireCors]` metadata will cause requests to fail with an `InvalidOperationException`. This metadata is applied by [`[Authorize]`](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) or [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attributes or by <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors%2A> or <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> methods.
+
+To see the effect of short-circuiting middleware, run the following code with the following `appsettings.Development.json`:
+
+:::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/Program.cs" id="all":::
+
+:::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/appsettings.Development.json":::
+
+The following example is from the console logs produced by running the `/` endpoint. It includes output from the logging middleware:
+
+```
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'HTTP: GET /'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'HTTP: GET /'
+info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[2]
+      Response:
+      StatusCode: 200
+      Content-Type: text/plain; charset=utf-8
+      Date: Wed, 03 May 2023 21:05:59 GMT
+      Server: Kestrel
+      Alt-Svc: h3=":5182"; ma=86400
+      Transfer-Encoding: chunked
+```
+
+The following example is from running the `/short-circuit` endpoint. It doesn't have anything from the logging middleware because the middleware was short-circuited:
+
+```
+info: Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware[4]
+      The endpoint 'HTTP: GET /short-circuit' is being executed without running additional middleware.
+info: Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware[5]
+      The endpoint 'HTTP: GET /short-circuit' has been executed without running additional middleware.
+```
 
 ## Guidance for library authors
 
