@@ -1,4 +1,4 @@
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+:::moniker range="= aspnetcore-7.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
 
@@ -276,7 +276,7 @@ ASP.NET Core ships with the following middleware components. The *Order* column 
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+:::moniker range="= aspnetcore-6.0"
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ardalis.com/)
 
