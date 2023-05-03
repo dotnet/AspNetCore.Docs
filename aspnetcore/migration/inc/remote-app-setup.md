@@ -50,6 +50,7 @@ In the options configuration method passed to the `AddRemoteAppServer` call, an 
 +      <add name="SystemWebAdapterModule" type="Microsoft.AspNetCore.SystemWebAdapters.SystemWebAdapterModule, Microsoft.AspNetCore.SystemWebAdapters.FrameworkServices" preCondition="managedHandler" />
     </modules>
 </system.webServer>
+```
 
 ### ASP.NET Core app
 
