@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core middleware and the request pipeline.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/26/2023
+ms.date: 05/03/2023
 uid: fundamentals/middleware/index
 ---
 # ASP.NET Core Middleware
@@ -47,6 +47,8 @@ Chain multiple request delegates together with <xref:Microsoft.AspNetCore.Builde
 
 [!code-csharp[](~/fundamentals/middleware/index/snapshot/Chain60/Program.cs?highlight=4-9)]
 
+### Short-circuiting the request pipeline
+
 When a delegate doesn't pass a request to the next delegate, it's called *short-circuiting the request pipeline*. Short-circuiting is often desirable because it avoids unnecessary work. For example, [Static File Middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the middleware that terminates further processing still processes code after their `next.Invoke` statements. However, see the following warning about attempting to write to a response that has already been sent.
 
 > [!WARNING]
@@ -56,6 +58,10 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 > * May corrupt the body format. For example, writing an HTML footer to a CSS file.
 >
 > <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted%2A> is a useful hint to indicate if headers have been sent or the body has been written to.
+
+For more information, see [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
+
+### `Run` delegates
 
 <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run%2A> delegates don't receive a `next` parameter. The first `Run` delegate is always terminal and terminates the pipeline. `Run` is a convention. Some middleware components may expose `Run[Middleware]` methods that run at the end of the pipeline:
 
