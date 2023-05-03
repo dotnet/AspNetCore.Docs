@@ -215,10 +215,17 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. In `Program.cs`:
 
-   * Use Response Compression Middleware at the top of the processing pipeline's configuration.
-   * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub.
+   * Use Response Compression Middleware at the top of the processing pipeline's configuration. Immediately after the line that builds the app (`var app = builder.Build();`), add the middleware:
+   
+     ```csharp
+     app.UseResponseCompression();
+     ```
 
-   :::code language="csharp" source="~/../blazor-samples/7.0/BlazorWebAssemblySignalRApp/Server/Program.cs" id="snippet_Configure" highlight="1,21":::
+   * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub. Immediately after the line `app.MapControllers();`, add the following line:
+
+     ```csharp
+     app.MapHub<ChatHub>("/chathub");
+     ```
 
 ## Add Razor component code for chat
 
@@ -468,10 +475,17 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 1. In `Program.cs`:
 
-   * Use Response Compression Middleware at the top of the processing pipeline's configuration.
-   * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub.
+   * Use Response Compression Middleware at the top of the processing pipeline's configuration. Immediately after the line that builds the app (`var app = builder.Build();`), add the middleware:
+   
+     ```csharp
+     app.UseResponseCompression();
+     ```
 
-   :::code language="csharp" source="~/../blazor-samples/7.0/BlazorServerSignalRApp/Program.cs" id="snippet_Configure" highlight="1,16":::
+   * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub. Immediately after the line `app.MapBlazorHub();`, add the following line:
+
+     ```csharp
+     app.MapHub<ChatHub>("/chathub");
+     ```
 
 ## Add Razor component code for chat
 
@@ -776,10 +790,17 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. In `Program.cs`:
 
-   * Use Response Compression Middleware at the top of the processing pipeline's configuration.
-   * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub.
+   * Use Response Compression Middleware at the top of the processing pipeline's configuration. Immediately after the line that builds the app (`var app = builder.Build();`), add the middleware:
+   
+     ```csharp
+     app.UseResponseCompression();
+     ```
 
-   :::code language="csharp" source="~/../blazor-samples/6.0/BlazorWebAssemblySignalRApp/Server/Program.cs" id="snippet_Configure" highlight="1,21":::
+   * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub. Immediately after the line `app.MapControllers();`, add the following line:
+
+     ```csharp
+     app.MapHub<ChatHub>("/chathub");
+     ```
 
 ## Add Razor component code for chat
 
@@ -1029,10 +1050,17 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 1. In `Program.cs`:
 
-   * Use Response Compression Middleware at the top of the processing pipeline's configuration.
-   * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub.
+   * Use Response Compression Middleware at the top of the processing pipeline's configuration. Immediately after the line that builds the app (`var app = builder.Build();`), add the middleware:
+   
+     ```csharp
+     app.UseResponseCompression();
+     ```
 
-   :::code language="csharp" source="~/../blazor-samples/6.0/BlazorServerSignalRApp/Program.cs" id="snippet_Configure" highlight="1,17":::
+   * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub. Immediately after the line `app.MapBlazorHub();`, add the following line:
+
+     ```csharp
+     app.MapHub<ChatHub>("/chathub");
+     ```
 
 ## Add Razor component code for chat
 
