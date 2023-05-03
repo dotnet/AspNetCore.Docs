@@ -931,7 +931,7 @@ There are several techniques and optimizations can be applied to routes that wil
 * Use a dynamic route and perform the mapping to a controller/page dynamically.
   * This can be achieved using `MapDynamicControllerRoute` and `MapDynamicPageRoute`.
 
-### Short-circuit middleware after routing
+## Short-circuit middleware after routing
 
 When routing matches an endpoint, it typically lets the rest of the middleware pipeline run before invoking the endpoint logic. Services can reduce resource usage by filtering out known requests early in the pipeline. Use the <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A> extension method to cause routing to invoke the endpoint logic immediately and then end the request. For example, a given route might not need to go through authentication or CORS middleware. The following example short-circuits requests that match the `/short-circuit` route:
 
