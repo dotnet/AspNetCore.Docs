@@ -58,7 +58,7 @@ app.MapGet("/users/{id:int}", (int id) =>
     return id <= 0 ? Results.BadRequest() : Results.Ok(new User(id));
 });
 
-app.MapGet("/", () => "Test by calling //users/{id:int}");
+app.MapGet("/", () => "Test by calling /users/{id:int}");
 
 app.Run();
 // </snippet_WithStatusCodesPage>

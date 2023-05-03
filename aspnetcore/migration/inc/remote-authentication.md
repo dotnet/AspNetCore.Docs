@@ -27,7 +27,7 @@ First, the ASP.NET app needs to be configured to add the authentication endpoint
 ```CSharp
 SystemWebAdapterConfiguration.AddSystemWebAdapters(this)
     .AddProxySupport(options => options.UseForwardedHeaders = true)
-    .AddRemoteApp(options =>
+    .AddRemoteAppServer(options =>
     {
         options.ApiKey = ConfigurationManager.AppSettings["RemoteAppApiKey"];
     })
@@ -40,7 +40,7 @@ Next, the ASP.NET Core app needs to be configured to enable the authentication h
 
 ```CSharp
 builder.Services.AddSystemWebAdapters()
-    .AddRemoteApp(options =>
+    .AddRemoteAppClient(options =>
     {
         options.RemoteAppUrl = new(builder.Configuration["ReverseProxy:Clusters:fallbackCluster:Destinations:fallbackApp:Address"]);
         options.ApiKey = builder.Configuration("RemoteAppApiKey");
