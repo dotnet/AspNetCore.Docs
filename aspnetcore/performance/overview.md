@@ -22,5 +22,5 @@ The following articles provide information about how to optimize the performance
 * <xref:test/loadtests>
 :::moniker range=">= aspnetcore-8.0"
 * <xref:performance/timeouts>
-* [Short-circuit middleware after routing](xref:fundamentals/middleware/index#short-circuit-after-routing)
+* [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing)
 :::moniker-end

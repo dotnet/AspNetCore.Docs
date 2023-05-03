@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core middleware and the request pipeline.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/26/2023
+ms.date: 05/03/2023
 uid: fundamentals/middleware/index
 ---
 # ASP.NET Core Middleware
@@ -58,6 +58,8 @@ When a delegate doesn't pass a request to the next delegate, it's called *short-
 > * May corrupt the body format. For example, writing an HTML footer to a CSS file.
 >
 > <xref:Microsoft.AspNetCore.Http.HttpResponse.HasStarted%2A> is a useful hint to indicate if headers have been sent or the body has been written to.
+
+For more information, see [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
 
 ### `Run` delegates
 
