@@ -50,8 +50,7 @@ Important `ObjectPool` types and interfaces:
 
 * <xref:Microsoft.Extensions.ObjectPool.ObjectPool`1> : The basic object pool abstraction. Used to get and return objects.
 * <xref:Microsoft.Extensions.ObjectPool.PooledObjectPolicy%601> : Implement this to customize how an object is created and how it is reset when returned to the pool. This can be passed into an object pool that is construct directly, or
-* <xref:Microsoft.Extensions.ObjectPool.ObjectPoolProvider.Create*> : Acts as a factory for creating object pools.
-* [IResettable](https://source.dot.net/#Microsoft.Extensions.ObjectPool/IResettable.cs,9f0c03a4187b92ca,references) : Automatically resets the object when returned to an object pool.
+* <xref:Microsoft.Extensions.ObjectPool.IResettable> : Automatically resets the object when returned to an object pool.
 
 The ObjectPool can be used in an app in multiple ways:
 
