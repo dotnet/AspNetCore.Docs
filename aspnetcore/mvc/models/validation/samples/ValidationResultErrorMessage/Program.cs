@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using ValidationResultErrorMessage.Data;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ValidationResultErrorMessageContext>(options =>
