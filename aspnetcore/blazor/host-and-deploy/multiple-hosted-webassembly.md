@@ -347,13 +347,27 @@ If you plan to serve pages from the server app, add an `Index` Razor page to the
 @page
 @model MultipleBlazorApps.Server.Pages.IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home";
 }
 
-<div>
-    <h1>Welcome</h1>
-    <p>Hello from Razor Pages!</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Home</title>
+</head>
+<body>
+    <div class="main">
+        <div class="content px-4">
+
+            <div>
+                <h1>Welcome</h1>
+                <p>Hello from Razor Pages!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
 ```
 
 `Pages/Index.cshtml.cs`:
@@ -396,7 +410,7 @@ namespace MultipleBlazorApps.Server.Pages
 :::moniker-end
 
 > [!NOTE]
-> If the app requires additional Razor Pages assets, such as a layout, styles, scripts, and imports, obtain them from an app created from the Razor Pages project template. For more information, see <xref:razor-pages/index>.
+> The preceding `Index` page is a minimal example purely for demonstration purposes. If the app requires additional Razor Pages assets, such as a layout, styles, scripts, and imports, obtain them from an app created from the Razor Pages project template. For more information, see <xref:razor-pages/index>.
 
 If you plan to serve MVC views from the server app, add an `Index` view and a `Home` controller:
 
@@ -404,13 +418,27 @@ If you plan to serve MVC views from the server app, add an `Index` view and a `H
 
 ```cshtml
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div>
-    <h1>Welcome</h1>
-    <p>Hello from MVC!</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Home</title>
+</head>
+<body>
+    <div class="main">
+        <div class="content px-4">
+
+            <div>
+                <h1>Welcome</h1>
+                <p>Hello from MVC!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
 ```
 
 `Controllers/HomeController.cs`:
@@ -453,7 +481,7 @@ namespace MultipleBlazorApps.Server.Controllers
 :::moniker-end
 
 > [!NOTE]
-> If the app requires additional MVC assets, such as a layout, styles, scripts, and imports, obtain them from an app created from the MVC project template. For more information, see <xref:tutorials/first-mvc-app/start-mvc>.
+> The preceding `Index` view is a minimal example purely for demonstration purposes. If the app requires additional MVC assets, such as a layout, styles, scripts, and imports, obtain them from an app created from the MVC project template. For more information, see <xref:tutorials/first-mvc-app/start-mvc>.
 
 For more information on using the Razor components from either of the client apps in pages or views of the server app, see <xref:blazor/components/prerendering-and-integration?pivots=webassembly>.
 
