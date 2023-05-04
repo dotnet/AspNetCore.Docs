@@ -83,7 +83,7 @@ Physical folder | Project name | Description
 `Server` | `MultipleBlazorApps.Server` | ASP.NET Core server app
 `Shared` | `MultipleBlazorApps.Shared` | Shared resources project
 
-The **:::no-loc text="Server":::** project serves the two Blazor WebAssembly client apps and provides weather data to the client apps' `FetchData` components via an MVC controller. Optionally, the **:::no-loc text="Server":::** project can also serve pages or views, as a traditional Razor Pages or MVC app. Steps to enable serving pages or views are covered later in this article.
+The `MultipleBlazorApps.Server` project serves the two Blazor WebAssembly client apps and provides weather data to the client apps' `FetchData` components via an MVC controller. Optionally, the `MultipleBlazorApps.Server` project can also serve pages or views, as a traditional Razor Pages or MVC app. Steps to enable serving pages or views are covered later in this article.
 
 :::zone pivot="port-domain"
 
@@ -285,7 +285,7 @@ In the server app's `Program.cs` file, remove the following code, which appears 
   });
   ```
 
-* Set the client apps' base path:
+* Set the base path in each client app:
 
   In the first client app's `index.html` file (`Client/wwwroot/index.html`), update the `<base>` tag value to reflect the subpath. The trailing slash is required:
 
@@ -310,19 +310,9 @@ For more information on `UseBlazorFrameworkFiles` and `MapFallbackToFile`, see t
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-:::zone pivot="port-domain"
+Requests from the client apps to `/WeatherForecast` in the server API are either to `/FirstApp/WeatherForecast` or `/SecondApp/WeatherForecast` depending on which client app makes the request. Therefore, the controller routes that return weather data from the server API require a modification to include the path segments.
 
-The middleware added to the server app's request processing pipeline earlier modifies incoming requests to `/WeatherForecast` to either `/FirstApp/WeatherForecast` or `/SecondApp/WeatherForecast` depending on the port (5001/5002) or domain (`firstapp.com`/`secondapp.com`). Therefore, the controller routes that return weather data from the server app to the client apps require a modification.
-
-:::zone-end
-
-:::zone pivot="route-subpath"
-
-The client apps' request to `/WeatherForecast` in the `MultipleBlazorApps.Server` project is to either `/FirstApp/WeatherForecast` or `/SecondApp/WeatherForecast` depending on the route of the client app (`/FirstApp` or `/SecondApp`). Therefore, the controller routes that return weather data from the server app to the client apps require a modification.
-
-:::zone-end
-
-In the server app's weather forecast controller (`Controllers/WeatherForecastController.cs`), replace the existing route (`[Route("[controller]")]`) to `WeatherForecastController` with the following routes, which take into account the client apps' base paths added by the middleware (`FirstApp`/`SecondApp`):
+In the server app's weather forecast controller (`Controllers/WeatherForecastController.cs`), replace the existing route (`[Route("[controller]")]`) to `WeatherForecastController` with the following routes, which take into account the client request paths:
 
 ```csharp
 [Route("FirstApp/[controller]")]
