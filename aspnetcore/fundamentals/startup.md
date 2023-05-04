@@ -76,7 +76,12 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 
 ## Startup, ConfigureServices, and Configure
 
-For information on using the <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices%2A> and <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A> methods with the minimal hosting model, see [Use Startup with the minimal hosting model](xref:migration/50-to-60#smhm).
+For information on using the <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices%2A> and <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A> methods with the minimal hosting model, see:
+
+* [Use Startup with the minimal hosting model](xref:migration/50-to-60#smhm)
+* The [ASP.NET Core 5.0 version of this article](#the-startup-class?view=aspnetcore-5.0&preserve-view=true):
+  * [The ConfigureServices method](?view=aspnetcore-5.0&preserve-view=true#the-configureservices-method)
+  * [The Configure method](?view=aspnetcore-5.0&preserve-view=true#the-configure-method)
 
 :::moniker-end
 
