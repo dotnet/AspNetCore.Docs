@@ -5,7 +5,6 @@ using ValidationResultErrorMessage.Models;
 
 namespace ValidationResultErrorMessage
 {
-
     public class ContactsController : Controller
     {
         private readonly ValidationResultErrorMessageContext _context;
@@ -150,7 +149,6 @@ namespace ValidationResultErrorMessage
             else
             {
                 return Problem("Contact deleted.");
-
             }
 
             await _context.SaveChangesAsync();
