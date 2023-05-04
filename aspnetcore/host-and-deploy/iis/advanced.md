@@ -226,10 +226,10 @@ If the IIS worker process requires elevated access to the app, modify the Access
 
 1. Read &amp; execute permissions should be granted by default. Provide additional permissions as needed.
 
-Access can also be granted at a command prompt using the **ICACLS** tool. Using the *DefaultAppPool* as an example, the following command is used:
+Access can also be granted at a command prompt using the **ICACLS** tool. Using the *DefaultAppPool* as an example, the following command is used to grant read and execute permissions to the `MyWebApp` folder, subfolders, and files:
 
 ```console
-ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool":F
+ICACLS C:\sites\MyWebApp /grant "IIS AppPool\DefaultAppPool:(OI)(CI)RX"
 ```
 
 For more information, see the [icacls](/windows-server/administration/windows-commands/icacls) topic.
