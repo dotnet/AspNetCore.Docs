@@ -244,7 +244,7 @@ The <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder>:
 
 :::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="4":::
 
-Because unused code is trimmed during publishing for native AOT, the app can't use unbounded reflection at runtime. Source generators are used to produce code to avoid the need for reflection. In some cases source generators produce code optimized for AOT even when a generator is not required. To view source code that is generated based on the code in `Program.cs` add the []`<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>`](/dotnet/csharp/roslyn-sdk/source-generators-overview) property to `MyFirstAotWebApi.csproj`:
+Because unused code is trimmed during publishing for native AOT, the app can't use unbounded reflection at runtime. Source generators are used to produce code to avoid the need for reflection. In some cases source generators produce code optimized for AOT even when a generator is not required. To view source code that is generated based on the code in `Program.cs` add the [`<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>`](/dotnet/csharp/roslyn-sdk/source-generators-overview) property to `MyFirstAotWebApi.csproj`:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
