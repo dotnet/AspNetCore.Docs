@@ -10,6 +10,8 @@ uid: fundamentals/startup
 ---
 # App startup in ASP.NET Core
 
+[!INCLUDE[](~/includes/not-latest-version.md)]
+
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-7.0"
@@ -71,6 +73,10 @@ Note: You can't extend the ASP.NET Core app when you override `Configure`. For m
 ## Add configuration at startup from an external assembly
 
 An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows adding enhancements to an app at startup from an external assembly outside of the app's `Program.cs` file. For more information, see <xref:fundamentals/configuration/platform-specific-configuration>.
+
+## Startup, ConfigureServices, and Configure
+
+For information on using the ConfigureServices and Configure methods with the minimal hosting model, see [Use Startup with the minimal hosting model](xref:migration/50-to-60#smhm).
 
 :::moniker-end
 
