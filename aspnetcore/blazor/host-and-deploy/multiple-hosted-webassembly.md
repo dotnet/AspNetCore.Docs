@@ -45,7 +45,7 @@ In the following examples:
 * The initial (first) client app is the default client project of the solution created from the Blazor WebAssembly project template.
 * A second client app is added to the solution, `MultipleBlazorApps.SecondClient` in a folder named `SecondClient`.
 * Optionally, the server project (`MultipleBlazorApps.Server`) can serve pages or views as a formal Razor Pages or MVC app.
-* Both client apps use port 5001. The first client app is accessible in a browser at the `/FirstApp` subpath. The second client app is accessible in a browser at the `/SecondApp` subpath. 
+* Both client apps use the default port defined by the `MultipleBlazorApps.Server` project's `Properties/launchSettings.json` file in its `applicationUrl` value. The first client app is accessible in a browser at the `/FirstApp` subpath. The second client app is accessible in a browser at the `/SecondApp` subpath. 
 
 :::zone-end
 
@@ -161,16 +161,6 @@ If you don't plan for the server app to serve pages or views and only serve the 
 
 ```json
 "applicationUrl": "https://localhost:5001;https://localhost:5002",
-```
-
-:::zone-end
-
-:::zone pivot="route-subpath"
-
-In the server app's `Properties/launchSettings.json` file, configure the `applicationUrl` of the Kestrel profile (`MultipleBlazorApps.Server`) to access the client apps (and optionally pages or views of the `MultipleBlazorApps.Server` project) at port 5001.
-
-```json
-"applicationUrl": "https://localhost:5001",
 ```
 
 :::zone-end
@@ -328,7 +318,7 @@ The middleware added to the server app's request processing pipeline earlier mod
 
 :::zone pivot="route-subpath"
 
-The client apps' request to `/WeatherForecast` in the `MultipleBlazorApps.Server` project is to either `/FirstApp/WeatherForecast` or `/SecondApp/WeatherForecast` depending on the route of the client app (`/FirstApp`/`/SecondApp`). Therefore, the controller routes that return weather data from the server app to the client apps require a modification.
+The client apps' request to `/WeatherForecast` in the `MultipleBlazorApps.Server` project is to either `/FirstApp/WeatherForecast` or `/SecondApp/WeatherForecast` depending on the route of the client app (`/FirstApp` or `/SecondApp`). Therefore, the controller routes that return weather data from the server app to the client apps require a modification.
 
 :::zone-end
 
@@ -499,9 +489,11 @@ Run the `MultipleBlazorApps.Server` project:
 
 :::zone pivot="route-subpath"
 
-* Access the initial client app at `https://localhost:5001/FirstApp`.
-* Access the added client app at `https://localhost:5001/SecondApp`.
-* If the server app is configured to serve pages or views, access the `Index` page or view at `https://localhost:5001`.
+* Access the initial client app at `https://localhost:{DEFAULT PORT}/FirstApp`.
+* Access the added client app at `https://localhost:{DEFAULT PORT}/SecondApp`.
+* If the server app is configured to serve pages or views, access the `Index` page or view at `https://localhost:{DEFAULT PORT}`.
+
+In the preceding example URLs, the `{DEFAULT PORT}` placeholder is the default port defined by the `MultipleBlazorApps.Server` project's `Properties/launchSettings.json` file in its `applicationUrl` value.
 
 :::zone-end
 
