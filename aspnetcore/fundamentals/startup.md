@@ -5,7 +5,7 @@ description: Learn how the Startup class in ASP.NET Core configures services and
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 5/5/2023
 uid: fundamentals/startup
 ---
 # App startup in ASP.NET Core
@@ -76,7 +76,7 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 
 ## Startup, ConfigureServices, and Configure
 
-For information on using the ConfigureServices and Configure methods with the minimal hosting model, see [Use Startup with the minimal hosting model](xref:migration/50-to-60#smhm).
+For information on using the <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices%2A> and <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A> methods with the minimal hosting model, see [Use Startup with the minimal hosting model](xref:migration/50-to-60#smhm).
 
 :::moniker-end
 
