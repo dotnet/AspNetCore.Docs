@@ -5,7 +5,7 @@ description: Learn how to configure a hosted Blazor WebAssembly app to host mult
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/02/2023
+ms.date: 05/04/2023
 uid: blazor/host-and-deploy/multiple-hosted-webassembly
 zone_pivot_groups: blazor-multiple-hosted-wasm-apps
 ---
@@ -17,29 +17,35 @@ This article explains how to configure a hosted Blazor WebAssembly app to host m
 
 ## Configuration
 
-Hosted Blazor [solutions](xref:blazor/tooling#visual-studio-solution-file-sln) can serve multiple Blazor WebAssembly apps.
-
-In the following examples:
+Select the version of this article that matches your hosting requirements, either port/domain hosting (for example, `:5001`/`:5002` or `firstapp.com`/`secondapp.com`) or route subpath hosting (for example, `/FirstApp` and `/SecondApp`).
 
 :::zone pivot="port-domain"
+
+With the current hosting selection, this article covers port/domain hosting (for example, `:5001`/`:5002` or `firstapp.com`/`secondapp.com`).
+
+In the following examples:
 
 * The project name of the hosted Blazor WebAssembly app is `MultipleBlazorApps` in a folder named `MultipleBlazorApps`.
 * The three projects in the solution before a second client app is added are `MultipleBlazorApps.Client` in the `Client` folder, `MultipleBlazorApps.Server` in the `Server` folder, and `MultipleBlazorApps.Shared` in the `Shared` folder.
 * The initial (first) client app is the default client project of the solution created from the Blazor WebAssembly project template.
 * A second client app is added to the solution, `MultipleBlazorApps.SecondClient` in a folder named `SecondClient`.
-* Optionally, the server project (`MultipleBlazorApps.Server`) can serve pages or views as a formal Razor Pages or MVC app.
+* Optionally, the server project (`MultipleBlazorApps.Server`) can serve pages or views as a Razor Pages or MVC app.
 * The first client app is accessible in a browser at port 5001 or with a host of `firstapp.com`. The second client app is accessible in a browser at port 5002 or with a host of `secondapp.com`.
 
 :::zone-end
 
 :::zone pivot="route-subpath"
 
+With the current selection, this article covers route subpath hosting (for example, `/FirstApp` and `/SecondApp`).
+
+In the following examples:
+
 * The project name of the hosted Blazor WebAssembly app is `MultipleBlazorApps` in a folder named `MultipleBlazorApps`.
 * The three projects in the solution before a second client app is added are `MultipleBlazorApps.Client` in the `Client` folder, `MultipleBlazorApps.Server` in the `Server` folder, and `MultipleBlazorApps.Shared` in the `Shared` folder.
 * The initial (first) client app is the default client project of the solution created from the Blazor WebAssembly project template.
 * A second client app is added to the solution, `MultipleBlazorApps.SecondClient` in a folder named `SecondClient`.
 * Optionally, the server project (`MultipleBlazorApps.Server`) can serve pages or views as a formal Razor Pages or MVC app.
-* Both client apps use port 5001. The first client app is accessible in a browser at the `/FirstApp` subpath. The second client app is accessible in a browser at the `/FirstApp` subpath. 
+* Both client apps use port 5001. The first client app is accessible in a browser at the `/FirstApp` subpath. The second client app is accessible in a browser at the `/SecondApp` subpath. 
 
 :::zone-end
 
@@ -61,32 +67,47 @@ Use an existing hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-
 
 Use a folder for the solution named `MultipleBlazorApps` and name the project `MultipleBlazorApps`.
 
-Initial projects in the solution and their folders:
+Create a new folder in the solution named `SecondClient`. In the new folder, add a second Blazor WebAssembly client app named `MultipleBlazorApps.SecondClient`. Add the project as a standalone Blazor WebAssembly app. To create a standalone Blazor WebAssembly app, don't pass the `-ho|--hosted` option if using the .NET CLI or don't use the **ASP.NET Core Hosted** checkbox if using Visual Studio.
 
-* `MultipleBlazorApps.Client` is a Blazor WebAssembly client app in the `Client` folder.
-* `MultipleBlazorApps.Server` is an ASP.NET Core server app that serves Blazor WebAssembly apps) in the `Server` folder. Optionally, the server app can also serve pages or views, as a traditional Razor Pages or MVC app.
-* `MultipleBlazorApps.Shared` is a shared resources project for the client and server projects in the `Shared` folder.
+Make the following changes to the `MultipleBlazorApps.SecondClient` project:
 
-In the client app's project file (`MultipleBlazorApps.Client.csproj`), add a [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to a `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
+* Copy the `FetchData` component (`Pages/FetchData.razor`) from the `Client/Pages` folder to the `SecondClient/Pages` folder. This step is required because a standalone Blazor WebAssembly app doesn't call a **:::no-loc text="Server":::** project's controller for weather data, it uses a static data file. By copying the `FetchData` component to the added project, the second client app also makes a web API call to the server API for weather data.
+* Delete the `SecondClient/wwwroot/sample-data` folder, as the `weather.json` file in the folder isn't used.
+
+The following table describes the solution's folders and project names after the `SecondClient` folder and `MultipleBlazorApps.SecondClient` project are added.
+
+Physical folder | Project name | Description
+--- | --- | ---
+`Client` | `MultipleBlazorApps.Client` | Blazor WebAssembly client app
+`SecondClient` | `MultipleBlazorApps.SecondClient` | Blazor WebAssembly client app
+`Server` | `MultipleBlazorApps.Server` | ASP.NET Core server app
+`Shared` | `MultipleBlazorApps.Shared` | Shared resources project
+
+The **:::no-loc text="Server":::** project serves the two Blazor WebAssembly client apps and provides weather data to the client apps' `FetchData` components via an MVC controller. Optionally, the **:::no-loc text="Server":::** project can also serve pages or views, as a traditional Razor Pages or MVC app. Steps to enable serving pages or views are covered later in this article.
+
+:::zone pivot="port-domain"
+
+> [!NOTE]
+> The demonstration in this article uses static web asset path names of `FirstApp` for the `MultipleBlazorApps.Client` project and `SecondApp` for the `MultipleBlazorApps.SecondClient` project. The names "`FirstApp`" and "`SecondApp`" are merely for demonstration purposes. Other names are acceptable to distinguish the client apps, such as `App1`/`App2`, `Client1`/`Client2`, `1`/`2`, or any similar naming scheme. 
+>
+> When routing requests to the client apps by a port or a domain, "`FirstApp`" and "`SecondApp`" are used ***internally*** to route requests and serve responses for static assets and aren't seen in the browser's address bar.
+
+:::zone-end
+
+:::zone pivot="route-subpath"
+
+> [!NOTE]
+> The demonstration in this article uses static web asset path names of `FirstApp` for the `MultipleBlazorApps.Client` project and `SecondApp` for the `MultipleBlazorApps.SecondClient` project. The names "`FirstApp`" and "`SecondApp`" are merely for demonstration purposes. Other names are acceptable to distinguish the client apps, such as `App1`/`App2`, `Client1`/`Client2`, `1`/`2`, or any similar naming scheme. 
+>
+> "`FirstApp`" and "`SecondApp`" also appear in the browser's address bar because requests are routed to the two client apps using these names. Other valid URL route segments are supported, and the route segments don't strictly need to match the names used to route static web assets internally. Using "`FirstApp`" and "`SecondApp`" for both the internal static asset routing and app request routing is merely for convenance in this article's examples.
+
+:::zone-end
+
+In the first client app's project file (`MultipleBlazorApps.Client.csproj`), add a [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to a `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
 
 ```xml
 <StaticWebAssetBasePath>FirstApp</StaticWebAssetBasePath>
 ```
-
-> [!NOTE]
-> The demonstration in this section uses web asset path names of `FirstApp` and `SecondApp`, but these specific names are merely for demonstration purposes. Any base path segments that distinguish the client apps are acceptable, such as `App1`/`App2`, `Client1`/`Client2`, `1`/`2`, or any similar naming scheme. These base path segments are used internally to route requests and serve responses and are ***not*** seen in a browser's address bar.
-
-Add a second client app to the solution. Add the project as a standalone Blazor WebAssembly app. To create a standalone Blazor WebAssembly app, don't pass the `-ho|--hosted` option if using the .NET CLI or don't use the **ASP.NET Core Hosted** checkbox if using Visual Studio:
-
-* The solution folder created from the project template contains the following solution file and folders after the `SecondClient` folder is added:
-  * `Client` (folder)
-  * `SecondClient` (folder, created manually)
-  * `Server` (folder)
-  * `Shared` (folder)
-  * `MultipleBlazorApps.sln` (file)
-* Name the new project `MultipleBlazorApps.SecondClient` and create the app in the `SecondClient` folder.
-* Copy the `FetchData` component (`Pages/FetchData.razor`) from the `Client/Pages` folder into the `SecondClient/Pages` folder. This step is required because a standalone Blazor WebAssembly app doesn't call a **:::no-loc text="Server":::** project's controller for weather data, it uses a static data file. By copying the `FetchData` component to the added project, the second client app also makes a web API call for weather data.
-* Delete the `SecondClient/wwwroot/sample-data` folder, as the `weather.json` file in the folder isn't used.
 
 In the `MultipleBlazorApps.SecondClient` app's project file (`MultipleBlazorApps.SecondClient.csproj`):
 
@@ -125,9 +146,9 @@ In the server app's `Properties/launchSettings.json` file, configure the `applic
 
 If you plan to serve pages or views from the server app, use the following `applicationUrl` setting in the `Properties/launchSettings.json` file, which permits the following access:
 
-* The Razor Pages or MVC app responds to requests at port 5000.
-* Responses to requests for the first client are at port 5001.
-* Responses to requests for the second client are at port 5002.
+* Optionally, the Razor Pages or MVC app (`MultipleBlazorApps.Server` project) responds to requests at port 5000.
+* Responses to requests for the first client (`MultipleBlazorApps.Client` project) are at port 5001.
+* Responses to requests for the second client (`MultipleBlazorApps.SecondClient` project) are at port 5002.
 
 ```json
 "applicationUrl": "https://localhost:5000;https://localhost:5001;https://localhost:5002",
@@ -146,18 +167,7 @@ If you don't plan for the server app to serve pages or views and only serve the 
 
 :::zone pivot="route-subpath"
 
-In the server app's `Properties/launchSettings.json` file, configure the `applicationUrl` of the Kestrel profile (`MultipleBlazorApps.Server`) to access the client apps at port 5001.
-
-If you plan to serve pages or views from the server app, use the following `applicationUrl` setting in the `Properties/launchSettings.json` file, which permits the following access:
-
-* The Razor Pages or MVC app responds to requests at port 5000.
-* Responses to requests for the first and second client apps are at port 5001.
-
-```json
-"applicationUrl": "https://localhost:5000;https://localhost:5001",
-```
-
-If you don't plan for the server app to serve pages or views and only serve the Blazor WebAssembly client apps, use the following setting, which permits the first and second client apps respond on port 5001:
+In the server app's `Properties/launchSettings.json` file, configure the `applicationUrl` of the Kestrel profile (`MultipleBlazorApps.Server`) to access the client apps (and optionally pages or views of the `MultipleBlazorApps.Server` project) at port 5001.
 
 ```json
 "applicationUrl": "https://localhost:5001",
@@ -167,10 +177,14 @@ If you don't plan for the server app to serve pages or views and only serve the 
 
 In the server app's `Program.cs` file, remove the following code, which appears after the call to <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection%2A>:
 
-* If you plan to serve pages or views from the server app, delete the following line of code:
+* If you plan to serve pages or views from the server app, delete the following lines of code:
 
   ```diff
   - app.UseBlazorFrameworkFiles();
+  ```
+
+  ```diff
+  - app.MapFallbackToFile("index.html");
   ```
 
 * If you plan for the server app to only serve the Blazor WebAssembly client apps, delete the following code:
@@ -192,6 +206,8 @@ In the server app's `Program.cs` file, remove the following code, which appears 
 
   > [!NOTE]
   > Use of the hosts (`firstapp.com`/`secondapp.com`) on a local system with a local browser requires additional configuration that's beyond the scope of this article. For local testing of this scenario, we recommend using ports. Typical production apps are configured to use subdomains, such as `www.contoso.com` for site visitors and `admin.contoso.com` for administrators. With the proper DNS and server configuration, which is beyond the scope of this article and depends on the technologies used, the app responds to requests at whatever hosts are named in the following code.
+
+  Where you removed the `app.UseBlazorFrameworkFiles();` line from `Program.cs`, place the following code:
 
   ```csharp
   app.MapWhen(ctx => ctx.Request.Host.Port == 5001 || 
@@ -245,6 +261,8 @@ In the server app's `Program.cs` file, remove the following code, which appears 
 
 * Add middleware that maps requests to the client apps. The following example configures the middleware to run when the request subpath is `/FirstApp` for the first client app or `/SecondApp` for the second client app.
 
+  Where you removed the `app.UseBlazorFrameworkFiles();` line from `Program.cs`, place the following code:
+
   ```csharp
   app.MapWhen(ctx => ctx.Request.Path.StartsWithSegments("/FirstApp"), first =>
   {
@@ -276,10 +294,6 @@ In the server app's `Program.cs` file, remove the following code, which appears 
       });
   });
   ```
-
-:::zone-end
-
-:::zone pivot="route-subpath"
 
 * Set the client apps' base path:
 
@@ -422,7 +436,7 @@ namespace MultipleBlazorApps.Server.Controllers
 > [!NOTE]
 > If the app requires additional MVC assets, such as a layout, styles, scripts, and imports, obtain them from an app created from the MVC project template. For more information, see <xref:tutorials/first-mvc-app/start-mvc>.
 
-The middleware added to the server app's request processing pipeline earlier modifies incoming requests to `/WeatherForecast` to either `/FirstApp/WeatherForecast` or `/SecondApp/WeatherForecast` depending on the port (5001/5002) or domain (`firstapp.com`/`secondapp.com`). Therefore, the controller routes that return weather data from the server app to the client apps require a modification.
+The middleware added to the server app's request processing pipeline earlier modifies incoming requests to `/WeatherForecast` to either `/FirstApp/WeatherForecast` or `/SecondApp/WeatherForecast` depending on the port (5001/5002), domain (`firstapp.com`/`secondapp.com`), or route (`/FirstApp`/`/SecondApp`). Therefore, the controller routes that return weather data from the server app to the client apps require a modification.
 
 In the server app's weather forecast controller (`Controllers/WeatherForecastController.cs`), replace the existing route (`[Route("[controller]")]`) to `WeatherForecastController` with the following routes, which take into account the client apps' base paths added by the middleware (`FirstApp`/`SecondApp`):
 
@@ -431,13 +445,32 @@ In the server app's weather forecast controller (`Controllers/WeatherForecastCon
 [Route("SecondApp/[controller]")]
 ```
 
+For more information on using the Razor components from either of the client apps in pages or views of the server app, see <xref:blazor/components/prerendering-and-integration?pivots=webassembly>.
+
+## Run the app
+
 Run the `MultipleBlazorApps.Server` project:
+
+:::zone pivot="port-domain"
 
 * Access the initial client app at `https://localhost:5001`.
 * Access the added client app at `https://localhost:5002`.
 * If the server app is configured to serve pages or views, access the `Index` page or view at `https://localhost:5000`.
 
-For more information on using the Razor components from either of the client apps in pages or views of the server app, see <xref:blazor/components/prerendering-and-integration?pivots=webassembly>.
+:::zone-end
+
+:::zone pivot="route-subpath"
+
+* Access the initial client app at `https://localhost:5001/FirstApp`.
+* Access the added client app at `https://localhost:5001/SecondApp`.
+* If the server app is configured to serve pages or views, access the `Index` page or view at `https://localhost:5001`.
+
+:::zone-end
+
+> [!IMPORTANT]
+> When running the app with the `dotnet run` command (.NET CLI), confirm that the command shell is open in the `Server` folder of the solution.
+>
+> When using Visual Studio's start button to run the app, confirm that the `MultipleBlazorApps.Server` project set as the startup project (highlighted in Solution Explorer). 
 
 ## Static assets
 
