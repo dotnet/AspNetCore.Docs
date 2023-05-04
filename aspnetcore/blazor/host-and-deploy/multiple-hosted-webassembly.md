@@ -320,6 +320,25 @@ For more information on `UseBlazorFrameworkFiles` and `MapFallbackToFile`, see t
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
+:::zone pivot="port-domain"
+
+The middleware added to the server app's request processing pipeline earlier modifies incoming requests to `/WeatherForecast` to either `/FirstApp/WeatherForecast` or `/SecondApp/WeatherForecast` depending on the port (5001/5002) or domain (`firstapp.com`/`secondapp.com`). Therefore, the controller routes that return weather data from the server app to the client apps require a modification.
+
+:::zone-end
+
+:::zone pivot="route-subpath"
+
+The client apps' request to `/WeatherForecast` in the `MultipleBlazorApps.Server` project is to either `/FirstApp/WeatherForecast` or `/SecondApp/WeatherForecast` depending on the route of the client app (`/FirstApp`/`/SecondApp`). Therefore, the controller routes that return weather data from the server app to the client apps require a modification.
+
+:::zone-end
+
+In the server app's weather forecast controller (`Controllers/WeatherForecastController.cs`), replace the existing route (`[Route("[controller]")]`) to `WeatherForecastController` with the following routes, which take into account the client apps' base paths added by the middleware (`FirstApp`/`SecondApp`):
+
+```csharp
+[Route("FirstApp/[controller]")]
+[Route("SecondApp/[controller]")]
+```
+
 If you plan to serve pages from the server app, add an `Index` Razor page to the `Pages` folder of the server app:
 
 `Pages/Index.cshtml`:
@@ -435,15 +454,6 @@ namespace MultipleBlazorApps.Server.Controllers
 
 > [!NOTE]
 > If the app requires additional MVC assets, such as a layout, styles, scripts, and imports, obtain them from an app created from the MVC project template. For more information, see <xref:tutorials/first-mvc-app/start-mvc>.
-
-The middleware added to the server app's request processing pipeline earlier modifies incoming requests to `/WeatherForecast` to either `/FirstApp/WeatherForecast` or `/SecondApp/WeatherForecast` depending on the port (5001/5002), domain (`firstapp.com`/`secondapp.com`), or route (`/FirstApp`/`/SecondApp`). Therefore, the controller routes that return weather data from the server app to the client apps require a modification.
-
-In the server app's weather forecast controller (`Controllers/WeatherForecastController.cs`), replace the existing route (`[Route("[controller]")]`) to `WeatherForecastController` with the following routes, which take into account the client apps' base paths added by the middleware (`FirstApp`/`SecondApp`):
-
-```csharp
-[Route("FirstApp/[controller]")]
-[Route("SecondApp/[controller]")]
-```
 
 For more information on using the Razor components from either of the client apps in pages or views of the server app, see <xref:blazor/components/prerendering-and-integration?pivots=webassembly>.
 
