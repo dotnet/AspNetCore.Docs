@@ -32,21 +32,26 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio](#tab/visual-studio)
 
+Install either of the following:
+
 * [Visual Studio 2022 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
-* [!INCLUDE [.NET Core 7.0 SDK](~/includes/7.0-SDK.md)]
+* [.NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
+* [Visual Studio Code](https://code.visualstudio.com/download)
+* [C# for Visual Studio Code (latest version)](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
+* [Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
+
+The Visual Studio Code instructions use the .NET CLI for ASP.NET Core development functions such as project creation. You can follow these instructions on macOS, Linux, or Windows and with any code editor. Minor changes may be required if you use something other than Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* [Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/)
-* [!INCLUDE [.NET Core 7.0 SDK](~/includes/7.0-SDK.md)]
+[Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/)
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-[!INCLUDE[](~/includes/7.0-SDK.md)]
+[Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
 
 ---
 
@@ -607,21 +612,26 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio](#tab/visual-studio)
 
+Install either of the following:
+
 * [Visual Studio 2022 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
-* [!INCLUDE [.NET Core 6.0 SDK](~/includes/6.0-SDK.md)]
+* [.NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-6.0.md)]
+* [Visual Studio Code](https://code.visualstudio.com/download)
+* [C# for Visual Studio Code (latest version)](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
+* [Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
+
+The Visual Studio Code instructions use the .NET CLI for ASP.NET Core development functions such as project creation. You can follow these instructions on macOS, Linux, or Windows and with any code editor. Minor changes may be required if you use something other than Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* [Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/)
-* [!INCLUDE [.NET Core 6.0 SDK](~/includes/6.0-SDK.md)]
+[Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/)
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-[!INCLUDE[](~/includes/6.0-SDK.md)]
+[Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
 
 ---
 
@@ -1182,21 +1192,28 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio](#tab/visual-studio)
 
-* [Visual Studio 2019 16.10 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
-* [!INCLUDE [.NET Core 5.0 SDK](~/includes/5.0-SDK.md)]
+Install either of the following:
+
+* [Visual Studio 2022 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
+* [.NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-5.0.md)]
+* [Visual Studio Code](https://code.visualstudio.com/download)
+* [C# for Visual Studio Code (latest version)](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
+* [Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
+
+The Visual Studio Code instructions use the .NET CLI for ASP.NET Core development functions such as project creation. You can follow these instructions on macOS, Linux, or Windows and with any code editor. Minor changes may be required if you use something other than Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* [Visual Studio for Mac version 8.8 or later](https://visualstudio.microsoft.com/vs/mac/)
-* [!INCLUDE [.NET Core 5.0 SDK](~/includes/5.0-SDK.md)]
+[Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/)
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-[!INCLUDE[](~/includes/5.0-SDK.md)]
+[Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
+
+
 
 ---
 
@@ -1728,21 +1745,26 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio](#tab/visual-studio)
 
-* [Visual Studio 2019 16.6 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2019) with the **ASP.NET and web development** workload
-* [!INCLUDE [.NET Core 3.1 SDK](~/includes/3.1-SDK.md)]
+Install either of the following:
+
+* [Visual Studio 2022 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
+* [.NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-core-prereqs-vsc-3.1.md)]
+* [Visual Studio Code](https://code.visualstudio.com/download)
+* [C# for Visual Studio Code (latest version)](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
+* [Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
+
+The Visual Studio Code instructions use the .NET CLI for ASP.NET Core development functions such as project creation. You can follow these instructions on macOS, Linux, or Windows and with any code editor. Minor changes may be required if you use something other than Visual Studio Code.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* [Visual Studio for Mac version 8.6 or later](https://visualstudio.microsoft.com/vs/mac/)
-* [!INCLUDE [.NET Core 3.1 SDK](~/includes/3.1-SDK.md)]
+[Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/)
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
-[!INCLUDE[](~/includes/3.1-SDK.md)]
+[Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
 
 ---
 
