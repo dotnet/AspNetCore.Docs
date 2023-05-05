@@ -49,7 +49,7 @@ The preceding code demonstrates each of the two factory create methods.
 
 You can partition your localized strings by controller or area, or have just one container. In the sample app, a dummy class named `SharedResource` is used for shared resources.
 
-[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/SharedResource.cs)]
+[!code-csharp[](~/fundamentals/localization/sample/6.x/Localization/SharedResource.cs)]
 
 Some developers use the `Startup` class to contain global or shared strings. In the following sample, the `InfoController` and the `SharedResource` localizers are used:
 
