@@ -350,7 +350,7 @@ builder.Services.AddScoped<AuthenticationService>();
 In `Startup.ConfigureServices` of `Startup.cs`, register the `AuthenticationService` in the dependency injection container:
 
 ```csharp
-services.AddSingleton<AuthenticationService>();
+services.AddScoped<AuthenticationService>();
 ```
 
 :::moniker-end
