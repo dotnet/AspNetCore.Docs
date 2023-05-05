@@ -30,17 +30,7 @@ Unmarshalled JS interop using <xref:Microsoft.JSInterop.IJSUnmarshalledRuntime> 
 
 ## Prerequisites
 
-:::moniker range=">= aspnetcore-8.0"
-
-[!INCLUDE[](~/includes/8.0-SDK.md)]
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-[!INCLUDE[](~/includes/7.0-SDK.md)]
-
-:::moniker-end
+[Download and install .NET 7.0 or later](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
 
 ## Namespace
 
