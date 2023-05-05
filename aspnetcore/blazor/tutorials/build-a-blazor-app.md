@@ -203,7 +203,29 @@ cd TodoList
 
 1. The app requires UI elements for adding todo items to the list. Add a text input (`<input>`) and a button (`<button>`) below the unordered list (`<ul>...</ul>`):
 
+:::moniker range=">= aspnetcore-7.0"
+
    :::code language="razor" source="build-a-blazor-app/7.0/Todo3.razor" highlight="14-15":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+   :::code language="razor" source="build-a-blazor-app/6.0/Todo3.razor" highlight="14-15":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+   :::code language="razor" source="build-a-blazor-app/5.0/Todo3.razor" highlight="14-15":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+   :::code language="razor" source="build-a-blazor-app/3.1/Todo3.razor" highlight="14-15":::
+
+:::moniker-end
 
 1. Save the `TodoItem.cs` file and the updated `Pages/Todo.razor` file. In the command shell, the app is automatically rebuilt when the files are saved. The browser reloads the page.
 
@@ -211,7 +233,29 @@ cd TodoList
 
 1. Add an `AddTodo` method to the `Todo` component and register the method for the button using the `@onclick` attribute. The `AddTodo` C# method is called when the button is selected:
 
+:::moniker range=">= aspnetcore-7.0"
+
    :::code language="razor" source="build-a-blazor-app/7.0/Todo4.razor" highlight="2,7-10":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+   :::code language="razor" source="build-a-blazor-app/6.0/Todo4.razor" highlight="2,7-10":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+   :::code language="razor" source="build-a-blazor-app/5.0/Todo4.razor" highlight="2,7-10":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+   :::code language="razor" source="build-a-blazor-app/3.1/Todo4.razor" highlight="2,7-10":::
+
+:::moniker-end
 
 1. To get the title of the new todo item, add a `newTodo` string field at the top of the `@code` block:
 
