@@ -274,16 +274,16 @@ See [Recommendations](/dotnet/core/extensions/dependency-injection-guidelines#re
   public class MyClass
   {
       private readonly IOptionsMonitor<MyOptions> _optionsMonitor;
-
+  
       public MyClass(IOptionsMonitor<MyOptions> optionsMonitor)
       {
           _optionsMonitor = optionsMonitor;
       }
-
+  
       public void MyMethod()
       {
           var option = _optionsMonitor.CurrentValue.Option;
-
+  
           ...
       }
   }
@@ -628,7 +628,7 @@ The debug console shows the following output after each refresh of the Index pag
 ```console
 Service1: IndexModel.OnGet
 Service2: IndexModel.OnGet
-Service3: IndexModel.OnGet
+Service3: IndexModel.OnGet, MyKey = {MyKey}  //The "MyKey" is according to your config
 Service1.Dispose
 ```
 
@@ -668,16 +668,16 @@ See [Recommendations](/dotnet/core/extensions/dependency-injection-guidelines#re
   public class MyClass
   {
       private readonly IOptionsMonitor<MyOptions> _optionsMonitor;
-
+  
       public MyClass(IOptionsMonitor<MyOptions> optionsMonitor)
       {
           _optionsMonitor = optionsMonitor;
       }
-
+  
       public void MyMethod()
       {
           var option = _optionsMonitor.CurrentValue.Option;
-
+  
           ...
       }
   }
