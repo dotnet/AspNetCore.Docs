@@ -460,4 +460,4 @@ For more information about minimal API apps, see <xref:fundamentals/minimal-apis
 
 :::moniker-end
 
-[!INCLUDE[](~/tutorials/min-web-api/includes/min-wweb-api6-7.md)]
+[!INCLUDE[](~/tutorials/min-web-api/includes/min-web-api6-7.md)]
