@@ -5,7 +5,7 @@ description: Learn how to set up health checks for ASP.NET Core infrastructure, 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 10/19/2022
+ms.date: 4/19/2023
 uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
@@ -582,7 +582,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapHealthChecks("/health", new HealthCheckOptions()
     {
-        AllowCachingResponses = false
+        AllowCachingResponses = true
     });
 });
 ```
@@ -1351,7 +1351,7 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapHealthChecks("/health", new HealthCheckOptions()
     {
-        AllowCachingResponses = false
+        AllowCachingResponses = true
     });
 });
 ```
