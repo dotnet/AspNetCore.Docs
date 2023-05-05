@@ -21,7 +21,7 @@ One task for localizing an app is to wrap localizable content with code that fac
 
 The following code example shows how to wrap the string "About Title" for localization.
 
-[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/AboutController.cs)]
+[!code-csharp[](~/fundamentals/localization/sample/6.x/Localization/Controllers/AboutController.cs)]
 
 In the preceding code, the `IStringLocalizer<T>` implementation comes from [Dependency Injection](~/fundamentals/dependency-injection.md). If the localized value of "About Title" isn't found, then the indexer key is returned, that is, the string "About Title".
 
@@ -33,16 +33,15 @@ Alternatively, you can use the traditional approach and provide a key to retriev
 
 Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHtmlLocalizer` HTML-encodes arguments that are formatted in the resource string, but doesn't HTML-encode the resource string itself. In the following highlighted code, only the value of the `name` parameter is HTML-encoded.
 
-[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
+[!code-csharp[](~/fundamentals/localization/sample/6.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
-> [!NOTE]
-> Generally, only localize text, not HTML.
+***NOTE:*** Generally, only localize text, not HTML.
 
 ## `IStringLocalizerFactory`
 
 At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](~/fundamentals/dependency-injection.md):
 
-[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/TestController.cs?start=9&end=26&highlight=7-13)]
+[!code-csharp[](~/fundamentals/localization/sample/3.x/Localization/Controllers/TestController.cs?highlight=6-12&name=snippet1)]
 
 The preceding code demonstrates each of the two factory create methods.
 
