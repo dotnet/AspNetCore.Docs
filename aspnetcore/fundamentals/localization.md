@@ -46,10 +46,10 @@ Move mini TOC from ## Additional resources to here
 -->
 ## Additional resources
 
-* [`IStringLocalizer`](fundamentals/localization/make-content-localizable) : uses the <xref:System.Resources.ResourceManager> and <xref:System.Resources.ResourceReader> to provide culture-specific resources at run time. The interface has an indexer and an `IEnumerable` for returning localized strings.
-* [`IHtmlLocalizer`](fundamentals/localization/make-content-localizable#ihtmllocalizer): For resources that contain HTML.
-* [View and DataAnnotations](fundamentals/localization/make-content-localizable#view-localization)
-* [Implement a strategy to select the language/culture for each request in a localized ASP.NET Core app](fundamentals/localization/select-language-culture)
+* [`IStringLocalizer`](xref:fundamentals/localization/make-content-localizable) : uses the <xref:System.Resources.ResourceManager> and <xref:System.Resources.ResourceReader> to provide culture-specific resources at run time. The interface has an indexer and an `IEnumerable` for returning localized strings.
+* [`IHtmlLocalizer`](xref:fundamentals/localization/make-content-localizable#ihtmllocalizer): For resources that contain HTML.
+* [View and DataAnnotations](xref:fundamentals/localization/make-content-localizable#view-localization)
+* [Implement a strategy to select the language/culture for each request in a localized ASP.NET Core app](xref:fundamentals/localization/select-language-culture)
 * <xref:fundamentals/localization/make-content-localizable>
 * <xref:fundamentals/localization/provide-resources>
 * <xref:fundamentals/localization/select-language-culture>
