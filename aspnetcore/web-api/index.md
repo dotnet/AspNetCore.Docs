@@ -111,16 +111,6 @@ ASP.NET Core MVC uses the <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ModelSta
 
 ### Default BadRequest response
 
-The following response body is an example of the serialized type:
-
-```json
-{
-  "": [
-    "A non-empty request body is required."
-  ]
-}
-```
-
 The default response type for an HTTP 400 response is <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>. The following response body is an example of the serialized type:
 
 ```json
