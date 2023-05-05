@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy23
-ms.date: 01/11/2023
+ms.date: 05/05/2023
 uid: tutorials/first-web-api
 ---
 
@@ -14,7 +14,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://tw
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
 
 This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *minimal APIs*. For help in choosing between minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a minimal API, see <xref:tutorials/min-web-api>.
 
