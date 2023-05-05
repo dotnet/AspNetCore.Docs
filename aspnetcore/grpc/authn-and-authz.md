@@ -73,10 +73,10 @@ public bool DoAuthenticatedCall(
 
 Configuring `ChannelCredentials` on a channel is an alternative way to send the token to the service with gRPC calls. A `ChannelCredentials` can include `CallCredentials`, which provide a way to automatically set `Metadata`.
 
-`CallCredentials` has a number of benefits:
+Benefits of using `CallCredentials`:
 
-* It's configured once but is invoked each time a gRPC call is made. Call credentials that sets the bearer token centrally avoids the need to pass the token to each gRPC call.
-* The `CallCredentials.FromInterceptor` callback is asynchronous. Call credentials can fetch a credential token from an external system if required. The `AuthInterceptorContext` instance passed to the callback has a `CancellationToken` that should be used when making async calls.
+* Authentication is centrally configured on the channel. The token doesn't need to be manually provided to gRPC call.
+* The `CallCredentials.FromInterceptor` callback is asynchronous. Call credentials can fetch a credential token from an external system if required. Async calls inside the callback should use the `CancellationToken` on `AuthInterceptorContext`.
 
 > [!NOTE]
 > `CallCredentials` are only applied if the channel is secured with TLS. Sending authentication headers over an insecure connection has security implications and shouldn't be done in production environments. An app can configure a channel to ignore this behavior and always use `CallCredentials` by setting `UnsafeUseInsecureChannelCallCredentials` on a channel.
@@ -342,10 +342,10 @@ public bool DoAuthenticatedCall(
 
 Configuring `ChannelCredentials` on a channel is an alternative way to send the token to the service with gRPC calls. A `ChannelCredentials` can include `CallCredentials`, which provide a way to automatically set `Metadata`.
 
-`CallCredentials` has a number of benefits:
+Benefits of using `CallCredentials`:
 
-* It's configured once but is invoked each time a gRPC call is made. Call credentials that sets the bearer token centrally avoids the need to pass the token to each gRPC call.
-* The `CallCredentials.FromInterceptor` callback is asynchronous. Call credentials can fetch a credential token from an external system if required. The `AuthInterceptorContext` instance passed to the callback has a `CancellationToken` that should be used when making async calls.
+* Authentication is centrally configured on the channel. The token doesn't need to be manually provided to gRPC call.
+* The `CallCredentials.FromInterceptor` callback is asynchronous. Call credentials can fetch a credential token from an external system if required. Async calls inside the callback should use the `CancellationToken` on `AuthInterceptorContext`.
 
 > [!NOTE]
 > `CallCredentials` are only applied if the channel is secured with TLS. Sending authentication headers over an insecure connection has security implications and shouldn't be done in production environments. An app can configure a channel to ignore this behavior and always use `CallCredentials` by setting `UnsafeUseInsecureChannelCallCredentials` on a channel.
