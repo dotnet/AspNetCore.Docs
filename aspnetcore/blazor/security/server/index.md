@@ -340,7 +340,7 @@ public class AuthenticationService
 In `Program.cs`, register the `AuthenticationService` in the dependency injection container:
 
 ```csharp
-builder.Services.AddSingleton<AuthenticationService>();
+builder.Services.AddScoped<AuthenticationService>();
 ```
 
 :::moniker-end
