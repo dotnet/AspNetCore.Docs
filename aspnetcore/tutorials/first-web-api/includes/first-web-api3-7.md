@@ -16,7 +16,7 @@ This tutorial creates the following API:
 
 The following diagram shows the design of the app.
 
-![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](~/tutorials/first-web-api/static/architecture.png)
+![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](~/tutorials/first-web-api/_static/architecture.png)
 
 ## Prerequisites
 
@@ -340,7 +340,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 
 * Select **Execute**
 
-  ![Swagger POST](~/tutorials/first-web-api/static/7/post.png)
+  ![Swagger POST](~/tutorials/first-web-api/_static/7/post.png)
 
 ### Test the location header URI
 
@@ -351,7 +351,7 @@ To test the location header:
 * In the Swagger browser window, select **GET /api/TodoItems/{id}**, and then select **Try it out**.
 * Enter `1` in the `id` input box, and then select **Execute**.
 
-  ![Swagger GET](~/tutorials/first-web-api/static/7/get.png)
+  ![Swagger GET](~/tutorials/first-web-api/_static/7/get.png)
 
 ## Examine the GET methods
 
@@ -524,7 +524,7 @@ This tutorial creates the following API:
 
 The following diagram shows the design of the app.
 
-![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](~/tutorials/first-web-api/static/architecture.png)
+![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](~/tutorials/first-web-api/_static/architecture.png)
 
 ## Prerequisites
 
@@ -579,17 +579,17 @@ The following diagram shows the design of the app.
 
 * Select **File** > **New Solution**.
 
-  ![macOS New solution](first-web-api-mac/_static/6/sln.png)
+  ![macOS New solution](~/tutorials/first-web-api-mac/_static/6/sln.png)
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
 
-  ![macOS API template selection](first-web-api-mac/_static/6/api_template.png)
+  ![macOS API template selection](~/tutorials/first-web-api-mac/_static/6/api_template.png)
 
 * In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 5.x **Target Framework**. Select **Next**.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/6/configure_your_new_api2.png)
+  ![config dialog](~/tutorials/first-web-api-mac/_static/6/configure_your_new_api2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -730,7 +730,7 @@ For Visual Studio for Mac, see the .NET 5 version of this tutorial.
 <!--
 * Right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
 
-  ![new folder](first-web-api-mac/_static/6/add_new_folder.png)
+  ![new folder](~/tutorials/first-web-api-mac/_static/6/add_new_folder.png)
 
 * Right-click the `Models` folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
@@ -1147,7 +1147,7 @@ This tutorial creates the following API:
 
 The following diagram shows the design of the app.
 
-![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](~/tutorials/first-web-api/static/architecture.png)
+![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](~/tutorials/first-web-api/_static/architecture.png)
 
 ## Prerequisites
 
@@ -1174,7 +1174,7 @@ The following diagram shows the design of the app.
 * Name the project *TodoApi* and click **Create**.
 * In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 5.0** are selected. Select the **API** template and click **Create**.
 
-![VS new project dialog](~/tutorials/first-web-api/static/5/vs.png)
+![VS new project dialog](~/tutorials/first-web-api/_static/5/vs.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -1200,17 +1200,17 @@ The following diagram shows the design of the app.
 
 * Select **File** > **New Solution**.
 
-  ![macOS New solution](first-web-api-mac/_static/5/sln.png)
+  ![macOS New solution](~/tutorials/first-web-api-mac/_static/5/sln.png)
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
 
-  ![macOS API template selection](first-web-api-mac/_static/5/api_template.png)
+  ![macOS API template selection](~/tutorials/first-web-api-mac/_static/5/api_template.png)
 
 * In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 5.x **Target Framework**. Select **Next**.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/5/2.png)
+  ![config dialog](~/tutorials/first-web-api-mac/_static/5/2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -1335,7 +1335,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 * Right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
 
-  ![new folder](first-web-api-mac/_static/5/folder.png)
+  ![new folder](~/tutorials/first-web-api-mac/_static/5/folder.png)
 
 * Right-click the `Models` folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
@@ -1364,7 +1364,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 * Select `Microsoft.EntityFrameworkCore.InMemory` in the left pane.
 * Select the **Project** checkbox in the right pane and then select **Install**.
 
-![NuGet Package Manager](~/tutorials/first-web-api/static/5/vsNuGet.png)
+![NuGet Package Manager](~/tutorials/first-web-api/_static/5/vsNuGet.png)
 
 ## Add the TodoContext database context
 
@@ -1492,7 +1492,7 @@ This tutorial uses Postman to test the web API.
 
 * Select **Send**.
 
-  ![Postman with create request](~/tutorials/first-web-api/static/create.png)
+  ![Postman with create request](~/tutorials/first-web-api/_static/create.png)
 
 ### Test the location header URI
 
@@ -1503,7 +1503,7 @@ To test in Postman:
 * Select the **Headers** tab in the **Response** pane.
 * Copy the **Location** header value:
 
-  ![Headers tab of the Postman console](~/tutorials/first-web-api/static/create.png)
+  ![Headers tab of the Postman console](~/tutorials/first-web-api/_static/create.png)
 
 * Set the HTTP method to `GET`.
 * Set the URI to `https://localhost:<port>/api/todoitems/1`. For example, `https://localhost:5001/api/todoitems/1`.
@@ -1593,7 +1593,7 @@ Update the to-do item that has Id = 1 and set its name to `"feed fish"`:
 
 The following image shows the Postman update:
 
-![Postman console showing 204 (No Content) response](~/tutorials/first-web-api/static/3/pmcput.png)
+![Postman console showing 204 (No Content) response](~/tutorials/first-web-api/_static/3/pmcput.png)
 
 ## The DeleteTodoItem method
 
@@ -1701,7 +1701,7 @@ This tutorial creates the following API:
 
 The following diagram shows the design of the app.
 
-![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](~/tutorials/first-web-api/static/architecture.png)
+![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](~/tutorials/first-web-api/_static/architecture.png)
 
 ## Prerequisites
 
@@ -1728,7 +1728,7 @@ The following diagram shows the design of the app.
 * Name the project *TodoApi* and click **Create**.
 * In the **Create a new ASP.NET Core Web Application** dialog, confirm that **.NET Core** and **ASP.NET Core 3.1** are selected. Select the **API** template and click **Create**.
 
-![VS new project dialog](~/tutorials/first-web-api/static/vs3.png)
+![VS new project dialog](~/tutorials/first-web-api/_static/vs3.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -1754,17 +1754,17 @@ The following diagram shows the design of the app.
 
 * Select **File** > **New Solution**.
 
-  ![macOS New solution](first-web-api-mac/_static/5/sln.png)
+  ![macOS New solution](~/tutorials/first-web-api-mac/_static/5/sln.png)
 
 * In Visual Studio for Mac earlier than version 8.6, select **.NET Core** > **App** > **API** > **Next**. In version 8.6 or later, select **Web and Console** > **App** > **API** > **Next**.
 
-  ![macOS API template selection](first-web-api-mac/_static/5/api_template.png)
+  ![macOS API template selection](~/tutorials/first-web-api-mac/_static/5/api_template.png)
 
 * In the **Configure the new ASP.NET Core Web API** dialog, select the latest .NET Core 3.x **Target Framework**. Select **Next**.
 
 * Enter *TodoApi* for the **Project Name** and then select **Create**.
 
-  ![config dialog](first-web-api-mac/_static/5/2.png)
+  ![config dialog](~/tutorials/first-web-api-mac/_static/5/2.png)
 
 [!INCLUDE[](~/includes/mac-terminal-access.md)]
 
@@ -1857,7 +1857,7 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 * Right-click the project. Select **Add** > **New Folder**. Name the folder `Models`.
 
-  ![new folder](first-web-api-mac/_static/5/folder.png)
+  ![new folder](~/tutorials/first-web-api-mac/_static/5/folder.png)
 
 * Right-click the `Models` folder, and select **Add** > **New File** > **General** > **Empty Class**.
 
@@ -1886,7 +1886,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 * Select **Microsoft.EntityFrameworkCore.InMemory** in the left pane.
 * Select the **Project** checkbox in the right pane and then select **Install**.
 
-![NuGet Package Manager](~/tutorials/first-web-api/static/vs3NuGet.png)
+![NuGet Package Manager](~/tutorials/first-web-api/_static/vs3NuGet.png)
 
 ## Add the TodoContext database context
 
@@ -2011,14 +2011,14 @@ This tutorial uses Postman to test the web API.
 
 * Select **Send**.
 
-  ![Postman with create request](~/tutorials/first-web-api/static/3/create.png)
+  ![Postman with create request](~/tutorials/first-web-api/_static/3/create.png)
 
 ### Test the location header URI with Postman
 
 * Select the **Headers** tab in the **Response** pane.
 * Copy the **Location** header value:
 
-  ![Headers tab of the Postman console](~/tutorials/first-web-api/static/3/create.png)
+  ![Headers tab of the Postman console](~/tutorials/first-web-api/_static/3/create.png)
 
 * Set the HTTP method to `GET`.
 * Set the URI to `https://localhost:<port>/api/todoitems/1`. For example, `https://localhost:5001/api/todoitems/1`.
@@ -2108,7 +2108,7 @@ Update the to-do item that has Id = 1 and set its name to "feed fish":
 
 The following image shows the Postman update:
 
-![Postman console showing 204 (No Content) response](~/tutorials/first-web-api/static/3/pmcput.png)
+![Postman console showing 204 (No Content) response](~/tutorials/first-web-api/_static/3/pmcput.png)
 
 ## The DeleteTodoItem method
 

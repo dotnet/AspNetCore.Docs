@@ -32,7 +32,7 @@ This tutorial creates the following API:
 
 The following diagram shows the design of the app.
 
-![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](~/tutorials/first-web-api/static/architecture.png)
+![The client is represented by a box on the left. It submits a request and receives a response from the application, a box drawn on the right. Within the application box, three boxes represent the controller, the model, and the data access layer. The request comes into the application's controller, and read/write operations occur between the controller and the data access layer. The model is serialized and returned to the client in the response.](~/tutorials/first-web-api/_static/architecture.png)
 
 ## Prerequisites
 
@@ -356,7 +356,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> method:
 
 * Select **Execute**
 
-  ![Swagger POST](~/tutorials/first-web-api/static/7/post.png)
+  ![Swagger POST](~/tutorials/first-web-api/_static/7/post.png)
 
 ### Test the location header URI
 
@@ -367,7 +367,7 @@ To test the location header:
 * In the Swagger browser window, select **GET /api/TodoItems/{id}**, and then select **Try it out**.
 * Enter `1` in the `id` input box, and then select **Execute**.
 
-  ![Swagger GET](~/tutorials/first-web-api/static/7/get.png)
+  ![Swagger GET](~/tutorials/first-web-api/_static/7/get.png)
 
 ## Examine the GET methods
 
