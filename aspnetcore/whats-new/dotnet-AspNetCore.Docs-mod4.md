@@ -1,101 +1,73 @@
 ---
-title: "ASP.NET Core docs: What's new for October 1, 2022 - October 31, 2022"
-description: "What's new in the ASP.NET Core docs for October 1, 2022 - October 31, 2022."
-ms.date: 11/01/2022
+title: "ASP.NET Core docs: What's new for April 2023"
+description: "What's new in the ASP.NET Core docs for April 2023."
+ms.custom: April-2023
+ms.date: 05/01/2023
 ---
 
-# ASP.NET Core docs: What's new for October 1, 2022 - October 31, 2022
+# ASP.NET Core docs: What's new for April 2023
 
-Welcome to what's new in the ASP.NET Core docs from October 1, 2022 through October 31, 2022. This article lists some of the major changes to docs during this period.
+Welcome to what's new in the ASP.NET Core docs for April 2023. This article lists some of the major changes to docs during this period.
 
 ## Blazor
 
 ### New articles
 
-- <xref:blazor/js-interop/import-export-interop>
-- <xref:blazor/hybrid/class-libraries>
+- <xref:blazor/components/render-outside-of-aspnetcore>
+- <xref:blazor/components/sections>
 
 ### Updated articles
 
-- <xref:blazor/fundamentals/logging> - SignalR-Blazor client logging enhancements
-- <xref:blazor/security/webassembly/aad-groups-roles> - [7.0] Single auth scheme for Blazor docs
-
-## Client-side development
-
-### New articles
-
-- <xref:client-side/dotnet-interop>
+- <xref:blazor/fundamentals/routing> - Hashed routing to named elements
+- <xref:blazor/components/cascading-values-and-parameters> - Cascading values and params versioning
+- <xref:blazor/js-interop/index> - Blazor JS interop overview versioning
+- <xref:blazor/security/webassembly/hosted-with-azure-active-directory> - Blazor security updates
+- <xref:blazor/hybrid/root-component-parameters> - Repair bad root component param guidance
+- <xref:blazor/fundamentals/dependency-injection> - Monitor Blazor Server circuit activity
+- <xref:blazor/fundamentals/signalr> - Monitor Blazor Server circuit activity
+- <xref:blazor/security/server/additional-scenarios> - Monitor Blazor Server circuit activity
+- <xref:blazor/debug> - Blazor WASM hot reload and debugging
+- <xref:blazor/call-web-api> - Call web API article updates
+- <xref:blazor/security/webassembly/additional-scenarios> - Additional scenarios article updates
 
 ## Fundamentals
 
+### Updated articles
+
+- <xref:fundamentals/native-aot> -
+
+## gRPC
+
 ### New articles
 
-- <xref:fundamentals/minimal-apis/handle-errors>
-- <xref:fundamentals/minimal-apis/middleware>
-- <xref:fundamentals/minimal-apis/responses>
-- <xref:fundamentals/use-httpcontext>
-- <xref:fundamentals/minimal-apis/test-min-api>
+- <xref:grpc/native-aot>
 
-### Updated articles
+## Performance
 
-- <xref:fundamentals/error-handling> - Updating ProblemDetails docs
-- <xref:fundamentals/minimal-apis/openapi> - Update documentation for OpenAPI in minimal APIs
+### New articles
 
-## Migration
-
-### Updated articles
-
-- <xref:migration/60-to-70> - Blazor What's New and Migration guidance
-
-## Release notes
-
-### Updated articles
-
-- <xref:aspnetcore-7> - Blazor What's New and Migration guidance
-
-## Security
-
-### Updated articles
-
-- <xref:security/authentication/index> - Moniker prep
-
-## Testing
-
-### Updated articles
-
-- <xref:test/integration-tests>
-  - UPdate integration tests to .NET 7
-
-## Tutorials
-
-### Updated articles
-
-## Web API
-
-### Updated articles
-
-- <xref:web-api/action-return-types> - Adding IResult docs to MVC
+- <xref:performance/timeouts>
 
 ## Community contributors
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [sabahshariq](https://github.com/sabahshariq) - Sabah Shariq (6)
-- [jf-gbg](https://github.com/jf-gbg) - Josh Franklin (2)
-- [0xced](https://github.com/0xced) - Cédric Luthi (1)
-- [Bouke](https://github.com/Bouke) - Bouke Haarsma (1)
-- [collinstevens](https://github.com/collinstevens) - Collin Stevens (1)
-- [evgeniikoroliuk](https://github.com/evgeniikoroliuk) - Evgenii (1)
-- [fiyazbinhasan](https://github.com/fiyazbinhasan) - Fiyaz Bin Hasan (1)
-- [jaroslavbenes](https://github.com/jaroslavbenes) - Jaroslav Beneš (1)
-- [JuergenGutsch](https://github.com/JuergenGutsch) - Juergen Gutsch (1)
-- [krynium](https://github.com/krynium) - Arjun Sapkota (1)
-- [lucasmaj](https://github.com/lucasmaj) (1)
-- [LukasLic](https://github.com/LukasLic) - Lukáš Licek (1)
-- [mattferderer](https://github.com/mattferderer) - Matt Ferderer (1)
-- [meziantou](https://github.com/meziantou) - Gérald Barré (1)
-- [mmacy](https://github.com/mmacy) - Marsh Macy (1)
-- [Qluxzz](https://github.com/Qluxzz) - André Andersson (1)
-- [replaysMike](https://github.com/replaysMike) - Michael Brown (1)
-- [vanillajonathan](https://github.com/vanillajonathan) - Jonathan (1)
-- [wmundev](https://github.com/wmundev) - Wilson Mun (1)
+- [AlbertoPa](https://github.com/AlbertoPa) - Alberto Passalacqua ![There were 2 pull requests merged by Alberto Passalacqua.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
+- [explunit](https://github.com/explunit) - Steve P ![There were 2 pull requests merged by Steve P.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
+- [fiyazbinhasan](https://github.com/fiyazbinhasan) - Fiyaz Bin Hasan ![There were 2 pull requests merged by Fiyaz Bin Hasan.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
+- [alekson-sh](https://github.com/alekson-sh) -  ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [anderjef](https://github.com/anderjef) - Jeffrey Andersen ![There were 1 pull requests merged by Jeffrey Andersen.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [cn-byn](https://github.com/cn-byn) -  ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [CoolGoose](https://github.com/CoolGoose) - Alexandru Bucur ![There were 1 pull requests merged by Alexandru Bucur.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [Emrebener](https://github.com/Emrebener) -  ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [ericmutta](https://github.com/ericmutta) - Eric Mutta ![There were 1 pull requests merged by Eric Mutta.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [fredriksvantes](https://github.com/fredriksvantes) - Fredrik Svantes ![There were 1 pull requests merged by Fredrik Svantes.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [jkrajcir](https://github.com/jkrajcir) - Joe Krajcir ![There were 1 pull requests merged by Joe Krajcir.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [joostas](https://github.com/joostas) - Justas ![There were 1 pull requests merged by Justas.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [kevinchalet](https://github.com/kevinchalet) - Kévin Chalet ![There were 1 pull requests merged by Kévin Chalet.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [minecraftchest1](https://github.com/minecraftchest1) - Minecraftchest1 ![There were 1 pull requests merged by Minecraftchest1.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [RC-787](https://github.com/RC-787) -  ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [rhires](https://github.com/rhires) -  ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [sammychinedu2ky](https://github.com/sammychinedu2ky) - Samson Amaugo ![There were 1 pull requests merged by Samson Amaugo.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [scott-moxham](https://github.com/scott-moxham) - Scott Moxham ![There were 1 pull requests merged by Scott Moxham.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [shadialnamrouti](https://github.com/shadialnamrouti) - Shadi Alnamrouti ![There were 1 pull requests merged by Shadi Alnamrouti.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)

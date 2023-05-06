@@ -87,6 +87,9 @@ The following code uses a lambda for exception handling:
 > [!WARNING]
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
 
+<!-- links to this in other docs require sestatuscodepages -->
+<a name="sestatuscodepages"></a>
+
 ## UseStatusCodePages
 
 By default, an ASP.NET Core app doesn't provide a status code page for HTTP error status codes, such as *404 - Not Found*. When the app sets an HTTP 400-599 error status code that doesn't have a body, it returns the status code and an empty response body. To enable default text-only handlers for common error status codes, call <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> in `Program.cs`:
