@@ -38,16 +38,19 @@ Globalizing and localizing an app involves the following tasks:
 * [Provide localized resources for the cultures the app supports](xref:fundamentals/localization/provide-resources)
 * [Implement a strategy to select the culture for each request](xref:fundamentals/localization/select-language-culture)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample/3.x/) ([how to download](xref:index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/sample) ([how to download](xref:index#how-to-download-a-sample))
 
+<!-- 
+Move mini TOC from ## Additional resources to here
+## Additional globalization and localization topics
+-->
 ## Additional resources
 
-* <xref:fundamentals/localization/make-content-localizable>
-* <xref:fundamentals/localization/provide-resources>
-* <xref:fundamentals/localization/select-language-culture>
+* [`IStringLocalizer`](xref:fundamentals/localization/make-content-localizable) : Uses the <xref:System.Resources.ResourceManager> and <xref:System.Resources.ResourceReader> to provide culture-specific resources at run time. The interface has an indexer and an `IEnumerable` for returning localized strings.
+* [`IHtmlLocalizer`](xref:fundamentals/localization/make-content-localizable#ihtmllocalizer): For resources that contain HTML.
+* [View and DataAnnotations](xref:fundamentals/localization/make-content-localizable#view-localization)
 * <xref:fundamentals/troubleshoot-aspnet-core-localization>
 * [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
-* [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Microsoft Multilingual App Toolkit](https://marketplace.visualstudio.com/items?itemName=MultilingualAppToolkit.MultilingualAppToolkit-18308)
 * [Localization & Generics](http://hishambinateya.com/localization-and-generics)
