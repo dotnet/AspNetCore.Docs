@@ -75,8 +75,8 @@ Configuring `ChannelCredentials` on a channel is an alternative way to send the 
 
 Benefits of using `CallCredentials`:
 
-* Authentication is centrally configured on the channel. The token doesn't need to be manually provided to gRPC call.
-* The `CallCredentials.FromInterceptor` callback is asynchronous. Call credentials can fetch a credential token from an external system if required. Async calls inside the callback should use the `CancellationToken` on `AuthInterceptorContext`.
+* Authentication is centrally configured on the channel. The token doesn't need to be manually provided to the gRPC call.
+* The `CallCredentials.FromInterceptor` callback is asynchronous. Call credentials can fetch a credential token from an external system if required. Asynchronous methods inside the callback should use the `CancellationToken` on `AuthInterceptorContext`.
 
 > [!NOTE]
 > `CallCredentials` are only applied if the channel is secured with TLS. Sending authentication headers over an insecure connection has security implications and shouldn't be done in production environments. An app can configure a channel to ignore this behavior and always use `CallCredentials` by setting `UnsafeUseInsecureChannelCallCredentials` on a channel.
@@ -344,8 +344,8 @@ Configuring `ChannelCredentials` on a channel is an alternative way to send the 
 
 Benefits of using `CallCredentials`:
 
-* Authentication is centrally configured on the channel. The token doesn't need to be manually provided to gRPC call.
-* The `CallCredentials.FromInterceptor` callback is asynchronous. Call credentials can fetch a credential token from an external system if required. Async calls inside the callback should use the `CancellationToken` on `AuthInterceptorContext`.
+* Authentication is centrally configured on the channel. The token doesn't need to be manually provided to the gRPC call.
+* The `CallCredentials.FromInterceptor` callback is asynchronous. Call credentials can fetch a credential token from an external system if required. Asynchronous methods inside the callback should use the `CancellationToken` on `AuthInterceptorContext`.
 
 > [!NOTE]
 > `CallCredentials` are only applied if the channel is secured with TLS. Sending authentication headers over an insecure connection has security implications and shouldn't be done in production environments. An app can configure a channel to ignore this behavior and always use `CallCredentials` by setting `UnsafeUseInsecureChannelCallCredentials` on a channel.
