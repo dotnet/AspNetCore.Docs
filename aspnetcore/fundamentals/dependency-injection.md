@@ -222,7 +222,7 @@ If a class has a lot of injected dependencies, it might be a sign that the class
 The container calls <xref:System.IDisposable.Dispose%2A> for the <xref:System.IDisposable> types it creates. Services resolved from the container should never be disposed by the developer. If a type or factory is registered as a singleton, the container disposes the singleton automatically.
 
 In the following example, the services are created by the service container and disposed automatically:
-                dependency-injection\samples\6.x\DIsample2\Services\Service1.cs
+                dependency-injection\samples\6.x\DIsample2\DIsample2\Services\Service1.cs
 [!code-csharp[](dependency-injection/samples/6.x/DIsample2/DIsample2/Services/Service1.cs?name=snippet)]
 
 [!code-csharp[](dependency-injection/samples/6.x/DIsample2/DIsample2/Program.cs?name=snippet)]
@@ -234,7 +234,7 @@ The debug console shows the following output after each refresh of the Index pag
 ```console
 Service1: IndexModel.OnGet
 Service2: IndexModel.OnGet
-Service3: IndexModel.OnGet
+Service3: IndexModel.OnGet, MyKey = MyKey from appsettings.Developement.json
 Service1.Dispose
 ```
 
@@ -628,7 +628,7 @@ The debug console shows the following output after each refresh of the Index pag
 ```console
 Service1: IndexModel.OnGet
 Service2: IndexModel.OnGet
-Service3: IndexModel.OnGet, MyKey = {MyKey}  //The "MyKey" is according to your config
+Service3: IndexModel.OnGet, MyKey = My Key from config
 Service1.Dispose
 ```
 
