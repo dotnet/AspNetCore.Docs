@@ -154,7 +154,6 @@ public class ContactsController : Controller
                 Message = $"Contact with id {id} not found.",
                 RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
             });
-            // return Problem("Contact deleted.");
         }
 
         await _context.SaveChangesAsync();
