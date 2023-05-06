@@ -5,10 +5,12 @@ description: Learn how the Startup class in ASP.NET Core configures services and
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 12/05/2019
+ms.date: 5/5/2023
 uid: fundamentals/startup
 ---
 # App startup in ASP.NET Core
+
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -71,6 +73,15 @@ Note: You can't extend the ASP.NET Core app when you override `Configure`. For m
 ## Add configuration at startup from an external assembly
 
 An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows adding enhancements to an app at startup from an external assembly outside of the app's `Program.cs` file. For more information, see <xref:fundamentals/configuration/platform-specific-configuration>.
+
+## Startup, ConfigureServices, and Configure
+
+For information on using the <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices%2A> and <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure%2A> methods with the minimal hosting model, see:
+
+* [Use Startup with the minimal hosting model](xref:migration/50-to-60#smhm)
+* The [ASP.NET Core 5.0 version of this article](?view=aspnetcore-5.0&preserve-view=true#the-startup-class):
+  * [The ConfigureServices method](?view=aspnetcore-5.0&preserve-view=true#the-configureservices-method)
+  * [The Configure method](?view=aspnetcore-5.0&preserve-view=true#the-configure-method)
 
 :::moniker-end
 
