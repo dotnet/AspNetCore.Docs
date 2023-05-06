@@ -1,14 +1,5 @@
----
-title: Create a .NET Core gRPC client and server in ASP.NET Core
-author: jamesnk
-description: This tutorial shows how to create a gRPC Service and gRPC client on ASP.NET Core. Learn how to create a gRPC Service project, edit a proto file, and add a duplex streaming call.
-ms.author: jamesnk
-ms.date: 05/05/2023
-uid: tutorials/grpc/grpc-start
----
-# Tutorial: Create a gRPC client and server in ASP.NET Core
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-7.0"
 This tutorial shows how to create a .NET Core [gRPC](xref:grpc/index) client and an ASP.NET Core gRPC Server. At the end, you'll have a gRPC client that communicates with the gRPC Greeter service.
 
 In this tutorial, you:
@@ -22,15 +13,15 @@ In this tutorial, you:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
 
 ---
 
@@ -38,11 +29,11 @@ In this tutorial, you:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Start Visual Studio 2022 and select **New Project**.
+* Start Visual Studio 2022 and select **Create a new project**.
 * In the **Create a new project** dialog, search for `gRPC`. Select **ASP.NET Core gRPC Service** and select **Next**.
 * In the **Configure your new project** dialog, enter `GrpcGreeter` for **Project name**. It's important to name the project *GrpcGreeter* so the namespaces match when you copy and paste code.
 * Select **Next**.
-* In the **Additional information** dialog, select **.NET 8.0 (Preview)** and then select **Create**.
+* In the **Additional information** dialog, select **.NET 6.0 (Long-term support)** and then select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -52,7 +43,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 * Change to the directory (`cd`) that will contain the project.
 * Run the following commands:
 
-  ```dotnetcliS
+  ```dotnetcli
   dotnet new grpc -o GrpcGreeter
   code -r GrpcGreeter
   ```
@@ -87,6 +78,8 @@ info: Microsoft.Hosting.Lifetime[0]
 
 > [!NOTE]
 > The gRPC template is configured to use [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). gRPC clients need to use HTTPS to call the server.  The gRPC service localhost port number is randomly assigned when the project is created and set in the *Properties\launchSettings.json* file of the gRPC service project.
+>
+> macOS doesn't support ASP.NET Core gRPC with TLS. Additional configuration is required to successfully run gRPC services on macOS. For more information, see [Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos).
 
 ### Examine the project files
 
@@ -103,10 +96,10 @@ info: Microsoft.Hosting.Lifetime[0]
 
 # [Visual Studio](#tab/visual-studio)
 
-* Open a second instance of Visual Studio and select **New Project**.
-* In the **Create a new project** dialog, select **Console App**, and select **Next**.
+* Open a second instance of Visual Studio and select **Create a new project**.
+* In the **Create a new project** dialog, select **Console Application**, and select **Next**.
 * In the **Project name** text box, enter **GrpcGreeterClient** and select **Next**.
-* In the **Additional information** dialog, select **.NET 8.0 (Preview)** and then select **Create**.
+* In the **Additional information** dialog, select **.NET 6.0 (Long-term support)** and then select **Create**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -226,7 +219,7 @@ dotnet add GrpcGreeterClient.csproj package Grpc.Tools
 
 * Update the gRPC client `Program.cs` file with the following code.
 
-  [!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample8/GrpcGreeterClient/Program.cs?name=snippet2&highlight=6)]
+  [!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample7/GrpcGreeterClient/Program.cs?name=snippet2&highlight=6)]
 
 * In the preceding highlighted code, replace the localhost port number `7042` with the `HTTPS` port number specified in `Properties/launchSettings.json` within the `GrpcGreeter` service project.
 
@@ -237,11 +230,11 @@ The Greeter client is created by:
 * Instantiating a `GrpcChannel` containing the information for creating the connection to the gRPC service.
 * Using the `GrpcChannel` to construct the Greeter client:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample8/GrpcGreeterClient/Program.cs?name=snippet&highlight=1-3)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample7/GrpcGreeterClient/Program.cs?name=snippet&highlight=1-3)]
 
 The Greeter client calls the asynchronous `SayHello` method. The result of the `SayHello` call is displayed:
 
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample8/GrpcGreeterClient/Program.cs?name=snippet&highlight=4-7)]
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample7/GrpcGreeterClient/Program.cs?name=snippet&highlight=4-7)]
 
 ## Test the gRPC client with the gRPC Greeter service
 
@@ -256,6 +249,12 @@ The Greeter client calls the asynchronous `SayHello` method. The result of the `
 * Start the client.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
+
+* Due to the previously mentioned [HTTP/2 TLS issue on macOS workaround](xref:grpc/troubleshoot#unable-to-start-aspnet-core-grpc-app-on-macos), you'll need to update the channel address in the client to match port in launchSetting.json of the GrpcGreeter service "http://localhost:5000". Update line 13 of *`GrpcGreeterClient/Program.cs`* to read:
+
+  ```csharp
+  using var channel = GrpcChannel.ForAddress("http://localhost:5000");
+  ```
 
 * Start the Greeter service.
 * Start the client.
@@ -308,11 +307,3 @@ Update the `appsettings.Development.json` file by adding the following lines:
 * <xref:grpc/migration>
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/grpc/grpc-start/includes/grpc-start7.md)]
-
-[!INCLUDE[](~/tutorials/grpc/grpc-start/includes/grpc-start6.md)]
-
-[!INCLUDE[](~/tutorials/grpc/grpc-start/includes/grpc-start5.md)]
-
-[!INCLUDE[](~/tutorials/grpc/grpc-start/includes/grpc-start3.md)]
