@@ -60,7 +60,7 @@ The service name specified by the client is usually the default (`""`) or a pack
 
 ### Configure health checks execution interval
 
-Health checks are periodically executed using <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> to gather health results. By default, the publisher waits 5 seconds after app startup before running health checks, and then health checks are run again every 30 seconds.
+Health checks are executed immediately when `Check` is called. The `Watch` is a streaming method has different behavior. The long running stream reports health checks results over time by periodically executing <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> to gather health results. By default, the publisher waits 5 seconds after app startup before running health checks, and then health checks are run again every 30 seconds.
 
 Publisher intervals can be configured using <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions> at startup:
 
@@ -86,8 +86,8 @@ var status = response.Status;
 
 There are two methods on the `Health` service:
 
-* `Check` is a unary method for getting the current health status. The server returns a `NOT_FOUND` error response if the client requests an unknown service name. This can happen at app startup if health results haven't been published yet.
-* `Watch` is a streaming method that reports changes in health status over time. The server returns an `Unknown` status if the client requests an unknown service name.
+* `Check` is a unary method for getting the current health status. Health checks are executed immediately when `Check` is called. The server returns a `NOT_FOUND` error response if the client requests an unknown service name. This can happen at app startup if health results haven't been published yet.
+* `Watch` is a streaming method that reports changes in health status over time. <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> is periodically executed to gather health results. The server returns an `Unknown` status if the client requests an unknown service name.
 
 ## Additional resources
 
@@ -160,7 +160,7 @@ The service name specified by the client is usually the default (`""`) or a pack
 
 ### Configure health checks execution interval
 
-Health checks are periodically executed using <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> to gather health results. By default, the publisher waits 5 seconds after app startup before running health checks, and then health checks are run again every 30 seconds.
+Health checks are executed immediately when `Check` is called. The `Watch` is a streaming method has different behavior. The long running stream reports health checks results over time by periodically executing <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> to gather health results. By default, the publisher waits 5 seconds after app startup before running health checks, and then health checks are run again every 30 seconds.
 
 Publisher intervals can be configured using <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions> at startup:
 
@@ -186,8 +186,8 @@ var status = response.Status;
 
 There are two methods on the `Health` service:
 
-* `Check` is a unary method for getting the current health status. The server returns a `NOT_FOUND` error response if the client requests an unknown service name. This can happen at app startup if health results haven't been published yet.
-* `Watch` is a streaming method that reports changes in health status over time. The server returns an `Unknown` status if the client requests an unknown service name.
+* `Check` is a unary method for getting the current health status. Health checks are executed immediately when `Check` is called. The server returns a `NOT_FOUND` error response if the client requests an unknown service name. This can happen at app startup if health results haven't been published yet.
+* `Watch` is a streaming method that reports changes in health status over time. <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> is periodically executed to gather health results. The server returns an `Unknown` status if the client requests an unknown service name.
 
 ## Additional resources
 
