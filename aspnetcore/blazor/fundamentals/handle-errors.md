@@ -66,6 +66,8 @@ In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html
 
 The `blazor-error-ui` element is normally hidden due to the presence of the `display: none` style of the `blazor-error-ui` CSS class in the site's stylesheet (`wwwroot/css/site.css` for Blazor Server or `wwwroot/css/app.css` for Blazor WebAssembly). When an error occurs, the framework applies `display: block` to the element.
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 ## Handle caught exceptions outside of a Razor component's lifecycle
