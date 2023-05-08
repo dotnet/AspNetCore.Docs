@@ -113,9 +113,9 @@ In the preceding code, `SharedResource` is the class corresponding to the *.resx
 
 ## Configure localization services
 
-Localization services are configured in the `Startup.ConfigureServices` method:
+Localization services are configured in `Program.cs`:
 
-[!code-csharp[](~/fundamentals/localization/sample/6.x/Localization/Startup.cs?name=snippet1)]
+[!code-csharp[](~/fundamentals/localization/sample/6.x/Localization/program.cs?name=snippet_LocalizationConfigurationServices)]
 
 * `AddLocalization` adds the localization services to the services container, including implementations for `IStringLocalizer<T>` and `IStringLocalizerFactory`. The preceding code also sets the resources path to "Resources".
 
