@@ -163,7 +163,10 @@ The service name specified by the client is usually the default (`""`) or a pack
 
 ### Configure health checks execution interval
 
-Health checks are executed immediately when `Check` is called. `Watch` is a streaming method and has a different behavior than `Check`: The long running stream reports health checks results over time by periodically executing <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> to gather health results. By default, the publisher waits 5 seconds after app startup before running health checks, and then health checks are run again every 30 seconds.
+Health checks are run immediately when `Check` is called. `Watch` is a streaming method and has a different behavior than `Check`: The long running stream reports health checks results over time by periodically executing <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> to gather health results. By default, the publisher:
+
+* Waits 5 seconds after app startup before running health checks.
+* Runs health checks every 30 seconds.
 
 Publisher intervals can be configured using <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions> at startup:
 
