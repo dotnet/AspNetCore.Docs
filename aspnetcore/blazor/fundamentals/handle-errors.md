@@ -70,7 +70,7 @@ The `blazor-error-ui` element is normally hidden due to the presence of the `dis
 
 ## Handle caught exceptions outside of a Razor component's lifecycle
 
-Use `ComponentBase.DispatchExceptionAsync` in a Razor component to process exceptions thrown outside of the component's lifecycle call stack. This permits the component's code to treat exceptions as through they're lifecycle method exceptions. Thereafter, Blazor's error handling mechanisms, such as [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries), can process the exceptions.
+Use `ComponentBase.DispatchExceptionAsync` in a Razor component to process exceptions thrown outside of the component's lifecycle call stack. This permits the component's code to treat exceptions as though they're lifecycle method exceptions. Thereafter, Blazor's error handling mechanisms, such as [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries), can process the exceptions.
 
 > [!NOTE]
 > `ComponentBase.DispatchExceptionAsync` is used in Razor component files (`.razor`) that inherit from <xref:Microsoft.AspNetCore.Components.ComponentBase>. When creating components that [implement <xref:Microsoft.AspNetCore.Components.IComponent> directly](xref:blazor/components/index#component-classes), use `RenderHandle.DispatchExceptionAsync`.
