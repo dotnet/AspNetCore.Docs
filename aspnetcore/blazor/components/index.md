@@ -783,6 +783,16 @@ In the preceding example:
 > [!IMPORTANT]
 > If a Razor component defines an event that's triggered from a background thread, the component might be required to capture and restore the execution context (<xref:System.Threading.ExecutionContext>) at the time the handler is registered. For more information, see [Calling `InvokeAsync(StateHasChanged)` causes page to fallback to default culture (dotnet/aspnetcore #28521)](https://github.com/dotnet/aspnetcore/issues/28521).
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+To dispatch caught exceptions from the background `TimerService` to the component to treat the exceptions like normal lifecycle event exceptions, see [Handle caught exceptions outside of a Razor component's lifecycle](xref:blazor/fundamentals/handle-errors#handle-caught-exceptions-outside-of-a-razor-components-lifecycle) in the *Handle errors* article.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
 ## Use `@key` to control the preservation of elements and components
 
 When rendering a list of elements or components and the elements or components subsequently change, Blazor must decide which of the previous elements or components are retained and how model objects should map to them. Normally, this process is automatic and sufficient for general rendering, but there are often cases where controlling the process using the [`@key`][5] directive attribute is required.
