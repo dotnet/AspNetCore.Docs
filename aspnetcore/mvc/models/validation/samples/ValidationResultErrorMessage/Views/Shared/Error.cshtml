@@ -1,4 +1,4 @@
-﻿@model ErrorViewModel
+@model ErrorViewModel
 @{
     ViewData["Title"] = "Error";
 }
@@ -10,6 +10,11 @@
 {
     <p>
         <strong>Request ID:</strong> <code>@Model.RequestId</code>
+        <br/>
+        @if (!String.IsNullOrEmpty(@Model.Message))
+        {
+            <strong>Error Message:</strong> <code>@Model.Message</code>
+        }
     </p>
 }
 

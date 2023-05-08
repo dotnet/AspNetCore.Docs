@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using ValidationResultErrorMessage.Data;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ValidationResultErrorMessageContext>(options =>
-    options.UseInMemoryDatabase("testDB")); 
+    options.UseInMemoryDatabase("testDB"));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
