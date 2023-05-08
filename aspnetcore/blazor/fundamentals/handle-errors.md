@@ -66,6 +66,139 @@ In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html
 
 The `blazor-error-ui` element is normally hidden due to the presence of the `display: none` style of the `blazor-error-ui` CSS class in the site's stylesheet (`wwwroot/css/site.css` for Blazor Server or `wwwroot/css/app.css` for Blazor WebAssembly). When an error occurs, the framework applies `display: block` to the element.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Handle caught exceptions outside of a Razor component's lifecycle
+
+Use `ComponentBase.DispatchExceptionAsync` in a Razor component to process exceptions thrown outside of the component's lifecycle call stack. This permits the component's code to treat exceptions as through they're lifecycle method exceptions. Thereafter, Blazor's error handling mechanisms, such as [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries), can process the exceptions.
+
+> [!NOTE]
+> `ComponentBase.DispatchExceptionAsync` is used in Razor component files (`.razor`) that inherit from <xref:Microsoft.AspNetCore.Components.ComponentBase>. When creating components that [implement <xref:Microsoft.AspNetCore.Components.IComponent> directly](xref:blazor/components/index#component-classes), use `RenderHandle.DispatchExceptionAsync`.
+
+To handle caught exceptions outside of a Razor component's lifecycle, pass the exception to `DispatchExceptionAsync` and await the result:
+
+```csharp
+try
+{
+    ...
+}
+catch (Exception ex)
+{
+    await DispatchExceptionAsync(ex);
+}
+```
+
+A common scenario is if a component wants to start an asynchronous operation but doesn't await a <xref:System.Threading.Tasks.Task>. If the operation fails, you may still want the component to treat the failure as a component lifecycle exception for the following example goals:
+
+* Put the component into a faulted state, for example, to trigger an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries).
+* Terminate a Blazor Server app's circuit if there's no error boundary.
+* Trigger the same logging that occurs for lifecycle exceptions.
+
+In the following example, the user selects the **Send report** button to trigger a background method, `ReportSender.SendAsync`, that sends a report. In most cases, a component awaits the <xref:System.Threading.Tasks.Task> of an asynchronous call and updates the UI to indicate the operation completed. In the following example, the `SendReport` method doesn't await a <xref:System.Threading.Tasks.Task> and doesn't report the result to the user. Because the component intentionally discards the <xref:System.Threading.Tasks.Task> in `SendReport`, any asynchronous failures occur off of the normal lifecycle call stack, hence aren't seen by Blazor:
+
+```razor
+<button @onclick="SendReport">Send report</button>
+
+@code {
+    private void SendReport()
+    {
+        _ = ReportSender.SendAsync();
+    }
+}
+```
+
+To treat failures like lifecycle method exceptions, explicitly dispatch exceptions back to the component with `DispatchExceptionAsync`, as the following example demonstrates: 
+
+```razor
+<button @onclick="SendReport">Send report</button>
+
+@code {
+    private void SendReport()
+    {
+        _ = SendReportAsync();
+    }
+
+    private async Task SendReportAsync()
+    {
+        try
+        {
+            await ReportSender.SendAsync();
+        }
+        catch (Exception ex)
+        {
+            await DispatchExceptionAsync(ex);
+        }
+    }
+}
+```
+
+For a working demonstration of `DispatchExceptionAsync`, implement the timer notification example in the [Invoke component methods externally to update state](xref:blazor/components/index#invoke-component-methods-externally-to-update-state) section of the *Components* overview article. In a Blazor app, add the following files from the timer notification example and register the services in `Program.cs` as the section explains:
+
+* `TimerService.cs`
+* `NotifierService.cs`
+* `Pages/ReceiveNotifications.razor`
+
+The example uses a timer outside of a Razor component's lifecycle, where an unhandled exception normally isn't processed by Blazor's error handling mechanisms, such as an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries).
+
+First, change the code in `TimerService.cs` to create an artificial exception outside of the component's lifecycle. In the `while` loop of `TimerService.cs`, throw an exception when the `elapsedCount` reaches a value of two:
+
+```csharp
+if (elapsedCount == 2)
+{
+    throw new Exception("I threw an exception! Somebody help me!");
+}
+```
+
+Place an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries) in the app's main layout. Replace the `<article>...</article>` markup with the following markup.
+
+`Shared/MainLayout.razor`:
+
+```razor
+<article class="content px-4">
+    <ErrorBoundary>
+        <ChildContent>
+            @Body
+        </ChildContent>
+        <ErrorContent>
+            <p class="alert alert-danger" role="alert">
+                Oh, dear! Oh, my! - George Takei
+            </p>
+        </ErrorContent>
+    </ErrorBoundary>
+</article>
+```
+
+If you run the app at this point, the exception is thrown when the elapsed count reaches a value of two. However, the UI doesn't change. The error boundary doesn't show the error content.
+
+Change the `OnNotify` method of the `ReceiveNotification` component (`Pages/ReceiveNotification.razor`):
+
+* Wrap the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> in a `try-catch` block.
+* Pass any <xref:System.Exception> to `DispatchExceptionAsync` and await the result.
+
+```csharp
+public async Task OnNotify(string key, int value)
+{
+    try
+    {
+        await InvokeAsync(() =>
+        {
+            lastNotification = (key, value);
+            StateHasChanged();
+        });
+    }
+    catch (Exception ex)
+    {
+        await DispatchExceptionAsync(ex);
+    }
+}
+```
+
+When the timer service executes and reaches a count of two, the exception is dispatched to the Razor component, which in turn triggers the error boundary to display the error content of the `<ErrorBoundary>` in the `MainLayout` component (`Shared/MainLayout.razor`):
+
+> :::no-loc text="Oh, dear! Oh, my! - George Takei":::
+
+:::moniker-end
+
 ## Detailed circuit errors
 
 *This section applies to Blazor Server apps.*

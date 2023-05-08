@@ -783,101 +783,11 @@ In the preceding example:
 > [!IMPORTANT]
 > If a Razor component defines an event that's triggered from a background thread, the component might be required to capture and restore the execution context (<xref:System.Threading.ExecutionContext>) at the time the handler is registered. For more information, see [Calling `InvokeAsync(StateHasChanged)` causes page to fallback to default culture (dotnet/aspnetcore #28521)](https://github.com/dotnet/aspnetcore/issues/28521).
 
-:::moniker-end
-
 :::moniker range=">= aspnetcore-8.0"
 
-### Dispatch exceptions to Blazor's synchronization context
-
-Use `ComponentBase.DispatchExceptionAsync` in Razor components to process exceptions thrown outside of Blazor's synchronization context. This permits the app's code to treat the exceptions as through they're lifecycle method exceptions. Thereafter, Blazor's error handling mechanisms, such as [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries), can process the exceptions.
-
-> [!NOTE]
-> `ComponentBase.DispatchExceptionAsync` is used in Razor component files (`.razor`) that inherit from <xref:Microsoft.AspNetCore.Components.ComponentBase>. When creating components that [implement <xref:Microsoft.AspNetCore.Components.IComponent> directly](#component-classes), use `RenderHandle.DispatchExceptionAsync`.
-
-To dispatch exceptions to Blazor's synchronization context, use a `try-catch` block to pass the exception to `DispatchExceptionAsync` and await the result:
-
-```csharp
-try
-{
-    await InvokeAsync(() =>
-    {
-        ...
-    });
-}
-catch (Exception ex)
-{
-    await DispatchExceptionAsync(ex);
-}
-```
-
-For an example use of `DispatchExceptionAsync` API, implement the timer notification example in the [Invoke component methods externally to update state](#invoke-component-methods-externally-to-update-state) section. In a Blazor app, add the following files from the timer notification example and register the services in `Program.cs` as the text explains:
-
-* `TimerService.cs`
-* `NotifierService.cs`
-* `Pages/ReceiveNotifications.razor`
-
-The example uses a timer outside of Blazor's synchronization context, where an unhandled exception normally doesn't reach Blazor's synchronization context and isn't processed by Blazor's error handling mechanisms, such as an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries).
-
-First, change the code in `TimerService.cs` to create an artificial exception outside of Blazor's synchronization context. In the `while` loop of `TimerService.cs`, throw an exception when the `elapsedCount` reaches a value of two:
-
-```csharp
-if (elapsedCount == 2)
-{
-    throw new Exception("I threw an exception! Somebody help me!");
-}
-```
-
-Place an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries) in the app's main layout.
-
-`Shared/MainLayout.razor`:
-
-```razor
-<article class="content px-4">
-    <ErrorBoundary>
-        <ChildContent>
-            @Body
-        </ChildContent>
-        <ErrorContent>
-            <p class="alert alert-danger" role="alert">
-                Oh, dear! Oh, my! - George Takei
-            </p>
-        </ErrorContent>
-    </ErrorBoundary>
-</article>
-```
-
-If you run the app at this point, the exception is thrown when the elapsed count reaches a value of two. However, the UI doesn't change. The error boundary doesn't show the error content.
-
-Change the `OnNotify` method of the `ReceiveNotification` component (`Pages/ReceiveNotification.razor`):
-
-* Wrap the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> in a `try-catch` block.
-* Pass any <xref:System.Exception> to `DispatchExceptionAsync` and await the result.
-
-```csharp
-public async Task OnNotify(string key, int value)
-{
-    try
-    {
-        await InvokeAsync(() =>
-        {
-            lastNotification = (key, value);
-            StateHasChanged();
-        });
-    }
-    catch (Exception ex)
-    {
-        await DispatchExceptionAsync(ex);
-    }
-}
-```
-
-When the timer service executes and reaches a count of two, the unhandled exception is dispatched to the Razor component, which in turn triggers the error boundary to display the error content:
-
-> :::no-loc text="Oh, dear! Oh, my! - George Takei":::
+To dispatch caught exceptions from the background `TimerService` to the component to treat the exceptions like normal lifecycle event exceptions, see [Handle caught exceptions outside of a Razor component's lifecycle](xref:blazor/fundamentals/handle-errors#handle-caught-exceptions-outside-of-a-razor-components-lifecycle) in the *Handle errors* article.
 
 :::moniker-end
-
-:::moniker range=">= aspnetcore-7.0"
 
 ## Use `@key` to control the preservation of elements and components
 
