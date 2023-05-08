@@ -11,7 +11,7 @@ uid: fundamentals/localization/make-content-localizable
 
 :::moniker range="> aspnetcore-5.0"
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
+By [Hisham Bin Ateya](https://twitter.com/hishambinateya), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax) and [Nadeem Afana](https://afana.me/)
 
 One task for localizing an app is to wrap localizable content with code that facilitates replacing that content for different cultures.
 
