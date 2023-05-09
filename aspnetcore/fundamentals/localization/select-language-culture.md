@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to select a language and culture when localizing content into different languages and cultures in an ASP.NET Core app.
 ms.author: riande
 monikerRange: '>= aspnetcore-5.0'
-ms.date: 02/23/2023
+ms.date: 5/9/2023
 uid: fundamentals/localization/select-language-culture
 ---
 # Implement a strategy to select the language/culture for each request in a localized ASP.NET Core app
