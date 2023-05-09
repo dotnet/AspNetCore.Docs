@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using ValidationResultErrorMessage.Models;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ValidationResultErrorMessage.Data
 {
     public class ValidationResultErrorMessageContext : DbContext
     {
-        public ValidationResultErrorMessageContext (DbContextOptions<ValidationResultErrorMessageContext> options)
+        public ValidationResultErrorMessageContext(DbContextOptions<ValidationResultErrorMessageContext> options)
             : base(options)
         {
         }
