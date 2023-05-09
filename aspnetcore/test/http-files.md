@@ -4,17 +4,18 @@ author: tdykstra
 description: Learn how to use .http/.rest files in Visual Studio 2022 to test ASPNET Core apps.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: tdykstra
-ms.date: 05/08/2023
+ms.date: 05/09/2023
 uid: test/http-files
 ---
 # Use .http/.rest files in Visual Studio 2022
 
-Visual Studio 2022 has an editor for `.http` files (`.rest` is an alternative file extension for the same file format). The purpose of `.http` files is to provide a convenient syntax for making HTTP requests, and the editor window displays the responses. This article is reference documentation for the `.http` file format and the Visual Studio `.http` file editor.
+Visual Studio 2022 has an editor for `.http` files (`.rest` is an alternative file extension for the same file format). The purpose of `.http` files is to provide a convenient syntax for making HTTP requests to test ASP.NET Core API apps. The Visual Studio editor window provides a UI to make requests and display the responses. This article is reference documentation for the `.http` file format and the Visual Studio `.http` file editor.
 
 ## Prerequisites
 
-* [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.6 Prerview or later with the **ASP.NET and web development** workload installed.
+* [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.6 Preview or later with the **ASP.NET and web development** workload installed.
 
+## The following sections explain .http file syntax. For information about how to use the .http file editor, see 
 ## Comments
 
 Comments are lines that start with either `#` or `//`. These lines are ignored when Visual Studio makes HTTP requests.
@@ -120,3 +121,33 @@ The Visual Studio 2022 `.http` file editor was inspired by the [Visual Studio Co
 * Per-request settings
 
 The Visual Studio 2022 `.http` file editor is sill under development, and some of these features might be added in the future. For more information, see [Visual Studio Code REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
+
+## Use the Visual Studio `.http` file editor
+
+The following sections explain how to use the Visual Studio 2022 `.http` file editor.
+
+## Create an `.http` file
+
+To create an .http file:
+
+* In **Solution Explorer**, right-click an ASP.NET Core API or web API project.
+* In the context menu, select **Add** > **New Item** > **ASP.NET Core** > **General**.
+* Select **HTTP File**, and select **Add**.
+
+  :::image type="content" source="~/test/http-files/_static/add-http-file.png" alt-text="Add New Item dialog showing HTTP File type selected.":::
+
+## Make an HTTP request
+
+To make a request:
+
+* Add a [request](#requests) to the file and save the file.
+* Run the project if the request URL points to localhost and the project's port.
+* Select the green "run" button to the left of the request to be run.
+  The request is sent to the specified URL, and the response appears in a separate pane to the right of the editor window.
+
+  :::image type="content" source="~/test/http-files/_static/make-request.png" alt-text=".http file editor window with 'run' button highlighted and showing the response pane.":::
+
+
+
+
+
