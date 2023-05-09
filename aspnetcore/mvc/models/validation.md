@@ -231,6 +231,18 @@ The following code implements the validation test in a controller:
 
 Checking for a unique phone number or email is typically also done with [remote validation](#remote-attribute).
 
+## ValidationResult
+
+Consider the following custom `ValidateNameAttribute`:
+
+:::code language="csharp" source="~/mvc/models/validation/samples/ValidationResultErrorMessage/Models/Contact.cs" id="snippet_2":::
+
+In the following code, the custom `[ValidateName]` attribute is applied:
+
+:::code language="csharp" source="~/mvc/models/validation/samples/ValidationResultErrorMessage/Models/Contact.cs" id="snippet_2":::
+
+When the model contains `zz`, a new <xref:System.ComponentModel.DataAnnotations.ValidationResult?displayProperty=fullName> is returned.
+
 ## Top-level node validation
 
 Top-level nodes include:
