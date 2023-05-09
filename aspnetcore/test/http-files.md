@@ -64,7 +64,7 @@ The format for an HTTP request is `HTTPMethod URL HTTPVersion`, all on one line,
   * DELETE
   * TRACE
   * CONNECT
-* `URL` is the URL to send the request to. The URL can include query string parameters.
+* `URL` is the URL to send the request to. The URL can include query string parameters. The URL doesn't have to point to a local web project. It can point to any URL that Visual Studio can access.
 * `HTTPVersion` is optional and specifies the HTTP version that should be used, that is, `HTTP/1.1`, `HTTP/2`, or `HTTP/3`.
 
 A file can contain multiple requests by using lines with `###` as delimiters. The following examples illustrate this syntax:
@@ -157,6 +157,8 @@ The following sections explain how to use the Visual Studio 2022 `.http` file ed
 * Select **HTTP File**, and select **Add**.
 
   :::image type="content" source="~/test/http-files/_static/add-http-file.png" alt-text="Add New Item dialog showing HTTP File type selected.":::
+
+  An alternative is to create a file with any extension and rename the extension to `.http`.
 
 ## Send an HTTP request
 
