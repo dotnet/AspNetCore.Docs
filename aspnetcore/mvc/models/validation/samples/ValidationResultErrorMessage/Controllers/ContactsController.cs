@@ -20,7 +20,11 @@ public class ContactsController : Controller
     {
         return _context.Contact != null ?
                     View(await _context.Contact.ToListAsync()) :
-                    Problem("Entity set 'ValidationResultErrorMessageContext.Contact'  is null.");
+                    View("Error", new ErrorViewModel
+                    {
+                        Message = "Contact is null",
+                        RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+                    });
     }
 
     // GET: Contacts/Details/5
@@ -133,15 +137,19 @@ public class ContactsController : Controller
         return View(contact);
     }
 
-    // POST: Contacts/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(Guid id)
     {
         if (_context.Contact == null)
         {
-            return Problem("Entity set 'ValidationResultErrorMessageContext.Contact'  is null.");
+            return View("Error", new ErrorViewModel
+            {
+                Message = $"Contact with id {id} is null.",
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            });
         }
+
         var contact = await _context.Contact.FindAsync(id);
         if (contact != null)
         {
