@@ -433,6 +433,8 @@ items:
             items:
               - name: Overview
                 uid: blazor/components/index
+              - name: Generic type support
+                uid: blazor/components/generic-type-support
               - name: Layouts
                 uid: blazor/components/layouts
               - name: Sections
