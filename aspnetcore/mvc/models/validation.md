@@ -241,7 +241,7 @@ In the following code, the custom `[ValidateName]` attribute is applied:
 
 :::code language="csharp" source="~/mvc/models/validation/samples/ValidationResultErrorMessage/Models/Contact.cs" id="snippet_1":::
 
-When the model contains `zz`, a new <xref:System.ComponentModel.DataAnnotations.ValidationResult?displayProperty=fullName> is returned.
+When the model contains `zz`, a new <xref:System.ComponentModel.DataAnnotations.ValidationResult> is returned.
 
 ## Top-level node validation
 
