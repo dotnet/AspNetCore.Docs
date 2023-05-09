@@ -143,7 +143,7 @@ The Visual Studio 2022 `.http` file editor was inspired by the [Visual Studio Co
 * Customize response preview
 * Per-request settings
 
-The Visual Studio 2022 `.http` file editor is sill under development, and some of these features might be added in the future. For more information, see [Visual Studio Code REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
+The Visual Studio 2022 `.http` file editor is sill under development, and some of these features might be added in the future. For more information about the Visual Studio Code extension, see [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 ## Use the Visual Studio `.http` file editor
 
@@ -151,20 +151,17 @@ The following sections explain how to use the Visual Studio 2022 `.http` file ed
 
 ## Create an `.http` file
 
-To create an .http file:
-
-* In **Solution Explorer**, right-click an ASP.NET Core API or web API project.
-* In the context menu, select **Add** > **New Item** > **ASP.NET Core** > **General**.
+* In **Solution Explorer**, right-click an ASP.NET Core project.
+* In the context menu, select **Add** > **New Item**.
+* In the **Add New Item** dialog, select **ASP.NET Core** > **General**.
 * Select **HTTP File**, and select **Add**.
 
   :::image type="content" source="~/test/http-files/_static/add-http-file.png" alt-text="Add New Item dialog showing HTTP File type selected.":::
 
 ## Send an HTTP request
 
-To send a request:
-
-* Add a [request](#requests) to the file and save the file.
-* Run the project if the request URL points to localhost and the project's port.
+* Add at least one [request](#requests) to the file and save the file.
+* If the request URL points to localhost and the project's port, run the project.
 * Select the green "run" button to the left of the request to be run.
   The request is sent to the specified URL, and the response appears in a separate pane to the right of the editor window.
 
@@ -180,11 +177,11 @@ To send a request:
 
 ### Open Endpoints Explorer
 
-To open **Endpoints Explorer**, select **View** > **Other Windows** > **Endpoints Explorer**.
+Select **View** > **Other Windows** > **Endpoints Explorer**.
 
 ### Add a request to an `.http` file
 
-To add a request to an `.http` file, right-click the request in **Endpoints Explorer** and select **Generate Request**.
+Right-click the request in **Endpoints Explorer** and select **Generate Request**.
 
 :::image type="content" source="~/test/http-files/_static/generate-request.png" alt-text="Endpoints Explorer window showing request context menu with 'Generate Request' menu selection highlighted.":::
 
@@ -192,4 +189,4 @@ To add a request to an `.http` file, right-click the request in **Endpoints Expl
 * If an `.http` file isn't open and one exists in the project, the file is opened and the request is added to that file.
 * If no `.http` file exists in the project, one is created with the project name as the file name, and the request is added to that file.
 
-You can then run the request as described [earlier in this article](#make-an-http-request).
+Send the request as described [earlier in this article](#send-an-http-request).
