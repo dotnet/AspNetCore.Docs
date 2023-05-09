@@ -21,7 +21,7 @@ Comments are lines that start with either `#` or `//`. These lines are ignored w
 
 ## Variables
 
-Variable names begin with an `@` and are followed by an `=` and the value of the variable. For example:
+Variable names begin with an `@` and are followed by an `=` and the value of the variable: `@VariableName=value`. For example:
 
 Variables can be referenced in requests that are defined later in the file. They are referenced by wrapping their names in double curly braces (`{{` and `}}`). The following example shows two variables used in a request:
 
@@ -66,7 +66,7 @@ GET https://httpbin.org/get HTTP/1.1
 
 ## Request headers
 
-To add one or more headers, add each header on its own line immediately after after the request line (no blank lines). The format is `Name: Value`, as shown in the following examples:
+To add one or more headers, add each header on its own line immediately after after the request line (no blank lines). The format is `HeaderName: Value`, as shown in the following examples:
 
 ```
 GET https://httpbin.org/get?name=Nancy&phone=555-555-3333 HTTP/1.1
@@ -99,55 +99,24 @@ Accept-Language: en-US,en;q=0.5
 
 ## Unsupported syntax
 
-There is some support that the Visual Studio Code REST Client extension supports that we don’t have support for today. Those include.
+The Visual Studio 2022 `.http` file editor was inspired by the [Visual Studio Code REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) but does not have all the features of the Visual Studio Code extension. Some of the more significant features that it has but Visual Studio 2022 doesn't have are the following:
 
-Optional HTTP Method. The REST Client has support for not specifying the HTTP method. In those cases, GET is the default HTTP method.
-Request URL spans more than one line. In the current implementation in Visual Studio, the request line must be on a single line.
-We are hoping to add support for these in a future release.
+* Optional HTTP Method
+* Request line that spans more than one line
+* Named Requests
+* Dynamic variables
+* Environment files
+* Specify file path as body of the request
+* Mixed format for body when using multipart/form-data
+* GraphQL requests
+* cURL request
+* Copy/paste as cURL
+* Request history
+* Save response body to file
+* Certificate based authentication
+* Prompt variables
+* System variables
+* Customize response preview
+* Per-request settings
 
-Multiple requests in the same file
-As shown above, an HTTP file can have multiple different requests listed. They need to be separated with ### at the end of each request.
-
-Headers
-To add one, or more, headers add each header on its own line immediately after (no blank lines) after the request line. Below are a few different examples.
-
-GET https://httpbin.org/get?name=Sayed?&phone=111-222-3333 HTTP/1.1
-Date: Wed, 27 Apr 2023 07:28:00 GMT
-###
-
-GET https://httpbin.org/get?name=Sayed?&phone=111-222-3333
-Cache-Control: max-age=604800
-Age: 100
-###
-
-POST https://httpbin.org/post HTTP/1.1
-Content-Type: application/json
-Accept-Language: en-US,en;q=0.5
-
-{
-    "name": "sample",
-    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
-}
-###
-If you are calling an API which can authenticate with headers you can specify those in the headers as well. If you do this, be careful to not commit any secrets to your repository. We will be working on ways to supports secrets in a secure manner.
-
-Now that we’ve gone through some of the supported syntax, in the next section we will list some features that the REST Client has which Visual Studio doesn’t currently support. If you’d like to see support for any of these features, please leave a comment below or send some feedback to the team (see the closing section below). This list is in no particular order. For more info on any of the items listed below, see the Visual Studio Code REST Client extension.
-
-Not currently supported in the Visual Studio HTTP Editor
-Optional HTTP Method
-Request line that spans more than one line
-Named Requests
-Dynamic variables
-Environment files
-Specify file path as body of the request
-Mixed format for body when using multipart/form-data
-GraphQL requests
-cURL request
-Copy/paste as cURL
-Request history
-Save response body to file
-Certificate based authentication
-Prompt variables
-System variables
-Customize response preview
-Per-request settings
+The Visual Studio 2022 `.http` file editor is sill under development, and some of these features might be added in the future. For more information, see [Visual Studio Code REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
