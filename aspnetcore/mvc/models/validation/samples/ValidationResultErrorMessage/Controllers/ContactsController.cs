@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using ValidationResultErrorMessage.Data;
 using ValidationResultErrorMessage.Models;
 
-namespace ValidationResultErrorMessage;
+namespace ValidationResultErrorMessage.Controllers;
 
 public class ContactsController : Controller
 {
