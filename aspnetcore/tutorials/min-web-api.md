@@ -428,6 +428,8 @@ Update the code in `Program.cs` to use this DTO model:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todoDTO/Program.cs" id="snippet_all":::
 
+**Note**: The `DeleteTodo` doesn't use a DTO because it isn't suseptable to over-posting.
+
 Verify you can post and get all fields except the secret field.
 
 <a name="diff-v7"></a>
