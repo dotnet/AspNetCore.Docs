@@ -57,7 +57,7 @@ The tutorial assumes familiarity with VS Code. For more information, see [Gettin
 * Change to the directory (`cd`) that will contain the project.
 * Run the following commands:
 
-  ```dotnetcliS
+  ```dotnetcli
   dotnet new grpc -o GrpcGreeter
   code -r GrpcGreeter
   ```
