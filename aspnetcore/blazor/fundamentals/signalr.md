@@ -14,8 +14,6 @@ uid: blazor/fundamentals/signalr
 
 This article explains how to configure and manage SignalR connections in Blazor apps.
 
-:::moniker range=">= aspnetcore-7.0"
-
 For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR added to a hosted Blazor WebAssembly app, for example in the <xref:blazor/tutorials/signalr-blazor?pivots=webassembly> tutorial, or a standalone Blazor WebAssembly app that uses SignalR, see <xref:signalr/configuration#configure-server-options>.
 
 :::moniker range=">= aspnetcore-6.0"
