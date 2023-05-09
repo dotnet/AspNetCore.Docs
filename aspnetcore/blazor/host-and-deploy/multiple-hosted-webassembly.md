@@ -496,7 +496,7 @@ In the preceding example URLs, the `{DEFAULT PORT}` placeholder is the default p
 
 When an asset is in a client app's `wwwroot` folder, provide the static asset request path in components:
 
-```html
+```razor
 <img alt="..." src="{PATH AND FILE NAME}" />
 ```
 
@@ -504,7 +504,7 @@ The `{PATH AND FILE NAME}` placeholder is the path and file name under `wwwroot`
 
 For example, the source for a Jeep image (`jeep-yj.png`) in the `vehicle` folder of `wwwroot`:
 
-```html
+```razor
 <img alt="Jeep Wrangler YJ" src="vehicle/jeep-yj.png" />
 ```
 
@@ -546,15 +546,15 @@ Manually add the RCL's bundled stylesheet to the `<head>` content of `wwwroot/in
 
 When any other static asset is in the `wwwroot` folder of an RCL, reference the static asset in a client app per the guidance in <xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl>:
 
-```html
+```razor
 <img alt="..." src="_content/{PACKAGE ID}/{PATH AND FILE NAME}" />
 ```
 
 The `{PACKAGE ID}` placeholder is the RCL's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
 
-The following example shows the source for a Jeep image (`jeep-yj.png`) in the `vehicle` folder of the RCL's `wwwroot`. The following example is for an RCL with the assembly name `ComponentLibrary`:
+The following example shows the markup for a Jeep image (`jeep-yj.png`) in the `vehicle` folder of the RCL's `wwwroot`. The following example is for an RCL with the assembly name `ComponentLibrary`:
 
-```html
+```razor
 <img alt="Jeep Wrangler YJ" src="_content/ComponentLibrary/vehicle/jeep-yj.png" />
 ```
 
