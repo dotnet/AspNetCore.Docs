@@ -31,7 +31,7 @@ Alternatively, you can use the traditional approach and provide a key to retriev
 
 ## `IHtmlLocalizer`
 
-Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHtmlLocalizer` HTML-encodes arguments that are formatted in the resource string, but doesn't HTML-encode the resource string itself. In the following highlighted code, only the value of the `name` parameter is HTML-encoded.
+Use the <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer%601> implementation for resources that contain HTML. <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer> HTML-encodes arguments that are formatted in the resource string, but doesn't HTML-encode the resource string itself. In the following highlighted code, only the value of the `name` parameter is HTML-encoded.
 
 [!code-csharp[](~/fundamentals/localization/sample/6.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
@@ -39,7 +39,7 @@ Use the `IHtmlLocalizer<T>` implementation for resources that contain HTML. `IHt
 
 ## `IStringLocalizerFactory`
 
-At the lowest level, you can get `IStringLocalizerFactory` out of [Dependency Injection](~/fundamentals/dependency-injection.md):
+At the lowest level, <xref:Microsoft.Extensions.Localization.IStringLocalizerFactory> can be retrieved from of [Dependency Injection](~/fundamentals/dependency-injection.md):
 
 [!code-csharp[](~/fundamentals/localization/sample/6.x/Localization/Controllers/TestController.cs?highlight=6-12&name=snippet_1)]
 
@@ -57,7 +57,7 @@ In the following sample, the `InfoController` and the `SharedResource` localizer
 
 ## View localization
 
-The `IViewLocalizer` service provides localized strings for a [view](xref:mvc/views/overview). The `ViewLocalizer` class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of `IViewLocalizer`:
+The <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer> service provides localized strings for a [view](xref:mvc/views/overview). The `ViewLocalizer` class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of `IViewLocalizer`:
 
 [!code-cshtml[](~/fundamentals/localization/sample/6.x/Localization/Views/Home/About.cshtml)]
 
@@ -99,14 +99,11 @@ Non-validation attributes are localized.
 The following code shows how to use one resource string for validation attributes with multiple classes:
 
 ```csharp
-public void ConfigureServices(IServiceCollection services)
-{
     services.AddMvc()
         .AddDataAnnotationsLocalization(options => {
             options.DataAnnotationLocalizerProvider = (type, factory) =>
                 factory.Create(typeof(SharedResource));
         });
-}
 ```
 
 In the preceding code, `SharedResource` is the class corresponding to the *.resx* file where the validation messages are stored. With this approach, DataAnnotations only uses `SharedResource`, rather than the resource for each class.
@@ -117,11 +114,11 @@ Localization services are configured in `Program.cs`:
 
 [!code-csharp[](~/fundamentals/localization/sample/6.x/Localization/program.cs?name=snippet_LocalizationConfigurationServices)]
 
-* `AddLocalization` adds the localization services to the services container, including implementations for `IStringLocalizer<T>` and `IStringLocalizerFactory`. The preceding code also sets the resources path to "Resources".
+* <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> adds the localization services to the services container, including implementations for `IStringLocalizer<T>` and `IStringLocalizerFactory`. The preceding code also sets the resources path to "Resources".
 
-* `AddViewLocalization` adds support for localized view files. In this sample, view localization is based on the view file suffix. For example "fr" in the `Index.fr.cshtml` file.
+* <xref:Microsoft.Extensions.DependencyInjection.MvcLocalizationMvcBuilderExtensions.AddViewLocalization%2A> adds support for localized view files. In this sample, view localization is based on the view file suffix. For example "fr" in the `Index.fr.cshtml` file.
 
-* `AddDataAnnotationsLocalization` adds support for localized `DataAnnotations` validation messages through `IStringLocalizer` abstractions.
+* <xref:Microsoft.Extensions.DependencyInjection.MvcDataAnnotationsMvcBuilderExtensions.AddDataAnnotationsLocalization%2A> adds support for localized `DataAnnotations` validation messages through `IStringLocalizer` abstractions.
 
 [!INCLUDE[](~/includes/localization/currency.md)]
 
