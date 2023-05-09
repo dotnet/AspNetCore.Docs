@@ -21,18 +21,18 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
-#region snippet_LocalizationConfigurationServices
+// <snippet_LocalizationConfigurationServices>
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
 builder.Services.AddMvc()
     .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
     .AddDataAnnotationsLocalization();
-#endregion
+// </snippet_LocalizationConfigurationServices>
 
 builder.Services.AddTransient<IEmailSender, AuthMessageSender>();
 builder.Services.AddTransient<ISmsSender, AuthMessageSender>();
 
-#region snippet_RequestLocalizationOptionsConfiguration
+// <snippet_RequestLocalizationOptionsConfiguration>
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
     var supportedCultures = new[] { "en-US", "fr" };
@@ -40,7 +40,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
         .AddSupportedCultures(supportedCultures)
         .AddSupportedUICultures(supportedCultures);
 });
-#endregion
+// </snippet_RequestLocalizationOptionsConfiguration>
 
 var app = builder.Build();
 
@@ -68,10 +68,10 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
-#region snippet_ConfigureLocalization
+// <snippet_ConfigureLocalization>
 var localizationOptions = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
 app.UseRequestLocalization(localizationOptions.Value);
-#endregion
+// </snippet_ConfigureLocalization>
 
 app.UseAuthentication();
 app.UseAuthorization();

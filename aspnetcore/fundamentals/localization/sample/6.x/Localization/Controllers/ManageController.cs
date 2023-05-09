@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -316,7 +316,7 @@ namespace Localization.Controllers
             return RedirectToAction(nameof(ManageLogins), new { Message = message });
         }
 
-        #region Helpers
+// <Helpers>
 
         private void AddErrors(IdentityResult result)
         {
@@ -343,6 +343,6 @@ namespace Localization.Controllers
             return await _userManager.FindByIdAsync(_userManager.GetUserId(User));
         }
 
-        #endregion
+// </Helpers>
     }
 }

@@ -1,8 +1,7 @@
-﻿// Dummy class to group shared resources
+// Dummy class to group shared resources
 
-namespace Localization
+namespace Localization;
+
+public class SharedResource
 {
-    public class SharedResource
-    {
-    }
 }
