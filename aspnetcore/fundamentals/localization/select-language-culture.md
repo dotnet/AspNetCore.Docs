@@ -23,7 +23,7 @@ The current culture on a request is set in the localization [Middleware](xref:fu
 
 [!code-csharp[](~/fundamentals/localization/sample/6.x/Localization/Program.cs?name=snippet_RequestLocalizationOptionsConfiguration)]
 
-<xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization%2A> initializes a <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> object. On every request the list of <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> in the `RequestLocalizationOptions` is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
+<xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization%2A> initializes a <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> object. On every request the list of <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> in the <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
 
 1. <xref:Microsoft.AspNetCore.Localization.QueryStringRequestCultureProvider>
 1. <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider>
@@ -49,7 +49,7 @@ http://localhost:5000/?culture=es-MX
 
 Production apps will often provide a mechanism to set the culture with the ASP.NET Core culture cookie. Use the <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.MakeCookieValue%2A> method to create a cookie.
 
-The `CookieRequestCultureProvider` <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.DefaultCookieName> returns the default cookie name used to track the user's preferred culture information. The default cookie name is `.AspNetCore.Culture`.
+The xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider> <xref:Microsoft.AspNetCore.Localization.CookieRequestCultureProvider.DefaultCookieName> returns the default cookie name used to track the user's preferred culture information. The default cookie name is `.AspNetCore.Culture`.
 
 The cookie format is `c=%LANGCODE%|uic=%LANGCODE%`, where `c` is `Culture` and `uic` is `UICulture`, for example:
 
@@ -82,11 +82,11 @@ The [Content-Language](https://developer.mozilla.org/docs/Web/HTTP/Headers/Conte
 
 Entity headers are used in both HTTP requests and responses.
 
-The `Content-Language` header can be added by setting the property `ApplyCurrentCultureToResponseHeaders`.
+The `Content-Language` header can be added by setting the property <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.ApplyCurrentCultureToResponseHeaders>.
 
-Adding the `Content-Language` header:
+Adding the [`Content-Language`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Language) header:
 
-* Allows the RequestLocalizationMiddleware to set the `Content-Language` header with the `CurrentUICulture`.
+* Allows the <xref:Microsoft.AspNetCore.Localization.RequestLocalizationMiddleware> to set the `Content-Language` header with the `CurrentUICulture`.
 * Eliminates the need to set the response header `Content-Language` explicitly.
 
 ```csharp
