@@ -5,7 +5,7 @@ description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/17/2023
+ms.date: 05/7/2023
 uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
@@ -230,6 +230,18 @@ The following code implements the validation test in a controller:
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/mvc/models/ModelStateError/Controllers/ContactsController.cs" id="snippet_4":::
 
 Checking for a unique phone number or email is typically also done with [remote validation](#remote-attribute).
+
+## ValidationResult
+
+Consider the following custom `ValidateNameAttribute`:
+
+:::code language="csharp" source="~/mvc/models/validation/samples/ValidationResultErrorMessage/Models/Contact.cs" id="snippet_2":::
+
+In the following code, the custom `[ValidateName]` attribute is applied:
+
+:::code language="csharp" source="~/mvc/models/validation/samples/ValidationResultErrorMessage/Models/Contact.cs" id="snippet_1":::
+
+When the model contains `zz`, a new <xref:System.ComponentModel.DataAnnotations.ValidationResult> is returned.
 
 ## Top-level node validation
 
