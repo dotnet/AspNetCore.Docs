@@ -5,7 +5,7 @@ description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 02/17/2023
+ms.date: 05/7/2023
 uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
