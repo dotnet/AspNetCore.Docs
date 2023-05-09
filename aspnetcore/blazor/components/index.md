@@ -783,13 +783,13 @@ Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://
 
 Components can specify route parameters in the route template of the [`@page`][9] directive. The [Blazor router](xref:blazor/fundamentals/routing) uses route parameters to populate corresponding component parameters.
 
-:::moniker range=">= aspnetcore-50"
+:::moniker range=">= aspnetcore-5.0"
 
 Optional route parameters are supported. In the following example, the `text` optional parameter assigns the value of the route segment to the component's `Text` property. If the segment isn't present, the value of `Text` is set to "`fantastic`" in the [`OnInitialized` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync).
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-50"
+:::moniker range="< aspnetcore-5.0"
 
 Optional route parameters aren't supported, so two [`@page`][9] directives are applied in the following example. The first [`@page`][9] directive permits navigation to the component without a route parameter. The second [`@page`][9] directive receives the `{text}` route parameter and assigns the value to the `Text` property.
 
