@@ -114,7 +114,7 @@ To demonstrate passing data to .NET, make the preceding `returnArrayAsync` JS fu
 
 In the `CallDotNetExample1` component, change the function call to include a starting position. The following example uses a value of `5`:
 
-```html
+```razor
 <button onclick="returnArrayAsync(5)">
     ...
 </button>
@@ -1062,7 +1062,7 @@ To demonstrate passing data to .NET, make the preceding `returnArrayAsync` JS fu
 
 In the `CallDotNetExample1` component, change the function call to include a starting position. The following example uses a value of `5`:
 
-```html
+```razor
 <button onclick="returnArrayAsync(5)">
     ...
 </button>
@@ -1986,7 +1986,7 @@ To demonstrate passing data to .NET, make the preceding `returnArrayAsync` JS fu
 
 In the `CallDotNetExample1` component, change the function call to include a starting position. The following example uses a value of `5`:
 
-```html
+```razor
 <button onclick="returnArrayAsync(5)">
     ...
 </button>
@@ -2495,7 +2495,7 @@ To demonstrate passing data to .NET, make the preceding `returnArrayAsync` JS fu
 
 In the `CallDotNetExample1` component, change the function call to include a starting position. The following example uses a value of `5`:
 
-```html
+```razor
 <button onclick="returnArrayAsync(5)">
     ...
 </button>
@@ -2534,7 +2534,7 @@ To demonstrate passing data to .NET, make the preceding `returnArrayAsync` JS fu
 
 In the `CallDotNetExample1` component, change the function call to include a starting position. The following example uses a value of `5`:
 
-```html
+```razor
 <button onclick="returnArrayAsync(5)">
     ...
 </button>
