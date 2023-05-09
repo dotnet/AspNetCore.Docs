@@ -52,66 +52,66 @@ else
 
 ## SignalR cross-origin negotiation for authentication (Blazor WebAssembly)
 
-To configure SignalR's underlying client to send credentials, such as cookies or HTTP authentication headers:
+This section explains how to configure SignalR's underlying client to send credentials, such as cookies or HTTP authentication headers.
 
-* Use <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> to set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include> on cross-origin [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests.
+Use <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.WebAssemblyHttpRequestMessageExtensions.SetBrowserRequestCredentials%2A> to set <xref:Microsoft.AspNetCore.Components.WebAssembly.Http.BrowserRequestCredentials.Include> on cross-origin [`fetch`](https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch) requests.
 
-  `IncludeRequestCredentialsMessageHandler.cs`:
+`IncludeRequestCredentialsMessageHandler.cs`:
 
-  ```csharp
-  using System.Net.Http;
-  using System.Threading;
-  using System.Threading.Tasks;
-  using Microsoft.AspNetCore.Components.WebAssembly.Http;
+```csharp
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.WebAssembly.Http;
 
-  public class IncludeRequestCredentialsMessageHandler : DelegatingHandler
-  {
-      protected override Task<HttpResponseMessage> SendAsync(
-          HttpRequestMessage request, CancellationToken cancellationToken)
-      {
-          request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
-          return base.SendAsync(request, cancellationToken);
-      }
-  }
-  ```
+public class IncludeRequestCredentialsMessageHandler : DelegatingHandler
+{
+    protected override Task<HttpResponseMessage> SendAsync(
+        HttpRequestMessage request, CancellationToken cancellationToken)
+    {
+        request.SetBrowserRequestCredentials(BrowserRequestCredentials.Include);
+        return base.SendAsync(request, cancellationToken);
+    }
+}
+```
 
-* Where a hub connection is built, assign the <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option:
+Where a hub connection is built, assign the <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option:
 
 :::moniker range=">= aspnetcore-6.0"
 
-  ```csharp
-  private HubConnectionBuilder? hubConnection;
+```csharp
+private HubConnectionBuilder? hubConnection;
 
-  ...
+...
 
-  hubConnection = new HubConnectionBuilder()
-      .WithUrl(new Uri(Navigation.ToAbsoluteUri("/chathub")), options =>
-      {
-          options.HttpMessageHandlerFactory = innerHandler => 
-              new IncludeRequestCredentialsMessageHandler { InnerHandler = innerHandler };
-      }).Build();
-  ```
+hubConnection = new HubConnectionBuilder()
+    .WithUrl(new Uri(Navigation.ToAbsoluteUri("/chathub")), options =>
+    {
+        options.HttpMessageHandlerFactory = innerHandler => 
+            new IncludeRequestCredentialsMessageHandler { InnerHandler = innerHandler };
+    }).Build();
+```
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-  ```csharp
-  HubConnectionBuilder hubConnection;
+```csharp
+HubConnectionBuilder hubConnection;
 
-  ...
+...
 
-  hubConnection = new HubConnectionBuilder()
-      .WithUrl(new Uri(Navigation.ToAbsoluteUri("/chathub")), options =>
-      {
-          options.HttpMessageHandlerFactory = innerHandler => 
-              new IncludeRequestCredentialsMessageHandler { InnerHandler = innerHandler };
-      }).Build();
-  ```
+hubConnection = new HubConnectionBuilder()
+    .WithUrl(new Uri(Navigation.ToAbsoluteUri("/chathub")), options =>
+    {
+        options.HttpMessageHandlerFactory = innerHandler => 
+            new IncludeRequestCredentialsMessageHandler { InnerHandler = innerHandler };
+    }).Build();
+```
 
 :::moniker-end
 
-  The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration). `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
+The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration). `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
 
 For more information, see <xref:signalr/configuration#configure-additional-options>.
 
