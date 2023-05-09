@@ -22,7 +22,8 @@ public class ValidateNameAttribute : ValidationAttribute
         ErrorMessage ??= defaultErrorMessage;
     }
 
-    protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
+    protected override ValidationResult? IsValid(object? value,
+                                         ValidationContext validationContext)
     {
         if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
         {
@@ -32,7 +33,8 @@ public class ValidateNameAttribute : ValidationAttribute
         if (value.ToString()!.ToLower().Contains("zz"))
         {
 
-            return new ValidationResult(FormatErrorMessage(validationContext.DisplayName));
+            return new ValidationResult(
+                        FormatErrorMessage(validationContext.DisplayName));
         }
 
         return ValidationResult.Success;
