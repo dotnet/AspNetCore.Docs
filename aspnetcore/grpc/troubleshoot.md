@@ -1,7 +1,7 @@
 ---
-title: Troubleshoot gRPC on .NET Core
+title: Troubleshoot gRPC on .NET
 author: jamesnk
-description: Troubleshoot errors when using gRPC on .NET Core.
+description: Troubleshoot errors when using gRPC on .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
@@ -9,7 +9,7 @@ ms.date: 04/26/2023
 uid: grpc/troubleshoot
 ---
 
-# Troubleshoot gRPC on .NET Core
+# Troubleshoot gRPC on .NET
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
