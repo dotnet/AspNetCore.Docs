@@ -46,7 +46,7 @@ Add the following `RenderComponentExample` component to the project.
 
 @code {
     [Parameter]
-    public required string Message { get; set; }
+    public string Message { get; set; }
 }
 ```
 
