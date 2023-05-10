@@ -74,7 +74,7 @@ await using var htmlRenderer = new HtmlRenderer(serviceProvider, loggerFactory);
 
 var html = await htmlRenderer.Dispatcher.InvokeAsync(async () =>
 {
-    var dictionary = new Dictionary<string, object>
+    var dictionary = new Dictionary<string, object?>
     {
         { "Message", "Hello from Render Component Example!" }
     };
