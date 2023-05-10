@@ -128,7 +128,7 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
 app.Run();
 
 #region snippet_model
-class Todo
+public class Todo
 {
     public int Id { get; set; }
     public string? Name { get; set; }
