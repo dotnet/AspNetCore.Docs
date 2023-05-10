@@ -68,7 +68,7 @@ var channel = GrpcChannel.ForAddress("https://localhost:5001",
 var client = new Greet.GreeterClient(channel);
 ```
 
-The [gRPC client factory](xref:grpc/clientfactory) also allows calls without a trusted certificate. Use the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method to configure the handler on the client:
+The [gRPC client factory](xref:grpc/clientfactory) allows calls without a trusted certificate. Use the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method to configure the handler on the client:
 
 ```csharp
 builder.Services
