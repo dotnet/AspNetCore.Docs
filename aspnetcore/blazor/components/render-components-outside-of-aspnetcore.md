@@ -90,7 +90,7 @@ Console.WriteLine(html);
 ```
 
 > [!NOTE]
-> Pass `ParameterView.Empty` to `RenderComponentAsync` when rendering the component without passing parameters.
+> Pass <xref:Microsoft.AspNetCore.Components.ParameterView.Empty?displayProperty=nameWithType> to `RenderComponentAsync` when rendering the component without passing parameters.
 
 Alternatively, you can write the HTML to a <xref:System.IO.TextWriter> by calling `output.WriteHtmlTo(textWriter)`.
 
