@@ -68,8 +68,8 @@ The preceding code:
 
 * Configures the created channel with the address `dns:///my-example-host`.
   * The `dns` scheme maps to `DnsResolverFactory`.
-  * `my-example-host` is the hostname or IP address to resolve.
-  * No port is specified in the address so gRPC calls are sent to the default port. A port can optionally be specified after the DNS hostname or IP address. For example, `dns:///my-example-host:8080` configures gRPC calls to be sent to port 8080.
+  * `my-example-host` is the hostname to resolve.
+  * No port is specified in the address, so gRPC calls are sent to port 80. This is the default port for unsecured channels. A port can optionally be specified after the hostname. For example, `dns:///my-example-host:8080` configures gRPC calls to be sent to port 8080.
 * Doesn't specify a load balancer. The channel defaults to a pick first load balancer.
 * Starts the gRPC call `SayHello`:
   * DNS resolver gets addresses for the hostname `my-example-host`.
