@@ -5,7 +5,7 @@ description: Render Razor components outside of the context of an HTTP request.
 monikerRange: '>= aspnetcore-8.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 04/20/2023
+ms.date: 05/10/2023
 uid: blazor/components/render-outside-of-aspnetcore
 ---
 # Render Razor components outside of ASP.NET Core
@@ -35,26 +35,25 @@ In the console app's project file (`ConsoleApp1.csproj`), update the console app
 + <Project Sdk="Microsoft.NET.Sdk.Razor">
 ```
 
-In a command shell, add a Razor component to the project:
+Add the following `RenderMessage` component to the project.
 
-```dotnetcli
-dotnet new razorcomponent -n Component1
-```
+`RenderMessage.razor`:
 
 ```razor
-<h1>Component1</h1>
+<h1>Render Message</h1>
 
-<p>Hello from Component1!</p>
+<p>@Message</p>
 
 @code {
-
+    [Parameter]
+    public string Message { get; set; }
 }
 ```
 
 Update `Program.cs`:
 
 * Set up dependency injection (<xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>/<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider%2A>) and logging (<xref:Microsoft.Extensions.DependencyInjection.LoggingServiceCollectionExtensions.AddLogging%2A>/<xref:Microsoft.Extensions.Logging.ILoggerFactory>).
-* Create an `HtmlRenderer` and render the `Component1` component by calling `RenderComponentAsync`.
+* Create an `HtmlRenderer` and render the `RenderMessage` component by calling `RenderComponentAsync`.
 
 Any calls to `RenderComponentAsync` must be made in the context of calling `InvokeAsync` on a component dispatcher. A component dispatcher is available from the `HtmlRender.Dispatcher` property.
 
@@ -75,13 +74,22 @@ await using var htmlRenderer = new HtmlRenderer(serviceProvider, loggerFactory);
 
 var html = await htmlRenderer.Dispatcher.InvokeAsync(async () =>
 {
-    var parameters = ParameterView.Empty;
-    var output = await htmlRenderer.RenderComponentAsync<Component1>(parameters);
+    var dictionary = new Dictionary<string, object?>
+    {
+        { "Message", "Hello from the Render Message component!" }
+    };
+
+    var parameters = ParameterView.FromDictionary(dictionary);
+    var output = await htmlRenderer.RenderComponentAsync<RenderMessage>(parameters);
+
     return output.ToHtmlString();
 });
 
 Console.WriteLine(html);
 ```
+
+> [!NOTE]
+> Pass <xref:Microsoft.AspNetCore.Components.ParameterView.Empty?displayProperty=nameWithType> to `RenderComponentAsync` when rendering the component without passing parameters.
 
 Alternatively, you can write the HTML to a <xref:System.IO.TextWriter> by calling `output.WriteHtmlTo(textWriter)`.
 
