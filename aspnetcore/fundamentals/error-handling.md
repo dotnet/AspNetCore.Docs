@@ -247,6 +247,8 @@ The automatic creation of a `ProblemDetails` can be customized using any of the 
 2. Use a custom [`IProblemDetailsWriter`](#custom-iproblemdetailswriter)
 3. Call the [`IProblemDetailsService` in a middleware](#problem-details-from-middleware)
 
+***Note:*** When using a custom `IProblemDetailsWriter`, the custom `IProblemDetailsWriter` must be registered before calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A>, <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A>, or <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A>.
+
 #### `CustomizeProblemDetails` operation
 
 The generated problem details can be customized using <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails>, and the customizations are applied to all auto-generated problem details.
