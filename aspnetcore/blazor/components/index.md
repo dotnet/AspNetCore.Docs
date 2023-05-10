@@ -737,7 +737,27 @@ Single-line attribute lists are also supported:
 public string? Title { get; set; }
 ```
 
-Don't attempt to use the [`required` modifier](/dotnet/csharp/language-reference/keywords/required) on component parameter properties to ensure an assigned value. Component parameters aren't assigned values upon component instantiation. Instead, a <xref:Microsoft.AspNetCore.Components.ParameterView> object is passed to the component's <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method, which updates parameter property values. The `required` modifier has no bearing on whether a parameter has an entry in the <xref:Microsoft.AspNetCore.Components.ParameterView>. Even for parameters that do have <xref:Microsoft.AspNetCore.Components.ParameterView> entries, their properties don't receive values until after the time when the `required` modifier is supposed to guarantee a value assignment. Likewise, use of the [`init` accessor](/dotnet/csharp/language-reference/keywords/init) has no effect in any component whose parameters are set using <xref:Microsoft.AspNetCore.Components.ParameterView.SetParameterProperties%2A?displayProperty=nameWithType> because reflection bypasses the init-only setter restriction. For the preceding reasons, always use the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) to specify a required component parameter.
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
+Don't use the [`required` modifier](/dotnet/csharp/language-reference/keywords/required) on component parameter properties seeking to require an assigned value. Component parameters aren't assigned values on component instantiation. Instead, a <xref:Microsoft.AspNetCore.Components.ParameterView> object is passed to the component's <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method to assign parameter property values. The `required` modifier has no bearing on whether a parameter has an entry in the <xref:Microsoft.AspNetCore.Components.ParameterView>. Even for parameters that do have <xref:Microsoft.AspNetCore.Components.ParameterView> entries, their properties don't receive values until after the time when the `required` modifier is supposed to guarantee a value assignment. Likewise, don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties because setting component parameter values with <xref:Microsoft.AspNetCore.Components.ParameterView.SetParameterProperties%2A?displayProperty=nameWithType> uses reflection, which bypasses the init-only setter restriction. For the preceding reasons, only use the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) to specify a required component parameter.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties because setting component parameter values with <xref:Microsoft.AspNetCore.Components.ParameterView.SetParameterProperties%2A?displayProperty=nameWithType> uses reflection, which bypasses the init-only setter restriction. Use the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) to specify a required component parameter.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties because setting component parameter values with <xref:Microsoft.AspNetCore.Components.ParameterView.SetParameterProperties%2A?displayProperty=nameWithType> uses reflection, which bypasses the init-only setter restriction.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 [`Tuples`](/dotnet/csharp/language-reference/builtin-types/value-tuples) ([API documentation](xref:System.Tuple)) are supported for component parameters and [`RenderFragment`](#child-content-render-fragments) types. The following component parameter example passes three values in a `Tuple`:
 
