@@ -76,7 +76,7 @@ var html = await htmlRenderer.Dispatcher.InvokeAsync(async () =>
 {
     var dictionary = new Dictionary<string, object?>
     {
-        { "Message", "Hello from Render Component Example!" }
+        { "Message", "Hello from the Render Message component!" }
     };
 
     var parameters = ParameterView.FromDictionary(dictionary);
