@@ -42,14 +42,33 @@ You may see this error if you are testing your app locally and the ASP.NET Core 
 If you are calling a gRPC service on another machine and are unable to trust the certificate then the gRPC client can be configured to ignore the invalid certificate. The following code uses <xref:System.Net.Http.HttpClientHandler.ServerCertificateCustomValidationCallback%2A?displayProperty=nameWithType> to allow calls without a trusted certificate:
 
 ```csharp
-var httpHandler = new HttpClientHandler();
+var handler = new HttpClientHandler();
 // Return `true` to allow certificates that are untrusted/invalid
-httpHandler.ServerCertificateCustomValidationCallback = 
+handler.ServerCertificateCustomValidationCallback = 
     HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
 var channel = GrpcChannel.ForAddress("https://localhost:5001",
-    new GrpcChannelOptions { HttpHandler = httpHandler });
+    new GrpcChannelOptions { HttpHandler = handler });
 var client = new Greet.GreeterClient(channel);
+```
+
+The [gRPC client factory](xref:grpc/clientfactory) also allows calls without a trusted certificate. Use the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method to configure the handler on the client:
+
+```csharp
+builder.Services
+    .AddGrpcClient<Greeter.GreeterClient>(o =>
+    {
+        o.Address = new Uri("https://localhost:5001");
+    })
+    .ConfigurePrimaryHttpMessageHandler(() =>
+    {
+        var handler = new HttpClientHandler();
+        // Return `true` to allow certificates that are untrusted/invalid
+        handler.ServerCertificateCustomValidationCallback = 
+            HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+
+        return handler;
+    });
 ```
 
 > [!WARNING]
@@ -305,14 +324,33 @@ You may see this error if you are testing your app locally and the ASP.NET Core 
 If you are calling a gRPC service on another machine and are unable to trust the certificate then the gRPC client can be configured to ignore the invalid certificate. The following code uses <xref:System.Net.Http.HttpClientHandler.ServerCertificateCustomValidationCallback%2A?displayProperty=nameWithType> to allow calls without a trusted certificate:
 
 ```csharp
-var httpHandler = new HttpClientHandler();
+var handler = new HttpClientHandler();
 // Return `true` to allow certificates that are untrusted/invalid
-httpHandler.ServerCertificateCustomValidationCallback = 
+handler.ServerCertificateCustomValidationCallback = 
     HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
 var channel = GrpcChannel.ForAddress("https://localhost:5001",
-    new GrpcChannelOptions { HttpHandler = httpHandler });
+    new GrpcChannelOptions { HttpHandler = handler });
 var client = new Greet.GreeterClient(channel);
+```
+
+The [gRPC client factory](xref:grpc/clientfactory) also allows calls without a trusted certificate. Use the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method to configure the handler on the client:
+
+```csharp
+services
+    .AddGrpcClient<Greeter.GreeterClient>(o =>
+    {
+        o.Address = new Uri("https://localhost:5001");
+    })
+    .ConfigurePrimaryHttpMessageHandler(() =>
+    {
+        var handler = new HttpClientHandler();
+        // Return `true` to allow certificates that are untrusted/invalid
+        handler.ServerCertificateCustomValidationCallback = 
+            HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+
+        return handler;
+    });
 ```
 
 > [!WARNING]
@@ -521,14 +559,33 @@ You may see this error if you are testing your app locally and the ASP.NET Core 
 If you are calling a gRPC service on another machine and are unable to trust the certificate then the gRPC client can be configured to ignore the invalid certificate. The following code uses <xref:System.Net.Http.HttpClientHandler.ServerCertificateCustomValidationCallback%2A?displayProperty=nameWithType> to allow calls without a trusted certificate:
 
 ```csharp
-var httpHandler = new HttpClientHandler();
+var handler = new HttpClientHandler();
 // Return `true` to allow certificates that are untrusted/invalid
-httpHandler.ServerCertificateCustomValidationCallback = 
+handler.ServerCertificateCustomValidationCallback = 
     HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
 var channel = GrpcChannel.ForAddress("https://localhost:5001",
-    new GrpcChannelOptions { HttpHandler = httpHandler });
+    new GrpcChannelOptions { HttpHandler = handler });
 var client = new Greet.GreeterClient(channel);
+```
+
+The [gRPC client factory](xref:grpc/clientfactory) also allows calls without a trusted certificate. Use the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method to configure the handler on the client:
+
+```csharp
+services
+    .AddGrpcClient<Greeter.GreeterClient>(o =>
+    {
+        o.Address = new Uri("https://localhost:5001");
+    })
+    .ConfigurePrimaryHttpMessageHandler(() =>
+    {
+        var handler = new HttpClientHandler();
+        // Return `true` to allow certificates that are untrusted/invalid
+        handler.ServerCertificateCustomValidationCallback = 
+            HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+
+        return handler;
+    });
 ```
 
 > [!WARNING]
