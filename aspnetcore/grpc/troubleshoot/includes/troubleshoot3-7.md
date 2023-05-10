@@ -43,7 +43,6 @@ If you are calling a gRPC service on another machine and are unable to trust the
 
 ```csharp
 var handler = new HttpClientHandler();
-// Return `true` to allow certificates that are untrusted/invalid
 handler.ServerCertificateCustomValidationCallback = 
     HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
@@ -63,7 +62,6 @@ builder.Services
     .ConfigurePrimaryHttpMessageHandler(() =>
     {
         var handler = new HttpClientHandler();
-        // Return `true` to allow certificates that are untrusted/invalid
         handler.ServerCertificateCustomValidationCallback = 
             HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
@@ -325,7 +323,6 @@ If you are calling a gRPC service on another machine and are unable to trust the
 
 ```csharp
 var handler = new HttpClientHandler();
-// Return `true` to allow certificates that are untrusted/invalid
 handler.ServerCertificateCustomValidationCallback = 
     HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
@@ -345,7 +342,6 @@ services
     .ConfigurePrimaryHttpMessageHandler(() =>
     {
         var handler = new HttpClientHandler();
-        // Return `true` to allow certificates that are untrusted/invalid
         handler.ServerCertificateCustomValidationCallback = 
             HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
@@ -560,7 +556,6 @@ If you are calling a gRPC service on another machine and are unable to trust the
 
 ```csharp
 var handler = new HttpClientHandler();
-// Return `true` to allow certificates that are untrusted/invalid
 handler.ServerCertificateCustomValidationCallback = 
     HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
@@ -580,7 +575,6 @@ services
     .ConfigurePrimaryHttpMessageHandler(() =>
     {
         var handler = new HttpClientHandler();
-        // Return `true` to allow certificates that are untrusted/invalid
         handler.ServerCertificateCustomValidationCallback = 
             HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
