@@ -35,12 +35,12 @@ In the console app's project file (`ConsoleApp1.csproj`), update the console app
 + <Project Sdk="Microsoft.NET.Sdk.Razor">
 ```
 
-Add the following `RenderComponentExample` component to the project.
+Add the following `RenderMessage` component to the project.
 
-`RenderComponentExample.razor`:
+`RenderMessage.razor`:
 
 ```razor
-<h1>Render Component Example</h1>
+<h1>Render Message</h1>
 
 <p>@Message</p>
 
@@ -53,7 +53,7 @@ Add the following `RenderComponentExample` component to the project.
 Update `Program.cs`:
 
 * Set up dependency injection (<xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>/<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider%2A>) and logging (<xref:Microsoft.Extensions.DependencyInjection.LoggingServiceCollectionExtensions.AddLogging%2A>/<xref:Microsoft.Extensions.Logging.ILoggerFactory>).
-* Create an `HtmlRenderer` and render the `Component1` component by calling `RenderComponentAsync`.
+* Create an `HtmlRenderer` and render the `RenderMessage` component by calling `RenderComponentAsync`.
 
 Any calls to `RenderComponentAsync` must be made in the context of calling `InvokeAsync` on a component dispatcher. A component dispatcher is available from the `HtmlRender.Dispatcher` property.
 
@@ -80,8 +80,7 @@ var html = await htmlRenderer.Dispatcher.InvokeAsync(async () =>
     };
 
     var parameters = ParameterView.FromDictionary(dictionary);
-    var output = 
-        await htmlRenderer.RenderComponentAsync<RenderComponentExample>(parameters);
+    var output = await htmlRenderer.RenderComponentAsync<RenderMessage>(parameters);
 
     return output.ToHtmlString();
 });
