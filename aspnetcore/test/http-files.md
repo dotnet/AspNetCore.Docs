@@ -18,7 +18,7 @@ The Visual Studio 2022 `.http` file editor provides a convenient way to test ASP
 This article contains documentation for:
 
 * [The `.http` file syntax](#http-file-syntax).
-* [How to use the `.http` file editor](#use-the-visual-studio-http-file-editor).
+* [How to use the `.http` file editor](#use-the-http-file-editor).
 * [How to create requests in `.http` files by using the Visual Studio 2022 **Endpoints Explorer**](#use-endpoints-explorer).
 
 The `.http` file format and editor was inspired by the Visual Studio Code [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client). The Visual Studio 2022 `.http` editor recognizes `.rest` as an alternative file extension for the same file format.
