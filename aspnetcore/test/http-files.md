@@ -143,7 +143,7 @@ The Visual Studio 2022 `.http` file editor was inspired by the [Visual Studio Co
 * Customize response preview
 * Per-request settings
 
-The Visual Studio 2022 `.http` file editor is sill under development, and some of these features might be added in the future. For more information about the Visual Studio Code extension, see [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
+The Visual Studio 2022 `.http` file editor is still under development, and some of these features might be added in the future. For more information about the Visual Studio Code extension, see [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
 
 ## Use the Visual Studio `.http` file editor
 
