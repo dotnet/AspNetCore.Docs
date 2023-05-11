@@ -7,7 +7,7 @@ ms.author: tdykstra
 ms.date: 05/09/2023
 uid: test/http-files
 ---
-# Use .http/.rest files in Visual Studio 2022
+# Use .http files in Visual Studio 2022
 
 The Visual Studio 2022 `.http` file editor provides a convenient way to test ASP.NET Core projects, especially API apps.  The editor provides a UI that:
 
