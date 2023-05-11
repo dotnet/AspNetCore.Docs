@@ -1,5 +1,28 @@
+#define FIRST // FIRST
+#if NEVER
+#elif FIRST
+// <snippet_1>
+using Microsoft.AspNetCore.HttpOverrides;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication();
+
+var app = builder.Build();
+
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
+
+app.UseAuthentication();
+
+app.MapGet("/", () => "Hello ForwardedHeadersOptions!");
+
+app.Run();
+// </snippet_1>
+#else
 // <snippet_all>
-// <snippet_top>
 using Microsoft.AspNetCore.HttpOverrides;
 using System.Net;
 
@@ -14,7 +37,6 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 builder.Services.AddAuthentication();
 
 var app = builder.Build();
-// </snippet_top>
 
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {
@@ -23,7 +45,8 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 
 app.UseAuthentication();
 
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/", () => "10.0.0.100");
 
 app.Run();
 // </snippet_all>
+#endif
