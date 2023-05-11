@@ -181,7 +181,7 @@ Create an `.http` file by using the **Add New Item** dialog or by renaming the e
 
 ### Enable Endpoints Explorer
 
-**Endpoints Explorer** is still a preview feature, so you have to enable it in Visual Studio 2022. To do that, select **Tools** > **Options** > **Environment** > **Preview Features** > **Web API Endpoints Explorer**.
+**Endpoints Explorer** is still a preview feature. It's available in [Visual Studio 2022 version 17.6 Preview 6 and later](https://visualstudio.microsoft.com/vs/preview/), and you have to enable it. To do that, select **Tools** > **Options** > **Environment** > **Preview Features** > **Web API Endpoints Explorer**.
 
 ### Open Endpoints Explorer
 
