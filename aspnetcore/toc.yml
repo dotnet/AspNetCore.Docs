@@ -953,16 +953,21 @@ items:
   - name: Test
     items:
       - name: .NET Hot Reload
+        displayName: test
         uid: test/hot-reload
-      - name: Test with Visual Studio dev tunnels
+      - name: Visual Studio dev tunnels
+        displayName: test, tunnels
         uid: test/tunnels
-      - name: Test with HttpRepl
+      - name: Visual Studio .http files
+        displayName: test, .rest, REST, HTTP
+        uid: test/http-files
+      - name: HttpRepl
         items:
           - name: Overview
-            displayName: httprepl
+            displayName: test, httprepl
             uid: web-api/http-repl
           - name: Telemetry
-            displayName: httprepl
+            displayName: test, httprepl
             uid: web-api/http-repl/telemetry
       - name: Test Minimal API
         uid: fundamentals/minimal-apis/test-min-api
