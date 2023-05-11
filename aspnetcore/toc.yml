@@ -950,6 +950,90 @@ items:
   - name: Best practices
     displayName: performance
     uid: fundamentals/best-practices
+  - name: Servers
+    items:
+      - name: Overview
+        displayName: kestrel, iis, http.sys, httpsys, servers
+        uid: fundamentals/servers/index
+      - name: Kestrel
+        items:
+          - name: Overview
+            displayName: deploy, publish, server, kestrel
+            uid: fundamentals/servers/kestrel
+          - name: Endpoints
+            displayName: deploy, publish, server, Kestrel
+            uid: fundamentals/servers/kestrel/endpoints
+          - name: Options
+            displayName: deploy, publish, server, Kestrel
+            uid: fundamentals/servers/kestrel/options
+          - name: Diagnostics
+            displayName: diagnostics
+            uid: fundamentals/servers/kestrel/diagnostics
+          - name: HTTP/2
+            displayName: deploy, publish, server, Kestrel
+            uid: fundamentals/servers/kestrel/http2
+          - name: HTTP/3
+            displayName: HTTP/3, kestrel
+            uid: fundamentals/servers/kestrel/http3
+          - name: When to use a reverse proxy
+            displayName: deploy, publish, server, Kestrel
+            uid: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy
+          - name: Host filtering
+            displayName: deploy, publish, server, Kestrel
+            uid: fundamentals/servers/kestrel/host-filtering
+          - name: Request draining
+            displayName: deploy, publish, server, Kestrel
+            uid: fundamentals/servers/kestrel/request-draining
+      - name: IIS
+        items:
+          - name: Overview
+            displayName: deploy, publish, server, iis
+            uid: host-and-deploy/iis/index
+          - name: ASP.NET Core Module
+            displayName: deploy, publish, server, iis
+            uid: host-and-deploy/aspnet-core-module
+          - name: In-process hosting
+            displayName: deploy, publish, server, iis
+            uid: host-and-deploy/iis/in-process-hosting
+          - name: Out-of-process hosting
+            displayName: deploy, publish, server, iis
+            uid: host-and-deploy/iis/out-of-process-hosting
+          - name: Hosting Bundle
+            displayName: deploy, publish, server, iis
+            uid: host-and-deploy/iis/hosting-bundle
+          - name: web.config file
+            displayName: deploy, publish, server, iis
+            uid: host-and-deploy/iis/web-config
+          - name: IIS support in Visual Studio
+            displayName: deploy, publish, server, iis
+            uid: host-and-deploy/iis/development-time-iis-support
+          - name: IIS Modules
+            displayName: deploy, publish, server, iis
+            uid: host-and-deploy/iis/modules
+          - name: Logging and diagnostics
+            displayName: deploy, publish, server, iis
+            uid: host-and-deploy/iis/logging-and-diagnostics
+          - name: Troubleshoot
+            displayName: deploy, publish, server, iis
+            uid: test/troubleshoot-azure-iis
+          - name: Errors reference
+            displayName: deploy, publish, server, iis
+            uid: host-and-deploy/azure-iis-errors-reference
+          - name: Advanced configuration
+            displayName: deploy, publish, server, iis, ancm, aspnetcoremodule
+            uid: host-and-deploy/iis/advanced
+          - name: Transform web.config
+            displayName: deploy, publish, server, iis
+            uid: host-and-deploy/iis/transform-webconfig
+          - name: HTTP/2
+            displayName: deploy, publish, server, iis
+            uid: host-and-deploy/iis/protocols
+          - name: HTTP/3
+            displayName: deploy, publish, server, iis
+            uid: host-and-deploy/iis/http3
+      - name: HTTP.sys
+        displayName: deploy, publish, server, httpsys
+        uid: fundamentals/servers/httpsys
   - name: Test
     items:
       - name: .NET Hot Reload
@@ -1138,90 +1222,6 @@ items:
             href: /azure/visual-studio/vs-storage-aspnet5-getting-started-queues?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
           - name: Table storage
             href: /azure/visual-studio/vs-storage-aspnet5-getting-started-tables?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
-  - name: Servers
-    items:
-      - name: Overview
-        displayName: kestrel, iis, http.sys, httpsys, servers
-        uid: fundamentals/servers/index
-      - name: Kestrel
-        items:
-          - name: Overview
-            displayName: deploy, publish, server, kestrel
-            uid: fundamentals/servers/kestrel
-          - name: Endpoints
-            displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/endpoints
-          - name: Options
-            displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/options
-          - name: Diagnostics
-            displayName: diagnostics
-            uid: fundamentals/servers/kestrel/diagnostics
-          - name: HTTP/2
-            displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/http2
-          - name: HTTP/3
-            displayName: HTTP/3, kestrel
-            uid: fundamentals/servers/kestrel/http3
-          - name: When to use a reverse proxy
-            displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy
-          - name: Host filtering
-            displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/host-filtering
-          - name: Request draining
-            displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/request-draining
-      - name: IIS
-        items:
-          - name: Overview
-            displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/index
-          - name: ASP.NET Core Module
-            displayName: deploy, publish, server, iis
-            uid: host-and-deploy/aspnet-core-module
-          - name: In-process hosting
-            displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/in-process-hosting
-          - name: Out-of-process hosting
-            displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/out-of-process-hosting
-          - name: Hosting Bundle
-            displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/hosting-bundle
-          - name: web.config file
-            displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/web-config
-          - name: IIS support in Visual Studio
-            displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/development-time-iis-support
-          - name: IIS Modules
-            displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/modules
-          - name: Logging and diagnostics
-            displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/logging-and-diagnostics
-          - name: Troubleshoot
-            displayName: deploy, publish, server, iis
-            uid: test/troubleshoot-azure-iis
-          - name: Errors reference
-            displayName: deploy, publish, server, iis
-            uid: host-and-deploy/azure-iis-errors-reference
-          - name: Advanced configuration
-            displayName: deploy, publish, server, iis, ancm, aspnetcoremodule
-            uid: host-and-deploy/iis/advanced
-          - name: Transform web.config
-            displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/transform-webconfig
-          - name: HTTP/2
-            displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/protocols
-          - name: HTTP/3
-            displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/http3
-      - name: HTTP.sys
-        displayName: deploy, publish, server, httpsys
-        uid: fundamentals/servers/httpsys
   - name: Host and deploy
     displayName: publish
     items:
