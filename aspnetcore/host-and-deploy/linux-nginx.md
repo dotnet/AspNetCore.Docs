@@ -467,7 +467,7 @@ Configure the app to use a certificate in development for the `dotnet run` comma
 
 Add the */etc/nginx/proxy.conf* configuration file:
 
-[!code-nginx[](~/aspnetcore/host-and-deploy/linux-nginx/proxy.conf)]
+[!code-nginx[](~/host-and-deploy/linux-nginx/proxy.conf)]
 
 # [Ubuntu](#tab/linux-ubuntu)
 
@@ -483,7 +483,7 @@ Modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the `http{
 
 ---
 
-[!code-nginx[](~/aspnetcore/host-and-deploy/linux-nginx/nginx.conf)]
+[!code-nginx[](~/host-and-deploy/linux-nginx/nginx.conf)]
 
 > [!NOTE]
 > Blazor WebAssembly apps require a larger `burst` parameter value to accommodate the larger number of requests made by an app. For more information, see <xref:blazor/host-and-deploy/webassembly#nginx>.
