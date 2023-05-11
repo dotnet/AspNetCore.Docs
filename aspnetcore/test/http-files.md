@@ -9,7 +9,7 @@ uid: test/http-files
 ---
 # Use .http files in Visual Studio 2022
 
-The Visual Studio 2022 `.http` file editor provides a convenient way to test ASP.NET Core projects, especially API apps.  The editor provides a UI that:
+The [Visual Studio 2022](https://visualstudio.microsoft.com/vs/preview/) `.http` file editor provides a convenient way to test ASP.NET Core projects, especially API apps.  The editor provides a UI that:
 
 * Creates and updates `.http` files.
 * Sends HTTP requests specified in `.http` files.
@@ -39,7 +39,7 @@ Lines that start with either `#` or `//` are comments. These lines are ignored w
 
 A line that starts with `@` defines a variable by using the syntax `@VariableName=Value`.
 
-Variables can be referenced in requests that are defined later in the file. They are referenced by wrapping their names in double curly braces (`{{` and `}}`). The following example shows two variables defined and then used in a request:
+Variables can be referenced in requests that are defined later in the file. They are referenced by wrapping their names in double curly braces, `{{` and `}}`. The following example shows two variables defined and used in a request:
 
 ```
 @hostname=localhost
@@ -61,15 +61,15 @@ GET https://{{host}}/api/search/tool
 The format for an HTTP request is `HTTPMethod URL HTTPVersion`, all on one line, where:
 
 * `HTTPMethod` is the HTTP method to use, for example:
-  * OPTIONS
-  * GET
-  * HEAD
-  * POST
-  * PUT
-  * PATCH
-  * DELETE
-  * TRACE
-  * CONNECT
+  * [OPTIONS](https://developer.mozilla.org/docs/Web/HTTP/Methods/OPTIONS)
+  * [GET](https://developer.mozilla.org/docs/Web/HTTP/Methods/GET)
+  * [HEAD](https://developer.mozilla.org/docs/Web/HTTP/Methods/HEAD)
+  * [POST](https://developer.mozilla.org/docs/Web/HTTP/Methods/POST)
+  * [PUT](https://developer.mozilla.org/docs/Web/HTTP/Methods/put)
+  * [PATCH](https://developer.mozilla.org/docs/Web/HTTP/Methods/PATCH)
+  * [DELETE](https://developer.mozilla.org/docs/Web/HTTP/Methods/DELETE)
+  * [TRACE](https://developer.mozilla.org/docs/Web/HTTP/Methods/TRACE)
+  * [CONNECT](https://developer.mozilla.org/docs/Web/HTTP/Methods/CONNECT)
 * `URL` is the URL to send the request to. The URL can include query string parameters. The URL doesn't have to point to a local web project. It can point to any URL that Visual Studio can access.
 * `HTTPVersion` is optional and specifies the HTTP version that should be used, that is, `HTTP/1.1`, `HTTP/2`, or `HTTP/3`.
 
@@ -91,7 +91,7 @@ GET https://localhost:7220/weatherforecast HTTP/3
 
 ## Request headers
 
-To add one or more headers, add each header on its own line immediately after the request line (no blank lines). The format is `HeaderName: Value`, as shown in the following examples:
+To add one or more headers, add each header on its own line immediately after the request line. Don't include any blank lines between the request line and the first header or between subsequent header lines. The format is `HeaderName: Value`, as shown in the following examples:
 
 ```
 GET https://localhost:7220/weatherforecast
@@ -107,7 +107,7 @@ Age: 100
 ```
 
 > [!IMPORTANT]
-> When calling an API that authenticates with headers, be careful to not commit any secrets to a source code repository. The Visual Studio 2022 `.http` file editor doesn't have any special handling for secrets.
+> When calling an API that authenticates with headers, do not commit any secrets to a source code repository.
 
 ### Body
 
@@ -129,7 +129,7 @@ Accept-Language: en-US,en;q=0.5
 
 ### Unsupported syntax
 
-The Visual Studio 2022 `.http` file editor doesn't have all the features that the Visual Studio Code [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) has. The following list includes some of the more significant features that the Visual Studio Code extension has but Visual Studio 2022 doesn't have:
+The Visual Studio 2022 `.http` file editor doesn't have all the features that the Visual Studio Code [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) has. The following list includes some of the more significant features available only in the Visual Studio Code extension:
 
 * Optional HTTP method
 * Request line that spans more than one line
@@ -196,7 +196,7 @@ Right-click a request in **Endpoints Explorer** and select **Generate Request**.
 * If an `.http` file isn't open and one exists in the project, the file is opened and the request is added to that file.
 * If no `.http` file exists in the project, one is created with the project name as the file name, and the request is added to that file.
 
-The preceding screenshot shows endpoints defined by the minimal API project template, and the following example shows the request that is generated for the selected endpoint:
+The preceding screenshot shows endpoints defined by the minimal API project template. The following example shows the request that is generated for the selected endpoint:
 
 ```
 @ApiApplication1_HostAddress = http://localhost:5155
