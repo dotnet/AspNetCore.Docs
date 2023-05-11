@@ -91,7 +91,7 @@ GET https://localhost:7220/weatherforecast HTTP/3
 
 ## Request headers
 
-To add one or more headers, add each header on its own line immediately after after the request line (no blank lines). The format is `HeaderName: Value`, as shown in the following examples:
+To add one or more headers, add each header on its own line immediately after the request line (no blank lines). The format is `HeaderName: Value`, as shown in the following examples:
 
 ```
 GET https://localhost:7220/weatherforecast
@@ -107,7 +107,7 @@ Age: 100
 ```
 
 > [!IMPORTANT]
-> When calling an API that authenticates with headers, be careful to not commit any secrets to a source code repository. We're working on ways to support secrets in a secure manner.
+> When calling an API that authenticates with headers, be careful to not commit any secrets to a source code repository. The Visual Studio 2022 `.http` file editor doesn't have any special handling for secrets.
 
 ### Body
 
@@ -129,7 +129,7 @@ Accept-Language: en-US,en;q=0.5
 
 ### Unsupported syntax
 
-The Visual Studio 2022 `.http` file editor doesn't have all the features that the Visual Studio Code [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) has. Some of the more significant features that the Visual Studio Code extension has but Visual Studio 2022 doesn't have are the following:
+The Visual Studio 2022 `.http` file editor doesn't have all the features that the Visual Studio Code [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) has. The following list includes some of the more significant features that the Visual Studio Code extension has but Visual Studio 2022 doesn't have:
 
 * Optional HTTP method
 * Request line that spans more than one line
@@ -149,7 +149,7 @@ The Visual Studio 2022 `.http` file editor doesn't have all the features that th
 * Customize response preview
 * Per-request settings
 
-The Visual Studio 2022 `.http` file editor is still under development, and some of these features might be added in the future.
+The Visual Studio 2022 `.http` file editor is still in preview, and some of these features might be added in the future.
 
 ## Use the `.http` file editor
 
@@ -167,7 +167,7 @@ Create an `.http` file by using the **Add New Item** dialog or by renaming the e
 ## Send an HTTP request
 
 * Add at least one [request](#requests) to an `.http` file and save the file.
-* If the request URL points to localhost and the project's port, run the project.
+* If the request URL points to localhost and the project's port, run the project before trying to send a request to it.
 * Select the green "run" button to the left of the request to be sent.
 
   The request is sent to the specified URL, and the response appears in a separate pane to the right of the editor window.
@@ -195,6 +195,16 @@ Right-click a request in **Endpoints Explorer** and select **Generate Request**.
 * If an `.http` file is open in the editor, the request is added to that file.
 * If an `.http` file isn't open and one exists in the project, the file is opened and the request is added to that file.
 * If no `.http` file exists in the project, one is created with the project name as the file name, and the request is added to that file.
+
+The preceding screenshot shows endpoints defined by the minimal API project template, and the following example shows the request that is generated for the selected endpoint:
+
+```
+@ApiApplication1_HostAddress = http://localhost:5155
+
+Get {{ApiApplication1_HostAddress}}/todos/
+
+###
+```
 
 Send the request as described [earlier in this article](#send-an-http-request).
 
