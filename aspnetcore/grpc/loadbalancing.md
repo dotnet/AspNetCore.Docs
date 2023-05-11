@@ -4,7 +4,7 @@ author: jamesnk
 description: Learn how to make scalable, high-performance gRPC apps with client-side load balancing in .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
-ms.date: 06/23/2022
+ms.date: 05/11/2023
 uid: grpc/loadbalancing
 ---
 # gRPC client-side load balancing
@@ -48,8 +48,8 @@ A channel doesn't directly call a URI that matches a resolver. Instead, a matchi
 For example, using `GrpcChannel.ForAddress("dns:///my-example-host", new GrpcChannelOptions { Credentials = ChannelCredentials.Insecure })`:
 
 * The `dns` scheme maps to `DnsResolverFactory`. A new instance of a DNS resolver is created for the channel.
-* The resolver makes a DNS query for `my-example-host` and gets two results: `localhost:80` and `localhost:81`.
-* The load balancer uses `localhost:80` and `localhost:81` to create connections and make gRPC calls.
+* The resolver makes a DNS query for `my-example-host` and gets two results: `127.0.0.100` and `127.0.0.101`.
+* The load balancer uses `127.0.0.100:80` and `127.0.0.101:80` to create connections and make gRPC calls.
 
 #### DnsResolverFactory
 
