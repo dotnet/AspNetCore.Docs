@@ -956,6 +956,9 @@ items:
         uid: test/hot-reload
       - name: Test with Visual Studio dev tunnels
         uid: test/tunnels
+      - name: Test with .http files
+        displayName: .rest, REST, HTTP
+        uid: test/http-files
       - name: Test with HttpRepl
         items:
           - name: Overview
