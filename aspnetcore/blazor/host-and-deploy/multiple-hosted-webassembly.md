@@ -5,7 +5,7 @@ description: Learn how to configure a hosted Blazor WebAssembly app to host mult
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/04/2023
+ms.date: 05/12/2023
 uid: blazor/host-and-deploy/multiple-hosted-webassembly
 zone_pivot_groups: blazor-multiple-hosted-wasm-apps
 ---
@@ -181,13 +181,20 @@ In the server app's `Program.cs` file, remove the following code, which appears 
 
   ```diff
   - app.UseBlazorFrameworkFiles();
-  - app.UseStaticFiles();
+  
+  ...
 
   - app.UseRouting();
 
   - app.MapRazorPages();
   - app.MapControllers();
   - app.MapFallbackToFile("index.html");
+  ```
+
+  Leave Static File Middleware in place:
+
+  ```csharp
+  app.UseStaticFiles();
   ```
 
 :::zone pivot="port-domain"
@@ -254,7 +261,8 @@ In the server app's `Program.cs` file, remove the following code, which appears 
   Where you removed the `app.UseBlazorFrameworkFiles();` line from `Program.cs`, place the following code:
 
   ```csharp
-  app.MapWhen(ctx => ctx.Request.Path.StartsWithSegments("/FirstApp"), first =>
+  app.MapWhen(ctx => ctx.Request.Path.StartsWithSegments("/FirstApp", 
+      StringComparison.OrdinalIgnoreCase), first =>
   {
       first.UseBlazorFrameworkFiles("/FirstApp");
       first.UseStaticFiles();
@@ -269,7 +277,8 @@ In the server app's `Program.cs` file, remove the following code, which appears 
       });
   });
 
-  app.MapWhen(ctx => ctx.Request.Path.StartsWithSegments("/SecondApp"), second =>
+  app.MapWhen(ctx => ctx.Request.Path.StartsWithSegments("/SecondApp", 
+      StringComparison.OrdinalIgnoreCase), second =>
   {
       second.UseBlazorFrameworkFiles("/SecondApp");
       second.UseStaticFiles();
@@ -538,12 +547,6 @@ Use components from the RCL in the client apps with either of the following appr
 > [!NOTE]
 > An [`@using`](xref:mvc/views/razor#using) directive can also be placed into each client app's `_Import.razor` file, which makes the RCL's namespace globally available to components in that project.
 
-Manually add the RCL's bundled stylesheet to the `<head>` content of `wwwroot/index.html` of each client app that consumes the RCL. The following example is for an RCL with the assembly name `ComponentLibrary`:
-
-```html
-<link href="_content/ComponentLibrary/ComponentLibrary.bundle.scp.css" rel="stylesheet" />
-```
-
 When any other static asset is in the `wwwroot` folder of an RCL, reference the static asset in a client app per the guidance in <xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl>:
 
 ```razor
@@ -552,7 +555,7 @@ When any other static asset is in the `wwwroot` folder of an RCL, reference the 
 
 The `{PACKAGE ID}` placeholder is the RCL's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`.
 
-The following example shows the markup for a Jeep image (`jeep-yj.png`) in the `vehicle` folder of the RCL's `wwwroot`. The following example is for an RCL with the assembly name `ComponentLibrary`:
+The following example shows the markup for a Jeep image (`jeep-yj.png`) in the `vehicle` folder of the RCL's `wwwroot` folder. The following example is for an RCL with the assembly name `ComponentLibrary`:
 
 ```razor
 <img alt="Jeep Wrangler YJ" src="_content/ComponentLibrary/vehicle/jeep-yj.png" />
