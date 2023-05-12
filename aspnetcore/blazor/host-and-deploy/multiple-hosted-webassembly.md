@@ -499,7 +499,7 @@ In the preceding example URLs, the `{DEFAULT PORT}` placeholder is the default p
 > [!IMPORTANT]
 > When running the app with the `dotnet run` command (.NET CLI), confirm that the command shell is open in the `Server` folder of the solution.
 >
-> When using Visual Studio's start button to run the app, confirm that the `MultipleBlazorApps.Server` project set as the startup project (highlighted in Solution Explorer). 
+> When using Visual Studio's start button to run the app, confirm that the `MultipleBlazorApps.Server` project is set as the startup project (highlighted in Solution Explorer). 
 
 ## Static assets
 
