@@ -239,9 +239,9 @@ There are two approaches to trusting the HTTPS certificate with Firefox, create 
 
 #### Create a policy file to trust HTTPS certificate with Firefox
 
-Create a policy file at:
+Create a policy file (`policies.json`) at:
 
-* Windows: `%PROGRAMFILES%\Mozilla Firefox\distribution\policies.json`
+* Windows: `%PROGRAMFILES%\Mozilla Firefox\distribution\`
 * MacOS: `Firefox.app/Contents/Resources/distribution`
 * Linux: See [Trust the certificate with Firefox on Linux](#trust-ff-linux) in this document.
 
@@ -901,9 +901,9 @@ There are two approaches to trusting the HTTPS certificate with Firefox, create 
 
 #### Create a policy file to trust HTTPS certificate with Firefox
 
-Create a policy file at:
+Create a policy file (`policies.json`) at:
 
-* Windows: `%PROGRAMFILES%\Mozilla Firefox\distribution\policies.json`
+* Windows: `%PROGRAMFILES%\Mozilla Firefox\distribution\`
 * MacOS: `Firefox.app/Contents/Resources/distribution`
 * Linux: See [Trust the certificate with Firefox on Linux](#trust-ff-linux) in this document.
 
