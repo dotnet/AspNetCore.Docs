@@ -1250,14 +1250,14 @@ Update the `Starfleet Starship Database` form (`FormExample2` component) from th
 <fieldset>
     <legend>Manufacturer</legend>
     <InputRadioGroup @bind-Value="starship.Manufacturer">
-    @foreach (var manufacturer in (Manufacturer[])Enum
-        .GetValues(typeof(Manufacturer)))
-    {
-         <label>
-             <InputRadio Value="@manufacturer" />
-             <text>&nbsp;</text>@manufacturer
-         </label>
-    }
+        @foreach (var manufacturer in (Manufacturer[])Enum
+            .GetValues(typeof(Manufacturer)))
+        {
+            <label>
+                <InputRadio Value="@manufacturer" />
+                <text>&nbsp;</text>@manufacturer
+            </label>
+        }
     </InputRadioGroup>
 <fieldset>
 
