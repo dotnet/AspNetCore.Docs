@@ -14,6 +14,10 @@ This article shows how to run an ASP.NET Core app in Docker containers.
 
 Windows Home Edition doesn't support Hyper-V, and Hyper-V is needed for Docker.
 
+:::moniker range=">= aspnetcore-7.0"
+`dotnet publish` also ships a feature to build and publish docker images easily. You can see [this article](/dotnet/core/docker/publish-as-container) for more information.
+:::moniker-end
+
 ## ASP.NET Core Docker images
 
 For this tutorial, you download an ASP.NET Core sample app and run it in Docker containers. The sample works with both Linux and Windows containers.
@@ -340,6 +344,9 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 * [Docker build command](https://docs.docker.com/engine/reference/commandline/build)
 * [Docker run command](https://docs.docker.com/engine/reference/commandline/run)
 * [ASP.NET Core Docker sample](https://github.com/dotnet/dotnet-docker) (The one used in this tutorial.)
+:::moniker range=">= aspnetcore-7.0"
+* [Containerize a .NET app with dotnet publish](/dotnet/core/docker/publish-as-container)
+:::moniker-end
 * [Configure ASP.NET Core to work with proxy servers and load balancers](../proxy-load-balancer.md)
 * [Working with Visual Studio Docker Tools](./visual-studio-tools-for-docker.md)
 * [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers)
