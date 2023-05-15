@@ -215,7 +215,7 @@ The DI container provides access to the database context and other services.
 
 # [Visual Studio](#tab/visual-studio)
 
-This tutorial uses [Endpoints Explorer and .http files](xref:http-files#use-endpoints-explorer) to test the API.
+This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use-endpoints-explorer) to test the API.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
