@@ -20,7 +20,7 @@ An ASP.NET Core app runs with an in-process HTTP server implementation. The serv
 
 ASP.NET Core ships with the following:
 
-* [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server implementation. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys. For more information, see [Kestrel vs. HTTP.sys](xref:fundamentals/servers?tabs=windows#korh) in the Windows tab.
+* [Kestrel server](xref:fundamentals/servers/kestrel) is the default, cross-platform HTTP server implementation. Kestrel provides the best performance and memory utilization, but it doesn't have some of the advanced features in HTTP.sys. For more information, see [Kestrel vs. HTTP.sys](xref:fundamentals/servers/index?tabs=windows#korh) in the Windows tab.
 * IIS HTTP Server is an [in-process server](#hosting-models) for IIS.
 * [HTTP.sys server](xref:fundamentals/servers/httpsys) is a Windows-only HTTP server based on the [HTTP.sys kernel driver and HTTP Server API](/windows/desktop/Http/http-api-start-page).
 
