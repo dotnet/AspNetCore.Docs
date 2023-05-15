@@ -433,6 +433,12 @@ items:
                 uid: blazor/components/index
               - name: Generic type support
                 uid: blazor/components/generic-type-support
+              - name: Synchronization context
+                uid: blazor/components/sync-context
+              - name: Preserve relationships with @key
+                uid: blazor/components/key
+              - name: Overwriting parameters
+                uid: blazor/components/overwriting-parameters
               - name: Layouts
                 uid: blazor/components/layouts
               - name: Sections
