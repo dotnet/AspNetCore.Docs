@@ -74,7 +74,84 @@ For more information on *solutions*, see <xref:blazor/tooling#visual-studio-solu
 
 ## App base path
 
-The *app base path* is the app's root URL path. Consider the following ASP.NET Core app and Blazor sub-app:
+The *app base path* is the app's root URL path. Successful routing in Blazor apps requires framework configuration for any root URL path that isn't at the default absolute base path `/`.
+
+
+
+
+
+
+
+An anchor tag's destinatinon ([`href`](https://developer.mozilla.org/docs/Web/HTML/Element/a)) can be composed with two general endpoints:
+
+* Absolute locations that include a scheme (defaults to the page's scheme if omitted), host, port, and path or just a forward slash (`/`) followed by the path.
+
+  Examples: `https://example.com/a/b/c` or `/a/b/c`
+
+* Relative locations that contain just a path and do not start with a forward slash (`/`). These are resolved relative to the current document URL or the `<base>` tag's value, if specified. The presence of a trailing slash (`/`) in a configured app base path is significant to compute the base path for URLs of the app. For example, `https://example.com/a` has a base path `https://example.com/`, which compared to `https://example.com/a/` has a base path of `https://example.com/a`.
+
+  Example: `a/b/c`
+
+Blazor apps, just like Angular, React, Vue, and other SPA framework apps, rely on the app base path to resolve document relative links. How relative links are resolved isn't an SPA-specific decision. Links are resolved based on fundamental HTML specifications shared by all webapps.
+
+There are three sources of links:
+
+* Tag Helpers: Always emit absolute links.
+* URLs manually written in a Razor file (`.cshtml), which if you are rendering inside different documents should always be absolute.
+* URLs in Razor components (`.razor`) are typically relative, but are essentially also manually written.
+* URLs in scripts, such as the Blazor scripts (`blazor.webassembly.js` and `blazor.server.js`), which are always document relative.
+
+If you're rendering a Blazor app from different documents (for example, `/Admin/B/C/` and `/Admin/D/E/`), you must take the app base path into account, or the base path is different when the app renders in each document and the resources are fetched from different URLs.
+
+There are two approaches to deal with the problem:
+
+* Map the resources dynamically using the document they were rendered on as the root.
+* Set a consistent base for the document and map the resources under that base path.
+
+The first option is more complicated and is an atypical approach, as it makes navigation different on each document. Consider the following example for rendering a page `/Something/Else`:
+
+* Rendered under `/Admin/B/C/` results in a path of `/Admin/B/C/Something/Else`.
+* Rendered under `/Admin/D/E/`, it would be `/Admin/B/C/Something/Else`.
+
+Under the first approach, routing offers `IDynamicEndpoint` and `MatcherPolicy`, which in combination can be used to make a decision at runtime of what endpoint should handle which request and can be the basis for implementing a completely dynamic solution.
+
+For the second option, which is the usual approach taken, the app sets the base path in the document and maps the server endpoints to paths under the base. To achieve this, consider the following:
+
+Some servers have the concept of *virtual paths* or *virtual folders* that allow hosting multiple sites under the same origin. ASP.NET Core is no different, and IIS and Kestrel both have this concept. You can map the SignalR hub of a Blazor Server app inside a forked pipeline using a snippet similar to the following:
+
+```csharp
+app.Map("/base/path/", subapp => {
+    subapp.UsePathBase("/base/path/");
+    subapp.UseRouting();
+    subapp.UseEndpoints(endpoints => endpoints.MapBlazorHub());
+});
+```
+
+An alternative is to pass a path to `MapBlazorHub` directly:
+
+```csharp
+endpoints.MapBlazorHub("base/path");
+```
+
+The benefit of using `MapBlazorHub` is that you can map patterns, such as `"{tenant}"` and not just concrete paths.
+
+If the app is a Blazor WebAssembly app, you must adjust the path of `UseBlazorFrameworkFiles`, which also receives an optional path prefix, and calls to `UseStaticFiles`. Also make sure that the files are in the correct locations on disk: Make sure that `StaticWebAssetBasePath` is set to match the path to serve the files from.
+
+We recommend the following general configuration steps:
+
+* Map the SignalR hub to the root of the area(s) you care about.
+* Setup the static files middleware to serve files from those prefixes.
+* Set the base tag on the pages inside the area to refer to the area prefix.
+* Make urls either absolute or relative to the area.
+
+
+
+
+
+
+
+
+Consider the following ASP.NET Core app and Blazor sub-app:
 
 * The ASP.NET Core app is named `MyApp`:
   * The app physically resides at `d:/MyApp`.
