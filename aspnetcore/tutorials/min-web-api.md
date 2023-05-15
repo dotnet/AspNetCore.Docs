@@ -345,9 +345,11 @@ Test the app by calling the endpoints from a browser or **Endpoints Explorer**. 
     "name": "walk dog",
     "isComplete": false
   }
+  ```
 
 * In **Endpoints Explorer**, right-click the third **GET** endpoint and select **Generate request**.
   The following content is added to the `TodoApi.http` file:
+
   ```
   GET {{TodoApi_HostAddress}}/todoitems/1
 
@@ -357,6 +359,7 @@ Test the app by calling the endpoints from a browser or **Endpoints Explorer**. 
 * Select the green **run** button to the left of the new `Get` line.
   The GET request is sent to the app and the response is displayed in the **Response** pane.
 * The response body is similar to the following JSON:
+
   ```json
   [
     {
@@ -391,6 +394,7 @@ The call to `GET /todoitems` produces a response similar to the following:
 * Set the request URI to `https://localhost:<port>/todoitems/1`. For example, `https://localhost:5001/todoitems/1`.
 * Select **Send**.
 * The response is similar to the following:
+
   ```json
   {
     "id": 1,
