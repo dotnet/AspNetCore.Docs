@@ -1349,7 +1349,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-[!code-csharp[](signalr-blazor/samples/5.0/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs)]
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs":::
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -1377,7 +1377,7 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](signalr-blazor/samples/5.0/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,26)]
+   :::code language="csharp" source="~/../blazor-samples/5.0/BlazorWebAssemblySignalRApp/Server/Startup.cs" id="snippet_Configure" highlight="3,26":::
 
 ## Add Razor component code for chat
 
@@ -1385,7 +1385,7 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Replace the markup with the following code:
 
-   [!code-razor[](signalr-blazor/samples/5.0/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor)]
+   :::code language="razor" source="~/../blazor-samples/5.0/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor":::
 
 ## Run the app
 
@@ -1605,7 +1605,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-[!code-csharp[](signalr-blazor/samples/5.0/BlazorServerSignalRApp/Hubs/ChatHub.cs)]
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerSignalRApp/Hubs/ChatHub.cs":::
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -1620,14 +1620,14 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 1. Add Response Compression Middleware services to `Startup.ConfigureServices`:
 
-   [!code-csharp[](signalr-blazor/samples/5.0/BlazorServerSignalRApp/Startup.cs?name=snippet_ConfigureServices&highlight=6-10)]
+   :::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerSignalRApp/Startup.cs" id="snippet_ConfigureServices" highlight="6-10":::
 
 1. In `Startup.Configure`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](signalr-blazor/samples/5.0/BlazorServerSignalRApp/Startup.cs?name=snippet_Configure&highlight=3,23)]
+   :::code language="csharp" source="~/../blazor-samples/5.0/BlazorServerSignalRApp/Startup.cs" id="snippet_Configure" highlight="3,23":::
 
 ## Add Razor component code for chat
 
@@ -1635,7 +1635,7 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 1. Replace the markup with the following code:
 
-   [!code-razor[](signalr-blazor/samples/5.0/BlazorServerSignalRApp/Pages/Index.razor)]
+   :::code language="razor" source="~/../blazor-samples/5.0/BlazorServerSignalRApp/Pages/Index.razor":::
 
 ## Run the app
 
@@ -1900,7 +1900,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-[!code-csharp[](signalr-blazor/samples/3.1/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs)]
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorWebAssemblySignalRApp/Server/Hubs/ChatHub.cs":::
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -1928,7 +1928,7 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for controllers and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](signalr-blazor/samples/3.1/BlazorWebAssemblySignalRApp/Server/Startup.cs?name=snippet_Configure&highlight=3,25)]
+   :::code language="csharp" source="~/../blazor-samples/3.1/BlazorWebAssemblySignalRApp/Server/Startup.cs" id="snippet_Configure" highlight="3,25":::
 
 ## Add Razor component code for chat
 
@@ -1936,7 +1936,7 @@ In the `BlazorWebAssemblySignalRApp.Server` project, create a `Hubs` (plural) fo
 
 1. Replace the markup with the following code:
 
-   [!code-razor[](signalr-blazor/samples/3.1/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor)]
+   :::code language="razor" source="~/../blazor-samples/3.1/BlazorWebAssemblySignalRApp/Client/Pages/Index.razor":::
 
 ## Run the app
 
@@ -2212,7 +2212,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/ChatHub.cs`):
 
-[!code-csharp[](signalr-blazor/samples/3.1/BlazorServerSignalRApp/Hubs/ChatHub.cs)]
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerSignalRApp/Hubs/ChatHub.cs":::
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -2227,14 +2227,14 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 1. Add Response Compression Middleware services to `Startup.ConfigureServices`:
 
-   [!code-csharp[](signalr-blazor/samples/3.1/BlazorServerSignalRApp/Startup.cs?name=snippet_ConfigureServices&highlight=6-10)]
+   :::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerSignalRApp/Startup.cs" id="snippet_ConfigureServices" highlight="6-10":::
 
 1. In `Startup.Configure`:
 
    * Use Response Compression Middleware at the top of the processing pipeline's configuration.
    * Between the endpoints for mapping the Blazor hub and the client-side fallback, add an endpoint for the hub.
 
-   [!code-csharp[](signalr-blazor/samples/3.1/BlazorServerSignalRApp/Startup.cs?name=snippet_Configure&highlight=3,23)]
+   :::code language="csharp" source="~/../blazor-samples/3.1/BlazorServerSignalRApp/Startup.cs" id="snippet_Configure" highlight="3,23":::
 
 ## Add Razor component code for chat
 
@@ -2242,7 +2242,7 @@ Create a `Hubs` (plural) folder and add the following `ChatHub` class (`Hubs/Cha
 
 1. Replace the markup with the following code:
 
-   [!code-razor[](signalr-blazor/samples/3.1/BlazorServerSignalRApp/Pages/Index.razor)]
+   :::code language="razor" source="~/../blazor-samples/3.1/BlazorServerSignalRApp/Pages/Index.razor":::
 
 ## Run the app
 
