@@ -239,9 +239,9 @@ There are two approaches to trusting the HTTPS certificate with Firefox, create 
 
 #### Create a policy file to trust HTTPS certificate with Firefox
 
-Create a policy file at:
+Create a policy file (`policies.json`) at:
 
-* Windows: `%PROGRAMFILES%\Mozilla Firefox\distribution\policies.json`
+* Windows: `%PROGRAMFILES%\Mozilla Firefox\distribution\`
 * MacOS: `Firefox.app/Contents/Resources/distribution`
 * Linux: See [Trust the certificate with Firefox on Linux](#trust-ff-linux) in this document.
 
@@ -366,7 +366,7 @@ See [Configure trust of HTTPS certificate using Firefox browser](#trust-ff-ba) i
 > [!WARNING]
 > The following instructions are intended for development purposes only. Do not use the certificates generated in these instructions for a production environment.
 
-These instructions use Mozilla's *legacy* tool [certutil](https://firefox-source-docs.mozilla.org/security/nss/legacy/tools/nss_tools_certutil/index.html). Instructions may be updated as modern utilities and practices are discovered.
+These instructions use Mozilla's *legacy* tool `certutil` at  `https://firefox-source-docs.mozilla.org/security/nss/legacy/tools/nss_tools_certutil/index.html`. Instructions may be updated as modern utilities and practices are discovered.
 
 > [!CAUTION]
 > Improper use of TLS certificates could lead to spoofing.
@@ -901,9 +901,9 @@ There are two approaches to trusting the HTTPS certificate with Firefox, create 
 
 #### Create a policy file to trust HTTPS certificate with Firefox
 
-Create a policy file at:
+Create a policy file (`policies.json`) at:
 
-* Windows: `%PROGRAMFILES%\Mozilla Firefox\distribution\policies.json`
+* Windows: `%PROGRAMFILES%\Mozilla Firefox\distribution\`
 * MacOS: `Firefox.app/Contents/Resources/distribution`
 * Linux: See [Trust the certificate with Firefox on Linux](#trust-ff-linux) in this document.
 

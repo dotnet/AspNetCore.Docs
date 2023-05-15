@@ -1247,18 +1247,20 @@ Update the `Starfleet Starship Database` form (`FormExample2` component) from th
 > Nested radio button groups aren't often used in forms because they can result in a disorganized layout of form controls that may confuse users. However, there are cases when they make sense in UI design, such as in the following example that pairs recommendations for two user inputs, ship engine and ship color. One engine and one color are required by the form's validation. The form's layout uses nested <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup%601>s to pair engine and color recommendations. However, the user can combine any engine with any color to submit the form.
 
 ```razor
-<p>
+<fieldset>
+    <legend>Manufacturer</legend>
     <InputRadioGroup @bind-Value="starship.Manufacturer">
-        Manufacturer:
-        <br>
         @foreach (var manufacturer in (Manufacturer[])Enum
             .GetValues(typeof(Manufacturer)))
         {
-            <InputRadio Value="@manufacturer" />
-            <text>&nbsp;</text>@manufacturer<br>
+            <label>
+                <InputRadio Value="@manufacturer" />
+                <text>&nbsp;</text>@manufacturer
+            </label>
         }
     </InputRadioGroup>
-</p>
+<fieldset>
+
 <p>
     Select one engine and one color. Recommendations are paired but any 
     combination of engine and color is allowed:<br>
