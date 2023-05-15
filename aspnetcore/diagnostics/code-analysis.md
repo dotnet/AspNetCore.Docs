@@ -4,7 +4,7 @@ author: tdykstra
 description: Learn about source code analysis in ASP.NET Core
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
-ms.date: 4/2/2023
+ms.date: 05/11/2023
 uid: diagnostics/code-analysis
 ---
 # Code analysis in ASP.NET Core apps
@@ -39,6 +39,7 @@ Diagnostic ID:
 * [ASP0022](xref:diagnostics/asp0022)
 * [ASP0023](xref:diagnostics/asp0023)
 * [ASP0024](xref:diagnostics/asp0024)
+* [ASP0025](xref:diagnostics/asp0025)
 * [BL0001](xref:diagnostics/bl0001)
 * [BL0002](xref:diagnostics/bl0002)
 * [BL0003](xref:diagnostics/bl0003)
