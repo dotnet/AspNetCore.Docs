@@ -241,15 +241,15 @@ The preceding JavaScript:
 
 # [Visual Studio](#tab/visual-studio)
 
-Press CTRL+F5 to run the app without debugging.
+Select <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Select Ctrl+F5 to run the app without the debugger.
+Select <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-From the menu, select **Run > Start Without Debugging**.
+Select **Debug** > **Start Without Debugging** to run the app without debugging.
 
 ---
 
