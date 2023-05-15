@@ -11,7 +11,7 @@ metadata:
   ms.topic: hub-page
   author: WadePickett
   ms.author: wpickett
-  ms.date: 05/09/2022
+  ms.date: 05/12/2023
 
 # highlightedContent section (optional)
 # Maximum of 8 items
@@ -270,6 +270,17 @@ additionalContent:
           - url: /dotnet/api/?view=aspnetcore-6.0
             text: ".NET API browser"
       # Card
+      - title: Servers
+        links:
+          - url: fundamentals/servers/overview.md
+            text: "Overview"
+          - url: fundamentals/servers/kestrel.md
+            text: "Kestrel"
+          - url: host-and-deploy/iis/index.md
+            text: "IIS"
+          - url: fundamentals/servers/httpsys.md
+            text: "HTTP.sys"
+      # Card
       - title: Host and deploy
         links:
           - url: host-and-deploy/index.md
@@ -286,6 +297,8 @@ additionalContent:
             text: "Kestrel"
           - url: host-and-deploy/iis/index.md
             text: "IIS"
+          - url: fundamentals/servers/httpsys.md
+            text: "HTTP.sys"
           - url: host-and-deploy/docker/index.md
             text: "Docker"
       # Card
