@@ -23,7 +23,7 @@ By default, Razor components inherit from the <xref:Microsoft.AspNetCore.Compone
 * After applying an updated set of [parameters](xref:blazor/components/data-binding#binding-with-component-parameters) from a parent component.
 * After applying an updated value for a [cascading parameter](xref:blazor/components/cascading-values-and-parameters).
 * After notification of an event and invoking one of its own [event handlers](xref:blazor/components/event-handling).
-* After a call to its own <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> method (see <xref:blazor/components/lifecycle#state-changes-statehaschanged>). For guidance on how to prevent overwriting child component parameters when <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, see <xref:blazor/components/index#overwritten-parameters>.
+* After a call to its own <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> method (see <xref:blazor/components/lifecycle#state-changes-statehaschanged>). For guidance on how to prevent overwriting child component parameters when <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called in a parent component, see <xref:blazor/components/overwriting-parameters>.
 
 Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> skip rerenders due to parameter updates if either of the following are true:
 
