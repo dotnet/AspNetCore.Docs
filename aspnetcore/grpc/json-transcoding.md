@@ -39,7 +39,7 @@ gRPC can still be used to call services.
 1. Register transcoding in server startup code by adding `AddJsonTranscoding`: In the `Program.cs` file, change `builder.Services.AddGrpc();` to `builder.Services.AddGrpc().AddJsonTranscoding();`.
 1. Annotate gRPC methods in your `.proto` files with HTTP bindings and routes:
 
-[!code-protobuf[](~/grpc/json-transcoding/sample/sample8/GrpcServiceTranscoding/proto/greet.proto?highlight=3,9-11)]
+[!code-protobuf[](~/grpc/json-transcoding/sample/sample8/GrpcServiceTranscoding/protos/greet.proto?highlight=3,9-11)]
 
 The `SayHello` gRPC method can now be invoked as gRPC and as a JSON Web API:
 
@@ -65,7 +65,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 gRPC methods must be annotated with an HTTP rule before they support transcoding. The HTTP rule includes information about how to call the gRPC method, such as the HTTP method and route.
 
-[!code-protobuf[](~/grpc/json-transcoding/sample/sample8/GrpcServiceTranscoding/greet.proto?highlight=11-13&range=9-15)]
+[!code-protobuf[](~/grpc/json-transcoding/sample/sample8/GrpcServiceTranscoding/protos/greet.proto?highlight=11-13&range=9-15)]
 
 The proceeding example:
 
@@ -168,4 +168,4 @@ For installation and usage of grpc-gateway, see the [grpc-gateway README](https:
 
 :::moniker-end
 
-[!INCLUDE[](~/grpc/grpc-start/json-transcoding/includes/json-transcoding7.md)]
+[!INCLUDE[](~/grpc/json-transcoding/includes/json-transcoding7.md)]
