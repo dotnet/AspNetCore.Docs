@@ -28,7 +28,7 @@ Without virtualization, a typical list might use a C# [`foreach`](/dotnet/csharp
 
 * `allFlights` is a collection of airplane flights.
 * The `FlightSummary` component displays details about each flight.
-* The [`@key` directive attribute](xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components) preserves the relationship of each `FlightSummary` component to its rendered flight by the flight's `FlightId`.
+* The [`@key` directive attribute](xref:blazor/components/key) preserves the relationship of each `FlightSummary` component to its rendered flight by the flight's `FlightId`.
 
 ```razor
 <div style="height:500px;overflow-y:scroll">
