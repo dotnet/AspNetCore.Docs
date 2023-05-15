@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a minimal API with ASP.NET Core.
 ms.author: wpickett
-ms.date: 05/12/2023
+ms.date: 05/15/2023
 ms.custom: engagement-fy23
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
@@ -308,7 +308,8 @@ Use the POST endpoint to add data to the app:
 
 For macOS, select the .NET 7 version of this tutorial.
 
-??
+---
+
 ## Examine the GET endpoints
 
 The sample app implements several GET endpoints by calling `MapGet`:
@@ -322,6 +323,51 @@ The sample app implements several GET endpoints by calling `MapGet`:
 [!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo/Program.cs?name=snippet_get)]
 
 ## Test the GET endpoints
+
+# [Visual Studio](#tab/visual-studio)
+
+Test the app by calling the endpoints from a browser or **Endpoints Explorer**. The following steps are for **Endpoints Explorer**.
+
+* In **Endpoints Explorer**, right-click the first **GET** endpoint and select **Generate request**.
+  The following content is added to the `TodoApi.http` file:
+  ```
+  GET {{TodoApi_HostAddress}}/todoitems
+
+  ###
+  ```
+
+* Select the green **run** button to the left of the new `Get` line.
+  The GET request is sent to the app and the response is displayed in the **Response** pane.
+* The response body is similar to the following JSON:
+  ```json
+  {
+    "id": 1,
+    "name": "walk dog",
+    "isComplete": false
+  }
+
+* In **Endpoints Explorer**, right-click the third **GET** endpoint and select **Generate request**.
+  The following content is added to the `TodoApi.http` file:
+  ```
+  GET {{TodoApi_HostAddress}}/todoitems/1
+
+  ###
+  ```
+
+* Select the green **run** button to the left of the new `Get` line.
+  The GET request is sent to the app and the response is displayed in the **Response** pane.
+* The response body is similar to the following JSON:
+  ```json
+  [
+    {
+      "id": 1,
+      "name": "walk dog",
+      "isComplete": false
+    }
+  ]
+  ```
+  
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Test the app by calling the endpoints from a browser or Postman. The following steps are for Postman.
 
@@ -353,11 +399,17 @@ The call to `GET /todoitems` produces a response similar to the following:
   }
   ```
 
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+For macOS, select the .NET 7 version of this tutorial.
+
+---
+
 This app uses an in-memory database. If the app is restarted, the GET request doesn't return any data. If no data is returned, [POST](#post) data to the app and try the GET request again.
 
 ## Return values
 
-ASP.NET Core automatically serializes the object to [JSON](https://www.json.org) and writes the JSON into the body of the response message. The response code for this return type is [200 OK](https://developer.mozilla.org/docs/Web/HTTP/Status/200), assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
+ASP.NET Core automatically serializes the object to [JSON](https://www.json.org) and writes the JSON into the body of the response message. The response code for this return type is [200 OK](https://developer.mozilla.org/docs/Web/HTTP/Status/200) or [201 Created](https://developer.mozilla.org/docs/Web/HTTP/Status/201), assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
 
 The return types can represent a wide range of HTTP status codes. For example, `GET /todoitems/{id}` can return two different status values:
 
@@ -376,7 +428,7 @@ This method is similar to the `MapPost` method, except it uses HTTP PUT. A succe
 
 This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PUT call. Call GET to ensure there's an item in the database before making a PUT call.
 
-Update the to-do item that has Id = 1 and set its name to `"feed fish"`:
+Update the to-do item that has Id = 1 and set its name to `"feed fish"`, by using the following JSON in the request body:
 
 ```json
 {
@@ -386,23 +438,39 @@ Update the to-do item that has Id = 1 and set its name to `"feed fish"`:
 }
 ```
 
-<!--
-The following image shows the Postman update:
- 
-`![Postman console showing 204 (No Content) response](~/tutorials/min-web-api/_static/3/pmcput.png)`
--->
-
 ## Examine and test the DELETE endpoint
 
 The sample app implements a single DELETE endpoint using `MapDelete`:
 
 [!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo/Program.cs?name=snippet_delete)]
 
+# [Visual Studio](#tab/visual-studio)
+
+* In **Endpoints Explorer**, right-click the **DELETE** endpoint and select **Generate request**.
+  A DELETE request is added to `TodoApi.http`.
+* Replace the contents of the DELETE request in the `.http` file with the following code:
+
+  ```
+  DELETE {{TodoApi_HostAddress}}/todoitems/1
+
+  ###
+  ```
+  * Select the green **run** button for the DELETE request.
+  The DELETE request is sent to the app and the response is displayed in the **Response** pane.
+  
+# [Visual Studio Code](#tab/visual-studio-code)
+
 Use Postman to delete a to-do item:
 
 * Set the method to `DELETE`.
 * Set the URI of the object to delete (for example `https://localhost:5001/todoitems/1`).
 * Select **Send**.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+For macOS, select the .NET 7 version of this tutorial.
+
+---
 
 ## Use the MapGroup API
 
