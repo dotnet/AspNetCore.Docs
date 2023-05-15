@@ -440,7 +440,7 @@ The following markup in the `HeadingExample` component renders the preceding `He
 
 :::moniker-end
 
-If a component contains an HTML element with an uppercase first letter that doesn't match a component name within the same namespace, a warning is emitted indicating that the element has an unexpected name. Adding an [`@using`][2] directive for the component's namespace makes the component available, which resolves the warning. For more information, see the [Class name and namespace](#class-name-and-namespace) section.
+If a component contains an HTML element with an uppercase first letter that doesn't match a component name within the same namespace, a warning is emitted indicating that the element has an unexpected name. Adding an [`@using`][2] directive for the component's namespace makes the component available, which resolves the warning. For more information, see the [Component name, class name, and namespace](#component-name-class-name-and-namespace) section.
 
 The `Heading` component example shown in this section doesn't have an [`@page`][9] directive, so the `Heading` component isn't directly accessible to a user via a direct request in the browser. However, any component with an [`@page`][9] directive can be nested in another component. If the `Heading` component was directly accessible by including `@page "/heading"` at the top of its Razor file, then the component would be rendered for browser requests at both `/heading` and `/heading-example`.
 
