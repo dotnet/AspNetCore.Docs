@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
 ms.date: 05/16/2023
-uid: blazor/components/splat-attributes
+uid: blazor/components/attribute-splatting
 ---
 # ASP.NET Core Blazor attribute splatting and arbitrary parameters
 
@@ -63,7 +63,7 @@ The rendered `<input>` elements in the webpage are identical:
 
 ## Arbitrary attributes
 
-To accept arbitrary attributes, define a [component parameter](#component-parameters) with the <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> property set to `true`:
+To accept arbitrary attributes, define a [component parameter](xref:blazor/components/index#component-parameters) with the <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> property set to `true`:
 
 ```razor
 @code {
