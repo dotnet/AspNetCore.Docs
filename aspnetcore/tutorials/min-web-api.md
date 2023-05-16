@@ -248,13 +248,16 @@ The following code in `Program.cs` creates an HTTP POST endpoint `/todoitems` th
 
 Run the app. The browser displays a 404 error because there is no longer a `/` endpoint.
 
-Use the POST endpoint to add data to the app:
+Use the POST endpoint to add data to the app.
 
 # [Visual Studio](#tab/visual-studio)
 
 * Select **View** > **Other Windows** > **Endpoints Explorer**.
 * Right-click the **POST** endpoint and select **Generate request**.
-  A new file is created in the project folder named `TodoApi.http`, with the following contents:
+
+  ![Endpoints Explorer context menu highlighting Generate Request menu item.](~/tutorials/min-web-api/_static/http-file-generate-request.png)
+
+  A new file is created in the project folder named `TodoApi.http`, with contents similar to the following example:
   ```
   @TodoApi_HostAddress = https://localhost:7031
 
@@ -262,26 +265,33 @@ Use the POST endpoint to add data to the app:
 
   ###
   ```
-* Replace the contents of the `TodoApi.http` file with the following code:
+
+* The first line creates a variable that will be used for all of the endpoints.
+* The next line defines a POST request.
+* The `###` line is a request delimiter: what comes after it will be for a different request.
+
+The POST request needs headers and a body. To define those parts of the request, add the following lines immediately after the POST request line:
 
   ```
-  @TodoApi_HostAddress = https://localhost:7031
-
-  Post {{TodoApi_HostAddress}}/todoitems
   Content-Type: application/json
 
   {
     "name":"walk dog",
     "isComplete":true
   }
-
-  ###
   ```
-  * Select the green **run** button to the left of the line that begins with `Post`.
-  ![.http file window with run button highlighted.](~/tutorials/min-web-api/_static/http-file-run-button.png)
-  The POST request is sent to the app and the response is displayed in the **Response** pane.
+
+  The preceding code adds a Content-Type header and a JSON request body.
+
+  Run the app.
+
+* Select the green **run** button to the left of the line that begins with `Post`.
+
   ![.http file window with run button highlighted.](~/tutorials/min-web-api/_static/http-file-run-button.png)
 
+  The POST request is sent to the app and the response is displayed in the **Response** pane.
+
+  ![.http file window with response from the POST request.](~/tutorials/min-web-api/_static/http-file-window-with-response.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -326,38 +336,22 @@ The sample app implements several GET endpoints by calling `MapGet`:
 
 # [Visual Studio](#tab/visual-studio)
 
-Test the app by calling the endpoints from a browser or **Endpoints Explorer**. The following steps are for **Endpoints Explorer**.
+Test the app by calling the `GET` endpoints from a browser or by using **Endpoints Explorer**. The following steps are for **Endpoints Explorer**.
 
-* In **Endpoints Explorer**, right-click the first **GET** endpoint and select **Generate request**.
+* In **Endpoints Explorer**, right-click the first **GET** endpoint, and select **Generate request**.
+
   The following content is added to the `TodoApi.http` file:
+
   ```
-  GET {{TodoApi_HostAddress}}/todoitems
+  Get {{TodoApi_HostAddress}}/todoitems
 
   ###
   ```
 
-* Select the green **run** button to the left of the new `Get` line.
+* Select the green **run** button to the left of the new `GET` request line.
+
   The GET request is sent to the app and the response is displayed in the **Response** pane.
-* The response body is similar to the following JSON:
-  ```json
-  {
-    "id": 1,
-    "name": "walk dog",
-    "isComplete": false
-  }
-  ```
 
-* In **Endpoints Explorer**, right-click the third **GET** endpoint and select **Generate request**.
-  The following content is added to the `TodoApi.http` file:
-
-  ```
-  GET {{TodoApi_HostAddress}}/todoitems/1
-
-  ###
-  ```
-
-* Select the green **run** button to the left of the new `Get` line.
-  The GET request is sent to the app and the response is displayed in the **Response** pane.
 * The response body is similar to the following JSON:
 
   ```json
@@ -368,6 +362,31 @@ Test the app by calling the endpoints from a browser or **Endpoints Explorer**. 
       "isComplete": false
     }
   ]
+  ```
+
+* In **Endpoints Explorer**, right-click the third **GET** endpoint and select **Generate request**.
+  The following content is added to the `TodoApi.http` file:
+
+  ```
+  GET {{TodoApi_HostAddress}}/todoitems/{id}
+
+  ###
+  ```
+
+* Replace `{id}` with `1`.
+
+* Select the green **run** button to the left of the GET request line.
+
+  The GET request is sent to the app and the response is displayed in the **Response** pane.
+
+* The response body is similar to the following JSON:
+
+  ```json
+  {
+    "id": 1,
+    "name": "walk dog",
+    "isComplete": false
+  }
   ```
   
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -413,7 +432,7 @@ This app uses an in-memory database. If the app is restarted, the GET request do
 
 ## Return values
 
-ASP.NET Core automatically serializes the object to [JSON](https://www.json.org) and writes the JSON into the body of the response message. The response code for this return type is [200 OK](https://developer.mozilla.org/docs/Web/HTTP/Status/200) or [201 Created](https://developer.mozilla.org/docs/Web/HTTP/Status/201), assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
+ASP.NET Core automatically serializes the object to [JSON](https://www.json.org) and writes the JSON into the body of the response message. The response code for this return type is [200 OK](https://developer.mozilla.org/docs/Web/HTTP/Status/200), assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
 
 The return types can represent a wide range of HTTP status codes. For example, `GET /todoitems/{id}` can return two different status values:
 
@@ -442,6 +461,53 @@ Update the to-do item that has Id = 1 and set its name to `"feed fish"`, by usin
 }
 ```
 
+# [Visual Studio](#tab/visual-studio)
+
+* In **Endpoints Explorer**, right-click the **PUT** endpoint, and select **Generate request**.
+
+  The following content is added to the `TodoApi.http` file:
+
+  ```
+  Put {{TodoApi_HostAddress}}/todoitems/{id}
+
+  ###
+  ```
+
+* In the `Put` request line, replace `{id}` with `1`.
+
+* Add the following lines immediately after the PUT request line:
+
+  ```
+  Content-Type: application/json
+
+  {
+    "id": 1,
+    "name": "feed fish",
+    "isComplete": false
+  }
+  ```
+
+  The preceding code adds a Content-Type header and a JSON request body.
+
+* Select the green **run** button to the left of the PUT request line.
+
+  The PUT request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
+  
+# [Visual Studio Code](#tab/visual-studio-code)
+
+Use Postman to delete a to-do item:
+
+* Set the method to PUT.
+* Set the URI of the object to update (for example `https://localhost:5001/todoitems/1`).
+* Clear the **Body** tab.
+* Select **Send**.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+For macOS, select the .NET 7 version of this tutorial.
+
+---
+
 ## Examine and test the DELETE endpoint
 
 The sample app implements a single DELETE endpoint using `MapDelete`:
@@ -451,16 +517,20 @@ The sample app implements a single DELETE endpoint using `MapDelete`:
 # [Visual Studio](#tab/visual-studio)
 
 * In **Endpoints Explorer**, right-click the **DELETE** endpoint and select **Generate request**.
+
   A DELETE request is added to `TodoApi.http`.
-* Replace the contents of the DELETE request in the `.http` file with the following code:
+
+* Replace {id} in the DELETE request line with `1`. The DELETE request should look like the following example:
 
   ```
   DELETE {{TodoApi_HostAddress}}/todoitems/1
 
   ###
   ```
-  * Select the green **run** button for the DELETE request.
-  The DELETE request is sent to the app and the response is displayed in the **Response** pane.
+
+* Select the **run** button for the DELETE request.
+
+  The DELETE request is sent to the app and the response is displayed in the **Response** pane. The status code is 200 and the response body contains the deleted `Todo` item.
   
 # [Visual Studio Code](#tab/visual-studio-code)
 
