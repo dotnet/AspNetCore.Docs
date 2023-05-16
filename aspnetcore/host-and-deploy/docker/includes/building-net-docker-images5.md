@@ -323,3 +323,31 @@ ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-7.0"
+
+In the preceding *Dockerfile*, the `*.csproj` files are copied and restored as distinct *layers*. When the `docker build` command builds an image, it uses a built-in cache. If the `*.csproj` files haven't changed since the `docker build` command last ran, the `dotnet restore` command doesn't need to run again. Instead, the built-in cache for the corresponding `dotnet restore` layer is reused. For more information, see [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache).
+
+## Additional resources
+
+* [Containerize a .NET app with dotnet publish](/dotnet/core/docker/publish-as-container)
+* [Docker build command](https://docs.docker.com/engine/reference/commandline/build)
+* [Docker run command](https://docs.docker.com/engine/reference/commandline/run)
+* [ASP.NET Core Docker sample](https://github.com/dotnet/dotnet-docker) (The one used in this tutorial.)
+:::moniker range=">= aspnetcore-7.0"
+* [Containerize a .NET app with dotnet publish](/dotnet/core/docker/publish-as-container)
+:::moniker-end
+* [Configure ASP.NET Core to work with proxy servers and load balancers](../proxy-load-balancer.md)
+* [Working with Visual Studio Docker Tools](./visual-studio-tools-for-docker.md)
+* [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers)
+* [GC using Docker and small containers](xref:performance/memory#sc)
+* [System.IO.IOException: The configured user limit (128) on the number of inotify instances has been reached](xref:host-and-deploy/docker/index#d128)
+
+## Next steps
+
+The Git repository that contains the sample app also includes documentation. For an overview of the resources available in the repository, see [the README file](https://github.com/dotnet/dotnet-docker/blob/main/samples/aspnetapp/README.md). In particular, learn how to implement HTTPS:
+
+> [!div class="nextstepaction"]
+> [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md)
+
+:::moniker-end
