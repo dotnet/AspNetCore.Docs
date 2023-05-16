@@ -334,9 +334,6 @@ In the preceding *Dockerfile*, the `*.csproj` files are copied and restored as d
 * [Docker build command](https://docs.docker.com/engine/reference/commandline/build)
 * [Docker run command](https://docs.docker.com/engine/reference/commandline/run)
 * [ASP.NET Core Docker sample](https://github.com/dotnet/dotnet-docker) (The one used in this tutorial.)
-:::moniker range=">= aspnetcore-7.0"
-* [Containerize a .NET app with dotnet publish](/dotnet/core/docker/publish-as-container)
-:::moniker-end
 * [Configure ASP.NET Core to work with proxy servers and load balancers](../proxy-load-balancer.md)
 * [Working with Visual Studio Docker Tools](./visual-studio-tools-for-docker.md)
 * [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers)
