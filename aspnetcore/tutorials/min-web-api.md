@@ -255,7 +255,7 @@ Use the POST endpoint to add data to the app.
 * Select **View** > **Other Windows** > **Endpoints Explorer**.
 * Right-click the **POST** endpoint and select **Generate request**.
 
-  ![Endpoints Explorer context menu highlighting Generate Request menu item.](~/tutorials/min-web-api/_static/http-file-generate-request.png)
+  ![Endpoints Explorer context menu highlighting Generate Request menu item.](~/tutorials/min-web-api/_static/generate-request.png)
 
   A new file is created in the project folder named `TodoApi.http`, with contents similar to the following example:
   ```
