@@ -439,6 +439,8 @@ items:
                 uid: blazor/components/key
               - name: Overwriting parameters
                 uid: blazor/components/overwriting-parameters
+              - name: Attribute splatting and arbitrary parameters
+                uid: blazor/components/attribute-splatting
               - name: Layouts
                 uid: blazor/components/layouts
               - name: Sections
