@@ -536,7 +536,7 @@ The sample app implements a single DELETE endpoint using `MapDelete`:
 
   A DELETE request is added to `TodoApi.http`.
 
-* Replace {id} in the DELETE request line with `1`. The DELETE request should look like the following example:
+* Replace `{id}` in the DELETE request line with `1`. The DELETE request should look like the following example:
 
   ```
   DELETE {{TodoApi_HostAddress}}/todoitems/1
