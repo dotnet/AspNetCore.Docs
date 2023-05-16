@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to use the published ASP.NET Core Docker images from the Docker Registry. Pull and build your own images.
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/04/2021
+ms.date: 5/15/2023
 uid: host-and-deploy/docker/building-net-docker-images
 ---
 
