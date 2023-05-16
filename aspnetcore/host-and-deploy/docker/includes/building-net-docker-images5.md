@@ -1,40 +1,76 @@
----
-title: Docker images for ASP.NET Core
-author: rick-anderson
-description: Learn how to use the published ASP.NET Core Docker images from the Docker Registry. Pull and build your own images.
-ms.author: riande
-ms.custom: mvc
-ms.date: 5/15/2023
-uid: host-and-deploy/docker/building-net-docker-images
----
-
-# Docker images for ASP.NET Core
-
-This article shows how to run an ASP.NET Core app in Docker containers.
-
-Windows Home Edition doesn't support Hyper-V, and Hyper-V is needed for Docker.
-
-See [Containerize a .NET app with dotnet publish](/dotnet/core/docker/publish-as-container) for information on containerized a .NET app with `dotnet publish`.
-
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range="< aspnetcore-7.0"
 
 ## ASP.NET Core Docker images
 
 For this tutorial, you download an ASP.NET Core sample app and run it in Docker containers. The sample works with both Linux and Windows containers.
 
 The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.docker.com/engine/userguide/eng-image/multistage-build/) to build and run in different containers. The build and run containers are created from images that are provided in Docker Hub by Microsoft:
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-7.0"
 
 * `dotnet/sdk`
 
   The sample uses this image for building the app. The image contains the .NET SDK, which includes the Command Line Tools (CLI). The image is optimized for local development, debugging, and unit testing. The tools installed for development and compilation make the image relatively large.
 
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+* `dotnet/core/sdk`
+
+  The sample uses this image for building the app. The image contains the .NET Core SDK, which includes the Command Line Tools (CLI). The image is optimized for local development, debugging, and unit testing. The tools installed for development and compilation make the image relatively large.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-7.0"
+
 * `dotnet/aspnet`
 
    The sample uses this image for running the app. The image contains the ASP.NET Core runtime and libraries and is optimized for running apps in production. Designed for speed of deployment and app startup, the image is relatively small, so network performance from Docker Registry to Docker host is optimized. Only the binaries and content needed to run an app are copied to the container. The contents are ready to run, enabling the fastest time from `docker run` to app startup. Dynamic code compilation isn't needed in the Docker model.
+   
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+* `dotnet/core/aspnet`
+
+   The sample uses this image for running the app. The image contains the ASP.NET Core runtime and libraries and is optimized for running apps in production. Designed for speed of deployment and app startup, the image is relatively small, so network performance from Docker Registry to Docker host is optimized. Only the binaries and content needed to run an app are copied to the container. The contents are ready to run, enabling the fastest time from `docker run` to app startup. Dynamic code compilation isn't needed in the Docker model.
+   
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-7.0"
 
 ## Prerequisites
 
-* [.NET SDK 7.0](https://dotnet.microsoft.com/download)
+:::moniker-end
+
+:::moniker range="= aspnetcore-6.0"
+
+* [.NET SDK 6.0](https://dotnet.microsoft.com/download)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+* [.NET SDK 5.0](https://dotnet.microsoft.com/download)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
+* [.NET Core SDK 3.1](https://dotnet.microsoft.com/download)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-3.0"
+
+* [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download/dotnet-core)
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-7.0"
+
 * Docker client 18.03 or later
 
   * Linux distributions
@@ -49,7 +85,7 @@ The sample Dockerfile uses the [Docker multi-stage build feature](https://docs.d
 
 ## Download the sample app
 
-* Download the sample by cloning the [.NET Docker repository](https://github.com/dotnet/dotnet-docker):
+* Download the sample by cloning the [.NET Docker repository](https://github.com/dotnet/dotnet-docker): 
 
   ```console
   git clone https://github.com/dotnet/dotnet-docker
@@ -123,12 +159,16 @@ In some scenarios, you might want to deploy an app to a container by copying its
   * Linux:
 
     ```dotnetcli
-  dotnet published/aspnetapp.dll
+    dotnet published/aspnetapp.dll
     ```
 
 * Browse to `http://localhost:5000` to see the home page.
 
 To use the manually published app within a Docker container, create a new *Dockerfile* and use the `docker build .` command to build an image.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
 ```dockerfile
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
@@ -165,6 +205,127 @@ COPY --from=build /app ./
 ENTRYPOINT ["dotnet", "aspnetapp.dll"]
 ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+```dockerfile
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
+WORKDIR /app
+COPY published/ ./
+ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+```
+
+To see the new image use the `docker images` command.
+
+### The Dockerfile
+
+Here's the *Dockerfile* used by the `docker build` command you ran earlier.  It uses `dotnet publish` the same way you did in this section to build and deploy.  
+
+```dockerfile
+# https://hub.docker.com/_/microsoft-dotnet
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /source
+
+# copy csproj and restore as distinct layers
+COPY *.sln .
+COPY aspnetapp/*.csproj ./aspnetapp/
+RUN dotnet restore
+
+# copy everything else and build app
+COPY aspnetapp/. ./aspnetapp/
+WORKDIR /source/aspnetapp
+RUN dotnet publish -c release -o /app --no-restore
+
+# final stage/image
+FROM mcr.microsoft.com/dotnet/aspnet:5.0
+WORKDIR /app
+COPY --from=build /app ./
+ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-7.0"
+
+In the preceding *Dockerfile*, the `*.csproj` files are copied and restored as distinct *layers*. When the `docker build` command builds an image, it uses a built-in cache. If the `*.csproj` files haven't changed since the `docker build` command last ran, the `dotnet restore` command doesn't need to run again. Instead, the built-in cache for the corresponding `dotnet restore` layer is reused. For more information, see [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
+
+```dockerfile
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
+WORKDIR /app
+COPY published/ ./
+ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+```
+
+### The Dockerfile
+
+Here's the *Dockerfile* used by the `docker build` command you ran earlier.  It uses `dotnet publish` the same way you did in this section to build and deploy.  
+
+```dockerfile
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
+WORKDIR /app
+
+# copy csproj and restore as distinct layers
+COPY *.sln .
+COPY aspnetapp/*.csproj ./aspnetapp/
+RUN dotnet restore
+
+# copy everything else and build app
+COPY aspnetapp/. ./aspnetapp/
+WORKDIR /app/aspnetapp
+RUN dotnet publish -c Release -o out
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/aspnetapp/out ./
+ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+```
+
+As noted in the preceding Dockerfile, the `*.csproj` files are copied and restored as distinct *layers*. When the `docker build` command builds an image, it uses a built-in cache. If the `*.csproj` files haven't changed since the `docker build` command last ran, the `dotnet restore` command doesn't need to run again. Instead, the built-in cache for the corresponding `dotnet restore` layer is reused. For more information, see [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-3.0"
+
+```dockerfile
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+WORKDIR /app
+COPY published/ ./
+ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+```
+
+### The Dockerfile
+
+Here's the *Dockerfile* used by the `docker build` command you ran earlier. It uses `dotnet publish` the same way you did in this section to build and deploy.  
+
+```dockerfile
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2 AS build
+WORKDIR /app
+
+# copy csproj and restore as distinct layers
+COPY *.sln .
+COPY aspnetapp/*.csproj ./aspnetapp/
+RUN dotnet restore
+
+# copy everything else and build app
+COPY aspnetapp/. ./aspnetapp/
+WORKDIR /app/aspnetapp
+RUN dotnet publish -c Release -o out
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+WORKDIR /app
+COPY --from=build /app/aspnetapp/out ./
+ENTRYPOINT ["dotnet", "aspnetapp.dll"]
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-7.0"
+
 In the preceding *Dockerfile*, the `*.csproj` files are copied and restored as distinct *layers*. When the `docker build` command builds an image, it uses a built-in cache. If the `*.csproj` files haven't changed since the `docker build` command last ran, the `dotnet restore` command doesn't need to run again. Instead, the built-in cache for the corresponding `dotnet restore` layer is reused. For more information, see [Best practices for writing Dockerfiles](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#leverage-build-cache).
 
 ## Additional resources
@@ -187,5 +348,3 @@ The Git repository that contains the sample app also includes documentation. For
 > [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/host-and-deploy/docker/includes/building-net-docker-images5.md)]
