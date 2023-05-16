@@ -390,7 +390,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
 
 * Replace `{id}` with `1`.
 
-* Select the green **run** button to the left of the GET request line.
+* Select the green **run** button to the left of the new GET request line.
 
   The GET request is sent to the app and the response is displayed in the **Response** pane.
 
@@ -466,15 +466,7 @@ This method is similar to the `MapPost` method, except it uses HTTP PUT. A succe
 
 This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PUT call. Call GET to ensure there's an item in the database before making a PUT call.
 
-Update the to-do item that has Id = 1 and set its name to `"feed fish"`, by using the following JSON in the request body:
-
-```json
-{
-  "id": 1,
-  "name": "feed fish",
-  "isComplete": false
-}
-```
+Update the to-do item that has Id = 1 and set its name to `"feed fish"`.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -488,7 +480,7 @@ Update the to-do item that has Id = 1 and set its name to `"feed fish"`, by usin
   ###
   ```
 
-* In the `Put` request line, replace `{id}` with `1`.
+* In the PUT request line, replace `{id}` with `1`.
 
 * Add the following lines immediately after the PUT request line:
 
@@ -510,11 +502,20 @@ Update the to-do item that has Id = 1 and set its name to `"feed fish"`, by usin
   
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Use Postman to delete a to-do item:
+Use Postman to send a PUT request:
 
 * Set the method to PUT.
 * Set the URI of the object to update (for example `https://localhost:5001/todoitems/1`).
-* Clear the **Body** tab.
+* Set the body to the following JSON:
+
+  ```json
+  {
+    "id": 1,
+    "name": "feed fish",
+    "isComplete": false
+  }
+  ```
+
 * Select **Send**.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
