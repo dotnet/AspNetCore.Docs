@@ -258,6 +258,7 @@ Use the POST endpoint to add data to the app.
   ![Endpoints Explorer context menu highlighting Generate Request menu item.](~/tutorials/min-web-api/_static/generate-request.png)
 
   A new file is created in the project folder named `TodoApi.http`, with contents similar to the following example:
+
   ```
   @TodoApi_HostAddress = https://localhost:7031
 
@@ -266,24 +267,38 @@ Use the POST endpoint to add data to the app.
   ###
   ```
 
-* The first line creates a variable that will be used for all of the endpoints.
-* The next line defines a POST request.
-* The `###` line is a request delimiter: what comes after it will be for a different request.
+  * The first line creates a variable that will be used for all of the endpoints.
+  * The next line defines a POST request.
+  * The triple hashtag (`###`) line is a request delimiter: what comes after it will be for a different request.
 
-The POST request needs headers and a body. To define those parts of the request, add the following lines immediately after the POST request line:
+* The POST request needs headers and a body. To define those parts of the request, add the following lines immediately after the POST request line:
 
   ```
   Content-Type: application/json
-
+  
   {
     "name":"walk dog",
     "isComplete":true
   }
   ```
+  
+  The preceding code adds a Content-Type header and a JSON request body. The TodoApi.http file should now look like the following example, but with your port number:
+  
+  ```
+  @TodoApi_HostAddress = https://localhost:7057
+  
+  Post {{TodoApi_HostAddress}}/todoitems
+  Content-Type: application/json
+  
+  {
+    "name":"walk dog",
+    "isComplete":true
+  }
+  
+  ###
+  ```
 
-  The preceding code adds a Content-Type header and a JSON request body.
-
-  Run the app.
+* Run the app.
 
 * Select the green **run** button to the left of the line that begins with `Post`.
 
