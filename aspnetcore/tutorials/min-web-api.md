@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a minimal API with ASP.NET Core.
 ms.author: wpickett
-ms.date: 5/05/2023
+ms.date: 05/15/2023
 ms.custom: engagement-fy23
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
@@ -39,15 +39,16 @@ This tutorial creates the following API:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-8.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
+<!-- [!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)] -->
+For macOS, select the .NET 7 version of this tutorial.
 
 ---
 
@@ -55,7 +56,7 @@ This tutorial creates the following API:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Start Visual Studio 2022 and select **Create a new project**.
+* Start Visual Studio 2022 Preview and select **Create a new project**.
 * In the **Create a new project** dialog:
   * Enter `Empty` in the **Search for templates** search box.
   * Select the **ASP.NET Core Empty** template and select **Next**.
@@ -64,11 +65,11 @@ This tutorial creates the following API:
 
 * Name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-  * Select **.NET 7.0**
+  * Select **.NET 8.0**
   * Uncheck **Do not use top-level statements**
   * Select **Create**
 
-  ![Additional information](~/tutorials/min-web-api/_static/add-info7.png)
+  ![Additional information](~/tutorials/min-web-api/_static/add-info8.png)
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -89,7 +90,8 @@ This tutorial creates the following API:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In Visual Studio for Mac 2022, select **File** > **New Project...**.
+For macOS, select the .NET 7 version of this tutorial.
+<!-- * In Visual Studio for Mac 2022, select **File** > **New Project...**.
 
 * In the **Choose a template for your new project** dialog:
   * Select **Web and Console** > **App** > **Empty**.
@@ -109,7 +111,7 @@ This tutorial creates the following API:
   * **Project name:** TodoApi
   * **Solution name:** TodoApi
   * Select **Create**.
-
+ -->
 ---
 
 ### Examine the code
@@ -143,8 +145,9 @@ Press Ctrl+F5 to run the app. A browser window is opened.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
-
+For macOS, select the .NET 7 version of this tutorial.
+<!-- Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number.
+ -->
 ---
 
 `Hello World!` is displayed in the browser. The `Program.cs` file contains a minimal but complete app.
@@ -157,6 +160,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
 * Select the **Browse** tab.
+* Select **Include prerelease**.  <!--todo: remove this when .NET 8 is released. -->
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane and then select **Install**.
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
@@ -165,20 +169,21 @@ NuGet packages must be added to support the database and diagnostics used in thi
 
 * Run the following commands:
 
-   ```dotnetcli
-   dotnet add package Microsoft.EntityFrameworkCore.InMemory
-   dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
-     ```
+  ```dotnetcli
+  dotnet add package Microsoft.EntityFrameworkCore.InMemory --prerelease
+  dotnet add package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore --prerelease
+  ```
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**.
+For macOS, select the .NET 7 version of this tutorial.
+<!-- * In the Visual Studio for Mac 2022 toolbar, select **Project** > **Manage NuGet Packages...**.
 * In the search box, enter **Microsoft.EntityFrameworkCore.InMemory**.
 * In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
 * Select **Add Package**.
 * In the **Select Projects** window, select **Ok**.
 * In the **License Agreement** window, select **Agree**.
-* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package.
+* Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package. -->
 
 ---
 
@@ -208,9 +213,15 @@ The following highlighted code adds the database context to the [dependency inje
 
 The DI container provides access to the database context and other services.
 
-## Install Postman to test the app
+# [Visual Studio](#tab/visual-studio)
+
+This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use-endpoints-explorer) to test the API.
+
+# [Visual Studio Code](#tab/visual-studio-code)
 
 This tutorial uses Postman to test the API.
+
+## Install Postman to test the app
 
 * Install [Postman](https://www.getpostman.com/downloads/)
 * Start the web app.
@@ -223,6 +234,12 @@ This tutorial uses Postman to test the API.
 
 <a name="post"></a>
 
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+For macOS, select the .NET 7 version of this tutorial.
+
+---
+
 ### Test posting data
 
 The following code in `Program.cs` creates an HTTP POST endpoint `/todoitems` that adds data to the in-memory database:
@@ -231,7 +248,67 @@ The following code in `Program.cs` creates an HTTP POST endpoint `/todoitems` th
 
 Run the app. The browser displays a 404 error because there is no longer a `/` endpoint.
 
-Use the POST endpoint to add data to the app:
+Use the POST endpoint to add data to the app.
+
+# [Visual Studio](#tab/visual-studio)
+
+* Select **View** > **Other Windows** > **Endpoints Explorer**.
+* Right-click the **POST** endpoint and select **Generate request**.
+
+  ![Endpoints Explorer context menu highlighting Generate Request menu item.](~/tutorials/min-web-api/_static/generate-request.png)
+
+  A new file is created in the project folder named `TodoApi.http`, with contents similar to the following example:
+
+  ```
+  @TodoApi_HostAddress = https://localhost:7031
+
+  Post {{TodoApi_HostAddress}}/todoitems
+
+  ###
+  ```
+
+  * The first line creates a variable that will be used for all of the endpoints.
+  * The next line defines a POST request.
+  * The triple hashtag (`###`) line is a request delimiter: what comes after it will be for a different request.
+
+* The POST request needs headers and a body. To define those parts of the request, add the following lines immediately after the POST request line:
+
+  ```
+  Content-Type: application/json
+  
+  {
+    "name":"walk dog",
+    "isComplete":true
+  }
+  ```
+  
+  The preceding code adds a Content-Type header and a JSON request body. The TodoApi.http file should now look like the following example, but with your port number:
+  
+  ```
+  @TodoApi_HostAddress = https://localhost:7057
+  
+  Post {{TodoApi_HostAddress}}/todoitems
+  Content-Type: application/json
+  
+  {
+    "name":"walk dog",
+    "isComplete":true
+  }
+  
+  ###
+  ```
+
+* Run the app.
+
+* Select the green **run** button to the left of the line that begins with `Post`.
+
+  ![.http file window with run button highlighted.](~/tutorials/min-web-api/_static/http-file-run-button.png)
+
+  The POST request is sent to the app and the response is displayed in the **Response** pane.
+
+  ![.http file window with response from the POST request.](~/tutorials/min-web-api/_static/http-file-window-with-response.png)
+
+# [Visual Studio Code](#tab/visual-studio-code)
 
 * Create a new HTTP request.
 * Set the HTTP method to `POST`.
@@ -252,6 +329,12 @@ Use the POST endpoint to add data to the app:
 
   ![Postman with Post request details](~/tutorials/min-web-api/_static/post2.png)
 
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+For macOS, select the .NET 7 version of this tutorial.
+
+---
+
 ## Examine the GET endpoints
 
 The sample app implements several GET endpoints by calling `MapGet`:
@@ -265,6 +348,63 @@ The sample app implements several GET endpoints by calling `MapGet`:
 [!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo/Program.cs?name=snippet_get)]
 
 ## Test the GET endpoints
+
+# [Visual Studio](#tab/visual-studio)
+
+Test the app by calling the `GET` endpoints from a browser or by using **Endpoints Explorer**. The following steps are for **Endpoints Explorer**.
+
+* In **Endpoints Explorer**, right-click the first **GET** endpoint, and select **Generate request**.
+
+  The following content is added to the `TodoApi.http` file:
+
+  ```
+  Get {{TodoApi_HostAddress}}/todoitems
+
+  ###
+  ```
+
+* Select the green **run** button to the left of the new `GET` request line.
+
+  The GET request is sent to the app and the response is displayed in the **Response** pane.
+
+* The response body is similar to the following JSON:
+
+  ```json
+  [
+    {
+      "id": 1,
+      "name": "walk dog",
+      "isComplete": false
+    }
+  ]
+  ```
+
+* In **Endpoints Explorer**, right-click the third **GET** endpoint and select **Generate request**.
+  The following content is added to the `TodoApi.http` file:
+
+  ```
+  GET {{TodoApi_HostAddress}}/todoitems/{id}
+
+  ###
+  ```
+
+* Replace `{id}` with `1`.
+
+* Select the green **run** button to the left of the new GET request line.
+
+  The GET request is sent to the app and the response is displayed in the **Response** pane.
+
+* The response body is similar to the following JSON:
+
+  ```json
+  {
+    "id": 1,
+    "name": "walk dog",
+    "isComplete": false
+  }
+  ```
+  
+# [Visual Studio Code](#tab/visual-studio-code)
 
 Test the app by calling the endpoints from a browser or Postman. The following steps are for Postman.
 
@@ -288,6 +428,7 @@ The call to `GET /todoitems` produces a response similar to the following:
 * Set the request URI to `https://localhost:<port>/todoitems/1`. For example, `https://localhost:5001/todoitems/1`.
 * Select **Send**.
 * The response is similar to the following:
+
   ```json
   {
     "id": 1,
@@ -295,6 +436,12 @@ The call to `GET /todoitems` produces a response similar to the following:
     "isComplete": false
   }
   ```
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+For macOS, select the .NET 7 version of this tutorial.
+
+---
 
 This app uses an in-memory database. If the app is restarted, the GET request doesn't return any data. If no data is returned, [POST](#post) data to the app and try the GET request again.
 
@@ -319,21 +466,63 @@ This method is similar to the `MapPost` method, except it uses HTTP PUT. A succe
 
 This sample uses an in-memory database that must be initialized each time the app is started. There must be an item in the database before you make a PUT call. Call GET to ensure there's an item in the database before making a PUT call.
 
-Update the to-do item that has Id = 1 and set its name to `"feed fish"`:
+Update the to-do item that has Id = 1 and set its name to `"feed fish"`.
 
-```json
-{
-  "id": 1,
-  "name": "feed fish",
-  "isComplete": false
-}
-```
+# [Visual Studio](#tab/visual-studio)
 
-<!--
-The following image shows the Postman update:
- 
-`![Postman console showing 204 (No Content) response](~/tutorials/min-web-api/_static/3/pmcput.png)`
--->
+* In **Endpoints Explorer**, right-click the **PUT** endpoint, and select **Generate request**.
+
+  The following content is added to the `TodoApi.http` file:
+
+  ```
+  Put {{TodoApi_HostAddress}}/todoitems/{id}
+
+  ###
+  ```
+
+* In the PUT request line, replace `{id}` with `1`.
+
+* Add the following lines immediately after the PUT request line:
+
+  ```
+  Content-Type: application/json
+
+  {
+    "id": 1,
+    "name": "feed fish",
+    "isComplete": false
+  }
+  ```
+
+  The preceding code adds a Content-Type header and a JSON request body.
+
+* Select the green **run** button to the left of the PUT request line.
+
+  The PUT request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
+  
+# [Visual Studio Code](#tab/visual-studio-code)
+
+Use Postman to send a PUT request:
+
+* Set the method to PUT.
+* Set the URI of the object to update (for example `https://localhost:5001/todoitems/1`).
+* Set the body to the following JSON:
+
+  ```json
+  {
+    "id": 1,
+    "name": "feed fish",
+    "isComplete": false
+  }
+  ```
+
+* Select **Send**.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+For macOS, select the .NET 7 version of this tutorial.
+
+---
 
 ## Examine and test the DELETE endpoint
 
@@ -341,11 +530,37 @@ The sample app implements a single DELETE endpoint using `MapDelete`:
 
 [!code-csharp[](~/tutorials/min-web-api/samples/7.x/todo/Program.cs?name=snippet_delete)]
 
+# [Visual Studio](#tab/visual-studio)
+
+* In **Endpoints Explorer**, right-click the **DELETE** endpoint and select **Generate request**.
+
+  A DELETE request is added to `TodoApi.http`.
+
+* Replace `{id}` in the DELETE request line with `1`. The DELETE request should look like the following example:
+
+  ```
+  DELETE {{TodoApi_HostAddress}}/todoitems/1
+
+  ###
+  ```
+
+* Select the **run** button for the DELETE request.
+
+  The DELETE request is sent to the app and the response is displayed in the **Response** pane. The status code is 200 and the response body contains the deleted `Todo` item.
+  
+# [Visual Studio Code](#tab/visual-studio-code)
+
 Use Postman to delete a to-do item:
 
 * Set the method to `DELETE`.
 * Set the URI of the object to delete (for example `https://localhost:5001/todoitems/1`).
 * Select **Send**.
+
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+For macOS, select the .NET 7 version of this tutorial.
+
+---
 
 ## Use the MapGroup API
 
