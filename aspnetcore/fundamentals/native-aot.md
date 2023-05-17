@@ -64,7 +64,7 @@ Create an ASP.NET Core API app that is configured to work with native AOT:
 Run the following command:
 
 ```cli
-dotnet new api -aot -o MyFirstAotWebApi && cd MyFirstAotWebApi
+dotnet new api --aot -o MyFirstAotWebApi && cd MyFirstAotWebApi
 ```
 
 Output similar to the following is displayed:
