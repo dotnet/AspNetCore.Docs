@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy23
-ms.date: 05/16/2023
+ms.date: 05/17/2023
 uid: tutorials/first-web-api
 ---
 
@@ -450,7 +450,7 @@ There are many other tools that can be used to test web APIs, for example:
 
 For more information, see:
 
-* [Test a minimal API with .http files and Endpoints Explorer](xref:tutorials/min-web-api)
+* [Minimal API tutorial: test with .http files and Endpoints Explorer](xref:tutorials/min-web-api)
 * [Test APIs with Postman](xref:tutorials/first-web-api?view=aspnetcore-5.0&preserve-view=true#post5)
 * [Install and test APIs with `http-repl`](xref:tutorials/first-web-api?view=aspnetcore-6.0&preserve-view=true#ihr6)
 
