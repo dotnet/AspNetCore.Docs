@@ -4,7 +4,7 @@ author: wadepickett
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: wpickett
 ms.custom: mvc, engagement-fy23
-ms.date: 05/05/2023
+ms.date: 05/17/2023
 uid: tutorials/first-web-api
 ---
 
@@ -38,11 +38,11 @@ The following diagram shows the design of the app.
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-8.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
@@ -59,9 +59,20 @@ The following diagram shows the design of the app.
 * Select the **ASP.NET Core Web API** template and select **Next**.
 * In the **Configure your new project dialog**, name the project *TodoApi* and select **Next**.
 * In the **Additional information** dialog:
-  * Confirm the **Framework** is **.NET 7.0** (or later).
+  * Confirm the **Framework** is **.NET 8.0 (Preview)**.
   * Confirm the checkbox for **Use controllers(uncheck to use minimal APIs)** is checked.
+  * Confirm the checkbox for **Enable OpenAPI support** is checked.
   * Select **Create**.
+
+## Add a NuGet package
+
+A NuGet package must be added to support the database used in this tutorial.
+
+* From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
+* Select the **Browse** tab.
+* Select the **Include prerelease** checkbox.
+* Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
+* Select the **Project** checkbox in the right pane and then select **Install**.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -85,7 +96,9 @@ The following diagram shows the design of the app.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* In Visual Studio for Mac 2022, select **File** > **New Project...**.
+For macOS, switch to the .NET 7 version of this tutorial.
+
+<!-- * In Visual Studio for Mac 2022, select **File** > **New Project...**.
 
 * In the **Choose a template for your new project** dialog:
   * Select **Web and Console** > **App** > **API**.
@@ -109,7 +122,7 @@ The following diagram shows the design of the app.
 * In the results window, check `Microsoft.EntityFrameworkCore.InMemory`.
 * Select **Add Package**
 * In the **Select Projects** window, select **Ok**
-* In the **License Agreement** window, select **Agree**
+* In the **License Agreement** window, select **Agree** -->
 
 ---
 
@@ -151,7 +164,7 @@ The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it o
 
 If the Swagger page doesn't appear, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/21647).
 
-Swagger is used to generate useful documentation and help pages for web APIs. This tutorial focuses on creating a web API. For more information on Swagger, see <xref:tutorials/web-api-help-pages-using-swagger>.
+Swagger is used to generate useful documentation and help pages for web APIs. This tutorial uses Swagger to test the app. For more information on Swagger, see <xref:tutorials/web-api-help-pages-using-swagger>.
 
 Copy and paste the **Request URL** in the browser:  `https://localhost:<port>/weatherforecast`
 
@@ -228,13 +241,6 @@ Model classes can go anywhere in the project, but the `Models` folder is used by
 The *database context* is the main class that coordinates Entity Framework functionality for a data model. This class is created by deriving from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
 
 # [Visual Studio](#tab/visual-studio)
-
-### Add NuGet packages
-
-* From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
-* Select the **Browse** tab, and then enter `Microsoft.EntityFrameworkCore.InMemory` in the search box.
-* Select `Microsoft.EntityFrameworkCore.InMemory` in the left pane.
-* Select the **Project** checkbox in the right pane and then select **Install**.
 
 ## Add the TodoContext database context
 
@@ -430,16 +436,21 @@ Examine the `DeleteTodoItem` method:
 
 Use the Swagger UI to delete the `TodoItem` that has Id = 1. Note the response is [`HTTP 204 No Content`](https://developer.mozilla.org/docs/Web/HTTP/Status/204).
 
-## Test with http-repl, Postman, or curl
+## Test with other tools
 
-[http-repl](xref:web-api/http-repl), [Postman](https://www.postman.com/), and [curl](https://terminalcheatsheet.com/guides/curl-rest-api) are often used to test API's. Swagger uses `curl` and shows the `curl` command it submitted.
+There are many other tools that can be used to test web APIs, for example:
 
-For instructions on these tools, see the following links:
+* [Visual Studio Endpoints Explorer and .http files](xref:test/http-files)
+* [http-repl](xref:web-api/http-repl)
+* [Postman](https://www.postman.com/)
+* [curl](https://terminalcheatsheet.com/guides/curl-rest-api). Swagger uses `curl` and shows the `curl` commands it submits.
+* [Fiddler](https://www.telerik.com/fiddler)
 
+For more information, see:
+
+* [Minimal API tutorial: test with .http files and Endpoints Explorer](xref:tutorials/min-web-api)
 * [Test APIs with Postman](xref:tutorials/first-web-api?view=aspnetcore-5.0&preserve-view=true#post5)
 * [Install and test APIs with `http-repl`](xref:tutorials/first-web-api?view=aspnetcore-6.0&preserve-view=true#ihr6)
-
-For more information on `http-repl`, see <xref:web-api/http-repl>.
 
 <!-- Verify https://go.microsoft.com/fwlink/?linkid=2123754 goes to this H2. Verify the latest released version is on top so this anchor works -->
 <a name="over-post"></a>
