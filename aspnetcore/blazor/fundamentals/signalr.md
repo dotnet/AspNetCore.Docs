@@ -443,7 +443,25 @@ Configure the following values for the client:
 * `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the Keep-Alive interval (`keepAliveIntervalInMilliseconds`).
 * `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout (`serverTimeoutInMilliseconds`).
 
-The following example for the `Pages/_Host.cshtml` file (Blazor Server, all versions except ASP.NET Core 6.0), `Pages/_Layout.cshtml` file (Blazor Server, ASP.NET Core 6.0), or `wwwroot/index.html` (Blazor WebAssembly) uses default values:
+The following example for the `Pages/_Host.cshtml` file (Blazor Server, all versions except ASP.NET Core 6.0), `Pages/_Layout.cshtml` file (Blazor Server, ASP.NET Core 6.0), or `wwwroot/index.html` (Blazor WebAssembly) shows the assignment of default values:
+
+:::moniker range=">= aspnetcore-8.0"
+
+```html
+<script src="_framework/blazor.{HOSTING MODEL}.js" autostart="false"></script>
+<script>
+  Blazor.start({
+    configureSignalR: function (builder) {
+      builder.serverTimeoutInMilliseconds = 30000;
+      builder.keepAliveIntervalInMilliseconds = 15000;
+    }
+  });
+</script>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```html
 <script src="_framework/blazor.{HOSTING MODEL}.js" autostart="false"></script>
@@ -461,9 +479,36 @@ The following example for the `Pages/_Host.cshtml` file (Blazor Server, all vers
 </script>
 ```
 
+:::moniker-end
+
 In the preceding markup, the `{HOSTING MODEL}` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
 
-When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example, based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor), uses default values:
+:::moniker range=">= aspnetcore-8.0"
+
+When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example, based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor), shows the assignment of default values:
+
+```csharp
+protected override async Task OnInitializedAsync()
+{
+    hubConnection = new HubConnectionBuilder()
+        .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+        .WithServerTimeout(TimeSpan.FromSeconds(30))
+        .WithKeepAliveInterval(TimeSpan.FromSeconds(15))
+        .Build();
+
+    hubConnection.HandshakeTimeout = TimeSpan.FromSeconds(15);
+
+    hubConnection.On<string, string>("ReceiveMessage", (user, message) => ...
+
+    await hubConnection.StartAsync();
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example, based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor), shows the assignment of default values:
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -481,6 +526,8 @@ protected override async Task OnInitializedAsync()
     await hubConnection.StartAsync();
 }
 ```
+
+:::moniker-end
 
 When changing the values of the server timeout (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>) or the Keep-Alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>:
 

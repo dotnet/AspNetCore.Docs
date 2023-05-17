@@ -90,6 +90,47 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
   >
   > In the following example, a custom value of 60 seconds is used for the server timeout.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+  In `Pages/_Host.cshtml` of a Blazor Server app:
+
+  ```html
+  <script src="_framework/blazor.server.js" autostart="false"></script>
+  <script>
+    Blazor.start({
+      configureSignalR: function (builder) {
+        builder.serverTimeoutInMilliseconds = 60000;
+      }
+    });
+  </script>
+  ```
+
+  When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>.
+  
+  The following example is based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). The server timeout is increased to 60 seconds, and the handshake timeout is increased to 30 seconds:
+
+  ```csharp
+  protected override async Task OnInitializedAsync()
+  {
+      hubConnection = new HubConnectionBuilder()
+          .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+          .WithServerTimeout(TimeSpan.FromSeconds(60))
+          .Build();
+
+      hubConnection.HandshakeTimeout = TimeSpan.FromSeconds(30);
+
+      hubConnection.On<string, string>("ReceiveMessage", (user, message) => ...
+
+      await hubConnection.StartAsync();
+  }
+  ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
   In `Pages/_Host.cshtml` of a Blazor Server app:
 
   ```html
@@ -108,7 +149,7 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
   ```
 
   When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>.
-  
+
   The following example is based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). The server timeout is increased to 60 seconds, and the handshake timeout is increased to 30 seconds:
 
   ```csharp
@@ -126,6 +167,10 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
       await hubConnection.StartAsync();
   }
   ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
   When changing the values of the server timeout (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>) or the Keep-Alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>:
 

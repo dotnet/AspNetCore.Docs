@@ -17,7 +17,103 @@ This article is under development and not complete. More information may be foun
 * [What’s new in .NET 8 Preview 1](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-1/)
 * [What’s new in .NET 8 Preview 2](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-2/)
 
+<!--
 ## Blazor
+-->
+
+## SignalR
+
+### New approach to set the server timeout and Keep Alive interval
+
+<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) can be set directly on <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>.
+
+#### Prior approach in JavaScript
+
+The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
+
+```javascript
+var connection = new signalR.HubConnectionBuilder()
+  .withUrl("/chatHub")
+  .build();
+
+connection.serverTimeoutInMilliseconds = 60000;
+connection.keepAliveIntervalInMilliseconds = 30000;
+```
+
+#### New approach in JavaScript
+
+The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
+
+```javascript
+var connection = new signalR.HubConnectionBuilder()
+  .withUrl("/chatHub")
+  .withServerTimeoutInMilliseconds(60000)
+  .withKeepAliveIntervalInMilliseconds(30000)
+  .build();
+```
+
+#### Prior approach in JavaScript for Blazor Server apps
+
+The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
+
+```javascript
+Blazor.start({
+  configureSignalR: function (builder) {
+    let c = builder.build();
+    c.serverTimeoutInMilliseconds = 60000;
+    c.keepAliveIntervalInMilliseconds = 30000;
+    builder.build = () => {
+      return c;
+    };
+  }
+});
+```
+
+#### New approach in JavaScript for Blazor Server apps
+
+The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
+
+```javascript
+Blazor.start({
+  configureSignalR: function (builder) {
+    builder.serverTimeoutInMilliseconds = 60000;
+    builder.keepAliveIntervalInMilliseconds = 30000;
+  }
+});
+```
+
+#### Prior approach in C#
+
+The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
+
+```csharp
+var builder = new HubConnectionBuilder()
+    .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+    .Build();
+
+builder.ServerTimeout = TimeSpan.FromSeconds(60);
+builder.KeepAliveInterval = TimeSpan.FromSeconds(30);
+
+builder.On<string, string>("ReceiveMessage", (user, message) => ...
+
+await builder.StartAsync();
+```
+
+#### New approach in C#
+
+The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
+
+```csharp
+var builder = new HubConnectionBuilder()
+    .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+    .WithServerTimeout(TimeSpan.FromSeconds(60))
+    .WithKeepAliveInterval(TimeSpan.FromSeconds(30))
+    .Build();
+
+builder.On<string, string>("ReceiveMessage", (user, message) => ...
+
+await builder.StartAsync();
+```
 
 ## Miscellaneous
 
@@ -36,6 +132,7 @@ The following new analyzers are available in ASP.NET Core 8.0:
 | [ASP0022](xref:diagnostics/asp0022) | Non-breaking             | Route conflict detected between route handlers |
 | [ASP0023](xref:diagnostics/asp0023) | Non-breaking             | MVC: Route conflict detected between route handlers |
 | [ASP0024](xref:diagnostics/asp0024) | Non-breaking             | Route handler has multiple parameters with the `[FromBody]` attribute |
+
 <!--
 ## API controllers
 
