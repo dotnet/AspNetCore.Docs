@@ -27,7 +27,7 @@ This article is under development and not complete. More information may be foun
 
 <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) can be set directly on <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>.
 
-#### Prior approach in JavaScript
+#### Prior approach for JavaScript clients
 
 The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
 
@@ -40,7 +40,7 @@ connection.serverTimeoutInMilliseconds = 60000;
 connection.keepAliveIntervalInMilliseconds = 30000;
 ```
 
-#### New approach in JavaScript
+#### New approach for JavaScript clients
 
 The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
 
@@ -52,7 +52,7 @@ var connection = new signalR.HubConnectionBuilder()
   .build();
 ```
 
-#### Prior approach in JavaScript for Blazor Server apps
+#### Prior approach for the JavaScript client of a Blazor Server app
 
 The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
 
@@ -69,7 +69,7 @@ Blazor.start({
 });
 ```
 
-#### New approach in JavaScript for Blazor Server apps
+#### New approach for the JavaScript client of a Blazor Server app
 
 The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
 
@@ -82,7 +82,7 @@ Blazor.start({
 });
 ```
 
-#### Prior approach in C#
+#### Prior approach for .NET clients
 
 The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
 
@@ -99,7 +99,7 @@ builder.On<string, string>("ReceiveMessage", (user, message) => ...
 await builder.StartAsync();
 ```
 
-#### New approach in C#
+#### New approach for .NET clients
 
 The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
 
