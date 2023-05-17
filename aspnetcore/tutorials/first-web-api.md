@@ -68,8 +68,6 @@ The following diagram shows the design of the app.
 
 A NuGet package must be added to support the database used in this tutorial.
 
-# [Visual Studio](#tab/visual-studio)
-
 * From the **Tools** menu, select **NuGet Package Manager > Manage NuGet Packages for Solution**.
 * Select the **Browse** tab.
 * Select the **Include prerelease** checkbox.
@@ -98,7 +96,7 @@ A NuGet package must be added to support the database used in this tutorial.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For macOS, switch to the .NET 7 version of tis tutorial.
+For macOS, switch to the .NET 7 version of this tutorial.
 
 <!-- * In Visual Studio for Mac 2022, select **File** > **New Project...**.
 
