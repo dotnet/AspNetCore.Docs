@@ -40,7 +40,7 @@ Minimally, specify the following directives and sources for Blazor apps. Add add
 * [script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): Indicates valid sources for scripts.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
   * In a Blazor WebAssembly app:
-    * Specify `wasm-unsafe-eval` to permit the Blazor WebAssembly Mono runtime to function.
+    * Specify [`wasm-unsafe-eval`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_webassembly_execution) to permit the Blazor WebAssembly Mono runtime to function.
     * Specify any additional hashes to permit your required *non-framework scripts* to load.
   * In a Blazor Server app, specify hashes to permit required scripts to load.
 * [style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
