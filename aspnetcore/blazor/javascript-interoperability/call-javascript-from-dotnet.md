@@ -1729,7 +1729,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `JsInteropClasses1.cs`:
 
-:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/JsInteropClasses1.cs" highlight="2,6,10,15":::
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/JsInteropClasses1.cs":::
 
 `TickerChanged` calls the `handleTickerChanged1` method in the following `CallJsExample3` component.
 
@@ -1768,7 +1768,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `JsInteropClasses2.cs`:
 
-:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/JsInteropClasses2.cs" highlight="2,6,10,15":::
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/JsInteropClasses2.cs":::
 
 `TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample5` component.
 
@@ -2377,7 +2377,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `JsInteropClasses1.cs`:
 
-:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/JsInteropClasses1.cs" highlight="2,6,10,15":::
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/JsInteropClasses1.cs":::
 
 `TickerChanged` calls the `handleTickerChanged1` method in the following `CallJsExample3` component.
 
@@ -2416,7 +2416,7 @@ Inside the closing `</body>` tag of `wwwroot/index.html` (Blazor WebAssembly) or
 
 `JsInteropClasses2.cs`:
 
-:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/JsInteropClasses2.cs" highlight="2,6,10,15":::
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/JsInteropClasses2.cs":::
 
 `TickerChanged` calls the `handleTickerChanged2` method and displays the returned string in the following `CallJsExample5` component.
 
