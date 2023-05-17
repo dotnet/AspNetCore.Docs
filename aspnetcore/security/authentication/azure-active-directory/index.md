@@ -13,7 +13,7 @@ These tutorials and samples demonstrate authentication in ASP.NET Core using Mic
 
 ## Application Scenarios
 
-* [Quickstart: Add sign-in with Microsoft to an ASP.NET Core web app](/azure/active-directory/develop/quickstart-v2-aspnet-core-webapp)
+* [Quickstart: Add sign-in with Microsoft to an ASP.NET Core web app](/azure/active-directory/develop/web-app-quickstart?pivots=devlang-aspnet-core&tabs=windows)
 * [Web app that signs in users](/azure/active-directory/develop/scenario-web-app-sign-user-overview?tabs=aspnetcore)
 * [Web app that calls web APIs](/azure/active-directory/develop/scenario-web-app-call-api-overview)
 * [Protected web API](/azure/active-directory/develop/scenario-protected-web-api-overview)
