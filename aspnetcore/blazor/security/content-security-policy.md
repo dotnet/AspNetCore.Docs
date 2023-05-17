@@ -39,7 +39,9 @@ Minimally, specify the following directives and sources for Blazor apps. Add add
 * [object-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src): Indicates valid sources for the `<object>`, `<embed>`, and `<applet>` tags. Specify `none` to prevent all URL sources.
 * [script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): Indicates valid sources for scripts.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
-  * In a Blazor WebAssembly app, specify any additional hashes to permit your required *non-framework scripts* to load.
+  * In a Blazor WebAssembly app:
+    * Specify `wasm-unsafe-eval` to permit the Blazor WebAssembly Mono runtime to function.
+    * Specify any additional hashes to permit your required *non-framework scripts* to load.
   * In a Blazor Server app, specify hashes to permit required scripts to load.
 * [style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
   * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
@@ -147,7 +149,8 @@ In the `<head>` content of the `wwwroot/index.html` host page, apply the directi
                default-src 'self';
                img-src data: https:;
                object-src 'none';
-               script-src 'self';
+               script-src 'self'
+                          'wasm-unsafe-eval';
                style-src 'self';
                upgrade-insecure-requests;">
 ```
