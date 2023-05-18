@@ -46,7 +46,9 @@ The following diagram shows the design of the app.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
+For macOS, switch to the .NET 7 version of this tutorial.
+
+<!-- [!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)] -->
 
 ---
 
@@ -241,8 +243,6 @@ Model classes can go anywhere in the project, but the `Models` folder is used by
 The *database context* is the main class that coordinates Entity Framework functionality for a data model. This class is created by deriving from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
 
 # [Visual Studio](#tab/visual-studio)
-
-## Add the TodoContext database context
 
 * Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 
