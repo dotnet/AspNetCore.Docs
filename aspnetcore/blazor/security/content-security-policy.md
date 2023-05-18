@@ -29,7 +29,28 @@ CSP is supported in most modern desktop and mobile browsers, including Chrome, E
 
 Minimally, specify the following directives and sources for Blazor apps. Add additional directives and sources as needed. The following directives are used in the *Apply the policy* section of this article, where example security policies for Blazor WebAssembly and Blazor Server are provided:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+* [base-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
+* [default-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src): Indicates a fallback for source directives that aren't explicitly specified by the policy. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
+* [img-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/img-src): Indicates valid sources for images.
+  * Specify `data:` to permit loading images from `data:` URLs.
+  * Specify `https:` to permit loading images from HTTPS endpoints.
+* [object-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/object-src): Indicates valid sources for the `<object>`, `<embed>`, and `<applet>` tags. Specify `none` to prevent all URL sources.
+* [script-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src): Indicates valid sources for scripts.
+  * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
+  * In a Blazor WebAssembly app:
+    * Specify [`wasm-unsafe-eval`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_webassembly_execution) to permit the Blazor WebAssembly Mono runtime to function.
+    * Specify any additional hashes to permit your required *non-framework scripts* to load.
+  * In a Blazor Server app, specify hashes to permit required scripts to load.
+* [style-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/style-src): Indicates valid sources for stylesheets.
+  * Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
+  * If the app uses inline styles, specify `unsafe-inline` to allow the use of your inline styles.
+* [upgrade-insecure-requests](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/upgrade-insecure-requests): Indicates that content URLs from insecure (HTTP) sources should be acquired securely over HTTPS.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 * [base-uri](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/base-uri): Restricts the URLs for a page's `<base>` tag. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
 * [default-src](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/default-src): Indicates a fallback for source directives that aren't explicitly specified by the policy. Specify `self` to indicate that the app's origin, including the scheme and port number, is a valid source.
@@ -120,7 +141,23 @@ The following sections show example policies for Blazor WebAssembly and Blazor S
 
 In the `<head>` content of the `wwwroot/index.html` host page, apply the directives described in the *Policy directives* section:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+```html
+<meta http-equiv="Content-Security-Policy" 
+      content="base-uri 'self';
+               default-src 'self';
+               img-src data: https:;
+               object-src 'none';
+               script-src 'self'
+                          'wasm-unsafe-eval';
+               style-src 'self';
+               upgrade-insecure-requests;">
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 ```html
 <meta http-equiv="Content-Security-Policy" 
