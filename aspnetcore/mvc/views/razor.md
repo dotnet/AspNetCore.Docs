@@ -282,7 +282,7 @@ The preceding Razor markup generates the following HTML:
 <div>False</div>
 <div>Null</div>
 <div class="">Empty</div>
-<div class="False">False String</div>
+<div class="false">False String</div>
 <div class="active">String</div>
 <input type="checkbox" checked="checked" name="true">
 <input type="checkbox" name="false">
