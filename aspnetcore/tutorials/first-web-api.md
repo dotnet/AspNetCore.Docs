@@ -46,7 +46,9 @@ The following diagram shows the design of the app.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
+For Visual Studio for Mac, switch to the .NET 7 version of this tutorial.
+
+<!-- [!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)] -->
 
 ---
 
@@ -96,7 +98,7 @@ A NuGet package must be added to support the database used in this tutorial.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-For macOS, switch to the .NET 7 version of this tutorial.
+For Visual Studio for Mac, switch to the .NET 7 version of this tutorial.
 
 <!-- * In Visual Studio for Mac 2022, select **File** > **New Project...**.
 
@@ -151,7 +153,9 @@ Run the app:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. There is no endpoint at `https://localhost:<port>` so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`.
+For Visual Studio for Mac, switch to the .NET 7 version of this tutorial.
+
+<!-- Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. There is no endpoint at `https://localhost:<port>` so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`. -->
 
 ---
 
@@ -222,11 +226,13 @@ A *model* is a set of classes that represent the data that the app manages. The 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-* Control-click the **TodoAPI** project and select **Add** > **New Folder**. Name the folder `Models`.
+For Visual Studio for Mac, switch to the .NET 7 version of this tutorial.
+
+<!-- * Control-click the **TodoAPI** project and select **Add** > **New Folder**. Name the folder `Models`.
 * Control-click the `Models` folder, and select **Add** > **New Class...** > **General** > **Empty Class**.
 * Name the class *TodoItem*, and then select **Create**.
 
-* Replace the template code with the following:
+* Replace the template code with the following: -->
 
 ---
 
@@ -241,8 +247,6 @@ Model classes can go anywhere in the project, but the `Models` folder is used by
 The *database context* is the main class that coordinates Entity Framework functionality for a data model. This class is created by deriving from the <xref:Microsoft.EntityFrameworkCore.DbContext?displayProperty=fullName> class.
 
 # [Visual Studio](#tab/visual-studio)
-
-## Add the TodoContext database context
 
 * Right-click the `Models` folder and select **Add** > **Class**. Name the class *TodoContext* and click **Add**.
 
