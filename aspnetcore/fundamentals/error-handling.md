@@ -274,6 +274,8 @@ An <xref:Microsoft.AspNetCore.Http.IProblemDetailsWriter> implementation can be 
 
 ***Note:*** When using a custom `IProblemDetailsWriter`, the custom `IProblemDetailsWriter` must be registered before calling <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages%2A>, <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A>, or <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews%2A>.
 
+The following code adds the `SampleProblemDetailsWriter` to the DI container. Note that the custom `IProblemDetailsWriter` must be registered before calling `AddProblemDetails`:
+
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_sampleproblemdetailswriter" :::
 
 #### Problem details from Middleware
