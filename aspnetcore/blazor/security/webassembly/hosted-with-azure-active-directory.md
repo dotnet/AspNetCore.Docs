@@ -171,7 +171,7 @@ This section describes the parts of a solution generated from the Blazor WebAsse
 
 *This section pertains to the solution's **:::no-loc text="Server":::** app.*
 
-The `appsettings.json` file contains the options to configure the JWT bearer handler used to validate access tokens. Add the following audience entry to the `AzureAd` configuration:
+The `appsettings.json` file contains the options to configure the JWT bearer handler used to validate access tokens. Add the following `AzureAd` configuration section:
 
 ```json
 {
