@@ -293,21 +293,21 @@ The `Grpc.Tools` package [generates .NET types from `.proto` files](xref:grpc/ba
 One solution is to generate code ahead of time.
 
 1. Move `.proto` files and the `Grpc.Tools` package reference to a new project.
-2. Publish the project as a NuGet package and upload it to a NuGet feed.
-3. Update the app to reference the NuGet package.
+1. Publish the project as a NuGet package and upload it to a NuGet feed.
+1. Update the app to reference the NuGet package.
 
-The app no longer requires `Grpc.Tools` to build when code is generated ahead of time.
+With the preceding steps, the app no longer requires `Grpc.Tools` to build because code is generated ahead of time.
 
 ### Customize `Grpc.Tools` native binaries
 
-`Grpc.Tools` supports using custom native binaries. This feature allows gRPC tooling to run on environments its bundled native binaries don't support.
+`Grpc.Tools` supports using custom native binaries. This feature allows gRPC tooling to run in environments its bundled native binaries don't support.
 
-Build or acquire `protoc` and `grpc_csharp_plugin` native binaries and configure `Grpc.Tools` to use them. Configure native binaries by setting environment variables:
+Build or acquire `protoc` and `grpc_csharp_plugin` native binaries and configure `Grpc.Tools` to use them. Configure native binaries by setting the following environment variables:
 
 * `PROTOBUF_PROTOC` - Full path to the protocol buffers compiler
 * `GRPC_PROTOC_PLUGIN` - Full path to the grpc_csharp_plugin
 
-For Alpine Linux, there are community-provided packages for the protocol buffers compiler and gRPC plugins: https://pkgs.alpinelinux.org/packages?name=grpc-plugins
+For Alpine Linux, there are community-provided packages for the protocol buffers compiler and gRPC plugins at [https://pkgs.alpinelinux.org/](https://pkgs.alpinelinux.org/packages?name=grpc-plugins).
 
 ```sh
 # Build or install the binaries for your architecture.
@@ -321,8 +321,8 @@ apk add grpc-plugins  # Alpine Linux specific package installer
 export PROTOBUF_PROTOC=/usr/bin/protoc
 export GRPC_PROTOC_PLUGIN=/usr/bin/grpc_csharp_plugin
 
-# When dotnet build runs, the Grpc.Tools NuGet package will
-# use the binaries pointed to by the environment variables
+# When dotnet build runs, the Grpc.Tools NuGet package
+# uses the binaries pointed to by the environment variables.
 dotnet build
 ```
 
