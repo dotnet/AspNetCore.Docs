@@ -101,12 +101,9 @@ An anchor tag's destinatinon ([`href`](https://developer.mozilla.org/docs/Web/HT
   
 The presence of a trailing slash (`/`) in a configured app base path is significant to compute the base path for URLs of the app. For example, `https://example.com/a` has a base path of `https://example.com/`, while `https://example.com/a/` with a trailing slash has a base path of `https://example.com/a`.
 
-Blazor apps, just like Angular, React, Vue, and other SPA framework apps, rely on the app base path to resolve document relative links. How relative links are resolved isn't an SPA-specific decision. Links are resolved based on the universal HTML specifications shared by all webapps.
+There are three sources of links that pertain to Blazor in ASP.NET Core apps:
 
-There are three sources of links in ASP.NET Core apps:
-
-* [Tag Helpers](xref:mvc/views/tag-helpers/intro): Always emit absolute links.
-* URLs manually written in a Razor page or MVC view file (`.cshtml`), which if you are rendering inside different documents should always be absolute.
+* URLs manually written in the `_Host.cshtml` file (Blazor Server), which if you are rendering inside different documents should always be absolute.
 * URLs in Razor components (`.razor`) are typically relative, but are essentially also manually written.
 * URLs in scripts, such as the Blazor scripts (`blazor.webassembly.js` and `blazor.server.js`), which are relative to the document.
 
@@ -124,18 +121,19 @@ The first option is more complicated and isn't the most typical approach, as it 
 
 Under the first approach, routing offers <xref:Microsoft.AspNetCore.Routing.IDynamicEndpointMetadata> and <xref:Microsoft.AspNetCore.Routing.MatcherPolicy>, which in combination can be the basis for implementing a completely dynamic solution that determines at runtime about how requests are routed.
 
-For the second option, which is the usual approach taken, the app sets the base path in the document (or for the whole app) and maps the server endpoints to paths under the base. The following guidance takes this approach.
-
-We recommend the following general configuration steps:
-
-* In a Blazor Server app, map the app's SignalR hub (for example, `endpoints.MapBlazorHub("base/path");`).
-* In Blazor Server or the **:::no-loc text="Server":::** project of a hosted Blazor WebAssembly solution, configure Static Files Middleware to serve files from the correct base path (for example, `subapp.UseStaticFiles("/base/path/");`).
-* Set the app base path, per the guidance in the following *Configuration guidance* section.
-* Confirm that abosolute and relative URLs throughout the app work as expected.
+For the second option, which is the usual approach taken, the app sets the base path in the document and maps the server endpoints to paths under the base. The following guidance adopts this approach.
 
 ### Blazor Server
 
-You can map the SignalR hub of a Blazor Server app when the app is in a virtual folder inside a forked pipeline using a snippet similar to the following:
+Map the SignalR hub of a Blazor Server app by passing the path to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>, which is the most typical approach:
+
+```csharp
+endpoints.MapBlazorHub("base/path");
+```
+
+The benefit of using <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> is that you can map patterns, such as `"{tenant}"` and not just concrete paths.
+
+You can also map the SignalR hub when the app is in a virtual folder inside a forked pipeline using a snippet similar to the following:
 
 ```csharp
 app.Map("/base/path/", subapp => {
@@ -145,36 +143,29 @@ app.Map("/base/path/", subapp => {
 });
 ```
 
-An alternative is to pass a path to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> directly:
-
-```csharp
-endpoints.MapBlazorHub("base/path");
-```
-
-The benefit of using <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> is that you can map patterns, such as `"{tenant}"` and not just concrete paths.
-
-Configure the `<base>` tag, per the following guidance in the *Configure the app base path* section.
+Configure the `<base>` tag, per the guidance in the [Configure the app base path](#configure-the-app-base-path) section.
 
 ### Hosted Blazor WebAssembly
 
-If the app is a hosted Blazor WebAssembly app, you must:
+If the app is a hosted Blazor WebAssembly app:
 
-* Adjust the path of <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> (for example, `app.UseBlazorFrameworkFiles("/base/path");`).
-* Configure calls to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> (for example, `app.UseStaticFiles("/base/path");`).
-* Make sure that [`<StaticWebAssetBasePath>`](xref:blazor/fundamentals/static-files#static-web-asset-base-path) is set in the project file (`.csproj`) to match the path for serving static web assets (for example, `<StaticWebAssetBasePath>base/path</StaticWebAssetBasePath>
+* In the in the **:::no-loc text="Server":::** project (`Program.cs`):
+  * Adjust the path of <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> (for example, `app.UseBlazorFrameworkFiles("/base/path");`).
+  * Configure calls to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> (for example, `app.UseStaticFiles("/base/path");`).
+* In the **:::no-loc text="Client":::** project:
+  * Configure [`<StaticWebAssetBasePath>`](xref:blazor/fundamentals/static-files#static-web-asset-base-path) in the project file to match the path for serving static web assets (for example, `<StaticWebAssetBasePath>base/path</StaticWebAssetBasePath>
 `).
-* Configure the `<base>` tag in the **:::no-loc text="Client":::** project, per the following guidance in the *Configure the app base path* section.
+  * Configure the `<base>` tag, per the guidance in the [Configure the app base path](#configure-the-app-base-path) section.
 
-> [!NOTE]
-> For an example of hosting multiple Blazor WebAssembly apps in a hosted Blazor WebAssembly solution, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>, where approaches are explained for domain/port hosting and subpath hosting of multiple Blazor WebAssembly client apps.
+For an example of hosting multiple Blazor WebAssembly apps in a hosted Blazor WebAssembly solution, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>, where approaches are explained for domain/port hosting and subpath hosting of multiple Blazor WebAssembly client apps.
 
 ### Standalone Blazor WebAssembly
 
-In a standalone Blazor WebAssembly app, only the `<base>` tag is configured, per the following guidance in the *Configure the app base path* section.
+In a standalone Blazor WebAssembly app, only the `<base>` tag is configured, per the guidance in the [Configure the app base path](#configure-the-app-base-path) section.
 
 ### Configure the app base path
 
-To provide configuration for the Blazor app's base path of `https://www.contoso.com/CoolApp/`, set the app base path, also called the relative root path.
+To provide configuration for the Blazor app's base path of `https://www.contoso.com/CoolApp/`, set the app base path, which is also called the relative root path.
 
 By configuring the app base path, a component that isn't in the root directory can construct URLs relative to the app's root path. Components at different levels of the directory structure can build links to other resources at locations throughout the app. The app base path is also used to intercept selected hyperlinks where the `href` target of the link is within the app base path URI space. The Blazor router handles the internal navigation.
 
