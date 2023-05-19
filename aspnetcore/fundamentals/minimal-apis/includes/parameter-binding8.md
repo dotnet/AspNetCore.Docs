@@ -1,3 +1,5 @@
+:::moniker range=">= aspnetcore-8.0"
+
 Parameter binding is the process of converting request data into strongly typed parameters that are expressed by route handlers. A binding source determines where parameters are bound from. Binding sources can be explicit or inferred based on HTTP method and parameter type.
 
 Supported binding sources:
@@ -337,3 +339,10 @@ Since the sample code configures both serialization and deserialization, it can 
 :::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_readfromjsonasyncwithoptions" highlight="5-8,12":::
 
 Since the preceding code applies the customized options only to deserialization, the output JSON excludes `NameField`.
+
+## Binding to forms with IFormCollection, IFormFile, and IFormFileCollection
+
+Binding tp forms using <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> is supported. [OpenAPI](xref:fundamentals/minimal-apis/openapi) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
+
+
+:::moniker-end

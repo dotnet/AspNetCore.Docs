@@ -10,4 +10,5 @@ uid: fundamentals/minimal-apis/parameter-binding
 
 # Parameter Binding in Minimal API apps
 
-[!INCLUDE [parameter-binding](includes/parameter-binding.md)]
+[!INCLUDE [parameter-binding](~/fundamentals/minimal-apis/includes/parameter-binding8.md)]
+[!INCLUDE [parameter-binding](~/fundamentals/minimal-apis/includes/parameter-binding7.md)]
