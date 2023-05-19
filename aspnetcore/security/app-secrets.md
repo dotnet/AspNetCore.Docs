@@ -229,7 +229,7 @@ Run the following command from the directory in which the project file exists:
 dotnet user-secrets remove "Movies:ConnectionString"
 ```
 
-The app's `secrets.json` file was modified to remove the key-value pair associated with the `MoviesConnectionString` key:
+The app's `secrets.json` file was modified to remove the key-value pair associated with the `Movies:ConnectionString` key:
 
 ```json
 {
