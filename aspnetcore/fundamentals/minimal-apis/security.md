@@ -87,6 +87,8 @@ The scheme name is used to uniquely identify an authentication strategy and is u
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/security/7.0-samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_local" highlight="5":::
 
+See [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/29307) for information on using the [JwtBearerConfigureOptions](https://github.com/dotnet/aspnetcore/blob/c5a9c5973bf735f1bb9d611cd50c796f6c32557e/src/Security/Authentication/JwtBearer/src/JwtBearerConfigureOptions.cs#L56) class to configure the `Authority` property.
+
 ## Configuring authorization policies in minimal apps
 
 Authentication is used to identify and validate the identity of users against an API. Authorization is used to validate and verify access to resources in an API and is facilitated by the `IAuthorizationService` registered by the `AddAuthorization` extension method. In the following scenario, a `/hello` resource is added that requires a user to present an `is_admin` claim with a `greetings_api` scope.
