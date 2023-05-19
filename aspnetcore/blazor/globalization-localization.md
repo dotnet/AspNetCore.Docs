@@ -35,13 +35,6 @@ A limited set of ASP.NET Core's localization features are supported:
 
 <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and *not supported* in Blazor apps.
 
-:::zone pivot="webassembly"
-
-> [!IMPORTANT]
-> Blazor WebAssembly uses a reduced globalization API and set of built-in locales. Adding locales to a Blazor WebAssembly app isn't supported but is under consideration for .NET 8, which is targeted for release in late 2023. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
-
-:::zone-end
-
 This article describes how to use Blazor's globalization and localization features based on:
 
 * The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language), which is set by the browser based on a user's language preferences in browser settings.
@@ -86,6 +79,32 @@ The following field types have specific formatting requirements and aren't curre
 * `week`
 
 For current browser support of the preceding types, see [Can I use](https://caniuse.com).
+
+:::zone pivot="webassembly"
+
+## .NET globalization and International Components for Unicode (ICU) support
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor WebAssembly uses a reduced globalization API and set of built-in International Components for Unicode (ICU) locales. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+
+To load a custom ICU data file to control the app's locales, see [WASM Globalization Icu](https://github.com/dotnet/runtime/blob/main/docs/design/features/globalization-icu-wasm.md). Currently, manually building the custom ICU data file is required. .NET tooling to ease the process of creating the file is planned for a future .NET 8.0 preview release. 
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+Blazor WebAssembly uses a reduced globalization API and set of built-in International Components for Unicode (ICU) locales. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+
+Loading a custom subset of locales in a Blazor WebAssembly app is supported in .NET 8 or later. For more information, access this section for an 8.0 or later version of this article.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
+
+:::zone-end
 
 ## Invariant globalization
 
@@ -963,13 +982,6 @@ A limited set of ASP.NET Core's localization features are supported:
 
 <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and *not supported* in Blazor apps.
 
-:::zone pivot="webassembly"
-
-> [!IMPORTANT]
-> Blazor WebAssembly uses a reduced globalization API and set of built-in locales. Adding locales to a Blazor WebAssembly app isn't supported but is under consideration for .NET 8, which is targeted for release in late 2023. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
-
-:::zone-end
-
 This article describes how to use Blazor's globalization and localization features based on:
 
 * The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language), which is set by the browser based on a user's language preferences in browser settings.
@@ -1014,6 +1026,16 @@ The following field types have specific formatting requirements and aren't curre
 * `week`
 
 For current browser support of the preceding types, see [Can I use](https://caniuse.com).
+
+:::zone pivot="webassembly"
+
+## .NET globalization and International Components for Unicode (ICU) support
+
+Blazor WebAssembly uses a reduced globalization API and set of built-in International Components for Unicode (ICU) locales. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+
+Loading a custom subset of locales in a Blazor WebAssembly app is supported in .NET 8 or later. For more information, access this section for an 8.0 or later version of this article.
+
+:::zone-end
 
 ## Invariant globalization
 
@@ -1899,13 +1921,6 @@ A limited set of ASP.NET Core's localization features are supported:
 
 <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and *not supported* in Blazor apps.
 
-:::zone pivot="webassembly"
-
-> [!IMPORTANT]
-> Blazor WebAssembly uses a reduced globalization API and set of built-in locales. Adding locales to a Blazor WebAssembly app isn't supported but is under consideration for .NET 8, which is targeted for release in late 2023. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
-
-:::zone-end
-
 This article describes how to use Blazor's globalization and localization features based on:
 
 * The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language), which is set by the browser based on a user's language preferences in browser settings.
@@ -1950,6 +1965,16 @@ The following field types have specific formatting requirements and aren't curre
 * `week`
 
 For current browser support of the preceding types, see [Can I use](https://caniuse.com).
+
+:::zone pivot="webassembly"
+
+## .NET globalization and International Components for Unicode (ICU) support
+
+Blazor WebAssembly uses a reduced globalization API and set of built-in International Components for Unicode (ICU) locales. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+
+Loading a custom subset of locales in a Blazor WebAssembly app is supported in .NET 8 or later. For more information, access this section for an 8.0 or later version of this article.
+
+:::zone-end
 
 ## Invariant globalization
 
@@ -2826,13 +2851,6 @@ A limited set of ASP.NET Core's localization features are supported:
 
 <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported:</span> <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer>, <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer>, and [Data Annotations localization](xref:fundamentals/localization#dataannotations-localization) are ASP.NET Core MVC features and *not supported* in Blazor apps.
 
-:::zone pivot="webassembly"
-
-> [!IMPORTANT]
-> Blazor WebAssembly uses a reduced globalization API and set of built-in locales. Adding locales to a Blazor WebAssembly app isn't supported but is under consideration for .NET 8, which is targeted for release in late 2023. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
-
-:::zone-end
-
 This article describes how to use Blazor's globalization and localization features based on:
 
 * The [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language), which is set by the browser based on a user's language preferences in browser settings.
@@ -2877,6 +2895,16 @@ The following field types have specific formatting requirements and aren't curre
 * `week`
 
 For current browser support of the preceding types, see [Can I use](https://caniuse.com).
+
+:::zone pivot="webassembly"
+
+## .NET globalization and International Components for Unicode (ICU) support
+
+Blazor WebAssembly uses a reduced globalization API and set of built-in International Components for Unicode (ICU) locales. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
+
+Loading a custom subset of locales in a Blazor WebAssembly app is supported in .NET 8 or later. For more information, access this section for an 8.0 or later version of this article.
+
+:::zone-end
 
 ## Invariant globalization
 
