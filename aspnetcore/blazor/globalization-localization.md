@@ -80,31 +80,37 @@ The following field types have specific formatting requirements and aren't curre
 
 For current browser support of the preceding types, see [Can I use](https://caniuse.com).
 
-:::zone pivot="webassembly"
-
-## .NET globalization and International Components for Unicode (ICU) support
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
+:::zone pivot="webassembly"
+
+## .NET globalization and International Components for Unicode (ICU) support
+
 Blazor WebAssembly uses a reduced globalization API and set of built-in International Components for Unicode (ICU) locales. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
 
-To load a custom ICU data file to control the app's locales, see [WASM Globalization Icu](https://github.com/dotnet/runtime/blob/main/docs/design/features/globalization-icu-wasm.md). Currently, manually building the custom ICU data file is required. .NET tooling to ease the process of creating the file is planned for a future .NET 8.0 preview release. 
+To load a custom ICU data file to control the app's locales, see [WASM Globalization Icu](https://github.com/dotnet/runtime/blob/main/docs/design/features/globalization-icu-wasm.md). Currently, manually building the custom ICU data file is required. .NET tooling to ease the process of creating the file is planned for a future .NET 8.0 preview release.
+
+:::zone-end
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
+:::zone pivot="webassembly"
+
+## .NET globalization and International Components for Unicode (ICU) support
+
 Blazor WebAssembly uses a reduced globalization API and set of built-in International Components for Unicode (ICU) locales. For more information, see [.NET globalization and ICU: ICU on WebAssembly](/dotnet/core/extensions/globalization-icu#icu-on-webassembly).
 
 Loading a custom subset of locales in a Blazor WebAssembly app is supported in .NET 8 or later. For more information, access this section for an 8.0 or later version of this article.
 
+:::zone-end
+
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
-
-:::zone-end
 
 ## Invariant globalization
 
