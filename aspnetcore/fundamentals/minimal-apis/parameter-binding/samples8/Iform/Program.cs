@@ -26,14 +26,14 @@ app.MapGet("/", (HttpContext context, IAntiforgery antiforgery) =>
     var token = antiforgery.GetAndStoreTokens(context);
     var html = $"""
       <html>
-          <body>
-              <form action="/upload" method="POST" enctype="multipart/form-data">
-                  <input name="{token.FormFieldName}" type="hidden" value="{token.RequestToken}"/>
-                  <input type="file" name="file" placeholder="Upload an image..." accept=".jpg, 
-                                                                                  .jpeg, .png" />
-                  <input type="submit" />
-              </form> 
-          </body>
+        <body>
+          <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input name="{token.FormFieldName}" type="hidden" value="{token.RequestToken}"/>
+            <input type="file" name="file" placeholder="Upload an image..." accept=".jpg, 
+                                                                            .jpeg, .png" />
+            <input type="submit" />
+          </form> 
+        </body>
       </html>
     """;
 
@@ -41,7 +41,7 @@ app.MapGet("/", (HttpContext context, IAntiforgery antiforgery) =>
 });
 
 app.MapPost("/upload", async Task<Results<Ok<string>,
-         BadRequest<string>>> (IFormFile file, HttpContext context, IAntiforgery antiforgery) =>
+   BadRequest<string>>> (IFormFile file, HttpContext context, IAntiforgery antiforgery) =>
 {
     try
     {

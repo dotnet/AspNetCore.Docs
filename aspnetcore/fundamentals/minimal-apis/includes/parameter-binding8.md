@@ -348,8 +348,7 @@ The following code uploads files using inferred binding from the `IFormFile` typ
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="17-22,43-57":::
 
-> [!WARNING]
-> When implementing forms, the app must prevent [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery). In the preceding code, an <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> parameter is used to prevent XSRF attacks:
+***Warning:*** When implementing forms, the app ***must prevent*** [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery). In the preceding code, an <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> parameter is used to prevent XSRF attacks:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="24,44":::
 
