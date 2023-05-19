@@ -286,7 +286,7 @@ Alternatively, a client factory can be configured with `Http3Handler` by using <
 
 ## Building gRPC on Alpine Linux
 
-The `Grpc.Tools` package [generates .NET types from `.proto` files](xref:grpc/basics#generated-c-assets) using a bundled native binary called `protoc`. Additional steps are required to build gRPC apps on platforms that aren't supported by `Grpc.Tools` bundled native binaries, such as Alpine Linux.
+The `Grpc.Tools` package [generates .NET types from `.proto` files](xref:grpc/basics#generated-c-assets) using a bundled native binary called `protoc`. Additional steps are required to build gRPC apps on platforms that aren't supported by the native binaries in `Grpc.Tools`, such as Alpine Linux.
 
 ### Generate code ahead of time
 
@@ -321,7 +321,7 @@ apk add grpc-plugins  # Alpine Linux specific package installer
 export PROTOBUF_PROTOC=/usr/bin/protoc
 export GRPC_PROTOC_PLUGIN=/usr/bin/grpc_csharp_plugin
 
-# When the dotnet build runs the Grpc.Tools NuGet package will
+# When dotnet build runs, the Grpc.Tools NuGet package will
 # use the binaries pointed to by the environment variables
 dotnet build
 ```
