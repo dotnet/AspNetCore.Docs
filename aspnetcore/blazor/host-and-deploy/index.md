@@ -89,7 +89,7 @@ Without specifying additional configuration for `CoolApp`, the sub-app in this s
 
 ### Background
 
-An anchor tag's destinatinon ([`href`](https://developer.mozilla.org/docs/Web/HTML/Element/a)) can be composed with two endpoints:
+An anchor tag's destination ([`href`](https://developer.mozilla.org/docs/Web/HTML/Element/a)) can be composed with two endpoints:
 
 * Absolute locations that include a scheme (defaults to the page's scheme if omitted), host, port, and path or just a forward slash (`/`) followed by the path.
 
