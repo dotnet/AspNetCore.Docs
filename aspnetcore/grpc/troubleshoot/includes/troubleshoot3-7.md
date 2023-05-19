@@ -277,6 +277,50 @@ var reply = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
 
 Alternatively, a client factory can be configured with `Http3Handler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
 
+## Building gRPC on Alpine Linux
+
+The `Grpc.Tools` package [generates .NET types from `.proto` files](xref:grpc/basics#generated-c-assets) using a bundled native binary called `protoc`. Additional steps are required to build gRPC apps on platforms that aren't supported by the native binaries in `Grpc.Tools`, such as Alpine Linux.
+
+### Generate code ahead of time
+
+One solution is to generate code ahead of time.
+
+1. Move `.proto` files and the `Grpc.Tools` package reference to a new project.
+1. Publish the project as a NuGet package and upload it to a NuGet feed.
+1. Update the app to reference the NuGet package.
+
+With the preceding steps, the app no longer requires `Grpc.Tools` to build because code is generated ahead of time.
+
+### Customize `Grpc.Tools` native binaries
+
+`Grpc.Tools` supports using custom native binaries. This feature allows gRPC tooling to run in environments its bundled native binaries don't support.
+
+Build or acquire `protoc` and `grpc_csharp_plugin` native binaries and configure `Grpc.Tools` to use them. Configure native binaries by setting the following environment variables:
+
+* `PROTOBUF_PROTOC` - Full path to the protocol buffers compiler
+* `GRPC_PROTOC_PLUGIN` - Full path to the grpc_csharp_plugin
+
+For Alpine Linux, there are community-provided packages for the protocol buffers compiler and gRPC plugins at [https://pkgs.alpinelinux.org/](https://pkgs.alpinelinux.org/packages?name=grpc-plugins).
+
+```sh
+# Build or install the binaries for your architecture.
+
+# e.g. for Alpine Linux the grpc-plugins package can be used
+#  See https://pkgs.alpinelinux.org/package/edge/community/x86_64/grpc-plugins
+apk add grpc-plugins  # Alpine Linux specific package installer
+
+# Set environment variables for the built/installed protoc
+# and grpc_csharp_plugin binaries
+export PROTOBUF_PROTOC=/usr/bin/protoc
+export GRPC_PROTOC_PLUGIN=/usr/bin/grpc_csharp_plugin
+
+# When dotnet build runs, the Grpc.Tools NuGet package
+# uses the binaries pointed to by the environment variables.
+dotnet build
+```
+
+For more information about using `Grpc.Tools` with unsupported architectures, see the [gRPC build integration documentation](https://github.com/grpc/grpc/blob/master/src/csharp/BUILD-INTEGRATION.md#using-grpctools-with-unsupported-architectures).
+
 :::moniker-end
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
