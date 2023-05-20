@@ -39,11 +39,11 @@ gRPC can still be used to call services.
 1. Register transcoding in server startup code by adding `AddJsonTranscoding`: In the `Program.cs` file, change `builder.Services.AddGrpc();` to `builder.Services.AddGrpc().AddJsonTranscoding();`.
 1. Add `<IncludeHttpRuleProtos>true</IncludeHttpRuleProtos>` to the property group in the project file (`.csproj`):
 
-[!code-protobuf[](~/grpc/json-transcoding/sample/sample8/GrpcServiceTranscoding/GrpcServiceTranscoding.csproj?highlight=8,1-9)]
+   [!code-json[](~/grpc/json-transcoding/sample/sample8/GrpcServiceTranscoding/GrpcServiceTranscoding.csproj?highlight=8&range=1-9)]
 
 1. Annotate gRPC methods in your `.proto` files with HTTP bindings and routes:
 
-[!code-protobuf[](~/grpc/json-transcoding/sample/sample8/GrpcServiceTranscoding/protos/greet.proto?highlight=4,11-13)]
+   [!code-protobuf[](~/grpc/json-transcoding/sample/sample8/GrpcServiceTranscoding/protos/greet.proto?highlight=4,11-13)]
 
 The `SayHello` gRPC method can now be invoked as gRPC and as a JSON Web API:
 
