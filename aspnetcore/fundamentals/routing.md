@@ -803,7 +803,7 @@ Values explicitly provided that don't match a segment of the route are added to 
 ### Optional route parameter order
 
 Optional route parameters must come after all required route parameters. In the following code, the `id` and `name` parameters must come after the `color` parameter:
-H
+
 :::code language="csharp" source="~/fundamentals/routing/samples/8.x/OptionalParams/Controllers/MyController.cs" highlight="10":::
 
 ### Problems with route value invalidation
