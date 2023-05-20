@@ -76,11 +76,13 @@ The ASP.NET Core framework expects to find these options under the `Authenticati
 }
 ```
 
-For standard JWT Bearer authentication in a real application you may need to specify the `Authentication:Schemes:{SchemeName}:Authority` property which matches the address of the token-issuing authentication server. 
+For JWT Bearer authentication in a production app, you may need to specify the `Authentication:Schemes:{SchemeName}:Authority` property, which matches the address of the token-issuing authentication server. The `{SchemeName}` placeholder in the preceding property is the scheme name.
 
-In the case that you do not have access to the token-issuing server, the `Authority` property should **not be set** and instead you can specify the signing key as a base64 encoded string under the `Bearer` scheme `SigningKeys:{SigningKeyName}:Value` with the `SigningKeys:{SigningKeyName}:Issuer` matching the `ValidIssuer` specified in the authentication scheme configuration.
+In case you don't have access to the token-issuing server, the `Authority` property should **not be set**. Instead, specify the signing key as a base64-encoded string under the `Bearer` scheme `SigningKeys:{SigningKeyName}:Value` with the `SigningKeys:{SigningKeyName}:Issuer` matching the `ValidIssuer` specified in the authentication scheme configuration. The `{SigningKeyName}` placeholder in the preceding examples is the signing key name.
 
-For a full list of available configuration options for JWT bearer based authentication, see the [JwtBearerConfigureOptions](https://github.com/dotnet/aspnetcore/blob/c5a9c5973bf735f1bb9d611cd50c796f6c32557e/src/Security/Authentication/JwtBearer/src/JwtBearerConfigureOptions.cs#L56) class.
+For a full list of JWT bearer authentication configuration options, see the [`JwtBearerConfigureOptions` class (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Security/Authentication/JwtBearer/src/JwtBearerConfigureOptions.cs).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 In `Program.cs`, two JWT bearer-based authentication strategies are registered, with the:
 
