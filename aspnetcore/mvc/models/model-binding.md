@@ -650,7 +650,7 @@ To use the built-in XML input formatters:
 
 An input formatter takes full responsibility for reading data from the request body. To customize this process, configure the APIs used by the input formatter. This section describes how to customize the `System.Text.Json`-based input formatter to understand a custom type named `ObjectId`. 
 
-Consider the following model, which contains a custom `ObjectId` property named `Id`:
+Consider the following model, which contains a custom `ObjectId` property named `ObjectId`:
 
 :::code language="csharp" source="model-binding/samples/6.x/ModelBindingSample/Snippets/InstructorObjectId.cs" id="snippet_Class" highlight="4":::
 
