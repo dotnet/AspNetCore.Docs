@@ -76,6 +76,12 @@ The ASP.NET Core framework expects to find these options under the `Authenticati
 }
 ```
 
+For standard JWT Bearer authentication in a real application you may need to specify the `Authentication:Schemes:{SchemeName}:Authority` property which matches the address of the token-issuing authentication server. 
+
+In the case that you do not have access to the token-issuing server, the `Authority` property should **not be set** and instead you can specify the signing key as a base64 encoded string under the `Bearer` scheme `SigningKeys:{SigningKeyName}:Value` with the `SigningKeys:{SigningKeyName}:Issuer` matching the `ValidIssuer` specified in the authentication scheme configuration.
+
+For a full list of available configuration options for JWT bearer based authentication, see the [JwtBearerConfigureOptions](https://github.com/dotnet/aspnetcore/blob/c5a9c5973bf735f1bb9d611cd50c796f6c32557e/src/Security/Authentication/JwtBearer/src/JwtBearerConfigureOptions.cs#L56) class.
+
 In `Program.cs`, two JWT bearer-based authentication strategies are registered, with the:
 
 * "Bearer" scheme name.
