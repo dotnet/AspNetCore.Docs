@@ -1,0 +1,116 @@
+﻿@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.EntityFrameworkCore
+
+@inject NavigationManager NavigationManager
+
+<EditForm Model="@Student" OnValidSubmit="(async () => await Save())">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <label class="control-label">Last name</label>
+    <div class="form-group">
+        <InputText @bind-Value="@Student.LastName" class="form-control" />
+        <ValidationMessage For="@(() => Student.LastName)" />
+    </div>
+    <label class="control-label">First name</label>
+    <div class="form-group">
+        <InputText @bind-Value="@Student.FirstMidName" class="form-control" />
+        <ValidationMessage For="@(() => Student.FirstMidName)" />
+    </div>
+    <label class="control-label">Enrollment date</label>
+    <div class="form-group">
+        <InputDate @bind-Value="@Student.EnrollmentDate" class="form-control" />
+        <ValidationMessage For="@(() => Student.EnrollmentDate)" />
+    </div>
+    <br />
+    <div>
+        <button type="submit" class="btn btn-success" disabled="@Busy">@ButtonText</button>
+    </div>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <br />
+    @if (isAdding)
+    {
+        <div class="alert alert-danger">Failed to create the student (@ErrorMessage).</div>
+    }
+    else
+    {
+        <div class="alert alert-danger">Failed to save the student (@ErrorMessage).</div>
+    }
+}
+
+@code {
+    /// <summary>
+    /// True if already running, otherwise false
+    /// </summary>
+    [Parameter]
+    public bool Busy { get; set; } = default!;
+
+    /// <summary>
+    /// Context passed to this razor component
+    /// </summary>
+    [Parameter]
+    public SchoolContext? Context { get; set;  }
+
+    /// <summary>
+    /// New <see cref="Student"/>.
+    /// </summary>
+    [Parameter]
+    public Student Student { get; set; } = default!;
+
+    /// <summary>
+    /// The text of the button, e.g., Create or Save
+    /// </summary>
+    [Parameter]
+    public string ButtonText { get; set; } = default!;
+
+    /// <summary>
+    /// True if adding to the database, otherwise false if updating
+    /// </summary>
+    [Parameter]
+    public bool isAdding { get; set; } = default!;
+
+    /// <summary>
+    /// The error message.
+    /// </summary>
+    private string ErrorMessage = default!;
+
+    /// <summary>
+    /// Respond to a forms submission.
+    /// </summary>
+    private async Task Save()
+    {
+        try
+        {
+            if (Context is not null)
+            {
+                // This just attaches
+                if (Student is not null)
+                {
+                    if (isAdding)
+                    {
+                        Context.Students?.Add(Student);
+                    }
+                    else
+                    {
+                        Context.Students?.Update(Student);
+                    }
+                }
+
+                await Context.SaveChangesAsync();
+                NavigationManager.NavigateTo("./students");
+            }
+            else
+            {
+                throw new ArgumentException("The Context cannot be null.", nameof(Context));
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
+    }
+}

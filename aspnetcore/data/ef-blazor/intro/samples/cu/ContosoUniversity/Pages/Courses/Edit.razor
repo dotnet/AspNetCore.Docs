@@ -1,0 +1,106 @@
+﻿@page "/courses/edit/{CourseId:int}"
+
+@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.EntityFrameworkCore
+
+@implements IDisposable
+@inject IDbContextFactory<SchoolContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<h1>Edit</h1>
+
+<h4>Course</h4>
+<hr />
+
+@if (Course is null)
+{
+    <div class="alert alert-warning">A course with the id @CourseId does not exist.</div>
+}
+else
+{
+    <CourseForm Course="@Course"
+                Departments="@Departments"
+                isAdding="false"
+                ButtonText="Save"
+                Context="@Context" />
+}
+<br />
+<div>
+    <a href="./courses">Back to list</a>
+</div>
+
+@code {
+    /// <summary>
+    /// True if already running, otherwise false
+    /// </summary>
+    private bool Busy = default!;
+
+    /// <summary>
+    /// The Context to be passed to a razor component
+    /// </summary>
+    private SchoolContext? Context { get; set; }
+
+    /// <summary>
+    /// Id from route of the course.
+    /// </summary>
+    [Parameter]
+    public int CourseId { get; set; }
+
+    /// <summary>
+    /// New <see cref="Course"/>.
+    /// </summary>
+    private Course? Course { get; set; }
+
+    ///  <summary>
+    /// List of departments to which course can be assigned
+    /// </summary>
+    private IList<Department> Departments { get; set; } = default!;
+
+    /// <summary>
+    /// Start with a fresh <see cref="Course"/>.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    protected override async Task OnInitializedAsync()
+    {
+
+        if (Busy)
+        {
+            return;
+        }
+
+        Busy = true;
+
+        try
+        {
+            Course = null;
+
+            Context = DbFactory.CreateDbContext();
+
+            if (Context.Courses is not null)
+            {
+                Course = await Context.Courses
+                .Include(c => c.Department)
+                .SingleOrDefaultAsync(c => c.CourseID == CourseId);
+            }
+
+            if (Context.Departments is not null)
+            {
+                Departments = await Context.Departments.ToListAsync();
+            }
+
+        }
+        finally
+        {
+            Busy = false;
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+    public void Dispose()
+    {
+        Context?.Dispose();
+    }
+}

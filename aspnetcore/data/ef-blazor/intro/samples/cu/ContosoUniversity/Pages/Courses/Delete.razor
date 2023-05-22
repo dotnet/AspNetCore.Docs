@@ -1,0 +1,121 @@
+﻿@page "/courses/delete/{CourseId:int}"
+
+@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using Microsoft.EntityFrameworkCore
+
+@inject IDbContextFactory<SchoolContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<h1>Delete</h1>
+
+<h3 class="alert alert-warning">Are you sure that you wish to delete this course?</h3>
+
+<h4>Course</h4>
+<hr />
+
+@if (Course is null)
+{
+    <div class="alert alert-warning">A course with the id @CourseId does not exist.</div>
+}
+else
+{
+    <CourseDetails Course="@Course" />
+    <div>
+        <button class="btn btn-danger" @onclick="@(() => DeleteAsync())">Delete</button>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <br />
+    <div class="alert alert-danger">Failed to delete the course (@ErrorMessage).</div>
+}
+
+<br />
+<div>
+    <a href="./courses">Back to list</a>
+</div>
+
+@code {
+    /// <summary>
+    /// The error message.
+    /// </summary>
+    private string ErrorMessage = default!;
+
+    /// <summary>
+    /// Id from route of the course.
+    /// </summary>
+    [Parameter]
+    public int CourseId { get; set; }
+
+    /// <summary>
+    /// Course entity.
+    /// </summary>
+    private Course? Course { get; set; }
+
+    /// <summary>
+    /// Loads the contact
+    /// </summary>
+    /// <returns>Task</returns>
+    private async Task LoadAsync()
+    {
+        Course = null;
+
+        using var context = DbFactory.CreateDbContext();
+        if (context.Courses is not null)
+        {
+            Course = await context.Courses
+            .Include(c => c.Department)
+            .SingleOrDefaultAsync(c => c.CourseID == CourseId);
+        }
+    }
+
+    /// <summary>
+    /// Delete the course.
+    /// </summary>
+    /// <returns>Task</returns>
+    private async Task DeleteAsync()
+    {
+        using var context = DbFactory?.CreateDbContext();
+        if (context?.Courses is not null)
+        {
+            var course = await context.Courses
+            .SingleOrDefaultAsync(c => c.CourseID == CourseId);
+
+            if (course is not null)
+            {
+                context.Courses?.Remove(course);
+                try
+                {
+                    await context.SaveChangesAsync();
+                    NavigationManager.NavigateTo("./courses");
+                }
+                catch (Exception ex)
+                {
+                    ErrorMessage = ex.Message;
+                }
+            }
+            else
+            {
+                // Show not found
+                await LoadAsync();
+            }
+        }
+        else
+        {
+            // Show not found
+            await LoadAsync();
+        }
+    }
+
+    /// <summary>
+    /// Triggered for any paging update.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    protected override async Task OnParametersSetAsync()
+    {
+        await LoadAsync();
+        await base.OnParametersSetAsync();
+    }
+}

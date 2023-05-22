@@ -1,0 +1,70 @@
+﻿@page "/about"
+
+@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using Microsoft.EntityFrameworkCore
+
+@inject IDbContextFactory<SchoolContext> DbFactory
+
+<h1>About</h1>
+
+<h3>Student Body Statistics</h3>
+
+<p>
+    <table>
+        <tr>
+            <th>
+                Enrollment Date
+            </th>
+            <th>
+                Students
+            </th>
+        </tr>
+
+        @foreach (var enrollmentDateCount in EnrollmentDateCounts)
+        {
+            <tr>
+                <td>
+                    @enrollmentDateCount.Item1.ToShortDateString()
+                </td>
+                <td>
+                    @enrollmentDateCount.Item2
+                </td>
+            </tr>
+            numberOfStudents += enrollmentDateCount.Item2;
+        }
+        <tr>
+            <td align="right">
+                <b>Number of students</b>:&nbsp;
+            </td>
+            <td>
+                @numberOfStudents
+            </td>
+        </tr>
+    </table>
+</p>
+
+<Credits />
+
+@code {
+    private IList<Tuple<DateTime, int>> EnrollmentDateCounts { get; set; } = new List<Tuple<DateTime, int>>();
+
+    private int numberOfStudents = 0;
+
+    /// <summary>
+    /// Triggered for any paging update.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    protected override async Task OnParametersSetAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+
+        var query = from student in context.Students
+                    group student by student.EnrollmentDate into dateGroup
+                    select Tuple.Create(dateGroup.Key, dateGroup.Count());
+
+        EnrollmentDateCounts = await query.AsNoTracking().ToListAsync();
+
+        await base.OnParametersSetAsync();
+    }
+}

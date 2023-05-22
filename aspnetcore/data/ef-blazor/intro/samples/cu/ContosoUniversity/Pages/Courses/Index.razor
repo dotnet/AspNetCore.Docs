@@ -1,0 +1,94 @@
+﻿@page "/courses"
+
+@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using Microsoft.EntityFrameworkCore
+
+@inject IDbContextFactory<SchoolContext> DbFactory
+
+<h1>Courses</h1>
+<hr />
+
+<p>
+    <a href="./courses/create">Create new</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Number
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Credits
+            </th>
+            <th>
+                Department
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Courses is not null && Courses.Any())
+        {
+            @foreach (var course in Courses)
+            {
+                <tr>
+                    <td>
+                        @course.CourseID
+                    </td>
+                    <td>
+                        @course.Title
+                    </td>
+                    <td>
+                        @course.Credits
+                    </td>
+                    <td>
+                        @course.Department?.Name
+                    </td>
+                    <td>
+                        <a href="./courses/edit/@course.CourseID">Edit</a> |
+                        <a href="./courses/details/@course.CourseID">Details</a> |
+                        <a href="./courses/delete/@course.CourseID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>
+                    There are no courses.
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private IList<Course> Courses { get; set; } = default!;
+
+    /// <summary>
+    /// Triggered for any paging update.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    protected override async Task OnParametersSetAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        if (context.Courses is not null)
+        {
+            Courses = await context.Courses
+            .Include(c => c.Department)
+            .AsNoTracking()
+            .ToListAsync();
+        }
+        await base.OnParametersSetAsync();
+    }
+}

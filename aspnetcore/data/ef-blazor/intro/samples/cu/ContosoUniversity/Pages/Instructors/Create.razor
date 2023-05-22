@@ -1,0 +1,99 @@
+﻿@page "/instructors/create"
+
+@using ContosoUniversity
+@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using ContosoUniversity.Models.ViewModels
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.EntityFrameworkCore
+
+@implements IDisposable
+@inject IDbContextFactory<SchoolContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<h1>Create</h1>
+
+<h4>Instructor</h4>
+<hr />
+
+@if (Instructor is null)
+{
+    <div class="alert alert-warning">An empty instructor could not be created.  Please refresh the page.</div>
+}
+else
+{
+    <InstructorForm Busy="@Busy"
+                Instructor="@Instructor"
+                CoursesAssigned="@CoursesAssigned"
+                isAdding="true"
+                ButtonText="Create"
+                Context="@Context" />
+}
+<br />
+<div>
+    <a href="./instructors">Back to list</a>
+</div>
+
+@code {
+
+    /// <summary>
+    /// True if already running, otherwise false
+    /// </summary>
+    private bool Busy = default!;
+
+    /// <summary>
+    /// The Context to be passed to a razor component
+    /// </summary>
+    private SchoolContext? Context { get; set; }
+
+    /// <summary>
+    /// New <see cref="Instructor"/>.
+    /// </summary>
+    private Instructor? Instructor { get; set; }
+
+    /// <summary>
+    /// List of CourseAssigned objects wiht course IDs and titles and whether
+    /// or not the instructor is assigned to the course.
+    /// </summary>
+    private List<CourseAssigned> CoursesAssigned { get; set; } = new();
+
+    /// <summary>
+    /// Start with a fresh <see cref="Instructor"/>.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    protected override async Task OnInitializedAsync()
+    {
+        if (Busy)
+        {
+            return;
+        }
+
+        Busy = true;
+
+        try
+        {
+            Instructor = new();
+            Instructor.Courses = new List<Course>();
+            Context = DbFactory.CreateDbContext();
+            CoursesAssigned = Utility.ReturnCoursesAssigned(Context, Instructor);
+            OfficeAssignment officeAssignment = new OfficeAssignment
+                {
+                    InstructorID = 0,
+                    Location = string.Empty,
+                    Instructor = null
+                };
+            Instructor.OfficeAssignment = officeAssignment;
+        }
+        finally
+        {
+            Busy = false;
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+    public void Dispose()
+    {
+        Context?.Dispose();
+    }
+}

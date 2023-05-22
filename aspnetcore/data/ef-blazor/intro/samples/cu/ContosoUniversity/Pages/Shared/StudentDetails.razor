@@ -1,0 +1,30 @@
+﻿@using ContosoUniversity.Models
+
+<dl class="row">
+    <dt class="col-sm-2">
+        Last name
+    </dt>
+    <dd class="col-sm-10">
+        @Student?.LastName
+    </dd>
+    <dt class="col-sm-2">
+        First name
+    </dt>
+    <dd class="col-sm-10">
+        @Student?.FirstMidName
+    </dd>
+    <dt class="col-sm-2">
+        Enrollment date
+    </dt>
+    <dd class="col-sm-10">
+        @Student?.EnrollmentDate.ToShortDateString()
+    </dd>
+</dl>
+
+@code {
+    /// <summary>
+    /// New <see cref="Student"/>.
+    /// </summary>
+    [Parameter]
+    public Student? Student { get; set; }
+}

@@ -1,0 +1,233 @@
+﻿@page "/instructors/{InstructorId:int?}/{CourseId:int?}"
+
+@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using Microsoft.EntityFrameworkCore
+
+@inject IDbContextFactory<SchoolContext> DbFactory
+
+<h1>Instructors</h1>
+<hr />
+
+<p>
+    <a href="./instructors/create">Create new</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Last Name
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Hire Date
+            </th>
+            <th>
+                Office
+            </th>
+            <th>
+                Courses
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Instructors is not null && Instructors.Any())
+        {
+            @foreach (var instructor in Instructors)
+            {
+                string selectedInstructor = string.Empty;
+                if (instructor.ID == InstructorId)
+                {
+                    selectedInstructor = "table-success";
+                }
+                <tr class="@selectedInstructor">
+                    <td>
+                        @instructor.LastName
+                    </td>
+                    <td>
+                        @instructor.FirstMidName
+                    </td>
+                    <td>
+                        @instructor.HireDate.ToShortDateString()
+                    </td>
+                    <td>
+                        @if (instructor.OfficeAssignment is null || string.IsNullOrEmpty(instructor.OfficeAssignment.Location))
+                        {
+                            @:There is no office assignment.
+                        }
+                        else
+                        {
+                            @instructor.OfficeAssignment.Location
+                        }
+                    </td>
+                    <td>
+                        @{
+                            if (instructor.Courses is null || !instructor.Courses.Any())
+                            {
+                                @:The instructor currently teaches no courses.
+                            }
+                            else
+                            {
+                                foreach (var course in instructor.Courses)
+                                {
+                                    @course.CourseID
+
+                                    @:&nbsp;@course.Title <br />
+                                }
+                            }
+                        }
+                    </td>
+                    <td>
+                        <a href="./instructors/@instructor.ID">Select</a> |
+                        <a href="./instructors/edit/@instructor.ID">Edit</a> |
+                        <a href="./instructors/details/@instructor.ID">Details</a> |
+                        <a href="./instructors/delete/@instructor.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>
+                    There are no instructors.
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (InstructorId is not null)
+{
+    <h3>Courses Taught by Selected Instructor <i>@Instructors?.Single(i => i.ID == InstructorId).FullName</i></h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Number</th>
+                <th>Title</th>
+                <th>Department</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in Instructors?.Single(i => i.ID == InstructorId).Courses!)
+            {
+                string selectedCourse = string.Empty;
+                if (course.CourseID == CourseId)
+                {
+                    selectedCourse = "table-success";
+                }
+                <tr class="@selectedCourse">
+                    <td>
+                        <a href="./instructors/@InstructorId/@course.CourseID">Select</a>
+                    </td>
+                    <td>
+                        @course.CourseID
+                    </td>
+                    <td>
+                        @course.Title
+                    </td>
+                    <td>
+                        @Departments.Single(d => d.DepartmentID == course.DepartmentID).Name
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (CourseId is not null)
+{
+    <h3>Students Enrolled in Selected Course <i>@Courses?.Single(c => c.CourseID == CourseId).Title</i></h3>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Grade</th>
+        </tr>
+        @foreach (var enrollment in Courses?.Single(c => c.CourseID == CourseId).Enrollments!)
+        {
+            <tr>
+                <td>
+                   @enrollment.Student?.FullName
+                </td>
+                <td>
+                    @if (enrollment.Grade is not null)
+                    {
+                        @enrollment.Grade;
+                    }
+                    else
+                    {
+                        @:No grade
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+
+}
+
+@code {
+    /// <summary>
+    /// Course ID that was select.
+    /// </summary>
+    [Parameter]
+    public int? CourseId { get; set; } = default!;
+
+    /// <summary>
+    /// Instructor ID that was selected.
+    /// </summary>
+    [Parameter]
+    public int? InstructorId { get; set; } = default!;
+
+    /// <summary>
+    /// List of instructors
+    /// </summary>
+    private IList<Instructor> Instructors { get; set; } = default!;
+
+    /// <summary>
+    /// List of courses
+    /// </summary>
+    private IList<Course> Courses { get; set; } = default!;
+
+    /// <summary>
+    /// List of departmetns
+    /// </summary>
+    private IList<Department> Departments { get; set; } = default!;
+
+    /// <summary>
+    /// Triggered for any paging update.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    protected override async Task OnParametersSetAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        if (context.Instructors is not null)
+        {
+            Courses = await context.Courses
+            .Include(c => c.Enrollments)!
+            .ThenInclude(e => e.Student)
+            .AsNoTracking()
+            .ToListAsync();
+
+            Departments = await context.Departments
+            .Include(d => d.Courses)
+            .AsNoTracking()
+            .ToListAsync();
+
+            Instructors = await context.Instructors
+            .Include(i => i.Courses)
+            .Include(i => i.OfficeAssignment)
+            .AsNoTracking()
+            .ToListAsync();
+        }
+        await base.OnParametersSetAsync();
+    }
+}

@@ -1,0 +1,92 @@
+﻿@page "/departments/create"
+
+@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.EntityFrameworkCore
+
+@implements IDisposable
+@inject IDbContextFactory<SchoolContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<h1>Create</h1>
+
+<h4>Department</h4>
+<hr />
+
+@if (Department is null)
+{
+    <div class="alert alert-warning">An empty department could not be created.  Please refresh the page.</div>
+}
+else
+{
+    <DepartmentForm Busy="@Busy"
+                Department="@Department"
+                Instructors="@Instructors"
+                StepValue="1000"
+                isAdding="true"
+                ButtonText="Create"
+                Context="@Context" />
+}
+<br />
+<div>
+    <a href="./departments">Back to list</a>
+</div>
+
+@code {
+    /// <summary>
+    /// True if already running, otherwise false
+    /// </summary>
+    private bool Busy = default!;
+
+    /// <summary>
+    /// The Context to be passed to a razor component
+    /// </summary>
+    private SchoolContext? Context { get; set; }
+
+    /// <summary>
+    /// New <see cref="Department"/>.
+    /// </summary>
+    private Department? Department { get; set; }
+
+    ///  <summary>
+    /// List of instructors who can be administrator
+    /// </summary>
+    private IList<Instructor> Instructors { get; set; } = default!;
+
+    /// <summary>
+    /// Start with a fresh <see cref="Department"/>.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    protected override async Task OnInitializedAsync()
+    {
+        if (Busy)
+        {
+            return;
+        }
+
+        Busy = true;
+
+        try
+        {
+            Department = new();
+
+            Context = DbFactory.CreateDbContext();
+            if (Context.Instructors is not null)
+            {
+                Instructors = await Context.Instructors.ToListAsync();
+            }
+        }
+        finally
+        {
+            Busy = false;
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+    public void Dispose()
+    {
+        Context?.Dispose();
+    }
+}

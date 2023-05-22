@@ -1,0 +1,195 @@
+﻿@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using ContosoUniversity.Models.ViewModels
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.IdentityModel.Tokens;
+
+@inject IDbContextFactory<SchoolContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<EditForm Model="@Instructor" OnValidSubmit="(async () => await Save())">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <label class="control-label">Last name</label>
+    <div class="form-group">
+        <InputText @bind-Value="@Instructor.LastName" class="form-control" />
+        <ValidationMessage For="@(() => Instructor.LastName)" />
+    </div>
+    <label class="control-label">First name</label>
+    <div class="form-group">
+        <InputText @bind-Value="@Instructor.FirstMidName" class="form-control" />
+        <ValidationMessage For="@(() => Instructor.FirstMidName)" />
+    </div>
+    <label class="control-label">Hire date</label>
+    <div class="form-group">
+        <InputDate @bind-Value="@Instructor.HireDate" class="form-control" />
+        <ValidationMessage For="@(() => Instructor.HireDate)" />
+    </div>
+    <label class="control-label">Office assignment</label>
+    <div class="form-group">
+        @if (Instructor.OfficeAssignment is null)
+        {
+            @:There is no office assignment.
+        }
+        else
+        {
+            <InputText @bind-Value="@Instructor.OfficeAssignment.Location" class="form-control" />
+            <ValidationMessage For="@(() => Instructor.OfficeAssignment.Location)" />
+        }
+    </div>
+    <label class="control-label">Course assignments</label>
+    <div class="form-group">
+        <div class="table">
+            <table>
+                @{
+                    int cnt = 0;
+                    foreach (var courseAssigned in CoursesAssigned)
+                    {
+                        if (cnt++ % 3 == 0)
+                        {
+                            @:<tr>
+                        }
+                        @:<td>
+                        <InputCheckbox @bind-Value="@courseAssigned.Assigned" />                         
+                        @:&nbsp;
+                        @courseAssigned.CourseID @:  @courseAssigned.Title
+                        @:&nbsp;</td>
+                        if (cnt % 3 == 0 || cnt >= CoursesAssigned.Count)
+                        {
+                            @:</tr>
+                        }
+                    }
+                }
+             </table>
+        </div>
+    </div>
+    <br />
+    <div>
+        <button type="submit" class="btn btn-success" disabled="@Busy">@ButtonText</button>
+    </div>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <br />
+    @if (isAdding)
+    {
+        <div class="alert alert-danger">Failed to create the instructor (@ErrorMessage).</div>
+    }
+    else
+    {
+        <div class="alert alert-danger">Failed to save the instructor (@ErrorMessage).</div>
+    }
+}
+
+@code {
+    /// <summary>
+    /// True if already running, otherwise false
+    /// </summary>
+    [Parameter]
+    public bool Busy { get; set; } = default!;
+
+    /// <summary>
+    /// Context passed to this razor component
+    /// </summary>
+    [Parameter]
+    public SchoolContext? Context { get; set; }
+
+    /// <summary>
+    /// New <see cref="Instructor"/>.
+    /// </summary>
+    [Parameter]
+    public Instructor Instructor { get; set; } = default!;
+
+    /// <summary>
+    /// The text of the button, e.g., Create or Save
+    /// </summary>
+    [Parameter]
+    public string ButtonText { get; set; } = default!;
+
+    /// <summary>
+    /// True if adding to the database, otherwise false if updating
+    /// </summary>
+    [Parameter]
+    public bool isAdding { get; set; } = default!;
+
+    /// <summary>
+    /// List of CourseAssigned objects wiht course IDs and titles and whether
+    /// or not the instructor is assigned to the course.
+    /// </summary>
+    [Parameter]
+    public List<CourseAssigned> CoursesAssigned { get; set; } = default!;
+
+    /// <summary>
+    /// The error message.
+    /// </summary>
+    private string ErrorMessage = default!;
+
+    /// <summary>
+    /// Respond to a forms submission.
+    /// </summary>
+    private async Task Save()
+    {
+        try
+        {  
+            if (Context is not null)
+            {
+                // This just attaches
+                if (Instructor is not null)
+                {
+                    PopulateInstructorCourses();
+                    if (isAdding)
+                    {
+                        Context.Instructors?.Add(Instructor);
+                    }
+                    else
+                    {
+                        Context.Instructors?.Update(Instructor);
+                    }
+                }
+
+                await Context.SaveChangesAsync();
+                NavigationManager.NavigateTo("./instructors");
+            }
+            else
+            {
+                throw new ArgumentException("The Context cannot be null.", nameof(Context));
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
+    }
+
+    /// <summary>
+    /// Populate the courses to which the instructor is assigned.
+    /// </summary>
+    private void PopulateInstructorCourses()
+    {
+        Instructor.Courses ??= new List<Course>();
+        var selectedCourseIDs = new HashSet<int>(CoursesAssigned.Where(c => c.Assigned).Select(c => c.CourseID));
+        var instructorCourseIDs = new HashSet<int>(Instructor.Courses.Select(c => c.CourseID));
+
+        // Note that Context is not null when this procedure is called
+        foreach (var course in Context!.Courses)
+        {
+            if (selectedCourseIDs.Contains(course.CourseID))
+            {
+                if (!instructorCourseIDs.Contains(course.CourseID))
+                {
+                    Instructor.Courses.Add(course);
+                }
+            }
+            else
+            {
+                if (instructorCourseIDs.Contains(course.CourseID))
+                {
+                    var courseToRemove = Instructor.Courses.Single(c => c.CourseID == course.CourseID);
+                    courseToRemove.Instructors?.Remove(Instructor);
+                }
+            }
+         }
+    }
+}

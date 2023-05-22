@@ -1,0 +1,122 @@
+﻿@page "/instructors/edit/{InstructorId:int}"
+
+@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using ContosoUniversity.Models.ViewModels
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.EntityFrameworkCore
+
+@implements IDisposable
+@inject IDbContextFactory<SchoolContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<h1>Edit</h1>
+
+<h4>Instructor</h4>
+<hr />
+
+@if (Instructor is null)
+{
+    <div class="alert alert-warning">A instructor with the id @InstructorId does not exist.</div>
+}
+else
+{
+    <InstructorForm Busy="@Busy"
+        Instructor="@Instructor"
+        CoursesAssigned="@CoursesAssigned"
+        isAdding="false"
+        ButtonText="Save"
+        Context="@Context" />
+}
+<br />
+<div>
+    <a href="./instructors">Back to list</a>
+</div>
+
+@code {
+    /// <summary>
+    /// True if already running, otherwise false
+    /// </summary>
+    private bool Busy = default!;
+
+    /// <summary>
+    /// The Context to be passed to a razor component
+    /// </summary>
+    private SchoolContext? Context { get; set; }
+
+    /// <summary>
+    /// Id from route of the instructor.
+    /// </summary>
+    [Parameter]
+    public int InstructorId { get; set; }
+
+    /// <summary>
+    /// New <see cref="Instructor"/>.
+    /// </summary>
+    private Instructor? Instructor { get; set; }
+
+    /// <summary>
+    /// List of CourseAssigned objects wiht course IDs and titles and whether
+    /// or not the instructor is assigned to the course.
+    /// </summary>
+    private List<CourseAssigned> CoursesAssigned { get; set; } = new();
+
+    /// <summary>
+    /// Start with a fresh <see cref="Instructor"/>.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    protected override async Task OnInitializedAsync()
+    {
+        if (Busy)
+        {
+            return;
+        }
+
+        Busy = true;
+
+        try
+        {
+            Instructor = null;
+
+            Context = DbFactory.CreateDbContext();
+
+            if (Context.Instructors is not null)
+            {
+                Instructor = await Context.Instructors
+                .Include(i => i.OfficeAssignment)
+                .Include(i => i.Courses)
+                .SingleOrDefaultAsync(s => s.ID == InstructorId);
+
+                if (Instructor is not null)
+                {
+                    if (Instructor.OfficeAssignment is null)
+                    {
+                        OfficeAssignment officeAssignment = new OfficeAssignment
+                            {
+                                InstructorID = 0,
+                                Location = string.Empty,
+                                Instructor = null
+                            };
+                        Instructor.OfficeAssignment = officeAssignment;
+                    }
+                    if (Instructor.Courses is null)
+                    {
+                        Instructor.Courses = new List<Course>();
+                    }
+                    CoursesAssigned = Utility.ReturnCoursesAssigned(Context, Instructor);
+                }
+            }
+        }
+        finally
+        {
+            Busy = false;
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+    public void Dispose()
+    {
+        Context?.Dispose();
+    }
+}

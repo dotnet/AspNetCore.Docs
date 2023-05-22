@@ -1,0 +1,94 @@
+﻿@page "/students/edit/{StudentId:int}"
+
+@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.EntityFrameworkCore
+
+@implements IDisposable
+@inject IDbContextFactory<SchoolContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<h1>Edit</h1>
+
+<h4>Student</h4>
+<hr />
+
+@if (Student is null)
+{
+    <div class="alert alert-warning">A student with the id @StudentId does not exist.</div>
+}
+else
+{
+    <StudentForm Busy="@Busy"
+             Student="@Student"
+             isAdding="false"
+             ButtonText="Save"
+             Context="@Context" />
+}
+<br />
+<div>
+    <a href="./students">Back to list</a>
+</div>
+
+@code {
+    /// <summary>
+    /// True if already running, otherwise false
+    /// </summary>
+    private bool Busy = default!;
+
+    /// <summary>
+    /// The Context to be passed to a razor component
+    /// </summary>
+    private SchoolContext? Context { get; set; }
+
+    /// <summary>
+    /// Id from route of the student.
+    /// </summary>
+    [Parameter]
+    public int StudentId { get; set; }
+
+    /// <summary>
+    /// New <see cref="Student"/>.
+    /// </summary>
+    private Student? Student { get; set; }
+
+    /// <summary>
+    /// Start with a fresh <see cref="Student"/>.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    protected override async Task OnInitializedAsync()
+    {
+        if (Busy)
+        {
+            return;
+        }
+
+        Busy = true;
+
+        try
+        {
+            Student = null;
+
+            Context = DbFactory.CreateDbContext();
+
+            if (Context.Students is not null)
+            {
+                Student = await Context.Students
+                .SingleOrDefaultAsync(s => s.ID == StudentId);
+            }
+
+        }
+        finally
+        {
+            Busy = false;
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+    public void Dispose()
+    {
+        Context?.Dispose();
+    }
+}

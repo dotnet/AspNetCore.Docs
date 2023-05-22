@@ -1,0 +1,100 @@
+﻿@page "/departments"
+
+@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using Microsoft.EntityFrameworkCore
+
+@inject IDbContextFactory<SchoolContext> DbFactory
+
+<h1>Departments</h1>
+<hr />
+
+<p>
+    <a href="./departments/create">Create new</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Budget
+            </th>
+            <th>
+                Start date
+            </th>
+            <th>
+                Administrator
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Departments is not null && Departments.Any())
+        {
+            @foreach (var department in Departments)
+            {
+                <tr>
+                    <td>
+                        @department.Name
+                    </td>
+                    <td>
+                        @department.Budget.ToString("C")
+                    </td>
+                    <td>
+                        @department.StartDate.ToShortDateString()
+                    </td>
+                    <td>
+                        @if (@department.Administrator is not null)
+                        {
+                            @department.Administrator.FullName
+                        }
+                        else
+                        {
+                            @:There is no administrator.
+                        }
+                    </td>
+                    <td>
+                        <a href="./departments/edit/@department.DepartmentID">Edit</a> |
+                        <a href="./departments/details/@department.DepartmentID">Details</a> |
+                        <a href="./departments/delete/@department.DepartmentID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>
+                    There are no departments.
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private IList<Department> Departments { get; set; } = default!;
+
+    /// <summary>
+    /// Triggered for any paging update.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    protected override async Task OnParametersSetAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        if (context.Departments is not null)
+        {
+            Departments = await context.Departments
+            .AsNoTracking()
+            .Include(d => d.Administrator).ToListAsync();
+        }
+        await base.OnParametersSetAsync();
+    }
+}

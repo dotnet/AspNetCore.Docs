@@ -1,0 +1,325 @@
+﻿@page "/students/{CurrentPage:int?}"
+
+@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.Extensions.Configuration
+
+@inject IDbContextFactory<SchoolContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<h1>Students</h1>
+<hr />
+
+<p>
+    <a href="./students/create">Create new</a>
+</p>
+
+<div>
+    <div>
+        Filter by name:
+        <input type="text" autofocus @bind-value="TextFilter" @bind-value:event="oninput" @bind-value:after="() => EnableDisablePreviousNext(FilteredStudents.Item2)" />
+        <button class="button-link" @onclick="@(() => BackToFullList())">Back to full list</button>
+    </div>
+    <br />
+    <div>
+        <button class="btn btn-success" @onclick="@(() => NavigationManager.NavigateTo(String.Format("./students/{0}", --CurrentPage)))" disabled="@disablePrevious">Previous</button>
+        <button class="btn btn-success" @onclick="@(() => NavigationManager.NavigateTo(String.Format("./students/{0}", ++CurrentPage)))" disabled="@disableNext">Next</button>
+    </div>
+    <br />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <button class="button-link" @onclick="@(() => DisplaySortColumn(Column.LastName, CurrentSortOrder))">Last name</button>
+                    &nbsp;<span style="visibility:@LastNameArrowVisibilty">@(new MarkupString(LastNameArrow))</span>
+                </th>
+                <th>
+                    <button class="button-link" @onclick="@(() => DisplaySortColumn(Column.FirstMidName, CurrentSortOrder))">First name</button>
+                    &nbsp;<span style="visibility:@FirstMidNameArrowVisibilty">@(new MarkupString(FirstMidNameArrow))</span>
+                </th>
+                <th>
+                    <button class="button-link" @onclick="@(() => DisplaySortColumn(Column.EnrollmentDate, CurrentSortOrder))">Enrollment date</button>
+                    &nbsp;<span style="visibility:@EnrollmentDateArrowVisibilty">@(new MarkupString(EnrollmentDateArrow))</span>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Students is not null && Students.Any())
+            {
+                @foreach (var student in FilteredStudents.Item1)
+                {
+                    <tr>
+                        <td>
+                            @student.LastName
+                        </td>
+                        <td>
+                            @student.FirstMidName
+                        </td>
+                        <td>
+                            @student.EnrollmentDate.ToShortDateString()
+                        </td>
+                        <td>
+                            <a href="./students/edit/@student.ID">Edit</a> |
+                            <a href="./students/details/@student.ID">Details</a> |
+                            <a href="./students/delete/@student.ID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        There are no students.
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    /// <summary>
+    /// Current page. Page 1 if null.
+    /// </summary>
+    [Parameter]
+    public int? CurrentPage { get; set; } = default!;
+
+    /// <summary>
+    /// The text on which to filter.
+    /// </summary>
+    [Parameter]
+    public string TextFilter { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Column names and current column.
+    /// </summary>
+    private enum Column { LastName, FirstMidName, EnrollmentDate }
+    private Column CurrentColumn { get; set; } = Column.LastName;
+
+    /// <summary>
+    /// Sort order and current sort order.
+    /// </summary>
+    private enum SortOrder { Ascending, Descending }
+    private SortOrder CurrentSortOrder { get; set; } = SortOrder.Ascending;
+
+    /// <summary>
+    /// Static strings for the arrows down ↓ and up ↑.
+    /// </summary>
+    private static string DownArrow = "&darr;";
+    private static string UpArrow = "&uarr;";
+
+    /// <summary>
+    /// Holds the up or down arrow.
+    /// </summary>
+    private string LastNameArrow { get; set; } = DownArrow;
+    private string FirstMidNameArrow { get; set; } = DownArrow;
+    private string EnrollmentDateArrow { get; set; } = DownArrow;
+
+    /// <summary>
+    /// The column is visible if active, otherwise it is hidden.
+    /// </summary>
+    private string LastNameArrowVisibilty { get; set; } = "visible";
+    private string FirstMidNameArrowVisibilty { get; set; } = "hidden";
+    private string EnrollmentDateArrowVisibilty { get; set; } = "hidden";
+
+    /// <summary>
+    /// This sets the arrow, up or down, the visibility, visible or hidden,
+    /// the CurrentColumn, and the CurrentSortOrder.  The actual sorting is
+    /// performed by SortStudents(CurrentColumn, CurrentSortOrder)
+    /// via FilteredStudents.
+    /// </summary>
+    /// <param name="column">Column</param>
+    /// <param name="sortOrder">SortOrder</param>
+    /// <exception cref="ArgumentOutOfRangeException">There should never be an exception</exception>
+    private void DisplaySortColumn(Column column, SortOrder sortOrder)
+    {
+        switch (column)
+        {
+            case Column.LastName:
+                LastNameArrowVisibilty = "visible";
+                FirstMidNameArrowVisibilty = "hidden";
+                EnrollmentDateArrowVisibilty = "hidden";
+                LastNameArrow = ArrowDirection();
+                break;
+            case Column.FirstMidName:
+                LastNameArrowVisibilty = "hidden";
+                FirstMidNameArrowVisibilty = "visible";
+                EnrollmentDateArrowVisibilty = "hidden";
+                FirstMidNameArrow = ArrowDirection();
+                break;
+            case Column.EnrollmentDate:
+                LastNameArrowVisibilty = "hidden";
+                FirstMidNameArrowVisibilty = "hidden";
+                EnrollmentDateArrowVisibilty = "visible";
+                EnrollmentDateArrow = ArrowDirection();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(column), $"Unexpected column value: {column}");
+        }
+
+        // Procedure scoped to SortColumn(Column column, SortOrder sortOrder)
+        string ArrowDirection()
+        {
+            if (column == CurrentColumn)
+            {
+                switch (sortOrder)
+                {
+                    case SortOrder.Ascending: CurrentSortOrder = SortOrder.Descending; return UpArrow;
+                    case SortOrder.Descending: CurrentSortOrder = SortOrder.Ascending; return DownArrow;
+                    default: throw new ArgumentOutOfRangeException(nameof(sortOrder), $"Unexpected sort order value: {sortOrder}");
+                }
+            }
+            else
+            {
+                CurrentColumn = column;
+                CurrentSortOrder = SortOrder.Ascending;
+                return DownArrow;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Page of students filtered on text filter.
+    /// </summary>
+    private Tuple<IEnumerable<Student>, int> FilteredStudents => ReturnPage();
+
+    [Inject]
+    private IConfiguration? Configuration { get; set; } = default!;
+
+    /// <summary>
+    /// Disable the previous and next buttons as required.
+    /// </summary>
+    private bool disablePrevious { get; set; } = true;
+    private bool disableNext { get; set; } = false;
+    private void EnableDisablePreviousNext(int lastPage)
+    {
+        if (CurrentPage <= 1)
+        {
+            disablePrevious = true;
+            CurrentPage = 1;
+        }
+        else
+        {
+            disablePrevious = false;
+        }
+
+        if (CurrentPage >= lastPage)
+        {
+            disableNext = true;
+            CurrentPage = lastPage;
+        }
+        else
+        {
+            disableNext = false;
+        }
+    }
+
+    /// <summary>
+    /// Obtain a list of filtered and sorted students,
+    /// and then return the current page.
+    /// </summary>
+    /// <returns>Tuple(Page of students, Last page)</returns>
+    private Tuple<IEnumerable<Student>, int> ReturnPage()
+    {
+        if (CurrentPage is null)
+        {
+            CurrentPage = 1;
+        }
+
+        IEnumerable<Student> students = FilterAndSortStudents(CurrentColumn, CurrentSortOrder);
+        int pageSize = Configuration is null ? 4 : Configuration.GetValue("PageSize", 4);
+        int lastPage = (int)Math.Ceiling(students.Count() / (double)pageSize);
+        EnableDisablePreviousNext(lastPage);
+
+        return Tuple.Create(students.Skip(((int)CurrentPage - 1) * pageSize).Take(pageSize), lastPage);
+
+        // Procedure scoped to ReturnPage()
+        //
+        //  Filter and then sort the list of students given
+        // the column and sortOrder.
+        IEnumerable<Student> FilterAndSortStudents(Column column, SortOrder sortOrder)
+        {
+            var students = Students;
+
+            if (!string.IsNullOrEmpty(TextFilter))
+            {
+                students = students.Where(s =>
+                    (!string.IsNullOrEmpty(s.LastName) && s.LastName.IndexOf(TextFilter, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                    (!string.IsNullOrEmpty(s.FirstMidName) && s.FirstMidName.IndexOf(TextFilter, StringComparison.OrdinalIgnoreCase) >= 0)
+                ).ToList();
+            }
+
+            // Somewhat of a brut force implementation, but easy to comprehend
+            switch (sortOrder)
+            {
+                case SortOrder.Ascending:
+                    switch (column)
+                    {
+                        case Column.LastName:
+                            return from student in students orderby student.LastName ascending select student;
+                        case Column.FirstMidName:
+                            return from student in students orderby student.FirstMidName ascending select student;
+                        case Column.EnrollmentDate:
+                            return from student in students orderby student.EnrollmentDate ascending select student;
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(column), $"Unexpected column value: {column}");
+                    }
+                case SortOrder.Descending:
+                    switch (column)
+                    {
+                        case Column.LastName:
+                            return from student in students orderby student.LastName descending select student;
+                        case Column.FirstMidName:
+                            return from student in students orderby student.FirstMidName descending select student;
+                        case Column.EnrollmentDate:
+                            return from student in students orderby student.EnrollmentDate descending select student;
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(column), $"Unexpected column value: {column}");
+                    }
+                default: throw new ArgumentOutOfRangeException(nameof(sortOrder), $"Unexpected sort order value: {sortOrder}");
+            }
+        }
+    }
+
+    private void BackToFullList()
+    {
+        TextFilter = string.Empty;
+        CurrentPage = null;
+        CurrentColumn = Column.LastName;
+        CurrentSortOrder = SortOrder.Ascending;
+        disablePrevious = true;
+        disableNext = false;
+        LastNameArrow = DownArrow;
+        FirstMidNameArrow = DownArrow;
+        EnrollmentDateArrow = DownArrow;
+        LastNameArrowVisibilty = "visible";
+        FirstMidNameArrowVisibilty = "hidden";
+        EnrollmentDateArrowVisibilty = "hidden";
+        NavigationManager.NavigateTo("./students");
+    }
+
+    private IList<Student> Students { get; set; } = default!;
+    /// <summary>
+    /// Triggered for any paging update.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    protected override async Task OnParametersSetAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        if (context.Students is not null)
+        {
+            Students = await context.Students
+            .AsNoTracking()
+            .ToListAsync();
+        }
+
+        await base.OnParametersSetAsync();
+    }
+}

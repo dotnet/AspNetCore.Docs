@@ -1,0 +1,36 @@
+﻿@using ContosoUniversity.Models
+
+<dl class="row">
+    <dt class="col-sm-2">
+        Number
+    </dt>
+    <dd class="col-sm-10">
+        @Course?.CourseID
+    </dd>
+    <dt class="col-sm-2">
+        Title
+    </dt>
+    <dd class="col-sm-10">
+        @Course?.Title
+    </dd>
+    <dt class="col-sm-2">
+        Credits
+    </dt>
+    <dd class="col-sm-10">
+        @Course?.Credits
+    </dd>
+    <dt class="col-sm-2">
+        Department
+    </dt>
+    <dd class="col-sm-10">
+        @Course?.Department?.Name
+    </dd>
+</dl>
+
+@code {
+    /// <summary>
+    /// New <see cref="Course"/>.
+    /// </summary>
+    [Parameter]
+    public Course? Course { get; set; }
+}

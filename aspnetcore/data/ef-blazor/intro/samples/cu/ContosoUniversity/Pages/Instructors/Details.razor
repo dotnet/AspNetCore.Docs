@@ -1,0 +1,71 @@
+﻿@page "/instructors/details/{InstructorId:int}"
+
+@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using Microsoft.EntityFrameworkCore
+
+@inject IDbContextFactory<SchoolContext> DbFactory
+
+@inject NavigationManager NavigationManager
+
+<h1>Details</h1>
+
+<h4>Instructor</h4>
+<hr />
+
+@if (Instructor is null)
+{
+    <div class="alert alert-warning">An instructor with the id @InstructorId does not exist.</div>
+}
+else
+{
+    <InstructorDetails Instructor="@Instructor" />
+    <div>
+        <button class="btn btn-success" @onclick="@(() => Edit())">Edit</button>
+    </div>
+}
+<br />
+<div>
+    <a href="./instructors">Back to list</a>
+</div>
+
+
+@code {
+    /// <summary>
+    /// Id from route of the instructor.
+    /// </summary>
+    [Parameter]
+    public int InstructorId { get; set; }
+
+    /// <summary>
+    /// Instructor entity.
+    /// </summary>
+    private Instructor? Instructor { get; set; }
+
+    /// <summary>
+    /// Triggered for any paging update.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    protected override async Task OnParametersSetAsync()
+    {
+        Instructor = null;
+
+        using var context = DbFactory.CreateDbContext();
+        if (context.Instructors is not null)
+        {
+            Instructor = await context.Instructors
+            .AsNoTracking()
+            .SingleOrDefaultAsync(s => s.ID == InstructorId);
+        }
+
+        await base.OnParametersSetAsync();
+    }
+
+    /// <summary>
+    /// Edit instructor
+    /// </summary>
+    private void Edit()
+    {
+        NavigationManager.NavigateTo(string.Format("./instructors/edit/{0}", InstructorId));
+    }
+}

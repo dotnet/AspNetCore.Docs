@@ -1,0 +1,43 @@
+﻿<h3>Notes on this blazor implementation of Contoso Univeristy</h3>
+
+<div>
+    <p>
+        Dear Reader,
+    </p>
+
+    <p>
+        Here are some notes on the blazor implementation of Contoso Univeristy compared to the
+        <a href="https://docs.microsoft.com/aspnet/core/data/ef-rp/intro">razor pages implemenation of Contoso Univeristy</a>.
+        Please read through the Razor Pages Contoso University <a href="https://docs.microsoft.com/aspnet/core/data/ef-rp/intro">tutorials</a>
+        first before reading the code in this sample.
+    </p>
+
+    <p>
+        The following folders and files are essentially or functional equivalent between the blazor and razor pages implementations:
+        <ul>
+            <li><code>Connected Services</code></li>
+            <li><code>Dependances</code></li>
+            <li><code>Properties</code></li>
+            <li><code>wwwroot</code></li>
+            <li><code>Data</code></li>
+            <li><code>Migrations</code></li>
+            <li><code>Models</code> where <code>Models/ViewModels</code> is simplified in blazor compared to <code>Models/SchoolViewModels</code> in razor pages</li>
+            <li><code>About.razor</code> and <code>About.cshtml</code></li>
+            <li><code>Index.razor</code> and <code>Index.cshtml</code></li>
+            <li><code>Privacy.razor</code> and <code>Privacy.cshtml</code></li>
+            <li><code>PaginatedList.cs</code> was dropped and absorbed into <code>Students/Index.razor</code> as a tuple (a double) for educational clarity</li>
+        </ul>
+        For blazor, under <code>Pages/Shared</code>, the files <code>MainLayout.razor</code> and <code>NavMenu.razor</code> were adapted from the
+        <a href="https://github.com/dotnet/blazor-samples/tree/main/7.0/BlazorServerEFCoreSample">Blazor Server EF Core sample project source code</a> and not from the
+        <a href="https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu">Razor Pages with Entity Framework Core sample project source code</a>.
+        Consquently, the blazor fun is in the folders <code>Courses</code>, <code>Departments</code>, <code>Instructors</code>, <code>Shared</code>, and <code>Students</code>.
+        Let <code>X</code> represent <code>Courses</code>, <code>Departments</code>, <code>Instructors</code>, or <code>Students</code>.  Each <code>X</code> has the files
+        <code>Create.razor</code>, <code>Edit.razor</code>, <code>Details.razor</code>, and <code>Delete.razor</code> similar to the razor pages project.  <code>Create.razor</code>
+        and <code>Edit.razor</code> use the common component (code) <code>Shared/XForm.razor</code>.  <code>Details.razor</code> and <code>Delete.razor</code> use the common
+        component <code>Shared/XDetails.code</code>.
+    </p>
+
+    <p>
+        Have fun.
+    </p>
+</div>

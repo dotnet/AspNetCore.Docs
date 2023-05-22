@@ -1,0 +1,120 @@
+﻿@page "/instructors/delete/{InstructorId:int}"
+
+@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using Microsoft.EntityFrameworkCore
+
+@inject IDbContextFactory<SchoolContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<h1>Delete</h1>
+
+<h3 class="alert alert-warning">Are you sure that you wish to delete this instructor?</h3>
+
+<h4>Instructor</h4>
+<hr />
+
+@if (Instructor is null)
+{
+    <div class="alert alert-warning">An instructor with the id @InstructorId does not exist.</div>
+}
+else
+{
+    <InstructorDetails Instructor="@Instructor" />
+    <div>
+        <button class="btn btn-danger" @onclick="@(() => DeleteAsync())">Delete</button>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <br />
+    <div class="alert alert-danger">Failed to delete the instructor (@ErrorMessage).</div>
+}
+
+<br />
+<div>
+    <a href="./instructors">Back to list</a>
+</div>
+
+@code {
+    /// <summary>
+    /// The error message.
+    /// </summary>
+    private string ErrorMessage = default!;
+
+    /// <summary>
+    /// Id from route of the instructor.
+    /// </summary>
+    [Parameter]
+    public int InstructorId { get; set; }
+
+    /// <summary>
+    /// Instructor entity.
+    /// </summary>
+    private Instructor? Instructor { get; set; }
+
+    /// <summary>
+    /// Loads the contact
+    /// </summary>
+    /// <returns>Task</returns>
+    private async Task LoadAsync()
+    {
+        Instructor = null;
+
+        using var context = DbFactory.CreateDbContext();
+        if (context.Instructors is not null)
+        {
+            Instructor = await context.Instructors
+            .SingleOrDefaultAsync(s => s.ID == InstructorId);
+        }
+    }
+
+    /// <summary>
+    /// Delete the instructor.
+    /// </summary>
+    /// <returns>Task</returns>
+    private async Task DeleteAsync()
+    {
+        using var context = DbFactory?.CreateDbContext();
+        if (context?.Instructors is not null)
+        {
+            var instructor = await context.Instructors
+            .SingleOrDefaultAsync(s => s.ID == InstructorId);
+
+            if (instructor is not null)
+            {
+                context.Instructors?.Remove(instructor);
+                try
+                {
+                    await context.SaveChangesAsync();
+                    NavigationManager.NavigateTo("./instructors");
+                }
+                catch (Exception ex)
+                {
+                    ErrorMessage = ex.Message;
+                }
+            }
+            else
+            {
+                // Show not found
+                await LoadAsync();
+            }
+        }
+        else
+        {
+            // Show not found
+            await LoadAsync();
+        }
+    }
+
+    /// <summary>
+    /// Triggered for any paging update.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    protected override async Task OnParametersSetAsync()
+    {
+        await LoadAsync();
+        await base.OnParametersSetAsync();
+    }
+}

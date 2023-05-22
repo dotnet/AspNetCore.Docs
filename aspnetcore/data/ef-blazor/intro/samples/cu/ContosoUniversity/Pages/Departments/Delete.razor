@@ -1,0 +1,121 @@
+﻿@page "/departments/delete/{DepartmentId:int}"
+
+@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using Microsoft.EntityFrameworkCore
+
+@inject IDbContextFactory<SchoolContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<h1>Delete</h1>
+
+<h3 class="alert alert-warning">Are you sure that you wish to delete this department?</h3>
+
+<h4>Department</h4>
+<hr />
+
+@if (Department is null)
+{
+    <div class="alert alert-warning">A department with the id @DepartmentId does not exist.</div>
+}
+else
+{
+    <DepartmentDetails Department="@Department" />
+    <div>
+        <button class="btn btn-danger" @onclick="@(() => DeleteAsync())">Delete</button>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <br />
+    <div class="alert alert-danger">Failed to delete the department (@ErrorMessage).</div>
+}
+
+<br />
+<div>
+    <a href="./departments">Back to list</a>
+</div>
+
+@code {
+    /// <summary>
+    /// The error message.
+    /// </summary>
+    private string ErrorMessage = default!;
+
+    /// <summary>
+    /// Id from route of the department.
+    /// </summary>
+    [Parameter]
+    public int DepartmentId { get; set; }
+
+    /// <summary>
+    /// Department entity.
+    /// </summary>
+    private Department? Department { get; set; }
+
+    /// <summary>
+    /// Loads the contact
+    /// </summary>
+    /// <returns>Task</returns>
+    private async Task LoadAsync()
+    {
+        Department = null;
+
+        using var context = DbFactory.CreateDbContext();
+        if (context.Departments is not null)
+        {
+            Department = await context.Departments
+            .Include(d => d.Administrator)
+            .SingleOrDefaultAsync(d => d.DepartmentID == DepartmentId);
+        }
+    }
+
+    /// <summary>
+    /// Delete the department.
+    /// </summary>
+    /// <returns>Task</returns>
+    private async Task DeleteAsync()
+    {
+        using var context = DbFactory?.CreateDbContext();
+        if (context?.Departments is not null)
+        {
+            var department = await context.Departments
+                .SingleOrDefaultAsync(d => d.DepartmentID == DepartmentId);
+
+            if (department is not null)
+            {
+                context.Departments?.Remove(department);
+                try
+                {
+                    await context.SaveChangesAsync();
+                    NavigationManager.NavigateTo("./departments");
+                }
+                catch (Exception ex)
+                {
+                    ErrorMessage = ex.Message;
+                }
+            }
+            else
+            {
+                // Show not found
+                await LoadAsync();
+            }
+        }
+        else
+        {
+            // Show not found
+            await LoadAsync();
+        }
+    }
+
+    /// <summary>
+    /// Triggered for any paging update.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    protected override async Task OnParametersSetAsync()
+    {
+        await LoadAsync();
+        await base.OnParametersSetAsync();
+    }
+}

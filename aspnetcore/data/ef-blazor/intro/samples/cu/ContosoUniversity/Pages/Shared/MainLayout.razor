@@ -1,0 +1,24 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">Powered by ASP.NET</a>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+
+        <br />
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2023 - Contoso University - <a href="./privacy">Privacy policy</a>
+            </div>
+        </footer>
+    </main>
+</div>

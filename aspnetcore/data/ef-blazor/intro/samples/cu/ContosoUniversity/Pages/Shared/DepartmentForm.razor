@@ -1,0 +1,150 @@
+﻿@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.EntityFrameworkCore
+
+@inject IDbContextFactory<SchoolContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<EditForm Model="@Department" OnValidSubmit="(async () => await Save())">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <label class="control-label">Name</label>
+    <div class="form-group">
+        <InputText @bind-Value="@Department.Name" class="form-control" />
+        <ValidationMessage For="@(() => Department.Name)" />
+    </div>
+    <label class="control-label">Budget</label>
+    <div class="form-group">
+        <InputNumber @bind-Value="@Department.Budget" class="form-control" step="@StepValue" />
+        <ValidationMessage For="@(() => Department.Budget)" />
+    </div>
+    <label class="control-label">Start date</label>
+    <div class="form-group">
+        <InputDate @bind-Value="@Department.StartDate" class="form-control" />
+        <ValidationMessage For="@(() => Department.StartDate)" />
+    </div>
+    <label class="control-label">Administrator</label>
+    <div class="form-group">
+        <InputSelect @bind-Value="@Department.InstructorID" class="form-control">
+            @if (Instructors is not null && Instructors.Any())
+            {
+                <option value="0">-- No administrator --</option>
+                foreach (var instructor in Instructors)
+                {
+                    <option value="@instructor.ID">@instructor.FullName</option>
+                }
+            }
+            else
+            {
+                <option value="0">There are no instructors.</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="@(() => Department.InstructorID)" />
+    </div>
+    <br />
+    <div>
+        <button type="submit" class="btn btn-success" disabled="@Busy">@ButtonText</button>
+    </div>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <br />
+    @if (isAdding)
+    {
+        <div class="alert alert-danger">Failed to create the department (@ErrorMessage).</div>
+    }
+    else
+    {
+        <div class="alert alert-danger">Failed to save the department (@ErrorMessage).</div>
+    }
+}
+
+@code {
+    /// <summary>
+    /// True if already running, otherwise false
+    /// </summary>
+    [Parameter]
+    public bool Busy { get; set; } = default!;
+
+    /// <summary>
+    /// Context passed to this razor component
+    /// </summary>
+    [Parameter]
+    public SchoolContext? Context { get; set; }
+
+    /// <summary>
+    /// New <see cref="Department"/>.
+    /// </summary>
+    [Parameter]
+    public Department Department { get; set; } = default!;
+
+    ///  <summary>
+    /// List of instructors who can be administrator
+    /// </summary>
+    [Parameter]
+    public IList<Instructor> Instructors { get; set; } = default!;
+
+    /// <summary>
+    /// Number input step value.
+    /// </summary>
+    [Parameter]
+    public int StepValue { get; set; } = default!;
+
+    /// <summary>
+    /// The text of the button, e.g., Create or Save
+    /// </summary>
+    [Parameter]
+    public string ButtonText { get; set; } = default!;
+
+    /// <summary>
+    /// True if adding to the database, otherwise false if updating
+    /// </summary>
+    [Parameter]
+    public bool isAdding { get; set; } = default!;
+
+    /// <summary>
+    /// The error message.
+    /// </summary>
+    private string ErrorMessage = default!;
+
+    /// <summary>
+    /// Respond to a forms submission.
+    /// </summary>
+    private async Task Save()
+    {
+
+        try
+        {
+            if (Context is not null)
+            {
+                // This just attaches
+                if (Department is not null)
+                {
+                    if (Department.InstructorID == 0) Department.InstructorID = null;
+
+                    if (isAdding)
+                    {
+                        Context.Departments?.Add(Department);
+                    }
+                    else
+                    {
+                        Context.Departments?.Update(Department);
+                    }
+                }
+
+                await Context.SaveChangesAsync();
+                NavigationManager.NavigateTo("./departments");
+            }
+            else
+            {
+                throw new ArgumentException("The Context cannot be null.", nameof(Context));
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
+    }
+}

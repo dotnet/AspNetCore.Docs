@@ -1,0 +1,120 @@
+﻿@page "/students/delete/{StudentId:int}"
+
+@using ContosoUniversity.Data
+@using ContosoUniversity.Models
+@using Microsoft.EntityFrameworkCore
+
+@inject IDbContextFactory<SchoolContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<h1>Delete</h1>
+
+<h3 class="alert alert-warning">Are you sure that you wish to delete this student?</h3>
+
+<h4>Student</h4>
+<hr />
+
+@if (Student is null)
+{
+    <div class="alert alert-warning">A student with the id @StudentId does not exist.</div>
+}
+else
+{
+    <StudentDetails Student="@Student" />
+    <div>
+        <button class="btn btn-danger" @onclick="@(() => DeleteAsync())">Delete</button>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <br />
+    <div class="alert alert-danger">Failed to delete the student (@ErrorMessage).</div>
+}
+
+<br />
+<div>
+    <a href="./students">Back to list</a>
+</div>
+
+@code {
+    /// <summary>
+    /// The error message.
+    /// </summary>
+    private string ErrorMessage = default!;
+
+    /// <summary>
+    /// Id from route of the student.
+    /// </summary>
+    [Parameter]
+    public int StudentId { get; set; }
+
+    /// <summary>
+    /// Student entity.
+    /// </summary>
+    private Student? Student { get; set; }
+
+    /// <summary>
+    /// Loads the contact
+    /// </summary>
+    /// <returns>Task</returns>
+    private async Task LoadAsync()
+    {
+        Student = null;
+
+        using var context = DbFactory.CreateDbContext();
+        if (context.Students is not null)
+        {
+            Student = await context.Students
+            .SingleOrDefaultAsync(s => s.ID == StudentId);
+        }
+    }
+
+    /// <summary>
+    /// Delete the student.
+    /// </summary>
+    /// <returns>Task</returns>
+    private async Task DeleteAsync()
+    {
+        using var context = DbFactory?.CreateDbContext();
+        if (context?.Students is not null)
+        {
+            var student = await context.Students
+            .SingleOrDefaultAsync(s => s.ID == StudentId);
+
+            if (student is not null)
+            {
+                context.Students?.Remove(student);
+                try
+                {
+                    await context.SaveChangesAsync();
+                    NavigationManager.NavigateTo("./students");
+                }
+                catch (Exception ex)
+                {
+                    ErrorMessage = ex.Message;
+                }
+            }
+            else
+            {
+                // Show not found
+                await LoadAsync();
+            }
+        }
+        else
+        {
+            // Show not found
+            await LoadAsync();
+        }
+    }
+
+    /// <summary>
+    /// Triggered for any paging update.
+    /// </summary>
+    /// <returns>A <see cref="Task"/>.</returns>
+    protected override async Task OnParametersSetAsync()
+    {
+        await LoadAsync();
+        await base.OnParametersSetAsync();
+    }
+}
