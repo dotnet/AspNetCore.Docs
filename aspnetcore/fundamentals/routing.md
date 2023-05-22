@@ -1075,6 +1075,10 @@ This makes the authorization middleware useful outside of the context of routing
 
 [!INCLUDE[](~/includes/dbg-route.md)]
 
+## app.UseRouting
+
+[!INCLUDE[](~/includes/app.UseRouting.md)]
+
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/routing/samples) ([how to download](xref:index#how-to-download-a-sample))
