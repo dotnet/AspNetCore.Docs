@@ -93,6 +93,8 @@ The client receives three line-delimited JSON objects:
 
 Note that the `WriteIndented` JSON setting doesn't apply to server streaming methods. Pretty printing adds new lines and whitespace to JSON, which can't be used with line-delimited JSON.
 
+View or download [an ASP.NET Core gPRC transcoding and streaming app sample](https://github.com/grpc/grpc-dotnet/tree/master/examples/Transcoder).
+
 ## HTTP protocol
 
 The ASP.NET Core gRPC service template, included in the .NET SDK, creates an app that's only configured for HTTP/2. HTTP/2 is a good default when an app only supports traditional gRPC over HTTP/2. Transcoding, however, works with both HTTP/1.1 and HTTP/2. Some platforms, such as UWP or Unity, can't use HTTP/2. To support all client apps, configure the server to enable HTTP/1.1 and HTTP/2.
