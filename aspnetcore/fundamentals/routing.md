@@ -1075,7 +1075,7 @@ This makes the authorization middleware useful outside of the context of routing
 
 [!INCLUDE[](~/includes/dbg-route.md)]
 
-## app.UseRouting
+## app.UseRouting and UsePathBase
 
 [!INCLUDE[](~/includes/app.UseRouting.md)]
 
