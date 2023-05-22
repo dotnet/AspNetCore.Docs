@@ -342,13 +342,13 @@ Since the preceding code applies the customized options only to deserialization,
 
 ## Binding to forms with IFormCollection, IFormFile, and IFormFileCollection
 
-Binding tp forms using <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> is supported. [OpenAPI](xref:fundamentals/minimal-apis/openapi) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
+Binding from form-based parameters using <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> is supported. [OpenAPI](xref:fundamentals/minimal-apis/openapi) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
 
 The following code uploads files using inferred binding from the `IFormFile` type:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="17-22,43-57":::
 
-***Warning:*** When implementing forms, the app ***must prevent*** [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery). In the preceding code, an <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> parameter is used to prevent XSRF attacks:
+***Warning:*** When implementing forms, the app ***must prevent*** [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery). In the preceding code, the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> service is used to prevent XSRF attacks by generating and validation an anti-forgery token:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="24,44":::
 
