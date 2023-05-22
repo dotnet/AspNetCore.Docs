@@ -352,4 +352,6 @@ The following code uploads files using inferred binding from the `IFormFile` typ
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="24,44":::
 
+For more information on XSRF attacks, see [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery).
+
 :::moniker-end
