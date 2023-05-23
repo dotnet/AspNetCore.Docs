@@ -8,7 +8,7 @@ ms.date: 05/10/2023
 uid: grpc/json-transcoding
 ms.custom: engagement-fy23
 ---
-# gRPC JSON transcoding in ASP.NET Core gRPC apps
+# gRPC JSON transcoding in ASP.NET Core
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
