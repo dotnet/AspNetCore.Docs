@@ -6,7 +6,7 @@ ms.author: riande
 ms.date: 03/07/2017
 uid: migration/web_forms
 ---
-# Upgrade an ASP.NET Framework Web Forms app to ASP.NET Core ASP.NET Core MVC
+# Upgrade an ASP.NET Framework Web Forms app to ASP.NET Core MVC
 
  :::moniker range=">= aspnetcore-7.0"
 
@@ -15,7 +15,7 @@ This article shows how to upgrade an ASP.NET Framework Web Forms to ASP.NET Core
 If your .NET Framework project has supporting libraries in it's solution that are required, they should be upgraded to .NET Standard 2.0, if possible. For more information, see [Upgrade supporting libraries](/aspnet/core/migration/inc/start#upgrade-supporting-libraries).
 
 1. Install the [.NET Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant) Visual Studio extension.
-1. Open the ASP.NET MVC solution in Visual Studio.
+1. Open the ASP.NET Web Forms solution in Visual Studio.
 1. In **Solution Explorer**, right click on the project to upgrade and select **Upgrade**. Select **Side-by-side incremental project upgrade**, which is the only upgrade option.
 1. For the upgrade target, select **New project**.
 1. Name the project and select the **ASP.NET Core** template and then select **Next**
