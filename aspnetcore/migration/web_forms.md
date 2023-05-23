@@ -6,7 +6,7 @@ ms.author: riande
 ms.date: 03/07/2017
 uid: migration/web_forms
 ---
-# Upgrade an ASP.NET Framework Web Forms app to ASP.NET Core ASP.NET Core MVC
+# Upgrade an ASP.NET Framework Web Forms app to ASP.NET Core MVC
 
  :::moniker range=">= aspnetcore-7.0"
 
