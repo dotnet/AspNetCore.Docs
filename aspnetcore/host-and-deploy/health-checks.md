@@ -306,4 +306,4 @@ The `SampleHealthCheckWithDiConfig` and the Health check needs to be added to th
 
 :::moniker-end
 
-[!INCLUDE[](~/host-and-deploy/health-checks/includes/health-checks5.md")]
+[!INCLUDE[](~/host-and-deploy/health-checks/includes/health-checks5.md)]
