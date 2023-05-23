@@ -784,6 +784,12 @@ Values explicitly provided that don't match a segment of the route are added to 
 | controller = "Home", color = "Red" | action = "About"                       | `/Home/About`           |
 | controller = "Home"                | action = "About", color = "Red"        | `/Home/About?color=Red` |
 
+### Optional route parameter order
+
+Optional route parameters must come after all required route parameters. In the following code, the `id` and `name` parameters must come after the `color` parameter:
+
+:::code language="csharp" source="~/fundamentals/routing/samples/8.x/OptionalParams/Controllers/MyController.cs" highlight="10":::
+
 ### Problems with route value invalidation
 
 The following code shows an example of a URL generation scheme that's not supported by routing:

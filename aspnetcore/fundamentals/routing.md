@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core routing is responsible for matching HTTP 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/03/2023
+ms.date: 5/21/2023
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -799,6 +799,12 @@ Values explicitly provided that don't match a segment of the route are added to 
 | controller = "Home"                | controller = "Order", action = "About" | `/Order/About`          |
 | controller = "Home", color = "Red" | action = "About"                       | `/Home/About`           |
 | controller = "Home"                | action = "About", color = "Red"        | `/Home/About?color=Red` |
+
+### Optional route parameter order
+
+Optional route parameters must come after all required route parameters. In the following code, the `id` and `name` parameters must come after the `color` parameter:
+
+:::code language="csharp" source="~/fundamentals/routing/samples/8.x/OptionalParams/Controllers/MyController.cs" highlight="10":::
 
 ### Problems with route value invalidation
 

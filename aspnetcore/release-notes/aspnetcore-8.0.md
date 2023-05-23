@@ -19,6 +19,14 @@ This article is under development and not complete. More information may be foun
 
 ## Blazor
 
+## Minimal APIs
+
+### Binding to forms with IFormCollection, IFormFile, and IFormFileCollection
+
+Binding tp forms using <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> is now supported. [OpenAPI](xref:fundamentals/minimal-apis/openapi) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
+
+For more information, see [Binding to forms with IFormCollection, IFormFile, and IFormFileCollection](xref:fundamentals/minimal-apis/parameter-binding?view=aspnetcore-8.0&preserve-view=true#binding-to-forms-with-iformcollection-iformfile-and-iformfilecollection)
+
 ## Miscellaneous
 
 ### Support for native AOT
