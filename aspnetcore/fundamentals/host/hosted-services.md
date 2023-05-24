@@ -169,7 +169,7 @@ The Worker Service templates support [.NET native ahead-of-time (AOT)](/dotnet/c
   1. Check the **Enable native AOT publish** checkbox.
   1. Select **Create**.
 
-<!-->
+<!--
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 1. Create a new project.
@@ -181,7 +181,7 @@ The Worker Service templates support [.NET native ahead-of-time (AOT)](/dotnet/c
 
 # [.NET Core CLI](#tab/netcore-cli)
 
-Use the Worker Service (`worker`) template with the [dotnet new](/dotnet/core/tools/dotnet-new) command from a command shell with the `--aot` flag
+Use the Worker Service (`worker`) template with the [dotnet new](/dotnet/core/tools/dotnet-new) command from a command shell with the AOT option:
 
 ```dotnetcli
 dotnet new worker -o WorkerWithAot --aot
