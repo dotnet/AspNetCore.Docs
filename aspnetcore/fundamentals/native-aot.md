@@ -141,7 +141,7 @@ Mode                 LastWriteTime         Length Name
 -a---          30/03/2023  1:41 PM       43044864 MyFirstAotWebApi.pdb
 ```
 
-The executable is self-contained and doesn't require a .NET runtime to run. When launched it should behave the same as the app run in the development environment. Run the AOT app:
+The executable is self-contained and doesn't require a .NET runtime to run. When launched, it should behave the same as the app run in the development environment. Run the AOT app:
 
 ```cli
 .\bin\Release\net8.0\win-x64\publish\MyFirstAotWebApi.exe
@@ -232,7 +232,7 @@ The AOT version of `launchSettings.json` file is simplified and has the `iisSett
 
 <xref:System.Text.Json.Serialization.JsonSerializerContext>:
 
-* Is used in the tempate and shown in the preceding highlighted code.
+* Is used in the template and shown in the preceding highlighted code.
 * Enables JSON serialization with native AOT.
 * Specifies the custom types that are needed to serialize.
 * Is used by the [JSON source generator](/dotnet/standard/serialization/system-text-json/source-generation) to produce code.
@@ -249,7 +249,7 @@ The AOT version of `launchSettings.json` file is simplified and has the `iisSett
 
 :::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="4":::
 
-Because unused code is trimmed during publishing for native AOT, the app can't use unbounded reflection at runtime. Source generators are used to produce code to avoid the need for reflection. In some cases source generators produce code optimized for AOT even when a generator is not required. To view source code that is generated based on the code in `Program.cs` add the [`<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>`](/dotnet/csharp/roslyn-sdk/source-generators-overview) property to `MyFirstAotWebApi.csproj`:
+Because unused code is trimmed during publishing for native AOT, the app can't use unbounded reflection at runtime. Source generators are used to produce code to avoid the need for reflection. In some cases, source generators produce code optimized for AOT even when a generator is not required. To view source code that is generated based on the code in `Program.cs` add the [`<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>`](/dotnet/csharp/roslyn-sdk/source-generators-overview) property to `MyFirstAotWebApi.csproj`:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -315,7 +315,7 @@ Not all features in ASP.NET Core are currently compatible with native AOT. The f
 | StaticFiles | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 | WebSockets | <span aria-hidden="true">✔️</span><span class="visually-hidden">Fully supported</span> | | |
 
-It's important to test the app thoroughly when moving to a native AOT deployment model. The AOT deployed app should be tested to verify functionality hasn't changed fron the  untrimmed and JIT-compiled app. When building the app, review and correct AOT warnings. An app that issues AOT warnings during publishing is not guaranteed to work correctly. If no AOT warnings are issued at publish time, the pubished AOT app should work the same as when run in development.
+It's important to test the app thoroughly when moving to a native AOT deployment model. The AOT deployed app should be tested to verify functionality hasn't changed from the  untrimmed and JIT-compiled app. When building the app, review and correct AOT warnings. An app that issues AOT warnings during publishing is ***not*** guaranteed to work correctly. If no AOT warnings are issued at publish time, the published AOT app should work the same as when run in development.
 
 For more information on AOT warnings and how to address them see [Introduction to AOT warnings](/dotnet/core/deploying/native-aot/fixing-warnings).
 
