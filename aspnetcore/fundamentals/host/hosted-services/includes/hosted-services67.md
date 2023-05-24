@@ -1,20 +1,5 @@
----
-title: Background tasks with hosted services in ASP.NET Core
-author: tdykstra
-description: Learn how to implement background tasks with hosted services in ASP.NET Core.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 12/17/2021
-uid: fundamentals/host/hosted-services
----
-# Background tasks with hosted services in ASP.NET Core
 
-By [Jeow Li Huan](https://github.com/huan086)
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="<> aspnetcore-8.0"
 
 In ASP.NET Core, background tasks can be implemented as *hosted services*. A hosted service is a class with background task logic that implements the <xref:Microsoft.Extensions.Hosting.IHostedService> interface. This article provides three hosted service examples:
 
@@ -165,5 +150,4 @@ The following code creates an asynchronous timed background task:
 
 :::moniker-end
 
-[!INCLUDE[](~/fundamentals/host/hosted-services/includes/hosted-services67.md)]
 [!INCLUDE[](~/fundamentals/host/hosted-services/includes/hosted-services5.md)]
