@@ -189,6 +189,27 @@ dotnet new worker -o WorkerWithAot --aot
 
 ---
 
+The AOT option adds `<PublishAot>true</PublishAot>` to the project file:
+
+```diff
+
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
++   <PublishAot>true</PublishAot>
+    <UserSecretsId>dotnet-WorkerWithAot-e94b2</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0-preview.4.23259.5" />
+  </ItemGroup>
+</Project>
+```
+
 ## Additional resources
 
 * [Background services unit tests on GitHub](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/tests/UnitTests/BackgroundServiceTests.cs).
