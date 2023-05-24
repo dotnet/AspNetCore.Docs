@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core support for native AOT
 monikerRange: '>= aspnetcore-8.0'
 ms.author: midenn
 ms.custom: mvc
-ms.date: 5/5/2023
+ms.date: 5/25/2023
 uid: fundamentals/native-aot
 ---
 # ASP.NET Core support for native AOT
