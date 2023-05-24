@@ -1,20 +1,5 @@
----
-title: Background tasks with hosted services in ASP.NET Core
-author: tdykstra
-description: Learn how to implement background tasks with hosted services in ASP.NET Core.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 5/17/2023
-uid: fundamentals/host/hosted-services
----
-# Background tasks with hosted services in ASP.NET Core
 
-By [Jeow Li Huan](https://github.com/huan086)
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 In ASP.NET Core, background tasks can be implemented as *hosted services*. A hosted service is a class with background task logic that implements the <xref:Microsoft.Extensions.Hosting.IHostedService> interface. This article provides three hosted service examples:
 
@@ -155,61 +140,6 @@ The following code creates an asynchronous timed background task:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/host/TimedBackgroundTasks/TimedHostedService.cs":::
 
-## Native AOT
-
-The Worker Service templates support [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) with the `--aot` flag:
-
-# [Visual Studio](#tab/visual-studio)
-
-1. Create a new project.
-1. Select **Worker Service**. Select **Next**.
-1. Provide a project name in the **Project name** field or accept the default project name.  Select **Next**.
-1. In the **Additional information** dialog:
-  1. Choose a **Framework**.
-  1. Check the **Enable native AOT publish** checkbox.
-  1. Select **Create**.
-
-<!--
-# [Visual Studio for Mac](#tab/visual-studio-mac)
-
-1. Create a new project.
-1. Select **App** under **.NET Core** in the sidebar.
-1. Select **Worker** under **ASP.NET Core**. Select **Next**.
-1. Select **.NET Core 3.1** or later for the **Target Framework**. Select **Next**.
-1. Provide a name in the **Project Name** field. Select **Create**.
--->
-
-# [.NET Core CLI](#tab/netcore-cli)
-
-Use the Worker Service (`worker`) template with the [dotnet new](/dotnet/core/tools/dotnet-new) command from a command shell with the AOT option:
-
-```dotnetcli
-dotnet new worker -o WorkerWithAot --aot
-```
-
----
-
-The AOT option adds `<PublishAot>true</PublishAot>` to the project file:
-
-```diff
-
-<Project Sdk="Microsoft.NET.Sdk.Worker">
-
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
-+   <PublishAot>true</PublishAot>
-    <UserSecretsId>dotnet-WorkerWithAot-e94b2</UserSecretsId>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0-preview.4.23259.5" />
-  </ItemGroup>
-</Project>
-```
-
 ## Additional resources
 
 * [Background services unit tests on GitHub](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/tests/UnitTests/BackgroundServiceTests.cs).
@@ -219,6 +149,3 @@ The AOT option adds `<PublishAot>true</PublishAot>` to the project file:
 * <xref:System.Threading.Timer>
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/host/hosted-services/includes/hosted-services67.md)]
-[!INCLUDE[](~/fundamentals/host/hosted-services/includes/hosted-services5.md)]
