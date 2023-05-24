@@ -157,7 +157,37 @@ The following code creates an asynchronous timed background task:
 
 ## Native AOT
 
+The Worker Service templates support [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) with the `--aot` flag:
 
+# [Visual Studio](#tab/visual-studio)
+
+1. Create a new project.
+1. Select **Worker Service**. Select **Next**.
+1. Provide a project name in the **Project name** field or accept the default project name.  Select **Next**.
+1. In the **Additional information** dialog:
+  1. Choose a **Framework**.
+  1. Check the **Enable native AOT publish** checkbox.
+  1. Select **Create**.
+
+<!-->
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+1. Create a new project.
+1. Select **App** under **.NET Core** in the sidebar.
+1. Select **Worker** under **ASP.NET Core**. Select **Next**.
+1. Select **.NET Core 3.1** or later for the **Target Framework**. Select **Next**.
+1. Provide a name in the **Project Name** field. Select **Create**.
+-->
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+Use the Worker Service (`worker`) template with the [dotnet new](/dotnet/core/tools/dotnet-new) command from a command shell with the `--aot` flag
+
+```dotnetcli
+dotnet new worker -o WorkerWithAot --aot
+```
+
+---
 
 ## Additional resources
 
