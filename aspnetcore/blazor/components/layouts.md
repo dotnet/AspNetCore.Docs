@@ -340,7 +340,7 @@ The following rendered HTML markup is produced by the preceding nested layout. E
         <h1>Doctor Who&trade; Episode Database</h1>
 
         <nav>
-            <a href="episode-main-list">Main Episode List</a>
+            <a href="main-episode-list">Main Episode List</a>
             <a href="episode-search">Search</a>
             <a href="new-episode">Add Episode</a>
         </nav>
