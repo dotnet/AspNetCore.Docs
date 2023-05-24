@@ -50,7 +50,7 @@ This demonstration allows you to:
 
 :::moniker-end
 
-In the following `PeopleExample` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the <xref:mvc/views/razor#key> directive attribute is used to improve the user's experience.
+In the following `PeopleExample` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the [`@key`](xref:mvc/views/razor#key) directive attribute is used to improve the user's experience.
 
 `Pages/PeopleExample.razor`:
 
