@@ -149,5 +149,3 @@ The following code creates an asynchronous timed background task:
 * <xref:System.Threading.Timer>
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/host/hosted-services/includes/hosted-services5.md)]
