@@ -244,7 +244,7 @@ The AOT version of `launchSettings.json` file is simplified and has the `iisSett
 * Initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimal ASP.NET Core features necessary to run an app.
 * Is added by the template whether or not the AOT option is used.
 * By default, doesn't include support for HTTPS or HTTP/3. HTTPS and HTTP/3:
-  * Typically aren't required for apps run behind a TLS termination proxy, for example, when hosted on Azure.
+  * Typically aren't required for apps run behind a TLS termination proxy. For example, when using [TLS termination and end to end TLS with Application Gateway](/azure/application-gateway/ssl-overview).
   * Can be enabled by calling [builder.WebHost.UseQuic](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderQuicExtensions.UseQuic%2A) or [builder.WebHost.UseKestrelHttpsConfiguration](https://source.dot.net/#Microsoft.AspNetCore.Server.Kestrel/WebHostBuilderKestrelExtensions.cs,fcec859000ccaa50) <!-- TODO replace with xref: (xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel%2A) -->
 
 :::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="4":::
