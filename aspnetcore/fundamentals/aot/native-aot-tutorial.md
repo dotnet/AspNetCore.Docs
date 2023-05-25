@@ -156,5 +156,5 @@ info: Microsoft.Hosting.Lifetime[0]
 
 ## See also
 
-* [xref:fundamentals/native-aot]
+* <xref:fundamentals/native-aot>
 * [Native AOT deployment](/dotnet/core/deploying/native-aot/)
