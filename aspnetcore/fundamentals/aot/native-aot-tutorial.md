@@ -74,7 +74,6 @@ Restore succeeded.
 
 1. Select **Create**.
 
-   ![Create](~/fundamentals/aot/_static/create.png)
 ---
 
 ## Publish the native AOT app
