@@ -322,3 +322,7 @@ For more information on AOT warnings and how to address them see [Introduction t
 ## Known issues
 
 See [this GitHub issue](https://github.com/dotnet/core/issues/8288) to report or review issues with native AOT support in ASP.NET Core.
+
+## AOT in Worker Service templates
+
+The Worker Service templates support [.NET native ahead-of-time (AOT)] For more information, see [AOT in Worker Service templates](xref:fundamentals/host/hosted-services?view=aspnetcore-8.0&preserve-view=true#native-aot
