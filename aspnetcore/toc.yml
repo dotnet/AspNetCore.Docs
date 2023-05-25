@@ -219,7 +219,13 @@ items:
       - name: Dependency injection (services)
         uid: fundamentals/dependency-injection
       - name: Native AOT
-        uid: fundamentals/native-aot
+        items:
+          - name: Overview
+            displayName: native, aot
+            uid: fundamentals/native-aot
+          - name: Tutorial
+            displayName: native, aot
+            uid: fundamentals/native-aot-tutorial
       - name: Middleware
         items: 
           - name: Middleware overview
