@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core support for native AOT
 monikerRange: '>= aspnetcore-8.0'
 ms.author: midenn
 ms.custom: mvc
-ms.date: 05/24/2023
+ms.date: 05/25/2023
 uid: fundamentals/native-aot
 ---
 # ASP.NET Core support for native AOT
@@ -66,7 +66,7 @@ For more information, see [Introduction to AOT warnings](/dotnet/core/deploying/
 
 ## Native AOT publishing
 
-AOT compilation happens when the app is published. Native AOT is enabled with the `PublishAot` MSBuild property. The following example shows how to enable native AOT in a project file:
+Native AOT is enabled with the `PublishAot` MSBuild property. The following example shows how to enable native AOT in a project file:
 
 ```xml
 <PropertyGroup>
@@ -74,7 +74,7 @@ AOT compilation happens when the app is published. Native AOT is enabled with th
 </PropertyGroup>
 ```
 
-A project that uses native AOT publishing uses JIT compilation when running locally. An AOT app has the following differences from a JIT-compiled app:
+This setting enables native AOT compilation during publish and enables dynamic code usage analysis during build and editing. A project that uses native AOT publishing uses JIT compilation when running locally. An AOT app has the following differences from a JIT-compiled app:
 
 * Features that aren't compatible with native AOT are disabled and throw exceptions at run time.
 * A source analyzer is enabled to highlight code that isn't compatible with native AOT. At publish time, the entire app, including NuGet packages, are analyzed for compatibility again.

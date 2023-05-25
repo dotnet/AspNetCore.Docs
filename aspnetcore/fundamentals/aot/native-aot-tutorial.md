@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.topic: tutorial
 ms.author: midenn
 ms.custom: mvc
-ms.date: 05/24/2023
+ms.date: 05/25/2023
 uid: fundamentals/native-aot-tutorial
 ---
 # Tutorial: Publish an ASP.NET Core app using native AOT
@@ -16,7 +16,7 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
 > [!NOTE]
 > * The native AOT feature is currently in preview.
 > * In .NET 8, not all ASP.NET Core features are compatible with native AOT.
-> * Tabs are provided for the [.NET Core CLI](/dotnet/core/tools/) and [Visual Studio](https://visualstudio.microsoft.com/vs/preview/) instructions. However, in this early preview some steps require Visual Studio and some steps require the .NET Core CLI.
+> * Tabs are provided for the [.NET Core CLI](/dotnet/core/tools/) and [Visual Studio](https://visualstudio.microsoft.com/vs/preview/) instructions. However, in this early preview installation of Visual Studio is a prerequisite even if the CLI tab is selected. And the CLI must be used to publish even if the Visual Studio tab is selected.
 
 ## Prerequisites
 
