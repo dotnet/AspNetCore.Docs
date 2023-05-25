@@ -325,4 +325,4 @@ See [this GitHub issue](https://github.com/dotnet/core/issues/8288) to report or
 
 ## AOT in Worker Service templates
 
-The Worker Service templates support [.NET native ahead-of-time (AOT)] For more information, see [AOT in Worker Service templates](xref:fundamentals/host/hosted-services?view=aspnetcore-8.0&preserve-view=true#native-aot)
+The Worker Service templates support [.NET native ahead-of-time (AOT)]. For more information, see [AOT in Worker Service templates](xref:fundamentals/host/hosted-services?view=aspnetcore-8.0&preserve-view=true#native-aot)
