@@ -81,7 +81,11 @@ A project that uses native AOT publishing uses JIT compilation when running loca
 
 Native AOT analysis includes all of the app's code and the libraries the app depends on. Review native AOT warnings and take corrective steps. It's a good idea to publish apps frequently to discover issues early in the development lifecycle.
 
-In .NET 8, native AOT is supported by ASP.NET Core minimal APIs and gRPC. For information about how to get started using native AOT with gRPC apps, see [gRPC and native AOT](xref:grpc/native-aot).
+In .NET 8, native AOT is supported by the following ASP.NET Core app types:
+
+* minimal APIs - For more information, see the [API template](#the-api-template) section later in this article.
+* gRPC - For more information, see [gRPC and native AOT](xref:grpc/native-aot).
+* Worker services - For more information, see [AOT in Worker Service templates](xref:fundamentals/host/hosted-services?view=aspnetcore-8.0&preserve-view=true#native-aot).
 
 ## The API template
 
