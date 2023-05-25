@@ -24,9 +24,9 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
 
 * [!INCLUDE[](~/includes/8.0-SDK.md)]
 
-  Install Visual Studio, and add the **Desktop development with C++** workload.
+* [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **Desktop development with C++** workload installed.
 
-  ![Workloads no VS](~/fundamentals/aot/_static/ddcpp.png)
+  ![Visual Studio workload selection dialog showing "Desktop development with C++" selected.](~/fundamentals/aot/_static/ddcpp.png)
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -36,7 +36,7 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
   * **ASP.NET and web development**
   * **Desktop development with C++**
 
-  ![Workloads](~/fundamentals/aot/_static/ddcpp.png)
+  ![Visual Studio workload selection dialog showing "ASP.NET and web development" and "Desktop development with C++" selected.](~/fundamentals/aot/_static/ddcpp.png)
 
 ---
 
