@@ -74,7 +74,28 @@ HTTP/3 is a new internet technology that was standardized in June 2022. HTTP/3 o
 * No head-of-line blocking.
 * Better transitions between networks.
 
-.NET 7 added support for HTTP/3 to ASP.NET Core and Kestrel. ASP.NET Core apps could choose to turn it on. In .NET 8 HTTP/3 is enabled by default for Kestrel, alongside HTTP/1.1 and HTTP/2. For more information about HTTP/3 and its requirements, see <xref:fundamentals/servers/kestrel/http3>.
+.NET 7 added support for HTTP/3 to ASP.NET Core and Kestrel. ASP.NET Core apps could choose to turn it on. In .NET 8, HTTP/3 is enabled by default for Kestrel, alongside HTTP/1.1 and HTTP/2. For more information about HTTP/3 and its requirements, see <xref:fundamentals/servers/kestrel/http3>.
+
+### HTTP/2 over TLS (HTTPS) support on macOS
+
+.NET 8 adds support for Application-Layer Protocol Negotiation (ALPN) to macOS. ALPN is a TLS feature used to negotiate which HTTP protocol a connection will use. For example, ALPN allows browsers and other HTTP clients to request an HTTP/2 connection. This feature is especially useful for gRPC apps, which require HTTP/2.
+
+### `HTTP_PORTS` and `HTTPS_PORTS` config keys
+
+Applications and containers are often only given a port to listen on, like 80, without additional constraints like host or path. `HTTP_PORTS` and `HTTPS_PORTS` are new config keys that allow specifying the listening ports for the Kestrel and HTTP.sys servers. These may be defined with the `DOTNET_` or `ASPNETCORE_` environment variable prefixes, or specified directly through any other config input like appsettings.json. Each is a semicolon delimited list of port values. For example:
+
+```cli
+ASPNETCORE_HTTP_PORTS=80;8080
+ASPNETCORE_HTTPS_PORTS=443;8081
+```
+
+This is shorthand for the following, which specifies the scheme (HTTP or HTTPS) and any host or IP:
+
+```cli
+ASPNETCORE_URLS=http://*:80/;http://*:8080/;https://*:443/;https://*:8081/
+```
+
+For more information, see <xref:fundamentals/servers/kestrel/endpoints> and <xref:fundamentals/servers/httpsys>.
 
 ### Code analysis in ASP.NET Core apps
 
