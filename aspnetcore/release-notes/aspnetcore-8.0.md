@@ -78,7 +78,7 @@ HTTP/3 is a new internet technology that was standardized in June 2022. HTTP/3 o
 
 ### HTTP/2 over TLS (HTTPS) support on macOS
 
-.NET 8 adds support for Application-Layer Protocol Negotiation (ALPN) to macOS. ALPN is a TLS feature used to negotiate which HTTP protocol a connection will use. For example, ALPN allows browsers and other HTTP clients to request an HTTP/2 connection. This feature is especially useful for gRPC apps, which require HTTP/2.
+.NET 8 adds support for Application-Layer Protocol Negotiation (ALPN) to macOS. ALPN is a TLS feature used to negotiate which HTTP protocol a connection will use. For example, ALPN allows browsers and other HTTP clients to request an HTTP/2 connection. This feature is especially useful for gRPC apps, which require HTTP/2. For more information, see <xref:fundamentals/servers/kestrel/http2>.
 
 ### `HTTP_PORTS` and `HTTPS_PORTS` config keys
 
