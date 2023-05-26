@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 05/25/2023
+ms.date: 05/26/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -65,6 +65,16 @@ The main entry points to subsystems that don't work reliably with native AOT are
 :::image type="content" source="../fundamentals/aot/_static/top-level-annnotations.png" alt-text="Visual Studio window showing IL2026 warning message on the AddControllers method that says MVC does not currently support native AOT.":::
 
 ## Miscellaneous
+
+### HTTP/3 enabled by default
+
+HTTP/3 is a new internet technology that was standardized in June 2022. HTTP/3 offers several advantages over older HTTP protocols, including:
+
+* Faster connection setup.
+* No head-of-line blocking.
+* Better transitions between networks.
+
+.NET 7 added support for HTTP/3 to ASP.NET Core and Kestrel. ASP.NET Core apps could choose to turn it on. In .NET 8 HTTP/3 is enabled by default for Kestrel, alongside HTTP/1.1 and HTTP/2. For more information about HTTP/3 and its requirements, see <fundamentals/servers/kestrel/http3>.
 
 ### Code analysis in ASP.NET Core apps
 
