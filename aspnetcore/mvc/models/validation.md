@@ -53,7 +53,7 @@ Here are some of the built-in validation attributes:
 * [[Phone]](xref:System.ComponentModel.DataAnnotations.PhoneAttribute): Validates that the property has a telephone number format.
 * [[Range]](xref:System.ComponentModel.DataAnnotations.RangeAttribute): Validates that the property value falls within a specified range.
 * [[RegularExpression]](xref:System.ComponentModel.DataAnnotations.RegularExpressionAttribute): Validates that the property value matches a specified regular expression.
-* [[Required]](xref:System.ComponentModel.DataAnnotations.RequiredAttribute): Validates that the field isn't null. See [`[Required]` attribute](#non-nullable-reference-types-and-the-required-attribute) for details about this attribute's behavior.
+* [[Required]](xref:System.ComponentModel.DataAnnotations.RequiredAttribute): Validates that the field isn't null. See [`[Required]` attribute](#non-nullable-reference-types-and-required-attribute) for details about this attribute's behavior.
 * [[StringLength]](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute): Validates that a string property value doesn't exceed a specified length limit.
 * [[Url]](xref:System.ComponentModel.DataAnnotations.UrlAttribute): Validates that the property has a URL format.
 * [[Remote]](xref:Microsoft.AspNetCore.Mvc.RemoteAttribute): Validates input on the client by calling an action method on the server. See [`[Remote]` attribute](#remote-attribute) for details about this attribute's behavior.
