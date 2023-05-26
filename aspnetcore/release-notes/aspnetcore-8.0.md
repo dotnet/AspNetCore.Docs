@@ -74,7 +74,7 @@ HTTP/3 is a new internet technology that was standardized in June 2022. HTTP/3 o
 * No head-of-line blocking.
 * Better transitions between networks.
 
-.NET 7 added support for HTTP/3 to ASP.NET Core and Kestrel. ASP.NET Core apps could choose to turn it on. In .NET 8 HTTP/3 is enabled by default for Kestrel, alongside HTTP/1.1 and HTTP/2. For more information about HTTP/3 and its requirements, see <fundamentals/servers/kestrel/http3>.
+.NET 7 added support for HTTP/3 to ASP.NET Core and Kestrel. ASP.NET Core apps could choose to turn it on. In .NET 8 HTTP/3 is enabled by default for Kestrel, alongside HTTP/1.1 and HTTP/2. For more information about HTTP/3 and its requirements, see <xref:fundamentals/servers/kestrel/http3>.
 
 ### Code analysis in ASP.NET Core apps
 
