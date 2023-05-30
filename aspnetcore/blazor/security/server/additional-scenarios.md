@@ -101,6 +101,12 @@ public class TokenProvider
 }
 ```
 
+If Razor components require an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity or other endpoints, add a property for an XSRF token to the `TokenProvider`:
+
+```csharp
+public string? XsrfToken { get; set; }
+```
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
@@ -111,6 +117,12 @@ public class TokenProvider
     public string AccessToken { get; set; }
     public string RefreshToken { get; set; }
 }
+```
+
+If Razor components require an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity or other endpoints, add a property for an XSRF token to the `TokenProvider`:
+
+```csharp
+public string XsrfToken { get; set; }
 ```
 
 :::moniker-end
@@ -156,6 +168,13 @@ public class InitialApplicationState
     public string? RefreshToken { get; set; }
 }
 ```
+
+If Razor components require an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity or other endpoints, add a property for an XSRF token to the `InitialApplicationState`:
+
+```csharp
+public string? XsrfToken { get; set; }
+```
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
@@ -168,8 +187,13 @@ public class InitialApplicationState
 }
 ```
 
-:::moniker-end
+If Razor components require an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity or other endpoints, add a property for an XSRF token to the `InitialApplicationState`:
 
+```csharp
+public string XsrfToken { get; set; }
+```
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -205,6 +229,16 @@ In the `Pages/_Host.cshtml` file, create and instance of `InitialApplicationStat
 <component ... param-InitialState="tokens" ... />
 ```
 
+If Razor components require an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity or other endpoints, add the following lines to `_Host.cshtml` to establish the token:
+
+```csharp
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+
+...
+
+XsrfToken = Xsrf.GetAndStoreTokens(HttpContext).RequestToken
+```
+
 In the `App` component (`App.razor`), resolve the service and initialize it with the data from the parameter:
 
 :::moniker range=">= aspnetcore-6.0"
@@ -228,6 +262,12 @@ In the `App` component (`App.razor`), resolve the service and initialize it with
 }
 ```
 
+If Razor components require an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity or other endpoints, add the following lines to the `App` component to to assign the `InitialState.XsrfToken`:
+
+```csharp
+TokenProvider.XsrfToken = InitialState?.XsrfToken;
+```
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
@@ -249,6 +289,12 @@ In the `App` component (`App.razor`), resolve the service and initialize it with
         return base.OnInitializedAsync();
     }
 }
+```
+
+If Razor components require an [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) to POST to Identity or other endpoints, add the following lines to the `App` component to to assign the `InitialState.XsrfToken`:
+
+```csharp
+TokenProvider.XsrfToken = InitialState.XsrfToken;
 ```
 
 :::moniker-end
@@ -334,6 +380,31 @@ public class WeatherForecastService
 ```
 
 :::moniker-end
+
+For an XSRF token passed to a component, inject the `TokenProvider` and add the XSRF token to the POST request. The following example adds the token to a logout endpoint POST. The scenario for the following example is that the logout endpoint (`Areas/Identity/Pages/Account/Logout.cshtml`) doesn't specify an <xref:Microsoft.AspNetCore.Mvc.IgnoreAntiforgeryTokenAttribute> (`@attribute [IgnoreAntiforgeryToken]`) because it performs some action in addition to a normal logout operation that must be protected. The endpoint requires a valid XSRF token to successfully process the request.
+
+```razor
+@inject TokenProvider TokenProvider
+
+...
+
+<AuthorizeView>
+    <Authorized>
+        <a href="Identity/Account/Manage/Index">
+            Hello, @context.User.Identity.Name!
+        </a>
+        <form action="/Identity/Account/Logout?returnUrl=%2F" method="post">
+            <button class="nav-link btn btn-link" type="submit">Logout</button>
+            <input name="__RequestVerificationToken" type="hidden" 
+                value="@TokenProvider.XsrfToken">
+        </form>
+    </Authorized>
+    <NotAuthorized>
+        ...
+    </NotAuthorized>
+</AuthorizeView>
+
+```
 
 ## Set the authentication scheme
 
