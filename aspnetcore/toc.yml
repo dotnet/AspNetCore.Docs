@@ -361,6 +361,8 @@ items:
             uid: blazor/supported-platforms
           - name: Tooling
             uid: blazor/tooling
+          - name: Hosting models
+            uid: blazor/hosting-models
           - name: Tutorials
             items:
               - name: Overview
@@ -373,8 +375,6 @@ items:
                 uid: blazor/tutorials/signalr-blazor
               - name: Learn modules
                 href: /training/paths/build-web-apps-with-blazor/
-          - name: Hosting models
-            uid: blazor/hosting-models
           - name: Blazor Hybrid
             items:
               - name: Overview

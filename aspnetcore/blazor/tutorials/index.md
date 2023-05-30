@@ -12,7 +12,9 @@ uid: blazor/tutorials/index
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-The following tutorials are available for ASP.NET Core Blazor:
+The following tutorials provide basic working experiences for building Blazor apps.
+
+For an overview of Blazor, see <xref:blazor/index>. For more information on the Blazor hosting models, Blazor Server and Blazor WebAssembly, see <xref:blazor/hosting-models>.
 
 * [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) (Blazor Server)
 
@@ -23,5 +25,3 @@ The following tutorials are available for ASP.NET Core Blazor:
 * <xref:blazor/hybrid/tutorials/index>
 
 * [Learn modules](/training/paths/build-web-apps-with-blazor/)
-
-For more information on Blazor hosting models, Blazor Server and Blazor WebAssembly, see <xref:blazor/hosting-models>.

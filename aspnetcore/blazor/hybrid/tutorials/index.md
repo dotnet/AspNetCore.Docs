@@ -12,10 +12,12 @@ uid: blazor/hybrid/tutorials/index
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
+The following tutorials provide a basic working experience for building a Blazor Hybrid app:
+
 * <xref:blazor/hybrid/tutorials/maui>
 
 * <xref:blazor/hybrid/tutorials/windows-forms>
 
 * <xref:blazor/hybrid/tutorials/wpf>
 
-For more information on hosting models, see <xref:blazor/hosting-models>.
+For an overview of Blazor and reference articles, see <xref:blazor/index> and the articles that follow it in the table of contents.

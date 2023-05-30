@@ -13,7 +13,7 @@ zone_pivot_groups: blazor-hosting-models
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This tutorial teaches the basics of building a real-time app using SignalR with Blazor.
+This tutorial provides a basic working experience for building a real-time app using SignalR with Blazor. For detailed Blazor guidance, see the [Blazor reference documentation](xref:blazor/index).
 
 :::moniker range=">= aspnetcore-7.0"
 
