@@ -16,7 +16,7 @@ Route handlers are methods that execute when the route matches. Route handlers c
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_sm)]
 
-### Endpoint not defined in `Program.cs`
+### Endpoint defined outside of `Program.cs`
 
 Minimal APIs don't have to be located in `Program.cs`.
 
