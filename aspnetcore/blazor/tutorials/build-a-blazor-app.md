@@ -13,7 +13,7 @@ zone_pivot_groups: blazor-hosting-models
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This tutorial shows you how to build and modify a Blazor app.
+This tutorial provides a basic working experience for building and modifying a Blazor app. For detailed Blazor guidance, see the [Blazor reference documentation](xref:blazor/index).
 
 Learn how to:
 
@@ -378,4 +378,4 @@ In this tutorial, you learned how to:
 Learn about tooling for ASP.NET Core Blazor:
 
 > [!div class="nextstepaction"]
-> <xref:blazor/tooling>
+> <xref:blazor/index>
