@@ -1,4 +1,4 @@
-The generated Identity database code requires [Entity Framework Core Migrations](/ef/core/managing-schemas/migrations/). Create a migration and update the database. For example, run the following commands:
+The generated Identity database code requires [Entity Framework Core Migrations](/ef/core/managing-schemas/migrations/). If a migration to create the Identity schema hasn't been created and applied to the database, create a migration and update the database. For example, run the following commands:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -20,3 +20,45 @@ dotnet ef database update
 ---
 
 The "CreateIdentitySchema" name parameter for the `Add-Migration` command is arbitrary. `"CreateIdentitySchema"` describes the migration.
+
+If the Identity schema has already been created but not applied to the database, only the command to update the database must be executed:
+
+# [Visual Studio](#tab/visual-studio)
+
+In the Visual Studio **Package Manager Console**, execute [`Update-Database`](/ef/core/managing-schemas/migrations/applying?tabs=vs#command-line-tools):
+
+```powershell
+Update-Database
+```
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+In a command shell, execute [`dotnet ef database update`](/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli#command-line-tools):
+
+```dotnetcli
+dotnet ef database update
+```
+
+---
+
+You can confirm if the Identity schema has been applied with either:
+
+# [Visual Studio](#tab/visual-studio)
+
+In the Visual Studio **Package Manager Console**, execute [`Get-Migration`](/ef/core/managing-schemas/migrations/managing?tabs=vs#listing-migrations):
+
+```powershell
+Get-Migration
+```
+
+# [.NET Core CLI](#tab/netcore-cli)
+
+In a command shell, execute [`dotnet ef migrations list`](/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli#listing-migrations):
+
+```dotnetcli
+dotnet ef migrations list
+```
+
+---
+
+The output of the command includes an "applied" (**:::no-loc text="applied":::**) column to show which migrations are applied to the database.
