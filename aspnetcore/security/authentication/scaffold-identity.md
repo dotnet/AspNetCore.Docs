@@ -145,7 +145,7 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-## Scaffold Identity into a Blazor Server project
+## Scaffold Identity into a Blazor Server project with authorization
 
 [!INCLUDE[](~/includes/scaffold-identity/install-pkg.md)]
 
@@ -158,6 +158,9 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 ### Style authentication endpoints
 
 Because Blazor Server uses Razor Pages Identity pages, the styling of the UI changes when a visitor navigates between Identity pages and components. You have two options to address the incongruous styles:
+
+* [Custom Identity components](#custom-identity-components)
+* [Use a custom layout with Blazor app styles](#use-a-custom-layout-with-blazor-app-styles)
 
 #### Custom Identity components
 
@@ -454,9 +457,12 @@ Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more i
 
 Because Blazor Server uses Razor Pages Identity pages, the styling of the UI changes when a visitor navigates between Identity pages and components. You have two options to address the incongruous styles:
 
+* [Custom Identity components](#custom-identity-components)
+* [Use a custom layout with Blazor app styles](#use-a-custom-layout-with-blazor-app-styles)
+
 #### Custom Identity components
 
-An approach to using components for Identity instead of pages is to build Identity components. Because `SignInManager` and `UserManager` aren't supported in Razor components, use API endpoints in the Blazor Server app to process user account actions.
+An approach to using components for Identity instead of pages is to build Identity components. Because `SignInManager` and `UserManager` aren't supported in Razor components, use web API endpoints in the Blazor Server app to process user account actions.
 
 #### Use a custom layout with Blazor app styles
 

@@ -3,14 +3,15 @@ Run the Identity scaffolder:
 # [Visual Studio](#tab/visual-studio)
 
 * From **Solution Explorer**, right-click on the project > **Add** > **New Scaffolded Item**.
-* From the left pane of the **Add New Scaffolded Item** dialog, select **Identity** > **Add**.
+* From the left pane of the **Add New Scaffolded Item** dialog, select **Identity**. Select **Identity** in the center pane. Select the **Add** button.
 * In the **Add Identity** dialog, select the options you want.
-  * Select your existing layout page, or your layout file will be overwritten with incorrect markup:
-    * `~/Pages/Shared/_Layout.cshtml` for Razor Pages
-    * `~/Views/Shared/_Layout.cshtml` for MVC projects
-    * Blazor Server apps created from the Blazor Server template (`blazorserver`) aren't configured for Razor Pages or MVC by default. Leave the layout page entry blank.
-  * Select the **+** button to create a new **Data context class**. Accept the default value or specify a class (for example, `MyApplication.Data.ApplicationDbContext`).
-* Select **Add**.
+  * If you have an existing, customized layout page for Identity (`_Layout.cshtml`), select your existing layout page to avoid overwriting your layout with incorrect markup by the scaffolder. For example, select either:
+    * `Pages/Shared/_Layout.cshtml` for Razor Pages or Blazor Server projects with existing Razor Pages infrastructure.
+    * `Views/Shared/_Layout.cshtml` for MVC projects or Blazor Server projects with existing MVC infrastructure.
+  * For the data context (**DbContext class**):
+    * Select your data context class. You must select at least one file to add your data context.
+    * To create a data context and possibly create a new user class for Identity, select the **+** button. Accept the default value or specify a class (for example, `Contoso.Data.ApplicationDbContext` for a company named "Contoso"). To create a new user class, select the **+** button for **User class** and specify the class (for example, `ContosoUser` for a company named "Contoso").
+  * Select the **Add** button to run the scaffolder.
 
 # [.NET Core CLI](#tab/netcore-cli)
 
