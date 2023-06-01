@@ -1,44 +1,38 @@
----
-title: Part 7, add a new field
-author: wadepickett
-description: Part 7 of tutorial series on Razor Pages.
-ms.author: wpickett
-ms.custom: engagement-fy23
-ms.date: 05/24/2023
-uid: tutorials/razor-pages/new-field
----
-# Part 7, add a new field to a Razor Page in ASP.NET Core
+:::moniker range="= aspnetcore-5.0"
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-8.0"
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50) ([how to download](xref:index#how-to-download-a-sample)).
 
 In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:
 
 * Add a new field to the model.
 * Migrate the new field schema change to the database.
 
-When using EF Code First to automatically create and track a database, Code First:
+When using EF Code First to automatically create a database, Code First:
 
 * Adds an [`__EFMigrationsHistory`](/ef/core/managing-schemas/migrations/history-table) table to the database to track whether the schema of the database is in sync with the model classes it was generated from.
-* Throws an exception if the model classes aren't in sync with the database.
+* If the model classes aren't in sync with the database, EF throws an exception.
 
 Automatic verification that the schema and model are in sync makes it easier to find inconsistent database code issues.
 
 ## Adding a Rating Property to the Movie Model
-<!-- Update Index in working project then copy to snap7 folder -->
 
 1. Open the `Models/Movie.cs` file and add a `Rating` property:
-   [!code-csharp[](~/tutorials/razor-pages-start/sample/RazorPagesMovie70/Models/MovieDateRating.cs?highlight=13&name=snippet)]
+
+   [!code-csharp[](~/tutorials/razor-pages-start/sample/RazorPagesMovie50/Models/MovieDateRating.cs?highlight=13&name=snippet)]
+
+1. Build the app.
+
 1. Edit `Pages/Movies/Index.cshtml`, and add a `Rating` field:
-   <a name="addrat7"></a>
-   [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snap7/IndexRating.cshtml?highlight=40-42,62-64)]
+
+   <a name="addrat"></a>
+
+   [!code-cshtml[](~/tutorials/razor-pages-start/sample/RazorPagesMovie50/SnapShots/IndexRating.cshtml?highlight=40-42,62-64)]
 
 1. Update the following pages with a `Rating` field:
-   * *[Pages/Movies/Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Create.cshtml)*.
-   * *[Pages/Movies/Delete.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Delete.cshtml)*.
-   * *[Pages/Movies/Details.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Details.cshtml)*.
-   * *[Pages/Movies/Edit.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Edit.cshtml)*.
+   * *[Pages/Movies/Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Pages/Movies/Create.cshtml)*.
+   * *[Pages/Movies/Delete.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Pages/Movies/Delete.cshtml)*.
+   * *[Pages/Movies/Details.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Pages/Movies/Details.cshtml)*.
+   * *[Pages/Movies/Edit.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Pages/Movies/Edit.cshtml)*.
 
 The app won't work until the database is updated to include the new field. Running the app without an update to the database throws a `SqlException`:
 
@@ -48,17 +42,19 @@ The `SqlException` exception is caused by the updated Movie model class being di
 
 There are a few approaches to resolving the error:
 
-1. Have the Entity Framework automatically drop and re-create the database using the new model class schema. This approach is convenient early in the development cycle, it allows developers to quickly evolve the model and database schema together. The downside is that existing data in the database is lost. Don't use this approach on a production database! Dropping the database on schema changes and using an initializer to automatically seed the database with test data is often a productive way to develop an app.
+1. Have the Entity Framework automatically drop and re-create the database using the new model class schema. This approach is convenient early in the development cycle, it allows you to quickly evolve the model and database schema together. The downside is that you lose existing data in the database. Don't use this approach on a production database! Dropping the database on schema changes and using an initializer to automatically seed the database with test data is often a productive way to develop an app.
+
 2. Explicitly modify the schema of the existing database so that it matches the model classes. The advantage of this approach is to keep the data. Make this change either manually or by creating a database change script.
+
 3. Use Code First Migrations to update the database schema.
 
 For this tutorial, use Code First Migrations.
 
 Update the `SeedData` class so that it provides a value for the new column. A sample change is shown below, but make this change for each `new Movie` block.
 
-[!code-csharp[](~/tutorials/razor-pages-start/sample/RazorPagesMovie60/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
+[!code-csharp[](~/tutorials/razor-pages-start/sample/RazorPagesMovie50/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
 
-See the [completed SeedData.cs file](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/SeedDataRating.cs).
+See the [completed SeedData.cs file](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie50/Models/SeedDataRating.cs).
 
 Build the solution.
 
@@ -118,7 +114,7 @@ The `dotnet-ef migrations add rating` command tells the framework to:
 
 The name `rating` is arbitrary and is used to name the migration file. It's helpful to use a meaningful name for the migration file.
 
-The `dotnet-ef database update` command tells the framework to apply the schema changes to the database and to preserve existing data.
+The `dotnet ef database update` command tells the framework to apply the schema changes to the database and to preserve existing data.
 
 Delete all the records in the database, the initializer will seed the database and include the `Rating` field. 
 
@@ -154,7 +150,7 @@ For more information, see the following resources:
 
 ---
 
-Run the app and verify you can create, edit, and display movies with a `Rating` field. If the database isn't seeded, set a break point in the `SeedData.Initialize` method.
+Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, set a break point in the `SeedData.Initialize` method.
 
 ## Additional resources
 
@@ -163,11 +159,3 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 > [Next: Add Validation](xref:tutorials/razor-pages/validation)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field5.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field3.md)]

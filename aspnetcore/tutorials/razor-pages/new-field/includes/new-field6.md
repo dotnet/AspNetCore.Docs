@@ -1,17 +1,4 @@
----
-title: Part 7, add a new field
-author: wadepickett
-description: Part 7 of tutorial series on Razor Pages.
-ms.author: wpickett
-ms.custom: engagement-fy23
-ms.date: 05/24/2023
-uid: tutorials/razor-pages/new-field
----
-# Part 7, add a new field to a Razor Page in ASP.NET Core
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-6.0"
 
 In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:
 
@@ -26,19 +13,18 @@ When using EF Code First to automatically create and track a database, Code Firs
 Automatic verification that the schema and model are in sync makes it easier to find inconsistent database code issues.
 
 ## Adding a Rating Property to the Movie Model
-<!-- Update Index in working project then copy to snap7 folder -->
 
 1. Open the `Models/Movie.cs` file and add a `Rating` property:
-   [!code-csharp[](~/tutorials/razor-pages-start/sample/RazorPagesMovie70/Models/MovieDateRating.cs?highlight=13&name=snippet)]
+   [!code-csharp[](~/tutorials/razor-pages-start/sample/RazorPagesMovie60/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 1. Edit `Pages/Movies/Index.cshtml`, and add a `Rating` field:
-   <a name="addrat7"></a>
-   [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snap7/IndexRating.cshtml?highlight=40-42,62-64)]
+   <a name="addrat6"></a>
+   [!code-cshtml[](~/tutorials/razor-pages-start/snapshot_sample6/Pages/Movies/IndexRating.cshtml?highlight=40-42,62-64)]
 
 1. Update the following pages with a `Rating` field:
-   * *[Pages/Movies/Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Create.cshtml)*.
-   * *[Pages/Movies/Delete.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Delete.cshtml)*.
-   * *[Pages/Movies/Details.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Details.cshtml)*.
-   * *[Pages/Movies/Edit.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Edit.cshtml)*.
+   * *[Pages/Movies/Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Create.cshtml)*.
+   * *[Pages/Movies/Delete.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Delete.cshtml)*.
+   * *[Pages/Movies/Details.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Details.cshtml)*.
+   * *[Pages/Movies/Edit.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Edit.cshtml)*.
 
 The app won't work until the database is updated to include the new field. Running the app without an update to the database throws a `SqlException`:
 
@@ -58,7 +44,7 @@ Update the `SeedData` class so that it provides a value for the new column. A sa
 
 [!code-csharp[](~/tutorials/razor-pages-start/sample/RazorPagesMovie60/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
 
-See the [completed SeedData.cs file](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/SeedDataRating.cs).
+See the [completed SeedData.cs file](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/SeedDataRating.cs).
 
 Build the solution.
 
@@ -163,11 +149,3 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 > [Next: Add Validation](xref:tutorials/razor-pages/validation)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field5.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field3.md)]

@@ -1,17 +1,4 @@
----
-title: Part 8, add validation
-author: wadepickett
-description: Part 8 of tutorial series on Razor Pages.
-ms.author: wpickett
-ms.custom: engagement-fy23
-ms.date: 05/24/2023
-uid: tutorials/razor-pages/validation
----
-# Part 8 of tutorial series on Razor Pages
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="< aspnetcore-6.0"
 
 In this section, validation logic is added to the `Movie` model. The validation rules are enforced any time a user creates or edits a movie.
 
@@ -29,14 +16,14 @@ The validation support provided by Razor Pages and Entity Framework is a good ex
 
 ## Add validation rules to the movie model
 
-The <xref:System.ComponentModel.DataAnnotations> namespace provides:
+The `DataAnnotations` namespace provides:
 
 * A set of built-in validation attributes that are applied declaratively to a class or property.
 * Formatting attributes like `[DataType]` that help with formatting and don't provide any validation.
 
 Update the `Movie` class to take advantage of the built-in `[Required]`, `[StringLength]`, `[RegularExpression]`, and `[Range]` validation attributes.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/MovieDateRatingDA.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet1)]
 
 The validation attributes specify behavior to enforce on the model properties they're applied to:
 
@@ -114,26 +101,26 @@ The [Input Tag Helper](xref:mvc/views/working-with-forms) uses the [DataAnnotati
 
 The Create and Edit pages have no validation rules in them. The validation rules and the error strings are specified only in the `Movie` class. These validation rules are automatically applied to Razor Pages that edit the `Movie` model.
 
-When validation logic needs to change, it's done only in the model. Validation is applied consistently throughout the app, validation logic is defined in one place. Validation in one place helps keep the code clean, and makes it easier to maintain and update.
+When validation logic needs to change, it's done only in the model. Validation is applied consistently throughout the application, validation logic is defined in one place. Validation in one place helps keep the code clean, and makes it easier to maintain and update.
 
 ## Use DataType Attributes
 
 Examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. The `[DataType]` attribute is applied to the `ReleaseDate` and `Price` properties.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie/Models/MovieDateRatingDA.cs?highlight=2,6&name=snippet2)]
 
 The `[DataType]` attributes provide:
 
 * Hints for the view engine to format the data.
 * Supplies attributes such as `<a>` for URL's and `<a href="mailto:EmailAddress.com">` for email.
 
-Use the `[RegularExpression]` attribute to validate the format of the data. The `[DataType]` attribute is used to specify a data type that's more specific than the database intrinsic type. `[DataType]` attributes aren't validation attributes. In the sample app, only the date is displayed, without time.
+Use the `[RegularExpression]` attribute to validate the format of the data. The `[DataType]` attribute is used to specify a data type that's more specific than the database intrinsic type. `[DataType]` attributes aren't validation attributes. In the sample application, only the date is displayed, without time.
 
 The `DataType` enumeration provides many data types, such as `Date`, `Time`, `PhoneNumber`, `Currency`, `EmailAddress`, and more. 
 
 The `[DataType]` attributes:
 
-* Can enable the app to automatically provide type-specific features. For example, a `mailto:` link can be created for `DataType.EmailAddress`.
+* Can enable the application to automatically provide type-specific features. For example, a `mailto:` link can be created for `DataType.EmailAddress`.
 * Can provide a date selector `DataType.Date` in browsers that support HTML5.
 * Emit HTML 5 `data-`, pronounced "data dash", attributes that HTML 5 browsers consume.
 * Do **not** provide any validation.
@@ -167,7 +154,7 @@ It's a best practice to avoid compiling hard dates in models, so using the `[Ran
 
 The following code shows combining attributes on one line:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/MovieDateRatingDAmult.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
 [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) shows advanced EF Core operations with Razor Pages.
 
@@ -175,7 +162,7 @@ The following code shows combining attributes on one line:
 
 The DataAnnotations applied to the class changes the schema. For example, the DataAnnotations applied to the `Title` field:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/MovieDateRatingDA.cs?name=snippet11)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Models/MovieDateRatingDA.cs?name=snippet11)]
 
 * Limits the characters to 60.
 * Doesn't allow a `null` value.
@@ -196,8 +183,6 @@ CREATE TABLE [dbo].[Movie] (
 
 The preceding schema changes don't cause EF to throw an exception. However, create a migration so the schema is consistent with the model.
 
-# [Visual Studio](#tab/visual-studio)
-
 From the **Tools** menu, select **NuGet Package Manager > Package Manager Console**.
 In the PMC, enter the following commands:
 
@@ -206,21 +191,9 @@ Add-Migration New_DataAnnotations
 Update-Database
 ```
 
-# [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-
-Use the following commands to add a migration for the new DataAnnotations:
-
-```dotnetcli
-dotnet ef migrations add New_DataAnnotations
-dotnet ef database update
-
-```
-
----
-
 `Update-Database` runs the `Up` methods of the `New_DataAnnotations` class. Examine the `Up` method:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Migrations/20221031235618_New_DataAnnotations.cs?name=snippet_1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Migrations/20190724163003_New_DataAnnotations.cs?name=snippet)]
 
 The updated `Movie` table has the following schema:
 
@@ -242,6 +215,8 @@ For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core app 
 
 Thanks for completing this introduction to Razor Pages. [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) is an excellent follow up to this tutorial.
 
+[!INCLUDE[](~/includes/reliableWAP_H2.md)]
+
 ## Additional resources
 
 * <xref:mvc/views/working-with-forms>
@@ -252,9 +227,3 @@ Thanks for completing this introduction to Razor Pages. [Get started with Razor 
 > [!div class="step-by-step"]
 > [Previous: Add a new field](xref:tutorials/razor-pages/new-field)
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation3-5.md)]

@@ -1,23 +1,10 @@
----
-title: Part 6, add search
-author: wadepickett
-description: Part 6 of tutorial series on Razor Pages.
-ms.author: wpickett
-ms.date: 05/24/2023
-ms.custom: engagement-fy23
-uid: tutorials/razor-pages/search
----
-# Part 6, add search to ASP.NET Core Razor Pages
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-6.0"
 
 In the following sections, searching movies by *genre* or *name* is added.
 
 Add the following highlighted code to `Pages/Movies/Index.cshtml.cs`:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=12-18)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=3,22-27)]
 
 In the previous code:
 
@@ -42,7 +29,7 @@ var movies = from m in _context.Movie
 
 The query is only ***defined*** at this point, it has ***not*** been run against the database.
 
-If the `SearchString` property is not `null` or empty, the movies query is modified to filter on the search string:
+If the `SearchString` property is not null or empty, the movies query is modified to filter on the search string:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Index.cshtml.cs?name=snippet_SearchNull)]
 
@@ -90,7 +77,7 @@ Save the changes and test the filter.
 
 Update the Index page's `OnGetAsync` method with the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Index.cshtml.cs?name=snippet_SearchGenre)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Index.cshtml.cs?name=snippet_SearchGenre)]
 
 The following code is a LINQ query that retrieves all the genres from the database.
 
@@ -120,9 +107,3 @@ Test the app by searching by genre, by movie title, and by both.
 > [Next: Add a new field](xref:tutorials/razor-pages/new-field)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search3-5.md)]

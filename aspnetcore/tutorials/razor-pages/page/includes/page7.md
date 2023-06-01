@@ -1,21 +1,4 @@
----
-title: Part 3, scaffolded Razor Pages
-author: wadepickett
-description: Part 3 of tutorial series on Razor Pages.
-ms.author: wpickett
-monikerRange: '>= aspnetcore-3.1'
-ms.date: 05/24/2023
-ms.custom: engagement-fy23
-uid: tutorials/razor-pages/page
----
-
-# Part 3, scaffolded Razor Pages in ASP.NET Core
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-This tutorial examines the Razor Pages created by scaffolding in the [previous tutorial](xref:tutorials/razor-pages/model).
-
-:::moniker range="= aspnetcore-8.0"
+:::moniker range="= aspnetcore-7.0"
 
 <!-- Moniker prep and make a copy of the current project at tutorials/razor-pages/razor-pages-start/snapshot_sample7 -->
 
@@ -207,9 +190,3 @@ For more information on Tag Helpers such as `<form method="post">`, see [Tag Hel
 > [Next: Work with a database](xref:tutorials/razor-pages/sql)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/page/includes/page7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/page/includes/page6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/page/includes/page3-5.md)]

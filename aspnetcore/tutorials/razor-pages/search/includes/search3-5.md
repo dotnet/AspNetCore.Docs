@@ -1,23 +1,10 @@
----
-title: Part 6, add search
-author: wadepickett
-description: Part 6 of tutorial series on Razor Pages.
-ms.author: wpickett
-ms.date: 05/24/2023
-ms.custom: engagement-fy23
-uid: tutorials/razor-pages/search
----
-# Part 6, add search to ASP.NET Core Razor Pages
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="< aspnetcore-6.0"
 
 In the following sections, searching movies by *genre* or *name* is added.
 
-Add the following highlighted code to `Pages/Movies/Index.cshtml.cs`:
+Add the following highlighted using statement and properties to `Pages/Movies/Index.cshtml.cs`:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=12-18)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=3,23,24,25,26,27)]
 
 In the previous code:
 
@@ -42,16 +29,15 @@ var movies = from m in _context.Movie
 
 The query is only ***defined*** at this point, it has ***not*** been run against the database.
 
-If the `SearchString` property is not `null` or empty, the movies query is modified to filter on the search string:
+If the `SearchString` property is not null or empty, the movies query is modified to filter on the search string:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Pages/Movies/Index.cshtml.cs?name=snippet_SearchNull)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_SearchNull)]
 
 The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas are used in method-based [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) queries as arguments to standard query operator methods such as the [Where](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) method or `Contains`. LINQ queries are not executed when they're defined or when they're modified by calling a method, such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred. The evaluation of an expression is delayed until its realized value is iterated over or the `ToListAsync` method is called. See [Query Execution](/dotnet/framework/data/adonet/ef/language-reference/query-execution) for more information.
 
 > [!NOTE]
 > The <xref:System.Data.Objects.DataClasses.EntityCollection%601.Contains%2A> method is run on the database, not in the C# code. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with the default collation is a mixture of case sensitive and case ***IN***sensitive, depending on the query. For information on making case insensitive SQLite queries, see the following:
-
-* [This GitHub issue](https://github.com/dotnet/efcore/issues/11414)
+* [This GitHub issue](https://github.com/dotnet/efcore/issues/11414).
 * [This GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/22314)
 * [Collations and Case Sensitivity](/ef/core/miscellaneous/collations-and-case-sensitivity)
 
@@ -75,7 +61,7 @@ However, users cannot be expected to modify the URL to search for a movie. In th
 
 Open the `Pages/Movies/Index.cshtml` file, and add the markup highlighted in the following code:
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample6/Pages/Movies/Index2.cshtml?highlight=14-19&range=1-22)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/SnapShots/Index2.cshtml?highlight=14-19&range=1-22)]
 
 The HTML `<form>` tag uses the following [Tag Helpers](xref:mvc/views/tag-helpers/intro):
 
@@ -90,39 +76,28 @@ Save the changes and test the filter.
 
 Update the Index page's `OnGetAsync` method with the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Index.cshtml.cs?name=snippet_SearchGenre)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_SearchGenre)]
 
 The following code is a LINQ query that retrieves all the genres from the database.
 
-```csharp
-// Use LINQ to get list of genres.
-IQueryable<string> genreQuery = from m in _context.Movie
-                                orderby m.Genre
-                                select m.Genre;
-```
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_LINQ)]
 
 The `SelectList` of genres is created by projecting the distinct genres.
 
-```csharp
-Genres = new SelectList(await genreQuery.Distinct().ToListAsync());
-```
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/Pages/Movies/Index.cshtml.cs?name=snippet_SelectList)]
 
 ### Add search by genre to the Razor Page
 
-Update the `Index.cshtml` [`<form>` element](https://developer.mozilla.org/docs/Web/HTML/Element/form) as highlighted in the following markup:
+1. Update the `Index.cshtml` [`<form>` element](https://developer.mozilla.org/docs/Web/HTML/Element/form) as highlighted in the following markup:
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snapshot_sample6/Pages/Movies/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-22)]
+   [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie30/SnapShots/IndexFormGenreNoRating.cshtml?highlight=16-18&range=1-26)]
 
-Test the app by searching by genre, by movie title, and by both.
+1. Test the app by searching by genre, by movie title, and by both.
+
+## Additional resources
 
 > [!div class="step-by-step"]
 > [Previous: Update the pages](xref:tutorials/razor-pages/da1)
 > [Next: Add a new field](xref:tutorials/razor-pages/new-field)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search3-5.md)]

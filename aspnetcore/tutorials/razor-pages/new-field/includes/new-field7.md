@@ -1,17 +1,4 @@
----
-title: Part 7, add a new field
-author: wadepickett
-description: Part 7 of tutorial series on Razor Pages.
-ms.author: wpickett
-ms.custom: engagement-fy23
-ms.date: 05/24/2023
-uid: tutorials/razor-pages/new-field
----
-# Part 7, add a new field to a Razor Page in ASP.NET Core
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-7.0"
 
 In this section [Entity Framework](/ef/core/get-started/aspnetcore/new-db) Code First Migrations is used to:
 
@@ -163,11 +150,3 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 > [Next: Add Validation](xref:tutorials/razor-pages/validation)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field5.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field3.md)]
