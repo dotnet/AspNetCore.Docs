@@ -16,7 +16,10 @@ This article explains how to configure Blazor Server for additional security sce
 
 ## Pass tokens to a Blazor Server app
 
-Tokens available outside of the Razor components in a Blazor Server app can be passed to components with the approach described in this section. The example in this section focuses on passing access and refresh tokens to the Blazor app, but the approach is valid for other HTTP context state.
+Tokens available outside of the Razor components in a Blazor Server app can be passed to components with the approach described in this section. The example in this section focuses on passing access, refresh, and [anti-request forgery (XSRF) token](xref:security/anti-request-forgery) tokens to the Blazor app, but the approach is valid for other HTTP context state.
+
+> [!NOTE]
+> Passing the XSRF token to Razor components is useful in scenarios where components POST to Identity or other endpoints that require validation. If your app only requires access and refresh tokens, you can remove the XSRF token code from the following example.
 
 Authenticate the Blazor Server app as you would with a regular Razor Pages or MVC app. Provision and save the tokens to the authentication cookie.
 
@@ -98,6 +101,7 @@ public class TokenProvider
 {
     public string? AccessToken { get; set; }
     public string? RefreshToken { get; set; }
+    public string? XsrfToken { get; set; }
 }
 ```
 
@@ -110,6 +114,7 @@ public class TokenProvider
 {
     public string AccessToken { get; set; }
     public string RefreshToken { get; set; }
+    public string XsrfToken { get; set; }
 }
 ```
 
@@ -154,8 +159,10 @@ public class InitialApplicationState
 {
     public string? AccessToken { get; set; }
     public string? RefreshToken { get; set; }
+    public string? XsrfToken { get; set; }
 }
 ```
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
@@ -165,11 +172,11 @@ public class InitialApplicationState
 {
     public string AccessToken { get; set; }
     public string RefreshToken { get; set; }
+    public string XsrfToken { get; set; }
 }
 ```
 
 :::moniker-end
-
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -191,6 +198,7 @@ In the `Pages/_Host.cshtml` file, create and instance of `InitialApplicationStat
 
 ```cshtml
 @using Microsoft.AspNetCore.Authentication
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
 
 ...
 
@@ -198,7 +206,8 @@ In the `Pages/_Host.cshtml` file, create and instance of `InitialApplicationStat
     var tokens = new InitialApplicationState
     {
         AccessToken = await HttpContext.GetTokenAsync("access_token"),
-        RefreshToken = await HttpContext.GetTokenAsync("refresh_token")
+        RefreshToken = await HttpContext.GetTokenAsync("refresh_token"),
+        XsrfToken = Xsrf.GetAndStoreTokens(HttpContext).RequestToken
     };
 }
 
@@ -222,6 +231,7 @@ In the `App` component (`App.razor`), resolve the service and initialize it with
     {
         TokenProvider.AccessToken = InitialState?.AccessToken;
         TokenProvider.RefreshToken = InitialState?.RefreshToken;
+        TokenProvider.XsrfToken = InitialState?.XsrfToken;
 
         return base.OnInitializedAsync();
     }
@@ -245,6 +255,7 @@ In the `App` component (`App.razor`), resolve the service and initialize it with
     {
         TokenProvider.AccessToken = InitialState.AccessToken;
         TokenProvider.RefreshToken = InitialState.RefreshToken;
+        TokenProvider.XsrfToken = InitialState.XsrfToken;
 
         return base.OnInitializedAsync();
     }
@@ -334,6 +345,29 @@ public class WeatherForecastService
 ```
 
 :::moniker-end
+
+For an XSRF token passed to a component, inject the `TokenProvider` and add the XSRF token to the POST request. The following example adds the token to a logout endpoint POST. The scenario for the following example is that the logout endpoint (`Areas/Identity/Pages/Account/Logout.cshtml`, [scaffolded into the app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project)) doesn't specify an <xref:Microsoft.AspNetCore.Mvc.IgnoreAntiforgeryTokenAttribute> (`@attribute [IgnoreAntiforgeryToken]`) because it performs some action in addition to a normal logout operation that must be protected. The endpoint requires a valid XSRF token to successfully process the request.
+
+In a component that presents a **Logout** button to authorized users:
+
+```razor
+@inject TokenProvider TokenProvider
+
+...
+
+<AuthorizeView>
+    <Authorized>
+        <form action="/Identity/Account/Logout?returnUrl=%2F" method="post">
+            <button class="nav-link btn btn-link" type="submit">Logout</button>
+            <input name="__RequestVerificationToken" type="hidden" 
+                value="@TokenProvider.XsrfToken">
+        </form>
+    </Authorized>
+    <NotAuthorized>
+        ...
+    </NotAuthorized>
+</AuthorizeView>
+```
 
 ## Set the authentication scheme
 
