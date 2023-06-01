@@ -8,10 +8,9 @@ Supported binding sources:
 * Query string
 * Header
 * Body (as JSON)
+* Form values
 * Services provided by dependency injection
 * Custom
-
-Binding from form values is ***not*** natively supported in .NET.
 
 The following `GET` route handler uses some of these parameter binding sources:
 
@@ -50,8 +49,17 @@ Attributes can be used to explicitly declare where parameters are bound from.
 | `service`   | Provided by dependency injection |
 | `contentType` | header with the name `"Content-Type"` |
 
-> [!NOTE]
-> Binding from form values is ***not*** natively supported in .NET.
+#### Explicit binding from form values
+
+The [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute binds form values:
+
+[!code-csharp[](~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/FormBinding/Program.cs?name=snippet_post_put_delete&highlight=1)
+
+An alternative is to use the [`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) attribute with a custom type that has properties annotated with `[FromForm]`. For example, the following code binds from form values to properties of the `NewTodoRequest` record struct:
+
+[!code-csharp[](~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/FormBinding/Program.cs?name=snippet_post_put_delete_as_parameters&highlight=1)
+
+[!code-csharp[](~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/FormBinding/Program.cs?name=snippet_argumentlist_record&highlight=1)
 
 ### Parameter binding with dependency injection
 
