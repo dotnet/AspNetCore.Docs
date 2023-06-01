@@ -1,4 +1,4 @@
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range="= aspnetcore-7.0"
 
 The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in `Program.cs`:
 

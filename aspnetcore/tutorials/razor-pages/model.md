@@ -98,11 +98,11 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
 
 1. Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
-   ![New Scaffolded Item](~/tutorials/model/_static/5/sca.png)
+   ![New Scaffolded Item](~/tutorials/razor-pages/model/_static/5/sca.png)
 
 1. In the **Add New Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
 
-   ![Add Scaffold](~/tutorials/model/_static/6/add_scaffold.png)
+   ![Add Scaffold](~/tutorials/razor-pages/model/_static/6/add_scaffold.png)
 
 1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
    1. In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
@@ -111,7 +111,7 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
       1. In the **Database provider** drop down, select **SQL Server**.
    1. Select **Add**.
 
-   ![Add Razor Pages](~/tutorials/model/_static/7/arp_VS22_17.6.2.png)
+   ![Add Razor Pages](~/tutorials/razor-pages/model/_static/7/arp_VS22_17.6.2.png)
 
 The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
@@ -165,18 +165,18 @@ Author note 5-30-23: As of VS 2022 and the 7.05 packages, EF scaffolding on the 
 
 1. Control-click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
 
-   ![New Scaffolding on Mac](~/tutorials/model/_static/6/scaMac6.png)
+   ![New Scaffolding on Mac](~/tutorials/razor-pages/model/_static/6/scaMac6.png)
 
 1. In the **New Scaffolding** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Next**.
 
-   ![Add Scaffolding on Mac](~/tutorials/model/_static/7/add_scaffoldMac7.png)
+   ![Add Scaffolding on Mac](~/tutorials/razor-pages/model/_static/7/add_scaffoldMac7.png)
 
 1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
    1. In the **Model class to use:** row, enter `Movie`.
    1. In the **DbContext Class to use:** row, name the class `RazorPagesMovie.Data.RazorPagesMovieContext`.
    1. Select **Finish**.
 
-   ![Add Razor Pages on Mac](~/tutorials/model/_static/arpMac.png)
+   ![Add Razor Pages on Mac](~/tutorials/razor-pages/model/_static/arpMac.png)
 
 The scaffolding process may take some time to complete as required packages are automatically downloaded and added to the project.
 
@@ -242,7 +242,7 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 1. From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
 
-   ![PMC menu](~/tutorials/model/_static/5/pmc.png)
+   ![PMC menu](~/tutorials/razor-pages/model/_static/5/pmc.png)
 
 1. In the PMC, enter the following commands:
 
@@ -334,7 +334,7 @@ The name of the connection string is passed in to the context by calling a metho
 
 1. Test the **Create New** link.
 
-   ![Create page](~/tutorials/model/_static/conan5.png)
+   ![Create page](~/tutorials/razor-pages/model/_static/conan5.png)
 
    > [!NOTE]
    > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).

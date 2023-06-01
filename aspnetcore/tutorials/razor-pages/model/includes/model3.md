@@ -128,11 +128,11 @@ Create a *Pages/Movies* folder:
 
 Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
-![New Scaffolded Item on VScode](~/tutorials/model/_static/sca.png)
+![New Scaffolded Item on VScode](~/tutorials/razor-pages/model/_static/sca.png)
 
 In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
 
-![Add Scaffold on VScode](~/tutorials/model/_static/add_scaffold.png)
+![Add Scaffold on VScode](~/tutorials/razor-pages/model/_static/add_scaffold.png)
 
 Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
@@ -140,7 +140,7 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 * In the **Data context class** row, select the **+** (plus) sign and change the generated name from RazorPagesMovie.*`Models`*.RazorPagesMovieContext to RazorPagesMovie.**Data**.RazorPagesMovieContext. [This change](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) is not required. It creates the database context class with the correct namespace.
 * Select **Add**.
 
-![Add Razor Pages on VScode](~/tutorials/model/_static/3/arp.png)
+![Add Razor Pages on VScode](~/tutorials/razor-pages/model/_static/3/arp.png)
 
 The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
@@ -197,11 +197,11 @@ Create a *Pages/Movies* folder:
 
 Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
 
-![New Scaffolding on Visual Studio for Mac](~/tutorials/model/_static/scaMac.png)
+![New Scaffolding on Visual Studio for Mac](~/tutorials/razor-pages/model/_static/scaMac.png)
 
 In the **New Scaffolding** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Next**.
 
-![Add Scaffolding on Visual Studio for Mac](~/tutorials/model/_static/add_scaffoldMac.png)
+![Add Scaffolding on Visual Studio for Mac](~/tutorials/razor-pages/model/_static/add_scaffoldMac.png)
 
 Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
@@ -209,7 +209,7 @@ Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 * In the **Data context class** row, type the name for the new class, RazorPagesMovie.**Data**.RazorPagesMovieContext. [This change](https://developercommunity.visualstudio.com/content/problem/652166/aspnet-core-ef-scaffolder-uses-incorrect-namespace.html) is not required. It creates the database context class with the correct namespace.
 * Select **Add**.
 
-![Add Razor Page on Visual Studio for Mac](~/tutorials/model/_static/arpMac.png)
+![Add Razor Page on Visual Studio for Mac](~/tutorials/razor-pages/model/_static/arpMac.png)
 
 The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
@@ -355,7 +355,7 @@ You missed the [migrations step](#pmc).
 
 * Test the **Create** link.
 
-  ![Create page](~/tutorials/model/_static/conan5.png)
+  ![Create page](~/tutorials/razor-pages/model/_static/conan5.png)
 
   > [!NOTE]
   > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).

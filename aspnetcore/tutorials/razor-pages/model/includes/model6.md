@@ -82,12 +82,12 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
 
 1. Add the NuGet package `Microsoft.EntityFrameworkCore.Design`, which is required for the scaffolding tool.
    1. From the **Tools** menu, select **NuGet Package Manager** > **Manage NuGet Packages for Solution**
-      ![NuGet Package Manager - manage](~/tutorials/model/_static/6/nugetMP.png)
+      ![NuGet Package Manager - manage](~/tutorials/razor-pages/model/_static/6/nugetMP.png)
    1. Select the **Browse** tab.
    1. Enter `Microsoft.EntityFrameworkCore.Design` and select it from the list.
    1. Check **Project** and then Select **Install**
    1. Select **I Accept** in the **License Acceptance** dialog.
-      ![NuGet Package Manager - add package](~/tutorials/model/_static/6/na.png)
+      ![NuGet Package Manager - add package](~/tutorials/razor-pages/model/_static/6/na.png)
 
 1. Create the *Pages/Movies* folder:
    1. Right-click on the *Pages* folder > **Add** > **New Folder**.
@@ -95,11 +95,11 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
 
 1. Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
-   ![New Scaffolded Item](~/tutorials/model/_static/5/sca.png)
+   ![New Scaffolded Item](~/tutorials/razor-pages/model/_static/5/sca.png)
 
 1. In the **Add New Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
 
-   ![Add Scaffold](~/tutorials/model/_static/6/add_scaffold.png)
+   ![Add Scaffold](~/tutorials/razor-pages/model/_static/6/add_scaffold.png)
 
 1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
    1. In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
@@ -107,7 +107,7 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
       1. In the **Add Data Context** dialog, the class name `RazorPagesMovie.Data.RazorPagesMovieContext` is generated.
    1. Select **Add**.
 
-   ![Add Razor Pages](~/tutorials/model/_static/3/arp.png)
+   ![Add Razor Pages](~/tutorials/razor-pages/model/_static/3/arp.png)
 
    If you get an error message that says you need to install the `Microsoft.EntityFrameworkCore.SqlServer` package, repeat the steps starting with **Add** > **New Scaffolded Item**.
 
@@ -150,18 +150,18 @@ For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/
 
 1. Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolding...**.
 
-   ![New Scaffolding on Mac](~/tutorials/model/_static/6/scaMac6.png)
+   ![New Scaffolding on Mac](~/tutorials/razor-pages/model/_static/6/scaMac6.png)
 
 1. In the **New Scaffolding** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Next**.
 
-   ![Add Scaffolding on Mac](~/tutorials/model/_static/6/add_scaffoldMac6.png)
+   ![Add Scaffolding on Mac](~/tutorials/razor-pages/model/_static/6/add_scaffoldMac6.png)
 
 1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
    1. In the **Model class to use:** row, enter `Movie`.
    1. In the **DbContext Class to use:** row, name the class `RazorPagesMovie.Data.RazorPagesMovieContext`.
    1. Select **Finish**.
 
-   ![Add Razor Pages on Mac](~/tutorials/model/_static/arpMac.png)
+   ![Add Razor Pages on Mac](~/tutorials/razor-pages/model/_static/arpMac.png)
 
 The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
@@ -207,7 +207,7 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 1. From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
 
-   ![PMC menu](~/tutorials/model/_static/5/pmc.png)
+   ![PMC menu](~/tutorials/razor-pages/model/_static/5/pmc.png)
 
 1. In the PMC, enter the following commands:
 
@@ -289,7 +289,7 @@ The name of the connection string is passed in to the context by calling a metho
 
 1. Test the **Create New** link.
 
-   ![Create page](~/tutorials/model/_static/conan5.png)
+   ![Create page](~/tutorials/razor-pages/model/_static/conan5.png)
 
    > [!NOTE]
    > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
