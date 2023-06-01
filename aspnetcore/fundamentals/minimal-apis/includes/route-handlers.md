@@ -16,6 +16,20 @@ Route handlers are methods that execute when the route matches. Route handlers c
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_sm)]
 
+### Endpoint defined outside of `Program.cs`
+
+Minimal APIs don't have to be located in `Program.cs`.
+
+`Program.cs`
+
+[!code-csharp[](~/fundamentals/minimal-apis/8.0-samples/MinAPISeparateFile/Program.cs)]
+
+`TodoEndpoints.cs`
+
+[!code-csharp[](~/fundamentals/minimal-apis/8.0-samples/MinAPISeparateFile/TodoEndpoints.cs)]
+
+See also [Route groups](#route-groups) later in this article.
+
 ### Named endpoints and link generation
 
 Endpoints can be given names in order to generate URLs to the endpoint. Using a named endpoint avoids having to hard code paths in an app:
