@@ -48,7 +48,7 @@ Record the Application (client) ID (for example, `41451fa7-82d9-4673-8fa5-69eff5
 In **Authentication** > **Platform configurations** > **Single-page application**:
 
 1. Confirm the redirect URI of `https://localhost/authentication/login-callback` is present.
-1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
+1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** aren't selected. **Implicit grant isn't recommended for Blazor apps using MSAL v2.0 or later.** For more information, see [Use the Authorization Code flow with PKCE](xref:blazor/security/webassembly/index#use-the-authorization-code-flow-with-pkce).
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button if you made changes.
 

@@ -260,6 +260,18 @@ Further configuration guidance is found in the following articles:
 * <xref:blazor/security/webassembly/additional-scenarios>
 * <xref:blazor/security/webassembly/graph-api>
 
+## Use the Authorization Code flow with PKCE
+
+Microsoft identity platform's [Microsoft Authentication Library for JavaScript (MSAL)](/azure/active-directory/develop/msal-overview) v2.0 or later provides support for the [Authorization Code flow](/azure/active-directory/develop/v2-oauth2-auth-code-flow) with [Proof Key for Code Exchange (PKCE)](https://oauth.net/2/pkce/) and [cross-origin resource sharing (CORS)](xref:security/cors) for single-page applications, including Blazor. 
+
+**Microsoft doesn't recommend using Implicit flow.**
+
+For more information, see the following resources:
+
+* [Authentication flow support in MSAL: Implicit grant](/azure/active-directory/develop/msal-authentication-flows#implicit-grant)
+* [Microsoft identity platform and implicit grant flow: Prefer the auth code flow](/azure/active-directory/develop/v2-oauth2-implicit-grant-flow#prefer-the-auth-code-flow)
+* [Microsoft identity platform and OAuth 2.0 authorization code flow](/azure/active-directory/develop/v2-oauth2-auth-code-flow)
+
 ## Additional resources
 
 * Microsoft identity platform documentation
