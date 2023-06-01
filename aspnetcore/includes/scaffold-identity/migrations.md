@@ -41,7 +41,7 @@ dotnet ef database update
 
 ---
 
-You can confirm the application of an Identity schema with the following command:
+You can confirm the application of an Identity schema with the following command. The output of the command includes an "`applied`" column to show which migrations are applied to the database.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -64,5 +64,3 @@ dotnet ef migrations list
 If more than one database context exists, specify the context with the `--context` parameter.
 
 ---
-
-The output of the command includes an "`applied`" column to show which migrations are applied to the database.
