@@ -1198,7 +1198,7 @@ In the following `FormExample6` component, update the namespace of the **`Shared
 
     private async Task HandleValidSubmit(EditContext editContext)
     {
-        customValidation?.ClearErrors();
+        customValidation.ClearErrors();
 
         try
         {
@@ -1211,7 +1211,7 @@ In the following `FormExample6` component, update the namespace of the **`Shared
             if (response.StatusCode == HttpStatusCode.BadRequest && 
                 errors.Any())
             {
-                customValidation?.DisplayErrors(errors);
+                customValidation.DisplayErrors(errors);
             }
             else if (!response.IsSuccessStatusCode)
             {
@@ -1364,6 +1364,8 @@ Make the `enums` accessible to the:
 
 Use <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> components with the <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup%601> component to create a radio button group. In the following example, properties are added to the `Starship` model described in the [Example form](#example-form) section:
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-6.0"
 
 ```csharp
@@ -1381,7 +1383,7 @@ public Engine? Engine { get; set; } = null;
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-6.0"
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
 ```csharp
 [Required]
@@ -1397,6 +1399,8 @@ public Engine Engine { get; set; } = null;
 ```
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-5.0"
 
 Update the `Starfleet Starship Database` form (`FormExample2` component) from the [Example form](#example-form) section. Add the components to produce:
 
