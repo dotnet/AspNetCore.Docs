@@ -150,11 +150,26 @@ In the following component code, `newItemName` is provided by a bound element of
 }
 ```
 
-<xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data:
+<xref:System.Net.Http.Json.HttpClientJsonExtensions.PostAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data as an array:
+
+:::moniker range=">= aspnetcore-6.0"
 
 ```csharp
-var content = await response.Content.ReadFromJsonAsync<WeatherForecast>();
+var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ??
+    Array.Empty<WeatherForecast>();
 ```
+
+In the preceding example, an empty array is created if no weather data is returned by the method, so `content` isn't null after the statement executes.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+```csharp
+var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>();
+```
+
+:::moniker-end
 
 ### PUT as JSON (`PutAsJsonAsync`)
 
@@ -186,11 +201,26 @@ In the following component code, `editItem` values for `Name` and `IsCompleted` 
 }
 ```
 
-<xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data:
+<xref:System.Net.Http.Json.HttpClientJsonExtensions.PutAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data as an array:
+
+:::moniker range=">= aspnetcore-6.0"
 
 ```csharp
-var content = await response.Content.ReadFromJsonAsync<WeatherForecast>();
+var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ??
+    Array.Empty<WeatherForecast>();
 ```
+
+In the preceding example, an empty array is created if no weather data is returned by the method, so `content` isn't null after the statement executes.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+```csharp
+var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>();
+```
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -234,11 +264,14 @@ The following example doesn't show loading `incompleteTodoItems` for brevity. Se
 }
 ```
 
-<xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data:
+<xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data as an array:
 
 ```csharp
-var content = await response.Content.ReadFromJsonAsync<WeatherForecast>();
+var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ??
+    Array.Empty<WeatherForecast>();
 ```
+
+In the preceding example, an empty array is created if no weather data is returned by the method, so `content` isn't null after the statement executes.
 
 :::moniker-end
 
