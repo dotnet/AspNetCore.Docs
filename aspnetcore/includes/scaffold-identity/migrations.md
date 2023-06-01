@@ -41,7 +41,7 @@ dotnet ef database update
 
 ---
 
-You can confirm if the Identity schema has been applied with either:
+You can confirm the application of an Identity schema with the following command. The output of the command includes an "`applied`" column to show which migrations are applied to the database.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -51,6 +51,8 @@ In the Visual Studio **Package Manager Console**, execute [`Get-Migration`](/ef/
 Get-Migration
 ```
 
+If more than one database context exists, specify the context with the `-Context` parameter.
+
 # [.NET Core CLI](#tab/netcore-cli)
 
 In a command shell, execute [`dotnet ef migrations list`](/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli#listing-migrations):
@@ -59,6 +61,6 @@ In a command shell, execute [`dotnet ef migrations list`](/ef/core/managing-sche
 dotnet ef migrations list
 ```
 
----
+If more than one database context exists, specify the context with the `--context` parameter.
 
-The output of the command includes an "applied" (**:::no-loc text="applied":::**) column to show which migrations are applied to the database.
+---
