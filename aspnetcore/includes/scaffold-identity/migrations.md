@@ -41,7 +41,7 @@ dotnet ef database update
 
 ---
 
-You can confirm if the Identity schema has been applied with either:
+You can confirm if the Identity schema has been applied with the following command:
 
 # [Visual Studio](#tab/visual-studio)
 
