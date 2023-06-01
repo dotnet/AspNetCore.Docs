@@ -65,4 +65,4 @@ If more than one database context exists, specify the context with the `--contex
 
 ---
 
-The output of the command includes an "applied" (**:::no-loc text="applied":::**) column to show which migrations are applied to the database.
+The output of the command includes an "`applied`" column to show which migrations are applied to the database.
