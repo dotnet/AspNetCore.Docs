@@ -131,7 +131,7 @@ The following example shows the default `Counter` component with an [`@code`][1]
 
 :::moniker-end
 
-The following `Counter` component splits presentation HTML and Razor markup from the C# code using a code-behind file with a partial class. Splitting the markup from the C# code is favored by some organizations and developers to organize their component code to suit how they prefer to work. For example, the organization's UI expert can work on the presenation layer independently of another developer working on the component's C# logic. The approach is also useful when working with automatically-generated code or source generators. For more information, see [Partial Classes and Methods (C# Programming Guide)](/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods).
+The following `Counter` component splits presentation HTML and Razor markup from the C# code using a code-behind file with a partial class. Splitting the markup from the C# code is favored by some organizations and developers to organize their component code to suit how they prefer to work. For example, the organization's UI expert can work on the presentation layer independently of another developer working on the component's C# logic. The approach is also useful when working with automatically-generated code or source generators. For more information, see [Partial Classes and Methods (C# Programming Guide)](/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods).
 
 `Pages/CounterPartialClass.razor`:
 
