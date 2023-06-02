@@ -83,16 +83,16 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
 
 * **Client**
 
-  Typically, double the value used for the server's <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> to set the timeout for the client's server timeout (`serverTimeoutInMilliseconds` or <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>, default: 30 seconds).
-
-  > [!IMPORTANT]
-  > The Keep-Alive interval (`keepAliveIntervalInMilliseconds` or <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>) isn't directly related to the reconnection UI appearing. The Keep-Alive interval doesn't necessarily need to be changed. If the reconnection UI appearance issue is due to timeouts, the server timeout can be increased and the Keep-Alive interval can remain the same. The important consideration is that if you change the Keep-Alive interval, make sure that the timeout value is at least double the value of the Keep-Alive interval and that the Keep-Alive interval on the server matches the client setting.
-  >
-  > In the following example, a custom value of 60 seconds is used for the server timeout.
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
+
+  Typically, double the value used for the server's <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> to set the timeout for the client's server timeout (`withServerTimeout` or <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>, default: 30 seconds).
+
+  > [!IMPORTANT]
+  > The Keep-Alive interval (`withKeepAliveInterval` or <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>) isn't directly related to the reconnection UI appearing. The Keep-Alive interval doesn't necessarily need to be changed. If the reconnection UI appearance issue is due to timeouts, the server timeout can be increased and the Keep-Alive interval can remain the same. The important consideration is that if you change the Keep-Alive interval, make sure that the timeout value is at least double the value of the Keep-Alive interval and that the Keep-Alive interval on the server matches the client setting.
+  >
+  > In the following example, a custom value of 60 seconds is used for the server timeout.
 
   In `Pages/_Host.cshtml` of a Blazor Server app:
 
@@ -101,7 +101,7 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
   <script>
     Blazor.start({
       configureSignalR: function (builder) {
-        builder.serverTimeoutInMilliseconds = 60000;
+        builder.withServerTimeout(60000);
       }
     });
   </script>
@@ -130,6 +130,13 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+  Typically, double the value used for the server's <xref:Microsoft.AspNetCore.SignalR.HubOptions.KeepAliveInterval> to set the timeout for the client's server timeout (`serverTimeoutInMilliseconds` or <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout>, default: 30 seconds).
+
+  > [!IMPORTANT]
+  > The Keep-Alive interval (`keepAliveIntervalInMilliseconds` or <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>) isn't directly related to the reconnection UI appearing. The Keep-Alive interval doesn't necessarily need to be changed. If the reconnection UI appearance issue is due to timeouts, the server timeout can be increased and the Keep-Alive interval can remain the same. The important consideration is that if you change the Keep-Alive interval, make sure that the timeout value is at least double the value of the Keep-Alive interval and that the Keep-Alive interval on the server matches the client setting.
+  >
+  > In the following example, a custom value of 60 seconds is used for the server timeout.
 
   In `Pages/_Host.cshtml` of a Blazor Server app:
 

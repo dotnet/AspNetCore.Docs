@@ -452,8 +452,7 @@ The following example for the `Pages/_Host.cshtml` file (Blazor Server, all vers
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
-      builder.serverTimeoutInMilliseconds = 30000;
-      builder.keepAliveIntervalInMilliseconds = 15000;
+      builder.withServerTimeout(30000).withKeepAliveInterval(15000);
     }
   });
 </script>

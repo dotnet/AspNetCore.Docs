@@ -83,8 +83,7 @@ The following example shows the ***new approach*** for assigning values that are
 ```javascript
 Blazor.start({
   configureSignalR: function (builder) {
-    builder.serverTimeoutInMilliseconds = 60000;
-    builder.keepAliveIntervalInMilliseconds = 30000;
+    builder.withServerTimeout(60000).withKeepAliveInterval(30000);
   }
 });
 ```
