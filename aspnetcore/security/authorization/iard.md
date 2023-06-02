@@ -9,7 +9,7 @@ uid: security/authorization/iard
 ---
 # Custom authorization policies with IAuthorizationRequirementData
 
-The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface allows the attribute definition to also specify the requirements associated with the authorization policy:
+The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface allows the attribute definition to specify the requirements associated with the authorization policy:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Controllers/GreetingsController.cs" highlight="1":::
 
@@ -23,7 +23,27 @@ The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> inte
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgeRequirement.cs" highlight="1":::
 
-## What's new
+<!-- Move to What's new  -->
+## IAuthorizationRequirementData
+
+Prior to this preview, adding a parameterized authorization policy to an endpoint required implementing an:
+
+* `AuthorizeAttribute` for each policy.
+* `AuthorizationPolicyProvider` to process a custom policy from a string-based contract.
+* `AuthorizationRequirement` for the policy.
+* `AuthorizationHandler` for each requirement.
+
+For example, consider the following sample written for ASP.NET Core 7.0:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/OldStyleAuthRequirements/Program.cs" highlight="9":::
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/OldStyleAuthRequirements/Controllers/GreetingsController.cs" :::
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/OldStyleAuthRequirements/Authorization/MinimumAgeAuthorizationHandler.cs" highlight="7,19":::
+
+The complete sample is [here](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/OldStyleAuthRequirements) at the AspNetCore.Docs.Samples repository.
+
+ASP.NET Core 7 introduces the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface. The `IAuthorizationRequirementData` interface allows the attribute definition to specify the requirements associated with the authorization policy. Using `IAuthorizationRequirementData`, the preceding custom authorization policy code can be written with fewer lines of code:
 
 ```diff
   using AuthRequirementsData.Authorization;
@@ -35,18 +55,14 @@ The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> inte
   builder.Services.AddAuthorization();
   builder.Services.AddControllers();
 - builder.Services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
-builder.Services.AddSingleton<IAuthorizationHandler, MinimumAgeAuthorizationHandler>();
-
-var app = builder.Build();
-
-app.MapControllers();
-
-app.Run();
+  builder.Services.AddSingleton<IAuthorizationHandler, MinimumAgeAuthorizationHandler>();
+  
+  var app = builder.Build();
+  
+  app.MapControllers();
+  
+  app.Run();
 ```
-
-Controller just adds `using AuthRequirementsData.Authorization;`
-
-In the `MinimumAgeAuthorizationHandler.cs` class, `MinimumAgeRequirement` is replaced by `MinimumAgeAuthorizeAttribute`:
 
 ```diff
 using Microsoft.AspNetCore.Authorization;
@@ -75,7 +91,6 @@ namespace AuthRequirementsData.Authorization;
         // policies(and requirements/handlers) are in use
         _logger.LogWarning("Evaluating authorization requirement for age >= {age}",
                                                                     requirement.Age);
-
 
         // Check the user's age
         var dateOfBirthClaim = context.User.FindFirst(c => c.Type ==
@@ -118,3 +133,7 @@ namespace AuthRequirementsData.Authorization;
     }
 }
 ```
+
+The complete updated sample can be found [here](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData).
+
+See <xref:security/authorization/iard> for a detailed examination of the new sample.
