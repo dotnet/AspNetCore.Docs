@@ -4,7 +4,7 @@ author: rick-anderson
 description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 04/24/2023
+ms.date: 06/02/2023
 uid: fundamentals/minimal-apis
 ---
 
@@ -62,21 +62,8 @@ The <xref:System.Delegate> arguments passed to these methods are called "route h
 
 ## Parameter binding
 
-[!INCLUDE [parameter binding](~/fundamentals/minimal-apis/includes/parameter-binding7.md)]
-<!--
-[!INCLUDE [parameter binding](~/fundamentals/minimal-apis/includes/parameter-binding8.md)]
--->
-
-### Read the request body
-
-Read the request body directly using a <xref:Microsoft.AspNetCore.Http.HttpContext> or <xref:Microsoft.AspNetCore.Http.HttpRequest> parameter:
-
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_fileupload)]
-
-The preceding code:
-
-* Accesses the request body using <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader?displayProperty=nameWithType>.
-* Copies the request body to a local file.
+[!INCLUDE [](~/fundamentals/minimal-apis/includes/parameter-binding8.md)]
+[!INCLUDE [](~/fundamentals/minimal-apis/includes/parameter-binding7.md)]
 
 ## Responses
 
