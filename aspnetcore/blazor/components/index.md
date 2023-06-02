@@ -131,7 +131,7 @@ The following example shows the default `Counter` component with an [`@code`][1]
 
 :::moniker-end
 
-The following `Counter` component splits HTML and Razor markup from  C# code using a code-behind file with a partial class:
+The following `Counter` component splits presentation HTML and Razor markup from the C# code using a code-behind file with a partial class. Splitting the markup from the C# code is favored by some organizations and developers to organize their component code to suit how they prefer to work. For example, the organization's UI expert can work on the presenation layer independently of another developer working on the component's C# logic. The approach is also useful when working with automatically-generated code or source generators. For more information, see [Partial Classes and Methods (C# Programming Guide)](/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods).
 
 `Pages/CounterPartialClass.razor`:
 
@@ -238,7 +238,9 @@ using BlazorSample.Shared;
 
 ### Specify a base class
 
-The [`@inherits`][6] directive is used to specify a base class for a component. The following example shows how a component can inherit a base class to provide the component's properties and methods. The `BlazorRocksBase` base class derives from <xref:Microsoft.AspNetCore.Components.ComponentBase>.
+The [`@inherits`][6] directive is used to specify a base class for a component. Unlike using [partial classes](#partial-class-support), which only split markup from C# logic, using a base class allows you to inherit C# code for use across a group of components that share the base class's properties and methods. Using base classes reduce code redundancy in apps and are useful when supplying base code from class libraries to multiple apps. For more information, see [Inheritance in C# and .NET](/dotnet/csharp/fundamentals/tutorials/inheritance).
+
+In the following example, the `BlazorRocksBase` base class derives from <xref:Microsoft.AspNetCore.Components.ComponentBase>.
 
 `Pages/BlazorRocks.razor`:
 
