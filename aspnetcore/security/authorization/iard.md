@@ -117,3 +117,4 @@ namespace AuthRequirementsData.Authorization;
         return Task.CompletedTask;
     }
 }
+```
