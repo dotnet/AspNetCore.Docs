@@ -30,7 +30,7 @@ This article is under development and not complete. More information may be foun
 
 ## SignalR
 
-### New approach to set the server timeout and Keep Alive interval
+### New approach to set the server timeout and Keep-Alive interval
 
 <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) can be set directly on <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>.
 
