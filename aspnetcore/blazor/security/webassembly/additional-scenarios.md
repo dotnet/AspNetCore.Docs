@@ -659,7 +659,7 @@ The following example shows how to:
 
         if (currentQuery.Contains("state=resumeSavingProfile"))
         {
-            User = await JS.InvokeAsync<Profile>("sessionStorage.getState", 
+            User = await JS.InvokeAsync<Profile>("sessionStorage.getItem", 
                 "resumeSavingProfile");
         }
     }
@@ -685,7 +685,7 @@ The following example shows how to:
         }
         else
         {
-            await JS.InvokeVoidAsync("sessionStorage.setState", 
+            await JS.InvokeVoidAsync("sessionStorage.setItem", 
                 "resumeSavingProfile", User);
             Navigation.NavigateTo(tokenResult.InteractiveRequestUrl);
         }
@@ -728,7 +728,7 @@ The following example shows how to:
 
         if (currentQuery.Contains("state=resumeSavingProfile"))
         {
-            User = await JS.InvokeAsync<Profile>("sessionStorage.getState", 
+            User = await JS.InvokeAsync<Profile>("sessionStorage.getItem", 
                 "resumeSavingProfile");
         }
     }
@@ -754,7 +754,7 @@ The following example shows how to:
         }
         else
         {
-            await JS.InvokeVoidAsync("sessionStorage.setState", 
+            await JS.InvokeVoidAsync("sessionStorage.setItem", 
                 "resumeSavingProfile", User);
             Navigation.NavigateTo(tokenResult.InteractiveRequestUrl);
         }
