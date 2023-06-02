@@ -4,7 +4,7 @@ author: rick-anderson
 description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 04/24/2023
+ms.date: 06/02/2023
 uid: fundamentals/minimal-apis
 ---
 
@@ -62,8 +62,8 @@ The <xref:System.Delegate> arguments passed to these methods are called "route h
 
 ## Parameter binding
 
-[!INCLUDE [](~/fundamentals/minimal-apis/includes/parameter-binding7.md)]
 [!INCLUDE [](~/fundamentals/minimal-apis/includes/parameter-binding8.md)]
+[!INCLUDE [](~/fundamentals/minimal-apis/includes/parameter-binding7.md)]
 
 ## Responses
 
