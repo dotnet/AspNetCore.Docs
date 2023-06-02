@@ -62,21 +62,8 @@ The <xref:System.Delegate> arguments passed to these methods are called "route h
 
 ## Parameter binding
 
-[!INCLUDE [parameter binding](~/fundamentals/minimal-apis/includes/parameter-binding7.md)]
-<!--
-[!INCLUDE [parameter binding](~/fundamentals/minimal-apis/includes/parameter-binding8.md)]
--->
-
-### Read the request body
-
-Read the request body directly using a <xref:Microsoft.AspNetCore.Http.HttpContext> or <xref:Microsoft.AspNetCore.Http.HttpRequest> parameter:
-
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_fileupload)]
-
-The preceding code:
-
-* Accesses the request body using <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader?displayProperty=nameWithType>.
-* Copies the request body to a local file.
+[!INCLUDE [](~/fundamentals/minimal-apis/includes/parameter-binding7.md)]
+[!INCLUDE [](~/fundamentals/minimal-apis/includes/parameter-binding8.md)]
 
 ## Responses
 
