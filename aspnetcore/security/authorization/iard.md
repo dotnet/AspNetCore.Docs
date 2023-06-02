@@ -22,3 +22,24 @@ The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> inte
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgePolicyProvider.cs" highlight="1":::
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgeRequirement.cs" highlight="1":::
+
+## What's new
+
+```diff
+  using AuthRequirementsData.Authorization;
+  using Microsoft.AspNetCore.Authorization;
+  
+  var builder = WebApplication.CreateBuilder();
+  
+  builder.Services.AddAuthentication().AddJwtBearer();
+  builder.Services.AddAuthorization();
+  builder.Services.AddControllers();
+- builder.Services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
+builder.Services.AddSingleton<IAuthorizationHandler, MinimumAgeAuthorizationHandler>();
+
+var app = builder.Build();
+
+app.MapControllers();
+
+app.Run();
+```
