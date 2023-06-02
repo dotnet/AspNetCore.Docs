@@ -339,4 +339,15 @@ Since the sample code configures both serialization and deserialization, it can 
 
 Since the preceding code applies the customized options only to deserialization, the output JSON excludes `NameField`.
 
+### Read the request body
+
+Read the request body directly using a <xref:Microsoft.AspNetCore.Http.HttpContext> or <xref:Microsoft.AspNetCore.Http.HttpRequest> parameter:
+
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_fileupload)]
+
+The preceding code:
+
+* Accesses the request body using <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader?displayProperty=nameWithType>.
+* Copies the request body to a local file.
+
 :::moniker-end
