@@ -10,9 +10,9 @@ uid: blazor/components/key
 ---
 # Retain element, component, and model relationships in ASP.NET Core Blazor
 
-When rendering a list of elements or components and the elements or components subsequently change, Blazor must decide which of the previous elements or components are retained and how model objects should map to them. Normally, this process is automatic and sufficient for general rendering, but there are often cases where controlling the process using the <xref:mvc/views/razor#key> directive attribute is required.
+When rendering a list of elements or components and the elements or components subsequently change, Blazor must decide which of the previous elements or components are retained and how model objects should map to them. Normally, this process is automatic and sufficient for general rendering, but there are often cases where controlling the process using the [`@key`](xref:mvc/views/razor#key) directive attribute is required.
 
-Consider the following example that demonstrates a collection mapping problem that's solved by using <xref:mvc/views/razor#key>.
+Consider the following example that demonstrates a collection mapping problem that's solved by using [`@key`](xref:mvc/views/razor#key).
 
 For the following `Details` and `PeopleExample` components:
 
@@ -50,7 +50,7 @@ This demonstration allows you to:
 
 :::moniker-end
 
-In the following `PeopleExample` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the <xref:mvc/views/razor#key> directive attribute is used to improve the user's experience.
+In the following `PeopleExample` component, each iteration of adding a person in `OnTimerCallback` results in Blazor rebuilding the entire collection. The page's focus remains on the *same index* position of `<input>` elements, so the focus shifts each time a person is added. *Shifting the focus away from what the user selected isn't desirable behavior.* After demonstrating the poor behavior with the following component, the [`@key`](xref:mvc/views/razor#key) directive attribute is used to improve the user's experience.
 
 `Pages/PeopleExample.razor`:
 
@@ -80,9 +80,9 @@ In the following `PeopleExample` component, each iteration of adding a person in
 
 The contents of the `people` collection changes with inserted, deleted, or re-ordered entries. Rerendering can lead to visible behavior differences. For example, each time a person is inserted into the `people` collection, the user's focus is lost.
 
-The mapping process of elements or components to a collection can be controlled with the <xref:mvc/views/razor#key> directive attribute. Use of <xref:mvc/views/razor#key> guarantees the preservation of elements or components based on the key's value. If the `Details` component in the preceding example is keyed on the `person` item, Blazor ignores rerendering `Details` components that haven't changed.
+The mapping process of elements or components to a collection can be controlled with the [`@key`](xref:mvc/views/razor#key) directive attribute. Use of [`@key`](xref:mvc/views/razor#key) guarantees the preservation of elements or components based on the key's value. If the `Details` component in the preceding example is keyed on the `person` item, Blazor ignores rerendering `Details` components that haven't changed.
 
-To modify the `PeopleExample` component to use the <xref:mvc/views/razor#key> directive attribute with the `people` collection, update the `<Details>` element to the following:
+To modify the `PeopleExample` component to use the [`@key`](xref:mvc/views/razor#key) directive attribute with the `people` collection, update the `<Details>` element to the following:
 
 ```razor
 <Details @key="person" Data="@person.Data" />
@@ -90,7 +90,7 @@ To modify the `PeopleExample` component to use the <xref:mvc/views/razor#key> di
 
 When the `people` collection changes, the association between `Details` instances and `person` instances is retained. When a `Person` is inserted at the beginning of the collection, one new `Details` instance is inserted at that corresponding position. Other instances are left unchanged. Therefore, the user's focus isn't lost as people are added to the collection.
 
-Other collection updates exhibit the same behavior when the <xref:mvc/views/razor#key> directive attribute is used:
+Other collection updates exhibit the same behavior when the [`@key`](xref:mvc/views/razor#key) directive attribute is used:
 
 * If an instance is deleted from the collection, only the corresponding component instance is removed from the UI. Other instances are left unchanged.
 * If collection entries are re-ordered, the corresponding component instances are preserved and re-ordered in the UI.
@@ -100,9 +100,9 @@ Other collection updates exhibit the same behavior when the <xref:mvc/views/razo
 
 ## When to use `@key`
 
-Typically, it makes sense to use <xref:mvc/views/razor#key> whenever a list is rendered (for example, in a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) block) and a suitable value exists to define the <xref:mvc/views/razor#key>.
+Typically, it makes sense to use [`@key`](xref:mvc/views/razor#key) whenever a list is rendered (for example, in a [`foreach`](/dotnet/csharp/language-reference/keywords/foreach-in) block) and a suitable value exists to define the [`@key`](xref:mvc/views/razor#key).
 
-You can also use <xref:mvc/views/razor#key> to preserve an element or component subtree when an object doesn't change, as the following examples show.
+You can also use [`@key`](xref:mvc/views/razor#key) to preserve an element or component subtree when an object doesn't change, as the following examples show.
 
 Example 1:
 
@@ -120,7 +120,7 @@ Example 2:
 </div>
 ```
 
-If an `person` instance changes, the <xref:mvc/views/razor#key> attribute directive forces Blazor to:
+If an `person` instance changes, the [`@key`](xref:mvc/views/razor#key) attribute directive forces Blazor to:
 
 * Discard the entire `<li>` or `<div>` and their descendants.
 * Rebuild the subtree within the UI with new elements and components.
@@ -129,7 +129,7 @@ This is useful to guarantee that no UI state is preserved when the collection ch
 
 ## Scope of `@key`
 
-The <xref:mvc/views/razor#key> attribute directive is scoped to its own siblings within its parent.
+The [`@key`](xref:mvc/views/razor#key) attribute directive is scoped to its own siblings within its parent.
 
 Consider the following example. The `first` and `second` keys are compared against each other within the same scope of the outer `<div>` element:
 
@@ -140,7 +140,7 @@ Consider the following example. The `first` and `second` keys are compared again
 </div>
 ```
 
-The following example demonstrates `first` and `second` keys in their own scopes, unrelated to each other and without influence on each other. Each <xref:mvc/views/razor#key> scope only applies to its parent `<div>` element, not across the parent `<div>` elements:
+The following example demonstrates `first` and `second` keys in their own scopes, unrelated to each other and without influence on each other. Each [`@key`](xref:mvc/views/razor#key) scope only applies to its parent `<div>` element, not across the parent `<div>` elements:
 
 ```razor
 <div>
@@ -151,7 +151,7 @@ The following example demonstrates `first` and `second` keys in their own scopes
 </div>
 ```
 
-For the `Details` component shown earlier, the following examples render `person` data within the same <xref:mvc/views/razor#key> scope and demonstrate typical use cases for <xref:mvc/views/razor#key>:
+For the `Details` component shown earlier, the following examples render `person` data within the same [`@key`](xref:mvc/views/razor#key) scope and demonstrate typical use cases for [`@key`](xref:mvc/views/razor#key):
 
 ```razor
 <div>
@@ -182,7 +182,7 @@ For the `Details` component shown earlier, the following examples render `person
 </ol>
 ```
 
-The following examples only scope <xref:mvc/views/razor#key> to the `<div>` or `<li>` element that surrounds each `Details` component instance. Therefore, `person` data for each member of the `people` collection is **not** keyed on each `person` instance across the rendered `Details` components. Avoid the following patterns when using <xref:mvc/views/razor#key>:
+The following examples only scope [`@key`](xref:mvc/views/razor#key) to the `<div>` or `<li>` element that surrounds each `Details` component instance. Therefore, `person` data for each member of the `people` collection is **not** keyed on each `person` instance across the rendered `Details` components. Avoid the following patterns when using [`@key`](xref:mvc/views/razor#key):
 
 ```razor
 @foreach (var person in people)
@@ -206,15 +206,15 @@ The following examples only scope <xref:mvc/views/razor#key> to the `<div>` or `
 
 ## When not to use `@key`
 
-There's a performance cost when rendering with <xref:mvc/views/razor#key>. The performance cost isn't large, but only specify <xref:mvc/views/razor#key> if preserving the element or component benefits the app.
+There's a performance cost when rendering with [`@key`](xref:mvc/views/razor#key). The performance cost isn't large, but only specify [`@key`](xref:mvc/views/razor#key) if preserving the element or component benefits the app.
 
-Even if <xref:mvc/views/razor#key> isn't used, Blazor preserves child element and component instances as much as possible. The only advantage to using <xref:mvc/views/razor#key> is control over *how* model instances are mapped to the preserved component instances, instead of Blazor selecting the mapping.
+Even if [`@key`](xref:mvc/views/razor#key) isn't used, Blazor preserves child element and component instances as much as possible. The only advantage to using [`@key`](xref:mvc/views/razor#key) is control over *how* model instances are mapped to the preserved component instances, instead of Blazor selecting the mapping.
 
 ## Values to use for `@key`
 
-Generally, it makes sense to supply one of the following values for <xref:mvc/views/razor#key>:
+Generally, it makes sense to supply one of the following values for [`@key`](xref:mvc/views/razor#key):
 
 * Model object instances. For example, the `Person` instance (`person`) was used in the earlier example. This ensures preservation based on object reference equality.
 * Unique identifiers. For example, unique identifiers can be based on primary key values of type `int`, `string`, or `Guid`.
 
-Ensure that values used for <xref:mvc/views/razor#key> don't clash. If clashing values are detected within the same parent element, Blazor throws an exception because it can't deterministically map old elements or components to new elements or components. Only use distinct values, such as object instances or primary key values.
+Ensure that values used for [`@key`](xref:mvc/views/razor#key) don't clash. If clashing values are detected within the same parent element, Blazor throws an exception because it can't deterministically map old elements or components to new elements or components. Only use distinct values, such as object instances or primary key values.

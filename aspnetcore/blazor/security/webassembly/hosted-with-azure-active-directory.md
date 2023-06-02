@@ -93,7 +93,7 @@ Record the **:::no-loc text="Client":::** app Application (client) ID (for examp
 In **Authentication** > **Platform configurations** > **Single-page application**:
 
 1. Confirm the redirect URI of `https://localhost/authentication/login-callback` is present.
-1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** are **not** selected.
+1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** aren't selected. **Implicit grant isn't recommended for Blazor apps using MSAL v2.0 or later.** For more information, see <xref:blazor/security/webassembly/index#use-the-authorization-code-flow-with-pkce>.
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button if you made changes.
 
@@ -171,7 +171,7 @@ This section describes the parts of a solution generated from the Blazor WebAsse
 
 *This section pertains to the solution's **:::no-loc text="Server":::** app.*
 
-The `appsettings.json` file contains the options to configure the JWT bearer handler used to validate access tokens. Add the following audience entry to the `AzureAd` configuration:
+The `appsettings.json` file contains the options to configure the JWT bearer handler used to validate access tokens. Add the following `AzureAd` configuration section:
 
 ```json
 {
@@ -218,7 +218,15 @@ The **:::no-loc text="Server":::** app of a hosted Blazor solution created from 
 
 *This section pertains to the solution's **:::no-loc text="Server":::** app.*
 
-The `AddAuthentication` method sets up authentication services within the app and configures the JWT Bearer handler as the default authentication method. The <xref:Microsoft.Identity.Web.MicrosoftIdentityWebApiAuthenticationBuilderExtensions.AddMicrosoftIdentityWebApi%2A> method configures services to protect the web API with Microsoft Identity Platform v2.0. This method expects an `AzureAd` section in the app's configuration with the necessary settings to initialize authentication options.
+<!-- HOLD
+
+The following API cross-link broke, but the API still exists and is used in an 8.0 app. This is tracked by the project tracking issue: https://github.com/dotnet/AspNetCore.Docs/issues/28001
+
+<xref:Microsoft.Identity.Web.MicrosoftIdentityWebApiAuthenticationBuilderExtensions.AddMicrosoftIdentityWebApi%2A>
+
+-->
+
+The `AddAuthentication` method sets up authentication services within the app and configures the JWT Bearer handler as the default authentication method. The `AddMicrosoftIdentityWebApi` method configures services to protect the web API with Microsoft Identity Platform v2.0. This method expects an `AzureAd` section in the app's configuration with the necessary settings to initialize authentication options.
 
 ```csharp
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

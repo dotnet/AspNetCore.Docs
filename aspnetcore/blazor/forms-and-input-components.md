@@ -973,6 +973,8 @@ In the following `FormExample6` component, update the namespace of the **`Shared
 
 `Pages/FormExample6.razor`:
 
+:::moniker range=">= aspnetcore-6.0"
+
 ```razor
 @page "/form-example-6"
 @using System.Net
@@ -1069,7 +1071,8 @@ In the following `FormExample6` component, update the namespace of the **`Shared
                 "StarshipValidation", (Starship)editContext.Model);
 
             var errors = await response.Content
-                .ReadFromJsonAsync<Dictionary<string, List<string>>>();
+                .ReadFromJsonAsync<Dictionary<string, List<string>>>() ?? 
+                new Dictionary<string, List<string>>();
 
             if (response.StatusCode == HttpStatusCode.BadRequest && 
                 errors.Any())
@@ -1102,6 +1105,142 @@ In the following `FormExample6` component, update the namespace of the **`Shared
     }
 }
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+```razor
+@page "/form-example-6"
+@using System.Net
+@using System.Net.Http.Json
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using Microsoft.Extensions.Logging
+@using BlazorSample.Shared
+@attribute [Authorize]
+@inject HttpClient Http
+@inject ILogger<FormExample6> Logger
+
+<h1>Starfleet Starship Database</h1>
+
+<h2>New Ship Entry Form</h2>
+
+<EditForm Model="@starship" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <CustomValidation @ref="customValidation" />
+    <ValidationSummary />
+
+    <p>
+        <label>
+            Identifier:
+            <InputText @bind-Value="starship.Identifier" disabled="@disabled" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Description (optional):
+            <InputTextArea @bind-Value="starship.Description" 
+                disabled="@disabled" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Primary Classification:
+            <InputSelect @bind-Value="starship.Classification" disabled="@disabled">
+                <option value="">Select classification ...</option>
+                <option value="Exploration">Exploration</option>
+                <option value="Diplomacy">Diplomacy</option>
+                <option value="Defense">Defense</option>
+            </InputSelect>
+        </label>
+    </p>
+    <p>
+        <label>
+            Maximum Accommodation:
+            <InputNumber @bind-Value="starship.MaximumAccommodation" 
+                disabled="@disabled" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Engineering Approval:
+            <InputCheckbox @bind-Value="starship.IsValidatedDesign" 
+                disabled="@disabled" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Production Date:
+            <InputDate @bind-Value="starship.ProductionDate" disabled="@disabled" />
+        </label>
+    </p>
+
+    <button type="submit" disabled="@disabled">Submit</button>
+
+    <p style="@messageStyles">
+        @message
+    </p>
+
+    <p>
+        <a href="http://www.startrek.com/">Star Trek</a>,
+        &copy;1966-2019 CBS Studios, Inc. and
+        <a href="https://www.paramount.com">Paramount Pictures</a>
+    </p>
+</EditForm>
+
+@code {
+    private bool disabled;
+    private string message;
+    private string messageStyles = "visibility:hidden";
+    private CustomValidation customValidation;
+    private Starship starship = new() { ProductionDate = DateTime.UtcNow };
+
+    private async Task HandleValidSubmit(EditContext editContext)
+    {
+        customValidation.ClearErrors();
+
+        try
+        {
+            var response = await Http.PostAsJsonAsync<Starship>(
+                "StarshipValidation", (Starship)editContext.Model);
+
+            var errors = await response.Content
+                .ReadFromJsonAsync<Dictionary<string, List<string>>>();
+
+            if (response.StatusCode == HttpStatusCode.BadRequest && 
+                errors.Any())
+            {
+                customValidation.DisplayErrors(errors);
+            }
+            else if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpRequestException(
+                    $"Validation failed. Status Code: {response.StatusCode}");
+            }
+            else
+            {
+                disabled = true;
+                messageStyles = "color:green";
+                message = "The form has been processed.";
+            }
+        }
+        catch (AccessTokenNotAvailableException ex)
+        {
+            ex.Redirect();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError("Form processing error: {Message}", ex.Message);
+            disabled = true;
+            messageStyles = "color:red";
+            message = "There was an error processing the form.";
+        }
+    }
+}
+```
+
+:::moniker-end
 
 > [!NOTE]
 > As an alternative to the use of a [validation component](#validator-components), data annotation validation attributes can be used. Custom attributes applied to the form's model activate with the use of the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. When used with server-side validation, the attributes must be executable on the server. For more information, see <xref:mvc/models/validation#alternatives-to-built-in-attributes>.
@@ -1225,6 +1364,10 @@ Make the `enums` accessible to the:
 
 Use <xref:Microsoft.AspNetCore.Components.Forms.InputRadio%601> components with the <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup%601> component to create a radio button group. In the following example, properties are added to the `Starship` model described in the [Example form](#example-form) section:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
 ```csharp
 [Required]
 [Range(typeof(Manufacturer), nameof(Manufacturer.SpaceX), 
@@ -1237,6 +1380,27 @@ public Color? Color { get; set; } = null;
 [Required, EnumDataType(typeof(Engine))]
 public Engine? Engine { get; set; } = null;
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+```csharp
+[Required]
+[Range(typeof(Manufacturer), nameof(Manufacturer.SpaceX), 
+    nameof(Manufacturer.VirginGalactic), ErrorMessage = "Pick a manufacturer.")]
+public Manufacturer Manufacturer { get; set; } = Manufacturer.Unknown;
+
+[Required, EnumDataType(typeof(Color))]
+public Color Color { get; set; } = null;
+
+[Required, EnumDataType(typeof(Engine))]
+public Engine Engine { get; set; } = null;
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0"
 
 Update the `Starfleet Starship Database` form (`FormExample2` component) from the [Example form](#example-form) section. Add the components to produce:
 
@@ -1473,6 +1637,8 @@ The `IsValid` method of the following `SaladChefValidatorAttribute` class obtain
 
 `SaladChefValidatorAttribute.cs`:
 
+:::moniker range=">= aspnetcore-6.0"
+
 ```csharp
 using System.ComponentModel.DataAnnotations;
 
@@ -1493,9 +1659,37 @@ public class SaladChefValidatorAttribute : ValidationAttribute
 }
 ```
 
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+```csharp
+using System.ComponentModel.DataAnnotations;
+
+public class SaladChefValidatorAttribute : ValidationAttribute
+{
+    protected override ValidationResult IsValid(object value,
+        ValidationContext validationContext)
+    {
+        var saladChef = validationContext.GetRequiredService<SaladChef>();
+
+        if (saladChef.ThingsYouCanPutInASalad.Contains(value?.ToString()))
+        {
+            return ValidationResult.Success;
+        }
+
+        return new ValidationResult("You should not put that in a salad!");
+    }
+}
+```
+
+:::moniker-end
+
 The following `ValidationWithDI` component validates user input by applying the `SaladChefValidatorAttribute` (`[SaladChefValidator]`) to the salad ingredient string (`SaladIngredient`).
 
 `Pages/ValidationWithDI.razor`:
+
+:::moniker range=">= aspnetcore-6.0"
 
 ```razor
 @page "/validation-with-di"
@@ -1526,6 +1720,42 @@ The following `ValidationWithDI` component validates user input by applying the 
     public string? SaladIngredient { get; set; }
 }
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+```razor
+@page "/validation-with-di"
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Forms
+
+<EditForm Model="@this" autocomplete="off">
+    <DataAnnotationsValidator />
+
+    <p>
+        Name something you can put in a salad:
+        <input @bind="SaladIngredient" />
+    </p>
+
+    <button type="submit">Submit</button>
+
+    <ul>
+        @foreach (var message in context.GetValidationMessages())
+        {
+            <li class="validation-message">@message</li>
+        }
+    </ul>
+
+</EditForm>
+
+@code {
+    [SaladChefValidator]
+    public string SaladIngredient { get; set; }
+}
+```
+
+:::moniker-end
 
 ## Custom validation CSS class attributes
 

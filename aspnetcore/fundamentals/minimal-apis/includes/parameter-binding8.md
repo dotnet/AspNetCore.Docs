@@ -1,3 +1,5 @@
+:::moniker range=">= aspnetcore-8.0"
+
 Parameter binding is the process of converting request data into strongly typed parameters that are expressed by route handlers. A binding source determines where parameters are bound from. Binding sources can be explicit or inferred based on HTTP method and parameter type.
 
 Supported binding sources:
@@ -6,10 +8,9 @@ Supported binding sources:
 * Query string
 * Header
 * Body (as JSON)
+* Form values
 * Services provided by dependency injection
 * Custom
-
-Binding from form values is ***not*** natively supported in .NET.
 
 The following `GET` route handler uses some of these parameter binding sources:
 
@@ -48,8 +49,22 @@ Attributes can be used to explicitly declare where parameters are bound from.
 | `service`   | Provided by dependency injection |
 | `contentType` | header with the name `"Content-Type"` |
 
-> [!NOTE]
-> Binding from form values is ***not*** natively supported in .NET.
+#### Explicit binding from form values
+
+The [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute binds form values:
+
+[!code-csharp[](~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/FormBinding/Program.cs?name=snippet_post_put_delete&highlight=1-2)]
+
+An alternative is to use the [`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) attribute with a custom type that has properties annotated with `[FromForm]`. For example, the following code binds from form values to properties of the `NewTodoRequest` record struct:
+
+[!code-csharp[](~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/FormBinding/Program.cs?name=snippet_post_put_delete_as_parameters&highlight=1)]
+
+[!code-csharp[](~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/FormBinding/Program.cs?name=snippet_argumentlist_record&highlight=1-2)]
+
+
+For more information, see the section on [AsParameters](#parameter-binding-for-argument-lists-with-asparameters) later in this article.
+
+The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/FormBinding) is in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
 
 ### Parameter binding with dependency injection
 
@@ -337,3 +352,19 @@ Since the sample code configures both serialization and deserialization, it can 
 :::code language="csharp" source="~/fundamentals/minimal-apis/7.0-samples/WebMinJson/Program.cs" id="snippet_readfromjsonasyncwithoptions" highlight="5-8,12":::
 
 Since the preceding code applies the customized options only to deserialization, the output JSON excludes `NameField`.
+
+## Binding to forms with IFormCollection, IFormFile, and IFormFileCollection
+
+Binding from form-based parameters using <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> is supported. [OpenAPI](xref:fundamentals/minimal-apis/openapi) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
+
+The following code uploads files using inferred binding from the `IFormFile` type:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="17-22,43-57":::
+
+***Warning:*** When implementing forms, the app ***must prevent*** [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery). In the preceding code, the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> service is used to prevent XSRF attacks by generating and validation an anti-forgery token:
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="24,44":::
+
+For more information on XSRF attacks, see [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery).
+
+:::moniker-end

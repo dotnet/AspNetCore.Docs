@@ -219,7 +219,13 @@ items:
       - name: Dependency injection (services)
         uid: fundamentals/dependency-injection
       - name: Native AOT
-        uid: fundamentals/native-aot
+        items:
+          - name: Overview
+            displayName: native, aot
+            uid: fundamentals/native-aot
+          - name: Tutorial
+            displayName: native, aot
+            uid: fundamentals/native-aot-tutorial
       - name: Middleware
         items: 
           - name: Middleware overview
@@ -355,6 +361,8 @@ items:
             uid: blazor/supported-platforms
           - name: Tooling
             uid: blazor/tooling
+          - name: Hosting models
+            uid: blazor/hosting-models
           - name: Tutorials
             items:
               - name: Overview
@@ -367,8 +375,6 @@ items:
                 uid: blazor/tutorials/signalr-blazor
               - name: Learn modules
                 href: /training/paths/build-web-apps-with-blazor/
-          - name: Hosting models
-            uid: blazor/hosting-models
           - name: Blazor Hybrid
             items:
               - name: Overview
