@@ -28,6 +28,99 @@ This article is under development and not complete. More information may be foun
 ## Blazor
 -->
 
+## SignalR
+
+### New approach to set the server timeout and Keep-Alive interval
+
+<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) can be set directly on <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>.
+
+#### Prior approach for JavaScript clients
+
+The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
+
+```javascript
+var connection = new signalR.HubConnectionBuilder()
+  .withUrl("/chatHub")
+  .build();
+
+connection.serverTimeoutInMilliseconds = 60000;
+connection.keepAliveIntervalInMilliseconds = 30000;
+```
+
+#### New approach for JavaScript clients
+
+The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
+
+```javascript
+var connection = new signalR.HubConnectionBuilder()
+  .withUrl("/chatHub")
+  .withServerTimeoutInMilliseconds(60000)
+  .withKeepAliveIntervalInMilliseconds(30000)
+  .build();
+```
+
+#### Prior approach for the JavaScript client of a Blazor Server app
+
+The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
+
+```javascript
+Blazor.start({
+  configureSignalR: function (builder) {
+    let c = builder.build();
+    c.serverTimeoutInMilliseconds = 60000;
+    c.keepAliveIntervalInMilliseconds = 30000;
+    builder.build = () => {
+      return c;
+    };
+  }
+});
+```
+
+#### New approach for the JavaScript client of a Blazor Server app
+
+The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
+
+```javascript
+Blazor.start({
+  configureSignalR: function (builder) {
+    builder.withServerTimeout(60000).withKeepAliveInterval(30000);
+  }
+});
+```
+
+#### Prior approach for .NET clients
+
+The following example shows the assignment of values that are double the default values in ASP.NET Core 7.0 or earlier:
+
+```csharp
+var builder = new HubConnectionBuilder()
+    .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+    .Build();
+
+builder.ServerTimeout = TimeSpan.FromSeconds(60);
+builder.KeepAliveInterval = TimeSpan.FromSeconds(30);
+
+builder.On<string, string>("ReceiveMessage", (user, message) => ...
+
+await builder.StartAsync();
+```
+
+#### New approach for .NET clients
+
+The following example shows the ***new approach*** for assigning values that are double the default values in ASP.NET Core 8.0 or later:
+
+```csharp
+var builder = new HubConnectionBuilder()
+    .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+    .WithServerTimeout(TimeSpan.FromSeconds(60))
+    .WithKeepAliveInterval(TimeSpan.FromSeconds(30))
+    .Build();
+
+builder.On<string, string>("ReceiveMessage", (user, message) => ...
+
+await builder.StartAsync();
+```
+
 ## Minimal APIs
 
 ### Binding to forms with IFormCollection, IFormFile, and IFormFileCollection
@@ -99,16 +192,16 @@ For more information, see <xref:fundamentals/servers/kestrel/endpoints> and <xre
 
 ### Code analysis in ASP.NET Core apps
 
-The following new analyzers are available in ASP.NET Core 8.0:
+The new analyzers shown in the following table are available in ASP.NET Core 8.0.
 
-| Diagnostic ID    | Breaking or non-breaking | Description |
-|-------|-------|----------------------------|
-| [ASP0020](xref:diagnostics/asp0020) | Non-breaking             | Complex types referenced by route parameters must be parsable |
-| [ASP0021](xref:diagnostics/asp0021) | Non-breaking             | The return type of the BindAsync method must be `ValueTask<T>` |
-| [ASP0022](xref:diagnostics/asp0022) | Non-breaking             | Route conflict detected between route handlers |
-| [ASP0023](xref:diagnostics/asp0023) | Non-breaking             | MVC: Route conflict detected between route handlers |
-| [ASP0024](xref:diagnostics/asp0024) | Non-breaking             | Route handler has multiple parameters with the `[FromBody]` attribute |
-| [ASP0025](xref:diagnostics/asp0025) | Non-breaking             | Use AddAuthorizationBuilder |
+| Diagnostic ID | Breaking or non-breaking | Description |
+| --- | --- | --- |
+| [ASP0020](xref:diagnostics/asp0020) | Non-breaking | Complex types referenced by route parameters must be parsable |
+| [ASP0021](xref:diagnostics/asp0021) | Non-breaking | The return type of the BindAsync method must be `ValueTask<T>` |
+| [ASP0022](xref:diagnostics/asp0022) | Non-breaking | Route conflict detected between route handlers |
+| [ASP0023](xref:diagnostics/asp0023) | Non-breaking | MVC: Route conflict detected between route handlers |
+| [ASP0024](xref:diagnostics/asp0024) | Non-breaking | Route handler has multiple parameters with the `[FromBody]` attribute |
+| [ASP0025](xref:diagnostics/asp0025) | Non-breaking | Use AddAuthorizationBuilder |
 
 <!--
 ## API controllers
