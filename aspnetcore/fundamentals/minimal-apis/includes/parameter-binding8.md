@@ -328,6 +328,7 @@ The rules for determining a binding source from a parameter:
     1. Query string: [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)
     1. Header: [`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute)
     1. Body: [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute)
+    1. Form: [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute)
     1. Service: [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute)
     1. Parameter values: [`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute)
 1. Special types
@@ -336,6 +337,7 @@ The rules for determining a binding source from a parameter:
     1. [`HttpResponse`](xref:Microsoft.AspNetCore.Http.HttpResponse) ([`HttpContext.Response`](xref:Microsoft.AspNetCore.Http.HttpContext.Response))
     1. [`ClaimsPrincipal`](xref:System.Security.Claims.ClaimsPrincipal) ([`HttpContext.User`](xref:Microsoft.AspNetCore.Http.HttpContext.User))
     1. [`CancellationToken`](xref:System.Threading.CancellationToken) ([`HttpContext.RequestAborted`](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted))
+    1. [`IFormCollection`](xref:Microsoft.AspNetCore.Http.IFormCollection) ([`HttpContext.Request.Form`](xref:Microsoft.AspNetCore.Http.IFormCollection))
     1. [`IFormFileCollection`](xref:Microsoft.AspNetCore.Http.IFormFileCollection) ([`HttpContext.Request.Form.Files`](xref:Microsoft.AspNetCore.Http.IFormCollection.Files))
     1. [`IFormFile`](xref:Microsoft.AspNetCore.Http.IFormFile) ([`HttpContext.Request.Form.Files[paramName]`](xref:Microsoft.AspNetCore.Http.IFormFileCollection.Item(System.String)))
     1. [`Stream`](xref:System.IO.Stream) ([`HttpContext.Request.Body`](xref:Microsoft.AspNetCore.Http.HttpRequest.Body))
