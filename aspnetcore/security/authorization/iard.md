@@ -53,7 +53,8 @@ The sample can be testing with the [`dotnet user-jwts`](xref:security/authentica
 * `dotnet user-jwts create --claim http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth=1989-01-01`
 * `curl -i -H "Authorization: Bearer <token from dotnet user-jwts>" http://localhost:<port>/api/greetings/hello`
 
-<!-- This will be moved to What's new in 8.0 as soon as this PR merges (to avoid merge conflicts) -->
+<!-- This will be moved to What's new in 8.0 as soon as this PR merges (to avoid merge conflicts)
+-->
 
 ## IAuthorizationRequirementData
 
