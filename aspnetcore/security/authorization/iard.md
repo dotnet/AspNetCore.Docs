@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn how to add  custom authorization policies with IAuthorizationRequirementData.
 ms.author: riande
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 5/30/2023
+ms.date: 6/4/2023
 uid: security/authorization/iard
 ---
 # Custom authorization policies with IAuthorizationRequirementData
