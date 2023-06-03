@@ -11,10 +11,6 @@ uid: security/authorization/iard
 
 Consider the following sample which implements a custom `MinimumAgeAuthorizationHandler`:
 
-<!--
-The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface allows the attribute definition to specify the requirements associated with the authorization policy:
--->
-
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Program.cs" highlight="9":::
 
 The `MinimumAgeAuthorizationHandler` class:
