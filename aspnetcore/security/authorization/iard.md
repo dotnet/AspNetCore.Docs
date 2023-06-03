@@ -23,18 +23,16 @@ The custom `MinimumAgePolicyProvider`:
 
 ASP.NET Core only uses one authorization policy provider. If the custom implementation
 doesn't handle all policies, including default policies, etc., it should fall back to an
-alternate provider.
+alternate provider. In the preceding sample, a default authorization policy provider is:
 
-In the preceding sample, a default authorization policy provider is:
-
-* Constructed with options from the dependency injection container.
+* Constructed with options from the [dependency injection container](xref:fundamentals/dependency-injection).
 * Used if this custom provider isn't able to handle a given policy name.
 
 If a custom policy provider is able to handle all expected policy names, setting the fallback policy with <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync> is not required..
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgePolicyProvider.cs" id="snippet_1":::
 
-Policies are looked up by string name, so expect parameters, for example, `age`, to be embedded in the policy names. This is abstracted away from developers by the more strongly-typed attributes derived from <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>. For example, the `[MinimumAgeAuthorize()]` attribute in this sample looks up policies by string name.
+Policies are looked up by string name, therefore parameters, for example, `age`, are embedded in the policy names. This is abstracted away from developers by the more strongly-typed attributes derived from <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>. For example, the `[MinimumAgeAuthorize()]` attribute in this sample looks up policies by string name.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgePolicyProvider.cs" id="snippet_2":::
 
@@ -48,7 +46,7 @@ The `GreetingsController` displays the users name when they satisfy the minimum 
 
 The complete sample can be found in the [AuthRequirementsData](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData) folder of the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
 
-The sample can be testing with the [`dotnet user-jwts`](xref:security/authentication/jwt) and curl using the following commands:
+The sample can be tested with [`dotnet user-jwts`](xref:security/authentication/jwt) and curl:
 
 * `dotnet user-jwts create --claim http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth=1989-01-01`
 * `curl -i -H "Authorization: Bearer <token from dotnet user-jwts>" http://localhost:<port>/api/greetings/hello`
