@@ -11,13 +11,15 @@ uid: security/authorization/iard
 
 Consider the following sample which implements a custom `MinimumAgeAuthorizationHandler`:
 
+<!--
 The <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface allows the attribute definition to specify the requirements associated with the authorization policy:
+-->
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Program.cs" highlight="9":::
 
 The `MinimumAgeAuthorizationHandler` class:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgeAuthorizationHandler.cs" highlight="1":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgeAuthorizationHandler.cs" highlight="7,19":::
 
 The custom `MinimumAgePolicyProvider`:
 
@@ -40,18 +42,22 @@ Policies are looked up by string name, so expect 'parameters', for example, `age
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgePolicyProvider.cs" id="snippet_2":::
 
-zz
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Controllers/GreetingsController.cs":::
+The `MinimumAgeAuthorizeAttribute` uses the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface allows the attribute definition to specify the requirements associated with the authorization policy:
 
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgeAuthorizeAttribute.cs" highlight="6":::
 
+The `GreetingsController` displays the users name when they satisfy the `MinimumAgeAuthorize` attribute:
 
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Controllers/GreetingsController.cs" highlight="10":::
 
-
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgeAuthorizeAttribute.cs" highlight="1":::
+<!--
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgePolicyProvider.cs" highlight="1":::
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgeRequirement.cs" highlight="1":::
+-->
+
+The complete updated sample can be found in the [AuthRequirementsData](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData) folder of the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
 
 <!-- Move to What's new  -->
 ## IAuthorizationRequirementData
@@ -71,7 +77,7 @@ For example, consider the following sample written for ASP.NET Core 7.0:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/OldStyleAuthRequirements/Authorization/MinimumAgeAuthorizationHandler.cs" highlight="7,19":::
 
-The complete sample is [here](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/OldStyleAuthRequirements) at the AspNetCore.Docs.Samples repository.
+The complete sample is [here](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/OldStyleAuthRequirements) at the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
 
 ASP.NET Core 7 introduces the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface. The `IAuthorizationRequirementData` interface allows the attribute definition to specify the requirements associated with the authorization policy. Using `IAuthorizationRequirementData`, the preceding custom authorization policy code can be written with fewer lines of code:
 
