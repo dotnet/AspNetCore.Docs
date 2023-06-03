@@ -385,7 +385,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
 The following component's `SignIn` method creates a claims principal for the user's identifier to set on `AuthenticationService.CurrentUser`:
 
 ```razor
-@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject AuthenticationService AuthenticationService
 
 <input @bind="userIdentifier" />
 <button @onclick="SignIn">Sign in</button>
