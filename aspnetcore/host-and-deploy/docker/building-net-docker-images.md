@@ -123,7 +123,7 @@ In some scenarios, you might want to deploy an app to a container by copying its
   * Linux:
 
     ```dotnetcli
-  dotnet published/aspnetapp.dll
+    dotnet published/aspnetapp.dll
     ```
 
 * Browse to `http://localhost:5000` to see the home page.
