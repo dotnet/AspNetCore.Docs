@@ -27,7 +27,9 @@ The subsections of the walkthrough explain how to:
 
 ### Create a tenant in Azure
 
-Follow the guidance in [Quickstart: Set up a tenant](/azure/active-directory/develop/quickstart-create-new-tenant) to create a tenant in AAD.
+Follow the guidance in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) to create an AAD B2C tenant.
+
+Before proceeding with this article's guidance, confirm that you've [selected the correct directory for the AAD B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant#select-your-b2c-tenant-directory).
 
 ### Register an app in Azure
 
