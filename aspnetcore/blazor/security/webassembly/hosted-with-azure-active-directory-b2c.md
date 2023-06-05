@@ -29,7 +29,9 @@ The subsections of the walkthrough explain how to:
 
 ### Create a tenant in Azure
 
-Follow the guidance in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) to create an AAD B2C tenant. Return to this article immediately after creating or identifying a tenant to use.
+Follow the guidance in [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant) to create an AAD B2C tenant.
+
+Before proceeding with this article's guidance, confirm that you've [selected the correct directory for the AAD B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant#select-your-b2c-tenant-directory).
 
 ### Register a server API app in Azure
 
