@@ -28,25 +28,25 @@ This demonstration allows you to:
 
 :::moniker range=">= aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/index/Details.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/element-component-model-relationships/Details.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/index/Details.razor":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/element-component-model-relationships/Details.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/index/Details.razor":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/element-component-model-relationships/Details.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/index/Details.razor":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/element-component-model-relationships/Details.razor":::
 
 :::moniker-end
 
@@ -56,25 +56,25 @@ In the following `PeopleExample` component, each iteration of adding a person in
 
 :::moniker range=">= aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/index/PeopleExample.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/element-component-model-relationships/PeopleExample.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/PeopleExample.razor":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/element-component-model-relationships/PeopleExample.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/PeopleExample.razor":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/element-component-model-relationships/PeopleExample.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/PeopleExample.razor":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/element-component-model-relationships/PeopleExample.razor":::
 
 :::moniker-end
 

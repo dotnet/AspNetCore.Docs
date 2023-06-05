@@ -23,25 +23,25 @@ In the following `Splat` component:
 
 :::moniker range=">= aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/index/Splat.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/splat-attributes-and-arbitrary-parameters/Splat.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/Splat.razor":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/splat-attributes-and-arbitrary-parameters/Splat.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/Splat.razor":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/splat-attributes-and-arbitrary-parameters/Splat.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/Splat.razor":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/splat-attributes-and-arbitrary-parameters/Splat.razor":::
 
 :::moniker-end
 
@@ -80,25 +80,25 @@ The position of [`@attributes`](xref:mvc/views/razor#attributes) relative to the
 
 :::moniker range=">= aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild1.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/splat-attributes-and-arbitrary-parameters/AttributeOrderChild1.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild1.razor":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/splat-attributes-and-arbitrary-parameters/AttributeOrderChild1.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild1.razor":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/splat-attributes-and-arbitrary-parameters/AttributeOrderChild1.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild1.razor":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/splat-attributes-and-arbitrary-parameters/AttributeOrderChild1.razor":::
 
 :::moniker-end
 
@@ -106,25 +106,25 @@ The position of [`@attributes`](xref:mvc/views/razor#attributes) relative to the
 
 :::moniker range=">= aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent1.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/splat-attributes-and-arbitrary-parameters/AttributeOrderParent1.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent1.razor":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/splat-attributes-and-arbitrary-parameters/AttributeOrderParent1.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent1.razor":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/splat-attributes-and-arbitrary-parameters/AttributeOrderParent1.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent1.razor":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/splat-attributes-and-arbitrary-parameters/AttributeOrderParent1.razor":::
 
 :::moniker-end
 
@@ -140,25 +140,25 @@ In the following example, the order of `extra` and [`@attributes`](xref:mvc/view
 
 :::moniker range=">= aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild2.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/splat-attributes-and-arbitrary-parameters/AttributeOrderChild2.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild2.razor":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/splat-attributes-and-arbitrary-parameters/AttributeOrderChild2.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild2.razor":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Shared/splat-attributes-and-arbitrary-parameters/AttributeOrderChild2.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/index/AttributeOrderChild2.razor":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Shared/splat-attributes-and-arbitrary-parameters/AttributeOrderChild2.razor":::
 
 :::moniker-end
 
@@ -166,25 +166,25 @@ In the following example, the order of `extra` and [`@attributes`](xref:mvc/view
 
 :::moniker range=">= aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent2.razor":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/splat-attributes-and-arbitrary-parameters/AttributeOrderParent2.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent2.razor":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/splat-attributes-and-arbitrary-parameters/AttributeOrderParent2.razor":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent2.razor":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/splat-attributes-and-arbitrary-parameters/AttributeOrderParent2.razor":::
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/index/AttributeOrderParent2.razor":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/splat-attributes-and-arbitrary-parameters/AttributeOrderParent2.razor":::
 
 :::moniker-end
 
