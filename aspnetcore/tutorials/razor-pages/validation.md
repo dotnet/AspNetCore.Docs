@@ -220,7 +220,7 @@ dotnet ef database update
 
 `Update-Database` runs the `Up` methods of the `New_DataAnnotations` class. Examine the `Up` method:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Migrations/20221031235618_New_DataAnnotations.cs?name=snippet_1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Migrations/20230606012811_New_DataAnnotations.cs?name=snippet_1)]
 
 The updated `Movie` table has the following schema:
 
