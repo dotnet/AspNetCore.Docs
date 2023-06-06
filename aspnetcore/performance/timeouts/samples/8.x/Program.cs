@@ -13,10 +13,11 @@ app.UseRequestTimeouts();
 app.MapGet("/", async (HttpContext context) => {
     try
     {
-        await Task.Delay(TimeSpan.FromSeconds(3), context.RequestAborted);
-    } catch (TaskCanceledException)
+        await Task.Delay(TimeSpan.FromSeconds(10), context.RequestAborted);
+    }
+    catch (TaskCanceledException)
     {
-        return Results.Content($"{Timeout!", "text/plain");
+        return Results.Content("Timeout!", "text/plain");
     }
 
     return Results.Content("No timeout!", "text/plain");
@@ -24,10 +25,13 @@ app.MapGet("/", async (HttpContext context) => {
 // Returns "Timeout!"
 
 app.MapGet("/attribute",
-    [RequestTimeout(milliseconds: 1000)] async (HttpContext context) => {
-        await Task.Delay(TimeSpan.FromSeconds(2));
-
-        if (context.RequestAborted.IsCancellationRequested) {
+    [RequestTimeout(milliseconds: 2000)] async (HttpContext context) => {
+        try
+        {
+            await Task.Delay(TimeSpan.FromSeconds(10), context.RequestAborted);
+        }
+        catch (TaskCanceledException)
+        {
             return Results.Content("Timeout!", "text/plain");
         }
 
@@ -60,7 +64,7 @@ app.UseRequestTimeouts();
 app.MapGet("/namedpolicy", async (HttpContext context) => {
     try
     {
-        await Task.Delay(TimeSpan.FromSeconds(5), context.RequestAborted);
+        await Task.Delay(TimeSpan.FromSeconds(10), context.RequestAborted);
     }
     catch (TaskCanceledException)
     {
@@ -74,9 +78,12 @@ app.MapGet("/namedpolicy", async (HttpContext context) => {
 
 // <usedefault>
 app.MapGet("/", async (HttpContext context) => {
-    await Task.Delay(TimeSpan.FromSeconds(2));
-
-    if (context.RequestAborted.IsCancellationRequested) {
+    try
+    {
+        await Task.Delay(TimeSpan.FromSeconds(10), context.RequestAborted);
+    }
+    catch
+    {
         return Results.Content("Timeout!", "text/plain");
     }
 
@@ -87,7 +94,14 @@ app.MapGet("/", async (HttpContext context) => {
 
 // <disablebyattr>
 app.MapGet("/disablebyattr", [DisableRequestTimeout] async (HttpContext context) => {
-    await Task.Delay(TimeSpan.FromSeconds(2));
+    try
+    {
+        await Task.Delay(TimeSpan.FromSeconds(10), context.RequestAborted);
+    }
+    catch
+    {
+        return Results.Content("Timeout!", "text/plain");
+    }
 
     return Results.Content("No timeout!", "text/plain");
 });
@@ -96,7 +110,14 @@ app.MapGet("/disablebyattr", [DisableRequestTimeout] async (HttpContext context)
 
 // <disablebyext>
 app.MapGet("/disablebyext", async (HttpContext context) => {
-    await Task.Delay(TimeSpan.FromSeconds(2));
+    try
+    {
+        await Task.Delay(TimeSpan.FromSeconds(10), context.RequestAborted);
+    }
+    catch
+    {
+        return Results.Content("Timeout!", "text/plain");
+    }
 
     return Results.Content("No timeout!", "text/plain");
 }).DisableRequestTimeout();
@@ -134,12 +155,13 @@ app.UseRequestTimeouts();
 app.MapGet("/", async (HttpContext context) => {
     try
     {
-        await Task.Delay(TimeSpan.FromSeconds(5), context.RequestAborted);
+        await Task.Delay(TimeSpan.FromSeconds(10), context.RequestAborted);
     }
     catch (TaskCanceledException)
     {
         throw;
     }
+
     return Results.Content("No timeout!", "text/plain");
 });
 // Returns status code 504 due to default policy.
@@ -168,7 +190,7 @@ app.MapGet("/canceltimeout", async (HttpContext context) => {
 
     try
     {
-        await Task.Delay(TimeSpan.FromSeconds(2), context.RequestAborted);
+        await Task.Delay(TimeSpan.FromSeconds(10), context.RequestAborted);
     } 
     catch (TaskCanceledException)
     {
