@@ -300,9 +300,30 @@ The `SampleHealthCheckWithDiConfig` and the Health check needs to be added to th
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/7.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksUsingDependencyInjection":::
 
+## UseHealthChecks vs. MapHealthChecks
+
+<xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks%2A>:
+* Terminates the pipeline when a request matches the health check endpoint. [Short-circuiting](xref:fundamentals/middleware/index) is often desirable because it avoids unnecessary work, such as logging and other middleware.
+* Is primarily used for configuring the health check middleware in the pipeline.
+* Can select any endpoint on a port with a `null` or empty `PathString`, which can be useful for the following scenarios:
+  * Provides a default health check without specifying a path. Allows performing a health check on the root path or any request made to the specified port.
+  * Selecting any endpoint on a port.
+  * Provides a catch-all health check. Handles health checks for any path.
+* [Source code](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckApplicationBuilderExtensions.cs)
+
+<xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks%2A>:
+* Is used for mapping specific routes or endpoints for health checks.
+* Allows customization of the URL or path where the health check endpoint is accessible.  Additional options and parameters can be specified, such as customizing the HTTP status codes, response content, or applying filters to determine which health checks to execute.
+* Allows mapping multiple health check endpoints with different routes or configurations. Multiple endpoint support:
+  * Enables separate endpoints for different types of health checks or components.
+  * Is used to differentiate between different aspects of the app's health or apply specific configurations to subsets of health checks.
+
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/health-checks/samples) ([how to download](xref:index#how-to-download-a-sample))
+
+> [!NOTE]
+> This article was partially created with the help of artificial intelligence. Before publishing, an author reviewed and revised the content as needed. See [Our principles for using AI-generated content in Microsoft Learn](https://aka.ms/ai-content-principles).
 
 :::moniker-end
 
