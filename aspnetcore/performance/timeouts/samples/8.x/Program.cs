@@ -171,7 +171,7 @@ app.MapGet("/", async (HttpContext context) => {
 app.MapGet("/usepolicy2", async (HttpContext context) => {
     try
     {
-        await Task.Delay(TimeSpan.FromSeconds(5), context.RequestAborted);
+        await Task.Delay(TimeSpan.FromSeconds(10), context.RequestAborted);
     }
     catch (TaskCanceledException)
     {
