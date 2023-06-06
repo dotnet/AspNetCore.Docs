@@ -4,7 +4,7 @@ description: Learn how to configure and use request timeout middleware in ASP.NE
 author: tdykstra
 ms.author: riande
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 04/24/2023
+ms.date: 06/06/2023
 uid: performance/timeouts
 ---
 # Request timeouts middleware in ASP.NET Core
@@ -36,7 +36,7 @@ Adding the middleware to the app doesn't automatically start triggering timeouts
 
 For minimal API apps, configure an endpoint to time out by calling <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIEndpointConventionBuilderExtensions.WithRequestTimeout%2A>, or by applying the [`[RequestTimeout]`](xref:Microsoft.AspNetCore.Http.Timeouts.RequestTimeoutAttribute) attribute, as shown in the following example:
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="oneendpoint" highlight="17,21":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="oneendpoint" highlight="20,24":::
 
 For apps with controllers, apply the `[RequestTimeout]` attribute to the action method or the controller class. For Razor Pages apps, apply the attribute to the Razor page class.
 
@@ -48,7 +48,7 @@ Create named *policies* to specify timeout configuration that applies to multipl
 
 A timeout can be specified for an endpoint by policy name:
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usepolicy" highlight="9":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usepolicy" highlight="12":::
 
 The `[RequestTimeout]` attribute can also be used to specify a named policy.
 
@@ -68,7 +68,7 @@ The <xref:Microsoft.AspNetCore.Http.Timeouts.RequestTimeoutPolicy> class has a p
 
 :::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies2" highlight="4":::
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usedefault2" highlight="4":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usedefault2" :::
 
 ## Use a delegate in a policy
 
@@ -76,7 +76,7 @@ The `RequestTimeoutPolicy` class has a <xref:Microsoft.AspNetCore.Http.Timeouts.
 
 :::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies2" highlight="8-11":::
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usepolicy2" highlight="4,7":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usepolicy2" :::
 
 ## Disable timeouts
 
@@ -84,7 +84,7 @@ To disable all timeouts including the default global timeout, use the [`[Disable
 
 :::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="disablebyattr" highlight="1":::
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="disablebyext" highlight="5":::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="disablebyext" highlight="12":::
 
 ## Cancel a timeout
 
