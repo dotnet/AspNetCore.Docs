@@ -80,6 +80,9 @@ Note: The specified URL must **not** contain a trailing slash (`/`). If the URL 
 
 <a name="uc1"></a>
 
+> [!WARNING]
+>  `UseCors` must be placed after `UseRouting` and before `UseAuthorization`. This is to ensure that CORS headers are included in the response for both authorized and unauthorized calls.
+
 ## UseCors and UseStaticFiles order
 
 Typically, `UseStaticFiles` is called before `UseCors`. Apps that use JavaScript to retrieve static files cross site must call `UseCors` before `UseStaticFiles`.
