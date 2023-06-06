@@ -132,7 +132,7 @@ Right-click on the *Pages/Movies* folder > **Add** > **New Scaffolded Item**.
 
 In the **Add Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
 
-![Add Scaffold on VScode](~/tutorials/razor-pages/model/_static/add_scaffold.png)
+![Add Scaffold on VScode](~/tutorials/razor-pages/model/_static/6/add_scaffold.png)
 
 Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
 
