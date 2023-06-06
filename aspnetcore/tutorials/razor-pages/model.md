@@ -106,7 +106,7 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
 
 1. In the **Add New Scaffold** dialog, select **Razor Pages using Entity Framework (CRUD)** > **Add**.
 
-   ![Add Scaffold](~/tutorials/razor-pages/model/_static/6/add_scaffold.png)
+   ![Add Scaffold](~/tutorials/razor-pages/model/_static/8/add_scaffold_VS22_17.7.0.png)
 
 1. Complete the **Add Razor Pages using Entity Framework (CRUD)** dialog:
    1. In the **Model class** drop down, select **Movie (RazorPagesMovie.Models)**.
