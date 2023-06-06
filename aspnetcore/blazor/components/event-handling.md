@@ -574,11 +574,15 @@ In the following example, selecting the checkbox prevents click events from the 
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-6.0"
+
 ## Focus an element
 
 Call <xref:Microsoft.AspNetCore.Components.ElementReferenceExtensions.FocusAsync%2A> on an [element reference](xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements) to focus an element in code. In the following example, select the button to focus the `<input>` element.
 
 `Pages/EventHandlerExample8.razor`:
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -589,17 +593,5 @@ Call <xref:Microsoft.AspNetCore.Components.ElementReferenceExtensions.FocusAsync
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample8.razor" highlight="16":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample8.razor" highlight="16":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/event-handling/EventHandlerExample8.razor" highlight="16":::
 
 :::moniker-end
