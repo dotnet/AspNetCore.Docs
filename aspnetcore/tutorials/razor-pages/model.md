@@ -24,7 +24,7 @@ The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O
 1. Right-click the `Models` folder. Select **Add** > **Class**. Name the class *Movie*.
 1. Add the following properties to the `Movie` class:
 
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/Movie.cs?name=snippet1)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -42,7 +42,7 @@ The `Movie` class contains:
 
 Add the following properties to the `Movie` class:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/Movie.cs?name=snippet1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -61,6 +61,9 @@ The `Movie` class contains:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
+
+<!--
 1. In the **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Add** > **New Folder...**. Name the folder `Models`.
 1. Control-click the `Models` folder, and then select **Add** > **New Class...**.
 1. In the **New File** dialog:
@@ -70,7 +73,7 @@ The `Movie` class contains:
 
 1. Add the following properties to the `Movie` class:
 
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/Movie.cs?name=snippet1)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/Movie.cs?name=snippet1)]
 
 The `Movie` class contains:
 
@@ -79,6 +82,7 @@ The `Movie` class contains:
 
   * The user isn't required to enter time information in the date field.
   * Only the date is displayed, not time information.
+-->
 
 ---
 
@@ -111,7 +115,7 @@ In this section, the movie model is scaffolded. That is, the scaffolding tool pr
       1. In the **Database provider** drop down, select **SQL Server**.
    1. Select **Add**.
 
-   ![Add Razor Pages](~/tutorials/razor-pages/model/_static/7/arp_VS22_17.6.2.png)
+   ![Add Razor Pages](~/tutorials/razor-pages/model/_static/8/arp_VS22_17.7.0.png)
 
 The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
@@ -148,6 +152,9 @@ For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/
 <!--
 Author note 5-30-23: As of VS 2022 and the 7.05 packages, EF scaffolding on the Mac loads all packages needed including SQLite 7.0.5, but then can't find SQLite and will not scaffold the files. Workaround is add Microsoft.EntityFrameworkCore.Sqlite as a step before scaffolding.  Remove once this issue is fixed.
 -->
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
+
+<!--
 1. Add the NuGet package `Microsoft.EntityFrameworkCore.Sqlite`, which is required for the scaffolding tool.
    1. In the **Solution Tool Window**, control-click the *RazorPagesMovie* project, and then select **Open in Terminal**.
 
@@ -183,6 +190,7 @@ The scaffolding process may take some time to complete as required packages are 
 The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
 [!INCLUDE[](~/includes/DevProdSQLite.md)]
+-->
 
 ---
 
@@ -216,9 +224,9 @@ The created files are explained in the next tutorial.
 The scaffold process adds the following highlighted code to the `Program.cs` file:
 
 # [Visual Studio](#tab/visual-studio)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all&highlight=1-3,8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program.cs?name=snippet_all&highlight=1-3,8-9)]
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all_sl&highlight=1-2,8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program.cs?name=snippet_all_sl&highlight=1-2,8-9)]
 
 ---
 
@@ -242,7 +250,7 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 1. From the **Tools** menu, select **NuGet Package Manager** > **Package Manager Console**.
 
-   ![PMC menu](~/tutorials/razor-pages/model/_static/5/pmc.png)
+   ![PMC menu](~/tutorials/razor-pages/model/_static/8/pmc_VS22_17.7.0.png)
 
 1. In the PMC, enter the following commands:
 
@@ -277,6 +285,9 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
+
+<!--
 * Control-click the *RazorPagesMovie* project, and then select **Open in Terminal**.
 
   The **Terminal** window opens with the command prompt at the project directory, which contains the Program.cs and .csproj files.
@@ -298,6 +309,7 @@ In this section, the **Package Manager Console** (PMC) window is used to:
 
 > [!NOTE]
 > For SQLite, column type for the `Price` field is set to `TEXT`. This is resolved in a later step.
+-->
 
 ---
 
@@ -311,7 +323,7 @@ The data context `RazorPagesMovieContext`:
 * Specifies which entities are included in the data model.
 * Coordinates EF Core functionality, such as Create, Read, Update and Delete, for the `Movie` model.
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Data/RazorPagesMovieContext.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Data/RazorPagesMovieContext.cs)]
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
@@ -334,7 +346,7 @@ The name of the connection string is passed in to the context by calling a metho
 
 1. Test the **Create New** link.
 
-   ![Create page](~/tutorials/razor-pages/model/_static/conan5.png)
+   ![Create page](~/tutorials/razor-pages/model/_static/8/create-new8.png)
 
    > [!NOTE]
    > You may not be able to enter decimal commas in the `Price` field. To support [jQuery validation](https://jqueryvalidation.org/) for non-English locales that use a comma (",") for a decimal point and for non US-English date formats, the app must be globalized. For globalization instructions, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/4076#issuecomment-326590420).
@@ -351,10 +363,10 @@ The scaffolding tool automatically created a database context and registered it 
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all&highlight=9-10)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program.cs?name=snippet_all&highlight=9-10)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_all_sl&highlight=7-8)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program.cs?name=snippet_all_sl&highlight=7-8)]
 
 ---
 

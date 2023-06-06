@@ -29,16 +29,16 @@ Automatic verification that the schema and model are in sync makes it easier to 
 <!-- Update Index in working project then copy to snap7 folder -->
 
 1. Open the `Models/Movie.cs` file and add a `Rating` property:
-   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/MovieDateRating.cs?highlight=13&name=snippet)]
+   [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/MovieDateRating.cs?highlight=13&name=snippet)]
 1. Edit `Pages/Movies/Index.cshtml`, and add a `Rating` field:
    <a name="addrat7"></a>
    [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/snap7/IndexRating.cshtml?highlight=40-42,62-64)]
 
 1. Update the following pages with a `Rating` field:
-   * *[Pages/Movies/Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Create.cshtml)*.
-   * *[Pages/Movies/Delete.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Delete.cshtml)*.
-   * *[Pages/Movies/Details.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Details.cshtml)*.
-   * *[Pages/Movies/Edit.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Edit.cshtml)*.
+   * *[Pages/Movies/Create.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Create.cshtml)*.
+   * *[Pages/Movies/Delete.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Delete.cshtml)*.
+   * *[Pages/Movies/Details.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Details.cshtml)*.
+   * *[Pages/Movies/Edit.cshtml](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Edit.cshtml)*.
 
 The app won't work until the database is updated to include the new field. Running the app without an update to the database throws a `SqlException`:
 
@@ -58,7 +58,7 @@ Update the `SeedData` class so that it provides a value for the new column. A sa
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie60/Models/SeedDataRating.cs?name=snippet1&highlight=8)]
 
-See the [completed SeedData.cs file](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/SeedDataRating.cs).
+See the [completed SeedData.cs file](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/SeedDataRating.cs).
 
 Build the solution.
 

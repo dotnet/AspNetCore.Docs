@@ -23,21 +23,21 @@ For a more advanced introduction aimed at developers who are familiar with contr
 
 At the end of this tutorial, you'll have a Razor Pages web app that manages a database of movies.
 
-![Home or Index page](~/tutorials/razor-pages/razor-pages-start/_static/6/home6.png)
+![Home or Index page](~/tutorials/razor-pages/razor-pages-start/_static/8/home8.png)
 
 ## Prerequisites
 
 # [Visual Studio](#tab/visual-studio)
 
-[!INCLUDE[](~/includes/net-prereqs-vs-7.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vs-8.0.md)]
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-[!INCLUDE[](~/includes/net-prereqs-vsc-7.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-vsc-8.0.md)]
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[!INCLUDE[](~/includes/net-prereqs-mac-7.0.md)]
+[!INCLUDE[](~/includes/net-prereqs-mac-8.0.md)]
 
 ---
 
@@ -45,16 +45,16 @@ At the end of this tutorial, you'll have a Razor Pages web app that manages a da
 
 # [Visual Studio](#tab/visual-studio)
 
-* Start Visual Studio and select **Create a new project**.
+* Start Visual Studio and select **New project**.
 * In the **Create a new project** dialog, select **ASP.NET Core Web App** > **Next**.
 * In the **Configure your new project** dialog, enter `RazorPagesMovie` for **Project name**. It's important to name the project **RazorPagesMovie**, including matching the capitalization, so the namespaces will match when you copy and paste example code.
 * Select **Next**.
 * In the **Additional information** dialog:
-  * Select **.NET 7.0 (Standard Term Support)**.
+  * Select **.NET 8.0 (Preview)**.
   * Verify: **Do not use top-level statements** is unchecked.
 * Select **Create**.
 
-   ![Additional information](~/tutorials/razor-pages/razor-pages-start/_static/7/additional_info.png)
+   ![Additional information](~/tutorials/razor-pages/razor-pages-start/_static/8/net8-additional-info.png)
 
   The following starter project is created:
 
@@ -64,7 +64,7 @@ For alternative approaches to create the project, see [Create a new project in V
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-1. Open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
+1. Select **New Terminal** from the **Terminal** menu to open the [integrated terminal](https://code.visualstudio.com/docs/editor/integrated-terminal).
 
 1. Change to the directory (`cd`) that will contain the project.
 1. Run the following commands:
@@ -84,6 +84,9 @@ For alternative approaches to create the project, see [Create a new project in V
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
+
+<!--
 * In Visual Studio for Mac 2022, select **File** > **New Project...**.
 
 * In the **Choose a template for your new project** dialog:
@@ -99,6 +102,7 @@ For alternative approaches to create the project, see [Create a new project in V
 * In the **Configure your new Web Application** dialog:
   * Enter `RazorPagesMovie` for **Project name**. It's important to name the project **RazorPagesMovie**, including matching the capitalization, so the namespaces will match when you copy and paste example code.
   * Select **Create**.
+-->
 
 ---
 
@@ -139,10 +143,13 @@ The default browser launched with the following URL: `https://localhost:<port>` 
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
+For Visual Studio for Mac, see the .NET 7 version of this tutorial.
+
+<!--
 Select **Debug** > **Start Debugging** to launch the app.
 
 Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is the port number randomly assigned at project creation and is set in `Properties/launchSettings.json`.
-
+-->
 ---
 
 <!-- 
@@ -175,17 +182,17 @@ Contains configuration data, like connection strings. For more information, see 
 
 Contains the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program1Snip.cs?name=snippet_all)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program1Snip.cs?name=snippet_all)]
 
 The following lines of code in this file create a `WebApplicationBuilder` with preconfigured defaults, add Razor Pages support to the [Dependency Injection (DI) container](xref:fundamentals/dependency-injection), and builds the app:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program1Snip.cs?name=snippet_di)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program1Snip.cs?name=snippet_di)]
 
 The developer exception page is enabled by default and provides helpful information on exceptions. Production apps should not be run in development mode because the developer exception page can leak sensitive information.
 
 The following code sets the exception endpoint to `/Error` and enables [HTTP Strict Transport Security Protocol (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-protocol-hsts) when the app is ***not*** running in development mode:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program1Snip.cs?name=snippet_env)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program1Snip.cs?name=snippet_env)]
 
 For example, the preceding code runs when the app is in production or test mode. For more information, see [Use multiple environments in ASP.NET Core](xref:fundamentals/environments).
 

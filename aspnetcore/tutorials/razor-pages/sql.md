@@ -17,11 +17,11 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_di&highlight=8-9)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program.cs?name=snippet_di&highlight=8-9)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Program.cs?name=snippet_di_sl&highlight=7-8)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Program.cs?name=snippet_di_sl&highlight=7-8)]
 
 ---
 
@@ -35,7 +35,7 @@ The generated connection string is similar to the following JSON:
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/appsettings_SQLite.json?highlight=9-11)]
+[!code-json[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/appsettings_SQLite.json?highlight=9-11)]
 
 ---
 
@@ -50,7 +50,7 @@ LocalDB is a lightweight version of the SQL Server Express database engine that'
 <a name="ssox"></a>
 1. From the **View** menu, open **SQL Server Object Explorer** (SSOX).
 
-   ![View menu](~/tutorials/razor-pages/sql/_static/5/ssox.png)
+   ![View menu](~/tutorials/razor-pages/sql/_static/8/ssox_VS22_17.7.0.png)
 
 1. Right-click on the `Movie` table and select **View Designer**:
 
@@ -99,7 +99,7 @@ There are many third-party tools you can download to manage and view a SQLite da
 <!-- Next version put it in the Data folder -->
 Create a new class named `SeedData` in the *Models* folder with the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Models/SeedData.cs?name=snippet_1)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Models/SeedData.cs?name=snippet_1)]
 
 If there are any movies in the database, the seed initializer returns and no movies are added.
 
@@ -118,11 +118,11 @@ Update the `Program.cs` with the following highlighted code:
 
 # [Visual Studio](#tab/visual-studio)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/ProgramSeed.cs?name=snippet_all&highlight=3,13-18)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/ProgramSeed.cs?name=snippet_all&highlight=3,13-18)]
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/ProgramSeed.cs?name=snippet_all_sl&highlight=3,13-18)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/ProgramSeed.cs?name=snippet_all_sl&highlight=3,13-18)]
 
 ---
 

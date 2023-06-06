@@ -17,7 +17,7 @@ In the following sections, searching movies by *genre* or *name* is added.
 
 Add the following highlighted code to `Pages/Movies/Index.cshtml.cs`:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=12-18)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Index.cshtml.cs?name=snippet_newProps&highlight=12-18)]
 
 In the previous code:
 
@@ -57,7 +57,7 @@ The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/progr
 
 Navigate to the Movies page and append a query string such as `?searchString=Ghost` to the URL. For example, `https://localhost:5001/Movies?searchString=Ghost`. The filtered movies are displayed.
 
-![Index view](~/tutorials/razor-pages/search/_static/ghost.png)
+![Index view](~/tutorials/razor-pages/search/_static/8/ghost8.png)
 
 If the following route template is added to the Index page, the search string can be passed as a URL segment. For example, `https://localhost:5001/Movies/Ghost`.
 
@@ -67,7 +67,7 @@ If the following route template is added to the Index page, the search string ca
 
 The preceding route constraint allows searching the title as route data (a URL segment) instead of as a query string value.  The `?` in `"{searchString?}"` means this is an optional route parameter.
 
-![Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2](~/tutorials/razor-pages/search/_static/g2.png)
+![Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2](~/tutorials/razor-pages/search/_static/8/ghost_title_routedata8.png)
 
 The ASP.NET Core runtime uses [model binding](xref:mvc/models/model-binding) to set the value of the `SearchString` property from the query string (`?searchString=Ghost`) or route data (`https://localhost:5001/Movies/Ghost`). Model binding is ***not*** case sensitive.
 
@@ -90,7 +90,7 @@ Save the changes and test the filter.
 
 Update the Index page's `OnGetAsync` method with the following code:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Movies/Index.cshtml.cs?name=snippet_SearchGenre)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Index.cshtml.cs?name=snippet_SearchGenre)]
 
 The following code is a LINQ query that retrieves all the genres from the database.
 
