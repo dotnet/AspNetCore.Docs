@@ -534,7 +534,11 @@ For more information, see the guidance on <xref:Microsoft.AspNetCore.Components.
 
 ## Unauthorized content display during prerendering
 
-To avoid showing unauthorized content during prerendering, implement <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider> to support prerendering, disable prerendering, maintain the current behavior, or authenticate the user on the server before the app starts.
+To avoid showing unauthorized content during prerendering, implement <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider> to support prerendering, disable prerendering, or authenticate the user on the server before the app starts.
+
+For an example implementation of <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider>, see the Blazor framework's <xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider> implementation in [`ServerAuthenticationStateProvider.cs` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/ServerAuthenticationStateProvider.cs).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ## User state management
 
