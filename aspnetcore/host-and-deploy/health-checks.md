@@ -302,6 +302,8 @@ The `SampleHealthCheckWithDiConfig` and the Health check needs to be added to th
 
 ## UseHealthChecks vs. MapHealthChecks
 
+The `MapHealthChecks` method accepts arguments similar to `UseHealthChecks`. The advantage of using `MapHealthChecks` over `UseHealthChecks` is the ability to apply authorization and to have greater fine-grained control over the matching policy. The primary advantage of using `UseHealthChecks` over `MapHealthChecks` over terminating the middleware and selecting endpoints via port.
+
 <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks%2A>:
 * Terminates the pipeline when a request matches the health check endpoint. [Short-circuiting](xref:fundamentals/middleware/index) is often desirable because it avoids unnecessary work, such as logging and other middleware.
 * Is primarily used for configuring the health check middleware in the pipeline.
