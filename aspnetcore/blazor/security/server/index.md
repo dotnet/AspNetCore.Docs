@@ -262,11 +262,11 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
         return Task.FromResult(new AuthenticationState(user));
     }
 
-    public void AuthenticateUser(string emailAddress)
+    public void AuthenticateUser(string userIdentifier)
     {
         var identity = new ClaimsIdentity(new[]
         {
-            new Claim(ClaimTypes.Name, emailAddress),
+            new Claim(ClaimTypes.Name, userIdentifier),
         }, "Custom Authentication");
 
         var user = new ClaimsPrincipal(identity);
