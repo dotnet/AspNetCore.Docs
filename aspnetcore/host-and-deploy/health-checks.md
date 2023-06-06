@@ -317,6 +317,7 @@ The `SampleHealthCheckWithDiConfig` and the Health check needs to be added to th
 * Allows mapping multiple health check endpoints with different routes or configurations. Multiple endpoint support:
   * Enables separate endpoints for different types of health checks or components.
   * Is used to differentiate between different aspects of the app's health or apply specific configurations to subsets of health checks.
+* [Source code](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs)
 
 ## Additional resources
 
