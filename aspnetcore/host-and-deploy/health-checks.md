@@ -313,10 +313,10 @@ The `MapHealthChecks` method accepts arguments similar to `UseHealthChecks`. The
   * Provides a catch-all health check. Handles health checks for any path.
 * [Source code](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckApplicationBuilderExtensions.cs)
 
-<xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks%2A>:
-* Is used for mapping specific routes or endpoints for health checks.
-* Allows customization of the URL or path where the health check endpoint is accessible.  Additional options and parameters can be specified, such as customizing the HTTP status codes, response content, or applying filters to determine which health checks to execute.
-* Allows mapping multiple health check endpoints with different routes or configurations. Multiple endpoint support:
+<xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks%2A> allows:
+* Mapping specific routes or endpoints for health checks.
+* Customization of the URL or path where the health check endpoint is accessible.
+* Mapping multiple health check endpoints with different routes or configurations. Multiple endpoint support:
   * Enables separate endpoints for different types of health checks or components.
   * Is used to differentiate between different aspects of the app's health or apply specific configurations to subsets of health checks.
 * [Source code](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs)
