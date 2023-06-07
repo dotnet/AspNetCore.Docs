@@ -1,81 +1,82 @@
 ---
-title: "ASP.NET Core docs: What's new for November 2022"
-description: "What's new in the ASP.NET Core docs for November 2022."
-ms.custom: November-2022
-ms.date: 12/01/2022
+title: "ASP.NET Core docs: What's new for May 2023"
+description: "What's new in the ASP.NET Core docs for May 2023."
+ms.custom: May-2023
+ms.date: 06/07/2023
 ---
 
-# ASP.NET Core docs: What's new for November 2022
+# ASP.NET Core docs: What's new for May 2023
 
-Welcome to what's new in the ASP.NET Core docs for November 2022. This article lists some of the major changes to docs during this period.
+Welcome to what's new in the ASP.NET Core docs for May 2023. This article lists some of the major changes to docs during this period.
 
 ## Blazor
 
+### New articles
+
+- <xref:blazor/components/attribute-splatting>
+- <xref:blazor/components/key>
+- <xref:blazor/components/overwriting-parameters>
+- <xref:blazor/components/sync-context>
+- <xref:blazor/components/generic-type-support>
+
 ### Updated articles
 
-- <xref:blazor/host-and-deploy/webassembly>
-  - Standalone Blazor WASM with Docker
-  - Note file ext change for server static assets
-- <xref:blazor/components/index> - Clarify root component disposal
-- <xref:blazor/fundamentals/signalr> - Example on how to automatically refresh the browser when Blazor Server reconnection fails
-- <xref:blazor/hybrid/tutorials/maui> - Add VS4Mac/macOS pivot to MAUI-Blazor tutorial
-- <xref:blazor/globalization-localization> - Blazor loc shared resource approach
-- <xref:blazor/js-interop/call-dotnet-from-javascript>
-  - JS object and data refs passed to .NET
-  - Backport JS interop section
+- <xref:blazor/state-management> - State management article versioning
+- <xref:blazor/debug> - Blazor debug versioning update
+- <xref:blazor/globalization-localization> - Custom ICU loading
+- <xref:blazor/components/index>
+  - Component overview updates
+  - Components overview versioning
+- <xref:blazor/host-and-deploy/index> - Expand lead-in coverage on app base path
+- <xref:blazor/fundamentals/signalr> - Blazor SignalR fundamentals article versioning
+- <xref:blazor/blazor-server-ef-core> - Blazor Server EF Core article versioning
+- <xref:blazor/components/templated-components> - Blazor article versioning
+- <xref:blazor/tutorials/build-a-blazor-app> - Blazor article versioning
+- <xref:blazor/host-and-deploy/multiple-hosted-webassembly> - Subpath scenario for multiple hosted WASM apps
+- <xref:blazor/fundamentals/handle-errors> - Dispatch exceptions to the sync context
 
 ## Fundamentals
 
 ### New articles
 
-- <xref:fundamentals/minimal-apis/parameter-binding>
-- <xref:fundamentals/minimal-apis/route-handlers>
-- <xref:fundamentals/minimal-apis/webapplication>
-- <xref:fundamentals/minimal-apis/security>
-
-## Migration
-
-### New articles
-
-- <xref:migration/inc/adapters>
-- <xref:migration/inc/overview>
-- <xref:migration/inc/remote-app-setup>
-- <xref:migration/inc/remote-authentication>
-- <xref:migration/inc/remote-session>
-- <xref:migration/inc/session>
-- <xref:migration/inc/start>
-- <xref:migration/inc/usage_guidance>
-- <xref:migration/inc/wrapped>
+- <xref:fundamentals/native-aot-tutorial>
 
 ### Updated articles
 
-- <xref:migration/60-to-70> - Update Blazor WASM auth nav guidance
+- <xref:fundamentals/native-aot> - Split AOT doc into two docs, tutorial and conceptual
+- <xref:fundamentals/host/hosted-services> - Worker aot /2
+- <xref:fundamentals/routing> - Add docs for short circuiting
 
-## Performance
+## Testing
 
 ### New articles
 
-- <xref:performance/caching/output>
+- <xref:test/http-files>
 
 ## Tutorials
 
 ### Updated articles
 
-- <xref:tutorials/min-web-api> - Prereq fix on min-web-api.md
+- <xref:tutorials/min-web-api> - Use Endpoints Explorer for testing
 
 ## Community contributors
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [alex-jitbit](https://github.com/alex-jitbit) - Alexander Yumashev ![There were 1 pull requests merged by Alexander Yumashev.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [BlueHtml](https://github.com/BlueHtml) ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [byguid](https://github.com/byguid) - Ustym Simchuk ![There were 1 pull requests merged by Ustym Simchuk.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [kiasyn](https://github.com/kiasyn) - kiasyn ![There were 1 pull requests merged by kiasyn.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [Kraego](https://github.com/Kraego) - Thomas Kraxner ![There were 1 pull requests merged by Thomas Kraxner.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [kyhou](https://github.com/kyhou) - Joel Vicente Filho ![There were 1 pull requests merged by Joel Vicente Filho.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [ladeak](https://github.com/ladeak) ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [LayersOfAbstraction](https://github.com/LayersOfAbstraction) - Jordan Nash ![There were 1 pull requests merged by Jordan Nash.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [NLipatov](https://github.com/NLipatov) - Lipatov Nikita ![There were 1 pull requests merged by Lipatov Nikita.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [sabahshariq](https://github.com/sabahshariq) - Sabah Shariq ![There were 1 pull requests merged by Sabah Shariq.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [sammychinedu2ky](https://github.com/sammychinedu2ky) - Samson Amaugo ![There were 1 pull requests merged by Samson Amaugo.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [vanillajonathan](https://github.com/vanillajonathan) - Jonathan ![There were 1 pull requests merged by Jonathan.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [postmeback](https://github.com/postmeback) - Arka Poddar ![There were 3 pull requests merged by Arka Poddar.](https://img.shields.io/badge/Merged%20Pull%20Requests-3-green)
+- [LuohuaRain](https://github.com/LuohuaRain) - Yue Cui ![There were 2 pull requests merged by Yue Cui.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
+- [sammychinedu2ky](https://github.com/sammychinedu2ky) - Samson Amaugo ![There were 2 pull requests merged by Samson Amaugo.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
+- [sguitardude](https://github.com/sguitardude) -  ![There were 2 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
+- [berviantoleo](https://github.com/berviantoleo) - Bervianto Leo Pratama ![There were 1 pull requests merged by Bervianto Leo Pratama.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [david-acker](https://github.com/david-acker) - David Acker ![There were 1 pull requests merged by David Acker.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [dersonmutemba](https://github.com/dersonmutemba) - Derson Mutemba ![There were 1 pull requests merged by Derson Mutemba.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [explunit](https://github.com/explunit) - Steve P ![There were 1 pull requests merged by Steve P.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [fadihania](https://github.com/fadihania) - Fadi Hania ![There were 1 pull requests merged by Fadi Hania.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [hakenr](https://github.com/hakenr) - Robert Haken ![There were 1 pull requests merged by Robert Haken.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [lee-m](https://github.com/lee-m) - Lee Millward ![There were 1 pull requests merged by Lee Millward.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [liaosunny123](https://github.com/liaosunny123) - EpicMo ![There were 1 pull requests merged by EpicMo.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [mahab339](https://github.com/mahab339) - Muhab Abdelreheem ![There were 1 pull requests merged by Muhab Abdelreheem.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [nockscitney](https://github.com/nockscitney) - Nick Scotney ![There were 1 pull requests merged by Nick Scotney.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [peteraritchie](https://github.com/peteraritchie) - Peter Ritchie ![There were 1 pull requests merged by Peter Ritchie.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [tbertenshaw](https://github.com/tbertenshaw) - timbo ![There were 1 pull requests merged by timbo.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [TsukiCTF](https://github.com/TsukiCTF) -  ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
