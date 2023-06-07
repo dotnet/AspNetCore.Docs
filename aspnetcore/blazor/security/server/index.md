@@ -532,9 +532,25 @@ In the following `InjectAuthStateProvider` component:
 
 For more information, see the guidance on <xref:Microsoft.AspNetCore.Components.OwningComponentBase> in <xref:blazor/fundamentals/dependency-injection#owningcomponentbase>.
 
-## Unauthorized content display during prerendering
+<!-- HOLD: This content will be discussed with the PU after .NET 8 releases. This is tracked by https://github.com/dotnet/AspNetCore.Docs/issues/28001.
 
-To avoid showing unauthorized content during prerendering, implement <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider> to support prerendering, disable prerendering, maintain the current behavior, or authenticate the user on the server before the app starts.
+## Unauthorized content display while prerendering with a custom `AuthenticationStateProvider`
+
+To avoid showing unauthorized content while prerendering with a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider), adopt ***one*** of the following approaches:
+
+* Implement <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider> for the custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to support prerendering: For an example implementation of <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider>, see the Blazor framework's <xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider> implementation in [`ServerAuthenticationStateProvider.cs` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/ServerAuthenticationStateProvider.cs).
+
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+* Disable prerendering: Open the `Pages/_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:
+
+  ```cshtml
+  <component type="typeof(App)" render-mode="Server" />
+  ```
+
+* Authenticate the user on the server before the app starts: To adopt this approach, the app must respond to a user's initial request with the Identity-based sign-in page or view and prevent any requests to Blazor endpoints until they're authenticated. For more information, see <xref:security/authorization/secure-data#require-authenticated-users>. After authentication, unauthorized content in prerendered Razor components is only shown when the user is truly unauthorized to view the content.
+
+-->
 
 ## User state management
 
