@@ -136,7 +136,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRequestTimeouts(options => {
     options.DefaultPolicy = new RequestTimeoutPolicy {
         Timeout = TimeSpan.FromMilliseconds(1000),
-        TimeoutStatusCode = 504
+        TimeoutStatusCode = 503
     };
     options.AddPolicy("MyPolicy2", new RequestTimeoutPolicy {
         Timeout = TimeSpan.FromMilliseconds(1000),
@@ -164,7 +164,7 @@ app.MapGet("/", async (HttpContext context) => {
 
     return Results.Content("No timeout!", "text/plain");
 });
-// Returns status code 504 due to default policy.
+// Returns status code 503 due to default policy.
 // </usedefault2>
 
 // <usepolicy2>

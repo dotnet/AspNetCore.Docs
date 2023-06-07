@@ -15,7 +15,7 @@ By [Tom Dykstra](https://github.com/tdykstra)
 
 Apps can apply timeout limits selectively to requests. ASP.NET Core servers don't do this by default since request processing times vary widely by scenario. For example, WebSockets, static files, and calling expensive APIs would each require a different timeout limit. So ASP.NET Core provides middleware that configures timeouts per endpoint as well as a global timeout.
 
-When a timeout limit is hit, a <xref:System.Threading.CancellationToken> in <xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted?displayProperty=nameWithType> has <xref:System.Threading.CancellationToken.IsCancellationRequested> set to `true`. The request is not aborted automatically. It's up to the app to check `RequestAborted` and decide how to handle the timeout.
+When a timeout limit is hit, a <xref:System.Threading.CancellationToken> in <xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted?displayProperty=nameWithType> has <xref:System.Threading.CancellationToken.IsCancellationRequested> set to `true`. <xref:Microsoft.AspNetCore.Http.HttpContext.Abort> isn't automatically called on the request, so the application may still produce a success or failure response. The default behavior if the app doesn't handle the exception and produce a response is to return status code 504.
 
 This article explains how to configure the timeout middleware. The timeout middleware can be used in all types of ASP.NET Core apps: Minimal API, Web API with controllers, MVC, and Razor Pages. The sample app is a Minimal API, but every timeout feature it illustrates is also supported in the other app types.
 
@@ -76,7 +76,7 @@ The `RequestTimeoutPolicy` class has a <xref:Microsoft.AspNetCore.Http.Timeouts.
 
 :::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies2" highlight="8-11":::
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usepolicy2" :::
+:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usepolicy2" highlight="12":::
 
 ## Disable timeouts
 
