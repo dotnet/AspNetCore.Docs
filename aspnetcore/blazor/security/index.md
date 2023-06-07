@@ -27,6 +27,9 @@ ASP.NET Core Identity is designed to work in the context of HTTP request and res
 
 ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInManager%601> and <xref:Microsoft.AspNetCore.Identity.UserManager%601>, aren't supported in Razor components. For more information on using ASP.NET Core Identity with Blazor, see [Scaffold ASP.NET Core Identity into a Blazor Server app](xref:security/authentication/scaffold-identity#scaffold-identity-into-a-blazor-server-project).
 
+> [!NOTE]
+> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core 6.0 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from examples in this article.
+
 ## Authentication
 
 Blazor uses the existing ASP.NET Core authentication mechanisms to establish the user's identity. The exact mechanism depends on how the Blazor app is hosted, Blazor Server or Blazor WebAssembly.
@@ -73,8 +76,6 @@ You don't typically use <xref:Microsoft.AspNetCore.Components.Authorization.Auth
 The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service can provide the current user's <xref:System.Security.Claims.ClaimsPrincipal> data, as shown in the following example.
 
 `Pages/ClaimsPrincipalData.razor`:
-
-:::moniker range=">= aspnetcore-6.0"
 
 ```razor
 @page "/claims-principle-data"
@@ -124,61 +125,6 @@ The <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvi
 }
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```razor
-@page "/claims-principle-data"
-@using System.Security.Claims
-@using Microsoft.AspNetCore.Components.Authorization
-@inject AuthenticationStateProvider AuthenticationStateProvider
-
-<h1>ClaimsPrincipal Data</h1>
-
-<button @onclick="GetClaimsPrincipalData">Get ClaimsPrincipal Data</button>
-
-<p>@authMessage</p>
-
-@if (claims.Count() > 0)
-{
-    <ul>
-        @foreach (var claim in claims)
-        {
-            <li>@claim.Type: @claim.Value</li>
-        }
-    </ul>
-}
-
-<p>@surname</p>
-
-@code {
-    private string authMessage;
-    private string surname;
-    private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
-
-    private async Task GetClaimsPrincipalData()
-    {
-        var authState = await AuthenticationStateProvider
-            .GetAuthenticationStateAsync();
-        var user = authState.User;
-
-        if (user.Identity.IsAuthenticated)
-        {
-            authMessage = $"{user.Identity.Name} is authenticated.";
-            claims = user.Claims;
-            surname = user.FindFirst(c => c.Type == ClaimTypes.Surname)?.Value;
-        }
-        else
-        {
-            authMessage = "The user is NOT authenticated.";
-        }
-    }
-}
-```
-
-:::moniker-end
-
 If `user.Identity.IsAuthenticated` is `true` and because the user is a <xref:System.Security.Claims.ClaimsPrincipal>, claims can be enumerated and membership in roles evaluated.
 
 For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and <xref:fundamentals/dependency-injection>. For information on how to implement a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> in Blazor Server apps, see <xref:blazor/security/server/index#implement-a-custom-authenticationstateprovider>.
@@ -188,8 +134,6 @@ For more information on dependency injection (DI) and services, see <xref:blazor
 If authentication state data is required for procedural logic, such as when performing an action triggered by the user, obtain the authentication state data by defining a [cascading parameter](xref:blazor/components/cascading-values-and-parameters) of type `Task<`<xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState>`>`, as the following example demonstrates.
 
 `Pages/CascadeAuthState.razor`:
-
-:::moniker range=">= aspnetcore-6.0"
 
 ```razor
 @page "/cascade-auth-state"
@@ -219,41 +163,6 @@ If authentication state data is required for procedural logic, such as when perf
     }
 }
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```razor
-@page "/cascade-auth-state"
-
-<h1>Cascade Auth State</h1>
-
-<p>@authMessage</p>
-
-@code {
-    private string authMessage = "The user is NOT authenticated.";
-
-    [CascadingParameter]
-    private Task<AuthenticationState> authenticationState { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        if (authenticationState is not null)
-        {
-            var authState = await authenticationState;
-            var user = authState?.User;
-
-            if (user?.Identity is not null && user.Identity.IsAuthenticated)
-            {
-                authMessage = $"{user.Identity.Name} is authenticated.";
-            }
-        }
-    }
-}
-```
-
-:::moniker-end
 
 If `user.Identity.IsAuthenticated` is `true`, claims can be enumerated and membership in roles evaluated.
 
@@ -315,7 +224,7 @@ The component exposes a `context` variable of type <xref:Microsoft.AspNetCore.Co
 
 ```razor
 <AuthorizeView>
-    <p>Hello, @context.User.Identity.Name!</p>
+    <p>Hello, @context.User.Identity?.Name!</p>
 </AuthorizeView>
 ```
 
@@ -324,7 +233,7 @@ You can also supply different content for display if the user isn't authorized:
 ```razor
 <AuthorizeView>
     <Authorized>
-        <p>Hello, @context.User.Identity.Name!</p>
+        <p>Hello, @context.User.Identity?.Name!</p>
         <p><button @onclick="SecureMethod">Authorized Only Button</button></p>
     </Authorized>
     <NotAuthorized>
@@ -425,7 +334,7 @@ While authentication is in progress, <xref:Microsoft.AspNetCore.Components.Autho
 ```razor
 <AuthorizeView>
     <Authorized>
-        <p>Hello, @context.User.Identity.Name!</p>
+        <p>Hello, @context.User.Identity?.Name!</p>
     </Authorized>
     <Authorizing>
         <p>You can only see this content while authentication is in progress.</p>
@@ -539,10 +448,6 @@ In the following `EditUser` component, the resource at `/users/{id}/edit` has a 
 
 `Pages/EditUser.razor`:
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0"
-
 ```razor
 @page "/users/{id}/edit"
 @using Microsoft.AspNetCore.Authorization
@@ -555,25 +460,6 @@ In the following `EditUser` component, the resource at `/users/{id}/edit` has a 
 @code {
     [Parameter]
     public string? Id { get; set; }
-}
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-```razor
-@page "/users/{id}/edit"
-@using Microsoft.AspNetCore.Authorization
-@attribute [Authorize(Policy = "EditUser")]
-
-<h1>Edit User</h1>
-
-<p>The "EditUser" policy is satisfied! <code>Id</code> starts with 'EMP'.</p>
-
-@code {
-    [Parameter]
-    public string Id { get; set; }
 }
 ```
 
@@ -642,8 +528,6 @@ A Blazor Server app includes the appropriate namespaces by default when created 
 
 `Pages/ProceduralLogic.razor`:
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```razor
 @page "/procedural-logic"
 @inject IAuthorizationService AuthorizationService
@@ -685,47 +569,6 @@ A Blazor Server app includes the appropriate namespaces by default when created 
     }
 }
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```razor
-@page "/procedural-logic"
-@inject IAuthorizationService AuthorizationService
-
-<h1>Procedural Logic Example</h1>
-
-<button @onclick="@DoSomething">Do something important</button>
-
-@code {
-    [CascadingParameter]
-    private Task<AuthenticationState> authenticationStateTask { get; set; }
-
-    private async Task DoSomething()
-    {
-        var user = (await authenticationStateTask).User;
-
-        if (user.Identity.IsAuthenticated)
-        {
-            // ...
-        }
-
-        if (user.IsInRole("Admin"))
-        {
-            // ...
-        }
-
-        if ((await AuthorizationService.AuthorizeAsync(user, "content-editor"))
-            .Succeeded)
-        {
-            // ...
-        }
-    }
-}
-```
-
-:::moniker-end
 
 ## Troubleshoot errors
 

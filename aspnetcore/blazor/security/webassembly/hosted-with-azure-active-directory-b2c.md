@@ -99,7 +99,7 @@ In **API permissions** from the sidebar:
 
 [!INCLUDE[](~/blazor/security/includes/authorize-client-app.md)]
 
-Return to **Azure AD B2C** in the Azure portal. Select **User flows** and use the following guidance: [Create a sign-up and sign-in user flow](/azure/active-directory-b2c/tutorial-create-user-flows). At a minimum, select **Application claims** for the sign-up/sign-in user flow and then the **Display Name** user attribute checkbox to populate the `context.User.Identity.Name` in the `LoginDisplay` component (`Shared/LoginDisplay.razor`).
+Return to **Azure AD B2C** in the Azure portal. Select **User flows** and use the following guidance: [Create a sign-up and sign-in user flow](/azure/active-directory-b2c/tutorial-create-user-flows). At a minimum, select **Application claims** for the sign-up/sign-in user flow and then the **Display Name** user attribute checkbox to populate the `context.User.Identity?.Name`/`context.User.Identity.Name` in the `LoginDisplay` component (`Shared/LoginDisplay.razor`).
 
 Record the sign-up and sign-in user flow name created for the app (for example, `B2C_1_signupsignin1`).
 
