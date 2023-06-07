@@ -532,11 +532,11 @@ In the following `InjectAuthStateProvider` component:
 
 For more information, see the guidance on <xref:Microsoft.AspNetCore.Components.OwningComponentBase> in <xref:blazor/fundamentals/dependency-injection#owningcomponentbase>.
 
-## Unauthorized content display during prerendering
+## Unauthorized content display while prerendering with a custom `AuthenticationStateProvider`
 
-To avoid showing unauthorized content during prerendering, adopt ***one*** of the following approaches:
+To avoid showing unauthorized content while prerendering with a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider), adopt ***one*** of the following approaches:
 
-* Implement <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider> to support prerendering: For an example implementation of <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider>, see the Blazor framework's <xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider> implementation in [`ServerAuthenticationStateProvider.cs` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/ServerAuthenticationStateProvider.cs).
+* Implement <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider> for the custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to support prerendering: For an example implementation of <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider>, see the Blazor framework's <xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider> implementation in [`ServerAuthenticationStateProvider.cs` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/ServerAuthenticationStateProvider.cs).
 
   [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -546,7 +546,7 @@ To avoid showing unauthorized content during prerendering, adopt ***one*** of th
   <component type="typeof(App)" render-mode="Server" />
   ```
 
-* Authenticate the user on the server before the app starts: To adopt this approach, the app must respond to a user's initial request with the Identity-based sign-in page or view and prevent any requests to Blazor endpoints until they're authenticated. For more information, see <xref:security/authorization/secure-data#require-authenticated-users>. After authentication, unauthorized content in Razor components is only shown when the user is truly unauthorized to view the content.
+* Authenticate the user on the server before the app starts: To adopt this approach, the app must respond to a user's initial request with the Identity-based sign-in page or view and prevent any requests to Blazor endpoints until they're authenticated. For more information, see <xref:security/authorization/secure-data#require-authenticated-users>. After authentication, unauthorized content prerendered Razor components is only shown when the user is truly unauthorized to view the content.
 
 ## User state management
 
