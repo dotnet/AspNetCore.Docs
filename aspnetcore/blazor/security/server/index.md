@@ -22,8 +22,11 @@ If the app must capture users for custom services or react to updates to the use
 
 Blazor Server differs from a traditional server-rendered web apps that make new HTTP requests with cookies on every page navigation. Authentication is checked during navigation events. However, cookies aren't involved. Cookies are only sent when making an HTTP request to a server, which isn't what happens when the user navigates in a Blazor Server app. During navigation, the user's authentication state is checked within the Blazor circuit, which you can update at any time on the server using the [`RevalidatingAuthenticationStateProvider` abstraction](#additional-security-abstractions).
 
-> [!NOTE]
+> [!IMPORTANT]
 > Implementing a custom `NavigationManager` to achieve authentication validation during navigation isn't recommended for Blazor Server apps. If the app must execute custom authentication state logic during navigation, use a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider).
+
+> [!NOTE]
+> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core 6.0 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from the examples in this article.
 
 ## Blazor Server project template
 
@@ -227,7 +230,7 @@ An <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> demonstrat
 ```razor
 <AuthorizeView>
     <Authorized>
-        <p>Hello, @context.User.Identity.Name!</p>
+        <p>Hello, @context.User.Identity?.Name!</p>
     </Authorized>
     <NotAuthorized>
         <p>You're not authorized.</p>
@@ -262,11 +265,11 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
         return Task.FromResult(new AuthenticationState(user));
     }
 
-    public void AuthenticateUser(string emailAddress)
+    public void AuthenticateUser(string userIdentifier)
     {
         var identity = new ClaimsIdentity(new[]
         {
-            new Claim(ClaimTypes.Name, emailAddress),
+            new Claim(ClaimTypes.Name, userIdentifier),
         }, "Custom Authentication");
 
         var user = new ClaimsPrincipal(identity);
@@ -291,7 +294,7 @@ In a component:
 
 <AuthorizeView>
     <Authorized>
-        <p>Hello, @context.User.Identity.Name!</p>
+        <p>Hello, @context.User.Identity?.Name!</p>
     </Authorized>
     <NotAuthorized>
         <p>You're not authorized.</p>
@@ -392,7 +395,7 @@ The following component's `SignIn` method creates a claims principal for the use
 
 <AuthorizeView>
     <Authorized>
-        <p>Hello, @context.User.Identity.Name!</p>
+        <p>Hello, @context.User.Identity?.Name!</p>
     </Authorized>
     <NotAuthorized>
         <p>You're not authorized.</p>
@@ -478,8 +481,6 @@ In the following `InjectAuthStateProvider` component:
 
 `Pages/InjectAuthStateProvider.razor`:
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```razor
 @page "/inject-auth-state-provider"
 @inject AuthenticationStateProvider AuthenticationStateProvider
@@ -502,39 +503,27 @@ In the following `InjectAuthStateProvider` component:
 }
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```razor
-@page "/inject-auth-state-provider"
-@inject AuthenticationStateProvider AuthenticationStateProvider
-@inherits OwningComponentBase
-
-<h1>Inject <code>AuthenticationStateProvider</code> Example</h1>
-
-<p>@message</p>
-
-@code {
-    private string message;
-    private ExampleService ExampleService { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        ExampleService = ScopedServices.GetRequiredService<ExampleService>();
-
-        message = await ExampleService.ExampleMethod(AuthenticationStateProvider);
-    }
-}
-```
-
-:::moniker-end
-
 For more information, see the guidance on <xref:Microsoft.AspNetCore.Components.OwningComponentBase> in <xref:blazor/fundamentals/dependency-injection#owningcomponentbase>.
 
-## Unauthorized content display during prerendering
+<!-- HOLD: This content will be discussed with the PU after .NET 8 releases. This is tracked by https://github.com/dotnet/AspNetCore.Docs/issues/28001.
 
-To avoid showing unauthorized content during prerendering, implement <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider> to support prerendering, disable prerendering, maintain the current behavior, or authenticate the user on the server before the app starts.
+## Unauthorized content display while prerendering with a custom `AuthenticationStateProvider`
+
+To avoid showing unauthorized content while prerendering with a [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider), adopt ***one*** of the following approaches:
+
+* Implement <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider> for the custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to support prerendering: For an example implementation of <xref:Microsoft.AspNetCore.Components.Authorization.IHostEnvironmentAuthenticationStateProvider>, see the Blazor framework's <xref:Microsoft.AspNetCore.Components.Server.ServerAuthenticationStateProvider> implementation in [`ServerAuthenticationStateProvider.cs` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Server/src/Circuits/ServerAuthenticationStateProvider.cs).
+
+  [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+* Disable prerendering: Open the `Pages/_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:
+
+  ```cshtml
+  <component type="typeof(App)" render-mode="Server" />
+  ```
+
+* Authenticate the user on the server before the app starts: To adopt this approach, the app must respond to a user's initial request with the Identity-based sign-in page or view and prevent any requests to Blazor endpoints until they're authenticated. For more information, see <xref:security/authorization/secure-data#require-authenticated-users>. After authentication, unauthorized content in prerendered Razor components is only shown when the user is truly unauthorized to view the content.
+
+-->
 
 ## User state management
 

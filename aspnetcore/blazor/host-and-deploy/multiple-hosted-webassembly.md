@@ -252,6 +252,11 @@ In the server app's `Program.cs` file, remove the following code, which appears 
   });
   ```
 
+  > [!WARNING]
+  > API that relies on the [Host header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Host), such as <xref:Microsoft.AspNetCore.Http.HttpRequest.Host%2A?displayProperty=nameWithType>, is subject to potential spoofing by clients.
+  >
+  > In high security scenarios, consider assigning a value to <xref:Microsoft.AspNetCore.Http.HttpRequest.Host?displayProperty=nameWithType> in [middleware](xref:fundamentals/middleware/write) before <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> is called or using <xref:Microsoft.AspNetCore.Http.HttpContext.Connection%2A?displayProperty=nameWithType> (<xref:Microsoft.AspNetCore.Http.ConnectionInfo.LocalPort?displayProperty=nameWithType>) where the ports are checked in the preceding example.
+
 :::zone-end
 
 :::zone pivot="route-subpath"
