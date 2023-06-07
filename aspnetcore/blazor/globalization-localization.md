@@ -324,7 +324,7 @@ CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
 
 :::zone pivot="server"
 
-:::moniker range="=> aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0"
 
 Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
