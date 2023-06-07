@@ -206,6 +206,8 @@ The app's culture is set by matching the first requested language that matches a
 
 :::zone pivot="webassembly"
 
+:::moniker range=">= aspnetcore-5.0"
+
 Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the app's project file (`.csproj`):
 
 ```xml
@@ -213,6 +215,8 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
   <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
 </PropertyGroup>
 ```
+
+:::moniker-end
 
 > [!NOTE]
 > If the app's specification requires limiting the supported cultures to an explicit list, see the [Dynamically set the culture by user preference](#dynamically-set-the-culture-by-user-preference) section of this article.
@@ -258,9 +262,9 @@ When the culture is Chilean Spanish (`es-CL`), the rendered component uses day/m
 
 ## Statically set the culture
 
-:::moniker range=">= aspnetcore-5.0"
-
 :::zone pivot="webassembly"
+
+:::moniker range=">= aspnetcore-5.0"
 
 Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the app's project file (`.csproj`):
 
@@ -269,6 +273,14 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
   <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
 </PropertyGroup>
 ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+By default, the Intermediate Language (IL) Linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. For more information, see <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.
+
+:::moniker-end
 
 The app's culture can be set in JavaScript when Blazor starts with the `applicationCulture` Blazor start option. The following example configures the app to launch using the United States English (`en-US`) culture.
 
@@ -312,6 +324,8 @@ CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
 
 :::zone pivot="server"
 
+:::moniker range="=> aspnetcore-6.0"
+
 Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
 In `Program.cs`:
@@ -330,21 +344,9 @@ The culture value for <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExten
 
 For information on ordering the Localization Middleware in the middleware pipeline of `Program.cs`, see <xref:fundamentals/middleware/index#middleware-order>.
 
-:::zone-end
-
-Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Chilean Spanish (`es-CL`) in the browser's language settings. Request the webpage again. When the requested language is Chilean Spanish, the app's culture remains United States English (`en-US`).
-
 :::moniker-end
 
-:::moniker range="< aspnetcore-5.0"
-
-:::zone pivot="webassembly"
-
-By default, the Intermediate Language (IL) Linker configuration for Blazor WebAssembly apps strips out internationalization information except for locales explicitly requested. For more information, see <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.
-
-:::zone-end
-
-:::zone pivot="server"
+:::moniker range="< aspnetcore-6.0"
 
 Blazor Server apps are localized using [Localization Middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>.
 
@@ -364,11 +366,11 @@ The culture value for <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExten
 
 For information on ordering the Localization Middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
 
+:::moniker-end
+
 :::zone-end
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Chilean Spanish (`es-CL`) in the browser's language settings. Request the webpage again. When the requested language is Chilean Spanish, the app's culture remains United States English (`en-US`).
-
-:::moniker-end
 
 ## Dynamically set the culture by user preference
 
