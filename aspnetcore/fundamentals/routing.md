@@ -869,6 +869,8 @@ When the `[Host]` attribute is applied to both the controller and action method:
 * The attribute on the action is used.
 * The controller attribute is ignored.
 
+[!INCLUDE[](~/includes/spoof.md)]
+
 ## Route groups
 
 [!INCLUDE[](~/includes/route-groups.md)]
