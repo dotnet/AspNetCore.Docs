@@ -1,0 +1,2 @@
+  > [!WARNING]
+  > API that relies on the [Host header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Host), such as <xref:Microsoft.AspNetCore.Http.HttpRequest.Host%2A?displayProperty=nameWithType>, is subject to potential spoofing by clients.
