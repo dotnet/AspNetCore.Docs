@@ -769,7 +769,7 @@ To learn more about building Blazor apps, see the Blazor documentation:
 
 ## Additional resources
 
-* [Secure SignalR hubs for hosted Blazor WebAssembly apps](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
+* [Secure a SignalR hub in hosted Blazor WebAssembly apps](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * <xref:signalr/introduction>
 * [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#signalr-cross-origin-negotiation-for-authentication-blazor-webassembly)
 * [SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
