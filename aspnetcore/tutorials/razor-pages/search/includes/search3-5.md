@@ -94,7 +94,7 @@ The `SelectList` of genres is created by projecting the distinct genres.
 
 1. Test the app by searching by genre, by movie title, and by both.
 
-## Additional resources
+## Next steps
 
 > [!div class="step-by-step"]
 > [Previous: Update the pages](xref:tutorials/razor-pages/da1)

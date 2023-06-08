@@ -143,7 +143,7 @@ The app shows the seeded data:
 
 ![Movie application open in Chrome showing movie data](~/tutorials/razor-pages/sql/_static/m55https.png)
 
-## Additional resources
+## Next steps
 
 > [!div class="step-by-step"]
 > [Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)

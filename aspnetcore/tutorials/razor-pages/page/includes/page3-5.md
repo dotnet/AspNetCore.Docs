@@ -181,7 +181,7 @@ The [Input Tag Helper](xref:mvc/views/working-with-forms) (`<input asp-for="Movi
 
 For more information on Tag Helpers such as `<form method="post">`, see [Tag Helpers in ASP.NET Core](xref:mvc/views/tag-helpers/intro).
 
-## Additional resources
+## Next steps
 
 > [!div class="step-by-step"]
 > [Previous: Add a model](xref:tutorials/razor-pages/model)

@@ -275,7 +275,7 @@ Examine the `Up` method.
 
 The next tutorial explains the files created by scaffolding.
 
-## Additional resources
+## Next steps
 
 > [!div class="step-by-step"]
 > [Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)

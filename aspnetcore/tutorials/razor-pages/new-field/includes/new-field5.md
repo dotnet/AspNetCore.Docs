@@ -152,7 +152,7 @@ For more information, see the following resources:
 
 Run the app and verify you can create/edit/display movies with a `Rating` field. If the database isn't seeded, set a break point in the `SeedData.Initialize` method.
 
-## Additional resources
+## Next steps
 
 > [!div class="step-by-step"]
 > [Previous: Add Search](xref:tutorials/razor-pages/search)

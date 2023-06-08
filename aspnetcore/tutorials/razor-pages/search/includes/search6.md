@@ -102,6 +102,8 @@ Update the `Index.cshtml` [`<form>` element](https://developer.mozilla.org/docs/
 
 Test the app by searching by genre, by movie title, and by both.
 
+## Next steps
+
 > [!div class="step-by-step"]
 > [Previous: Update the pages](xref:tutorials/razor-pages/da1)
 > [Next: Add a new field](xref:tutorials/razor-pages/new-field)

@@ -37,7 +37,7 @@ When a `GET` request is made for the page, the `OnGetAsync` method returns a lis
 
 When `OnGet` returns `void` or `OnGetAsync` returns `Task`, no return statement is used. For example, examine the Privacy Page:
 
-[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Privacy.cshtml.cs)]
+[!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Privacy.cshtml.cs)]
 
 When the return type is <xref:Microsoft.AspNetCore.Mvc.IActionResult> or `Task<IActionResult>`, a return statement must be provided. For example, the `Pages/Movies/Create.cshtml.cs OnPostAsync` method:
 
@@ -106,7 +106,7 @@ The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comme
 ### Update the layout
 
 1. Change the `<title>` element in the `Pages/Shared/_Layout.cshtml` file to display **Movie** rather than **RazorPagesMovie**.
-   [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/Shared/_Layout.cshtml?range=1-6&highlight=6)]
+   [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Shared/_Layout.cshtml?range=1-6&highlight=6)]
 
 1. Find the following anchor element in the `Pages/Shared/_Layout.cshtml` file.
 
@@ -131,7 +131,7 @@ The line `@*Markup removed for brevity.*@` is a Razor comment. Unlike HTML comme
 
 The `Layout` property is set in the `Pages/_ViewStart.cshtml` file:
 
-[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie70/Pages/_ViewStart.cshtml)]
+[!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/_ViewStart.cshtml)]
 
 The preceding markup sets the layout file to `Pages/Shared/_Layout.cshtml` for all Razor files under the *Pages* folder. See [Layout](xref:razor-pages/index#layout) for more information.
 
@@ -200,7 +200,7 @@ The [Input Tag Helper](xref:mvc/views/working-with-forms) (`<input asp-for="Movi
 
 For more information on Tag Helpers such as `<form method="post">`, see [Tag Helpers in ASP.NET Core](xref:mvc/views/tag-helpers/intro).
 
-## Additional resources
+## Next steps
 
 > [!div class="step-by-step"]
 > [Previous: Add a model](xref:tutorials/razor-pages/model)

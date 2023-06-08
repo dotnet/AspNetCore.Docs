@@ -224,6 +224,8 @@ Thanks for completing this introduction to Razor Pages. [Get started with Razor 
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/views/tag-helpers/authoring>
 
+## Next steps
+
 > [!div class="step-by-step"]
 > [Previous: Add a new field](xref:tutorials/razor-pages/new-field)
 :::moniker-end
