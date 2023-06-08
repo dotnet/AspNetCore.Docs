@@ -625,6 +625,7 @@ builder.Services.AddResponseCompression(opts =>
    opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
          new[] { "application/octet-stream" });
 });
+```
 
 Use Response Compression Middleware at the top of the processing pipeline's configuration:
    
@@ -659,6 +660,7 @@ services.AddResponseCompression(opts =>
    opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
          new[] { "application/octet-stream" });
 });
+```
 
 Use Response Compression Middleware at the top of the processing pipeline's configuration:
    
