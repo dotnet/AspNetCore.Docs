@@ -230,7 +230,7 @@ public class FileResolver : PollingResolver
     private readonly Uri _address;
     private readonly int _port;
 
-    public ExampleResolver(Uri address, int defaultPort, ILoggerFactory loggerFactory)
+    public FileResolver(Uri address, int defaultPort, ILoggerFactory loggerFactory)
         : base(loggerFactory)
     {
         _address = address;
@@ -319,7 +319,7 @@ public class RandomBalancerFactory : LoadBalancerFactory
     // Create a RandomBalancer when the name is 'random'.
     public override string Name => "random";
 
-    public override LoadBalancer Create(LoadBalancerOptions option)
+    public override LoadBalancer Create(LoadBalancerOptions options)
     {
         return new RandomBalancer(options.Controller, options.LoggerFactory);
     }
