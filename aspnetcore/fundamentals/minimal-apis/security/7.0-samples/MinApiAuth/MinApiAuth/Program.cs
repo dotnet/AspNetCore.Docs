@@ -68,7 +68,7 @@ builder.Services.AddAuthorizationBuilder()
   .AddPolicy("admin_greetings", policy =>
         policy
             .RequireRole("admin")
-            .RequireScope("greetings_api"));
+            .RequireClaim("scope", "greetings_api"));
 
 var app = builder.Build();
 
