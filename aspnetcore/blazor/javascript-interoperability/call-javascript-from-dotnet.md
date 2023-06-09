@@ -899,6 +899,8 @@ Add the following `<link>` element to the `<head>` element markup ([location of 
 
 `Pages/CallJsExample8.razor`:
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample8.razor":::
@@ -911,17 +913,7 @@ Add the following `<link>` element to the `<head>` element markup ([location of 
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample8.razor":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/call-js-from-dotnet/CallJsExample8.razor":::
-
-:::moniker-end
+:::moniker range=">= aspnetcore-6.0"
 
 The preceding example produces an interactive map UI. The user:
 
