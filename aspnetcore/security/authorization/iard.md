@@ -28,7 +28,7 @@ alternate provider. In the preceding sample, a default authorization policy prov
 * Constructed with options from the [dependency injection container](xref:fundamentals/dependency-injection).
 * Used if this custom provider isn't able to handle a given policy name.
 
-If a custom policy provider is able to handle all expected policy names, setting the fallback policy with <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync> is not required..
+If a custom policy provider is able to handle all expected policy names, setting the fallback policy with <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider.GetFallbackPolicyAsync> is not required.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Authorization/MinimumAgePolicyProvider.cs" id="snippet_1":::
 
