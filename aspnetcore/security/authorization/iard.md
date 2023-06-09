@@ -119,7 +119,7 @@ namespace AuthRequirementsData.Authorization;
 -                                              MinimumAgeRequirement requirement)
 +                                              MinimumAgeAuthorizeAttribute requirement)
     {
-        // Remaining code omited for brevity.
+        // Remaining code omitted for brevity.
 ```
 <!-- Remaining code  here
         // Log as a warning so that it's very clear in sample output which authorization
