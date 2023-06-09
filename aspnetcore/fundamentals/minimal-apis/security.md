@@ -89,7 +89,7 @@ The scheme name is used to uniquely identify an authentication strategy and is u
 
 ## Configuring authorization policies in minimal apps
 
-Authentication is used to identify and validate the identity of users against an API. Authorization is used to validate and verify access to resources in an API and is facilitated by the `IAuthorizationService` registered by the `AddAuthorization` extension method. In the following scenario, a `/hello` resource is added that requires a user to present an `is_admin` claim with a `greetings_api` scope claim.
+Authentication is used to identify and validate the identity of users against an API. Authorization is used to validate and verify access to resources in an API and is facilitated by the `IAuthorizationService` registered by the `AddAuthorization` extension method. In the following scenario, a `/hello` resource is added that requires a user to present an `admin` role claim with a `greetings_api` scope claim.
 
 Configuring authorization requirements on a resource is a two-step process that requires:
 
