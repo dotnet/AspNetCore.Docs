@@ -62,6 +62,8 @@ In the preceding code:
 
 If the preceding example didn't include a call to `UseRouting`, the custom middleware would run *after* the route matching middleware.
 
+**Note:** Routes added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> execute at the ***end*** of the pipeline.
+
 ### Endpoints
 
 <a name="endpoint"></a>
