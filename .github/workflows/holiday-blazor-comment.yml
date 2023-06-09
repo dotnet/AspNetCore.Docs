@@ -23,7 +23,7 @@ jobs:
             We only work on documentation on this repo. If you need product support, close this issue and seek assistance through one or more of the following support channels:
             
             * [Stack Overflow (tagged: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
-            * [General ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1b60h73p0-PZPq3YCCaPbB21RcujMSVA)
+            * [General ASP.NET Core Slack Team](https://join.slack.com/t/aspnetcore/shared_invite/zt-1mv5487zb-EOZxJ1iqb0A0ajowEbxByQ)
             * [Blazor Gitter](https://gitter.im/aspnet/Blazor)
             
             If you think that you found a potential bug in the framework or have product feedback, close this issue and open a new issue for the ASP.NET Core product unit at [dotnet/aspnetcore issues](https://github.com/dotnet/aspnetcore/issues). Bug reports require a clear explanation of the problem, usually including a minimal repro project placed on GitHub for the product unit engineers to download and run. If you determine with the product unit that it isn't a bug but merely requires documentation, please re-open this docs issue and place a cross-link to your engineering issue discussion. I'll take it up with you when I return from vacation.
