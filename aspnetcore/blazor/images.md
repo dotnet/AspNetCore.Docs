@@ -94,7 +94,8 @@ The example in this section streams image source data using [JavaScript (JS) int
 </script>
 ```
 
-[!INCLUDE[](~/blazor/includes/js-location.md)]
+> [!NOTE]
+> For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/index#javascript-location>.
 
 The following `ShowImage2` component:
 
