@@ -100,7 +100,7 @@ Blazor supports unmarshalled JS interop when a high volume of .NET objects are r
 
 :::moniker-end
 
-## Location of JavaScript
+## JavaScript location
 
 Load JavaScript (JS) code using any of the following approaches:
 
