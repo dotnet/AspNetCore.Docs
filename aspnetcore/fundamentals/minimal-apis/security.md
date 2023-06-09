@@ -89,7 +89,7 @@ The scheme name is used to uniquely identify an authentication strategy and is u
 
 ## Configuring authorization policies in minimal apps
 
-Authentication is used to identify and validate the identity of users against an API. Authorization is used to validate and verify access to resources in an API and is facilitated by the `IAuthorizationService` registered by the `AddAuthorization` extension method. In the following scenario, a `/hello` resource is added that requires a user to present an `is_admin` claim with a `greetings_api` scope.
+Authentication is used to identify and validate the identity of users against an API. Authorization is used to validate and verify access to resources in an API and is facilitated by the `IAuthorizationService` registered by the `AddAuthorization` extension method. In the following scenario, a `/hello` resource is added that requires a user to present an `is_admin` claim with a `greetings_api` scope claim.
 
 Configuring authorization requirements on a resource is a two-step process that requires:
 
@@ -104,7 +104,7 @@ In the following code, <xref:Microsoft.Extensions.DependencyInjection.PolicyServ
 The code creates a new authorization policy, named `admin_greetings`, that encapsulates two authorization requirements:
 
 - A role-based requirement via <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole%2A> for users with an `admin` role.
-- A claim-based requirement via `Microsoft.Identity.Web.PolicyBuilderExtensions.RequireScope` that the user must provide a `greetings_api` scope.
+- A claim-based requirement via <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireClaim%2A> that the user must provide a `greetings_api` scope claim.
 
 The `admin_greetings` policy is provided as a required policy to the `/hello` endpoint.
 
