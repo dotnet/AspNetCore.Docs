@@ -5,7 +5,7 @@ on:
       - labeled
 jobs:
   add-comment:
-    if: github.event.label.name == 'Blazor2'
+    if: github.event.label.name == 'Blazor'
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -16,9 +16,9 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
-            ### :snowman: ***OOF for the holidays*** :snowflake: 
+            ## 🏖️ ***OOF*** 🍹 
             
-            This issue has been marked for triage on the `Blazor.Docs` project, and I'll respond as soon as I return from the holidays. I'll get back to you *ASAP* 🏃. 
+            Hello! I'm out of the office for a couple of days on vacation. This issue has been marked for triage on the `Blazor.Docs` project, and I'll respond as soon as I return from vacation. I'll get back to you *ASAP* 🏃. 
             
             We only work on documentation on this repo. If you need product support, close this issue and seek assistance through one or more of the following support channels:
             
@@ -31,5 +31,3 @@ jobs:
             For problems or feedback on Visual Studio or Visual Studio for Mac, close this issue and use the [**Report a Problem**](https://docs.microsoft.com/visualstudio/ide/how-to-report-a-problem-with-visual-studio) or [**Suggest a Feature**](https://docs.microsoft.com/visualstudio/ide/suggest-a-feature) processes from within VS, which open internal issues for VS teams. For more information, see [Visual Studio Feedback](https://developercommunity.visualstudio.com/home) or [How to report a problem in Visual Studio for Mac](https://docs.microsoft.com/visualstudio/mac/report-a-problem).
             
             For problems with Visual Studio Code, close this issue and ask for support on community support forums. For bug reports and product feedback, open an issue on the [microsoft/vscode GitHub repo](https://github.com/microsoft/vscode/issues).
-            
-            💃🕺🥳 Happy New Year! 🎈🎆🍾🥂🎉 See you in 2023!
