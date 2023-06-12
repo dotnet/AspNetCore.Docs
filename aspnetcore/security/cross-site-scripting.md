@@ -11,23 +11,23 @@ uid: security/cross-site-scripting
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-Cross-Site Scripting (XSS) is a security vulnerability which enables an attacker to place client side scripts (usually JavaScript) into web pages. When other users load affected pages the attacker's scripts will run, enabling the attacker to steal cookies and session tokens, change the contents of the web page through DOM manipulation or redirect the browser to another page. XSS vulnerabilities generally occur when an application takes user input and outputs it to a page without validating, encoding or escaping it.
+Cross-Site Scripting (XSS) is a security vulnerability that enables an attacker to place client side scripts (usually JavaScript) into web pages. When other users load affected pages, the attacker's scripts will run, enabling the attacker to steal cookies and session tokens, change the contents of the web page through DOM manipulation, or redirect the browser to another page. XSS vulnerabilities generally occur when an application takes user input and outputs it to a page without validating, encoding or escaping it.
 
-This article applies primarly to ASP.NET Core MVC with views, Razor Pages, and other apps that return HTML that may be vunerable to XSS. Web APIs that return data in the form of HTML, XML, or JSON can trigger XSS attacks in their client apps if they don't properly sanitize user input, depending on how much trust the client app places in the API. For example, if an API accepts user-generated content and returns it in an HTML response, an attacker could inject malicious scripts into the content that executes when the response is rendered in the user's browser.
+This article applies primarily to ASP.NET Core MVC with views, Razor Pages, and other apps that return HTML that may be vulnerable to XSS. Web APIs that return data in the form of HTML, XML, or JSON can trigger XSS attacks in their client apps if they don't properly sanitise user input, depending on how much trust the client app places in the API. For example, if an API accepts user-generated content and returns it in an HTML response, an attacker could inject malicious scripts into the content that executes when the response is rendered in the user's browser.
 
-To prevent XSS attacks, web APIs should implement input validation and output encoding. Input validation ensures that user input meets expected criteria and doesn't include malicious code. Output encoding ensures that any data returned by the API is properly sanitized so that it can't be executed as code by the user's browser. For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/28789).
+To prevent XSS attacks, web APIs should implement input validation and output encoding. Input validation ensures that user input meets expected criteria and doesn't include malicious code. Output encoding ensures that any data returned by the API is properly sanitised so that it can't be executed as code by the user's browser. For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/28789).
 
 ## Protecting your application against XSS
 
-At a basic level XSS works by tricking your application into inserting a `<script>` tag into your rendered page, or by inserting an `On*` event into an element. Developers should use the following prevention steps to avoid introducing XSS into their application.
+At a basic level, XSS works by tricking your application into inserting a `<script>` tag into your rendered page, or by inserting an `On*` event into an element. Developers should use the following prevention steps to avoid introducing XSS into their applications:
 
-1. Never put untrusted data into your HTML input, unless you follow the rest of the steps below. Untrusted data is any data that may be controlled by an attacker, HTML form inputs, query strings, HTTP headers, even data sourced from a database as an attacker may be able to breach your database even if they cannot breach your application.
+1. Never put untrusted data into your HTML input, unless you follow the rest of the steps below. Untrusted data is any data that may be controlled by an attacker, such as HTML form inputs, query strings, HTTP headers, or even data sourced from a database, as an attacker may be able to breach your database even if they cannot breach your application.
 
-2. Before putting untrusted data inside an HTML element ensure it's HTML encoded. HTML encoding takes characters such as &lt; and changes them into a safe form like &amp;lt;
+2. Before putting untrusted data inside an HTML element, ensure it's HTML encoded. HTML encoding takes characters such as &lt; and changes them into a safe form like &amp;lt;
 
-3. Before putting untrusted data into an HTML attribute ensure it's HTML encoded. HTML attribute encoding is a superset of HTML encoding and encodes additional characters such as " and '.
+3. Before putting untrusted data into an HTML attribute, ensure it's HTML encoded. HTML attribute encoding is a superset of HTML encoding and encodes additional characters such as " and ".
 
-4. Before putting untrusted data into JavaScript place the data in an HTML element whose contents you retrieve at runtime. If this isn't possible, then ensure the data is JavaScript encoded. JavaScript encoding takes dangerous characters for JavaScript and replaces them with their hex, for example &lt; would be encoded as `\u003C`.
+4. Before putting untrusted data into JavaScript, place the data in an HTML element whose contents you retrieve at runtime. If this isn't possible, then ensure the data is JavaScript encoded. JavaScript encoding takes dangerous characters for JavaScript and replaces them with their hex, for example, &lt; would be encoded as `\u003C`.
 
 5. Before putting untrusted data into a URL query string ensure it's URL encoded.
 
