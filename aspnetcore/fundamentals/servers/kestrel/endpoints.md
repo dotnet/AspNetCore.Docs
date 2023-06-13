@@ -371,10 +371,11 @@ For information about working with SSL certificates, see the following sections 
 
 * [Configure certificates in appsettings.json](#configure-certificates-in-appsettingsjson)
 * [Configure client certificates in appsettings.json](#configure-client-certificates-in-appsettingsjson)
+* [Certificate sources](#certificate-sources)
 * [Configure HTTPS defaults in code](#configure-https-defaults-in-code)
 * [Configure certificates in code](#configure-certificates-in-code)
 * [Configure client certificates in code](#configure-client-certificates-in-code)
-* [Certificate sources](#certificate-sources)
+* [Configure endpoints using Server Name Indication (SNI)](#configure-endpoints-using-server-name-indication)
 
 Many ASP.NET Core project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](xref:security/enforcing-ssl).
 
