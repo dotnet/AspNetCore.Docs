@@ -5,7 +5,7 @@ description: Learn how to set up health checks for ASP.NET Core infrastructure, 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/19/2023
+ms.date: 6/14/2023
 uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
