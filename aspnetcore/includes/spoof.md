@@ -5,3 +5,4 @@
 >
 > * Assign a value to <xref:Microsoft.AspNetCore.Http.HttpRequest.Host?displayProperty=nameWithType> in [middleware](xref:fundamentals/middleware/write) before <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> is called.
 > * Use <xref:Microsoft.AspNetCore.Http.HttpContext.Connection%2A?displayProperty=nameWithType> (<xref:Microsoft.AspNetCore.Http.ConnectionInfo.LocalPort?displayProperty=nameWithType>) where the ports are checked.
+> Employ [Host filtering](xref:fundamentals/servers/kestrel/host-filtering)
