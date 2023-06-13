@@ -246,14 +246,14 @@ For more information, see <xref:security/authentication/certauth>.
 
 ### ConfigurationLoader
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration?displayProperty=nameWithType)> returns a <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader> with an <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader.Endpoint(System.String,System.Action{Microsoft.AspNetCore.Server.Kestrel.EndpointConfiguration})> method that can be used to supplement a configured endpoint's settings:
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration)?displayProperty=nameWithType> returns a <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader> with an <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader.Endpoint(System.String,System.Action{Microsoft.AspNetCore.Server.Kestrel.EndpointConfiguration})> method that can be used to supplement a configured endpoint's settings:
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigurationLoader":::
 
 `KestrelServerOptions.ConfigurationLoader` can be directly accessed to continue iterating on the existing loader, such as the one provided by <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost%2A?displayProperty=nameWithType>.
 
 * The configuration section for each endpoint is available on the options in the <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader.Endpoint%2A> method so that custom settings may be read.
-* Multiple configurations can be loaded by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration?displayProperty=nameWithType)> again with another section. Only the last configuration is used, unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
+* Multiple configurations can be loaded by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration)?displayProperty=nameWithType> again with another section. Only the last configuration is used, unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
 * `KestrelConfigurationLoader` mirrors the `Listen` family of APIs from `KestrelServerOptions` as `Endpoint` overloads, so code and config endpoints can be configured in the same place. These overloads don't use names and only consume default settings from configuration.
 
 ## Configure endpoints in code
@@ -361,7 +361,7 @@ Call <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions
 
 ## Configure HTTPS
 
-If [URL prefixes](#configure-endpoints-with-urls) are used to define endpoints, HTTPS can be used only if a default certificate is provided in HTTPS endpoint configuration. For example, use <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> configuration or a configuration file as shown [earlier in this article](#replace-the-default-certificate-in-appsettingsjson).
+If [URL prefixes](#configure-endpoints-with-urls) are used to define endpoints, HTTPS can be used only if a default certificate is provided in HTTPS endpoint configuration. For example, use <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> configuration or a configuration file as shown [earlier in this article](#configure-certificates-in-appsettingsjson).
 
 To create a development certificate, use the [dev-certs tool](/dotnet/core/tools/dotnet-dev-certs). The tool is automatically installed when the [.NET SDK](/dotnet/core/sdk) is installed.
 
