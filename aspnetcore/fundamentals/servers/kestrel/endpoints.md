@@ -5,60 +5,108 @@ description: Learn about configuring endpoints with Kestrel, the cross-platform 
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/10/2023
+ms.date: 06/13/2023
 uid: fundamentals/servers/kestrel/endpoints
 ---
 
 # Configure endpoints for the ASP.NET Core Kestrel web server
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+:::moniker range="< aspnetcore-7.0"
+[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
+:::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
+An endpoint in Kestrel is defined by a combination of address and protocol. The address specifies the network interface and port on which the server will listen for incoming requests. This can be a specific IP address, such as localhost or a public IP, along with a port number. The protocol defines the communication standard that will be used between the client and server, such as HTTP or HTTPS. Endpoints can be configured to support HTTP or HTTPS or both, depending on the environment (development or production) and the requirements of the application. Endpoints in ASP.NET Core Kestrel provide the necessary infrastructure for listening to incoming requests and routing them to the appropriate middleware
+
+## Default bindings
+
 ASP.NET Core projects are configured to bind to a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300. This default configuration is specified in the generated `Properties/launchSettings.json` file and can be overridden. If no ports are specified, Kestrel binds to `http://localhost:5000`.
 
-Specify URLs using the:
+## Configure endpoints with URLs
+
+The following sections explain how to configure endpoints using the:
 
 * `ASPNETCORE_URLS` environment variable.
 * `--urls` command-line argument.
 * `urls` host configuration key.
 * <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseUrls%2A> extension method.
+* <xref:Microsoft.AspNetCore.Builder.WebApplication.Urls?displayProperty=nameWithType> property.
 
-The value provided using these approaches can be one or more HTTP and HTTPS endpoints (HTTPS if a default cert is available). Configure the value as a semicolon-separated list (for example, `"Urls": "http://localhost:8000;http://localhost:8001"`).
+### URL formats
 
-For more information on these approaches, see [Server URLs](xref:fundamentals/host/web-host#server-urls) and [Override configuration](xref:fundamentals/host/web-host#override-configuration).
+The URLs indicate the IP addresses or host addresses with ports and protocols that the server should listen on. URLs can be in any of the following formats.
+
+* IPv4 address with port number
+
+  ```
+  http://65.55.39.10:80/
+  ```
+
+  `0.0.0.0` is a special case that binds to all IPv4 addresses.
+
+* IPv6 address with port number
+
+  ```
+  http://[0:0:0:0:0:ffff:4137:270a]:80/
+  ```
+
+  `[::]` is the IPv6 equivalent of IPv4 `0.0.0.0`.
+
+* Host name with port number
+
+  ```
+  http://contoso.com:80/
+  http://*:80/
+  ```
+
+  Host names, `*`, and `+`, aren't special. Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IP addresses. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](xref:fundamentals/servers/httpsys) or a reverse proxy server.
+
+  Reverse proxy server examples include IIS, Nginx, and Apache. Hosting in a reverse proxy configuration requires [host filtering](xref:fundamentals/servers/kestrel/host-filtering).
+
+* Host name `localhost` with port number or loopback IP with port number
+
+  ```
+  http://localhost:5000/
+  http://127.0.0.1:5000/
+  http://[::1]:5000/
+  ```
+
+  When `localhost` is specified, Kestrel attempts to bind to both IPv4 and IPv6 loopback interfaces. If the requested port is in use by another service on either loopback interface, Kestrel fails to start. If either loopback interface is unavailable for any other reason (most commonly because IPv6 isn't supported), Kestrel logs a warning.
+
+Multiple URL prefixes can be specified by using a semicolon (`;`) delimiter:
+
+```
+http://*:5000;http://localhost:5001;https://hostname:5002
+```
+
+For more information, see [Override configuration](xref:fundamentals/host/web-host#override-configuration).
+
+### Port 0
+
+When the port number `0` is specified, Kestrel dynamically binds to an available port. The following example shows how to determine which port Kestrel bound at runtime:
+
+:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_IServerAddressesFeature":::
+
+Dynamically binding a port isn't available in some situations:
+
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenLocalhost%2A?displayProperty=nameWithType>
+* Binding TCP-based HTTP/1.1 or HTTP/2, and QUIC-based HTTP/3 together.
+
+### Specify ports only
 
 [!INCLUDE [http-ports](~/includes/http-ports.md)]
 
-A development certificate is created:
+### HTTPS URL prefixes
 
-* When the [.NET SDK](/dotnet/core/sdk) is installed.
-* The [dev-certs tool](/dotnet/core/tools/dotnet-dev-certs) is used to create a certificate.
+HTTPS URL prefixes can be used to define endpoints only if a default certificate is provided in the HTTPS endpoint configuration. For example, use <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions> configuration or a configuration file, as shown [later in this article](#configure-certificates-in-appsettingsjson).
 
-The development certificate is available only for the user that generates the certificate. Some browsers require granting explicit permission to trust the local development certificate.
+For more information, see [Configure HTTPS](#configure-https) later in this article.
 
-Project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](xref:security/enforcing-ssl).
+## Configure endpoints in appsettings.json 
 
-Call <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> or <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket%2A> methods on <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> to configure URL prefixes and ports for Kestrel.
-
-`UseUrls`, the `--urls` command-line argument, `urls` host configuration key, and the `ASPNETCORE_URLS` environment variable also work but have the limitations noted later in this section (a default certificate must be available for HTTPS endpoint configuration).
-
-`KestrelServerOptions` configuration:
-
-## ConfigureEndpointDefaults(Action\<ListenOptions>)
-
-Specifies a configuration `Action` to run for each specified endpoint. Calling `ConfigureEndpointDefaults` multiple times replaces prior `Action`s with the last `Action` specified:
-
-:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureEndpointDefaults":::
-
-> [!NOTE]
-> Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureEndpointDefaults%2A> won't have the defaults applied.
-
-## Configure(IConfiguration)
-
-Enables Kestrel to load endpoints from an <xref:Microsoft.Extensions.Configuration.IConfiguration>. The configuration must be scoped to the configuration section for Kestrel. The `Configure(IConfiguration, bool)` overload can be used to enable reloading endpoints when the configuration source changes.
-
-By default, Kestrel configuration is loaded from the `Kestrel` section and reloading changes is enabled:
+Kestrel can load endpoints from an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance. The following sections provide configuration examples in `appsettings.json`. However, any configuration source can be used.  
+The configuration must be scoped to the `Kestrel` configuration section. for example:
 
 ```json
 {
@@ -75,74 +123,24 @@ By default, Kestrel configuration is loaded from the `Kestrel` section and reloa
 }
 ```
 
-If reloading configuration is enabled and a change is signaled then the following steps are taken:
+The `Configure(IConfiguration, bool)` overload can be used to enable reloading endpoints when the configuration source changes. Reloading endpoint configuration is enabled by default. If a change is signaled, the following steps are taken:
 
-* The new configuration is compared to the old one, any endpoint without configuration changes are not modified.
+* The new configuration is compared to the old one, and any endpoint without configuration changes is not modified.
 * Removed or modified endpoints are given 5 seconds to complete processing requests and shut down.
 * New or modified endpoints are started.
 
 Clients connecting to a modified endpoint may be disconnected or refused while the endpoint is restarted.
 
-## ConfigureHttpsDefaults(Action\<HttpsConnectionAdapterOptions>)
+The following sections provide configuration examples in `appsettings.json`. However, any configuration source can be used.
 
-Specifies a configuration `Action` to run for each HTTPS endpoint. Calling `ConfigureHttpsDefaults` multiple times replaces prior `Action`s with the last `Action` specified.
-
-:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureHttpsDefaults":::
-
-> [!NOTE]
-> Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults%2A> won't have the defaults applied.
-
-## ListenOptions.UseHttps
-
-Configure Kestrel to use HTTPS.
-
-`ListenOptions.UseHttps` extensions:
-
-* `UseHttps`: Configure Kestrel to use HTTPS with the default certificate. Throws an exception if no default certificate is configured.
-* `UseHttps(string fileName)`
-* `UseHttps(string fileName, string password)`
-* `UseHttps(string fileName, string password, Action<HttpsConnectionAdapterOptions> configureOptions)`
-* `UseHttps(StoreName storeName, string subject)`
-* `UseHttps(StoreName storeName, string subject, bool allowInvalid)`
-* `UseHttps(StoreName storeName, string subject, bool allowInvalid, StoreLocation location)`
-* `UseHttps(StoreName storeName, string subject, bool allowInvalid, StoreLocation location, Action<HttpsConnectionAdapterOptions> configureOptions)`
-* `UseHttps(X509Certificate2 serverCertificate)`
-* `UseHttps(X509Certificate2 serverCertificate, Action<HttpsConnectionAdapterOptions> configureOptions)`
-* `UseHttps(Action<HttpsConnectionAdapterOptions> configureOptions)`
-
-`ListenOptions.UseHttps` parameters:
-
-* `filename` is the path and file name of a certificate file, relative to the directory that contains the app's content files.
-* `password` is the password required to access the X.509 certificate data.
-* `configureOptions` is an `Action` to configure the `HttpsConnectionAdapterOptions`. Returns the `ListenOptions`.
-* `storeName` is the certificate store from which to load the certificate.
-* `subject` is the subject name for the certificate.
-* `allowInvalid` indicates if invalid certificates should be considered, such as self-signed certificates.
-* `location` is the store location to load the certificate from.
-* `serverCertificate` is the X.509 certificate.
-
-In production, HTTPS must be explicitly configured. At a minimum, a default certificate must be provided.
-
-Supported configurations described next:
-
-* No configuration
-* Replace the default certificate from configuration
-* Change the defaults in code
-
-### No configuration
-
-Kestrel listens on `http://localhost:5000`.
-
-<a name="configuration"></a>
-
-### Replace the default certificate from configuration
+### Configure certificates in appsettings.json
 
 A default HTTPS app settings configuration schema is available for Kestrel. Configure multiple endpoints, including the URLs and the certificates to use, either from a file on disk or from a certificate store.
 
-In the following `appsettings.json` example:
+As noted earlier, the following example is for `appsettings.json`, but any configuration source can be used:
 
 * Set `AllowInvalid` to `true` to permit the use of invalid certificates (for example, self-signed certificates).
-* Any HTTPS endpoint that doesn't specify a certificate (`HttpsDefaultCert` in the example that follows) falls back to the cert defined under `Certificates:Default` or the development certificate.
+* Any HTTPS endpoint that doesn't specify a certificate (`HttpsDefaultCert` in the example that follows) falls back to the certificate defined under `Certificates:Default` or the development certificate.
 
 ```json
 {
@@ -189,17 +187,16 @@ In the following `appsettings.json` example:
 }
 ```
 
-> [!WARNING]
-> In the preceding example, certificate passwords are stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration). Development secrets shouldn't be used for production or test.
+[!INCLUDE [](../../../includes/credentials-warning.md)]
 
-Schema notes:
+#### Schema notes
 
-* Endpoints names are [case-insensitive](xref:fundamentals/configuration/index#configuration-keys-and-values). For example, `HTTPS` and `Https` are equivalent.
-* The `Url` parameter is required for each endpoint. The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value.
+* Endpoint names are [case-insensitive](xref:fundamentals/configuration/index#configuration-keys-and-values). For example, `HTTPS` and `Https` are equivalent.
+* The `Url` parameter is required for each endpoint. The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value. See [URL formats](#url-formats) earlier in this article.
 * These endpoints replace those defined in the top-level `Urls` configuration rather than adding to them. Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.
 * The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in `Certificates:Default` are used. If no defaults are available, the development certificate is used. If there are no defaults and the development certificate isn't present, the server throws an exception and fails to start.
-* The `Certificate` section supports multiple [certificate sources](#certificate-sources).
-* Any number of endpoints may be defined in [Configuration](xref:fundamentals/configuration/index) as long as they don't cause port conflicts.
+* The `Certificate` section supports multiple certificate sources.
+* Any number of endpoints may be defined in `Configuration`, as long as they don't cause port conflicts.
 
 #### Certificate sources
 
@@ -220,52 +217,179 @@ For example, the `Certificates:Default` certificate can be specified as:
 }
 ```
 
-#### ConfigurationLoader
+### Configure client certificates in appsettings.json
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration)> returns a <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader> with an <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader.Endpoint(System.String,System.Action{Microsoft.AspNetCore.Server.Kestrel.EndpointConfiguration})> method that can be used to supplement a configured endpoint's settings:
+[ClientCertificateMode](xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode) is used to configure client certificate behavior.
+
+```json
+{
+  "Kestrel": {
+    "Endpoints": {
+      "MyHttpsEndpoint": {
+        "Url": "https://localhost:5001",
+        "ClientCertificateMode": "AllowCertificate",
+        "Certificate": {
+          "Path": "<path to .pfx file>",
+          "Password": "$CREDENTIAL_PLACEHOLDER$"
+        }
+      }
+    }
+  }
+}
+```
+
+<!-- [!INCLUDE [](../../../includes/credentials-warning.md)] -->
+
+The default value is `ClientCertificateMode.NoCertificate` where Kestrel will not request or require a certificate from the client.
+
+For more information, see <xref:security/authentication/certauth>.
+
+### ConfigurationLoader
+
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration?displayProperty=nameWithType)> returns a <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader> with an <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader.Endpoint(System.String,System.Action{Microsoft.AspNetCore.Server.Kestrel.EndpointConfiguration})> method that can be used to supplement a configured endpoint's settings:
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigurationLoader":::
 
 `KestrelServerOptions.ConfigurationLoader` can be directly accessed to continue iterating on the existing loader, such as the one provided by <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost%2A?displayProperty=nameWithType>.
 
-* The configuration section for each endpoint is available on the options in the `Endpoint` method so that custom settings may be read.
-* Multiple configurations may be loaded by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration)> again with another section. Only the last configuration is used, unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
-* `KestrelConfigurationLoader` mirrors the `Listen` family of APIs from `KestrelServerOptions` as `Endpoint` overloads, so code and config endpoints may be configured in the same place. These overloads don't use names and only consume default settings from configuration.
+* The configuration section for each endpoint is available on the options in the <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader.Endpoint%2A> method so that custom settings may be read.
+* Multiple configurations can be loaded by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration?displayProperty=nameWithType)> again with another section. Only the last configuration is used, unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
+* `KestrelConfigurationLoader` mirrors the `Listen` family of APIs from `KestrelServerOptions` as `Endpoint` overloads, so code and config endpoints can be configured in the same place. These overloads don't use names and only consume default settings from configuration.
 
-### Change the defaults in code
+## Configure endpoints in code
+
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> provides methods for configuring endpoints:
+
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket%2A>
+
+When both the `Listen` and [UseUrls](#configure-endpoints-with-urls) APIs are used simultaneously, the `Listen` endpoints override the `UseUrls` endpoints.
+
+### Change defaults in code
 
 `ConfigureEndpointDefaults` and `ConfigureHttpsDefaults` can be used to change default settings for `ListenOptions` and `HttpsConnectionAdapterOptions`, including overriding the default certificate specified in the prior scenario. `ConfigureEndpointDefaults` and `ConfigureHttpsDefaults` should be called before any endpoints are configured.
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureEndpointDefaultsConfigureHttpsDefaults":::
 
+#### Configure endpoint defaults in code
+
+[`ConfigureEndpointDefaults(Action<ListenOptions>)`](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureEndpointDefaults(System.Action{Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions}) Specifies a configuration `Action` to run for each specified endpoint. Calling `ConfigureEndpointDefaults` multiple times replaces prior `Action` instances with the last `Action` specified.
+
+:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureEndpointDefaults":::
+
+> [!NOTE]
+> Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureEndpointDefaults%2A> won't have the defaults applied.
+
+#### Configure HTTPS defaults in code
+
+[ConfigureHttpsDefaults(Action\<HttpsConnectionAdapterOptions>](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults(System.Action{Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions}) specifies a configuration `Action` to run for each HTTPS endpoint. Calling `ConfigureHttpsDefaults` multiple times replaces prior `Action` instances with the last `Action` specified.
+
+:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureHttpsDefaults":::
+
+> [!NOTE]
+> Endpoints created by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> **before** calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults%2A> won't have the defaults applied.
+
+### Configure certificates in code
+
+In production, HTTPS must be explicitly configured. At a minimum, a default certificate must be provided.
+
+`UseUrls`, the `--urls` command-line argument, `urls` host configuration key, and the `ASPNETCORE_URLS` environment variable have the limitation that a default certificate must be available for HTTPS endpoint configuration. When using the `Listen` API, the <xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps%2A> extension method on <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions> is available to configure HTTPS. Here are some of the overloads of that method:
+
+* `UseHttps()`: Configure Kestrel to use HTTPS with the default certificate. Throws an exception if no default certificate is configured.
+* `UseHttps(string fileName)`
+* `UseHttps(string fileName, string password)`
+* `UseHttps(string fileName, string password, Action<HttpsConnectionAdapterOptions> configureOptions)`
+* `UseHttps(StoreName storeName, string subject)`
+* `UseHttps(StoreName storeName, string subject, bool allowInvalid)`
+* `UseHttps(StoreName storeName, string subject, bool allowInvalid, StoreLocation location)`
+* `UseHttps(StoreName storeName, string subject, bool allowInvalid, StoreLocation location, Action<HttpsConnectionAdapterOptions> configureOptions)`
+* `UseHttps(X509Certificate2 serverCertificate)`
+* `UseHttps(X509Certificate2 serverCertificate, Action<HttpsConnectionAdapterOptions> configureOptions)`
+* `UseHttps(Action<HttpsConnectionAdapterOptions> configureOptions)`
+
+`ListenOptions.UseHttps` parameters:
+
+* `filename` is the path and file name of a certificate file, relative to the directory that contains the app's content files.
+* `password` is the password required to access the X.509 certificate data.
+* `configureOptions` is an `Action` to configure the `HttpsConnectionAdapterOptions`. Returns the `ListenOptions`.
+* `storeName` is the certificate store from which to load the certificate.
+* `subject` is the subject name for the certificate.
+* `allowInvalid` indicates if invalid certificates should be considered, such as self-signed certificates.
+* `location` is the store location to load the certificate from.
+* `serverCertificate` is the X.509 certificate.
+
+For a complete list of `UseHttps` overloads, see <xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps%2A>.
+
+### Configure client certificates in code
+
+<xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode> configures the client certificate requirements.
+
+:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureHttpsDefaultsClientCertificateMode":::
+
+The default value is <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode.NoCertificate>, where Kestrel will not request or require a certificate from the client.
+
+For more information, see <xref:security/authentication/certauth>.
+
+### Bind to a TCP socket
+
+The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> method binds to a TCP socket, and an options lambda permits X.509 certificate configuration:
+
+:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_Listen":::
+
+The example configures HTTPS for an endpoint with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions>. Use the same API to configure other Kestrel settings for specific endpoints.
+
+[!INCLUDE [How to make an X.509 cert](~/includes/make-x509-cert.md)]
+
+### Bind to a Unix socket
+
+Listen on a Unix socket with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket%2A> for improved performance with Nginx, as shown in this example:
+
+:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ListenUnixSocket":::
+
+* In the Nginx configuration file, set the `server` > `location` > `proxy_pass` entry to `http://unix:/tmp/{KESTREL SOCKET}:/;`. `{KESTREL SOCKET}` is the name of the socket provided to <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket%2A> (for example, `kestrel-test.sock` in the preceding example).
+* Ensure that the socket is writeable by Nginx (for example, `chmod go+w /tmp/kestrel-test.sock`).
+
+### Dynamic port binding
+
+For information about dynamic port binding, see [Port 0](#port-0) earlier in this article.
+
+### Connection logging
+
+Call <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging%2A> to emit Debug level logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies. If `UseConnectionLogging` is placed before `UseHttps`, encrypted traffic is logged. If `UseConnectionLogging` is placed after `UseHttps`, decrypted traffic is logged. This is built-in [Connection Middleware](#connection-middleware).
+
+:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelUseConnectionLogging":::
+
+## Configure HTTPS
+
+If [URL prefixes](#configure-endpoints-with-urls) are used to define endpoints, HTTPS can be used only if a default certificate is provided in HTTPS endpoint configuration. For example, use <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> configuration or a configuration file as shown [earlier in this article](#replace-the-default-certificate-in-appsettingsjson).
+
+To create a development certificate, use the [dev-certs tool](/dotnet/core/tools/dotnet-dev-certs). The tool is automatically installed when the [.NET SDK](/dotnet/core/sdk) is installed.
+
+The development certificate is available only for the user that generates the certificate. Some browsers require granting explicit permission to trust the local development certificate.
+
+For information about working with SSL certificates, see the following sections of this article:
+
+* [Configure certificates in appsettings.json](#configure-certificates-in-appsettingsjson)
+* [Configure client certificates in appsettings.json](#configure-client-certificates-in-appsettingsjson)
+* [Configure HTTPS defaults in code](#configure-https-defaults-in-code)
+* [Configure certificates in code](#configure-certificates-in-code)
+* [Configure client certificates in code](#configure-client-certificates-in-code)
+* [Certificate sources](#certificate-sources)
+
+Many ASP.NET Core project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](xref:security/enforcing-ssl).
+
 ## Configure endpoints using Server Name Indication
 
 [Server Name Indication (SNI)](https://tools.ietf.org/html/rfc6066#section-3) can be used to host multiple domains on the same IP address and port. For SNI to function, the client sends the host name for the secure session to the server during the TLS handshake so that the server can provide the correct certificate. The client uses the furnished certificate for encrypted communication with the server during the secure session that follows the TLS handshake.
 
+All websites must run on the same Kestrel instance. Kestrel doesn't support sharing an IP address and port across multiple instances without a reverse proxy.
+
 SNI can be configured in two ways:
 
-* Create an endpoint in code and select a certificate using the host name with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector%2A> callback.
 * Configure a mapping between host names and HTTPS options in [Configuration](xref:fundamentals/configuration/index). For example, JSON in  the `appsettings.json` file.
+* Create an endpoint in code and select a certificate using the host name with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector%2A> callback.
 
-### SNI with `ServerCertificateSelector`
-
-Kestrel supports SNI via the `ServerCertificateSelector` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate:
-
-:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ServerCertificateSelector":::
-
-### SNI with `ServerOptionsSelectionCallback`
-
-Kestrel supports additional dynamic TLS configuration via the `ServerOptionsSelectionCallback` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate and TLS configuration. Default certificates and `ConfigureHttpsDefaults` are not used with this callback.
-
-:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ServerOptionsSelectionCallback":::
-
-### SNI with `TlsHandshakeCallbackOptions`
-
-Kestrel supports additional dynamic TLS configuration via the `TlsHandshakeCallbackOptions.OnConnection` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate, TLS configuration, and other server options. Default certificates and `ConfigureHttpsDefaults` are not used with this callback.
-
-:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_TlsHandshakeCallbackOptions":::
-
-### SNI in configuration
+### Configure SNI in appsettings.json
 
 Kestrel supports SNI defined in configuration. An endpoint can be configured with an `Sni` object that contains a mapping between host names and HTTPS options. The connection host name is matched to the options and they are used for that connection.
 
@@ -312,8 +436,7 @@ The following configuration adds an endpoint named `MySniEndpoint` that uses SNI
 }
 ```
 
-> [!WARNING]
-> In the preceding example, certificate passwords are stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration). Development secrets shouldn't be used for production or test.
+[!INCLUDE [](../../../includes/credentials-warning.md)]
 
 HTTPS options that can be overridden by SNI:
 
@@ -330,15 +453,84 @@ The host name supports wildcard matching:
 
 The matched SNI configuration is applied to the endpoint for the connection, overriding values on the endpoint. If a connection doesn't match a configured SNI host name then the connection is refused.
 
-### SNI requirements
+### Configure SNI with code
 
-All websites must run on the same Kestrel instance. Kestrel doesn't support sharing an IP address and port across multiple instances without a reverse proxy.
+Kestrel supports SNI with several callback APIs:
 
-## SSL/TLS Protocols
+* `ServerCertificateSelector`
+* `ServerOptionsSelectionCallback`
+* `TlsHandshakeCallbackOptions`
+
+#### SNI with `ServerCertificateSelector`
+
+Kestrel supports SNI via the `ServerCertificateSelector` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate:
+
+:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ServerCertificateSelector":::
+
+#### SNI with `ServerOptionsSelectionCallback`
+
+Kestrel supports additional dynamic TLS configuration via the `ServerOptionsSelectionCallback` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate and TLS configuration. Default certificates and `ConfigureHttpsDefaults` are not used with this callback.
+
+:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ServerOptionsSelectionCallback":::
+
+#### SNI with `TlsHandshakeCallbackOptions`
+
+Kestrel supports additional dynamic TLS configuration via the `TlsHandshakeCallbackOptions.OnConnection` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate, TLS configuration, and other server options. Default certificates and `ConfigureHttpsDefaults` are not used with this callback.
+
+:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_TlsHandshakeCallbackOptions":::
+
+## IIS endpoint configuration
+
+When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module).
+
+## Connection Middleware
+
+Custom connection middleware can filter TLS handshakes on a per-connection basis for specific ciphers if necessary.
+
+The following example throws <xref:System.NotSupportedException> for any cipher algorithm that the app doesn't support. Alternatively, define and compare <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature.CipherAlgorithm%2A?displayProperty=nameWithType> to a list of acceptable cipher suites.
+
+No encryption is used with a <xref:System.Security.Authentication.CipherAlgorithmType.Null?displayProperty=nameWithType> cipher algorithm.
+
+:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelMiddleware":::
+
+## Endpoint protocols
+
+The following configuration examples show `appsettings.json`. However, any configuration source can be used.
+
+### Configure HTTP protocols in appsettings.json
+
+The following `appsettings.json` example establishes HTTP/1.1 as the default connection protocol for all endpoints:
+
+```json
+{
+  "Kestrel": {
+    "EndpointDefaults": {
+      "Protocols": "Http1"
+    }
+  }
+}
+```
+
+The following `appsettings.json` example establishes the HTTP/1.1 connection protocol for a specific endpoint:
+
+```json
+{
+  "Kestrel": {
+    "Endpoints": {
+      "HttpsDefaultCert": {
+        "Url": "https://localhost:5001",
+        "Protocols": "Http1"
+      }
+    }
+  }
+}
+```
+
+Protocols specified in code override values set by configuration.
+
+### Configure SSL/TLS protocols in appsettings.json
 
 SSL Protocols are protocols used for encrypting and decrypting traffic between two peers, traditionally a client and a server.
-
-:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureHttpsDefaultsSslProtocols":::
 
 ```json
 {
@@ -357,98 +549,13 @@ SSL Protocols are protocols used for encrypting and decrypting traffic between t
 }
 ```
 
-> [!WARNING]
-> In the preceding example, the certificate password is stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration). Development secrets shouldn't be used for production or test.
+[!INCLUDE [](../../../includes/credentials-warning.md)]
 
 The default value, `SslProtocols.None`, causes Kestrel to use the operating system defaults to choose the best protocol. Unless you have a specific reason to select a protocol, use the default.
 
-## Client Certificates
+### Configure HTTP protocols in code
 
-`ClientCertificateMode` configures the [client certificate requirements](xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode).
-
-:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureHttpsDefaultsClientCertificateMode":::
-
-```json
-{
-  "Kestrel": {
-    "Endpoints": {
-      "MyHttpsEndpoint": {
-        "Url": "https://localhost:5001",
-        "ClientCertificateMode": "AllowCertificate",
-        "Certificate": {
-          "Path": "<path to .pfx file>",
-          "Password": "$CREDENTIAL_PLACEHOLDER$"
-        }
-      }
-    }
-  }
-}
-```
-
-> [!WARNING]
-> In the preceding example, the certificate password is stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
-
-The default value is `ClientCertificateMode.NoCertificate` where Kestrel will not request or require a certificate from the client.
-
-For more information, see <xref:security/authentication/certauth>.
-
-## Connection logging
-
-Call <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging%2A> to emit Debug level logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies. If `UseConnectionLogging` is placed before `UseHttps`, encrypted traffic is logged. If `UseConnectionLogging` is placed after `UseHttps`, decrypted traffic is logged. This is built-in [Connection Middleware](#connection-middleware).
-
-:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelUseConnectionLogging":::
-
-## Bind to a TCP socket
-
-The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A> method binds to a TCP socket, and an options lambda permits X.509 certificate configuration:
-
-:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_Listen":::
-
-The example configures HTTPS for an endpoint with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions>. Use the same API to configure other Kestrel settings for specific endpoints.
-
-[!INCLUDE [How to make an X.509 cert](~/includes/make-x509-cert.md)]
-
-## Bind to a Unix socket
-
-Listen on a Unix socket with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket%2A> for improved performance with Nginx, as shown in this example:
-
-:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ListenUnixSocket":::
-
-* In the Nginx configuration file, set the `server` > `location` > `proxy_pass` entry to `http://unix:/tmp/{KESTREL SOCKET}:/;`. `{KESTREL SOCKET}` is the name of the socket provided to <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket%2A> (for example, `kestrel-test.sock` in the preceding example).
-* Ensure that the socket is writeable by Nginx (for example, `chmod go+w /tmp/kestrel-test.sock`).
-
-## Port 0
-
-When the port number `0` is specified, Kestrel dynamically binds to an available port. The following example shows how to determine which port Kestrel bound at runtime:
-
-:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_IServerAddressesFeature":::
-
-Dynamically binding a port isn't available in some situations:
-
-* `ListenLocalhost`
-* Binding TCP-based HTTP/1.1 or HTTP/2, and QUIC-based HTTP/3 together.
-
-## Limitations
-
-Configure endpoints with the following approaches:
-
-* <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseUrls%2A>
-* `--urls` command-line argument
-* `urls` host configuration key
-* `ASPNETCORE_URLS` environment variable
-
-These methods are useful for making code work with servers other than Kestrel. However, be aware of the following limitations:
-
-* HTTPS can't be used with these approaches unless a default certificate is provided in the HTTPS endpoint configuration (for example, using `KestrelServerOptions` configuration or a configuration file as shown earlier in this article).
-* When both the `Listen` and `UseUrls` approaches are used simultaneously, the `Listen` endpoints override the `UseUrls` endpoints.
-
-## IIS endpoint configuration
-
-When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module).
-
-## ListenOptions.Protocols
-
-The `Protocols` property establishes the HTTP protocols (`HttpProtocols`) enabled on a connection endpoint or for the server. Assign a value to the `Protocols` property from the `HttpProtocols` enum.
+The `Protocols` property of `ListenOptions` establishes the HTTP protocols (`HttpProtocols`) enabled on a connection endpoint or for the server. Assign a value to the `Protocols` property from the `HttpProtocols` enum.
 
 | `HttpProtocols` enum value | Connection protocol permitted |
 |--|--|
@@ -480,88 +587,11 @@ On Linux, <xref:System.Net.Security.CipherSuitesPolicy> can be used to filter TL
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureHttpsDefaultsCipherSuitesPolicy":::
 
-## Connection Middleware
+### Configure SSL/TLS protocols in code
 
-Custom connection middleware can filter TLS handshakes on a per-connection basis for specific ciphers if necessary.
+SSL protocols are protocols used for encrypting and decrypting traffic between two peers, traditionally a client and a server.
 
-The following example throws <xref:System.NotSupportedException> for any cipher algorithm that the app doesn't support. Alternatively, define and compare <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature.CipherAlgorithm%2A?displayProperty=nameWithType> to a list of acceptable cipher suites.
-
-No encryption is used with a <xref:System.Security.Authentication.CipherAlgorithmType.Null?displayProperty=nameWithType> cipher algorithm.
-
-:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelMiddleware":::
-
-## Set the HTTP protocol from configuration
-
-By default, Kestrel configuration is loaded from the `Kestrel` section. The following `appsettings.json` example establishes HTTP/1.1 as the default connection protocol for all endpoints:
-
-```json
-{
-  "Kestrel": {
-    "EndpointDefaults": {
-      "Protocols": "Http1"
-    }
-  }
-}
-```
-
-The following `appsettings.json` example establishes the HTTP/1.1 connection protocol for a specific endpoint:
-
-```json
-{
-  "Kestrel": {
-    "Endpoints": {
-      "HttpsDefaultCert": {
-        "Url": "https://localhost:5001",
-        "Protocols": "Http1"
-      }
-    }
-  }
-}
-```
-
-Protocols specified in code override values set by configuration.
-
-## URL prefixes
-
-When using `UseUrls`, `--urls` command-line argument, `urls` host configuration key, or `ASPNETCORE_URLS` environment variable, the URL prefixes can be in any of the following formats.
-
-* IPv4 address with port number
-
-  ```
-  http://65.55.39.10:80/
-  ```
-
-  `0.0.0.0` is a special case that binds to all IPv4 addresses.
-
-* IPv6 address with port number
-
-  ```
-  http://[0:0:0:0:0:ffff:4137:270a]:80/
-  ```
-
-  `[::]` is the IPv6 equivalent of IPv4 `0.0.0.0`.
-
-* Host name with port number
-
-  ```
-  http://contoso.com:80/
-  http://*:80/
-  ```
-
-  Host names, `*`, and `+`, aren't special. Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IPs. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](xref:fundamentals/servers/httpsys) or a reverse proxy server. Reverse proxy server examples include IIS, Nginx, or Apache.
-
-  > [!WARNING]
-  > Hosting in a reverse proxy configuration requires [host filtering](xref:fundamentals/servers/kestrel/host-filtering).
-
-* Host `localhost` name with port number or loopback IP with port number
-
-  ```
-  http://localhost:5000/
-  http://127.0.0.1:5000/
-  http://[::1]:5000/
-  ```
-
-  When `localhost` is specified, Kestrel attempts to bind to both IPv4 and IPv6 loopback interfaces. If the requested port is in use by another service on either loopback interface, Kestrel fails to start. If either loopback interface is unavailable for any other reason (most commonly because IPv6 isn't supported), Kestrel logs a warning.
+:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureHttpsDefaultsSslProtocols":::
 
 :::moniker-end
 
