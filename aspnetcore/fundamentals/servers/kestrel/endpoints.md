@@ -598,8 +598,8 @@ SSL protocols are protocols used for encrypting and decrypting traffic between t
 
 ## See also
 
-<xref:~/fundamentals/servers/kestrel>
-<xref:~/fundamentals/servers/kestrel/options>
+<xref:fundamentals/servers/kestrel>
+<xref:fundamentals/servers/kestrel/options>
 
 :::moniker-end
 
