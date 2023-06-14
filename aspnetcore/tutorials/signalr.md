@@ -143,7 +143,7 @@ Navigate to the project folder, which contains the `SignalRChat.csproj` file.
 Run the following command to get the SignalR client library by using LibMan. It may take a few seconds before displaying output.
 
 ```console
-libman install @microsoft/signalr@latest -p unpkg -d wwwroot/js/signalr --files dist/browser/signalr.js --files dist/browser/signalr.js
+libman install @microsoft/signalr@latest -p unpkg -d wwwroot/js/signalr --files dist/browser/signalr.js
 ```
 
 The parameters specify the following options:
