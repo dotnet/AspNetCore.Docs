@@ -355,7 +355,7 @@ For information about dynamic port binding, see [Port 0](#port-0) earlier in thi
 
 ### Connection logging
 
-Call <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging%2A> to emit Debug level logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies. If `UseConnectionLogging` is placed before `UseHttps`, encrypted traffic is logged. If `UseConnectionLogging` is placed after `UseHttps`, decrypted traffic is logged. This is built-in [Connection Middleware](#connection-middleware).
+Call <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging%2A> to emit Debug level logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies. If `UseConnectionLogging` is placed before `UseHttps`, encrypted traffic is logged. If `UseConnectionLogging` is placed after `UseHttps`, decrypted traffic is logged. This is built-in [Connection middleware](#connection-middleware).
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelUseConnectionLogging":::
 
@@ -376,6 +376,7 @@ For information about configuring HTTPS, such as specifying SSL certificates and
 * [Configure certificates in code](#configure-certificates-in-code)
 * [Configure client certificates in code](#configure-client-certificates-in-code)
 * [Configure endpoints using Server Name Indication (SNI)](#configure-endpoints-using-server-name-indication)
+* [Connection middleware)](#connection-middleware)
 * [Configure endpoint protocols](#configure-endpoint-protocols)
 
 Many ASP.NET Core project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](xref:security/enforcing-ssl).
@@ -485,7 +486,7 @@ Kestrel supports additional dynamic TLS configuration via the `TlsHandshakeCallb
 
 When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module).
 
-## Connection Middleware
+## Connection middleware
 
 Custom connection middleware can filter TLS handshakes on a per-connection basis for specific ciphers if necessary.
 
