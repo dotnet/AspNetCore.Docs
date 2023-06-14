@@ -87,6 +87,15 @@ public static class Program
         // </snippet_MapHealthChecksRequireHostPort>
     }
 
+    public static void MapHealthChecksRequireHostPortAuth(WebApplication app)
+    {
+        // <snippet_MapHealthChecksRequireHostPortAuth>
+        app.MapHealthChecks("/healthz")
+            .RequireHost("*:5001")
+            .RequireAuthorization();
+        // </snippet_MapHealthChecksRequireHostPortAuth>
+    }
+
     public static void MapHealthChecksRequireAuthorization(WebApplication app)
     {
         // <snippet_MapHealthChecksRequireAuthorization>

@@ -60,7 +60,7 @@ The <xref:Microsoft.Extensions.Hosting.IHostedService> interface defines two met
 
 * [StopAsync(CancellationToken)](xref:Microsoft.Extensions.Hosting.IHostedService.StopAsync%2A) is triggered when the host is performing a graceful shutdown. `StopAsync` contains the logic to end the background task. Implement <xref:System.IDisposable> and [finalizers (destructors)](/dotnet/csharp/programming-guide/classes-and-structs/destructors) to dispose of any unmanaged resources.
 
-The cancellation token has a default five second timeout to indicate that the shutdown process should no longer be graceful. When cancellation is requested on the token:
+The cancellation token has a default 30 second timeout to indicate that the shutdown process should no longer be graceful. When cancellation is requested on the token:
 
 * Any remaining background operations that the app is performing should be aborted.
 * Any methods called in `StopAsync` should return promptly.
@@ -69,7 +69,7 @@ However, tasks aren't abandoned after cancellation is requested&mdash;the caller
 
 If the app shuts down unexpectedly (for example, the app's process fails), `StopAsync` might not be called. Therefore, any methods called or operations conducted in `StopAsync` might not occur.
 
-To extend the default five second shutdown timeout, set:
+To extend the default 30 second shutdown timeout, set:
 
 * <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout%2A> when using Generic Host. For more information, see <xref:fundamentals/host/generic-host#shutdowntimeout>.
 * Shutdown timeout host configuration setting when using Web Host. For more information, see <xref:fundamentals/host/web-host#shutdown-timeout>.

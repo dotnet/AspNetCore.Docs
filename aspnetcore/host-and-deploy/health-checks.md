@@ -5,7 +5,7 @@ description: Learn how to set up health checks for ASP.NET Core infrastructure, 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/19/2023
+ms.date: 6/14/2023
 uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
@@ -99,6 +99,12 @@ Call `RequireHost` to specify one or more permitted hosts for the health check e
 To restrict the health check endpoint to respond only on a specific port, specify a port in the call to `RequireHost`. This approach is typically used in a container environment to expose a port for monitoring services:
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/6.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireHostPort":::
+
+[!INCLUDE[](~/includes/spoof.md)]
+
+To prevent unauthorized clients from spoofing the port, call <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A>:
+
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/7.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireHostPortAuth":::
 
 For more information, see [Host matching in routes with RequireHost](xref:fundamentals/routing#host-matching-in-routes-with-requirehost).
 
