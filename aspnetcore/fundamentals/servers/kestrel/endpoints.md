@@ -12,12 +12,12 @@ uid: fundamentals/servers/kestrel/endpoints
 # Configure endpoints for the ASP.NET Core Kestrel web server
 
 :::moniker range="< aspnetcore-7.0"
-[!INCLUDE [not-latest-version](~/includes/not-latest-version.md)]
+[!INCLUDE [](~/includes/not-latest-version.md)]
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
-An endpoint in Kestrel is defined by a combination of address and protocol. The address specifies the network interface and port on which the server listens for incoming requests. This can be a specific IP address, such as localhost or a public IP, along with a port number. The protocol defines the communication standard that is used between the client and server, such as HTTP or HTTPS. Endpoints can be configured to support HTTP or HTTPS or both, depending on the environment (development or production) and the requirements of the application. Endpoints in ASP.NET Core Kestrel provide the necessary infrastructure for listening to incoming requests and routing them to the appropriate middleware
+An endpoint in Kestrel is defined by a combination of address and protocol. The address specifies the network interface and port on which the server listens for incoming requests. This can be a specific IP address, such as localhost or a public IP, along with a port number. The protocol defines the communication standard that is used between the client and server, such as HTTP or HTTPS. Endpoints can be configured to support HTTP or HTTPS or both, depending on the environment (development or production) and the requirements of the application. Endpoints in ASP.NET Core Kestrel provide the infrastructure for listening to incoming requests and routing them to the appropriate middleware.
 
 ## Default bindings
 
