@@ -5,7 +5,7 @@ description: Learn about configuring endpoints with Kestrel, the cross-platform 
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/13/2023
+ms.date: 06/14/2023
 uid: fundamentals/servers/kestrel/endpoints
 ---
 
@@ -367,7 +367,7 @@ To create a development certificate, use the [dev-certs tool](/dotnet/core/tools
 
 The development certificate is available only for the user that generates the certificate. Some browsers require granting explicit permission to trust the local development certificate.
 
-For information about working with SSL certificates, see the following sections of this article:
+For information about configuring HTTPS, such as specifying SSL certificates and SSL/TLS protocols, see the following sections of this article:
 
 * [Configure certificates in appsettings.json](#configure-certificates-in-appsettingsjson)
 * [Configure client certificates in appsettings.json](#configure-client-certificates-in-appsettingsjson)
@@ -376,6 +376,7 @@ For information about working with SSL certificates, see the following sections 
 * [Configure certificates in code](#configure-certificates-in-code)
 * [Configure client certificates in code](#configure-client-certificates-in-code)
 * [Configure endpoints using Server Name Indication (SNI)](#configure-endpoints-using-server-name-indication)
+* [Configure endpoint protocols](#configure-endpoint-protocols)
 
 Many ASP.NET Core project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](xref:security/enforcing-ssl).
 
@@ -494,7 +495,7 @@ No encryption is used with a <xref:System.Security.Authentication.CipherAlgorith
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelMiddleware":::
 
-## Endpoint protocols
+## Configure endpoint protocols
 
 The following configuration examples show `appsettings.json`. However, any configuration source can be used.
 
@@ -593,6 +594,11 @@ On Linux, <xref:System.Net.Security.CipherSuitesPolicy> can be used to filter TL
 SSL protocols are protocols used for encrypting and decrypting traffic between two peers, traditionally a client and a server.
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureHttpsDefaultsSslProtocols":::
+
+## See also
+
+<xref:~/fundamentals/servers/kestrel>
+<xref:~/fundamentals/servers/kestrel/options>
 
 :::moniker-end
 
