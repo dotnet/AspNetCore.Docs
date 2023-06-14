@@ -17,7 +17,7 @@ uid: fundamentals/servers/kestrel/endpoints
 
 :::moniker range=">= aspnetcore-8.0"
 
-An endpoint in Kestrel is defined by a combination of address and protocol. The address specifies the network interface and port on which the server will listen for incoming requests. This can be a specific IP address, such as localhost or a public IP, along with a port number. The protocol defines the communication standard that will be used between the client and server, such as HTTP or HTTPS. Endpoints can be configured to support HTTP or HTTPS or both, depending on the environment (development or production) and the requirements of the application. Endpoints in ASP.NET Core Kestrel provide the necessary infrastructure for listening to incoming requests and routing them to the appropriate middleware
+An endpoint in Kestrel is defined by a combination of address and protocol. The address specifies the network interface and port on which the server listens for incoming requests. This can be a specific IP address, such as localhost or a public IP, along with a port number. The protocol defines the communication standard that is used between the client and server, such as HTTP or HTTPS. Endpoints can be configured to support HTTP or HTTPS or both, depending on the environment (development or production) and the requirements of the application. Endpoints in ASP.NET Core Kestrel provide the necessary infrastructure for listening to incoming requests and routing them to the appropriate middleware
 
 ## Default bindings
 
@@ -125,7 +125,7 @@ The configuration must be scoped to the `Kestrel` configuration section. for exa
 
 The `Configure(IConfiguration, bool)` overload can be used to enable reloading endpoints when the configuration source changes. Reloading endpoint configuration is enabled by default. If a change is signaled, the following steps are taken:
 
-* The new configuration is compared to the old one, and any endpoint without configuration changes is not modified.
+* The new configuration is compared to the old one, and any endpoint without configuration changes isn't modified.
 * Removed or modified endpoints are given 5 seconds to complete processing requests and shut down.
 * New or modified endpoints are started.
 
@@ -193,7 +193,7 @@ As noted earlier, the following example is for `appsettings.json`, but any confi
 
 * Endpoint names are [case-insensitive](xref:fundamentals/configuration/index#configuration-keys-and-values). For example, `HTTPS` and `Https` are equivalent.
 * The `Url` parameter is required for each endpoint. The format for this parameter is the same as the top-level `Urls` configuration parameter except that it's limited to a single value. See [URL formats](#url-formats) earlier in this article.
-* These endpoints replace those defined in the top-level `Urls` configuration rather than adding to them. Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.
+* These endpoints replace the ones defined in the top-level `Urls` configuration rather than adding to them. Endpoints defined in code via `Listen` are cumulative with the endpoints defined in the configuration section.
 * The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in `Certificates:Default` are used. If no defaults are available, the development certificate is used. If there are no defaults and the development certificate isn't present, the server throws an exception and fails to start.
 * The `Certificate` section supports multiple certificate sources.
 * Any number of endpoints may be defined in `Configuration`, as long as they don't cause port conflicts.
@@ -240,7 +240,7 @@ For example, the `Certificates:Default` certificate can be specified as:
 
 <!-- [!INCLUDE [](../../../includes/credentials-warning.md)] -->
 
-The default value is `ClientCertificateMode.NoCertificate` where Kestrel will not request or require a certificate from the client.
+The default value is `ClientCertificateMode.NoCertificate`, where Kestrel won't request or require a certificate from the client.
 
 For more information, see <xref:security/authentication/certauth>.
 
@@ -326,7 +326,7 @@ For a complete list of `UseHttps` overloads, see <xref:Microsoft.AspNetCore.Host
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureHttpsDefaultsClientCertificateMode":::
 
-The default value is <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode.NoCertificate>, where Kestrel will not request or require a certificate from the client.
+The default value is <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode.NoCertificate>, where Kestrel won't request or require a certificate from the client.
 
 For more information, see <xref:security/authentication/certauth>.
 
@@ -392,7 +392,7 @@ SNI can be configured in two ways:
 
 ### Configure SNI in appsettings.json
 
-Kestrel supports SNI defined in configuration. An endpoint can be configured with an `Sni` object that contains a mapping between host names and HTTPS options. The connection host name is matched to the options and they are used for that connection.
+Kestrel supports SNI defined in configuration. An endpoint can be configured with an `Sni` object that contains a mapping between host names and HTTPS options. The connection host name is matched to the options and they're used for that connection.
 
 The following configuration adds an endpoint named `MySniEndpoint` that uses SNI to select HTTPS options based on the host name:
 
@@ -449,10 +449,10 @@ HTTPS options that can be overridden by SNI:
 The host name supports wildcard matching:
 
 * Exact match. For example, `a.example.org` matches `a.example.org`.
-* Wildcard prefix. If there are multiple wildcard matches then the longest pattern is chosen. For example, `*.example.org` matches `b.example.org` and `c.example.org`.
+* Wildcard prefix. If there are multiple wildcard matches, then the longest pattern is chosen. For example, `*.example.org` matches `b.example.org` and `c.example.org`.
 * Full wildcard. `*` matches everything else, including clients that aren't using SNI and don't send a host name.
 
-The matched SNI configuration is applied to the endpoint for the connection, overriding values on the endpoint. If a connection doesn't match a configured SNI host name then the connection is refused.
+The matched SNI configuration is applied to the endpoint for the connection, overriding values on the endpoint. If a connection doesn't match a configured SNI host name, then the connection is refused.
 
 ### Configure SNI with code
 
@@ -470,13 +470,13 @@ Kestrel supports SNI via the `ServerCertificateSelector` callback. The callback 
 
 #### SNI with `ServerOptionsSelectionCallback`
 
-Kestrel supports additional dynamic TLS configuration via the `ServerOptionsSelectionCallback` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate and TLS configuration. Default certificates and `ConfigureHttpsDefaults` are not used with this callback.
+Kestrel supports additional dynamic TLS configuration via the `ServerOptionsSelectionCallback` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate and TLS configuration. Default certificates and `ConfigureHttpsDefaults` aren't used with this callback.
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ServerOptionsSelectionCallback":::
 
 #### SNI with `TlsHandshakeCallbackOptions`
 
-Kestrel supports additional dynamic TLS configuration via the `TlsHandshakeCallbackOptions.OnConnection` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate, TLS configuration, and other server options. Default certificates and `ConfigureHttpsDefaults` are not used with this callback.
+Kestrel supports additional dynamic TLS configuration via the `TlsHandshakeCallbackOptions.OnConnection` callback. The callback is invoked once per connection to allow the app to inspect the host name and select the appropriate certificate, TLS configuration, and other server options. Default certificates and `ConfigureHttpsDefaults` aren't used with this callback.
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_TlsHandshakeCallbackOptions":::
 
