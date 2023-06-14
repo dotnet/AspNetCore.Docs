@@ -5,7 +5,7 @@ description: Discover how ASP.NET Core routing is responsible for matching HTTP 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 5/21/2023
+ms.date: 6/14/2023
 uid: fundamentals/routing
 ---
 # Routing in ASP.NET Core
@@ -61,6 +61,8 @@ In the preceding code:
 * The endpoint registered with `MapGet` runs at the end of the pipeline.
 
 If the preceding example didn't include a call to `UseRouting`, the custom middleware would run *after* the route matching middleware.
+
+**Note:** Routes added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> execute at the ***end*** of the pipeline.
 
 ### Endpoints
 
@@ -868,6 +870,8 @@ When the `[Host]` attribute is applied to both the controller and action method:
 
 * The attribute on the action is used.
 * The controller attribute is ignored.
+
+[!INCLUDE[](~/includes/spoof.md)]
 
 ## Route groups
 
