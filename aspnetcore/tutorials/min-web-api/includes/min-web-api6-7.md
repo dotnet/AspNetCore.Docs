@@ -901,7 +901,7 @@ The preceding code uses [web defaults](/dotnet/standard/serialization/system-tex
 
 ## Test minimal API
 
-For an example of testing a minimal API app, see [this GitHub sample](https://github.com/davidfowl/CommunityStandUpMinimalAPI/blob/main/TodoApi.Tests/TodoTests.cs).
+For an example of testing a minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample).
 
 ## Publish to Azure
 
