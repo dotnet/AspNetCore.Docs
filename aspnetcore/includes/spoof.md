@@ -4,4 +4,4 @@
 > To prevent host and port spoofing, use one of the following approaches:
 >
 > * Use <xref:Microsoft.AspNetCore.Http.HttpContext.Connection%2A?displayProperty=nameWithType> (<xref:Microsoft.AspNetCore.Http.ConnectionInfo.LocalPort?displayProperty=nameWithType>) where the ports are checked.
-> * Employ [Host filtering](xref:fundamentals/servers/kestrel/host-filtering)
+> * Employ [Host filtering](xref:fundamentals/servers/kestrel/host-filtering).
