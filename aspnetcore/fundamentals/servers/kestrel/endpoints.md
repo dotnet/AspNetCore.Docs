@@ -358,13 +358,11 @@ For information about dynamic port binding, see [Port 0](#port-0) earlier in thi
 
 ## Configure HTTPS
 
+Kestrel supports securing endpoints with HTTPS. The way you configure HTTPS depends on how endpoints are defined.
+
 If [URL prefixes](#configure-endpoints-with-urls) are used to define endpoints, HTTPS can be used only if a default certificate is provided in HTTPS endpoint configuration. For example, use <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> configuration or a configuration file as shown [earlier in this article](#configure-certificates-in-appsettingsjson).
 
-To create a development certificate, use the [dev-certs tool](/dotnet/core/tools/dotnet-dev-certs). The tool is automatically installed when the [.NET SDK](/dotnet/core/sdk) is installed.
-
-The development certificate is available only for the user that generates the certificate. Some browsers require granting explicit permission to trust the local development certificate.
-
-For information about configuring HTTPS, such as specifying SSL certificates and SSL/TLS protocols, see the following sections of this article:
+For more information about configuring HTTPS, such as using configuration or code to specify SSL certificates and SSL/TLS protocols, see the following sections of this article:
 
 * [Configure certificates in appsettings.json](#configure-certificates-in-appsettingsjson)
 * [Configure client certificates in appsettings.json](#configure-client-certificates-in-appsettingsjson)
@@ -375,6 +373,10 @@ For information about configuring HTTPS, such as specifying SSL certificates and
 * [Configure endpoints using Server Name Indication (SNI)](#configure-endpoints-using-server-name-indication)
 * [Connection middleware](#connection-middleware)
 * [Configure endpoint protocols](#configure-endpoint-protocols)
+
+To create a development certificate, use the [dev-certs tool](/dotnet/core/tools/dotnet-dev-certs). The tool is automatically installed when the [.NET SDK](/dotnet/core/sdk) is installed.
+
+The development certificate is available only for the user that generates the certificate. Some browsers require granting explicit permission to trust the local development certificate.
 
 Many ASP.NET Core project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](xref:security/enforcing-ssl).
 
