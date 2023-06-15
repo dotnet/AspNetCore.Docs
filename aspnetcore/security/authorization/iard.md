@@ -52,7 +52,7 @@ The sample can be tested with [`dotnet user-jwts`](xref:security/authentication/
 * `curl -i -H "Authorization: Bearer <token from dotnet user-jwts>" http://localhost:<port>/api/greetings/hello`
 
 <!-- This will be moved to What's new in 8.0 as soon as this PR merges (to avoid merge conflicts)
--->
+
 
 ## IAuthorizationRequirementData
 
@@ -121,54 +121,9 @@ namespace AuthRequirementsData.Authorization;
     {
         // Remaining code omitted for brevity.
 ```
-<!-- Remaining code  here
-        // Log as a warning so that it's very clear in sample output which authorization
-        // policies(and requirements/handlers) are in use
-        _logger.LogWarning("Evaluating authorization requirement for age >= {age}",
-                                                                    requirement.Age);
-
-        // Check the user's age
-        var dateOfBirthClaim = context.User.FindFirst(c => c.Type ==
-                                                                 ClaimTypes.DateOfBirth);
-        if (dateOfBirthClaim != null)
-        {
-            // If the user has a date of birth claim, check their age
-            var dateOfBirth = Convert.ToDateTime(dateOfBirthClaim.Value,
-                                                           CultureInfo.InvariantCulture);
-            var age = DateTime.Now.Year - dateOfBirth.Year;
-            if (dateOfBirth > DateTime.Now.AddYears(-age))
-            {
-                // Adjust age if the user hasn't had a birthday yet this year
-                age--;
-            }
-
-            // If the user meets the age criterion, mark the authorization requirement
-            // succeeded
-            if (age >= requirement.Age)
-            {
-                _logger.LogInformation(
-                    "Minimum age authorization requirement {age} satisfied",
-                      requirement.Age);
-                context.Succeed(requirement);
-            }
-            else
-            {
-                _logger.LogInformation("Current user's DateOfBirth claim ({dateOfBirth})" +
-                    " does not satisfy the minimum age authorization requirement {age}",
-                    dateOfBirthClaim.Value,
-                    requirement.Age);
-            }
-        }
-        else
-        {
-            _logger.LogInformation("No DateOfBirth claim present");
-        }
-
-        return Task.CompletedTask;
-    }
-}
--->
 
 The complete updated sample can be found [here](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData).
 
 See <xref:security/authorization/iard> for a detailed examination of the new sample.
+
+-->
