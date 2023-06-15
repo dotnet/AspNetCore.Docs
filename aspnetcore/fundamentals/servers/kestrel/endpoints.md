@@ -17,7 +17,10 @@ uid: fundamentals/servers/kestrel/endpoints
 
 :::moniker range=">= aspnetcore-8.0"
 
-An endpoint in Kestrel is defined by a combination of address and protocol. The address specifies the network interface and port on which the server listens for incoming requests. This can be a specific IP address, such as localhost or a public IP, along with a port number. The protocol defines the communication standard that is used between the client and server, such as HTTP or HTTPS. Endpoints can be configured to support HTTP or HTTPS or both, depending on the environment (development or production) and the requirements of the application. Endpoints in ASP.NET Core Kestrel provide the infrastructure for listening to incoming requests and routing them to the appropriate middleware.
+Endpoints in ASP.NET Core Kestrel provide the infrastructure for listening to incoming requests and routing them to the appropriate middleware. An endpoint in Kestrel is defined by a combination of address and protocol.
+
+* The address specifies the network interface and port on which the server listens for incoming requests. This can be a specific IP address, such as localhost or a public IP, along with a port number.
+* The protocol defines the communication standard that is used between the client and server, such as HTTP or HTTPS, or the HTTP version. Endpoints can be configured to support HTTP or HTTPS or both, depending on the environment (development or production) and the requirements of the application.
 
 ## Default bindings
 
@@ -376,7 +379,7 @@ For information about configuring HTTPS, such as specifying SSL certificates and
 * [Configure certificates in code](#configure-certificates-in-code)
 * [Configure client certificates in code](#configure-client-certificates-in-code)
 * [Configure endpoints using Server Name Indication (SNI)](#configure-endpoints-using-server-name-indication)
-* [Connection middleware)](#connection-middleware)
+* [Connection middleware](#connection-middleware)
 * [Configure endpoint protocols](#configure-endpoint-protocols)
 
 Many ASP.NET Core project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](xref:security/enforcing-ssl).
@@ -488,9 +491,18 @@ When using IIS, the URL bindings for IIS override bindings are set by either `Li
 
 ## Connection middleware
 
-Custom connection middleware can filter TLS handshakes on a per-connection basis for specific ciphers if necessary.
+Kestrel endpoints support connection middleware. Connection middleware is software that is assembled into a connection pipeline and runs when Kestrel receives a new connection. Each component:
 
-The following example throws <xref:System.NotSupportedException> for any cipher algorithm that the app doesn't support. Alternatively, define and compare <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature.CipherAlgorithm%2A?displayProperty=nameWithType> to a list of acceptable cipher suites.
+* Chooses whether to pass the request to the next component in the pipeline.
+* Can perform work before and after the next component in the pipeline.
+
+Connection delegates are used to build the connection pipeline. Connection delegates are configured with the https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.listenoptions.use method.
+
+Connection middleware is similar to [ASP.NET Core request middleware](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-7.0). The difference is the connection middleware runs per-connection instead of per-request.
+
+### Create custom connection middleware
+
+The following example shows a custom connection middleware that can filter TLS handshakes on a per-connection basis for specific ciphers if necessary. The middleware throws <xref:System.NotSupportedException> for any cipher algorithm that the app doesn't support. Alternatively, define and compare <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature.CipherAlgorithm%2A?displayProperty=nameWithType> to a list of acceptable cipher suites.
 
 No encryption is used with a <xref:System.Security.Authentication.CipherAlgorithmType.Null?displayProperty=nameWithType> cipher algorithm.
 
