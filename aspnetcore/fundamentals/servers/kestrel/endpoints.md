@@ -5,7 +5,7 @@ description: Learn about configuring endpoints with Kestrel, the cross-platform 
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/14/2023
+ms.date: 06/15/2023
 uid: fundamentals/servers/kestrel/endpoints
 ---
 
@@ -356,12 +356,6 @@ Listen on a Unix socket with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Kest
 
 For information about dynamic port binding, see [Port 0](#port-0) earlier in this article.
 
-### Connection logging
-
-Call <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging%2A> to emit Debug level logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies. If `UseConnectionLogging` is placed before `UseHttps`, encrypted traffic is logged. If `UseConnectionLogging` is placed after `UseHttps`, decrypted traffic is logged. This is built-in [Connection middleware](#connection-middleware).
-
-:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelUseConnectionLogging":::
-
 ## Configure HTTPS
 
 If [URL prefixes](#configure-endpoints-with-urls) are used to define endpoints, HTTPS can be used only if a default certificate is provided in HTTPS endpoint configuration. For example, use <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> configuration or a configuration file as shown [earlier in this article](#configure-certificates-in-appsettingsjson).
@@ -507,6 +501,12 @@ The following example shows a custom connection middleware that can filter TLS h
 No encryption is used with a <xref:System.Security.Authentication.CipherAlgorithmType.Null?displayProperty=nameWithType> cipher algorithm.
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelMiddleware":::
+
+### Connection logging
+
+Call <xref:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging%2A> to emit Debug level logs for byte-level communication on a connection. Connection logging is helpful for troubleshooting problems in low-level communication, such as during TLS encryption and behind proxies. If `UseConnectionLogging` is placed before `UseHttps`, encrypted traffic is logged. If `UseConnectionLogging` is placed after `UseHttps`, decrypted traffic is logged. This is built-in [Connection middleware](#connection-middleware).
+
+:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrelUseConnectionLogging":::
 
 ## Configure endpoint protocols
 
