@@ -490,9 +490,9 @@ Kestrel endpoints support connection middleware. Connection middleware is softwa
 * Chooses whether to pass the request to the next component in the pipeline.
 * Can perform work before and after the next component in the pipeline.
 
-Connection delegates are used to build the connection pipeline. Connection delegates are configured with the https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.server.kestrel.core.listenoptions.use method.
+Connection delegates are used to build the connection pipeline. Connection delegates are configured with the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions.Use%2A?displayProperty=nameWithType> method.
 
-Connection middleware is similar to [ASP.NET Core request middleware](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/?view=aspnetcore-7.0). The difference is the connection middleware runs per-connection instead of per-request.
+Connection middleware is similar to <xref:fundamentals/middleware/index>. The difference is the connection middleware runs per-connection instead of per-request.
 
 ### Create custom connection middleware
 
