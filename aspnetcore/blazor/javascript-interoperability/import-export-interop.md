@@ -75,12 +75,15 @@ In the following `CallJavaScript1` component:
 @code {
     private string? message;
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await JSHost.ImportAsync("CallJavaScript1", 
+        if (firstRender)
+        {
+            await JSHost.ImportAsync("CallJavaScript1", 
             "../Pages/CallJavaScript1.razor.js");
 
-        message = GetWelcomeMessage();
+            message = GetWelcomeMessage();
+        }
     }
 }
 ```
@@ -179,15 +182,15 @@ The following `CallDotNet1` component calls JS that directly interacts with the 
 </p>
 
 @code {
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await JSHost.ImportAsync("CallDotNet1", 
-            "../Pages/CallDotNet1.razor.js");
-    }
+        if (firstRender)
+        {
+            await JSHost.ImportAsync("CallDotNet1", 
+                "../Pages/CallDotNet1.razor.js");
 
-    protected override void OnAfterRender(bool firstRender)
-    {
-        SetWelcomeMessage();
+            SetWelcomeMessage();
+        }
     }
 }
 ```
@@ -343,9 +346,12 @@ await JSHost.ImportAsync("Interop", "../js/interop.js");
 @code {
     private string? message;
 
-    protected override void OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        message = Interop.GetWelcomeMessage();
+        if (firstRender)
+        {
+            message = Interop.GetWelcomeMessage();
+        }
     }
 }
 ```
@@ -368,7 +374,10 @@ await JSHost.ImportAsync("Interop", "../js/interop.js");
 @code {
     protected override void OnAfterRender(bool firstRender)
     {
-        Interop.SetWelcomeMessage();
+        if (firstRender)
+        {
+            Interop.SetWelcomeMessage();
+        }
     }
 }
 ```
