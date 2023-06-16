@@ -1310,33 +1310,7 @@ In the preceding example:
 
 <xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-net-to-javascript> covers the reverse operation, streaming from .NET to JavaScript using a <xref:Microsoft.JSInterop.DotNetStreamReference>.
 
-<xref:blazor/file-uploads> covers how to upload a file in Blazor.
-
-:::moniker-end
-
-## Size limits on JavaScript interop calls
-
-:::moniker range=">= aspnetcore-7.0"
-
-[!INCLUDE[](~/blazor/includes/js-interop/7.0/size-limits.md)]
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-[!INCLUDE[](~/blazor/includes/js-interop/6.0/size-limits.md)]
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-[!INCLUDE[](~/blazor/includes/js-interop/5.0/size-limits.md)]
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-[!INCLUDE[](~/blazor/includes/js-interop/3.1/size-limits.md)]
+<xref:blazor/file-uploads> covers how to upload a file in Blazor. For a forms example that streams `<textarea>` data in a Blazor Server app, see <xref:blazor/forms-and-input-components#large-form-payloads-and-the-signalr-message-size-limit>.
 
 :::moniker-end
 

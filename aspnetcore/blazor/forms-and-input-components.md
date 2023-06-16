@@ -85,7 +85,7 @@ A form is defined using the Blazor framework's <xref:Microsoft.AspNetCore.Compon
 @inject ILogger<FormExample1> Logger
 
 <EditForm Model="@exampleModel" OnSubmit="@HandleSubmit">
-    <InputText id="name" @bind-Value="exampleModel.Name" />
+    <InputText @bind-Value="exampleModel.Name" />
 
     <button type="submit">Submit</button>
 </EditForm>
@@ -106,7 +106,7 @@ In the preceding `FormExample1` component:
 
 * The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component is rendered where the `<EditForm>` element appears.
 * The model is created in the component's `@code` block and held in a private field (`exampleModel`). The field is assigned to  <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType>'s attribute (`Model`) of the `<EditForm>` element.
-* The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component (`id="name"`) is an input component for editing string values. The `@bind-Value` directive attribute binds the `exampleModel.Name` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.Value%2A> property.
+* The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an input component for editing string values. The `@bind-Value` directive attribute binds the `exampleModel.Name` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.Value%2A> property.
 * The `HandleSubmit` method is registered as a handler for the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> callback. The handler is called when the form is submitted by the user.
 
 To demonstrate how the preceding <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component works with [data annotations](xref:mvc/models/validation) validation:
@@ -159,7 +159,7 @@ In the preceding `FormExample1` component:
 
 * The <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component is rendered where the `<EditForm>` element appears.
 * The model is created in the component's `@code` block and held in a private field (`exampleModel`). The field is assigned to  <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType>'s attribute (`Model`) of the `<EditForm>` element.
-* The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component (`id="name"`) is an input component for editing string values. The `@bind-Value` directive attribute binds the `exampleModel.Name` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.Value%2A> property.
+* The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an input component for editing string values. The `@bind-Value` directive attribute binds the `exampleModel.Name` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase%601.Value%2A> property.
 * The `HandleValidSubmit` method is assigned to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit>. The handler is called if the form passes validation.
 * The data annotations validator (<xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component&dagger;) attaches validation support using data annotations:
   * If the `<input>` form field is left blank when the **`Submit`** button is selected, an error appears in the validation summary (<xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> component&Dagger;) ("`The Name field is required.`") and `HandleValidSubmit` is **not** called.
@@ -1795,11 +1795,19 @@ Set the `CustomFieldClassProvider` class as the Field CSS Class Provider on the 
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/forms-and-validation/FormExample8.razor" highlight="21":::
 
-The preceding example checks the validity of all form fields and applies a style to each field. If the form should only apply custom styles to a subset of the fields, make `CustomFieldClassProvider` apply styles conditionally. The following `CustomFieldClassProvider2` example only applies a style to the `Name` field. For any fields with names not matching `Name`, `string.Empty` is returned, and no style is applied.
+The preceding example checks the validity of all form fields and applies a style to each field. If the form should only apply custom styles to a subset of the fields, make `CustomFieldClassProvider` apply styles conditionally. The following `CustomFieldClassProvider2` example only applies a style to the `Name` field. For any fields with names not matching `Name`, `string.Empty` is returned, and no style is applied. Using reflection, the field is matched to the model member's property or field name, not an `id` assigned to the HTML entity.
 
 `CustomFieldClassProvider2.cs`:
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/CustomFieldClassProvider2.cs":::
+
+> [!NOTE]
+> Matching the field name in the preceding example is case sensitive, so a model property member designated "`Name`" must match a conditional check on "`Name`":
+>
+> * <span aria-hidden="true">✔️</span><span class="visually-hidden">Correctly matches:</span> `fieldIdentifier.FieldName == "Name"`
+> * <span aria-hidden="true">❌</span><span class="visually-hidden">Fails to match:</span> `fieldIdentifier.FieldName == "name"`
+> * <span aria-hidden="true">❌</span><span class="visually-hidden">Fails to match:</span> `fieldIdentifier.FieldName == "NAME"`
+> * <span aria-hidden="true">❌</span><span class="visually-hidden">Fails to match:</span> `fieldIdentifier.FieldName == "nAmE"`
 
 Add an additional property to `ExampleModel`, for example:
 
@@ -1811,7 +1819,7 @@ public string? Description { get; set; }
 Add the `Description` to the `ExampleForm7` component's form:
 
 ```razor
-<InputText id="description" @bind-Value="exampleModel.Description" />
+<InputText @bind-Value="exampleModel.Description" />
 ```
 
 Update the `EditContext` instance in the component's `OnInitialized` method to use the new Field CSS Class Provider:
@@ -1820,7 +1828,7 @@ Update the `EditContext` instance in the component's `OnInitialized` method to u
 editContext?.SetFieldCssClassProvider(new CustomFieldClassProvider2());
 ```
 
-Because a CSS validation class isn't applied to the `Description` field (`id="description"`), it isn't styled. However, field validation runs normally. If more than 10 characters are provided, the validation summary indicates the error:
+Because a CSS validation class isn't applied to the `Description` field, it isn't styled. However, field validation runs normally. If more than 10 characters are provided, the validation summary indicates the error:
 
 > Description is too long.
 
@@ -1908,7 +1916,7 @@ public string? Description { get; set; }
 Add the `Description` to the `ExampleForm7` component's form:
 
 ```razor
-<InputText id="description" @bind-Value="exampleModel.Description" />
+<InputText @bind-Value="exampleModel.Description" />
 ```
 
 Update the `EditContext` instance in the component's `OnInitialized` method to use the new Field CSS Class Provider:
@@ -1917,7 +1925,7 @@ Update the `EditContext` instance in the component's `OnInitialized` method to u
 editContext?.SetFieldCssClassProvider(new CustomFieldClassProvider2());
 ```
 
-Because a CSS validation class isn't applied to the `Description` field (`id="description"`), it isn't styled. However, field validation runs normally. If more than 10 characters are provided, the validation summary indicates the error:
+Because a CSS validation class isn't applied to the `Description` field, it isn't styled. However, field validation runs normally. If more than 10 characters are provided, the validation summary indicates the error:
 
 > Description is too long.
 
@@ -2005,7 +2013,7 @@ public string Description { get; set; }
 Add the `Description` to the `ExampleForm7` component's form:
 
 ```razor
-<InputText id="description" @bind-Value="exampleModel.Description" />
+<InputText @bind-Value="exampleModel.Description" />
 ```
 
 Update the `EditContext` instance in the component's `OnInitialized` method to use the new Field CSS Class Provider:
@@ -2014,7 +2022,7 @@ Update the `EditContext` instance in the component's `OnInitialized` method to u
 editContext.SetFieldCssClassProvider(new CustomFieldClassProvider2());
 ```
 
-Because a CSS validation class isn't applied to the `Description` field (`id="description"`), it isn't styled. However, field validation runs normally. If more than 10 characters are provided, the validation summary indicates the error:
+Because a CSS validation class isn't applied to the `Description` field, it isn't styled. However, field validation runs normally. If more than 10 characters are provided, the validation summary indicates the error:
 
 > Description is too long.
 
@@ -2229,7 +2237,116 @@ A side effect of the preceding approach is that a validation summary (<xref:Micr
 }
 ```
 
+## Large form payloads and the SignalR message size limit
+
+*This section only applies to Blazor Server apps and hosted Blazor WebAssembly solutions that implement SignalR.*
+
+:::moniker range=">= aspnetcore-6.0"
+
+If form processing fails because the component's form payload has exceeded the maximum incoming SignalR message size permitted for hub methods, the form can adopt [streaming JS interop](xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net) without increasing the message size limit. For more information on the size limit and the error thrown, see <xref:blazor/fundamentals/signalr#maximum-receive-message-size>.
+
+In the following example a text area (`<textarea>`) is used with streaming JS interop to move up to 50,000 bytes of data to the server.
+
+Add a JavaScript (JS) `getText` function to the app:
+
+```javascript
+window.getText = (elem) => {
+  const textValue = elem.value;
+  const utf8Encoder = new TextEncoder();
+  const encodedTextValue = utf8Encoder.encode(textValue);
+  return encodedTextValue;
+};
+```
+
+For information on where to place JS in a Blazor app, see <xref:blazor/js-interop/index#javaScript-location>.
+
+`ExampleModel2.cs`:
+
+```csharp
+public class ExampleModel2
+{
+    public string TextAreaValue { get; set; } = string.Empty;
+}
+```
+
+Due to security considerations, zero-length streams aren't permitted for streaming JS Interop. Therefore, the following `FormExample10` component traps a <xref:Microsoft.JSInterop.JSException> and returns an empty string if the text area is blank when the form is submitted.
+
+`Pages/FormExample10.razor`:
+
+```razor
+@page "/form-example-10"
+@inject IJSRuntime JS
+@inject ILogger<FormExample10> Logger
+
+<h1>Stream form data with JS interop</h1>
+
+<EditForm Model="@exampleModel" OnSubmit="@HandleSubmit">
+    <p>
+        <label>
+            &lt;textarea&gt; value streamed for assignment to 
+            <code>TextAreaValue (&lt;= 50,000 characters)</code>:
+            <textarea @ref="largeTextArea" />
+        </label>
+    </p>
+
+    <button type="submit">Submit</button>
+</EditForm>
+
+<p>
+    TextAreaValue length: @exampleModel.TextAreaValue1.Length
+</p>
+
+@code {
+    private ExampleModel2 exampleModel = new();
+    private ElementReference largeTextArea;
+
+    private async Task HandleSubmit()
+    {
+        exampleModel.TextAreaValue = await GetTextAsync();
+
+        Logger.LogInformation("TextAreaValue length: {Length}", 
+            exampleModel.TextAreaValue.Length);
+    }
+
+    public async Task<string> GetTextAsync()
+    {
+        try
+        {
+            var streamRef = 
+                await JS.InvokeAsync<IJSStreamReference>("getText", largeTextArea);
+            var stream = await streamRef.OpenReadStreamAsync(maxAllowedSize: 50_000);
+            var streamReader = new StreamReader(stream);
+
+            return await streamReader.ReadToEndAsync();
+        }
+        catch (JSException jsException)
+        {
+            if (jsException.InnerException is 
+                    ArgumentOutOfRangeException outOfRangeException &&
+                outOfRangeException.ActualValue is not null &&
+                outOfRangeException.ActualValue is long actualLength &&
+                actualLength == 0)
+            {
+                return string.Empty;
+            }
+
+            throw;
+        }
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+If form processing fails because the component's form payload has exceeded the maximum incoming SignalR message size permitted for hub methods, the message size limit can be increased. For more information on the size limit and the error thrown, see <xref:blazor/fundamentals/signalr#maximum-receive-message-size>.
+
+:::moniker-end
+
 ## Troubleshoot
+
+### EditForm parameter error
 
 > InvalidOperationException: EditForm requires a Model parameter, or an EditContext parameter, but not both.
 
@@ -2253,6 +2370,16 @@ private ExampleModel exampleModel = new ExampleModel();
 
 :::moniker-end
 
+### Connection disconnected
+
+> Error: Connection disconnected with error 'Error: Server returned an error on close: Connection closed with an error.'.
+
+> System.IO.InvalidDataException: The maximum message size of 32768B was exceeded. The message size can be configured in AddHubOptions.
+
+For more information and guidance, see the following resources:
+
+* [Large form payloads and the SignalR message size limit](#large-form-payloads-and-the-signalr-message-size-limit)
+* <xref:blazor/fundamentals/signalr#maximum-receive-message-size>
 
 ## Additional resources
 
