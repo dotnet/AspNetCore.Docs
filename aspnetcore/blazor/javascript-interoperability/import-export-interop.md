@@ -75,15 +75,12 @@ In the following `CallJavaScript1` component:
 @code {
     private string? message;
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnInitializedAsync()
     {
-        if (firstRender)
-        {
-            await JSHost.ImportAsync("CallJavaScript1", 
+        await JSHost.ImportAsync("CallJavaScript1",
             "../Pages/CallJavaScript1.razor.js");
 
-            message = GetWelcomeMessage();
-        }
+        message = GetWelcomeMessage();
     }
 }
 ```
