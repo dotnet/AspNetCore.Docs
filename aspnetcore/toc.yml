@@ -1432,6 +1432,8 @@ items:
                     href: https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2/tree/master/1.%20Desktop%20app%20calls%20Web%20API
                   - name: Web API with Azure AD B2C
                     href: /samples/azure-samples/active-directory-aspnetcore-webapp-openidconnect-v2/how-to-secure-a-web-api-built-with-aspnet-core-using-the-azure-ad-b2c/
+          - name: Identity management solutions for ASP.NET Core apps
+            uid: security/identity-management-solutions 
           - name: Secure ASP.NET Core apps with Microsoft Identity Web
             href: /azure/active-directory/develop/
           - name: Secure ASP.NET Core apps with Duende Identity Server
