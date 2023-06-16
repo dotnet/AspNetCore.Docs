@@ -77,7 +77,7 @@ In the following `CallJavaScript1` component:
 
     protected override async Task OnInitializedAsync()
     {
-        await JSHost.ImportAsync("CallJavaScript1",
+        await JSHost.ImportAsync("CallJavaScript1", 
             "../Pages/CallJavaScript1.razor.js");
 
         message = GetWelcomeMessage();
