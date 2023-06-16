@@ -1455,7 +1455,9 @@ items:
           - name: Razor Pages authorization conventions
             uid: security/authorization/razor-pages-authorization
           - name: Simple authorization
+            uid: security/authorization/iard
             uid: security/authorization/simple
+          - name: Custom authorization with IAuthorizationRequirementData
           - name: Role-based authorization
             uid: security/authorization/roles
           - name: Claims-based authorization
