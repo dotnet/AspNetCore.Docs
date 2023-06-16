@@ -179,15 +179,15 @@ The following `CallDotNet1` component calls JS that directly interacts with the 
 </p>
 
 @code {
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await JSHost.ImportAsync("CallDotNet1", 
-            "../Pages/CallDotNet1.razor.js");
-    }
+        if (firstRender)
+        {
+            await JSHost.ImportAsync("CallDotNet1", 
+                "../Pages/CallDotNet1.razor.js");
 
-    protected override void OnAfterRender(bool firstRender)
-    {
-        SetWelcomeMessage();
+            SetWelcomeMessage();
+        }
     }
 }
 ```
@@ -324,7 +324,10 @@ using System.Runtime.InteropServices.JavaScript;
 Load the module in `Program.cs` before <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost.RunAsync%2A?displayProperty=nameWithType> is called:
 
 ```csharp
-await JSHost.ImportAsync("Interop", "../js/interop.js");
+if (OperatingSystem.IsBrowser())
+{
+    await JSHost.ImportAsync("Interop", "../js/interop.js");
+}
 ```
 
 `Pages/CallJavaScript2.razor`:
@@ -343,7 +346,7 @@ await JSHost.ImportAsync("Interop", "../js/interop.js");
 @code {
     private string? message;
 
-    protected override void OnInitializedAsync()
+    protected override void OnInitialized()
     {
         message = Interop.GetWelcomeMessage();
     }
@@ -368,7 +371,10 @@ await JSHost.ImportAsync("Interop", "../js/interop.js");
 @code {
     protected override void OnAfterRender(bool firstRender)
     {
-        Interop.SetWelcomeMessage();
+        if (firstRender)
+        {
+            Interop.SetWelcomeMessage();
+        }
     }
 }
 ```
