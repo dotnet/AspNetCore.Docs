@@ -38,7 +38,7 @@ The following sections explain how to configure endpoints using the:
 
 ### URL formats
 
-The URLs indicate the IP addresses or host addresses with ports and protocols that the server should listen on. URLs can be in any of the following formats.
+The URLs indicate the IP addresses or host addresses with ports and protocols that the server should listen on. The port can be omitted if it's the default for the protocol (typically 80 and 443). URLs can be in any of the following formats.
 
 * IPv4 address with port number
 
