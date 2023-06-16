@@ -1456,6 +1456,8 @@ items:
             uid: security/authorization/razor-pages-authorization
           - name: Simple authorization
             uid: security/authorization/simple
+          - name: Custom authorization with IAuthorizationRequirementData
+            uid: security/authorization/iard
           - name: Role-based authorization
             uid: security/authorization/roles
           - name: Claims-based authorization
