@@ -1,9 +1,6 @@
 ---
-# This basic template provides core metadata fields for Markdown articles on docs.microsoft.com.
-
-# Mandatory fields.
 title: Identity management solutions for .NET web apps
-description: A list of available products, packages, and services that enable identity management, including authentication and authorization, for .NET web apps.
+description: A list of available products, packages, and services that enable identity management, including authentication and authorization, for ASP.NET Core web apps.
 author: JeremyLikness
 ms.author: jeliknes
 ms.date: 6/14/2023
