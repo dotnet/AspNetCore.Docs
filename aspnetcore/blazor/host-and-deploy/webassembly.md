@@ -25,6 +25,22 @@ The following deployment strategies are supported:
 * The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
 * An ASP.NET Core app hosts multiple Blazor WebAssembly apps. For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Webcil packaging format for .NET assemblies
+
+[Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) is a web-friendly packaging format for .NET assemblies designed to enable using Blazor WebAssembly in restrictive network environments. Webcil files use a standard WebAssembly wrapper, where the assemblies are deployed as WebAssembly files that use the standard `.wasm` file extension.
+
+Webcil is the default packaging format when you publish a Blazor WebAssembly app. To disable the use of Webcil, set the following MS Build property in the app's project file:
+
+```xml
+<PropertyGroup>
+  <WasmEnableWebcil>false</WasmEnableWebcil>
+</PropertyGroup>
+```
+
+:::moniker-end
+
 :::moniker range=">= aspnetcore-6.0"
 
 ## Ahead-of-time (AOT) compilation
@@ -492,6 +508,45 @@ To deploy a Blazor WebAssembly app to CentOS 7 or later:
 
 1. Create the Apache configuration file. The following example is a simplified configuration file (`blazorapp.config`):
 
+:::moniker range=">= aspnetcore-8.0"
+
+   ```
+   <VirtualHost *:80>
+       ServerName www.example.com
+       ServerAlias *.example.com
+
+       DocumentRoot "/var/www/blazorapp"
+       ErrorDocument 404 /index.html
+
+       AddType application/wasm .wasm
+   
+       <Directory "/var/www/blazorapp">
+           Options -Indexes
+           AllowOverride None
+       </Directory>
+
+       <IfModule mod_deflate.c>
+           AddOutputFilterByType DEFLATE text/css
+           AddOutputFilterByType DEFLATE application/javascript
+           AddOutputFilterByType DEFLATE text/html
+           AddOutputFilterByType DEFLATE application/octet-stream
+           AddOutputFilterByType DEFLATE application/wasm
+           <IfModule mod_setenvif.c>
+         BrowserMatch ^Mozilla/4 gzip-only-text/html
+         BrowserMatch ^Mozilla/4.0[678] no-gzip
+         BrowserMatch bMSIE !no-gzip !gzip-only-text/html
+     </IfModule>
+       </IfModule>
+
+       ErrorLog /var/log/httpd/blazorapp-error.log
+       CustomLog /var/log/httpd/blazorapp-access.log common
+   </VirtualHost>
+   ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
    ```
    <VirtualHost *:80>
        ServerName www.example.com
@@ -525,6 +580,8 @@ To deploy a Blazor WebAssembly app to CentOS 7 or later:
        CustomLog /var/log/httpd/blazorapp-access.log common
    </VirtualHost>
    ```
+
+:::moniker-end
 
 1. Place the Apache configuration file into the `/etc/httpd/conf.d/` directory, which is the default Apache configuration directory in CentOS 7.
 
@@ -788,10 +845,17 @@ Blazor performs Intermediate Language (IL) linking on each Release build to remo
 
 ## Change the file name extension of DLL files
 
+*This section applies to ASP.NET Core 6.x and 7.x. In ASP.NET Core 8.0 or later, .NET assemblies are deployed as WebAssembly files (`.wasm`) using the Webcil file format. In ASP.NET Core 8.0 or later, this section only applies if the Webcil file format has been disabled in the app's project file.*
+
 If a firewall, anti-virus program, or network security appliance is blocking the transmission of the app's dynamic-link library (DLL) files (`.dll`), you can follow the guidance in this section to change the file name extensions of the app's published DLL files.
 
 > [!NOTE]
-> Changing the file name extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions. For a more robust approach in environments that block the download and execution of DLL files, see <xref:blazor/host-and-deploy/webassembly-deployment-layout>.
+> Changing the file name extensions of the app's DLL files might not resolve the problem because many security systems scan the content of the app's files, not merely check file extensions.
+>
+> For a more robust approach in environments that block the download and execution of DLL files, take ***either*** of the following approaches:
+>
+> * Use ASP.NET Core 8.0 or later, which packages .NET assemblies as WebAssembly files (`.wasm`) and uses the Webcil file format.
+> * In ASP.NET Core 6.0 or later, use a [custom deployment layout](xref:blazor/host-and-deploy/webassembly-deployment-layout).
 >
 > Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
 
