@@ -19,7 +19,7 @@ uid: fundamentals/servers/kestrel/endpoints
 
 Endpoints in ASP.NET Core Kestrel provide the infrastructure for listening to incoming requests and routing them to the appropriate middleware. An endpoint in Kestrel is defined by a combination of an address and a protocol.
 
-* The address specifies the network interface and port on which the server listens for incoming requests. This can be a specific IP address, such as localhost or a public IP, along with a port number.
+* The address specifies the network interface and port on which the server listens for incoming requests. This can be a specific IP address with or without a port number. If the port isn't specified, a default port is used, typically 80 for HTTP or 443 for HTTPS. The address can also be a host name, such as `localhost`, which resolves to one or more IP addresses.
 * The protocol defines the communication standard that is used between the client and server, such as HTTP or HTTPS, or the HTTP version. Endpoints can be configured to support HTTP or HTTPS, depending on the environment (development or production) and the requirements of the application.
 
 ## Default bindings
