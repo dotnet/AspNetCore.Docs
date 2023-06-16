@@ -324,7 +324,10 @@ using System.Runtime.InteropServices.JavaScript;
 Load the module in `Program.cs` before <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost.RunAsync%2A?displayProperty=nameWithType> is called:
 
 ```csharp
-await JSHost.ImportAsync("Interop", "../js/interop.js");
+if (OperatingSystem.IsBrowser())
+{
+    await JSHost.ImportAsync("Interop", "../js/interop.js");
+}
 ```
 
 `Pages/CallJavaScript2.razor`:
@@ -343,12 +346,9 @@ await JSHost.ImportAsync("Interop", "../js/interop.js");
 @code {
     private string? message;
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override void OnInitialized()
     {
-        if (firstRender)
-        {
-            message = Interop.GetWelcomeMessage();
-        }
+        message = Interop.GetWelcomeMessage();
     }
 }
 ```
@@ -369,18 +369,12 @@ await JSHost.ImportAsync("Interop", "../js/interop.js");
 </p>
 
 @code {
-    protected override void OnAfterRender(bool firstRender)
+    protected override void OnInitialized()
     {
-        if (firstRender)
-        {
-            Interop.SetWelcomeMessage();
-        }
+        Interop.SetWelcomeMessage();
     }
 }
 ```
-
-> [!IMPORTANT]
-> In this section's example, JS interop is used to mutate a DOM element *purely for demonstration purposes* after the component is rendered in [`OnAfterRender`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). Typically, you should only mutate the DOM with JS when the object doesn't interact with Blazor. The approach shown in this section is similar to cases where a third-party JS library is used in a Razor component, where the component interacts with the JS library via JS interop, the third-party JS library interacts with part of the DOM, and Blazor isn't involved directly with the DOM updates to that part of the DOM. For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
 
 ## Additional resources
 
