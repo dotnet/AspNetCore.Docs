@@ -17,12 +17,12 @@ The following table provides an overview of various identity management solution
 
 |Name  |Type | License Type  |Website  |Docs  |
 |---------|-----|--------|---------|---------|
-|**ASP.NET Core Identity**| Self host |[OSS (MIT)](https://github.com/dotnet/aspnetcore/blob/main/LICENSE.txt)|[https://dotnet.microsoft.com/](https://dotnet.microsoft.com/apps/aspnet)|[Secure a web app with ASP.NET Core Identity](https://learn.microsoft.com/en-us/training/modules/secure-aspnet-core-identity/)|
+|**ASP.NET Core Identity**| Self host |[OSS (MIT)](https://github.com/dotnet/aspnetcore/blob/main/LICENSE.txt)|[https://dotnet.microsoft.com/](https://dotnet.microsoft.com/apps/aspnet)|[Secure a web app with ASP.NET Core Identity](/training/modules/secure-aspnet-core-identity/)|
 |**Auth0**|Managed|[Commercial](https://auth0.com/pricing)|[https://auth0.com/](https://auth0.com/)|[Get started](https://auth0.com/docs/get-started)|
 |**Duende IdentityServer**|Self host|[Commercial](https://duendesoftware.com/products/identityserver#pricing)|[https://duendesoftware.com/](https://duendesoftware.com/products/identityserver)|[ASP.NET Identity integration](https://docs.duendesoftware.com/identityserver/v6/aspnet_identity/)|
 |**Microsoft Azure AD**|Managed|[Commercial](https://azure.microsoft.com/pricing/details/active-directory/)|[https://azure.microsoft.com/services/active-directory/](https://azure.microsoft.com/services/active-directory/)|[Azure AD documentation](https://docs.microsoft.com/azure/active-directory/)|
-|**OpenIddict**|Self host|[OSS (Apache 2.0)](https://github.com/openiddict/openiddict-core/blob/main/LICENSE.txt)|[https://www.openiddict.com/](https://www.openiddict.com/)|[ASP.NET Core integration](https://documentation.openiddict.com/integrations/aspnetcore/)|
-|**Keycloak**|Container|[OSS (Apache 2.0)](https://github.com/keycloak/keycloak/blob/master/LICENSE.txt)|[https://www.keycloak.org/](https://www.keycloak.org/)|[ASP.NET Core Adapter documentation](https://www.keycloak.org/docs/latest/securing_apps/#asp-net-core-adapter)|
+|**OpenIddict**|Self host|[OSS (Apache 2.0)](https://github.com/openiddict/openiddict-core/blob/dev/LICENSE.md)|[https://www.openiddict.com/](https://www.openiddict.com/)|[OpenIddict Documentation](https://documentation.openiddict.com/)|
+|**Keycloak**|Container|[OSS (Apache 2.0)](https://github.com/keycloak/keycloak/blob/master/LICENSE.txt)|[https://www.keycloak.org/](https://www.keycloak.org/)|[Keycloak client adapters documentation](https://www.keycloak.org/docs/latest/securing_apps/#client-adapters)|
 |**Okta**|Managed|[Commercial](https://www.okta.com/pricing/)|[https://www.okta.com/](https://www.okta.com/)|[Okta for ASP.NET Core](https://developer.okta.com/code/dotnet/aspnetcore/)|
 
 Is there a solution that should be added to this list? Do you have a correction, suggestion, or feedback? We welcome your contributions. Learn [how to contribute](https://github.com/dotnet/aspnetcore/blob/main/CONTRIBUTING.md).
