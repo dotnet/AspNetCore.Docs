@@ -206,6 +206,78 @@ The new analyzers shown in the following table are available in ASP.NET Core 8.0
 | [ASP0024](xref:diagnostics/asp0024) | Non-breaking | Route handler has multiple parameters with the `[FromBody]` attribute |
 | [ASP0025](xref:diagnostics/asp0025) | Non-breaking | Use AddAuthorizationBuilder |
 
+### IAuthorizationRequirementData
+
+Prior to this preview, adding a parameterized authorization policy to an endpoint required implementing an:
+
+* `AuthorizeAttribute` for each policy.
+* `AuthorizationPolicyProvider` to process a custom policy from a string-based contract.
+* `AuthorizationRequirement` for the policy.
+* `AuthorizationHandler` for each requirement.
+
+For example, consider the following sample written for ASP.NET Core 7.0:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/OldStyleAuthRequirements/Program.cs" highlight="9":::
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/OldStyleAuthRequirements/Controllers/GreetingsController.cs" :::
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/OldStyleAuthRequirements/Authorization/MinimumAgeAuthorizationHandler.cs" highlight="7,19":::
+
+The complete sample is [here](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/OldStyleAuthRequirements) in the [AspNetCore.Docs.Samples](https://github.com/dotnet/AspNetCore.Docs.Samples) repository.
+
+ASP.NET Core 8 introduces the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface. The `IAuthorizationRequirementData` interface allows the attribute definition to specify the requirements associated with the authorization policy. Using `IAuthorizationRequirementData`, the preceding custom authorization policy code can be written with fewer lines of code. The updated `Program.cs` file:
+
+```diff
+  using AuthRequirementsData.Authorization;
+  using Microsoft.AspNetCore.Authorization;
+  
+  var builder = WebApplication.CreateBuilder();
+  
+  builder.Services.AddAuthentication().AddJwtBearer();
+  builder.Services.AddAuthorization();
+  builder.Services.AddControllers();
+- builder.Services.AddSingleton<IAuthorizationPolicyProvider, MinimumAgePolicyProvider>();
+  builder.Services.AddSingleton<IAuthorizationHandler, MinimumAgeAuthorizationHandler>();
+  
+  var app = builder.Build();
+  
+  app.MapControllers();
+  
+  app.Run();
+```
+
+The updated `MinimumAgeAuthorizationHandler`:
+
+```diff
+using Microsoft.AspNetCore.Authorization;
+using System.Globalization;
+using System.Security.Claims;
+
+namespace AuthRequirementsData.Authorization;
+
+- class MinimumAgeAuthorizationHandler : AuthorizationHandler<MinimumAgeRequirement>
++ class MinimumAgeAuthorizationHandler : AuthorizationHandler<MinimumAgeAuthorizeAttribute>
+{
+    private readonly ILogger<MinimumAgeAuthorizationHandler> _logger;
+
+    public MinimumAgeAuthorizationHandler(ILogger<MinimumAgeAuthorizationHandler> logger)
+    {
+        _logger = logger;
+    }
+
+    // Check whether a given MinimumAgeRequirement is satisfied or not for a particular
+    // context
+    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context,
+-                                              MinimumAgeRequirement requirement)
++                                              MinimumAgeAuthorizeAttribute requirement)
+    {
+        // Remaining code omitted for brevity.
+```
+
+The complete updated sample can be found [here](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData).
+
+See <xref:security/authorization/iard> for a detailed examination of the new sample.
+
 <!--
 ## API controllers
 

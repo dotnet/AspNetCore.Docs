@@ -806,32 +806,6 @@ Objects that contain circular references can't be serialized on the client for e
 * .NET method calls.
 * JavaScript method calls from C# when the return type has circular references.
 
-## Size limits on JavaScript interop calls
-
-:::moniker range=">= aspnetcore-7.0"
-
-[!INCLUDE[](~/blazor/includes/js-interop/7.0/size-limits.md)]
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-[!INCLUDE[](~/blazor/includes/js-interop/6.0/size-limits.md)]
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-[!INCLUDE[](~/blazor/includes/js-interop/5.0/size-limits.md)]
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-[!INCLUDE[](~/blazor/includes/js-interop/3.1/size-limits.md)]
-
-:::moniker-end
-
 :::moniker range=">= aspnetcore-6.0"
 
 ## JavaScript libraries that render UI

@@ -246,6 +246,103 @@ services.AddServerSideBlazor()
 
 For information on Blazor Server's memory model, see <xref:blazor/host-and-deploy/server#blazor-server-memory-model>.
 
+## Maximum receive message size
+
+*This section only applies to Blazor Server apps and hosted Blazor WebAssembly solutions that implement SignalR.*
+
+The maximum incoming SignalR message size permitted for hub methods is limited by the <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> (default: 32 KB). SignalR messages larger than <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> throw an error. The framework doesn't impose a limit on the size of a SignalR message from the hub to a client.
+
+When SignalR logging isn't set to [Debug](xref:Microsoft.Extensions.Logging.LogLevel) or [Trace](xref:Microsoft.Extensions.Logging.LogLevel), a message size error only appears in the browser's developer tools console:
+
+> Error: Connection disconnected with error 'Error: Server returned an error on close: Connection closed with an error.'.
+
+When [SignalR server-side logging](xref:signalr/diagnostics#server-side-logging) is set to [Debug](xref:Microsoft.Extensions.Logging.LogLevel) or [Trace](xref:Microsoft.Extensions.Logging.LogLevel), server-side logging surfaces an <xref:System.IO.InvalidDataException> for a message size error.
+
+`appsettings.Development.json`:
+
+```json
+{
+  "DetailedErrors": true,
+  "Logging": {
+    "LogLevel": {
+      ...
+      "Microsoft.AspNetCore.SignalR": "Debug"
+    }
+  }
+}
+```
+
+Error:
+
+> System.IO.InvalidDataException: The maximum message size of 32768B was exceeded. The message size can be configured in AddHubOptions.
+
+:::moniker range=">= aspnetcore-6.0"
+
+One approach involves increasing the limit by setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> in `Program.cs`. The following example sets the maximum receive message size to 64 KB:
+
+```csharp
+builder.Services.AddServerSideBlazor()
+    .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
+```
+
+Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it increases the risk of [Denial of service (DoS) attacks](xref:blazor/security/server/threat-mitigation#denial-of-service-dos-attacks). Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
+
+A better option for reading large payloads is to send the content in smaller chunks and process the payload as a <xref:System.IO.Stream>. This can be used when reading large JavaScript (JS) interop JSON payloads or if JS interop data is available as raw bytes. For an example that demonstrates sending large binary payloads in Blazor Server that uses techniques similar to the [`InputFile` component](xref:blazor/file-uploads), see the [Binary Submit sample app](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/BinarySubmit) and the [Blazor `InputLargeTextArea` Component Sample](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/InputLargeTextArea).
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
+
+Forms that process large payloads over SignalR can also use streaming JS interop directly. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>. For a forms example that streams `<textarea>` data in a Blazor Server app, see <xref:blazor/forms-and-input-components#large-form-payloads-and-the-signalr-message-size-limit>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+Increase the limit by setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> in `Startup.ConfigureServices`:
+
+```csharp
+services.AddServerSideBlazor()
+    .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
+```
+
+Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it increases the risk of [Denial of service (DoS) attacks](xref:blazor/security/server/threat-mitigation#denial-of-service-dos-attacks). Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
+
+:::moniker-end
+
+Consider the following guidance when developing code that transfers a large amount of data:
+
+:::moniker range=">= aspnetcore-6.0"
+
+* Leverage the native streaming JS interop support to transfer data larger than the SignalR incoming message size limit:
+  * <xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-net-to-javascript>
+  * <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>
+  * Form payload example: <xref:blazor/forms-and-input-components#large-form-payloads-and-the-signalr-message-size-limit>
+* General tips:
+  * Don't allocate large objects in JS and C# code.
+  * Free consumed memory when the process is completed or cancelled.
+  * Enforce the following additional requirements for security purposes:
+    * Declare the maximum file or data size that can be passed.
+    * Declare the minimum upload rate from the client to the server.
+  * After the data is received by the server, the data can be:
+    * Temporarily stored in a memory buffer until all of the segments are collected.
+    * Consumed immediately. For example, the data can be stored immediately in a database or written to disk as each segment is received.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+* Slice the data into smaller pieces, and send the data segments sequentially until all of the data is received by the server.
+* Don't allocate large objects in JS and C# code.
+* Don't block the main UI thread for long periods when sending or receiving data.
+* Free consumed memory when the process is completed or cancelled.
+* Enforce the following additional requirements for security purposes:
+  * Declare the maximum file or data size that can be passed.
+  * Declare the minimum upload rate from the client to the server.
+* After the data is received by the server, the data can be:
+  * Temporarily stored in a memory buffer until all of the segments are collected.
+  * Consumed immediately. For example, the data can be stored immediately in a database or written to disk as each segment is received.
+
+:::moniker-end
+
 ## Blazor Hub endpoint route configuration (Blazor Server)
 
 In `Program.cs`, Blazor Server apps call <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> to map the Blazor <xref:Microsoft.AspNetCore.SignalR.Hub> to the app's default path. The Blazor Server script (`blazor.server.js`) automatically points to the endpoint created by <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>.
