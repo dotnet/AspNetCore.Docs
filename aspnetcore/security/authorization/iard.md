@@ -50,4 +50,3 @@ The sample can be tested with [`dotnet user-jwts`](xref:security/authentication/
 
 * `dotnet user-jwts create --claim http://schemas.xmlsoap.org/ws/2005/05/identity/claims/dateofbirth=1989-01-01`
 * `curl -i -H "Authorization: Bearer <token from dotnet user-jwts>" http://localhost:<port>/api/greetings/hello`
-
