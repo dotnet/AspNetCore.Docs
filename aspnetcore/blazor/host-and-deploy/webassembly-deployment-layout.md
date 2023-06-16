@@ -12,9 +12,19 @@ uid: blazor/host-and-deploy/webassembly-deployment-layout
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
+:::moniker range=">= aspnetcore-8.0"
+
+This article explains how to customize Blazor WebAssembly deployments when the [Webcil packaging format for .NET assemblies is disabled](xref:blazor/host-and-deploy/webassembly#webcil-packaging-format-for-net-assemblies).
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 This article explains how to enable Blazor WebAssembly deployments in environments that block the download and execution of dynamic-link library (DLL) files.
 
 Blazor WebAssembly apps require [dynamic-link libraries (DLLs)](/windows/win32/dlls/dynamic-link-libraries) to function, but some environments block clients from downloading and executing DLLs. In a subset of these environments, [changing the file name extension of DLL files (`.dll`)](xref:blazor/host-and-deploy/webassembly#change-the-file-name-extension-of-dll-files) is sufficient to bypass security restrictions, but security products are often able to scan the content of files traversing the network and block or quarantine DLL files. This article describes one approach for enabling Blazor WebAssembly apps in these environments, where a multipart bundle file is created from the app's DLLs so that the DLLs can be downloaded together bypassing security restrictions.
+
+:::moniker-end
 
 A hosted Blazor WebAssembly app can customize its published files and packaging of app DLLs using the following features:
 
@@ -23,11 +33,15 @@ A hosted Blazor WebAssembly app can customize its published files and packaging 
 
 The approach demonstrated in this article serves as a starting point for developers to devise their own strategies and custom loading processes.
 
+:::moniker range="< aspnetcore-8.0"
+
 > [!WARNING]
 > Any approach taken to circumvent a security restriction must be carefully considered for its security implications. We recommend exploring the subject further with your organization's network security professionals before adopting the approach in this article. Alternatives to consider include:
 >
 > * Enable security appliances and security software to permit network clients to download and use the exact files required by a Blazor WebAssembly app.
 > * Switch from the Blazor WebAssembly hosting model to the [Blazor Server hosting model](xref:blazor/hosting-models#blazor-server), which maintains all of the app's C# code on the server and doesn't require downloading DLLs to clients. Blazor Server also offers the advantage of keeping C# code private without requiring the use of web API apps for C# code privacy with Blazor WebAssembly apps.
+
+:::moniker-end
 
 ## Experimental NuGet package and sample app
 
