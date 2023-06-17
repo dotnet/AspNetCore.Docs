@@ -22,6 +22,12 @@ Endpoints in ASP.NET Core Kestrel provide the infrastructure for listening to in
 * The address specifies the network interface and port on which the server listens for incoming requests.
 * The protocol defines the communication standard between the client and server, such as HTTP or HTTPS, and the HTTP version.
 
+Kestrel offers several options to configure endpoints:
+
+* [Configure endpoints with URLs](#configure-endpoints-with-urls)
+* [Configure endpoints in appsettings.json](#configure-endpoints-in-appsettingsjson)
+* [Configure endpoints in code](#configure-endpoints-in-code)
+
 ## Default bindings
 
 ASP.NET Core projects are configured to bind to a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300. This default configuration is specified in the generated `Properties/launchSettings.json` file and can be overridden. The `launchSetting.json` file is only used in local development.
