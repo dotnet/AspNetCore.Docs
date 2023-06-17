@@ -854,7 +854,7 @@ If a firewall, anti-virus program, or network security appliance is blocking the
 >
 > For a more robust approach in environments that block the download and execution of DLL files, take ***either*** of the following approaches:
 >
-> * Use ASP.NET Core 8.0 or later, which packages .NET assemblies as WebAssembly files (`.wasm`) and uses the Webcil file format.
+> * Use ASP.NET Core 8.0 or later, which by default packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in an 8.0 or later version of this article.
 > * In ASP.NET Core 6.0 or later, use a [custom deployment layout](xref:blazor/host-and-deploy/webassembly-deployment-layout).
 >
 > Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).

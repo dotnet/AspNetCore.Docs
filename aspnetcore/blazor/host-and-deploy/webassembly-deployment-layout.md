@@ -14,7 +14,7 @@ uid: blazor/host-and-deploy/webassembly-deployment-layout
 
 :::moniker range=">= aspnetcore-8.0"
 
-This article explains how to customize Blazor WebAssembly deployments when the [Webcil packaging format for .NET assemblies is disabled](xref:blazor/host-and-deploy/webassembly#webcil-packaging-format-for-net-assemblies).
+This article explains how to customize Blazor WebAssembly deployments when the [Webcil packaging format for .NET assemblies is disabled](xref:blazor/host-and-deploy/webassembly#webcil-packaging-format-for-net-assemblies). The app's DLLs are packaged into a multipart bundle file and downloaded together.
 
 :::moniker-end
 
