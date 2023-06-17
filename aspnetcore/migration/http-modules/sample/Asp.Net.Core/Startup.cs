@@ -75,7 +75,7 @@ namespace Asp.Net.Core
 
             // Create branch to the MyHandlerMiddleware. 
             // All requests ending in .report will follow this branch.
-            app.MapWhen(
+            app.UseWhen(
                 context => context.Request.Path.ToString().EndsWith(".report"),
                 appBranch => {
                     // ... optionally add more middleware to this branch
