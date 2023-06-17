@@ -24,7 +24,9 @@ Endpoints in ASP.NET Core Kestrel provide the infrastructure for listening to in
 
 ## Default bindings
 
-ASP.NET Core projects are configured to bind to a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300. This default configuration is specified in the generated `Properties/launchSettings.json` file and can be overridden. If no ports are specified, Kestrel binds to `http://localhost:5000`.
+ASP.NET Core projects are configured to bind to a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300. This default configuration is specified in the generated `Properties/launchSettings.json` file and can be overridden. The `launchSetting.json` file is only used in local development.
+
+If there is no endpoint configuration then Kestrel binds to `http://localhost:5000`.
 
 ## Configure endpoints with URLs
 
