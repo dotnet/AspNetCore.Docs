@@ -267,6 +267,7 @@ For more information, see <xref:security/authentication/certauth>.
 
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen%2A>
 * <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket%2A>
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenNamedPipe%2A>
 
 When both the `Listen` and [UseUrls](#configure-endpoints-with-urls) APIs are used simultaneously, the `Listen` endpoints override the `UseUrls` endpoints.
 
