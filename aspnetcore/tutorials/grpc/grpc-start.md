@@ -289,7 +289,7 @@ For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
 Update the `appsettings.Development.json` file by adding the following highlighted lines:
 
-[!code-json[](~/tutorials/grpc/grpc-start/sample8/GrpcGreeter/appsettings.Development.json?highlight=6-7)])
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample8/GrpcGreeter/appsettings.Development.json?highlight=6-7)])
 
 The client sends a greeting to the service with a message containing its name, *GreeterClient*. The service sends the message "Hello GreeterClient" as a response. The "Hello GreeterClient" response is displayed in the command prompt:
 
