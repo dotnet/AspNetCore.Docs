@@ -367,20 +367,26 @@ For information about dynamic port binding, see [Port 0](#port-0) earlier in thi
 
 ## Configure HTTPS
 
-Kestrel supports securing endpoints with HTTPS. The way you configure HTTPS depends on how endpoints are defined.
+Kestrel supports securing endpoints with HTTPS. Data sent over HTTPS is encrypted using Transport Layer Security (TLS) to increase the security of data transferred between the client and server.
 
-If [URL prefixes](#configure-endpoints-with-urls) are used to define endpoints, HTTPS can be used only if a default certificate is provided in HTTPS endpoint configuration. For example, use <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> configuration or a configuration file as shown [earlier in this article](#configure-certificates-in-appsettingsjson).
+HTTPS requires a TLS certificate. The TLS certificate is stored on the server and Kestrel is configured to use it. In a local development environment, an app can use the [ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl). The development certificate isn't installed in non-development environments, and an app deployed into staging or production environments must be configured to use another certificate.
 
-For more information about configuring HTTPS, such as using configuration or code to specify SSL certificates and SSL/TLS protocols, see the following sections of this article:
+The way you configure HTTPS and the TLS certificate depends on how endpoints are defined:
 
-* [Configure certificates in appsettings.json](#configure-certificates-in-appsettingsjson)
-* [Configure client certificates in appsettings.json](#configure-client-certificates-in-appsettingsjson)
+* If [URL prefixes](#configure-endpoints-with-urls) are used to define endpoints, HTTPS can be used only if a default certificate is provided in HTTPS endpoint configuration. For example, use <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> configuration or a configuration file as shown [earlier in this article](#configure-certificates-in-appsettingsjson).
+
+* If configuration is used to define endpoints, see the sections on configuring certificates by using configuration:
+  * [Configure certificates in appsettings.json](#configure-certificates-in-appsettingsjson)
+  * [Configure client certificates in appsettings.json](#configure-client-certificates-in-appsettingsjson)
+* If code is used to define endpoints, see the sections on configuring certificates in code:
+  * [Configure certificates in code](#configure-certificates-in-code)
+  * [Configure client certificates in code](#configure-client-certificates-in-code)
+
+See also:
+
 * [Certificate sources](#certificate-sources)
 * [Configure HTTPS defaults in code](#configure-https-defaults-in-code)
-* [Configure certificates in code](#configure-certificates-in-code)
-* [Configure client certificates in code](#configure-client-certificates-in-code)
 * [Configure endpoints using Server Name Indication (SNI)](#configure-endpoints-using-server-name-indication)
-* [Connection middleware](#connection-middleware)
 * [Configure endpoint protocols](#configure-endpoint-protocols)
 
 To create a development certificate, use the [dev-certs tool](/dotnet/core/tools/dotnet-dev-certs). The tool is automatically installed when the [.NET SDK](/dotnet/core/sdk) is installed.
