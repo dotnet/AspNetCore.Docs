@@ -266,6 +266,10 @@ The Greeter client calls the asynchronous `SayHello` method. The result of the `
 
 ## Test the gRPC client with the gRPC Greeter service
 
+Update the `appsettings.Development.json` file by adding the following highlighted lines:
+
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample8/GrpcGreeter/appsettings.Development.json?highlight=6-7)]
+
 # [Visual Studio](#tab/visual-studio)
 
 * In the Greeter service, press `Ctrl+F5` to start the server without the debugger.
@@ -286,10 +290,6 @@ For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 -->
 
 ---
-
-Update the `appsettings.Development.json` file by adding the following highlighted lines:
-
-[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample8/GrpcGreeter/appsettings.Development.json?highlight=6-7)]
 
 The client sends a greeting to the service with a message containing its name, *GreeterClient*. The service sends the message "Hello GreeterClient" as a response. The "Hello GreeterClient" response is displayed in the command prompt:
 
