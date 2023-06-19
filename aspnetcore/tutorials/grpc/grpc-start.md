@@ -103,7 +103,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 * `Protos/greet.proto`: defines the `Greeter` gRPC and is used to generate the gRPC server assets. For more information, see [Introduction to gRPC](xref:grpc/index).
 * `Services` folder: Contains the implementation of the `Greeter` service.
-* `appSettings.json`: Contains configuration data such as the protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>. [Example]([!code-json[](~/tutorials/grpc/grpc-start/sample8/GrpcGreeter/appsettings.Development.json?highlight=6-7)])
+* `appSettings.json`: Contains configuration data such as the protocol used by Kestrel. For more information, see <xref:fundamentals/configuration/index>.
 * `Program.cs`, which contains:
   * The entry point for the gRPC service. For more information, see <xref:fundamentals/host/generic-host>.
   * Code that configures app behavior. For more information, see [App startup](xref:fundamentals/startup).
@@ -287,6 +287,10 @@ For Visual Studio for Mac, see the .NET 7 version of this tutorial.
 
 ---
 
+Update the `appsettings.Development.json` file by adding the following highlighted lines:
+
+[!code-json[](~/tutorials/grpc/grpc-start/sample8/GrpcGreeter/appsettings.Development.json?highlight=6-7)])
+
 The client sends a greeting to the service with a message containing its name, *GreeterClient*. The service sends the message "Hello GreeterClient" as a response. The "Hello GreeterClient" response is displayed in the command prompt:
 
 ```console
@@ -314,13 +318,6 @@ info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
 info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
       Request finished in 78.32260000000001ms 200 application/grpc
 ```
-
-Update the `appsettings.Development.json` file by adding the following lines:
-
- ```json
- "Microsoft.AspNetCore.Hosting": "Information",
- "Microsoft.AspNetCore.Routing.EndpointMiddleware": "Information"
- ```
 
 > [!NOTE]
 > The code in this article requires the ASP.NET Core HTTPS development certificate to secure the gRPC service. If the .NET gRPC client fails with the message `The remote certificate is invalid according to the validation procedure.` or `The SSL connection could not be established.`, the development certificate isn't trusted. To fix this issue, see [Call a gRPC service with an untrusted/invalid certificate](xref:grpc/troubleshoot#call-a-grpc-service-with-an-untrustedinvalid-certificate).
