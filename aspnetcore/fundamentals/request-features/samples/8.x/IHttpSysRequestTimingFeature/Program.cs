@@ -1,4 +1,4 @@
-#define WithTryGetTimestamp // WithTimestamps, WithTryGetTimestamp, WithTryGetElapsedTime
+#define WithTryGetElapsedTime // WithTimestamps, WithTryGetTimestamp, WithTryGetElapsedTime
 #if WithTimestamps
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.HttpSys;
