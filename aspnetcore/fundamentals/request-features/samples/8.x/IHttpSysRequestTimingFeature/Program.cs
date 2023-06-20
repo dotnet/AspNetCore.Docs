@@ -1,8 +1,9 @@
 #define WithTryGetElapsedTime // WithTimestamps, WithTryGetTimestamp, WithTryGetElapsedTime
 #if WithTimestamps
+// <snippet_WithTimestamps>
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.HttpSys;
-// <snippet_WithTimestamps>
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.UseHttpSys();
