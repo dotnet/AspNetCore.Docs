@@ -89,7 +89,7 @@ In .NET 8, native AOT is supported by the following ASP.NET Core app types:
 
 ## The API template
 
-The **ASP.NET Core API** template has an option to enable AOT, using the .NET 8.0 SDK or later:
+The **ASP.NET Core API** template has an option to enable AOT:
 
 * Visual Studio 2022 has an **Enable native AOT publish option**.
 * CLI uses the `dotnet new api` command and the `-aot` option, as in the following example:
