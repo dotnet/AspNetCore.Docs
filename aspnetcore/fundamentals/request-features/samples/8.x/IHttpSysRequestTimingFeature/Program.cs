@@ -1,9 +1,7 @@
 #define WithTimestamps // WithTimestamps, WithTryGetTimestamp, WithTryGetElapsedTime
-
+#if WithTimestamps
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.HttpSys;
-
-#if WithTimestamps
 // <snippet_WithTimestamps>
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,7 +33,11 @@ app.MapGet("/", () => Results.Ok());
 
 app.Run();
 // </snippet_WithTimestamps>
+
 #elif WithTryGetTimestamp
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Server.HttpSys;
+
 // <snippet_WithTryGetTimestamp>
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,7 +70,11 @@ app.MapGet("/", () => Results.Ok());
 
 app.Run();
 // </snippet_WithTryGetTimestamp>
+
 #elif WithTryGetElapsedTime
+
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Server.HttpSys;
 // <snippet_WithTryGetElapsedTime>
 var builder = WebApplication.CreateBuilder(args);
 

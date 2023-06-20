@@ -267,6 +267,14 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
 For apps hosted by HTTP.sys that interact with requests from the Internet or a corporate network, additional configuration might be required when hosting behind proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
 
+## Get detailed timing information with IHttpSysRequestTimingFeature
+
+The <xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature> provides detailed timing information for requests. The feature is available on the <xref:Microsoft.AspNetCore.Http.HttpContext.Features> collection:
+
+:::code language="csharp" source="~/fundamentals.request-features.samples.8.x.IHttpSysRequestTimingFeature.Program.cs" id="snippet_WithTimestamps":::
+
+
+
 ## Advanced HTTP/2 features to support gRPC
 
 Additional HTTP/2 features in HTTP.sys support gRPC, including support for response trailers and sending reset frames.
