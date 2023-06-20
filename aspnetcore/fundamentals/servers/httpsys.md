@@ -271,7 +271,7 @@ For apps hosted by HTTP.sys that interact with requests from the Internet or a c
 <!--
 <xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature> 
 -->
-The [IHttpSysRequestTimingFeature](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/IHttpSysRequestTimingFeature.cs,3c5dc86dc837b1f4) provides detailed timing information for requests. The feature is available on the <xref:Microsoft.AspNetCore.Http.HttpContext.Features> collection:
+The [IHttpSysRequestTimingFeature](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/IHttpSysRequestTimingFeature.cs,3c5dc86dc837b1f4) provides detailed timing information for requests:
 
 :::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTimestamps":::
 
