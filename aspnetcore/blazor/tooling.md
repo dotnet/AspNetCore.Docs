@@ -468,7 +468,7 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 :::moniker range=">= aspnetcore-8.0"
 
-1. At this time, Visual Studio for Mac can't create a Blazor Web App in its UI. Open a command shell (Terminal application) and execute the following command to create a Blazor Web App:
+1. For a Blazor Web Apps experience (*recommended*), Visual Studio for Mac can't create a Blazor Web App in its UI. Open a command shell (Terminal application), change the directory to the location where you want to create the app, and execute the following command:
 
   ```dotnetcli
   dotnet new blazor -o BlazorApp
@@ -477,7 +477,7 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
   After the app is created, open the project file (`BlazorApp.csproj`) with Visual Studio for Mac.
   
   > [!NOTE]
-  > Visual Studio for Mac will be able to create Blazor Web Apps in an upcoming preview release of .NET 8.0.
+  > Visual Studio for Mac will be able to create Blazor Web Apps in an upcoming release.
 
 <!-- HOLD
 
