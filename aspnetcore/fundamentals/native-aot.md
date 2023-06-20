@@ -4,8 +4,8 @@ author: mitchdenny
 description: Learn about ASP.NET Core support for native AOT
 monikerRange: '>= aspnetcore-8.0'
 ms.author: midenn
-ms.custom: mvc
-ms.date: 05/25/2023
+ms.custom: mvc, engagement-fy23
+ms.date: 06/19/2023
 uid: fundamentals/native-aot
 ---
 # ASP.NET Core support for native AOT
@@ -89,7 +89,16 @@ In .NET 8, native AOT is supported by the following ASP.NET Core app types:
 
 ## The API template
 
-The **ASP.NET Core API** template in Visual Studio 2022 has an **Enable native AOT publish** option. The equivalent template and option in the CLI is the `dotnet new api` command and the `--aot` option. This template is intended to produce a project more directly focused on cloud-native, API-first scenarios. The template differs from the **Web API** project template in the following ways:
+The **ASP.NET Core API** template has an option to enable AOT, using the .NET 8.0 SDK or later:
+
+* Visual Studio 2022 has an **Enable native AOT publish option**.
+* CLI uses the `dotnet new api` command and the `-aot` option, as in the following example:
+
+  ```.NET CLI
+  dotnet new api -aot -o MyFirstAotWebApi
+  ```
+
+This template is intended to produce a project more directly focused on cloud-native, API-first scenarios. The template differs from the **Web API** project template in the following ways:
 
 * Uses minimal APIs only, as MVC isn't yet compatible with native AOT.
 * Uses the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder> API to ensure only the essential features are enabled by default, minimizing the app's deployed size.
