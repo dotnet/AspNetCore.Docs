@@ -18,7 +18,7 @@ This article describes the files and folders that make up a Blazor app generated
 
 ## Blazor Web App
 
-Blazor Server project template: `blazor`
+Blazor Web App project template: `blazor`
 
 Project structure:
 
