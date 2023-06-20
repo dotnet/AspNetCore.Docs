@@ -93,8 +93,9 @@ Note that because signing in typically depends on a specific database, not all a
 * Both apps are able to sign the user out.
 
 Details on how to configure sharing auth cookies between ASP.NET and ASP.NET Core apps are available in [cookie sharing documentation](xref:security/cookie-sharing). The following samples in the [System.Web adapters](https://github.com/dotnet/systemweb-adapters) GitHub repo demonstrates remote app authentication with shared cookie configuration enabling both apps to sign users in and out :
-  *([ASP.NET app](https://github.com/dotnet/systemweb-adapters/tree/main/samples/MvcApp)
-  *  ASP.NET Core app](https://github.com/dotnet/systemweb-adapters/tree/main/samples/MvcCoreApp)
+
+* [ASP.NET app](https://github.com/dotnet/systemweb-adapters/tree/main/samples/RemoteAuth/Identity/MvcApp)
+* [ASP.NET Core app](https://github.com/dotnet/systemweb-adapters/tree/main/samples/RemoteAuth/Identity/MvcCoreApp)
 
 Sharing authentication is a good option if both the following are true:
 

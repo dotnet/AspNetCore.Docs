@@ -300,7 +300,7 @@ Update the `appsettings.Development.json` file by adding the following lines:
 
 ### Next steps
 
-* View or download [the completed sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample6) ([how to download](xref:index#how-to-download-a-sample)).
+* View or download [the completed sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/grpc/grpc-start/sample/sample6) ([how to download](xref:index#how-to-download-a-sample)).
 * <xref:grpc/index>
 * <xref:grpc/basics>
 * <xref:grpc/migration>

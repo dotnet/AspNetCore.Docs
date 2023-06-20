@@ -118,7 +118,7 @@ The recommended approach to create a new <xref:Microsoft.EntityFrameworkCore.DbC
 In the preceding factory:
 
 * <xref:Microsoft.Extensions.DependencyInjection.ActivatorUtilities.CreateInstance%2A?displayProperty=nameWithType> satisfies any dependencies via the service provider.
-* `IDbContextFactory` is available in EF Core ASP.NET Core 5.0 or later, so the interface is [implemented in the sample app for ASP.NET Core 3.x](https://github.com/dotnet/blazor-samples/3.1/BlazorServerEFCoreSample/Data/IDbContextFactory.cs).
+* `IDbContextFactory` is available in EF Core ASP.NET Core 5.0 or later, so the interface is [implemented in the sample app for ASP.NET Core 3.x](https://github.com/dotnet/blazor-samples/blob/main/3.1/BlazorServerEFCoreSample/Data/IDbContextFactory.cs).
 
 :::moniker-end
 
@@ -150,7 +150,7 @@ The following example configures [SQLite](https://www.sqlite.org/index.html) and
 
 The factory is injected into components and used to create new `DbContext` instances.
 
-In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blob/main/blazor-samples/7.0/BlazorServerEFCoreSample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
+In `Pages/Index.razor` of the [sample app](https://github.com/dotnet/blazor-samples/blob/main/7.0/BlazorServerEFCoreSample/Pages/Index.razor), `IDbContextFactory<ContactContext>` is injected into the component:
 
 ```razor
 @inject IDbContextFactory<ContactContext> DbFactory
