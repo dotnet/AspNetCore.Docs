@@ -14,6 +14,44 @@ uid: blazor/project-structure
 
 This article describes the files and folders that make up a Blazor app generated from a Blazor project template.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Blazor Web App
+
+Blazor Server project template: `blazor`
+
+Project structure:
+
+* `Models` folder: Contains the weather data `WeatherForecast` class (`WeatherForecast.cs`) for the app's `ShowData` component.
+
+* `Pages` folder: Contains the routable components/pages (`.razor`) that make up the Blazor app. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following:
+  * `ShowData` component (`ShowData.razor`): Implements the *Weather forecast* page.
+  * `Index` component (`Index.razor`): Implements the *Home* page.
+
+* `Properties/launchSettings.json`: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson).
+
+* `Shared` folder: Contains the following shared components and stylesheets:
+  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
+  * `MainLayout.razor.css`: Stylesheet for the app's main layout.
+  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component indicates to the user which component is currently displayed.
+  * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
+
+* `wwwroot`: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets.
+
+* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
+
+* `App.razor`: The root component of the app that sets up routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. For client-side interactive components, the <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
+
+* `appsettings.json` and environmental app settings files: Provide [configuration settings](xref:blazor/fundamentals/configuration) for the app.
+
+* `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](xref:fundamentals/host/generic-host) and contains the app's startup logic, including service registrations and request processing pipeline configuration:
+  * Specifies the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. Services are added by calling `AddRazorComponents`.
+  * Configures the app's request handling pipeline: `MapRazorComponents` discovers the available components and specifies the root component for the app, which by default is the `App` component (`App.razor`).
+
+Additional files and folders may appear in an app produced from a Blazor Web App project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
+
+:::moniker-end
+
 ## Blazor Server
 
 :::moniker range=">= aspnetcore-7.0"
@@ -47,7 +85,7 @@ Project structure:
   * `MainLayout.razor.css`: Stylesheet for the app's main layout.
   * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
-  * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
+  * `SurveyPrompt` component (`SurveyPrompt.razor`) (*ASP.NET Core 7.0 or earlier*): Blazor survey component.
 
 * `wwwroot`: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets.
 
@@ -414,6 +452,12 @@ The project structure of the client-side app in a hosted Blazor Webassembly solu
 :::moniker-end
 
 ## Location of `<head>` content
+
+:::moniker range=">= aspnetcore-8.0"
+
+In Blazor Web apps, `<head>` content is located in the `App.razor` file.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
 
