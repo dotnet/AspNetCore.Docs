@@ -464,21 +464,34 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 1. Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
 
-<!-- HOLD FOR 8.0 (and change the next moniker range for >=7.0 and <8.0)
+<!-- HOLD FOR 8.0 UPDATE TO USE VS UI -->
 
 :::moniker range=">= aspnetcore-8.0"
+
+1. At this time, Visual Studio for Mac can't create a Blazor Web App in its UI. Open a command shell (Terminal application) and execute the following command to create a Blazor Web App:
+
+  ```dotnetcli
+  dotnet new blazor -o BlazorApp
+  ```
+
+  After the app is created, open the project file (`BlazorApp.csproj`) with Visual Studio for Mac.
+  
+  > [!NOTE]
+  > Visual Studio for Mac will be able to create Blazor Web Apps in an upcoming preview release of .NET 8.0.
+
+<!-- HOLD
 
 1. In the sidebar, select **Web and Console** > **App**.
 
    For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** template.
 
+-->
+
    For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
 
 :::moniker-end
 
--->
-
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 1. In the sidebar, select **Web and Console** > **App**.
 
