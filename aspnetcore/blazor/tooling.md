@@ -21,7 +21,17 @@ This article describes tools for building Blazor apps on various platforms.
 
 1. Create a new project.
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+1. For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** template.
+
+   For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Next**.
+
+   For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 1. For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Next**.
 
@@ -37,9 +47,9 @@ This article describes tools for building Blazor apps on various platforms.
 
 1. Provide a **Project name** and confirm that the **Location** is correct. Select **Next**.
 
-1. In the **Additional information** dialog, select the **ASP.NET Core Hosted** checkbox for a hosted Blazor WebAssembly app. Select **Create**.
+1. For a *hosted* Blazor WebAssembly app, select the **ASP.NET Core Hosted** checkbox in the **Additional information** dialog.
 
-   For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
+1. Select **Create**.
 
 1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
@@ -68,42 +78,88 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
 1. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
 
-1. For a Blazor Server experience with demonstration code and [Bootstrap](https://getbootstrap.com/), execute the following command:
+1. For a Blazor Web App experience (*recommended*), execute the following command:
 
    ```dotnetcli
-   dotnet new blazorserver -o WebApplication1
+   dotnet new blazor -o BlazorApp
+   ```
+
+   For a Blazor Server experience with demonstration code and [Bootstrap](https://getbootstrap.com/), execute the following command:
+
+   ```dotnetcli
+   dotnet new blazorserver -o BlazorApp
    ```
 
    Alternatively, create an app without demonstration code and Bootstrap using the `blazorserver-empty` project template:
 
    ```dotnetcli
-   dotnet new blazorserver-empty -o WebApplication1
+   dotnet new blazorserver-empty -o BlazorApp
    ```
    
    For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
 
    ```dotnetcli
-   dotnet new blazorwasm -o WebApplication1
+   dotnet new blazorwasm -o BlazorApp
    ```
 
    Alternatively, create an app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
 
    ```dotnetcli
-   dotnet new blazorwasm-empty -o WebApplication1
+   dotnet new blazorwasm-empty -o BlazorApp
    ```
 
    For a hosted Blazor WebAssembly experience with demonstration code and Bootstrap, add the hosted option (`-ho`/`--hosted`) to the command:
 
    ```dotnetcli
-   dotnet new blazorwasm -o WebApplication1 -ho
+   dotnet new blazorwasm -o BlazorApp -ho
    ```
 
    Alternatively, create a hosted Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` template with the hosted option:
 
    ```dotnetcli
-   dotnet new blazorwasm-empty -o WebApplication1 -ho
+   dotnet new blazorwasm-empty -o BlazorApp -ho
+   ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+1. For a Blazor Server experience with demonstration code and [Bootstrap](https://getbootstrap.com/), execute the following command:
+
+   ```dotnetcli
+   dotnet new blazorserver -o BlazorApp
+   ```
+
+   Alternatively, create an app without demonstration code and Bootstrap using the `blazorserver-empty` project template:
+
+   ```dotnetcli
+   dotnet new blazorserver-empty -o BlazorApp
+   ```
+   
+   For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
+
+   ```dotnetcli
+   dotnet new blazorwasm -o BlazorApp
+   ```
+
+   Alternatively, create an app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
+
+   ```dotnetcli
+   dotnet new blazorwasm-empty -o BlazorApp
+   ```
+
+   For a hosted Blazor WebAssembly experience with demonstration code and Bootstrap, add the hosted option (`-ho`/`--hosted`) to the command:
+
+   ```dotnetcli
+   dotnet new blazorwasm -o BlazorApp -ho
+   ```
+
+   Alternatively, create a hosted Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` template with the hosted option:
+
+   ```dotnetcli
+   dotnet new blazorwasm-empty -o BlazorApp -ho
    ```
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
@@ -115,26 +171,26 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 1. For a Blazor WebAssembly experience, execute the following command:
 
    ```dotnetcli
-   dotnet new blazorwasm -o WebApplication1
+   dotnet new blazorwasm -o BlazorApp
    ```
 
    For a hosted Blazor WebAssembly experience, add the hosted option (`-ho` or `--hosted`) option to the command:
 
    ```dotnetcli
-   dotnet new blazorwasm -o WebApplication1 -ho
+   dotnet new blazorwasm -o BlazorApp -ho
    ```
 
    For a Blazor Server experience, execute the following command:
 
    ```dotnetcli
-   dotnet new blazorserver -o WebApplication1
+   dotnet new blazorserver -o BlazorApp
    ```
 
    For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
 :::moniker-end
 
-1. Open the `WebApplication1` folder in Visual Studio Code.
+1. Open the `BlazorApp` folder in Visual Studio Code.
 
 1. The IDE requests that you add assets to build and debug the project. Select **Yes**.
 
@@ -418,6 +474,22 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 1. Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
 
+<!-- HOLD FOR 8.0 (and change the next moniker range for >=7.0 and <8.0)
+
+:::moniker range=">= aspnetcore-8.0"
+
+1. In the sidebar, select **Web and Console** > **App**.
+
+   For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** template.
+
+   For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Continue**.
+
+   For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
+
+:::moniker-end
+
+-->
+
 :::moniker range=">= aspnetcore-7.0"
 
 1. In the sidebar, select **Web and Console** > **App**.
@@ -444,7 +516,7 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 1. For a hosted Blazor WebAssembly experience, select the **ASP.NET Core Hosted** checkbox.
 
-1. In the **Project name** field, name the app `WebApplication1`. Select **Create**.
+1. In the **Project name** field, name the app `BlazorApp`. Select **Create**.
 
 1. Select the **Start Without Debugging** command from the **Debug** menu to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
 
@@ -491,9 +563,17 @@ For more information, see the following resources in the Visual Studio documenta
 
 ## Blazor template options
 
-The Blazor framework provides templates for creating new apps for each of the two Blazor hosting models. The templates are used to create new Blazor projects and solutions regardless of the tooling that you select for Blazor development (Visual Studio, Visual Studio for Mac, Visual Studio Code, or the [.NET command-line interface (CLI)](/dotnet/core/tools/)):
+The Blazor framework provides templates for creating new apps. The templates are used to create new Blazor projects and solutions regardless of the tooling that you select for Blazor development (Visual Studio, Visual Studio for Mac, Visual Studio Code, or the [.NET command-line interface (CLI)](/dotnet/core/tools/)):
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+* Blazor Web App project template (*recommended*): `blazor`
+* Blazor Server project templates: `blazorserver`, `blazorserver-empty`
+* Blazor WebAssembly project templates: `blazorwasm`, `blazorwasm-empty`
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 * Blazor Server project templates: `blazorserver`, `blazorserver-empty`
 * Blazor WebAssembly project templates: `blazorwasm`, `blazorwasm-empty`
@@ -507,9 +587,29 @@ The Blazor framework provides templates for creating new apps for each of the tw
 
 :::moniker-end
 
-For more information on Blazor's hosting models, see <xref:blazor/hosting-models>. For more information on Blazor project templates, see <xref:blazor/project-structure>.
+For more information on Blazor project templates, see <xref:blazor/project-structure>.
 
 For more information on template options, see the following resources:
+
+:::moniker range=">= aspnetcore-8.0"
+
+<!-- HOLD FOR 8.0
+
+* [`blazor`](/dotnet/core/tools/dotnet-new-sdk-templates#blazor)
+
+-->
+
+* *.NET default templates for dotnet new* article in the .NET Core documentation:
+  * [`blazorserver`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorserver)
+  * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm)
+* Passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
+  * `dotnet new blazor -h`
+  * `dotnet new blazorserver -h`
+  * `dotnet new blazorwasm -h`
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 * *.NET default templates for dotnet new* article in the .NET Core documentation:
   * [`blazorserver`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorserver)
@@ -518,7 +618,13 @@ For more information on template options, see the following resources:
   * `dotnet new blazorserver -h`
   * `dotnet new blazorwasm -h`
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
 ## .NET WebAssembly build tools
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
 
