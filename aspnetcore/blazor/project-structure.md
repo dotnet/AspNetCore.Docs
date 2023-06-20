@@ -52,9 +52,13 @@ Additional files and folders may appear in an app produced from a Blazor Web App
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-8.0"
+
 ## Blazor Server
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 Blazor Server project templates: `blazorserver`, `blazorserver-empty`
 
@@ -288,6 +292,10 @@ Project structure:
 
 Additional files and folders may appear in an app produced from a Blazor WebAssembly project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
 A *hosted Blazor WebAssembly solution* includes the following ASP.NET Core projects:
 
 * ":::no-loc text="Client":::": The Blazor WebAssembly app.
@@ -459,7 +467,7 @@ In a Blazor Web App, `<head>` content is located in the `App.razor` file.
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 In a Blazor Server app, `<head>` content is located in the `Pages/_Host.cshtml` file.
 
@@ -479,9 +487,13 @@ In a Blazor Server app, `<head>` content is located in the `Pages/_Host.cshtml` 
 
 In a Blazor WebAssembly app, `<head>` content is located in the `wwwroot/index.html` file.
 
+:::moniker range="< aspnetcore-8.0"
+
 ## Dual Blazor Server/Blazor WebAssembly app
 
 To create an app that can run as either a Blazor Server app or a Blazor WebAssembly app, one approach is to place all of the app logic and components into a [Razor class library (RCL)](xref:blazor/components/class-libraries) and reference the RCL from separate Blazor Server and Blazor WebAssembly projects. For common services whose implementations differ based on the hosting model, define the service interfaces in the RCL and implement the services in the Blazor Server and Blazor WebAssembly projects.
+
+:::moniker-end
 
 ## Additional resources
 
