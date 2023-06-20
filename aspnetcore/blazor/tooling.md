@@ -600,16 +600,31 @@ For more information on template options, see the following resources:
 -->
 
 * *.NET default templates for dotnet new* article in the .NET Core documentation:
-  * [`blazorserver`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorserver)
-  * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm)
+  * [`blazorserver`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorserver) (includes `blazorserver-empty` options)
+  * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm) (includes `blazorwasm-empty` options)
 * Passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
   * `dotnet new blazor -h`
   * `dotnet new blazorserver -h`
+  * `dotnet new blazorserver-empty -h`
   * `dotnet new blazorwasm -h`
+  * `dotnet new blazorwasm-empty -h`
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+* *.NET default templates for dotnet new* article in the .NET Core documentation:
+  * [`blazorserver`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorserver) (includes `blazorserver-empty` options)
+  * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm) (includes `blazorwasm-empty` options)
+* Passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
+  * `dotnet new blazorserver -h`
+  * `dotnet new blazorserver-empty -h`
+  * `dotnet new blazorwasm -h`
+  * `dotnet new blazorwasm-empty -h`
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-7.0"
 
 * *.NET default templates for dotnet new* article in the .NET Core documentation:
   * [`blazorserver`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorserver)
