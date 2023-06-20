@@ -25,7 +25,7 @@ Project structure:
 * `Models` folder: Contains the weather data `WeatherForecast` class (`WeatherForecast.cs`) for the app's `ShowData` component.
 
 * `Pages` folder: Contains the routable components/pages (`.razor`) that make up the Blazor app. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following:
-  * `Counter` component (`Counter.razor`): Implements the Counter page.
+  * `Counter` component (`Counter.razor`): Implements the *Counter* page.
   * `ShowData` component (`ShowData.razor`): Implements the *Weather forecast* page.
   * `Index` component (`Index.razor`): Implements the *Home* page.
 
