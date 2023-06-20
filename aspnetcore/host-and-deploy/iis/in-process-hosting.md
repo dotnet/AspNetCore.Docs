@@ -88,6 +88,16 @@ The following characteristics apply when hosting in-process:
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-8.0"
+
+<a name="ihsrtf8"></a>
+
+## Get timing information
+
+See [Get detailed timing information with IHttpSysRequestTimingFeature](xref:fundamentals/servers/httpsys?view=aspnetcore-8.0&preserve-view=true#ihsrtf8).
+
+:::moniker-end
+
 :::moniker range="= aspnetcore-5.0"
 
 In-process hosting runs an ASP.NET Core app in the same process as its IIS worker process. In-process hosting provides improved performance over out-of-process hosting because requests aren't proxied over the loopback adapter, a network interface that returns outgoing network traffic back to the same machine.

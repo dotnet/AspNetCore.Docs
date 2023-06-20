@@ -267,6 +267,8 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
 For apps hosted by HTTP.sys that interact with requests from the Internet or a corporate network, additional configuration might be required when hosting behind proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
 
+<a name="ihsrtf8"></a>
+
 ## Get detailed timing information with IHttpSysRequestTimingFeature
 <!--
 <xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature> 
