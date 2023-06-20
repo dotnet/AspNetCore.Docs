@@ -353,7 +353,7 @@ The `[Bind]` attribute can be used to protect against overposting in *create* sc
 ```csharp
 [HttpPost]
 public IActionResult OnPost(
-    [ModelBinder(<MyInstructorModelBinder>] Instructor instructor)
+    [ModelBinder<MyInstructorModelBinder>] Instructor instructor)
 ```
 
 The `[ModelBinder]` attribute can also be used to change the name of a property or parameter when it's being model bound:
