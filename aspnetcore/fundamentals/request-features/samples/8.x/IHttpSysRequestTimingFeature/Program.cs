@@ -1,4 +1,4 @@
-#define WithTimestamps // WithTimestamps, WithTryGetTimestamp, WithTryGetElapsedTime
+#define WithTryGetTimestamp // WithTimestamps, WithTryGetTimestamp, WithTryGetElapsedTime
 #if WithTimestamps
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.HttpSys;
@@ -60,7 +60,8 @@ app.Use((context, next) =>
     }
     else
     {
-        logger.LogInformation("Timestamp {timingType}: not available for the current request", timingType);
+        logger.LogInformation("Timestamp {timingType}: not available for the current request",
+                                                                                   timingType);
     }
 
     return next(context);

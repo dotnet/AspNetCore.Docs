@@ -273,7 +273,13 @@ The <xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature> prov
 
 :::code language="csharp" source="~/fundamentals.request-features.samples.8.x.IHttpSysRequestTimingFeature.Program.cs" id="snippet_WithTimestamps":::
 
+The following code uses [IHttpSysRequestTimingFeature.TryGetTimestamp](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/IHttpSysRequestTimingFeature.cs,3c5dc86dc837b1f4):
 
+:::code language="csharp" source="~/fundamentals.request-features.samples.8.x.IHttpSysRequestTimingFeature.Program.cs" id="snippet_WithTryGetTimestamp":::
+
+The following code uses [IHttpSysRequestTimingFeature.TryGetElapsedTime](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/IHttpSysRequestTimingFeature.cs,3c5dc86dc837b1f4):
+
+:::code language="csharp" source="~/fundamentals.request-features.samples.8.x.IHttpSysRequestTimingFeature.Program.cs" id="snippet_WithTryGetElapsedTime":::
 
 ## Advanced HTTP/2 features to support gRPC
 
