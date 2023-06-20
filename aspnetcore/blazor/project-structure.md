@@ -45,7 +45,7 @@ Project structure:
 * `appsettings.json` and environmental app settings files: Provide [configuration settings](xref:blazor/fundamentals/configuration) for the app.
 
 * `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](xref:fundamentals/host/generic-host) and contains the app's startup logic, including service registrations and request processing pipeline configuration:
-  * Specifies the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. Services are added by calling `AddRazorComponents`.
+  * Specifies the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. Services for Razor components are added by calling `AddRazorComponents`.
   * Configures the app's request handling pipeline: `MapRazorComponents` discovers the available components and specifies the root component for the app, which by default is the `App` component (`App.razor`).
 
 Additional files and folders may appear in an app produced from a Blazor Web App project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
@@ -455,29 +455,29 @@ The project structure of the client-side app in a hosted Blazor Webassembly solu
 
 :::moniker range=">= aspnetcore-8.0"
 
-In Blazor Web apps, `<head>` content is located in the `App.razor` file.
+In a Blazor Web App, `<head>` content is located in the `App.razor` file.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
 
-In Blazor Server apps, `<head>` content is located in the `Pages/_Host.cshtml` file.
+In a Blazor Server app, `<head>` content is located in the `Pages/_Host.cshtml` file.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-In Blazor Server apps, `<head>` content is located in the `Pages/_Layout.cshtml` file.
+In a Blazor Server app, `<head>` content is located in the `Pages/_Layout.cshtml` file.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-In Blazor Server apps, `<head>` content is located in the `Pages/_Host.cshtml` file.
+In a Blazor Server app, `<head>` content is located in the `Pages/_Host.cshtml` file.
 
 :::moniker-end
 
-In Blazor WebAssembly apps, `<head>` content is located in the `wwwroot/index.html` file.
+In a Blazor WebAssembly app, `<head>` content is located in the `wwwroot/index.html` file.
 
 ## Dual Blazor Server/Blazor WebAssembly app
 
