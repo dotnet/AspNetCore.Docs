@@ -25,6 +25,7 @@ Project structure:
 * `Models` folder: Contains the weather data `WeatherForecast` class (`WeatherForecast.cs`) for the app's `ShowData` component.
 
 * `Pages` folder: Contains the routable components/pages (`.razor`) that make up the Blazor app. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following:
+  * `Counter` component (`Counter.razor`): Implements the Counter page.
   * `ShowData` component (`ShowData.razor`): Implements the *Weather forecast* page.
   * `Index` component (`Index.razor`): Implements the *Home* page.
 
@@ -45,7 +46,7 @@ Project structure:
 * `appsettings.json` and environmental app settings files: Provide [configuration settings](xref:blazor/fundamentals/configuration) for the app.
 
 * `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](xref:fundamentals/host/generic-host) and contains the app's startup logic, including service registrations and request processing pipeline configuration:
-  * Specifies the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. Services for Razor components are added by calling `AddRazorComponents`.
+  * Specifies the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. Services for Razor components are added by calling `AddRazorComponents`. `AddServerComponents` adds services to support rendering interactive server components.
   * Configures the app's request handling pipeline: `MapRazorComponents` discovers the available components and specifies the root component for the app, which by default is the `App` component (`App.razor`).
 
 Additional files and folders may appear in an app produced from a Blazor Web App project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
