@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.HttpSys;
 
 #if WithTimestamps
-#region snippet_WithTimestamps
+// <snippet_WithTimestamps>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.UseHttpSys();
@@ -34,9 +34,9 @@ app.Use((context, next) =>
 app.MapGet("/", () => Results.Ok());
 
 app.Run();
-#endregion
+// </snippet_WithTimestamps>
 #elif WithTryGetTimestamp
-#region snippet_WithTryGetTimestamp
+// <snippet_WithTryGetTimestamp>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.UseHttpSys();
@@ -67,9 +67,9 @@ app.Use((context, next) =>
 app.MapGet("/", () => Results.Ok());
 
 app.Run();
-#endregion
+// </snippet_WithTryGetTimestamp>
 #elif WithTryGetElapsedTime
-#region snippet_WithTryGetElapsedTime
+// <snippet_WithTryGetElapsedTime>
 var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.UseHttpSys();
@@ -106,5 +106,5 @@ app.Use((context, next) =>
 app.MapGet("/", () => Results.Ok());
 
 app.Run();
-#endregion
+// </snippet_WithTryGetElapsedTime>
 #endif
