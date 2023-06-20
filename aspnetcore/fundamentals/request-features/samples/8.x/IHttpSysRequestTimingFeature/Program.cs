@@ -23,7 +23,8 @@ app.Use((context, next) =>
         var timestamp = timestamps[i];
         var timingType = (HttpSysRequestTimingType)i;
 
-        logger.LogInformation("Timestamp {timingType}: {timestamp}", timingType, timestamp);
+        logger.LogInformation("Timestamp {timingType}: {timestamp}",
+                                          timingType, timestamp);
     }
 
     return next(context);
@@ -56,12 +57,13 @@ app.Use((context, next) =>
 
     if (feature.TryGetTimestamp(timingType, out var timestamp))
     {
-        logger.LogInformation("Timestamp {timingType}: {timestamp}", timingType, timestamp);
+        logger.LogInformation("Timestamp {timingType}: {timestamp}",
+                                          timingType, timestamp);
     }
     else
     {
-        logger.LogInformation("Timestamp {timingType}: not available for the current request",
-                                                                                   timingType);
+        logger.LogInformation("Timestamp {timingType}: not available for the "
+                                           + "current request",    timingType);
     }
 
     return next(context);
@@ -95,14 +97,17 @@ app.Use((context, next) =>
 
     if (feature.TryGetElapsedTime(startingTimingType, endingTimingType, out var elapsed))
     {
-        logger.LogInformation("Elapsed time {startingTimingType} to {endingTimingType}: {elapsed}",
+        logger.LogInformation(
+            "Elapsed time {startingTimingType} to {endingTimingType}: {elapsed}",
             startingTimingType,
             endingTimingType,
             elapsed);
     }
     else
     {
-        logger.LogInformation("Elapsed time {startingTimingType} to {endingTimingType}: not available for the current request.",
+        logger.LogInformation(
+            "Elapsed time {startingTimingType} to {endingTimingType}:"
+            + " not available for the current request.",
             startingTimingType,
             endingTimingType);
     }
