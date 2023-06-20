@@ -37,10 +37,10 @@ app.Run();
 // </snippet_WithTimestamps>
 
 #elif WithTryGetTimestamp
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Server.HttpSys;
 
 // <snippet_WithTryGetTimestamp>
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Server.HttpSys;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.UseHttpSys();
@@ -77,9 +77,11 @@ app.Run();
 
 #elif WithTryGetElapsedTime
 
+
+// <snippet_WithTryGetElapsedTime>
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.HttpSys;
-// <snippet_WithTryGetElapsedTime>
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.UseHttpSys();
