@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FiltersSample.Controllers;
 
 // <snippet_Class>
-[MiddlewareFilter(typeof(FilterMiddlewarePipeline))]
+[MiddlewareFilter<FilterMiddlewarePipeline>]
 public class FilterMiddlewareController : Controller
 {
     public IActionResult Index() =>
