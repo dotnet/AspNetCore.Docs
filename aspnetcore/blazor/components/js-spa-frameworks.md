@@ -338,8 +338,6 @@ Use the custom element with any web framework. For example, the preceding counte
 <my-counter increment-amount={incrementAmount}></my-counter>
 ```
 
-For a complete example of how to create custom elements with Blazor, see the [Blazor Custom Elements sample project](https://github.com/aspnet/AspLabs/tree/main/src/BlazorCustomElements).
-
 > [!WARNING]
 > The custom elements feature is currently **experimental, unsupported, and subject to change or be removed at any time**. We welcome your feedback on how well this particular approach meets your requirements.
 
