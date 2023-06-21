@@ -5,7 +5,7 @@ description: Learn about configuring endpoints with Kestrel, the cross-platform 
 monikerRange: '>= aspnetcore-5.0'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/16/2023
+ms.date: 06/21/2023
 uid: fundamentals/servers/kestrel/endpoints
 ---
 
@@ -19,7 +19,7 @@ uid: fundamentals/servers/kestrel/endpoints
 
 Kestrel endpoints provide the infrastructure for listening to incoming requests and routing them to the appropriate middleware. The combination of an address and a protocol defines an endpoint.
 
-* The address specifies the network interface which the server listens for incoming requests, such as a TCP port.
+* The address specifies the network interface that the server listens on for incoming requests, such as a TCP port.
 * The protocol defines the communication standard between the client and server, such as whether the endpoint is secured with HTTPS, and the HTTP version.
 
 Endpoints can be configured using URLs, JSON in `appsettings.json`, and code. This article discusses how to use each option to configure an endpoint:
@@ -32,7 +32,7 @@ Endpoints can be configured using URLs, JSON in `appsettings.json`, and code. Th
 
 ASP.NET Core projects are configured to bind to a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300. This default configuration is specified in the generated `Properties/launchSettings.json` file and can be overridden. The `launchSetting.json` file is only used in local development.
 
-If there is no endpoint configuration, then Kestrel binds to `http://localhost:5000`.
+If there's no endpoint configuration, then Kestrel binds to `http://localhost:5000`.
 
 ## Configure endpoints
 
@@ -228,11 +228,11 @@ Dynamically binding a port isn't available in some situations:
 
 Kestrel supports securing endpoints with HTTPS. Data sent over HTTPS is encrypted using [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246) to increase the security of data transferred between the client and server.
 
-HTTPS requires a TLS certificate. The TLS certificate is stored on the server, and Kestrel is configured to use it. An app can use the [ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl) in a local development environment. The development certificate isn't installed in non-development environments. In production, a TLS certificate must be explicitly configured. At a minimum, a default certificate must be provided.
+HTTPS requires a TLS certificate. The TLS certificate is stored on the server, and Kestrel is configured to use it. An app can use the [ASP.NET Core HTTPS development certificate](xref:security/enforcing-ssl) in a local development environment. The development certificate isn't installed in nondevelopment environments. In production, a TLS certificate must be explicitly configured. At a minimum, a default certificate must be provided.
 
 The way HTTPS and the TLS certificate is configured depends on how endpoints are configured:
 
-* If [URL prefixes](#configure-endpoints-with-urls) or [specify ports only](#specify-ports-only) are used to define endpoints, HTTPS can be used only if a default certificate is provided in HTTPS endpoint configuration. A default certificate can be configured with one of the options below.
+* If [URL prefixes](#configure-endpoints-with-urls) or [specify ports only](#specify-ports-only) are used to define endpoints, HTTPS can be used only if a default certificate is provided in HTTPS endpoint configuration. A default certificate can be configured with one of the following options:
 * [Configure HTTPS in appsettings.json](#configure-https-in-appsettingsjson)
 * [Configure HTTPS in code](#configure-https-in-code)
 
@@ -289,7 +289,7 @@ The following example is for `appsettings.json`, but any configuration source ca
 }
 ```
 
-[!INCLUDE [](../../../includes/credentials-warning.md)]
+[!INCLUDE [](~/includes/credentials-warning.md)]
 
 #### Schema notes
 
@@ -340,9 +340,9 @@ For example, the `Certificates:Default` certificate can be specified as:
 }
 ```
 
-<!-- [!INCLUDE [](../../../includes/credentials-warning.md)] -->
+[!INCLUDE [](~/includes/credentials-warning.md)]
 
-The default value is `ClientCertificateMode.NoCertificate`, where Kestrel won't request or require a certificate from the client.
+The default value is `ClientCertificateMode.NoCertificate`, where Kestrel doesn't request or require a certificate from the client.
 
 For more information, see <xref:security/authentication/certauth>.
 
@@ -367,7 +367,7 @@ SSL Protocols are protocols used for encrypting and decrypting traffic between t
 }
 ```
 
-[!INCLUDE [](../../../includes/credentials-warning.md)]
+[!INCLUDE [](~/includes/credentials-warning.md)]
 
 The default value, `SslProtocols.None`, causes Kestrel to use the operating system defaults to choose the best protocol. Unless you have a specific reason to select a protocol, use the default.
 
@@ -396,7 +396,7 @@ For a complete list of `UseHttps` overloads, see <xref:Microsoft.AspNetCore.Host
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureHttpsDefaultsClientCertificateMode":::
 
-The default value is <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode.NoCertificate>, where Kestrel won't request or require a certificate from the client.
+The default value is <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCertificateMode.NoCertificate>, where Kestrel doesn't request or require a certificate from the client.
 
 For more information, see <xref:security/authentication/certauth>.
 
@@ -481,7 +481,7 @@ The following configuration adds an endpoint named `MySniEndpoint` that uses SNI
 }
 ```
 
-[!INCLUDE [](../../../includes/credentials-warning.md)]
+[!INCLUDE [](~/includes/credentials-warning.md)]
 
 HTTPS options that can be overridden by SNI:
 
