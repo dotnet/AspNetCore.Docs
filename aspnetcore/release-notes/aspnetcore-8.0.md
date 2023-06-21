@@ -193,6 +193,34 @@ ASPNETCORE_URLS=http://*:80/;http://*:8080/;https://*:443/;https://*:8081/
 
 For more information, see <xref:fundamentals/servers/kestrel/endpoints> and <xref:fundamentals/servers/httpsys>.
 
+### Support for generic attributes
+
+Attributes that previously required a System.Type parameter are now available in cleaner generic variants. This is made possible by support for [generic attributes](/dotnet/csharp/whats-new/csharp-11) in C# 11. For example, the syntax for annotating the response type of an action can be modified as follows:
+
+```diff
+[ApiController]
+[Route("api/[controller]")]
+public class TodosController : Controller
+{
+  [HttpGet("/")]
+- [ProducesResponseType(typeof(Todo), StatusCodes.Status200OK)]
++ [ProducesResponseType<Todo>(StatusCodes.Status200OK)]
+  public Todo Get() => new Todo(1, "Write a sample", DateTime.Now, false);
+}
+```
+
+Generic variants are supported for the following attributes:
+
+<!--TODO update these API links -->
+
+* `[ProducesResponseType<T>]`
+* `[Produces<T>]`
+* `[MiddlewareFilter<T>]`
+* `[ModelBinder<T>]`
+* `[ModelMetadataType<T>]`
+* `[ServiceFilter<T>]`
+* `[TypeFilter<T>]`
+
 ### Code analysis in ASP.NET Core apps
 
 The new analyzers shown in the following table are available in ASP.NET Core 8.0.
