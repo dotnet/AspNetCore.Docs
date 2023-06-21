@@ -267,6 +267,31 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
 For apps hosted by HTTP.sys that interact with requests from the Internet or a corporate network, additional configuration might be required when hosting behind proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
 
+<a name="ihsrtf8"></a>
+
+## Get detailed timing information with IHttpSysRequestTimingFeature
+<!--
+<xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature> 
+-->
+[IHttpSysRequestTimingFeature](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/IHttpSysRequestTimingFeature.cs,3c5dc86dc837b1f4) provides detailed timing information for requests:
+
+:::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTimestamps":::
+
+Notes on timing:
+
+* Timestamps are obtained using [QueryPerformanceCounter](/windows/win32/api/profileapi/nf-profileapi-queryperformancecounter).
+* The timestamp frequency can be obtained via [QueryPerformanceFrequency](/windows/win32/api/profileapi/nf-profileapi-queryperformancefrequency).
+* The index of the timing can be cast to [HttpSysRequestTimingType](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/HttpSysRequestTimingType.cs,e62e7bcd02f8589e) to know what the timing represents.
+* The value may be 0 if the timing isn't available for the current request.
+
+The following code uses [IHttpSysRequestTimingFeature.TryGetTimestamp](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/IHttpSysRequestTimingFeature.cs,3c5dc86dc837b1f4):
+
+:::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetTimestamp":::
+
+The following code uses [IHttpSysRequestTimingFeature.TryGetElapsedTime](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/IHttpSysRequestTimingFeature.cs,3c5dc86dc837b1f4):
+
+:::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetElapsedTime":::
+
 ## Advanced HTTP/2 features to support gRPC
 
 Additional HTTP/2 features in HTTP.sys support gRPC, including support for response trailers and sending reset frames.
