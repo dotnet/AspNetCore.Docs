@@ -160,6 +160,19 @@ The main entry points to subsystems that don't work reliably with native AOT are
 
 :::image type="content" source="../fundamentals/aot/_static/top-level-annnotations.png" alt-text="Visual Studio window showing IL2026 warning message on the AddControllers method that says MVC doesn't currently support native AOT.":::
 
+### Support for AsParameters and automatic metadata generation
+
+In this preview, minimal APIs generated at compile-time include support for parameters decorated with the [`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) attribute and support automatic metadata inference for request and response types. Consider the following code:
+
+:::code language="csharp" source="~/release-notes/sample/ProgramAsParameters.cs" highlight="22":::
+
+The preceding generated code:
+
+* Binds a `projectId` parameter from the query.
+* Binds a `Todo` parameter from the JSON body.
+* Annotates the endpoint metadata to indicate that it accepts a JSON payload.
+* Annotate the endpoint metadata to indicate that it returns a Todo as a JSON payload.
+
 ## Miscellaneous
 
 ### HTTP/3 enabled by default
