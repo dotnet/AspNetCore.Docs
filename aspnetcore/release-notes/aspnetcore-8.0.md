@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/05/2023
+ms.date: 06/21/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -18,8 +18,8 @@ This article is under development and not complete. More information may be foun
 * [What's new in .NET 8 Preview 2](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-2/)
 * [What's new in .NET 8 Preview 3](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-3/)
 * [What's new in .NET 8 Preview 4](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/)
-<!--
 * [What's new in .NET 8 Preview 5](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-5/)
+<!--
 * [What's new in .NET 8 Preview 6](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-6/)
 * [What's new in .NET 8 Preview 7](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-7/)
 -->
@@ -132,7 +132,20 @@ For more information, see:
 * [Explicit binding from form values](xref:fundamentals/minimal-apis/parameter-binding?view=aspnetcore-8.0&preserve-view=true#explicit-binding-from-form-values).
 * [Binding to forms with IFormCollection, IFormFile, and IFormFileCollection](xref:fundamentals/minimal-apis/parameter-binding?view=aspnetcore-8.0&preserve-view=true#binding-to-forms-with-iformcollection-iformfile-and-iformfilecollection).
 
-## Support for native AOT
+### Support for AsParameters and automatic metadata generation
+
+Minimal APIs generated at compile-time include support for parameters decorated with the [`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) attribute and support automatic metadata inference for request and response types. Consider the following code:
+
+:::code language="csharp" source="~/release-notes/sample/ProgramAsParameters.cs" highlight="22":::
+
+The preceding generated code:
+
+* Binds a `projectId` parameter from the query.
+* Binds a `Todo` parameter from the JSON body.
+* Annotates the endpoint metadata to indicate that it accepts a JSON payload.
+* Annotate the endpoint metadata to indicate that it returns a Todo as a JSON payload.
+
+## Native AOT
 
 Support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) has been added. Apps that are published using AOT can have substantially better performance: smaller app size, less memory usage, and faster startup time. Native AOT is currently supported by gRPC, minimal API, and worker service apps. For more information, see [ASP.NET Core support for native AOT](xref:fundamentals/native-aot).
 
@@ -160,22 +173,23 @@ The main entry points to subsystems that don't work reliably with native AOT are
 
 :::image type="content" source="../fundamentals/aot/_static/top-level-annnotations.png" alt-text="Visual Studio window showing IL2026 warning message on the AddControllers method that says MVC doesn't currently support native AOT.":::
 
-### Support for AsParameters and automatic metadata generation
+## Kestrel and HTTP.sys servers
 
-In this preview, minimal APIs generated at compile-time include support for parameters decorated with the [`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) attribute and support automatic metadata inference for request and response types. Consider the following code:
+### Support for named pipes in Kestrel
 
-:::code language="csharp" source="~/release-notes/sample/ProgramAsParameters.cs" highlight="22":::
+Named pipes is a popular technology for building inter-process communication (IPC) between Windows apps. You can now build an IPC server using .NET, Kestrel, and named pipes.
 
-The preceding generated code:
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenNamedPipe("MyPipeName");
+});
+```
 
-* Binds a `projectId` parameter from the query.
-* Binds a `Todo` parameter from the JSON body.
-* Annotates the endpoint metadata to indicate that it accepts a JSON payload.
-* Annotate the endpoint metadata to indicate that it returns a Todo as a JSON payload.
+For more information about this feature and how to use .NET and gRPC to create an IPC server and client, see <xref:grpc/interprocess>.
 
-## Miscellaneous
-
-### HTTP/3 enabled by default
+### HTTP/3 enabled by default in Kestrel
 
 HTTP/3 is a new internet technology that was standardized in June 2022. HTTP/3 offers several advantages over older HTTP protocols, including:
 
@@ -185,9 +199,13 @@ HTTP/3 is a new internet technology that was standardized in June 2022. HTTP/3 o
 
 .NET 7 added support for HTTP/3 to ASP.NET Core and Kestrel. ASP.NET Core apps could choose to turn it on. In .NET 8, HTTP/3 is enabled by default for Kestrel, alongside HTTP/1.1 and HTTP/2. For more information about HTTP/3 and its requirements, see <xref:fundamentals/servers/kestrel/http3>.
 
-### HTTP/2 over TLS (HTTPS) support on macOS
+### HTTP/2 over TLS (HTTPS) support on macOS in Kestrel
 
 .NET 8 adds support for Application-Layer Protocol Negotiation (ALPN) to macOS. ALPN is a TLS feature used to negotiate which HTTP protocol a connection will use. For example, ALPN allows browsers and other HTTP clients to request an HTTP/2 connection. This feature is especially useful for gRPC apps, which require HTTP/2. For more information, see <xref:fundamentals/servers/kestrel/http2>.
+
+### Warning when specified HTTP protocols won’t be used
+
+If TLS is disabled and HTTP/1.x is available, HTTP/2 and HTTP/3 will be disabled, even if they’ve been specified. This can cause some nasty surprises, so we’ve added warning output to let you know when it happens.
 
 ### `HTTP_PORTS` and `HTTPS_PORTS` config keys
 
@@ -205,6 +223,8 @@ ASPNETCORE_URLS=http://*:80/;http://*:8080/;https://*:443/;https://*:8081/
 ```
 
 For more information, see <xref:fundamentals/servers/kestrel/endpoints> and <xref:fundamentals/servers/httpsys>.
+
+## Miscellaneous
 
 ### Support for generic attributes
 
@@ -242,6 +262,8 @@ The new analyzers shown in the following table are available in ASP.NET Core 8.0
 
 | Diagnostic ID | Breaking or non-breaking | Description |
 | --- | --- | --- |
+| [ASP0016](xref:diagnostics/asp0016) | Non-breaking | Do not return a value from RequestDelegate |
+| [ASP0019](xref:diagnostics/asp0019) | Non-breaking | Suggest using IHeaderDictionary.Append or the indexer |
 | [ASP0020](xref:diagnostics/asp0020) | Non-breaking | Complex types referenced by route parameters must be parsable |
 | [ASP0021](xref:diagnostics/asp0021) | Non-breaking | The return type of the BindAsync method must be `ValueTask<T>` |
 | [ASP0022](xref:diagnostics/asp0022) | Non-breaking | Route conflict detected between route handlers |
@@ -251,7 +273,7 @@ The new analyzers shown in the following table are available in ASP.NET Core 8.0
 
 ### IAuthorizationRequirementData
 
-Prior to this preview, adding a parameterized authorization policy to an endpoint required implementing an:
+Prior to ASP.NET Core 8, adding a parameterized authorization policy to an endpoint required implementing an:
 
 * `AuthorizeAttribute` for each policy.
 * `AuthorizationPolicyProvider` to process a custom policy from a string-based contract.
@@ -321,6 +343,22 @@ The complete updated sample can be found [here](https://github.com/dotnet/AspNet
 
 See <xref:security/authorization/iard> for a detailed examination of the new sample.
 
+### Route tooling
+
+ASP.NET Core is built on routing. Minimal APIs, Web APIs, Razor Pages, and Blazor all use routes to customize how HTTP requests map to code.
+
+In .NET 8 we’ve invested in a suite of new features to make routing easier to learn and use. These new features include:
+
+* [Route syntax highlighting](https://devblogs.microsoft.com/dotnet/aspnet-core-route-tooling-dotnet-8/#route-syntax-highlighting)
+* [Autocomplete of parameter and route names](https://devblogs.microsoft.com/dotnet/aspnet-core-route-tooling-dotnet-8/#autocomplete-of-parameter-and-route-names)
+* [Autocomplete of route constraints](https://devblogs.microsoft.com/dotnet/aspnet-core-route-tooling-dotnet-8/#autocomplete-of-route-constraints)
+* [Route analyzers and fixers](https://devblogs.microsoft.com/dotnet/aspnet-core-route-tooling-dotnet-8/#route-analyzers-and-fixers)
+  * [Route syntax analyzer](https://devblogs.microsoft.com/dotnet/aspnet-core-route-tooling-dotnet-8/#route-syntax-analyzer)
+  * [Mismatched parameter optionality analyzer and fixer](https://devblogs.microsoft.com/dotnet/aspnet-core-route-tooling-dotnet-8/#mismatched-parameter-optionality-analyzer-and-fixer)
+  * [Ambiguous Minimal API and Web API route analyzer](https://devblogs.microsoft.com/dotnet/aspnet-core-route-tooling-dotnet-8/#ambiguous-minimal-api-and-web-api-route-analyzer)
+* [Support for Minimal APIs, Web APIs, and Blazor](https://devblogs.microsoft.com/dotnet/aspnet-core-route-tooling-dotnet-8/#supports-minimal-apis-web-apis-and-blazor)
+
+For more information, see [Route tooling in .NET 8](https://devblogs.microsoft.com/dotnet/aspnet-core-route-tooling-dotnet-8/).
 <!--
 ## API controllers
 
