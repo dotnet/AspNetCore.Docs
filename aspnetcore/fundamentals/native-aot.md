@@ -92,10 +92,10 @@ In .NET 8, native AOT is supported by the following ASP.NET Core app types:
 The **ASP.NET Core API** template has an option to enable AOT:
 
 * Visual Studio 2022 has an **Enable native AOT publish option**.
-* CLI uses the `dotnet new api` command and the `-aot` option, as in the following example:
+* CLI uses the `dotnet new api` command and the `--aot` option, as in the following example:
 
   ```.NET CLI
-  dotnet new api -aot -o MyFirstAotWebApi
+  dotnet new api --aot -o MyFirstAotWebApi
   ```
 
 This template is intended to produce a project more directly focused on cloud-native, API-first scenarios. The template differs from the **Web API** project template in the following ways:

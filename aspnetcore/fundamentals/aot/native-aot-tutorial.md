@@ -5,8 +5,8 @@ description: Learn about how to publish an ASP.NET Core app using native AOT.
 monikerRange: '>= aspnetcore-8.0'
 ms.topic: tutorial
 ms.author: midenn
-ms.custom: mvc, engagement-fy23
-ms.date: 06/19/2023
+ms.custom: mvc
+ms.date: 05/25/2023
 uid: fundamentals/native-aot-tutorial
 ---
 # Tutorial: Publish an ASP.NET Core app using native AOT
@@ -49,7 +49,7 @@ Create an ASP.NET Core API app that is configured to work with native AOT:
 Run the following commands:
 
 ```dotnetcli
-dotnet new api -aot -o MyFirstAotWebApi && cd MyFirstAotWebApi
+dotnet new api --aot -o MyFirstAotWebApi && cd MyFirstAotWebApi
 ```
 
 Output similar to the following example is displayed:
