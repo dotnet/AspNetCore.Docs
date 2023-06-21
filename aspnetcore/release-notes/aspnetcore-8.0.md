@@ -164,7 +164,7 @@ The main entry points to subsystems that don't work reliably with native AOT are
 
 In this preview, minimal APIs generated at compile-time include support for parameters decorated with the [`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) attribute and support automatic metadata inference for request and response types. Consider the following code:
 
-:::code language="csharp" source="~/release-notes/sample/ProgramAsParameters.cs"" highlight="22":::
+:::code language="csharp" source="~/release-notes/sample/ProgramAsParameters.cs" highlight="22":::
 
 The preceding generated code:
 
