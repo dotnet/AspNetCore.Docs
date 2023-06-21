@@ -69,7 +69,14 @@ public bool DoAuthenticatedCall(
 }
 ```
 
-Configuring `ChannelCredentials` on a channel is an alternative way to send the token to the service with gRPC calls. A `ChannelCredentials` can include `CallCredentials`, which provide a way to automatically set `Metadata`. `CallCredentials` is run each time a gRPC call is made, which avoids the need to write code in multiple places to pass the token yourself.
+#### Set the bearer token with `CallCredentials`
+
+Configuring `ChannelCredentials` on a channel is an alternative way to send the token to the service with gRPC calls. A `ChannelCredentials` can include `CallCredentials`, which provide a way to automatically set `Metadata`.
+
+Benefits of using `CallCredentials`:
+
+* Authentication is centrally configured on the channel. The token doesn't need to be manually provided to the gRPC call.
+* The `CallCredentials.FromInterceptor` callback is asynchronous. Call credentials can fetch a credential token from an external system if required. Asynchronous methods inside the callback should use the `CancellationToken` on `AuthInterceptorContext`.
 
 > [!NOTE]
 > `CallCredentials` are only applied if the channel is secured with TLS. Sending authentication headers over an insecure connection has security implications and shouldn't be done in production environments. An app can configure a channel to ignore this behavior and always use `CallCredentials` by setting `UnsafeUseInsecureChannelCallCredentials` on a channel.
@@ -77,15 +84,12 @@ Configuring `ChannelCredentials` on a channel is an alternative way to send the 
 The credential in the following example configures the channel to send the token with every gRPC call:
 
 ```csharp
-private static GrpcChannel CreateAuthenticatedChannel(string address)
+private static GrpcChannel CreateAuthenticatedChannel(ITokenProvder tokenProvider)
 {
-    var credentials = CallCredentials.FromInterceptor((context, metadata) =>
+    var credentials = CallCredentials.FromInterceptor(async (context, metadata) =>
     {
-        if (!string.IsNullOrEmpty(_token))
-        {
-            metadata.Add("Authorization", $"Bearer {_token}");
-        }
-        return Task.CompletedTask;
+        var token = await tokenProvider.GetTokenAsync(context.CancellationToken);
+        metadata.Add("Authorization", $"Bearer {token}");
     });
 
     var channel = GrpcChannel.ForAddress(address, new GrpcChannelOptions
@@ -129,14 +133,14 @@ Consider an app that has:
 ```csharp
 public interface ITokenProvider
 {
-    Task<string> GetTokenAsync();
+    Task<string> GetTokenAsync(CancellationToken cancellationToken);
 }
 
 public class AppTokenProvider : ITokenProvider
 {
     private string _token;
 
-    public async Task<string> GetTokenAsync()
+    public async Task<string> GetTokenAsync(CancellationToken cancellationToken)
     {
         if (_token == null)
         {
@@ -159,7 +163,7 @@ builder.Services
     .AddCallCredentials(async (context, metadata, serviceProvider) =>
     {
         var provider = serviceProvider.GetRequiredService<ITokenProvider>();
-        var token = await provider.GetTokenAsync();
+        var token = await provider.GetTokenAsync(context.CancellationToken);
         metadata.Add("Authorization", $"Bearer {token}");
     }));
 ```
@@ -334,26 +338,29 @@ public bool DoAuthenticatedCall(
 }
 ```
 
+#### Set the bearer token with `CallCredentials`
+
 Configuring `ChannelCredentials` on a channel is an alternative way to send the token to the service with gRPC calls. A `ChannelCredentials` can include `CallCredentials`, which provide a way to automatically set `Metadata`.
 
-`CallCredentials` is run each time a gRPC call is made, which avoids the need to write code in multiple places to pass the token yourself. Note that `CallCredentials` are only applied if the channel is secured with TLS. `CallCredentials` aren't applied on unsecured non-TLS channels.
+Benefits of using `CallCredentials`:
+
+* Authentication is centrally configured on the channel. The token doesn't need to be manually provided to the gRPC call.
+* The `CallCredentials.FromInterceptor` callback is asynchronous. Call credentials can fetch a credential token from an external system if required. Asynchronous methods inside the callback should use the `CancellationToken` on `AuthInterceptorContext`.
+
+> [!NOTE]
+> `CallCredentials` are only applied if the channel is secured with TLS. Sending authentication headers over an insecure connection has security implications and shouldn't be done in production environments. An app can configure a channel to ignore this behavior and always use `CallCredentials` by setting `UnsafeUseInsecureChannelCallCredentials` on a channel.
 
 The credential in the following example configures the channel to send the token with every gRPC call:
 
 ```csharp
-private static GrpcChannel CreateAuthenticatedChannel(string address)
+private static GrpcChannel CreateAuthenticatedChannel(ITokenProvder tokenProvider)
 {
-    var credentials = CallCredentials.FromInterceptor((context, metadata) =>
+    var credentials = CallCredentials.FromInterceptor(async (context, metadata) =>
     {
-        if (!string.IsNullOrEmpty(_token))
-        {
-            metadata.Add("Authorization", $"Bearer {_token}");
-        }
-        return Task.CompletedTask;
+        var token = await tokenProvider.GetTokenAsync(context.CancellationToken);
+        metadata.Add("Authorization", $"Bearer {token}");
     });
 
-    // SslCredentials is used here because this channel is using TLS.
-    // CallCredentials can't be used with ChannelCredentials.Insecure on non-TLS channels.
     var channel = GrpcChannel.ForAddress(address, new GrpcChannelOptions
     {
         Credentials = ChannelCredentials.Create(new SslCredentials(), credentials)
@@ -395,14 +402,14 @@ Consider an app that has:
 ```csharp
 public interface ITokenProvider
 {
-    Task<string> GetTokenAsync();
+    Task<string> GetTokenAsync(CancellationToken cancellationToken);
 }
 
 public class AppTokenProvider : ITokenProvider
 {
     private string _token;
 
-    public async Task<string> GetTokenAsync()
+    public async Task<string> GetTokenAsync(CancellationToken cancellationToken)
     {
         if (_token == null)
         {
@@ -425,7 +432,7 @@ services
     .AddCallCredentials(async (context, metadata, serviceProvider) =>
     {
         var provider = serviceProvider.GetRequiredService<ITokenProvider>();
-        var token = await provider.GetTokenAsync();
+        var token = await provider.GetTokenAsync(context.CancellationToken);
         metadata.Add("Authorization", $"Bearer {token}");
     }));
 ```
