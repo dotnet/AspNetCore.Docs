@@ -137,6 +137,8 @@ Kestrel can load endpoints from an <xref:Microsoft.Extensions.Configuration.ICon
 }
 ```
 
+[!INCLUDE [](~/includes/credentials-warning.md)]
+
 The preceding example:
 
 * Uses `appsettings.json` as the configuration source. However, any `IConfiguration` source can be used.
