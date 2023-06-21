@@ -156,9 +156,9 @@ For information abut other improvements in `System.Text.Json` source generation,
 
 ### Top-level APIs annotated for trim warnings
 
-The main entry points to subsystems that don't work reliably with native AOT are now annotated. When these methods are called from an application with native AOT enabled, a warning is provided. For example, the following code produces a warning at the invocation of `AddControllers` because this API is not trim-safe and isn't supported by native AOT.
+The main entry points to subsystems that don't work reliably with native AOT are now annotated. When these methods are called from an application with native AOT enabled, a warning is provided. For example, the following code produces a warning at the invocation of `AddControllers` because this API isn't trim-safe and isn't supported by native AOT.
 
-:::image type="content" source="../fundamentals/aot/_static/top-level-annnotations.png" alt-text="Visual Studio window showing IL2026 warning message on the AddControllers method that says MVC does not currently support native AOT.":::
+:::image type="content" source="../fundamentals/aot/_static/top-level-annnotations.png" alt-text="Visual Studio window showing IL2026 warning message on the AddControllers method that says MVC doesn't currently support native AOT.":::
 
 ## Miscellaneous
 
@@ -221,7 +221,7 @@ Generic variants are supported for the following attributes:
 * `[ServiceFilter<T>]`
 * `[TypeFilter<T>]`
 
-<!--Note: All the topics that use the preceeding atributes have been updated to use the generic -->
+<!--Note: All the topics that use the preceding attributes have been updated to use the generic -->
 
 ### Code analysis in ASP.NET Core apps
 
