@@ -195,7 +195,7 @@ For more information, see <xref:fundamentals/servers/kestrel/endpoints> and <xre
 
 ### Support for generic attributes
 
-Attributes that previously required a System.Type parameter are now available in cleaner generic variants. This is made possible by support for [generic attributes](/dotnet/csharp/whats-new/csharp-11) in C# 11. For example, the syntax for annotating the response type of an action can be modified as follows:
+Attributes that previously required a <xref:System.Type> parameter are now available in cleaner generic variants. This is made possible by support for [generic attributes](/dotnet/csharp/whats-new/csharp-11) in C# 11. For example, the syntax for annotating the response type of an action can be modified as follows:
 
 ```diff
 [ApiController]
