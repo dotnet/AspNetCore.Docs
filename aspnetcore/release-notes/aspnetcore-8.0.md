@@ -156,9 +156,9 @@ For information abut other improvements in `System.Text.Json` source generation,
 
 ### Top-level APIs annotated for trim warnings
 
-The main entry points to subsystems that don't work reliably with native AOT are now annotated. When these methods are called from an application with native AOT enabled, a warning is provided. For example, the following code produces a warning at the invocation of `AddControllers` because this API is not trim-safe and isn't supported by native AOT.
+The main entry points to subsystems that don't work reliably with native AOT are now annotated. When these methods are called from an application with native AOT enabled, a warning is provided. For example, the following code produces a warning at the invocation of `AddControllers` because this API isn't trim-safe and isn't supported by native AOT.
 
-:::image type="content" source="../fundamentals/aot/_static/top-level-annnotations.png" alt-text="Visual Studio window showing IL2026 warning message on the AddControllers method that says MVC does not currently support native AOT.":::
+:::image type="content" source="../fundamentals/aot/_static/top-level-annnotations.png" alt-text="Visual Studio window showing IL2026 warning message on the AddControllers method that says MVC doesn't currently support native AOT.":::
 
 ## Miscellaneous
 
@@ -192,6 +192,36 @@ ASPNETCORE_URLS=http://*:80/;http://*:8080/;https://*:443/;https://*:8081/
 ```
 
 For more information, see <xref:fundamentals/servers/kestrel/endpoints> and <xref:fundamentals/servers/httpsys>.
+
+### Support for generic attributes
+
+Attributes that previously required a <xref:System.Type> parameter are now available in cleaner generic variants. This is made possible by support for [generic attributes](/dotnet/csharp/whats-new/csharp-11) in C# 11. For example, the syntax for annotating the response type of an action can be modified as follows:
+
+```diff
+[ApiController]
+[Route("api/[controller]")]
+public class TodosController : Controller
+{
+  [HttpGet("/")]
+- [ProducesResponseType(typeof(Todo), StatusCodes.Status200OK)]
++ [ProducesResponseType<Todo>(StatusCodes.Status200OK)]
+  public Todo Get() => new Todo(1, "Write a sample", DateTime.Now, false);
+}
+```
+
+Generic variants are supported for the following attributes:
+
+<!--TODO update these API links -->
+
+* `[ProducesResponseType<T>]`
+* `[Produces<T>]`
+* `[MiddlewareFilter<T>]`
+* `[ModelBinder<T>]`
+* `[ModelMetadataType<T>]`
+* `[ServiceFilter<T>]`
+* `[TypeFilter<T>]`
+
+<!--Note: All the topics that use the preceding attributes have been updated to use the generic -->
 
 ### Code analysis in ASP.NET Core apps
 
