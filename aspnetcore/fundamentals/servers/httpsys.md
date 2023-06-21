@@ -280,7 +280,7 @@ For apps hosted by HTTP.sys that interact with requests from the Internet or a c
 Notes on timing:
 
 * Timestamps are obtained using [QueryPerformanceCounter](/windows/win32/api/profileapi/nf-profileapi-queryperformancecounter).
-* The timestamp frequency can be obtained via <xref:NF:profileapi.QueryPerformanceFrequency>.
+* The timestamp frequency can be obtained via [QueryPerformanceFrequency](/windows/win32/api/profileapi/nf-profileapi-queryperformancefrequency).
 * The index of the timing can be cast to [HttpSysRequestTimingType](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/HttpSysRequestTimingType.cs,e62e7bcd02f8589e) to know what the timing represents.
 * The value may be 0 if the timing isn't available for the current request.
 
