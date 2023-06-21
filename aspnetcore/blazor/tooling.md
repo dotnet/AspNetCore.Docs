@@ -464,11 +464,9 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 1. Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
 
-<!-- HOLD FOR 8.0 UPDATE TO USE VS UI -->
-
 :::moniker range=">= aspnetcore-8.0"
 
-1. For a Blazor Web Apps experience (*recommended*), Visual Studio for Mac can't create a Blazor Web App in its UI. Open a command shell (Terminal application), change the directory to the location where you want to create the app, and execute the following command:
+1. For a Blazor Web Apps experience (*recommended*), Visual Studio for Mac can't create a Blazor Web App in its UI at this time. Open a command shell with Apple's **Terminal** utility application in macOS's `Applications/Utilities` folder. Change the directory to the location where you want to create the app with the [`ls` command](https://man7.org/linux/man-pages/man1/ls.1.html). For example, use the `ls Desktop` command to change the directory to the desktop. Execute the following command in the command shell:
 
   ```dotnetcli
   dotnet new blazor -o BlazorApp
@@ -479,7 +477,7 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
   > [!NOTE]
   > Visual Studio for Mac will be able to create Blazor Web Apps in an upcoming release.
 
-<!-- HOLD
+<!-- HOLD FOR 8.0 UPDATE TO USE VS UI
 
 1. In the sidebar, select **Web and Console** > **App**.
 
@@ -611,7 +609,7 @@ For more information on template options, see the following resources:
 
 -->
 
-* *.NET default templates for dotnet new* article in the .NET Core documentation:
+* The *.NET default templates for dotnet new* article in the .NET Core documentation:
   * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm) (includes `blazorwasm-empty` options)
 * Passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
   * `dotnet new blazor -h`
