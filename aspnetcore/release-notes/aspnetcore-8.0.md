@@ -221,6 +221,8 @@ Generic variants are supported for the following attributes:
 * `[ServiceFilter<T>]`
 * `[TypeFilter<T>]`
 
+<!--Note: All the topics that use the preceeding atributes have been updated to use the generic -->
+
 ### Code analysis in ASP.NET Core apps
 
 The new analyzers shown in the following table are available in ASP.NET Core 8.0.
