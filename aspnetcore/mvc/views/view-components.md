@@ -89,6 +89,7 @@ The runtime searches for the view in the following paths:
 * /Views/{Controller Name}/Components/{View Component Name}/{View Name}
 * /Views/Shared/Components/{View Component Name}/{View Name}
 * /Pages/Shared/Components/{View Component Name}/{View Name}
+* /Areas/{Area Name}/Views/Shared/Components/{View Component Name}/{View Name}
 
 The search path applies to projects using controllers + views and Razor Pages.
 
@@ -393,6 +394,7 @@ The runtime searches for the view in the following paths:
 * /Views/{Controller Name}/Components/{View Component Name}/{View Name}
 * /Views/Shared/Components/{View Component Name}/{View Name}
 * /Pages/Shared/Components/{View Component Name}/{View Name}
+* /Areas/{Area Name}/Views/Shared/Components/{View Component Name}/{View Name}
 
 The search path applies to projects using controllers + views and Razor Pages.
 
