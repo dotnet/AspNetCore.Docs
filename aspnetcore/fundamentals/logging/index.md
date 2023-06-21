@@ -344,9 +344,9 @@ Each log API uses a message template. The message template can contain placehold
 The *order of the parameters*, not their placeholder names, determines which parameters are used to provide placeholder values in log messages. In the following code, the parameter names are out of sequence in the placeholders of the message template:
 
 ```csharp
-string apples = 1;
-string pears = 2;
-string bananas = 3;
+var apples = 1;
+var pears = 2;
+var bananas = 3;
 
 _logger.LogInformation("Parameters: {pears}, {bananas}, {apples}", apples, pears, bananas);
 ```
@@ -1233,9 +1233,9 @@ Each log API uses a message template. The message template can contain placehold
 The *order of the parameters*, not their placeholder names, determines which parameters are used to provide placeholder values in log messages. In the following code, the parameter names are out of sequence in the placeholders of the message template:
 
 ```csharp
-string apples = 1;
-string pears = 2;
-string bananas = 3;
+var apples = 1;
+var pears = 2;
+var bananas = 3;
 
 _logger.LogInformation("Parameters: {pears}, {bananas}, {apples}", apples, pears, bananas);
 ```
