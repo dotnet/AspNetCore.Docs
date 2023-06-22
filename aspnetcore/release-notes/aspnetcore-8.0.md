@@ -175,9 +175,15 @@ The main entry points to subsystems that don't work reliably with native AOT are
 
 ### Minimal APIs and native AOT
 
-In order to make Minimal APIs compatible with native AOT, we're introducing the Request Delegate Generator (RDG). The RDG is a source generator that does what the <xref:Microsoft.AspNetCore.Http.RequestDelegateFactory> (RDF) does. That is, it turns the various `MapGet()`, `MapPost()`, and calls like them into <xref:Microsoft.AspNetCore.Http.RequestDelegate> instances associated with the specified routes. But rather than doing it in-memory in an application when it starts, the RDG does it at compile time and generates C# code directly into the project. This removes the runtime generation of this code and ensures that the types used in your APIs are statically analyzable by the native AOT tool-chain. This also ensures that required code is not trimmed away. We’re working to ensure that as many as possible of the Minimal API features are supported by the RDG and thus compatible with native AOT.
+In order to make Minimal APIs compatible with native AOT, we're introducing the Request Delegate Generator (RDG). The RDG is a source generator that does what the <xref:Microsoft.AspNetCore.Http.RequestDelegateFactory> (RDF) does. That is, it turns the various `MapGet()`, `MapPost()`, and calls like them into <xref:Microsoft.AspNetCore.Http.RequestDelegate> instances associated with the specified routes. But rather than doing it in-memory in an application when it starts, the RDG does it at compile time and generates C# code directly into the project. The RDG:
 
-The RDG is enabled automatically in your project when you enable publishing with native AOT. You can also manually enable RDG even when not using native AOT by setting <EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator> in your project file. This can be useful when initially evaluating your project’s readiness for native AOT, or to reduce the startup time of your application.
+* Removes the runtime generation of this code.
+* Ensures that the types used in APIs are statically analyzable by the native AOT tool-chain.
+* Ensures that required code is not trimmed away.
+
+We’re working to ensure that as many as possible of the Minimal API features are supported by the RDG and thus compatible with native AOT.
+
+The RDG is enabled automatically in a project when publishing with native AOT is enabled. RDG can be manually enabled even when not using native AOT by setting `<EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>` in the project file. This can be useful when initially evaluating a project’s readiness for native AOT, or to reduce the startup time of an app.
 
 Minimal APIs are optimized for receiving and returning JSON payloads using `System.Text.Json`, so the compatibility requirements for JSON and native AOT apply too. Native AOT compatibility requires the use of the `System.Text.Json` source generator. All types accepted as parameters to or returned from request delegates in your Minimal APIs must be configured on a `JsonSerializerContext` that is registered via ASP.NET Core’s dependency injection, for example:
 
@@ -202,7 +208,7 @@ For more information, see [Changes to support source generation](xref:fundamenta
 
 ### Libraries and native AOT
 
-Many of the common libraries available for ASP.NET Core projects today have some compatibility issues if used in a project targeting native AOT. Popular libraries often rely on the dynamic capabilities of .NET reflection to inspect and discover types, conditionally load libraries at runtime, and generate code on the fly to implement their functionality. These libraries will need to be updated in order to work with native AOT by using tools like [Roslyn source generators](/dotnet/csharp/roslyn-sdk/source-generators-overview).
+Many of the common libraries available for ASP.NET Core projects today have some compatibility issues if used in a project targeting native AOT. Popular libraries often rely on the dynamic capabilities of .NET reflection to inspect and discover types, conditionally load libraries at runtime, and generate code on the fly to implement their functionality. These libraries need to be updated in order to work with native AOT by using tools like [Roslyn source generators](/dotnet/csharp/roslyn-sdk/source-generators-overview).
 
 Library authors wishing to learn more about preparing their libraries for native AOT are encouraged to start by [preparing their library for trimming](/dotnet/core/deploying/trimming/prepare-libraries-for-trimming) and learning more about the [native AOT compatibility requirements](/dotnet/core/deploying/native-aot/).
 
