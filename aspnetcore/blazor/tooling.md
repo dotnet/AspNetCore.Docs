@@ -470,10 +470,10 @@ To create a Blazor app on macOS, use the following guidance:
   dotnet new blazor -o BlazorApp
   ```
 
-* After the app is created, open the project file (`BlazorApp.csproj`) with Visual Studio for Mac.
+  After the app is created, open the project file (`BlazorApp.csproj`) with Visual Studio for Mac.
 
-> [!NOTE]
-> Visual Studio for Mac will be able to create Blazor Web Apps in an upcoming release.
+  > [!NOTE]
+  > Visual Studio for Mac will be able to create Blazor Web Apps in an upcoming release.
 
 <!-- HOLD FOR 8.0 UPDATE TO USE VS UI
 
