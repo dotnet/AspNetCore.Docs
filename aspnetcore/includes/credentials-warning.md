@@ -1,0 +1,2 @@
+> [!WARNING]
+> In the preceding example, the certificate password is stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration). Development secrets shouldn't be used for production or test.
