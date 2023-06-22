@@ -193,7 +193,7 @@ The RDG is enabled automatically in a project when publishing with native AOT is
 
 ### Logging and exception handling in compile-time generated minimal APIs
 
-Minimal APIs generated at run time support automatically logging (or throwing exceptions in Development environments) when parameter binding fails. .NET 8 introduces the same support for APIs generated at compile time via the [Request Delegate Generator (RDG)](#request-delegate-generator). For more information, see [Logging and exception handling in compile-time generated minimal APIs](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#logging-and-exception-handling-in-compile-time-generated-minimal-apis).
+Minimal APIs generated at run time support automatically logging (or throwing exceptions in Development environments) when parameter binding fails. .NET 8 introduces the same support for APIs generated at compile time via the [Request Delegate Generator](#request-delegate-generator) (RDG). For more information, see [Logging and exception handling in compile-time generated minimal APIs](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#logging-and-exception-handling-in-compile-time-generated-minimal-apis).
 
 ### AOT and System.Text.Json
 
@@ -230,7 +230,7 @@ Library authors wishing to learn more about preparing their libraries for native
 
 ## Kestrel and HTTP.sys servers
 
-ASP.Net Core includes several new features for Kestrel and HTTP.sys.
+There are several new features for Kestrel and HTTP.sys.
 
 ### Support for named pipes in Kestrel
 
