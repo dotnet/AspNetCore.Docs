@@ -17,47 +17,47 @@ This article describes tools for building Blazor apps on various platforms.
 
 :::zone pivot="windows"
 
-1. Install the latest version of [Visual Studio](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
+Install the latest version of [Visual Studio](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
 
-1. Create a new project.
+Create a new project.
 
 :::moniker range=">= aspnetcore-8.0"
 
-1. For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** template.
+For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** template.
 
-   For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
+For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-1. For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Next**.
+For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Next**.
 
-   For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
+For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
 
-1. For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Next**.
+For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Next**.
 
 :::moniker-end
 
-1. Provide a **Project name** and confirm that the **Location** is correct. Select **Next**.
+Provide a **Project name** and confirm that the **Location** is correct. Select **Next**.
 
 :::moniker range="< aspnetcore-8.0"
 
-1. For a *hosted* Blazor WebAssembly app, select the **ASP.NET Core Hosted** checkbox in the **Additional information** dialog.
+For a *hosted* Blazor WebAssembly app, select the **ASP.NET Core Hosted** checkbox in the **Additional information** dialog.
 
 :::moniker-end
 
-1. Select **Create**.
+Select **Create**.
 
-1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
+Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
 :::moniker range="< aspnetcore-8.0"
 
-   When running a hosted Blazor WebAssembly [solution](#visual-studio-solution-file-sln) in Visual Studio, the startup project of the solution is the **:::no-loc text="Server":::** project.
+When running a hosted Blazor WebAssembly [solution](#visual-studio-solution-file-sln) in Visual Studio, the startup project of the solution is the **:::no-loc text="Server":::** project.
 
 :::moniker-end
 
@@ -78,320 +78,319 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
 
 Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute commands in a Linux command shell.
 
-1. Install the latest version of the [.NET Core SDK](https://dotnet.microsoft.com/download). If you previously installed the SDK, you can determine your installed version by executing the following command:
+Install the latest version of the [.NET Core SDK](https://dotnet.microsoft.com/download). If you previously installed the SDK, you can determine your installed version by executing the following command:
 
-   ```dotnetcli
-   dotnet --version
-   ```
+```dotnetcli
+dotnet --version
+```
 
-1. Install the latest version of [Visual Studio Code](https://code.visualstudio.com).
+Install the latest version of [Visual Studio Code](https://code.visualstudio.com).
 
-1. Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
+Install the latest [C# for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp).
 
 :::moniker range=">= aspnetcore-8.0"
 
-1. For a Blazor Web App experience (*recommended*), execute the following command:
+For a Blazor Web App experience (*recommended*), execute the following command:
 
-   ```dotnetcli
-   dotnet new blazor -o BlazorApp
-   ```
-   
-   For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
+```dotnetcli
+dotnet new blazor -o BlazorApp
+```
 
-   ```dotnetcli
-   dotnet new blazorwasm -o BlazorApp
-   ```
+For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
 
-   Alternatively, create an app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
+```dotnetcli
+dotnet new blazorwasm -o BlazorApp
+```
 
-   ```dotnetcli
-   dotnet new blazorwasm-empty -o BlazorApp
-   ```
+Alternatively, create an app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
+
+```dotnetcli
+dotnet new blazorwasm-empty -o BlazorApp
+```
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-1. For a Blazor Server experience with demonstration code and [Bootstrap](https://getbootstrap.com/), execute the following command:
+For a Blazor Server experience with demonstration code and [Bootstrap](https://getbootstrap.com/), execute the following command:
 
-   ```dotnetcli
-   dotnet new blazorserver -o BlazorApp
-   ```
+```dotnetcli
+dotnet new blazorserver -o BlazorApp
+```
 
-   Alternatively, create an app without demonstration code and Bootstrap using the `blazorserver-empty` project template:
+Alternatively, create an app without demonstration code and Bootstrap using the `blazorserver-empty` project template:
 
-   ```dotnetcli
-   dotnet new blazorserver-empty -o BlazorApp
-   ```
-   
-   For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
+```dotnetcli
+dotnet new blazorserver-empty -o BlazorApp
+```
 
-   ```dotnetcli
-   dotnet new blazorwasm -o BlazorApp
-   ```
+For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
 
-   Alternatively, create an app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
+```dotnetcli
+dotnet new blazorwasm -o BlazorApp
+```
 
-   ```dotnetcli
-   dotnet new blazorwasm-empty -o BlazorApp
-   ```
+Alternatively, create an app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
 
-   For a hosted Blazor WebAssembly experience with demonstration code and Bootstrap, add the hosted option (`-ho`/`--hosted`) to the command:
+```dotnetcli
+dotnet new blazorwasm-empty -o BlazorApp
+```
 
-   ```dotnetcli
-   dotnet new blazorwasm -o BlazorApp -ho
-   ```
+For a hosted Blazor WebAssembly experience with demonstration code and Bootstrap, add the hosted option (`-ho`/`--hosted`) to the command:
 
-   Alternatively, create a hosted Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` template with the hosted option:
+```dotnetcli
+dotnet new blazorwasm -o BlazorApp -ho
+```
 
-   ```dotnetcli
-   dotnet new blazorwasm-empty -o BlazorApp -ho
-   ```
+Alternatively, create a hosted Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` template with the hosted option:
 
-   For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
+```dotnetcli
+dotnet new blazorwasm-empty -o BlazorApp -ho
+```
+
+For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
 
-1. For a Blazor WebAssembly experience, execute the following command:
+For a Blazor WebAssembly experience, execute the following command:
 
-   ```dotnetcli
-   dotnet new blazorwasm -o BlazorApp
-   ```
+```dotnetcli
+dotnet new blazorwasm -o BlazorApp
+```
 
-   For a hosted Blazor WebAssembly experience, add the hosted option (`-ho` or `--hosted`) option to the command:
+For a hosted Blazor WebAssembly experience, add the hosted option (`-ho` or `--hosted`) option to the command:
 
-   ```dotnetcli
-   dotnet new blazorwasm -o BlazorApp -ho
-   ```
+```dotnetcli
+dotnet new blazorwasm -o BlazorApp -ho
+```
 
-   For a Blazor Server experience, execute the following command:
+For a Blazor Server experience, execute the following command:
 
-   ```dotnetcli
-   dotnet new blazorserver -o BlazorApp
-   ```
+```dotnetcli
+dotnet new blazorserver -o BlazorApp
+```
 
-   For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
+For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
 :::moniker-end
 
-1. Open the `BlazorApp` folder in Visual Studio Code.
+Open the `BlazorApp` folder in Visual Studio Code.
 
-1. The IDE requests that you add assets to build and debug the project. Select **Yes**.
+The IDE requests that you add assets to build and debug the project. Select **Yes**.
 
-   If Visual Studio Code doesn't offer to create the assets automatically, use the following files:
+If Visual Studio Code doesn't offer to create the assets automatically, use the following files:
 
-   `.vscode/launch.json` (configured for launch and debug of a Blazor WebAssembly app):
-
+`.vscode/launch.json` (configured for launch and debug of a Blazor WebAssembly app):
 
 :::moniker range=">= aspnetcore-6.0"
 
-   ```json
-   {
-     "version": "0.2.0",
-     "configurations": [
-       {
-         "type": "blazorwasm",
-         "name": "Launch and Debug Blazor WebAssembly Application",
-         "request": "launch",
-         "cwd": "${workspaceFolder}",
-         "browser": "edge"
-       }
-     ]
-   }
-   ```
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "blazorwasm",
+      "name": "Launch and Debug Blazor WebAssembly Application",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "browser": "edge"
+    }
+  ]
+}
+```
 
-   `.vscode/tasks.json`:
+`.vscode/tasks.json`:
 
-   ```json
-   {
-     "version": "2.0.0",
-     "tasks": [
-       {
-         "label": "build",
-         "command": "dotnet",
-         "type": "shell",
-         "args": [
-           "build",
-           "/property:GenerateFullPaths=true",
-           "/consoleloggerparameters:NoSummary",
-          ],
-          "group": "build",
-          "presentation": {
-             "reveal": "silent"
-          },
-          "problemMatcher": "$msCompile"
-       }
-     ]
-   }
-   ```
+```json
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "build",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary",
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}
+```
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-   ```json
-   {
-       // Use IntelliSense to learn about possible attributes.
-       // Hover to view descriptions of existing attributes.
-       // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-       "version": "0.2.0",
-       "configurations": [
-           {
-               "type": "blazorwasm",
-               "name": "Launch and Debug Blazor WebAssembly Application",
-               "request": "launch",
-               "cwd": "${workspaceFolder}",
-               "browser": "edge"
-           }
-       ]
-   }
-   ```
+```json
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "blazorwasm",
+      "name": "Launch and Debug Blazor WebAssembly Application",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "browser": "edge"
+    }
+  ]
+}
+```
 
-   `.vscode/tasks.json`:
+`.vscode/tasks.json`:
 
-   ```json
-   {
-       // See https://go.microsoft.com/fwlink/?LinkId=733558
-       // for the documentation about the tasks.json format
-       "version": "2.0.0",
-       "tasks": [
-           {
-               "label": "build",
-               "command": "dotnet",
-               "type": "shell",
-               "args": [
-                   "build",
-                   // Ask dotnet build to generate full paths for file names.
-                   "/property:GenerateFullPaths=true",
-                   // Do not generate summary otherwise it leads to duplicate errors in Problems panel
-                   "/consoleloggerparameters:NoSummary",
-               ],
-               "group": "build",
-               "presentation": {
-                   "reveal": "silent"
-               },
-               "problemMatcher": "$msCompile"
-           }
-       ]
-   }
-   ```
+```json
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "command": "dotnet",
+      "type": "shell",
+      "args": [
+        "build",
+        // Ask dotnet build to generate full paths for file names.
+        "/property:GenerateFullPaths=true",
+        // Do not generate summary otherwise it leads to duplicate errors in Problems panel
+        "/consoleloggerparameters:NoSummary",
+      ],
+      "group": "build",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}
+```
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 
-   The project's `Properties/launchSettings.json` file includes the `inspectUri` property for the debugging proxy for any profiles in the `profiles` section of the file:
+The project's `Properties/launchSettings.json` file includes the `inspectUri` property for the debugging proxy for any profiles in the `profiles` section of the file:
 
-   ```json
-   "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
-   ```
+```json
+"inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
+```
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-   **Hosted Blazor WebAssembly launch and task configuration**
+**Hosted Blazor WebAssembly launch and task configuration**
 
-   For hosted Blazor WebAssembly [solutions](#visual-studio-solution-file-sln), add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: :::no-loc text="Client":::, :::no-loc text="Server":::, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **:::no-loc text="Server":::** project.
+For hosted Blazor WebAssembly [solutions](#visual-studio-solution-file-sln), add (or move) the `.vscode` folder with `launch.json` and `tasks.json` files to the solution's parent folder, which is the folder that contains the typical project folders: :::no-loc text="Client":::, :::no-loc text="Server":::, and `Shared`. Update or confirm that the configuration in the `launch.json` and `tasks.json` files execute a hosted Blazor WebAssembly app from the **:::no-loc text="Server":::** project.
 
-   > [!IMPORTANT]
-   > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
-   >
-   > When the app is launched, only the `Properties/launchSettings.json` file in the :::no-loc text="Server"::: project is used.
+> [!IMPORTANT]
+> When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
+>
+> When the app is launched, only the `Properties/launchSettings.json` file in the :::no-loc text="Server"::: project is used.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-   Examine the `Properties/launchSettings.json` file and determine the URL of the app from the `applicationUrl` property. Depending on the framework version, the URL protocol is either secure (HTTPS) `https://localhost:{PORT}` or insecure (HTTP) `http://localhost:{PORT}`, where the `{PORT}` placeholder is an assigned port. Note the URL for use in the `launch.json` file.
+Examine the `Properties/launchSettings.json` file and determine the URL of the app from the `applicationUrl` property. Depending on the framework version, the URL protocol is either secure (HTTPS) `https://localhost:{PORT}` or insecure (HTTP) `http://localhost:{PORT}`, where the `{PORT}` placeholder is an assigned port. Note the URL for use in the `launch.json` file.
 
-   In the launch configuration of the `.vscode/launch.json` file:
+In the launch configuration of the `.vscode/launch.json` file:
 
-   * Set the current working directory (`cwd`) to the **:::no-loc text="Server":::** project folder.
-   * Indicate the app's URL with the `url` property. Use the value recorded earlier from the `Properties/launchSettings.json` file.
+* Set the current working directory (`cwd`) to the **:::no-loc text="Server":::** project folder.
+* Indicate the app's URL with the `url` property. Use the value recorded earlier from the `Properties/launchSettings.json` file.
 
-   ```json
-   "cwd": "${workspaceFolder}/{SERVER APP FOLDER}",
-   "url": "{URL}"
-   ```
+```json
+"cwd": "${workspaceFolder}/{SERVER APP FOLDER}",
+"url": "{URL}"
+```
 
-   In the preceding configuration:
+In the preceding configuration:
 
-   * The `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically :::no-loc text="Server":::.
-   * The `{URL}` placeholder is the app's URL, which is specified in the app's `Properties/launchSettings.json` file in the `applicationUrl` property.
+* The `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically :::no-loc text="Server":::.
+* The `{URL}` placeholder is the app's URL, which is specified in the app's `Properties/launchSettings.json` file in the `applicationUrl` property.
 
-   If Google Chrome is preferred over Microsoft Edge, update or add an additional property of `"browser": "chrome"` to the configuration.
+If Google Chrome is preferred over Microsoft Edge, update or add an additional property of `"browser": "chrome"` to the configuration.
 
-   The following example `.vscode/launch.json` file:
+The following example `.vscode/launch.json` file:
 
-   * Sets the current working directory to the :::no-loc text="Server"::: folder.
-   * Sets the URL for the app to `http://localhost:7268`.
-   * Changes the default browser from Microsoft Edge to Google Chrome.
+* Sets the current working directory to the :::no-loc text="Server"::: folder.
+* Sets the URL for the app to `http://localhost:7268`.
+* Changes the default browser from Microsoft Edge to Google Chrome.
 
-   ```json
-   "cwd": "${workspaceFolder}/Server",
-   "url": "http://localhost:7268",
-   "browser": "chrome"
-   ```
+```json
+"cwd": "${workspaceFolder}/Server",
+"url": "http://localhost:7268",
+"browser": "chrome"
+```
 
-   The complete `.vscode/launch.json` file:
+The complete `.vscode/launch.json` file:
 
-   ```json
-   {
-     "version": "0.2.0",
-     "configurations": [
-       {
-         "type": "blazorwasm",
-         "name": "Launch and Debug Blazor WebAssembly Application",
-         "request": "launch",
-         "cwd": "${workspaceFolder}/Server",
-         "url": "http://localhost:7268",
-         "browser": "chrome"
-       }
-     ]
-   }
-   ```
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "blazorwasm",
+      "name": "Launch and Debug Blazor WebAssembly Application",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/Server",
+      "url": "http://localhost:7268",
+      "browser": "chrome"
+    }
+  ]
+}
+```
 
-   In `.vscode/tasks.json`, add a `build` argument that specifies the path to the **:::no-loc text="Server":::** app's project file:
+In `.vscode/tasks.json`, add a `build` argument that specifies the path to the **:::no-loc text="Server":::** app's project file:
 
-   ```json
-   "${workspaceFolder}/{SERVER APP FOLDER}/{PROJECT NAME}.csproj",
-   ```
+```json
+"${workspaceFolder}/{SERVER APP FOLDER}/{PROJECT NAME}.csproj",
+```
 
-   In the preceding argument:
+In the preceding argument:
 
-   * The `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically :::no-loc text="Server":::.
-   * The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by `.Server` in an app generated from the Blazor WebAssembly project template.
+* The `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically :::no-loc text="Server":::.
+* The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by `.Server` in an app generated from the Blazor WebAssembly project template.
 
-   An example `.vscode/tasks.json` file with a **:::no-loc text="Server":::** project named `BlazorHosted` in the :::no-loc text="Server"::: folder of the solution:
+An example `.vscode/tasks.json` file with a **:::no-loc text="Server":::** project named `BlazorHosted` in the :::no-loc text="Server"::: folder of the solution:
 
-   ```json
-   {
-     "version": "2.0.0",
-     "tasks": [
-       {
-         "label": "build",
-         "command": "dotnet",
-         "type": "process",
-           "args": [
-             "build",
-             "${workspaceFolder}/Server/BlazorHosted.Server.csproj",
-             "/property:GenerateFullPaths=true",
-             "/consoleloggerparameters:NoSummary",
-           ],
-           "group": "build",
-           "presentation": {
-             "reveal": "silent"
-           },
-           "problemMatcher": "$msCompile"
-       }
-     ]
-   }
-   ```
+```json
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "command": "dotnet",
+      "type": "process",
+        "args": [
+          "build",
+          "${workspaceFolder}/Server/BlazorHosted.Server.csproj",
+          "/property:GenerateFullPaths=true",
+          "/consoleloggerparameters:NoSummary",
+        ],
+        "group": "build",
+        "presentation": {
+          "reveal": "silent"
+        },
+        "problemMatcher": "$msCompile"
+    }
+  ]
+}
+```
 
-1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
+Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
 > [!NOTE]
 > Only [browser debugging](xref:blazor/debug#debug-in-the-browser) is supported at this time.
@@ -402,53 +401,53 @@ Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute comm
 
 :::moniker range="< aspnetcore-6.0"
 
-   **`.vscode/launch.json`** (`launch` configuration):
+**`.vscode/launch.json`** (`launch` configuration):
 
-   ```json
-   ...
-   "cwd": "${workspaceFolder}/{SERVER APP FOLDER}",
-   ...
-   ```
+```json
+...
+"cwd": "${workspaceFolder}/{SERVER APP FOLDER}",
+...
+```
 
-   In the preceding configuration for the current working directory (`cwd`), the `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically ":::no-loc text="Server":::".
+In the preceding configuration for the current working directory (`cwd`), the `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically ":::no-loc text="Server":::".
 
-   If Microsoft Edge is used and Google Chrome isn't installed on the system, add an additional property of `"browser": "edge"` to the configuration.
+If Microsoft Edge is used and Google Chrome isn't installed on the system, add an additional property of `"browser": "edge"` to the configuration.
 
-   Example for a project folder of :::no-loc text="Server"::: and that spawns Microsoft Edge as the browser for debug runs instead of the default browser Google Chrome:
+Example for a project folder of :::no-loc text="Server"::: and that spawns Microsoft Edge as the browser for debug runs instead of the default browser Google Chrome:
 
-   ```json
-   ...
-   "cwd": "${workspaceFolder}/Server",
-   "browser": "edge"
-   ...
-   ```
+```json
+...
+"cwd": "${workspaceFolder}/Server",
+"browser": "edge"
+...
+```
 
-   **`.vscode/tasks.json`** ([`dotnet` command](/dotnet/core/tools/dotnet) arguments):
+**`.vscode/tasks.json`** ([`dotnet` command](/dotnet/core/tools/dotnet) arguments):
 
-   ```json
-   ...
-   "${workspaceFolder}/{SERVER APP FOLDER}/{PROJECT NAME}.csproj",
-   ...
-   ```
+```json
+...
+"${workspaceFolder}/{SERVER APP FOLDER}/{PROJECT NAME}.csproj",
+...
+```
 
-   In the preceding argument:
+In the preceding argument:
 
-   * The `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically ":::no-loc text="Server":::".
-   * The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by "`.Server`" in an app generated from the [Blazor project template](xref:blazor/project-structure).
+* The `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically ":::no-loc text="Server":::".
+* The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by "`.Server`" in an app generated from the [Blazor project template](xref:blazor/project-structure).
 
-   The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](xref:blazor/tutorials/signalr-blazor) uses a project folder name of :::no-loc text="Server"::: and a project name of `BlazorWebAssemblySignalRApp.Server`:
+The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](xref:blazor/tutorials/signalr-blazor) uses a project folder name of :::no-loc text="Server"::: and a project name of `BlazorWebAssemblySignalRApp.Server`:
 
-   ```json
-   ...
-   "args": [
-     "build",
-       "${workspaceFolder}/Server/BlazorWebAssemblySignalRApp.Server.csproj",
-       ...
-   ],
-   ...
-   ```
+```json
+...
+"args": [
+  "build",
+    "${workspaceFolder}/Server/BlazorWebAssemblySignalRApp.Server.csproj",
+    ...
+],
+...
+```
 
-1. Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
+Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> (Windows) or <kbd>⌘</kbd>+<kbd>F5</kbd> (macOS) to run the app.
 
 :::moniker-end
 
@@ -460,68 +459,68 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 :::zone pivot="macos"
 
-1. Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
+Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
-1. Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
+Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
 
 :::moniker range=">= aspnetcore-8.0"
 
-1. For a Blazor Web Apps experience (*recommended*), Visual Studio for Mac can't create a Blazor Web App in its UI at this time. Open a command shell with Apple's **Terminal** utility application in macOS's `Applications/Utilities` folder. Change the directory to the location where you want to create the app with the [`ls` command](https://man7.org/linux/man-pages/man1/ls.1.html). For example, use the `ls Desktop` command to change the directory to the desktop. Execute the following command in the command shell:
+For a Blazor Web Apps experience (*recommended*), Visual Studio for Mac can't create a Blazor Web App in its UI at this time. Open a command shell with Apple's **Terminal** utility application in macOS's `Applications/Utilities` folder. Change the directory to the location where you want to create the app with the [`ls` command](https://man7.org/linux/man-pages/man1/ls.1.html). For example, use the `ls Desktop` command to change the directory to the desktop. Execute the following command in the command shell:
 
-  ```dotnetcli
-  dotnet new blazor -o BlazorApp
-  ```
+```dotnetcli
+dotnet new blazor -o BlazorApp
+```
 
-  After the app is created, open the project file (`BlazorApp.csproj`) with Visual Studio for Mac.
-  
-  > [!NOTE]
-  > Visual Studio for Mac will be able to create Blazor Web Apps in an upcoming release.
+After the app is created, open the project file (`BlazorApp.csproj`) with Visual Studio for Mac.
+
+> [!NOTE]
+> Visual Studio for Mac will be able to create Blazor Web Apps in an upcoming release.
 
 <!-- HOLD FOR 8.0 UPDATE TO USE VS UI
 
-1. In the sidebar, select **Web and Console** > **App**.
+In the sidebar, select **Web and Console** > **App**.
 
-   For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** template.
+For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** template.
 
 -->
 
-   For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
+For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-1. In the sidebar, select **Web and Console** > **App**.
+In the sidebar, select **Web and Console** > **App**.
 
-   For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Continue**.
+For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Continue**.
 
-   For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
+For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
 
-   For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
+For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
 
-1. In the sidebar, select **Web and Console** > **App**.
+In the sidebar, select **Web and Console** > **App**.
 
-   For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Continue**.
+For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Continue**.
 
-   For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
+For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
 
 :::moniker-end
 
-1. Confirm that **Authentication** is set to **No Authentication**. Select **Continue**.
+Confirm that **Authentication** is set to **No Authentication**. Select **Continue**.
 
 :::moniker range="< aspnetcore-8.0"
 
-1. For a hosted Blazor WebAssembly experience, select the **ASP.NET Core Hosted** checkbox.
+For a hosted Blazor WebAssembly experience, select the **ASP.NET Core Hosted** checkbox.
 
 :::moniker-end
 
-1. In the **Project name** field, name the app `BlazorApp`. Select **Create**.
+In the **Project name** field, name the app `BlazorApp`. Select **Create**.
 
-1. Select the **Start Without Debugging** command from the **Debug** menu to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
+Select the **Start Without Debugging** command from the **Debug** menu to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
 
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
@@ -620,7 +619,7 @@ For more information on template options, see the following resources:
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-* *.NET default templates for dotnet new* article in the .NET Core documentation:
+* The *.NET default templates for dotnet new* article in the .NET Core documentation:
   * [`blazorserver`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorserver) (includes `blazorserver-empty` options)
   * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm) (includes `blazorwasm-empty` options)
 * Passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
@@ -633,7 +632,7 @@ For more information on template options, see the following resources:
 
 :::moniker range="< aspnetcore-7.0"
 
-* *.NET default templates for dotnet new* article in the .NET Core documentation:
+* The *.NET default templates for dotnet new* article in the .NET Core documentation:
   * [`blazorserver`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorserver)
   * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm)
 * Passing the help option (`-h` or `--help`) to the [`dotnet new`](/dotnet/core/tools/dotnet-new) CLI command in a command shell:
