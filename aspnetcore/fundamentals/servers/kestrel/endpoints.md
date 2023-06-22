@@ -116,7 +116,7 @@ For more information, see [Configure HTTPS](#configure-https).
 
 ### Configure endpoints in appsettings.json
 
-Kestrel can load endpoints from an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance. By default, Kestrel configuration is loaded from the `Kestrel` section. Endpoints are configured in `Kestrel:Endpoints`:
+Kestrel can load endpoints from an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance. By default, Kestrel configuration is loaded from the `Kestrel` section and endpoints are configured in `Kestrel:Endpoints`:
 
 ```json
 {
@@ -135,7 +135,7 @@ The preceding example:
 * Uses `appsettings.json` as the configuration source. However, any `IConfiguration` source can be used.
 * Adds an endpoint named `MyHttpEndpoint` on port 8080.
 
-For more information about configuring endpoints with JSON, later sections discuss [configuring HTTPS](#configure-https-in-appsettingsjson) and [configuring HTTP protocols](#configure-http-protocols-in-appsettingsjson) in appsettings.json.
+For more information about configuring endpoints with JSON, see later sections in this article that discuss [configuring HTTPS](#configure-https-in-appsettingsjson) and [configuring HTTP protocols](#configure-http-protocols-in-appsettingsjson) in appsettings.json.
 
 #### Reloading endpoints from configuration
 
