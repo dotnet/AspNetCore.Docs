@@ -116,37 +116,26 @@ For more information, see [Configure HTTPS](#configure-https).
 
 ### Configure endpoints in appsettings.json
 
-Kestrel can load endpoints from an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance. By default, Kestrel configuration is loaded from the `Kestrel` section:
+Kestrel can load endpoints from an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance. By default, Kestrel configuration is loaded from the `Kestrel` section. Endpoints are configured in `Kestrel:Endpoints`:
 
 ```json
 {
   "Kestrel": {
     "Endpoints": {
-      "Http": {
-        "Url": "http://localhost:5000"
-      },
-      "Https": {
-        "Url": "https://localhost:5001",
-        "Certificate": {
-          "Path": "<path to .pfx file>",
-          "Password": "$CREDENTIAL_PLACEHOLDER$"
-        }
+      "MyHttpEndpoint": {
+        "Url": "http://localhost:8080"
       }
     }
   }
 }
 ```
 
-[!INCLUDE [](~/includes/credentials-warning.md)]
-
 The preceding example:
 
 * Uses `appsettings.json` as the configuration source. However, any `IConfiguration` source can be used.
-* Inside the `Kestrel:Endpoints` section:
-  * Adds an endpoint named `Http` on port 5000.
-  * Adds an endpoint named `Https` on port 5001 secured with HTTPS.
+* Adds an endpoint named `MyHttpEndpoint` on port 8080.
 
-For more information about configuring HTTPS endpoints with JSON, see [Configure HTTPS in appsettings.json](#configure-https-in-appsettingsjson).
+For more information about configuring endpoints with JSON, later sections discuss [configuring HTTPS](#configure-https-in-appsettingsjson) and [configuring HTTP protocols](#configure-http-protocols-in-appsettingsjson) in appsettings.json.
 
 #### Reloading endpoints from configuration
 
@@ -587,7 +576,7 @@ Protocols specified in code override values set by configuration.
 
 ### Configure HTTP protocols in code
 
-<xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions.Protocols?displayProperty=nameWithType> is used to specify protocols in code with the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols> enum.
+<xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions.Protocols?displayProperty=nameWithType> is used to specify protocols with the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols> enum.
 
 The following example configures an endpoint for HTTP/1.1, HTTP/2, and HTTP/3 connections on port 8000. Connections are secured by TLS with a supplied certificate:
 
