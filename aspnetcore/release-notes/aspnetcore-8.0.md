@@ -309,6 +309,7 @@ Metrics offers a number of improvements compared to existing event counters:
 * Integration into the wider cloud native ecosystem by aligning with OpenTelemetry standards.
 
 Metrics have been added for ASP.NET Core hosting, Kestrel, and SignalR. For more information, see [ASP.NET Core metrics](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#asp-net-core-metrics).
+<!-- Change link to /dotnet/core/diagnostics/compare-metric-apis#system.diagnostics.metrics when it's published. -->
 
 ## Authentication and authorization
 
