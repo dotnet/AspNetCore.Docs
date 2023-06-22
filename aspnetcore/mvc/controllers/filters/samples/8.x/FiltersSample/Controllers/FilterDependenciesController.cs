@@ -1,4 +1,4 @@
-﻿using FiltersSample.Filters;
+using FiltersSample.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FiltersSample.Controllers;
@@ -6,7 +6,7 @@ namespace FiltersSample.Controllers;
 public class FilterDependenciesController : Controller
 {
     // <snippet_ServiceFilter>
-    [ServiceFilter(typeof(LoggingResponseHeaderFilterService))]
+    [ServiceFilter<LoggingResponseHeaderFilterService>]
     public IActionResult WithServiceFilter() =>
         Content($"- {nameof(FilterDependenciesController)}.{nameof(WithServiceFilter)}");
     // </snippet_ServiceFilter>

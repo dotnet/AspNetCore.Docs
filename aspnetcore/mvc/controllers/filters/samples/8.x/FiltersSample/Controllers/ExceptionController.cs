@@ -1,10 +1,10 @@
-﻿using FiltersSample.Filters;
+using FiltersSample.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FiltersSample.Controllers;
 
 // <snippet_Class>
-[TypeFilter(typeof(SampleExceptionFilter))]
+[TypeFilter<SampleExceptionFilter>]
 public class ExceptionController : Controller
 {
     public IActionResult Index() =>
