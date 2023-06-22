@@ -4,16 +4,16 @@
 // FIL2 IHB CHNGR ADDMID
 #if NEVER
 #elif Default
-#region snippet_default
+// <snippet_default>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
-#endregion
+// </snippet_default>
 #elif IHB
-#region snippet_ihb
+// <snippet_ihb>
 var builder = WebApplication.CreateBuilder(args);
 
 // Wait 30 seconds for graceful shutdown.
@@ -24,9 +24,9 @@ var app = builder.Build();
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
-#endregion
+// </snippet_ihb>
 #elif CHNGR
-#region snippet_chngr
+// <snippet_chngr>
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
     Args = args,
@@ -37,9 +37,9 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 var app = builder.Build();
 
 app.Run();
-#endregion
+// </snippet_chngr>
 #elif ADDMID
-#region snippet_addmid
+// <snippet_addmid>
 var app = WebApplication.Create(args);
 
 // Setup the file server to serve static files.
@@ -48,25 +48,25 @@ app.UseFileServer();
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
-#endregion
+// </snippet_addmid>
 #elif CREATE
-#region snippet_create
+// <snippet_create>
 var app = WebApplication.Create(args);
 
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
-#endregion
+// </snippet_create>
 #elif P1 // P for Port
-#region snippet_p1
+// <snippet_p1>
 var app = WebApplication.Create(args);
 
 app.MapGet("/", () => "Hello World!");
 
 app.Run("http://localhost:3000");
-#endregion
+// </snippet_p1>
 #elif PM // P for Port
-#region snippet_pm
+// <snippet_pm>
 var app = WebApplication.Create(args);
 
 app.Urls.Add("http://localhost:3000");
@@ -75,9 +75,9 @@ app.Urls.Add("http://localhost:4000");
 app.MapGet("/", () => "Hello World");
 
 app.Run();
-#endregion
+// </snippet_pm>
 #elif PE // P for Port
-#region snippet_pe
+// <snippet_pe>
 var app = WebApplication.Create(args);
 
 var port = Environment.GetEnvironmentVariable("PORT") ?? "3000";
@@ -85,9 +85,9 @@ var port = Environment.GetEnvironmentVariable("PORT") ?? "3000";
 app.MapGet("/", () => "Hello World");
 
 app.Run($"http://localhost:{port}");
-#endregion
+// </snippet_pe>
 #elif I1
-#region snippet_i1
+// <snippet_i1>
 var app = WebApplication.Create(args);
 
 app.Urls.Add("http://*:3000");
@@ -95,9 +95,9 @@ app.Urls.Add("http://*:3000");
 app.MapGet("/", () => "Hello World");
 
 app.Run();
-#endregion
+// </snippet_i1>
 #elif IP
-#region snippet_ip
+// <snippet_ip>
 var app = WebApplication.Create(args);
 
 app.Urls.Add("http://+:3000");
@@ -105,9 +105,9 @@ app.Urls.Add("http://+:3000");
 app.MapGet("/", () => "Hello World");
 
 app.Run();
-#endregion
+// </snippet_ip>
 #elif I0
-#region snippet_i0
+// <snippet_i0>
 var app = WebApplication.Create(args);
 
 app.Urls.Add("http://0.0.0.0:3000");
@@ -115,9 +115,9 @@ app.Urls.Add("http://0.0.0.0:3000");
 app.MapGet("/", () => "Hello World");
 
 app.Run();
-#endregion
+// </snippet_i0>
 #elif CERT
-#region snippet_cert
+// <snippet_cert>
 var app = WebApplication.Create(args);
 
 app.Urls.Add("https://localhost:3000");
@@ -125,14 +125,14 @@ app.Urls.Add("https://localhost:3000");
 app.MapGet("/", () => "Hello World");
 
 app.Run();
-#endregion
+// </snippet_cert>
 #elif CERT2
 // Warning. The following code writes to the configuration system and
 // sets the Cert path and key. If those values are invalid, Kestrel won't run
 // for that project, even if you remove the following code. Kestrel returns
 // Unhandled exception. Internal.Cryptography.CryptoThrowHelper+WindowsCryptographicException:
 // The system cannot find the file specified.
-#region snippet_cert2
+// <snippet_cert2>
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure the cert and the key
@@ -146,9 +146,9 @@ app.Urls.Add("https://localhost:3000");
 app.MapGet("/", () => "Hello World");
 
 app.Run();
-#endregion
+// </snippet_cert2>
 #elif CERT3
-#region snippet_cert3
+// <snippet_cert3>
 using System.Security.Cryptography.X509Certificates;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -172,9 +172,9 @@ app.Urls.Add("https://localhost:3000");
 app.MapGet("/", () => "Hello World");
 
 app.Run();
-#endregion
+// </snippet_cert3>
 #elif RE
-#region snippet_re
+// <snippet_re>
 var app = WebApplication.Create(args);
 
 if (!app.Environment.IsDevelopment())
@@ -186,9 +186,9 @@ app.MapGet("/", () => "Hello World");
 app.MapGet("/oops", () => "Oops! An error happened.");
 
 app.Run();
-#endregion
+// </snippet_re>
 #elif CONFIG
-#region snippet_config 
+// <snippet_config >
 var app = WebApplication.Create(args);
 
 var message = app.Configuration["HelloKey"] ?? "Hello";
@@ -196,9 +196,9 @@ var message = app.Configuration["HelloKey"] ?? "Hello";
 app.MapGet("/", () => message);
 
 app.Run();
-#endregion
+// </snippet_config >
 #elif LOG
-#region snippet_log
+// <snippet_log>
 var app = WebApplication.Create(args);
 
 app.Logger.LogInformation("The app started");
@@ -206,9 +206,9 @@ app.Logger.LogInformation("The app started");
 app.MapGet("/", () => "Hello World");
 
 app.Run();
-#endregion
+// </snippet_log>
 #elif DEPS
-#region snippet_dependencies
+// <snippet_dependencies>
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -226,10 +226,10 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.Run();
-#endregion
+// </snippet_dependencies>
 class SampleService { public void DoSomething() { } }
 #elif REB  // Read Env Builder
-#region snippet_reb
+// <snippet_reb>
 var builder = WebApplication.CreateBuilder(args);
 
 if (builder.Environment.IsDevelopment())
@@ -242,9 +242,9 @@ var app = builder.Build();
 app.MapGet("/", () => "Hello World!");
 
 app.Run();
-#endregion
+// </snippet_reb>
 #elif CONFIGB
-#region snippet_configb
+// <snippet_configb>
 var builder = WebApplication.CreateBuilder(args);
 
 var message = builder.Configuration["HelloKey"] ?? "Hello";
@@ -254,9 +254,9 @@ var app = builder.Build();
 app.MapGet("/", () => message);
 
 app.Run();
-#endregion
+// </snippet_configb>
 #elif LOGB
-#region snippet_logb
+// <snippet_logb>
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure JSON logging to the console.
@@ -267,9 +267,9 @@ var app = builder.Build();
 app.MapGet("/", () => "Hello JSON console!");
 
 app.Run();
-#endregion
+// </snippet_logb>
 #elif IWHB
-#region snippet_iwhb
+// <snippet_iwhb>
 var builder = WebApplication.CreateBuilder(args);
 
 // Change the HTTP server implemenation to be HTTP.sys based
@@ -280,9 +280,9 @@ var app = builder.Build();
 app.MapGet("/", () => "Hello HTTP.sys");
 
 app.Run();
-#endregion
+// </snippet_iwhb>
 #elif DEP
-#region snippet_dep
+// <snippet_dep>
 var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
@@ -293,9 +293,9 @@ app.MapGet("/", () =>
 });
 
 app.Run();
-#endregion
+// </snippet_dep>
 #elif R1 // Routing
-#region snippet_r1
+// <snippet_r1>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -308,9 +308,9 @@ app.MapMethods("/options-or-head", new[] { "OPTIONS", "HEAD" },
                           () => "This is an options or head request ");
 
 app.Run();
-#endregion
+// </snippet_r1>
 #elif LE
-#region snippet_le
+// <snippet_le>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -321,9 +321,9 @@ var handler = () => "This is a lambda variable";
 app.MapGet("/", handler);
 
 app.Run();
-#endregion
+// </snippet_le>
 #elif LF
-#region snippet_lf
+// <snippet_lf>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -332,10 +332,10 @@ string LocalFunction() => "This is local function";
 app.MapGet("/", LocalFunction);
 
 app.Run();
-#endregion
+// </snippet_lf>
 
 #elif IM
-#region snippet_im
+// <snippet_im>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -352,10 +352,10 @@ class HelloHandler
         return "Hello Instance method";
     }
 }
-#endregion
+// </snippet_im>
 
 #elif SM
-#region snippet_sm
+// <snippet_sm>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -370,10 +370,10 @@ class HelloHandler
         return "Hello static method";
     }
 }
-#endregion
+// </snippet_sm>
 
 #elif NR
-#region snippet_nr
+// <snippet_nr>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -384,10 +384,10 @@ app.MapGet("/", (LinkGenerator linker) =>
         $"The link to the hello route is {linker.GetPathByName("hi", values: null)}");
 
 app.Run();
-#endregion
+// </snippet_nr>
 
 #elif RP
-#region snippet_rp
+// <snippet_rp>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -395,19 +395,19 @@ app.MapGet("/users/{userId}/books/{bookId}",
     (int userId, int bookId) => $"The user id is {userId} and book id is {bookId}");
 
 app.Run();
-#endregion
+// </snippet_rp>
 
 #elif WILD
-#region snippet_wild
+// <snippet_wild>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 app.MapGet("/posts/{*rest}", (string rest) => $"Routing to {rest}");
 
 app.Run();
-#endregion
+// </snippet_wild>
 #elif PBG
-#region snippet_pbg
+// <snippet_pbg>
 var builder = WebApplication.CreateBuilder(args);
 
 // Added as service
@@ -421,10 +421,10 @@ app.MapGet("/{id}", (int id,
                      Service service) => { });
 
 class Service { }
-#endregion
+// </snippet_pbg>
 
 #elif PBP
-#region snippet_pbp
+// <snippet_pbp>
 var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
@@ -432,10 +432,10 @@ var app = builder.Build();
 app.MapPost("/", (Person person) => { });
 
 record Person(string Name, int Age);
-#endregion
+// </snippet_pbp>
 
 #elif EPB
-#region snippet_epb
+// <snippet_epb>
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -455,21 +455,21 @@ app.MapGet("/{id}", ([FromRoute] int id,
 class Service { }
 
 record Person(string Name, int Age);
-#endregion
+// </snippet_epb>
 
 #elif OP1
 // GET /products?pageNumber=3
-#region snippet_op1
+// <snippet_op1>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 app.MapGet("/products", (int pageNumber) => $"Requesting page {pageNumber}");
 
 app.Run();
-#endregion
+// </snippet_op1>
 
 #elif OP2
-#region snippet_op2
+// <snippet_op2>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -480,10 +480,10 @@ string ListProducts(int pageNumber = 1) => $"Requesting page {pageNumber}";
 app.MapGet("/products2", ListProducts);
 
 app.Run();
-#endregion
+// </snippet_op2>
 
 #elif OP3
-#region snippet_op3
+// <snippet_op3>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -491,23 +491,23 @@ app.MapPost("/products", (Product? product) => { });
 
 app.Run();
 
-#endregion
+// </snippet_op3>
 internal class Product
 {
 }
 
 #elif OP4
-#region snippet_op4
+// <snippet_op4>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 app.MapGet("/products", (int? pageNumber) => $"Requesting page {pageNumber ?? 1}");
 
 app.Run();
-#endregion
+// </snippet_op4>
 
 #elif CB
-#region snippet_cb
+// <snippet_cb>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -540,10 +540,10 @@ public class Point
         return false;
     }
 }
-#endregion
+// </snippet_cb>
 
 #elif BA
-#region snippet_ba
+// <snippet_ba>
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -590,10 +590,10 @@ public enum SortDirection
     Asc,
     Desc
 }
-#endregion
+// </snippet_ba>
 
 #elif CJSON
-#region snippet_cjson
+// <snippet_cjson>
 using Microsoft.AspNetCore.Http.Json;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -616,10 +616,10 @@ class Product
     public int Id;
     public string? Name;
 }
-#endregion
+// </snippet_cjson>
 
 #elif MULTI
-#region snippet_666  // never rendered, just for testing.
+// <snippet_666  // never rendered, just for testing.>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -633,10 +633,10 @@ app.MapGet("/new-path", () => "This is the new path.");
 app.MapGet("/download", () => Results.File("TextFile.txt"));
 
 app.Run();
-#endregion
+// </snippet_666  // never rendered, just for testing.>
 
 #elif STREAM
-#region snippet_stream
+// <snippet_stream>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -649,10 +649,10 @@ app.MapGet("/pokemon", async () =>
 });
 
 app.Run();
-#endregion
+// </snippet_stream>
 
 #elif XTN
-#region snippet_xtn
+// <snippet_xtn>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -666,7 +666,7 @@ app.MapGet("/html", () => Results.Extensions.Html(@$"<!doctype html>
 </html>"));
 
 app.Run();
-#endregion
+// </snippet_xtn>
 
 #elif AUTH2  // This is not a complete/valid sample
 var builder = WebApplication.CreateBuilder(args);
@@ -674,10 +674,10 @@ var app = builder.Build();
 
 app.UseAuthorization();
 
-#region snippet_auth2
+// <snippet_auth2>
 app.MapGet("/auth", () => "This endpoint requires authorization")
    .RequireAuthorization();
-#endregion
+// </snippet_auth2>
 
 app.Run();
 #elif AUTH4
@@ -686,18 +686,18 @@ using Microsoft.AspNetCore.Authorization;
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-#region snippet_auth4
+// <snippet_auth4>
 app.MapGet("/login", [AllowAnonymous] () => "This endpoint is for all roles.");
 
 
 app.MapGet("/login2", () => "This endpoint also for all roles.")
    .AllowAnonymous();
-#endregion
+// </snippet_auth4>
 
 app.Run();
 
 #elif CORS
-#region snippet_cors
+// <snippet_cors>
 const string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -718,11 +718,11 @@ app.UseCors();
 app.MapGet("/",() => "Hello CORS!");
 
 app.Run();
-#endregion
+// </snippet_cors>
 
 #elif CORS2
 
-#region snippet_cors2
+// <snippet_cors2>
 using Microsoft.AspNetCore.Cors;
 
 const string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -748,11 +748,11 @@ app.MapGet("/cors2", () => "This endpoint allows cross origin requests!")
                      .RequireCors(MyAllowSpecificOrigins);
 
 app.Run();
-#endregion
+// </snippet_cors2>
 
 #elif SWAG
 // GET /swagger
-#region snippet_swag
+// <snippet_swag>
 using Microsoft.AspNetCore.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -778,10 +778,10 @@ app.MapGet("/swag", () => "Hello Swagger!")
                                           .WithOpenApi();
 
 app.Run();
-#endregion
+// </snippet_swag>
 
 #elif SWAG2
-#region snippet_swag2
+// <snippet_swag2>
 using Microsoft.AspNetCore.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -805,10 +805,10 @@ app.MapGet("/skipme", () => "Skipping Swagger.")
                     .ExcludeFromDescription();
 
 app.Run();
-#endregion
+// </snippet_swag2>
 
 #elif FILEUPLOAD
-#region snippet_fileupload
+// <snippet_fileupload>
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -821,6 +821,6 @@ app.MapPost("/uploadstream", async (IConfiguration config, HttpRequest request) 
 });
 
 app.Run();
-#endregion
+// </snippet_fileupload>
 
 #endif
