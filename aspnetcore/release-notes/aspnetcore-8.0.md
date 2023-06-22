@@ -147,7 +147,7 @@ The preceding generated code:
 
 ## Native AOT
 
-Support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) has been added. Apps that are published using AOT can have substantially better performance: smaller app size, less memory usage, and faster startup time. Native AOT is currently supported by gRPC, minimal API, and worker service apps. For more information, see [ASP.NET Core support for native AOT](xref:fundamentals/native-aot).
+Support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) has been added. Apps that are published using AOT can have substantially better performance: smaller app size, less memory usage, and faster startup time. Native AOT is currently supported by gRPC, minimal API, and worker service apps. For more information, see <xref:fundamentals/native-aot> and <xref:fundamentals/native-aot-tutorial>. For information about known issues with ASP.NET Core and native AOT compatibility, see GitHub issue [dotnet/core #8288](https://github.com/dotnet/core/issues/8288).
 
 ### New project template
 
@@ -172,6 +172,45 @@ For information abut other improvements in `System.Text.Json` source generation,
 The main entry points to subsystems that don't work reliably with native AOT are now annotated. When these methods are called from an application with native AOT enabled, a warning is provided. For example, the following code produces a warning at the invocation of `AddControllers` because this API isn't trim-safe and isn't supported by native AOT.
 
 :::image type="content" source="../fundamentals/aot/_static/top-level-annnotations.png" alt-text="Visual Studio window showing IL2026 warning message on the AddControllers method that says MVC doesn't currently support native AOT.":::
+
+### Minimal APIs and native AOT
+
+In order to make Minimal APIs compatible with native AOT, we're introducing the Request Delegate Generator (RDG). The RDG is a source generator that does what the <xref:Microsoft.AspNetCore.Http.RequestDelegateFactory> (RDF) does. That is, it turns the various `MapGet()`, `MapPost()`, and calls like them into <xref:Microsoft.AspNetCore.Http.RequestDelegate> instances associated with the specified routes. But rather than doing it in-memory in an application when it starts, the RDG does it at compile time and generates C# code directly into the project. The RDG:
+
+* Removes the runtime generation of this code.
+* Ensures that the types used in APIs are statically analyzable by the native AOT tool-chain.
+* Ensures that required code is not trimmed away.
+
+We’re working to ensure that as many as possible of the Minimal API features are supported by the RDG and thus compatible with native AOT.
+
+The RDG is enabled automatically in a project when publishing with native AOT is enabled. RDG can be manually enabled even when not using native AOT by setting `<EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>` in the project file. This can be useful when initially evaluating a project’s readiness for native AOT, or to reduce the startup time of an app.
+
+Minimal APIs are optimized for receiving and returning JSON payloads using `System.Text.Json`, so the compatibility requirements for JSON and native AOT apply too. Native AOT compatibility requires the use of the `System.Text.Json` source generator. All types accepted as parameters to or returned from request delegates in your Minimal APIs must be configured on a `JsonSerializerContext` that is registered via ASP.NET Core’s dependency injection, for example:
+
+```csharp
+// Register the JSON serializer context with DI
+builder.Services.ConfigureHttpJsonOptions(options =>
+{
+    options.SerializerOptions.TypeInfoResolverChain.Insert(0, AppJsonSerializerContext.Default);
+});
+
+...
+
+// Add types used in your Minimal APIs to source generated JSON serializer content
+[JsonSerializable(typeof(Todo[]))]
+internal partial class AppJsonSerializerContext : JsonSerializerContext
+{
+
+}
+```
+
+For more information, see [Changes to support source generation](xref:fundamentals/native-aot#changes-to-support-source-generation).
+
+### Libraries and native AOT
+
+Many of the common libraries available for ASP.NET Core projects today have some compatibility issues if used in a project targeting native AOT. Popular libraries often rely on the dynamic capabilities of .NET reflection to inspect and discover types, conditionally load libraries at runtime, and generate code on the fly to implement their functionality. These libraries need to be updated in order to work with native AOT by using tools like [Roslyn source generators](/dotnet/csharp/roslyn-sdk/source-generators-overview).
+
+Library authors wishing to learn more about preparing their libraries for native AOT are encouraged to start by [preparing their library for trimming](/dotnet/core/deploying/trimming/prepare-libraries-for-trimming) and learning more about the [native AOT compatibility requirements](/dotnet/core/deploying/native-aot/).
 
 ## Kestrel and HTTP.sys servers
 
@@ -223,6 +262,21 @@ ASPNETCORE_URLS=http://*:80/;http://*:8080/;https://*:443/;https://*:8081/
 ```
 
 For more information, see <xref:fundamentals/servers/kestrel/endpoints> and <xref:fundamentals/servers/httpsys>.
+
+### IHttpSysRequestTimingFeature
+
+[IHttpSysRequestTimingFeature](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/IHttpSysRequestTimingFeature.cs,3c5dc86dc837b1f4) provides detailed timing information for requests when using the [HTTP.sys server](xref:fundamentals/servers/httpsys) and [In-process hosting with IIS](xref:host-and-deploy/iis/in-process-hosting?view=aspnetcore-8.0&preserve-view=true#ihsrtf8):
+
+* Timestamps are obtained using [QueryPerformanceCounter](/windows/win32/api/profileapi/nf-profileapi-queryperformancecounter).
+* The timestamp frequency can be obtained via [QueryPerformanceFrequency](/windows/win32/api/profileapi/nf-profileapi-queryperformancefrequency).
+* The index of the timing can be cast to [HttpSysRequestTimingType](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/HttpSysRequestTimingType.cs,e62e7bcd02f8589e) to know what the timing represents.
+* The value may be 0 if the timing isn't available for the current request.
+
+[IHttpSysRequestTimingFeature.TryGetTimestamp](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/IHttpSysRequestTimingFeature.cs,3c5dc86dc837b1f4) retrieves the timestamp for the provided timing type:
+
+:::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetTimestamp":::
+
+For more information, see [Get detailed timing information with IHttpSysRequestTimingFeature](xref:fundamentals/servers/httpsys?view=aspnetcore-8.0&preserve-view=true#ihsrtf8) and [Timing information and In-process hosting with IIS](xref:host-and-deploy/iis/in-process-hosting?view=aspnetcore-8.0&preserve-view=true#ihsrtf8).
 
 ## Miscellaneous
 
