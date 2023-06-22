@@ -62,13 +62,6 @@ ASPNETCORE_URLS=http://localhost:3000
 ```
 ASPNETCORE_URLS=http://localhost:3000;https://localhost:5000
 ```
-
-### Read the environment
-
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_config)]
-
-For more information using the environment, see <xref:fundamentals/environments>
-
 ### Listen on all interfaces
 
 The following samples demonstrate listening on all interfaces
@@ -197,7 +190,9 @@ For a complete list of configuration sources read, see [Default configuration](x
 
 The following code reads `HelloKey` from configuration and displays the value at the `/` endpoint. If the configuration value is null, "Hello" is assigned to `message`:
 
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_reb)]
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_configb)]
+
+For more information using the environment, see <xref:fundamentals/environments>
 
 ### Add logging providers
 
@@ -206,7 +201,6 @@ The following code reads `HelloKey` from configuration and displays the value at
 ### Add services
 
 [!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_svc)]
-
 
 ### Customize the IHostBuilder
 

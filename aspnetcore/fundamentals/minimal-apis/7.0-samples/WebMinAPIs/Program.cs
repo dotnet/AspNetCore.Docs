@@ -187,7 +187,7 @@ app.MapGet("/oops", () => "Oops! An error happened.");
 
 app.Run();
 // </snippet_re>
-#elif CONFIG
+#elif CONFIG   //
 // <snippet_config >
 var app = WebApplication.Create(args);
 
