@@ -13,9 +13,11 @@ zone_pivot_groups: operating-systems
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article describes tools for building Blazor apps on various platforms.
+This article describes tools for building Blazor apps on various platforms. Select your platform at the top of this article.
 
 :::zone pivot="windows"
+
+To create a Blazor app on Windows, use the following guidance:
 
 * Install the latest version of [Visual Studio](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
 
@@ -76,6 +78,8 @@ For more information on trusting the ASP.NET Core HTTPS development certificate,
 
 :::zone pivot="linux"
 
+To create a Blazor app on Linux, use the following guidance:
+
 Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute commands in a Linux command shell.
 
 Install the latest version of the [.NET Core SDK](https://dotnet.microsoft.com/download). If you previously installed the SDK, you can determine your installed version by executing the following command:
@@ -90,54 +94,56 @@ Install the latest [C# for Visual Studio Code extension](https://marketplace.vis
 
 :::moniker range=">= aspnetcore-8.0"
 
-* Create a new project:
-  * For a Blazor Web App experience (*recommended*), execute the following command:
+Create a new project:
 
-    ```dotnetcli
-    dotnet new blazor -o BlazorApp
-    ```
-  * For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
+* For a Blazor Web App experience (*recommended*), execute the following command:
 
-    ```dotnetcli
-    dotnet new blazorwasm -o BlazorApp
-    ```
-  * Alternatively, create a Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
+  ```dotnetcli
+  dotnet new blazor -o BlazorApp
+  ```
+* For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
 
-    ```dotnetcli
-    dotnet new blazorwasm-empty -o BlazorApp
-    ```
+  ```dotnetcli
+  dotnet new blazorwasm -o BlazorApp
+  ```
+* Alternatively, create a Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
+
+  ```dotnetcli
+  dotnet new blazorwasm-empty -o BlazorApp
+  ```
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-* Create a new project:
-  * For a Blazor Server experience with demonstration code and [Bootstrap](https://getbootstrap.com/), execute the following command:
+Create a new project:
 
-    ```dotnetcli
-    dotnet new blazorserver -o BlazorApp
-    ```
-  * Alternatively, create a Blazor Server app without demonstration code and Bootstrap using the `blazorserver-empty` project template:
+* For a Blazor Server experience with demonstration code and [Bootstrap](https://getbootstrap.com/), execute the following command:
 
-    ```dotnetcli
-    dotnet new blazorserver-empty -o BlazorApp
-    ```
-  * For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
+  ```dotnetcli
+  dotnet new blazorserver -o BlazorApp
+  ```
+* Alternatively, create a Blazor Server app without demonstration code and Bootstrap using the `blazorserver-empty` project template:
 
-    ```dotnetcli
-    dotnet new blazorwasm -o BlazorApp
-    ```
-  * Alternatively, create a Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
+  ```dotnetcli
+  dotnet new blazorserver-empty -o BlazorApp
+  ```
+* For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
 
-    ```dotnetcli
-    dotnet new blazorwasm-empty -o BlazorApp
-    ```
-  * For a hosted Blazor WebAssembly experience with demonstration code and Bootstrap, add the hosted option (`-ho`/`--hosted`) to the command:
+  ```dotnetcli
+  dotnet new blazorwasm -o BlazorApp
+  ```
+* Alternatively, create a Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` project template:
 
-    ```dotnetcli
-    dotnet new blazorwasm -o BlazorApp -ho
-    ```
-  * Alternatively, create a hosted Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` template with the hosted option:
+  ```dotnetcli
+  dotnet new blazorwasm-empty -o BlazorApp
+  ```
+* For a hosted Blazor WebAssembly experience with demonstration code and Bootstrap, add the hosted option (`-ho`/`--hosted`) to the command:
+
+  ```dotnetcli
+  dotnet new blazorwasm -o BlazorApp -ho
+  ```
+* Alternatively, create a hosted Blazor WebAssembly app without demonstration code and Bootstrap using the `blazorwasm-empty` template with the hosted option:
 
   ```dotnetcli
   dotnet new blazorwasm-empty -o BlazorApp -ho
@@ -147,22 +153,23 @@ Install the latest [C# for Visual Studio Code extension](https://marketplace.vis
 
 :::moniker range="< aspnetcore-7.0"
 
-* Create a new project:
-  * For a Blazor WebAssembly experience, execute the following command:
+Create a new project:
 
-    ```dotnetcli
-    dotnet new blazorwasm -o BlazorApp
-    ```
-  * For a hosted Blazor WebAssembly experience, add the hosted option (`-ho` or `--hosted`) option to the command:
+* For a Blazor WebAssembly experience, execute the following command:
 
-    ```dotnetcli
-    dotnet new blazorwasm -o BlazorApp -ho
-    ```
-  * For a Blazor Server experience, execute the following command:
+  ```dotnetcli
+  dotnet new blazorwasm -o BlazorApp
+  ```
+* For a hosted Blazor WebAssembly experience, add the hosted option (`-ho` or `--hosted`) option to the command:
 
-    ```dotnetcli
-    dotnet new blazorserver -o BlazorApp
-    ```
+  ```dotnetcli
+  dotnet new blazorwasm -o BlazorApp -ho
+  ```
+* For a Blazor Server experience, execute the following command:
+
+  ```dotnetcli
+  dotnet new blazorserver -o BlazorApp
+  ```
 
 :::moniker-end
 
@@ -449,19 +456,21 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 :::zone pivot="macos"
 
-Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
+To create a Blazor app on macOS, use the following guidance:
 
-Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
+* Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
+
+* Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
 
 :::moniker range=">= aspnetcore-8.0"
 
-For a Blazor Web Apps experience (*recommended*), Visual Studio for Mac can't create a Blazor Web App in its UI at this time. Open a command shell with Apple's **Terminal** utility application in macOS's `Applications/Utilities` folder. Change the directory to the location where you want to create the app with the [`ls` command](https://man7.org/linux/man-pages/man1/ls.1.html). For example, use the `ls Desktop` command to change the directory to the desktop. Execute the following command in the command shell:
+* For a Blazor Web Apps experience (*recommended*), Visual Studio for Mac can't create a Blazor Web App in its UI at this time. Open a command shell with Apple's **Terminal** utility application in macOS's `Applications/Utilities` folder. Change the directory to the location where you want to create the app with the [`ls` command](https://man7.org/linux/man-pages/man1/ls.1.html). For example, use the `ls Desktop` command to change the directory to the desktop. Execute the following command in the command shell:
 
-```dotnetcli
-dotnet new blazor -o BlazorApp
-```
+  ```dotnetcli
+  dotnet new blazor -o BlazorApp
+  ```
 
-After the app is created, open the project file (`BlazorApp.csproj`) with Visual Studio for Mac.
+* After the app is created, open the project file (`BlazorApp.csproj`) with Visual Studio for Mac.
 
 > [!NOTE]
 > Visual Studio for Mac will be able to create Blazor Web Apps in an upcoming release.
@@ -470,47 +479,45 @@ After the app is created, open the project file (`BlazorApp.csproj`) with Visual
 
 In the sidebar, select **Web and Console** > **App**.
 
-For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** template.
+For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** template. Select **Continue**.
 
 -->
 
-For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
+* For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-In the sidebar, select **Web and Console** > **App**.
+* In the sidebar, select **Web and Console** > **App**.
 
-For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Continue**.
-
-For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap.
-
-For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
+* Create the app:
+  * For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Continue**.
+  * For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap. Select **Continue**.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
 
-In the sidebar, select **Web and Console** > **App**.
+* In the sidebar, select **Web and Console** > **App**.
 
-For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. For a Blazor Server experience, choose the **Blazor Server App** template. Select **Continue**.
-
-For information on the two Blazor hosting models, *Blazor WebAssembly* (standalone and hosted) and *Blazor Server*, see <xref:blazor/hosting-models>.
+* Create the app:
+  * For a Blazor Server experience, choose the **Blazor Server App** template. Select **Continue**.
+  * For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. Select **Continue**.
 
 :::moniker-end
 
-Confirm that **Authentication** is set to **No Authentication**. Select **Continue**.
+* Confirm that **Authentication** is set to **No Authentication**. Select **Continue**.
 
 :::moniker range="< aspnetcore-8.0"
 
-For a hosted Blazor WebAssembly experience, select the **ASP.NET Core Hosted** checkbox.
+* For a hosted Blazor WebAssembly experience, select the **ASP.NET Core Hosted** checkbox.
 
 :::moniker-end
 
-In the **Project name** field, name the app `BlazorApp`. Select **Create**.
+* In the **Project name** field, name the app `BlazorApp`. Select **Create**.
 
-Select the **Start Without Debugging** command from the **Debug** menu to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
+* Select the **Start Without Debugging** command from the **Debug** menu to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
 
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
 
