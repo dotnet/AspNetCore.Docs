@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/21/2023
+ms.date: 06/22/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -123,6 +123,8 @@ await builder.StartAsync();
 
 ## Minimal APIs
 
+This section describes new features for minimal APIs. See also [the section on native AOT](#native-aot) for more information relevant to minimal APIs.
+
 ### Binding to forms
 
 Explicit binding to form values using the [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute is now supported. Inferred binding to forms using the <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> types is also supported. [OpenAPI](xref:fundamentals/minimal-apis/openapi) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
@@ -157,6 +159,10 @@ The new **ASP.NET Core API** template in Visual Studio 2022 has an **Enable nati
 
 The <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder> method used in the API template initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimum ASP.NET Core features necessary to run an app. It's used by the API template whether or not the AOT option is used. For more information, see [The `CreateSlimBuilder` method](xref:fundamentals/native-aot#the-createslimbuilder-method).
 
+### Reduced app size with configurable HTTPS support
+
+We've further reduced native AOT binary size for apps that don't need HTTPS or HTTP/3 support. Not using HTTPS or HTTP/3 is common for apps that run behind a TLS termination proxy (for example, hosted on Azure). The new `WebApplication.CreateSlimBuilder` method omits this functionality by default. It can be added by calling `builder.WebHost.UseKestrelHttpsConfiguration()` for HTTPS or `builder.WebHost.UseQuic()` for HTTP/3. For more information, see [The `CreateSlimBuilder` method](xref:fundamentals/native-aot#the-createslimbuilder-method).
+
 ### JSON serialization of compiler-generated `IAsyncEnumerable<T>` types
 
 New features were added to <xref:System.Text.Json> to better support native AOT. These new features add capabilities for the source generation mode of `System.Text.Json`, because reflection isn't supported by AOT.
@@ -173,7 +179,7 @@ The main entry points to subsystems that don't work reliably with native AOT are
 
 :::image type="content" source="../fundamentals/aot/_static/top-level-annnotations.png" alt-text="Visual Studio window showing IL2026 warning message on the AddControllers method that says MVC doesn't currently support native AOT.":::
 
-### Minimal APIs and native AOT
+### Request delegate generator
 
 In order to make Minimal APIs compatible with native AOT, we're introducing the Request Delegate Generator (RDG). The RDG is a source generator that does what the <xref:Microsoft.AspNetCore.Http.RequestDelegateFactory> (RDF) does. That is, it turns the various `MapGet()`, `MapPost()`, and calls like them into <xref:Microsoft.AspNetCore.Http.RequestDelegate> instances associated with the specified routes. But rather than doing it in-memory in an application when it starts, the RDG does it at compile time and generates C# code directly into the project. The RDG:
 
@@ -181,11 +187,17 @@ In order to make Minimal APIs compatible with native AOT, we're introducing the 
 * Ensures that the types used in APIs are statically analyzable by the native AOT tool-chain.
 * Ensures that required code is not trimmed away.
 
-We’re working to ensure that as many as possible of the Minimal API features are supported by the RDG and thus compatible with native AOT.
+We're working to ensure that as many as possible of the Minimal API features are supported by the RDG and thus compatible with native AOT.
 
-The RDG is enabled automatically in a project when publishing with native AOT is enabled. RDG can be manually enabled even when not using native AOT by setting `<EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>` in the project file. This can be useful when initially evaluating a project’s readiness for native AOT, or to reduce the startup time of an app.
+The RDG is enabled automatically in a project when publishing with native AOT is enabled. RDG can be manually enabled even when not using native AOT by setting `<EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>` in the project file. This can be useful when initially evaluating a project's readiness for native AOT, or to reduce the startup time of an app.
 
-Minimal APIs are optimized for receiving and returning JSON payloads using `System.Text.Json`, so the compatibility requirements for JSON and native AOT apply too. Native AOT compatibility requires the use of the `System.Text.Json` source generator. All types accepted as parameters to or returned from request delegates in your Minimal APIs must be configured on a `JsonSerializerContext` that is registered via ASP.NET Core’s dependency injection, for example:
+### Logging and exception handling in compile-time generated minimal APIs
+
+Minimal APIs generated at run time support automatically logging (or throwing exceptions in Development environments) when parameter binding fails. .NET 8 introduces the same support for APIs generated at compile time via the [Request Delegate Generator](#request-delegate-generator) (RDG). For more information, see [Logging and exception handling in compile-time generated minimal APIs](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#logging-and-exception-handling-in-compile-time-generated-minimal-apis).
+
+### AOT and System.Text.Json
+
+Minimal APIs are optimized for receiving and returning JSON payloads using `System.Text.Json`, so the compatibility requirements for JSON and native AOT apply too. Native AOT compatibility requires the use of the `System.Text.Json` source generator. All types accepted as parameters to or returned from request delegates in Minimal APIs must be configured on a `JsonSerializerContext` that is registered via ASP.NET Core's dependency injection, for example:
 
 ```csharp
 // Register the JSON serializer context with DI
@@ -196,7 +208,7 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 
 ...
 
-// Add types used in your Minimal APIs to source generated JSON serializer content
+// Add types used in the minimal API app to source generated JSON serializer content
 [JsonSerializable(typeof(Todo[]))]
 internal partial class AppJsonSerializerContext : JsonSerializerContext
 {
@@ -204,7 +216,11 @@ internal partial class AppJsonSerializerContext : JsonSerializerContext
 }
 ```
 
-For more information, see [Changes to support source generation](xref:fundamentals/native-aot#changes-to-support-source-generation).
+For more information about the <xref:System.Text.Json.JsonSerializerOptions.TypeInfoResolverChain> API, see the following resources:
+
+* [JsonSerializerOptions.TypeInfoResolverChain](https://devblogs.microsoft.com/dotnet/announcing-dotnet-8-preview-4/#jsonserializeroptions-typeinforesolverchain)
+* [Chain source generators](/dotnet/core/whats-new/dotnet-8#chain-source-generators)
+* [Changes to support source generation](xref:fundamentals/native-aot#changes-to-support-source-generation)
 
 ### Libraries and native AOT
 
@@ -213,6 +229,8 @@ Many of the common libraries available for ASP.NET Core projects today have some
 Library authors wishing to learn more about preparing their libraries for native AOT are encouraged to start by [preparing their library for trimming](/dotnet/core/deploying/trimming/prepare-libraries-for-trimming) and learning more about the [native AOT compatibility requirements](/dotnet/core/deploying/native-aot/).
 
 ## Kestrel and HTTP.sys servers
+
+There are several new features for Kestrel and HTTP.sys.
 
 ### Support for named pipes in Kestrel
 
@@ -242,9 +260,9 @@ HTTP/3 is a new internet technology that was standardized in June 2022. HTTP/3 o
 
 .NET 8 adds support for Application-Layer Protocol Negotiation (ALPN) to macOS. ALPN is a TLS feature used to negotiate which HTTP protocol a connection will use. For example, ALPN allows browsers and other HTTP clients to request an HTTP/2 connection. This feature is especially useful for gRPC apps, which require HTTP/2. For more information, see <xref:fundamentals/servers/kestrel/http2>.
 
-### Warning when specified HTTP protocols won’t be used
+### Warning when specified HTTP protocols won't be used
 
-If TLS is disabled and HTTP/1.x is available, HTTP/2 and HTTP/3 will be disabled, even if they’ve been specified. This can cause some nasty surprises, so we’ve added warning output to let you know when it happens.
+If TLS is disabled and HTTP/1.x is available, HTTP/2 and HTTP/3 will be disabled, even if they've been specified. This can cause some nasty surprises, so we've added warning output to let you know when it happens.
 
 ### `HTTP_PORTS` and `HTTPS_PORTS` config keys
 
@@ -278,52 +296,28 @@ For more information, see <xref:fundamentals/servers/kestrel/endpoints> and <xre
 
 For more information, see [Get detailed timing information with IHttpSysRequestTimingFeature](xref:fundamentals/servers/httpsys?view=aspnetcore-8.0&preserve-view=true#ihsrtf8) and [Timing information and In-process hosting with IIS](xref:host-and-deploy/iis/in-process-hosting?view=aspnetcore-8.0&preserve-view=true#ihsrtf8).
 
-## Miscellaneous
+### ASP.NET Core metrics
 
-### Support for generic attributes
+Metrics are measurements reported over time and are most often used to monitor the health of an app and to generate alerts. For example, a counter that reports failed HTTP requests could be displayed in dashboards or generate alerts when failures pass a threshold.
 
-Attributes that previously required a <xref:System.Type> parameter are now available in cleaner generic variants. This is made possible by support for [generic attributes](/dotnet/csharp/whats-new/csharp-11) in C# 11. For example, the syntax for annotating the response type of an action can be modified as follows:
+This preview adds new metrics throughout ASP.NET Core using <xref:System.Diagnostics.Metrics>. `Metrics` is a modern API for reporting and collecting information about apps.
 
-```diff
-[ApiController]
-[Route("api/[controller]")]
-public class TodosController : Controller
-{
-  [HttpGet("/")]
-- [ProducesResponseType(typeof(Todo), StatusCodes.Status200OK)]
-+ [ProducesResponseType<Todo>(StatusCodes.Status200OK)]
-  public Todo Get() => new Todo(1, "Write a sample", DateTime.Now, false);
-}
-```
+Metrics offers a number of improvements compared to existing event counters:
 
-Generic variants are supported for the following attributes:
+* New kinds of measurements with counters, gauges and histograms.
+* Powerful reporting with multi-dimensional values.
+* Integration into the wider cloud native ecosystem by aligning with OpenTelemetry standards.
 
-<!--TODO update these API links -->
+Metrics have been added for ASP.NET Core hosting, Kestrel, and SignalR. For more information, see [ASP.NET Core metrics](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#asp-net-core-metrics).
+<!-- Change link to /dotnet/core/diagnostics/compare-metric-apis#system.diagnostics.metrics when it's published. -->
 
-* `[ProducesResponseType<T>]`
-* `[Produces<T>]`
-* `[MiddlewareFilter<T>]`
-* `[ModelBinder<T>]`
-* `[ModelMetadataType<T>]`
-* `[ServiceFilter<T>]`
-* `[TypeFilter<T>]`
+## Authentication and authorization
 
-<!--Note: All the topics that use the preceding attributes have been updated to use the generic -->
+ASP.NET Core 8 adds new features to authentication and authorization. 
 
-### Code analysis in ASP.NET Core apps
+### Identity API endpoints
 
-The new analyzers shown in the following table are available in ASP.NET Core 8.0.
-
-| Diagnostic ID | Breaking or non-breaking | Description |
-| --- | --- | --- |
-| [ASP0016](xref:diagnostics/asp0016) | Non-breaking | Do not return a value from RequestDelegate |
-| [ASP0019](xref:diagnostics/asp0019) | Non-breaking | Suggest using IHeaderDictionary.Append or the indexer |
-| [ASP0020](xref:diagnostics/asp0020) | Non-breaking | Complex types referenced by route parameters must be parsable |
-| [ASP0021](xref:diagnostics/asp0021) | Non-breaking | The return type of the BindAsync method must be `ValueTask<T>` |
-| [ASP0022](xref:diagnostics/asp0022) | Non-breaking | Route conflict detected between route handlers |
-| [ASP0023](xref:diagnostics/asp0023) | Non-breaking | MVC: Route conflict detected between route handlers |
-| [ASP0024](xref:diagnostics/asp0024) | Non-breaking | Route handler has multiple parameters with the `[FromBody]` attribute |
-| [ASP0025](xref:diagnostics/asp0025) | Non-breaking | Use AddAuthorizationBuilder |
+[MapIdentityApi<TUser>()](https://source.dot.net/#Microsoft.AspNetCore.Identity/IdentityApiEndpointRouteBuilderExtensions.cs,32) is a new extension method that adds two API endpoints (`/register` and `/login`). The main goal of the `MapIdentityApi` is to make it easy for developers to use ASP.NET Core Identity for authentication in JavaScript-based single page apps (SPA) or Blazor apps. Instead of using the default UI provided by ASP.NET Core Identity, which is based on Razor Pages, MapIdentityApi adds JSON API endpoints that are more suitable for SPA apps and non-browser apps. For more information, see [Identity API endpoints](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#identity-api-endpoints).
 
 ### IAuthorizationRequirementData
 
@@ -397,11 +391,60 @@ The complete updated sample can be found [here](https://github.com/dotnet/AspNet
 
 See <xref:security/authorization/iard> for a detailed examination of the new sample.
 
+## Miscellaneous
+
+The following sections describe miscellaneous new features in ASP.NET Core 8.
+
+### Support for generic attributes
+
+Attributes that previously required a <xref:System.Type> parameter are now available in cleaner generic variants. This is made possible by support for [generic attributes](/dotnet/csharp/whats-new/csharp-11) in C# 11. For example, the syntax for annotating the response type of an action can be modified as follows:
+
+```diff
+[ApiController]
+[Route("api/[controller]")]
+public class TodosController : Controller
+{
+  [HttpGet("/")]
+- [ProducesResponseType(typeof(Todo), StatusCodes.Status200OK)]
++ [ProducesResponseType<Todo>(StatusCodes.Status200OK)]
+  public Todo Get() => new Todo(1, "Write a sample", DateTime.Now, false);
+}
+```
+
+Generic variants are supported for the following attributes:
+
+<!--TODO update these API links -->
+
+* `[ProducesResponseType<T>]`
+* `[Produces<T>]`
+* `[MiddlewareFilter<T>]`
+* `[ModelBinder<T>]`
+* `[ModelMetadataType<T>]`
+* `[ServiceFilter<T>]`
+* `[TypeFilter<T>]`
+
+<!--Note: All the topics that use the preceding attributes have been updated to use the generic -->
+
+### Code analysis in ASP.NET Core apps
+
+The new analyzers shown in the following table are available in ASP.NET Core 8.0.
+
+| Diagnostic ID | Breaking or non-breaking | Description |
+| --- | --- | --- |
+| [ASP0016](xref:diagnostics/asp0016) | Non-breaking | Do not return a value from RequestDelegate |
+| [ASP0019](xref:diagnostics/asp0019) | Non-breaking | Suggest using IHeaderDictionary.Append or the indexer |
+| [ASP0020](xref:diagnostics/asp0020) | Non-breaking | Complex types referenced by route parameters must be parsable |
+| [ASP0021](xref:diagnostics/asp0021) | Non-breaking | The return type of the BindAsync method must be `ValueTask<T>` |
+| [ASP0022](xref:diagnostics/asp0022) | Non-breaking | Route conflict detected between route handlers |
+| [ASP0023](xref:diagnostics/asp0023) | Non-breaking | MVC: Route conflict detected between route handlers |
+| [ASP0024](xref:diagnostics/asp0024) | Non-breaking | Route handler has multiple parameters with the `[FromBody]` attribute |
+| [ASP0025](xref:diagnostics/asp0025) | Non-breaking | Use AddAuthorizationBuilder |
+
 ### Route tooling
 
 ASP.NET Core is built on routing. Minimal APIs, Web APIs, Razor Pages, and Blazor all use routes to customize how HTTP requests map to code.
 
-In .NET 8 we’ve invested in a suite of new features to make routing easier to learn and use. These new features include:
+In .NET 8 we've invested in a suite of new features to make routing easier to learn and use. These new features include:
 
 * [Route syntax highlighting](https://devblogs.microsoft.com/dotnet/aspnet-core-route-tooling-dotnet-8/#route-syntax-highlighting)
 * [Autocomplete of parameter and route names](https://devblogs.microsoft.com/dotnet/aspnet-core-route-tooling-dotnet-8/#autocomplete-of-parameter-and-route-names)
@@ -413,6 +456,7 @@ In .NET 8 we’ve invested in a suite of new features to make routing easier to 
 * [Support for Minimal APIs, Web APIs, and Blazor](https://devblogs.microsoft.com/dotnet/aspnet-core-route-tooling-dotnet-8/#supports-minimal-apis-web-apis-and-blazor)
 
 For more information, see [Route tooling in .NET 8](https://devblogs.microsoft.com/dotnet/aspnet-core-route-tooling-dotnet-8/).
+
 <!--
 ## API controllers
 
