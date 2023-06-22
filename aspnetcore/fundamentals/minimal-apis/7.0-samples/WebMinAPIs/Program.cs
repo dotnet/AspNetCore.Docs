@@ -196,7 +196,7 @@ var message = app.Configuration["HelloKey"] ?? "Hello";
 app.MapGet("/", () => message);
 
 app.Run();
-// </snippet_config >
+// </e >
 #elif LOG
 // <snippet_log>
 var app = WebApplication.Create(args);
