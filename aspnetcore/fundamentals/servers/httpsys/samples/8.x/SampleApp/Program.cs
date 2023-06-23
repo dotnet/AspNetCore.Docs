@@ -69,7 +69,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.UseHttpSys(options =>
 {
-    options.UrlPrefixes.Add("http://localhost:5005");
+    options.UrlPrefixes.Add("https://10.0.0.4:443");
 });
 
 builder.Services.AddRazorPages();
