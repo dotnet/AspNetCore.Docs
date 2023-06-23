@@ -202,6 +202,9 @@ The following code binds to the header key `X-Todo-Id` and returns the `Todo` it
 
 [!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/7.0-samples/todo/Program.cs?name=snippet_getHeader)]
 
+> [!NOTE]
+> When binding a `string[]` from a query string, the absence of any matching query string value will result in an empty array instead of a null value.
+
 <a name="asparam7"></a>
 
 ### Parameter binding for argument lists with [AsParameters]
