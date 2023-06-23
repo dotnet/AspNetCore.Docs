@@ -69,7 +69,7 @@ Examples of client rendered web UI:
 Drawbacks:
 
 * Code for the logic has to be downloaded and executed on the client, adding to the initial load time.
-* Client requirements may exclude user's who have low-end devices, older browser versions, or low-bandwidth connections.
+* Client requirements may exclude users who have low-end devices, older browser versions, or low-bandwidth connections.
 
 ## Choose a server rendered ASP.NET Core UI solution
 
