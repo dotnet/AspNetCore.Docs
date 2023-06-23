@@ -62,6 +62,9 @@ ASPNETCORE_URLS=http://localhost:3000
 ```
 ASPNETCORE_URLS=http://localhost:3000;https://localhost:5000
 ```
+
+For more information using the environment, see <xref:fundamentals/environments>
+
 ### Listen on all interfaces
 
 The following samples demonstrate listening on all interfaces
@@ -182,17 +185,17 @@ By default the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> reads c
 * Environment variables
 * The command line
 
-For a complete list of configuration sources read, see [Default configuration](xref:fundamentals/configuration/index#default-configuration) in <xref:fundamentals/configuration/index>
-
-[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_configb)]
-
+<!-->
 ### Read the environment
+
+-->
 
 The following code reads `HelloKey` from configuration and displays the value at the `/` endpoint. If the configuration value is null, "Hello" is assigned to `message`:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_configb)]
 
-For more information using the environment, see <xref:fundamentals/environments>
+For a complete list of configuration sources read, see [Default configuration](xref:fundamentals/configuration/index#default-configuration) in <xref:fundamentals/configuration/index>
+
 
 ### Add logging providers
 
