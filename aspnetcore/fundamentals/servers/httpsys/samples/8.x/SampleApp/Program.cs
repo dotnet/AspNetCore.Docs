@@ -69,11 +69,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.UseHttpSys(options =>
 {
-    options.AllowSynchronousIO = false;
-    options.Authentication.Schemes = AuthenticationSchemes.None;
-    options.Authentication.AllowAnonymous = true;
-    options.MaxConnections = null;
-    options.MaxRequestBodySize = 30_000_000;
     options.UrlPrefixes.Add("http://localhost:5005");
 });
 
