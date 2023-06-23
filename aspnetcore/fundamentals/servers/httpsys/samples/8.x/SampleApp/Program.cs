@@ -1,4 +1,4 @@
-#define SECOND // FIRST SECOND
+#define FIRST // FIRST SECOND
 #if NEVER
 #elif FIRST
 // <snippet_1>
@@ -62,7 +62,6 @@ app.Run();
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Server.HttpSys;
 
 // <snippet_11>
 var builder = WebApplication.CreateBuilder(args);
