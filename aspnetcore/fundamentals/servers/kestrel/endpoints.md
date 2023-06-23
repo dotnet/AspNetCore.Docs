@@ -20,7 +20,7 @@ uid: fundamentals/servers/kestrel/endpoints
 Kestrel endpoints provide the infrastructure for listening to incoming requests and routing them to the appropriate middleware. The combination of an address and a protocol defines an endpoint.
 
 * The address specifies the network interface that the server listens on for incoming requests, such as a TCP port.
-* The protocol specifies the communication standard between the client and server, such as HTTP/1.1, HTTP/2, or HTTP/3.
+* The protocol specifies the communication between the client and server, such as HTTP/1.1, HTTP/2, or HTTP/3.
 * An endpoint can be secured with HTTPS using the `HTTPS` scheme or `UseHttps` method.
 
 Endpoints can be configured using URLs, JSON in `appsettings.json`, and code. This article discusses how to use each option to configure an endpoint:
