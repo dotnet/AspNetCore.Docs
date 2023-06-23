@@ -1,4 +1,4 @@
-#define SECOND // FIRST SECOND
+#define FIRST // FIRST SECOND
 #if NEVER
 #elif FIRST
 // <snippet_1>
@@ -27,11 +27,12 @@ var app = builder.Build();
 
 app.Use((context, next) =>
 {
-    var maxRequestBodySizeFeature = context.Features.GetRequiredFeature<IHttpMaxRequestBodySizeFeature>();
-    maxRequestBodySizeFeature.MaxRequestBodySize = 10 * 1024;
+   context.Features.GetRequiredFeature<IHttpMaxRequestBodySizeFeature>()
+                                         .MaxRequestBodySize = 10 * 1024;
 
     var server = context.RequestServices.GetRequiredService<IServer>();
-    var serverAddressesFeature = server.Features.GetRequiredFeature<IServerAddressesFeature>();
+    var serverAddressesFeature = server.Features
+                                       .GetRequiredFeature<IServerAddressesFeature>();
 
     var addresses = string.Join(", ", serverAddressesFeature.Addresses);
 
@@ -78,23 +79,25 @@ var app = builder.Build();
 
 app.Use((context, next) =>
 {
-    var maxRequestBodySizeFeature = context.Features.GetRequiredFeature<
-                                                      IHttpMaxRequestBodySizeFeature>();
-    maxRequestBodySizeFeature.MaxRequestBodySize = 10 * 1024;
+    context.Features.GetRequiredFeature<IHttpMaxRequestBodySizeFeature>()
+                                             .MaxRequestBodySize = 10 * 1024;
 
-    var server = context.RequestServices.GetRequiredService<IServer>();
-    var serverAddressesFeature = server.Features.GetRequiredFeature<
-                                                            IServerAddressesFeature>();
+    var server = context.RequestServices
+        .GetRequiredService<IServer>();
+    var serverAddressesFeature = server.Features
+                                 .GetRequiredFeature<IServerAddressesFeature>();
 
     var addresses = string.Join(", ", serverAddressesFeature.Addresses);
 
-    var loggerFactory = context.RequestServices.GetRequiredService<ILoggerFactory>();
+    var loggerFactory = context.RequestServices
+        .GetRequiredService<ILoggerFactory>();
     var logger = loggerFactory.CreateLogger("Sample");
 
     logger.LogInformation("Addresses: {addresses}", addresses);
 
     return next(context);
 });
+
 
 if (app.Environment.IsDevelopment())
 {
