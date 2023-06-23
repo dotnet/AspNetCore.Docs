@@ -76,7 +76,7 @@ builder.Services.AddRazorPages();
 
 var app = builder.Build();
 // </snippet_11>
-
+// <snippet_12>
 app.Use((context, next) =>
 {
     context.Features.GetRequiredFeature<IHttpMaxRequestBodySizeFeature>()
@@ -97,7 +97,7 @@ app.Use((context, next) =>
 
     return next(context);
 });
-
+// </snippet_12>
 
 if (app.Environment.IsDevelopment())
 {

@@ -119,7 +119,7 @@ An exception is thrown if the app attempts to configure the limit on a request a
 
 If the app should override <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> per-request, use the <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature>:
 
-:::code language="csharp" source="~/fundamentals/servers/httpsys/samples/8.x/SampleApp/Program.cs" id="snippet_1" highlight="6-7":::
+:::code language="csharp" source="~/fundamentals/servers/httpsys/samples/8.x/SampleApp/Program.cs" id="snippet_12" highlight="3-4":::
 
 If using Visual Studio, make sure the app isn't configured to run IIS or IIS Express.
 
