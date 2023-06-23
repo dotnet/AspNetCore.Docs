@@ -1,4 +1,4 @@
-#define FIRST // FIRST SECOND
+#define SECOND // FIRST SECOND
 #if NEVER
 #elif FIRST
 // <snippet_1>
@@ -78,11 +78,13 @@ var app = builder.Build();
 
 app.Use((context, next) =>
 {
-    var maxRequestBodySizeFeature = context.Features.GetRequiredFeature<IHttpMaxRequestBodySizeFeature>();
+    var maxRequestBodySizeFeature = context.Features.GetRequiredFeature<
+                                                      IHttpMaxRequestBodySizeFeature>();
     maxRequestBodySizeFeature.MaxRequestBodySize = 10 * 1024;
 
     var server = context.RequestServices.GetRequiredService<IServer>();
-    var serverAddressesFeature = server.Features.GetRequiredFeature<IServerAddressesFeature>();
+    var serverAddressesFeature = server.Features.GetRequiredFeature<
+                                                            IServerAddressesFeature>();
 
     var addresses = string.Join(", ", serverAddressesFeature.Addresses);
 
