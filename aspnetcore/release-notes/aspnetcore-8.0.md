@@ -454,7 +454,7 @@ Metrics offers a number of improvements compared to existing event counters:
 * Powerful reporting with multi-dimensional values.
 * Integration into the wider cloud native ecosystem by aligning with OpenTelemetry standards.
 
-Metrics have been added for ASP.NET Core hosting, Kestrel, and SignalR. For more information, see [System.Diagnostics.Metrics](/dotnet/core/diagnostics/compare-metric-apis#system.diagnostics.metrics).
+Metrics have been added for ASP.NET Core hosting, Kestrel, and SignalR. For more information, see [System.Diagnostics.Metrics](/dotnet/core/diagnostics/compare-metric-apis#systemdiagnosticsmetrics).
 
 <!--
 ## API controllers
