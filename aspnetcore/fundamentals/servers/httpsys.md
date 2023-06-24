@@ -5,7 +5,7 @@ description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Bui
 monikerRange: '>= aspnetcore-2.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 03/17/2023
+ms.date: 6/17/2023
 uid: fundamentals/servers/httpsys
 ---
 # HTTP.sys web server implementation in ASP.NET Core
@@ -96,7 +96,7 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
 
 Call the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys%2A> extension method when building the host, specifying any required <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>. The following example sets options to their default values:
 
-:::code language="csharp" source="~/fundamentals/servers/httpsys/samples/3.x/SampleApp/Program.cs" id="snippet1" highlight="5-13":::
+:::code language="csharp" source="~/fundamentals/servers/httpsys/samples/8.x/SampleApp/Program.cs" id="snippet_1" highlight="8-16":::
 
 Additional HTTP.sys configuration is handled through [registry settings](https://support.microsoft.com/help/820129/http-sys-registry-settings-for-windows).
 
@@ -119,7 +119,7 @@ An exception is thrown if the app attempts to configure the limit on a request a
 
 If the app should override <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> per-request, use the <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature>:
 
-:::code language="csharp" source="~/fundamentals/servers/httpsys/samples/3.x/SampleApp/Startup.cs" id="snippet1" highlight="6-7":::
+:::code language="csharp" source="~/fundamentals/servers/httpsys/samples/8.x/SampleApp/Program.cs" id="snippet_12" highlight="3-4":::
 
 If using Visual Studio, make sure the app isn't configured to run IIS or IIS Express.
 
@@ -157,7 +157,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    The following code example shows how to use <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> with the server's local IP address `10.0.0.4` on port 443:
 
-   :::code language="csharp" source="~/fundamentals/servers/httpsys/samples_snapshot/3.x/Program.cs" highlight="7":::
+   :::code language="csharp" source="~/fundamentals/servers/httpsys/samples/8.x/SampleApp/Program.cs" id="snippet_11" highlight="5":::
 
    An advantage of `UrlPrefixes` is that an error message is generated immediately for improperly formatted prefixes.
 
