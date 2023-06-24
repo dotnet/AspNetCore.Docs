@@ -90,7 +90,7 @@ Notes:
 * [`app.UseResponseCompression`](xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A) must be called ***before*** any middleware that compresses responses. For more information, see <xref:fundamentals/middleware/index#middleware-order>.
 * Use a tool such as [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) or [Postman](https://www.getpostman.com/) to set the `Accept-Encoding` request header and examine the response headers, size, and body.
 
-Submit a request to the [sample app](https://responsecompression.azurewebsites.net/) without the `Accept-Encoding` header and observe that the response is uncompressed. The `Content-Encoding` header isn't in the Response Headers collection.
+Submit a request to the sample app without the `Accept-Encoding` header and observe that the response is uncompressed. The `Content-Encoding` header isn't in the Response Headers collection.
 
 For example, in Firefox Developer:
 
@@ -99,7 +99,7 @@ For example, in Firefox Developer:
 * Change `Accept-Encoding:` from  `gzip, deflate, br` to `none`.
 * Select **Send**.
 
-Submit a request to the [sample app](https://responsecompression.azurewebsites.net/) with a browser using the developer tools and observe that the response is compressed. The `Content-Encoding` and `Vary` headers are present on the response.
+Submit a request to the sample app with a browser using the developer tools and observe that the response is compressed. The `Content-Encoding` and `Vary` headers are present on the response.
 
 ## Providers
 
@@ -137,7 +137,7 @@ Set the compression level with <xref:Microsoft.AspNetCore.ResponseCompression.Br
 
 Create custom compression implementations with <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider>. The <xref:Microsoft.AspNetCore.ResponseCompression.ICompressionProvider.EncodingName*> represents the content encoding that this `ICompressionProvider` produces. The response compression middleware uses this information to choose the provider based on the list specified in the `Accept-Encoding` header of the request.
 
-Requests to the [sample app](https://responsecompression.azurewebsites.net/) with
+Requests to the sample app with
  the `Accept-Encoding: mycustomcompression` header return a response with a `Content-Encoding: mycustomcompression` header. The client must be able to decompress the custom encoding in order for a custom compression implementation to work.
 
 [!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet_cust&highlight=9)]
@@ -152,7 +152,7 @@ The response compression middleware specifies a default set of MIME types for co
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-Replace or append MIME types with [`ResponseCompressionOptions.MimeTypes`](xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions.MimeTypes). Note that wildcard MIME types, such as `text/*` aren't supported. The [sample app](https://responsecompression.azurewebsites.net/) adds a MIME type for `image/svg+xml` and compresses and serves the ASP.NET Core banner image *banner.svg*.
+Replace or append MIME types with [`ResponseCompressionOptions.MimeTypes`](xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions.MimeTypes). Note that wildcard MIME types, such as `text/*` aren't supported. The sample app adds a MIME type for `image/svg+xml` and compresses and serves the ASP.NET Core banner image *banner.svg*.
 
 [!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet_mime&highlight=12-14)]
 
@@ -181,7 +181,7 @@ Use a tool like [Firefox Browser Developer](https://www.mozilla.org/firefox/deve
 
 ## Azure deployed sample
 
-The [sample app](https://responsecompression.azurewebsites.net/) deployed to Azure has the following `Program.cs` file:
+The sample app deployed to Azure has the following `Program.cs` file:
 
 [!code-csharp[](response-compression/samples/6.x/SampleApp/Program.cs?name=snippet_opt)]
 
