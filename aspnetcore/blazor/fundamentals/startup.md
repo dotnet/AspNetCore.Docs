@@ -403,7 +403,7 @@ The default round progress indicator is implemented in HTML in the `wwwroot/inde
 
 To review the Blazor WebAssembly project template markup and styling for the default progress indicators, see the ASP.NET Core reference source:
 
-* [`wwwroot/index.html`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/wwwroot/index.html)
+* [`wwwroot/index.html`](https://github.com/dotnet/aspnetcore/blob/release/7.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot/index.html)
 * [`app.css`](https://github.com/dotnet/aspnetcore/blob/release/7.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot/css/app.css)
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
