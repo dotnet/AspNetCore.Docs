@@ -296,28 +296,13 @@ For more information, see <xref:fundamentals/servers/kestrel/endpoints> and <xre
 
 For more information, see [Get detailed timing information with IHttpSysRequestTimingFeature](xref:fundamentals/servers/httpsys?view=aspnetcore-8.0&preserve-view=true#ihsrtf8) and [Timing information and In-process hosting with IIS](xref:host-and-deploy/iis/in-process-hosting?view=aspnetcore-8.0&preserve-view=true#ihsrtf8).
 
-### ASP.NET Core metrics
-
-Metrics are measurements reported over time and are most often used to monitor the health of an app and to generate alerts. For example, a counter that reports failed HTTP requests could be displayed in dashboards or generate alerts when failures pass a threshold.
-
-This preview adds new metrics throughout ASP.NET Core using <xref:System.Diagnostics.Metrics>. `Metrics` is a modern API for reporting and collecting information about apps.
-
-Metrics offers a number of improvements compared to existing event counters:
-
-* New kinds of measurements with counters, gauges and histograms.
-* Powerful reporting with multi-dimensional values.
-* Integration into the wider cloud native ecosystem by aligning with OpenTelemetry standards.
-
-Metrics have been added for ASP.NET Core hosting, Kestrel, and SignalR. For more information, see [ASP.NET Core metrics](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#asp-net-core-metrics).
-<!-- Change link to /dotnet/core/diagnostics/compare-metric-apis#system.diagnostics.metrics when it's published. -->
-
 ## Authentication and authorization
 
 ASP.NET Core 8 adds new features to authentication and authorization. 
 
 ### Identity API endpoints
 
-[MapIdentityApi<TUser>()](https://source.dot.net/#Microsoft.AspNetCore.Identity/IdentityApiEndpointRouteBuilderExtensions.cs,32) is a new extension method that adds two API endpoints (`/register` and `/login`). The main goal of the `MapIdentityApi` is to make it easy for developers to use ASP.NET Core Identity for authentication in JavaScript-based single page apps (SPA) or Blazor apps. Instead of using the default UI provided by ASP.NET Core Identity, which is based on Razor Pages, MapIdentityApi adds JSON API endpoints that are more suitable for SPA apps and non-browser apps. For more information, see [Identity API endpoints](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#identity-api-endpoints).
+[MapIdentityApi\<TUser>()](https://source.dot.net/#Microsoft.AspNetCore.Identity/IdentityApiEndpointRouteBuilderExtensions.cs,32) is a new extension method that adds two API endpoints (`/register` and `/login`). The main goal of the `MapIdentityApi` is to make it easy for developers to use ASP.NET Core Identity for authentication in JavaScript-based single page apps (SPA) or Blazor apps. Instead of using the default UI provided by ASP.NET Core Identity, which is based on Razor Pages, MapIdentityApi adds JSON API endpoints that are more suitable for SPA apps and non-browser apps. For more information, see [Identity API endpoints](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-4/#identity-api-endpoints).
 
 ### IAuthorizationRequirementData
 
@@ -456,6 +441,20 @@ In .NET 8 we've invested in a suite of new features to make routing easier to le
 * [Support for Minimal APIs, Web APIs, and Blazor](https://devblogs.microsoft.com/dotnet/aspnet-core-route-tooling-dotnet-8/#supports-minimal-apis-web-apis-and-blazor)
 
 For more information, see [Route tooling in .NET 8](https://devblogs.microsoft.com/dotnet/aspnet-core-route-tooling-dotnet-8/).
+
+### ASP.NET Core metrics
+
+Metrics are measurements reported over time and are most often used to monitor the health of an app and to generate alerts. For example, a counter that reports failed HTTP requests could be displayed in dashboards or generate alerts when failures pass a threshold.
+
+This preview adds new metrics throughout ASP.NET Core using <xref:System.Diagnostics.Metrics>. `Metrics` is a modern API for reporting and collecting information about apps.
+
+Metrics offers a number of improvements compared to existing event counters:
+
+* New kinds of measurements with counters, gauges and histograms.
+* Powerful reporting with multi-dimensional values.
+* Integration into the wider cloud native ecosystem by aligning with OpenTelemetry standards.
+
+Metrics have been added for ASP.NET Core hosting, Kestrel, and SignalR. For more information, see [System.Diagnostics.Metrics](/dotnet/core/diagnostics/compare-metric-apis#systemdiagnosticsmetrics).
 
 <!--
 ## API controllers
