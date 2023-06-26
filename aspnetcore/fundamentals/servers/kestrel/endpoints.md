@@ -20,7 +20,8 @@ uid: fundamentals/servers/kestrel/endpoints
 Kestrel endpoints provide the infrastructure for listening to incoming requests and routing them to the appropriate middleware. The combination of an address and a protocol defines an endpoint.
 
 * The address specifies the network interface that the server listens on for incoming requests, such as a TCP port.
-* The protocol defines the communication standard between the client and server, such as whether the endpoint is secured with HTTPS, and the HTTP version.
+* The protocol specifies the communication between the client and server, such as HTTP/1.1, HTTP/2, or HTTP/3.
+* An endpoint can be secured using the `https` URL scheme or `UseHttps` method.
 
 Endpoints can be configured using URLs, JSON in `appsettings.json`, and code. This article discusses how to use each option to configure an endpoint:
 
@@ -30,13 +31,13 @@ Endpoints can be configured using URLs, JSON in `appsettings.json`, and code. Th
 
 ## Default endpoint
 
-ASP.NET Core projects are configured to bind to a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300. This default configuration is specified in the generated `Properties/launchSettings.json` file and can be overridden. The `launchSetting.json` file is only used in local development.
+New ASP.NET Core projects are configured to bind to a random HTTP port between 5000-5300 and a random HTTPS port between 7000-7300. The selected ports are stored in the generated `Properties/launchSettings.json` file and can be modified by the developer. The `launchSetting.json` file is only used in local development.
 
 If there's no endpoint configuration, then Kestrel binds to `http://localhost:5000`.
 
 ## Configure endpoints
 
-Kestrel endpoints listen to incoming data. When an endpoint is created, it must be configured with the address it will listen to. Usually, this is a TCP address and port number.
+Kestrel endpoints listen for incoming connections. When an endpoint is created, it must be configured with the address it will listen to. Usually, this is a TCP address and port number.
 
 There are several options for configuring endpoints:
 
@@ -84,7 +85,7 @@ The URLs indicate the IP or host addresses with ports and protocols the server s
 
   Anything not recognized as a valid IP address or `localhost` is treated as a wildcard that binds to all IPv4 and IPv6 addresses. Some people like to use `*` or `+` to be more explicit. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](xref:fundamentals/servers/httpsys) or a reverse proxy server.
 
-  Reverse proxy server examples include IIS, Nginx, and Apache. Hosting in a reverse proxy configuration requires [host filtering](xref:fundamentals/servers/kestrel/host-filtering).
+  Reverse proxy server examples include IIS, YARP, Nginx, and Apache.
 
 * Host name `localhost` with port number or loopback IP with port number
 
@@ -139,7 +140,7 @@ For more information about configuring endpoints with JSON, see later sections i
 
 #### Reloading endpoints from configuration
 
-The <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration,System.Boolean)?displayProperty=nameWithType> overload can be used to control whether endpoints are reloaded when the configuration source changes. Reloading endpoint configuration is enabled by default.
+Reloading endpoint configuration when the configuration source changes is enabled by default. It can be disabled using <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration,System.Boolean)?displayProperty=nameWithType>.
 
 If a change is signaled, the following steps are taken:
 
@@ -158,7 +159,7 @@ Clients connecting to a modified endpoint may be disconnected or refused while t
 `KestrelServerOptions.ConfigurationLoader` can be directly accessed to continue iterating on the existing loader, such as the one provided by <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.WebHost%2A?displayProperty=nameWithType>.
 
 * The configuration section for each endpoint is available on the options in the <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelConfigurationLoader.Endpoint%2A> method so that custom settings may be read.
-* Multiple configurations can be loaded by calling <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration)?displayProperty=nameWithType> again with another section. Only the last configuration is used unless `Load` is explicitly called on prior instances. The metapackage doesn't call `Load` so that its default configuration section may be replaced.
+* <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure(Microsoft.Extensions.Configuration.IConfiguration)?displayProperty=nameWithType> can be called multiple times, but only the last configuration is used unless `Load` is explicitly called on prior instances. The default host doesn't call `Load` so that its default configuration section may be replaced.
 * `KestrelConfigurationLoader` mirrors the `Listen` family of APIs from `KestrelServerOptions` as `Endpoint` overloads, so code and config endpoints can be configured in the same place. These overloads don't use names and only consume default settings from configuration.
 
 ### Configure endpoints in code
