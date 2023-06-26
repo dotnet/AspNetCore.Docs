@@ -286,10 +286,6 @@ public static class Program
         builder.WebHost.ConfigureKestrel((context, serverOptions) =>
         {
             serverOptions.ListenUnixSocket("/tmp/kestrel-test.sock");
-            serverOptions.ListenUnixSocket("/tmp/kestrel-test.sock", listenOptions =>
-            {
-                listenOptions.UseHttps("testCert.pfx", "testpassword");
-            });
         });
         // </snippet_ListenUnixSocket>
     }
