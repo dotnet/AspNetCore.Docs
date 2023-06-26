@@ -48,3 +48,4 @@ There are more vulnerabilities that you should be aware of. For more information
 * <xref:security/authentication/identity>
 * <xref:security/authentication/identity-enable-qrcodes>
 * <xref:security/authentication/social/index> 
+* <xref:security/identity-management-solutions>
