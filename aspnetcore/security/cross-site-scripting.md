@@ -159,7 +159,12 @@ The preceding code generates the following output:
 
 ## Accessing encoders in code
 
-The HTML, JavaScript and URL encoders are available to your code in two ways, you can inject them via [dependency injection](xref:fundamentals/dependency-injection) or you can use the default encoders contained in the `System.Text.Encodings.Web` namespace. If you use the default encoders, then any customizations you applied to character ranges to be treated as safe won't take effect - the default encoders use the safest encoding rules possible.
+The HTML, JavaScript and URL encoders are available to your code in two ways:
+
+* Inject them via [dependency injection](xref:fundamentals/dependency-injection).
+* Use the default encoders contained in the `System.Text.Encodings.Web` namespace.
+
+When using the default encoders, then any customizations applied to character ranges to be treated as safe won't take effect. The default encoders use the safest encoding rules possible.
 
 To use the configurable encoders via DI your constructors should take an *HtmlEncoder*, *JavaScriptEncoder* and *UrlEncoder* parameter as appropriate. For example;
 
