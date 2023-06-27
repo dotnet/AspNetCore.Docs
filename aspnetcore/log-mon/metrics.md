@@ -44,3 +44,6 @@ dotnet add package OpenTelemetry.Extensions.Hosting
 ```
 
 Replace the contents of `Program.cs` with the following code:
+
+:::code language="csharp" source="~/log-mon\metrics\samples\Program.cs":::
+
