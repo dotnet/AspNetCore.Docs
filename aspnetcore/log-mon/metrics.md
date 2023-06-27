@@ -47,3 +47,76 @@ Replace the contents of `Program.cs` with the following code:
 
 :::code language="csharp" source="~/log-mon\metrics\samples\Program.cs":::
 
+View metrics with dotnet-counters
+
+## View metrics with dotnet-counters
+
+[dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) is a command-line tool that can view live metrics for .NET Core apps on demand. It doesn't require setup, making it useful for ad-hoc investigations or verifying that metric instrumentation is working. It works with both <xref:System.Diagnostics.Metrics?displayProperty=nameWithType> based APIs and [EventCounters](/dotnet/core/diagnostics/event-counters).
+
+If the [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) tool isn't installed, run the following command:
+
+```dotnetcli
+dotnet tool update -g dotnet-counters
+```
+
+While the test app is running, launch [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters). The following command shows an example of `dotnet-counters` monitoring all metrics from the `HatCo.HatStore` meter. The meter name is case-sensitive. The sample app is WebMetric.exe, change the name if you're using a different app name.
+
+```dotnetcli
+dotnet-counters monitor -n WebMetric
+```
+
+Output similar to the following is displayed:
+
+```dotnetcli
+Press p to pause, r to resume, q to quit.
+    Status: Running
+
+[System.Runtime]
+    % Time in GC since last GC (%)                                         0
+    Allocation Rate (B / 1 sec)                                        8,200
+    CPU Usage (%)                                                          0
+    Exception Count (Count / 1 sec)                                        0
+    GC Committed Bytes (MB)                                                0
+    GC Fragmentation (%)                                                   0
+    GC Heap Size (MB)                                                      8.823
+    Gen 0 GC Count (Count / 1 sec)                                         0
+    Gen 0 Size (B)                                                         0
+    Gen 1 GC Count (Count / 1 sec)                                         0
+    Gen 1 Size (B)                                                         0
+    Gen 2 GC Count (Count / 1 sec)                                         0
+    Gen 2 Size (B)                                                         0
+    IL Bytes Jitted (B)                                              530,289
+    LOH Size (B)                                                           0
+    Monitor Lock Contention Count (Count / 1 sec)                          0
+    Number of Active Timers                                                1
+    Number of Assemblies Loaded                                          120
+    Number of Methods Jitted                                           5,270
+    POH (Pinned Object Heap) Size (B)                                      0
+    ThreadPool Completed Work Item Count (Count / 1 sec)                   0
+    ThreadPool Queue Length                                                0
+    ThreadPool Thread Count                                                2
+    Time spent in JIT (ms / 1 sec)                                         0
+    Working Set (MB)                                                      78.852
+```
+
+The following command shows an example of `dotnet-counters` monitoring all metrics from the `System.Net.Http` meter.
+
+```dotnetcli
+dotnet-counters monitor -n WebMetric System.Net.Http:requests-started
+```
+
+Output similar to the following is displayed:
+
+```dotnetcli
+Press p to pause, r to resume, q to quit.
+    Status: Running
+
+[HatCo.HatStore]
+    hats-sold (Count / 1 sec)                          4
+```
+
+For more information, see [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters). To learn more about metrics in .NET, see [built-in metrics](/dotnet/core/diagnostics/available-counters).
+
+## View metrics in Grafana with OpenTelemetry and Prometheus
+
+### Overview
