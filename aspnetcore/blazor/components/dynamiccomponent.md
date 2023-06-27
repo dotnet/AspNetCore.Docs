@@ -283,7 +283,7 @@ The parent component passes the callback method, `ShowDTMessage` in the paramete
 * The `object` value is created by <xref:Microsoft.AspNetCore.Components.EventCallbackFactory.Create%2A?displayProperty=nameWithType> for the parent callback method, `ShowDTMessage`. Note that the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) isn't supported in C# fields, so a C# property is used for the parameter dictionary.
 
 > [!IMPORTANT]
-> For the following `DynamicComponentExample3` component, change the namespace name of `BlazorSample` in the `OnDropdownChange` method to match your app's namespace.
+> For the following `DynamicComponentExample3` component, modify the code in the `OnDropdownChange` method. Change the namespace name of "`BlazorSample`" in the `Type.GetType()` argument to match your app's namespace.
 
 `Pages/DynamicComponentExample3.razor`:
 
