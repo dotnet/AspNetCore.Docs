@@ -1938,6 +1938,7 @@ Run the following commands:
 
 ```dotnetcli
 dotnet add package Microsoft.EntityFrameworkCore --version 3.1.32
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 3.1.32
 dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1.32
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 3.1.5 
 dotnet add package Microsoft.EntityFrameworkCore.Design -v 3.1.32
