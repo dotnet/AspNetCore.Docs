@@ -99,10 +99,10 @@ Press p to pause, r to resume, q to quit.
     Working Set (MB)                                                      78.852
 ```
 
-The following command shows an example of `dotnet-counters` monitoring all metrics from the `System.Net.Http` meter.
+The following command shows an example of `dotnet-counters` monitoring all metrics from the `Microsoft-AspNetCore-Server-Kestrel` meter.
 
 ```dotnetcli
-dotnet-counters monitor -n WebMetric System.Net.Http:requests-started
+dotnet-counters monitor -n WebMetric --counters Microsoft-AspNetCore-Server-Kestrel
 ```
 
 Output similar to the following is displayed:
@@ -111,8 +111,17 @@ Output similar to the following is displayed:
 Press p to pause, r to resume, q to quit.
     Status: Running
 
-[HatCo.HatStore]
-    hats-sold (Count / 1 sec)                          4
+[Microsoft-AspNetCore-Server-Kestrel]
+    Connection Queue Length                                                0
+    Connection Rate (Count / 1 sec)                                        0
+    Current Connections                                                    1
+    Current TLS Handshakes                                                 0
+    Current Upgraded Requests (WebSockets)                                 0
+    Failed TLS Handshakes                                                  2
+    Request Queue Length                                                   0
+    TLS Handshake Rate (Count / 1 sec)                                     0
+    Total Connections                                                      3
+    Total TLS Handshakes                                                   3                       4
 ```
 
 For more information, see [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters). To learn more about metrics in .NET, see [built-in metrics](/dotnet/core/diagnostics/available-counters).
