@@ -92,11 +92,11 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
 
 ### Support for kernel-mode response buffering
 
-In some scenarios, high volumes of small writes with high latency can cause significant performance impact to HTTP.sys. This impact is due to the lack of a <xref:System.IO.Pipelines.Pipe> buffer in the HTTP.sys implementation. As a simple workaround, optional support for response buffering is included in HTTP.sys. This buffering is enabled by setting [HttpSysOptions.EnableKernelResponseBuffering](https://github.com/dotnet/aspnetcore/blob/main/src/Servers/HttpSys/src/HttpSysOptions.cs#L120) to true.
+In some scenarios, high volumes of small writes with high latency can cause significant performance impact to `HTTP.sys`. This impact is due to the lack of a <xref:System.IO.Pipelines.Pipe> buffer in the `HTTP.sys` implementation. To improve performance in these scenarios, support for response buffering is included in `HTTP.sys`. Enable buffering by setting [HttpSysOptions.EnableKernelResponseBuffering](https://github.com/dotnet/aspnetcore/blob/main/src/Servers/HttpSys/src/HttpSysOptions.cs#L120) to `true`.
 
-Response buffering should be enabled by an application doing synchronous I/O or by an application doing asynchronous I/O with no more than one outstanding write at a time. In these scenarios, response buffering can significantly improve throughput over high-latency connections.
+Response buffering should be enabled by an app that does synchronous I/O, or asynchronous I/O with no more than one outstanding write at a time. In these scenarios, response buffering can significantly improve throughput over high-latency connections.
 
-Apps that use asynchronous I/O and that may have more than one write outstanding at a time should not use this flag. Enabling this flag can result in higher CPU and memory usage by HTTP.Sys.
+Apps that use asynchronous I/O and that may have more than one write outstanding at a time should **_not_** use this flag. Enabling this flag can result in higher CPU and memory usage by HTTP.Sys.
 
 ## How to use HTTP.sys
 
