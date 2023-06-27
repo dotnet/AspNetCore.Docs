@@ -1942,7 +1942,7 @@ dotnet add package Microsoft.EntityFrameworkCore.InMemory --version 3.1.32
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design -v 3.1.5 
 dotnet add package Microsoft.EntityFrameworkCore.Design -v 3.1.32
 dotnet tool uninstall -g dotnet-aspnet-codegenerator
-dotnet tool install --global dotnet-aspnet-codegenerator -v 3.1.5
+dotnet tool install -g dotnet-aspnet-codegenerator --version 3.1.5
 dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
 ```
 
