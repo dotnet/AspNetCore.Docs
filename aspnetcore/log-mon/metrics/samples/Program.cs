@@ -19,6 +19,7 @@ var app = builder.Build();
 
 app.MapPrometheusScrapingEndpoint();
 
-app.MapGet("/", () => "Hello OpenTelemetry! ticks:" + DateTime.Now.Ticks);
+app.MapGet("/", () => "Hello OpenTelemetry! ticks:"
+                     + DateTime.Now.Ticks.ToString()[^3..]);
 
 app.Run();
