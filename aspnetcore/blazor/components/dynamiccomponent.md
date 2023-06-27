@@ -118,7 +118,7 @@ In the following example, a Razor component renders a component based on the use
 In the preceding example:
 
 * Component names are used as the option values using the [`nameof` operator](/dotnet/csharp/language-reference/operators/nameof), which returns component names as constant strings.
-* The namespace of the app is `BlazorSample`. Change the namespace to match your app's namespace.
+* The namespace of the app is `BlazorSample`. ***Change the namespace to match your app's namespace.***
 
 ## Pass parameters
 
@@ -156,7 +156,7 @@ The following `RocketLabWithWindowSeat` component (`Shared/RocketLabWithWindowSe
 In the following example:
 
 * Only the `RocketLabWithWindowSeat` component's parameter for a window seat (`WindowSeat`) receives the value of the **`Window Seat`** checkbox.
-* The namespace of the app is `BlazorSample`. Change the namespace to match your app's namespace.
+* The namespace of the app is `BlazorSample`. ***Change the namespace to match your app's namespace.***
 * The dynamically-rendered components are shared components in the app's `Shared` folder:
   * Shown in this article section: `RocketLabWithWindowSeat` (`Shared/RocketLabWithWindowSeat.razor`)
   * Components shown in the [Example](#example) section earlier in this article:
@@ -282,7 +282,8 @@ The parent component passes the callback method, `ShowDTMessage` in the paramete
 * The `string` key is the callback method's name, `OnClickCallback`.
 * The `object` value is created by <xref:Microsoft.AspNetCore.Components.EventCallbackFactory.Create%2A?displayProperty=nameWithType> for the parent callback method, `ShowDTMessage`. Note that the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) isn't supported in C# fields, so a C# property is used for the parameter dictionary.
 
-**For the following component, change the namespace name of `BlazorSample` in the `OnDropdownChange` method to match your app's namespace.**
+> [!IMPORTANT]
+> For the following `DynamicComponentExample3` component, change the namespace name of `BlazorSample` in the `OnDropdownChange` method to match your app's namespace.
 
 `Pages/DynamicComponentExample3.razor`:
 
@@ -396,6 +397,9 @@ The parent component passes the callback method, `ShowDTMessage` in the paramete
 
     private void OnDropdownChange(ChangeEventArgs e)
     {
+        // IMPORTANT!
+        // Change `BlazorSample` to match your app's namespace.
+
         selectedType = e.Value?.ToString()?.Length > 0 ?
             Type.GetType($"BlazorSample.Shared.{e.Value}") : null;
     }
