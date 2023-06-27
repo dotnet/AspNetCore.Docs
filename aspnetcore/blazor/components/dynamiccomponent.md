@@ -397,9 +397,11 @@ The parent component passes the callback method, `ShowDTMessage` in the paramete
 
     private void OnDropdownChange(ChangeEventArgs e)
     {
-        // IMPORTANT!
-        // Change `BlazorSample` to match your app's namespace.
-
+        /*
+            IMPORTANT!
+            Change "BlazorSample" to match your app's namespace
+            in the Type.GetType() argument.
+        */
         selectedType = e.Value?.ToString()?.Length > 0 ?
             Type.GetType($"BlazorSample.Shared.{e.Value}") : null;
     }
