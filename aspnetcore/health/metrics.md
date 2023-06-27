@@ -27,3 +27,20 @@ There are two parts to using metrics in a .NET app:
 * **Instrumentation:** Code in .NET libraries takes measurements and associates these measurements with a metric name.
 * **Collection:** A .NET app configures named metrics to be transmitted from the app for external storage and analysis. Some tools may perform configuration outside the app using configuration files or a UI tool.
 
+Instrumented code can record numeric measurements, but the measurements need to be aggregated, transmitted, and stored to create useful metrics for monitoring. The process of aggregating, transmitting, and storing data is called collection. This tutorial shows several examples of collecting metrics:
+
+* Populating metrics in [Grafana](https://grafana.com/) with [OpenTelemetry](https://opentelemetry.io/) and [Prometheus](https://prometheus.io/).
+* Viewing metrics in real time with [`dotnet-counters`](/dotnet/core/diagnostics/dotnet-counters)
+
+## Create the starter app
+
+Create a new ASP.NET Core app with the following command:
+
+```dotnetcli
+dotnet new web -o WebMetric
+cd WebMetric
+dotnet add package OpenTelemetry.Exporter.Prometheus.AspNetCore --prerelease
+dotnet add package OpenTelemetry.Extensions.Hosting
+```
+
+Replace the contents of `Program.cs` with the following code:
