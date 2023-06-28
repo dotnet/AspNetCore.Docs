@@ -131,6 +131,8 @@ Append `/metrics` to the URL to view the metrics endpoint. The browser displays 
 
 ![metrics](~/log-mon/metrics/static/metrics.png)
 
+<!-- REVIEW: No ASP.NET Core metrics are displayed -->
+
 ### Set up and configure Prometheus
 
 Follow the [Prometheus first steps](https://prometheus.io/docs/introduction/first_steps/) to set up a Prometheus server and confirm it is working.
