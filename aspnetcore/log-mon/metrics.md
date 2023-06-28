@@ -152,6 +152,7 @@ Select the **Open metric explorer** icon to see available metrics:
 
 ![Prometheus open_metric_exp](~/log-mon/metrics/static/open_metric_exp.png)
 
+<!-- No ASP.NET Core metrics -->
 ### Show metrics on a Grafana dashboard
 
 1. Follow the [standard instructions](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-graph) to install Grafana and connect it to a Prometheus data source.
