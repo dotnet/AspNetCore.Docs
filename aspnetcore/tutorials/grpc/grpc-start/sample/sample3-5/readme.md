@@ -4,7 +4,6 @@ description: "Sample projects for a gRPC Service and gRPC client on ASP.NET Core
 languages:
 - csharp
 products:
-- dotnet-core
 - aspnet-core
 - vs
 urlFragment: create-grpc-client
