@@ -12,7 +12,7 @@ namespace ErrorHandlingSample
         {
             var exceptionMessage = exception.Message;
             logger.LogError("Error Message: {exceptionMessage}", exceptionMessage);
-            logger.LogError("Time of occurence {time}", DateTime.Now);
+            logger.LogError("Time of occurrence {time}", DateTime.Now);
             // returned false to continue with the default behavior
             return ValueTask.FromResult(false);
         }
