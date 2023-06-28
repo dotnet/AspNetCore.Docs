@@ -10,11 +10,11 @@ uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
 
-:::moniker range=">= aspnetcore-7.0"
-
 By [Tom Dykstra](https://github.com/tdykstra/)
 
+:::moniker range=">= aspnetcore-7.0"
 [!INCLUDE[](~/includes/not-latest-version.md)]
+:::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
