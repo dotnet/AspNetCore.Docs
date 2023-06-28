@@ -332,3 +332,5 @@ An alternative approach to generate problem details is to use the third-party Nu
 * <xref:host-and-deploy/azure-iis-errors-reference>
 
 :::moniker-end
+
+[!INCLUDE[](~/fundamentals/error-handling/includes/error-handling3-7.md)]
