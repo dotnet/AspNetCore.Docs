@@ -23,6 +23,6 @@ The following table provides an overview of various identity management solution
 |**Keycloak**|Container|[OSS (Apache 2.0)](https://github.com/keycloak/keycloak/blob/master/LICENSE.txt)|[https://www.keycloak.org/](https://www.keycloak.org/)|[Keycloak client adapters documentation](https://www.keycloak.org/docs/latest/securing_apps/#client-adapters)|
 |**Microsoft Azure AD**|Managed|[Commercial](https://azure.microsoft.com/pricing/details/active-directory/)|[https://azure.microsoft.com/services/active-directory/](https://azure.microsoft.com/services/active-directory/)|[Azure AD documentation](/azure/active-directory/)|
 |**Okta**|Managed|[Commercial](https://www.okta.com/pricing/)|[https://www.okta.com/](https://www.okta.com/)|[Okta for ASP.NET Core](https://developer.okta.com/code/dotnet/aspnetcore/)|
-|**OpenIddict**|Self host|[OSS (Apache 2.0)](https://github.com/openiddict/openiddict-core/blob/dev/LICENSE.md)|[https://www.openiddict.com/](https://www.openiddict.com/)|[OpenIddict Documentation](https://documentation.openiddict.com/)|
+|**OpenIddict**|Self host|[OSS (Apache 2.0)](https://github.com/openiddict/openiddict-core/blob/dev/LICENSE.md)|[https://github.com/openiddict/openiddict-core](https://github.com/openiddict/openiddict-core)|[OpenIddict Documentation](https://documentation.openiddict.com/)|
 
 Is there a solution that should be added to this list? Do you have a correction, suggestion, or feedback? We welcome your contributions. Learn [how to contribute](https://github.com/dotnet/aspnetcore/blob/main/CONTRIBUTING.md).
