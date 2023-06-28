@@ -1,8 +1,11 @@
 // <snippet_AddDatabaseDeveloperPageExceptionFilter>
+using ErrorHandlingSample;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddRazorPages();
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 // </snippet_AddDatabaseDeveloperPageExceptionFilter>
 
 // <snippet_UseExceptionHandler>
