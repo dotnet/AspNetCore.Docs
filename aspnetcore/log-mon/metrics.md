@@ -129,7 +129,7 @@ Navigate to the sample app. The browser displays `Hello OpenTelemetry! ticks:<3d
 
 Append `/metrics` to the URL to view the metrics endpoint. The browser displays the metrics being collected:
 
-![metrics](~/log-mon/metrics/static/metrics.png)
+![metrics 2](~/log-mon/metrics/static/metrics.png)
 
 <!-- REVIEW: No ASP.NET Core metrics are displayed -->
 
