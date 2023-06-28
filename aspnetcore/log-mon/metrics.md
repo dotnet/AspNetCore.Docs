@@ -123,6 +123,14 @@ This tutorial shows one of the integrations available for OpenTelemetry metrics 
    * Queries the data stored in Prometheus and displays it on a web-based monitoring dashboard.
    * Can run on a different machine.
 
+### View metrics from sample app
+
+Navigate to the sample app. The browser displays `Hello OpenTelemetry! ticks:<3digits>` where the 3 digits are the last 3 digits of the current [DateTime.Ticks](/dotnet/api/system.datetime.ticks).
+
+Append `/metrics` to the URL to view the metrics endpoint. The browser displays the metrics being collected:
+
+![metrics](~/log-mon/metrics/static/metrics.png)
+
 ### Set up and configure Prometheus
 
 Follow the [Prometheus first steps](https://prometheus.io/docs/introduction/first_steps/) to set up a Prometheus server and confirm it is working.
