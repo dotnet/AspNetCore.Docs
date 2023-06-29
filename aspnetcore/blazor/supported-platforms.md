@@ -14,7 +14,7 @@ uid: blazor/supported-platforms
 
 :::moniker range=">= aspnetcore-5.0"
 
-Blazor WebAssembly and Blazor Server are supported in the browsers shown in the following table on both mobile and desktop platforms.
+Blazor is supported in the browsers shown in the following table on both mobile and desktop platforms.
 
 | Browser         | Version         |
 | --------------- | --------------- |
