@@ -1,4 +1,4 @@
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range="= aspnetcore-7.0"
 
 By [Tom Dykstra](https://github.com/tdykstra/)
 
