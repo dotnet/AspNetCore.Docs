@@ -7,7 +7,6 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/08/2022
 uid: blazor/tutorials/build-a-blazor-app
-zone_pivot_groups: blazor-hosting-models
 ---
 # Build a Blazor todo list app
 
@@ -38,9 +37,9 @@ At the end of this tutorial, you'll have a working todo list app.
 
 ## Create a Blazor app
 
-Create a new Blazor app named `TodoList` in a command shell:
-
 :::moniker range=">= aspnetcore-8.0"
+
+Create a new Blazor app named `TodoList` in a command shell:
 
 ```dotnetcli
 dotnet new blazor -o TodoList
@@ -50,21 +49,19 @@ dotnet new blazor -o TodoList
 
 :::moniker range="< aspnetcore-8.0"
 
-:::zone pivot="server"
+Use either of the following hosting models to create a new Blazor app named `TodoList` in a command shell:
 
-```dotnetcli
-dotnet new blazorserver -o TodoList
-```
+* For an experience with Blazor Server, create the app with the following command:
 
-:::zone-end
+  ```dotnetcli
+  dotnet new blazorserver -o TodoList
+  ```
 
-:::zone pivot="webassembly"
+* For an experience with Blazor WebAssembly, create the app with the following command:
 
-```dotnetcli
-dotnet new blazorwasm -o TodoList
-```
-
-:::zone-end
+  ```dotnetcli
+  dotnet new blazorwasm -o TodoList
+  ```
 
 :::moniker-end
 
