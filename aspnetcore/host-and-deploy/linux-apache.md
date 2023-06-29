@@ -147,7 +147,7 @@ Create a configuration file, named *helloapp.conf*, for the app:
 
 ```
 <VirtualHost *:*>
-    RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}s
+    RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
 </VirtualHost>
 
 <VirtualHost *:80>
