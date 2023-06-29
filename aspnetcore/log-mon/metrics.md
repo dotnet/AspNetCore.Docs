@@ -47,7 +47,7 @@ Replace the contents of `Program.cs` with the following code:
 
 :::code language="csharp" source="~/log-mon/metrics/samples/Program.cs":::
 
-View metrics with dotnet-counters
+<!-- Review TODO: Add link to available meters -->
 
 ## View metrics with dotnet-counters
 
@@ -85,7 +85,7 @@ Press p to pause, r to resume, q to quit.
     Total TLS Handshakes                                                  12
 ```
 
-`WebMetric>dotnet-counters list` shows all available metrics.
+Run `WebMetric>dotnet-counters list` to show all available metrics.
 
 The following command shows the `Microsoft-AspNetCore-Server-Kestrel` meter with the `connections-per-second` and `total-connections` counters.
 
@@ -125,7 +125,7 @@ This tutorial shows one of the integrations available for OpenTelemetry metrics 
 
 ### View metrics from sample app
 
-Navigate to the sample app. The browser displays `Hello OpenTelemetry! ticks:<3digits>` where the 3 digits are the last 3 digits of the current [DateTime.Ticks](/dotnet/api/system.datetime.ticks).
+Navigate to the sample app. The browser displays `Hello OpenTelemetry! ticks:<3digits>` where `3digits` are the last 3 digits of the current [DateTime.Ticks](/dotnet/api/system.datetime.ticks).
 
 Append `/metrics` to the URL to view the metrics endpoint. The browser displays the metrics being collected:
 
