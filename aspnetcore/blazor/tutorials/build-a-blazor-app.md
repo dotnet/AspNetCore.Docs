@@ -16,7 +16,7 @@ zone_pivot_groups: blazor-hosting-models
 :::moniker range=">= aspnetcore-8.0"
 
 > [!IMPORTANT]
-> This is the .NET 8 preview version of this article, which is currently undergoing updates for .NET 8. Some of the features described might not be available or fully working at this time. The work on this article will be completed when .NET 8 reaches the *Release Candidate* stage, which is currently scheduled for September. For the current release, see the [.NET 7 version of this article](?view=aspnetcore-7.0).
+> This is the .NET 8 preview version of this article, which is currently undergoing updates for .NET 8. Some of the features described might not be available or fully working at this time. The work on this article will be completed when .NET 8 reaches the *Release Candidate* stage, which is currently scheduled for September. For the current release, see the [.NET 7 version of this article](?view=aspnetcore-7.0&preserve-view=true).
 
 :::moniker-end
 
