@@ -167,3 +167,8 @@ Alternatively, enter counter category such as `kestrel` in the **Expression** in
 1. Follow [Creating a Prometheus graph](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-graph). Alternatively, download a JSON file from [aspnetcore-grafana dashboards](https://github.com/JamesNK/aspnetcore-grafana/tree/main/dashboards) to configure Grafana.
 
 ![dashboard-screenshot2](~/log-mon/metrics/metrics/static/dashboard-screenshot.png)
+
+## ASP.NET Core meters and counters
+
+* [Microsoft.AspNetCore.Hosting](https://source.dot.net/#Microsoft.AspNetCore.Hosting/Internal/HostingMetrics.cs,0e3eae9d5e50ff0d)
+* [KestrelMetrics](https://source.dot.net/#Microsoft.AspNetCore.Server.Kestrel.Core/Internal/Infrastructure/KestrelMetrics.cs,8d505625d99068a6)
