@@ -170,5 +170,5 @@ Alternatively, enter counter category such as `kestrel` in the **Expression** in
 
 ## ASP.NET Core meters and counters
 
-* [Microsoft.AspNetCore.Hosting](https://source.dot.net/#Microsoft.AspNetCore.Hosting/Internal/HostingMetrics.cs,0e3eae9d5e50ff0d)
+* [HostingMetrics](https://source.dot.net/#Microsoft.AspNetCore.Hosting/Internal/HostingMetrics.cs,0e3eae9d5e50ff0d)
 * [KestrelMetrics](https://source.dot.net/#Microsoft.AspNetCore.Server.Kestrel.Core/Internal/Infrastructure/KestrelMetrics.cs,8d505625d99068a6)
