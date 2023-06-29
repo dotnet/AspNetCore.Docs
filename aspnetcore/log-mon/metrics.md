@@ -18,7 +18,7 @@ Metrics are numerical measurements reported over time. They're typically used to
 * Milliseconds it took to respond.
 * Responses sent an error.
 
-These metrics can be reported to a monitoring system at regular intervals. If the web service is intended to respond to requests within 400 ms and starts responding in 600 ms, the monitoring system can notify engineers that the app response is slower than normal.
+These metrics can be reported to a monitoring system at regular intervals. If the web service is intended to respond to requests within 400 ms and starts responding in 600 ms, the monitoring system can notify the operations staff that the app response is slower than normal.
 
 ## Using metrics
 
@@ -131,8 +131,6 @@ Append `/metrics` to the URL to view the metrics endpoint. The browser displays 
 
 ![metrics 2](~/log-mon/metrics/static/metrics.png)
 
-<!-- REVIEW: No ASP.NET Core metrics are displayed -->
-
 ### Set up and configure Prometheus
 
 Follow the [Prometheus first steps](https://prometheus.io/docs/introduction/first_steps/) to set up a Prometheus server and confirm it's working.
@@ -140,6 +138,8 @@ Follow the [Prometheus first steps](https://prometheus.io/docs/introduction/firs
 Modify the *prometheus.yml* configuration file so that Prometheus scrapes the metrics endpoint that the example app is exposing. Add the following highlighted text in the `scrape_configs` section:
 
 :::code language="yaml" source="~/log-mon/metrics/samples/prometheus.yml" highlight="31-99":::
+
+In the preceding highlighted YAML, replace `5045` with the port number that the example app is running on.
 
 #### Start Prometheus
 
@@ -151,6 +151,8 @@ Modify the *prometheus.yml* configuration file so that Prometheus scrapes the me
 Select the **Open metric explorer** icon to see available metrics:
 
 ![Prometheus open_metric_exp](~/log-mon/metrics/static/open_metric_exp.png)
+
+Enter counter category such as `http_` in the **Expression** input box to see the available  metrics:
 
 ![available metrics](~/log-mon/metrics/static/metrics2.png)
 
