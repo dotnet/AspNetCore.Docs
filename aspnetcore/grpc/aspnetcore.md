@@ -84,10 +84,9 @@ gRPC services can be hosted by all built-in ASP.NET Core servers.
 > * Kestrel
 > * TestServer
 > * IIS&dagger;
-> * HTTP.sys&Dagger;
+> * HTTP.sys&dagger;
 
-&dagger;IIS requires .NET 5 and Windows 11 Build 22000 or Windows Server 2022 Build 20348 or later are required to host gRPC services with IIS.  
-&Dagger;HTTP.sys requires .NET 5 and Windows 11 Build 22000 or Windows Server 2022 Build 20348 or later are required to host gRPC services with HTTP.sys.
+&dagger;Requires .NET 5 and Windows 11 Build 22000 or Windows Server 2022 Build 20348 or later.
 
 For more information about choosing the right server for an ASP.NET Core app, see <xref:fundamentals/servers/index>.
 
