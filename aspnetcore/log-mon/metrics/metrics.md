@@ -7,7 +7,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.date: 6/30/2023
 ms.topic: article
 ms.prod: aspnet-core
-uid: log-mon/metrics
+uid: log-mon/metrics/metrics
 ---
 
 # ASP.NET Core metrics
