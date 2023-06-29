@@ -1,20 +1,8 @@
----
-title: Handle errors in ASP.NET Core
-description: Discover how to handle errors in ASP.NET Core apps.
-author: tdykstra
-ms.author: riande
-ms.date: 06/28/2023
-ms.custom: mvc
-monikerRange: '>= aspnetcore-3.1'
-uid: fundamentals/error-handling
----
-# Handle errors in ASP.NET Core
-
 :::moniker range=">= aspnetcore-7.0"
 
 By [Tom Dykstra](https://github.com/tdykstra/)
 
-This article covers common approaches to handling errors in ASP.NET Core web apps. See <xref:web-api/handle-errors> for web APIs.
+This article covers common approaches to handling errors in ASP.NET Core web apps. See also <xref:web-api/handle-errors> and <xref:fundamentals/minimal-apis/handle-errors>.
 
 ## Developer exception page
 
