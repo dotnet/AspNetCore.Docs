@@ -29,6 +29,6 @@ scrape_configs:
       - targets: ["localhost:9090"]
 
   - job_name: 'MyASPNETApp'
-    scrape_interval: 1s # poll very quickly for a more responsive demo
+    scrape_interval: 5s # Poll every 5 seconds for a more responsive demo.
     static_configs:
-      - targets: ["localhost:5045"]
+      - targets: ["localhost:5045"]  ## Enter the HTTP port number of the demo app.

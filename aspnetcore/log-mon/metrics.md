@@ -12,7 +12,7 @@ uid: log-mon/metrics
 
 # ASP.NET Core metrics
 
-Metrics are numerical measurements reported over time. They are typically used to monitor the health of an app and generate alerts. For example, a web service might track how many:
+Metrics are numerical measurements reported over time. They're typically used to monitor the health of an app and generate alerts. For example, a web service might track how many:
 
 * Requests it received per second.
 * Milliseconds it took to respond.
@@ -108,7 +108,7 @@ For more information, see [dotnet-counters](/dotnet/core/diagnostics/dotnet-coun
 
 This tutorial shows one of the integrations available for OpenTelemetry metrics using the OSS [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/) projects. The metrics data flow:
 
-1. The .NET metric APIs record measurements from the example app.
+1. The ASP.NET Core metric APIs record measurements from the example app.
 1. The OpenTelemetry library running in the app aggregates the measurements.
 1. The Prometheus exporter library makes the aggregated data available via an HTTP metrics endpoint. 'Exporter' is what OpenTelemetry calls the libraries that transmit telemetry to vendor-specific backends.
 1. A Prometheus server:
@@ -135,7 +135,7 @@ Append `/metrics` to the URL to view the metrics endpoint. The browser displays 
 
 ### Set up and configure Prometheus
 
-Follow the [Prometheus first steps](https://prometheus.io/docs/introduction/first_steps/) to set up a Prometheus server and confirm it is working.
+Follow the [Prometheus first steps](https://prometheus.io/docs/introduction/first_steps/) to set up a Prometheus server and confirm it's working.
 
 Modify the *prometheus.yml* configuration file so that Prometheus scrapes the metrics endpoint that the example app is exposing. Add the following highlighted text in the `scrape_configs` section:
 
@@ -152,12 +152,14 @@ Select the **Open metric explorer** icon to see available metrics:
 
 ![Prometheus open_metric_exp](~/log-mon/metrics/static/open_metric_exp.png)
 
-<!-- No ASP.NET Core metrics -->
-
 ![available metrics](~/log-mon/metrics/static/metrics2.png)
+
+Alternatively, enter counter category such as `kestrel` in the **Expression** input box to see the available  metrics:
+
+![Prometheus kestrel](~/log-mon/metrics/static/kestrel.png)
 
 ### Show metrics on a Grafana dashboard
 
-1. Follow the [standard instructions](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-graph) to install Grafana and connect it to a Prometheus data source.
+1. Follow the [installation instructions](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-graph) to install Grafana and connect it to a Prometheus data source.
 
-2. Create a Grafana dashboard by clicking the **+** icon on the left toolbar in the Grafana web portal, then select **Dashboard**. In the dashboard editor that appears, enter **Hats Sold/Sec** in the **Title** input box and **rate(hats_sold[5m])**  in the PromQL expression field:
+1. Follow [Creating a Prometheus graph](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-graph). Alternatively, download a JSON file from [aspnetcore-grafana dashboards](https://github.com/JamesNK/aspnetcore-grafana/tree/main/dashboards) to configure Grafana.
