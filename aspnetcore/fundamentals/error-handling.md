@@ -10,7 +10,7 @@ uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range="< aspnetcore-7.0"
 [!INCLUDE[](~/includes/not-latest-version.md)]
 :::moniker-end
 
@@ -330,6 +330,8 @@ An alternative approach to generate problem details is to use the third-party Nu
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples) ([how to download](xref:index#how-to-download-a-sample))
 * <xref:test/troubleshoot-azure-iis>
 * <xref:host-and-deploy/azure-iis-errors-reference>
+* <xref:web-api/handle-errors>
+* <xref:fundamentals/minimal-apis/handle-errors>.
 
 :::moniker-end
 
