@@ -121,23 +121,23 @@ Components render into an in-memory representation of the browser's [Document Ob
 
 :::moniker range=">= aspnetcore-8.0"
 
-## Blazor Web App
+## Blazor Web Apps
 
-Blazor Web Apps enable you to use a Razor component-based architecture for server-side rendering and full client-side interactivity within a single project, where you can switch between different rendering modes and even mix them in the same page. 
+Blazor Web Apps provide a component-based architecture with server-side rendering and full client-side interactivity in a single project, where you can switch between server-side and client-side rendering modes and even mix them in the same page. 
 
-When a Blazor Web App uses server-side rendering (SSR), the server generates HTML in response to a request and sends it to the browser. The rendered page loads fast because all of the hard work rendering the UI is performed on the server without the need to download a large JavaScript bundle or wait for the establishment of a [SignalR](xref:signalr/introduction) connection.
+When a Blazor Web App uses server-side rendering (SSR), the server generates HTML in response to a request and sends it to the browser. The rendered page loads fast because rendering the UI is quickly performed on the server without the need to download a large JavaScript bundle or wait for the establishment of a [SignalR](xref:signalr/introduction) connection to the client.
 
 *Streaming rendering* can improve the user experience with SSR when long-running asynchronous tasks are required to fully render a page. Initially, Blazor renders the entire page for the browser with placeholder content. The asynchronous operations execute on the server. After the operations are complete, the updated content is sent to the browser on the same response connection and patched into page. The benefit of this approach is that the main layout of the app renders as quickly as possible.
 
-Blazor Web Apps also support Razor component client-side rendering (CSR) that relies on a .NET runtime running on [WebAssembly](https://webassembly.org). For more information on WebAssembly, see the [Blazor WebAssembly](#blazor-webassembly) section.
+Blazor Web Apps also support client-side rendering (CSR) that relies on a .NET runtime running on [WebAssembly](https://webassembly.org). For more information on WebAssembly, see the [Blazor WebAssembly](#blazor-webassembly) section.
 
-After rendering is complete, interactivity on the client can adopt either or both of the following techniques, even in the same rendered page:
+After rendering is complete, interactivity on the client can adopt either or both of the following techniques, even in the same page:
 
-* UI updates and JavaScript interop calls handled over a SignalR connection. The runtime stays on the server and handles:
+* UI updates and JavaScript interop calls are handled over a SignalR connection. The runtime stays on the server and handles:
   * Executing the app's C# code.
-  * Sending UI events from the browser to the server.
+  * UI events from the browser that are sent to the server.
   * Applying UI updates to a rendered component that are sent back by the server.
-* Rich interactivity and UI updates handled using a .NET runtime running in the browser on WebAssembly.
+* Rich interactivity and UI updates are handled by a .NET runtime running in the browser on WebAssembly.
   * C# code files and Razor files are compiled into .NET assemblies.
   * The assemblies and the [.NET runtime](/dotnet/framework/get-started/overview) are downloaded to the browser.
   * Blazor bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor WebAssembly runtime uses JavaScript interop to handle [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) manipulation and browser API calls.
