@@ -97,9 +97,11 @@ The following code uses a lambda for exception handling:
 
 `IExceptionHandler` implementations are registered by calling [`IServiceCollection.AddExceptionHandler<T>`](https://source.dot.net/#Microsoft.AspNetCore.Diagnostics/ExceptionHandler/ExceptionHandlerServiceCollectionExtensions.cs,e74aac24e3e2cbc9). Multiple implementations can be added, and they're called in the order registered. If an exception handler handles a request, it can return `true` to stop processing. If an exception isn't handled by any exception handler, then control falls back to the default behavior and options from the middleware. Different metrics and logs are emitted for handled versus unhandled exceptions.
 
-The following examples show an `IExceptionHandler` implementation and how to register it:
+The following example shows an `IExceptionHandler` implementation:
 
 :::code language="csharp" source="~/fundamentals/error-handling/samples/8.x/ErrorHandlingSample/CustomExceptionHandler.cs":::
+
+The following example shows how to register an `IExceptionHandler` implementation for dependency injection:
 
 :::code language="csharp" source="~/fundamentals/error-handling/samples/8.x/ErrorHandlingSample/Program.cs" id="snippet_RegisterIExceptionHandler" highlight="7":::
 
