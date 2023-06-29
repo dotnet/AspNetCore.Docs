@@ -1,6 +1,3 @@
-// <snippet_AddDatabaseDeveloperPageExceptionFilter>
-using ErrorHandlingSample;
-
 // <snippet_RegisterIExceptionHandler>
 using ErrorHandlingSample;
 
