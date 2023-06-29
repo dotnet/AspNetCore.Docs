@@ -166,4 +166,4 @@ Alternatively, enter counter category such as `kestrel` in the **Expression** in
 
 1. Follow [Creating a Prometheus graph](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-graph). Alternatively, download a JSON file from [aspnetcore-grafana dashboards](https://github.com/JamesNK/aspnetcore-grafana/tree/main/dashboards) to configure Grafana.
 
-![dashboard-screenshot](~/log-mon/metrics/static/dashboard-screenshot.png)
+![dashboard-screenshot2](~/log-mon/metrics/static/dashboard-screenshot.png)
