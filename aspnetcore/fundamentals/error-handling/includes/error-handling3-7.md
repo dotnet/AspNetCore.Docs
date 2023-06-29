@@ -42,7 +42,7 @@ Since this middleware can re-execute the request pipeline:
 
 In the following example, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> adds the exception handling middleware in non-Development environments:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Program.cs" id="snippet_UseExceptionHandler" highlight="3,5":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Program.cs" id="snippet_UseExceptionHandler" highlight="3,5":::
 
 The Razor Pages app template provides an Error page (`.cshtml`) and <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> class (`ErrorModel`) in the *Pages* folder. For an MVC app, the project template includes an `Error` action method and an Error view for the Home controller.
 
@@ -59,7 +59,7 @@ To allow unauthenticated users to view the custom error handling page, ensure th
 
 Use <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to access the exception and the original request path in an error handler. The following example uses `IExceptionHandlerPathFeature` to get more information about the exception that was thrown:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Pages/Error.cshtml.cs" id="snippet_Class" highlight="15-27":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Pages/Error.cshtml.cs" id="snippet_Class" highlight="15-27":::
 
 > [!WARNING]
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
@@ -70,7 +70,7 @@ An alternative to a [custom exception handler page](#exception-handler-page) is 
 
 The following code uses a lambda for exception handling:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseExceptionHandlerInline" highlight="5-29":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseExceptionHandlerInline" highlight="5-29":::
 
 > [!WARNING]
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
@@ -82,7 +82,7 @@ The following code uses a lambda for exception handling:
 
 By default, an ASP.NET Core app doesn't provide a status code page for HTTP error status codes, such as *404 - Not Found*. When the app sets an HTTP 400-599 error status code that doesn't have a body, it returns the status code and an empty response body. To enable default text-only handlers for common error status codes, call <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> in `Program.cs`:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePages" highlight="9":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePages" highlight="9":::
 
 Call `UseStatusCodePages` before request handling middleware. For example, call `UseStatusCodePages` before the Static File Middleware and the Endpoints Middleware.
 
@@ -101,7 +101,7 @@ Status Code: 404; Not Found
 
 To customize the response content type and text, use the overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> that takes a content type and format string:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesContent" highlight="10":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesContent" highlight="10":::
 
 In the preceding code, `{0}` is a placeholder for the error code.
 
@@ -111,7 +111,7 @@ In the preceding code, `{0}` is a placeholder for the error code.
 
 To specify custom error-handling and response-writing code, use the overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> that takes a lambda expression:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesInline" highlight="9-16":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesInline" highlight="9-16":::
 
 `UseStatusCodePages` with a lambda isn't typically used in production because it returns a message that isn't useful to users.
 
@@ -122,7 +122,7 @@ The <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePa
 * Sends a [302 - Found](https://developer.mozilla.org/docs/Web/HTTP/Status/302) status code to the client.
 * Redirects the client to the error handling endpoint provided in the URL template. The error handling endpoint typically displays error information and returns HTTP 200.
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesRedirect" highlight="9":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesRedirect" highlight="9":::
 
 The URL template can include a `{0}` placeholder for the status code, as shown in the preceding code. If the URL template starts with `~` (tilde), the `~` is replaced by the app's `PathBase`. When specifying an endpoint in the app, create an MVC view or Razor page for the endpoint.
 
@@ -140,7 +140,7 @@ The <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePa
 
 The new pipeline execution may alter the response's status code, as the new pipeline has full control of the status code. If the new pipeline does not alter the status code, the original status code will be sent to the client.
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesReExecute" highlight="9":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesReExecute" highlight="9":::
 
 If an endpoint within the app is specified, create an MVC view or Razor page for the endpoint.
 
@@ -151,11 +151,11 @@ This method is commonly used when the app should:
 
 The URL template must start with `/` and may include a placeholder `{0}` for the status code. To pass the status code as a query-string parameter, pass a second argument into `UseStatusCodePagesWithReExecute`. For example:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesReExecuteQueryString":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesReExecuteQueryString":::
 
 The endpoint that processes the error can get the original URL that generated the error, as shown in the following example:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Pages/StatusCode.cshtml.cs" id="snippet_Class" highlight="12-21":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Pages/StatusCode.cshtml.cs" id="snippet_Class" highlight="12-21":::
 
 Since this middleware can re-execute the request pipeline:
 
@@ -168,7 +168,7 @@ To disable status code pages for an MVC controller or action method, use the [[S
 
 To disable status code pages for specific requests in a Razor Pages handler method or in an MVC controller, use <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature>:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGet":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGet":::
 
 ## Exception-handling code
 
@@ -201,7 +201,7 @@ When running on [IIS](/iis) (or Azure App Service) or [IIS Express](/iis/extensi
 
 The Database developer page exception filter <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> captures database-related exceptions that can be resolved by using Entity Framework Core migrations. When these exceptions occur, an HTML response is generated with details of possible actions to resolve the issue. This page is enabled only in the Development environment. The following code adds the Database developer page exception filter:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Program.cs" id="snippet_AddDatabaseDeveloperPageExceptionFilter" highlight="3":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Program.cs" id="snippet_AddDatabaseDeveloperPageExceptionFilter" highlight="3":::
 
 ## Exception filters
 
@@ -221,7 +221,7 @@ For information about how to handle model state errors, see [Model binding](xref
 
 The following code configures the app to generate a problem details response for all HTTP client and server error responses that ***don't have a body content yet***:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_AddProblemDetails" highlight="3":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_AddProblemDetails" highlight="3":::
 
 The next section shows how to customize the problem details response body.
 
@@ -241,7 +241,7 @@ The generated problem details can be customized using <xref:Microsoft.AspNetCore
 
 The following code uses <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions> to set <xref:Microsoft.AspNetCore.Http.ProblemDetailsOptions.CustomizeProblemDetails>:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_CustomizeProblemDetails" highlight="3-5":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/7.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_CustomizeProblemDetails" highlight="3-5":::
 
 For example, an [`HTTP Status 400 Bad Request`](https://developer.mozilla.org/docs/Web/HTTP/Status/400) endpoint result produces the following problem details response body:
 
@@ -355,7 +355,7 @@ To configure a custom error handling page for the [Production environment](xref:
 
 In the following example, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> adds the exception handling middleware in non-Development environments:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Program.cs" id="snippet_UseExceptionHandler" highlight="3,5":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Program.cs" id="snippet_UseExceptionHandler" highlight="3,5":::
 
 The Razor Pages app template provides an Error page (`.cshtml`) and <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> class (`ErrorModel`) in the *Pages* folder. For an MVC app, the project template includes an `Error` action method and an Error view for the Home controller.
 
@@ -372,7 +372,7 @@ To allow unauthenticated users to view the custom error handling page, ensure th
 
 Use <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to access the exception and the original request path in an error handler. The following example uses `IExceptionHandlerPathFeature` to get more information about the exception that was thrown:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Pages/Error.cshtml.cs" id="snippet_Class" highlight="15-27":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Pages/Error.cshtml.cs" id="snippet_Class" highlight="15-27":::
 
 > [!WARNING]
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
@@ -383,7 +383,7 @@ An alternative to a [custom exception handler page](#exception-handler-page) is 
 
 The following code uses a lambda for exception handling:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseExceptionHandlerInline" highlight="5-29":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseExceptionHandlerInline" highlight="5-29":::
 
 > [!WARNING]
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
@@ -392,7 +392,7 @@ The following code uses a lambda for exception handling:
 
 By default, an ASP.NET Core app doesn't provide a status code page for HTTP error status codes, such as *404 - Not Found*. When the app sets an HTTP 400-599 error status code that doesn't have a body, it returns the status code and an empty response body. To enable default text-only handlers for common error status codes, call <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> in `Program.cs`:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePages" highlight="9":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePages" highlight="9":::
 
 Call `UseStatusCodePages` before request handling middleware. For example, call `UseStatusCodePages` before the Static File Middleware and the Endpoints Middleware.
 
@@ -411,7 +411,7 @@ Status Code: 404; Not Found
 
 To customize the response content type and text, use the overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> that takes a content type and format string:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesContent" highlight="10":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesContent" highlight="10":::
 
 In the preceding code, `{0}` is a placeholder for the error code.
 
@@ -421,7 +421,7 @@ In the preceding code, `{0}` is a placeholder for the error code.
 
 To specify custom error-handling and response-writing code, use the overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> that takes a lambda expression:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesInline" highlight="9-16":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesInline" highlight="9-16":::
 
 `UseStatusCodePages` with a lambda isn't typically used in production because it returns a message that isn't useful to users.
 
@@ -432,7 +432,7 @@ The <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePa
 * Sends a [302 - Found](https://developer.mozilla.org/docs/Web/HTTP/Status/302) status code to the client.
 * Redirects the client to the error handling endpoint provided in the URL template. The error handling endpoint typically displays error information and returns HTTP 200.
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesRedirect" highlight="9":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesRedirect" highlight="9":::
 
 The URL template can include a `{0}` placeholder for the status code, as shown in the preceding code. If the URL template starts with `~` (tilde), the `~` is replaced by the app's `PathBase`. When specifying an endpoint in the app, create an MVC view or Razor page for the endpoint.
 
@@ -448,7 +448,7 @@ The <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePa
 * Returns the original status code to the client.
 * Generates the response body by re-executing the request pipeline using an alternate path.
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesReExecute" highlight="9":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesReExecute" highlight="9":::
 
 If an endpoint within the app is specified, create an MVC view or Razor page for the endpoint.
 
@@ -459,11 +459,11 @@ This method is commonly used when the app should:
 
 The URL template must start with `/` and may include a placeholder `{0}` for the status code. To pass the status code as a query-string parameter, pass a second argument into `UseStatusCodePagesWithReExecute`. For example:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesReExecuteQueryString":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Snippets/Program.cs" id="snippet_UseStatusCodePagesReExecuteQueryString":::
 
 The endpoint that processes the error can get the original URL that generated the error, as shown in the following example:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Pages/StatusCode.cshtml.cs" id="snippet_Class" highlight="12-21":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Pages/StatusCode.cshtml.cs" id="snippet_Class" highlight="12-21":::
 
 ## Disable status code pages
 
@@ -471,7 +471,7 @@ To disable status code pages for an MVC controller or action method, use the [[S
 
 To disable status code pages for specific requests in a Razor Pages handler method or in an MVC controller, use <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature>:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGet":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGet":::
 
 ## Exception-handling code
 
@@ -504,7 +504,7 @@ When running on [IIS](/iis) (or Azure App Service) or [IIS Express](/iis/extensi
 
 The Database developer page exception filter <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> captures database-related exceptions that can be resolved by using Entity Framework Core migrations. When these exceptions occur, an HTML response is generated with details of possible actions to resolve the issue. This page is enabled only in the Development environment. The following code adds the Database developer page exception filter:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Program.cs" id="snippet_AddDatabaseDeveloperPageExceptionFilter" highlight="3":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/6.x/ErrorHandlingSample/Program.cs" id="snippet_AddDatabaseDeveloperPageExceptionFilter" highlight="3":::
 
 ## Exception filters
 
@@ -536,7 +536,7 @@ This article covers common approaches to handling errors in ASP.NET Core web app
 
 The *Developer Exception Page* displays detailed information about unhandled request exceptions. The ASP.NET Core templates generate the following code:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/5.x/ErrorHandlingSample/Startup.cs" id="snippet" highlight="3-6":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/5.x/ErrorHandlingSample/Startup.cs" id="snippet" highlight="3-6":::
 
 The preceding highlighted code enables the developer exception page when the app is running in the [Development environment](xref:fundamentals/environments).
 
@@ -565,7 +565,7 @@ To configure a custom error handling page for the [Production environment](xref:
 
 In the following example, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> adds the exception handling middleware in non-Development environments:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/5.x/ErrorHandlingSample/Startup.cs" id="snippet_DevPageAndHandlerPage" highlight="5-9":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/5.x/ErrorHandlingSample/Startup.cs" id="snippet_DevPageAndHandlerPage" highlight="5-9":::
 
 The Razor Pages app template provides an Error page (`.cshtml`) and <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> class (`ErrorModel`) in the *Pages* folder. For an MVC app, the project template includes an `Error` action method and an Error view for the Home controller.
 
@@ -582,7 +582,7 @@ To allow unauthenticated users to view the custom error handling page, ensure th
 
 Use <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to access the exception and the original request path in an error handler. The following code adds `ExceptionMessage` to the default `Pages/Error.cshtml.cs` generated by the ASP.NET Core templates:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/5.x/ErrorHandlingSample/Pages/Error.cshtml.cs" id="snippet":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/5.x/ErrorHandlingSample/Pages/Error.cshtml.cs" id="snippet":::
 
 > [!WARNING]
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
@@ -599,7 +599,7 @@ An alternative to a [custom exception handler page](#exception-handler-page) is 
 
 The following code uses a lambda for exception handling:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/5.x/ErrorHandlingSample/StartupLambda.cs" id="snippet":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/5.x/ErrorHandlingSample/StartupLambda.cs" id="snippet":::
 
 <!-- 
 In the preceding code, `await context.Response.WriteAsync(new string(' ', 512));` is added so the Internet Explorer browser displays the error message rather than an IE error message. For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/16144).
@@ -618,7 +618,7 @@ To test the exception handling lambda in the [sample app](https://github.com/dot
 
 By default, an ASP.NET Core app doesn't provide a status code page for HTTP error status codes, such as *404 - Not Found*. When the app sets an HTTP 400-599 error status code that doesn't have a body, it returns the status code and an empty response body. To provide status code pages, use the status code pages middleware. To enable default text-only handlers for common error status codes, call <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> in the `Startup.Configure` method:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/5.x/ErrorHandlingSample/StartupUseStatusCodePages.cs" id="snippet" highlight="13":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/5.x/ErrorHandlingSample/StartupUseStatusCodePages.cs" id="snippet" highlight="13":::
 
 Call `UseStatusCodePages` before request handling middleware. For example, call `UseStatusCodePages` before the Static File Middleware and the Endpoints Middleware.
 
@@ -643,7 +643,7 @@ To test `UseStatusCodePages` in the [sample app](https://github.com/dotnet/AspNe
 
 To customize the response content type and text, use the overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> that takes a content type and format string:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/5.x/ErrorHandlingSample/StartupFormat.cs" id="snippet" highlight="13-14":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/5.x/ErrorHandlingSample/StartupFormat.cs" id="snippet" highlight="13-14":::
 
 In the preceding code, `{0}` is a placeholder for the error code.
 
@@ -655,7 +655,7 @@ To test `UseStatusCodePages` in the [sample app](https://github.com/dotnet/AspNe
 
 To specify custom error-handling and response-writing code, use the overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> that takes a lambda expression:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/5.x/ErrorHandlingSample/StartupStatusLambda.cs" id="snippet" highlight="13-20":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/5.x/ErrorHandlingSample/StartupStatusLambda.cs" id="snippet" highlight="13-20":::
 
 `UseStatusCodePages` with a lambda isn't typically used in production because it returns a message that isn't useful to users.
 
@@ -668,7 +668,7 @@ The <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePa
 * Sends a [302 - Found](https://developer.mozilla.org/docs/Web/HTTP/Status/302) status code to the client.
 * Redirects the client to the error handling endpoint provided in the URL template. The error handling endpoint typically displays error information and returns HTTP 200.
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/5.x/ErrorHandlingSample/StartupSCredirect.cs" id="snippet" highlight="13":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/5.x/ErrorHandlingSample/StartupSCredirect.cs" id="snippet" highlight="13":::
 
 The URL template can include a `{0}` placeholder for the status code, as shown in the preceding code. If the URL template starts with `~` (tilde), the `~` is replaced by the app's `PathBase`. When specifying an endpoint in the app, create an MVC view or Razor page for the endpoint. For a Razor Pages example, see [Pages/MyStatusCode.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x/ErrorHandlingSample/Pages) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x).
 
@@ -686,7 +686,7 @@ The <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePa
 * Returns the original status code to the client.
 * Generates the response body by re-executing the request pipeline using an alternate path.
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/5.x/ErrorHandlingSample/StartupSCreX.cs" id="snippet" highlight="13":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/5.x/ErrorHandlingSample/StartupSCreX.cs" id="snippet" highlight="13":::
 
 If an endpoint within the app is specified, create an MVC view or Razor page for the endpoint. Ensure `UseStatusCodePagesWithReExecute` is placed before `UseRouting` so the request can be rerouted to the status page. For a Razor Pages example, see [Pages/MyStatusCode2.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x/ErrorHandlingSample/Pages) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x).
 
@@ -710,7 +710,7 @@ When using a placeholder in the path, confirm that the endpoint can process the 
 
 The endpoint that processes the error can get the original URL that generated the error, as shown in the following example:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/5.x/ErrorHandlingSample/Pages/MyStatusCode2.cshtml.cs" id="snippet":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/5.x/ErrorHandlingSample/Pages/MyStatusCode2.cshtml.cs" id="snippet":::
 
 For a Razor Pages example, see [Pages/MyStatusCode2.cshtml](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x/ErrorHandlingSample/Pages) in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples/5.x).
 
@@ -722,7 +722,7 @@ To disable status code pages for an MVC controller or action method, use the [[S
 
 To disable status code pages for specific requests in a Razor Pages handler method or in an MVC controller, use <xref:Microsoft.AspNetCore.Diagnostics.IStatusCodePagesFeature>:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/5.x/ErrorHandlingSample/Pages/Privacy.cshtml.cs" id="snippet":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/5.x/ErrorHandlingSample/Pages/Privacy.cshtml.cs" id="snippet":::
 
 ## Exception-handling code
 
@@ -760,7 +760,7 @@ When running on [IIS](/iis) (or Azure App Service) or [IIS Express](/iis/extensi
 
 The Database developer page exception filter `AddDatabaseDeveloperPageExceptionFilter` captures database-related exceptions that can be resolved by using Entity Framework Core migrations. When these exceptions occur, an HTML response is generated with details of possible actions to resolve the issue. This page is enabled only in the Development environment. The following code was generated by the ASP.NET Core Razor Pages templates when individual user accounts were specified:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/5.x/StartupDBexFilter.cs" id="snippet" highlight="6":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/5.x/StartupDBexFilter.cs" id="snippet" highlight="6":::
 
 ## Exception filters
 
@@ -768,7 +768,7 @@ In MVC apps, exception filters can be configured globally or on a per-controller
 
 Exception filters are useful for trapping exceptions that occur within MVC actions, but they're not as flexible as the built-in [exception handling middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/Diagnostics/src/ExceptionHandler/ExceptionHandlerMiddleware.cs), `UseExceptionHandler`. We recommend using `UseExceptionHandler`, unless you need to perform error handling differently based on which MVC action is chosen.
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/5.x/ErrorHandlingSample/Startup.cs" id="snippet" highlight="9":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/5.x/ErrorHandlingSample/Startup.cs" id="snippet" highlight="9":::
 
 ## Model state errors
 
@@ -793,7 +793,7 @@ This article covers common approaches to handling errors in ASP.NET Core web app
 
 The *Developer Exception Page* displays detailed information about request exceptions. The ASP.NET Core templates generate the following code:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_DevPageAndHandlerPage" highlight="1-4":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_DevPageAndHandlerPage" highlight="1-4":::
 
 The preceding code enables the developer exception page when the app is running in the [Development environment](xref:fundamentals/environments).
 
@@ -817,7 +817,7 @@ To configure a custom error handling page for the Production environment, use th
 
 In the following example, <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A> adds the Exception Handling Middleware in non-Development environments:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_DevPageAndHandlerPage" highlight="5-9":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_DevPageAndHandlerPage" highlight="5-9":::
 
 The Razor Pages app template provides an Error page (`.cshtml`) and <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> class (`ErrorModel`) in the *Pages* folder. For an MVC app, the project template includes an Error action method and an Error view in the Home controller.
 
@@ -827,7 +827,7 @@ Don't mark the error handler action method with HTTP method attributes, such as 
 
 Use <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandlerPathFeature> to access the exception and the original request path in an error handler controller or page:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Pages/MyFolder/Error.cshtml.cs" id="snippet_ExceptionHandlerPathFeature":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Pages/MyFolder/Error.cshtml.cs" id="snippet_ExceptionHandlerPathFeature":::
 
 > [!WARNING]
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
@@ -840,7 +840,7 @@ An alternative to a [custom exception handler page](#exception-handler-page) is 
 
 Here's an example of using a lambda for exception handling:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_HandlerPageLambda":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_HandlerPageLambda":::
 
 In the preceding code, `await context.Response.WriteAsync(new string(' ', 512));` is added so the Internet Explorer browser displays the error message rather than an IE error message. For more information, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/16144).
 
@@ -857,7 +857,7 @@ The middleware is made available by the [Microsoft.AspNetCore.Diagnostics](https
 
 To enable default text-only handlers for common error status codes, call <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> in the `Startup.Configure` method:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_StatusCodePages":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_StatusCodePages":::
 
 Call `UseStatusCodePages` before request handling middleware (for example, Static File Middleware and MVC Middleware).
 
@@ -871,13 +871,13 @@ Status Code: 404; Not Found
 
 To customize the response content type and text, use the overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> that takes a content type and format string:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_StatusCodePagesFormatString":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_StatusCodePagesFormatString":::
 
 ## UseStatusCodePages with lambda
 
 To specify custom error-handling and response-writing code, use the overload of <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages%2A> that takes a lambda expression:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_StatusCodePagesLambda":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_StatusCodePagesLambda":::
 
 ## UseStatusCodePagesWithRedirects
 
@@ -886,7 +886,7 @@ The <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePa
 * Sends a *302 - Found* status code to the client.
 * Redirects the client to the location provided in the URL template.
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_StatusCodePagesWithRedirect":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_StatusCodePagesWithRedirect":::
 
 The URL template can include a `{0}` placeholder for the status code, as shown in the example. If the URL template starts with `~` (tilde), the `~` is replaced by the app's `PathBase`. If you point to an endpoint within the app, create an MVC view or Razor page for the endpoint. For a Razor Pages example, see `Pages/StatusCode.cshtml` in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples).
 
@@ -902,7 +902,7 @@ The <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePa
 * Returns the original status code to the client.
 * Generates the response body by re-executing the request pipeline using an alternate path.
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_StatusCodePagesWithReExecute":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Startup.cs" id="snippet_StatusCodePagesWithReExecute":::
 
 If you point to an endpoint within the app, create an MVC view or Razor page for the endpoint. Ensure `UseStatusCodePagesWithReExecute` is placed before `UseRouting` so the request can be rerouted to the status page. For a Razor Pages example, see `Pages/StatusCode.cshtml` in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples).
 
@@ -919,7 +919,7 @@ The URL and query string templates may include a placeholder (`{0}`) for the sta
 
 The endpoint that processes the error can get the original URL that generated the error, as shown in the following example:
 
-:::code language="csharp" source="~fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Pages/StatusCode.cshtml.cs" id="snippet_StatusCodeReExecute":::
+:::code language="csharp" source="~/fundamentals/error-handling/samples/2.x/ErrorHandlingSample/Pages/StatusCode.cshtml.cs" id="snippet_StatusCodeReExecute":::
 
 Don't mark the error handler action method with HTTP method attributes, such as `HttpGet`. Explicit verbs prevent some requests from reaching the method. Allow anonymous access to the method if unauthenticated users should see the error view.
 
