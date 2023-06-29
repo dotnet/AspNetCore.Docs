@@ -45,7 +45,7 @@ dotnet add package OpenTelemetry.Extensions.Hosting
 
 Replace the contents of `Program.cs` with the following code:
 
-:::code language="csharp" source="~/log-mon/metrics/samples/Program.cs":::
+:::code language="csharp" source="~/log-mon/metrics/metrics/samples/Program.cs":::
 
 <!-- Review TODO: Add link to available meters -->
 
@@ -129,7 +129,7 @@ Navigate to the sample app. The browser displays `Hello OpenTelemetry! ticks:<3d
 
 Append `/metrics` to the URL to view the metrics endpoint. The browser displays the metrics being collected:
 
-![metrics 2](~/log-mon/metrics/static/metrics.png)
+![metrics 2](~/log-mon/metrics/metrics/static/metrics.png)
 
 ### Set up and configure Prometheus
 
@@ -137,7 +137,7 @@ Follow the [Prometheus first steps](https://prometheus.io/docs/introduction/firs
 
 Modify the *prometheus.yml* configuration file so that Prometheus scrapes the metrics endpoint that the example app is exposing. Add the following highlighted text in the `scrape_configs` section:
 
-:::code language="yaml" source="~/log-mon/metrics/samples/prometheus.yml" highlight="31-99":::
+:::code language="yaml" source="~/log-mon/metrics/metrics/samples/prometheus.yml" highlight="31-99":::
 
 In the preceding highlighted YAML, replace `5045` with the port number that the example app is running on.
 
@@ -146,19 +146,19 @@ In the preceding highlighted YAML, replace `5045` with the port number that the 
 1. Reload the configuration or restart the Prometheus server.
 1. Confirm that OpenTelemetryTest is in the UP state in the **Status** > **Targets** page of the Prometheus web portal.
 
-![Prometheus status](~/log-mon/metrics/static/prometheus_status.png)
+![Prometheus status](~/log-mon/metrics/metrics/static/prometheus_status.png)
 
 Select the **Open metric explorer** icon to see available metrics:
 
-![Prometheus open_metric_exp](~/log-mon/metrics/static/open_metric_exp.png)
+![Prometheus open_metric_exp](~/log-mon/metrics/metrics/static/open_metric_exp.png)
 
 Enter counter category such as `http_` in the **Expression** input box to see the available  metrics:
 
-![available metrics](~/log-mon/metrics/static/metrics2.png)
+![available metrics](~/log-mon/metrics/metrics/static/metrics2.png)
 
 Alternatively, enter counter category such as `kestrel` in the **Expression** input box to see the available  metrics:
 
-![Prometheus kestrel](~/log-mon/metrics/static/kestrel.png)
+![Prometheus kestrel](~/log-mon/metrics/metrics/static/kestrel.png)
 
 ### Show metrics on a Grafana dashboard
 
@@ -166,4 +166,4 @@ Alternatively, enter counter category such as `kestrel` in the **Expression** in
 
 1. Follow [Creating a Prometheus graph](https://prometheus.io/docs/visualization/grafana/#creating-a-prometheus-graph). Alternatively, download a JSON file from [aspnetcore-grafana dashboards](https://github.com/JamesNK/aspnetcore-grafana/tree/main/dashboards) to configure Grafana.
 
-![dashboard-screenshot2](~/log-mon/metrics/static/dashboard-screenshot.png)
+![dashboard-screenshot2](~/log-mon/metrics/metrics/static/dashboard-screenshot.png)
