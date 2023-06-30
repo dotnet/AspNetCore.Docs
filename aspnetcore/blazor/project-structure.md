@@ -45,7 +45,15 @@ Project structure:
 
 * `appsettings.json` and environmental app settings files: Provide [configuration settings](xref:blazor/fundamentals/configuration) for the app.
 
-* `Program.cs`/`Program.Server.cs`/`Program.Browser.cs`: The app's entry point that sets up the ASP.NET Core [host](xref:fundamentals/host/generic-host) and contains the app's startup logic, including service registrations and request processing pipeline configuration. If a Blazor Web App app is only created for Blazor Server hosting, a single file named `Program.cs` is created by the Blazor project template. If a Blazor Web App is created for both Blazor Server and Blazor WebAssembly hosting, two files are created. `Program.Server.cs` is for server-side execution by the server-side .NET runtime, and `Program.Browser.cs` is created for client-side execution by the client-side .NET runtime based on WebAssembly.
+* `Program.cs`/`Program.Server.cs`/`Program.Browser.cs`: The app's entry point that sets up the ASP.NET Core web application or WebAssembly [host](xref:fundamentals/host/generic-host#host-definition) and contains the app's startup logic, including service registrations, configuration, logging, and request processing pipeline.
+
+  If a Blazor Web App app is only created for Blazor Server hosting, a single file named `Program.cs` is created by the Blazor project template. If a Blazor Web App is created for both Blazor Server and Blazor WebAssembly hosting, two files are created:
+  
+  * `Program.Server.cs` is for server-side execution by the server-side .NET runtime.
+  * `Program.Browser.cs` is created for client-side execution by the client-side .NET runtime based on WebAssembly.
+
+  A `Program` file:
+
   * Specifies the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. Services for Razor components are added by calling `AddRazorComponents`. For Blazor Server hosting, `AddServerComponents` adds services to support rendering interactive server components, and `AddWebAssemblyComponents` adds services to support rendering interactive WebAssembly components.
   * Configures the app's request handling pipeline. For Blazor Server hosting, `MapRazorComponents` discovers available components and specifies the root component for the app, which by default is the `App` component (`App.razor`).
 
