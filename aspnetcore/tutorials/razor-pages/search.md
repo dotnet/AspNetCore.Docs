@@ -88,7 +88,7 @@ Save the changes and test the filter.
 
 ## Search by genre
 
-Update the Index page's `OnGetAsync` method with the following code:
+Update the `Movies/Index.cshtml.cs` page `OnGetAsync` method with the following code:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/sample/RazorPagesMovie80/Pages/Movies/Index.cshtml.cs?name=snippet_SearchGenre)]
 
