@@ -5,7 +5,7 @@ description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 01/18/2023
+ms.date: 06/30/2023
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
@@ -90,6 +90,30 @@ The following code uses a lambda for exception handling:
 
 > [!WARNING]
 > Do **not** serve sensitive error information to clients. Serving errors is a security risk.
+
+## IExceptionHandler
+
+[IExceptionHandler](https://source.dot.net/#Microsoft.AspNetCore.Diagnostics/ExceptionHandler/IExceptionHandler.cs,adae2915ad0c6dc5) is an interface that gives the developer a callback for handling known exceptions in a central location.
+
+`IExceptionHandler` implementations are registered by calling [`IServiceCollection.AddExceptionHandler<T>`](https://source.dot.net/#Microsoft.AspNetCore.Diagnostics/ExceptionHandler/ExceptionHandlerServiceCollectionExtensions.cs,e74aac24e3e2cbc9). Multiple implementations can be added, and they're called in the order registered. If an exception handler handles a request, it can return `true` to stop processing. If an exception isn't handled by any exception handler, then control falls back to the default behavior and options from the middleware. Different metrics and logs are emitted for handled versus unhandled exceptions.
+
+The following example shows an `IExceptionHandler` implementation:
+
+:::code language="csharp" source="~/fundamentals/error-handling/samples/8.x/ErrorHandlingSample/CustomExceptionHandler.cs":::
+
+The following example shows how to register an `IExceptionHandler` implementation for dependency injection:
+
+:::code language="csharp" source="~/fundamentals/error-handling/samples/8.x/ErrorHandlingSample/Program.cs" id="snippet_RegisterIExceptionHandler" highlight="7":::
+
+When the preceding code runs in the Development environment:
+
+* The `CustomExceptionHandler` is called first to handle an exception.
+* After logging the exception, the `TryHandleException` method returns `false`, so the [developer exception page](#developer-exception-page) is shown.
+
+In other environments:
+
+* The `CustomExceptionHandler` is called first to handle an exception.
+* After logging the exception, the `TryHandleException` method returns `false`, so the [`/Error` page](#exception-handler-page) is shown.
 
 <!-- links to this in other docs require sestatuscodepages -->
 <a name="sestatuscodepages"></a>
