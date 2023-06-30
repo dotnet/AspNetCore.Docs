@@ -281,6 +281,14 @@ ASPNETCORE_URLS=http://*:80/;http://*:8080/;https://*:443/;https://*:8081/
 
 For more information, see <xref:fundamentals/servers/kestrel/endpoints> and <xref:fundamentals/servers/httpsys>.
 
+### SNI hostname in `ITlsHandshakeFeature`
+
+The Server Name Indication (SNI) host name is now exposed in the [HostName](https://source.dot.net/#Microsoft.AspNetCore.Connections.Abstractions/Features/ITlsHandshakeFeature.cs,29) property of the <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature> interface.
+
+SNI is part of the TLS handshake process. It enables clients to specify the host name they want to connect to when the server hosts multiple virtual hosts or domains. The server can then select the correct security certificate to present to the client during the handshake process. Normally, SNI is only handled within the TLS stack and is used to select the matching certificate. But by exposing it, other components in the application can use that information for diagnostics, rate limiting, routing, billing, and so on.
+
+Exposing the host name is particularly useful for large-scale services managing thousands of SNI bindings. This feature provides information about the chosen SNI during the TLS handshake, thereby improving debugging capabilities during customer escalations. This increased transparency allows for faster problem resolution and enhanced service reliability.
+
 ### IHttpSysRequestTimingFeature
 
 [IHttpSysRequestTimingFeature](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/IHttpSysRequestTimingFeature.cs,3c5dc86dc837b1f4) provides detailed timing information for requests when using the [HTTP.sys server](xref:fundamentals/servers/httpsys) and [In-process hosting with IIS](xref:host-and-deploy/iis/in-process-hosting?view=aspnetcore-8.0&preserve-view=true#ihsrtf8):
