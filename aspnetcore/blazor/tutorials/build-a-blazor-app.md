@@ -98,8 +98,10 @@ The `-n|--name` option in the preceding command specifies the name of the new Ra
 
 Open the `Todo` component in any file editor and make the following changes at the top of the file:
 
+<!-- UPDATE FOR 8.0 -->
+
 * Add an `@page` Razor directive with a relative URL of `/todo`.
-* Add the `@rendermode` Razor directive set to `Auto`. The directive indicates that for this component the render mode should be determined automatically based on a policy. The default render mode for a Blazor Web App is server-side rendering (SSR), which means that the `Todo` component is rendered interactively on the server via Blazor Server hosting with server-side prerendering.
+* Add the `[RenderModeServer]` attribute. The attribute indicates that for this component the render mode should be server-side rendering (SSR), which means that the `Todo` component is rendered interactively on the server via Blazor Server hosting with server-side prerendering. <!-- `@rendermode` Razor directive set to `Auto`. The directive indicates that for this component the render mode should be determined automatically based on a policy. The default render mode for a Blazor Web App is server-side rendering (SSR), which means that the `Todo` component is rendered interactively on the server via Blazor Server hosting with server-side prerendering. -->
 * Add a page title with the `PageTitle` component, which enables adding an HTML `<title>` element to the page.
 
 :::moniker-end
