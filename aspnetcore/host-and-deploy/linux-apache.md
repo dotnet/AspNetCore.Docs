@@ -161,7 +161,7 @@ Create a configuration file, named *helloapp.conf*, for the app:
 </VirtualHost>
 ```
 
-Note: Some implementations require the `RequestHeader set` not include the trailing `s`:
+Note: Apache versions before 2.4.6 don't require the `RequestHeader set` contain the trailing `s`:
 
 ```
 <VirtualHost *:*>
