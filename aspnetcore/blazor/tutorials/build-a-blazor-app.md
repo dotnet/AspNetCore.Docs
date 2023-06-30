@@ -33,7 +33,17 @@ At the end of this tutorial, you'll have a working todo list app.
 
 ## Prerequisites
 
+:::moniker range=">= aspnetcore-8.0"
+
+[Download and install the .NET 8.0 Preview](https://dotnet.microsoft.com/download/dotnet/8.0)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 [Download and install .NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
+
+:::moniker-end
 
 ## Create a Blazor app
 
