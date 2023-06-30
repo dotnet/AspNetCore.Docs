@@ -35,6 +35,7 @@ namespace RazorPagesMovie.Pages.Movies
             {
                 return NotFound();
             }
+            Movie = movie;
             return Page();
         }
         #endregion
