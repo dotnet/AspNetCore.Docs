@@ -475,7 +475,7 @@ To create a Blazor app on macOS, use the following guidance:
   > [!NOTE]
   > Visual Studio for Mac will be able to create Blazor Web Apps in an upcoming release.
 
-<!-- HOLD FOR 8.0 UPDATE TO USE VS UI
+<!-- UPDATE FOR 8.0
 
 In the sidebar, select **Web and Console** > **App**.
 
@@ -599,7 +599,7 @@ For more information on template options, see the following resources:
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- HOLD FOR 8.0
+<!-- UPDATE FOR 8.0
 
 * [`blazor`](/dotnet/core/tools/dotnet-new-sdk-templates#blazor)
 
