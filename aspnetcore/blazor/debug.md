@@ -331,7 +331,7 @@ To attach to a running Blazor app, create a `.vscode/launch.json` file with the 
 
 ```json
 {
-  "name": "Attach and Debug"
+  "name": "Attach and Debug",
   "type": "blazorwasm",
   "request": "attach",
   "url": "{URL}"
