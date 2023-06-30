@@ -8,7 +8,7 @@ ms.custom: mvc
 ms.date: 06/30/2023
 uid: blazor/tutorials/signalr-blazor-preview
 ---
-# Use ASP.NET Core SignalR with Blazor
+# Use ASP.NET Core SignalR with Blazor (.NET 8 Preview)
 
 <!-- UPDATE FOR 8.0
 
