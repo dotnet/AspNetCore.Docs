@@ -169,7 +169,7 @@ Note: Some implementations require the `RequestHeader set` not include the trail
 </VirtualHost>
 ```
 
-For more information, see [Apache Module mod_headers](https://httpd.apache.org/docs/2.4/mod/mod_headers.html).
+For more information, see `%{VARNAME}s` in [Apache Module mod_headers](https://httpd.apache.org/docs/2.4/mod/mod_headers.html).
 :::moniker range=">= aspnetcore-5.0"
 
 The `VirtualHost` block can appear multiple times, in one or more files on a server. In the preceding configuration file, Apache accepts public traffic on port 80. The domain `www.example.com` is being served, and the `*.example.com` alias resolves to the same website. For more information, see [Name-based virtual host support](https://httpd.apache.org/docs/current/vhosts/name-based.html). Requests are proxied at the root to port 5000 of the server at 127.0.0.1. For bi-directional communication, `ProxyPass` and `ProxyPassReverse` are required. To change Kestrel's IP/port, see [Kestrel: Endpoint configuration](xref:fundamentals/servers/kestrel/endpoints).
