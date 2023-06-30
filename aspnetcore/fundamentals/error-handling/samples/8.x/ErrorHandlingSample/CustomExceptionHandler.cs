@@ -1,19 +1,25 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace ErrorHandlingSample
 {
     public class CustomExceptionHandler : IExceptionHandler
     {
-        private ILogger<CustomExceptionHandler> logger;
-        public CustomExceptionHandler(ILogger<CustomExceptionHandler> logger){
+        private readonly ILogger<CustomExceptionHandler> logger;
+        public CustomExceptionHandler(ILogger<CustomExceptionHandler> logger)
+        {
             this.logger = logger;
         }
-        public ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
+        public ValueTask<bool> TryHandleAsync(
+            HttpContext httpContext,
+            Exception exception,
+            CancellationToken cancellationToken)
         {
             var exceptionMessage = exception.Message;
-            logger.LogError("Error Message: {exceptionMessage}", exceptionMessage);
-            logger.LogError("Time of occurrence {time}", DateTime.Now);
-            // returned false to continue with the default behavior
+            logger.LogError(
+                "Error Message: {exceptionMessage}, Time of occurrence {time}",
+                exceptionMessage, DateTime.UtcNow);
+            // Return false to continue with the default behavior
+            // - or - return true to signal that this exception is handled
             return ValueTask.FromResult(false);
         }
     }
