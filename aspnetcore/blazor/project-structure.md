@@ -49,7 +49,7 @@ Project structure:
 
   If a Blazor Web App app is only created for Blazor Server hosting, a single file named `Program.cs` is created by the Blazor project template. If a Blazor Web App is created for both Blazor Server and Blazor WebAssembly hosting, two files are created:
   
-  * `Program.Server.cs` is for server-side execution by the server-side .NET runtime.
+  * `Program.Server.cs` is created for server-side execution by the server-side .NET runtime.
   * `Program.Browser.cs` is created for client-side execution by the client-side .NET runtime based on WebAssembly.
 
   A `Program` file:
