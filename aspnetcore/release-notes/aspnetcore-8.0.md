@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/27/2023
+ms.date: 06/30/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -410,7 +410,7 @@ public class TodosController : Controller
 
 Generic variants are supported for the following attributes:
 
-<!--TODO update these API links -->
+<!--TOD4O update these API links -->
 
 * `[ProducesResponseType<T>]`
 * `[Produces<T>]`
@@ -467,6 +467,14 @@ Metrics offers a number of improvements compared to existing event counters:
 * Integration into the wider cloud native ecosystem by aligning with OpenTelemetry standards.
 
 Metrics have been added for ASP.NET Core hosting, Kestrel, and SignalR. For more information, see [System.Diagnostics.Metrics](/dotnet/core/diagnostics/compare-metric-apis#systemdiagnosticsmetrics).
+
+### IExceptionHandler
+
+[IExceptionHandler](https://source.dot.net/#Microsoft.AspNetCore.Diagnostics/ExceptionHandler/IExceptionHandler.cs,adae2915ad0c6dc5) is a new interface that gives the developer a callback for handling known exceptions in a central location.
+
+`IExceptionHandler` implementations are registered by calling [`IServiceCollection.AddExceptionHandler<T>`](https://source.dot.net/#Microsoft.AspNetCore.Diagnostics/ExceptionHandler/ExceptionHandlerServiceCollectionExtensions.cs,e74aac24e3e2cbc9). Multiple implementations can be added, and they're called in the order registered. If an exception handler handles a request, it can return `true` to stop processing. If an exception isn't handled by any exception handler, then control falls back to the default behavior and options from the middleware.
+
+For more information, see [IExceptionHandler](xref:fundamentals/error-handling#iexceptionhandler).
 
 <!--
 ## API controllers
