@@ -410,7 +410,7 @@ public class TodosController : Controller
 
 Generic variants are supported for the following attributes:
 
-<!--TOD4O update these API links -->
+<!--TODO update these API links -->
 
 * `[ProducesResponseType<T>]`
 * `[Produces<T>]`
