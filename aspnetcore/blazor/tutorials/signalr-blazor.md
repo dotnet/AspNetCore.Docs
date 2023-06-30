@@ -30,10 +30,7 @@ At the end of this tutorial, you'll have a working chat app.
 
 # [Visual Studio](#tab/visual-studio)
 
-Install either of the following:
-
-* [Visual Studio 2022 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
-* [.NET](https://dotnet.microsoft.com/download/dotnet) if it isn't already installed on the system or if the system doesn't have the latest version installed.
+[Visual Studio 2022 or later](https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&utm_source=learn.microsoft.com&utm_campaign=inline+link&utm_content=download+vs2022) with the **ASP.NET and web development** workload
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -45,7 +42,7 @@ The Visual Studio Code instructions use the .NET CLI for ASP.NET Core developmen
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-[Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/)
+[Visual Studio for Mac 2022 or later](https://visualstudio.microsoft.com/vs/mac/) with the **.NET** workload
 
 # [.NET Core CLI](#tab/netcore-cli/)
 
@@ -104,8 +101,6 @@ To configure Visual Studio Code assets in the `.vscode` folder for debugging, se
 * <xref:blazor/debug>
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
-
-Install the latest version of [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
 
 Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 
