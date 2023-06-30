@@ -147,7 +147,7 @@ Create a configuration file, named *helloapp.conf*, for the app:
 
 ```
 <VirtualHost *:*>
-    RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
+    RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}s
 </VirtualHost>
 
 <VirtualHost *:80>
@@ -158,6 +158,14 @@ Create a configuration file, named *helloapp.conf*, for the app:
     ServerAlias *.example.com
     ErrorLog ${APACHE_LOG_DIR}/helloapp-error.log
     CustomLog ${APACHE_LOG_DIR}/helloapp-access.log common
+</VirtualHost>
+```
+
+Note: Some implementations require the `RequestHeader set` not include the trailing `s`:
+
+```
+<VirtualHost *:*>
+    RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}s
 </VirtualHost>
 ```
 
