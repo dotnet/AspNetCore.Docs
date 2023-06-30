@@ -15,9 +15,9 @@ namespace ErrorHandlingSample
             CancellationToken cancellationToken)
         {
             var exceptionMessage = exception.Message;
-            logger.LogError("Error Message: {exceptionMessage}", exceptionMessage);
-            logger.LogError("Time of occurrence {time}", DateTime.Now);
+            logger.LogError("Error Message: {exceptionMessage}, Time of occurrence {time}", exceptionMessage, DateTime.UtcNow);
             // Return false to continue with the default behavior
+            // - or - return true to signal that this exception is handled
             return ValueTask.FromResult(false);
         }
     }
