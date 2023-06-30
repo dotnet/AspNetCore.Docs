@@ -165,7 +165,7 @@ Note: Some implementations require the `RequestHeader set` not include the trail
 
 ```
 <VirtualHost *:*>
-    RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}s
+    RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
 </VirtualHost>
 ```
 
