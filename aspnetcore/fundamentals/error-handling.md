@@ -5,7 +5,7 @@ description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/29/2023
+ms.date: 06/30/2023
 uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
@@ -108,12 +108,12 @@ The following example shows how to register an `IExceptionHandler` implementatio
 When the preceding code runs in the Development environment:
 
 * The `CustomExceptionHandler` is called first to handle an exception.
-* After logging the exception, the `TryHandleException` method returns `false`, so the [developer exception page](#developer-exception-page) is shown. Otherwise, if `TryHandleException` returned `true`, the developer exception page wouldn't be shown.
+* After logging the exception, the `TryHandleException` method returns `false`, so the [developer exception page](#developer-exception-page) is shown.
 
 In other environments:
 
 * The `CustomExceptionHandler` is called first to handle an exception.
-* After logging the exception, the `TryHandleException` method returns `false`, so the [`/Error` page](#exception-handler-page) is shown. Otherwise, if `TryHandleException` returned `true`, the `/Error` page wouldn't be shown.
+* After logging the exception, the `TryHandleException` method returns `false`, so the [`/Error` page](#exception-handler-page) is shown.
 
 <!-- links to this in other docs require sestatuscodepages -->
 <a name="sestatuscodepages"></a>
