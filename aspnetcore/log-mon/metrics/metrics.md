@@ -60,10 +60,10 @@ dotnet tool update -g dotnet-counters
 ```
 
 While the test app is running, launch [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters).
-The following command shows an example of `dotnet-counters` monitoring all metrics from the `Microsoft-AspNetCore-Server-Kestrel` meter.
+The following command shows an example of `dotnet-counters` monitoring all metrics from the `Microsoft.AspNetCore.Hosting` meter.
 
 ```dotnetcli
-dotnet-counters monitor -n WebMetric --counters Microsoft-AspNetCore-Server-Kestrel
+dotnet-counters monitor -n WebMetric --counters Microsoft.AspNetCore.Hosting
 ```
 
 Output similar to the following is displayed:
@@ -72,25 +72,24 @@ Output similar to the following is displayed:
 Press p to pause, r to resume, q to quit.
     Status: Running
 
-[Microsoft-AspNetCore-Server-Kestrel]
-    Connection Queue Length                                                0
-    Connection Rate (Count / 1 sec)                                        0
-    Current Connections                                                    5
-    Current TLS Handshakes                                                 0
-    Current Upgraded Requests (WebSockets)                                 0
-    Failed TLS Handshakes                                                  3
-    Request Queue Length                                                 -14
-    TLS Handshake Rate (Count / 1 sec)                                     0
-    Total Connections                                                     14
-    Total TLS Handshakes                                                  12
+[Microsoft.AspNetCore.Hosting]
+    http-server-current-requests
+        host=localhost,method=GET,port=5045,scheme=http                    0
+    http-server-request-duration (s)
+        host=localhost,method=GET,port=5045,protocol=HTTP/1.1,ro           0.001
+        host=localhost,method=GET,port=5045,protocol=HTTP/1.1,ro           0.001
+        host=localhost,method=GET,port=5045,protocol=HTTP/1.1,ro           0.001
+        host=localhost,method=GET,port=5045,protocol=HTTP/1.1,ro           0
+        host=localhost,method=GET,port=5045,protocol=HTTP/1.1,ro           0
+        host=localhost,method=GET,port=5045,protocol=HTTP/1.1,ro           0                                            12
 ```
 
 Run `WebMetric>dotnet-counters list` to show all available metrics.
 
-The following command shows the `Microsoft-AspNetCore-Server-Kestrel` meter with the `connections-per-second` and `total-connections` counters.
+The following command shows the `Microsoft-AspNetCore-Server-Kestrel` meter with the `requests-per-second` and `total-requests` counters.
 
 ```dotnetcli
-dotnet-counters monitor -n WebMetric --counters Microsoft-AspNetCore-Server-Kestrel[connections-per-second,total-connections]
+dotnet-counters monitor -n WebMetric --counters Microsoft.AspNetCore.Hosting[requests-per-second,total-requests]
 ```
 
 For more information, see [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters). To learn more about metrics in .NET, see [built-in metrics](/dotnet/core/diagnostics/available-counters).
