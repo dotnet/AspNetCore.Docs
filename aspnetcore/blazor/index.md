@@ -133,11 +133,11 @@ Blazor Web Apps also support client-side rendering (CSR) that relies on a .NET r
 
 After rendering is complete, interactivity on the client can adopt either or both of the following techniques, even in the same page:
 
-* UI updates and JavaScript interop calls are handled over a SignalR connection. The runtime stays on the server and handles:
+* UI updates and JavaScript interop calls handled over a SignalR connection. The runtime stays on the server and handles:
   * Executing the app's C# code.
   * UI events from the browser that are sent to the server.
   * Applying UI updates to a rendered component that are sent back by the server.
-* Rich interactivity and UI updates are handled by a .NET runtime running in the browser on WebAssembly.
+* Rich interactivity and UI updates handled by a .NET runtime running in the browser on WebAssembly.
   * C# code files and Razor files are compiled into .NET assemblies.
   * The assemblies and the [.NET runtime](/dotnet/framework/get-started/overview) are downloaded to the browser.
   * Blazor bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor WebAssembly runtime uses JavaScript interop to handle [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) manipulation and browser API calls.
