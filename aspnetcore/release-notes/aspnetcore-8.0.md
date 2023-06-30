@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 06/22/2023
+ms.date: 06/27/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -296,9 +296,21 @@ For more information, see <xref:fundamentals/servers/kestrel/endpoints> and <xre
 
 For more information, see [Get detailed timing information with IHttpSysRequestTimingFeature](xref:fundamentals/servers/httpsys?view=aspnetcore-8.0&preserve-view=true#ihsrtf8) and [Timing information and In-process hosting with IIS](xref:host-and-deploy/iis/in-process-hosting?view=aspnetcore-8.0&preserve-view=true#ihsrtf8).
 
+### HTTP.sys: opt-in support for kernel-mode response buffering
+
+In some scenarios, high volumes of small writes with high latency can cause significant performance impact to `HTTP.sys`. This impact is due to the lack of a <xref:System.IO.Pipelines.Pipe> buffer in the `HTTP.sys` implementation. To improve performance in these scenarios, support for response buffering has been added to `HTTP.sys`. Enable buffering by setting [HttpSysOptions.EnableKernelResponseBuffering](https://github.com/dotnet/aspnetcore/blob/main/src/Servers/HttpSys/src/HttpSysOptions.cs#L120) to `true`.
+
+Response buffering should be enabled by an app that does synchronous I/O, or asynchronous I/O with no more than one outstanding write at a time. In these scenarios, response buffering can significantly improve throughput over high-latency connections.
+
+Apps that use asynchronous I/O and that may have more than one write outstanding at a time should **_not_** use this flag. Enabling this flag can result in higher CPU and memory usage by HTTP.Sys.
+
 ## Authentication and authorization
 
 ASP.NET Core 8 adds new features to authentication and authorization. 
+
+### Authentication updates in ASP.NET Core SPA templates
+
+The ASP.NET Core React and Angular project templates no longer have a dependency on the Duende IdentityServer. Instead, these templates now handle authentication for individual user accounts using the default [ASP.NET Core Identity](xref:security/authentication/identity) UI and cookie authentication. This makes it possible to create secure single page app (SPA) projects without the complexity of configuring and managing a full-featured OpenID Connect (OIDC) server. For projects that still require full OIDC support, use the [Duende project templates for setting up Duende IdentityServer with ASP.NET Core Identity](https://docs.duendesoftware.com/identityserver/v5/quickstarts/5_aspnetid/).
 
 ### Identity API endpoints
 

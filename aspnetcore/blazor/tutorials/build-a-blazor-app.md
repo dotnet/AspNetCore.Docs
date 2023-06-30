@@ -7,11 +7,17 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 11/08/2022
 uid: blazor/tutorials/build-a-blazor-app
-zone_pivot_groups: blazor-hosting-models
 ---
 # Build a Blazor todo list app
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+:::moniker range=">= aspnetcore-8.0"
+
+> [!IMPORTANT]
+> This is the .NET 8 preview version of this article, which is currently undergoing updates for .NET 8. Some of the features described might not be available or fully working at this time. The work on this article will be completed when .NET 8 reaches the *Release Candidate* stage, which is currently scheduled for September. For the current release, see the [.NET 7 version of this article](?view=aspnetcore-7.0&preserve-view=true).
+
+:::moniker-end
 
 This tutorial provides a basic working experience for building and modifying a Blazor app. For detailed Blazor guidance, see the [Blazor reference documentation](xref:blazor/index).
 
@@ -31,23 +37,33 @@ At the end of this tutorial, you'll have a working todo list app.
 
 ## Create a Blazor app
 
+:::moniker range=">= aspnetcore-8.0"
+
 Create a new Blazor app named `TodoList` in a command shell:
 
-:::zone pivot="server"
-
 ```dotnetcli
-dotnet new blazorserver -o TodoList
+dotnet new blazor -o TodoList
 ```
 
-:::zone-end
+:::moniker-end
 
-:::zone pivot="webassembly"
+:::moniker range="< aspnetcore-8.0"
 
-```dotnetcli
-dotnet new blazorwasm -o TodoList
-```
+Use either of the following hosting models to create a new Blazor app named `TodoList` in a command shell:
 
-:::zone-end
+* For an experience with Blazor Server, create the app with the following command:
+
+  ```dotnetcli
+  dotnet new blazorserver -o TodoList
+  ```
+
+* For an experience with Blazor WebAssembly, create the app with the following command:
+
+  ```dotnetcli
+  dotnet new blazorwasm -o TodoList
+  ```
+
+:::moniker-end
 
 The preceding command creates a folder named `TodoList` with the `-o|--output` option to hold the app. The `TodoList` folder is the *root folder* of the project. Change directories to the `TodoList` folder with the following command:
 
@@ -68,11 +84,40 @@ cd TodoList
    > [!IMPORTANT]
    > Razor component file names require a capitalized first letter. Open the `Pages` folder and confirm that the `Todo` component file name starts with a capital letter `T`. The file name should be `Todo.razor`.
 
-1. Open the `Todo` component in any file editor and add an `@page` Razor directive to the top of the file with a relative URL of `/todo`.
+:::moniker range=">= aspnetcore-8.0"
+
+1. Open the `Todo` component in any file editor and make the following changes at the top of the file:
+
+   * Add an `@page` Razor directive with a relative URL of `/todo`.
+   * Add the `@rendermode` Razor directive set to `Auto`. The directive indicates that for this component the render mode should be determined automatically based on a policy. The default render mode for a Blazor Web App is server-side rendering (SSR), which means that the `Todo` component is rendered interactively on the server via Blazor Server hosting with server-side prerendering.
+   * Add a page title with the `PageTitle` component, which enables adding an HTML `<title>` element to the page.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+1. Open the `Todo` component in any file editor and make the following changes at the top of the file:
+
+   * Add an `@page` Razor directive with a relative URL of `/todo`.
+   * Add a page title with the `PageTitle` component, which enables adding an HTML `<title>` element to the page.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+1. Open the `Todo` component in any file editor and add an `@page` Razor directive with a relative URL of `/todo`.
+
+:::moniker-end
 
    `Pages/Todo.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+   :::code language="razor" source="build-a-blazor-app/8.0/Todo0.razor" highlight="1":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
    :::code language="razor" source="build-a-blazor-app/7.0/Todo0.razor" highlight="1":::
 
@@ -102,11 +147,17 @@ cd TodoList
 
    The `NavMenu` component is used in the app's layout. Layouts are components that allow you to avoid duplication of content in an app. The `NavLink` component provides a cue in the app's UI when the component URL is loaded by the app.
 
-   In the navigation element content (`<nav class="flex-column">`) of the `NavMenu` component, add the following `<div>` element for the `Todo` component.
+   In the navigation element (`<nav>`) content of the `NavMenu` component, add the following `<div>` element for the `Todo` component.
 
    In `Shared/NavMenu.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+   :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/build-a-blazor-app/NavMenu.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
    :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/build-a-blazor-app/NavMenu.razor":::
 
@@ -140,7 +191,13 @@ cd TodoList
 
    `TodoItem.cs`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+   :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/build-a-blazor-app/TodoItem.cs":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
    :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/build-a-blazor-app/TodoItem.cs":::
 
@@ -165,7 +222,7 @@ cd TodoList
 :::moniker-end
 
    > [!NOTE]
-   > If using Visual Studio to create the `TodoItem.cs` file and `TodoItem` class, use either of the following approaches:
+   > If using Visual Studio to create the `TodoItem.cs` file and `TodoItem` class, use ***either*** of the following approaches:
    >
    > * Remove the namespace that Visual Studio generates for the class.
    > * Use the **Copy** button in the preceding code block and replace the entire contents of the file that Visual Studio generates.
@@ -177,7 +234,13 @@ cd TodoList
 
    `Pages/Todo.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+   :::code language="razor" source="build-a-blazor-app/8.0/Todo2.razor" highlight="7-12,15":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
    :::code language="razor" source="build-a-blazor-app/7.0/Todo2.razor" highlight="7-12,15":::
 
@@ -203,7 +266,13 @@ cd TodoList
 
 1. The app requires UI elements for adding todo items to the list. Add a text input (`<input>`) and a button (`<button>`) below the unordered list (`<ul>...</ul>`):
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+   :::code language="razor" source="build-a-blazor-app/8.0/Todo3.razor" highlight="14-15":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
    :::code language="razor" source="build-a-blazor-app/7.0/Todo3.razor" highlight="14-15":::
 
@@ -233,7 +302,13 @@ cd TodoList
 
 1. Add an `AddTodo` method to the `Todo` component and register the method for the button using the `@onclick` attribute. The `AddTodo` C# method is called when the button is selected:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+   :::code language="razor" source="build-a-blazor-app/8.0/Todo4.razor" highlight="2,7-10":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
    :::code language="razor" source="build-a-blazor-app/7.0/Todo4.razor" highlight="2,7-10":::
 
@@ -283,7 +358,13 @@ cd TodoList
 
 1. Update the `AddTodo` method to add the `TodoItem` with the specified title to the list. Clear the value of the text input by setting `newTodo` to an empty string:
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+   :::code language="razor" source="build-a-blazor-app/8.0/Todo6.razor" highlight="21-28":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
    :::code language="razor" source="build-a-blazor-app/7.0/Todo6.razor" highlight="21-28":::
 
@@ -331,7 +412,13 @@ cd TodoList
 
 1. The completed `Todo` component (`Pages/Todo.razor`):
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
+
+   :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
    :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo.razor":::
 

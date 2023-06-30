@@ -4,11 +4,7 @@ description: "Learn how to add Swashbuckle to your ASP.NET Core web API project 
 languages:
 - csharp
 products:
-- dotnet-core
 - aspnet-core
-- vs
-- vs-code
-- vs-mac
 urlFragment: getstarted-swashbuckle-aspnetcore
 ---
 # Get started with Swashbuckle and ASP.NET Core

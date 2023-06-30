@@ -14,6 +14,24 @@ uid: blazor/tutorials/index
 
 The following tutorials provide basic working experiences for building Blazor apps.
 
+:::moniker range=">= aspnetcore-8.0"
+
+For an overview of Blazor, see <xref:blazor/index>.
+
+* [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro)
+
+* <xref:blazor/tutorials/build-a-blazor-app>
+
+* <xref:blazor/tutorials/signalr-blazor>
+
+* <xref:blazor/hybrid/tutorials/index>
+
+* [Learn modules](/training/paths/build-web-apps-with-blazor/)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 For an overview of Blazor, see <xref:blazor/index>. For more information on the Blazor hosting models, Blazor Server and Blazor WebAssembly, see <xref:blazor/hosting-models>.
 
 * [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) (Blazor Server)
@@ -25,3 +43,5 @@ For an overview of Blazor, see <xref:blazor/index>. For more information on the 
 * <xref:blazor/hybrid/tutorials/index>
 
 * [Learn modules](/training/paths/build-web-apps-with-blazor/)
+
+:::moniker-end
