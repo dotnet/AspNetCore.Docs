@@ -17,14 +17,11 @@ Welcome to what's new in the ASP.NET Core docs for June 2023. This article lists
 
 ### Updated articles
 
-- <xref:blazor/tutorials/build-a-blazor-app>
-  - Remove instruction numbering
-  - Blazor ToDo tutorial updates
+- <xref:blazor/tutorials/build-a-blazor-app>  - Blazor ToDo tutorial updates
 - <xref:blazor/tooling>
   - Tooling article updates
   - Update Tooling article lists
   - Drop lists in Tooling article
-  - Tooling article updates
 - <xref:blazor/project-structure> - Project structure article updates
 - <xref:blazor/host-and-deploy/webassembly> - .NET assembly packaging (Webcil)
 - <xref:blazor/forms-and-input-components>
@@ -60,10 +57,6 @@ Welcome to what's new in the ASP.NET Core docs for June 2023. This article lists
 ### Updated articles
 
 - <xref:aspnetcore-8>
-  - Update What's new for Preview 4
-  - Add preview 1 what's-new-only sections
-  - Update What's new in 8
-  - Server timeout and Keep Alive interval config
 
 ## Security
 
@@ -76,7 +69,6 @@ Welcome to what's new in the ASP.NET Core docs for June 2023. This article lists
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham ![There were 50 pull requests merged by Luke Latham.](https://img.shields.io/badge/Merged%20Pull%20Requests-50-green)
 - [postmeback](https://github.com/postmeback) - Arka Poddar ![There were 5 pull requests merged by Arka Poddar.](https://img.shields.io/badge/Merged%20Pull%20Requests-5-green)
 - [david-acker](https://github.com/david-acker) - David Acker ![There were 2 pull requests merged by David Acker.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
 - [brockallen](https://github.com/brockallen) - Brock Allen ![There were 1 pull requests merged by Brock Allen.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
