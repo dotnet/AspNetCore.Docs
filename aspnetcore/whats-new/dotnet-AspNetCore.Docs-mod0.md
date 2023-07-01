@@ -1,64 +1,96 @@
 ---
-title: "ASP.NET Core docs: What's new for December 2022"
-description: "What's new in the ASP.NET Core docs for December 2022."
-ms.custom: December-2022
-ms.date: 01/01/2023
+title: "ASP.NET Core docs: What's new for June 2023"
+description: "What's new in the ASP.NET Core docs for June 2023."
+ms.custom: June-2023
+ms.date: 07/01/2023
 ---
 
-# ASP.NET Core docs: What's new for December 2022
+# ASP.NET Core docs: What's new for June 2023
 
-Welcome to what's new in the ASP.NET Core docs for December 2022. This article lists some of the major changes to docs during this period.
+Welcome to what's new in the ASP.NET Core docs for June 2023. This article lists some of the major changes to docs during this period.
 
 ## Blazor
 
 ### New articles
 
-- <xref:blazor/hybrid/publish/index>
+- <xref:blazor/tutorials/signalr-blazor-preview>
 
 ### Updated articles
 
-- <xref:blazor/fundamentals/dependency-injection>
-- <xref:blazor/security/webassembly/index> - Security Overview updates
-- <xref:blazor/file-uploads> - [Blazor] Add image upload preview guidance
-- <xref:blazor/security/webassembly/aad-groups-roles>
-- <xref:blazor/components/data-binding> - Blazor bind get/set/after NOTE
-- <xref:blazor/security/webassembly/additional-scenarios> - Additional guidance on custom parameters
-- <xref:blazor/security/index> - Role and policy name conventions
-- <xref:blazor/security/webassembly/graph-api> - Blazor MS Graph article updates
-- <xref:blazor/host-and-deploy/server> - Blazor Server memory model
+- <xref:blazor/tutorials/build-a-blazor-app>
+  - Remove instruction numbering
+  - Blazor ToDo tutorial updates
+- <xref:blazor/tooling>
+  - Tooling article updates
+  - Update Tooling article lists
+  - Drop lists in Tooling article
+  - Tooling article updates
+- <xref:blazor/project-structure> - Project structure article updates
+- <xref:blazor/host-and-deploy/webassembly> - .NET assembly packaging (Webcil)
+- <xref:blazor/forms-and-input-components>
+  - Message size limit enhancements
+  - Forms/input components article NRT updates
+- <xref:blazor/fundamentals/signalr> - Message size limit enhancements
+- <xref:blazor/js-interop/call-dotnet-from-javascript>
+  - Call JS from .NET article versioning
+  - Call .NET from JS article versioning
+- <xref:blazor/js-interop/call-javascript-from-dotnet> - Call JS from .NET article versioning
+- <xref:blazor/tutorials/signalr-blazor> - SignalR-Blazor tutorial versioning
+- <xref:blazor/globalization-localization> - Glob-loc article versioning
+- <xref:blazor/components/event-handling> - Event handling/Lifecycle article versioning
+- <xref:blazor/components/lifecycle> - Event handling/Lifecycle article versioning
+- <xref:blazor/components/data-binding> - Data binding article versioning
+- <xref:blazor/host-and-deploy/server>
+  - Security article versioning
+  - Server timeout and Keep Alive interval config
+- <xref:blazor/components/class-libraries> - Class libs article versioning
 
 ## Fundamentals
 
 ### New articles
 
-- <xref:fundamentals/minimal-apis/overview>
+- <xref:fundamentals/servers/kestrel/connection-middleware>
 
 ### Updated articles
 
-- <xref:fundamentals/best-practices> 
-
-## Performance
-
-### New articles
-
-- <xref:performance/overview>
+- <xref:fundamentals/servers/kestrel/endpoints> - Improve Kestrel endpoints
 
 ## Release notes
 
 ### Updated articles
 
-- <xref:aspnetcore-7> - Blazor bind get/set/after NOTE
+- <xref:aspnetcore-8>
+  - Update What's new for Preview 4
+  - Add preview 1 what's-new-only sections
+  - Update What's new in 8
+  - Server timeout and Keep Alive interval config
+
+## Security
+
+### New articles
+
+- <xref:security/identity-management-solutions>
+- <xref:security/authorization/iard>
 
 ## Community contributors
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [3ilal](https://github.com/3ilal) - Bilal Hussain Shah ![There were 1 pull requests merged by Bilal Hussain Shah.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [andychiare](https://github.com/andychiare) - Andrea Chiarelli ![There were 1 pull requests merged by Andrea Chiarelli.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [damienbod](https://github.com/damienbod) - damienbod ![There were 1 pull requests merged by damienbod.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [kasperk81](https://github.com/kasperk81) ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [Neutrino-Sunset](https://github.com/Neutrino-Sunset) - Neutrino ![There were 1 pull requests merged by Neutrino.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [pharry22](https://github.com/pharry22) - Paul Harrington ![There were 1 pull requests merged by Paul Harrington.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [scottsauber](https://github.com/scottsauber) - Scott Sauber ![There were 1 pull requests merged by Scott Sauber.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [secondsleep-blaine](https://github.com/secondsleep-blaine) - Blaine ![There were 1 pull requests merged by Blaine.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [V0VAska](https://github.com/V0VAska) ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [guardrex](https://github.com/guardrex) - Luke Latham ![There were 50 pull requests merged by Luke Latham.](https://img.shields.io/badge/Merged%20Pull%20Requests-50-green)
+- [postmeback](https://github.com/postmeback) - Arka Poddar ![There were 5 pull requests merged by Arka Poddar.](https://img.shields.io/badge/Merged%20Pull%20Requests-5-green)
+- [david-acker](https://github.com/david-acker) - David Acker ![There were 2 pull requests merged by David Acker.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
+- [brockallen](https://github.com/brockallen) - Brock Allen ![There were 1 pull requests merged by Brock Allen.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [DavideDunne](https://github.com/DavideDunne) - Davide Dunne ![There were 1 pull requests merged by Davide Dunne.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [derekpotts](https://github.com/derekpotts) -  ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [dlemstra](https://github.com/dlemstra) - Dirk Lemstra ![There were 1 pull requests merged by Dirk Lemstra.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [mirna-salem](https://github.com/mirna-salem) - Mirna  ![There were 1 pull requests merged by Mirna .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [mrkaarel](https://github.com/mrkaarel) - Kaarel ![There were 1 pull requests merged by Kaarel.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [ndlozano1990](https://github.com/ndlozano1990) - Nicolás Díaz Lozano ![There were 1 pull requests merged by Nicolás Díaz Lozano.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [poornimanayar](https://github.com/poornimanayar) - Poornima Nayar ![There were 1 pull requests merged by Poornima Nayar.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [rufer7](https://github.com/rufer7) - Rufer Marc ![There were 1 pull requests merged by Rufer Marc.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [sammychinedu2ky](https://github.com/sammychinedu2ky) - Samson Amaugo ![There were 1 pull requests merged by Samson Amaugo.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [sergeipetrashko8](https://github.com/sergeipetrashko8) - Sergei Petrashko ![There were 1 pull requests merged by Sergei Petrashko.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [sguitardude](https://github.com/sguitardude) -  ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [soroshsabz](https://github.com/soroshsabz) -  ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [tristan-pgit](https://github.com/tristan-pgit) -  ![There were 1 pull requests merged by .](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [VahidFarahmandian](https://github.com/VahidFarahmandian) - Vahid Farahmandian ![There were 1 pull requests merged by Vahid Farahmandian.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
