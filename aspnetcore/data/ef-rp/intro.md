@@ -448,7 +448,7 @@ The code checks if there are any students in the database. If there are no stude
 
 * In `Program.cs`, remove `//` from the `DbInitializer.Initialize` line:
 
- [!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_ensure&highlight=6)]
+ [!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_ensure&highlight=7)]
 
 # [Visual Studio](#tab/visual-studio)
 
