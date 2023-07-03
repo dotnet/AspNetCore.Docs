@@ -14,7 +14,7 @@ This article explains how to control the Intermediate Language (IL) Linker when 
 
 Blazor WebAssembly performs [Intermediate Language (IL)](/dotnet/standard/glossary#il) linking during a build to trim unnecessary IL from the app's output assemblies. The linker is disabled when building in Debug configuration. Apps must build in Release configuration to enable the linker. We recommend building in Release when deploying your Blazor WebAssembly apps. 
 
-Linking an app optimizes for size but may have detrimental effects. Apps that use reflection or related dynamic features may break when trimmed because the linker doesn't know about this dynamic behavior and can't determine in general which types are required for reflection at runtime. To trim such apps, the linker must be informed about any types required by reflection in the code and in packages or frameworks that the app depends on.
+Linking an app optimizes for size but may have detrimental effects. Apps that use [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/) or related dynamic features may break when trimmed because the linker doesn't know about this dynamic behavior and can't determine in general which types are required for reflection at runtime. To trim such apps, the linker must be informed about any types required by reflection in the code and in packages or frameworks that the app depends on.
 
 To ensure the trimmed app works correctly once deployed, it's important to test Release builds of the app frequently while developing.
 
