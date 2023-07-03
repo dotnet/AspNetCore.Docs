@@ -424,7 +424,7 @@ For more information, see <xref:blazor/components/attribute-splatting>.
 
 #### Implement `SetParametersAsync` manually
 
-A significant source of per-component rendering overhead is writing incoming parameter values to `[Parameter]` properties. The renderer uses reflection to write the parameter values, which can lead to poor performance at scale.
+A significant source of per-component rendering overhead is writing incoming parameter values to `[Parameter]` properties. The renderer uses [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/) to write the parameter values, which can lead to poor performance at scale.
 
 In some extreme cases, you may wish to avoid the reflection and implement your own parameter-setting logic manually. This may be applicable when:
 

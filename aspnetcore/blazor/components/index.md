@@ -743,19 +743,19 @@ public string? Title { get; set; }
 
 :::moniker range=">= aspnetcore-7.0"
 
-Don't use the [`required` modifier](/dotnet/csharp/language-reference/keywords/required) or [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties. Components are usually instantiated and assigned parameter values using reflection, which bypasses the guarantees that `init` and `required` are designed to make. Instead, use the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) to specify a required component parameter.
+Don't use the [`required` modifier](/dotnet/csharp/language-reference/keywords/required) or [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties. Components are usually instantiated and assigned parameter values using [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), which bypasses the guarantees that `init` and `required` are designed to make. Instead, use the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) to specify a required component parameter.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties because setting component parameter values with <xref:Microsoft.AspNetCore.Components.ParameterView.SetParameterProperties%2A?displayProperty=nameWithType> uses reflection, which bypasses the init-only setter restriction. Use the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) to specify a required component parameter.
+Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties because setting component parameter values with <xref:Microsoft.AspNetCore.Components.ParameterView.SetParameterProperties%2A?displayProperty=nameWithType> uses [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), which bypasses the init-only setter restriction. Use the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) to specify a required component parameter.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties because setting component parameter values with <xref:Microsoft.AspNetCore.Components.ParameterView.SetParameterProperties%2A?displayProperty=nameWithType> uses reflection, which bypasses the init-only setter restriction.
+Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties because setting component parameter values with <xref:Microsoft.AspNetCore.Components.ParameterView.SetParameterProperties%2A?displayProperty=nameWithType> uses [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), which bypasses the init-only setter restriction.
 
 :::moniker-end
 
