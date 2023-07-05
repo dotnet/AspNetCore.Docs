@@ -133,6 +133,8 @@ The following code reads from the configuration system:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_CONFIG)]
 
+[!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs)]
+
 For more information, see <xref:fundamentals/configuration/index?view=aspnetcore-6.0>
 
 ### Logging
