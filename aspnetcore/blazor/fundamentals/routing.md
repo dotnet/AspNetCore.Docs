@@ -571,14 +571,24 @@ For more information on obtaining the state associated with the target history e
 
 ## Query strings
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-8.0"
 
-Use the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute) with the [`[Parameter]` attribute](xref:Microsoft.AspNetCore.Components.ParameterAttribute) to specify that a component parameter of a *routable* component can come from the query string.
+Use the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute) to specify that a component parameter comes from the query string.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+Use the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute) with the [`[Parameter]` attribute](xref:Microsoft.AspNetCore.Components.ParameterAttribute) to specify that a component parameter of a *routable* component comes from the query string.
 
 > [!NOTE]
 > Component parameters can only receive query parameter values in routable components with an [`@page`](xref:mvc/views/razor#page) directive.
 >
 > Only routable components directly receive query parameters in order to avoid subverting top-down information flow and to make parameter processing order clear, both by the framework and by the app. This design avoids subtle bugs in app code that was written assuming a specific parameter processing order. You're free to define custom cascading parameters or directly assign to regular component parameters in order to pass query parameter values to non-routable components.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 Component parameters supplied from the query string support the following types:
 
@@ -590,17 +600,80 @@ The correct culture-invariant formatting is applied for the given type (<xref:Sy
 
 Specify the `[SupplyParameterFromQuery]` attribute's <xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute.Name> property to use a query parameter name different from the component parameter name. In the following example, the C# name of the component parameter is `{COMPONENT PARAMETER NAME}`. A different query parameter name is specified for the `{QUERY PARAMETER NAME}` placeholder:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+```csharp
+[SupplyParameterFromQuery(Name = "{QUERY PARAMETER NAME}")]
+public string? {COMPONENT PARAMETER NAME} { get; set; }
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
 ```csharp
 [Parameter]
 [SupplyParameterFromQuery(Name = "{QUERY PARAMETER NAME}")]
 public string? {COMPONENT PARAMETER NAME} { get; set; }
 ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
 In the following example with a URL of `/search?filter=scifi%20stars&page=3&star=LeVar%20Burton&star=Gary%20Oldman`:
 
 * The `Filter` property resolves to `scifi stars`.
 * The `Page` property resolves to `3`.
 * The `Stars` array is filled from query parameters named `star` (`Name = "star"`) and resolves to `LeVar Burton` and `Gary Oldman`.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+> [!NOTE]
+> The query string parameters in the following routable page component also work in a *non-routable* component without an `@page` directive (for example, `Shared/Search.razor` for a shared `Search` component used in other components).
+
+`Pages/Search.razor`:
+
+```razor
+@page "/search"
+
+<h1>Search Example</h1>
+
+<p>Filter: @Filter</p>
+
+<p>Page: @Page</p>
+
+@if (Stars is not null)
+{
+    <p>Assignees:</p>
+
+    <ul>
+        @foreach (var name in Stars)
+        {
+            <li>@name</li>
+        }
+    </ul>
+}
+
+@code {
+    [SupplyParameterFromQuery]
+    public string? Filter { get; set; }
+
+    [SupplyParameterFromQuery]
+    public int? Page { get; set; }
+
+    [SupplyParameterFromQuery(Name = "star")]
+    public string[]? Stars { get; set; }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 `Pages/Search.razor`:
 
@@ -639,6 +712,10 @@ In the following example with a URL of `/search?filter=scifi%20stars&page=3&star
     public string[]? Stars { get; set; }
 }
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 Use [`NavigationManager.GetUriWithQueryParameter`](xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A) to add, change, or remove one or more query parameters on the current URL:
 
