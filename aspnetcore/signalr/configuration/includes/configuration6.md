@@ -1,23 +1,11 @@
----
-title: ASP.NET Core SignalR configuration
-author: bradygaster
-description: Learn how to configure ASP.NET Core SignalR apps.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
-ms.custom: mvc
-ms.date: 07/05/2023
-uid: signalr/configuration
----
 
-# ASP.NET Core SignalR configuration
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-6.0"
 
 ## JSON/MessagePack serialization options
 
 ASP.NET Core SignalR supports two protocols for encoding messages: [JSON](https://www.json.org/) and [MessagePack](https://msgpack.org/index.html). Each protocol has serialization configuration options.
 
-JSON serialization can be configured on the server using the <xref:Microsoft.Extensions.DependencyInjection.JsonProtocolDependencyInjectionExtensions.AddJsonProtocol%2A> extension method. `AddJsonProtocol` can be added after <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A> in `Startup.ConfigureServices`. The `AddJsonProtocol` method takes a delegate that receives an `options` object. The <xref:Microsoft.AspNetCore.SignalR.JsonHubProtocolOptions.PayloadSerializerOptions%2A> property on that object is a `System.Text.Json` <xref:System.Text.Json.JsonSerializerOptions> object that can be used to configure serialization of arguments and return values. For more information, see the [System.Text.Json documentation](xref:System.Text.Json).
+JSON serialization can be configured on the server using the <xref:Microsoft.Extensions.DependencyInjection.JsonProtocolDependencyInjectionExtensions.AddJsonProtocol%2A> extension method. `AddJsonProtocol` can be added after <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A> in `Program.cs`. The `AddJsonProtocol` method takes a delegate that receives an `options` object. The <xref:Microsoft.AspNetCore.SignalR.JsonHubProtocolOptions.PayloadSerializerOptions%2A> property on that object is a `System.Text.Json` <xref:System.Text.Json.JsonSerializerOptions> object that can be used to configure serialization of arguments and return values. For more information, see the [System.Text.Json documentation](xref:System.Text.Json).
 
 For example, to configure the serializer to not change the casing of property names, rather than the default [camel case](https://wikipedia.org/wiki/Camel_case) names, use the following code in `Program.cs`:
 
@@ -70,16 +58,15 @@ The following table describes options for configuring SignalR hubs:
 | `StreamBufferCapacity` | `10` | The maximum number of items that can be buffered for client upload streams. If this limit is reached, the processing of invocations is blocked until the server processes stream items.|
 | `MaximumReceiveMessageSize` | 32 KB | Maximum size of a single incoming hub message. Increasing the value may increase the risk of [Denial of service (DoS) attacks](https://developer.mozilla.org/docs/Glossary/DOS_attack). |
 | `MaximumParallelInvocationsPerClient` | 1 | The maximum number of hub methods that each client can call in parallel before queueing. |
-| `DisableImplicitFromServicesParameters` | `false` | Hub method arguments will be resolved from DI if possible. |
 
 Options can be configured for all hubs by providing an options delegate to the `AddSignalR` call in `Program.cs`.
 
 ```csharp
- builder.Services.AddSignalR(hubOptions =>
- {
-     hubOptions.EnableDetailedErrors = true;
-     hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(1);
- });
+builder.Services.AddSignalR(hubOptions =>
+{
+    hubOptions.EnableDetailedErrors = true;
+    hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(1);
+});
 ```
 
 Options for a single hub override the global options provided in `AddSignalR` and can be configured using <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions%2A>:
@@ -391,17 +378,3 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 * <xref:signalr/supported-platforms>
 
 :::moniker-end
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration2.1.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration2.2.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration3.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration3.1.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration5.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration6.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration7.md)]

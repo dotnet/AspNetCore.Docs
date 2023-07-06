@@ -1,17 +1,5 @@
----
-title: ASP.NET Core SignalR configuration
-author: bradygaster
-description: Learn how to configure ASP.NET Core SignalR apps.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
-ms.custom: mvc
-ms.date: 07/05/2023
-uid: signalr/configuration
----
 
-# ASP.NET Core SignalR configuration
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-7.0"
 
 ## JSON/MessagePack serialization options
 
@@ -391,17 +379,3 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 * <xref:signalr/supported-platforms>
 
 :::moniker-end
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration2.1.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration2.2.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration3.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration3.1.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration5.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration6.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration7.md)]
