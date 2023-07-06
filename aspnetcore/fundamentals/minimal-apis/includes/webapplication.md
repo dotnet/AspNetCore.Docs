@@ -40,7 +40,7 @@ The following command makes the app respond to port `7777`:
 dotnet run --urls="https://localhost:7777"
 ```
 
-If the Kestrel endpoint is also configured in the `appsettings.json` file, the `appsettings.json` file specified URL is used. For more information, see [Kestrel endpoint configuration](xref:fundamentals/configuration/index?view=aspnetcore-6.0#kestrel)
+If the Kestrel endpoint is also configured in the `appsettings.json` file, the `appsettings.json` file specified URL is used. For more information, see [Kestrel endpoint configuration](xref:fundamentals/configuration/index#kestrel)
 
 #### Read the port from environment
 
@@ -125,7 +125,7 @@ The following sections show how to specify the custom certificate using the `app
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_re)]
 
-For more information using the environment, see <xref:fundamentals/environments?view=aspnetcore-6.0>
+For more information using the environment, see <xref:fundamentals/environments>
 
 ### Configuration
 
@@ -133,7 +133,7 @@ The following code reads from the configuration system:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_config)]
 
-For more information, see <xref:fundamentals/configuration/index?view=aspnetcore-6.0>
+For more information, see <xref:fundamentals/configuration/index>
 
 ### Logging
 
@@ -141,7 +141,7 @@ The following code writes a message to the log on application startup:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_log)]
 
-For more information, see <xref:fundamentals/logging/index?view=aspnetcore-6.0>
+For more information, see <xref:fundamentals/logging/index>
 
 ### Access the Dependency Injection (DI) container
 
@@ -149,7 +149,7 @@ The following code shows how to get services from the DI container during applic
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_dependencies)]
 
-For more information, see <xref:fundamentals/dependency-injection?view=aspnetcore-6.0>.
+For more information, see <xref:fundamentals/dependency-injection>.
 
 ## WebApplicationBuilder
 
@@ -163,7 +163,7 @@ The following code sets the content root, application name, and environment:
 
 [WebApplication.CreateBuilder](xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A) initializes a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults.
 
-For more information, see <xref:fundamentals/index?view=aspnetcore-6.0>
+For more information, see <xref:fundamentals/index>
 
 ### Change the content root, app name, and environment by using environment variables or command line
 
@@ -191,7 +191,7 @@ var app = builder.Build();
 [!code-csharp[](~/migration/50-to-60-samples/samples/Web6Samples/Program.cs?name=snippet_conf)]
 -->
 
-For detailed information, see [File configuration providers](xref:fundamentals/configuration/index?view=aspnetcore-6.0#file-configuration-provider) in <xref:fundamentals/configuration/index?view=aspnetcore-6.0>.
+For detailed information, see [File configuration providers](xref:fundamentals/configuration/index#file-configuration-provider) in <xref:fundamentals/configuration/index>.
 
 ### Read configuration
 
@@ -201,7 +201,7 @@ By default the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> reads c
 * Environment variables
 * The command line
 
-For a complete list of configuration sources read, see [Default configuration](xref:fundamentals/configuration/index?view=aspnetcore-6.0#default-configuration) in <xref:fundamentals/configuration/index?view=aspnetcore-6.0>
+For a complete list of configuration sources read, see [Default configuration](xref:fundamentals/configuration/index#default-configuration) in <xref:fundamentals/configuration/index>
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_configb)]
 
@@ -259,7 +259,7 @@ Any existing ASP.NET Core middleware can be configured on the `WebApplication`:
 
 [!code-csharp[](~/fundamentals/minimal-apis/7.0-samples/WebMinAPIs/Program.cs?name=snippet_addmid)]
 
-For more information, see <xref:fundamentals/middleware/index?view=aspnetcore-6.0>
+For more information, see <xref:fundamentals/middleware/index>
 
 ### Developer exception page
 
