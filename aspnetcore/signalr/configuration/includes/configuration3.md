@@ -1,17 +1,5 @@
----
-title: ASP.NET Core SignalR configuration
-author: bradygaster
-description: Learn how to configure ASP.NET Core SignalR apps.
-monikerRange: '>= aspnetcore-2.1'
-ms.author: bradyg
-ms.custom: mvc
-ms.date: 07/05/2023
-uid: signalr/configuration
----
 
-# ASP.NET Core SignalR configuration
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range="= aspnetcore-3.0"
 
 ## JSON/MessagePack serialization options
 
@@ -19,10 +7,10 @@ ASP.NET Core SignalR supports two protocols for encoding messages: [JSON](https:
 
 JSON serialization can be configured on the server using the <xref:Microsoft.Extensions.DependencyInjection.JsonProtocolDependencyInjectionExtensions.AddJsonProtocol%2A> extension method. `AddJsonProtocol` can be added after <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A> in `Startup.ConfigureServices`. The `AddJsonProtocol` method takes a delegate that receives an `options` object. The <xref:Microsoft.AspNetCore.SignalR.JsonHubProtocolOptions.PayloadSerializerOptions%2A> property on that object is a `System.Text.Json` <xref:System.Text.Json.JsonSerializerOptions> object that can be used to configure serialization of arguments and return values. For more information, see the [System.Text.Json documentation](xref:System.Text.Json).
 
-For example, to configure the serializer to not change the casing of property names, rather than the default [camel case](https://wikipedia.org/wiki/Camel_case) names, use the following code in `Program.cs`:
+For example, to configure the serializer to not change the casing of property names, rather than the default [camel case](https://wikipedia.org/wiki/Camel_case) names, use the following code in `Startup.ConfigureServices`:
 
 ```csharp
-builder.Services.AddSignalR()
+services.AddSignalR()
     .AddJsonProtocol(options => {
         options.PayloadSerializerOptions.PropertyNamingPolicy = null;
     });
@@ -69,23 +57,24 @@ The following table describes options for configuring SignalR hubs:
 | `EnableDetailedErrors` | `false` | If `true`, detailed exception messages are returned to clients when an exception is thrown in a Hub method. The default is `false` because these exception messages can contain sensitive information. |
 | `StreamBufferCapacity` | `10` | The maximum number of items that can be buffered for client upload streams. If this limit is reached, the processing of invocations is blocked until the server processes stream items.|
 | `MaximumReceiveMessageSize` | 32 KB | Maximum size of a single incoming hub message. Increasing the value may increase the risk of [Denial of service (DoS) attacks](https://developer.mozilla.org/docs/Glossary/DOS_attack). |
-| `MaximumParallelInvocationsPerClient` | 1 | The maximum number of hub methods that each client can call in parallel before queueing. |
-| `DisableImplicitFromServicesParameters` | `false` | Hub method arguments will be resolved from DI if possible. |
 
-Options can be configured for all hubs by providing an options delegate to the `AddSignalR` call in `Program.cs`.
+Options can be configured for all hubs by providing an options delegate to the `AddSignalR` call in `Startup.ConfigureServices`.
 
 ```csharp
- builder.Services.AddSignalR(hubOptions =>
- {
-     hubOptions.EnableDetailedErrors = true;
-     hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(1);
- });
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddSignalR(hubOptions =>
+    {
+        hubOptions.EnableDetailedErrors = true;
+        hubOptions.KeepAliveInterval = TimeSpan.FromMinutes(1);
+    });
+}
 ```
 
 Options for a single hub override the global options provided in `AddSignalR` and can be configured using <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddHubOptions%2A>:
 
 ```csharp
-builder.Services.AddSignalR().AddHubOptions<ChatHub>(options =>
+services.AddSignalR().AddHubOptions<ChatHub>(options =>
 {
     options.EnableDetailedErrors = true;
 });
@@ -93,22 +82,35 @@ builder.Services.AddSignalR().AddHubOptions<ChatHub>(options =>
 
 ### Advanced HTTP configuration options
 
-Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A> in `Program.cs`.
+Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A> in `Startup.Configure`.
 
-[!code-csharp[](~/signalr/configuration/6.0-samples/Program.cs?highlight=24-30)]
+```csharp
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    app.UseRouting();
+
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapHub<ChatHub>("/chathub", options =>
+        {
+            options.Transports =
+                HttpTransportType.WebSockets |
+                HttpTransportType.LongPolling;
+        });
+    });
+}
+```
 
 The following table describes options for configuring ASP.NET Core SignalR's advanced HTTP options:
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
-| `ApplicationMaxBufferSize` | 64 KB | The maximum number of bytes received from the client that the server buffers before applying backpressure. Increasing this value allows the server to receive larger messages faster without applying backpressure, but can increase memory consumption. |
-| `TransportMaxBufferSize` | 64 KB | The maximum number of bytes sent by the app that the server buffers before observing backpressure. Increasing this value allows the server to buffer larger messages faster without awaiting backpressure, but can increase memory consumption. |
+| `ApplicationMaxBufferSize` | 32 KB | The maximum number of bytes received from the client that the server buffers before applying backpressure. Increasing this value allows the server to receive larger messages more quickly without applying backpressure, but can increase memory consumption. |
 | `AuthorizationData` | Data automatically gathered from the `Authorize` attributes applied to the Hub class. | A list of <xref:Microsoft.AspNetCore.Authorization.IAuthorizeData> objects used to determine if a client is authorized to connect to the hub. |
+| `TransportMaxBufferSize` | 32 KB | The maximum number of bytes sent by the app that the server buffers before observing backpressure. Increasing this value allows the server to buffer larger messages more quickly without awaiting backpressure, but can increase memory consumption. |
 | `Transports` | All Transports are enabled. | A bit flags enum of `HttpTransportType` values that can restrict the transports a client can use to connect. |
 | `LongPolling` | See below. | Additional options specific to the Long Polling transport. |
 | `WebSockets` | See below. | Additional options specific to the WebSockets transport. |
-| `MinimumProtocolVersion` | 0 | Specify the minimum version of the negotiate protocol. This is used to limit clients to newer versions. |
-| `CloseOnAuthenticationExpiration` | false | Set this option to enable authentication expiration tracking which will close connections when a token expires. |
 
 The Long Polling transport has additional options that can be configured using the `LongPolling` property:
 
@@ -320,8 +322,6 @@ Additional options can be configured in the `WithUrl` (`withUrl` in JavaScript) 
 | `Proxy` | `null` | An HTTP proxy to use when sending HTTP requests. |
 | `UseDefaultCredentials` | `false` | Set this boolean to send the default credentials for HTTP and WebSockets requests. This enables the use of Windows authentication. |
 | `WebSocketConfiguration` | `null` | A delegate that can be used to configure additional WebSocket options. Receives an instance of <xref:System.Net.WebSockets.ClientWebSocketOptions> that can be used to configure the options. |
-| `ApplicationMaxBufferSize` | 1 MB | The maximum number of bytes received from the server that the client buffers before applying backpressure. Increasing this value allows the client to receive larger messages faster without applying backpressure, but can increase memory consumption. |
-| `TransportMaxBufferSize` | 1 MB | The maximum number of bytes sent by the user application that the client buffers before observing backpressure. Increasing this value allows the client to buffer larger messages faster without awaiting backpressure, but can increase memory consumption. |
 
 # [JavaScript](#tab/javascript)
 
@@ -329,11 +329,8 @@ Additional options can be configured in the `WithUrl` (`withUrl` in JavaScript) 
 | ----------------- | ------------- | ----------- |
 | `accessTokenFactory` | `null` | A function returning a string that is provided as a Bearer authentication token in HTTP requests. |
 | `transport` | `null` | An <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType> value specifying the transport to use for the connection. |
-| `headers` | `null` | Dictionary of headers sent with every HTTP request. Sending headers in the browser doesn't work for WebSockets or the <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType.ServerSentEvents> stream. |
 | `logMessageContent` | `null` | Set to `true` to log the bytes/chars of messages sent and received by the client. |
 | `skipNegotiation` | `false` | Set this to `true` to skip the negotiation step. **Only supported when the WebSockets transport is the only enabled transport**. This setting can't be enabled when using the Azure SignalR Service. |
-| `withCredentials` | `true` | Specifies whether credentials will be sent with the CORS request. Azure App Service uses cookies for sticky sessions and needs this option enabled to work correctly. For more info on CORS with SignalR, see <xref:signalr/security#cross-origin-resource-sharing>. |
-| `timeout` | `100,000` | Timeout in milliseconds to apply to HTTP requests. This doesn't apply to Long Polling poll requests, EventSource, or WebSockets. |
 
 # [Java](#tab/java)
 
@@ -351,8 +348,6 @@ In the .NET Client, these options can be modified by the options delegate provid
 var connection = new HubConnectionBuilder()
     .WithUrl("https://example.com/chathub", options => {
         options.Headers["Foo"] = "Bar";
-        options.SkipNegotiation = true;
-        options.Transports = HttpTransportType.WebSockets;
         options.Cookies.Add(new Cookie(/* ... */);
         options.ClientCertificates.Add(/* ... */);
     })
@@ -364,9 +359,8 @@ In the JavaScript Client, these options can be provided in a JavaScript object p
 ```javascript
 let connection = new signalR.HubConnectionBuilder()
     .withUrl("/chathub", {
-        // "Foo: Bar" will not be sent with WebSockets or Server-Sent Events requests
-        headers: { "Foo": "Bar" },
-        transport: signalR.HttpTransportType.LongPolling 
+        skipNegotiation: true,
+        transport: signalR.HttpTransportType.WebSockets
     })
     .build();
 ```
@@ -391,17 +385,3 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 * <xref:signalr/supported-platforms>
 
 :::moniker-end
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration2.1.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration2.2.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration3.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration3.1.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration5.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration6.md)]
-
-[!INCLUDE[](~/signalr/configuration/includes/configuration7.md)]
