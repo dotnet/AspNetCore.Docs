@@ -4,7 +4,7 @@ author: rick-anderson
 description: Provides an overview of minimal APIs in ASP.NET Core
 ms.author: riande
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 6/22/2023
+ms.date: 6/23/2023
 uid: fundamentals/minimal-apis
 ---
 
