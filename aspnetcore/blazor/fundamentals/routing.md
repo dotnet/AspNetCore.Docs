@@ -649,7 +649,7 @@ In the following example with a URL of `/search?filter=scifi%20stars&page=3&star
 
 @if (Stars is not null)
 {
-    <p>Assignees:</p>
+    <p>Stars:</p>
 
     <ul>
         @foreach (var name in Stars)
@@ -688,7 +688,7 @@ In the following example with a URL of `/search?filter=scifi%20stars&page=3&star
 
 @if (Stars is not null)
 {
-    <p>Assignees:</p>
+    <p>Stars:</p>
 
     <ul>
         @foreach (var name in Stars)
