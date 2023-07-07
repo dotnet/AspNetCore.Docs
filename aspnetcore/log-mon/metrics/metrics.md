@@ -18,7 +18,7 @@ Metrics are numerical measurements reported over time. They're typically used to
 * Milliseconds it took to respond.
 * Responses sent an error.
 
-These metrics can be reported to a monitoring system at regular intervals. If the web service is intended to respond to requests within 400 ms and starts responding in 600 ms, the monitoring system can notify the operations staff that the app response is slower than normal.
+These metrics can be reported to a monitoring system at regular intervals. Dashboards can be setup to view metrics and alerts created to notify people of problems. If the web service is intended to respond to requests within 400 ms and starts responding in 600 ms, the monitoring system can notify the operations staff that the app response is slower than normal.
 
 ## Using metrics
 
@@ -108,7 +108,7 @@ For more information, see [dotnet-counters](/dotnet/core/diagnostics/dotnet-coun
 This tutorial shows one of the integrations available for OpenTelemetry metrics using the OSS [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/) projects. The metrics data flow:
 
 1. The ASP.NET Core metric APIs record measurements from the example app.
-1. The OpenTelemetry library running in the app aggregates the measurements.
+1. The OpenTelemetry .NET library running in the app aggregates the measurements.
 1. The Prometheus exporter library makes the aggregated data available via an HTTP metrics endpoint. 'Exporter' is what OpenTelemetry calls the libraries that transmit telemetry to vendor-specific backends.
 1. A Prometheus server:
 
