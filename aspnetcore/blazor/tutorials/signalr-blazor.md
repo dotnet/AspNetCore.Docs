@@ -765,8 +765,8 @@ In this tutorial, you learned how to:
 For detailed guidance on the SignalR and Blazor frameworks, see the following reference documentation sets:
 
 > [!div class="nextstepaction"]
-> <xref:blazor/index>
 > <xref:signalr/introduction>
+> <xref:blazor/index>
 
 ## Additional resources
 
