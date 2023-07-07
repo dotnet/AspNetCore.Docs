@@ -302,12 +302,17 @@ The `SampleHealthCheckWithDiConfig` and the Health check needs to be added to th
 
 ## UseHealthChecks vs. MapHealthChecks
 
-The `MapHealthChecks` method accepts arguments similar to `UseHealthChecks`. The advantage of using `MapHealthChecks` over `UseHealthChecks` is the ability to apply authorization and to have greater fine-grained control over the matching policy. The primary advantage of using `UseHealthChecks` over `MapHealthChecks` is terminating the middleware and selecting endpoints via port.
+There are two ways to make health checks accessible to callers:
+
+* <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks%2A> registers middleware for handling health checks requests in the middleware pipeline.
+* <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks%2A> registers a health checks endpoint. The endpoint is matched and executed along with other endpoints in the app.
+
+The advantage of using `MapHealthChecks` over `UseHealthChecks` is the ability to use endpoint aware middleware, such as authorization, and to have greater fine-grained control over the matching policy. The primary advantage of using `UseHealthChecks` over `MapHealthChecks` is controlling exactly where health checks runs in the middleware pipeline.
 
 <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks%2A>:
 * Terminates the pipeline when a request matches the health check endpoint. [Short-circuiting](xref:fundamentals/middleware/index) is often desirable because it avoids unnecessary work, such as logging and other middleware.
 * Is primarily used for configuring the health check middleware in the pipeline.
-* Can select any endpoint on a port with a `null` or empty `PathString`, which can be useful for the following scenarios:
+* Can match any path on a port with a `null` or empty `PathString`, which can be useful for the following scenarios:
   * Provides a default health check without specifying a path. Allows performing a health check on the root path or any request made to the specified port.
   * Selecting any endpoint on a port.
   * Provides a catch-all health check. Handles health checks for any path.
