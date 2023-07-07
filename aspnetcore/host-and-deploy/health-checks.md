@@ -312,10 +312,7 @@ The advantage of using `MapHealthChecks` over `UseHealthChecks` is the ability t
 <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks%2A>:
 * Terminates the pipeline when a request matches the health check endpoint. [Short-circuiting](xref:fundamentals/middleware/index) is often desirable because it avoids unnecessary work, such as logging and other middleware.
 * Is primarily used for configuring the health check middleware in the pipeline.
-* Can match any path on a port with a `null` or empty `PathString`, which can be useful for the following scenarios:
-  * Provides a default health check without specifying a path. Allows performing a health check on the root path or any request made to the specified port.
-  * Selecting any endpoint on a port.
-  * Provides a catch-all health check. Handles health checks for any path.
+* Can match any path on a port with a `null` or empty `PathString`. Allows performing a health check on any request made to the specified port.
 * [Source code](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckApplicationBuilderExtensions.cs)
 
 <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks%2A> allows:
