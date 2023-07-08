@@ -134,8 +134,6 @@ In the **Add New Scaffolded Item** dialog:
 * Select  **MVC Controller with views, using Entity Framework**.
 * Select **Add**.
 
-![Add Scaffold dialog](~/tutorials/first-mvc-app/adding-model/_static/add_scaffold5.png)
-
 Complete the **Add MVC Controller with views, using Entity Framework** dialog:
 
 * In the **Model class** drop down, select **Movie (MvcMovie.Models)**.
