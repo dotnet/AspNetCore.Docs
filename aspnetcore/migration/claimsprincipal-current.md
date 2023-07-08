@@ -22,6 +22,14 @@ There are several options for retrieving the current authenticated user's `Claim
 * **ControllerBase.User**. MVC controllers can access the current authenticated user with their <xref:Microsoft.AspNetCore.Mvc.ControllerBase.User%2A> property.
 * **HttpContext.User**. Components with access to the current `HttpContext` (middleware, for example) can get the current user's `ClaimsPrincipal` from <xref:Microsoft.AspNetCore.Http.HttpContext.User%2A?displayProperty=nameWithType>.
 * **Passed in from caller**. Libraries without access to the current `HttpContext` are often called from controllers or middleware components and can have the current user's identity passed as an argument.
+*  **Exposing Scoped service for HttpContext**. Expose a scoped service for HttpContext to retrieve the current user from.Now any component can just declare a constructor dependency and get the right instance.
+
+```csharp
+// Program.cs
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpContextAccessor>().HttpContext!);
+````
+
 * **IHttpContextAccessor**. The project being migrated to ASP.NET Core may be too large to easily pass the current user's identity to all necessary locations. In such cases, <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used as a workaround. `IHttpContextAccessor` is able to access the current `HttpContext` (if one exists). If DI is being used, see <xref:fundamentals/httpcontext>. A short-term solution to getting the current user's identity in code that hasn't yet been updated to work with ASP.NET Core's DI-driven architecture would be:
 
   * Make `IHttpContextAccessor` available in the DI container by calling [AddHttpContextAccessor](https://github.com/aspnet/Hosting/issues/793) in `Startup.ConfigureServices`.
