@@ -729,5 +729,3 @@ Various network tools are publicly available for testing web API backend apps di
 * [Cross-Origin resource sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 
 :::zone-end
-
-:::moniker-end
