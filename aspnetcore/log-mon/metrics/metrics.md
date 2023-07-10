@@ -20,6 +20,8 @@ Metrics are numerical measurements reported over time. They're typically used to
 
 These metrics can be reported to a monitoring system at regular intervals. Dashboards can be setup to view metrics and alerts created to notify people of problems. If the web service is intended to respond to requests within 400 ms and starts responding in 600 ms, the monitoring system can notify the operations staff that the app response is slower than normal.
 
+See [ASP.NET Core metrics](https://github.com/dotnet/aspnetcore/issues/47536) for ASP.NET Core specific metrics. See [.NET metrics](/dotnet/core/diagnostics/metrics) for .NET metrics.
+
 ## Using metrics
 
 There are two parts to using metrics in a .NET app:
@@ -93,6 +95,10 @@ dotnet-counters monitor -n WebMetric --counters Microsoft.AspNetCore.Hosting[req
 ```
 
 For more information, see [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters). To learn more about metrics in .NET, see [built-in metrics](/dotnet/core/diagnostics/available-counters).
+
+## Create custom metrics
+
+See [Create custom metrics](/dotnet/core/diagnostics/metrics#create-custom-metrics) for information on creating custom metrics.
 
 ## View metrics in Grafana with OpenTelemetry and Prometheus
 
