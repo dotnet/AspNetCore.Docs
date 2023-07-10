@@ -6,6 +6,7 @@ ms.author: riande
 ms.custom: mvc
 ms.date: 03/02/2022
 uid: index
+ms.service: 1231
 ---
 
 # Overview of ASP.NET Core
