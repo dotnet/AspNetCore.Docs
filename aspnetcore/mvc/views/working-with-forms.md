@@ -451,7 +451,7 @@ There are two Validation Tag Helpers. The `Validation Message Tag Helper` (which
 
 * HTML Helper alternative: `Html.ValidationMessageFor`
 
-The `Validation Message Tag Helper`  is used with the `asp-validation-for` attribute on a HTML [span](https://developer.mozilla.org/docs/Web/HTML/Element/span) element.
+The `Validation Message Tag Helper`  is used with the `asp-validation-for` attribute on an HTML [span](https://developer.mozilla.org/docs/Web/HTML/Element/span) element.
 
 ```cshtml
 <span asp-validation-for="Email"></span>
