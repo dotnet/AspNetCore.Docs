@@ -7,6 +7,7 @@ ms.custom: mvc
 ms.date: 03/02/2022
 uid: index
 ---
+
 # Overview of ASP.NET Core
 
 By [Daniel Roth](https://github.com/danroth27), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Shaun Luttin](https://mvp.microsoft.com/en-us/PublicProfile/5001182)
@@ -24,7 +25,7 @@ With ASP.NET Core, you can:
 
 ## Why choose ASP.NET Core?
 
-Millions of developers use or have used [ASP.NET 4.x](/aspnet/overview) to create web apps. ASP.NET Core is a redesign of ASP.NET 4.x, including architectural changes that result in a leaner, more modular framework.
+Millions of developers use or have used [ASP.NET 4.x](/aspnet/overview) to create web apps. ASP.NET Core is a redesign of ASP.NET 4.x, including architectural changes that result in a leaner, more modular framework. test
 
 [!INCLUDE[](~/includes/benefits.md)]
 
@@ -242,3 +243,4 @@ For more information, see the following resources:
 * <xref:tutorials/publish-to-azure-webapp-using-vs>
 * [ASP.NET Core fundamentals](xref:fundamentals/index)
 * [The weekly ASP.NET community standup](https://live.asp.net/) covers the team's progress and plans. It features new blogs and third-party software.
+
