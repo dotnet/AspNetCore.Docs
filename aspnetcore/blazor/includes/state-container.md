@@ -66,7 +66,7 @@ services.AddScoped<StateContainer>();
 @code {
     protected override void OnInitialized()
     {
-        StateContainer.OnChange += StateHasChanged;
+        StateContainer.OnChange += OnMyChangeHandler;
     }
 
     private void ChangePropertyValue()
@@ -77,7 +77,14 @@ services.AddScoped<StateContainer>();
 
     public void Dispose()
     {
-        StateContainer.OnChange -= StateHasChanged;
+        StateContainer.OnChange -= OnMyChangeHandler;
+    }
+
+    private async void OnMyChangeHandler()
+    {
+      await InvokeAsync(() => {
+          StateHasChanged();
+      });
     }
 }
 ```
@@ -104,7 +111,7 @@ services.AddScoped<StateContainer>();
 @code {
     protected override void OnInitialized()
     {
-        StateContainer.OnChange += StateHasChanged;
+        StateContainer.OnChange += OnMyChangeHandler;
     }
 
     private void ChangePropertyValue()
@@ -115,7 +122,14 @@ services.AddScoped<StateContainer>();
 
     public void Dispose()
     {
-        StateContainer.OnChange -= StateHasChanged;
+        StateContainer.OnChange -= OnMyChangeHandler;
+    }
+
+    private async void OnMyChangeHandler()
+    {
+      await InvokeAsync(() => {
+          StateHasChanged();
+      });
     }
 }
 ```
