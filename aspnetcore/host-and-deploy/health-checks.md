@@ -324,6 +324,7 @@ The advantage of using `MapHealthChecks` over `UseHealthChecks` is the ability t
 * [Source code](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckApplicationBuilderExtensions.cs)
 
 <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks%2A> allows:
+* Terminating the pipeline when a request matches the health check endpoint, by calling <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A>. For example, `app.MapHealthChecks("/healthz").ShortCircuit();`. For more information, see [Short-circuit middleware after routing](../fundamentals/routing.md#short-circuit-middleware-after-routing).
 * Mapping specific routes or endpoints for health checks.
 * Customization of the URL or path where the health check endpoint is accessible.
 * Mapping multiple health check endpoints with different routes or configurations. Multiple endpoint support:
