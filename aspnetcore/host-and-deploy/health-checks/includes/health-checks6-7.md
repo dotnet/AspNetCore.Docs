@@ -1,22 +1,4 @@
----
-title: Health checks in ASP.NET Core
-author: rick-anderson
-description: Learn how to set up health checks for ASP.NET Core infrastructure, such as apps and databases.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 07/11/2023
-uid: host-and-deploy/health-checks
----
-# Health checks in ASP.NET Core
-
-By [Glenn Condron](https://github.com/glennc) and [Juergen Gutsch](https://twitter.com/sharpcms)
-
-:::moniker range="< aspnetcore-6.0"
-[!INCLUDE[](~/includes/not-latest-version.md)]
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0 <= aspnetcore-7.0"
 
 ASP.NET Core offers Health Checks Middleware and libraries for reporting the health of app infrastructure components.
 
@@ -324,7 +306,6 @@ The advantage of using `MapHealthChecks` over `UseHealthChecks` is the ability t
 * [Source code](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckApplicationBuilderExtensions.cs)
 
 <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks%2A> allows:
-* Terminating the pipeline when a request matches the health check endpoint, by calling <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A>. For example, `app.MapHealthChecks("/healthz").ShortCircuit();`. For more information, see [Short-circuit middleware after routing](../fundamentals/routing.md#short-circuit-middleware-after-routing).
 * Mapping specific routes or endpoints for health checks.
 * Customization of the URL or path where the health check endpoint is accessible.
 * Mapping multiple health check endpoints with different routes or configurations. Multiple endpoint support:
@@ -340,6 +321,3 @@ The advantage of using `MapHealthChecks` over `UseHealthChecks` is the ability t
 > This article was partially created with the help of artificial intelligence. Before publishing, an author reviewed and revised the content as needed. See [Our principles for using AI-generated content in Microsoft Learn](https://aka.ms/ai-content-principles).
 
 :::moniker-end
-
-[!INCLUDE[](~/host-and-deploy/health-checks/includes/health-checks5.md)]
-[!INCLUDE[](~/host-and-deploy/health-checks/includes/health-checks6-7.md)]

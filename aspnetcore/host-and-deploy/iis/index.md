@@ -1214,6 +1214,7 @@ For an ASP.NET Core app that targets the .NET Framework, OPTIONS requests aren't
 
 ## Additional resources
 
+* <xref:tutorials/publish-to-iis>
 * <xref:test/troubleshoot>
 * <xref:index>
 * [The Official Microsoft IIS Site](https://www.iis.net/)
