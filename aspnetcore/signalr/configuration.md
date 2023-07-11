@@ -272,7 +272,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 
 ### Configure timeout and keep-alive options
 
-Additional options for configuring timeout and keep-alive behavior are available on the `HubConnection` object itself:
+Additional options for configuring timeout and keep-alive behavior are available on <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>:
 
 # [.NET](#tab/dotnet)
 
