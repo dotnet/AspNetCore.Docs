@@ -1,22 +1,4 @@
----
-title: Health checks in ASP.NET Core
-author: rick-anderson
-description: Learn how to set up health checks for ASP.NET Core infrastructure, such as apps and databases.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 07/11/2023
-uid: host-and-deploy/health-checks
----
-# Health checks in ASP.NET Core
-
-By [Glenn Condron](https://github.com/glennc) and [Juergen Gutsch](https://twitter.com/sharpcms)
-
-:::moniker range="< aspnetcore-6.0"
-[!INCLUDE[](~/includes/not-latest-version.md)]
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0 <= aspnetcore-7.0"
 
 ASP.NET Core offers Health Checks Middleware and libraries for reporting the health of app infrastructure components.
 
@@ -339,6 +321,3 @@ The advantage of using `MapHealthChecks` over `UseHealthChecks` is the ability t
 > This article was partially created with the help of artificial intelligence. Before publishing, an author reviewed and revised the content as needed. See [Our principles for using AI-generated content in Microsoft Learn](https://aka.ms/ai-content-principles).
 
 :::moniker-end
-
-[!INCLUDE[](~/host-and-deploy/health-checks/includes/health-checks5.md)]
-[!INCLUDE[](~/host-and-deploy/health-checks/includes/health-checks6-7.md)]
