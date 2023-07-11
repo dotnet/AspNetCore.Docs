@@ -286,7 +286,7 @@ In the .NET Client, timeout values are specified as `TimeSpan` values.
 
 In ASP.NET Core 8.0 or later <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) can be set directly on <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>.
 
-The following example shows assigning values that are double the default values:
+The following example shows values that are double the default values:
 
 ```C#
 var builder = new HubConnectionBuilder()
@@ -307,9 +307,9 @@ await builder.StartAsync();
 | `withServerTimeoutInMilliseconds` | 30 seconds (30,000 milliseconds) | Timeout for server activity. If the server hasn't sent a message in this interval, the client considers the server disconnected and triggers the `onclose` event. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. This value must be large enough for a ping message to be sent from the server **and** received by the client within the timeout interval. The recommended value is a number at least double the server's Keep-Alive interval (`withKeepAliveInterval`) value to allow time for pings to arrive. |
 | `withKeepAliveIntervalInMilliseconds` | 15 seconds (15,000 milliseconds) | Determines the interval at which the client sends ping messages. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. Sending any message from the client resets the timer to the start of the interval. If the client hasn't sent a message in the `ClientTimeoutInterval` set on the server, the server considers the client disconnected. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout (`withServerTimeout`). |
 
-In ASP.NET Core 8.0 or later <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) can be set directly on <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>.
+In ASP.NET Core 8.0 or later, <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) can be set directly on <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>.
 
-The following example shows assigning values that are double the default values:
+The following example shows values that are double the default values:
 
 ```javascript
 var connection = new signalR.HubConnectionBuilder()
