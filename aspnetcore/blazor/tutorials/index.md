@@ -28,7 +28,7 @@ For an overview of Blazor, see <xref:blazor/index>.
 
 * <xref:blazor/hybrid/tutorials/index>
 
-* [Learn modules](/training/paths/build-web-apps-with-blazor/)
+* [Learn modules](/training/browse/?expanded=dotnet&products=blazor)
 
 :::moniker-end
 
@@ -44,6 +44,6 @@ For an overview of Blazor, see <xref:blazor/index>. For more information on the 
 
 * <xref:blazor/hybrid/tutorials/index>
 
-* [Learn modules](/training/paths/build-web-apps-with-blazor/)
+* [Learn modules](/training/browse/?expanded=dotnet&products=blazor)
 
 :::moniker-end
