@@ -275,7 +275,7 @@ items:
           - name: Health checks
             displayName: logging, monitoring
             uid: host-and-deploy/health-checks
-          - name: Metrics tutorial
+          - name: Metrics
             displayName: logging, monitoring
             uid: log-mon/metrics/metrics
       - name: HttpContext
