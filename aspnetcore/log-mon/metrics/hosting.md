@@ -53,6 +53,123 @@ The ASP.NET Core `Microsoft.AspNetCore.Hosting` metrics [source code](https://gi
 | `exception-name` | string | Name of the .NET exception thrown during the request. Report exception is either unhandled from middleware or handled by `ExceptionHandlerMiddleware` or `DeveloperExceptionPageMiddleware`. | `System.OperationCanceledException` | If unhandled exception |
 | Custom tags | n/a | Custom tags added from `IHttpMetricsTagsFeature`. | `organization`=`contoso` | n/a |
 
-## Additional resources
+### Microsoft.AspNetCore.Server.Kestrel
 
-* 
+Notes: All Kestrel counters include the endpoint as a tag.
+
+#### `kestrel-current-connections`
+
+| Name     | Instrument Type | Unit | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `kestrel-current-connections` | UpDownCounter | `{connection}` | Number of connections that are currently active on the server. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
+
+#### `kestrel-connection-duration`
+
+| Name     | Instrument Type | Unit | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `kestrel-connection-duration` | Histogram | `s` | The duration of connections on the server. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
+| `exception-name` | string | Name of the .NET exception thrown during the connect. Report exception is unhandled | If unhandled exception |
+| Custom tags | n/a | Custom tags added from `IConnectionMetricsTagsFeature`. | `organization`=`contoso` | n/a |
+
+#### `kestrel-rejected-connections`
+
+| Name     | Instrument Type | Unit | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `kestrel-rejected-connections` | Counter | `{connection}` | Number of connections rejected by the server. Connections are rejected when the currently active count exceeds the value configured with MaxConcurrentConnections. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
+
+#### `kestrel-queued-connections`
+
+| Name     | Instrument Type | Unit | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `kestrel-queued-connections` | UpDownCounter | `{connection}` | Number of connections that are currently queued and are waiting to start. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
+
+#### `kestrel-queued-requests`
+
+| Name     | Instrument Type | Unit | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `kestrel-queued-requests` | UpDownCounter | `{request}` | Number of HTTP requests on multiplexed connections (HTTP/2 and HTTP/3) that are currently queued and are waiting to start. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
+
+#### `kestrel-current-upgraded-connections`
+
+| Name     | Instrument Type | Unit | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `kestrel-current-upgraded-connections` | UpDownCounter | `{request}` | Number of HTTP connections that are currently upgraded (WebSockets). The number only tracks HTTP/1.1 connections. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
+
+#### `kestrel-tls-handshake-duration`
+
+| Name     | Instrument Type | Unit | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `kestrel-tls-handshake-duration` | Histogram | `{s}` | The duration of TLS handshakes on the server. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
+| `protocol` | string | Security protocol used to authenticate the connection. | `Tls10`; `Tls11`; `Tls12`; `Tls13` | Always |
+| `exception-name` | string | Name of the .NET exception thrown on TLS handshake failure. | `System.OperationCanceledException` | If TLS handshake fails |
+
+#### `kestrel-current-tls-handshakes`
+
+| Name     | Instrument Type | Unit | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `kestrel-current-tls-handshakes` | UpDownCounter | `{handshake}` | Number of TLS handshakes that are currently in progress on the server. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
+
+### Microsoft.AspNetCore.Http.Connections
+
+Notes: Timed out connection counter is merged into connection-duration counter. I'm unaware of an official connection closed status, so I invented one with some values. @BrennanConroy It would be good if you could help with better end statuses.
+
+#### `signalr-http-transport-current-connections`
+
+| Name     | Instrument Type | Unit | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `signalr-http-transport-current-connections` | UpDownCounter | `{connection}` | Number of connections that are currently active on the server. |
+
+#### `signalr-http-transport-current-transports`
+
+| Name     | Instrument Type | Unit | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `signalr-http-transport-current-transports` | UpDownCounter | `{transport}` | Number of connection transports that are currently active on the server. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `transport` | string | The connection transport | `None`; `WebSockets`; `ServerSentEvents`; `LongPolling` | Always |
+
+**Update: REMOVED**
+
+#### `signalr-http-transport-connection-duration`
+
+| Name     | Instrument Type | Unit | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `signalr-http-transport-connection-duration` | Histogram | `s` | The duration of connections on the server. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `status` | string | The connection end status | `NormalClosure`; `Timeout`; `AppShutdown` | Always |
+| `transport` | string | The connection transport | `None`; `WebSockets`; `ServerSentEvents`; `LongPolling` | Always |
