@@ -142,25 +142,25 @@ Because the callback is invoked outside of Blazor's synchronization context, the
 
 ::: moniker range=">= aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor" highlight="26":::
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor" highlight="23-27":::
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor" highlight="26":::
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor" highlight="23-27":::
 
 ::: moniker-end
 
 ::: moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor" highlight="26":::
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor" highlight="23-27":::
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-5.0"
 
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor" highlight="26":::
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/rendering/CounterState2.razor" highlight="23-27":::
 
 ::: moniker-end
 
