@@ -21,11 +21,12 @@ The .NET Core Hosting bundle is an installer for the .NET Core Runtime and the [
 
 [!INCLUDE[](~/includes/announcements.md)]
 
-## Direct download (current version)
+## Direct download
 
-Download the installer using the following link:
+Download the installer using the following links:
 
-[Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+- Current version:[.NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
+- [Previous and pre-release versions](https://dotnet.microsoft.com/en-us/download/dotnet)
 
 ## Visual C++ Redistributable Requirement
 
