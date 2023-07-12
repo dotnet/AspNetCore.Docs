@@ -14,13 +14,11 @@ uid: log-mon/metrics/built-in
 
 This article describes the built-in [metrics](xref:log-mon/metrics/metrics) emitted by ASP.NET Core hosting components.
 
-The HTTP counters and tags follow OTel's lead: https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/semantic_conventions/http-metrics.md#http-server
-
 ## Microsoft.AspNetCore.Hosting
 
 The HTTP counters and tags here follow [OpenTelemetry's semantic conventions](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/semantic_conventions/http-metrics.md#http-server).
 
-The ASP.NET Core `Microsoft.AspNetCore.Hosting` metrics [source code](https://github.com/dotnet/aspnetcore/blob/main/src/Hosting/Hosting/src/Internal/HostingMetrics.cs) on GitHub.
+[`Microsoft.AspNetCore.Hosting` metrics source code](https://github.com/dotnet/aspnetcore/blob/main/src/Hosting/Hosting/src/Internal/HostingMetrics.cs).
 
 ### `http-server-current-requests`
 
@@ -63,7 +61,7 @@ The ASP.NET Core `Microsoft.AspNetCore.Hosting` metrics [source code](https://gi
 
 All Kestrel counters include the endpoint as a tag.
 
-[Microsoft.AspNetCore.Server.Kestrel metrics source code](
+[`Microsoft.AspNetCore.Server.Kestrel` metrics source code](https://github.com/dotnet/aspnetcore/blob/main/src/Servers/Kestrel/Core/src/Internal/Infrastructure/KestrelMetrics.cs).
 
 ### `kestrel-current-connections`
 
@@ -220,11 +218,3 @@ All Kestrel counters include the endpoint as a tag.
 | `exception-name` | string | Name of the .NET exception thrown during the request. | Required |
 | `result` | string | The result of exception handler. | Skipped, Handled, Unhandled, Aborted | Required |
 | `handler` | string | The name of the .NET type that handled the exception. | MyNamespace.MyCustomExceptionHandler | Present if exception handled by `IExceptionHandler` or `IProblemDetailsService`. |
-
-## Microsoft.AspNetCore.Hosting `http-server-unhandled-requests`
-
-### `http-server-unhandled-requests`
-
-| Name     | Instrument Type | Unit | Description    |
-| -------- | --------------- | ----------- | -------------- |
-| `http-server-unhandled-requests` | Counter | `{count}` | Number of HTTP requests that reached the end of the middleware pipeline without being handled by application code.
