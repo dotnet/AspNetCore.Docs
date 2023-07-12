@@ -325,8 +325,6 @@ public static class JSONPatchInputFormatter
 
 Configure the web API's controllers to use the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` package and process PATCH requests with the JSON PATCH input formatter. Insert the `JSONPatchInputFormatter` in the first position of MVC's input formatter collection so that it processes requests prior to any other input formatter.
 
-:::moniker range=">= aspnetcore-6.0"
-
 In `Program.cs` modify the call to <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A>:
 
 ```csharp
@@ -335,21 +333,6 @@ builder.Services.AddControllers(options =>
     options.InputFormatters.Insert(0, JSONPatchInputFormatter.Get());
 }).AddNewtonsoftJson();
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-In `Startup.ConfigureServices` of `Startup.cs` modify the call to <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A>:
-
-```csharp
-services.AddControllers(options =>
-{
-    options.InputFormatters.Insert(0, MyJPIF.GetJsonPatchInputFormatter());
-}).AddNewtonsoftJson();
-```
-
-:::moniker-end
 
 Add a PATCH controller to the web API app.
 
