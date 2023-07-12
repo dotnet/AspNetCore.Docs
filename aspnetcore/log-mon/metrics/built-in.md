@@ -180,7 +180,6 @@ All Kestrel counters include the endpoint as a tag.
 |---|---|---|---|---|
 | `status` | string | The connection end status | `NormalClosure`; `Timeout`; `AppShutdown` | Always |
 | `transport` | string | The connection transport | `None`; `WebSockets`; `ServerSentEvents`; `LongPolling` | Always |
--->
 
 ## Microsoft.AspNetCore.Routing
 
