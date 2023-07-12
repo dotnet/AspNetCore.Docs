@@ -16,11 +16,11 @@ This article describes the built-in [metrics](xref:log-mon/metrics/metrics) emit
 
 ## Microsoft.AspNetCore.Hosting
 
-The HTTP counters and tags here follow [OpenTelemetry's semantic conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/http/http-metrics.md#http-server).
+The HTTP counters and tags follow [OpenTelemetry's semantic conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/http/http-metrics.md#http-server).
 
 [`Microsoft.AspNetCore.Hosting` metrics source code](https://github.com/dotnet/aspnetcore/blob/main/src/Hosting/Hosting/src/Internal/HostingMetrics.cs).
 
-### Metric `http-server-current-requests`
+### Metric: `http-server-current-requests`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -33,7 +33,7 @@ The HTTP counters and tags here follow [OpenTelemetry's semantic conventions](ht
 | `host` | string | Name of the local HTTP server that received the request. | `localhost` | Always |
 | `port` | int | Port of the local HTTP server that received the request. | `8080` | Added if not default (80 for HTTP or 443 for HTTPS) |
 
-### Metric `http-server-request-duration`
+### Metric: `http-server-request-duration`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -48,10 +48,10 @@ The HTTP counters and tags here follow [OpenTelemetry's semantic conventions](ht
 | `host` | string | Name of the local HTTP server that received the request. | `localhost` | Always |
 | `port` | int | Port of the local HTTP server that received the request. | `8080` | Added if not default (80 for HTTP or 443 for HTTPS) |
 | `route` | string | The matched route | `{controller}/{action}/{id?}` | Added if route endpoint set |
-| `exception-name` | string | Name of the .NET exception thrown during the request. Report exception is either unhandled from middleware or handled by `ExceptionHandlerMiddleware` or `DeveloperExceptionPageMiddleware`. | `System.OperationCanceledException` | If unhandled exception |
-| Custom tags | n/a | Custom tags added from `IHttpMetricsTagsFeature`. | `organization`=`contoso` | n/a |
+| `exception-name` | string | Name of the .NET exception thrown during the request. Report exception is either unhandled from middleware or handled by [`ExceptionHandlerMiddleware`](/dotnet/api/microsoft.aspnetcore.diagnostics.exceptionhandlermiddleware) or [`DeveloperExceptionPageMiddleware`](/dotnet/api/microsoft.aspnetcore.diagnostics.developerexceptionpagemiddleware). | <xref:System.OperationCanceledException> | If unhandled exception |
+| Custom tags | n/a | Custom tags added from <xref:Microsoft.AspNetCore.Http.Features.IHttpMetricsTagsFeature>. | `organization`=`contoso` | n/a |
 
-### Metric `http-server-unhandled-requests`
+### Metric: `http-server-unhandled-requests`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -63,7 +63,7 @@ All Kestrel counters include the endpoint as a tag.
 
 [`Microsoft.AspNetCore.Server.Kestrel` metrics source code](https://github.com/dotnet/aspnetcore/blob/main/src/Servers/Kestrel/Core/src/Internal/Infrastructure/KestrelMetrics.cs).
 
-### Metric `kestrel-current-connections`
+### Metric: `kestrel-current-connections`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -73,7 +73,7 @@ All Kestrel counters include the endpoint as a tag.
 |---|---|---|---|---|
 | `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
 
-### Metric `kestrel-connection-duration`
+### Metric: `kestrel-connection-duration`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -85,7 +85,7 @@ All Kestrel counters include the endpoint as a tag.
 | `exception-name` | string | Name of the .NET exception thrown during the connect. Report exception is unhandled | If unhandled exception |
 | Custom tags | n/a | Custom tags added from `IConnectionMetricsTagsFeature`. | `organization`=`contoso` | n/a |
 
-### Metric `kestrel-rejected-connections`
+### Metric: `kestrel-rejected-connections`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -95,7 +95,7 @@ All Kestrel counters include the endpoint as a tag.
 |---|---|---|---|---|
 | `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
 
-### Metric `kestrel-queued-connections`
+### Metric: `kestrel-queued-connections`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -105,7 +105,7 @@ All Kestrel counters include the endpoint as a tag.
 |---|---|---|---|---|
 | `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
 
-### Metric `kestrel-queued-requests`
+### Metric: `kestrel-queued-requests`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -115,7 +115,7 @@ All Kestrel counters include the endpoint as a tag.
 |---|---|---|---|---|
 | `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
 
-### Metric `kestrel-current-upgraded-connections`
+### Metric: `kestrel-current-upgraded-connections`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -125,7 +125,7 @@ All Kestrel counters include the endpoint as a tag.
 |---|---|---|---|---|
 | `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
 
-### Metric `kestrel-tls-handshake-duration`
+### Metric: `kestrel-tls-handshake-duration`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -137,7 +137,7 @@ All Kestrel counters include the endpoint as a tag.
 | `protocol` | string | Security protocol used to authenticate the connection. | `Tls10`; `Tls11`; `Tls12`; `Tls13` | Always |
 | `exception-name` | string | Name of the .NET exception thrown on TLS handshake failure. | `System.OperationCanceledException` | If TLS handshake fails |
 
-### Metric `kestrel-current-tls-handshakes`
+### Metric: `kestrel-current-tls-handshakes`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -151,13 +151,13 @@ All Kestrel counters include the endpoint as a tag.
 
 [Microsoft.AspNetCore.Http.Connections metrics source code](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/common/Http.Connections/src/Internal/HttpConnectionsMetrics.cs).
 
-### Metric `signalr-http-transport-current-connections`
+### Metric: `signalr-http-transport-current-connections`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
 | `signalr-http-transport-current-connections` | UpDownCounter | `{connection}` | Number of connections that are currently active on the server. |
 
-### Metric `signalr-http-transport-current-transports`
+### Metric: `signalr-http-transport-current-transports`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -170,7 +170,7 @@ All Kestrel counters include the endpoint as a tag.
 <!--
 **Update: REMOVED**
 
-### Metric `signalr-http-transport-connection-duration`
+### Metric: `signalr-http-transport-connection-duration`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -186,7 +186,7 @@ All Kestrel counters include the endpoint as a tag.
 
 [Microsoft.AspNetCore.Routing source code](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/RoutingMetrics.cs).
 
-### Metric `routing-match-success`
+### Metric: `routing-match-success`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -197,7 +197,7 @@ All Kestrel counters include the endpoint as a tag.
 | `route` | string | The matched route | `{controller}/{action}/{id?}` | Required |
 | `fallback` | bool | A flag indicating whether the matched route is a fallback route | `true` | Required |
 
-### Metric `routing-match-failure`
+### Metric: `routing-match-failure`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -207,7 +207,7 @@ All Kestrel counters include the endpoint as a tag.
 
 [Microsoft.AspNetCore.Diagnostic source code](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/Diagnostics/src/DiagnosticsMetrics.cs)
 
-### Metric `diagnostics-handler-exception`
+### Metric: `diagnostics-handler-exception`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
