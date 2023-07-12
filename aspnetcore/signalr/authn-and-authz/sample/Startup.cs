@@ -58,8 +58,8 @@ namespace SignalRAuthenticationSample
                     // token from the query string when a WebSocket or 
                     // Server-Sent Events request comes in.
 
-                    // Sending the access token in the query string is required due to
-                    // a limitation in Browser APIs. We restrict it to only calls to the
+                    // Sending the access token in the query string is required when using WebSockets or ServerSentEvents
+                    // due to a limitation in Browser APIs. We restrict it to only calls to the
                     // SignalR hub in this code.
                     // See https://docs.microsoft.com/aspnet/core/signalr/security#access-token-logging
                     // for more information about security considerations when using
