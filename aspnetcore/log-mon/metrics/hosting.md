@@ -35,7 +35,7 @@ The ASP.NET Core `Microsoft.AspNetCore.Hosting` metrics [source code](https://gi
 | `host` | string | Name of the local HTTP server that received the request. | `localhost` | Always |
 | `port` | int | Port of the local HTTP server that received the request. | `8080` | Added if not default (80 for http or 443 for https) |
 
-#### `http-server-request-duration`
+### `http-server-request-duration`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -53,13 +53,19 @@ The ASP.NET Core `Microsoft.AspNetCore.Hosting` metrics [source code](https://gi
 | `exception-name` | string | Name of the .NET exception thrown during the request. Report exception is either unhandled from middleware or handled by `ExceptionHandlerMiddleware` or `DeveloperExceptionPageMiddleware`. | `System.OperationCanceledException` | If unhandled exception |
 | Custom tags | n/a | Custom tags added from `IHttpMetricsTagsFeature`. | `organization`=`contoso` | n/a |
 
-### Microsoft.AspNetCore.Server.Kestrel
+### `http-server-unhandled-requests`
+
+| Name     | Instrument Type | Unit | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `http-server-unhandled-requests` | Counter | `{count}` | Number of HTTP requests that reached the end of the middleware pipeline without being handled by application code. |
+
+## Microsoft.AspNetCore.Server.Kestrel
 
 All Kestrel counters include the endpoint as a tag.
 
 [Microsoft.AspNetCore.Server.Kestrel metrics source code](
 
-#### `kestrel-current-connections`
+### `kestrel-current-connections`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -69,7 +75,7 @@ All Kestrel counters include the endpoint as a tag.
 |---|---|---|---|---|
 | `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
 
-#### `kestrel-connection-duration`
+### `kestrel-connection-duration`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -81,7 +87,7 @@ All Kestrel counters include the endpoint as a tag.
 | `exception-name` | string | Name of the .NET exception thrown during the connect. Report exception is unhandled | If unhandled exception |
 | Custom tags | n/a | Custom tags added from `IConnectionMetricsTagsFeature`. | `organization`=`contoso` | n/a |
 
-#### `kestrel-rejected-connections`
+### `kestrel-rejected-connections`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -91,7 +97,7 @@ All Kestrel counters include the endpoint as a tag.
 |---|---|---|---|---|
 | `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
 
-#### `kestrel-queued-connections`
+### `kestrel-queued-connections`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -101,7 +107,7 @@ All Kestrel counters include the endpoint as a tag.
 |---|---|---|---|---|
 | `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
 
-#### `kestrel-queued-requests`
+### `kestrel-queued-requests`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -111,7 +117,7 @@ All Kestrel counters include the endpoint as a tag.
 |---|---|---|---|---|
 | `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
 
-#### `kestrel-current-upgraded-connections`
+### `kestrel-current-upgraded-connections`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -121,7 +127,7 @@ All Kestrel counters include the endpoint as a tag.
 |---|---|---|---|---|
 | `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
 
-#### `kestrel-tls-handshake-duration`
+### `kestrel-tls-handshake-duration`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -133,7 +139,7 @@ All Kestrel counters include the endpoint as a tag.
 | `protocol` | string | Security protocol used to authenticate the connection. | `Tls10`; `Tls11`; `Tls12`; `Tls13` | Always |
 | `exception-name` | string | Name of the .NET exception thrown on TLS handshake failure. | `System.OperationCanceledException` | If TLS handshake fails |
 
-#### `kestrel-current-tls-handshakes`
+### `kestrel-current-tls-handshakes`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -166,7 +172,7 @@ All Kestrel counters include the endpoint as a tag.
 <!--
 **Update: REMOVED**
 
-#### `signalr-http-transport-connection-duration`
+### `signalr-http-transport-connection-duration`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
