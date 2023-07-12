@@ -20,7 +20,10 @@ Metrics are numerical measurements reported over time. They're typically used to
 
 These metrics can be reported to a monitoring system at regular intervals. Dashboards can be setup to view metrics and alerts created to notify people of problems. If the web service is intended to respond to requests within 400 ms and starts responding in 600 ms, the monitoring system can notify the operations staff that the app response is slower than normal.
 
-See [ASP.NET Core metrics](https://github.com/dotnet/aspnetcore/issues/47536) for ASP.NET Core specific metrics. See [.NET metrics](/dotnet/core/diagnostics/metrics) for .NET metrics.
+See the following metric resources:
+
+* <xref:log-mon/metrics/built-in>
+* [.NET metrics](/dotnet/core/diagnostics/metrics)
 
 ## Using metrics
 

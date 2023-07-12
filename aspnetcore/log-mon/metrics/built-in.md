@@ -147,7 +147,7 @@ All Kestrel counters include the endpoint as a tag.
 |---|---|---|---|---|
 | `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
 
-## Microsoft.AspNetCore.Http.Connections
+## SignalR Microsoft.AspNetCore.Http.Connections
 
 [Microsoft.AspNetCore.Http.Connections metrics source code](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/common/Http.Connections/src/Internal/HttpConnectionsMetrics.cs).
 
@@ -157,6 +157,8 @@ All Kestrel counters include the endpoint as a tag.
 | -------- | --------------- | ----------- | -------------- |
 | `signalr-http-transport-current-connections` | UpDownCounter | `{connection}` | Number of connections that are currently active on the server. |
 
+<!--
+**Update: REMOVED**
 ### Metric: `signalr-http-transport-current-transports`
 
 | Name     | Instrument Type | Unit | Description    |
@@ -166,9 +168,7 @@ All Kestrel counters include the endpoint as a tag.
 | Attribute  | Type | Description  | Examples  | Presence |
 |---|---|---|---|---|
 | `transport` | string | The connection transport | `None`; `WebSockets`; `ServerSentEvents`; `LongPolling` | Always |
-
-<!--
-**Update: REMOVED**
+-->
 
 ### Metric: `signalr-http-transport-connection-duration`
 
