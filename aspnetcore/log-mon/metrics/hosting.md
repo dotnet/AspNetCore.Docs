@@ -55,7 +55,9 @@ The ASP.NET Core `Microsoft.AspNetCore.Hosting` metrics [source code](https://gi
 
 ### Microsoft.AspNetCore.Server.Kestrel
 
-Notes: All Kestrel counters include the endpoint as a tag.
+All Kestrel counters include the endpoint as a tag.
+
+[Microsoft.AspNetCore.Server.Kestrel metrics source code](
 
 #### `kestrel-current-connections`
 
@@ -141,17 +143,17 @@ Notes: All Kestrel counters include the endpoint as a tag.
 |---|---|---|---|---|
 | `endpoint` | string | Name of the local endpoint that received the connection. | `localhost:8080` | Always |
 
-### Microsoft.AspNetCore.Http.Connections
+## Microsoft.AspNetCore.Http.Connections
 
-Notes: Timed out connection counter is merged into connection-duration counter. I'm unaware of an official connection closed status, so I invented one with some values. @BrennanConroy It would be good if you could help with better end statuses.
+[Microsoft.AspNetCore.Http.Connections metrics source code](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/common/Http.Connections/src/Internal/HttpConnectionsMetrics.cs).
 
-#### `signalr-http-transport-current-connections`
+### `signalr-http-transport-current-connections`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
 | `signalr-http-transport-current-connections` | UpDownCounter | `{connection}` | Number of connections that are currently active on the server. |
 
-#### `signalr-http-transport-current-transports`
+### `signalr-http-transport-current-transports`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
@@ -161,6 +163,7 @@ Notes: Timed out connection counter is merged into connection-duration counter. 
 |---|---|---|---|---|
 | `transport` | string | The connection transport | `None`; `WebSockets`; `ServerSentEvents`; `LongPolling` | Always |
 
+<!--
 **Update: REMOVED**
 
 #### `signalr-http-transport-connection-duration`
@@ -173,3 +176,49 @@ Notes: Timed out connection counter is merged into connection-duration counter. 
 |---|---|---|---|---|
 | `status` | string | The connection end status | `NormalClosure`; `Timeout`; `AppShutdown` | Always |
 | `transport` | string | The connection transport | `None`; `WebSockets`; `ServerSentEvents`; `LongPolling` | Always |
+-->
+
+## Microsoft.AspNetCore.Routing
+
+[Microsoft.AspNetCore.Routing source code](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Routing/src/RoutingMetrics.cs).
+
+### `routing-match-success`
+
+| Name     | Instrument Type | Unit | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `routing-match-success` | Counter | `{count}` | Number of requests successfully matched to an endpoint by routing. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `route` | string | The matched route | `{controller}/{action}/{id?}` | Required |
+| `fallback` | bool | A flag indicating whether the matched route is a fallback route | `true` | Required |
+
+### `routing-match-failure`
+
+| Name     | Instrument Type | Unit | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `routing-match-failure` | Counter | `{count}` | Number of requests that failed to match to an endpoint by routing. |
+
+## Microsoft.AspNetCore.Diagnostic
+
+[Microsoft.AspNetCore.Diagnostic source code](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/Diagnostics/src/DiagnosticsMetrics.cs)
+
+### `diagnostics-handler-exception`
+
+| Name     | Instrument Type | Unit | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `diagnostics-handler-exception` | Counter | `{count}` | Number of request exceptions caught by exception handling middleware. |
+
+| Attribute  | Type | Description  | Examples  | Presence |
+|---|---|---|---|---|
+| `exception-name` | string | Name of the .NET exception thrown during the request. | Required |
+| `result` | string | The result of exception handler. | Skipped, Handled, Unhandled, Aborted | Required |
+| `handler` | string | The name of the .NET type that handled the exception. | MyNamespace.MyCustomExceptionHandler | Present if exception handled by `IExceptionHandler` or `IProblemDetailsService`. |
+
+## Microsoft.AspNetCore.Hosting
+
+#### `http-server-unhandled-requests`
+
+| Name     | Instrument Type | Unit | Description    |
+| -------- | --------------- | ----------- | -------------- |
+| `http-server-unhandled-requests` | Counter | `{count}` | Number of HTTP requests that reached the end of the middleware pipeline without being handled by application code.
