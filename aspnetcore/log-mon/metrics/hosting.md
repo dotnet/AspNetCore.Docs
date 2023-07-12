@@ -215,9 +215,9 @@ All Kestrel counters include the endpoint as a tag.
 | `result` | string | The result of exception handler. | Skipped, Handled, Unhandled, Aborted | Required |
 | `handler` | string | The name of the .NET type that handled the exception. | MyNamespace.MyCustomExceptionHandler | Present if exception handled by `IExceptionHandler` or `IProblemDetailsService`. |
 
-## Microsoft.AspNetCore.Hosting
+## Microsoft.AspNetCore.Hosting `http-server-unhandled-requests`
 
-#### `http-server-unhandled-requests`
+### `http-server-unhandled-requests`
 
 | Name     | Instrument Type | Unit | Description    |
 | -------- | --------------- | ----------- | -------------- |
