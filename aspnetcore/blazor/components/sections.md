@@ -78,3 +78,14 @@ When the `Counter` component is accessed, the `MainLayout` component renders the
 
 > [!NOTE]
 > `SectionOutlet` and `SectionContent` components can only set either `SectionId` or `SectionName`, not both.
+
+## Section interaction with other Blazor features
+
+Sections interact with other Blazor features in the following ways:
+
+* [Cascading values](xref:blazor/components/cascading-values-and-parameters) flow into section content from where the content is defined by the `SectionContent` component.
+* Unhandled exceptions are handled by [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries) defined around `SectionContent` components.
+* Razor components that are configured for streaming rendering also automatically configure section content provided by one or more `SectionContent` components to use streaming rendering.
+
+<!-- UPDATE FOR 8.0 Add "streaming rendering" cross-link -->
+
