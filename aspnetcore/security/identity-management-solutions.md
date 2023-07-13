@@ -18,7 +18,7 @@ The following table provides an overview of various identity management solution
 
 Many of the commercial licenses provide "community" or free options that may be available depending on your company size and app requirements.
 
-|Name  |Type | License Type  |Website  |Docs  |
+|Name  |Type | License Type  |Website  |Article  |
 |---------|-----|--------|---------|---------|
 |**ASP.NET Core Identity**| Self host |[OSS (MIT)](https://github.com/dotnet/aspnetcore/blob/main/LICENSE.txt)|[https://dotnet.microsoft.com/](https://dotnet.microsoft.com/apps/aspnet)|[Secure a web app with ASP.NET Core Identity](/training/modules/secure-aspnet-core-identity/)|
 |**Auth0**|Managed|[Commercial](https://auth0.com/pricing)|[https://auth0.com/](https://auth0.com/)|[Get started](https://auth0.com/docs/get-started)|
