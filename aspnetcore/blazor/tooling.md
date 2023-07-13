@@ -19,9 +19,11 @@ This article describes tools for building Blazor apps on various platforms. Sele
 
 To create a Blazor app on Windows, use the following guidance:
 
-* Install the latest version of [Visual Studio](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
+<!-- UPDATE FOR 8.0 Remove Preview VS install from versioning blocks -->
 
 :::moniker range=">= aspnetcore-8.0"
+
+* Install the latest version of [Visual Studio Preview](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
 * Create a new project:
   * For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** template. Select **Next**.
@@ -31,6 +33,8 @@ To create a Blazor app on Windows, use the following guidance:
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
+* Install the latest version of [Visual Studio](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
+
 * Create a new project:
   * For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Next**.
   * For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap. Select **Next**.
@@ -38,6 +42,8 @@ To create a Blazor app on Windows, use the following guidance:
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
+
+* Install the latest version of [Visual Studio](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
 
 * Create a new project:
   * For a Blazor Server experience, choose the **Blazor Server App** template. Select **Next**.
@@ -90,7 +96,17 @@ To create a Blazor app on Linux, use the following guidance:
 
 Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute commands in a Linux command shell.
 
+:::moniker range=">= aspnetcore-8.0"
+
+Install the latest version of the [.NET Core SDK Preview](https://dotnet.microsoft.com/download/dotnet/8.0). If you previously installed the SDK, you can determine your installed version by executing the following command:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 Install the latest version of the [.NET Core SDK](https://dotnet.microsoft.com/download). If you previously installed the SDK, you can determine your installed version by executing the following command:
+
+:::moniker-end
 
 ```dotnetcli
 dotnet --version
@@ -475,15 +491,15 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 To create a Blazor app on macOS, use the following guidance:
 
-* Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
-
-* Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
-
 :::moniker range=">= aspnetcore-8.0"
 
 <!-- UPDATE FOR 8.0 VS4Mac new project guidance -->
 
-* For a Blazor Web Apps experience (*recommended*), Visual Studio for Mac can't create a Blazor Web App in its UI at this time.
+* Install [Visual Studio for Mac Preview](https://visualstudio.microsoft.com/vs/mac/preview/). When the installer requests the workloads to install, select **.NET**.
+
+* Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
+
+* For a Blazor Web Apps experience (*recommended*), Visual Studio for Mac Preview can't create a Blazor Web App in its UI at this time.
 
   Install the [.NET 8.0 Preview SDK](https://dotnet.microsoft.com/download/dotnet/8.0) using the correct macOS installer for your platform architecture (Arm64 or x64). For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
   
@@ -520,6 +536,10 @@ For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** t
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
+* Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
+
+* Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
+
 * In the sidebar, select **Web and Console** > **App**.
 
 * Create the app:
@@ -529,6 +549,10 @@ For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** t
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
+
+* Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
+
+* Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
 
 * In the sidebar, select **Web and Console** > **App**.
 
