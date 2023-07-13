@@ -270,11 +270,7 @@ To disable prerendering, open the `Pages/_Host.cshtml` file and change the `rend
 
 :::moniker range=">= aspnetcore-6.0"
 
-[Prerendering of `<head>` content](xref:blazor/components/control-head-content) is disabled in [`<head>` content](xref:blazor/project-structure#location-of-head-content):
-
-```cshtml
-<component type="typeof(HeadOutlet)" render-mode="Server" />
-```
+When prerendering is disabled, [prerendering of `<head>` content](xref:blazor/components/control-head-content) is disabled.
 
 :::moniker-end
 
