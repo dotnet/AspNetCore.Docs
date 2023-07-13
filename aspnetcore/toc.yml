@@ -278,6 +278,9 @@ items:
           - name: Metrics
             displayName: logging, monitoring
             uid: log-mon/metrics/metrics
+          - name: Built-in metrics
+            displayName: logging, monitoring
+            uid: log-mon/metrics/built-in
       - name: HttpContext
         uid: fundamentals/use-httpcontext
       - name: Routing
