@@ -3,17 +3,20 @@ title: Identity management solutions for .NET web apps
 description: A list of available products, packages, and services that enable identity management, including authentication and authorization, for ASP.NET Core web apps.
 author: JeremyLikness
 ms.author: jeliknes
-ms.date: 6/14/2023
+ms.date: 7/14/2023
 uid: security/identity-management-solutions
 ---
 # Identity management solutions for .NET web apps
 
-The following table provides an overview of various identity management solutions that developers can use in their ASP.NET Core applications. These solutions offer features and capabilities to manage [user authentication](xref:security/authentication/index), [authorization](xref:security/authorization/introduction), and [user identity](xref:security/authentication/identity) within your application. It includes options for container-based solutions, self-hosted (you manage the installation and infrastructure to support it), and managed (cloud-based or "identity-as-a-service"). 
+The following table provides an overview of various identity management solutions that can be used in ASP.NET Core apps. These solutions offer features and capabilities to manage [user authentication](xref:security/authentication/index), [authorization](xref:security/authorization/introduction), and [user identity](xref:security/authentication/identity) within an app. It includes options for apps that are:
 
- The table lists both open source and commercial solutions in alphabetical order, each accompanied by essential details such as license type, website, and documentation that is specific to ASP.NET Core integration. Explore the table below to discover the identity management solutions that best align with your application needs.
+* Container-based
+* Self-hosted, where you manage the installation and infrastructure to support it.
+* Managed, such as cloud-based or *Identity as a Service*, such as [IdentityServer4](https://identityserver4.readthedocs.io/en/latest/)
 
-> [!TIP]
-> Many of the commercial licenses provide "community" and/or free options that may be available depending on your company size and application requirements.
+ The following table lists both open source and commercial solutions in alphabetical order. Each line contains details such as license type, website, and documentation that is specific to ASP.NET Core integration. The table can help identify the identity management solutions that best align with your app's needs.
+
+Many of the commercial licenses provide "community" or free options that may be available depending on your company size and app requirements.
 
 |Name  |Type | License Type  |Website  |Docs  |
 |---------|-----|--------|---------|---------|
