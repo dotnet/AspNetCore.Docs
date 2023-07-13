@@ -49,7 +49,7 @@ To create a Blazor app on Windows, use the following guidance:
 
 <!-- UPDATE FOR 8.0 Cross-link SSR -->
 
-* Provide a **Project name** and confirm that the **Location** is correct. To enable interactivity with server-side rendering, select the **Use interactive server components** checkbox. Select **Next**.
+* Provide a **Project name** and confirm that the **Location** is correct. To enable interactivity with server-side rendering (SSR), select the **Use interactive server components** checkbox. Select **Next**.
 
 :::moniker-end
 
@@ -112,7 +112,7 @@ Create a new project:
 
   <!-- UPDATE FOR 8.0 Cross-link SSR -->
 
-  To enable interactivity with server-side rendering, add the `--use-server` option to the command:
+  To enable interactivity with server-side rendering (SSR), add the `--use-server` option to the command:
 
   ```dotnetcli
   dotnet new blazor -o BlazorApp --use-server
@@ -495,7 +495,7 @@ To create a Blazor app on macOS, use the following guidance:
 
   <!-- UPDATE FOR 8.0 Cross-link SSR -->
 
-  To enable interactivity with server-side rendering, add the `--use-server`option to the command:
+  To enable interactivity with server-side rendering (SSR), add the `--use-server`option to the command:
 
   ```dotnetcli
   dotnet new blazor -o BlazorApp --use-server

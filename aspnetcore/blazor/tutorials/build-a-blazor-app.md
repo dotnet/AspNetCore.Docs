@@ -52,8 +52,10 @@ At the end of this tutorial, you'll have a working todo list app.
 Create a new Blazor app named `TodoList` in a command shell:
 
 ```dotnetcli
-dotnet new blazor -o TodoList
+dotnet new blazor -o TodoList --use-server
 ```
+
+The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. The `--use-server` option enables interactivity with server-side rendering (SSR).
 
 :::moniker-end
 
