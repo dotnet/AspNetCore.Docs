@@ -47,7 +47,9 @@ To create a Blazor app on Windows, use the following guidance:
 
 :::moniker range=">= aspnetcore-8.0"
 
-* Provide a **Project name** and confirm that the **Location** is correct. To enable interactivity using the server render mode, select the **Use interactive server components** checkbox. Select **Next**.
+<!-- UPDATE FOR 8.0 Cross-link SSR -->
+
+* Provide a **Project name** and confirm that the **Location** is correct. To enable interactivity with server-side rendering, select the **Use interactive server components** checkbox. Select **Next**.
 
 :::moniker-end
 
@@ -108,7 +110,9 @@ Create a new project:
   dotnet new blazor -o BlazorApp
   ```
 
-  To enable interactivity using the server render mode, add the `--use-server`option to the command:
+  <!-- UPDATE FOR 8.0 Cross-link SSR -->
+
+  To enable interactivity with server-side rendering, add the `--use-server` option to the command:
 
   ```dotnetcli
   dotnet new blazor -o BlazorApp --use-server
@@ -481,7 +485,7 @@ To create a Blazor app on macOS, use the following guidance:
 
 * For a Blazor Web Apps experience (*recommended*), Visual Studio for Mac can't create a Blazor Web App in its UI at this time.
 
-  Install the [.NET 8.0 Preview SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) using the correct macOS installer for your platform architecture (Arm64 or x64). For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
+  Install the [.NET 8.0 Preview SDK](https://dotnet.microsoft.com/download/dotnet/8.0) using the correct macOS installer for your platform architecture (Arm64 or x64). For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
   
   Open a command shell with Apple's **Terminal** utility application in macOS's `Applications/Utilities` folder. Change the directory to the location where you want to create the app with the [`ls` command](https://man7.org/linux/man-pages/man1/ls.1.html). For example, use the `ls Desktop` command to change the directory to the desktop. Execute the following command in the command shell:
 
@@ -489,7 +493,9 @@ To create a Blazor app on macOS, use the following guidance:
   dotnet new blazor -o BlazorApp
   ```
 
-  To enable interactivity using the server render mode, add the `--use-server`option to the command:
+  <!-- UPDATE FOR 8.0 Cross-link SSR -->
+
+  To enable interactivity with server-side rendering, add the `--use-server`option to the command:
 
   ```dotnetcli
   dotnet new blazor -o BlazorApp --use-server
