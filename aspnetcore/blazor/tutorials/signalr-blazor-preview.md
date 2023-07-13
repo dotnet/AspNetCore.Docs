@@ -116,10 +116,10 @@ Confirm the **Framework** is .NET 8.0 or later. Select **Create**.
 In a command shell, execute the following command:
 
 ```dotnetcli
-dotnet new blazor -o BlazorSignalRApp
+dotnet new blazor -o BlazorSignalRApp --use-server
 ```
 
-The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project.
+The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. The `--use-server` option enables interactivity with server-side rendering (SSR).
 
 In Visual Studio Code, open the app's project folder.
 
@@ -130,8 +130,10 @@ When the dialog appears to add assets to build and debug the app, select **Yes**
 Visual Studio for Mac can't create a Blazor Web App in its UI at this time. Open a command shell with Apple's **Terminal** utility application in macOS's `Applications/Utilities` folder. Change the directory to the location where you want to create the app with the [`ls` command](https://man7.org/linux/man-pages/man1/ls.1.html). For example, use the `ls Desktop` command to change the directory to the desktop. Execute the following command in the command shell:
 
 ```dotnetcli
-dotnet new blazor -o BlazorApp
+dotnet new blazor -o BlazorApp --use-server
 ```
+
+The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. The `--use-server` option enables interactivity with server-side rendering (SSR).
 
 After the app is created, open the project file (`BlazorApp.csproj`) with Visual Studio for Mac.
 
@@ -161,10 +163,10 @@ Open the project by navigating to the project folder and opening the project's s
 In a command shell, execute the following command:
 
 ```dotnetcli
-dotnet new blazor -o BlazorSignalRApp
+dotnet new blazor -o BlazorSignalRApp --use-server
 ```
 
-The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project.
+The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. The `--use-server` option enables interactivity with server-side rendering (SSR).
 
 ---
 
@@ -260,22 +262,6 @@ Add the namespaces for <xref:Microsoft.AspNetCore.ResponseCompression?displayPro
 using Microsoft.AspNetCore.ResponseCompression;
 using BlazorSignalRApp.Hubs;
 ```
-
-<!-- UPDATE FOR 8.0 (REMOVE THE FOLLOWING) -->
-
-Locate the line that adds services and configuration for Razor components:
-
-```csharp
-builder.Services.AddRazorComponents();
-```
-
-Chain a call to `AddServerComponents` to `AddRazorComponents`. Change the line to the following:
-
-```csharp
-builder.Services.AddRazorComponents().AddServerComponents();
-```
-
-<!-- UPDATE FOR 8.0 (END OF REMOVAL) -->
 
 Add Response Compression Middleware services:
 
