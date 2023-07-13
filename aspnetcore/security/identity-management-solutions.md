@@ -12,7 +12,7 @@ The following table provides an overview of various identity management solution
 
 * Container-based
 * Self-hosted, where you manage the installation and infrastructure to support it.
-* Managed, such as cloud-based or *Identity as a Service*, such as [IdentityServer4](https://identityserver4.readthedocs.io/en/latest/)
+* Managed, also known as cloud-based or *Identity as a Service*, such as [IdentityServer4](https://identityserver4.readthedocs.io/en/latest/)
 
  The following table lists both open source and commercial solutions in alphabetical order. Each line contains details such as license type, website, and documentation that is specific to ASP.NET Core integration. The table can help identify the identity management solutions that best align with your app's needs.
 
