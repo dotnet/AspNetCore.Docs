@@ -495,7 +495,7 @@ To create a Blazor app on macOS, use the following guidance:
 
   <!-- UPDATE FOR 8.0 Cross-link SSR -->
 
-  To enable interactivity with server-side rendering (SSR), add the `--use-server`option to the command:
+  To enable interactivity with server-side rendering (SSR), add the `--use-server` option to the command:
 
   ```dotnetcli
   dotnet new blazor -o BlazorApp --use-server
