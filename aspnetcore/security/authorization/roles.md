@@ -128,6 +128,10 @@ You can further limit access by applying additional role authorization attribute
 
 [!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/ControlAllPanelController.cs?name=snippet&highlight=1-2)]
 
+If multiple attributes are applied at the controller and action levels, ***all*** attributes must pass before access is granted:
+
+[!code-csharp[](~/security/authorization/roles/samples/6_0/WebAll/Controllers/ControlAllPanelController2.cs?name=snippet&highlight=1,7)]
+
 In the preceding `ControlAllPanelController` controller:
 
 * Members of the `Administrator` role or the `PowerUser` role can access the controller and the `SetTime` action.
