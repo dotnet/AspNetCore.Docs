@@ -238,6 +238,10 @@ The Greeter client calls the asynchronous `SayHello` method. The result of the `
 
 ## Test the gRPC client with the gRPC Greeter service
 
+Update the `appsettings.Development.json` file by adding the following highlighted lines:
+
+[!code-csharp[](~/tutorials/grpc/grpc-start/sample/sample8/GrpcGreeter/appsettings.Development.json?highlight=6-7)]
+
 # [Visual Studio](#tab/visual-studio)
 
 * In the Greeter service, press `Ctrl+F5` to start the server without the debugger.
@@ -288,13 +292,6 @@ info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
 info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
       Request finished in 78.32260000000001ms 200 application/grpc
 ```
-
-Update the `appsettings.Development.json` file by adding the following lines:
-
- ```json
- "Microsoft.AspNetCore.Hosting": "Information",
- "Microsoft.AspNetCore.Routing.EndpointMiddleware": "Information"
- ```
 
 > [!NOTE]
 > The code in this article requires the ASP.NET Core HTTPS development certificate to secure the gRPC service. If the .NET gRPC client fails with the message `The remote certificate is invalid according to the validation procedure.` or `The SSL connection could not be established.`, the development certificate isn't trusted. To fix this issue, see [Call a gRPC service with an untrusted/invalid certificate](xref:grpc/troubleshoot#call-a-grpc-service-with-an-untrustedinvalid-certificate).

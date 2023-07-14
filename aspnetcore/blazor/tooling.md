@@ -19,9 +19,11 @@ This article describes tools for building Blazor apps on various platforms. Sele
 
 To create a Blazor app on Windows, use the following guidance:
 
-* Install the latest version of [Visual Studio](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
+<!-- UPDATE FOR 8.0 Remove Preview VS install from versioning blocks -->
 
 :::moniker range=">= aspnetcore-8.0"
+
+* Install the latest version of [Visual Studio Preview](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload.
 
 * Create a new project:
   * For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** template. Select **Next**.
@@ -31,6 +33,8 @@ To create a Blazor app on Windows, use the following guidance:
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
+* Install the latest version of [Visual Studio](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
+
 * Create a new project:
   * For a Blazor Server experience, choose the **Blazor Server App** template, which includes demonstration code and [Bootstrap](https://getbootstrap.com/), or the **Blazor Server App Empty** template without demonstration code and Bootstrap. Select **Next**.
   * For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template, which includes demonstration code and Bootstrap, or the **Blazor WebAssembly App Empty** template without demonstration code and Bootstrap. Select **Next**.
@@ -39,15 +43,25 @@ To create a Blazor app on Windows, use the following guidance:
 
 :::moniker range="< aspnetcore-7.0"
 
+* Install the latest version of [Visual Studio](https://visualstudio.microsoft.com) with the **ASP.NET and web development** workload.
+
 * Create a new project:
   * For a Blazor Server experience, choose the **Blazor Server App** template. Select **Next**.
   * For a Blazor WebAssembly experience, choose the **Blazor WebAssembly App** template. Select **Next**.
 
 :::moniker-end
 
-* Provide a **Project name** and confirm that the **Location** is correct. Select **Next**.
+:::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE FOR 8.0 Cross-link SSR -->
+
+* Provide a **Project name** and confirm that the **Location** is correct. To enable interactivity with server-side rendering (SSR), select the **Use interactive server components** checkbox. Select **Next**.
+
+:::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
+
+* Provide a **Project name** and confirm that the **Location** is correct. Select **Next**.
 
 * For a *hosted* Blazor WebAssembly app, select the **ASP.NET Core Hosted** checkbox in the **Additional information** dialog.
 
@@ -82,7 +96,17 @@ To create a Blazor app on Linux, use the following guidance:
 
 Use the [.NET command-line interface (CLI)](/dotnet/core/tools/) to execute commands in a Linux command shell.
 
+:::moniker range=">= aspnetcore-8.0"
+
+Install the latest version of the [.NET Core SDK Preview](https://dotnet.microsoft.com/download/dotnet/8.0). If you previously installed the SDK, you can determine your installed version by executing the following command:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 Install the latest version of the [.NET Core SDK](https://dotnet.microsoft.com/download). If you previously installed the SDK, you can determine your installed version by executing the following command:
+
+:::moniker-end
 
 ```dotnetcli
 dotnet --version
@@ -101,6 +125,15 @@ Create a new project:
   ```dotnetcli
   dotnet new blazor -o BlazorApp
   ```
+
+  <!-- UPDATE FOR 8.0 Cross-link SSR -->
+
+  To enable interactivity with server-side rendering (SSR), add the `--use-server` option to the command:
+
+  ```dotnetcli
+  dotnet new blazor -o BlazorApp --use-server
+  ```
+
 * For a Blazor WebAssembly experience with demonstration code and Bootstrap, execute the following command:
 
   ```dotnetcli
@@ -458,16 +491,30 @@ For more information, see <xref:security/enforcing-ssl#trust-https-certificate-o
 
 To create a Blazor app on macOS, use the following guidance:
 
-* Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
+:::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE FOR 8.0 VS4Mac new project guidance -->
+
+* Install [Visual Studio for Mac Preview](https://visualstudio.microsoft.com/vs/mac/preview/). When the installer requests the workloads to install, select **.NET**.
 
 * Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
 
-:::moniker range=">= aspnetcore-8.0"
+* For a Blazor Web Apps experience (*recommended*), Visual Studio for Mac Preview can't create a Blazor Web App in its UI at this time.
 
-* For a Blazor Web Apps experience (*recommended*), Visual Studio for Mac can't create a Blazor Web App in its UI at this time. Open a command shell with Apple's **Terminal** utility application in macOS's `Applications/Utilities` folder. Change the directory to the location where you want to create the app with the [`ls` command](https://man7.org/linux/man-pages/man1/ls.1.html). For example, use the `ls Desktop` command to change the directory to the desktop. Execute the following command in the command shell:
+  Install the [.NET 8.0 Preview SDK](https://dotnet.microsoft.com/download/dotnet/8.0) using the correct macOS installer for your platform architecture (Arm64 or x64). For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
+  
+  Open a command shell with Apple's **Terminal** utility application in macOS's `Applications/Utilities` folder. Change the directory to the location where you want to create the app with the [`ls` command](https://man7.org/linux/man-pages/man1/ls.1.html). For example, use the `ls Desktop` command to change the directory to the desktop. Execute the following command in the command shell:
 
   ```dotnetcli
   dotnet new blazor -o BlazorApp
+  ```
+
+  <!-- UPDATE FOR 8.0 Cross-link SSR -->
+
+  To enable interactivity with server-side rendering (SSR), add the `--use-server` option to the command:
+
+  ```dotnetcli
+  dotnet new blazor -o BlazorApp --use-server
   ```
 
   After the app is created, open the project file (`BlazorApp.csproj`) with Visual Studio for Mac.
@@ -489,6 +536,10 @@ For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** t
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
+* Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
+
+* Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
+
 * In the sidebar, select **Web and Console** > **App**.
 
 * Create the app:
@@ -498,6 +549,10 @@ For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** t
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
+
+* Install [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/). When the installer requests the workloads to install, select **.NET**.
+
+* Select **New Project** from the **File** menu or create a **New** project from the **Start Window**.
 
 * In the sidebar, select **Web and Console** > **App**.
 
@@ -513,13 +568,15 @@ For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** t
 
 * For a hosted Blazor WebAssembly experience, select the **ASP.NET Core Hosted** checkbox.
 
-:::moniker-end
+<!-- UPDATE FOR 8.0 Re-enable the next two bullets and the dev cert paragraph for 8.0 after VS4Mac supports creating the app in the UI -->
 
 * In the **Project name** field, name the app `BlazorApp`. Select **Create**.
 
 * Select the **Start Without Debugging** command from the **Debug** menu to run the app *without the debugger*. Run the app with **Debug** > **Start Debugging** or the Run (&#9654;) button to run the app *with the debugger*.
 
 If a prompt appears to trust the development certificate, trust the certificate and continue. The user and keychain passwords are required to trust the certificate. For more information on trusting the ASP.NET Core HTTPS development certificate, see <xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos>.
+
+:::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 

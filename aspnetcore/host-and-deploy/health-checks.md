@@ -5,16 +5,18 @@ description: Learn how to set up health checks for ASP.NET Core infrastructure, 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 6/14/2023
+ms.date: 07/11/2023
 uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
 
 By [Glenn Condron](https://github.com/glennc) and [Juergen Gutsch](https://twitter.com/sharpcms)
 
+:::moniker range="< aspnetcore-6.0"
 [!INCLUDE[](~/includes/not-latest-version.md)]
+:::moniker-end
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-8.0"
 
 ASP.NET Core offers Health Checks Middleware and libraries for reporting the health of app infrastructure components.
 
@@ -306,10 +308,38 @@ The `SampleHealthCheckWithDiConfig` and the Health check needs to be added to th
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/7.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksUsingDependencyInjection":::
 
+## UseHealthChecks vs. MapHealthChecks
+
+There are two ways to make health checks accessible to callers:
+
+* <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks%2A> registers middleware for handling health checks requests in the middleware pipeline.
+* <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks%2A> registers a health checks endpoint. The endpoint is matched and executed along with other endpoints in the app.
+
+The advantage of using `MapHealthChecks` over `UseHealthChecks` is the ability to use endpoint aware middleware, such as authorization, and to have greater fine-grained control over the matching policy. The primary advantage of using `UseHealthChecks` over `MapHealthChecks` is controlling exactly where health checks runs in the middleware pipeline.
+
+<xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks%2A>:
+* Terminates the pipeline when a request matches the health check endpoint. [Short-circuiting](xref:fundamentals/middleware/index) is often desirable because it avoids unnecessary work, such as logging and other middleware.
+* Is primarily used for configuring the health check middleware in the pipeline.
+* Can match any path on a port with a `null` or empty `PathString`. Allows performing a health check on any request made to the specified port.
+* [Source code](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckApplicationBuilderExtensions.cs)
+
+<xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks%2A> allows:
+* Terminating the pipeline when a request matches the health check endpoint, by calling <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit%2A>. For example, `app.MapHealthChecks("/healthz").ShortCircuit();`. For more information, see [Short-circuit middleware after routing](../fundamentals/routing.md#short-circuit-middleware-after-routing).
+* Mapping specific routes or endpoints for health checks.
+* Customization of the URL or path where the health check endpoint is accessible.
+* Mapping multiple health check endpoints with different routes or configurations. Multiple endpoint support:
+  * Enables separate endpoints for different types of health checks or components.
+  * Is used to differentiate between different aspects of the app's health or apply specific configurations to subsets of health checks.
+* [Source code](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckEndpointRouteBuilderExtensions.cs)
+
 ## Additional resources
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/health-checks/samples) ([how to download](xref:index#how-to-download-a-sample))
 
+> [!NOTE]
+> This article was partially created with the help of artificial intelligence. Before publishing, an author reviewed and revised the content as needed. See [Our principles for using AI-generated content in Microsoft Learn](https://aka.ms/ai-content-principles).
+
 :::moniker-end
 
 [!INCLUDE[](~/host-and-deploy/health-checks/includes/health-checks5.md)]
+[!INCLUDE[](~/host-and-deploy/health-checks/includes/health-checks6-7.md)]

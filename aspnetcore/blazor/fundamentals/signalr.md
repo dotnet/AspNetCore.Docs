@@ -244,7 +244,7 @@ services.AddServerSideBlazor()
 > [!WARNING]
 > The default value of <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> is 32 KB. Increasing the value may increase the risk of [Denial of service (DoS) attacks](xref:blazor/security/server/threat-mitigation#denial-of-service-dos-attacks).
 
-For information on Blazor Server's memory model, see <xref:blazor/host-and-deploy/server#blazor-server-memory-model>.
+For information on memory management, see <xref:blazor/host-and-deploy/server#memory-management>.
 
 ## Maximum receive message size
 

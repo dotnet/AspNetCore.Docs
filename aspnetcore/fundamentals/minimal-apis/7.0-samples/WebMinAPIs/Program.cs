@@ -188,15 +188,15 @@ app.MapGet("/oops", () => "Oops! An error happened.");
 app.Run();
 // </snippet_re>
 #elif CONFIG   //
-// <snippet_config >
+// <snippet_config>
 var app = WebApplication.Create(args);
 
-var message = app.Configuration["HelloKey"] ?? "Hello";
+var message = app.Configuration["HelloKey"] ?? "Config failed!";
 
 app.MapGet("/", () => message);
 
 app.Run();
-// </e >
+// </snippet_config >
 #elif LOG
 // <snippet_log>
 var app = WebApplication.Create(args);

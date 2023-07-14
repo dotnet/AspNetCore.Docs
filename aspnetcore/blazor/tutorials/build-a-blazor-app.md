@@ -52,8 +52,10 @@ At the end of this tutorial, you'll have a working todo list app.
 Create a new Blazor app named `TodoList` in a command shell:
 
 ```dotnetcli
-dotnet new blazor -o TodoList
+dotnet new blazor -o TodoList --use-server
 ```
+
+The `-o|--output` option creates a folder for the project. If you've created a folder for the project and the command shell is open in that folder, omit the `-o|--output` option and value to create the project. The `--use-server` option enables interactivity with server-side rendering (SSR).
 
 :::moniker-end
 
@@ -422,6 +424,8 @@ Update the `<h1>` header to show a count of the number of todo items that aren't
 <h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
 ```
 
+<!-- UPDATE FOR 8.0 Re-enable the completed component display after the 8.0 sample app is created
+
 The completed `Todo` component (`Pages/Todo.razor`):
 
 :::moniker range=">= aspnetcore-8.0"
@@ -453,6 +457,8 @@ The completed `Todo` component (`Pages/Todo.razor`):
 :::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/build-a-blazor-app/Todo.razor":::
 
 :::moniker-end
+
+-->
 
 Save the `Pages/Todo.razor` file. The app is automatically rebuilt in the command shell, and the page reloads in the browser.
 

@@ -228,12 +228,14 @@ var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>();
 
 <xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> sends an HTTP PATCH request with JSON-encoded content.
 
-In the following component code, `incompleteTodoItems` is an array of `TodoItem` (not shown). The `UpdateItem` method is triggered by selecting the `<button>` element. <xref:System.Text.Json.JsonSerializerOptions.DefaultIgnoreCondition?displayProperty=nameWithType> is set to <xref:System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault?displayProperty=nameWithType> to demonstrate that only the `IsCompleted` property is serialized in the PATCH request body.
+In the following component code:
+
+* `incompleteTodoItems` is an array of incomplete `TodoItem`. The following example doesn't show loading `incompleteTodoItems` for brevity. See the [GET from JSON (`GetFromJsonAsync`)](#get-from-json-getfromjsonasync) section for an example of loading items.
+* The `UpdateItem` method is triggered by selecting the `<button>` element.
+* The PATCH document is provided as a plain text string. The web API described in the <xref:tutorials/first-web-api> article doesn't handle PATCH requests by default. To make the PATCH example in this section work with the tutorial's web API, implement a PATCH controller action in the web API following the guidance in <xref:web-api/jsonpatch>. Later, this section demonstrates an example controller action and shows how to compose PATCH documents for ASP.NET Core web API apps that use .NET JSON PATCH support.
 
 > [!NOTE]
 > When targeting ASP.NET Core 5.0 or earlier, add `@using` directives to the following component for <xref:System.Net.Http?displayProperty=fullName>, <xref:System.Net.Http.Json?displayProperty=fullName>, and <xref:System.Threading.Tasks?displayProperty=fullName>.
-
-The following example doesn't show loading `incompleteTodoItems` for brevity. See the [GET from JSON (`GetFromJsonAsync`)](#get-from-json-getfromjsonasync) section for an example of loading items.
 
 ```razor
 @using System.Text.Json
@@ -256,22 +258,160 @@ The following example doesn't show loading `incompleteTodoItems` for brevity. Se
     private async Task UpdateItem(long id) =>
         await Http.PatchAsJsonAsync(
             $"api/TodoItems/{id}", 
-            new TodoItem() { IsComplete = true }, 
-            new JsonSerializerOptions()
-            {
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault
-            });
+            "[{\"operationType\":2,\"path\":\"/IsComplete\",\"op\":\"replace\",\"value\":true}]");
 }
 ```
 
-<xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data as an array:
+<xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> returns an <xref:System.Net.Http.HttpResponseMessage>. To deserialize the JSON content from the response message, use the <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> extension method. The following example reads JSON weather data as an array. An empty array is created if no weather data is returned by the method, so `content` isn't null after the statement executes:
 
 ```csharp
 var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ??
     Array.Empty<WeatherForecast>();
 ```
 
-In the preceding example, an empty array is created if no weather data is returned by the method, so `content` isn't null after the statement executes.
+<xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> receives a JSON PATCH document for the PATCH request. The preceding `UpdateItem` method called <xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> with a PATCH document as a string with escaped quotes. Laid out with indentation, spacing, and non-escaped quotes, the unencoded PATCH document appears as the following JSON:
+
+```json
+[
+  {
+    "operationType": 2,
+    "path": "/IsComplete",
+    "op": "replace",
+    "value": true
+  }
+]
+```
+
+To simplify the creation of PATCH documents in the app issuing PATCH requests, an app can use .NET JSON PATCH support, as the following guidance demonstrates.
+
+Install the [`Microsoft.AspNetCore.JsonPatch`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch) NuGet package and use the API features of the package to compose a <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument> for a PATCH request.
+
+[!INCLUDE[](~/includes/package-reference.md)]
+
+Add an `@using` directive for the <xref:Microsoft.AspNetCore.JsonPatch?displayProperty=fullName> namespace to the top of the Razor component:
+
+```razor
+@using Microsoft.AspNetCore.JsonPatch
+```
+
+Compose the <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument> for a `TodoItem` with `IsComplete` set to `true` using the <xref:Microsoft.AspNetCore.JsonPatch.JsonPatchDocument.Replace%2A> method:
+
+```csharp
+var patchDocument = new JsonPatchDocument<TodoItem>()
+    .Replace(p => p.IsComplete, true);
+```
+
+Pass the document's operations (`patchDocument.Operations`) to the <xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync%2A> call. The following example shows how to make the call:
+
+```csharp
+private async Task UpdateItem(long id)
+{
+    await Http.PatchAsJsonAsync(
+        $"api/TodoItems/{id}", 
+        patchDocument.Operations, 
+        new JsonSerializerOptions()
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
+            WriteIndented = true
+        });
+}
+```
+
+<xref:System.Text.Json.JsonSerializerOptions.DefaultIgnoreCondition?displayProperty=nameWithType> is set to <xref:System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingDefault?displayProperty=nameWithType> to ignore a property only if it equals the default value for its type.
+
+<xref:System.Text.Json.JsonSerializerOptions.WriteIndented?displayProperty=nameWithType> is used merely to present the JSON payload in a pleasant format for this article. Writing indented JSON has no bearing on processing PATCH requests and isn't typically performed in production apps for web API requests.
+
+Next, follow the guidance in the <xref:web-api/jsonpatch> article to add a PATCH controller action to the web API.
+
+Add a package reference for the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) NuGet package to the web API app.
+
+> [!NOTE]
+> There's no need to add a package reference for the [`Microsoft.AspNetCore.JsonPatch`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch) package to the app because the reference to the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` package automatically transitively adds a package reference for `Microsoft.AspNetCore.JsonPatch`.
+
+Add a custom JSON PATCH input formatter to the web API app.
+
+`JSONPatchInputFormatter.cs`:
+
+```csharp
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.Extensions.Options;
+
+public static class JSONPatchInputFormatter
+{
+    public static NewtonsoftJsonPatchInputFormatter Get()
+    {
+        var builder = new ServiceCollection()
+            .AddLogging()
+            .AddMvc()
+            .AddNewtonsoftJson()
+            .Services.BuildServiceProvider();
+
+        return builder
+            .GetRequiredService<IOptions<MvcOptions>>()
+            .Value
+            .InputFormatters
+            .OfType<NewtonsoftJsonPatchInputFormatter>()
+            .First();
+    }
+}
+```
+
+Configure the web API's controllers to use the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` package and process PATCH requests with the JSON PATCH input formatter. Insert the `JSONPatchInputFormatter` in the first position of MVC's input formatter collection so that it processes requests prior to any other input formatter.
+
+In `Program.cs` modify the call to <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers%2A>:
+
+```csharp
+builder.Services.AddControllers(options =>
+{
+    options.InputFormatters.Insert(0, JSONPatchInputFormatter.Get());
+}).AddNewtonsoftJson();
+```
+
+In `Controllers/TodoItemsController.cs`, add a `using` statement for the <xref:Microsoft.AspNetCore.JsonPatch?displayProperty=fullName> namespace:
+
+```csharp
+using Microsoft.AspNetCore.JsonPatch;
+```
+
+In `Controllers/TodoItemsController.cs`, add the following `PatchTodoItem` action method:
+
+```csharp
+[HttpPatch("{id}")]
+public async Task<IActionResult> PatchTodoItem(long id, 
+    JsonPatchDocument<TodoItem> patchDoc)
+{
+    if (patchDoc == null)
+    {
+        return BadRequest();
+    }
+    
+    var todoItem = await _context.TodoItems.FindAsync(id);
+
+    if (todoItem == null)
+    {
+        return NotFound();
+    }
+
+    patchDoc.ApplyTo(todoItem);
+
+    _context.Entry(todoItem).State = EntityState.Modified;
+
+    try
+    {
+        await _context.SaveChangesAsync();
+    }
+    catch (DbUpdateConcurrencyException) when (!TodoItemExists(id))
+    {
+        return NotFound();
+    }
+
+    return NoContent();
+}
+```
+
+> [!WARNING]
+> As with the other examples in the <xref:web-api/jsonpatch> article, the preceding PATCH controller action doesn't protect the web API from over-posting attacks. For more information, see <xref:tutorials/first-web-api#prevent-over-posting>.
 
 :::moniker-end
 
@@ -729,5 +869,3 @@ Various network tools are publicly available for testing web API backend apps di
 * [Cross-Origin resource sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 
 :::zone-end
-
-:::moniker-end

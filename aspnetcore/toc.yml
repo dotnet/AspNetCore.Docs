@@ -264,12 +264,20 @@ items:
         uid: fundamentals/configuration/options
       - name: Environments (dev, stage, prod)
         uid: fundamentals/environments
-      - name: Logging
-        uid: fundamentals/logging/index
-      - name: HTTP Logging
-        uid: fundamentals/http-logging/index
-      - name: W3C Logger
-        uid: fundamentals/w3c-logger/index
+      - name: Logging and monitoring
+        items:
+          - name: Logging
+            uid: fundamentals/logging/index
+          - name: HTTP Logging
+            uid: fundamentals/http-logging/index
+          - name: W3C Logger
+            uid: fundamentals/w3c-logger/index
+          - name: Health checks
+            displayName: logging, monitoring
+            uid: host-and-deploy/health-checks
+          - name: Metrics
+            displayName: logging, monitoring
+            uid: log-mon/metrics/metrics
       - name: HttpContext
         uid: fundamentals/use-httpcontext
       - name: Routing
@@ -1344,9 +1352,6 @@ items:
       - name: Directory structure
         displayName: deploy, publish
         uid: host-and-deploy/directory-structure
-      - name: Health checks
-        uid: host-and-deploy/health-checks
-        displayName: deploy, publish
   - name: Security and Identity
     displayName: authentication, authorization
     items:

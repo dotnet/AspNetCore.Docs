@@ -270,11 +270,7 @@ To disable prerendering, open the `Pages/_Host.cshtml` file and change the `rend
 
 :::moniker range=">= aspnetcore-6.0"
 
-[Prerendering of `<head>` content](xref:blazor/components/control-head-content) is disabled in [`<head>` content](xref:blazor/project-structure#location-of-head-content):
-
-```cshtml
-<component type="typeof(HeadOutlet)" render-mode="Server" />
-```
+When prerendering is disabled, [prerendering of `<head>` content](xref:blazor/components/control-head-content) is disabled.
 
 :::moniker-end
 
@@ -651,6 +647,16 @@ When implementing custom state storage, a useful approach is to adopt [cascading
 * If there's just one top-level state object to persist.
 
 For additional discussion and example approaches, see [Blazor: In-memory state container as cascading parameter (dotnet/AspNetCore.Docs #27296)](https://github.com/dotnet/AspNetCore.Docs/issues/27296).
+
+## Troubleshoot
+
+In a custom state management service, a callback invoked outside of Blazor's synchronization context must wrap the logic of the callback in <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> to move it onto the renderer's synchronization context.
+
+When the state management service doesn't call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> on Blazor's synchronization context, the following error is thrown:
+
+> :::no-loc text="System.InvalidOperationException: 'The current thread is not associated with the Dispatcher. Use InvokeAsync() to switch execution to the Dispatcher when triggering rendering or component state.'":::
+
+For more information and an example of how to address this error, see <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system>.
 
 ## Additional resources
 

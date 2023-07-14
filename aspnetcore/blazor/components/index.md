@@ -743,19 +743,19 @@ public string? Title { get; set; }
 
 :::moniker range=">= aspnetcore-7.0"
 
-Don't use the [`required` modifier](/dotnet/csharp/language-reference/keywords/required) or [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties. Components are usually instantiated and assigned parameter values using reflection, which bypasses the guarantees that `init` and `required` are designed to make. Instead, use the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) to specify a required component parameter.
+Don't use the [`required` modifier](/dotnet/csharp/language-reference/keywords/required) or [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties. Components are usually instantiated and assigned parameter values using [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), which bypasses the guarantees that `init` and `required` are designed to make. Instead, use the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) to specify a required component parameter.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties because setting component parameter values with <xref:Microsoft.AspNetCore.Components.ParameterView.SetParameterProperties%2A?displayProperty=nameWithType> uses reflection, which bypasses the init-only setter restriction. Use the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) to specify a required component parameter.
+Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties because setting component parameter values with <xref:Microsoft.AspNetCore.Components.ParameterView.SetParameterProperties%2A?displayProperty=nameWithType> uses [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), which bypasses the init-only setter restriction. Use the [`[EditorRequired]` attribute](xref:Microsoft.AspNetCore.Components.EditorRequiredAttribute) to specify a required component parameter.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties because setting component parameter values with <xref:Microsoft.AspNetCore.Components.ParameterView.SetParameterProperties%2A?displayProperty=nameWithType> uses reflection, which bypasses the init-only setter restriction.
+Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init) on component parameter properties because setting component parameter values with <xref:Microsoft.AspNetCore.Components.ParameterView.SetParameterProperties%2A?displayProperty=nameWithType> uses [reflection](/dotnet/csharp/advanced-topics/reflection-and-attributes/), which bypasses the init-only setter restriction.
 
 :::moniker-end
 
@@ -779,7 +779,7 @@ Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init)
 
 @code {
     [Parameter]
-    public Tuple<int, string, bool>? Data { get; set; }
+    public (int, string, bool)? Data { get; set; }
 }
 ```
 
@@ -788,16 +788,51 @@ Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init)
 ```csharp
 @page "/render-tuple-parent"
 
-<h1>Render <code>Tuple</code> Parent</h1>
+<h1>Render Tuple Parent</h1>
 
 <RenderTupleChild Data="@data" />
 
 @code {
-    private Tuple<int, string, bool> data = new(999, "I aim to misbehave.", true);
+    private (int, string, bool) data = new(999, "I aim to misbehave.", true);
 }
 ```
     
-Only ***unnamed tuples*** are supported for C# 7.0 or later in Razor components. [Named tuples](/dotnet/csharp/language-reference/builtin-types/value-tuples#tuple-field-names) support in Razor components is planned for a future ASP.NET Core release. For more information, see [Blazor Transpiler issue with named Tuples (dotnet/aspnetcore #28982)](https://github.com/dotnet/aspnetcore/issues/28982).
+[Named tuples](/dotnet/csharp/language-reference/builtin-types/value-tuples#tuple-field-names) are supported, as seen in the following example:
+
+`Shared/RenderNamedTupleChild.razor`:
+
+```razor
+<div class="card w-50" style="margin-bottom:15px">
+    <div class="card-header font-weight-bold"><code>Tuple</code> Card</div>
+    <div class="card-body">
+        <ul>
+            <li>Integer: @Data?.TheInteger</li>
+            <li>String: @Data?.TheString</li>
+            <li>Boolean: @Data?.TheBoolean</li>
+        </ul>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public (int TheInteger, string TheString, bool TheBoolean)? Data { get; set; }
+}
+```
+
+`Pages/RenderNamedTupleParent.razor`:
+
+```razor
+@page "/render-named-tuple-parent"
+
+<h1>Render Named Tuple Parent</h1>
+
+<RenderNamedTupleChild Data="@data" />
+
+@code {
+    private (int TheInteger, string TheString, bool TheBoolean) data = 
+        new(999, "I aim to misbehave.", true);
+}
+```
 
 Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://www.uphe.com/movies/serenity-2005) ([Nathan Fillion](https://www.imdb.com/name/nm0277213/))
 
