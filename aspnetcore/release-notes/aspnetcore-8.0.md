@@ -128,15 +128,10 @@ SignalR seamless reconnect reduces the perceived downtime of clients that have a
 Seamless reconnect achieves this by:
 
 * Temporarily buffering data on the server and client.
-* Acknowledging messages received (ACK-ing) that are sent by both the server and client.
+* Acknowledging messages received (ACK-ing) by both the server and client.
 * Recognizing when a connection is returning and replaying messages that may have been sent while the connection was down.
 
-Introduced in .NET 8 [.NET 8 Preview 5](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-5/#signalr), the seamless reconnect feature is still being designed and has the following limitations:
-
-* There isn’t any configuration yet.
-* Support is limited to .NET clients using WebSockets.
-
-To opt-in to seamless reconnect, update your .NET client code to enable the `UseAcks` option:
+To opt in to seamless reconnect, update your .NET client code to enable the `UseAcks` option:
 
 ```csharp
 var hubConnection = new HubConnectionBuilder()
@@ -147,6 +142,11 @@ var hubConnection = new HubConnectionBuilder()
              })
     .Build();
 ```
+
+Seamless reconnect was introduced in .NET 8 [.NET 8 Preview 5](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-5/#signalr), is still being designed, and has the following limitations:
+
+* There isn’t any configuration yet.
+* Support is limited to .NET clients using WebSockets.
 
 Likely features to be added in future previews of SignalR seamless reconnect:
 
