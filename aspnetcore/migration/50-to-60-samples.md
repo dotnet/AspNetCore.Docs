@@ -300,8 +300,9 @@ public class Startup
                           ILogger<Startup> logger)
     {
         lifetime.ApplicationStarted.Register(() =>
-            logger.LogInformation($"The application {env.ApplicationName} started" +
-                                  $" in the injected {service}"));
+            logger.LogInformation(
+                "The application {Name} started in the injected {Service}",
+                env.ApplicationName, service));
     }
 }
 ```

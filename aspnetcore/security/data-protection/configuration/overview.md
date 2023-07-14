@@ -119,7 +119,7 @@ To share protected payloads among apps:
 ```csharp
 var discriminator = app.Services.GetRequiredService<IOptions<DataProtectionOptions>>()
     .Value.ApplicationDiscriminator;
-app.Logger.LogInformation($"ApplicationDiscriminator: {discriminator}");
+app.Logger.LogInformation("ApplicationDiscriminator: {ApplicationDiscriminator}", discriminator);
 ```
 
 For more information on how the discriminator is used, see the following sections later in this article:
