@@ -101,9 +101,13 @@ Use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, `[Authorize
 
 For apps that use Razor Pages, see the [Apply policies to Razor Pages](#apply-policies-to-razor-pages) section.
 
-Apply policies to controllers by using the `[Authorize]` attribute with the policy name. For example:
+Apply policies to controllers by using the `[Authorize]` attribute with the policy name:
 
-:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Controllers/AtLeast21Controller.cs" highlight="6":::
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Controllers/AtLeast21Controller.cs" id="snippet" highlight="1":::
+
+If multiple policies are applied at the controller and action levels, ***all*** policies must pass before access is granted:
+
+:::code language="csharp" source="~/security/authorization/policies/samples/6.0/AuthorizationPoliciesSample/Controllers/AtLeast21Controller.cs" id="snippet" highlight="1,4":::
 
 ## Apply policies to Razor Pages
 

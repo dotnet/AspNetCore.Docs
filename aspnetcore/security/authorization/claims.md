@@ -68,7 +68,7 @@ If the claim value isn't a single value or a transformation is required, use <xr
 
 ## Multiple Policy Evaluation
 
-If you apply multiple policies to a controller or action, then all policies must pass before access is granted. For example:
+If multiple policies are applied at the controller and action levels, ***all*** policies must pass before access is granted:
 
 [!code-csharp[](~/security/authorization/claims/samples/6.x/WebAll/Controllers/SalaryController.cs?name=snippet&highlight=1,14)]
 
