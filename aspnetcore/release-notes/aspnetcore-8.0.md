@@ -135,21 +135,21 @@ To opt-in to seamless reconnect:
 
 * Update the .NET client code to enable the `UseAcks` option:
 
-```csharp
-var hubConnection = new HubConnectionBuilder()
-    .WithUrl("<hub url>",
-             options =>
-             {
-                options.UseAcks = true;
-             })
-    .Build();
-```
+  ```csharp
+  var hubConnection = new HubConnectionBuilder()
+      .WithUrl("<hub url>",
+               options =>
+               {
+                  options.UseAcks = true;
+               })
+      .Build();
+  ```
 
 * Update the server hub endpoint configuration to enable the `AllowAcks` option:
 
-```csharp
-app.MapHub<AppHub>("/default", o => o.AllowAcks = true);
-```
+  ```csharp
+  app.MapHub<AppHub>("/default", o => o.AllowAcks = true);
+  ```
 
 For more information on the progress of the seamless reconnect feature for ASP.NET Core 8.0, see [dotnet/aspnetcore #46691](https://github.com/dotnet/aspnetcore/issues/46691).
 
