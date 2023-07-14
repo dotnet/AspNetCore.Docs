@@ -83,7 +83,7 @@ builder.Services.AddSignalR().AddHubOptions<ChatHub>(options =>
 
 Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A> in `Program.cs`.
 
-[!code-csharp[](~/signalr/configuration/6.0-samples/Program.cs?highlight=24-30)]
+[!code-csharp[](~/signalr/configuration/samples/6.x/Program.cs?highlight=24-30)]
 
 The following table describes options for configuring ASP.NET Core SignalR's advanced HTTP options:
 
