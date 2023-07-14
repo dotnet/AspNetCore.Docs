@@ -30,7 +30,7 @@ Many of the commercial licenses provide "community" or free options that may be 
 |**OpenIddict**|Self host|[OSS (Apache 2.0)](https://github.com/openiddict/openiddict-core/blob/dev/LICENSE.md)|[https://github.com/openiddict/openiddict-core](https://github.com/openiddict/openiddict-core)|[OpenIddict Documentation](https://documentation.openiddict.com/)|
 -->
 
-|Name  |Type | License Type  | Article  |
+|Name  |Type | License Type  | Documentation  |
 |---------|-----|--------|---------|
 |[ASP.NET Core Identity](https://dotnet.microsoft.com/apps/aspnet)| Self host |[OSS (MIT)](https://github.com/dotnet/aspnetcore/blob/main/LICENSE.txt)|[Secure a web app with ASP.NET Core Identity](/training/modules/secure-aspnet-core-identity/)|
 |[Auth0](https://auth0.com/)|Managed|[Commercial](https://auth0.com/pricing)|[Get started](https://auth0.com/docs/get-started)|
