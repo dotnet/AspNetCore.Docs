@@ -131,7 +131,9 @@ Seamless reconnect achieves this by:
 * Acknowledging messages received (ACK-ing) by both the server and client.
 * Recognizing when a connection is returning and replaying messages that may have been sent while the connection was down.
 
-To opt-in to seamless reconnect, update your .NET client code to enable the `UseAcks` option:
+To opt-in to seamless reconnect:
+
+* Update the .NET client code to enable the `UseAcks` option:
 
 ```csharp
 var hubConnection = new HubConnectionBuilder()
@@ -141,6 +143,12 @@ var hubConnection = new HubConnectionBuilder()
                 options.UseAcks = true;
              })
     .Build();
+```
+
+* Update the server hub endpoint configuration to enable the `AllowAcks` option:
+
+```csharp
+app.MapHub<AppHub>("/default", o => o.AllowAcks = true);
 ```
 
 For more information on the progress of the seamless reconnect feature for ASP.NET Core 8.0, see [dotnet/aspnetcore #46691](https://github.com/dotnet/aspnetcore/issues/46691).
