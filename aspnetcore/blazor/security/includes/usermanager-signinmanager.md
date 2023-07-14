@@ -77,7 +77,7 @@ public class WeatherForecastController : ControllerBase
 
         if (user != null)
         {
-            logger.LogInformation($"User.Identity.Name: {user.UserName}");
+            logger.LogInformation("User.Identity.Name: {UserIdentityName}", user.UserName);
         }
 
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
