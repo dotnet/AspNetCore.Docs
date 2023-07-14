@@ -348,7 +348,7 @@ var apples = 1;
 var pears = 2;
 var bananas = 3;
 
-_logger.LogInformation("Parameters: {pears}, {bananas}, {apples}", apples, pears, bananas);
+_logger.LogInformation("Parameters: {Pears}, {Bananas}, {Apples}", apples, pears, bananas);
 ```
 
 However, the parameters are assigned to the placeholders in the order: `apples`, `pears`, `bananas`. The log message reflects the *order of the parameters*:
