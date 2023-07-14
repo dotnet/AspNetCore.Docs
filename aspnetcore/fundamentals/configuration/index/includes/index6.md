@@ -842,17 +842,32 @@ The following code accesses configuration in the  `Program.cs` file.
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
+
+var key1 = builder.Configuration.GetValue<string>("KeyOne");
+
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
 
-var key1 = app.Configuration.GetValue<int>("KeyOne");
-var key2 = app.Configuration.GetValue<bool>("KeyTwo");
+var key2 = app.Configuration.GetValue<int>("KeyTwo");
+var key3 = app.Configuration.GetValue<bool>("KeyThree");
 
-app.Logger.LogInformation($"KeyOne = {key1}");
-app.Logger.LogInformation($"KeyTwo = {key2}");
+app.Logger.LogInformation("KeyOne: {KeyOne}", key1);
+app.Logger.LogInformation("KeyTwo: {KeyTwo}", key2);
+app.Logger.LogInformation("KeyThree: {KeyThree}", key3);
 
 app.Run();
+```
+
+In `appsettings.json` for the preceding example:
+
+```json
+{
+  ...
+  "KeyOne": "Key One Value",
+  "KeyTwo": 1999,
+  "KeyThree": true
+}
 ```
 
 ## Configure options with a delegate
