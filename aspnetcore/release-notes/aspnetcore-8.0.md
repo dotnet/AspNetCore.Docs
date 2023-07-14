@@ -131,7 +131,7 @@ Seamless reconnect achieves this by:
 * Acknowledging messages received (ACK-ing) by both the server and client.
 * Recognizing when a connection is returning and replaying messages that may have been sent while the connection was down.
 
-To opt in to seamless reconnect, update your .NET client code to enable the `UseAcks` option:
+To opt-in to seamless reconnect, update your .NET client code to enable the `UseAcks` option:
 
 ```csharp
 var hubConnection = new HubConnectionBuilder()
