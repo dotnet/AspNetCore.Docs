@@ -1210,7 +1210,7 @@ Handlers are only executed for internal navigation within the app. If the user s
 Implement <xref:System.IDisposable> and dispose registered handlers to unregister them. For more information, see <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>.
 
 > [!IMPORTANT]
-> Don't attempt to execute Document Object Model (DOM) cleanup tasks via JavaScript (JS) interop when handling location changes. Use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JS on the client. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#document-object-model-dom-cleanup-tasks-during-component-disposal>.
+> Don't attempt to execute Document Object Model (DOM) cleanup tasks via JavaScript (JS) interop when handling location changes. Use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JS on the client. For more information, see <xref:blazor/js-interop/index#document-object-model-dom-cleanup-tasks-during-component-disposal>.
 
 In the following example, a location changing handler is registered for navigation events.
 

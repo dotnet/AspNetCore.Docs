@@ -100,6 +100,133 @@ Blazor supports unmarshalled JS interop when a high volume of .NET objects are r
 
 :::moniker-end
 
+## Document Object Model (DOM) cleanup tasks during component disposal
+
+Don't execute JS interop code for [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript (JS) on the client for the following reasons:
+
+* The component may have been removed from the DOM by the time your cleanup code executes in `Dispose{Async}`.
+* In a Blazor Server app, the Blazor renderer may have been disposed by the framework by the time your cleanup code executes in `Dispose{Async}`.
+
+The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
+
+In the following example, the `DOMCleanup` component:
+
+* Contains a `<div>` with an `id` of `cleanupDiv`. The `<div>` element is removed from the DOM along with the rest of the component's DOM markup when the component is removed from the DOM.
+* Loads the `DOMCleanup` JS class from the `Pages/DOMCleanup.razor.js` file and calls its `createObserver` function to set up the `MutationObserver` callback. These tasks are accomplished in the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync).
+
+`Pages/DOMCleanup.razor`:
+
+```razor
+@page "/dom-cleanup"
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+<h1>DOM Cleanup Example</h1>
+
+<div id="cleanupDiv"></div>
+
+@code {
+    private IJSObjectReference? jsModule;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            jsModule = await JS.InvokeAsync<IJSObjectReference>(
+                "import", "./Pages/DOMCleanup.razor.js");
+
+            await jsModule.InvokeVoidAsync("DOMCleanup.createObserver");
+        }
+    }
+
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        if (jsModule is not null)
+        {
+            await jsModule.DisposeAsync();
+        }
+    }
+}
+```
+
+In the following example, the `MutationObserver` callback is executed each time a DOM change occurs. Execute your cleanup code when the `if` statement confirms that the target element (`cleanupDiv`) was removed (`if (targetRemoved) { ... }`). It's important to disconnect and delete the `MutationObserver` to avoid a memory leak after your cleanup code executes.
+
+`Pages/DOMCleanup.razor.js`:
+
+```javascript
+export class DOMCleanup {
+  static observer;
+
+  static createObserver() {
+    const target = document.querySelector('#cleanupDiv');
+
+    this.observer = new MutationObserver(function (mutations) {
+      const targetRemoved = mutations.some(function (mutation) {
+        const nodes = Array.from(mutation.removedNodes);
+        return nodes.indexOf(target) !== -1;
+      });
+
+      if (targetRemoved) {
+        // Cleanup resources here
+        // ...
+
+        // Disconnect and delete MutationObserver
+        this.observer && this.observer.disconnect();
+        delete this.observer;
+      }
+    });
+
+    this.observer.observe(target.parentNode, { childList: true });
+  }
+}
+
+window.DOMCleanup = DOMCleanup;
+```
+
+## JavaScript interop calls without a circuit
+
+*This section only applies to Blazor Server apps.*
+
+JavaScript (JS) interop calls can't be issued after a SignalR circuit is disconnected. Without a circuit during component disposal or at any other time that a circuit doesn't exist, the following method calls fail and log a message that the circuit is disconnected as a <xref:Microsoft.JSInterop.JSDisconnectedException>:
+
+* JS interop method calls
+  * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>)
+* `Dispose`/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference>.
+
+In order to avoid logging <xref:Microsoft.JSInterop.JSDisconnectedException> or to log custom information, catch the exception in a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement.
+
+For the following component disposal example:
+
+* The component implements <xref:System.IAsyncDisposable>.
+* `objInstance` is an <xref:Microsoft.JSInterop.IJSObjectReference>.
+* <xref:Microsoft.JSInterop.JSDisconnectedException> is caught and not logged.
+* Optionally, you can log custom information in the `catch` statement at whatever log level you prefer. The following example doesn't log custom information because it assumes the developer doesn't care about when or where circuits are disconnected during component disposal.
+
+```csharp
+async ValueTask IAsyncDisposable.DisposeAsync()
+{
+    try
+    {
+        if (objInstance is not null)
+        {
+            await objInstance.DisposeAsync();
+        }
+    }
+    catch (JSDisconnectedException)
+    {
+    }
+}
+```
+
+If you must clean up your own JS objects or execute other JS code on the client after a circuit is lost, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JS on the client. The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
+
+For more information, see the following articles:
+
+* <xref:blazor/fundamentals/handle-errors>: The *JavaScript interop* section discusses error handling in JS interop scenarios. <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
+* <xref:blazor/components/lifecycle#component-disposal-with-idisposable-and-iasyncdisposable>: The *Component disposal with `IDisposable` and `IAsyncDisposable`* section describes how to implement disposal patterns in Razor components.
+
 ## JavaScript location
 
 Load JavaScript (JS) code using any of the following approaches:

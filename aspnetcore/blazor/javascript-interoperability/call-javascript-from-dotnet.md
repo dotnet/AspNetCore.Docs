@@ -1270,16 +1270,11 @@ At a minimum, always dispose objects created on the .NET side to avoid leaking .
 
 ## Document Object Model (DOM) cleanup tasks during component disposal
 
-Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
-
-* The component may have been removed from the DOM by the time your cleanup code executes in `Dispose{Async}`.
-* In a Blazor Server app, the Blazor renderer may have been disposed by the framework by the time your cleanup code executes in `Dispose{Async}`.
-
-The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
+For more information, see <xref:blazor/js-interop/index#document-object-model-dom-cleanup-tasks-during-component-disposal>.
 
 ## JavaScript interop calls without a circuit
 
-[!INCLUDE[](~/blazor/includes/js-interop/circuit-disconnection.md)]
+For more information, see <xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit>.
 
 ## Additional resources
 
