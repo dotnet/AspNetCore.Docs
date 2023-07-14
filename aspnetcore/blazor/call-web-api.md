@@ -325,6 +325,9 @@ Next, follow the guidance in the <xref:web-api/jsonpatch> article to add a PATCH
 
 Add a package reference for the [`Microsoft.AspNetCore.Mvc.NewtonsoftJson`](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) NuGet package to the web API app.
 
+> [!NOTE]
+> There's no need to add a package reference for the [`Microsoft.AspNetCore.JsonPatch`](https://www.nuget.org/packages/Microsoft.AspNetCore.JsonPatch) package to the app because the reference to the `Microsoft.AspNetCore.Mvc.NewtonsoftJson` package automatically transitively adds a package reference for `Microsoft.AspNetCore.JsonPatch`.
+
 Add a custom JSON PATCH input formatter to the web API app.
 
 `JSONPatchInputFormatter.cs`:
@@ -363,6 +366,12 @@ builder.Services.AddControllers(options =>
 {
     options.InputFormatters.Insert(0, JSONPatchInputFormatter.Get());
 }).AddNewtonsoftJson();
+```
+
+In `Controllers/TodoItemsController.cs`, add a `using` statement for the <xref:Microsoft.AspNetCore.JsonPatch?displayProperty=fullName> namespace:
+
+```csharp
+using Microsoft.AspNetCore.JsonPatch;
 ```
 
 In `Controllers/TodoItemsController.cs`, add the following `PatchTodoItem` action method:
