@@ -388,14 +388,9 @@ At a minimum, always dispose objects created on the .NET side to avoid leaking .
 
 ### Document Object Model (DOM) cleanup tasks during component disposal
 
-Don't execute JS interop code for DOM cleanup tasks during component disposal. Instead, use the [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern in JavaScript on the client for the following reasons:
+For more information, see <xref:blazor/js-interop/index#document-object-model-dom-cleanup-tasks-during-component-disposal>.
 
-* The component may have been removed from the DOM by the time your cleanup code executes in `Dispose{Async}`.
-* In a Blazor Server app, the Blazor renderer may have been disposed by the framework by the time your cleanup code executes in `Dispose{Async}`.
-
-The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObserver) pattern allows you to run a function when an element is removed from the DOM.
-
-For guidance on <xref:Microsoft.JSInterop.JSDisconnectedException> in Blazor Server apps when a circuit is disconnected, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-interop-calls-without-a-circuit> or <xref:blazor/js-interop/call-dotnet-from-javascript#javascript-interop-calls-without-a-circuit>. For general JavaScript interop error handling guidance, see the *JavaScript interop* section in <xref:blazor/fundamentals/handle-errors>. <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
+For guidance on <xref:Microsoft.JSInterop.JSDisconnectedException> in Blazor Server apps when a circuit is disconnected, see <xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit>. For general JavaScript interop error handling guidance, see the *JavaScript interop* section in <xref:blazor/fundamentals/handle-errors>. <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
 
 ### Synchronous `IDisposable`
 
