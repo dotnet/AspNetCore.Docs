@@ -143,17 +143,6 @@ var hubConnection = new HubConnectionBuilder()
     .Build();
 ```
 
-Seamless reconnect was introduced in [.NET 8 Preview 5](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-5/#signalr), is still being designed, and has the following limitations:
-
-* There isn’t any configuration yet.
-* Support is limited to .NET clients using WebSockets.
-
-Likely features to be added in future previews of SignalR seamless reconnect:
-
-* Options to disable the feature from the server side.
-* Configuration for how much buffering will occur, and timeout limits.
-* Support added for other transports and clients.
-
 For more information on the progress of the seamless reconnect feature for ASP.NET Core 8.0, see [dotnet/aspnetcore #46691](https://github.com/dotnet/aspnetcore/issues/46691).
 
 ## Minimal APIs
