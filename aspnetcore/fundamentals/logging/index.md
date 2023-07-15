@@ -268,13 +268,13 @@ In the preceding code, the first `Log{LOG LEVEL}` parameter,`MyLogEvents.GetItem
 Call the appropriate `Log{LOG LEVEL}` method to control how much log output is written to a particular storage medium. For example:
 
 * In production:
-  * Logging at the `Trace` or `Information` levels produces a high-volume of detailed log messages. To control costs and not exceed data storage limits, log `Trace` and `Information` level messages to a high-volume, low-cost data store. Consider limiting `Trace` and `Information` to specific categories.
+  * Logging at the `Trace` through `Information` levels produces a high-volume of detailed log messages. To control costs and not exceed data storage limits, log `Trace` through `Information` level messages to a high-volume, low-cost data store. Consider limiting `Trace` through `Information` to specific categories.
   * Logging at `Warning` through `Critical` levels should produce few log messages.
     * Costs and storage limits usually aren't a concern.
     * Few logs allow more flexibility in data store choices.
 * In development:
   * Set to `Warning`.
-  * Add `Trace` or `Information` messages when troubleshooting. To limit output, set `Trace` or `Information` only for the categories under investigation.
+  * Add `Trace` through `Information` messages when troubleshooting. To limit output, set `Trace` through `Information` only for the categories under investigation.
 
 ASP.NET Core writes logs for framework events. For example, consider the log output for:
 
