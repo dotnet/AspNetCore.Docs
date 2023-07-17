@@ -18,7 +18,7 @@ The `QuickGrid` component is a Razor component for quickly and efficiently displ
 
 <!-- UPDATE AT 8.0 Remove the prerelease content from the 8.0 content ONLY (Lines 21 and 83). The package will always be prerelease for 7.0 apps. -->
 
-Add a ***prerelease*** package reference [`Microsoft.AspNetCore.Components.QuickGrid`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid). If using the .NET CLI to add the package reference, include the `--prerelease` option when you execute the [`dotnet add package` command](/dotnet/core/tools/dotnet-add-package).
+Add a ***prerelease*** package reference for the [`Microsoft.AspNetCore.Components.QuickGrid`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid) package. If using the .NET CLI to add the package reference, include the `--prerelease` option when you execute the [`dotnet add package` command](/dotnet/core/tools/dotnet-add-package).
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -82,7 +82,7 @@ For an example that uses an <xref:System.Linq.IQueryable> with Entity Framework 
 
 To use Entity Framework (EF) Core as the data source:
 
-* Add a ***prerelease*** package reference to the app for the [`Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter) package. If using the .NET CLI to add the package reference, include the `--prerelease` option when you execute the [`dotnet add package` command](/dotnet/core/tools/dotnet-add-package).
+* Add a ***prerelease*** package reference for the [`Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter) package. If using the .NET CLI to add the package reference, include the `--prerelease` option when you execute the [`dotnet add package` command](/dotnet/core/tools/dotnet-add-package).
 
   [!INCLUDE[](~/includes/package-reference.md)]
 
@@ -100,12 +100,12 @@ The `QuickGrid` component is an experimental Razor component for quickly and eff
 
 To get started with `QuickGrid`:
 
-Add a ***prerelease*** package reference for [`Microsoft.AspNetCore.Components.QuickGrid`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid). If using the .NET CLI to add the package reference, include the `--prerelease` option when you execute the [`dotnet add package` command](/dotnet/core/tools/dotnet-add-package).
+Add a ***prerelease*** package reference for the [`Microsoft.AspNetCore.Components.QuickGrid`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.QuickGrid) package. If using the .NET CLI to add the package reference, include the `--prerelease` option when you execute the [`dotnet add package` command](/dotnet/core/tools/dotnet-add-package).
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
 > [!NOTE]
-> Because `Microsoft.AspNetCore.Components.QuickGrid` is an experimental package for .NET 7, the package remains in *prerelease* status forever for .NET 7 Blazor apps. The package reached production status for .NET 8. For more information, see an 8.0 or later version of this article.
+> Because the `Microsoft.AspNetCore.Components.QuickGrid` package is an experimental package for .NET 7, the package remains in *prerelease* status forever for .NET 7 Blazor apps. The package reached production status for .NET 8. For more information, see an 8.0 or later version of this article.
 
 Add the following component to render a grid.
 
