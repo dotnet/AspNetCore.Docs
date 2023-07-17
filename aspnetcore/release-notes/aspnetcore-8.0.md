@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/14/2023
+ms.date: 07/17/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -317,7 +317,7 @@ For more information, see <xref:fundamentals/servers/kestrel/endpoints> and <xre
 
 The Server Name Indication (SNI) host name is now exposed in the [HostName](https://source.dot.net/#Microsoft.AspNetCore.Connections.Abstractions/Features/ITlsHandshakeFeature.cs,29) property of the <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature> interface.
 
-SNI is part of the TLS handshake process. It allows clients to specify the host name they’re attempting to connect to when the server hosts multiple virtual hosts or domains. To present the correct security certificate during the handshake process, the server needs to know the host name selected for each request. 
+SNI is part of the TLS handshake process. It allows clients to specify the host name they're attempting to connect to when the server hosts multiple virtual hosts or domains. To present the correct security certificate during the handshake process, the server needs to know the host name selected for each request. 
 
 Normally the host name is only handled within the TLS stack and is used to select the matching certificate. But by exposing it, other components in an app can use that information for purposes such as diagnostics, rate limiting, routing, and billing.
 
@@ -519,6 +519,18 @@ Metrics have been added for ASP.NET Core hosting, Kestrel, and SignalR. For more
 `IExceptionHandler` implementations are registered by calling [`IServiceCollection.AddExceptionHandler<T>`](https://source.dot.net/#Microsoft.AspNetCore.Diagnostics/ExceptionHandler/ExceptionHandlerServiceCollectionExtensions.cs,e74aac24e3e2cbc9). Multiple implementations can be added, and they're called in the order registered. If an exception handler handles a request, it can return `true` to stop processing. If an exception isn't handled by any exception handler, then control falls back to the default behavior and options from the middleware.
 
 For more information, see [IExceptionHandler](xref:fundamentals/error-handling#iexceptionhandler).
+
+### Improved debugging experience
+
+[Debug customization attributes](/visualstudio/debugger/using-the-debuggerdisplay-attribute) have been added to types like `HttpContext`, `HttpRequest`, `HttpResponse`, and `ClaimsPrincipal`. The enhanced debugger displays for these types make finding important information easier in an IDE's debugger. The following screenshots show the difference that these attributes make in the debugger's display of `HttpContext`.
+
+.NET 7:
+
+:::image type="content" source="static/httpcontext-debugging-before.png" alt-text="Unhelpful debugger display in .NET 7.":::
+
+.NET 8:
+
+:::image type="content" source="static/httpcontext-debugging-after.png" alt-text="Helpful debugger display in .NET 8.":::
 
 <!--
 ## API controllers
