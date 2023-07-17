@@ -121,6 +121,38 @@ builder.On<string, string>("ReceiveMessage", (user, message) => ...
 await builder.StartAsync();
 ```
 
+### SignalR seamless reconnect
+
+SignalR seamless reconnect reduces the perceived downtime of clients that have a temporary disconnect in their network connection, such as when switching network connections or a short temporary loss in access.
+
+Seamless reconnect achieves this by:
+
+* Temporarily buffering data on the server and client.
+* Acknowledging messages received (ACK-ing) by both the server and client.
+* Recognizing when a connection is returning and replaying messages that may have been sent while the connection was down.
+
+To opt-in to seamless reconnect:
+
+* Update the .NET client code to enable the `UseAcks` option:
+
+  ```csharp
+  var hubConnection = new HubConnectionBuilder()
+      .WithUrl("<hub url>",
+               options =>
+               {
+                  options.UseAcks = true;
+               })
+      .Build();
+  ```
+
+* Update the server hub endpoint configuration to enable the `AllowAcks` option:
+
+  ```csharp
+  app.MapHub<AppHub>("/default", o => o.AllowAcks = true);
+  ```
+
+For more information on the progress of the seamless reconnect feature for ASP.NET Core 8.0, see [dotnet/aspnetcore #46691](https://github.com/dotnet/aspnetcore/issues/46691).
+
 ## Minimal APIs
 
 This section describes new features for minimal APIs. See also [the section on native AOT](#native-aot) for more information relevant to minimal APIs.
