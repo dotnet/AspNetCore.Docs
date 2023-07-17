@@ -41,6 +41,77 @@ In most cases, <xref:Microsoft.AspNetCore.Components.ComponentBase> conventions 
 
 For more information on the performance implications of the framework's conventions and how to optimize an app's component hierarchy for rendering, see <xref:blazor/performance#optimize-rendering-speed>.
 
+
+
+::: moniker range=">= aspnetcore-8.0"
+
+## Streaming rendering
+
+<!-- UPDATE AT 8.0 Cross-link 'rendering server-side components'
+     & will we be retaining the suppress-error attribute NOTE? -->
+
+Streaming rendering can improve the user experience for rendering server-side components that perform long-running asynchronous tasks to fully render.
+
+For example, consider a component that makes a database query or web API call for data. Normally, asynchronous tasks executed as part of rendering a component must complete before the rendered response is sent, which can delay loading the page. Streaming rendering initially renders the entire page with placeholder content while asynchronous operations execute. Once the operations are complete, the updated content is sent to the client on the same response connection and patched into the DOM. The benefit of this approach is that the main layout of the app renders as quickly as possible and the page is updated as soon as the content is ready.
+
+> [!NOTE]
+> The `suppress-error="BL9992"` attribute found in the `App` component (`App.razor`) avoids generating an error for using a script tag in the `App` component.
+
+To stream content updates when using server-side rendering (SSR), apply the `[StreamRendering(true)]` attribute to the component. The following example shows part of the `ShowData` component, which is provided by the Blazor Web App project template. The call to `Task.Delay(1000)` simulates retrieving weather data asynchronously. The component initially renders without waiting for the asynchronous delay to complete using placeholder content ("`Loading...`"). When the asynchronous delay completes, the weather data content is streamed to the response and patched into the weather forecast table.
+
+`Pages/ShowData.razor`:
+
+```razor
+@page "/showdata"
+@attribute [StreamRendering(true)]
+
+...
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        ...
+        <tbody>
+            @foreach (var forecast in forecasts)
+            {
+                <tr>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    ...
+
+    private WeatherForecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1000);
+
+        var startDate = DateOnly.FromDateTime(DateTime.Now);
+
+        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        {
+            Date = startDate.AddDays(index),
+            TemperatureC = Random.Shared.Next(-20, 55),
+            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+        }).ToArray();
+    }
+}
+```
+
+:::moniker-end
+
 ## Suppress UI refreshing (`ShouldRender`)
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is called each time a component is rendered. Override <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> to manage UI refreshing. If the implementation returns `true`, the UI is refreshed.
