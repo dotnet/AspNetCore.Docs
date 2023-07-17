@@ -41,8 +41,6 @@ In most cases, <xref:Microsoft.AspNetCore.Components.ComponentBase> conventions 
 
 For more information on the performance implications of the framework's conventions and how to optimize an app's component hierarchy for rendering, see <xref:blazor/performance#optimize-rendering-speed>.
 
-
-
 ::: moniker range=">= aspnetcore-8.0"
 
 ## Streaming rendering

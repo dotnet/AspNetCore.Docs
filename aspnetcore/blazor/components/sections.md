@@ -85,7 +85,4 @@ A section interacts with other Blazor features in the following ways:
 
 * [Cascading values](xref:blazor/components/cascading-values-and-parameters) flow into section content from where the content is defined by the `SectionContent` component.
 * Unhandled exceptions are handled by [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries) defined around a `SectionContent` component.
-* A Razor component configured for streaming rendering also configures section content provided a `SectionContent` component to use streaming rendering.
-
-<!-- UPDATE FOR 8.0 Add "streaming rendering" cross-link -->
-
+* A Razor component configured for [streaming rendering](xref:blazor/components/rendering#streaming-rendering) also configures section content provided a `SectionContent` component to use streaming rendering.
