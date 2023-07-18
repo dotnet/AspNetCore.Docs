@@ -199,7 +199,7 @@ This tutorial uses Postman to test the API.
 * Start Postman.
 * Select **Workspaces** > **Create Workspace** and then select **Next**.
 * Name the workspace *TodoApi* and select **Create**.
-* Select the setting gear icon > **Settings** (**General** tab) and disable **SSL certificate verification**.
+* Select the settings gear icon > **Settings** (**General** tab) and disable **SSL certificate verification**.
     > [!WARNING]
     > Re-enable SSL certificate verification after testing the sample app.
 
