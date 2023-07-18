@@ -55,7 +55,7 @@ For example, consider a component that makes a long-running database query or we
 > [!NOTE]
 > The `suppress-error="BL9992"` attribute found in the `App` component (`App.razor`) avoids generating an error for using a script tag in a Razor component.
 
-To stream content updates when using SSR, apply the `[StreamRendering(true)]` attribute to the component. The following example is based on the `ShowData` component, which is provided by the Blazor Web App project template. The call to `Task.Delay(1000)` simulates retrieving weather data asynchronously. The component initially renders placeholder content ("`Loading...`") without waiting for the asynchronous delay to complete. When the asynchronous delay completes and the weather data content is generated, the content is streamed to the response and patched into the weather forecast table.
+To stream content updates when using SSR, apply the `[StreamRendering(true)]` attribute to the component. The following example is based on the `ShowData` component in an app created from the [Blazor Web App project template](xref:blazor/project-structure#blazor-web-app). The call to `Task.Delay(1000)` simulates retrieving weather data asynchronously. The component initially renders placeholder content ("`Loading...`") without waiting for the asynchronous delay to complete. When the asynchronous delay completes and the weather data content is generated, the content is streamed to the response and patched into the weather forecast table.
 
 `Pages/ShowData.razor`:
 
