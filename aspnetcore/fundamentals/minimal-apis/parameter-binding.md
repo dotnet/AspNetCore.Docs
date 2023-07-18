@@ -12,3 +12,4 @@ uid: fundamentals/minimal-apis/parameter-binding
 
 [!INCLUDE [parameter-binding](~/fundamentals/minimal-apis/includes/parameter-binding8.md)]
 [!INCLUDE [parameter-binding](~/fundamentals/minimal-apis/includes/parameter-binding7.md)]
+<!-- Need to list where else this include is used -->
