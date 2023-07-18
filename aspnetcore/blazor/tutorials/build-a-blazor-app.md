@@ -127,7 +127,7 @@ Open the `Todo` component in any file editor and add an `@page` Razor directive 
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="build-a-blazor-app/8.0/Todo0.razor" highlight="1-3":::
+:::code language="razor" source="build-a-blazor-app/8.0/Todo0.razor" highlight="1-4":::
 
 :::moniker-end
 
