@@ -211,6 +211,12 @@ The following code shows:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/ComplexBinding/Program.cs":::
 
+In the preceding code:
+
+* The target parameter ***must*** be annotated with the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute to disambiguate from parameters that should be read from the JSON body.
+* Binding to record types is not currently supported, so complex types must be implemented as a class.
+* Recursive binding is not supported, so the `Todo` type does not contain any recursive references.
+
 <a name="bindar"></a>
 
 ### Bind arrays and string values from headers and query strings
