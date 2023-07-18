@@ -157,6 +157,14 @@ While a Blazor app is prerendering, certain actions, such as calling into JavaSc
 
 If event handlers are provided in developer code, unhook them on disposal. For more information, see the [Component disposal with `IDisposable` `IAsyncDisposable`](#component-disposal-with-idisposable-and-iasyncdisposable) section.
 
+::: moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE AT 8.0 Cross-link 'server-side rendering (SSR)' -->
+
+Use *streaming rendering* with server-side rendering (SSR) to improve the user experience for server-side components that perform long-running asynchronous tasks in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> to fully render. For more information, see <xref:blazor/components/rendering#streaming-rendering>.
+
+:::moniker-end
+
 ## After parameters are set (`OnParametersSet{Async}`)
 
 <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> are called:
