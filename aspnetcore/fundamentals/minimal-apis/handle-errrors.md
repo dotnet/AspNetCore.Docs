@@ -7,7 +7,6 @@ monikerRange: '>= aspnetcore-7.0'
 ms.date: 07/18/2023
 uid: fundamentals/minimal-apis/handle-errors
 ---
-# How to handle errors in Minimal API apps
 
 <!-- Can't add this until 8 is released and not-latest-version.md is updated to 8.0
 [!INCLUDE[](~/includes/not-latest-version.md)]
