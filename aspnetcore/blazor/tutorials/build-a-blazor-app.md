@@ -127,19 +127,19 @@ Open the `Todo` component in any file editor and add an `@page` Razor directive 
 
 :::moniker range=">= aspnetcore-8.0"
 
-:::code language="razor" source="build-a-blazor-app/8.0/Todo0.razor" highlight="1":::
+:::code language="razor" source="build-a-blazor-app/8.0/Todo0.razor" highlight="1-4":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-:::code language="razor" source="build-a-blazor-app/7.0/Todo0.razor" highlight="1":::
+:::code language="razor" source="build-a-blazor-app/7.0/Todo0.razor" highlight="1-3":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-:::code language="razor" source="build-a-blazor-app/6.0/Todo0.razor" highlight="1":::
+:::code language="razor" source="build-a-blazor-app/6.0/Todo0.razor" highlight="1-3":::
 
 :::moniker-end
 
@@ -418,10 +418,10 @@ The title text for each todo item can be made editable, and a checkbox can help 
 </ul>
 ```
 
-Update the `<h1>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`). The Razor expression in the following header evaluates each time Blazor rerenders the component.
+Update the `<h3>` header to show a count of the number of todo items that aren't complete (`IsDone` is `false`). The Razor expression in the following header evaluates each time Blazor rerenders the component.
 
 ```razor
-<h1>Todo (@todos.Count(todo => !todo.IsDone))</h1>
+<h3>Todo (@todos.Count(todo => !todo.IsDone))</h3>
 ```
 
 <!-- UPDATE FOR 8.0 Re-enable the completed component display after the 8.0 sample app is created
