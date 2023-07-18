@@ -11,6 +11,10 @@
 
 :::moniker-end
 
+:::moniker range="= aspnetcore-7.0"
+<!-- trying to get around moniker build warning -->
+:::moniker-end
+
 :::moniker range="> aspnetcore-7.0"
 
 > [!NOTE]
