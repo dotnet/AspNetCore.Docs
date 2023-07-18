@@ -10,9 +10,7 @@ uid: mvc/controllers/routing
 
 By [Ryan Nowak](https://github.com/rynowak), [Kirk Larkin](https://twitter.com/serpent5), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-:::moniker range="< aspnetcore-6.0"
-[!INCLUDE[](~/includes/not-latest-versionNM.md)]
-:::moniker-end
+[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-6.0"
 
