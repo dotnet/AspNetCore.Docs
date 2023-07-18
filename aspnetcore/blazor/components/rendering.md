@@ -46,16 +46,17 @@ For more information on the performance implications of the framework's conventi
 ## Streaming rendering
 
 <!-- UPDATE AT 8.0 Cross-link 'rendering server-side components'
+     & 'server-side rendering (SSR)'
      & will we be retaining the suppress-error attribute NOTE? -->
 
-Streaming rendering can improve the user experience for rendering server-side components that perform long-running asynchronous tasks to fully render.
+Use *streaming rendering* to improve the user experience for server-side components that perform long-running asynchronous tasks to fully render.
 
-For example, consider a component that makes a database query or web API call for data. Normally, asynchronous tasks executed as part of rendering a component must complete before the rendered response is sent, which can delay loading the page. Streaming rendering initially renders the entire page with placeholder content while asynchronous operations execute. Once the operations are complete, the updated content is sent to the client on the same response connection and patched into the DOM. The benefit of this approach is that the main layout of the app renders as quickly as possible and the page is updated as soon as the content is ready.
+For example, consider a component that makes a long-running database query or web API call to render data when the page loads. Normally, asynchronous tasks executed as part of rendering a server-side component must complete before the rendered response is sent, which can delay loading the page. Any significant delay in rendering the page harms the user experience. To improve the user experience, streaming rendering initially renders the entire page quickly with placeholder content while asynchronous operations execute. After the operations are complete, the updated content is sent to the client on the same response connection and patched into the DOM.
 
 > [!NOTE]
-> The `suppress-error="BL9992"` attribute found in the `App` component (`App.razor`) avoids generating an error for using a script tag in the `App` component.
+> The `suppress-error="BL9992"` attribute found in the `App` component (`App.razor`) avoids generating an error for using a script tag in a Razor component.
 
-To stream content updates when using server-side rendering (SSR), apply the `[StreamRendering(true)]` attribute to the component. The following example shows part of the `ShowData` component, which is provided by the Blazor Web App project template. The call to `Task.Delay(1000)` simulates retrieving weather data asynchronously. The component initially renders without waiting for the asynchronous delay to complete using placeholder content ("`Loading...`"). When the asynchronous delay completes, the weather data content is streamed to the response and patched into the weather forecast table.
+To stream content updates when using server-side rendering (SSR), apply the `[StreamRendering(true)]` attribute to the component. The following example shows part of the `ShowData` component, which is provided by the Blazor Web App project template. The call to `Task.Delay(1000)` simulates retrieving weather data asynchronously. The component initially renders placeholder content ("`Loading...`") without waiting for the asynchronous delay to complete. When the asynchronous delay completes and the weather data is generated, the weather data content is streamed to the response and patched into the weather forecast table.
 
 `Pages/ShowData.razor`:
 
@@ -96,14 +97,9 @@ else
     {
         await Task.Delay(1000);
 
-        var startDate = DateOnly.FromDateTime(DateTime.Now);
+        ...
 
-        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = startDate.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        }).ToArray();
+        forecasts = ...
     }
 }
 ```
