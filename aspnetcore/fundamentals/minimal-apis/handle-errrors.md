@@ -4,13 +4,12 @@ author: brunolins16
 description: Learn about error handling with minimal APIs in ASP.NET Core.
 ms.author: brolivei
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 5/2/2023
+ms.date: 07/18/2023
 uid: fundamentals/minimal-apis/handle-errors
 ---
+# How to handle errors in Minimal API apps
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
-
-# How to handle errors in Minimal API apps
 
 With contributions by [David Acker](https://github.com/david-acker)
 

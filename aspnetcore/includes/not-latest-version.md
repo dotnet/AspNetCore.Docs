@@ -11,7 +11,7 @@
 
 :::moniker-end
 
-:::moniker range="= aspnetcore-8.0"
+:::moniker range="> aspnetcore-7.0"
 
 > [!NOTE]
 > This information relates to a pre-release product that may be substantially modified before it's commercially released. Microsoft makes no warranties, express or implied, with respect to the information provided here.
