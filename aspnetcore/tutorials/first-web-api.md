@@ -3,8 +3,8 @@ title: "Tutorial: Create a web API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a web API with ASP.NET Core.
 ms.author: wpickett
-ms.custom: mvc, engagement-fy23
-ms.date: 05/17/2023
+ms.custom: mvc, engagement-fy24
+ms.date: 07/18/2023
 uid: tutorials/first-web-api
 ---
 
@@ -302,6 +302,7 @@ dotnet add package Microsoft.EntityFrameworkCore.Design -v 7.0.0
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 7.0.0
 dotnet tool uninstall -g dotnet-aspnet-codegenerator
 dotnet tool install -g dotnet-aspnet-codegenerator
+dotnet tool update -g dotnet-aspnet-codegenerator
 ```
 
 The preceding commands:
@@ -314,7 +315,7 @@ Build the project.
 Run the following command:
 
   ```dotnetcli
-  dotnet-aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
+  dotnet aspnet-codegenerator controller -name TodoItemsController -async -api -m TodoItem -dc TodoContext -outDir Controllers
   ```
 
 The preceding command scaffolds the `TodoItemsController`.
