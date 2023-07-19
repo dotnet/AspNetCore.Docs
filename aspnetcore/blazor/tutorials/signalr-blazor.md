@@ -15,7 +15,7 @@ zone_pivot_groups: blazor-hosting-models
 
 This tutorial provides a basic working experience for building a real-time app using SignalR with Blazor. This article is useful for developers who are already familiar with SignalR and are seeking to understand how to use SignalR in a Blazor app. For detailed guidance on the SignalR and Blazor frameworks, see the following reference documentation sets and the API documentation:
 
-* <signalr/introduction>
+* <xref:signalr/introduction>
 * <xref:blazor/index>
 * [.NET API browser](/dotnet/api/)
 
@@ -772,7 +772,6 @@ For detailed guidance on the SignalR and Blazor frameworks, see the following re
 
 * [Bearer token authentication with Identity Server, WebSockets, and Server-Sent Events](xref:signalr/authn-and-authz#bearer-token-authentication)
 * [Secure a SignalR hub in hosted Blazor WebAssembly apps](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
-* <xref:signalr/introduction>
 * [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#signalr-cross-origin-negotiation-for-authentication-blazor-webassembly)
 * [SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
 * <xref:blazor/debug>
