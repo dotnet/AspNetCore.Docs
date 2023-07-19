@@ -734,8 +734,6 @@ When set to `false` (default), whitespace in the rendered markup from Razor comp
 
 The `@section` directive is used in conjunction with [MVC and Razor Pages layouts](xref:mvc/views/layout) to enable views or pages to render content in different parts of the HTML page. For more information, see <xref:mvc/views/layout>.
 
-:::moniker range=">= aspnetcore-6.0"
-
 ### `@typeparam`
 
 *This scenario only applies to Razor components (`.razor`).*
@@ -745,6 +743,8 @@ The `@typeparam` directive declares a [generic type parameter](/dotnet/csharp/pr
 ```razor
 @typeparam TEntity
 ```
+
+:::moniker range=">= aspnetcore-6.0"
 
 Generic types with [`where`](/dotnet/csharp/language-reference/keywords/where-generic-type-constraint) type constraints are supported:
 
@@ -752,31 +752,12 @@ Generic types with [`where`](/dotnet/csharp/language-reference/keywords/where-ge
 @typeparam TEntity where TEntity : IEntity
 ```
 
-For more information, see the following articles:
-
-* <xref:blazor/components/generic-type-support>
-* <xref:blazor/components/templated-components>
-
 :::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-### `@typeparam`
-
-*This scenario only applies to Razor components (`.razor`).*
-
-The `@typeparam` directive declares a [generic type parameter](/dotnet/csharp/programming-guide/generics/generic-type-parameters) for the generated component class:
-
-```razor
-@typeparam TEntity
-```
 
 For more information, see the following articles:
 
 * <xref:blazor/components/generic-type-support>
 * <xref:blazor/components/templated-components>
-
-:::moniker-end
 
 ### `@using`
 
