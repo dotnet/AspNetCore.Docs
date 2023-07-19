@@ -139,16 +139,10 @@ The following revised `Expander` component:
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0"
+For more information on parent-child binding, see the following resources:
 
-For two-way parent-child binding examples, see <xref:blazor/components/data-binding#binding-with-component-parameters>. For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-For additional information, see [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599).
-
-:::moniker-end
+* [Binding with component parameters](xref:blazor/components/data-binding#binding-with-component-parameters)
+* [Bind across more than two components](xref:blazor/components/data-binding#bind-across-more-than-two-components)
+* [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599)
 
 For more information on change detection, including information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.

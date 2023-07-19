@@ -734,6 +734,50 @@ When set to `false` (default), whitespace in the rendered markup from Razor comp
 
 The `@section` directive is used in conjunction with [MVC and Razor Pages layouts](xref:mvc/views/layout) to enable views or pages to render content in different parts of the HTML page. For more information, see <xref:mvc/views/layout>.
 
+:::moniker range=">= aspnetcore-6.0"
+
+### `@typeparam`
+
+*This scenario only applies to Razor components (`.razor`).*
+
+The `@typeparam` directive declares a [generic type parameter](/dotnet/csharp/programming-guide/generics/generic-type-parameters) for the generated component class:
+
+```razor
+@typeparam TEntity
+```
+
+Generic types with [`where`](/dotnet/csharp/language-reference/keywords/where-generic-type-constraint) type constraints are supported:
+
+```razor
+@typeparam TEntity where TEntity : IEntity
+```
+
+For more information, see the following articles:
+
+* <xref:blazor/components/generic-type-support>
+* <xref:blazor/components/templated-components>
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+### `@typeparam`
+
+*This scenario only applies to Razor components (`.razor`).*
+
+The `@typeparam` directive declares a [generic type parameter](/dotnet/csharp/programming-guide/generics/generic-type-parameters) for the generated component class:
+
+```razor
+@typeparam TEntity
+```
+
+For more information, see the following articles:
+
+* <xref:blazor/components/generic-type-support>
+* <xref:blazor/components/templated-components>
+
+:::moniker-end
+
 ### `@using`
 
 The `@using` directive adds the C# `using` directive to the generated view:
@@ -750,7 +794,7 @@ Razor directive attributes are represented by implicit expressions with reserved
 
 *This scenario only applies to Razor components (`.razor`).*
 
-`@attributes` allows a component to render non-declared attributes. For more information, see <xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters>.
+`@attributes` allows a component to render non-declared attributes. For more information, see <xref:blazor/components/attribute-splatting>.
 
 ### `@bind`
 
@@ -786,57 +830,13 @@ Stops event propagation for the event.
 
 *This scenario only applies to Razor components (`.razor`).*
 
-The `@key` directive attribute causes the components diffing algorithm to guarantee preservation of elements or components based on the key's value. For more information, see <xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components>.
+The `@key` directive attribute causes the components diffing algorithm to guarantee preservation of elements or components based on the key's value. For more information, see <xref:blazor/components/key>.
 
 ### `@ref`
 
 *This scenario only applies to Razor components (`.razor`).*
 
 Component references (`@ref`) provide a way to reference a component instance so that you can issue commands to that instance. For more information, see <xref:blazor/components/index#capture-references-to-components>.
-
-:::moniker range=">= aspnetcore-6.0"
-
-### `@typeparam`
-
-*This scenario only applies to Razor components (`.razor`).*
-
-The `@typeparam` directive declares a [generic type parameter](/dotnet/csharp/programming-guide/generics/generic-type-parameters) for the generated component class:
-
-```razor
-@typeparam TEntity
-```
-
-Generic types with [`where`](/dotnet/csharp/language-reference/keywords/where-generic-type-constraint) type constraints are supported:
-
-```razor
-@typeparam TEntity where TEntity : IEntity
-```
-
-For more information, see the following articles:
-
-* <xref:blazor/components/index#generic-type-parameter-support>
-* <xref:blazor/components/templated-components>
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-### `@typeparam`
-
-*This scenario only applies to Razor components (`.razor`).*
-
-The `@typeparam` directive declares a [generic type parameter](/dotnet/csharp/programming-guide/generics/generic-type-parameters) for the generated component class:
-
-```razor
-@typeparam TEntity
-```
-
-For more information, see the following articles:
-
-* <xref:blazor/components/index#generic-type-parameter-support>
-* <xref:blazor/components/templated-components>
-
-:::moniker-end
 
 ## Templated Razor delegates
 
