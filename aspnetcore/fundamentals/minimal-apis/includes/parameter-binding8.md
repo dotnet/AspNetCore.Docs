@@ -197,7 +197,7 @@ The following code uploads files using inferred binding from the `IFormFile` typ
 
 For more information on XSRF attacks, see [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery).
 
-### Bind to collections and complex types
+### Bind to collections and complex types from forms
 
 Binding is supported for:
 
