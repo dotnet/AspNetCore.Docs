@@ -173,7 +173,6 @@ The following code shows the complete `Program.cs` file:
 * The request body isn't buffered by default. After the body is read, it's not rewindable. The stream can't be read multiple times.
 * The `Stream` and `PipeReader` aren't usable outside of the minimal action handler as the underlying buffers will be disposed or reused.
 
-
 #### File uploads using IFormFile and IFormFileCollection
 
 The following code uses <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> to upload file:
@@ -197,6 +196,26 @@ The following code uploads files using inferred binding from the `IFormFile` typ
 :::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/Iform/Program.cs" highlight="24,44":::
 
 For more information on XSRF attacks, see [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery).
+
+### Bind to collections and complex types from forms
+
+Binding is supported for:
+
+* Collections, for example [List](/dotnet/api/system.collections.generic.list-1) and [Dictionary](/dotnet/api/system.collections.generic.dictionary-2)
+* Complex types, for example, `Todo` or `Project`
+
+The following code shows:
+
+* A minimal endpoint that binds a multi-part form input to a complex object.
+* How to use the anti-forgery services to support the generation and validation of anti-forgery tokens.
+
+:::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples8/ComplexBinding/Program.cs":::
+
+In the preceding code:
+
+* The target parameter ***must*** be annotated with the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute to disambiguate from parameters that should be read from the JSON body.
+* Binding to record types is not currently supported, so complex types must be implemented as a class.
+* Recursive binding is not supported, so the `Todo` type does not contain any recursive references.
 
 <a name="bindar"></a>
 
