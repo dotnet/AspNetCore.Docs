@@ -754,7 +754,7 @@ Generic types with [`where`](/dotnet/csharp/language-reference/keywords/where-ge
 
 For more information, see the following articles:
 
-* <xref:blazor/components/index#generic-type-parameter-support>
+* <xref:blazor/components/generic-type-support>
 * <xref:blazor/components/templated-components>
 
 :::moniker-end
@@ -773,7 +773,7 @@ The `@typeparam` directive declares a [generic type parameter](/dotnet/csharp/pr
 
 For more information, see the following articles:
 
-* <xref:blazor/components/index#generic-type-parameter-support>
+* <xref:blazor/components/generic-type-support>
 * <xref:blazor/components/templated-components>
 
 :::moniker-end
@@ -794,7 +794,7 @@ Razor directive attributes are represented by implicit expressions with reserved
 
 *This scenario only applies to Razor components (`.razor`).*
 
-`@attributes` allows a component to render non-declared attributes. For more information, see <xref:blazor/components/index#attribute-splatting-and-arbitrary-parameters>.
+`@attributes` allows a component to render non-declared attributes. For more information, see <xref:blazor/components/attribute-splatting>.
 
 ### `@bind`
 
@@ -830,7 +830,7 @@ Stops event propagation for the event.
 
 *This scenario only applies to Razor components (`.razor`).*
 
-The `@key` directive attribute causes the components diffing algorithm to guarantee preservation of elements or components based on the key's value. For more information, see <xref:blazor/components/index#use-key-to-control-the-preservation-of-elements-and-components>.
+The `@key` directive attribute causes the components diffing algorithm to guarantee preservation of elements or components based on the key's value. For more information, see <xref:blazor/components/key>.
 
 ### `@ref`
 
