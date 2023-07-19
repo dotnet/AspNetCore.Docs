@@ -197,9 +197,9 @@ This tutorial uses Postman to test the API.
 * Install [Postman](https://www.getpostman.com/downloads/)
 * Start the web app.
 * Start Postman.
-* Disable **SSL certificate verification**
-  * For Postman for Windows, Select **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
-  * For Postman for macOS, Select **Postman** > **Preferences** (**General** tab), disable **SSL certificate verification**.
+* Select **Workspaces** > **Create Workspace** and then select **Next**.
+* Name the workspace *TodoApi* and select **Create**.
+* Select the settings gear icon > **Settings** (**General** tab) and disable **SSL certificate verification**.
     > [!WARNING]
     > Re-enable SSL certificate verification after testing the sample app.
 
@@ -215,7 +215,7 @@ Run the app. The browser displays a 404 error because there is no longer a `/` e
 
 Use the POST endpoint to add data to the app:
 
-* Create a new HTTP request.
+* In Postman, create a new HTTP request by selecting **New** > **HTTP**.
 * Set the HTTP method to `POST`.
 * Set the URI to `https://localhost:<port>/todoitems`. For example: `https://localhost:5001/todoitems`
 * Select the **Body** tab.
