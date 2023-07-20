@@ -42,6 +42,7 @@
       "ms.technology": {
         "**/client-side/**/**.md": "aspnetcore-clientside",
         "**/blazor/**/**.md": "aspnetcore-blazor",
+        "**/blazor/hybrid/**/**.md": "aspnetcore-grpc",
         "**/data/**/**.md": "aspnetcore-data",
         "**/fundamentals/**/**.md": "aspnetcore-fundamentals",
         "**/getting-started/**/**.md": "aspnetcore-getstarted",
