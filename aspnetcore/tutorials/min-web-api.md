@@ -3,8 +3,8 @@ title: "Tutorial: Create a minimal API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a minimal API with ASP.NET Core.
 ms.author: wpickett
-ms.date: 5/15/2023
-ms.custom: engagement-fy23
+ms.date: 07/18/2023
+ms.custom: engagement-fy24
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
 ---
@@ -193,7 +193,7 @@ In the project folder, create a file named `Todo.cs` with the following code:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todoGroup/Todo.cs":::
 
-The preceding code creates the model for this app. A *model* is a class that represents data that the app manages. 
+The preceding code creates the model for this app. A *model* is a class that represents data that the app manages.
 
 Create a file named `TodoDb.cs` with the following code:
 
@@ -226,9 +226,9 @@ This tutorial uses Postman to test the API.
 * Install [Postman](https://www.getpostman.com/downloads/)
 * Start the web app.
 * Start Postman.
-* Disable **SSL certificate verification**
-  * For Postman for Windows, Select **File** > **Settings** (**General** tab), disable **SSL certificate verification**.
-  * For Postman for macOS, Select **Postman** > **Preferences** (**General** tab), disable **SSL certificate verification**.
+* Select **Workspaces** > **Create Workspace** and then select **Next**.
+* Name the workspace *TodoApi* and select **Create**.
+* Select the settings gear icon > **Settings** (**General** tab) and disable **SSL certificate verification**.
     > [!WARNING]
     > Re-enable SSL certificate verification after testing the sample app.
 
@@ -310,7 +310,7 @@ Use the POST endpoint to add data to the app.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-* Create a new HTTP request.
+* In Postman, create a new HTTP request by selecting **New** > **HTTP**.
 * Set the HTTP method to `POST`.
 * Set the URI to `https://localhost:<port>/todoitems`. For example: `https://localhost:5001/todoitems`
 * Select the **Body** tab.

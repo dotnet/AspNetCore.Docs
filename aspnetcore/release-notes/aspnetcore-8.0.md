@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/17/2023
+ms.date: 07/19/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -538,15 +538,27 @@ For more information, see [IExceptionHandler](xref:fundamentals/error-handling#i
 
 ### Improved debugging experience
 
-[Debug customization attributes](/visualstudio/debugger/using-the-debuggerdisplay-attribute) have been added to types like `HttpContext`, `HttpRequest`, `HttpResponse`, and `ClaimsPrincipal`. The enhanced debugger displays for these types make finding important information easier in an IDE's debugger. The following screenshots show the difference that these attributes make in the debugger's display of `HttpContext`.
+[Debug customization attributes](/visualstudio/debugger/using-the-debuggerdisplay-attribute) have been added to types like `HttpContext`, `HttpRequest`, `HttpResponse`, `ClaimsPrincipal`, and `WebApplication`. The enhanced debugger displays for these types make finding important information easier in an IDE's debugger. The following screenshots show the difference that these attributes make in the debugger's display of `HttpContext`.
 
 .NET 7:
 
-:::image type="content" source="static/httpcontext-debugging-before.png" alt-text="Unhelpful debugger display in .NET 7.":::
+:::image type="content" source="~/release-notes/static/httpcontext-debugging-before.png" alt-text="Unhelpful debugger display of HttpContext type in .NET 7.":::
 
 .NET 8:
 
-:::image type="content" source="static/httpcontext-debugging-after.png" alt-text="Helpful debugger display in .NET 8.":::
+:::image type="content" source="~/release-notes/static/httpcontext-debugging-after.png" alt-text="Helpful debugger display of HttpContext type in .NET 8.":::
+
+The debugger display for `WebApplication` highlights important information such as configured endpoints, middleware, and `IConfiguration` values.
+
+.NET 7:
+
+:::image type="content" source="~/release-notes/static/webapplication-debugging-before.png" alt-text="Unhelpful debugger display of WebApplication type in .NET 7.":::
+
+.NET 8:
+
+:::image type="content" source="~/release-notes/static/webapplication-debugging-after.png" alt-text="Helpful debugger display of WebApplication type in .NET 8.":::
+
+For more information about debugging improvements in .NET 8, see GitHub issue [dotnet/aspnetcore 48205](https://github.com/dotnet/aspnetcore/issues/48205). 
 
 <!--
 ## API controllers
