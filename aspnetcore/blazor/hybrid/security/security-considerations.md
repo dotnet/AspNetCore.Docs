@@ -79,7 +79,7 @@ The Android Web View is distributed and updated via the [Google Play Store](http
 
 When using the Android Emulator:
 
-* Use an emulated device with Google Play Services preinstalled.
+* Use an emulated device with **Google Play Services** preinstalled. Emulated devices without Google Play Services preinstalled are ***not*** supported.
 * Install or update Google Chrome from the Google Play Store.
 
 ### iOS/:::no-loc text="Mac Catalyst":::
