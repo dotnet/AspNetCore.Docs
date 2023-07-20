@@ -542,21 +542,21 @@ For more information, see [IExceptionHandler](xref:fundamentals/error-handling#i
 
 .NET 7:
 
-:::image type="content" source="static/httpcontext-debugging-before.png" alt-text="Unhelpful debugger display of HttpContext type in .NET 7.":::
+:::image type="content" source="~/release-notes/static/httpcontext-debugging-before.png" alt-text="Unhelpful debugger display of HttpContext type in .NET 7.":::
 
 .NET 8:
 
-:::image type="content" source="static/httpcontext-debugging-after.png" alt-text="Helpful debugger display of HttpContext type in .NET 8.":::
+:::image type="content" source="~/release-notes/static/httpcontext-debugging-after.png" alt-text="Helpful debugger display of HttpContext type in .NET 8.":::
 
 `WebApplication` highlights important information such as configured endpoints, middleware, and `IConfiguration` values.
 
 .NET 7:
 
-:::image type="content" source="static/webapplication-debugging-before.png" alt-text="Unhelpful debugger display of WebApplication type in .NET 7.":::
+:::image type="content" source="~/release-notes/static/webapplication-debugging-before.png" alt-text="Unhelpful debugger display of WebApplication type in .NET 7.":::
 
 .NET 8:
 
-:::image type="content" source="static/webapplication-debugging-after.png" alt-text="Helpful debugger display of WebApplication type in .NET 8.":::
+:::image type="content" source="~/release-notes/static/webapplication-debugging-after.png" alt-text="Helpful debugger display of WebApplication type in .NET 8.":::
 
 For more information about debugging improvements in .NET 8, see GitHub issue [dotnet/aspnetcore 48205](https://github.com/dotnet/aspnetcore/issues/48205). 
 
