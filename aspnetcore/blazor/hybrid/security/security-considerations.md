@@ -77,6 +77,11 @@ Use one of the following approaches to keep the Web View current in deployed app
 
 The Android Web View is distributed and updated via the [Google Play Store](https://play.google.com/store/apps/details?id=com.google.android.webview). Check the Web View version by reading the [`User-Agent`](https://developer.mozilla.org/docs/Web/HTTP/Headers/User-Agent) string. Read the Web View's [`navigator.userAgent`](https://developer.mozilla.org/docs/Web/API/Navigator/userAgent) property using [JavaScript interop](xref:blazor/js-interop/index) and optionally cache the value using a singleton service if the user agent string is required outside of a Razor component context.
 
+When using the Android Emulator:
+
+* Use an emulated device with **Google Play Services** preinstalled. Emulated devices without Google Play Services preinstalled are ***not*** supported.
+* Install Google Chrome from the Google Play Store. If Google Chrome is already installed, [update Chrome from the Google Play Store](https://support.google.com/chrome/answer/95414?hl=en&co=GENIE.Platform%3DAndroid). If an emulated device doesn't have the latest version of Chrome installed, it might not have the latest version of the Android Web View installed.
+
 ### iOS/:::no-loc text="Mac Catalyst":::
 
 iOS and :::no-loc text="Mac Catalyst"::: both use [`WKWebView`](https://developer.apple.com/documentation/webkit/wkwebview), a Safari-based control, which is updated by the operating system. Similar to the [Android](#android) case, determine the Web View version by reading the Web View's [`User-Agent`](https://developer.mozilla.org/docs/Web/HTTP/Headers/User-Agent) string.
