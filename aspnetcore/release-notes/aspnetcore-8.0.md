@@ -333,7 +333,7 @@ For more information, see <xref:fundamentals/servers/kestrel/endpoints> and <xre
 
 The Server Name Indication (SNI) host name is now exposed in the [HostName](https://source.dot.net/#Microsoft.AspNetCore.Connections.Abstractions/Features/ITlsHandshakeFeature.cs,29) property of the <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature> interface.
 
-SNI is part of the TLS handshake process. It allows clients to specify the host name they're attempting to connect to when the server hosts multiple virtual hosts or domains. To present the correct security certificate during the handshake process, the server needs to know the host name selected for each request. 
+SNI is part of the [TLS handshake](https://auth0.com/blog/the-tls-handshake-explained/) process. It allows clients to specify the host name they're attempting to connect to when the server hosts multiple virtual hosts or domains. To present the correct security certificate during the handshake process, the server needs to know the host name selected for each request. 
 
 Normally the host name is only handled within the TLS stack and is used to select the matching certificate. But by exposing it, other components in an app can use that information for purposes such as diagnostics, rate limiting, routing, and billing.
 
