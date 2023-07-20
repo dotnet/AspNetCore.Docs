@@ -548,7 +548,7 @@ For more information, see [IExceptionHandler](xref:fundamentals/error-handling#i
 
 :::image type="content" source="~/release-notes/static/httpcontext-debugging-after.png" alt-text="Helpful debugger display of HttpContext type in .NET 8.":::
 
-`WebApplication` highlights important information such as configured endpoints, middleware, and `IConfiguration` values.
+The debugger display for `WebApplication` highlights important information such as configured endpoints, middleware, and `IConfiguration` values.
 
 .NET 7:
 
