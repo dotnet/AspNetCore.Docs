@@ -80,7 +80,7 @@ The Android Web View is distributed and updated via the [Google Play Store](http
 When using the Android Emulator:
 
 * Use an emulated device with **Google Play Services** preinstalled. Emulated devices without Google Play Services preinstalled are ***not*** supported.
-* Install or update Google Chrome from the Google Play Store. An emulated device might not have the latest version of Chrome installed, which might result in the device not having the latest version of the Android Web View installed.
+* Install Google Chrome from the Google Play Store. If Google Chrome is already installed, [update Chrome from the Google Play Store](https://support.google.com/chrome/answer/95414?hl=en&co=GENIE.Platform%3DAndroid). If an emulated device doesn't have the latest version of Chrome installed, it might not have the latest version of the Android Web View installed.
 
 ### iOS/:::no-loc text="Mac Catalyst":::
 
