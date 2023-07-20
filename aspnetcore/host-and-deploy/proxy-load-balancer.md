@@ -21,6 +21,8 @@ In the recommended configuration for ASP.NET Core, the app is hosted using <xref
 
 This information may be important in request processing, for example in redirects, authentication, link generation, policy evaluation, and client geolocation.
 
+Apps intended to run on web farm should read <xref:host-and-deploy/web-farm>.
+
 ## Forwarded headers
 
 By convention, proxies forward information in HTTP headers.
