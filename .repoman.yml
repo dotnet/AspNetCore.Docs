@@ -87,6 +87,16 @@ issues:
         - check:
             - type: metadata-comment
               name: content source
+              value: "(?i).*blazor\/hybrid.*"
+          pass:
+            - labels-remove: ["Blazor"]
+            - labels-add: ["Blazor Hybrid"]
+            - projects-remove: [35]
+            - projects-add: [106]
+            - assignee-add: ["BethMassi"]
+        - check:
+            - type: metadata-comment
+              name: content source
               value: "(?i).*grpc.*"
           pass:
             - labels-add: ["gRPC"]
