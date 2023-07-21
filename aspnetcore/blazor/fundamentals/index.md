@@ -66,6 +66,15 @@ The preceding `Counter` component:
 * Renders the current count with `@currentCount`. `currentCount` is an integer variable defined in the C# code of the `@code` block.
 * Displays a button to trigger the `IncrementCount` method, which is also found in the `@code` block and increases the value of the `currentCount` variable.
 
+## Document Object Model (DOM)
+
+In Blazor documentation, references to the *Document Object Model* use the abbreviation *DOM*.
+
+For more information, see the following resources:
+
+* [Introduction to the DOM (MDN documentation)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)
+* [Level 1 Document Object Model Specification (W3C)](https://www.w3.org/TR/WD-DOM/)
+
 ## Sample apps
 
 Documentation sample apps are available for inspection and download:

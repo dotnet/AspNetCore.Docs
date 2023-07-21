@@ -16,7 +16,7 @@ This article explains Blazor's event handling features, including event argument
 
 Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}="{DELEGATE}"`](xref:mvc/views/razor#onevent) Razor syntax:
 
-* The `{DOM EVENT}` placeholder is a [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events) (for example, `click`).
+* The `{DOM EVENT}` placeholder is a [DOM event](https://developer.mozilla.org/docs/Web/Events) (for example, `click`).
 * The `{DELEGATE}` placeholder is the C# delegate event handler.
 
 For event handling:
@@ -119,7 +119,7 @@ For events that support an event argument type, specifying an event parameter in
 
 Supported <xref:System.EventArgs> are shown in the following table.
 
-| Event            | Class  | [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) notes |
+| Event            | Class  | DOM notes |
 | ---------------- | ------ | --- |
 | Clipboard        | <xref:Microsoft.AspNetCore.Components.Web.ClipboardEventArgs> | |
 | Drag             | <xref:Microsoft.AspNetCore.Components.Web.DragEventArgs> | <xref:Microsoft.AspNetCore.Components.Web.DataTransfer> and <xref:Microsoft.AspNetCore.Components.Web.DataTransferItem> hold dragged item data.<br><br>Implement drag and drop in Blazor apps using [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) with [HTML Drag and Drop API](https://developer.mozilla.org/docs/Web/API/HTML_Drag_and_Drop_API). |
@@ -493,7 +493,7 @@ Prefer the strongly typed <xref:Microsoft.AspNetCore.Components.EventCallback%60
 
 ## Prevent default actions
 
-Use the [`@on{DOM EVENT}:preventDefault`](xref:mvc/views/razor#oneventpreventdefault) directive attribute to prevent the default action for an event, where the `{DOM EVENT}` placeholder is a [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events).
+Use the [`@on{DOM EVENT}:preventDefault`](xref:mvc/views/razor#oneventpreventdefault) directive attribute to prevent the default action for an event, where the `{DOM EVENT}` placeholder is a [DOM event](https://developer.mozilla.org/docs/Web/Events).
 
 When a key is selected on an input device and the element focus is on a text box, a browser normally displays the key's character in the text box. In the following example, the default behavior is prevented by specifying the `@onkeydown:preventDefault` directive attribute. When the focus is on the `<input>` element, the counter increments with the key sequence <kbd>Shift</kbd>+<kbd>+</kbd>. The `+` character isn't assigned to the `<input>` element's value. For more information on `keydown`, see [`MDN Web Docs: Document: keydown` event](https://developer.mozilla.org/docs/Web/API/Document/keydown_event).
 
@@ -539,7 +539,7 @@ An expression is also a permitted value of the attribute. In the following examp
 
 ## Stop event propagation
 
-Use the [`@on{DOM EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation within the Blazor scope. `{DOM EVENT}` is a placeholder for a [Document Object Model (DOM) event](https://developer.mozilla.org/docs/Web/Events).
+Use the [`@on{DOM EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation within the Blazor scope. `{DOM EVENT}` is a placeholder for a [DOM event](https://developer.mozilla.org/docs/Web/Events).
 
 The `stopPropagation` directive attribute's effect is limited to the Blazor scope and doesn't extend to the HTML DOM. Events must propagate to the HTML DOM root before Blazor can act upon them. For a mechanism to prevent HTML DOM event propagation, consider the following approach:
 
