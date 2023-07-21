@@ -14,7 +14,7 @@ For the following example, the `setElementText1` function is placed inside the `
 ```
 
 > [!WARNING]
-> **The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only.** Directly modifying the DOM with JS isn't recommended in most scenarios because JS can interfere with Blazor's change tracking. For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
+> **The preceding example modifies the DOM directly for demonstration purposes only.** Directly modifying the DOM with JS isn't recommended in most scenarios because JS can interfere with Blazor's change tracking. For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
 
 The [`OnAfterRender{Async}` lifecycle event](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) isn't called during the prerendering process on the server. Override the `OnAfterRender{Async}` method to delay JS interop calls until after the component is rendered and interactive on the client after prerendering.
 
@@ -48,7 +48,7 @@ For the following example, the `setElementText2` function is placed inside the `
 ```
 
 > [!WARNING]
-> **The preceding example modifies the Document Object Model (DOM) directly for demonstration purposes only.** Directly modifying the DOM with JS isn't recommended in most scenarios because JS can interfere with Blazor's change tracking. For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
+> **The preceding example modifies the DOM directly for demonstration purposes only.** Directly modifying the DOM with JS isn't recommended in most scenarios because JS can interfere with Blazor's change tracking. For more information, see <xref:blazor/js-interop/index#interaction-with-the-document-object-model-dom>.
 
 Where <xref:Microsoft.JSInterop.JSRuntime.InvokeAsync%2A?displayProperty=nameWithType> is called, the <xref:Microsoft.AspNetCore.Components.ElementReference> is only used in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> and not in any earlier lifecycle method because there's no JS element until after the component is rendered.
 

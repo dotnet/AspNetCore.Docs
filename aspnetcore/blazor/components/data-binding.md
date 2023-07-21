@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Blazor data binding
 author: guardrex
-description: Learn about data binding features for Razor components and Document Object Model (DOM) elements in Blazor apps.
+description: Learn about data binding features for Razor components and DOM elements in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -12,7 +12,7 @@ uid: blazor/components/data-binding
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains data binding features for Razor components and Document Object Model (DOM) elements in Blazor apps.
+This article explains data binding features for Razor components and DOM elements in Blazor apps.
 
 Razor components provide data binding features with the [`@bind`](xref:mvc/views/razor#bind) Razor directive attribute with a field, property, or Razor expression value.
 
@@ -81,7 +81,7 @@ As a demonstration of how data binding composes in HTML, the following example b
 
 When the `BindTheory` component is rendered, the `value` of the HTML demonstration `<input>` element comes from the `InputValue` property. When the user enters a value in the text box and changes element focus, the `onchange` event is fired and the `InputValue` property is set to the changed value. In reality, code execution is more complex because [`@bind`](xref:mvc/views/razor#bind) handles cases where type conversions are performed. In general, [`@bind`](xref:mvc/views/razor#bind) associates the current value of an expression with the `value` attribute of the `<input>` and handles changes using the registered handler.
 
-Bind a property or field on other [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) events by including an `@bind:event="{EVENT}"` attribute with a DOM event for the `{EVENT}` placeholder. The following example binds the `InputValue` property to the `<input>` element's value when the element's `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) is triggered. Unlike the `onchange` event ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)), which fires when the element loses focus, `oninput` ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) fires when the value of the text box changes.
+Bind a property or field on other DOM events by including an `@bind:event="{EVENT}"` attribute with a DOM event for the `{EVENT}` placeholder. The following example binds the `InputValue` property to the `<input>` element's value when the element's `oninput` event ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) is triggered. Unlike the `onchange` event ([`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event)), which fires when the element loses focus, `oninput` ([`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event)) fires when the value of the text box changes.
 
 `Page/BindEvent.razor`:
 
@@ -267,7 +267,7 @@ Two-way data binding isn't possible to implement with an event handler. Use `@bi
 
 The `OnInput` event handler updates the value of `inputValue` to `Long!` after a fourth character is provided. However, the user can continue adding characters to the element value in the UI. The value of `inputValue` isn't bound back to the element's value with each keystroke. The preceding example is only capable of one-way data binding.
 
-The reason for this behavior is that Blazor isn't aware that your code intends to modify the value of `inputValue` in the event handler. Blazor doesn't try to force [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) element values and .NET variable values to match unless they're bound with `@bind` syntax. In earlier versions of Blazor, two-way data binding is implemented by [binding the element to a property and controlling the property's value with its setter](#binding-to-a-property-with-c-get-and-set-accessors). In ASP.NET Core 7.0 or later, `@bind:get`/`@bind:set` modifier syntax is used to implement two-way data binding, as the next example demonstrates.
+The reason for this behavior is that Blazor isn't aware that your code intends to modify the value of `inputValue` in the event handler. Blazor doesn't try to force DOM element values and .NET variable values to match unless they're bound with `@bind` syntax. In earlier versions of Blazor, two-way data binding is implemented by [binding the element to a property and controlling the property's value with its setter](#binding-to-a-property-with-c-get-and-set-accessors). In ASP.NET Core 7.0 or later, `@bind:get`/`@bind:set` modifier syntax is used to implement two-way data binding, as the next example demonstrates.
 
 <span aria-hidden="true">✔️</span> Consider the following ***correct approach*** using `@bind:get`/`@bind:set` for two-way data binding:
 

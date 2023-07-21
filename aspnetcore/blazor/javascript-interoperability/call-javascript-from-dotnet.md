@@ -459,7 +459,7 @@ The following example shows capturing a reference to the `username` `<input>` el
 ```
 
 > [!WARNING]
-> Only use an element reference to mutate the contents of an empty element that doesn't interact with Blazor. This scenario is useful when a third-party API supplies content to the element. Because Blazor doesn't interact with the element, there's no possibility of a conflict between Blazor's representation of the element and the Document Object Model (DOM).
+> Only use an element reference to mutate the contents of an empty element that doesn't interact with Blazor. This scenario is useful when a third-party API supplies content to the element. Because Blazor doesn't interact with the element, there's no possibility of a conflict between Blazor's representation of the element and the DOM.
 >
 > In the following example, it's *dangerous* to mutate the contents of the unordered list (`ul`) using `MyList` via JS interop because Blazor interacts with the DOM to populate this element's list items (`<li>`) from the `Todos` object:
 >
@@ -810,7 +810,7 @@ Objects that contain circular references can't be serialized on the client for e
 
 ## JavaScript libraries that render UI
 
-Sometimes you may wish to use JavaScript (JS) libraries that produce visible user interface elements within the browser Document Object Model (DOM). At first glance, this might seem difficult because Blazor's diffing system relies on having control over the tree of DOM elements and runs into errors if some external code mutates the DOM tree and invalidates its mechanism for applying diffs. This isn't a Blazor-specific limitation. The same challenge occurs with any diff-based UI framework.
+Sometimes you may wish to use JavaScript (JS) libraries that produce visible user interface elements within the browser DOM. At first glance, this might seem difficult because Blazor's diffing system relies on having control over the tree of DOM elements and runs into errors if some external code mutates the DOM tree and invalidates its mechanism for applying diffs. This isn't a Blazor-specific limitation. The same challenge occurs with any diff-based UI framework.
 
 Fortunately, it's straightforward to embed externally-generated UI within a Razor component UI reliably. The recommended technique is to have the component's code (`.razor` file) produce an empty element. As far as Blazor's diffing system is concerned, the element is always empty, so the renderer does not recurse into the element and instead leaves its contents alone. This makes it safe to populate the element with arbitrary externally-managed content.
 
@@ -1268,9 +1268,9 @@ JS interop object references are implemented as a map keyed by an identifier on 
 
 At a minimum, always dispose objects created on the .NET side to avoid leaking .NET managed memory.
 
-## Document Object Model (DOM) cleanup tasks during component disposal
+## DOM cleanup tasks during component disposal
 
-For more information, see <xref:blazor/js-interop/index#document-object-model-dom-cleanup-tasks-during-component-disposal>.
+For more information, see <xref:blazor/js-interop/index#dom-cleanup-tasks-during-component-disposal>.
 
 ## JavaScript interop calls without a circuit
 

@@ -107,7 +107,7 @@ The dialog is rendered when the `Index` component is accessed in a browser. When
 
 ![Dialog component rendered in the browser nested inside of the Index component. The browser developer tools console shows the message written by C# code when the user selects the Yes! button in the UI.](~/blazor/index/_static/dialog.png)
 
-Components render into an in-memory representation of the browser's [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) called a *render tree*, which is used to update the UI in a flexible and efficient way.
+Components render into an in-memory representation of the browser's DOM called a *render tree*, which is used to update the UI in a flexible and efficient way.
 
 ## Blazor Server
 
@@ -127,7 +127,7 @@ Blazor Server apps render content differently than traditional models for render
 
 When a Razor Page or view is rendered, every line of Razor code emits HTML in text form. After rendering, the server disposes of the page or view instance, including any state that was produced. When another request for the page occurs, the entire page is rerendered to HTML again and sent to the client.
 
-Blazor Server produces a graph of components to display similar to an HTML or XML [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction). The component graph includes state held in properties and fields. Blazor evaluates the component graph to produce a binary representation of the markup, which is sent to the client for rendering. After the connection is made between the client and the server, the component's static prerendered elements are replaced with interactive elements. Prerendering the content on the server makes the app feel more responsive on the client.
+Blazor Server produces a graph of components to display similar to an HTML or XML DOM. The component graph includes state held in properties and fields. Blazor evaluates the component graph to produce a binary representation of the markup, which is sent to the client for rendering. After the connection is made between the client and the server, the component's static prerendered elements are replaced with interactive elements. Prerendering the content on the server makes the app feel more responsive on the client.
 
 After the components are interactive on the client, UI updates are triggered by user interaction and app events. When an update occurs, the component graph is rerendered, and a UI *diff* (difference) is calculated. This diff is the smallest set of DOM edits required to update the UI on the client. The diff is sent to the client in a binary format and applied by the browser.
 
@@ -147,7 +147,7 @@ When a Blazor WebAssembly app is built and run:
 
 * C# code files and Razor files are compiled into .NET assemblies.
 * The assemblies and the [.NET runtime](/dotnet/framework/get-started/overview) are downloaded to the browser.
-* Blazor WebAssembly bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor WebAssembly runtime uses JavaScript interop to handle [Document Object Model (DOM)](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) manipulation and browser API calls.
+* Blazor WebAssembly bootstraps the .NET runtime and configures the runtime to load the assemblies for the app. The Blazor WebAssembly runtime uses JavaScript interop to handle DOM manipulation and browser API calls.
 
 The size of the published app, its *payload size*, is a critical performance factor for an app's usability. A large app takes a relatively long time to download to a browser, which diminishes the user experience. Blazor WebAssembly optimizes payload size to reduce download times:
 
