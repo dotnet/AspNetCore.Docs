@@ -294,6 +294,16 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 
 For more information about this feature and how to use .NET and gRPC to create an IPC server and client, see <xref:grpc/interprocess>.
 
+### Performance improvements to named pipes transport
+
+We’ve improved named pipe connection performance. Kestrel’s named pipe transport now accepts connections in parallel, and reuses <xref:System.IO.Pipes.NamedPipeServerStream> instances.
+
+Time to create 100,000 connections:
+
+* Before : 5.916 seconds
+* After &nbsp; : 2.374 seconds
+
+
 ### HTTP/3 enabled by default in Kestrel
 
 HTTP/3 is a new internet technology that was standardized in June 2022. HTTP/3 offers several advantages over older HTTP protocols, including:
