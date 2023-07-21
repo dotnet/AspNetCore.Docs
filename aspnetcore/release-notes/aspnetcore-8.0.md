@@ -301,7 +301,7 @@ We’ve improved named pipe connection performance. Kestrel’s named pipe trans
 Time to create 100,000 connections:
 
 * Before : 5.916 seconds
-* After &  : 2.374 seconds
+* After     : 2.374 seconds
 
 
 ### HTTP/3 enabled by default in Kestrel
