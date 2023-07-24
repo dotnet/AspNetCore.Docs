@@ -574,7 +574,7 @@ For more information about debugging improvements in .NET 8, see GitHub issue [d
 
 The new <xref:System.Net.IPNetwork.Parse%2A> and <xref:System.Net.IPNetwork.TryParse%2A> methods on <xref:System.Net.IPNetwork> add support for creating an `IPNetwork` by using an input string in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) or "slash notation".
 
-Here are IPv4 examples
+Here are IPv4 examples:
 
 ```csharp
 // Using Parse
