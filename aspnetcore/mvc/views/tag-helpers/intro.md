@@ -275,7 +275,7 @@ The Visual Studio editor helps you write **all** of the markup in the Tag Helper
 
 * ASP.NET Web Server Controls have a non-trivial lifecycle that can make developing and debugging difficult.
 
-* Web Server controls allow you to add functionality to the client Document Object Model (DOM) elements by using a client control. Tag Helpers have no DOM.
+* Web Server controls allow you to add functionality to the client DOM elements by using a client control. Tag Helpers have no DOM.
 
 * Web Server controls include automatic browser detection. Tag Helpers have no knowledge of the browser.
 
