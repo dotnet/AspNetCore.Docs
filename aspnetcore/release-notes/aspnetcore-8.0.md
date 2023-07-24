@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 07/19/2023
+ms.date: 07/24/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -569,6 +569,36 @@ The debugger display for `WebApplication` highlights important information such 
 :::image type="content" source="~/release-notes/static/webapplication-debugging-after.png" alt-text="Helpful debugger display of WebApplication type in .NET 8.":::
 
 For more information about debugging improvements in .NET 8, see GitHub issue [dotnet/aspnetcore 48205](https://github.com/dotnet/aspnetcore/issues/48205). 
+
+### `IPNetwork.Parse` and `TryParse`
+
+The new <xref:System.Net.IPNetwork.Parse%2A> and <xref:System.Net.IPNetwork.TryParse%2A> methods on <xref:System.Net.IPNetwork> add support for creating an `IPNetwork` by using an input string in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) or "slash notation".
+
+Here are IPv4 examples
+
+```csharp
+// Using Parse
+var network = IPNetwork.Parse("192.168.0.1/32");
+
+// Using TryParse
+bool success = IPNetwork.TryParse("192.168.0.1/32", out var network);
+
+// Constructor equivalent
+var network = new IPNetwork(IPAddress.Parse("192.168.0.1"), 32);
+```
+
+And here are examples for IPv6:
+
+```csharp
+// Using Parse
+var network = IPNetwork.Parse("2001:db8:3c4d::1/128");
+
+// Using TryParse
+bool success = IPNetwork.TryParse("2001:db8:3c4d::1/128", out var network);
+
+// Constructor equivalent
+var network = new IPNetwork(IPAddress.Parse("2001:db8:3c4d::1"), 128);
+```
 
 <!--
 ## API controllers
