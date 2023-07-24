@@ -35,9 +35,9 @@ Even if a reverse proxy server isn't required, using a reverse proxy server migh
 A reverse proxy:
 
 * Can limit the exposed public surface area of the apps that it hosts.
-* Provide an additional layer of configuration and defense.
+* Provides an additional layer of configuration and defense.
 * Might integrate better with existing infrastructure.
-* Simplify load balancing and secure communication (HTTPS) configuration. Only the reverse proxy server requires an X.509 certificate, and that server can communicate with the app's servers on the internal network using plain HTTP.
+* Simplifies load balancing and secure communication (HTTPS) configuration. Only the reverse proxy server requires the X.509 certificate for the public domain(s). That server can communicate with the app's servers on the internal network using plain HTTP or HTTPS with locally managed certificates. Internal HTTPS increases security but adds significant overhead.
 
 > [!WARNING]
 > Hosting in a reverse proxy configuration requires [host filtering](xref:fundamentals/servers/kestrel/host-filtering).
