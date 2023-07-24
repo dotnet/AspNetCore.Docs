@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Diagnostics;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace ErrorHandlingSample.Snippets;
@@ -138,9 +138,9 @@ public static class Program
     public static void AddProblemDetails(WebApplicationBuilder builder)
     {
         // <snippet_AddProblemDetails>
-        var app = builder.Build();        
-
         builder.Services.AddProblemDetails();
+
+        var app = builder.Build();        
 
         if (!app.Environment.IsDevelopment())
         {
