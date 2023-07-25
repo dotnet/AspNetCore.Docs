@@ -552,7 +552,7 @@ Examples of user state held in browser memory include:
 * Data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances.
 * Values set through [JavaScript interop](xref:blazor/js-interop/call-javascript-from-dotnet) calls.
 
-When a user closes and re-opens their browser or reloads the page, user state held in the browser's memory is lost.
+When a user closes and reopens their browser or reloads the page, user state held in the browser's memory is lost.
 
 > [!NOTE]
 > [Protected Browser Storage](xref:blazor/state-management?pivots=server#aspnet-core-protected-browser-storage) (<xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage?displayProperty=fullName> namespace) relies on ASP.NET Core Data Protection and is only supported for Blazor Server apps.
@@ -618,7 +618,7 @@ For information on defining URL patterns with the [`@page`](xref:mvc/views/razor
 
 For transient data that the user is actively creating, a commonly used storage location is the browser's [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) and [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage) collections:
 
-* `localStorage` is scoped to the browser's window. If the user reloads the page or closes and re-opens the browser, the state persists. If the user opens multiple browser tabs, the state is shared across the tabs. Data persists in `localStorage` until explicitly cleared.
+* `localStorage` is scoped to the browser's window. If the user reloads the page or closes and reopens the browser, the state persists. If the user opens multiple browser tabs, the state is shared across the tabs. Data persists in `localStorage` until explicitly cleared.
 * `sessionStorage` is scoped to the browser tab. If the user reloads the tab, the state persists. If the user closes the tab or the browser, the state is lost. If the user opens multiple browser tabs, each tab has its own independent version of the data.
 
 > [!NOTE]
@@ -629,7 +629,7 @@ Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk th
 * Bugs in state storage across tabs.
 * Confusing behavior when a tab overwrites the state of other tabs.
 
-`localStorage` is the better choice if the app must persist state across closing and re-opening the browser.
+`localStorage` is the better choice if the app must persist state across closing and reopening the browser.
 
 > [!WARNING]
 > Users may view or tamper with the data stored in `localStorage` and `sessionStorage`.

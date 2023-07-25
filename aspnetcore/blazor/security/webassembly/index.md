@@ -236,7 +236,7 @@ For more information, see the following W3C resources:
 
 * [WebAssembly: Security](https://webassembly.org/docs/security/)
 * [WebAssembly Specification: Security Considerations](https://webassembly.github.io/spec/core/intro/introduction.html#security-considerations)
-* [W3C WebAssembly Community Group: Feedback and issues](https://webassembly.org/community/feedback/): The W3C WebAssembly Community Group link is only provided for reference, making it clear that WebAssembly security vulnerabilities and bugs are patched on an ongoing basis, often reported and addressed by browser. ***Don't send feedback or bug reports on Blazor to the W3C WebAssembly Community Group.*** Blazor feedback should be reported to the [Microsoft ASP.NET Core product unit](https://github.com/dotnet/aspnetcore/issues). If the Microsoft product unit determines that an underlying problem with WebAssembly exists, the product unit will take the appropriate steps to report the problem to the W3C WebAssembly Community Group.
+* [W3C WebAssembly Community Group: Feedback and issues](https://webassembly.org/community/feedback/): The W3C WebAssembly Community Group link is only provided for reference, making it clear that WebAssembly security vulnerabilities and bugs are patched on an ongoing basis, often reported and addressed by browser. ***Don't send feedback or bug reports on Blazor to the W3C WebAssembly Community Group.*** Blazor feedback should be reported to the [Microsoft ASP.NET Core product unit](https://github.com/dotnet/aspnetcore/issues). If the Microsoft product unit determines that an underlying problem with WebAssembly exists, they take the appropriate steps to report the problem to the W3C WebAssembly Community Group.
 
 ## Implementation guidance
 

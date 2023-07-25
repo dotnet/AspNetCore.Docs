@@ -90,7 +90,7 @@ public class KeypadViewModel : INotifyPropertyChanged
         // Command to delete a character from the input string when allowed
         DeleteCharCommand =
             new Command(
-                // Command will strip a character from the input string
+                // Command strips a character from the input string
                 () => InputString = InputString.Substring(0, InputString.Length - 1),
 
                 // CanExecute is processed here to return true when there's something to delete

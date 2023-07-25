@@ -69,6 +69,12 @@ For custom folders that hold components, add an [`@using`][2] directive to the p
 > [!NOTE]
 > [`@using`][2] directives in the `_Imports.razor` file are only applied to Razor files (`.razor`), not C# files (`.cs`).
 
+Aliased [`using`](/dotnet/csharp/language-reference/keywords/using-directive) statements are supported. In the following example, the public `WeatherForecast` class of the `GridRendering` component is made available as `WeatherForecast` in a component elsewhere in the app:
+
+```razor
+@using WeatherForecast = Pages.GridRendering.WeatherForecast
+```
+
 Components can also be referenced using their fully qualified names, which doesn't require an [`@using`][2] directive. The following example directly references the `ProductDetail` component in the `Components` folder of the app:
 
 ```razor
@@ -86,7 +92,6 @@ The namespace of a component authored with Razor is based on the following (in p
 The following are **not** supported:
 
 * The [`global::`](/dotnet/csharp/language-reference/operators/namespace-alias-qualifier) qualification.
-* Importing components with aliased [`using`](/dotnet/csharp/language-reference/keywords/using-statement) statements. For example, `@using Foo = Bar` isn't supported.
 * Partially-qualified names. For example, you can't add `@using BlazorSample` to a component and then reference the `NavMenu` component in the app's `Shared` folder (`Shared/NavMenu.razor`) with `<Shared.NavMenu></Shared.NavMenu>`.
 
 ### Partial class support

@@ -51,10 +51,10 @@ Don't store sensitive information, such as credentials, security tokens, or sens
 
 ## External content rendered in an `iframe`
 
-When using an [`iframe`](https://developer.mozilla.org/docs/Web/HTML/Element/iframe) to display external content within a Blazor Hybrid page, we recommend that users leverage [sandboxing features](https://developer.mozilla.org/docs/Web/HTML/Element/iframe) to ensure that the content is isolated from the parent page containing the app. In the following Razor component example, the [`sandbox` attribute](https://developer.mozilla.org/docs/Web/HTML/Element/iframe) is present for the `<iframe>` tag to apply sandboxing features to the `foo.html` page:
+When using an [`iframe`](https://developer.mozilla.org/docs/Web/HTML/Element/iframe) to display external content within a Blazor Hybrid page, we recommend that users leverage [sandboxing features](https://developer.mozilla.org/docs/Web/HTML/Element/iframe) to ensure that the content is isolated from the parent page containing the app. In the following Razor component example, the [`sandbox` attribute](https://developer.mozilla.org/docs/Web/HTML/Element/iframe) is present for the `<iframe>` tag to apply sandboxing features to the `admin.html` page:
 
 ```razor
-<iframe sandbox src="https://contoso.com/foo.html" />
+<iframe sandbox src="https://contoso.com/admin.html" />
 ```
 
 > [!WARNING]

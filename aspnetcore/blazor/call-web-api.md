@@ -665,10 +665,10 @@ In <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> on
 > [!NOTE]
 > When targeting ASP.NET Core 5.0 or earlier, add `@using` directives to the following component for <xref:System.Net.Http?displayProperty=fullName>, <xref:System.Net.Http.Json?displayProperty=fullName>, and <xref:System.Threading.Tasks?displayProperty=fullName>.
 
-`Pages/FetchDataReturnsHTMLOnException.razor`:
+`Pages/ReturnHTMLOnException.razor`:
 
 ```razor
-@page "/fetch-data-returns-html-on-exception"
+@page "/return-html-on-exception"
 @using {PROJECT NAME}.Shared
 @inject HttpClient Http
 
