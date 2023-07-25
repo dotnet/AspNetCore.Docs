@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <configuration>
+  <ncache-server connection-retries="5" retry-connection-delay="0" retry-interval="1" client-request-timeout="90" connection-timeout="5" port="9800" />
+  <cache id="democache" enable-client-logs="False" log-level="error">
+      <server name="10.0.5.1"/>
+    </cache>
+  </configuration>
