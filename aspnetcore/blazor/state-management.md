@@ -578,7 +578,6 @@ Common locations exist for persisting state:
 * [URL](#url-wasm)
 * [Browser storage](#browser-storage-wasm)
 * [In-memory state container service](#in-memory-state-container-service-wasm) 
-* [Additional approaches](#additional-approaches-wasm)
 
 <h2 id="server-side-storage-wasm">Server-side storage</h2>
 
@@ -639,15 +638,6 @@ Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk th
 
 [!INCLUDE[](~/blazor/includes/state-container.md)]
 
-<h2 id="additional-approaches-wasm">Additional approaches</h2>
-
-When implementing custom state storage, a useful approach is to adopt [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters):
-
-* To consume state across many components.
-* If there's just one top-level state object to persist.
-
-For additional discussion and example approaches, see [Blazor: In-memory state container as cascading parameter (dotnet/AspNetCore.Docs #27296)](https://github.com/dotnet/AspNetCore.Docs/issues/27296).
-
 ## Troubleshoot
 
 In a custom state management service, a callback invoked outside of Blazor's synchronization context must wrap the logic of the callback in <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> to move it onto the renderer's synchronization context.
@@ -665,3 +655,12 @@ For more information and an example of how to address this error, see <xref:blaz
 * <xref:blazor/security/webassembly/index>
 
 :::zone-end
+
+## Additional approaches
+
+When implementing custom state storage, a useful approach is to adopt [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters):
+
+* To consume state across many components.
+* If there's just one top-level state object to persist.
+
+For additional discussion and example approaches, see [Blazor: In-memory state container as cascading parameter (dotnet/AspNetCore.Docs #27296)](https://github.com/dotnet/AspNetCore.Docs/issues/27296).
