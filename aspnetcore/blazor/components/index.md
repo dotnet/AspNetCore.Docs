@@ -770,61 +770,21 @@ Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init)
 
 `Shared/RenderTupleChild.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Shared/index/RenderTupleChild.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Shared/index/RenderTupleChild.razor":::
-
-:::moniker-end
 
 `Pages/RenderTupleParent.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/index/RenderTupleParent.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/index/RenderTupleParent.razor":::
-
-:::moniker-end
     
 [Named tuples](/dotnet/csharp/language-reference/builtin-types/value-tuples#tuple-field-names) are supported, as seen in the following example:
 
 `Shared/RenderNamedTupleChild.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Shared/index/RenderNamedTupleChild.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Shared/index/RenderNamedTupleChild.razor":::
-
-:::moniker-end
 
 `Pages/RenderNamedTupleParent.razor`:
 
-:::moniker range=">= aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/index/RenderNamedTupleParent.razor":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/index/RenderNamedTupleParent.razor":::
-
-:::moniker-end
 
 Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://www.uphe.com/movies/serenity-2005) ([Nathan Fillion](https://www.imdb.com/name/nm0277213/))
 
