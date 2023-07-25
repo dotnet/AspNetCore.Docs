@@ -128,14 +128,17 @@ The following example configures a component metadata object (`ComponentMetadata
 
 `ComponentMetadata.cs`:
 
-```csharp
-public class ComponentMetadata
-{
-    public string? Name { get; set; }
-    public Dictionary<string, object> Parameters { get; set; } = 
-        new Dictionary<string, object>();
-}
-```
+:::moniker range=">= aspnetcore-7.0"
+
+:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_Server/ComponentMetadata.cs":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-7.0"
+
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_Server/ComponentMetadata.cs":::
+
+:::moniker-end
 
 The following `RocketLabWithWindowSeat` component (`Shared/RocketLabWithWindowSeat.razor`) has been updated from the preceding example to include a component parameter named `WindowSeat` to specify if the passenger prefers a window seat on their flight:
 
@@ -184,96 +187,75 @@ Event callbacks (<xref:Microsoft.AspNetCore.Components.EventCallback>) can be pa
 
 `ComponentMetadata.cs`:
 
-```csharp
-public class ComponentMetadata
-{
-    public string? Name { get; set; }
-    public Dictionary<string, object> Parameters { get; set; } =
-        new Dictionary<string, object>();
-}
-```
+:::moniker range=">= aspnetcore-7.0"
+
+:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_Server/ComponentMetadata.cs":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-7.0"
+
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_Server/ComponentMetadata.cs":::
+
+:::moniker-end
 
 Implement an event callback parameter (<xref:Microsoft.AspNetCore.Components.EventCallback>) within each dynamically-rendered component.
 
 `Shared/RocketLab2.razor`:
 
-```razor
-<h2>Rocket Lab®</h2>
+:::moniker range=">= aspnetcore-7.0"
 
-<p>
-    Rocket Lab is a registered trademark of
-    <a href="https://www.rocketlabusa.com/">Rocket Lab USA Inc.</a>
-</p>
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Shared/dynamiccomponent/RocketLab2.razor":::
 
-<button @onclick="OnClickCallback">
-    Trigger a Parent component method
-</button>
+:::moniker-end
 
-@code {
-    [Parameter]
-    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
-}
-```
+:::moniker range="< aspnetcore-7.0"
+
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Shared/dynamiccomponent/RocketLab2.razor":::
+
+:::moniker-end
 
 `Shared/SpaceX2.razor`:
 
-```razor
-<h2>SpaceX®</h2>
+:::moniker range=">= aspnetcore-7.0"
 
-<p>
-    SpaceX is a registered trademark of
-    <a href="https://www.spacex.com/">Space Exploration Technologies Corp.</a>
-</p>
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Shared/dynamiccomponent/SpaceX2.razor":::
 
-<button @onclick="OnClickCallback">
-    Trigger a Parent component method
-</button>
+:::moniker-end
 
-@code {
-    [Parameter]
-    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
-}
-```
+:::moniker range="< aspnetcore-7.0"
+
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Shared/dynamiccomponent/SpaceX2.razor":::
+
+:::moniker-end
 
 `Shared/UnitedLaunchAlliance2.razor`:
 
-```razor
-<h2>United Launch Alliance®</h2>
+:::moniker range=">= aspnetcore-7.0"
 
-<p>
-    United Launch Alliance and ULA are registered trademarks of
-    <a href="https://www.ulalaunch.com/">United Launch Alliance, LLC</a>.
-</p>
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Shared/dynamiccomponent/UnitedLaunchAlliance2.razor":::
 
-<button @onclick="OnClickCallback">
-    Trigger a Parent component method
-</button>
+:::moniker-end
 
-@code {
-    [Parameter]
-    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
-}
-```
+:::moniker range="< aspnetcore-7.0"
+
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Shared/dynamiccomponent/UnitedLaunchAlliance2.razor":::
+
+:::moniker-end
 
 `Shared/VirginGalactic2.razor`:
 
-```razor
-<h2>Virgin Galactic®</h2>
+:::moniker range=">= aspnetcore-7.0"
 
-<p>
-    Virgin Galactic is a registered trademark of
-    <a href="https://www.virgingalactic.com/">Galactic Enterprises, LLC</a>.
-</p>
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Shared/dynamiccomponent/VirginGalactic2.razor":::
 
-<button @onclick="OnClickCallback">
-    Trigger a Parent component method
-</button>
+:::moniker-end
 
-@code {
-    [Parameter]
-    public EventCallback<MouseEventArgs> OnClickCallback { get; set; }
-}
-```
+:::moniker range="< aspnetcore-7.0"
+
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Shared/dynamiccomponent/VirginGalactic2.razor":::
+
+:::moniker-end
 
 In the following parent component example, the `ShowDTMessage` method assigns a string with the current time to `message`, and the value of `message` is rendered.
 
@@ -287,129 +269,17 @@ The parent component passes the callback method, `ShowDTMessage` in the paramete
 
 `Pages/DynamicComponentExample3.razor`:
 
-```razor
-@page "/dynamiccomponent-example-3"
+:::moniker range=">= aspnetcore-7.0"
 
-<h1><code>DynamicComponent</code> Component Example 3</h1>
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/dynamiccomponent/DynamicComponentExample3.razor":::
 
-<p>
-    <label>
-        Select your transport:
-        <select @onchange="OnDropdownChange">
-            <option value="">Select a value</option>
-            <option value="@nameof(RocketLab2)">Rocket Lab</option>
-            <option value="@nameof(SpaceX2)">SpaceX</option>
-            <option value="@nameof(UnitedLaunchAlliance2)">ULA</option>
-            <option value="@nameof(VirginGalactic2)">Virgin Galactic</option>
-        </select>
-    </label>
-</p>
+:::moniker-end
 
-@if (selectedType is not null)
-{
-    <div class="border border-primary my-1 p-1">
-        <DynamicComponent Type="@selectedType"
-            Parameters="@Components[selectedType.Name].Parameters" />
-    </div>
-}
+:::moniker range="< aspnetcore-7.0"
 
-<p>
-    @message
-</p>
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/dynamiccomponent/DynamicComponentExample3.razor":::
 
-@code {
-    private Type? selectedType;
-    private string? message;
-
-    private Dictionary<string, ComponentMetadata> Components
-    {
-        get
-        {
-            return new Dictionary<string, ComponentMetadata>()
-            {
-                {
-                    "RocketLab2",
-                    new ComponentMetadata
-                    {
-                        Name = "Rocket Lab",
-                        Parameters =
-                            new()
-                            {
-                                {
-                                    "OnClickCallback",
-                                    EventCallback.Factory.Create<MouseEventArgs>(
-                                        this, ShowDTMessage)
-                                }
-                            }
-                    }
-                },
-                {
-                    "VirginGalactic2",
-                    new ComponentMetadata
-                    {
-                        Name = "Virgin Galactic",
-                        Parameters =
-                            new()
-                            {
-                                {
-                                    "OnClickCallback",
-                                    EventCallback.Factory.Create<MouseEventArgs>(
-                                        this, ShowDTMessage)
-                                }
-                            }
-                    }
-                },
-                {
-                    "UnitedLaunchAlliance2",
-                    new ComponentMetadata
-                    {
-                        Name = "ULA",
-                        Parameters =
-                            new()
-                            {
-                                {
-                                    "OnClickCallback",
-                                    EventCallback.Factory.Create<MouseEventArgs>(
-                                        this, ShowDTMessage)
-                                }
-                            }
-                    }
-                },
-                {
-                    "SpaceX2",
-                    new ComponentMetadata
-                    {
-                        Name = "SpaceX",
-                        Parameters =
-                            new()
-                            {
-                                {
-                                    "OnClickCallback",
-                                    EventCallback.Factory.Create<MouseEventArgs>(
-                                        this, ShowDTMessage)
-                                }
-                            }
-                    }
-                }
-            };
-        }
-    }
-
-    private void OnDropdownChange(ChangeEventArgs e)
-    {
-        /*
-            IMPORTANT!
-            Change "BlazorSample" to match your app's namespace
-            in the Type.GetType() argument.
-        */
-        selectedType = e.Value?.ToString()?.Length > 0 ?
-            Type.GetType($"BlazorSample.Shared.{e.Value}") : null;
-    }
-
-    private void ShowDTMessage(MouseEventArgs e) =>
-        message = $"The current DT is: {DateTime.Now}.";
-}
-```
+:::moniker-end
 
 ## Avoid catch-all parameters
 
