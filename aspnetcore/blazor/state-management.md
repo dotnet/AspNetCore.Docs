@@ -31,9 +31,9 @@ If a user experiences a temporary network connection loss, Blazor attempts to re
 
 * The server can't retain a disconnected circuit forever. The server must release a disconnected circuit after a timeout or when the server is under memory pressure.
 * In multi-server, load-balanced deployment environments, individual servers may fail or be automatically removed when no longer required to handle the overall volume of requests. The original server processing requests for a user may become unavailable when the user attempts to reconnect.
-* The user might close and re-open their browser or reload the page, which removes any state held in the browser's memory. For example, JavaScript variable values set through JavaScript interop calls are lost.
+* The user might close and reopen their browser or reload the page, which removes any state held in the browser's memory. For example, JavaScript variable values set through JavaScript interop calls are lost.
 
-When a user can't be reconnected to their original circuit, the user receives a new circuit with an empty state. This is equivalent to closing and re-opening a desktop app.
+When a user can't be reconnected to their original circuit, the user receives a new circuit with an empty state. This is equivalent to closing and reopening a desktop app.
 
 ## Persist state across circuits
 
@@ -91,7 +91,7 @@ For information on defining URL patterns with the [`@page`](xref:mvc/views/razor
 
 For transient data that the user is actively creating, a commonly used storage location is the browser's [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) and [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage) collections:
 
-* `localStorage` is scoped to the browser's window. If the user reloads the page or closes and re-opens the browser, the state persists. If the user opens multiple browser tabs, the state is shared across the tabs. Data persists in `localStorage` until explicitly cleared.
+* `localStorage` is scoped to the browser's window. If the user reloads the page or closes and reopens the browser, the state persists. If the user opens multiple browser tabs, the state is shared across the tabs. Data persists in `localStorage` until explicitly cleared.
 * `sessionStorage` is scoped to the browser tab. If the user reloads the tab, the state persists. If the user closes the tab or the browser, the state is lost. If the user opens multiple browser tabs, each tab has its own independent version of the data.
 
 Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk that a user opens multiple tabs and encounters the following:
@@ -99,7 +99,7 @@ Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk th
 * Bugs in state storage across tabs.
 * Confusing behavior when a tab overwrites the state of other tabs.
 
-`localStorage` is the better choice if the app must persist state across closing and re-opening the browser.
+`localStorage` is the better choice if the app must persist state across closing and reopening the browser.
 
 Caveats for using browser storage:
 
@@ -225,7 +225,7 @@ If the component's parameters include navigation state, call `ProtectedSessionSt
 
 ### Handle the loading state
 
-Since browser storage is accessed asynchronously over a network connection, there's always a period of time before the data is loaded and available to a component. For the best results, render a loading-state message while loading is in progress instead of displaying blank or default data.
+Since browser storage is accessed asynchronously over a network connection, there's always a period of time before the data is loaded and available to a component. For the best results, render a message while loading is in progress instead of displaying blank or default data.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -369,7 +369,7 @@ else
 
 ### Factor out the state preservation to a common location
 
-If many components rely on browser-based storage, re-implementing state provider code many times creates code duplication. One option for avoiding code duplication is to create a *state provider parent component* that encapsulates the state provider logic. Child components can work with persisted data without regard to the state persistence mechanism.
+If many components rely on browser-based storage, implementing state provider code many times creates code duplication. One option for avoiding code duplication is to create a *state provider parent component* that encapsulates the state provider logic. Child components can work with persisted data without regard to the state persistence mechanism.
 
 In the following example of a `CounterStateProvider` component, counter data is persisted to `sessionStorage`:
 
@@ -578,7 +578,6 @@ Common locations exist for persisting state:
 * [URL](#url-wasm)
 * [Browser storage](#browser-storage-wasm)
 * [In-memory state container service](#in-memory-state-container-service-wasm) 
-* [Additional approaches](#additional-approaches-wasm)
 
 <h2 id="server-side-storage-wasm">Server-side storage</h2>
 
@@ -639,15 +638,6 @@ Generally, `sessionStorage` is safer to use. `sessionStorage` avoids the risk th
 
 [!INCLUDE[](~/blazor/includes/state-container.md)]
 
-<h2 id="additional-approaches-wasm">Additional approaches</h2>
-
-When implementing custom state storage, a useful approach is to adopt [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters):
-
-* To consume state across many components.
-* If there's just one top-level state object to persist.
-
-For additional discussion and example approaches, see [Blazor: In-memory state container as cascading parameter (dotnet/AspNetCore.Docs #27296)](https://github.com/dotnet/AspNetCore.Docs/issues/27296).
-
 ## Troubleshoot
 
 In a custom state management service, a callback invoked outside of Blazor's synchronization context must wrap the logic of the callback in <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> to move it onto the renderer's synchronization context.
@@ -665,3 +655,12 @@ For more information and an example of how to address this error, see <xref:blaz
 * <xref:blazor/security/webassembly/index>
 
 :::zone-end
+
+## Additional approaches
+
+When implementing custom state storage, a useful approach is to adopt [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters):
+
+* To consume state across many components.
+* If there's just one top-level state object to persist.
+
+For additional discussion and example approaches, see [Blazor: In-memory state container as cascading parameter (dotnet/AspNetCore.Docs #27296)](https://github.com/dotnet/AspNetCore.Docs/issues/27296).
