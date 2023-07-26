@@ -41,25 +41,57 @@ Configuration in app settings files are loaded by default. In the following exam
 
 `wwwroot/appsettings.json`:
 
-```json
-{
-  "h1FontSize": "50px"
-}
-```
+:::moniker range=">= aspnetcore-7.0"
+
+:::code language="json" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/wwwroot/appsettings.json" highlight="2":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+:::code language="json" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/wwwroot/appsettings.json" highlight="2":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+:::code language="json" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/wwwroot/appsettings.json" highlight="2":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+:::code language="json" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/wwwroot/appsettings.json" highlight="2":::
+
+:::moniker-end
 
 Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data.
 
-`Pages/ConfigurationExample.razor`:
+`Pages/ConfigExample.razor`:
 
-```razor
-@page "/configuration-example"
-@using Microsoft.Extensions.Configuration
-@inject IConfiguration Configuration
+:::moniker range=">= aspnetcore-7.0"
 
-<h1 style="font-size:@Configuration["h1FontSize"]">
-    Configuration example
-</h1>
-```
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/configuration/ConfigExample.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/configuration/ConfigExample.razor":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/configuration/ConfigExample.razor":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/configuration/ConfigExample.razor":::
+
+:::moniker-end
 
 Client security restrictions prevent direct access to files, including settings files for app configuration. To read configuration files in addition to `appsettings.json`/`appsettings.{ENVIRONMENT}.json` from the `wwwroot` folder into configuration, use an <xref:System.Net.Http.HttpClient>.
 
@@ -110,49 +142,57 @@ using Microsoft.Extensions.Configuration.Memory;
 
 In `Program.cs`:
 
-```csharp
-var vehicleData = new Dictionary<string, string>()
-{
-    { "color", "blue" },
-    { "type", "car" },
-    { "wheels:count", "3" },
-    { "wheels:brand", "Blazin" },
-    { "wheels:brand:type", "rally" },
-    { "wheels:year", "2008" },
-};
+:::moniker range=">= aspnetcore-7.0"
 
-var memoryConfig = new MemoryConfigurationSource { InitialData = vehicleData };
+:::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Program.cs" id="snippet1":::
 
-builder.Configuration.Add(memoryConfig);
-```
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+:::code language="csharp" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Program.cs" id="snippet1":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Program.cs" id="snippet1":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Program.cs" id="snippet1":::
+
+:::moniker-end
 
 Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data.
 
 `Pages/MemoryConfig.razor`:
 
-```razor
-@page "/memory-config"
-@using Microsoft.Extensions.Configuration
-@inject IConfiguration Configuration
+:::moniker range=">= aspnetcore-7.0"
 
-<h1>Memory configuration example</h1>
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/configuration/MemoryConfig.razor":::
 
-<h2>General specifications</h2>
+:::moniker-end
 
-<ul>
-    <li>Color: @Configuration["color"]</li>
-    <li>Type: @Configuration["type"]</li>
-</ul>
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-<h2>Wheels</h2>
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/configuration/MemoryConfig.razor":::
 
-<ul>
-    <li>Count: @Configuration["wheels:count"]</li>
-    <li>Brand: @Configuration["wheels:brand"]</li>
-    <li>Type: @Configuration["wheels:brand:type"]</li>
-    <li>Year: @Configuration["wheels:year"]</li>
-</ul>
-```
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/configuration/MemoryConfig.razor":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/configuration/MemoryConfig.razor":::
+
+:::moniker-end
 
 Obtain a section of the configuration in C# code with <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection%2A?displayProperty=nameWithType>. The following example obtains the `wheels` section for the configuration in the preceding example:
 

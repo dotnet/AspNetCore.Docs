@@ -23,23 +23,60 @@ When a Blazor app isn't functioning properly during development, receiving detai
 
 The UI for this error handling experience is part of the [Blazor project templates](xref:blazor/project-structure).
 
-:::moniker range=">= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
 
-In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file:
+In a Blazor Web App, customize the experience in the `App.razor` file. Because the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) (for example, `<environment include="Production">...</environment>`) isn't supported in Razor components, the following example injects <xref:Microsoft.Extensions.Hosting.IHostEnvironment> to configure error messages for different environments.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-In a Blazor Server app, customize the experience in the `Pages/_Layout.cshtml` file:
+In a Blazor Server app, customize the experience in the `Pages/_Layout.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file:
+In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+At the top of the `App` component file (`App.razor`):
+
+```razor
+@inject IHostEnvironment HostEnvironment
+```
+
+Create or modify the Blazor error UI markup:
+
+```razor
+<div id="blazor-error-ui">
+    @if (HostEnvironment.IsProduction())
+    {
+        <span>An error has occurred.</span>
+    }
+    else
+    {
+        <span>An unhandled exception occurred.</span>
+    }
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+Create or modify the Blazor error UI markup:
 
 ```cshtml
 <div id="blazor-error-ui">
@@ -54,6 +91,8 @@ In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` fil
 </div>
 ```
 
+:::moniker-end
+
 In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html` file:
 
 ```html
@@ -64,7 +103,17 @@ In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html
 </div>
 ```
 
+:::moniker range=">= aspnetcore-8.0"
+
+The `blazor-error-ui` element is normally hidden due to the presence of the `display: none` style of the `blazor-error-ui` CSS class in the app's stylesheet (`wwwroot/css/app.css`). When an error occurs, the framework applies `display: block` to the element.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 The `blazor-error-ui` element is normally hidden due to the presence of the `display: none` style of the `blazor-error-ui` CSS class in the site's stylesheet (`wwwroot/css/site.css` for Blazor Server or `wwwroot/css/app.css` for Blazor WebAssembly). When an error occurs, the framework applies `display: block` to the element.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
