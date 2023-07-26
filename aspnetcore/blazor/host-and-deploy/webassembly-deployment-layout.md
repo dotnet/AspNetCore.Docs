@@ -130,7 +130,7 @@ The following example `BundleBlazorAssets` class is a starting point for further
 * In the `Execute` method, the bundle is created from the following three file types:
   * JavaScript files (`dotnet.js`)
   * WASM files (`dotnet.wasm`)
-  * App DLLs (`*.dll`)
+  * App DLLs (`.dll`)
 * A `multipart/form-data` bundle is created. Each file is added to the bundle with its respective descriptions via the [Content-Disposition header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Disposition) and the [Content-Type header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Type).
 * After the bundle is created, the bundle is written to a file.
 * The build is configured for the extension. The following code creates an extension item and adds it to the `Extension` property. Each extension item contains three pieces of data:

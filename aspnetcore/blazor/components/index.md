@@ -69,6 +69,12 @@ For custom folders that hold components, add an [`@using`][2] directive to the p
 > [!NOTE]
 > [`@using`][2] directives in the `_Imports.razor` file are only applied to Razor files (`.razor`), not C# files (`.cs`).
 
+Aliased [`using`](/dotnet/csharp/language-reference/keywords/using-directive) statements are supported. In the following example, the public `WeatherForecast` class of the `GridRendering` component is made available as `WeatherForecast` in a component elsewhere in the app:
+
+```razor
+@using WeatherForecast = Pages.GridRendering.WeatherForecast
+```
+
 Components can also be referenced using their fully qualified names, which doesn't require an [`@using`][2] directive. The following example directly references the `ProductDetail` component in the `Components` folder of the app:
 
 ```razor
@@ -86,7 +92,6 @@ The namespace of a component authored with Razor is based on the following (in p
 The following are **not** supported:
 
 * The [`global::`](/dotnet/csharp/language-reference/operators/namespace-alias-qualifier) qualification.
-* Importing components with aliased [`using`](/dotnet/csharp/language-reference/keywords/using-statement) statements. For example, `@using Foo = Bar` isn't supported.
 * Partially-qualified names. For example, you can't add `@using BlazorSample` to a component and then reference the `NavMenu` component in the app's `Shared` folder (`Shared/NavMenu.razor`) with `<Shared.NavMenu></Shared.NavMenu>`.
 
 ### Partial class support
@@ -765,74 +770,21 @@ Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init)
 
 `Shared/RenderTupleChild.razor`:
 
-```csharp
-<div class="card w-50" style="margin-bottom:15px">
-    <div class="card-header font-weight-bold"><code>Tuple</code> Card</div>
-    <div class="card-body">
-        <ul>
-            <li>Integer: @Data?.Item1</li>
-            <li>String: @Data?.Item2</li>
-            <li>Boolean: @Data?.Item3</li>
-        </ul>
-    </div>
-</div>
-
-@code {
-    [Parameter]
-    public (int, string, bool)? Data { get; set; }
-}
-```
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Shared/index/RenderTupleChild.razor":::
 
 `Pages/RenderTupleParent.razor`:
 
-```csharp
-@page "/render-tuple-parent"
-
-<h1>Render Tuple Parent</h1>
-
-<RenderTupleChild Data="@data" />
-
-@code {
-    private (int, string, bool) data = new(999, "I aim to misbehave.", true);
-}
-```
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/index/RenderTupleParent.razor":::
     
 [Named tuples](/dotnet/csharp/language-reference/builtin-types/value-tuples#tuple-field-names) are supported, as seen in the following example:
 
 `Shared/RenderNamedTupleChild.razor`:
 
-```razor
-<div class="card w-50" style="margin-bottom:15px">
-    <div class="card-header font-weight-bold"><code>Tuple</code> Card</div>
-    <div class="card-body">
-        <ul>
-            <li>Integer: @Data?.TheInteger</li>
-            <li>String: @Data?.TheString</li>
-            <li>Boolean: @Data?.TheBoolean</li>
-        </ul>
-    </div>
-</div>
-
-@code {
-    [Parameter]
-    public (int TheInteger, string TheString, bool TheBoolean)? Data { get; set; }
-}
-```
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Shared/index/RenderNamedTupleChild.razor":::
 
 `Pages/RenderNamedTupleParent.razor`:
 
-```razor
-@page "/render-named-tuple-parent"
-
-<h1>Render Named Tuple Parent</h1>
-
-<RenderNamedTupleChild Data="@data" />
-
-@code {
-    private (int TheInteger, string TheString, bool TheBoolean) data = 
-        new(999, "I aim to misbehave.", true);
-}
-```
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/index/RenderNamedTupleParent.razor":::
 
 Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://www.uphe.com/movies/serenity-2005) ([Nathan Fillion](https://www.imdb.com/name/nm0277213/))
 

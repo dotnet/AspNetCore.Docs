@@ -321,7 +321,7 @@ This commonly troubles developers who are trying to test updates to their servic
 
 For as long as the list of "clients," which are tabs or windows displaying your app, is nonempty, the worker continues waiting. The reason service workers do this is to guarantee consistency. Consistency means that all resources are fetched from the same atomic cache.
 
-When testing changes, you may find it convenient to click the "skipWaiting" link as shown in the preceding screenshot, then reload the page. You can automate this for all users by coding your service worker to [skip the "waiting" phase and immediately activate on update](https://web.dev/service-worker-lifecycle/#skip-waiting). If you skip the waiting phase, you're giving up the guarantee that resources are always fetched consistently from the same cache instance.
+When testing changes, you may find it convenient to select the "skipWaiting" link as shown in the preceding screenshot, then reload the page. You can automate this for all users by coding your service worker to [skip the "waiting" phase and immediately activate on update](https://web.dev/service-worker-lifecycle/#skip-waiting). If you skip the waiting phase, you're giving up the guarantee that resources are always fetched consistently from the same cache instance.
 
 ### Users may run any historical version of the app
 

@@ -124,7 +124,7 @@ export function afterStarted(blazor) {
 
 ### Import additional modules
 
-Use top-level [`import`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import) statements in the JS initializers file (`*.lib.module.js`) to import additional modules.
+Use top-level [`import`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import) statements in the JS initializers file to import additional modules.
 
 `additionalModule.js`:
 
@@ -133,6 +133,8 @@ export function logMessage() {
   console.log('logMessage is logging');
 }
 ```
+
+In the JS initializers file (`.lib.module.js`):
 
 ```javascript
 import { logMessage } from "/additionalModule.js";

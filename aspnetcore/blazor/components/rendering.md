@@ -157,7 +157,7 @@ However, it might make sense to call <xref:Microsoft.AspNetCore.Components.Compo
 
 Due to the way that tasks are defined in .NET, a receiver of a <xref:System.Threading.Tasks.Task> can only observe its final completion, not intermediate asynchronous states. Therefore, <xref:Microsoft.AspNetCore.Components.ComponentBase> can only trigger rerendering when the <xref:System.Threading.Tasks.Task> is first returned and when the <xref:System.Threading.Tasks.Task> finally completes. The framework can't know to rerender a component at other intermediate points, such as when an <xref:System.Collections.Generic.IAsyncEnumerable%601> [returns data in a series of intermediate `Task`s](https://github.com/dotnet/aspnetcore/issues/43098#issuecomment-1206224427). If you want to rerender at intermediate points, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> at those points.
 
-Consider the following `CounterState1` component, which updates the count four times on each click:
+Consider the following `CounterState1` component, which updates the count four times each time the `IncrementCount` method executes:
 
 * Automatic renders occur after the first and last increments of `currentCount`.
 * Manual renders are triggered by calls to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> when the framework doesn't automatically trigger rerenders at intermediate processing points where `currentCount` is incremented.
