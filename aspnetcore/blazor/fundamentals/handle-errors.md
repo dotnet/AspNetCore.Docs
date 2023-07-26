@@ -33,7 +33,7 @@ The UI for this error handling experience is part of the [Blazor project templat
 
 :::moniker range=">= aspnetcore-8.0"
 
-In a Blazor Web App, customize the experience in the `App.razor` file. Because the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) (for example, `<environment include="Production">...</environment>`) isn't supported in Razor components, the following example injects <xref:xref:Microsoft.Extensions.Hosting.IHostEnvironment> to configure error messages for different environments.
+In a Blazor Web App, customize the experience in the `App.razor` file. Because the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) (for example, `<environment include="Production">...</environment>`) isn't supported in Razor components, the following example injects <xref:Microsoft.Extensions.Hosting.IHostEnvironment> to configure error messages for different environments.
 
 At the top of the `App` component file (`App.razor`):
 
