@@ -661,7 +661,7 @@ When Blazor creates an instance of a component:
 * The component's constructor is invoked.
 * The constructors of DI services supplied to the component's constructor via the [`@inject`](xref:mvc/views/razor#inject) directive or the [`[Inject]` attribute](xref:blazor/fundamentals/dependency-injection#request-a-service-in-a-component) are invoked.
 
-An error in an executed constructor or a setter for any `[Inject]` property results in an unhandled exception and stops the framework from instantiating the component. If the app is operating over a SignalR connection, the circuit fails. If constructor logic may throw exceptions, the app should trap the exceptions using a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
+An error in an executed constructor or a setter for any `[Inject]` property results in an unhandled exception and stops the framework from instantiating the component. If the app is operating over a circuit, the circuit fails. If constructor logic may throw exceptions, the app should trap the exceptions using a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
 ### Lifecycle methods
 
@@ -786,7 +786,7 @@ In a Blazor app operating over a circuit, prerendering works by:
 
 * Creating a new circuit for all of the prerendered components that are part of the same page.
 * Generating the initial HTML.
-* Treating the circuit as `disconnected` until the user's browser establishes a SignalR connection back to the same server. When the connection is established, interactivity on the circuit is resumed and the components' HTML markup is updated.
+* Treating the circuit as `disconnected` until the user's browser establishes a  back to the same server. When the connection is established, interactivity on the circuit is resumed and the components' HTML markup is updated.
 
 For prerendered client-side components, prerendering works by:
 
