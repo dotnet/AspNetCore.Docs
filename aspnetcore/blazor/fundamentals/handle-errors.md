@@ -93,7 +93,19 @@ In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` fil
 </div>
 ```
 
+:::moniker range=">= aspnetcore-8.0"
+
+The `blazor-error-ui` element is normally hidden due to the presence of the `display: none` style of the `blazor-error-ui` CSS class in the app's stylesheet (`wwwroot/css/app.css`). When an error occurs, the framework applies `display: block` to the element.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 The `blazor-error-ui` element is normally hidden due to the presence of the `display: none` style of the `blazor-error-ui` CSS class in the site's stylesheet (`wwwroot/css/site.css` for Blazor Server or `wwwroot/css/app.css` for Blazor WebAssembly). When an error occurs, the framework applies `display: block` to the element.
+
+:::moniker-end
+
+
 
 :::moniker range=">= aspnetcore-8.0"
 
