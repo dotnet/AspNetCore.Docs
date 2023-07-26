@@ -310,6 +310,8 @@ The preceding commands:
 * Add NuGet packages required for scaffolding.
 * Install the scaffolding engine (`dotnet-aspnet-codegenerator`) after uninstalling any possible previous version.
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 Build the project.
 
 Run the following command:

@@ -101,6 +101,9 @@ dotnet tool install --global dotnet-aspnet-codegenerator
 ```
 
 The preceding command adds the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 -->
 
 ---

@@ -344,6 +344,8 @@ dotnet ef migrations add initial
 dotnet ef database update
 ```
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 * Update the **ContactManager** anchor in the `Pages/Shared/_Layout.cshtml` file:
 
   ```cshtml
@@ -702,6 +704,8 @@ dotnet ef database drop -f
 dotnet ef migrations add initial
 dotnet ef database update
 ```
+
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
 If you experience a bug with the `dotnet aspnet-codegenerator razorpage` command, see [this GitHub issue](https://github.com/aspnet/Scaffolding/issues/984).
 

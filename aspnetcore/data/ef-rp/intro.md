@@ -92,6 +92,8 @@ Select `ContosoUniversity.csproj` to open the project.
     
   ```
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 <!-- prerelease versions require
   dotnet tool uninstall --global dotnet-ef
 -->

@@ -42,6 +42,8 @@ dotnet tool install -g Microsoft.dotnet-httprepl
 
 A [.NET Core Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool) is installed from the [Microsoft.dotnet-httprepl](https://www.nuget.org/packages/Microsoft.dotnet-httprepl) NuGet package.
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 On macOS, update the path:
 
 ```bash
