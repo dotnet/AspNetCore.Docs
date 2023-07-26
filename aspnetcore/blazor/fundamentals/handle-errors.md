@@ -72,6 +72,8 @@ Create or modify the Blazor error UI markup:
 </div>
 ```
 
+:::moniker-end
+
 :::moniker range="< aspnetcore-8.0"
 
 Create or modify the Blazor error UI markup:
