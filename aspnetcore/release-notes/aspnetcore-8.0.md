@@ -579,10 +579,14 @@ Here are IPv4 examples:
 ```csharp
 // Using Parse
 var network = IPNetwork.Parse("192.168.0.1/32");
+```
 
+```csharp
 // Using TryParse
 bool success = IPNetwork.TryParse("192.168.0.1/32", out var network);
+```
 
+```csharp
 // Constructor equivalent
 var network = new IPNetwork(IPAddress.Parse("192.168.0.1"), 32);
 ```
@@ -592,10 +596,14 @@ And here are examples for IPv6:
 ```csharp
 // Using Parse
 var network = IPNetwork.Parse("2001:db8:3c4d::1/128");
+```
 
+```csharp
 // Using TryParse
 bool success = IPNetwork.TryParse("2001:db8:3c4d::1/128", out var network);
+```
 
+```csharp
 // Constructor equivalent
 var network = new IPNetwork(IPAddress.Parse("2001:db8:3c4d::1"), 128);
 ```
