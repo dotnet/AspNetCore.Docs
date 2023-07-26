@@ -12,7 +12,7 @@ uid: performance/caching/output
 
 By [Tom Dykstra](https://github.com/tdykstra)
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-current-version.md)]
 
 :::moniker range=">= aspnetcore-8.0"
 
