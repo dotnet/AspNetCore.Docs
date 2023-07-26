@@ -14,6 +14,7 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
 
 > [!WARNING]
 > In .NET 8, not all ASP.NET Core features are compatible with native AOT.
+> See [this GitHub issue](https://github.com/dotnet/core/issues/8288) for a list of known native AOT issues.
 
 ## Why use native AOT with ASP.NET Core
 
