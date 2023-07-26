@@ -312,7 +312,7 @@ In production, don't render framework exception messages or stack traces in the 
 
 :::moniker-end
 
-Blazor on the server is a stateful framework. While users interact with an app, they maintain a connection to the server known as a *circuit*. The circuit holds active component instances, plus many other aspects of state, such as:
+Razor components with server interactivity enabled are stateful on the server. While users interact with the component on the server, they maintain a connection to the server known as a *circuit*. The circuit holds active component instances, plus many other aspects of state, such as:
 
 * The most recent rendered output of components.
 * The current set of event-handling delegates that could be triggered by client-side events.
