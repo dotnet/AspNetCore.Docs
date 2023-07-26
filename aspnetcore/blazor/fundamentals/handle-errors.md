@@ -21,23 +21,62 @@ When a Blazor app isn't functioning properly during development, receiving detai
 * During development, the bar directs you to the browser console, where you can see the exception.
 * In production, the bar notifies the user that an error has occurred and recommends refreshing the browser.
 
-The UI for this error handling experience is part of the [Blazor project templates](xref:blazor/project-structure).
+The UI for this error handling experience is part of the [Blazor project templates](xref:blazor/project-structure):
 
-:::moniker range=">= aspnetcore-7.0"
+```html
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+```
 
-In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file:
+:::moniker range=">= aspnetcore-8.0"
+
+In a Blazor Web App, customize the experience in the `App.razor` file. Because the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) (for example, `<environment include="Production">...</environment>`) isn't supported in Razor components, the following example injects <xref:xref:Microsoft.Extensions.Hosting.IHostEnvironment> to configure error messages for different environments.
+
+At the top of the `App` component file (`App.razor`):
+
+```razor
+@inject IHostEnvironment HostEnvironment
+```
+
+Create or modify the Blazor error UI markup:
+
+```razor
+<div id="blazor-error-ui">
+    @if (HostEnvironment.IsProduction())
+    {
+        <span>An error has occurred.</span>
+    }
+    else
+    {
+        <span>An unhandled exception occurred.</span>
+    }
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+```
+
+In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file. In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments:
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-In a Blazor Server app, customize the experience in the `Pages/_Layout.cshtml` file:
+In a Blazor Server app, customize the experience in the `Pages/_Layout.cshtml` file. In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments:
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file:
+In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file. In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments:
 
 :::moniker-end
 
@@ -49,16 +88,6 @@ In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` fil
     <environment include="Development">
         An unhandled exception has occurred. See browser dev tools for details.
     </environment>
-    <a href="" class="reload">Reload</a>
-    <a class="dismiss">🗙</a>
-</div>
-```
-
-In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html` file:
-
-```html
-<div id="blazor-error-ui">
-    An unhandled error has occurred.
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>

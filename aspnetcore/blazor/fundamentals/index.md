@@ -38,26 +38,29 @@ The following is an example counter component and part of an app created from a 
 
 `Pages/Counter.razor`:
 
-```razor
-@page "/counter"
+:::moniker range=">= aspnetcore-7.0"
 
-<PageTitle>Counter</PageTitle>
+:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/Counter.razor":::
 
-<h1>Counter</h1>
+:::moniker-end
 
-<p role="status">Current count: @currentCount</p>
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/Counter.razor":::
 
-@code {
-    private int currentCount = 0;
+:::moniker-end
 
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
-}
-```
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
+
+:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_WebAssembly/Pages/Counter.razor":::
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-5.0"
+
+:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_WebAssembly/Pages/Counter.razor":::
+
+:::moniker-end
 
 The preceding `Counter` component:
 
