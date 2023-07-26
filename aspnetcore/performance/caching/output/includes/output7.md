@@ -1,20 +1,4 @@
----
-title: Output caching middleware in ASP.NET Core
-author: tdykstra
-description: Learn how to configure and use output caching middleware in ASP.NET Core.
-monikerRange: '>= aspnetcore-7.0'
-ms.author: riande
-ms.custom: mvc
-ms.date: 07/26/2023
-uid: performance/caching/output
----
-# Output caching middleware in ASP.NET Core
-
-By [Tom Dykstra](https://github.com/tdykstra)
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0"
 
 This article explains how to configure output caching middleware in an ASP.NET Core app. For an introduction to output caching, see [Output caching](xref:performance/caching/overview#output-caching).
 
@@ -195,5 +179,3 @@ The following properties of <xref:Microsoft.AspNetCore.OutputCaching.OutputCache
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder>
 
 :::moniker-end
-
-[!INCLUDE[](~/performance/caching/output/includes/output7.md)]
