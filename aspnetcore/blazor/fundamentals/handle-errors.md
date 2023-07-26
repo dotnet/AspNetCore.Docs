@@ -786,7 +786,7 @@ In a Blazor app operating over a circuit, prerendering works by:
 
 * Creating a new circuit for all of the prerendered components that are part of the same page.
 * Generating the initial HTML.
-* Treating the circuit as `disconnected` until the user's browser establishes a  back to the same server. When the connection is established, interactivity on the circuit is resumed and the components' HTML markup is updated.
+* Treating the circuit as `disconnected` until the user's browser establishes a SignalR connection back to the same server. When the connection is established, interactivity on the circuit is resumed and the components' HTML markup is updated.
 
 For prerendered client-side components, prerendering works by:
 
