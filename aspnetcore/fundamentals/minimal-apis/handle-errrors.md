@@ -29,15 +29,7 @@ In a Minimal API app, there are two different built-in centralized mechanisms to
 
 This section refers to the following Minimal API app to demonstrate ways to handle exceptions. It throws an exception when the endpoint `/exception` is requested:
 
-``` csharp
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
-app.Map("/exception", () 
-    => { throw new InvalidOperationException("Sample Exception"); });
-
-app.Run();
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_ThrowExceptions" highlight="4-7":::
 
 ### Developer Exception Page
 
@@ -82,36 +74,13 @@ In non-development environments, use the [Exception Handler Middleware](xref:fun
 
 For example, the following code changes the app to respond with an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client. For more information, see [Problem Details](#problem-details) section.
 
-``` csharp
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
-app.UseExceptionHandler(exceptionHandlerApp 
-    => exceptionHandlerApp.Run(async context 
-        => await Results.Problem()
-                     .ExecuteAsync(context)));
-
-app.Map("/exception", () 
-    => { throw new InvalidOperationException("Sample Exception"); });
-
-app.Run();
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_WithUseExceptionHandler" highlight="4-7":::
 
 ## Client and Server error responses
 
 Consider the following Minimal API app.
 
-``` csharp
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
-app.Map("/users/{id:int}", (int id) 
-    => id <= 0 ? Results.BadRequest() : Results.Ok(new User(id)) );
-
-app.Run();
-
-public record User(int Id);
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_ClientAndServerErrorResponses":::
 
 The `/users` endpoint produces `200 OK` with a `json` representation of `User` when `id` is greater than `0`, otherwise a `400 BAD REQUEST` status code without a response body. For more information about creating a response, see [Create responses in Minimal API apps](/aspnet/core/fundamentals/minimal-apis/responses).
 
@@ -120,21 +89,7 @@ The [`Status Code Pages middleware`](xref:fundamentals/error-handling#sestatusco
 
 For example, the following example changes the app to respond with an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client for all client and server responses, including routing errors (for example, `404 NOT FOUND`). For more information, see the [Problem Details](#problem-details) section.
 
-``` csharp
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
-app.UseStatusCodePages(async statusCodeContext 
-    =>  await Results.Problem(statusCode: statusCodeContext.HttpContext.Response.StatusCode)
-                 .ExecuteAsync(statusCodeContext.HttpContext));
-
-app.Map("/users/{id:int}", (int id) 
-    => id <= 0 ? Results.BadRequest() : Results.Ok(new User(id)) );
-
-app.Run();
-
-public record User(int Id);
-```
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_ClientAndServerErrorResponsesWithUseStatusCodePages" highlight="4-7":::
 
 ## Problem details
 
@@ -144,23 +99,8 @@ Minimal API apps can be configured to generate problem details response for all 
 
 The following code configures the app to generate problem details:
 
-``` csharp
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddProblemDetails();
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_ProblemDetails" highlight="2":::
 
-var app = builder.Build();
-
-app.UseExceptionHandler();
-app.UseStatusCodePages();
-
-app.Map("/users/{id:int}", (int id) 
-    => id <= 0 ? Results.BadRequest() : Results.Ok(new User(id)) );
-
-app.Map("/exception", () 
-    => { throw new InvalidOperationException("Sample Exception"); });
-
-app.Run();
-```
 
 For more information on using `AddProblemDetails`, see [Problem Details](/aspnet/core/fundamentals/error-handling?view=aspnetcore-7.0&preserve-view=true#pds7)
 
@@ -168,7 +108,7 @@ For more information on using `AddProblemDetails`, see [Problem Details](/aspnet
 
 In the following code, `httpContext.Response.WriteAsync("Fallback: An error occurred.")` returns an error if the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation isn't able to generate a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_WithUseExceptionHandler" highlight="16":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_IProblemDetailsServiceWithExceptionFallback" highlight="15":::
 
 The preceding code:
 
@@ -177,7 +117,7 @@ The preceding code:
 
 The following sample is similar to the preceding except that it calls the [`Status Code Pages middleware`](xref:fundamentals/error-handling#usestatuscodepages).
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_WithStatusCodesPage" highlight="16":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errrors/sample8/Program.cs" id="snippet_IProblemDetailsServiceWithStatusCodePageFallback" highlight="15":::
 
 :::moniker-end
 
