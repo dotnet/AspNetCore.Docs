@@ -159,7 +159,8 @@ app.MapGet("/long-running-stream", async (HttpContext context) =>
         feature.MinDataRate = null;
     }
 
-    // Read long-running stream from request body.
+    // await and read long-running stream from request body.
+    await Task.Yield();
 });
 
 app.Run();
