@@ -201,7 +201,7 @@ For example:
 * [`options.Configuration`](xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.Configuration) - A connection string to an on-premises Redis server or to a hosted offering such as [Azure Cache for Redis](/azure/azure-cache-for-redis/). For example, `<instance_name>.redis.cache.windows.net:6380,password=<password>,ssl=True,abortConnect=False` for Azure cache for Redis.
 * [`options.InstanceName`](xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.InstanceName) - Optional, specifies a logical partition for the cache.
  
-We don't recommend <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use with output caching. `IDistributedCache` doesn't have atomic features, which are required for tagging. If the built-in support for Redis cache doesn't meet your needs, we recommend that you create custom <xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> implementations by using direct dependencies on the underlying storage mechanism.
+We don't recommend <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use with output caching. `IDistributedCache` doesn't have atomic features, which are required for tagging. We recommend that you use the built-in support for Redis or create custom <xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> implementations by using direct dependencies on the underlying storage mechanism.
 
 ## See also
 
