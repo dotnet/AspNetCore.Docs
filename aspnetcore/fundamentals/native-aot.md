@@ -236,12 +236,13 @@ Run the `dotnet build` command to see the generated code. The output includes an
 
 The `dotnet publish` command also compiles the source files and generates files that are compiled. In addition, `dotnet publish` passes the generated assemblies to a native IL compiler. The IL compiler produces the native executable. The native executable contains the native machine code.
 
-## See also
-
-* <xref:fundamentals/native-aot-tutorial>
-* [Native AOT deployment](/dotnet/core/deploying/native-aot/)
-
+[!INCLUDE[](~/fundamentals/aot/includes/aot_lib.md)]
 
 ## Known issues
 
 See [this GitHub issue](https://github.com/dotnet/core/issues/8288) to report or review issues with native AOT support in ASP.NET Core.
+
+## See also
+
+* <xref:fundamentals/native-aot-tutorial>
+* [Native AOT deployment](/dotnet/core/deploying/native-aot/)

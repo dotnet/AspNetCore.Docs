@@ -154,6 +154,8 @@ info: Microsoft.Hosting.Lifetime[0]
       Content root path: C:\Code\Demos\MyFirstAotWebApi
 ```
 
+[!INCLUDE[](~/fundamentals/aot/includes/aot_lib.md)]
+
 ## See also
 
 * <xref:fundamentals/native-aot>
