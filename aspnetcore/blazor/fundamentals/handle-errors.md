@@ -348,13 +348,11 @@ To define an error boundary, use the <xref:Microsoft.AspNetCore.Components.Web.E
 `Shared/MainLayout.razor`:
 
 ```razor
-<main>
-    <article class="content px-4">
-        <ErrorBoundary>
-            @Body
-        </ErrorBoundary>
-    </article>
-</main>
+<article class="content px-4">
+    <ErrorBoundary>
+        @Body
+    </ErrorBoundary>
+</article>
 ```
 
 The app continues to function normally, but the error boundary handles unhandled exceptions.
@@ -377,12 +375,13 @@ private void IncrementCount()
 
 If the unhandled exception is thrown for a `currentCount` over five:
 
+* The error is logged normally (`System.InvalidOperationException: Current count is too big!`).
 * The exception is handled by the error boundary.
-* Error UI is rendered (`An error has occurred.`).
+* Error UI is rendered by the error boundary with the following default error message: `An error has occurred.`
 
 By default, the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> component renders an empty `<div>` element with the `blazor-error-boundary` CSS class for its error content. The colors, text, and icon for the default UI are defined using CSS in the app's stylesheet in the `wwwroot` folder, so you're free to customize the error UI.
 
-You can also change the default error content by setting the `ErrorContent` property:
+Change the default error content by setting the <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ErrorContent> property:
 
 ```razor
 <ErrorBoundary>
@@ -390,12 +389,17 @@ You can also change the default error content by setting the `ErrorContent` prop
         @Body
     </ChildContent>
     <ErrorContent>
-        <p class="errorUI">Nothing to see here right now. Sorry!</p>
+        <p class="errorUI">😈 A rotten gremlin got us. Sorry!</p>
     </ErrorContent>
 </ErrorBoundary>
 ```
 
-Because the error boundary is defined in the layout in the preceding examples, the error UI is seen regardless of which page the user navigated to. We recommend narrowly scoping error boundaries in most scenarios. If you do broadly scope an error boundary, you can reset it to a non-error state on subsequent page navigation events by calling the error boundary's <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> method:
+Because the error boundary is defined in the layout in the preceding examples, the error UI is seen regardless of which page the user navigates to after the error occurs. We recommend narrowly scoping error boundaries in most scenarios. If you broadly scope an error boundary, you can reset it to a non-error state on subsequent page navigation events by calling the error boundary's <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> method.
+
+In `Shared/MainLayout.razor`:
+
+* Add a field for the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> to [capture a reference](xref:blazor/components/index#capture-references-to-components) to it with the [`@ref`](xref:mvc/views/razor#ref) attribute directive.
+* In the [`OnParameterSet` lifecycle method](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), trigger a recovery on the error boundary with <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A>.
 
 ```razor
 ...
@@ -415,6 +419,11 @@ Because the error boundary is defined in the layout in the preceding examples, t
     }
 }
 ```
+
+To avoid the infinite loop where recovering merely rerenders a component that throws the error again, don't call <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> from rendering logic. Only call <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> when:
+
+* The user performs a UI gesture, such as selecting a button to indicate that they want to retry a procedure or when the user navigates to a new component.
+* Additional logic also clears the exception. When the component is rerendered, the error doesn't reoccur.
 
 ## Alternative global exception handling
 
@@ -702,7 +711,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
 
 The declarative markup in a Razor component file (`.razor`) is compiled into a C# method called <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A>. When a component renders, <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A> executes and builds up a data structure describing the elements, text, and child components of the rendered component.
 
-Rendering logic can throw an exception. An example of this scenario occurs when `@someObject.PropertyName` is evaluated but `@someObject` is `null`. For Blazor Server apps, an unhandled exception thrown by rendering logic is fatal to the app's circuit.
+Rendering logic can throw an exception. An example of this scenario occurs when `@someObject.PropertyName` is evaluated but `@someObject` is `null`. For Blazor apps operating over a circuit, an unhandled exception thrown by rendering logic is fatal to the app's circuit.
 
 To prevent a <xref:System.NullReferenceException> in rendering logic, check for a `null` object before accessing its members. In the following example, `person.Address` properties aren't accessed if `person.Address` is `null`:
 
@@ -766,7 +775,7 @@ The following conditions apply to error handling with <xref:Microsoft.JSInterop.
 
 Similarly, JS code may initiate calls to .NET methods indicated by the [`[JSInvokable]` attribute](xref:blazor/js-interop/call-dotnet-from-javascript). If these .NET methods throw an unhandled exception:
 
-* In a Blazor Server app, the exception is ***not*** treated as fatal to the app's circuit.
+* In a Blazor app operating over a circuit, the exception is ***not*** treated as fatal to the app's circuit.
 * The JS-side `Promise` is rejected.
 
 You have the option of using error handling code on either the .NET side or the JS side of the method call.

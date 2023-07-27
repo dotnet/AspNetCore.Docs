@@ -86,14 +86,25 @@ Documentation sample apps are available for inspection and download:
 
 The repo contains two types of samples:
 
-* Snippet sample apps for Blazor Server and Blazor WebAssembly provide the code examples that appear in Blazor articles. These apps don't compile and aren't runnable apps. They're provided solely for the purpose of obtaining article example code.
+:::moniker range=">= aspnetcore-8.0"
+
+* Snippet sample apps provide the code examples that appear in Blazor articles. These apps compile but aren't necessarily runnable apps. These apps are useful for merely obtaining example code that appears in articles.
+* Samples apps to accompany Blazor articles compile and run for the following scenarios:
+  * Blazor Web Apps with server-side rendering (SSR) and server interactivity with EF Core
+  * Blazor Web App with SignalR
+  * Blazor WebAssembly scopes-enabled logging
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* Snippet sample apps provide the code examples that appear in Blazor articles. These apps compile but aren't necessarily runnable apps. These apps are useful for merely obtaining example code that appears in articles.
 * Samples apps to accompany Blazor articles compile and run for the following scenarios:
   * Blazor Server with EF Core
   * Blazor Server and Blazor WebAssembly with SignalR
   * Blazor WebAssembly scopes-enabled logging
 
-> [!NOTE]
-> Not all of the preceding sample apps are available for all releases of ASP.NET Core.
+:::moniker-end
 
 For more information, see the [Blazor samples GitHub repository README.md file](https://github.com/dotnet/blazor-samples).
 

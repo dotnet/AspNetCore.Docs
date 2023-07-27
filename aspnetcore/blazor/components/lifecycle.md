@@ -159,7 +159,7 @@ If event handlers are provided in developer code, unhook them on disposal. For m
 
 ::: moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE AT 8.0 Cross-link 'server-side rendering (SSR)' -->
+<!-- UPDATE 8.0 Cross-link 'server-side rendering (SSR)' -->
 
 Use *streaming rendering* with server-side rendering (SSR) to improve the user experience for server-side components that perform long-running asynchronous tasks in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> to fully render. For more information, see <xref:blazor/components/rendering#streaming-rendering>.
 

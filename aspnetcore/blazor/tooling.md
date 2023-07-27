@@ -19,7 +19,7 @@ This article describes tools for building Blazor apps on various platforms. Sele
 
 To create a Blazor app on Windows, use the following guidance:
 
-<!-- UPDATE FOR 8.0 Remove Preview VS install from versioning blocks -->
+<!-- UPDATE 8.0 Remove Preview VS install from versioning blocks -->
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -53,7 +53,7 @@ To create a Blazor app on Windows, use the following guidance:
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE FOR 8.0 Cross-link SSR -->
+<!-- UPDATE 8.0 Cross-link SSR -->
 
 * Provide a **Project name** and confirm that the **Location** is correct. To enable interactivity with server-side rendering (SSR), select the **Use interactive server components** checkbox. Select **Next**.
 
@@ -126,7 +126,7 @@ Create a new project:
   dotnet new blazor -o BlazorApp
   ```
 
-  <!-- UPDATE FOR 8.0 Cross-link SSR -->
+  <!-- UPDATE 8.0 Cross-link SSR -->
 
   To enable interactivity with server-side rendering (SSR), add the `--use-server` option to the command:
 
@@ -493,7 +493,7 @@ To create a Blazor app on macOS, use the following guidance:
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE FOR 8.0 VS4Mac new project guidance -->
+<!-- UPDATE 8.0 VS4Mac new project guidance -->
 
 * Install [Visual Studio for Mac Preview](https://visualstudio.microsoft.com/vs/mac/preview/). When the installer requests the workloads to install, select **.NET**.
 
@@ -509,7 +509,7 @@ To create a Blazor app on macOS, use the following guidance:
   dotnet new blazor -o BlazorApp
   ```
 
-  <!-- UPDATE FOR 8.0 Cross-link SSR -->
+  <!-- UPDATE 8.0 Cross-link SSR -->
 
   To enable interactivity with server-side rendering (SSR), add the `--use-server` option to the command:
 
@@ -522,7 +522,7 @@ To create a Blazor app on macOS, use the following guidance:
   > [!NOTE]
   > Visual Studio for Mac will be able to create Blazor Web Apps in an upcoming release.
 
-<!-- UPDATE FOR 8.0
+<!-- UPDATE 8.0
 
 In the sidebar, select **Web and Console** > **App**.
 
@@ -568,7 +568,7 @@ For a Blazor Web App experience (*recommended*), choose the **Blazor Web App** t
 
 * For a hosted Blazor WebAssembly experience, select the **ASP.NET Core Hosted** checkbox.
 
-<!-- UPDATE FOR 8.0 Re-enable the next two bullets and the dev cert paragraph for 8.0 after VS4Mac supports creating the app in the UI -->
+<!-- UPDATE 8.0 Re-enable the next two bullets and the dev cert paragraph for 8.0 after VS4Mac supports creating the app in the UI -->
 
 * In the **Project name** field, name the app `BlazorApp`. Select **Create**.
 
@@ -656,7 +656,7 @@ For more information on template options, see the following resources:
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE FOR 8.0
+<!-- UPDATE 8.0
 
 * [`blazor`](/dotnet/core/tools/dotnet-new-sdk-templates#blazor)
 

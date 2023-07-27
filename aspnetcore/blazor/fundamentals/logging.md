@@ -26,8 +26,19 @@ Logging configuration can be loaded from app settings files. For more informatio
 
 At default log levels and without configuring additional logging providers:
 
+:::moniker range=">= aspnetcore-8.0"
+
+* Blazor Web Apps only log to the server-side .NET console in the `Development` environment at the <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType> level or higher.
+* Blazor WebAssembly apps only log to the client-side [browser developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) console at the <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType> level or higher.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 * Blazor Server apps only log to the server-side .NET console in the `Development` environment at the <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType> level or higher.
 * Blazor WebAssembly apps only log to the client-side [browser developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) console at the <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType> level or higher.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -53,6 +64,8 @@ The following example:
 * Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> to log at the <xref:Microsoft.Extensions.Logging.LogLevel.Warning> level.
 
 `Pages/Counter1.razor`:
+
+<!-- UPDATE 8.0 The highlights will break for the 8.0 samples. -->
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -106,9 +119,21 @@ The following example demonstrates logging with an <xref:Microsoft.Extensions.Lo
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Logging in Blazor Web Apps
+
+For general ASP.NET Core logging guidance that pertains to Blazor Web Apps, see <xref:fundamentals/logging/index>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 ## Logging in Blazor Server apps
 
 For general ASP.NET Core logging guidance that pertains to Blazor Server, see <xref:fundamentals/logging/index>.
+
+:::moniker-end
 
 ## Logging in Blazor WebAssembly apps
 
@@ -609,13 +634,35 @@ Output:
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-8.0"
+
 ## Hosted Blazor WebAssembly logging
 
 A hosted Blazor WebAssembly app that [prerenders its content](xref:blazor/components/prerendering-and-integration) executes [component initialization code twice](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). Logging takes place server-side on the first execution of initialization code and client-side on the second execution of initialization code. Depending on the goal of logging during initialization, check logs server-side, client-side, or both.
 
-## SignalR client logging (Blazor Server)
+:::moniker-end
 
-:::moniker range=">= aspnetcore-7.0"
+## SignalR client logging
+
+:::moniker range=">= aspnetcore-8.0"
+
+*This section applies to Blazor Web Apps operating over a circuit.*
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+*This section applies to Blazor Server apps.*
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+On the SignalR client builder in `App.razor`, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 On the SignalR client builder in `Pages/_Host.cshtml`, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
 
@@ -647,6 +694,25 @@ For the `configureLogging` log level value, pass the argument as either the stri
 
 Example 1: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with a string value:
 
+:::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE 8.0 Remove the suppress-error? -->
+
+```html
+<script src="_framework/blazor.web.js" suppress-error="BL9992"></script>
+<script>
+  Blazor.start({
+    configureSignalR: function (builder) {
+      builder.configureLogging("information");
+    }
+  });
+</script>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 ```html
 <script src="_framework/blazor.server.js" autostart="false"></script>
 <script>
@@ -658,7 +724,26 @@ Example 1: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log 
 </script>
 ```
 
+:::moniker-end
+
 Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with an integer value:
+
+:::moniker range=">= aspnetcore-8.0"
+
+```html
+<script src="_framework/blazor.web.js" suppress-error="BL9992"></script>
+<script>
+  Blazor.start({
+    configureSignalR: function (builder) {
+      builder.configureLogging(2);
+    }
+  });
+</script>
+```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 ```html
 <script src="_framework/blazor.server.js" autostart="false"></script>
@@ -671,11 +756,13 @@ Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log 
 </script>
 ```
 
+:::moniker-end
+
 For more information on Blazor startup (`Blazor.start()`), see <xref:blazor/fundamentals/startup>.
 
-## SignalR client logging (Blazor WebAssembly)
+## SignalR client logging with client-side rendering (CSR)
 
-In Blazor WebAssembly apps, set up app settings configuration as described in <xref:blazor/fundamentals/configuration#logging-configuration>. Place app settings files in `wwwroot` that contain a `Logging:LogLevel:HubConnection` app setting.
+Set up app settings configuration as described in <xref:blazor/fundamentals/configuration#logging-configuration>. Place app settings files in `wwwroot` that contain a `Logging:LogLevel:HubConnection` app setting.
 
 > [!NOTE]
 > As an alternative to using app settings, you can pass the <xref:Microsoft.Extensions.Logging.LogLevel> as the argument to <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> when the hub connection is created in a Razor component. However, accidentally deploying the app to a production hosting environment with verbose logging may result in a performance penalty. We recommend using app settings to set the log level.
@@ -753,11 +840,11 @@ protected override async Task OnInitializedAsync()
 > [!NOTE]
 > In the preceding example, `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
 
-For more information on setting the app's environment for Blazor WebAssembly, see <xref:blazor/fundamentals/environments>.
+For more information on setting the app's environment, see <xref:blazor/fundamentals/environments>.
 
 :::moniker range=">= aspnetcore-7.0"
 
-## Authentication logging (Blazor WebAssembly)
+## Authentication logging with client-side rendering (CSR)
 
 Log Blazor authentication messages at the <xref:Microsoft.Extensions.Logging.LogLevel.Debug?displayProperty=nameWithType> or <xref:Microsoft.Extensions.Logging.LogLevel.Trace?displayProperty=nameWithType> logging levels with a logging configuration in app settings or by using a log filter for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> in `Program.cs`.
 
@@ -789,7 +876,7 @@ Use ***either*** of the following approaches:
   ```
 
 > [!NOTE]
-> Blazor WebAssembly apps only log to the client-side [browser developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) console.
+> Razor components rendered on the client only log to the client-side [browser developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) console.
 
 :::moniker-end
 
