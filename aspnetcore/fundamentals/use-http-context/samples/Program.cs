@@ -153,7 +153,7 @@ var app = builder.Build();
 
 app.MapGet("/long-running-stream", async (HttpContext context) =>
 {
-    var feature = httpContext.Features.Get<IHttpMinRequestBodyDataRateFeature>();
+    var feature = context.Features.Get<IHttpMinRequestBodyDataRateFeature>();
     if (feature != null)
     {
         feature.MinDataRate = null;
