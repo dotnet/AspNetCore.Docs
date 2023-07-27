@@ -185,7 +185,23 @@ The following properties of <xref:Microsoft.AspNetCore.OutputCaching.OutputCache
 
 ## Cache storage
 
-<xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> is used for storage. By default it's used with <xref:System.Runtime.Caching.MemoryCache>. We don't recommend <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use with output caching. `IDistributedCache` doesn't have atomic features, which are required for tagging. We recommend that you create custom <xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> implementations by using direct dependencies on the underlying storage mechanism, such as Redis.
+## Cache storage
+
+<xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> is used for storage. By default it's used with <xref:System.Runtime.Caching.MemoryCache>. Cached responses are stored in-process, so each server node has a separate and isolated cache that is lost whenever the server process is restarted.
+
+An alternative is to use a Redis backend for output caching. Redis cache provides consistency between server nodes via a shared cache that outlives individual server processes. To use Redis for output caching:
+
+* Install the [Microsoft.Extensions.Caching.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis) NuGet package.
+* Call `builder.AddStackExchangeRedisOutputCache` (not `AddStackExchangeRedisCache`). The available configuration options are identical to the existing [Redis-based distributed caching options](xref:performance/caching/distributed#distributed-redis-cache).
+
+For example:
+
+:::code language="csharp" source="~/performance/caching/output/samples/8.x/Program.cs" id="redis" highlight="1-5":::
+
+* [`options.Configuration`](xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.Configuration) - A connection string to an on-premises Redis server or to a hosted offering such as [Azure Cache for Redis](/azure/azure-cache-for-redis/). For example, `<instance_name>.redis.cache.windows.net:6380,password=<password>,ssl=True,abortConnect=False` for Azure cache for Redis.
+* [`options.InstanceName`](xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.InstanceName) - Optional, specifies a logical partition for the cache.
+ 
+We don't recommend <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use with output caching. `IDistributedCache` doesn't have atomic features, which are required for tagging. If the built-in support for Redis cache doesn't meet your needs, we recommend that you create custom <xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> implementations by using direct dependencies on the underlying storage mechanism.
 
 ## See also
 
