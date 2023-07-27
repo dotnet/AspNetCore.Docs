@@ -1363,6 +1363,8 @@ items:
             uid: security/authentication/index
           - name: Introduction to Identity
             uid: security/authentication/identity
+          - name: How to chose an identity management solution
+            uid: security/how-to-choose-identity
           - name: Mapping, customizing, and transforming claims
             uid: security/authentication/claims
           - name: Identity with SPA
