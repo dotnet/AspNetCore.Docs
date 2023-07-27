@@ -1,20 +1,4 @@
----
-title: Distributed caching in ASP.NET Core
-author: tdykstra
-description: Learn how to use an ASP.NET Core distributed cache to improve app performance and scalability, especially in a cloud or server farm environment.
-monikerRange: '>= aspnetcore-3.1'
-ms.author: riande
-ms.custom: mvc
-ms.date: 3/16/2023
-uid: performance/caching/distributed
----
-# Distributed caching in ASP.NET Core
-
-By [Mohsin Nasir](https://github.com/mohsinnasir) and [smandia](https://github.com/smandia)
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0 <= aspnetcore-7.0"
 
 A distributed cache is a cache shared by multiple app servers, typically maintained as an external service to the app servers that access it. A distributed cache can improve the performance and scalability of an ASP.NET Core app, especially when the app is hosted by a cloud service or a server farm.
 
@@ -185,6 +169,3 @@ When SQL Server is used as a distributed cache backing store, use of the same da
 * <xref:host-and-deploy/web-farm>
 
 :::moniker-end
-
-[!INCLUDE[](~/performance/caching/distributed/includes/distributed6-7.md)]
-[!INCLUDE[](~/performance/caching/distributed/includes/distributed5.md)]

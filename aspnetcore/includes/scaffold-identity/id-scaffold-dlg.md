@@ -21,6 +21,8 @@ If you have not previously installed the ASP.NET Core scaffolder, install it now
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 Add required NuGet package references to the project file (`.csproj`). Run the following commands in the project directory:
 
 ```dotnetcli

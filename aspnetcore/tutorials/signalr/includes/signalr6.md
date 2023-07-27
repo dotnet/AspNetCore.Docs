@@ -120,6 +120,8 @@ dotnet tool uninstall -g Microsoft.Web.LibraryManager.Cli
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 ```
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 Run the following command to get the SignalR client library by using LibMan. It may take a few seconds before displaying output.
 
 ```console
@@ -148,6 +150,8 @@ In the **Terminal**, run the following commands to install LibMan after uninstal
 dotnet tool uninstall -g Microsoft.Web.LibraryManager.Cli
 dotnet tool install -g Microsoft.Web.LibraryManager.Cli
 ```
+
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
 Navigate to the project folder (the one that contains the `SignalRChat.csproj` file).
 

@@ -91,6 +91,8 @@ The preceding commands add:
 * The [command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
 * The [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 ---
 
 Build the project as a check for compiler errors.
