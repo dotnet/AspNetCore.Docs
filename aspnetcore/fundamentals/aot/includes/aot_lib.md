@@ -10,5 +10,5 @@ Libraries using these dynamic features need to be updated in order to work with 
 
 Library authors hoping to support native AOT are encouraged to:
 
-* Read about [native AOT compatibility requirements](/dotnet/core/deploying/native-aot/?tabs=net8).
+* Read about [native AOT compatibility requirements](/dotnet/core/deploying/native-aot/?tabs=net8plus).
 * Prepare the [library for trimming](/dotnet/core/deploying/trimming/prepare-libraries-for-trimming).
