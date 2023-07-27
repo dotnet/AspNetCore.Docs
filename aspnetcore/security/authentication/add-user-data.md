@@ -66,6 +66,8 @@ If you have not previously installed the ASP.NET Core scaffolder, install it now
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 Add a package reference to [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project (.csproj) file. Run the following command in the project directory:
 
 ```dotnetcli
@@ -210,6 +212,8 @@ If you have not previously installed the ASP.NET Core scaffolder, install it now
 ```dotnetcli
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
+
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
 Add a package reference to [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project (.csproj) file. Run the following command in the project directory:
 
@@ -430,6 +434,8 @@ If you have not previously installed the ASP.NET Core scaffolder, install it now
 ```dotnetcli
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
+
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
 Add a package reference to [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design/) to the project (.csproj) file. Run the following command in the project directory:
 
