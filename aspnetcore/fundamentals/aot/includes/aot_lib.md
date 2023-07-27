@@ -6,10 +6,7 @@ Many of the popular libraries used ASP.NET Core projects currently have some com
 * Conditionally loading libraries at runtime.
 * Generating code on the fly to implement functionality.
 
-Libraries using these dynamic features:
-
-* Can cause compatibility issues with native AOT.
-* Need to be updated in order to work with native AOT. They can be updated using tools like Roslyn source generators.
+Libraries using these dynamic features need to be updated in order to work with native AOT. They can be updated using tools like Roslyn source generators.
 
 Library authors hoping to support native AOT are encouraged to:
 
