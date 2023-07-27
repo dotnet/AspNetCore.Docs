@@ -38,6 +38,8 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
 
   ![Visual Studio workload selection dialog showing "ASP.NET and web development" and "Desktop development with C++" selected.](~/fundamentals/aot/_static/ddcpp.png)
 
+On Linux, see [Prerequisites for native AOT deployment](/dotnet/core/deploying/native-aot/?tabs=net8plus#prerequisites-for-native-aot-deployment).
+
 ---
 
 ## Create a web app with native AOT
