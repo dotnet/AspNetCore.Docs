@@ -116,7 +116,7 @@ The SignalR server library is included in the ASP.NET Core 3.1 shared framework.
   dotnet tool install -g Microsoft.Web.LibraryManager.Cli
   ```
 
-    [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+  [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
   * Navigate to the project folder (the one that contains the `SignalRChat.csproj` file).
 
