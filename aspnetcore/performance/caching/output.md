@@ -196,7 +196,7 @@ An alternative is to use [Redis](https://redis.io/) cache. Redis cache provides 
 
   For example:
 
-  :::code language="csharp" source="~/performance/caching/output/samples/8.x/Program.cs" id="redis" highlight="1-5":::
+  :::code language="csharp" source="~/performance/caching/output/samples/8.x/Program.cs" id="redis" highlight="1-6":::
 
   * [`options.Configuration`](xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.Configuration) - A connection string to an on-premises Redis server or to a hosted offering such as [Azure Cache for Redis](/azure/azure-cache-for-redis/). For example, `<instance_name>.redis.cache.windows.net:6380,password=<password>,ssl=True,abortConnect=False` for Azure cache for Redis.
   * [`options.InstanceName`](xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.InstanceName) - Optional, specifies a logical partition for the cache.
