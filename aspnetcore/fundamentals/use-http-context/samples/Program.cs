@@ -153,13 +153,14 @@ var app = builder.Build();
 
 app.MapGet("/long-running-stream", async (HttpContext context) =>
 {
-    var feature = httpContext.Features.Get<IHttpMinRequestBodyDataRateFeature>();
+    var feature = context.Features.Get<IHttpMinRequestBodyDataRateFeature>();
     if (feature != null)
     {
         feature.MinDataRate = null;
     }
 
-    // Read long-running stream from request body.
+    // await and read long-running stream from request body.
+    await Task.Yield();
 });
 
 app.Run();
