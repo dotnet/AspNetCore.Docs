@@ -820,7 +820,7 @@ To modify the connection events, register callbacks for the following connection
 
 The default reconnection behavior requires the user to take manual action to refresh the page after reconnection fails. However, a custom reconnection handler can be used to automatically refresh the page:
 
-::moniker-end
+:::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
