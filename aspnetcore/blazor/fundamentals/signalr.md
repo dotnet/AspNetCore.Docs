@@ -818,6 +818,8 @@ To modify the connection events, register callbacks for the following connection
 
 The default reconnection behavior requires the user to take manual action to refresh the page after reconnection fails. However, a custom reconnection handler can be used to automatically refresh the page:
 
+::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 `App.razor`:
@@ -830,17 +832,7 @@ The default reconnection behavior requires the user to take manual action to ref
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-`Pages/_Layout.cshtml`:
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-`Pages/_Host.cshtml`:
-
-:::moniker-end
+:::moniker range=">= aspnetcore-7.0"
 
 ```html
 <div id="reconnect-modal" style="display: none;"></div>

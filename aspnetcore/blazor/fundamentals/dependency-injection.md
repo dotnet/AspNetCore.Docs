@@ -102,8 +102,6 @@ await host.RunAsync();
 
 ## Add server-side services
 
-:::moniker range=">= aspnetcore-6.0"
-
 After creating a new app, examine part of the `Program.cs` file:
 
 :::moniker range=">= aspnetcore-8.0"

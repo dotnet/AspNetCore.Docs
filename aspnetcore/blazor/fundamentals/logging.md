@@ -558,7 +558,7 @@ Run the app again. Select the **`Log Messages`** button. Notice that the logging
 
 ## Log scopes (client-side)
 
-The developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#custom-logger-provider-blazor-webassembly) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
+The developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#custom-logger-provider-client-side) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
 
 :::moniker-end
 

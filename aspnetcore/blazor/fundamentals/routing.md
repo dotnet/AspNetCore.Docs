@@ -1373,7 +1373,7 @@ The following HTML markup is rendered:
 
 :::moniker range=">= aspnetcore-8.0"
 
-Server-side rendering (SSR) is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents> in `Program.cs`.  The default root component is the `App` component (`App.razor`):
+Server-side rendering (SSR) is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in `Program.cs`.  The default root component is the `App` component (`App.razor`):
 
 ```csharp
 app.MapRazorComponents<App>();
