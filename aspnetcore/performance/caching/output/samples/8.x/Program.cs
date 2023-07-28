@@ -10,7 +10,8 @@ public class Program
         // <redis>
         builder.Services.AddStackExchangeRedisOutputCache(options =>
         {
-            options.Configuration = builder.Configuration.GetConnectionString("MyRedisConStr");
+            options.Configuration = 
+                builder.Configuration.GetConnectionString("MyRedisConStr");
             options.InstanceName = "SampleInstance";
         });
 
