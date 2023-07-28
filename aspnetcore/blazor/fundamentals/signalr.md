@@ -241,21 +241,16 @@ services.AddServerSideBlazor(options =>
 
 :::moniker-end
 
-<!-- UPDATE 8.0 Not clear how to establish hub options
+To configure the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext>, use <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions> with <xref:Microsoft.Extensions.DependencyInjection.ServerSideBlazorBuilderExtensions.AddHubOptions%2A>. For option descriptions, see <xref:signalr/configuration#configure-server-options>. The following example assigns the default option values. Confirm that the file uses the <xref:System> namespace (`using System;`).
 
 :::moniker range=">= aspnetcore-8.0"
 
-To configure the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext>, use <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions> with <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions%2A>. For option descriptions, see <xref:signalr/configuration#configure-server-options>. The following example assigns the default option values. Confirm that the file uses the <xref:System> namespace (`using System;`).
-
+<!-- UPDATE 8.0 Confirm this at Pre7 release -->
 
 In `Program.cs`:
 
 ```csharp
-builder.Services.AddRazorComponents().AddServerComponents()
-
-... ??? ...
-
-.AddHubOptions(options =>
+builder.Services.AddRazorComponents().AddServerComponents().AddHubOptions(options =>
 {
     options.ClientTimeoutInterval = TimeSpan.FromSeconds(30);
     options.EnableDetailedErrors = false;
@@ -269,11 +264,7 @@ builder.Services.AddRazorComponents().AddServerComponents()
 
 :::moniker-end
 
--->
-
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
-
-To configure the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext>, use <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions> with <xref:Microsoft.Extensions.DependencyInjection.ServerSideBlazorBuilderExtensions.AddHubOptions%2A>. For option descriptions, see <xref:signalr/configuration#configure-server-options>. The following example assigns the default option values. Confirm that the file uses the <xref:System> namespace (`using System;`).
 
 In `Program.cs`:
 
@@ -293,8 +284,6 @@ builder.Services.AddServerSideBlazor().AddHubOptions(options =>
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
-
-To configure the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext>, use <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextOptions> with <xref:Microsoft.Extensions.DependencyInjection.ServerSideBlazorBuilderExtensions.AddHubOptions%2A>. For option descriptions, see <xref:signalr/configuration#configure-server-options>. The following example assigns the default option values. Confirm that the file uses the <xref:System> namespace (`using System;`).
 
 In `Startup.ConfigureServices`:
 
