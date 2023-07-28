@@ -812,6 +812,8 @@ To modify the connection events, register callbacks for the following connection
 </script>
 ```
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-7.0"
 
 ### Automatically refresh the page when reconnection fails (server-side)
