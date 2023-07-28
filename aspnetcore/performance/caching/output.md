@@ -189,7 +189,7 @@ The following properties of <xref:Microsoft.AspNetCore.OutputCaching.OutputCache
 
 <xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> is used for storage. By default it's used with <xref:System.Runtime.Caching.MemoryCache>. Cached responses are stored in-process, so each server node has a separate and isolated cache that is lost whenever the server process is restarted.
 
-An alternative is to use a Redis backend for output caching. Redis cache provides consistency between server nodes via a shared cache that outlives individual server processes. To use Redis for output caching:
+An alternative is to use a [Redis](xref:performance/caching/distributed#distributed-redis-cache) backend for output caching. Redis cache provides consistency between server nodes via a shared cache that outlives individual server processes. To use Redis for output caching:
 
 * Install the [Microsoft.Extensions.Caching.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis) NuGet package.
 * Call `builder.AddStackExchangeRedisOutputCache` (not `AddStackExchangeRedisCache`). The available configuration options are identical to the existing [Redis-based distributed caching options](xref:performance/caching/distributed#distributed-redis-cache).
