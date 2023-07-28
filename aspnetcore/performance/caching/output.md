@@ -47,7 +47,7 @@ The following highlighted code configures caching for all of the app's endpoints
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies1" highlight="3-4":::
 
-The following highlighted code creates two policies, each specifying a different expiration time. Selected endpoints can use the 20 second expiration, and others can use the 30 second expiration.
+The following highlighted code creates two policies, each specifying a different expiration time. Selected endpoints can use the 20-second expiration, and others can use the 30-second expiration.
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="policies1" highlight="5-8":::
 
@@ -155,7 +155,7 @@ In the preceding tag assignment examples, both endpoints are identified by the `
 
 :::code language="csharp" source="~/performance/caching/output/samples/7.x/Program.cs" id="evictbytag":::
 
-With this code, an HTTP POST request sent to `https://localhost:<port>/purge/tag-blog` will evict cache entries for these endpoints.
+With this code, an HTTP POST request sent to `https://localhost:<port>/purge/tag-blog` evicts cache entries for these endpoints.
 
 You might want a way to evict all cache entries for all endpoints. To do that, create a base policy for all endpoints as the following code does:
 
@@ -179,26 +179,32 @@ The following example selects the no-locking policy for an endpoint:
 
 The following properties of <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions> let you configure limits that apply to all endpoints:
 
-* <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions.SizeLimit> - Maximum size of cache storage. When this limit is reached, no new responses will be cached until older entries are evicted. Default value is 100 MB.
-* <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions.MaximumBodySize> - If the response body exceeds this limit, it will not be cached. Default value is 64 MB.
+* <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions.SizeLimit> - Maximum size of cache storage. When this limit is reached, no new responses are cached until older entries are evicted. Default value is 100 MB.
+* <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions.MaximumBodySize> - If the response body exceeds this limit, it isn't cached. Default value is 64 MB.
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions.DefaultExpirationTimeSpan> - The expiration time duration that applies when not specified by a policy. Default value is 60 seconds.
 
 ## Cache storage
 
-<xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> is used for storage. By default it's used with <xref:System.Runtime.Caching.MemoryCache>. Cached responses are stored in-process, so each server node has a separate and isolated cache that is lost whenever the server process is restarted.
+<xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> is used for storage. By default it's used with <xref:System.Runtime.Caching.MemoryCache>. Cached responses are stored in-process, so each server has a separate cache that is lost whenever the server process is restarted.
 
-An alternative is to use a [Redis](https://redis.io/) backend for output caching. Redis cache provides consistency between server nodes via a shared cache that outlives individual server processes. To use Redis for output caching:
+### Redis cache
+
+An alternative is to use [Redis](https://redis.io/) cache. Redis cache provides consistency between server nodes via a shared cache that outlives individual server processes. To use Redis for output caching:
 
 * Install the [Microsoft.Extensions.Caching.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis) NuGet package.
-* Call `builder.AddStackExchangeRedisOutputCache` (not `AddStackExchangeRedisCache`). The available configuration options are identical to the existing [Redis-based distributed caching options](xref:performance/caching/distributed#distributed-redis-cache).
+* Call `builder.AddStackExchangeRedisOutputCache` (not `AddStackExchangeRedisCache`), and provide a connection string that points to a Redis server.
 
-For example:
+  For example:
 
-:::code language="csharp" source="~/performance/caching/output/samples/8.x/Program.cs" id="redis" highlight="1-5":::
+  :::code language="csharp" source="~/performance/caching/output/samples/8.x/Program.cs" id="redis" highlight="1-5":::
 
-* [`options.Configuration`](xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.Configuration) - A connection string to an on-premises Redis server or to a hosted offering such as [Azure Cache for Redis](/azure/azure-cache-for-redis/). For example, `<instance_name>.redis.cache.windows.net:6380,password=<password>,ssl=True,abortConnect=False` for Azure cache for Redis.
-* [`options.InstanceName`](xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.InstanceName) - Optional, specifies a logical partition for the cache.
+  * [`options.Configuration`](xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.Configuration) - A connection string to an on-premises Redis server or to a hosted offering such as [Azure Cache for Redis](/azure/azure-cache-for-redis/). For example, `<instance_name>.redis.cache.windows.net:6380,password=<password>,ssl=True,abortConnect=False` for Azure cache for Redis.
+  * [`options.InstanceName`](xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.InstanceName) - Optional, specifies a logical partition for the cache.
  
+  The configuration options are identical to the [Redis-based distributed caching options](xref:performance/caching/distributed#distributed-redis-cache).
+
+### `IDistributedCache` not recommended
+
 We don't recommend <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use with output caching. `IDistributedCache` doesn't have atomic features, which are required for tagging. We recommend that you use the built-in support for Redis or create custom <xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> implementations by using direct dependencies on the underlying storage mechanism.
 
 ## See also
