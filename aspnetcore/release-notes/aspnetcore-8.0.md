@@ -201,7 +201,7 @@ The preceding generated code:
 
 In this release, we've made the object pool easier to use by adding the <xref:Microsoft.Extensions.ObjectPool.IResettable> interface. Reusable types often need to be reset back to a default state between uses. `IResettable` types are automatically reset when returned to an object pool.
 
-For more information, see the [ObjectPool sample](performance/ObjectPool##objectpool-sample).
+For more information, see the [ObjectPool sample](xref:performance/ObjectPool##objectpool-sample).
 
 ## Native AOT
 
