@@ -284,6 +284,8 @@ The preceding commands:
 * Add NuGet packages required for scaffolding.
 * Install the scaffolding engine (`dotnet-aspnet-codegenerator`) after uninstalling any possible previous version.
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 Build the project.
 
 Run the following command:
@@ -836,6 +838,8 @@ The preceding commands:
 * Install the scaffolding engine (`dotnet-aspnet-codegenerator`).
 * Scaffold the `TodoItemsController`.
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
 For Visual Studio for Mac, see the .NET 5 version of this tutorial.
@@ -881,6 +885,8 @@ This tutorial uses [http-repl](xref:web-api/http-repl) to test the web API.
   ```dotnetcli
   dotnet tool install -g Microsoft.dotnet-httprepl
   ```
+
+  [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
 * If you don't have the .NET 6.0 SDK or runtime installed, install the [.NET 6.0 runtime](https://dotnet.microsoft.com/download/dotnet/6.0/runtime).
   
@@ -1427,6 +1433,8 @@ The preceding commands:
 * Installs the scaffolding engine (`dotnet-aspnet-codegenerator`).
 * Scaffolds the `TodoItemsController`.
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 ---
 
 The generated code:
@@ -1947,6 +1955,8 @@ The preceding commands:
 * Add NuGet packages required for scaffolding.
 * Installs the scaffolding engine (`dotnet-aspnet-codegenerator`).
 * Scaffolds the `TodoItemsController`.
+
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
 ---
 

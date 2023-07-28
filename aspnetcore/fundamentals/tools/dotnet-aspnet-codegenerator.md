@@ -24,6 +24,8 @@ Install the [.NET SDK](https://dotnet.microsoft.com/download).
 dotnet tool install -g dotnet-aspnet-codegenerator
 ```
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 The following command updates `dotnet aspnet-codegenerator` to the latest stable version available from the installed .NET Core SDKs:
 
 ```dotnetcli

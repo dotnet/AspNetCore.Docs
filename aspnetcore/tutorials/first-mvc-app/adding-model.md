@@ -108,6 +108,8 @@ dotnet tool uninstall --global dotnet-ef
 dotnet tool install --global dotnet-ef
 ```
 
+[!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
+
 The preceding commands add:
 
 * The [command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
