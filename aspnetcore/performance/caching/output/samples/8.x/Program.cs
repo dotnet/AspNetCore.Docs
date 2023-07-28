@@ -9,7 +9,7 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddAuthorization();
-        // <redisoptions>
+        // <redis>
         builder.Services.AddStackExchangeRedisOutputCache(options =>
         {
             options.Configuration = builder.Configuration.GetConnectionString("MyRedisConStr");
@@ -20,7 +20,7 @@ public class Program
             options.AddBasePolicy(builder => 
                 builder.Expire(TimeSpan.FromSeconds(10)));
         });
-        // </redisoptions>
+        // </redis>
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
