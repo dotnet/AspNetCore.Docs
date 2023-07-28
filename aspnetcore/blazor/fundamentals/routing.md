@@ -345,6 +345,18 @@ Consider the following `Example` component that can receive a route parameter fr
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE 8.0 This code must be checked -->
+
+For server-side configuration that routes requests with a dot in the `param` route parameter, add a fallback page route template with the optional parameter in `Program.cs`:
+
+```csharp
+app.MapFallbackToPage("/example/{param?}", "/");
+```
+
+:::moniker-end
+
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 To permit the **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Program.cs`:
@@ -463,7 +475,7 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 | Member | Description |
 | ------ | ----------- |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> | Gets the current absolute URI. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element in `wwwroot/index.html` (Blazor WebAssembly) or `Pages/_Host.cshtml` (Blazor Server). |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element ([location of `<head>` content](xref:blazor/project-structure#location-of-head-content)). |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul> |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
@@ -1361,13 +1373,7 @@ The following HTML markup is rendered:
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0
-
-<xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents>
-
--->
-
-Server-side rendering (SSR) is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with `MapRazorComponents` in `Program.cs`.  The default root component is the `App` component (`App.razor`):
+Server-side rendering (SSR) is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents> in `Program.cs`.  The default root component is the `App` component (`App.razor`):
 
 ```csharp
 app.MapRazorComponents<App>();
@@ -1391,20 +1397,6 @@ app.MapFallbackToPage("/_Host");
 :::moniker range="< aspnetcore-6.0"
 
 Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in `Startup.Configure`.
-
-`Startup.cs`:
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="csharp" source="~/../blazor-samples/5.0/BlazorSample_Server/routing/Startup.cs" highlight="11":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="csharp" source="~/../blazor-samples/3.1/BlazorSample_Server/routing/Startup.cs" highlight="11":::
 
 :::moniker-end
 

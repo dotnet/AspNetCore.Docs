@@ -26,19 +26,8 @@ Logging configuration can be loaded from app settings files. For more informatio
 
 At default log levels and without configuring additional logging providers:
 
-:::moniker range=">= aspnetcore-8.0"
-
-* Blazor Web Apps only log to the server-side .NET console in the `Development` environment at the <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType> level or higher.
-* Blazor WebAssembly apps only log to the client-side [browser developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) console at the <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType> level or higher.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-* Blazor Server apps only log to the server-side .NET console in the `Development` environment at the <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType> level or higher.
-* Blazor WebAssembly apps only log to the client-side [browser developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) console at the <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType> level or higher.
-
-:::moniker-end
+* On the server, logging only occurs to the server-side .NET console in the `Development` environment at the <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType> level or higher.
+* On the client, logging only occurs to the client-side [browser developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) console at the <xref:Microsoft.Extensions.Logging.LogLevel.Information?displayProperty=nameWithType> level or higher.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -119,25 +108,14 @@ The following example demonstrates logging with an <xref:Microsoft.Extensions.Lo
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
 
-## Logging in Blazor Web Apps
+## Logging server-side
 
-For general ASP.NET Core logging guidance that pertains to Blazor Web Apps, see <xref:fundamentals/logging/index>.
+For general ASP.NET Core logging guidance, see <xref:fundamentals/logging/index>.
 
-:::moniker-end
+## Logging client-side
 
-:::moniker range="< aspnetcore-8.0"
-
-## Logging in Blazor Server apps
-
-For general ASP.NET Core logging guidance that pertains to Blazor Server, see <xref:fundamentals/logging/index>.
-
-:::moniker-end
-
-## Logging in Blazor WebAssembly apps
-
-Not every feature of [ASP.NET Core logging](xref:fundamentals/logging/index) is supported in Blazor WebAssembly apps. For example, Blazor WebAssembly apps don't have access to the client's file system or network, so writing logs to the client's physical or network storage isn't possible. When using a third-party logging service designed to work with single-page apps (SPAs), follow the service's security guidance. Keep in mind that every piece of data, including keys or secrets stored in the Blazor WebAssembly app are ***insecure*** and can be easily discovered by malicious users.
+Not every feature of [ASP.NET Core logging](xref:fundamentals/logging/index) is supported client-side. For example, client-side apps don't have access to the client's file system or network, so writing logs to the client's physical or network storage isn't possible. When using a third-party logging service designed to work with single-page apps (SPAs), follow the service's security guidance. Keep in mind that every piece of data, including keys or secrets stored in the client-side app are ***insecure*** and can be easily discovered by malicious users.
 
 :::moniker range="< aspnetcore-6.0"
 
@@ -149,7 +127,7 @@ using Microsoft.Extensions.Logging;
 
 :::moniker-end
 
-Configure logging in Blazor WebAssembly apps with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging?displayProperty=nameWithType> property. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging> property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so the extension methods of <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are supported.
+Configure logging in client-side apps with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging?displayProperty=nameWithType> property. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging> property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so the extension methods of <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are supported.
 
 To set the minimum logging level, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> on the host builder in `Program.cs` with the <xref:Microsoft.Extensions.Logging.LogLevel>. The following example sets the minimum log level to <xref:Microsoft.Extensions.Logging.LogLevel.Warning>:
 
@@ -159,9 +137,9 @@ builder.Logging.SetMinimumLevel(LogLevel.Warning);
 
 :::moniker range=">= aspnetcore-6.0"
 
-## Log in `Program.cs` (Blazor WebAssembly)
+## Log in `Program.cs` (client-side)
 
-[Logging in `Program.cs`](xref:fundamentals/logging/index#log-in-programcs) is supported in Blazor WebAssembly apps after the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> is built using the framework's internal console logger provider ([`WebAssemblyConsoleLoggerProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly/src/Services/WebAssemblyConsoleLoggerProvider.cs)).
+[Logging in `Program.cs`](xref:fundamentals/logging/index#log-in-programcs) is supported in client-side apps after the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> is built using the framework's internal console logger provider ([`WebAssemblyConsoleLoggerProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly/src/Services/WebAssemblyConsoleLoggerProvider.cs)).
 
 In `Program.cs`:
 
@@ -183,9 +161,9 @@ Developer tools console output:
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-## Log category (Blazor WebAssembly)
+## Log category (client-side)
 
-[Log categories](xref:fundamentals/logging/index#log-category) are supported in Blazor WebAssembly apps.
+[Log categories](xref:fundamentals/logging/index#log-category) are supported.
 
 The following example shows how to use log categories with the `Counter` component of an app created from a Blazor project template.
 
@@ -201,9 +179,9 @@ Developer tools console output:
 > :::no-loc text="warn: CustomCategory[0]":::  
 > :::no-loc text="Someone has clicked me!":::
 
-## Log event ID (Blazor WebAssembly)
+## Log event ID (client-side)
 
-[Log event ID](xref:fundamentals/logging/index#log-event-id) is supported in Blazor WebAssembly apps.
+[Log event ID](xref:fundamentals/logging/index#log-event-id) is supported.
 
 The following example shows how to use log event IDs with the `Counter` component of an app created from a Blazor project template.
 
@@ -231,9 +209,9 @@ Developer tools console output:
 > :::no-loc text="warn: BlazorSample.Pages.Counter[1001]":::  
 > :::no-loc text="Someone has clicked me!":::
 
-## Log message template (Blazor WebAssembly)
+## Log message template (client-side)
 
-[Log message templates](xref:fundamentals/logging/index#log-message-template) are supported in Blazor WebAssembly apps:
+[Log message templates](xref:fundamentals/logging/index#log-message-template) are supported:
 
 The following example shows how to use log message templates with the `Counter` component of an app created from a Blazor project template.
 
@@ -248,9 +226,9 @@ Developer tools console output:
 > :::no-loc text="info: BlazorSample.Pages.Counter[0]":::  
 > :::no-loc text="Someone clicked me at 04/21/2022 12:15:57!":::
 
-## Log exception parameters (Blazor WebAssembly)
+## Log exception parameters (client-side)
 
-[Log exception parameters](xref:fundamentals/logging/index#log-exceptions) are supported in Blazor WebAssembly apps.
+[Log exception parameters](xref:fundamentals/logging/index#log-exceptions) are supported.
 
 The following example shows how to use log exception parameters with the `Counter` component of an app created from a Blazor project template.
 
@@ -280,9 +258,9 @@ Developer tools console output:
 > :::no-loc text="System.OperationCanceledException: Skip 3":::  
 > :::no-loc text="at BlazorSample.Pages.Counter.IncrementCount() in C:\Users\Alaba\Desktop\BlazorSample\Pages\Counter.razor:line 28":::
 
-## Filter function (Blazor WebAssembly)
+## Filter function (client-side)
 
-[Filter functions](xref:fundamentals/logging/index#filter-function) are supported in Blazor WebAssembly apps.
+[Filter functions](xref:fundamentals/logging/index#filter-function) are supported.
 
 The following example shows how to use a filter with the `Counter` component of an app created from a Blazor project template.
 
@@ -345,7 +323,7 @@ After ***either*** of the preceding filters is added to the app, the console out
 
 :::moniker-end
 
-## Custom logger provider (Blazor WebAssembly)
+## Custom logger provider (client-side)
 
 The example in this section demonstrates a custom logger provider for further customization.
 
@@ -578,9 +556,9 @@ Run the app again. Select the **`Log Messages`** button. Notice that the logging
 
 :::moniker range=">= aspnetcore-6.0"
 
-## Log scopes (Blazor WebAssembly)
+## Log scopes (client-side)
 
-The Blazor WebAssembly developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#custom-logger-provider-blazor-webassembly) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
+The developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#custom-logger-provider-blazor-webassembly) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
 
 :::moniker-end
 
@@ -634,13 +612,11 @@ Output:
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+## Prerendered component logging
 
-## Hosted Blazor WebAssembly logging
+<!-- UPDATE 8.0 Cross-link 'prerendered components' -->
 
-A hosted Blazor WebAssembly app that [prerenders its content](xref:blazor/components/prerendering-and-integration) executes [component initialization code twice](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). Logging takes place server-side on the first execution of initialization code and client-side on the second execution of initialization code. Depending on the goal of logging during initialization, check logs server-side, client-side, or both.
-
-:::moniker-end
+Prerendered components execute [component initialization code twice](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). Logging takes place server-side on the first execution of initialization code and client-side on the second execution of initialization code. Depending on the goal of logging during initialization, check logs server-side, client-side, or both.
 
 ## SignalR client logging
 
@@ -860,7 +836,7 @@ Use ***either*** of the following approaches:
   }
   ```
 
-  For more information on how to enable a Blazor WebAssembly app to read app settings files, see <xref:blazor/fundamentals/configuration#logging-configuration>.
+  For more information on how to enable a client-side app to read app settings files, see <xref:blazor/fundamentals/configuration#logging-configuration>.
 
 * Using a log filter, the following example:
 

@@ -15,23 +15,23 @@ uid: blazor/fundamentals/configuration
 This article explains configuration of Blazor apps, including app settings, authentication, and logging configuration.
 
 > [!IMPORTANT]
-> This topic applies to Blazor WebAssembly. For general guidance on ASP.NET Core app configuration, see <xref:fundamentals/configuration/index>.
+> This topic applies to client-side development. For general guidance on ASP.NET Core app configuration, see <xref:fundamentals/configuration/index>.
 
-Blazor WebAssembly loads configuration from the following app settings files by default:
+On the client, configuration is loaded from the following app settings files by default:
 
 * `wwwroot/appsettings.json`.
 * `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments).
 
 > [!NOTE]
-> Logging configuration placed into an app settings file in `wwwroot` of a Blazor WebAssembly app isn't loaded by default. For for information, see the [Logging configuration](#logging-configuration) section later in this article.
+> Logging configuration placed into an app settings file in `wwwroot` isn't loaded by default. For for information, see the [Logging configuration](#logging-configuration) section later in this article.
 
-Other configuration providers registered by the app can also provide configuration, but not all providers or provider features are appropriate for Blazor WebAssembly apps:
+Other configuration providers registered by the app can also provide configuration, but not all providers or provider features are appropriate:
 
-* [Azure Key Vault configuration provider](xref:security/key-vault-configuration): The provider isn't supported for managed identity and application ID (client ID) with client secret scenarios. Application ID with a client secret isn't recommended for any ASP.NET Core app, especially Blazor WebAssembly apps because the client secret can't be secured client-side to access the Azure Key Vault service.
-* [Azure App configuration provider](/azure/azure-app-configuration/quickstart-aspnet-core-app): The provider isn't appropriate for Blazor WebAssembly apps because Blazor WebAssembly apps don't run on a server in Azure.
+* [Azure Key Vault configuration provider](xref:security/key-vault-configuration): The provider isn't supported for managed identity and application ID (client ID) with client secret scenarios. Application ID with a client secret isn't recommended for any ASP.NET Core app, especially client-side apps because the client secret can't be secured client-side to access the Azure Key Vault service.
+* [Azure App configuration provider](/azure/azure-app-configuration/quickstart-aspnet-core-app): The provider isn't appropriate for client-side apps because they don't run on a server in Azure.
 
 > [!WARNING]
-> Configuration and settings files in a Blazor WebAssembly app are visible to users. **Don't store app secrets, credentials, or any other sensitive data in the configuration or files of a Blazor WebAssembly app.**
+> Configuration and settings files are visible to users. **Don't store app secrets, credentials, or any other sensitive data in the configuration or files.**
 
 For more information on configuration providers, see <xref:fundamentals/configuration/index>.
 
@@ -96,7 +96,7 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 Client security restrictions prevent direct access to files, including settings files for app configuration. To read configuration files in addition to `appsettings.json`/`appsettings.{ENVIRONMENT}.json` from the `wwwroot` folder into configuration, use an <xref:System.Net.Http.HttpClient>.
 
 > [!WARNING]
-> Configuration and settings files in a Blazor WebAssembly app are visible to users. **Don't store app secrets, credentials, or any other sensitive data in the configuration or files of a Blazor WebAssembly app.**
+> Configuration and settings files are visible to users. **Don't store app secrets, credentials, or any other sensitive data in the configuration or files.**
 
 The following example reads a configuration file (`cars.json`) into the app's configuration.
 
@@ -233,7 +233,7 @@ builder.Services.AddOidcAuthentication(options =>
 
 ## Logging configuration
 
-*This section applies to Blazor WebAssembly apps that configure logging via an app settings file in the `wwwroot` folder.*
+*This section applies to apps that configure logging via an app settings file in the `wwwroot` folder.*
 
 Add the [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) package to the app.
 
@@ -282,7 +282,7 @@ For more information on how background updates are handled by PWAs, see <xref:bl
 
 ## Options configuration
 
-[Options configuration](xref:fundamentals/configuration/options) for Blazor WebAssembly apps requires adding a package reference for the [`Microsoft.Extensions.Options.ConfigurationExtensions`](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions) NuGet package.
+[Options configuration](xref:fundamentals/configuration/options) requires adding a package reference for the [`Microsoft.Extensions.Options.ConfigurationExtensions`](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions) NuGet package.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
