@@ -142,6 +142,10 @@ Run the app:
 
 * <kbd>Ctrl</kbd>+<kbd>C</kbd> in the integrated terminal to shut down the web app after testing it.
 
+# [Visual Studio for Mac](#tab/visual-studio-mac)
+
+Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. There is no endpoint at `https://localhost:<port>` so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`.
+
 ---
 
 The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it out** > **Execute**. The page displays:
