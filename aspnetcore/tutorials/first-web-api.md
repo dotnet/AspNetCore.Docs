@@ -148,10 +148,6 @@ Visual Studio launches the default browser and navigates to `https://localhost:<
 
 Run the app:
 
-* Right-click the *TodoApi.csproj* project, and then select **Open in Integrated Terminal**.
-
-  The **Terminal** window opens with the command prompt at the project directory, which contains the Program.cs and .csproj files.
-
 * Run the following command to start the app on the `https` profile:
 
   ```dotnetcli
