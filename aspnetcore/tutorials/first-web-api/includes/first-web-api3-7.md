@@ -117,12 +117,30 @@ Visual Studio launches the default browser and navigates to `https://localhost:<
 
 Run the app:
 
-* Press Ctrl+F5 to run the app.
-* Visual Studio Code launches the default browser to `https://localhost:<port>`, where `<port>` is the randomly chosen port number displayed in the output. There is no endpoint at `https://localhost:<port>` so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`.
+* Right-click the *TodoApi.csproj* project, and then select **Open in Integrated Terminal**.
 
-# [Visual Studio for Mac](#tab/visual-studio-mac)
+  The **Terminal** window opens with the command prompt at the project directory, which contains the Program.cs and .csproj files.
 
-Select **Debug** > **Start Debugging** to launch the app. Visual Studio for Mac launches a browser and navigates to `https://localhost:<port>`, where `<port>` is a randomly chosen port number. There is no endpoint at `https://localhost:<port>` so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`.
+* Run the following command to start the app on the `https` profile:
+
+  ```dotnetcli
+  dotnet run --launch-profile https
+  ```
+
+ The output shows messages similar to the following, indicating that the app is running and awaiting requests:
+
+   ```bash
+   ...
+   info: Microsoft.Hosting.Lifetime[14]
+         Now listening on: https://localhost:{port}
+   ...
+   ```
+
+* <kbd>Ctrl</kbd>+*click* the HTTPS URL in the output to test the web app in a browser.
+
+* The default browser is launched to `https://localhost:<port>`, where `<port>` is the randomly chosen port number displayed in the output. There is no endpoint at `https://localhost:<port>` so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`.
+
+* <kbd>Ctrl</kbd>+<kbd>C</kbd> in the integrated terminal to shut down the web app after testing it.
 
 ---
 
