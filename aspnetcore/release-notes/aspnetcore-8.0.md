@@ -11,7 +11,7 @@ uid: aspnetcore-8
 
 This article highlights the most significant changes in ASP.NET Core 8.0 with links to relevant documentation.
 
-This article is under development and not complete. More information may be found in the ASP.NET Core 8.0 preview blogs and GitHub issue:
+This article is under development and not complete. More information may be found in the ASP.NET Core 8.0 preview blogs and GitHub issues:
 
 * [ASP.NET Core roadmap for .NET 8 on GitHub](https://github.com/dotnet/aspnetcore/issues/44984) 
 * [What's new in .NET 8 Preview 1](https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-dotnet-8-preview-1/)
@@ -194,6 +194,14 @@ The preceding generated code:
 * Binds a `Todo` parameter from the JSON body.
 * Annotates the endpoint metadata to indicate that it accepts a JSON payload.
 * Annotate the endpoint metadata to indicate that it returns a Todo as a JSON payload.
+
+### New IResettable interface in ObjectPool
+
+[Microsoft.Extensions.ObjectPool](xref:Microsoft.Extensions.ObjectPool) provides support for pooling object instances in memory. Apps can use an object pool if the values are expensive to allocate or initialize.
+
+In this release, we've made the object pool easier to use by adding the <xref:Microsoft.Extensions.ObjectPool.IResettable> interface. Reusable types often need to be reset back to a default state between uses. `IResettable` types are automatically reset when returned to an object pool.
+
+For more information, see the [ObjectPool sample](xref:performance/ObjectPool##objectpool-sample).
 
 ## Native AOT
 

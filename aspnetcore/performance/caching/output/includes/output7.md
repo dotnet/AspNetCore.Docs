@@ -169,7 +169,7 @@ The following properties of <xref:Microsoft.AspNetCore.OutputCaching.OutputCache
 
 ## Cache storage
 
-<xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> is used for storage. By default it's used with <xref:System.Runtime.Caching.MemoryCache>. We don't recommend <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use with output caching. `IDistributedCache` doesn't have atomic features, which are required for tagging. We recommend that you create custom <xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> implementations by using direct dependencies on the underlying storage mechanism, such as Redis.
+<xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> is used for storage. By default it's used with <xref:System.Runtime.Caching.MemoryCache>. We don't recommend <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use with output caching. `IDistributedCache` doesn't have atomic features, which are required for tagging. We recommend that you create custom <xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> implementations by using direct dependencies on the underlying storage mechanism, such as Redis. Or use the [built-in support for Redis cache in .NET 8.](xref:performance/caching/output?view=aspnetcore-8.0&preserve-view=true#cache-storage).
 
 ## See also
 
