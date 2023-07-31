@@ -16,6 +16,12 @@ Blazor WebAssembly apps are secured in the same manner as single-page applicatio
 
 The Blazor WebAssembly security documentation primarily focuses on how to accomplish user authentication and authorization tasks. For OAuth 2.0/OIDC general concept coverage, see the resources in the [main overview article's *Additional resources* section](xref:blazor/security/index#additional-resources).
 
+## Client-side/SPA security
+
+A Blazor WebAssembly app's .NET/C# codebase is served to clients, and the app's code can't be protected from inspection and tampering by users. Never place anything of a secret nature into a Blazor WebAssembly app, such as private .NET/C# code, security keys, passwords, or any other type of sensitive information.
+
+To protect .NET/C# code and use [ASP.NET Core Data Protection](xref:security/data-protection/introduction) features to secure data, use a server-side ASP.NET Core web API. Have the client-side Blazor WebAssembly app call the server-side web API for secure app features and data processing. For more information, see <xref:blazor/call-web-api?pivots=webassembly> and the articles in this node.
+
 ## Authentication library
 
 Blazor WebAssembly supports authenticating and authorizing apps using OIDC via the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library. The library provides a set of primitives for seamlessly authenticating against ASP.NET Core backends. The library integrates ASP.NET Core Identity with API authorization support built on top of [Duende Identity Server](https://docs.duendesoftware.com). The library can authenticate against any third-party Identity Provider (IP) that supports OIDC, which are called OpenID Providers (OP).
