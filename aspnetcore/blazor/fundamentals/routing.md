@@ -87,7 +87,7 @@ Components support multiple route templates using multiple [`@page` directives](
 :::moniker-end
 
 > [!IMPORTANT]
-> For URLs to resolve correctly, the app must include a `<base>` tag ([location of `<head>` content](xref:blazor/project-structure#location-of-head-content)) with the app base path specified in the `href` attribute. For more information, see <xref:blazor/host-and-deploy/index#app-base-path>.
+> For s to resolve correctly, the app must include a `<base>` tag ([location of `<head>` content](xref:blazor/project-structure#location-of-head-content)) with the app base path specified in the `href` attribute. For more information, see <xref:blazor/host-and-deploy/index#app-base-path>.
 
 :::moniker range="< aspnetcore-6.0"
 
@@ -266,7 +266,7 @@ A route constraint enforces type matching on a route segment to a component.
 
 In the following example, the route to the `User` component only matches if:
 
-* An `Id` route segment is present in the request URL.
+* An `Id` route segment is present in the request .
 * The `Id` segment is an integer (`int`) type.
 
 `Pages/User.razor`:
@@ -312,7 +312,7 @@ The route constraints shown in the following table are available. For the route 
 | `long`     | `{ticks:long}`    | `123456789`, `-123456789`                                                        | Yes                              |
 
 > [!WARNING]
-> Route constraints that verify the URL and are converted to a CLR type (such as `int` or <xref:System.DateTime>) always use the invariant culture. These constraints assume that the URL is non-localizable.
+> Route constraints that verify the URL and are converted to a CLR type (such as `int` or <xref:System.DateTime>) always use the invariant culture. These constraints assume that the  is non-localizable.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -467,7 +467,7 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul>If `replace` is `true`, the current URI in the browser history is replaced instead of pushing a new URI onto the history stack. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Given a base URI (for example, a URI previously returned by <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri>), converts an absolute URI into a URI relative to the base URI prefix. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Given a base URI (for example, a URI previously returned by <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri>), converts an absolute URI into a URI relative to the base URI prefix. For an example, see the [Produce a URI relative to a base URI prefix](#produce-a-uri-relative-to-a-base-uri-prefix) section. |
 | [`RegisterLocationChangingHandler`](#handleprevent-location-changes) | Registers a handler to process incoming navigation events. Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> always invokes the handler. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A> | Returns a URI constructed by updating <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> with a single parameter added, updated, or removed. For more information, see the [Query strings](#query-strings) section. |
 
@@ -482,7 +482,7 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul>If `replace` is `true`, the current URI in the browser history is replaced instead of pushing a new URI onto the history stack. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Given a base URI (for example, a URI previously returned by <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri>), converts an absolute URI into a URI relative to the base URI prefix. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Given a base URI (for example, a URI previously returned by <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri>), converts an absolute URI into a URI relative to the base URI prefix. For an example, see the [Produce a URI relative to a base URI prefix](#produce-a-uri-relative-to-a-base-uri-prefix) section. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A> | Returns a URI constructed by updating <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> with a single parameter added, updated, or removed. For more information, see the [Query strings](#query-strings) section. |
 
 :::moniker-end
@@ -496,9 +496,37 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul> |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Given a base URI (for example, a URI previously returned by <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri>), converts an absolute URI into a URI relative to the base URI prefix. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Given a base URI (for example, a URI previously returned by <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri>), converts an absolute URI into a URI relative to the base URI prefix. For an example, see the [Produce a URI relative to a base URI prefix](#produce-a-uri-relative-to-a-base-uri-prefix) section. |
 
 :::moniker-end
+
+## Produce a URI relative to a base URI prefix
+
+Given the app's base URI, <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> converts an absolute URI into a URI relative to the base URI prefix.
+
+Consider the following example:
+
+```csharp
+try
+{
+    baseRelativePath = Navigation.ToBaseRelativePath(inputURI);
+}
+catch (ArgumentException ex)
+{
+    ...
+}
+```
+
+If the base URI of the app is `https://localhost:8000`, the following results are obtained:
+
+* Passing `https://localhost:8000/segment` in `inputURI` results in a `baseRelativePath` of `segment`.
+* Passing `https://localhost:8000/segment1/segment2` in `inputURI` results in a `baseRelativePath` of `segment1/segment2`.
+
+If the base URI of the app doesn't match the base URI of `inputURI`, an <xref:System.ArgumentException> is thrown.
+
+Passing `https://localhost:8001/segment` in `inputURI` results in the following exception:
+
+> :::no-loc text="System.ArgumentException: 'The URI 'https://localhost:8001/segment' is not contained by the base URI 'https://localhost:8000/'.'":::
 
 ## Location changes
 
@@ -1419,4 +1447,4 @@ The typical configuration is to route all requests to a Razor page, which acts a
 
 The route specified in the host file is called a *fallback route* because it operates with a low priority in route matching. The fallback route is used when other routes don't match. This allows the app to use other controllers and pages without interfering with component routing in the Blazor Server app.
 
-For information on configuring <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for non-root URL server hosting, see <xref:blazor/host-and-deploy/index#app-base-path>.
+For information on configuring <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for non-root  server hosting, see <xref:blazor/host-and-deploy/index#app-base-path>.
