@@ -467,7 +467,7 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul>If `replace` is `true`, the current URI in the browser history is replaced instead of pushing a new URI onto the history stack. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Given a base URI (for example, a URI previously returned by <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri>), converts an absolute URI into a URI relative to the base URI prefix. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Based on the app's base URI, converts an absolute URI into a URI relative to the base URI prefix. For an example, see the [Produce a URI relative to the base URI prefix](#produce-a-uri-relative-to-the-base-uri-prefix) section. |
 | [`RegisterLocationChangingHandler`](#handleprevent-location-changes) | Registers a handler to process incoming navigation events. Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> always invokes the handler. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A> | Returns a URI constructed by updating <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> with a single parameter added, updated, or removed. For more information, see the [Query strings](#query-strings) section. |
 
@@ -482,7 +482,7 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul>If `replace` is `true`, the current URI in the browser history is replaced instead of pushing a new URI onto the history stack. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Given a base URI (for example, a URI previously returned by <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri>), converts an absolute URI into a URI relative to the base URI prefix. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Based on the app's base URI, converts an absolute URI into a URI relative to the base URI prefix. For an example, see the [Produce a URI relative to the base URI prefix](#produce-a-uri-relative-to-the-base-uri-prefix) section. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A> | Returns a URI constructed by updating <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> with a single parameter added, updated, or removed. For more information, see the [Query strings](#query-strings) section. |
 
 :::moniker-end
@@ -496,9 +496,37 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul> |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Given a base URI (for example, a URI previously returned by <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri>), converts an absolute URI into a URI relative to the base URI prefix. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Based on the app's base URI, converts an absolute URI into a URI relative to the base URI prefix. For an example, see the [Produce a URI relative to the base URI prefix](#produce-a-uri-relative-to-the-base-uri-prefix) section. |
 
 :::moniker-end
+
+## Produce a URI relative to the base URI prefix
+
+Based on the app's base URI, <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> converts an absolute URI into a URI relative to the base URI prefix.
+
+Consider the following example:
+
+```csharp
+try
+{
+    baseRelativePath = Navigation.ToBaseRelativePath(inputURI);
+}
+catch (ArgumentException ex)
+{
+    ...
+}
+```
+
+If the base URI of the app is `https://localhost:8000`, the following results are obtained:
+
+* Passing `https://localhost:8000/segment` in `inputURI` results in a `baseRelativePath` of `segment`.
+* Passing `https://localhost:8000/segment1/segment2` in `inputURI` results in a `baseRelativePath` of `segment1/segment2`.
+
+If the base URI of the app doesn't match the base URI of `inputURI`, an <xref:System.ArgumentException> is thrown.
+
+Passing `https://localhost:8001/segment` in `inputURI` results in the following exception:
+
+> :::no-loc text="System.ArgumentException: 'The URI 'https://localhost:8001/segment' is not contained by the base URI 'https://localhost:8000/'.'":::
 
 ## Location changes
 
