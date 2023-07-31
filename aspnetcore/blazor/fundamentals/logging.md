@@ -673,10 +673,8 @@ Example 1: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log 
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Remove the suppress-error? -->
-
 ```html
-<script src="_framework/blazor.web.js" suppress-error="BL9992"></script>
+<script src="_framework/blazor.web.js"></script>
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
@@ -708,7 +706,7 @@ Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log 
 :::moniker range=">= aspnetcore-8.0"
 
 ```html
-<script src="_framework/blazor.web.js" suppress-error="BL9992"></script>
+<script src="_framework/blazor.web.js"></script>
 <script>
   Blazor.start({
     configureSignalR: function (builder) {

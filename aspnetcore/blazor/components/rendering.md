@@ -45,8 +45,7 @@ For more information on the performance implications of the framework's conventi
 
 ## Streaming rendering
 
-<!-- UPDATE 8.0 Cross-link 'server-side rendering (SSR)'
-     & will we be retaining the suppress-error attribute NOTE? -->
+<!-- UPDATE 8.0 Cross-link server-side rendering (SSR) -->
 
 Use *streaming rendering* with server-side rendering (SSR) to stream content updates on the response stream and improve the user experience for components that perform long-running asynchronous tasks to fully render.
 
