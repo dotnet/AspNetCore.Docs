@@ -41,8 +41,6 @@
       },
       "ms.technology": {
         "**/client-side/**/**.md": "aspnetcore-clientside",
-        "**/blazor/**/**.md": "aspnetcore-blazor",
-        "**/blazor/hybrid/**/**.md": "aspnetcore-blazorhybrid",
         "**/data/**/**.md": "aspnetcore-data",
         "**/fundamentals/**/**.md": "aspnetcore-fundamentals",
         "**/getting-started/**/**.md": "aspnetcore-getstarted",
@@ -60,7 +58,9 @@
         "**/test/**/**.md": "aspnetcore-test",
         "**/tutorials/**/**.md": "aspnetcore-tutorials",
         "**/web-api/**/**.md": "aspnetcore-webapi",
-        "whats-new/**/**.md": "aspnetcore-whatsnew"
+        "whats-new/**/**.md": "aspnetcore-whatsnew",
+        "**/blazor/**/**.md": "aspnetcore-blazor",
+        "**/blazor/hybrid/**/**.md": "aspnetcore-blazorhybrid"
       },
       "ms.topic": {
         "**/getting-started/**/**.md": "tutorial",
