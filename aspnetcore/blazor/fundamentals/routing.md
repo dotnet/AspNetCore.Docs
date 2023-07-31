@@ -266,7 +266,7 @@ A route constraint enforces type matching on a route segment to a component.
 
 In the following example, the route to the `User` component only matches if:
 
-* An `Id` route segment is present in the request .
+* An `Id` route segment is present in the request URL.
 * The `Id` segment is an integer (`int`) type.
 
 `Pages/User.razor`:
