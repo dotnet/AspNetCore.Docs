@@ -101,8 +101,7 @@ With these caveats in mind, you can read more about available options and find l
 
 ## Next steps
 
-Depending on your choice, you may want to...
-
+* Learn about [JSON Web Tokens](https://auth0.com/docs/secure/tokens/json-web-tokens)
 * Browse [sample apps with authentication/authorization and identity for ASP.NET Core](/aspnet/core/security/authentication/samples).
 * Follow a tutorial to [secure your .NET web using built-in ASP.NET Core Identity](/training/modules/secure-aspnet-core-identity).
 * Learn more about how to [protect web APIs](/azure/active-directory/develop/index-web-api).
