@@ -619,7 +619,7 @@ Output:
 
 Prerendered components execute [component initialization code twice](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). Logging takes place server-side on the first execution of initialization code and client-side on the second execution of initialization code. Depending on the goal of logging during initialization, check logs server-side, client-side, or both.
 
-## SignalR client logging
+## SignalR client logging with the SignalR client builder
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -737,7 +737,7 @@ Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log 
 
 For more information on Blazor startup (`Blazor.start()`), see <xref:blazor/fundamentals/startup>.
 
-## SignalR client logging
+## SignalR client logging with app configuration
 
 Set up app settings configuration as described in <xref:blazor/fundamentals/configuration#logging-configuration>. Place app settings files in `wwwroot` that contain a `Logging:LogLevel:HubConnection` app setting.
 
