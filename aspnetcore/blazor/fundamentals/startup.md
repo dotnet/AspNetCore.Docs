@@ -12,43 +12,33 @@ uid: blazor/fundamentals/startup
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to configure Blazor startup.
+This article explains Blazor app startup configuration.
+
+[!INCLUDE[](~/blazor/includes/location-client.md)]
+
+For general guidance on ASP.NET Core app configuration for server-side development, see <xref:fundamentals/configuration/index>.
 
 :::moniker range=">= aspnetcore-8.0"
 
-* **Client-side**: The client project of a Blazor Web App or a Blazor WebAssembly app.
-* **Server-side**: The server project of a Blazor Web App.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-* **Client-side**: The **`Client`** project of a hosted Blazor WebAssembly app or a Blazor WebAssembly app.
-* **Server-side**: The **`Server`** project of a hosted Blazor WebAssembly app or a Blazor Server app.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
-
-The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where the `*` placeholder is either `web` for a Blazor Web App or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or client-side of a Blazor Web App, or the `App.razor` file of a Blazor Web App.
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where `*` is either `web` for a Blazor Web App or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or client of a Blazor Web App, or the `App.razor` file of a Blazor Web App.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where the `*` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Host.cshtml` file of a Blazor Server app.
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where `*` is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Host.cshtml` file of a Blazor Server app.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where the `*` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Layout.cshtml` file of a Blazor Server app.
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where `*` is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Layout.cshtml` file of a Blazor Server app.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where the `*` placeholder is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Host.cshtml` file of a Blazor Server app.
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where `*` is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Host.cshtml` file of a Blazor Server app.
 
 :::moniker-end
 
@@ -56,6 +46,17 @@ To manually start Blazor:
 
 * Add an `autostart="false"` attribute and value to the Blazor `<script>` tag.
 * Place a script that calls `Blazor.start()` after the Blazor `<script>` tag and inside the closing `</body>` tag.
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  ...
+  Blazor.start();
+  ...
+</script>
+```
+
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -67,7 +68,7 @@ JavaScript (JS) initializers execute logic before and after a Blazor app loads. 
 * Initializing libraries before Blazor starts up.
 * Configuring Blazor settings.
 
-JS initializers are detected as part of the build process and imported automatically in Blazor apps. Use of JS initializers often removes the need to [manually trigger script functions from the app](xref:blazor/fundamentals/startup#chain-to-the-promise-that-results-from-a-manual-start) when using [Razor class libraries (RCLs)](xref:blazor/components/class-libraries).
+JS initializers are detected as part of the build process and imported automatically. Use of JS initializers often removes the need to [manually trigger script functions from the app](xref:blazor/fundamentals/startup#chain-to-the-promise-that-results-from-a-manual-start) when using [Razor class libraries (RCLs)](xref:blazor/components/class-libraries).
 
 To define a JS initializer, add a JS module to the project named `{NAME}.lib.module.js`, where the `{NAME}` placeholder is the assembly name, library name, or package identifier. Place the file in the project's web root, which is typically the `wwwroot` folder.
 
@@ -177,7 +178,7 @@ export function beforeStart(options, extensions) {
 The following example starts Blazor when the document is ready:
 
 ```html
-<script src="..." autostart="false"></script>
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     Blazor.start();
@@ -185,18 +186,22 @@ The following example starts Blazor when the document is ready:
 </script>
 ```
 
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+
 ## Chain to the `Promise` that results from a manual start
 
 To perform additional tasks, such as JS interop initialization, use [`then`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) to chain to the [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) that results from a manual Blazor app start:
 
 ```html
-<script src="..." autostart="false"></script>
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   Blazor.start().then(function () {
     ...
   });
 </script>
 ```
+
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
 :::moniker range=">= aspnetcore-6.0"
 

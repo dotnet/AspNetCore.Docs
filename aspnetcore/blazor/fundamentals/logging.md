@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Blazor logging
 author: guardrex
-description: Learn about logging in Blazor apps, including configuration and how to write log messages from Razor components.
+description: Learn about Blazor app logging, including configuration and how to write log messages from Razor components.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -13,12 +13,13 @@ uid: blazor/fundamentals/logging
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
 <!--
-
-NOTE: The console output block quotes in this topic use a double-space at the ends of lines to generate a bare return in block quote output.
-
+    NOTE: The console output block quotes in this topic use a double-space 
+    at the ends of lines to generate a bare return in block quote output.
 -->
 
-This article explains logging in Blazor apps, including configuration and how to write log messages from Razor components.
+This article explains Blazor app logging, including configuration and how to write log messages from Razor components.
+
+[!INCLUDE[](~/blazor/includes/location-client-and-server.md)]
 
 ## Configuration
 
@@ -37,7 +38,7 @@ When the app is configured in the project file to use implicit namespaces (`<Imp
 
 ## Log levels
 
-Log levels in Blazor apps conform to ASP.NET Core app log levels, which are listed in the API documentation at <xref:Microsoft.Extensions.Logging.LogLevel>.
+Log levels conform to ASP.NET Core app log levels, which are listed in the API documentation at <xref:Microsoft.Extensions.Logging.LogLevel>.
 
 ## Razor component logging
 

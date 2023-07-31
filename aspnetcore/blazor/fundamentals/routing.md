@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Blazor routing and navigation
 author: guardrex
-description: Learn how to manage request routing in Blazor apps and how to use the Navigation Manager and NavLink component for navigation.
+description: Learn how to manage Blazor app request routing and how to use the Navigation Manager and NavLink component for navigation.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -12,14 +12,16 @@ uid: blazor/fundamentals/routing
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to manage request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create navigation links in Blazor apps.
+This article explains how to manage Blazor app request routing and how to use the <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component to create navigation links.
+
+[!INCLUDE[](~/blazor/includes/location-client-and-server.md)]
 
 > [!IMPORTANT]
 > Code examples throughout this article show methods called on `Navigation`, which is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager> in classes and components.
 
 ## Route templates
 
-The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables routing to Razor components in a Blazor app. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component is used in the `App` component of Blazor apps.
+The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables routing to Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component is used in the `App` component (`App.razor`).
 
 When a Razor component (`.razor`) with an [`@page` directive](xref:mvc/views/razor#page) is compiled, the generated component class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the component's route template.
 

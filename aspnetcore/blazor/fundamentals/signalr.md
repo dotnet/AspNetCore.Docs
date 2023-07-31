@@ -14,30 +14,16 @@ uid: blazor/fundamentals/signalr
 
 This article explains how to configure and manage SignalR connections in Blazor apps.
 
-:::moniker range=">= aspnetcore-8.0"
+[!INCLUDE[](~/blazor/includes/location-client-and-server.md)]
 
-<!-- UPDATE 8.0 It's not clear if we'll host guidance on adding SignalR 
+<!--
+     UPDATE 8.0 It's not clear if we'll host guidance on adding SignalR 
      to the client-side project of a BWA for a CSR/interactivity scenario.
      Currently, the Blazor-SignalR tutorial is only a BWA SSR/interactivity
      exercise.
-
-For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR added to a hosted Blazor WebAssembly app, for example in the <xref:blazor/tutorials/signalr-blazor?pivots=webassembly> tutorial, or a standalone Blazor WebAssembly app that uses SignalR, see <xref:signalr/configuration#configure-server-options>.
-
 -->
 
-* **Client-side**: The client project of a Blazor Web App or a Blazor WebAssembly app.
-* **Server-side**: The server project of a Blazor Web App.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation. To configure SignalR added to a hosted Blazor WebAssembly app, for example in the <xref:blazor/tutorials/signalr-blazor?pivots=webassembly> tutorial, or a standalone Blazor WebAssembly app that uses SignalR, see <xref:signalr/configuration#configure-server-options>.
-
-* **Client-side**: The **`Client`** project of a hosted Blazor WebAssembly app or a Blazor WebAssembly app.
-* **Server-side**: The **`Server`** project of a hosted Blazor WebAssembly app or a Blazor Server app.
-
-:::moniker-end
+For general guidance on ASP.NET Core SignalR configuration, see the topics in the <xref:signalr/introduction> area of the documentation, especially <xref:signalr/configuration#configure-server-options>.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -245,7 +231,7 @@ To configure the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext>, use <
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Confirm this at Pre7 release -->
+<!-- UPDATE 8.0 Confirm this at RC1 -->
 
 In `Program.cs`:
 

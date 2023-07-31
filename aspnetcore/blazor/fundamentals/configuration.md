@@ -1,7 +1,7 @@
 ---
 title: ASP.NET Core Blazor configuration
 author: guardrex
-description: Learn about configuration of Blazor apps, including app settings, authentication, and logging configuration.
+description: Learn about Blazor app configuration, including app settings, authentication, and logging configuration.
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
@@ -12,10 +12,11 @@ uid: blazor/fundamentals/configuration
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains configuration of Blazor apps, including app settings, authentication, and logging configuration.
+This article explains how to configure Blazor apps, including app settings, authentication, and logging configuration.
 
-> [!IMPORTANT]
-> This topic applies to client-side development. For general guidance on ASP.NET Core app configuration, see <xref:fundamentals/configuration/index>.
+[!INCLUDE[](~/blazor/includes/location-client.md)]
+
+For ASP.NET Core app server-side configuration, see <xref:fundamentals/configuration/index>.
 
 On the client, configuration is loaded from the following app settings files by default:
 

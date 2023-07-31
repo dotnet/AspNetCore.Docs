@@ -18,27 +18,13 @@ This article explains how Blazor apps can inject services into components.
 
 [Dependency injection (DI)](xref:fundamentals/dependency-injection) is a technique for accessing services configured in a central location:
 
-* Framework-registered services can be injected directly into components of Blazor apps.
+* Framework-registered services can be injected directly into Razor components.
 * Blazor apps define and register custom services and make them available throughout the app via DI.
 
 > [!NOTE]
 > We recommend reading <xref:fundamentals/dependency-injection> before reading this topic.
 
-Throughout this article, the terms **client-side** and **server-side** are used to distinguish the following project types:
-
-:::moniker range=">= aspnetcore-8.0"
-
-* **Client-side**: The client project of a Blazor Web App or a Blazor WebAssembly app.
-* **Server-side**: The server project of a Blazor Web App.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-* **Client-side**: The **`Client`** project of a hosted Blazor WebAssembly app or a Blazor WebAssembly app.
-* **Server-side**: The **`Server`** project of a hosted Blazor WebAssembly app or a Blazor Server app.
-
-:::moniker-end
+[!INCLUDE[](~/blazor/includes/location-client-and-server.md)]
 
 ## Default services
 
@@ -316,7 +302,7 @@ In ASP.NET Core apps, scoped services are typically scoped to the current reques
 > [Detect transient disposables client-side](#detect-transient-disposables-client-side)
 > [Detect transient disposables server-side](#detect-transient-disposables-server-side)
 
-An approach that limits a service lifetime in Blazor apps is use of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type. <xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract type derived from <xref:Microsoft.AspNetCore.Components.ComponentBase> that creates a DI scope corresponding to the lifetime of the component. Using this scope, it's possible to use DI services with a scoped lifetime and have them live as long as the component. When the component is destroyed, services from the component's scoped service provider are disposed as well. This can be useful for services that:
+An approach that limits a service lifetime is use of the <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type. <xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract type derived from <xref:Microsoft.AspNetCore.Components.ComponentBase> that creates a DI scope corresponding to the lifetime of the component. Using this scope, it's possible to use DI services with a scoped lifetime and have them live as long as the component. When the component is destroyed, services from the component's scoped service provider are disposed as well. This can be useful for services that:
 
 * Should be reused within a component, as the transient lifetime is inappropriate.
 * Shouldn't be shared across components, as the singleton lifetime is inappropriate.

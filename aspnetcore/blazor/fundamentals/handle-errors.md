@@ -14,6 +14,8 @@ uid: blazor/fundamentals/handle-errors
 
 This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server.md)]
+
 ## Detailed errors during development
 
 When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a light yellow bar at the bottom of the screen:
@@ -804,7 +806,7 @@ For prerendered client-side components, prerendering works by:
 
 If a component throws an unhandled exception during prerendering, for example, during a lifecycle method or in rendering logic:
 
-* In Blazor app operating over a circuit, the exception is fatal to the circuit. For prerendered client-side components, the exception prevents rendering the component.
+* In a Blazor app operating over a circuit, the exception is fatal to the circuit. For prerendered client-side components, the exception prevents rendering the component.
 * The exception is thrown up the call stack from the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>.
 
 Under normal circumstances when prerendering fails, continuing to build and render the component doesn't make sense because a working component can't be rendered.

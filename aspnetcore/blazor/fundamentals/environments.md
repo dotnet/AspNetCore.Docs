@@ -12,21 +12,19 @@ uid: blazor/fundamentals/environments
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains [ASP.NET Core environments](xref:fundamentals/environments) in Blazor, including how to set the environment.
+This article explains how to configure and read the [environment](xref:fundamentals/environments) in a Blazor app.
+
+[!INCLUDE[](~/blazor/includes/location-client.md)]
 
 :::moniker range=">= aspnetcore-5.0"
 
-> [!IMPORTANT]
-> This topic applies to client-side development. For general guidance on ASP.NET Core app configuration, which describes the approaches to use for server-side apps, see <xref:fundamentals/environments>.
->
-> For server-side app configuration with static files in environments other than the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment during development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), see <xref:blazor/fundamentals/static-files#static-files-in-non-development-environments>.
+For general guidance on server-side environments, see <xref:fundamentals/environments>.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-> [!NOTE]
-> This topic applies to client-side development. For general guidance on ASP.NET Core app configuration, see <xref:fundamentals/environments>.
+For general guidance on ASP.NET Core app configuration, see <xref:fundamentals/environments>. For server-side app configuration with static files in environments other than the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment during development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), see <xref:blazor/fundamentals/static-files#static-files-in-non-development-environments>.
 
 :::moniker-end
 

@@ -71,7 +71,7 @@ The preceding `Counter` component:
 
 ## Document Object Model (DOM)
 
-In Blazor documentation, references to the *Document Object Model* use the abbreviation *DOM*.
+References to the *Document Object Model* use the abbreviation *DOM*.
 
 For more information, see the following resources:
 
@@ -88,9 +88,9 @@ The repo contains two types of samples:
 
 :::moniker range=">= aspnetcore-8.0"
 
-* Snippet sample apps provide the code examples that appear in Blazor articles. These apps compile but aren't necessarily runnable apps. These apps are useful for merely obtaining example code that appears in articles.
+* Snippet sample apps provide the code examples that appear in articles. These apps compile but aren't necessarily runnable apps. These apps are useful for merely obtaining example code that appears in articles.
 * Samples apps to accompany Blazor articles compile and run for the following scenarios:
-  * Blazor Web Apps with server-side rendering (SSR) and server interactivity with EF Core
+  * Blazor Web App with with EF Core
   * Blazor Web App with SignalR
   * Blazor WebAssembly scopes-enabled logging
 
@@ -98,7 +98,7 @@ The repo contains two types of samples:
 
 :::moniker range="< aspnetcore-8.0"
 
-* Snippet sample apps provide the code examples that appear in Blazor articles. These apps compile but aren't necessarily runnable apps. These apps are useful for merely obtaining example code that appears in articles.
+* Snippet sample apps provide the code examples that appear in articles. These apps compile but aren't necessarily runnable apps. These apps are useful for merely obtaining example code that appears in articles.
 * Samples apps to accompany Blazor articles compile and run for the following scenarios:
   * Blazor Server with EF Core
   * Blazor Server and Blazor WebAssembly with SignalR
