@@ -467,7 +467,7 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul>If `replace` is `true`, the current URI in the browser history is replaced instead of pushing a new URI onto the history stack. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Given the app's base URI, converts an absolute URI into a URI relative to the base URI prefix. For an example, see the [Produce a URI relative to a base URI prefix](#produce-a-uri-relative-to-a-base-uri-prefix) section. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Based on the app's base URI, converts an absolute URI into a URI relative to the base URI prefix. For an example, see the [Produce a URI relative to a base URI prefix](#produce-a-uri-relative-to-a-base-uri-prefix) section. |
 | [`RegisterLocationChangingHandler`](#handleprevent-location-changes) | Registers a handler to process incoming navigation events. Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> always invokes the handler. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A> | Returns a URI constructed by updating <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> with a single parameter added, updated, or removed. For more information, see the [Query strings](#query-strings) section. |
 
@@ -482,7 +482,7 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul>If `replace` is `true`, the current URI in the browser history is replaced instead of pushing a new URI onto the history stack. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Given the app's base URI, converts an absolute URI into a URI relative to the base URI prefix. For an example, see the [Produce a URI relative to a base URI prefix](#produce-a-uri-relative-to-a-base-uri-prefix) section. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Based on the app's base URI, converts an absolute URI into a URI relative to the base URI prefix. For an example, see the [Produce a URI relative to a base URI prefix](#produce-a-uri-relative-to-a-base-uri-prefix) section. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithQueryParameter%2A> | Returns a URI constructed by updating <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType> with a single parameter added, updated, or removed. For more information, see the [Query strings](#query-strings) section. |
 
 :::moniker-end
@@ -496,13 +496,13 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A> | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul> |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri%2A> | Converts a relative URI into an absolute URI. |
-| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Given the app's base URI, converts an absolute URI into a URI relative to the base URI prefix. For an example, see the [Produce a URI relative to a base URI prefix](#produce-a-uri-relative-to-a-base-uri-prefix) section. |
+| <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> | Based on the app's base URI, converts an absolute URI into a URI relative to the base URI prefix. For an example, see the [Produce a URI relative to a base URI prefix](#produce-a-uri-relative-to-a-base-uri-prefix) section. |
 
 :::moniker-end
 
 ## Produce a URI relative to a base URI prefix
 
-Given the app's base URI, <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> converts an absolute URI into a URI relative to the base URI prefix.
+Based on the app's base URI, <xref:Microsoft.AspNetCore.Components.NavigationManager.ToBaseRelativePath%2A> converts an absolute URI into a URI relative to the base URI prefix.
 
 Consider the following example:
 
