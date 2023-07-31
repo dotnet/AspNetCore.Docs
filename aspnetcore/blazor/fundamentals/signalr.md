@@ -128,7 +128,7 @@ For more information, see <xref:signalr/configuration#configure-additional-optio
 
 ## Render mode (client-side)
 
-If the client-side is configured to prerender on the server, prerendering occurs before the client connection to the server is established. For more information, see the following articles:
+If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see the following articles:
 
 * <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
 * <xref:blazor/components/prerendering-and-integration>
@@ -231,7 +231,7 @@ To configure the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext>, use <
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Confirm this at RC1 -->
+<!-- UPDATE 8.0 Confirm the following compiles at RC1 -->
 
 In `Program.cs`:
 
@@ -323,18 +323,15 @@ Error:
 
 > System.IO.InvalidDataException: The maximum message size of 32768B was exceeded. The message size can be configured in AddHubOptions.
 
-<!-- UPDATE 8.0 Not clear how to establish hub options
-
 :::moniker range=">= aspnetcore-8.0"
 
 One approach involves increasing the limit by setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> in `Program.cs`. The following example sets the maximum receive message size to 64 KB:
 
+<!-- UPDATE 8.0 Confirm the following compiles at RC1 -->
+
 ```csharp
 builder.Services.AddRazorComponents().AddServerComponents()
-
-... ??? ...
-
-.AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
+    .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
 ```
 
 Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it increases the risk of [Denial of service (DoS) attacks](xref:blazor/security/server/threat-mitigation#denial-of-service-dos-attacks). Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
@@ -346,8 +343,6 @@ A better option for reading large payloads is to send the content in smaller chu
 Forms that process large payloads over SignalR can also use streaming JS interop directly. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>. For a forms example that streams `<textarea>` data to the server, see <xref:blazor/forms-and-input-components#large-form-payloads-and-the-signalr-message-size-limit>.
 
 :::moniker-end
-
--->
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 

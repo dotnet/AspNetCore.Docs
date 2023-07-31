@@ -737,7 +737,7 @@ Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log 
 
 For more information on Blazor startup (`Blazor.start()`), see <xref:blazor/fundamentals/startup>.
 
-## SignalR client logging with client-side rendering (CSR)
+## SignalR client logging
 
 Set up app settings configuration as described in <xref:blazor/fundamentals/configuration#logging-configuration>. Place app settings files in `wwwroot` that contain a `Logging:LogLevel:HubConnection` app setting.
 
@@ -821,7 +821,7 @@ For more information on setting the app's environment, see <xref:blazor/fundamen
 
 :::moniker range=">= aspnetcore-7.0"
 
-## Authentication logging with client-side rendering (CSR)
+## Authentication logging (client-side)
 
 Log Blazor authentication messages at the <xref:Microsoft.Extensions.Logging.LogLevel.Debug?displayProperty=nameWithType> or <xref:Microsoft.Extensions.Logging.LogLevel.Trace?displayProperty=nameWithType> logging levels with a logging configuration in app settings or by using a log filter for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> in `Program.cs`.
 
