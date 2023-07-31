@@ -42,7 +42,7 @@ The token can't be tampered with due to the private key. The public key:
 
 The main disadvantage to using tokens is that they require a token server to both issue and provide validation for tokens. The token server must be installed, configured, and maintained.
 
-A common reason a token server is required is for applications that exposes web-based APIs that are consumed by other apps. For exposed web-based APIs, client UIs such as Single Page Applications (SPA), mobile clients, and desktop clients are considered to be part of the same app. SPA examples include Angular, React, and Blazor WebAssembly. If apps other than your web app or any client UIs must make a secure API call to your app, you'll likely want to use tokens. <!-- rewrite and shorten that sentence --> If you only have client UIs, ASP.NET Core Identity provides the option to acquire a token during authentication. The authentication token:
+A common reason a token server is required is for applications that exposes web-based APIs that are consumed by other apps. For exposed web-based APIs, client UIs such as Single Page Applications (SPA), mobile clients, and desktop clients are considered to be part of the same app. SPA examples include Angular, React, and Blazor WebAssembly. If apps other than your web app or any client UIs must make a secure API call to your app, you'll likely want to use tokens.  If you only have client UIs, ASP.NET Core Identity provides the option to acquire a token during authentication. The authentication token:
 
 * Can be used by mobile and desktop clients.
 * Isn't suitable for managing access from external apps.
