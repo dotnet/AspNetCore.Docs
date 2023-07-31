@@ -32,14 +32,7 @@ A default JSON implementation is provided that is configured via the `JsonSessio
 - `RegisterKey<T>(string)` - Registers a session key to a known type. This is required in order to serialize/deserialize the session state correctly. If a key is found that there is no registration for, an error will be thrown and session will not be available.
 
 
-```csharp
-builder.Services.AddSystemWebAdapters()
-    .AddJsonSessionSerializer(options =>
-    {
-        // Serialization/deserialization requires each session key to be registered to a type
-        options.RegisterKey<int>("test-value");
-    });
-```
+:::code language="csharp" source="~/migration/inc/samples/session/Program.cs" id="snippet_Serialization" :::
 
 ## Implementations
 
