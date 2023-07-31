@@ -125,7 +125,7 @@ Run the app:
 
  The output shows messages similar to the following, indicating that the app is running and awaiting requests:
 
-   ```bash
+   ```output
    ...
    info: Microsoft.Hosting.Lifetime[14]
          Now listening on: https://localhost:{port}
@@ -134,7 +134,7 @@ Run the app:
 
 * <kbd>Ctrl</kbd>+*click* the HTTPS URL in the output to test the web app in a browser.
 
-* The default browser is launched to `https://localhost:<port>`, where `<port>` is the randomly chosen port number displayed in the output. There is no endpoint at `https://localhost:<port>` so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`.
+* The default browser is launched to `https://localhost:<port>`, where `<port>` is the randomly chosen port number displayed in the output. There is no endpoint at `https://localhost:<port>`, so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404). Append `/swagger` to the URL, `https://localhost:<port>/swagger`.
 
 After testing the web app in the following instruction, press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the integrated terminal to shut it down.
 
