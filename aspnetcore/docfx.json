@@ -60,7 +60,7 @@
         "**/web-api/**/**.md": "aspnetcore-webapi",
         "whats-new/**/**.md": "aspnetcore-whatsnew",
         "**/blazor/**/**.md": "aspnetcore-blazor",
-        "**/blazor/hybrid/**/**.md": "aspnetcore-blazorhybrid",
+        "**/blazor/hybrid/**/**.md": "aspnetcore-blazorhybrid"
       },
       "ms.topic": {
         "**/getting-started/**/**.md": "tutorial",
