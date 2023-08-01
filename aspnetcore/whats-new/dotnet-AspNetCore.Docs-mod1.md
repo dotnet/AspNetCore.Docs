@@ -25,7 +25,6 @@ Welcome to what's new in the ASP.NET Core docs for July 2023. This article lists
 
 The following people contributed to the ASP.NET Core docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [guardrex](https://github.com/guardrex) - Luke Latham ![42 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-42-green)
 - [timdeschryver](https://github.com/timdeschryver) - Tim Deschryver ![3 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-3-green)
 - [DavideDunne](https://github.com/DavideDunne) - Davide Dunne ![2 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
 - [CalebBellWebCE](https://github.com/CalebBellWebCE) -  ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
