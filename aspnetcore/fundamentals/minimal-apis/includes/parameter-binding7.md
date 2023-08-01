@@ -259,8 +259,8 @@ There are two ways to customize parameter binding:
 `TryParse` has two APIs:
 
 ```csharp
-public static bool TryParse(string value, T out result);
-public static bool TryParse(string value, IFormatProvider provider, T out result);
+public static bool TryParse(string value, out T result);
+public static bool TryParse(string value, IFormatProvider provider, out T result);
 ```
 
 The following code displays `Point: 12.3, 10.1` with the URI `/map?Point=12.3,10.1`:
