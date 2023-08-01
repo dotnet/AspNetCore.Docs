@@ -240,7 +240,7 @@ The `dotnet publish` command also compiles the source files and generates files 
 
 ## Minimal APIs and JSON payloads
 
-The Minimal API frame is optimized for receiving and returning JSON payloads using <xref:System.Text.Json?displayProperty=fullName>. `System.Text.Json`:
+The Minimal API framework is optimized for receiving and returning JSON payloads using <xref:System.Text.Json?displayProperty=fullName>. `System.Text.Json`:
 
 * Imposes compatibility requirements for JSON and native AOT.
 * Requires the use of the [`System.Text.Json` source generator](/dotnet/standard/serialization/system-text-json/source-generation).
