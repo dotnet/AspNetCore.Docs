@@ -54,7 +54,7 @@ Another reason a token server is required is for sharing sign-ins with other app
 
 A token server is typically preferred to provide a secure and scalable solution for single sign on.
 
-For apps that don't have either of these requirements, the simplest way to quickly secure an app is to use the built-in ASP.NET Core Identity provider. Otherwise, a token server provided by a third-party identity management solution is needed. Token servers are available as:
+For apps that don't exposes web-based APIs that are consumed by other apps and don't share logins with other apps, the simplest way to quickly secure an app is to use the built-in ASP.NET Core Identity provider. Otherwise, a token server provided by a third-party identity management solution is needed. Token servers are available as:
 
 * Products you install on your server, called *self-host*.
 * Containers run in a host like Docker.
