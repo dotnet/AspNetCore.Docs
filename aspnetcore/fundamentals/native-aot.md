@@ -252,7 +252,7 @@ All types accepted as parameters to or returned from request delegates in Minima
 In the preceding highlighted code:
 
 * The JSON serializer context is registered with the [DI container](xref:fundamentals/dependency-injection).
-* The [`JsonSerializableAttribute`](/dotnet/api/system.text.json.serialization.jsonserializableattribute) is configured to enable source generated JSON serializer code for the `ToDo` type.
+* The custom `JsonSerializerContext` is annotated with the [`[JsonSerializable]`](/dotnet/api/system.text.json.serialization.jsonserializableattribute) to enable source generated JSON serializer code for the `ToDo` type.
 
 ## Known issues
 
