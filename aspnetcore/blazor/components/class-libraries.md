@@ -55,7 +55,7 @@ If the **Support pages and views** checkbox is selected to support pages and vie
   </ItemGroup>
   ```
 
-  For more information on the `SupportedPlatform` item, see the [Browser compatibility analyzer for Blazor WebAssembly](#browser-compatibility-analyzer-for-blazor-webassembly) section.
+  For more information on the `SupportedPlatform` item, see the [client-side browser compatibility analyzer](#client-side-browser-compatibility-analyzer) section.
 
 :::moniker-end
 
@@ -102,7 +102,7 @@ If the **Support pages and views** checkbox is selected to support pages and vie
   </ItemGroup>
   ```
 
-  For more information on the `SupportedPlatform` item, see the [Browser compatibility analyzer for Blazor WebAssembly](#browser-compatibility-analyzer-for-blazor-webassembly) section.
+  For more information on the `SupportedPlatform` item, see the [client-side browser compatibility analyzer](#client-side-browser-compatibility-analyzer) section.
 
 :::moniker-end
 
@@ -148,7 +148,7 @@ If the `-s|--support-pages-and-views` option is used to support pages and views 
   </ItemGroup>
   ```
 
-  For more information on the `SupportedPlatform` item, see the [Browser compatibility analyzer for Blazor WebAssembly](#browser-compatibility-analyzer-for-blazor-webassembly) section.
+  For more information on the `SupportedPlatform` item, see the [client-side browser compatibility analyzer](#client-side-browser-compatibility-analyzer) section.
 
 :::moniker-end
 
@@ -343,9 +343,7 @@ The following background image and stylesheet are used by the RCL's `Component1`
 }
 ```
 
-To provide `Component1`'s `my-component` CSS class, link to the library's stylesheet in the app's `<head>` markup.
-
-`wwwroot/index.html` file (Blazor WebAssembly) or `Pages/_Host.cshtml` file (Blazor Server):
+To provide `Component1`'s `my-component` CSS class, link to the library's stylesheet in the app's `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-content)):
 
 ```html
 <link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
@@ -426,11 +424,11 @@ For more information, see <xref:blazor/host-and-deploy/webassembly#static-assets
 
 :::moniker range=">= aspnetcore-5.0"
 
-## Browser compatibility analyzer for Blazor WebAssembly
+## Client-side browser compatibility analyzer
 
-Blazor WebAssembly apps target the full .NET API surface area, but not all .NET APIs are supported on WebAssembly due to browser sandbox constraints. Unsupported APIs throw <xref:System.PlatformNotSupportedException> when running on WebAssembly. A platform compatibility analyzer warns the developer when the app uses APIs that aren't supported by the app's target platforms. For Blazor WebAssembly apps, this means checking that APIs are supported in browsers. Annotating .NET framework APIs for the compatibility analyzer is an on-going process, so not all .NET framework API is currently annotated.
+Client-side apps target the full .NET API surface area, but not all .NET APIs are supported on WebAssembly due to browser sandbox constraints. Unsupported APIs throw <xref:System.PlatformNotSupportedException> when running on WebAssembly. A platform compatibility analyzer warns the developer when the app uses APIs that aren't supported by the app's target platforms. For client-side apps, this means checking that APIs are supported in browsers. Annotating .NET framework APIs for the compatibility analyzer is an on-going process, so not all .NET framework API is currently annotated.
 
-Blazor WebAssembly and RCL projects *automatically* enable browser compatibility checks by adding `browser` as a supported platform with the `SupportedPlatform` MSBuild item. Library developers can manually add the `SupportedPlatform` item to a library's project file to enable the feature:
+Blazor Web Apps that enable interactive WebAssembly components, Blazor WebAssembly apps, and RCL projects *automatically* enable browser compatibility checks by adding `browser` as a supported platform with the `SupportedPlatform` MSBuild item. Library developers can manually add the `SupportedPlatform` item to a library's project file to enable the feature:
 
 ```xml
 <ItemGroup>

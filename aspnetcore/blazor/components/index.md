@@ -1366,6 +1366,9 @@ In the preceding code, the CSS selector, `#app`, indicates that the `App` compon
 <div id="app">...</app>
 ```
 
+<!-- UPDATE 8.0 Need to check on this: Is this still valid in a 
+     BW app, and is the render-mode still set in this way? -->
+
 MVC and Razor Pages apps can also use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) to register statically-rendered Blazor WebAssembly root components:
 
 ```cshtml
