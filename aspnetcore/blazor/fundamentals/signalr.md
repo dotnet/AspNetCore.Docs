@@ -31,7 +31,7 @@ For general guidance on ASP.NET Core SignalR configuration, see the topics in th
 
 When using [Hot Reload](xref:test/hot-reload), disable Response Compression Middleware in the `Development` environment. The following examples use the existing environment check in a project created from a Blazor project template. Whether or not the default code from a project template is used, always call <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A> first in the request processing pipeline.
 
-In server-side `Program.cs`:
+In server-side `Program` file:
 
 ```csharp
 if (!app.Environment.IsDevelopment())
@@ -42,7 +42,7 @@ if (!app.Environment.IsDevelopment())
 }
 ```
 
-In the client-side `Program.cs` file:
+In the client-side `Program` file:
 
 ```csharp
 if (app.Environment.IsDevelopment())
@@ -172,9 +172,9 @@ Configure the circuit with the <xref:Microsoft.AspNetCore.Components.Server.Circ
 
 :::moniker range=">= aspnetcore-8.0"
 
-Configure the options in `Program.cs` with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsBuilderExtensions.AddServerComponents%2A>. The following example assigns the default option values shown in the preceding table. Confirm that `Program.cs` uses the <xref:System> namespace (`using System;`).
+Configure the options in the `Program` file with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsBuilderExtensions.AddServerComponents%2A>. The following example assigns the default option values shown in the preceding table. Confirm that the `Program` file uses the <xref:System> namespace (`using System;`).
 
-In `Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddRazorComponents().AddServerComponents(options =>
@@ -191,9 +191,9 @@ builder.Services.AddRazorComponents().AddServerComponents(options =>
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-Configure the options in `Program.cs` with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>. The following example assigns the default option values shown in the preceding table. Confirm that `Program.cs` uses the <xref:System> namespace (`using System;`).
+Configure the options in the `Program` file with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>. The following example assigns the default option values shown in the preceding table. Confirm that the `Program` file uses the <xref:System> namespace (`using System;`).
 
-In `Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddServerSideBlazor(options =>
@@ -233,7 +233,7 @@ To configure the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext>, use <
 
 <!-- UPDATE 8.0 Confirm the following compiles at RC1 -->
 
-In `Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddRazorComponents().AddServerComponents().AddHubOptions(options =>
@@ -252,7 +252,7 @@ builder.Services.AddRazorComponents().AddServerComponents().AddHubOptions(option
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-In `Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddServerSideBlazor().AddHubOptions(options =>
@@ -325,7 +325,7 @@ Error:
 
 :::moniker range=">= aspnetcore-8.0"
 
-One approach involves increasing the limit by setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> in `Program.cs`. The following example sets the maximum receive message size to 64 KB:
+One approach involves increasing the limit by setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> in the `Program` file. The following example sets the maximum receive message size to 64 KB:
 
 <!-- UPDATE 8.0 Confirm the following compiles at RC1 -->
 
@@ -346,7 +346,7 @@ Forms that process large payloads over SignalR can also use streaming JS interop
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-One approach involves increasing the limit by setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> in `Program.cs`. The following example sets the maximum receive message size to 64 KB:
+One approach involves increasing the limit by setting <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> in the `Program` file. The following example sets the maximum receive message size to 64 KB:
 
 ```csharp
 builder.Services.AddServerSideBlazor()
@@ -413,7 +413,7 @@ Consider the following guidance when developing code that transfers a large amou
 
 ## Blazor server-side Hub endpoint route configuration
 
-In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> to map the Blazor <xref:Microsoft.AspNetCore.SignalR.Hub> to the app's default path. The Blazor script (`blazor.*.js`) automatically points to the endpoint created by <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>.
+In the `Program` file, call <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> to map the Blazor <xref:Microsoft.AspNetCore.SignalR.Hub> to the app's default path. The Blazor script (`blazor.*.js`) automatically points to the endpoint created by <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>.
 
 ## Reflect the server-side connection state in the UI
 
@@ -912,7 +912,7 @@ Circuit handlers are registered using DI. Scoped instances are created per insta
 
 :::moniker range=">= aspnetcore-6.0"
 
-In `Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Services.AddSingleton<CircuitHandler, TrackingCircuitHandler>();

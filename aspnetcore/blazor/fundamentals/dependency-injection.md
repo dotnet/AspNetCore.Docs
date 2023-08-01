@@ -32,7 +32,7 @@ The services shown in the following table are commonly used in Blazor apps.
 
 | Service | Lifetime | Description |
 | ------- | -------- | ----------- |
-| <xref:System.Net.Http.HttpClient> | Scoped | <p>Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI.</p><p>Client-side, an instance of <xref:System.Net.Http.HttpClient> is registered by the app in `Program.cs` and uses the browser for handling the HTTP traffic in the background.</p><p>Server-side, an <xref:System.Net.Http.HttpClient> isn't configured as a service by default. In server-side code, provide an <xref:System.Net.Http.HttpClient>.</p><p>For more information, see <xref:blazor/call-web-api>.</p><p>An <xref:System.Net.Http.HttpClient> is registered as a scoped service, not singleton. For more information, see the [Service lifetime](#service-lifetime) section.</p> |
+| <xref:System.Net.Http.HttpClient> | Scoped | <p>Provides methods for sending HTTP requests and receiving HTTP responses from a resource identified by a URI.</p><p>Client-side, an instance of <xref:System.Net.Http.HttpClient> is registered by the app in the `Program` file and uses the browser for handling the HTTP traffic in the background.</p><p>Server-side, an <xref:System.Net.Http.HttpClient> isn't configured as a service by default. In server-side code, provide an <xref:System.Net.Http.HttpClient>.</p><p>For more information, see <xref:blazor/call-web-api>.</p><p>An <xref:System.Net.Http.HttpClient> is registered as a scoped service, not singleton. For more information, see the [Service lifetime](#service-lifetime) section.</p> |
 | <xref:Microsoft.JSInterop.IJSRuntime> | <p>**Client-side**: Singleton</p><p>**Server-side**: Scoped</p><p>The Blazor framework registers <xref:Microsoft.JSInterop.IJSRuntime> in the app's service container.</p> | <p>Represents an instance of a JavaScript runtime where JavaScript calls are dispatched. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet>.</p><p>When seeking to inject the service into a singleton service on the server, take either of the following approaches:</p><ul><li>Change the service registration to scoped to match <xref:Microsoft.JSInterop.IJSRuntime>'s registration, which is appropriate if the service deals with user-specific state.</li><li>Pass the <xref:Microsoft.JSInterop.IJSRuntime> into the singleton service's implementation as an argument of its method calls instead of injecting it into the singleton.</li></ul> |
 | <xref:Microsoft.AspNetCore.Components.NavigationManager> | <p>**Client-side**: Singleton</p><p>**Server-side**: Scoped</p><p>The Blazor framework registers <xref:Microsoft.AspNetCore.Components.NavigationManager> in the app's service container.</p> | Contains helpers for working with URIs and navigation state. For more information, see [URI and navigation state helpers](xref:blazor/fundamentals/routing#uri-and-navigation-state-helpers). |
 
@@ -42,7 +42,7 @@ A custom service provider doesn't automatically provide the default services lis
 
 ## Add client-side services
 
-Configure services for the app's service collection in `Program.cs`. In the following example, the `ExampleDependency` implementation is registered for `IExampleDependency`:
+Configure services for the app's service collection in the `Program` file. In the following example, the `ExampleDependency` implementation is registered for `IExampleDependency`:
 
 ```csharp
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -88,7 +88,7 @@ await host.RunAsync();
 
 ## Add server-side services
 
-After creating a new app, examine part of the `Program.cs` file:
+After creating a new app, examine part of the `Program` file:
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -159,7 +159,7 @@ public static void ConfigureCommonServices(IServiceCollection services)
 }
 ```
 
-For the client-side `Program.cs` file, call `ConfigureCommonServices` to register the common services:
+For the client-side `Program` file, call `ConfigureCommonServices` to register the common services:
 
 ```csharp
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -169,7 +169,7 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 ConfigureCommonServices(builder.Services);
 ```
 
-In the server-side `Program.cs` file, call `ConfigureCommonServices` to register the common services:
+In the server-side `Program` file, call `ConfigureCommonServices` to register the common services:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -338,9 +338,9 @@ public class TimeTravel : ITimeTravel
 }
 ```
   
-The service is registered as scoped in the server-side `Program.cs` file. Server-side, scoped services have a lifetime equal to the duration of the [circuit](xref:blazor/hosting-models#blazor-server).
+The service is registered as scoped in the server-side `Program` file. Server-side, scoped services have a lifetime equal to the duration of the [circuit](xref:blazor/hosting-models#blazor-server).
   
-In `Program.cs`:
+In the `Program` file:
   
 ```csharp
 builder.Services.AddScoped<ITimeTravel, TimeTravel>();
@@ -459,7 +459,7 @@ When navigating away from the `TimeTravel` component to another component and ba
   
 `TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
 
-In spite of the scoped service registration in `Program.cs` and the longevity of the user's circuit, `TimeTravel2` receives a new `ITimeTravel` service instance each time the component is initialized.
+In spite of the scoped service registration in the `Program` file and the longevity of the user's circuit, `TimeTravel2` receives a new `ITimeTravel` service instance each time the component is initialized.
 
 ### `OwningComponentBase<TService>`
 
@@ -551,7 +551,7 @@ public class TransientDisposable : IDisposable
 
 The `TransientDisposable` in the following example is detected.
 
-`Program.cs`:
+In the `Program` file:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -709,7 +709,7 @@ The `TransientDependency` in the following example is detected.
 
 :::moniker range=">= aspnetcore-6.0"
 
-In `Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.DetectIncorrectUsageOfTransients();
@@ -988,7 +988,7 @@ Any components extending `CustomComponentBase` automatically have `BlazorService
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-Finally, in `Program.cs`, add the `BlazorServiceAccessor` as a scoped service:
+Finally, in the `Program` file, add the `BlazorServiceAccessor` as a scoped service:
 
 ```csharp
 builder.Services.AddScoped<BlazorServiceAccessor>();

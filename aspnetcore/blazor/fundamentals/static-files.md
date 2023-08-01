@@ -46,7 +46,7 @@ Configure Static File Middleware to serve static assets to clients by calling <x
 
 :::moniker-end
 
-When running an app locally, static web assets are only enabled by default in the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment. To enable static files for environments other than <xref:Microsoft.Extensions.Hosting.Environments.Development> during local development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> in `Program.cs`.
+When running an app locally, static web assets are only enabled by default in the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment. To enable static files for environments other than <xref:Microsoft.Extensions.Hosting.Environments.Development> during local development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> in the `Program` file.
 
 > [!WARNING]
 > Call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> for the ***exact environment*** to prevent activating the feature in production, as it serves files from separate locations on disk *other than from the project* if called in a production environment. The example in this section checks for the <xref:Microsoft.Extensions.Hosting.Environments.Staging> environment by calling <xref:Microsoft.Extensions.Hosting.HostEnvironmentEnvExtensions.IsStaging%2A>.
@@ -114,7 +114,7 @@ In the preceding examples, the `{TFM}` placeholder is the [Target Framework Moni
 
 To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider> or configure other <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>, use **one** of the following approaches. In the following examples, the `{EXTENSION}` placeholder is the file extension, and the `{CONTENT TYPE}` placeholder is the content type.
 
-* Configure options through [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection) in `Program.cs` using <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>:
+* Configure options through [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection) in the `Program` file using <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>:
 
   ```csharp
   using Microsoft.AspNetCore.StaticFiles;
@@ -132,7 +132,7 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
 
   This approach configures the same file provider used to serve the Blazor script. Make sure that your custom configuration doesn't interfere with serving the Blazor script. For example, don't remove the mapping for JavaScript files by configuring the provider with `provider.Mappings.Remove(".js")`.
 
-* Use two calls to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in `Program.cs`:
+* Use two calls to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> in the `Program` file:
   * Configure the custom file provider in the first call with <xref:Microsoft.AspNetCore.Builder.StaticFileOptions>.
   * The second middleware serves the Blazor script, which uses the default static files configuration provided by the Blazor framework.
 

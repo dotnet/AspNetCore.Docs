@@ -351,7 +351,7 @@ Consider the following `Example` component that can receive a route parameter fr
 
 <!-- UPDATE 8.0 This code must be checked -->
 
-For server-side configuration that routes requests with a dot in the `param` route parameter, add a fallback page route template with the optional parameter in `Program.cs`:
+For server-side configuration that routes requests with a dot in the `param` route parameter, add a fallback page route template with the optional parameter in the `Program` file:
 
 ```csharp
 app.MapFallbackToPage("/example/{param?}", "/");
@@ -361,13 +361,13 @@ app.MapFallbackToPage("/example/{param?}", "/");
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-To permit the **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Program.cs`:
+To permit the **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in the `Program` file:
 
 ```csharp
 app.MapFallbackToFile("/example/{param?}", "index.html");
 ```
 
-To configure a Blazor Server app to route the request with a dot in the `param` route parameter, add a fallback page route template with the optional parameter in `Program.cs`:
+To configure a Blazor Server app to route the request with a dot in the `param` route parameter, add a fallback page route template with the optional parameter in the `Program` file:
 
 ```csharp
 app.MapFallbackToPage("/example/{param?}", "/_Host");
@@ -1375,7 +1375,7 @@ The following HTML markup is rendered:
 
 :::moniker range=">= aspnetcore-8.0"
 
-Server-side rendering (SSR) is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in `Program.cs`.  The default root component is the `App` component (`App.razor`):
+Server-side rendering (SSR) is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the `Program` file.  The default root component is the `App` component (`App.razor`):
 
 ```csharp
 app.MapRazorComponents<App>();
@@ -1385,7 +1385,7 @@ app.MapRazorComponents<App>();
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in `Program.cs`:
+Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in the `Program` file:
 
 ```csharp
 app.UseRouting();

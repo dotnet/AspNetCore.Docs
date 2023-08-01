@@ -120,7 +120,7 @@ Not every feature of [ASP.NET Core logging](xref:fundamentals/logging/index) is 
 
 :::moniker range="< aspnetcore-6.0"
 
-Depending on the framework version and logging features, logging implementations may require adding the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> to `Program.cs`:
+Depending on the framework version and logging features, logging implementations may require adding the namespace for <xref:Microsoft.Extensions.Logging?displayProperty=fullName> to the `Program` file:
 
 ```csharp
 using Microsoft.Extensions.Logging;
@@ -130,7 +130,7 @@ using Microsoft.Extensions.Logging;
 
 Configure logging in client-side apps with the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging?displayProperty=nameWithType> property. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Logging> property is of type <xref:Microsoft.Extensions.Logging.ILoggingBuilder>, so the extension methods of <xref:Microsoft.Extensions.Logging.ILoggingBuilder> are supported.
 
-To set the minimum logging level, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> on the host builder in `Program.cs` with the <xref:Microsoft.Extensions.Logging.LogLevel>. The following example sets the minimum log level to <xref:Microsoft.Extensions.Logging.LogLevel.Warning>:
+To set the minimum logging level, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType> on the host builder in the `Program` file with the <xref:Microsoft.Extensions.Logging.LogLevel>. The following example sets the minimum log level to <xref:Microsoft.Extensions.Logging.LogLevel.Warning>:
 
 ```csharp
 builder.Logging.SetMinimumLevel(LogLevel.Warning);
@@ -138,11 +138,11 @@ builder.Logging.SetMinimumLevel(LogLevel.Warning);
 
 :::moniker range=">= aspnetcore-6.0"
 
-## Log in client-side `Program.cs`
+## Log in client-side the `Program` file
 
-[Logging in `Program.cs`](xref:fundamentals/logging/index#log-in-programcs) is supported in client-side apps after the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> is built using the framework's internal console logger provider ([`WebAssemblyConsoleLoggerProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly/src/Services/WebAssemblyConsoleLoggerProvider.cs)).
+Logging is supported in client-side apps after the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> is built using the framework's internal console logger provider ([`WebAssemblyConsoleLoggerProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly/src/Services/WebAssemblyConsoleLoggerProvider.cs)).
 
-In `Program.cs`:
+In the `Program` file:
 
 ```csharp
 var host = builder.Build();
@@ -265,7 +265,7 @@ Developer tools console output:
 
 The following example shows how to use a filter with the `Counter` component of an app created from a Blazor project template.
 
-In `Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Logging.AddFilter((provider, category, logLevel) =>
@@ -293,7 +293,7 @@ In the developer tools console output, the filter only permits logging for the `
 > :::no-loc text="info: CustomCategory2[0]":::  
 > :::no-loc text="Someone has clicked me!":::
 
-The app can also configure log filtering for specific namespaces. For example, set the log level to <xref:Microsoft.Extensions.Logging.LogLevel.Trace> in `Program.cs`:
+The app can also configure log filtering for specific namespaces. For example, set the log level to <xref:Microsoft.Extensions.Logging.LogLevel.Trace> in the `Program` file:
 
 ```csharp
 builder.Logging.SetMinimumLevel(LogLevel.Trace);
@@ -304,7 +304,7 @@ Normally at the <xref:Microsoft.Extensions.Logging.LogLevel.Trace> log level, de
 > :::no-loc text="dbug: Microsoft.AspNetCore.Components.RenderTree.Renderer[3]":::  
 > :::no-loc text="Rendering component 14 of type Microsoft.AspNetCore.Components.Web.HeadOutlet":::
 
-In `Program.cs`, logging messages specific to <xref:Microsoft.AspNetCore.Components.RenderTree> can be disabled using ***either*** of the following approaches:
+In the `Program` file, logging messages specific to <xref:Microsoft.AspNetCore.Components.RenderTree> can be disabled using ***either*** of the following approaches:
 
 * ```csharp
   builder.Logging.AddFilter("Microsoft.AspNetCore.Components.RenderTree.*", LogLevel.None);
@@ -477,7 +477,7 @@ public static class CustomLoggerExtensions
 }
 ```
 
-In `Program.cs` on the host builder, clear the existing provider by calling <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> and add the custom logging provider:
+In the `Program` file on the host builder, clear the existing provider by calling <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> and add the custom logging provider:
 
 ```csharp
 builder.Logging.ClearProviders().AddCustomLogger();
@@ -540,7 +540,7 @@ In the `wwwroot` folder, add or update the `appsettings.json` file to include lo
 
 In the preceding example, notice that the entry for the custom logger configuration is `CustomLog`, which was applied to the custom logger provider (`CustomLoggerProvider`) as an alias with `[ProviderAlias("CustomLog")]`. The logging configuration could have been applied with the name `CustomLoggerProvider` instead of `CustomLog`, but use of the alias `CustomLog` is more user friendly.
 
-In `Program.cs` consume the logging configuration. Add the following code:
+In the `Program` file, consume the logging configuration. Add the following code:
 
 ```csharp
 builder.Logging.AddConfiguration(
@@ -755,7 +755,7 @@ For more information on setting the app's environment, see <xref:blazor/fundamen
 
 ## Client-side authentication logging
 
-Log Blazor authentication messages at the <xref:Microsoft.Extensions.Logging.LogLevel.Debug?displayProperty=nameWithType> or <xref:Microsoft.Extensions.Logging.LogLevel.Trace?displayProperty=nameWithType> logging levels with a logging configuration in app settings or by using a log filter for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> in `Program.cs`.
+Log Blazor authentication messages at the <xref:Microsoft.Extensions.Logging.LogLevel.Debug?displayProperty=nameWithType> or <xref:Microsoft.Extensions.Logging.LogLevel.Trace?displayProperty=nameWithType> logging levels with a logging configuration in app settings or by using a log filter for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> in the `Program` file.
 
 Use ***either*** of the following approaches:
 

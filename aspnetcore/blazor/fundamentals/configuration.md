@@ -109,13 +109,13 @@ The following example reads a configuration file (`cars.json`) into the app's co
 }
 ```
 
-Add the namespace for <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> to `Program.cs`:
+Add the namespace for <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> to the `Program` file:
 
 ```csharp
 using Microsoft.Extensions.Configuration;
 ```
 
-In `Program.cs`, modify the existing <xref:System.Net.Http.HttpClient> service registration to use the client to read the file:
+Modify the existing <xref:System.Net.Http.HttpClient> service registration to use the client to read the file:
 
 ```csharp
 var http = new HttpClient()
@@ -133,15 +133,15 @@ builder.Configuration.AddJsonStream(stream);
 
 ## Memory Configuration Source
 
-The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> in `Program.cs` to supply additional configuration.
+The following example uses a <xref:Microsoft.Extensions.Configuration.Memory.MemoryConfigurationSource> in the `Program` file to supply additional configuration.
 
-Add the namespace for <xref:Microsoft.Extensions.Configuration.Memory?displayProperty=fullName> to `Program.cs`:
+Add the namespace for <xref:Microsoft.Extensions.Configuration.Memory?displayProperty=fullName> to the `Program` file:
 
 ```csharp
 using Microsoft.Extensions.Configuration.Memory;
 ```
 
-In `Program.cs`:
+In the `Program` file:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -223,9 +223,7 @@ Provide authentication configuration in an app settings file.
 }
 ```
 
-Load the configuration for an Identity provider with <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> in `Program.cs`. The following example loads configuration for an [OIDC provider](xref:blazor/security/webassembly/standalone-with-authentication-library).
-
-`Program.cs`:
+Load the configuration for an Identity provider with <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> in the `Program` file. The following example loads configuration for an [OIDC provider](xref:blazor/security/webassembly/standalone-with-authentication-library):
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -240,7 +238,7 @@ Add the [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/pac
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-In the app settings file, provide logging configuration. The logging configuration is loaded in `Program.cs`.
+In the app settings file, provide logging configuration. The logging configuration is loaded in the `Program` file.
 
 `wwwroot/appsettings.json`:
 
@@ -255,7 +253,7 @@ In the app settings file, provide logging configuration. The logging configurati
 }
 ```
 
-In `Program.cs`:
+In the `Program` file:
 
 ```csharp
 builder.Logging.AddConfiguration(
@@ -264,9 +262,7 @@ builder.Logging.AddConfiguration(
 
 ## Host builder configuration
 
-Read host builder configuration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Configuration?displayProperty=nameWithType> in `Program.cs`.
-
-In `Program.cs`:
+Read host builder configuration from <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.Configuration?displayProperty=nameWithType> in the `Program` file:
 
 ```csharp
 var hostname = builder.Configuration["HostName"];

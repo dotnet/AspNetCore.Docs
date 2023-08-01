@@ -183,7 +183,7 @@ To treat failures like lifecycle method exceptions, explicitly dispatch exceptio
 }
 ```
 
-For a working demonstration of `DispatchExceptionAsync`, implement the timer notification example in [Invoke component methods externally to update state](xref:blazor/components/sync-context#invoke-component-methods-externally-to-update-state). In a Blazor app, add the following files from the timer notification example and register the services in `Program.cs` as the section explains:
+For a working demonstration of `DispatchExceptionAsync`, implement the timer notification example in [Invoke component methods externally to update state](xref:blazor/components/sync-context#invoke-component-methods-externally-to-update-state). In a Blazor app, add the following files from the timer notification example and register the services in the `Program` file as the section explains:
 
 * `TimerService.cs`
 * `NotifierService.cs`

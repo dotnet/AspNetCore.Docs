@@ -300,7 +300,7 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
 
 :::moniker range=">= aspnetcore-6.0"
 
-  In `Program.cs`:
+  In the `Program` file:
 
   ```csharp
   app.Use(async (context, next) =>
@@ -326,13 +326,13 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
 
 :::moniker-end
 
-  The preceding example uses inline middleware, but you can also create a custom middleware class and call the middleware with an extension method in `Program.cs`. For more information, see <xref:fundamentals/middleware/write>.
+  The preceding example uses inline middleware, but you can also create a custom middleware class and call the middleware with an extension method in the `Program` file. For more information, see <xref:fundamentals/middleware/write>.
 
 * For client-side development without prerendering, pass <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A> that specifies response headers at the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> stage.
 
 :::moniker range=">= aspnetcore-6.0"
 
-  In server-side `Program.cs`:
+  In the server-side `Program` file:
 
   ```csharp
   var staticFileOptions = new StaticFileOptions

@@ -3,9 +3,9 @@ Throughout this article, the terms **client**/**client-side** and **server**/**s
 :::moniker range=">= aspnetcore-8.0"
 
 * **Client**/**client-side**
-  * The client of a Blazor Web App. Blazor script start configuration is found in the `App` component (`App.razor`).
-  * A Blazor WebAssembly app. Blazor script start configuration is found in the `wwwroot/index.html` file.
-* **Server**/**server-side**: The server of a Blazor Web App. Blazor script start configuration is found in the `App` component (`App.razor`).
+  * The client of a Blazor Web App. Blazor script start configuration is found in the `App` component (`App.razor`). The `Program` file is `Program.Browser.cs`.
+  * A Blazor WebAssembly app. Blazor script start configuration is found in the `wwwroot/index.html` file. The `Program` file is `Program.cs`.
+* **Server**/**server-side**: The server of a Blazor Web App. Blazor script start configuration is found in the `App` component (`App.razor`). The `Program` file is `Program.cs` without interactive WebAssembly components or `Program.Server.cs` with interactive WebAssembly components.
 
 :::moniker-end
 
@@ -15,9 +15,11 @@ Throughout this article, the terms **client**/**client-side** and **server**/**s
   * The **`Client`** project of a hosted Blazor WebAssembly app.
   * A Blazor WebAssembly app.
   * Blazor script start configuration is found in the `wwwroot/index.html` file.
+  * The `Program` file is `Program.cs`.
 * **Server**/**server-side**
   * The **`Server`** project of a hosted Blazor WebAssembly app.
   * A Blazor Server app. Blazor script start configuration is found in `Pages/_Host.cshtml`.
+  * The `Program` file is `Program.cs`.
 
 :::moniker-end
 
@@ -27,9 +29,11 @@ Throughout this article, the terms **client**/**client-side** and **server**/**s
   * The **`Client`** project of a hosted Blazor WebAssembly app.
   * A Blazor WebAssembly app.
   * Blazor script start configuration is found in the `wwwroot/index.html` file.
+  * The `Program` file is `Program.cs`.
 * **Server**/**server-side**
   * The **`Server`** project of a hosted Blazor WebAssembly app.
   * A Blazor Server app. Blazor script start configuration is found in `Pages/_Layout.cshtml`.
+  * The `Program` file is `Program.cs`.
 
 :::moniker-end
 
@@ -39,8 +43,10 @@ Throughout this article, the terms **client**/**client-side** and **server**/**s
   * The **`Client`** project of a hosted Blazor WebAssembly app.
   * A Blazor WebAssembly app.
   * Blazor script start configuration is found in the `wwwroot/index.html` file.
+  * The `Program` file is `Program.cs`.
 * **Server**/**server-side**
   * The **`Server`** project of a hosted Blazor WebAssembly app.
   * A Blazor Server app. Blazor script start configuration is found in `Pages/_Host.cshtml`.
+  * The `Program` file is `Program.cs`.
 
 :::moniker-end
