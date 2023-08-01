@@ -42,6 +42,8 @@ Configuration in app settings files are loaded by default. In the following exam
 
 `wwwroot/appsettings.json`:
 
+<!-- UPDATE 8.0 -->
+
 :::moniker range=">= aspnetcore-7.0"
 
 :::code language="json" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/wwwroot/appsettings.json" highlight="2":::
@@ -69,6 +71,8 @@ Configuration in app settings files are loaded by default. In the following exam
 Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data.
 
 `Pages/ConfigExample.razor`:
+
+<!-- UPDATE 8.0 -->
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -143,6 +147,8 @@ using Microsoft.Extensions.Configuration.Memory;
 
 In the `Program` file:
 
+<!-- UPDATE 8.0 -->
+
 :::moniker range=">= aspnetcore-7.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Program.cs" id="snippet1":::
@@ -170,6 +176,8 @@ In the `Program` file:
 Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data.
 
 `Pages/MemoryConfig.razor`:
+
+<!-- UPDATE 8.0 -->
 
 :::moniker range=">= aspnetcore-7.0"
 

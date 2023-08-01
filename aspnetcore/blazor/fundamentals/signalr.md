@@ -31,7 +31,7 @@ For general guidance on ASP.NET Core SignalR configuration, see the topics in th
 
 When using [Hot Reload](xref:test/hot-reload), disable Response Compression Middleware in the `Development` environment. The following examples use the existing environment check in a project created from a Blazor project template. Whether or not the default code from a project template is used, always call <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression%2A> first in the request processing pipeline.
 
-In server-side `Program` file:
+In the server-side `Program` file:
 
 ```csharp
 if (!app.Environment.IsDevelopment())
@@ -604,25 +604,25 @@ Circuit activity handlers also provide an approach for accessing scoped Blazor s
 
 :::moniker range=">= aspnetcore-8.0"
 
-Configure the manual start of a Blazor app's SignalR circuit in the `App.razor` file of a Blazor Web App or the `wwwroot/index.html` file client-side in a Blazor Web App with SignalR implemented:
+Configure the manual start of a Blazor app's SignalR circuit in the `App.razor` file of a Blazor Web App:
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or the `wwwroot/index.html` file in a hosted Blazor WebAssembly solution with SignalR implemented:
+Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server):
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Layout.cshtml` file (Blazor Server) or the `wwwroot/index.html` file in a hosted Blazor WebAssembly solution with SignalR implemented:
+Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Layout.cshtml` file (Blazor Server):
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server) or the `wwwroot/index.html` file in a hosted Blazor WebAssembly solution with SignalR implemented:
+Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host.cshtml` file (Blazor Server):
 
 :::moniker-end
 
@@ -642,7 +642,7 @@ Configure the following values for the client:
 * `withServerTimeout`: Configures the server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the Keep-Alive interval (`withKeepAliveInterval`).
 * `withKeepAliveInterval`: Configures the Keep-Alive interval in milliseconds (default interval at which to ping the server). This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout (`withServerTimeout`).
 
-The following example for the `App.razor` file (Blazor Web App) or `wwwroot/index.html` (Blazor WebAssembly) shows the assignment of default values:
+The following example for the `App.razor` file (Blazor Web App) shows the assignment of default values:
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -685,7 +685,7 @@ Configure the following values for the client:
 * `serverTimeoutInMilliseconds`: The server timeout in milliseconds. If this timeout elapses without receiving any messages from the server, the connection is terminated with an error. The default timeout value is 30 seconds. The server timeout should be at least double the value assigned to the Keep-Alive interval (`keepAliveIntervalInMilliseconds`).
 * `keepAliveIntervalInMilliseconds`: Default interval at which to ping the server. This setting allows the server to detect hard disconnects, such as when a client unplugs their computer from the network. The ping occurs at most as often as the server pings. If the server pings every five seconds, assigning a value lower than `5000` (5 seconds) pings every five seconds. The default value is 15 seconds. The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout (`serverTimeoutInMilliseconds`).
 
-The following example for the `Pages/_Host.cshtml` file (Blazor Server, all versions except ASP.NET Core 6.0), `Pages/_Layout.cshtml` file (Blazor Server, ASP.NET Core 6.0), or `wwwroot/index.html` (Blazor WebAssembly) shows the assignment of default values:
+The following example for the `Pages/_Host.cshtml` file (Blazor Server, all versions except ASP.NET Core 6.0) or `Pages/_Layout.cshtml` file (Blazor Server, ASP.NET Core 6.0):
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>

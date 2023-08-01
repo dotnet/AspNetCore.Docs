@@ -516,6 +516,8 @@ The following example shows how to detect client-side disposable transient servi
 
 `DetectIncorrectUsagesOfTransientDisposables.cs` for client-side development:
 
+<!-- UPDATE 8.0 -->
+
 :::moniker range=">= aspnetcore-7.0"
 
 :::code language="csharp" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/dependency-injection/DetectIncorrectUsagesOfTransientDisposables.cs":::
@@ -653,6 +655,8 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
 The following example shows how to detect server-side disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
 
 `DetectIncorrectUsagesOfTransientDisposables.cs`:
+
+<!-- UPDATE 8.0 -->
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -796,7 +800,7 @@ Navigate to the `TransientExample` component at `/transient-example` and an <xre
 
 :::moniker range=">= aspnetcore-8.0"
 
-[Circuit activity handlers](xref:blazor/fundamentals/signalr#monitor-circuit-activity-blazor-server) provide an approach for accessing scoped Blazor services from other non-Blazor dependency injection (DI) scopes, such as scopes created using <xref:System.Net.Http.IHttpClientFactory>. 
+[Circuit activity handlers](xref:blazor/fundamentals/signalr#monitor-server-side-circuit-activity) provide an approach for accessing scoped Blazor services from other non-Blazor dependency injection (DI) scopes, such as scopes created using <xref:System.Net.Http.IHttpClientFactory>. 
 
 Prior to the release of ASP.NET Core 8.0, accessing circuit-scoped services from other dependency injection scopes required using a custom base component type. With circuit activity handlers, a custom base component type isn't required, as the following example demonstrates:
 

@@ -20,7 +20,7 @@ This article describes Blazor app configuration for serving static files.
 
 :::moniker range=">= aspnetcore-8.0"
 
-*This section applies to Blazor Web Apps.*
+*This section applies to server-side static files in Blazor Web Apps.*
 
 :::moniker-end
 
@@ -36,7 +36,7 @@ Configure Static File Middleware to serve static assets to clients by calling <x
 
 :::moniker range=">= aspnetcore-8.0"
 
-*This section applies to Blazor Web Apps.*
+*This section applies to servers-side static files in Blazor Web Apps.*
 
 :::moniker-end
 
@@ -60,7 +60,7 @@ if (builder.Environment.IsStaging())
 
 ## Static web asset base path
 
-<!-- UPDATE 8.0 Need to see how this will compose for the BWA template -->
+<!-- UPDATE 8.0 TBD on how to compose this for BWA apps -->
 
 *This section applies to standalone Blazor WebAssembly apps and hosted Blazor WebAssembly solutions.*
 
@@ -102,7 +102,7 @@ In the preceding examples, the `{TFM}` placeholder is the [Target Framework Moni
 
 :::moniker range=">= aspnetcore-8.0"
 
-*This section applies to Blazor Web Apps.*
+*This section applies to server-side static files in Blazor Web Apps.*
 
 :::moniker-end
 

@@ -71,8 +71,6 @@ For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
 ## Set the environment via header
 
-<!-- UPDATE 8.0 Need to see the final design on clients in BWAs. -->
-
 To specify the environment for other hosting environments, add the `Blazor-Environment` header.
 
 In the following example for IIS, the custom header (`Blazor-Environment`) is added to the published `web.config` file. The `web.config` file is located in the `bin/Release/{TARGET FRAMEWORK}/publish` folder, where the placeholder `{TARGET FRAMEWORK}` is the target framework:
@@ -102,8 +100,6 @@ For a standalone client app, set the environment manually via [start configurati
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Need to see the final design on clients in BWAs. -->
-
 For the client-side of a Blazor Web App, use the following guidance:
 
 :::moniker-end
@@ -131,6 +127,8 @@ App settings from the `appsettings.{ENVIRONMENT}.json` file are loaded by the ap
 Obtain the app's environment in a component by injecting <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> and reading the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment> property.
 
 `Pages/ReadEnvironment.razor`:
+
+<!-- UPDATE 8.0 -->
 
 :::moniker range=">= aspnetcore-7.0"
 

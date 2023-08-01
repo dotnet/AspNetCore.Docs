@@ -598,14 +598,6 @@ Tooling outside of Visual Studio and Visual Studio for Mac can interact with sol
 * The [.NET CLI](/dotnet/core/tools/) can create solution files and list/modify the projects in solution files via the [`dotnet sln` command](/dotnet/core/tools/dotnet-sln). Other .NET CLI commands use the path of the solution file for various publishing, testing, and packaging commands.
 * [Visual Studio Code](https://code.visualstudio.com) can execute the `dotnet sln` command and other .NET CLI commands through its integrated terminal but doesn't use the settings in a solution file directly.
 
-:::moniker range=">= aspnetcore-8.0"
-
-<!-- UPDATE 8.0 Confirm the name of the checkbox is 'Use interactive client components' -->
-
-Throughout the Blazor documentation, *solution* is used to describe apps created from the Blazor Web Apps project template with the **Use interactive client components** checkbox option enabled or from a Blazor Hybrid project template. Apps produced from these project templates include a solution file (`.sln`) by default. For apps where the developer isn't using Visual Studio or Visual Studio for Mac, the solution file can be ignored or deleted if it isn't used with .NET CLI commands.
-
-:::moniker-end
-
 :::moniker range="< aspnetcore-8.0"
 
 Throughout the Blazor documentation, *solution* is used to describe apps created from the Blazor WebAssembly project template with the **ASP.NET Core Hosted** option enabled or from a Blazor Hybrid project template. Apps produced from these project templates include a solution file (`.sln`) by default. For hosted Blazor WebAssembly apps where the developer isn't using Visual Studio or Visual Studio for Mac, the solution file can be ignored or deleted if it isn't used with .NET CLI commands.

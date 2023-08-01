@@ -55,7 +55,7 @@ The following example:
 
 `Pages/Counter1.razor`:
 
-<!-- UPDATE 8.0 The highlights will break for the 8.0 samples. -->
+<!-- UPDATE 8.0 The highlights will break. -->
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -85,6 +85,8 @@ The following example demonstrates logging with an <xref:Microsoft.Extensions.Lo
 
 `Pages/Counter2.razor`:
 
+<!-- UPDATE 8.0 The highlights will break. -->
+
 :::moniker range=">= aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/logging/Counter2.razor" highlight="2,15-16":::
@@ -110,11 +112,11 @@ The following example demonstrates logging with an <xref:Microsoft.Extensions.Lo
 :::moniker-end
 
 
-## Logging server-side
+## Server-side logging
 
 For general ASP.NET Core logging guidance, see <xref:fundamentals/logging/index>.
 
-## Logging client-side
+## Client-side logging
 
 Not every feature of [ASP.NET Core logging](xref:fundamentals/logging/index) is supported client-side. For example, client-side apps don't have access to the client's file system or network, so writing logs to the client's physical or network storage isn't possible. When using a third-party logging service designed to work with single-page apps (SPAs), follow the service's security guidance. Keep in mind that every piece of data, including keys or secrets stored in the client-side app are ***insecure*** and can be easily discovered by malicious users.
 
@@ -138,7 +140,7 @@ builder.Logging.SetMinimumLevel(LogLevel.Warning);
 
 :::moniker range=">= aspnetcore-6.0"
 
-## Log in client-side the `Program` file
+## Log in the client-side `Program` file
 
 Logging is supported in client-side apps after the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> is built using the framework's internal console logger provider ([`WebAssemblyConsoleLoggerProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly/src/Services/WebAssemblyConsoleLoggerProvider.cs)).
 
@@ -562,6 +564,8 @@ Run the app again. Select the **`Log Messages`** button. Notice that the logging
 The developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#client-side-custom-logger-provider) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
 
 :::moniker-end
+
+<!-- UPDATE 8.0 -->
 
 :::moniker range=">= aspnetcore-7.0"
 

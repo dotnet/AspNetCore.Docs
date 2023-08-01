@@ -38,6 +38,8 @@ Components support multiple route templates using multiple [`@page` directives](
 
 `Pages/BlazorRoute.razor`:
 
+<!-- UPDATE 8.0 -->
+
 :::moniker range=">= aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor" highlight="1-2":::
@@ -155,6 +157,8 @@ The router uses route parameters to populate the corresponding [component parame
 
 `Pages/RouteParameter1.razor`:
 
+<!-- UPDATE 8.0 -->
+
 :::moniker range=">= aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor" highlight="1":::
@@ -192,6 +196,8 @@ Optional parameters aren't supported. In the following example, two [`@page` dir
 :::moniker-end
 
 `Pages/RouteParameter2.razor`:
+
+<!-- UPDATE 8.0 -->
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -243,6 +249,8 @@ In the following example, the route to the `User` component only matches if:
 * The `Id` segment is an integer (`int`) type.
 
 `Pages/User.razor`:
+
+<!-- UPDATE 8.0 -->
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -323,6 +331,8 @@ Consider the following `Example` component that can receive a route parameter fr
 
 `Pages/Example.razor`:
 
+<!-- UPDATE 8.0 -->
+
 :::moniker range=">= aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/routing/Example.razor" highlight="1":::
@@ -349,7 +359,8 @@ Consider the following `Example` component that can receive a route parameter fr
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 This code must be checked -->
+<!-- UPDATE 8.0 Will this be recast with endpoint config 
+     provided by AddServerRenderMode? -->
 
 For server-side configuration that routes requests with a dot in the `param` route parameter, add a fallback page route template with the optional parameter in the `Program` file:
 
@@ -412,6 +423,8 @@ Catch-all route parameters are:
 `Pages/CatchAll.razor`:
 
 :::moniker-end
+
+<!-- UPDATE 8.0 -->
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -502,6 +515,8 @@ The following component:
     > :::no-loc text="BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:{PORT}/counter":::
 
 `Pages/Navigate.razor`:
+
+<!-- UPDATE 8.0 -->
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -1375,11 +1390,14 @@ The following HTML markup is rendered:
 
 :::moniker range=">= aspnetcore-8.0"
 
-Server-side rendering (SSR) is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the `Program` file.  The default root component is the `App` component (`App.razor`):
+A Blazor Web App is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the `Program` file.  The default root component is the `App` component (`App.razor`):
 
 ```csharp
 app.MapRazorComponents<App>();
 ```
+
+<!-- UPDATE 8.0 Will need additional remarks for additional endpoint config
+     with AddServerRenderMode and AddWebAssemblyRenderMode -->
 
 :::moniker-end
 

@@ -38,6 +38,8 @@ The following is an example counter component and part of an app created from a 
 
 `Pages/Counter.razor`:
 
+<!-- UPDATE 8.0 -->
+
 :::moniker range=">= aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/Counter.razor":::
