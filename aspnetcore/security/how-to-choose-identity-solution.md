@@ -49,10 +49,10 @@ A common reason a token server is required is for applications that exposes web-
 
 Another reason a token server is required is for sharing sign-ins with other apps. Commonly referred to as *single sign on*, this feature enables users to:
 
-* Sign-in once with a web app's form.
+* Sign in once with a web app's form.
 * Use the resulting credentials to authenticate with other apps without having to sign-in again or choose a different password.
 
-A token server is typically preferred for the preceding scenario to provide a secure and scalable solution.
+A token server is typically preferred to provide a secure and scalable solution for single sign on.
 
 For apps that don't have either of these requirements, the simplest way to quickly secure an app is to use the built-in ASP.NET Core Identity provider. Otherwise, a token server provided by a third-party identity management solution is needed. Token servers are available as:
 
@@ -64,9 +64,9 @@ Some solutions are free and open source, while others are commercially licensed.
 
 ## Disconnected scenarios
 
-Many solutions, such as [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis), are cloud-based and require an Internet connection to work. If your environment doesn't allow Internet connectivity, you won't be able to use the service. If you must support scenarios where either your app cannot access the Internet or must still function on the local network even if the Internet is disconnected, choose one of the folling options:
+Many solutions, such as [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis), are cloud-based and require an Internet connection to work. If your environment doesn't allow Internet connectivity, you won't be able to use the service. If you must support scenarios where either your app cannot access the Internet or must still function on the local network even if the Internet is disconnected, choose one of the following options:
 
-* A solution that allows you to either install and run the service on your machines.
+* A solution that allows you to install and run the service on your own machines.
 * Run the authentication service locally as a container.
 
 ## Decide where user data such as sign-ins are stored
@@ -77,7 +77,7 @@ Another important factor to consider is where the user sign-in data is stored. M
 * keeps the software up to date with the latest security patches and releases.
 * Complies with privacy regulations.
 
-Others prefer to store data on their own servers due to regulations, compliance, policy, etc.
+Others prefer to store data on their own servers due to regulations, compliance, policy, or other reasons.
 
 If the data is stored on your servers, you'll most likely need to choose an installable or container-based solution.
 
@@ -91,7 +91,7 @@ The following table lists some of the things to consider when choosing your iden
 
 |**Feature**  |Pro/con|**Self-host**  |Pro/con|**Container**  |Pro/con|**Cloud**  |
 |-------------:|:-:|---------------|:-:|---------------|:-:|-----------|
-|**App integration**|✅|Local solutions that are implemented as libraries or frameworks can often be integrated directly in your own app|❌|Container-based solutions require a hand-off to occur between your web app and the container-based service|❌|Container-based solutions typically integrate at specific points in your sign-in flow and provide configuration to update the UI to match your theme, but the level of customization available is limited |
+|**App integration**|✅|Local solutions that are implemented as libraries or frameworks can often be integrated directly in your own app|❌|Container-based solutions require a hand-off to occur between your web app and the container-based service|❌|Cloud-based solutions typically integrate at specific points in your sign-in flow and provide configuration to update the UI to match your theme, but the level of customization available is limited |
 |**Configuration**|❌|Self host solutions require configuring the software for the environment in addition to setting up how you want to manage identities|✅|Container-based solutions typically provide a web-based UI for configuration|✅|Cloud-based solutions typically provide a web-based UI for configuration|
 |**Customization**|✅|Self-host solutions are usually highly customizable, including code-based changes|❌|Although containerized solutions provide extensibility options, they are often more limited|❌|Cloud-based services allow customization but it is typically limited to configuration-based changes|
 |**Maintenance**|❌|Installed products require a dedicated resource to ensure all security patches are applied in a timely fashion and to manage upgrades|❌|The upgrade and patch process for containers is usually lower-friction and involves simply installing the provided container image|✅|The service provider maintains their cloud-based solution, including applying needed patches and handling upgrades|
