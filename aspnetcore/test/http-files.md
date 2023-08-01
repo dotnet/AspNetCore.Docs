@@ -5,7 +5,7 @@ description: Learn how to use .http files in Visual Studio 2022 to test ASPNET C
 monikerRange: '>= aspnetcore-8.0'
 ms.topic: how-to
 ms.author: tdykstra
-ms.date: 05/11/2023
+ms.date: 08/01/2023
 uid: test/http-files
 ---
 # Use .http files in Visual Studio 2022
@@ -26,7 +26,7 @@ The `.http` file format and editor was inspired by the Visual Studio Code [REST 
 
 ## Prerequisites
 
-* [Visual Studio 2022 version 17.6 Preview 6 or later](https://visualstudio.microsoft.com/vs/preview/) with the **ASP.NET and web development** workload installed.
+* [Visual Studio 2022 version 17.6 or later](https://visualstudio.microsoft.com/vs/) with the **ASP.NET and web development** workload installed.
 
 ## `.http` file syntax
 
@@ -178,10 +178,6 @@ Create an `.http` file by using the **Add New Item** dialog or by renaming the e
 ## Use Endpoints Explorer
 
 **Endpoints Explorer** is a tool window in Visual Studio 2022 that provides a UI that integrates with the `.http` file editor for testing HTTP requests.
-
-### Enable Endpoints Explorer
-
-**Endpoints Explorer** is still a preview feature. It's available in [Visual Studio 2022 version 17.6 Preview 6 and later](https://visualstudio.microsoft.com/vs/preview/), and you have to enable it. To do that, select **Tools** > **Options** > **Environment** > **Preview Features** > **Web API Endpoints Explorer**.
 
 ### Open Endpoints Explorer
 
