@@ -89,14 +89,6 @@ The decision process is diagrammed here for fast reference:
 
 The following table lists some of the things to consider when choosing your identity management solution.
 
-|**Feature**  |Pro/con|**Self-host**  |Pro/con|**Container**  |Pro/con|**Cloud**  |
-|-------------:|:-:|---------------|:-:|---------------|:-:|-----------|
-|**App integration**|✅|Local solutions that are implemented as libraries or frameworks can often be integrated directly in your own app|❌|Container-based solutions require a hand-off to occur between your web app and the container-based service|❌|Cloud-based solutions typically integrate at specific points in your sign-in flow and provide configuration to update the UI to match your theme, but the level of customization available is limited |
-|**Configuration**|❌|Self host solutions require configuring the software for the environment in addition to setting up how you want to manage identities|✅|Container-based solutions typically provide a web-based UI for configuration|✅|Cloud-based solutions typically provide a web-based UI for configuration|
-|**Customization**|✅|Self-host solutions are usually highly customizable, including code-based changes|❌|Although containerized solutions provide extensibility options, they are often more limited|❌|Cloud-based services allow customization but it is typically limited to configuration-based changes|
-|**Maintenance**|❌|Installed products require a dedicated resource to ensure all security patches are applied in a timely fashion and to manage upgrades|❌|The upgrade and patch process for containers is usually lower-friction and involves simply installing the provided container image|✅|The service provider maintains their cloud-based solution, including applying needed patches and handling upgrades|
-|**User credentials storage**|❌|You are responsible for data governance and handling breaches|❌|You are responsible for data governance and handling breaches|✅|The risks and regulations associated with handling user credentials are delegated to the service provider|
-
 |**Feature**  |**Self-host**  |**Container**  |**Cloud** |
 |--------------|---------------|----------------|------------|
 |**App integration**|Local solutions that are implemented as libraries or frameworks can often be integrated directly in your own app|Container-based solutions require a hand-off to occur between your web app and the container-based service|Cloud-based solutions typically integrate at specific points in your sign-in flow and provide configuration to update the UI to match your theme, but the level of customization available is limited |
