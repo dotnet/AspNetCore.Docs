@@ -238,6 +238,22 @@ The `dotnet publish` command also compiles the source files and generates files 
 
 [!INCLUDE[](~/fundamentals/aot/includes/aot_lib.md)]
 
+## Minimal APIs and JSON payloads
+
+The Minimal API frame is optimized for receiving and returning JSON payloads using <xref:System.Text.Json?displayProperty=fullName>. `System.Text.Json`:
+
+* Imposes compatibility requirements for JSON and native AOT.
+* Requires the use of the [`System.Text.Json` source generator](/dotnet/standard/serialization/system-text-json/source-generation).
+
+All types accepted as parameters to or returned from request delegates in Minimal APIs apps must be configured on a <xref:System.Text.Json.Serialization.JsonSerializerContext> that is registered via ASP.NET Core’s dependency injection:
+
+:::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="7-10,25-99":::
+
+In the preceding highlighted code:
+
+* The JSON serializer context is registered with the [DI container](xref:fundamentals/dependency-injection).
+* The `ToDo` type is annotated with the [`JsonSerializableAttribute`](/dotnet/api/system.text.json.serialization.jsonserializableattribute) to enable source generated JSON serializer content.
+
 ## Known issues
 
 See [this GitHub issue](https://github.com/dotnet/core/issues/8288) to report or review issues with native AOT support in ASP.NET Core.
