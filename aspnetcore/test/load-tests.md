@@ -28,6 +28,7 @@ The following list contains third-party web performance tools with various featu
 * [Apache JMeter](https://jmeter.apache.org/)
 * [ApacheBench (ab)](https://httpd.apache.org/docs/2.4/programs/ab.html)
 * [Gatling](https://gatling.io/)
+* [jmeter-dotnet-dsl.net](https://abstracta.github.io/jmeter-dotnet-dsl/)
 * [k6](https://k6.io)
 * [Locust](https://locust.io/)
 * [West Wind WebSurge](https://websurge.west-wind.com/)
