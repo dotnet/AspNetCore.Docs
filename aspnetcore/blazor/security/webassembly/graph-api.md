@@ -718,7 +718,7 @@ builder.Services.AddHttpClient("GraphAPI",
 In the preceding example, the `GraphAuthorizationMessageHandler` <xref:System.Net.Http.DelegatingHandler> is registered as a transient service for <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>. Transient registration is recommended for <xref:System.Net.Http.IHttpClientFactory>, which manages its own DI scopes. For more information, see the following resources:
 
 * [Utility base component classes to manage a DI scope](xref:blazor/fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
-* [Detect transient disposables in client-side projects](xref:blazor/fundamentals/dependency-injection#detect-transient-disposables-in-client-side-projects)
+* [Detect client-side transient disposables](xref:blazor/fundamentals/dependency-injection#detect-client-side-transient-disposables)
 
 ## Call Graph API from a component using a named `HttpClient`
 

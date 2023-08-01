@@ -210,7 +210,7 @@ In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script
 
 :::moniker-end
 
-## Load boot resources (client-side)
+## Load client-side boot resources
 
 When an app loads in the browser, the app downloads boot resources from the server:
 
@@ -244,10 +244,8 @@ The `loadBootResource` function can return a URI string to override the loading 
 
 The `{TARGET FRAMEWORK}` placeholder is the target framework moniker (for example, `net7.0`). The `{VERSION}` placeholder is the shared framework version (for example, `7.0.0`).
 
-Inside the closing `</body>` tag of `wwwroot/index.html`:
-
 ```html
-<script src="_framework/blazor.webassembly.js" autostart="false"></script>
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   Blazor.start({
     loadBootResource: function (type, name, defaultUri, integrity) {
@@ -263,12 +261,12 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
 </script>
 ```
 
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+
 To customize more than just the URLs for boot resources, the `loadBootResource` function can call `fetch` directly and return the result. The following example adds a custom HTTP header to the outbound requests. To retain the default integrity checking behavior, pass through the `integrity` parameter.
 
-Inside the closing `</body>` tag of `wwwroot/index.html`:
-
 ```html
-<script src="_framework/blazor.webassembly.js" autostart="false"></script>
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   Blazor.start({
     loadBootResource: function (type, name, defaultUri, integrity) {
@@ -285,6 +283,8 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
   });
 </script>
 ```
+
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
 When the `loadBootResource` function returns `null`, Blazor uses the default loading behavior for the resource. For example, the preceding code returns `null` for the `dotnetjs` boot resource (`dotnet.*.js`) because the `dotnetjs` boot resource must either return `null` for default loading behavior or a URI for the source of the `dotnetjs` boot resource.
 
@@ -376,7 +376,7 @@ For more information on CSPs, see <xref:blazor/security/content-security-policy>
 
 :::moniker range=">= aspnetcore-7.0"
 
-## Loading progress indicators (client-side)
+## Client-side loading progress indicators
 
 The project template contains Scalable Vector Graphics (SVG) and text indicators that show the loading progress of the app.
 

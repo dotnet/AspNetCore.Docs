@@ -5,7 +5,7 @@ description: Learn about Blazor app logging, including configuration and how to 
 monikerRange: '>= aspnetcore-3.1'
 ms.author: riande
 ms.custom: mvc
-ms.date: 11/08/2022
+ms.date: 08/01/2023
 uid: blazor/fundamentals/logging
 ---
 # ASP.NET Core Blazor logging
@@ -138,7 +138,7 @@ builder.Logging.SetMinimumLevel(LogLevel.Warning);
 
 :::moniker range=">= aspnetcore-6.0"
 
-## Log in `Program.cs` (client-side)
+## Log in client-side `Program.cs`
 
 [Logging in `Program.cs`](xref:fundamentals/logging/index#log-in-programcs) is supported in client-side apps after the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder> is built using the framework's internal console logger provider ([`WebAssemblyConsoleLoggerProvider` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/WebAssembly/WebAssembly/src/Services/WebAssemblyConsoleLoggerProvider.cs)).
 
@@ -162,7 +162,7 @@ Developer tools console output:
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-## Log category (client-side)
+## Client-side log category
 
 [Log categories](xref:fundamentals/logging/index#log-category) are supported.
 
@@ -180,7 +180,7 @@ Developer tools console output:
 > :::no-loc text="warn: CustomCategory[0]":::  
 > :::no-loc text="Someone has clicked me!":::
 
-## Log event ID (client-side)
+## Client-side log event ID
 
 [Log event ID](xref:fundamentals/logging/index#log-event-id) is supported.
 
@@ -210,7 +210,7 @@ Developer tools console output:
 > :::no-loc text="warn: BlazorSample.Pages.Counter[1001]":::  
 > :::no-loc text="Someone has clicked me!":::
 
-## Log message template (client-side)
+## Client-side log message template
 
 [Log message templates](xref:fundamentals/logging/index#log-message-template) are supported:
 
@@ -227,7 +227,7 @@ Developer tools console output:
 > :::no-loc text="info: BlazorSample.Pages.Counter[0]":::  
 > :::no-loc text="Someone clicked me at 04/21/2022 12:15:57!":::
 
-## Log exception parameters (client-side)
+## Client-side log exception parameters
 
 [Log exception parameters](xref:fundamentals/logging/index#log-exceptions) are supported.
 
@@ -259,7 +259,7 @@ Developer tools console output:
 > :::no-loc text="System.OperationCanceledException: Skip 3":::  
 > :::no-loc text="at BlazorSample.Pages.Counter.IncrementCount() in C:\Users\Alaba\Desktop\BlazorSample\Pages\Counter.razor:line 28":::
 
-## Filter function (client-side)
+## Client-side filter function
 
 [Filter functions](xref:fundamentals/logging/index#filter-function) are supported.
 
@@ -324,7 +324,7 @@ After ***either*** of the preceding filters is added to the app, the console out
 
 :::moniker-end
 
-## Custom logger provider (client-side)
+## Client-side custom logger provider
 
 The example in this section demonstrates a custom logger provider for further customization.
 
@@ -557,9 +557,9 @@ Run the app again. Select the **`Log Messages`** button. Notice that the logging
 
 :::moniker range=">= aspnetcore-6.0"
 
-## Log scopes (client-side)
+## Client-side log scopes
 
-The developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#custom-logger-provider-client-side) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
+The developer tools console logger doesn't support [log scopes](xref:fundamentals/logging/index#log-scopes). However, a [custom logger](#client-side-custom-logger-provider) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the prototype in the `dotnet/blazor-samples` GitHub repository:
 
 :::moniker-end
 
@@ -621,41 +621,9 @@ Prerendered components execute [component initialization code twice](xref:blazor
 
 ## SignalR client logging with the SignalR client builder
 
-:::moniker range=">= aspnetcore-8.0"
+*This section applies to server-side apps.*
 
-*This section applies to Blazor Web Apps operating over a circuit.*
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-*This section applies to Blazor Server apps.*
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
-
-On the SignalR client builder in `App.razor`, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-On the SignalR client builder in `Pages/_Host.cshtml`, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-On the SignalR client builder in `Pages/_Layout.cshtml`, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-On the SignalR client builder in `Pages/_Host.cshtml`, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
-
-:::moniker-end
+In Blazor script start configuration, pass in the `configureSignalR` configuration object that calls `configureLogging` with the log level.
 
 For the `configureLogging` log level value, pass the argument as either the string or integer log level shown in the following table.
 
@@ -671,10 +639,8 @@ For the `configureLogging` log level value, pass the argument as either the stri
 
 Example 1: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with a string value:
 
-:::moniker range=">= aspnetcore-8.0"
-
 ```html
-<script src="_framework/blazor.web.js"></script>
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
@@ -684,29 +650,12 @@ Example 1: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log 
 </script>
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-```html
-<script src="_framework/blazor.server.js" autostart="false"></script>
-<script>
-  Blazor.start({
-    configureSignalR: function (builder) {
-      builder.configureLogging("information");
-    }
-  });
-</script>
-```
-
-:::moniker-end
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
 Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with an integer value:
 
-:::moniker range=">= aspnetcore-8.0"
-
 ```html
-<script src="_framework/blazor.web.js"></script>
+<script src="{BLAZOR SCRIPT}"></script>
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
@@ -716,22 +665,7 @@ Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log 
 </script>
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-```html
-<script src="_framework/blazor.server.js" autostart="false"></script>
-<script>
-  Blazor.start({
-    configureSignalR: function (builder) {
-      builder.configureLogging(2);
-    }
-  });
-</script>
-```
-
-:::moniker-end
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
 For more information on Blazor startup (`Blazor.start()`), see <xref:blazor/fundamentals/startup>.
 
@@ -819,7 +753,7 @@ For more information on setting the app's environment, see <xref:blazor/fundamen
 
 :::moniker range=">= aspnetcore-7.0"
 
-## Authentication logging (client-side)
+## Client-side authentication logging
 
 Log Blazor authentication messages at the <xref:Microsoft.Extensions.Logging.LogLevel.Debug?displayProperty=nameWithType> or <xref:Microsoft.Extensions.Logging.LogLevel.Trace?displayProperty=nameWithType> logging levels with a logging configuration in app settings or by using a log filter for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication?displayProperty=fullName> in `Program.cs`.
 

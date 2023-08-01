@@ -24,7 +24,7 @@ On the client, configuration is loaded from the following app settings files by 
 * `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments).
 
 > [!NOTE]
-> Logging configuration placed into an app settings file in `wwwroot` isn't loaded by default. For for information, see the [Logging configuration](#logging-configuration) section later in this article.
+> Logging configuration placed into an app settings file in `wwwroot` isn't loaded by default. For more information, see the [Logging configuration](#logging-configuration) section later in this article.
 
 Other configuration providers registered by the app can also provide configuration, but not all providers or provider features are appropriate:
 
@@ -32,7 +32,7 @@ Other configuration providers registered by the app can also provide configurati
 * [Azure App configuration provider](/azure/azure-app-configuration/quickstart-aspnet-core-app): The provider isn't appropriate for client-side apps because they don't run on a server in Azure.
 
 > [!WARNING]
-> Configuration and settings files are visible to users. **Don't store app secrets, credentials, or any other sensitive data in the configuration or files.**
+> Configuration and settings files are visible to users on the client, and users can tamper with the data. **Don't store app secrets, credentials, or any other sensitive data in the app's configuration or files.**
 
 For more information on configuration providers, see <xref:fundamentals/configuration/index>.
 
@@ -94,10 +94,10 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 
 :::moniker-end
 
-Client security restrictions prevent direct access to files, including settings files for app configuration. To read configuration files in addition to `appsettings.json`/`appsettings.{ENVIRONMENT}.json` from the `wwwroot` folder into configuration, use an <xref:System.Net.Http.HttpClient>.
+Client security restrictions prevent direct access to files via user code, including settings files for app configuration. To read configuration files in addition to `appsettings.json`/`appsettings.{ENVIRONMENT}.json` from the `wwwroot` folder into configuration, use an <xref:System.Net.Http.HttpClient>.
 
 > [!WARNING]
-> Configuration and settings files are visible to users. **Don't store app secrets, credentials, or any other sensitive data in the configuration or files.**
+> Configuration and settings files are visible to users on the client, and users can tamper with the data. **Don't store app secrets, credentials, or any other sensitive data in the app's configuration or files.**
 
 The following example reads a configuration file (`cars.json`) into the app's configuration.
 

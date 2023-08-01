@@ -59,7 +59,7 @@ else
 
 :::moniker-end
 
-## SignalR cross-origin negotiation for authentication (client-side)
+## Client-side SignalR cross-origin negotiation for authentication
 
 This section explains how to configure SignalR's underlying client to send credentials, such as cookies or HTTP authentication headers.
 
@@ -126,7 +126,7 @@ For more information, see <xref:signalr/configuration#configure-additional-optio
 
 :::moniker range=">= aspnetcore-5.0"
 
-## Render mode (client-side)
+## Client-side render mode
 
 If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see the following articles:
 
@@ -143,7 +143,7 @@ If prerendering is configured, prerendering occurs before the client connection 
 * <xref:signalr/configuration>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
 
-## Use sticky sessions for webfarm hosting (server-side)
+## Use sticky sessions for server-side webfarm hosting
 
 A Blazor app prerenders in response to the first client request, which creates UI state on the server. When the client attempts to create a SignalR connection, **the client must reconnect to the same server**. When more than one backend server is in use, the app should implement *sticky sessions* for SignalR connections.
 
@@ -152,7 +152,7 @@ A Blazor app prerenders in response to the first client request, which creates U
 >
 > > blazor.server.js:1 Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.
 
-## Azure SignalR Service (server-side)
+## Server-side Azure SignalR Service
 
 We recommend using the [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) for server-side development hosted in Microsoft Azure. The service works in conjunction with the app's Blazor Hub for scaling up a server-side app to a large number of concurrent SignalR connections. In addition, the SignalR Service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
 
@@ -411,11 +411,11 @@ Consider the following guidance when developing code that transfers a large amou
 
 :::moniker-end
 
-## Blazor Hub endpoint route configuration (server-side)
+## Blazor server-side Hub endpoint route configuration
 
 In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> to map the Blazor <xref:Microsoft.AspNetCore.SignalR.Hub> to the app's default path. The Blazor script (`blazor.*.js`) automatically points to the endpoint created by <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>.
 
-## Reflect the connection state in the UI (server-side)
+## Reflect the server-side connection state in the UI
 
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
@@ -516,7 +516,7 @@ There was a problem with the connection! (Current reconnect attempt: 3 / 8)
 
 :::moniker-end
 
-## Render mode (server-side)
+## Server-side render mode
 
 <!-- UPDATE 8.0 Cross-link SSR -->
 
@@ -524,7 +524,7 @@ By default, server-side rendering (SSR) prerenders the UI on the server before t
 
 :::moniker range=">= aspnetcore-8.0"
 
-## Monitor circuit activity (server-side)
+## Monitor server-side circuit activity
 
 Monitor inbound circuit activity using the `CreateInboundActivityHandler` method on <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler>. Inbound circuit activity is any activity sent from the browser to the server, such as UI events or JavaScript-to-.NET interop calls.
 
@@ -595,7 +595,7 @@ public static class IdleCircuitHandlerServiceCollectionExtensions
 
 Circuit activity handlers also provide an approach for accessing scoped Blazor services from other non-Blazor dependency injection (DI) scopes. For more information and examples, see:
 
-* <xref:blazor/fundamentals/dependency-injection#access-blazor-services-from-a-different-di-scope>
+* <xref:blazor/fundamentals/dependency-injection#access-server-side-blazor-services-from-a-different-di-scope>
 * <xref:blazor/security/server/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware>
 
 :::moniker-end
@@ -626,7 +626,7 @@ Configure the manual start of a Blazor app's SignalR circuit in the `Pages/_Host
 
 :::moniker-end
 
-* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.{server|webassembly}.js` script.
+* Add an `autostart="false"` attribute to the `<script>` tag for the `blazor.*.js` script.
 * Place a script that calls `Blazor.start()` after the Blazor script is loaded and inside the closing `</body>` tag.
 
 When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start()` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
@@ -645,7 +645,7 @@ Configure the following values for the client:
 The following example for the `App.razor` file (Blazor Web App) or `wwwroot/index.html` (Blazor WebAssembly) shows the assignment of default values:
 
 ```html
-<script src="..." autostart="false"></script>
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
@@ -654,6 +654,8 @@ The following example for the `App.razor` file (Blazor Web App) or `wwwroot/inde
   });
 </script>
 ```
+
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
 When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example, based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor), shows the assignment of default values:
 
@@ -686,7 +688,7 @@ Configure the following values for the client:
 The following example for the `Pages/_Host.cshtml` file (Blazor Server, all versions except ASP.NET Core 6.0), `Pages/_Layout.cshtml` file (Blazor Server, ASP.NET Core 6.0), or `wwwroot/index.html` (Blazor WebAssembly) shows the assignment of default values:
 
 ```html
-<script src="..." autostart="false"></script>
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   Blazor.start({
     configureSignalR: function (builder) {
@@ -700,6 +702,8 @@ The following example for the `Pages/_Host.cshtml` file (Blazor Server, all vers
   });
 </script>
 ```
+
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
 When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example, based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor), shows the assignment of default values:
 
@@ -732,7 +736,7 @@ For more information, see the *Global deployment and connection failures* sectio
 * <xref:blazor/host-and-deploy/server#global-deployment-and-connection-failures>
 * <xref:blazor/host-and-deploy/webassembly#global-deployment-and-connection-failures>
 
-## Modify the reconnection handler (server-side)
+## Modify the server-side reconnection handler
 
 The reconnection handler's circuit connection events can be modified for custom behaviors, such as:
 
@@ -746,32 +750,8 @@ To modify the connection events, register callbacks for the following connection
 
 **Both `onConnectionDown` and `onConnectionUp` must be specified.**
 
-:::moniker range=">= aspnetcore-8.0"
-
-`App.razor`:
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-`Pages/_Host.cshtml`:
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-`Pages/_Layout.cshtml`:
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-`Pages/_Host.cshtml`:
-
-:::moniker-end
-
 ```html
-<script src="..." autostart="false"></script>
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   Blazor.start({
     reconnectionHandler: {
@@ -782,11 +762,13 @@ To modify the connection events, register callbacks for the following connection
 </script>
 ```
 
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+
 :::moniker-end
 
 :::moniker range=">= aspnetcore-7.0"
 
-### Automatically refresh the page when reconnection fails (server-side)
+### Automatically refresh the page when server-side reconnection fails
 
 The default reconnection behavior requires the user to take manual action to refresh the page after reconnection fails. However, a custom reconnection handler can be used to automatically refresh the page:
 
@@ -808,9 +790,11 @@ The default reconnection behavior requires the user to take manual action to ref
 
 ```html
 <div id="reconnect-modal" style="display: none;"></div>
-<script src="..." autostart="false"></script>
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script src="boot.js"></script>
 ```
+
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
 `wwwroot/boot.js`:
 
@@ -880,36 +864,12 @@ For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
 :::moniker-end
 
-## Adjust the reconnection retry count and interval (server-side)
+## Adjust the server-side reconnection retry count and interval
 
 To adjust the reconnection retry count and interval, set the number of retries (`maxRetries`) and period in milliseconds permitted for each retry attempt (`retryIntervalMilliseconds`).
 
-:::moniker range=">= aspnetcore-8.0"
-
-`App.razor`:
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-`Pages/_Host.cshtml`:
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-`Pages/_Layout.cshtml`:
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-`Pages/_Host.cshtml`:
-
-:::moniker-end
-
 ```html
-<script src="..." autostart="false"></script>
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   Blazor.start({
     reconnectionOptions: {
@@ -920,11 +880,13 @@ To adjust the reconnection retry count and interval, set the number of retries (
 </script>
 ```
 
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+
 For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
 
 :::moniker range=">= aspnetcore-5.0"
 
-## Disconnect the Blazor circuit from the client (server-side)
+## Disconnect the Blazor circuit from the client
 
 By default, a Blazor circuit is disconnected when the [`unload` page event](https://developer.mozilla.org/docs/Web/API/Window/unload_event) is triggered. To disconnect the circuit for other scenarios on the client, invoke `Blazor.disconnect` in the appropriate event handler. In the following example, the circuit is disconnected when the page is hidden ([`pagehide` event](https://developer.mozilla.org/docs/Web/API/Window/pagehide_event)):
 
