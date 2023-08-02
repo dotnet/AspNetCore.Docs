@@ -52,7 +52,14 @@ By default, publishing a Blazor WebAssembly app places the app's static assets, 
 
 In the preceding example, the `{PATH}` placeholder is the path.
 
+:::moniker range="< aspnetcore-8.0"
+
+<!-- UPDATE 8.0 We need to see if we'll be replacing the topic
+     and when. Currently, I'm versioning it out for 8.0. -->
+
 The `<StaticWebAssetBasePath>` property is most commonly used to control the paths to published static assets of multiple Blazor WebAssembly apps in a single hosted deployment. For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>. The property is also effective in standalone Blazor WebAssembly apps.
+
+:::moniker-end
 
 Without setting the `<StaticWebAssetBasePath>` property, the client app of a hosted solution or a standalone app is published at the following paths:
 
@@ -126,5 +133,18 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
 
 ## Additional resources
 
+:::moniker range=">= aspnetcore-8.0"
+
+[App base path](xref:blazor/host-and-deploy/index#app-base-path)
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+<!-- UPDATE 8.0 We need to see if we'll be replacing the topic
+     and when. Currently, I'm versioning it out for 8.0. -->
+
 * [App base path](xref:blazor/host-and-deploy/index#app-base-path)
 * <xref:blazor/host-and-deploy/multiple-hosted-webassembly>
+
+:::moniker-end

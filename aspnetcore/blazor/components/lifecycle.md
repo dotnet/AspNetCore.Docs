@@ -151,11 +151,11 @@ Blazor apps that prerender their content on the server call <xref:Microsoft.AspN
 * Once when the component is initially rendered statically as part of the page.
 * A second time when the browser renders the component.
 
-<!-- UPDATE 8.0 The Prerendering article cross-link might be updated,
-     the API for 'WebAssemblyPrerendered' might be changing,
-     and cross-link 'client-side rendered (CSR)'. -->
-
 :::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE 8.0 The Prerendering article cross-link might be updated,
+     the API for 'WebAssemblyPrerendered' might be different,
+     and cross-link 'client-side rendered (CSR)'. -->
 
 To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. Although the content in the section focuses on Blazor Web Apps and stateful SignalR *reconnection*, the scenario for prerendering client-side rendered (CSR) WebAssembly components (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
 
@@ -311,33 +311,34 @@ For more information on component rendering and when to call <xref:Microsoft.Asp
 
 Asynchronous actions performed in lifecycle events might not have completed before the component is rendered. Objects might be `null` or incompletely populated with data while the lifecycle method is executing. Provide rendering logic to confirm that objects are initialized. Render placeholder UI elements (for example, a loading message) while objects are `null`.
 
-In the `FetchData` component of the Blazor templates, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> is overridden to asynchronously receive forecast data (`forecasts`). When `forecasts` is `null`, a loading message is displayed to the user. After the `Task` returned by <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> completes, the component is rerendered with the updated state.
+In the following component, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> is overridden to asynchronously provide movie rating data (`movies`). When `movies` is `null`, a loading message is displayed to the user. After the `Task` returned by <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> completes, the component is rerendered with the updated state.
 
-`Pages/FetchData.razor` in the Blazor Server template:
+```razor
+<h1>Sci-Fi Movie Ratings</h1>
 
-:::moniker range=">= aspnetcore-7.0"
+@if (movies == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <ul>
+        @foreach (var movie in movies)
+        {
+            <li>@movie.Title &mdash; @movie.Rating</li>
+        }
+    </ul>
+}
 
-:::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/lifecycle/FetchData.razor" highlight="9,21,25":::
+@code {
+    private Movies[]? movies;
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-:::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/lifecycle/FetchData.razor" highlight="9,21,25":::
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-:::code language="razor" source="~/../blazor-samples/5.0/BlazorSample_Server/Pages/lifecycle/FetchData.razor" highlight="9,21,25":::
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-:::code language="razor" source="~/../blazor-samples/3.1/BlazorSample_Server/Pages/lifecycle/FetchData.razor" highlight="9,21,25":::
-
-:::moniker-end
+    protected override async Task OnInitializedAsync()
+    {
+        movies = await GetMovieRatings(DateTime.Now);
+    }
+}
+```
 
 ## Handle errors
 
@@ -345,14 +346,14 @@ For information on handling errors during lifecycle method execution, see <xref:
 
 ## Stateful reconnection after prerendering
 
-In a Blazor Server app when <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode> is <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.ServerPrerendered>, the component is initially rendered statically as part of the page. Once the browser establishes a SignalR connection back to the server, the component is rendered *again* and interactive. If the [`OnInitialized{Async}`](#component-initialization-oninitializedasync) lifecycle method for initializing the component is present, the method is executed *twice*:
+When prerendering on the server, a component is initially rendered statically as part of the page. Once the browser establishes a SignalR connection back to the server, the component is rendered *again* and interactive. If the [`OnInitialized{Async}`](#component-initialization-oninitializedasync) lifecycle method for initializing the component is present, the method is executed *twice*:
 
 * When the component is prerendered statically.
 * After the server connection has been established.
 
-This can result in a noticeable change in the data displayed in the UI when the component is finally rendered. To avoid this double-rendering behavior in a Blazor Server app, pass in an identifier to cache the state during prerendering and to retrieve the state after prerendering.
+This can result in a noticeable change in the data displayed in the UI when the component is finally rendered. To avoid this behavior, pass in an identifier to cache the state during prerendering and to retrieve the state after prerendering.
 
-The following code demonstrates an updated `WeatherForecastService` in a template-based Blazor Server app that avoids the double rendering. In the following example, the awaited <xref:System.Threading.Tasks.Task.Delay%2A> (`await Task.Delay(...)`) simulates a short delay before returning data from the `GetForecastAsync` method.
+The following code demonstrates a `WeatherForecastService` that avoids the change in data display due to prerendering. The awaited <xref:System.Threading.Tasks.Task.Delay%2A> (`await Task.Delay(...)`) simulates a short delay before returning data from the `GetForecastAsync` method.
 
 `WeatherForecastService.cs`:
 
@@ -426,7 +427,7 @@ At a minimum, always dispose objects created on the .NET side to avoid leaking .
 
 For more information, see <xref:blazor/js-interop/index#dom-cleanup-tasks-during-component-disposal>.
 
-For guidance on <xref:Microsoft.JSInterop.JSDisconnectedException> in Blazor Server apps when a circuit is disconnected, see <xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit>. For general JavaScript interop error handling guidance, see the *JavaScript interop* section in <xref:blazor/fundamentals/handle-errors#javascript-interop>.
+For guidance on <xref:Microsoft.JSInterop.JSDisconnectedException> when a circuit is disconnected, see <xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit>. For general JavaScript interop error handling guidance, see the *JavaScript interop* section in <xref:blazor/fundamentals/handle-errors#javascript-interop>.
 
 ### Synchronous `IDisposable`
 
@@ -731,3 +732,6 @@ In the following example:
 ## Blazor Server reconnection events
 
 The component lifecycle events covered in this article operate separately from [Blazor Server's reconnection event handlers](xref:blazor/fundamentals/signalr#reflect-the-connection-state-in-the-ui-blazor-server). When a Blazor Server app loses its SignalR connection to the client, only UI updates are interrupted. UI updates are resumed when the connection is re-established. For more information on circuit handler events and configuration, see <xref:blazor/fundamentals/signalr>.
+
+<!-- UPDATE 8.0 Update the preceding section after the 
+     Fundamentals node PR is merged. -->

@@ -21,9 +21,23 @@ With the [Blazor WebAssembly hosting model](xref:blazor/hosting-models#blazor-we
 
 The following deployment strategies are supported:
 
+:::moniker range=">= aspnetcore-8.0"
+
+* The Blazor app is served by an ASP.NET Core app. This strategy is covered in the [Hosted deployment with ASP.NET Core](#hosted-deployment-with-aspnet-core) section.
+* The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+<!-- UPDATE 8.0 We need to see if we'll be replacing the topic
+     and when. Currently, I'm versioning it out for 8.0. -->
+
 * The Blazor app is served by an ASP.NET Core app. This strategy is covered in the [Hosted deployment with ASP.NET Core](#hosted-deployment-with-aspnet-core) section.
 * The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
 * An ASP.NET Core app hosts multiple Blazor WebAssembly apps. For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -279,9 +293,16 @@ For more information, see the following articles:
 * [.NET application publishing overview](/dotnet/core/deploying/)
 * <xref:host-and-deploy/index>
 
+:::moniker range="< aspnetcore-8.0"
+
+<!-- UPDATE 8.0 We need to see if we'll be replacing the topic
+     and when. Currently, I'm versioning it out for 8.0. -->
+
 ## Hosted deployment with multiple Blazor WebAssembly apps
 
 For more information, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
+
+:::moniker-end
 
 ## Standalone deployment
 

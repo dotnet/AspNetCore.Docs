@@ -418,9 +418,16 @@ For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-a
 
 :::moniker-end
 
+:::moniker range="< aspnetcore-8.0"
+
 ## Supply components and static assets to multiple hosted Blazor apps
 
-For more information, see <xref:blazor/host-and-deploy/webassembly#static-assets-and-class-libraries-for-multiple-blazor-webassembly-apps>.
+<!-- UPDATE 8.0 We need to see if we'll be replacing the topic
+     and when. Currently, I'm versioning it out for 8.0. -->
+
+For more information, see <xref:blazor/host-and-deploy/blazor/host-and-deploy/multiple-hosted-webassembly>.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-5.0"
 

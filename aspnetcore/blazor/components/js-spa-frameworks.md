@@ -34,7 +34,7 @@ The example in this section renders the following Razor component into a page vi
 }
 ```
 
-In `Program.cs`, add the namespace for the location of the component. The following example assumes that the `Quote` component is in the app's `Shared` folder, and the app's namespace is `BlazorSample`:
+In the `Program` file, add the namespace for the location of the component. The following example assumes that the `Quote` component is in the app's `Shared` folder, and the app's namespace is `BlazorSample`:
 
 ```csharp
 using BlazorSample.Shared;
@@ -80,7 +80,7 @@ The following example demonstrates the dynamic registration of the preceding `Qu
 
 :::moniker-end
 
-* In a Blazor WebAssembly app, call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in `Program.cs`:
+* In a Blazor WebAssembly app, call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in the client-side `Program` file:
 
   ```csharp
   builder.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote", 
@@ -273,14 +273,14 @@ builder.Services.AddServerSideBlazor(options =>
 
 ### Blazor WebAssembly registration
 
-To register a root component as a custom element in a Blazor WebAssembly app, call `RegisterCustomElement` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in `Program.cs`. The following example registers the `Counter` component with the custom HTML element `my-counter`:
+To register a root component as a custom element in a Blazor WebAssembly app, call `RegisterCustomElement` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in the client-side `Program` file. The following example registers the `Counter` component with the custom HTML element `my-counter`:
 
 ```csharp
 builder.RootComponents.RegisterCustomElement<Counter>("my-counter");
 ```
 
 > [!NOTE]
-> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) at the top of the `Program.cs` file.
+> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) at the top of the client-side `Program` file.
 
 ### Use the registered custom element
 

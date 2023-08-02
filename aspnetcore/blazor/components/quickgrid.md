@@ -90,7 +90,7 @@ To use Entity Framework (EF) Core as the data source:
 
   [!INCLUDE[](~/includes/package-reference.md)]
 
-* Call `AddQuickGridEntityFrameworkAdapter` on the service collection in `Program.cs` to register an EF-aware implementation of `IAsyncQueryExecutor`:
+* Call `AddQuickGridEntityFrameworkAdapter` on the service collection in the `Program` file to register an EF-aware implementation of `IAsyncQueryExecutor`:
 
   ```csharp
   builder.Services.AddQuickGridEntityFrameworkAdapter();
