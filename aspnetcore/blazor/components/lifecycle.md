@@ -151,7 +151,21 @@ Blazor apps that prerender their content on the server call <xref:Microsoft.AspN
 * Once when the component is initially rendered statically as part of the page.
 * A second time when the browser renders the component.
 
+<!-- UPDATE 8.0 The Prerendering article cross-link might be updated,
+     the API for 'WebAssemblyPrerendered' might be changing,
+     and cross-link 'client-side rendered (CSR)'. -->
+
+:::moniker range=">= aspnetcore-8.0"
+
+To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. Although the content in the section focuses on Blazor Web Apps and stateful SignalR *reconnection*, the scenario for prerendering client-side rendered (CSR) WebAssembly components (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
+
+:::moniker-end
 
 While a Blazor app is prerendering, certain actions, such as calling into JavaScript (JS interop), aren't possible. Components may need to render differently when prerendered. For more information, see the [Prerendering with JavaScript interop](#prerendering-with-javascript-interop) section.
 
@@ -368,7 +382,21 @@ The following code demonstrates an updated `WeatherForecastService` in a templat
 
 For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode>, see <xref:blazor/fundamentals/signalr#render-mode-blazor-server>.
 
+<!-- UPDATE 8.0 The Prerendering article cross-link might be updated,
+     the API for 'WebAssemblyPrerendered' might be changing,
+     and cross-link 'client-side rendered (CSR)'. -->
+
+:::moniker range=">= aspnetcore-8.0"
+
+Although the content in this section focuses on Blazor Web Apps and stateful SignalR *reconnection*, the scenario for prerendering client-side rendered (CSR) WebAssembly components (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 Although the content in this section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
+
+:::moniker-end
 
 ## Prerendering with JavaScript interop
 
@@ -398,7 +426,7 @@ At a minimum, always dispose objects created on the .NET side to avoid leaking .
 
 For more information, see <xref:blazor/js-interop/index#dom-cleanup-tasks-during-component-disposal>.
 
-For guidance on <xref:Microsoft.JSInterop.JSDisconnectedException> in Blazor Server apps when a circuit is disconnected, see <xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit>. For general JavaScript interop error handling guidance, see the *JavaScript interop* section in <xref:blazor/fundamentals/handle-errors>. <!-- AUTHOR NOTE: The JavaScript interop section isn't linked because the section title changed across versions of the doc. Prior to 6.0, the section appears twice, once for Blazor Server and once for Blazor WebAssembly, each with the hosting model name in the section name. -->
+For guidance on <xref:Microsoft.JSInterop.JSDisconnectedException> in Blazor Server apps when a circuit is disconnected, see <xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit>. For general JavaScript interop error handling guidance, see the *JavaScript interop* section in <xref:blazor/fundamentals/handle-errors#javascript-interop>.
 
 ### Synchronous `IDisposable`
 

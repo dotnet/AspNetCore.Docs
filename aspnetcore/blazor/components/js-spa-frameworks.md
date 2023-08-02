@@ -51,6 +51,23 @@ One or more initializer functions can be created and called by different compone
 
 The following example demonstrates the dynamic registration of the preceding `Quote` component with "`quote`" as the identifier.
 
+:::moniker range=">= aspnetcore-8.0"
+
+* In a Blazor Web App app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsBuilderExtensions.AddServerComponents%2A> in the server-side `Program` file:
+
+  ```csharp
+  builder.Services.AddRazorComponents()
+      .AddServerComponents(options =>
+      {
+          options.RootComponents.RegisterForJavaScript<Quote>(identifier: "quote",
+            javaScriptInitializer: "initializeComponent");
+      });
+  ```
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 * In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in `Program.cs`:
 
   ```csharp
@@ -60,6 +77,8 @@ The following example demonstrates the dynamic registration of the preceding `Qu
           javaScriptInitializer: "initializeComponent");
   });
   ```
+
+:::moniker-end
 
 * In a Blazor WebAssembly app, call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in `Program.cs`:
 
@@ -207,6 +226,31 @@ Add a package reference for [`Microsoft.AspNetCore.Components.CustomElements`](h
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
+:::moniker range=">= aspnetcore-8.0"
+
+### Blazor Web App registration
+
+To register a root component as a custom element in a Blazor Web App, modify the call to <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsBuilderExtensions.AddServerComponents%2A> in the server-side `Program` file. The following example registers the `Counter` component with the custom HTML element `my-counter`:
+
+<!-- UPDATE 8.0 Per PU issue https://github.com/dotnet/aspnetcore/issues/42329 and
+     PR https://github.com/dotnet/aspnetcore/pull/42314.
+     Check that this compiles under Pre7. -->
+
+```csharp
+builder.Services.AddRazorComponents()
+    .AddServerComponents(options =>
+    {
+        options.RootComponents.RegisterCustomElement<Counter>("my-counter");
+    });
+```
+
+> [!NOTE]
+> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) at the top of the server-side `Program` file.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 ### Blazor Server registration
 
 To register a root component as a custom element in a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in `Program.cs`. The following example registers the `Counter` component with the custom HTML element `my-counter`:
@@ -219,7 +263,9 @@ builder.Services.AddServerSideBlazor(options =>
 ```
 
 > [!NOTE]
-> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
+> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) at the top of the `Program.cs` file.
+
+:::moniker-end
 
 ### Blazor WebAssembly registration
 
@@ -230,7 +276,7 @@ builder.RootComponents.RegisterCustomElement<Counter>("my-counter");
 ```
 
 > [!NOTE]
-> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
+> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) at the top of the `Program.cs` file.
 
 ### Use the registered custom element
 
@@ -305,7 +351,28 @@ Supported parameter types:
 
 Register a root component as a custom element:
 
-* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in `Program.cs`:
+:::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE 8.0 As with the earlier section, confirm this code
+     compiles at Pre7. -->
+
+* In a Blazor Web App, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in the server-side `Program` file:
+
+  ```csharp
+  builder.Services.AddRazorComponents()
+      .AddServerComponents(options =>
+      {
+          options.RootComponents.RegisterCustomElement<Counter>("my-counter");
+      });
+  ```
+  > [!NOTE]
+  > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) at the top of the server-side `Program` file.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsBuilderExtensions.AddServerComponents%2A> in `Program.cs`:
 
   ```csharp
   builder.Services.AddServerSideBlazor(options =>
@@ -316,6 +383,8 @@ Register a root component as a custom element:
   
   > [!NOTE]
   > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
+
+:::moniker-end
 
 * In a Blazor WebAssembly app, call `RegisterAsCustomElement` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in `Program.cs`:
 

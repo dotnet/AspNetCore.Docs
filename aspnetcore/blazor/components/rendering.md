@@ -239,7 +239,7 @@ One way to deal with this scenario is to provide a *state management* class, oft
 
 For approaches to manage state, see the following resources:
 
-* [In-memory state container service (Blazor Server)](xref:blazor/state-management?pivots=server#in-memory-state-container-service-server) ([Blazor WebAssembly equivalent](xref:blazor/state-management?pivots=webassembly#in-memory-state-container-service-server)) section of the *State management* article.
+* [Server-side in-memory state container service](xref:blazor/state-management?pivots=server#in-memory-state-container-service-server) ([client-side equivalent](xref:blazor/state-management?pivots=webassembly#in-memory-state-container-service-wasm)) section of the *State management* article.
 * [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy) using cascading values and parameters.
 * [Bind across more than two components](xref:blazor/components/data-binding#bind-across-more-than-two-components) using data bindings.
 

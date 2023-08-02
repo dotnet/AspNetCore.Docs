@@ -86,14 +86,14 @@ In the event a component must be updated based on an external event, such as a t
 
 Register the services:
 
-* In a Blazor WebAssembly app, register the services as singletons in `Program.cs`:
+* For client-side development, register the services as singletons in the client-side `Program` file:
 
   ```csharp
   builder.Services.AddSingleton<NotifierService>();
   builder.Services.AddSingleton<TimerService>();
   ```
 
-* In a Blazor Server app, register the services as scoped in `Program.cs`:
+* For server-side development, register the services as scoped in the server-side `Program` file:
 
   ```csharp
   builder.Services.AddScoped<NotifierService>();
