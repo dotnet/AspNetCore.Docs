@@ -150,8 +150,6 @@ The Visual Studio 2022 `.http` file editor doesn't have all the features that th
 * Customize response preview
 * Per-request settings
 
-The Visual Studio 2022 `.http` file editor is still in preview, and some of these features might be added in the future.
-
 ## Use the `.http` file editor
 
 Create an `.http` file by using the **Add New Item** dialog or by renaming the extension of any text file to `.http`. Send a request by selecting the green "run" button to the left of the request. The response appears in a separate pane.
@@ -189,9 +187,8 @@ Right-click a request in **Endpoints Explorer** and select **Generate Request**.
 
 :::image type="content" source="~/test/http-files/_static/generate-request.png" alt-text="Endpoints Explorer window showing request context menu with 'Generate Request' menu selection highlighted.":::
 
-* If an `.http` file is open in the editor, the request is added to that file.
-* If an `.http` file isn't open and one exists in the project, the file is opened and the request is added to that file.
-* If no `.http` file exists in the project, one is created with the project name as the file name, and the request is added to that file.
+* If an `.http` file with the project name as the file name exists, the request is added to that file.
+* Otherwise, an `.http` file is created with the project name as the file name, and the request is added to that file.
 
 The preceding screenshot shows endpoints defined by the minimal API project template. The following example shows the request that is generated for the selected endpoint:
 
