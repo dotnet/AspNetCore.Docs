@@ -2,7 +2,7 @@ This guidance applies to:
 
 :::moniker range=">= aspnetcore-8.0"
 
-* The client of a Blazor Web App. Blazor script start configuration is found in the `App` component (`App.razor`). The `Program` file is `Program.Browser.cs`.
+* The client of a Blazor Web App. Blazor script start configuration is found in the `App` component (`Components/App.razor`). The `Program` file is `Program.cs`.
 * A Blazor WebAssembly app. Blazor script start configuration is found in the `wwwroot/index.html` file. The `Program` file is `Program.cs`.
 
 :::moniker-end

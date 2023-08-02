@@ -3,9 +3,9 @@ Throughout this article, the terms **client**/**client-side** and **server**/**s
 :::moniker range=">= aspnetcore-8.0"
 
 * **Client**/**client-side**
-  * The client of a Blazor Web App. Blazor script start configuration is found in the `App` component (`App.razor`). The `Program` file is `Program.Browser.cs`.
+  * The client of a Blazor Web App. Blazor script start configuration is found in the `App` component (`Components/App.razor`). The `Program` file is `Program.cs`.
   * A Blazor WebAssembly app. Blazor script start configuration is found in the `wwwroot/index.html` file. The `Program` file is `Program.cs`.
-* **Server**/**server-side**: The server of a Blazor Web App. Blazor script start configuration is found in the `App` component (`App.razor`). The `Program` file is `Program.cs` without interactive WebAssembly components or `Program.Server.cs` with interactive WebAssembly components.
+* **Server**/**server-side**: The server of a Blazor Web App. Blazor script start configuration is found in the `App` component (`Components/App.razor`). The `Program` file is `Program.cs`.
 
 :::moniker-end
 

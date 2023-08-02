@@ -1,6 +1,6 @@
 :::moniker range=">= aspnetcore-8.0"
 
-This guidance applies to the server of a Blazor Web App. Blazor script start configuration is found in the `App` component (`App.razor`). The `Program` file is `Program.cs` without interactive WebAssembly components or `Program.Server.cs` with interactive WebAssembly components.
+This guidance applies to the server of a Blazor Web App. Blazor script start configuration is found in the `App` component (`Components/App.razor`). The `Program` file is `Program.cs`.
 
 :::moniker-end
 
