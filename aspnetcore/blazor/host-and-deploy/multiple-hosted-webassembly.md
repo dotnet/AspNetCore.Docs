@@ -11,7 +11,12 @@ zone_pivot_groups: blazor-multiple-hosted-wasm-apps
 ---
 # Multiple hosted ASP.NET Core Blazor WebAssembly apps
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+:::moniker range="< aspnetcore-7.0"
+
+> [!NOTE]
+> This isn't the latest version of this article. For the current release, see the [.NET 7 version of this article](?view=aspnetcore-7.0&preserve-view=true).
+
+:::moniker-end
 
 This article explains how to configure a hosted Blazor WebAssembly app to host multiple Blazor WebAssembly apps.
 
