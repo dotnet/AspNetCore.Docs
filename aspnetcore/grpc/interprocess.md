@@ -82,7 +82,7 @@ Transport security is one option for securing a server. IPC transports such as U
 * Named pipes supports securing a pipe with the [Windows access control model](https://learn.microsoft.com/windows/win32/ipc/named-pipe-security-and-access-rights). Access rights can be configured in .NET when a server is started using the <xref:System.IO.Pipes.PipeSecurity> class.
 * Unix domain sockets support securing a socket with file permissions.
 
-Another option for securing a IPC server is to use authentication and authorization built into ASP.NET Core. For example, the server could be configured to require [certificate authentication](https://learn.microsoft.com/aspnet/core/security/authentication/certauth). RPC calls made by client apps without the require certificate fail with an unauthorized response.
+Another option for securing a IPC server is to use authentication and authorization built into ASP.NET Core. For example, the server could be configured to require [certificate authentication](https://learn.microsoft.com/aspnet/core/security/authentication/certauth). RPC calls made by client apps without the required certificate fail with an unauthorized response.
 
 ### Validate the server in the IPC client app
 
