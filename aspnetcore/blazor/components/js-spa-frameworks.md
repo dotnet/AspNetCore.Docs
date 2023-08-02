@@ -226,6 +226,8 @@ Add a package reference for [`Microsoft.AspNetCore.Components.CustomElements`](h
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 ### Blazor Web App registration
@@ -249,7 +251,7 @@ builder.Services.AddRazorComponents()
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
 ### Blazor Server registration
 
@@ -266,6 +268,8 @@ builder.Services.AddServerSideBlazor(options =>
 > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) at the top of the `Program.cs` file.
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 ### Blazor WebAssembly registration
 
@@ -351,27 +355,6 @@ Supported parameter types:
 
 Register a root component as a custom element:
 
-:::moniker range=">= aspnetcore-8.0"
-
-<!-- UPDATE 8.0 As with the earlier section, confirm this code
-     compiles at Pre7. -->
-
-* In a Blazor Web App, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in the server-side `Program` file:
-
-  ```csharp
-  builder.Services.AddRazorComponents()
-      .AddServerComponents(options =>
-      {
-          options.RootComponents.RegisterCustomElement<Counter>("my-counter");
-      });
-  ```
-  > [!NOTE]
-  > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) at the top of the server-side `Program` file.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
 * In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsBuilderExtensions.AddServerComponents%2A> in `Program.cs`:
 
   ```csharp
@@ -383,8 +366,6 @@ Register a root component as a custom element:
   
   > [!NOTE]
   > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
-
-:::moniker-end
 
 * In a Blazor WebAssembly app, call `RegisterAsCustomElement` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in `Program.cs`:
 

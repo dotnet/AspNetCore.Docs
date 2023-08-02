@@ -1348,6 +1348,8 @@ Whitespace isn't preserved from the preceding markup:
 
 A *root Razor component* is the first component loaded of any component hierarchy created by the app.
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 In an app created from the Blazor Web App project template, the `App` component (`App.razor`) is specified as the default root component by the type parameter declared for the call to [`MapRazorComponents<TRootComponent>`](xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A) in the server-side `Program` file. The following example shows the use of the `App` component as the root component, which is the default for an app created from the Blazor project template:
@@ -1358,7 +1360,7 @@ app.MapRazorComponents<App>();
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-8.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 In an app created from the Blazor Server project template, the `App` component (`App.razor`) is specified as the default root component in `Pages/_Host.cshtml` using the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper):
 
@@ -1367,6 +1369,8 @@ In an app created from the Blazor Server project template, the `App` component (
 ```
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 In an app created from the Blazor WebAssembly project template, the `App` component (`App.razor`) is specified as the default root component in the `Program` file:
 
