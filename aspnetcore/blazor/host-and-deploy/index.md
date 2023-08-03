@@ -157,14 +157,7 @@ If the app is a hosted Blazor WebAssembly app:
 `).
   * Configure the `<base>` tag, per the guidance in the [Configure the app base path](#configure-the-app-base-path) section.
 
-:::moniker range="< aspnetcore-8.0"
-
-<!-- UPDATE 8.0 We need to see if we'll be replacing the topic
-     and when. Currently, I'm versioning it out for 8.0. -->
-
 For an example of hosting multiple Blazor WebAssembly apps in a hosted Blazor WebAssembly solution, see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>, where approaches are explained for domain/port hosting and subpath hosting of multiple Blazor WebAssembly client apps.
-
-:::moniker-end
 
 ### Standalone Blazor WebAssembly
 
@@ -327,16 +320,9 @@ In scenarios where an app requires a separate area with custom resources and Raz
   app.Run();
   ```
 
-:::moniker range="< aspnetcore-8.0"
-
-<!-- UPDATE 8.0 We need to see if we'll be replacing the topic
-     and when. Currently, I'm versioning it out for 8.0. -->
-
 ## Host multiple Blazor WebAssembly apps
 
 For more information on hosting multiple Blazor WebAssembly apps in a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln), see <xref:blazor/host-and-deploy/multiple-hosted-webassembly>.
-
-:::moniker-end
 
 ## Deployment
 
