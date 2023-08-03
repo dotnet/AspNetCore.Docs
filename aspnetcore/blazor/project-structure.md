@@ -18,9 +18,12 @@ This article describes the files and folders that make up a Blazor app generated
 
 ## Blazor Web App
 
-Blazor Web App project template: `blazor`
+Blazor Web App project templates: `blazor`, `blazor-empty`
 
 Project structure:
+
+<!-- UPDATE 8.0 Needs latest BWA project structure merged 8/3 on
+     https://github.com/dotnet/aspnetcore/pull/49801  -->
 
 * `Models` folder: Contains the weather data `WeatherForecast` class (`WeatherForecast.cs`) for the app's `ShowData` component.
 
@@ -301,10 +304,6 @@ Project structure:
 
 Additional files and folders may appear in an app produced from a Blazor WebAssembly project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
 A *hosted Blazor WebAssembly solution* includes the following ASP.NET Core projects:
 
 * ":::no-loc text="Client":::": The Blazor WebAssembly app.
@@ -472,7 +471,7 @@ The project structure of the client-side app in a hosted Blazor Webassembly solu
 
 :::moniker range=">= aspnetcore-8.0"
 
-In a Blazor Web App, `<head>` content is located in the `App.razor` file.
+In a Blazor Web App, `<head>` content is located in the `Components/App.razor` file.
 
 :::moniker-end
 

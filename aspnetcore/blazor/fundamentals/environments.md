@@ -98,17 +98,7 @@ In the following example for IIS, the custom header (`Blazor-Environment`) is ad
 
 For a standalone client app, set the environment manually via [start configuration](#set-the-environment-via-startup-configuration) or the [`Blazor-Environment` header](#set-the-environment-via-header).
 
-:::moniker range=">= aspnetcore-8.0"
-
-For the client-side of a Blazor Web App, use the following guidance:
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-For a hosted Blazor WebAssembly app, use the following guidance:
-
-:::moniker-end
+For the client-side project of a Blazor Web App or hosted Blazor WebAssembly app, use the following guidance:
 
 1. Confirm that the casing of environment segments in app settings file names matches their environment name casing ***exactly***. For example, the matching app settings file name for the `Staging` environment is `appsettings.Staging.json`. If the file name is `appsettings.staging.json` (lowercase "`s`"), the file isn't located, and the settings in the file aren't used in the `Staging` environment.
 

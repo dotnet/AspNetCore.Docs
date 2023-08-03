@@ -20,7 +20,7 @@ This article describes Blazor app configuration for serving static files.
 
 :::moniker range=">= aspnetcore-8.0"
 
-*This section applies to server-side static files in Blazor Web Apps.*
+*This section applies to server-side static files in Blazor Web Apps and the **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly solution.*
 
 :::moniker-end
 
