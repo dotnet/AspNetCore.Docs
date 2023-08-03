@@ -26,6 +26,9 @@ The [`RateLimiterOptionsExtensions`](/dotnet/api/microsoft.aspnetcore.ratelimiti
 * [Token bucket](#token)
 * [Concurrency](#concur)
 
+> [!WARNING]
+> <xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter%2A> must be called after <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>. And after <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching%2A>.
+
 <a name="fixed"></a>
 
 ### Fixed window limiter
