@@ -14,9 +14,17 @@ uid: blazor/index
 
 *Welcome to Blazor!*
 
-<!-- UPDATE 8.0 New Blazor definition? -->
+:::moniker range=">= aspnetcore-8.0"
+
+Blazor is a [.NET](/dotnet/standard/tour) full-stack architecture that supports both server-side rendering and client interactivity in a single programming model:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
 
 Blazor is a framework for building interactive client-side web UI with [.NET](/dotnet/standard/tour):
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 
