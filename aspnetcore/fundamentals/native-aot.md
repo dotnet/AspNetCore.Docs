@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core support for native AOT
 monikerRange: '>= aspnetcore-8.0'
 ms.author: midenn
 ms.custom: mvc, engagement-fy23
-ms.date: 8/1/2023
+ms.date: 8/5/2023
 uid: fundamentals/native-aot
 ---
 # ASP.NET Core support for native AOT
@@ -245,7 +245,7 @@ The Minimal API framework is optimized for receiving and returning JSON payloads
 * Imposes compatibility requirements for JSON and native AOT.
 * Requires the use of the [`System.Text.Json` source generator](/dotnet/standard/serialization/system-text-json/source-generation).
 
-All types accepted as parameters to or returned from request delegates in Minimal APIs apps must be configured on a <xref:System.Text.Json.Serialization.JsonSerializerContext> that is registered via ASP.NET Core’s dependency injection:
+All types that are transmitted as part of the HTTP body or returned from request delegates in Minimal APIs apps must be configured on a <xref:System.Text.Json.Serialization.JsonSerializerContext> that is registered via ASP.NET Core’s dependency injection:
 
 :::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="7-10,25-99":::
 
@@ -253,6 +253,10 @@ In the preceding highlighted code:
 
 * The JSON serializer context is registered with the [DI container](xref:fundamentals/dependency-injection).
 * The custom `JsonSerializerContext` is annotated with the [`[JsonSerializable]`](/dotnet/api/system.text.json.serialization.jsonserializableattribute) attribute to enable source generated JSON serializer code for the `ToDo` type.
+
+A parameter on the delegate that isn't bound to the body and does ***not*** need to be serializable. For example, a query string parameter that is a rich object type and implements `IParsable<T>`.
+
+:::code language="csharp" source="~/fundamentals/aot/samples/Todo.cs" id="snippet_1":::
 
 ## Known issues
 
