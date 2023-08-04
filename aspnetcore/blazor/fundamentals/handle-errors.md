@@ -27,31 +27,9 @@ The UI for this error handling experience is part of the [Blazor project templat
 
 :::moniker range=">= aspnetcore-8.0"
 
-In a Blazor Web App, customize the experience in the `App.razor` file. Because the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) (for example, `<environment include="Production">...</environment>`) isn't supported in Razor components, the following example injects <xref:Microsoft.Extensions.Hosting.IHostEnvironment> to configure error messages for different environments.
+In a Blazor Web App, customize the experience in the `MainLayout` component. Because the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) (for example, `<environment include="Production">...</environment>`) isn't supported in Razor components, the following example injects <xref:Microsoft.Extensions.Hosting.IHostEnvironment> to configure error messages for different environments.
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-In a Blazor Server app, customize the experience in the `Pages/_Layout.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
-
-At the top of the `App` component file (`App.razor`):
+At the top of `Components/Layout/MainLayout.razor`:
 
 ```razor
 @inject IHostEnvironment HostEnvironment
@@ -73,6 +51,24 @@ Create or modify the Blazor error UI markup:
     <a class="dismiss">🗙</a>
 </div>
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+In a Blazor Server app, customize the experience in the `Pages/_Layout.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
 
 :::moniker-end
 
@@ -107,7 +103,7 @@ In a standalone Blazor WebAssembly app, customize the experience in the `wwwroot
 
 :::moniker range=">= aspnetcore-8.0"
 
-The `blazor-error-ui` element is normally hidden due to the presence of the `display: none` style of the `blazor-error-ui` CSS class in the app's stylesheet (`wwwroot/css/app.css`). When an error occurs, the framework applies `display: block` to the element.
+The `blazor-error-ui` element is normally hidden due to the presence of the `display: none` style of the `blazor-error-ui` CSS class in the app's auto-generated stylesheet. When an error occurs, the framework applies `display: block` to the element.
 
 :::moniker-end
 
@@ -202,7 +198,17 @@ if (elapsedCount == 2)
 
 Place an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries) in the app's main layout. Replace the `<article>...</article>` markup with the following markup.
 
+:::moniker range=">= aspnetcore-8.0"
+
+`Components/Layout/MainLayout.razor`:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 `Shared/MainLayout.razor`:
+
+:::moniker-end
 
 ```razor
 <article class="content px-4">
@@ -244,7 +250,7 @@ public async Task OnNotify(string key, int value)
 }
 ```
 
-When the timer service executes and reaches a count of two, the exception is dispatched to the Razor component, which in turn triggers the error boundary to display the error content of the `<ErrorBoundary>` in the `MainLayout` component (`Shared/MainLayout.razor`):
+When the timer service executes and reaches a count of two, the exception is dispatched to the Razor component, which in turn triggers the error boundary to display the error content of the `<ErrorBoundary>` in the `MainLayout` component:
 
 > :::no-loc text="Oh, dear! Oh, my! - George Takei":::
 
@@ -347,7 +353,7 @@ For global exception handling, see the following sections:
 
 To define an error boundary, use the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> component to wrap existing content. For example, an error boundary can be added around the body content of the app's main layout.
 
-`Shared/MainLayout.razor`:
+In `MainLayout.razor`:
 
 ```razor
 <article class="content px-4">
@@ -398,7 +404,7 @@ Change the default error content by setting the <xref:Microsoft.AspNetCore.Compo
 
 Because the error boundary is defined in the layout in the preceding examples, the error UI is seen regardless of which page the user navigates to after the error occurs. We recommend narrowly scoping error boundaries in most scenarios. If you broadly scope an error boundary, you can reset it to a non-error state on subsequent page navigation events by calling the error boundary's <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> method.
 
-In `Shared/MainLayout.razor`:
+In `MainLayout.razor`:
 
 * Add a field for the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> to [capture a reference](xref:blazor/components/index#capture-references-to-components) to it with the [`@ref`](xref:mvc/views/razor#ref) attribute directive.
 * In the [`OnParameterSet` lifecycle method](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), trigger a recovery on the error boundary with <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A>.
@@ -433,7 +439,21 @@ An alternative to using [Error boundaries](#error-boundaries) (<xref:Microsoft.A
 
 The following `Error` component example merely logs errors, but methods of the component can process errors in any way required by the app, including through the use of multiple error processing methods. 
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+`Components/Error.razor`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
 `Shared/Error.razor`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ```razor
 @using Microsoft.Extensions.Logging
@@ -793,7 +813,10 @@ For more information, see the following articles:
 
 ### Prerendering
 
-Razor components can be prerendered using the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) so that their rendered HTML markup is returned as part of the user's initial HTTP request.
+<!-- UPDATE 8.0 This section makes some claims about the TH that probably
+     require updates >=8.0. -->
+
+Razor components are prerendered by default so that their rendered HTML markup is returned as part of the user's initial HTTP request.
 
 In a Blazor app operating over a circuit, prerendering works by:
 

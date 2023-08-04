@@ -31,10 +31,10 @@ Other configuration providers registered by the app can also provide configurati
 * [Azure Key Vault configuration provider](xref:security/key-vault-configuration): The provider isn't supported for managed identity and application ID (client ID) with client secret scenarios. Application ID with a client secret isn't recommended for any ASP.NET Core app, especially client-side apps because the client secret can't be secured client-side to access the Azure Key Vault service.
 * [Azure App configuration provider](/azure/azure-app-configuration/quickstart-aspnet-core-app): The provider isn't appropriate for client-side apps because they don't run on a server in Azure.
 
+For more information on configuration providers, see <xref:fundamentals/configuration/index>.
+
 > [!WARNING]
 > Configuration and settings files are visible to users on the client, and users can tamper with the data. **Don't store app secrets, credentials, or any other sensitive data in the app's configuration or files.**
-
-For more information on configuration providers, see <xref:fundamentals/configuration/index>.
 
 ## App settings configuration
 

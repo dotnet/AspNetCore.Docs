@@ -36,7 +36,7 @@ Configure Static File Middleware to serve static assets to clients by calling <x
 
 :::moniker range=">= aspnetcore-8.0"
 
-*This section applies to servers-side static files in Blazor Web Apps.*
+*This section applies to server-side static files in Blazor Web Apps.*
 
 :::moniker-end
 
@@ -174,15 +174,5 @@ To create additional file mappings with a <xref:Microsoft.AspNetCore.StaticFiles
 
 ## Additional resources
 
-:::moniker range=">= aspnetcore-8.0"
-
-[App base path](xref:blazor/host-and-deploy/index#app-base-path)
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
 * [App base path](xref:blazor/host-and-deploy/index#app-base-path)
 * <xref:blazor/host-and-deploy/multiple-hosted-webassembly>
-
-:::moniker-end

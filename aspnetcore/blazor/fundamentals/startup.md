@@ -302,20 +302,14 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
 
   In the `Program` file:
 
-  ```csharp
-  app.Use(async (context, next) =>
-  {
-      context.Response.Headers.Add("Content-Security-Policy", "{POLICY STRING}");
-      await next();
-  });
-  ```
-
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
   In `Startup.Configure` of `Startup.cs`:
 
+:::moniker-end
+
   ```csharp
   app.Use(async (context, next) =>
   {
@@ -324,9 +318,9 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
   });
   ```
 
-:::moniker-end
-
   The preceding example uses inline middleware, but you can also create a custom middleware class and call the middleware with an extension method in the `Program` file. For more information, see <xref:fundamentals/middleware/write>.
+
+<!-- UPDATE 8.0 MapFallbackToFile is present in the following bullet content -->
 
 * For client-side development without prerendering, pass <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A> that specifies response headers at the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> stage.
 
@@ -334,26 +328,13 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
 
   In the server-side `Program` file:
 
-  ```csharp
-  var staticFileOptions = new StaticFileOptions
-  {
-      OnPrepareResponse = context =>
-      {
-          context.Context.Response.Headers.Add("Content-Security-Policy", 
-              "{POLICY STRING}");
-      }
-  };
-
-  ...
-
-  app.MapFallbackToFile("index.html", staticFileOptions);
-  ```
-
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-  In `Startup.Configure` (`Startup.cs`):
+  In `Startup.Configure` of `Startup.cs`:
+
+:::moniker-end
 
   ```csharp
   var staticFileOptions = new StaticFileOptions
@@ -369,14 +350,14 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
 
   app.MapFallbackToFile("index.html", staticFileOptions);
   ```
-
-:::moniker-end
 
 For more information on CSPs, see <xref:blazor/security/content-security-policy>.
 
 :::moniker range=">= aspnetcore-7.0"
 
 ## Client-side loading progress indicators
+
+*This section only applies to Blazor WebAssembly apps.*
 
 The project template contains Scalable Vector Graphics (SVG) and text indicators that show the loading progress of the app.
 
@@ -414,10 +395,10 @@ The default round progress indicator is implemented in HTML in the `wwwroot/inde
 
 To review the project template markup and styling for the default progress indicators, see the ASP.NET Core reference source:
 
-<!-- UPDATE 8.0 Cross-link updates -->
+<!-- UPDATE 8.0 Check if the project name changes for release -->
 
-* [`wwwroot/index.html`](https://github.com/dotnet/aspnetcore/blob/release/7.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot/index.html)
-* [`app.css`](https://github.com/dotnet/aspnetcore/blob/release/7.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot/css/app.css)
+* [`wwwroot/index.html`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/wwwroot/index.html)
+* [`app.css`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/wwwroot/css/app.css)
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 

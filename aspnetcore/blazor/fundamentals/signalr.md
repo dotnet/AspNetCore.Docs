@@ -18,7 +18,7 @@ This article explains how to configure and manage SignalR connections in Blazor 
 
 <!--
      UPDATE 8.0 It's not clear if we'll host guidance on adding SignalR 
-     to the client-side project of a BWA for a CSR/interactivity scenario.
+     to the client project of a BWA for a CSR/interactivity scenario.
      Currently, the Blazor-SignalR tutorial is only a BWA SSR/interactivity
      exercise.
 -->
@@ -86,8 +86,6 @@ public class IncludeRequestCredentialsMessageHandler : DelegatingHandler
 
 Where a hub connection is built, assign the <xref:System.Net.Http.HttpMessageHandler> to the <xref:Microsoft.AspNetCore.Http.Connections.Client.HttpConnectionOptions.HttpMessageHandlerFactory> option:
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```csharp
 private HubConnectionBuilder? hubConnection;
 
@@ -101,30 +99,26 @@ hubConnection = new HubConnectionBuilder()
     }).Build();
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```csharp
-HubConnectionBuilder hubConnection;
-
-...
-
-hubConnection = new HubConnectionBuilder()
-    .WithUrl(new Uri(Navigation.ToAbsoluteUri("/chathub")), options =>
-    {
-        options.HttpMessageHandlerFactory = innerHandler => 
-            new IncludeRequestCredentialsMessageHandler { InnerHandler = innerHandler };
-    }).Build();
-```
-
-:::moniker-end
-
-The preceding example configures the hub connection URL to the absolute URI address at `/chathub`, which is the URL used in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor) in the `Index` component (`Pages/Index.razor`). The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration). `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
+The preceding example configures the hub connection URL to the absolute URI address at `/chathub`. The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration). `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
 
 For more information, see <xref:signalr/configuration#configure-additional-options>.
 
-:::moniker range=">= aspnetcore-5.0"
+<!-- UPDATE 8.0 I suspect that we'll have a new Prerender topic; but 
+     for now, I'll cross-link to the Prerender and Integration topic, 
+     which hasn't (the Blazor Server pivot) been updated for 8.0 yet. -->
+     
+:::moniker range=">= aspnetcore-8.0"
+
+## Client-side render mode
+
+If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see the following articles:
+
+* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper> (hosted Blazor WebAssembly)
+* <xref:blazor/components/prerendering-and-integration>
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
 
 ## Client-side render mode
 
@@ -212,7 +206,7 @@ builder.Services.AddServerSideBlazor(options =>
 
 Configure the options in `Startup.ConfigureServices` with an options delegate to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>. The following example assigns the default option values shown in the preceding table. Confirm that `Startup.cs` uses the <xref:System> namespace (`using System;`).
 
-In `Startup.ConfigureServices`:
+In `Startup.ConfigureServices` of `Startup.cs`:
 
 ```csharp
 services.AddServerSideBlazor(options =>
@@ -271,7 +265,7 @@ builder.Services.AddServerSideBlazor().AddHubOptions(options =>
 
 :::moniker range="< aspnetcore-6.0"
 
-In `Startup.ConfigureServices`:
+In `Startup.ConfigureServices` of `Startup.cs`:
 
 ```csharp
 services.AddServerSideBlazor().AddHubOptions(options =>
@@ -417,6 +411,8 @@ In the `Program` file, call <xref:Microsoft.AspNetCore.Builder.ComponentEndpoint
 
 ## Reflect the server-side connection state in the UI
 
+<!-- UPDATE 8.0 Confirm working guidance in a BWA with server interactivity -->
+
 When the client detects that the connection has been lost, a default UI is displayed to the user while the client attempts to reconnect. If reconnection fails, the user is provided the option to retry.
 
 :::moniker range=">= aspnetcore-8.0"
@@ -462,7 +458,17 @@ To customize the UI, define a single element with an `id` of `components-reconne
 
 Add the following CSS styles to the site's stylesheet.
 
+:::moniker range=">= aspnetcore-8.0"
+
+`wwwroot/app.css`:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 `wwwroot/css/site.css`:
+
+:::moniker-end
 
 ```css
 #components-reconnect-modal {
@@ -489,7 +495,21 @@ The following table describes the CSS classes applied to the `components-reconne
 
 Customize the delay before the reconnection display appears by setting the `transition-delay` property in the site's CSS for the modal element. The following example sets the transition delay from 500 ms (default) to 1,000 ms (1 second).
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+`wwwroot/app.css`:
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
 `wwwroot/css/site.css`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-5.0"
 
 ```css
 #components-reconnect-modal {
@@ -518,9 +538,19 @@ There was a problem with the connection! (Current reconnect attempt: 3 / 8)
 
 ## Server-side render mode
 
-<!-- UPDATE 8.0 Cross-link SSR -->
+<!-- UPDATE 8.0 We'll probably have a new Prerender article to cross-link. -->
 
-By default, server-side rendering (SSR) prerenders the UI on the server before the client connection to the server is established. For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+:::moniker range=">= aspnetcore-8.0"
+
+By default, components are prerendered on the server before the client connection to the server is established. <!-- For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>. -->
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+By default, components are prerendered on the server before the client connection to the server is established. For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -657,7 +687,7 @@ The following example for the `App.razor` file (Blazor Web App) shows the assign
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
-When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example, based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor), shows the assignment of default values:
+When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example shows the assignment of default values:
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -705,7 +735,7 @@ The following example for the `Pages/_Host.cshtml` file (Blazor Server, all vers
 
 In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
-When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example, based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor), shows the assignment of default values:
+When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example shows the assignment of default values:
 
 ```csharp
 protected override async Task OnInitializedAsync()

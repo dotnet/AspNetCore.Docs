@@ -53,7 +53,7 @@ The following example:
 * [Injects](xref:blazor/fundamentals/dependency-injection) an <xref:Microsoft.Extensions.Logging.ILogger> (`ILogger<Counter>`) object to create a logger. The log's *category* is the fully qualified name of the component's type, `Counter`.
 * Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> to log at the <xref:Microsoft.Extensions.Logging.LogLevel.Warning> level.
 
-`Pages/Counter1.razor`:
+`Counter1.razor`:
 
 <!-- UPDATE 8.0 The highlights will break. -->
 
@@ -83,7 +83,7 @@ The following example:
 
 The following example demonstrates logging with an <xref:Microsoft.Extensions.Logging.ILoggerFactory> in components.
 
-`Pages/Counter2.razor`:
+`Counter2.razor`:
 
 <!-- UPDATE 8.0 The highlights will break. -->
 
@@ -328,6 +328,8 @@ After ***either*** of the preceding filters is added to the app, the console out
 
 ## Client-side custom logger provider
 
+<!-- UPDATE 8.0 Confirm this works in the client of a BWA -->
+
 The example in this section demonstrates a custom logger provider for further customization.
 
 Add a package reference to the app for the [`Microsoft.Extensions.Logging.Configuration`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Configuration) package.
@@ -485,7 +487,7 @@ In the `Program` file on the host builder, clear the existing provider by callin
 builder.Logging.ClearProviders().AddCustomLogger();
 ```
 
-In the following `Index` component:
+In the following `CustomLoggerExample` component:
 
 * The debug message isn't logged.
 * The information message is logged in the short format (`LogFormat.Short`).
@@ -493,12 +495,15 @@ In the following `Index` component:
 * The error message is logged in the long format  (`LogFormat.Long`).
 * The trace message isn't logged.
 
-`Pages/Index.razor`:
+`CustomLoggerExample.razor`:
+
+:::moniker range=">= aspnetcore-8.0"
 
 ```razor
-@page "/"
+@page "/custom-logger-example"
+@attribute [ClientRenderMode]
 @using Microsoft.Extensions.Logging
-@inject ILogger<Index> Logger
+@inject ILogger<CustomLoggerExample> Logger
 
 <p>
     <button @onclick="LogMessages">Log Messages</button>
@@ -516,15 +521,42 @@ In the following `Index` component:
 }
 ```
 
-The following output is seen in the browser's developer tools console when the **`Log Messages`** button is selected. The log entries reflect the appropriate formats applied by the custom logger:
+:::moniker-end
 
-> :::no-loc text="LoggingTest.Pages.Index: This is an information message.":::  
-> :::no-loc text="LoggingTest.Pages.Index: This is a warning message.":::  
-> :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
+:::moniker range="< aspnetcore-8.0"
+
+```razor
+@page "/custom-logger-example"
+@using Microsoft.Extensions.Logging
+@inject ILogger<CustomLoggerExample> Logger
+
+<p>
+    <button @onclick="LogMessages">Log Messages</button>
+</p>
+
+@code{
+    private void LogMessages()
+    {
+        Logger.LogDebug(1, "This is a debug message.");
+        Logger.LogInformation(3, "This is an information message.");
+        Logger.LogWarning(5, "This is a warning message.");
+        Logger.LogError(7, "This is an error message.");
+        Logger.LogTrace(5!, "This is a trace message.");
+    }
+}
+```
+
+:::moniker-end
+
+The following output is seen in the browser's developer tools console when the **`Log Messages`** button is selected. The log entries reflect the appropriate formats applied by the custom logger (the client app is named `LoggingTest`):
+
+> :::no-loc text="LoggingTest.Pages.CustomLoggerExample: This is an information message.":::  
+> :::no-loc text="LoggingTest.Pages.CustomLoggerExample: This is a warning message.":::  
+> :::no-loc text="[ 7: Error       ] LoggingTest.Pages.CustomLoggerExample - This is an error message.":::
 
 From a casual inspection of the preceding example, it's apparent that setting the log line formats via the dictionary in `CustomLoggerConfiguration` isn't strictly necessary. The line formats applied by the custom logger (`CustomLogger`) could have been applied by merely checking the `logLevel` in the `Log` method. The purpose of assigning the log format via configuration is that the developer can change the log format easily via app configuration, as the following example demonstrates.
 
-In the `wwwroot` folder, add or update the `appsettings.json` file to include logging configuration. Set the log format to `Long` for all three log levels:
+In the client-side app, add or update the `appsettings.json` file to include logging configuration. Set the log format to `Long` for all three log levels:
 
 ```json
 {
@@ -551,11 +583,11 @@ builder.Logging.AddConfiguration(
 
 The call to <xref:Microsoft.Extensions.Logging.Configuration.LoggingBuilderConfigurationExtensions.AddConfiguration%2A?displayProperty=nameWithType> can be placed either before or after adding the custom logger provider.
 
-Run the app again. Select the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format:
+Run the app again. Select the **`Log Messages`** button. Notice that the logging configuration is applied from the `appsettings.json` file. All three log entries are in the long (`LogFormat.Long`) format (the client app is named `LoggingTest`):
 
-> :::no-loc text="[ 3: Information ] LoggingTest.Pages.Index - This is an information message.":::  
-> :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.Index - This is a warning message.":::  
-> :::no-loc text="[ 7: Error       ] LoggingTest.Pages.Index - This is an error message.":::
+> :::no-loc text="[ 3: Information ] LoggingTest.Pages.CustomLoggerExample - This is an information message.":::  
+> :::no-loc text="[ 5: Warning     ] LoggingTest.Pages.CustomLoggerExample - This is a warning message.":::  
+> :::no-loc text="[ 7: Error       ] LoggingTest.Pages.CustomLoggerExample - This is an error message.":::
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -565,7 +597,8 @@ The developer tools console logger doesn't support [log scopes](xref:fundamental
 
 :::moniker-end
 
-<!-- UPDATE 8.0 -->
+<!-- UPDATE 8.0 When creating this app, move from the Index component to a
+     'CustomLoggerExample' component -->
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -581,7 +614,7 @@ The developer tools console logger doesn't support [log scopes](xref:fundamental
 
 :::moniker range=">= aspnetcore-6.0"
 
-The sample app uses standard ASP.NET Core `BeginScope` logging syntax to indicate scopes for logged messages. The `Logger` service in the following example is an `ILogger<Index>`, which is injected into the app's `Index` component (`Pages/Index.razor`).
+The sample app uses standard ASP.NET Core `BeginScope` logging syntax to indicate scopes for logged messages. The `Logger` service in the following example is an `ILogger<CustomLoggerExample>`, which is injected into the app's `CustomLoggerExample` component (`Pages/CustomLoggerExample.razor`).
 
 ```csharp
 using (Logger.BeginScope("L1"))
@@ -611,9 +644,11 @@ using (Logger.BeginScope("L1"))
 
 Output:
 
-> :::no-loc text="[ 3: Information ] ScopesLogger.Pages.Index - INFO: ONE scope. => L1 blazor.webassembly.js:1:35542":::  
-> :::no-loc text="[ 3: Information ] ScopesLogger.Pages.Index - INFO: TWO scopes. => L1 => L2 blazor.webassembly.js:1:35542":::  
-> :::no-loc text="[ 3: Information ] ScopesLogger.Pages.Index - INFO: THREE scopes. => L1 => L2 => L3":::
+> :::no-loc text="[ 3: Information ] {CLASS} - INFO: ONE scope. => L1 blazor.webassembly.js:1:35542":::  
+> :::no-loc text="[ 3: Information ] {CLASS} - INFO: TWO scopes. => L1 => L2 blazor.webassembly.js:1:35542":::  
+> :::no-loc text="[ 3: Information ] {CLASS} - INFO: THREE scopes. => L1 => L2 => L3":::
+
+The `{CLASS}` placeholder in the preceding example is `BlazorWebAssemblyScopesLogger.Pages.CustomLoggerExample`.
 
 :::moniker-end
 
@@ -727,7 +762,7 @@ At the top of the Razor component file (`.razor`):
 ```
 
 > [!NOTE]
-> The following example is based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). Consult the tutorial for further details.
+> The following example is based on the demonstration in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). Consult the tutorial for further details.
 
 In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging%2A?displayProperty=nameWithType> to add the logging provider and set the minimum log level from configuration:
 

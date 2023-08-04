@@ -26,9 +26,9 @@ Blazor documentation adopts several conventions for showing and discussing compo
 
 * Project code, file paths and names, project template names, and other specialized terms are in United States English and usually code-fenced.
 * Components are usually referred to by their C# class name (Pascal case) followed by the word "component." For example, a typical file upload component is referred to as the "`FileUpload` component."
-* Usually, a component's C# class name is the same as its file name. Component paths within an app are usually indicated. For example, `Pages/FileUpload.razor`.
+* Usually, a component's C# class name is the same as its file name.
 * Routable components usually set their relative URLs to the component's class name in kebab-case. For example, a `FileUpload` component includes routing configuration to reach the rendered component at the relative URL `/file-upload`. Routing and navigation is covered in <xref:blazor/fundamentals/routing>.
-* When multiple versions of a component are used, they're numbered sequentially. For example, the `FileUpload3` component has a file name and location of `Pages/FileUpload3.razor` and is reached at `/file-upload-3`.
+* When multiple versions of a component are used, they're numbered sequentially. For example, the `FileUpload3` component is reached at `/file-upload-3`.
 * Access modifiers are used in article examples. For example, fields are `private` by default but are explicitly present in component code. For example, `private` is stated for declaring a field named `maxAllowedFiles` as `private int maxAllowedFiles = 3;`.
 * Generally, examples adhere to ASP.NET Core/C# coding conventions and engineering guidelines. For more information see the following resources:
   * [Engineering guidelines (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/wiki/Engineering-guidelines)
@@ -36,9 +36,9 @@ Blazor documentation adopts several conventions for showing and discussing compo
 
 The following is an example counter component and part of an app created from a Blazor project template. Detailed components coverage is found in the *Components* articles later in the documentation. The following example demonstrates component concepts seen in the *Fundamentals* articles before reaching the *Components* articles later in the documentation.
 
-`Pages/Counter.razor`:
+`Counter.razor`:
 
-<!-- UPDATE 8.0 -->
+<!-- UPDATE 8.0 Probably switch over to the BWA example when the BWA snippet sample goes up -->
 
 :::moniker range=">= aspnetcore-7.0"
 

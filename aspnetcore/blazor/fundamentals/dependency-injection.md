@@ -112,7 +112,7 @@ builder.Services.AddSingleton<WeatherForecastService>();
 
 :::moniker-end
 
-The `builder` variable represents a `Microsoft.AspNetCore.Builder.WebApplicationBuilder` with an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, which is a list of [service descriptor](xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor) objects. Services are added by providing service descriptors to the service collection. The following example demonstrates the concept with the `IDataAccess` interface and its concrete implementation `DataAccess`:
+The `builder` variable represents a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>, which is a list of [service descriptor](xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor) objects. Services are added by providing service descriptors to the service collection. The following example demonstrates the concept with the `IDataAccess` interface and its concrete implementation `DataAccess`:
 
 ```csharp
 builder.Services.AddSingleton<IDataAccess, DataAccess>();
@@ -208,6 +208,8 @@ Use multiple [`@inject`](xref:mvc/views/razor#inject) statements to inject diffe
 
 The following example shows how to use [`@inject`](xref:mvc/views/razor#inject). The service implementing `Services.IDataAccess` is injected into the component's property `DataRepository`. Note how the code is only using the `IDataAccess` abstraction:
 
+<!-- UPDATE 8.0 Sample cross-link and highlight will change -->
+
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/dependency-injection/CustomerList.razor" highlight="2,19":::
 
 Internally, the generated property (`DataRepository`) uses the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute). Typically, this attribute isn't used directly. If a base class is required for components and injected properties are also required for the base class, manually add the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute):
@@ -218,57 +220,23 @@ using Microsoft.AspNetCore.Components;
 public class ComponentBase : IComponent
 {
     [Inject]
-    protected IDataAccess DataRepository { get; set; }
+    protected IDataAccess DataRepository { get; set; } = default!;
 
     ...
 }
 ```
 
-:::moniker range=">= aspnetcore-6.0"
-
 > [!NOTE]
-> Since injected services are expected to be available, don't mark injected services as nullable. Instead, assign a default literal with the null-forgiving operator (`default!`). For example:
->
-> ```csharp
-> [Inject]
-> private IExampleService ExampleService { get; set; } = default!;
-> ```
->
-> For more information, see the following resources:
->
-> * [Nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis)
-> * [Nullable reference types (C# guide)](/dotnet/csharp/nullable-references)
-> * [default value expressions (C# reference)](/dotnet/csharp/language-reference/operators/default#default-literal)
-> * [! (null-forgiving) operator (C# reference)](/dotnet/csharp/language-reference/operators/null-forgiving)
-
-:::moniker-end
+> Since injected services are expected to be available, the default literal with the null-forgiving operator (`default!`) is assigned in .NET 6 or later. For more information, see [Nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis).
 
 In components derived from the base class, the [`@inject`](xref:mvc/views/razor#inject) directive isn't required. The <xref:Microsoft.AspNetCore.Components.InjectAttribute> of the base class is sufficient:
 
-:::moniker range=">= aspnetcore-8.0"
-
-```razor
-@page "/demo"
-@attribute [RenderModeServer]
-@inherits ComponentBase
-
-<h1>Demo Component</h1>
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
 ```razor
 @page "/demo"
 @inherits ComponentBase
 
 <h1>Demo Component</h1>
 ```
-
-:::moniker-end
-
-
 
 ## Use DI in services
 
@@ -351,36 +319,9 @@ In the following `TimeTravel` component:
 * The time travel service is directly injected with `@inject` as `TimeTravel1`.
 * The service is also resolved separately with <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService%2A> as `TimeTravel2`.
 
-`Pages/TimeTravel.razor`:
+<!-- UPDATE 8.0 Confirm that this example won't require interactivity to execute -->
 
-:::moniker range=">= aspnetcore-8.0"
-
-```razor
-@page "/time-travel"
-@attribute [RenderModeServer]
-@inject ITimeTravel TimeTravel1
-@inherits OwningComponentBase
-
-<h1><code>OwningComponentBase</code> Example</h1>
-
-<ul>
-    <li>TimeTravel1.DT: @TimeTravel1?.DT</li>
-    <li>TimeTravel2.DT: @TimeTravel2?.DT</li>
-</ul>
-
-@code {
-    private ITimeTravel TimeTravel2 { get; set; } = default!;
-
-    protected override void OnInitialized()
-    {
-        TimeTravel2 = ScopedServices.GetRequiredService<ITimeTravel>();
-    }
-}
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+`TimeTravel.razor`:
 
 ```razor
 @page "/time-travel"
@@ -402,46 +343,6 @@ In the following `TimeTravel` component:
         TimeTravel2 = ScopedServices.GetRequiredService<ITimeTravel>();
     }
 }
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```razor
-@page "/time-travel"
-@inject ITimeTravel TimeTravel1
-@inherits OwningComponentBase
-
-<h1><code>OwningComponentBase</code> Example</h1>
-
-<ul>
-    <li>TimeTravel1.DT: @TimeTravel1.DT</li>
-    <li>TimeTravel2.DT: @TimeTravel2.DT</li>
-</ul>
-
-@code {
-    private ITimeTravel TimeTravel2 { get; set; }
-
-    protected override void OnInitialized()
-    {
-        TimeTravel2 = ScopedServices.GetRequiredService<ITimeTravel>();
-    }
-}
-```
-
-:::moniker-end
-  
-If you're placing this example into a test app, add the `TimeTravel` component to the `NavMenu` component.
-  
-In `Shared/NavMenu.razor`:
-  
-```razor
-<div class="nav-item px-3">
-    <NavLink class="nav-link" href="time-travel">
-        <span class="oi oi-list-rich" aria-hidden="true"></span> Time travel
-    </NavLink>
-</div>
 ```
 
 Initially navigating to the `TimeTravel` component, the time travel service is instantiated twice when the component loads, and `TimeTravel1` and `TimeTravel2` have the same initial value:
@@ -512,11 +413,11 @@ For more information, see <xref:blazor/blazor-server-ef-core>.
 
 ## Detect client-side transient disposables
 
-The following example shows how to detect client-side disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
+The following Blazor WebAssembly example shows how to detect client-side disposable transient services in an app that should use <xref:Microsoft.AspNetCore.Components.OwningComponentBase>. For more information, see the [Utility base component classes to manage a DI scope](#utility-base-component-classes-to-manage-a-di-scope) section.
 
 `DetectIncorrectUsagesOfTransientDisposables.cs` for client-side development:
 
-<!-- UPDATE 8.0 -->
+<!-- UPDATE 8.0 Do we need to see if the code works in the client of a BWA? -->
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -553,7 +454,7 @@ public class TransientDisposable : IDisposable
 
 The `TransientDisposable` in the following example is detected.
 
-In the `Program` file:
+In the `Program` file of a Blazor WebAssembly app:
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -617,28 +518,12 @@ The app can register transient disposables without throwing an exception. Howeve
 
 `Pages/TransientExample.razor`:
 
-:::moniker range=">= aspnetcore-8.0"
-
-```razor
-@page "/transient-example"
-@attribute [RenderModeClient]
-@inject TransientDisposable TransientDisposable
-
-<h1>Transient Disposable Detection</h1>
-```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
 ```razor
 @page "/transient-example"
 @inject TransientDisposable TransientDisposable
 
 <h1>Transient Disposable Detection</h1>
 ```
-
-:::moniker-end
 
 Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDisposable`:
 
@@ -656,7 +541,7 @@ The following example shows how to detect server-side disposable transient servi
 
 `DetectIncorrectUsagesOfTransientDisposables.cs`:
 
-<!-- UPDATE 8.0 -->
+<!-- UPDATE 8.0 Confirm that it works in a BWA -->
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -767,30 +652,24 @@ public class TransientDependency
 
 The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
 
-`Pages/TransientExample.razor`:
-
 :::moniker range=">= aspnetcore-8.0"
 
-```razor
-@page "/transient-example"
-@attribute [RenderModeServer]
-@inject TransientDependency TransientDependency
-
-<h1>Transient Disposable Detection</h1>
-```
+`Components/Pages/TransientExample.razor`:
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
+`Pages/TransientExample.razor`:
+
+:::moniker-end
+
 ```razor
 @page "/transient-example"
 @inject TransientDependency TransientDependency
 
 <h1>Transient Disposable Detection</h1>
 ```
-
-:::moniker-end
 
 Navigate to the `TransientExample` component at `/transient-example` and an <xref:System.InvalidOperationException> is thrown when the framework attempts to construct an instance of `TransientDependency`:
 
