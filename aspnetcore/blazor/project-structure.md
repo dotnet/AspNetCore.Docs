@@ -24,8 +24,8 @@ Blazor Web App project templates: `blazor`, `blazor-empty`
 
 Project structure:
 
-<!-- UPDATE 8.0 Needs latest BWA project structure merged 8/3 on
-     https://github.com/dotnet/aspnetcore/pull/49801  -->
+<!-- UPDATE 8.0 Check on Error page setup per
+     https://github.com/dotnet/aspnetcore/issues/49853 -->
 
 * Server project: `BlazorWeb-CSharp`
 
@@ -41,6 +41,7 @@ Project structure:
       * `Counter` component (`Counter.razor`): Implements the *Counter* page.
       * `Home` component (`Home.razor`): Implements the *Home* page.
       * `Weather` component (`Weather.razor`): Implements the *Weather forecast* page.
+      * `Error` component (`Error.razor`): Implements the *Error* page.
 
     * `App` component (`App.razor`): The root component of the app with HTML `<head>` markup, the `Routes` component, and the Blazor `<script>` tag.
 
