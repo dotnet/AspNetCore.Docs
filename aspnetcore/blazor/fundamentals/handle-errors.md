@@ -198,17 +198,7 @@ if (elapsedCount == 2)
 
 Place an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries) in the app's main layout. Replace the `<article>...</article>` markup with the following markup.
 
-:::moniker range=">= aspnetcore-8.0"
-
 `Components/Layout/MainLayout.razor`:
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-8.0"
-
-`Shared/MainLayout.razor`:
-
-:::moniker-end
 
 ```razor
 <article class="content px-4">
