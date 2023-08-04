@@ -501,7 +501,7 @@ In the following `CustomLoggerExample` component:
 
 ```razor
 @page "/custom-logger-example"
-@attribute [ClientRenderMode]
+@attribute [RenderModeClient]
 @using Microsoft.Extensions.Logging
 @inject ILogger<CustomLoggerExample> Logger
 
