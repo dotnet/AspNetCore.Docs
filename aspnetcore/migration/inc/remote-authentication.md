@@ -30,7 +30,7 @@ First, the ASP.NET app needs to be configured to add the authentication endpoint
 
 Next, the ASP.NET Core app needs to be configured to enable the authentication handler that will authenticate users by making an HTTP request to the ASP.NET app. Again, this is done by calling `AddAuthenticationClient` when registering System.Web adapters services:
 
-:::code language="csharp" source="~/migration/inc/samples/remote-authentication/AspNetCore.cs" id="snippet_AddSystemWebAdapters" highlight="7" :::
+:::code language="csharp" source="~/migration/inc/samples/remote-authentication/AspNetCore.cs" id="snippet_AddSystemWebAdapters" highlight="8" :::
 
 The boolean that is passed to the `AddAuthenticationClient` call specifies whether remote app authentication should be the default authentication scheme. Passing `true` will cause the user to be authenticated via remote app authentication for all requests, whereas passing `false` means that the user will only be authenticated with remote app authentication if the remote app scheme is specifically requested (with `[Authorize(AuthenticationSchemes = RemoteAppAuthenticationDefaults.AuthenticationScheme)]` on a controller or action method, for example). Passing false for this parameter has the advantage of only making HTTP requests to the original ASP.NET app for authentication for endpoints that require remote app authentication but has the disadvantage of requiring annotating all such endpoints to indicate that they will use remote app auth.
 
