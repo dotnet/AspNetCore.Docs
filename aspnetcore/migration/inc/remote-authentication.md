@@ -22,7 +22,7 @@ First, follow the [remote app setup](xref:migration/inc/remote-app-setup) instru
 
 ### ASP.NET app configuration
 
-First, the ASP.NET app needs to be configured to add the authentication endpoint. This is done by calling the `AddAuthenticationServer` extension method to set up the HTTP module that will watch for requests to the authentication endpoint. Note that remote authentication scenarios typically want to add proxy support as well, so that any auth-related redirects will correctly route to the ASP.NET Core app rather than the ASP.NET one.
+The ASP.NET app needs to be configured to add the authentication endpoint. Adding the authentication endpoint is done by calling the `AddAuthenticationServer` extension method to set up the HTTP module that watches for requests to the authentication endpoint. Note that remote authentication scenarios typically want to add proxy support as well, so that any authentication related redirects correctly route to the ASP.NET Core app rather than the ASP.NET one.
 
 :::code language="csharp" source="~/migration/inc/samples/remote-authentication/AspNetApp.cs" id="snippet_SystemWebAdapterConfiguration" :::
 
