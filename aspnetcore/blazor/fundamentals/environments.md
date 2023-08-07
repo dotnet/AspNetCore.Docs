@@ -116,7 +116,7 @@ App settings from the `appsettings.{ENVIRONMENT}.json` file are loaded by the ap
 
 Obtain the app's environment in a component by injecting <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> and reading the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.Environment> property.
 
-`Pages/ReadEnvironment.razor`:
+`ReadEnvironment.razor`:
 
 <!-- UPDATE 8.0 Watch the highlights! -->
 

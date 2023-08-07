@@ -152,7 +152,7 @@ var host = builder.Build();
 var logger = host.Services.GetRequiredService<ILoggerFactory>()
     .CreateLogger<Program>();
 
-logger.LogInformation("Logged after the app is built in Program.cs.");
+logger.LogInformation("Logged after the app is built in the Program file.");
 
 await host.RunAsync();
 ```
@@ -160,7 +160,7 @@ await host.RunAsync();
 Developer tools console output:
 
 > :::no-loc text="info: Program[0]":::  
-> :::no-loc text="Logged after the app is built in Program.cs.":::
+> :::no-loc text="Logged after the app is built in the Program file.":::
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -170,7 +170,7 @@ Developer tools console output:
 
 The following example shows how to use log categories with the `Counter` component of an app created from a Blazor project template.
 
-In the `IncrementCount` method of the app's `Counter` component (`Pages/Counter.razor`) that injects an <xref:Microsoft.Extensions.Logging.ILoggerFactory> as `LoggerFactory`:
+In the `IncrementCount` method of the app's `Counter` component (`Counter.razor`) that injects an <xref:Microsoft.Extensions.Logging.ILoggerFactory> as `LoggerFactory`:
 
 ```csharp
 var logger = LoggerFactory.CreateLogger("CustomCategory");
@@ -198,7 +198,7 @@ public class LogEvent
 }
 ```
 
-In the `IncrementCount` method of the app's `Counter` component (`Pages/Counter.razor`):
+In the `IncrementCount` method of the app's `Counter` component (`Counter.razor`):
 
 ```csharp
 logger.LogInformation(LogEvent.Event1, "Someone has clicked me!");
@@ -218,7 +218,7 @@ Developer tools console output:
 
 The following example shows how to use log message templates with the `Counter` component of an app created from a Blazor project template.
 
-In the `IncrementCount` method of the app's `Counter` component (`Pages/Counter.razor`):
+In the `IncrementCount` method of the app's `Counter` component (`Counter.razor`):
 
 ```csharp
 logger.LogInformation("Someone clicked me at {CurrentDT}!", DateTime.UtcNow);
@@ -235,7 +235,7 @@ Developer tools console output:
 
 The following example shows how to use log exception parameters with the `Counter` component of an app created from a Blazor project template.
 
-In the `IncrementCount` method of the app's `Counter` component (`Pages/Counter.razor`):
+In the `IncrementCount` method of the app's `Counter` component (`Counter.razor`):
 
 ```csharp
 currentCount++;
@@ -274,7 +274,7 @@ builder.Logging.AddFilter((provider, category, logLevel) =>
     category.Equals("CustomCategory2") && logLevel == LogLevel.Information);
 ```
 
-In the `IncrementCount` method of the app's `Counter` component (`Pages/Counter.razor`) that injects an <xref:Microsoft.Extensions.Logging.ILoggerFactory> as `LoggerFactory`:
+In the `IncrementCount` method of the app's `Counter` component (`Counter.razor`) that injects an <xref:Microsoft.Extensions.Logging.ILoggerFactory> as `LoggerFactory`:
 
 ```csharp
 var logger1 = LoggerFactory.CreateLogger("CustomCategory1");
@@ -614,7 +614,7 @@ The developer tools console logger doesn't support [log scopes](xref:fundamental
 
 :::moniker range=">= aspnetcore-6.0"
 
-The sample app uses standard ASP.NET Core `BeginScope` logging syntax to indicate scopes for logged messages. The `Logger` service in the following example is an `ILogger<CustomLoggerExample>`, which is injected into the app's `CustomLoggerExample` component (`Pages/CustomLoggerExample.razor`).
+The sample app uses standard ASP.NET Core `BeginScope` logging syntax to indicate scopes for logged messages. The `Logger` service in the following example is an `ILogger<CustomLoggerExample>`, which is injected into the app's `CustomLoggerExample` component (`CustomLoggerExample.razor`).
 
 ```csharp
 using (Logger.BeginScope("L1"))

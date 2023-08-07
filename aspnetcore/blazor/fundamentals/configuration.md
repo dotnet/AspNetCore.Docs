@@ -70,7 +70,7 @@ Configuration in app settings files are loaded by default. In the following exam
 
 Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data.
 
-`Pages/ConfigExample.razor`:
+`ConfigExample.razor`:
 
 <!-- UPDATE 8.0 -->
 
@@ -175,7 +175,7 @@ In the `Program` file:
 
 Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into a component to access the configuration data.
 
-`Pages/MemoryConfig.razor`:
+`MemoryConfig.razor`:
 
 <!-- UPDATE 8.0 -->
 

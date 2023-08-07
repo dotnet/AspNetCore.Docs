@@ -640,7 +640,7 @@ In the following example with a URL of `/search?filter=scifi%20stars&page=3&star
 :::moniker range=">= aspnetcore-8.0"
 
 > [!NOTE]
-> The query string parameters in the following routable page component also work in a *non-routable* component without an `@page` directive (for example, `Shared/Search.razor` for a shared `Search` component used in other components).
+> The query string parameters in the following routable page component also work in a *non-routable* component without an `@page` directive (for example, `Search.razor` for a shared `Search` component used in other components).
 
 `Search.razor`:
 

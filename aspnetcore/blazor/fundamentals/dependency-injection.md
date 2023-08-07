@@ -516,7 +516,7 @@ public class TransientDisposable : IDisposable
 
 The app can register transient disposables without throwing an exception. However, attempting to resolve a transient disposable results in an <xref:System.InvalidOperationException>, as the following example shows.
 
-`Pages/TransientExample.razor`:
+`TransientExample.razor`:
 
 ```razor
 @page "/transient-example"
@@ -660,7 +660,7 @@ The app can register transient disposables without throwing an exception. Howeve
 
 :::moniker range="< aspnetcore-8.0"
 
-`Pages/TransientExample.razor`:
+`TransientExample.razor`:
 
 :::moniker-end
 

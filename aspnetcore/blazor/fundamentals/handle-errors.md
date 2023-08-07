@@ -183,7 +183,7 @@ For a working demonstration of `DispatchExceptionAsync`, implement the timer not
 
 * `TimerService.cs`
 * `NotifierService.cs`
-* `Pages/ReceiveNotifications.razor`
+* `ReceiveNotifications.razor`
 
 The example uses a timer outside of a Razor component's lifecycle, where an unhandled exception normally isn't processed by Blazor's error handling mechanisms, such as an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries).
 
@@ -217,7 +217,7 @@ Place an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundarie
 
 If you run the app at this point, the exception is thrown when the elapsed count reaches a value of two. However, the UI doesn't change. The error boundary doesn't show the error content.
 
-Change the `OnNotify` method of the `ReceiveNotification` component (`Pages/ReceiveNotification.razor`):
+Change the `OnNotify` method of the `ReceiveNotification` component (`ReceiveNotification.razor`):
 
 * Wrap the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> in a `try-catch` block.
 * Pass any <xref:System.Exception> to `DispatchExceptionAsync` and await the result.
@@ -357,7 +357,7 @@ The app continues to function normally, but the error boundary handles unhandled
 
 Consider the following example, where the `Counter` component throws an exception if the count increments past five.
 
-In `Pages/Counter.razor`:
+In `Counter.razor`:
 
 ```csharp
 private void IncrementCount()
@@ -439,7 +439,7 @@ The following `Error` component example merely logs errors, but methods of the c
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-`Shared/Error.razor`:
+`Error.razor`:
 
 :::moniker-end
 
@@ -536,7 +536,7 @@ An app can use an error processing component as a cascading value to process err
 
 The following `Error` component passes itself as a [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) to child components. The following example merely logs the error, but methods of the component can process errors in any way required by the app, including through the use of multiple error processing methods. An advantage of using a component over using an [injected service](xref:blazor/fundamentals/dependency-injection) or a custom logger implementation is that a cascaded component can render content and apply CSS styles when an error occurs.
 
-`Shared/Error.razor`:
+`Error.razor`:
 
 ```razor
 @using Microsoft.Extensions.Logging
