@@ -48,8 +48,6 @@ Components support multiple route templates using multiple [`@page` directives](
 
 `BlazorRoute.razor`:
 
-<!-- UPDATE 8.0 -->
-
 :::moniker range=">= aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/BlazorRoute.razor" highlight="1-2":::
@@ -114,6 +112,9 @@ When the <xref:Microsoft.AspNetCore.Components.Routing.Router> component navigat
 
 ## Provide custom content when content isn't found
 
+<!-- UPDATE 8.0 NotFound isn't part of the BWA template ...
+     confirm if it's a no-op with SSR/BWA -->
+
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component allows the app to specify custom content if content isn't found for the requested route.
 
 Set custom content in the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> template:
@@ -163,8 +164,6 @@ The router uses route parameters to populate the corresponding [component parame
 
 `RouteParameter1.razor`:
 
-<!-- UPDATE 8.0 -->
-
 :::moniker range=">= aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/RouteParameter1.razor" highlight="1":::
@@ -202,8 +201,6 @@ Optional parameters aren't supported. In the following example, two [`@page` dir
 :::moniker-end
 
 `RouteParameter2.razor`:
-
-<!-- UPDATE 8.0 -->
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -255,8 +252,6 @@ In the following example, the route to the `User` component only matches if:
 * The `Id` segment is an integer (`int`) type.
 
 `User.razor`:
-
-<!-- UPDATE 8.0 -->
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -430,8 +425,6 @@ Catch-all route parameters are:
 
 :::moniker-end
 
-<!-- UPDATE 8.0 -->
-
 :::moniker range=">= aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/routing/CatchAll.razor":::
@@ -549,8 +542,6 @@ The following component:
     > :::no-loc text="BlazorSample.Pages.Navigate: Information: URL of new location: https://localhost:{PORT}/counter":::
 
 `Navigate.razor`:
-
-<!-- UPDATE 8.0 -->
 
 :::moniker range=">= aspnetcore-7.0"
 
