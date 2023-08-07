@@ -79,7 +79,7 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
       });
   ```
 
-  For more information, see <xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps>.
+  For more information, see <xref:blazor/fundamentals/signalr#server-side-circuit-handler-options>.
 
 * **Client**
 
@@ -498,4 +498,4 @@ Adopt any of the following strategies to reduce an app's memory usage:
 * .NET in Server mode doesn't release the memory to the OS immediately unless it must do so. For more information on project file (`.csproj`) settings to control this behavior, see [Runtime configuration options for garbage collection](/dotnet/core/runtime-config/garbage-collector).
 * Server GC assumes that your app is the only one running on the system and can use all the system's resources. If the system has 50 GB, the garbage collector seeks to use the full 50 GB of available memory before it triggers a Gen 2 collection.
 
-For information on disconnected circuit retention configuration, see <xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps>.
+For information on disconnected circuit retention configuration, see <xref:blazor/fundamentals/signalr#server-side-circuit-handler-options>.

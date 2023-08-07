@@ -138,7 +138,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
    app.MapFallbackToPage("/_Host");
    ```
 
-1. If the **:::no-loc text="Client":::** and **:::no-loc text="Server":::** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see <xref:blazor/fundamentals/dependency-injection#register-common-services-in-a-hosted-blazor-webassembly-solution>.
+1. If the **:::no-loc text="Client":::** and **:::no-loc text="Server":::** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see <xref:blazor/fundamentals/dependency-injection#register-common-services>.
 
 1. Run the **:::no-loc text="Server":::** project. The hosted Blazor WebAssembly app is prerendered by the **:::no-loc text="Server":::** project for clients.
 
@@ -872,7 +872,6 @@ By initializing components with the same state used during prerendering, any exp
 
 ## Additional Blazor WebAssembly resources
 
-* [Hosted Blazor WebAssembly logging](xref:blazor/fundamentals/logging#hosted-blazor-webassembly-logging)
 * [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering)
 * [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
 * Razor component lifecycle subjects that pertain to prerendering
@@ -901,7 +900,7 @@ A large prerendered state size may exceed the SignalR circuit message size limit
 To resolve the problem, use ***either*** of the following approaches:
 
 * Reduce the amount of data that you are putting into the prerendered state.
-* Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
+* Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
 
 ## Additional Blazor Server resources
 
@@ -1060,7 +1059,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
    app.MapFallbackToPage("/_Host");
    ```
 
-1. If the **:::no-loc text="Client":::** and **:::no-loc text="Server":::** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see <xref:blazor/fundamentals/dependency-injection#register-common-services-in-a-hosted-blazor-webassembly-solution>.
+1. If the **:::no-loc text="Client":::** and **:::no-loc text="Server":::** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see <xref:blazor/fundamentals/dependency-injection#register-common-services>.
 
 1. Run the **:::no-loc text="Server":::** project. The hosted Blazor WebAssembly app is prerendered by the **:::no-loc text="Server":::** project for clients.
 
@@ -1818,7 +1817,6 @@ By initializing components with the same state used during prerendering, any exp
 
 ## Additional Blazor WebAssembly resources
 
-* [Hosted Blazor WebAssembly logging](xref:blazor/fundamentals/logging#hosted-blazor-webassembly-logging)
 * [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering)
 * [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
 * Razor component lifecycle subjects that pertain to prerendering
@@ -1845,7 +1843,7 @@ A large prerendered state size may exceed the SignalR circuit message size limit
 To resolve the problem, use ***either*** of the following approaches:
 
 * Reduce the amount of data that you are putting into the prerendered state.
-* Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
+* Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
 
 ## Additional Blazor Server resources
 
@@ -1931,7 +1929,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
    + endpoints.MapFallbackToPage("/_Host");
    ```
 
-1. If the **:::no-loc text="Client":::** and **:::no-loc text="Server":::** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see <xref:blazor/fundamentals/dependency-injection#register-common-services-in-a-hosted-blazor-webassembly-solution>.
+1. If the **:::no-loc text="Client":::** and **:::no-loc text="Server":::** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see <xref:blazor/fundamentals/dependency-injection#register-common-services>.
 
 1. Run the **:::no-loc text="Server":::** project. The hosted Blazor WebAssembly app is prerendered by the **:::no-loc text="Server":::** project for clients.
 
@@ -2525,7 +2523,6 @@ For more information, see <xref:blazor/components/index#class-name-and-namespace
 
 ## Additional Blazor WebAssembly resources
 
-* [Hosted Blazor WebAssembly logging](xref:blazor/fundamentals/logging#hosted-blazor-webassembly-logging)
 * [State management: Handle prerendering](xref:blazor/state-management#handle-prerendering)
 * [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
 * Razor component lifecycle subjects that pertain to prerendering
@@ -2552,7 +2549,7 @@ A large prerendered state size may exceed the SignalR circuit message size limit
 To resolve the problem, use ***either*** of the following approaches:
 
 * Reduce the amount of data that you are putting into the prerendered state.
-* Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
+* Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
 
 ## Additional Blazor Server resources
 
@@ -2992,7 +2989,7 @@ A large prerendered state size may exceed the SignalR circuit message size limit
 To resolve the problem, use ***either*** of the following approaches:
 
 * Reduce the amount of data that you are putting into the prerendered state.
-* Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
+* Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). ***WARNING***: Increasing the limit may increase the risk of Denial of service (DoS) attacks.
 
 ## Additional Blazor Server resources
 

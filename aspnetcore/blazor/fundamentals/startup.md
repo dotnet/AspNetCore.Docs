@@ -12,23 +12,33 @@ uid: blazor/fundamentals/startup
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to configure Blazor startup.
+This article explains Blazor app startup configuration.
 
-:::moniker range=">= aspnetcore-7.0"
+[!INCLUDE[](~/blazor/includes/location-client.md)]
 
-The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.{server|webassembly}.js`), where the `{server|webassembly}` placeholder is either `server` for Blazor Server or `webassembly` for Blazor WebAssembly. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Host.cshtml` file of a Blazor Server app.
+For general guidance on ASP.NET Core app configuration for server-side development, see <xref:fundamentals/configuration/index>.
+
+:::moniker range=">= aspnetcore-8.0"
+
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where `*` is either `web` for a Blazor Web App or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or client of a Blazor Web App, or the `App.razor` file of a Blazor Web App.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where `*` is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Host.cshtml` file of a Blazor Server app.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.{server|webassembly}.js`), where the `{server|webassembly}` placeholder is either `server` for Blazor Server or `webassembly` for Blazor WebAssembly. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Layout.cshtml` file of a Blazor Server app.
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where `*` is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Layout.cshtml` file of a Blazor Server app.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.{server|webassembly}.js`), where the `{server|webassembly}` placeholder is either `server` for Blazor Server or `webassembly` for Blazor WebAssembly. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Host.cshtml` file of a Blazor Server app.
+The Blazor startup process is automatic and asynchronous via the Blazor script (`blazor.*.js`), where `*` is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app. The Blazor `<script>` tag is found in the `wwwroot/index.html` file of a Blazor WebAssembly app or the `Pages/_Host.cshtml` file of a Blazor Server app.
 
 :::moniker-end
 
@@ -36,6 +46,17 @@ To manually start Blazor:
 
 * Add an `autostart="false"` attribute and value to the Blazor `<script>` tag.
 * Place a script that calls `Blazor.start()` after the Blazor `<script>` tag and inside the closing `</body>` tag.
+
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  ...
+  Blazor.start();
+  ...
+</script>
+```
+
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -47,15 +68,15 @@ JavaScript (JS) initializers execute logic before and after a Blazor app loads. 
 * Initializing libraries before Blazor starts up.
 * Configuring Blazor settings.
 
-JS initializers are detected as part of the build process and imported automatically in Blazor apps. Use of JS initializers often removes the need to [manually trigger script functions from the app](xref:blazor/fundamentals/startup#chain-to-the-promise-that-results-from-a-manual-start) when using [Razor class libraries (RCLs)](xref:blazor/components/class-libraries).
+JS initializers are detected as part of the build process and imported automatically. Use of JS initializers often removes the need to [manually trigger script functions from the app](xref:blazor/fundamentals/startup#chain-to-the-promise-that-results-from-a-manual-start) when using [Razor class libraries (RCLs)](xref:blazor/components/class-libraries).
 
 To define a JS initializer, add a JS module to the project named `{NAME}.lib.module.js`, where the `{NAME}` placeholder is the assembly name, library name, or package identifier. Place the file in the project's web root, which is typically the `wwwroot` folder.
 
 The module exports either or both of the following conventional functions:
 
 * `beforeStart(options, extensions)`: Called before Blazor starts. For example, `beforeStart` is used to customize the loading process, logging level, and other options specific to the hosting model.
-  * In Blazor WebAssembly, `beforeStart` receives the Blazor WebAssembly options (`options` in this section's examples) and any extensions (`extensions` in this section's examples) added during publishing. For example, options can specify the use of a custom [boot resource loader](xref:blazor/fundamentals/startup#load-boot-resources).
-  * In Blazor Server, `beforeStart` receives SignalR circuit start options (`options` in this section's examples).
+  * Client-side, `beforeStart` receives the Blazor options (`options` in this section's examples) and any extensions (`extensions` in this section's examples) added during publishing. For example, options can specify the use of a custom [boot resource loader](xref:blazor/fundamentals/startup#load-boot-resources).
+  * Server-side, `beforeStart` receives SignalR circuit start options (`options` in this section's examples).
   * In [`BlazorWebViews`](/mobile-blazor-bindings/walkthroughs/hybrid-hello-world#mainrazor-native-ui-page), no options are passed.
 * `afterStarted`: Called after Blazor is ready to receive calls from JS. For example, `afterStarted` is used to initialize libraries by making JS interop calls and registering custom elements. The Blazor instance is passed to `afterStarted` as an argument (`blazor` in this section's example).
 
@@ -156,39 +177,31 @@ export function beforeStart(options, extensions) {
 
 The following example starts Blazor when the document is ready:
 
-```cshtml
-<body>
-    ...
-
-    <script src="_framework/blazor.{server|webassembly}.js" autostart="false"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        Blazor.start();
-      });
-    </script>
-</body>
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    Blazor.start();
+  });
+</script>
 ```
 
-The `{server|webassembly}` placeholder in the preceding markup is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
 ## Chain to the `Promise` that results from a manual start
 
 To perform additional tasks, such as JS interop initialization, use [`then`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise/then) to chain to the [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) that results from a manual Blazor app start:
 
-```cshtml
-<body>
+```html
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
+<script>
+  Blazor.start().then(function () {
     ...
-
-    <script src="_framework/blazor.{server|webassembly}.js" autostart="false"></script>
-    <script>
-      Blazor.start().then(function () {
-        ...
-      });
-    </script>
-</body>
+  });
+</script>
 ```
 
-The `{server|webassembly}` placeholder in the preceding markup is either `server` for a Blazor Server app or `webassembly` for a Blazor WebAssembly app.
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -197,11 +210,9 @@ The `{server|webassembly}` placeholder in the preceding markup is either `server
 
 :::moniker-end
 
-## Load boot resources
+## Load client-side boot resources
 
-*This section only applies to Blazor WebAssembly apps.*
-
-When a Blazor WebAssembly app loads in the browser, the app downloads boot resources from the server:
+When an app loads in the browser, the app downloads boot resources from the server:
 
 * JavaScript code to bootstrap the app
 * .NET runtime and assemblies
@@ -233,10 +244,8 @@ The `loadBootResource` function can return a URI string to override the loading 
 
 The `{TARGET FRAMEWORK}` placeholder is the target framework moniker (for example, `net7.0`). The `{VERSION}` placeholder is the shared framework version (for example, `7.0.0`).
 
-Inside the closing `</body>` tag of `wwwroot/index.html`:
-
 ```html
-<script src="_framework/blazor.webassembly.js" autostart="false"></script>
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   Blazor.start({
     loadBootResource: function (type, name, defaultUri, integrity) {
@@ -252,12 +261,12 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
 </script>
 ```
 
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+
 To customize more than just the URLs for boot resources, the `loadBootResource` function can call `fetch` directly and return the result. The following example adds a custom HTTP header to the outbound requests. To retain the default integrity checking behavior, pass through the `integrity` parameter.
 
-Inside the closing `</body>` tag of `wwwroot/index.html`:
-
 ```html
-<script src="_framework/blazor.webassembly.js" autostart="false"></script>
+<script src="{BLAZOR SCRIPT}" autostart="false"></script>
 <script>
   Blazor.start({
     loadBootResource: function (type, name, defaultUri, integrity) {
@@ -275,6 +284,8 @@ Inside the closing `</body>` tag of `wwwroot/index.html`:
 </script>
 ```
 
+In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.
+
 When the `loadBootResource` function returns `null`, Blazor uses the default loading behavior for the resource. For example, the preceding code returns `null` for the `dotnetjs` boot resource (`dotnet.*.js`) because the `dotnetjs` boot resource must either return `null` for default loading behavior or a URI for the source of the `dotnetjs` boot resource.
 
 The `loadBootResource` function can also return a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response). For an example, see <xref:blazor/host-and-deploy/webassembly#compression>.
@@ -285,19 +296,11 @@ Control headers at startup in C# code using the following approaches.
 
 In the following examples, a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy) is applied to the app via a CSP header. The `{POLICY STRING}` placeholder is the CSP policy string.
 
-* In Blazor Server and prerendered Blazor WebAssembly apps, use [ASP.NET Core Middleware](xref:fundamentals/middleware/index) to control the headers collection.
+* In server-side and prerendered client-side scenarios, use [ASP.NET Core Middleware](xref:fundamentals/middleware/index) to control the headers collection.
 
 :::moniker range=">= aspnetcore-6.0"
 
-  In `Program.cs`:
-
-  ```csharp
-  app.Use(async (context, next) =>
-  {
-      context.Response.Headers.Add("Content-Security-Policy", "{POLICY STRING}");
-      await next();
-  });
-  ```
+  In the `Program` file:
 
 :::moniker-end
 
@@ -305,6 +308,8 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
 
   In `Startup.Configure` of `Startup.cs`:
 
+:::moniker-end
+
   ```csharp
   app.Use(async (context, next) =>
   {
@@ -313,36 +318,23 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
   });
   ```
 
-:::moniker-end
+  The preceding example uses inline middleware, but you can also create a custom middleware class and call the middleware with an extension method in the `Program` file. For more information, see <xref:fundamentals/middleware/write>.
 
-  The preceding example uses inline middleware, but you can also create a custom middleware class and call the middleware with an extension method in `Program.cs`. For more information, see <xref:fundamentals/middleware/write>.
+<!-- UPDATE 8.0 MapFallbackToFile is present in the following bullet content -->
 
-* In hosted Blazor WebAssembly apps that aren't prerendered, pass <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A> that specifies response headers at the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> stage.
+* For client-side development without prerendering, pass <xref:Microsoft.AspNetCore.Builder.StaticFileOptions> to <xref:Microsoft.AspNetCore.Builder.StaticFilesEndpointRouteBuilderExtensions.MapFallbackToFile%2A> that specifies response headers at the <xref:Microsoft.AspNetCore.Builder.StaticFileOptions.OnPrepareResponse> stage.
 
 :::moniker range=">= aspnetcore-6.0"
 
-  In `Program.cs` of the **:::no-loc text="Server":::** project:
-
-  ```csharp
-  var staticFileOptions = new StaticFileOptions
-  {
-      OnPrepareResponse = context =>
-      {
-          context.Context.Response.Headers.Add("Content-Security-Policy", 
-              "{POLICY STRING}");
-      }
-  };
-
-  ...
-
-  app.MapFallbackToFile("index.html", staticFileOptions);
-  ```
+  In the server-side `Program` file:
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-  In `Startup.Configure` (`Startup.cs`) of the **:::no-loc text="Server":::** project:
+  In `Startup.Configure` of `Startup.cs`:
+
+:::moniker-end
 
   ```csharp
   var staticFileOptions = new StaticFileOptions
@@ -359,19 +351,17 @@ In the following examples, a [Content Security Policy (CSP)](https://developer.m
   app.MapFallbackToFile("index.html", staticFileOptions);
   ```
 
-:::moniker-end
-
 For more information on CSPs, see <xref:blazor/security/content-security-policy>.
 
 :::moniker range=">= aspnetcore-7.0"
 
-## Loading progress indicators
+## Client-side loading progress indicators
 
 *This section only applies to Blazor WebAssembly apps.*
 
-The Blazor WebAssembly project template contains Scalable Vector Graphics (SVG) and text indicators that show the loading progress of the app.
+The project template contains Scalable Vector Graphics (SVG) and text indicators that show the loading progress of the app.
 
-The progress indicators are implemented with HTML and CSS using two CSS custom properties (variables) provided by Blazor WebAssembly:
+The progress indicators are implemented with HTML and CSS using two CSS custom properties (variables) provided by Blazor:
 
 * `--blazor-load-percentage`: The percentage of app files loaded.
 * `--blazor-load-percentage-text`: The percentage of app files loaded, rounded to the nearest whole number.
@@ -403,10 +393,12 @@ The default round progress indicator is implemented in HTML in the `wwwroot/inde
 </div>
 ```
 
-To review the Blazor WebAssembly project template markup and styling for the default progress indicators, see the ASP.NET Core reference source:
+To review the project template markup and styling for the default progress indicators, see the ASP.NET Core reference source:
 
-* [`wwwroot/index.html`](https://github.com/dotnet/aspnetcore/blob/release/7.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot/index.html)
-* [`app.css`](https://github.com/dotnet/aspnetcore/blob/release/7.0/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Client/wwwroot/css/app.css)
+<!-- UPDATE 8.0 Check if the project name changes for release -->
+
+* [`wwwroot/index.html`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/wwwroot/index.html)
+* [`app.css`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/wwwroot/css/app.css)
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -450,5 +442,5 @@ In `wwwroot/index.html`, remove the default SVG round indicator in `<div id="app
 
 * [Environments: Set the app's environment](xref:blazor/fundamentals/environments)
 * [SignalR (includes sections on SignalR startup configuration)](xref:blazor/fundamentals/signalr)
-* [Globalization and localization: Statically set the culture with `Blazor.start()` (*Blazor WebAssembly only*)](xref:blazor/globalization-localization?pivots=webassembly#statically-set-the-culture)
+* [Globalization and localization: Statically set the culture with `Blazor.start()` (*client-side only*)](xref:blazor/globalization-localization?pivots=webassembly#statically-set-the-culture)
 * [Host and deploy: Blazor WebAssembly: Compression](xref:blazor/host-and-deploy/webassembly#compression)

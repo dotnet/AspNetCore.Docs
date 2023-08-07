@@ -1172,7 +1172,7 @@ If a deployed app frequently displays the reconnection UI due to ping timeouts c
    });
    ```
 
-  For more information, see <xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps>.
+  For more information, see <xref:blazor/fundamentals/signalr#server-side-circuit-handler-options>.
 
 * **Client**
 

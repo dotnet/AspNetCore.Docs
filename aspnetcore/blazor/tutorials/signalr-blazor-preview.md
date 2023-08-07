@@ -10,7 +10,7 @@ uid: blazor/tutorials/signalr-blazor-preview
 ---
 # Use ASP.NET Core SignalR with Blazor (.NET 8 Preview)
 
-<!-- UPDATE FOR 8.0
+<!-- UPDATE 8.0
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -32,7 +32,7 @@ Learn how to:
 
 At the end of this tutorial, you'll have a working chat app.
 
-<!-- UPDATE FOR 8.0
+<!-- UPDATE 8.0
 
 ## Prerequisites
 
@@ -84,7 +84,7 @@ The Visual Studio Code instructions use the .NET CLI for ASP.NET Core developmen
 
 ---
 
-<!-- UPDATE FOR 8.0
+<!-- UPDATE 8.0
 
 ## Sample app
 
@@ -140,7 +140,7 @@ After the app is created, open the project file (`BlazorApp.csproj`) with Visual
 > [!NOTE]
 > Visual Studio for Mac will be able to create Blazor Web Apps in an upcoming release.
 
-<!-- UPDATE FOR 8.0
+<!-- UPDATE 8.0
 
 Select the **New Project** command from the **File** menu or create a **New** project from the **Start Window**.
 
@@ -194,7 +194,7 @@ In the **Integrated Terminal** (**View** > **Terminal** from the toolbar), execu
 dotnet add package Microsoft.AspNetCore.SignalR.Client --prerelease
 ```
 
-<!-- UPDATE FOR 8.0
+<!-- UPDATE 8.0
 
 To add an earlier version of the package, supply the `--version {VERSION}` option, where the `{VERSION}` placeholder is the version of the package to add.
 
@@ -220,7 +220,7 @@ In a command shell from the project's folder, execute the following command:
 dotnet add package Microsoft.AspNetCore.SignalR.Client --prerelease
 ```
 
-<!-- UPDATE FOR 8.0
+<!-- UPDATE 8.0
 
 To add an earlier version of the package, supply the `--version {VERSION}` option, where the `{VERSION}` placeholder is the version of the package to add.
 
@@ -246,7 +246,7 @@ public class ChatHub : Hub
 }
 ```
 
-<!-- UPDATE FOR 8.0
+<!-- UPDATE 8.0
 
 ## Add services and an endpoint for the SignalR hub
 
@@ -291,7 +291,7 @@ Open the `Pages/Index.razor` file.
 
 Replace the markup with the following code:
 
-<!-- UPDATE FOR 8.0
+<!-- UPDATE 8.0
 
 @rendermode Auto
 
@@ -433,7 +433,7 @@ To learn more about building Blazor apps, see the Blazor documentation:
 
 * [Secure a SignalR hub in hosted Blazor WebAssembly apps](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * <xref:signalr/introduction>
-* [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#signalr-cross-origin-negotiation-for-authentication-blazor-webassembly)
+* [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication)
 * [SignalR configuration](xref:blazor/host-and-deploy/server#signalr-configuration)
 * <xref:blazor/debug>
 * <xref:blazor/security/server/threat-mitigation>
