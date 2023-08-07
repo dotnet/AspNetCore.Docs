@@ -159,7 +159,7 @@ If event handlers are provided in developer code, unhook them on disposal. For m
 
 ::: moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE AT 8.0 Cross-link 'server-side rendering (SSR)' -->
+<!-- UPDATE 8.0 Cross-link 'server-side rendering (SSR)' -->
 
 Use *streaming rendering* with server-side rendering (SSR) to improve the user experience for server-side components that perform long-running asynchronous tasks in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> to fully render. For more information, see <xref:blazor/components/rendering#streaming-rendering>.
 
@@ -366,7 +366,7 @@ The following code demonstrates an updated `WeatherForecastService` in a templat
 
 :::moniker-end
 
-For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode>, see <xref:blazor/fundamentals/signalr#render-mode-blazor-server>.
+For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode>, see <xref:blazor/fundamentals/signalr#server-side-render-mode>.
 
 Although the content in this section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/prerendering-and-integration#persist-prerendered-state>.
 
@@ -702,4 +702,4 @@ In the following example:
 
 ## Blazor Server reconnection events
 
-The component lifecycle events covered in this article operate separately from [Blazor Server's reconnection event handlers](xref:blazor/fundamentals/signalr#reflect-the-connection-state-in-the-ui-blazor-server). When a Blazor Server app loses its SignalR connection to the client, only UI updates are interrupted. UI updates are resumed when the connection is re-established. For more information on circuit handler events and configuration, see <xref:blazor/fundamentals/signalr>.
+The component lifecycle events covered in this article operate separately from [Blazor Server's reconnection event handlers](xref:blazor/fundamentals/signalr#reflect-the-server-side-connection-state-in-the-ui). When a Blazor Server app loses its SignalR connection to the client, only UI updates are interrupted. UI updates are resumed when the connection is re-established. For more information on circuit handler events and configuration, see <xref:blazor/fundamentals/signalr>.
