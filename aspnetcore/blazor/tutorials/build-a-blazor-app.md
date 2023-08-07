@@ -93,7 +93,7 @@ The `-n|--name` option in the preceding command specifies the name of the new Ra
 
 Open the `Todo` component in any file editor and make the following changes at the top of the file:
 
-<!-- UPDATE 8.0 -->
+<!-- UPDATE 8.0 For render mode guidance -->
 
 * Add an `@page` Razor directive with a relative URL of `/todo`.
 * Add the `[RenderModeServer]` attribute. The attribute indicates that for this component the render mode should be server-side rendering (SSR), which means that the `Todo` component is rendered interactively on the server via Blazor Server hosting with server-side prerendering. <!-- `@rendermode` Razor directive set to `Auto`. The directive indicates that for this component the render mode should be determined automatically based on a policy. The default render mode for a Blazor Web App is server-side rendering (SSR), which means that the `Todo` component is rendered interactively on the server via Blazor Server hosting with server-side prerendering. -->

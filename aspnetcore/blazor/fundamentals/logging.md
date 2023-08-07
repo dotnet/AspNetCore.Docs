@@ -50,7 +50,7 @@ The `using` directive for <xref:Microsoft.Extensions.Logging> is required to sup
 
 The following example:
 
-* [Injects](xref:blazor/fundamentals/dependency-injection) an <xref:Microsoft.Extensions.Logging.ILogger> (`ILogger<Counter>`) object to create a logger. The log's *category* is the fully qualified name of the component's type, `Counter`.
+* [Injects](xref:blazor/fundamentals/dependency-injection) an <xref:Microsoft.Extensions.Logging.ILogger> (`ILogger<Counter1>`) object to create a logger. The log's *category* is the fully qualified name of the component's type, `Counter`.
 * Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> to log at the <xref:Microsoft.Extensions.Logging.LogLevel.Warning> level.
 
 `Counter1.razor`:

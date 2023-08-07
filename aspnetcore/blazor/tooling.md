@@ -118,13 +118,6 @@ Create a new project:
   dotnet new blazor -o BlazorApp
   ```
 
-<!-- UPDATE 8.0 Assumes that there will be a 'blazor-empty' template at release -->
-
-* Alternatively, create a Blazor Web App without demonstration code and Bootstrap using the `blazor-empty` project template:
-
-  ```dotnetcli
-  dotnet new blazor-empty -o BlazorApp
-
   <!-- UPDATE 8.0 Cross-link SSR -->
 
   To enable interactivity with server-side rendering (SSR), add the `--use-server` option to the command:
@@ -614,9 +607,7 @@ The Blazor framework provides templates for creating new apps. The templates are
 
 :::moniker range=">= aspnetcore-8.0"
 
-<!-- UPDATE 8.0 Assumes that there will be a 'blazor-empty' template at release -->
-
-* Blazor Web App project template (*recommended*): `blazor`, `blazor-empty`
+* Blazor Web App project template (*recommended*): `blazor`
 * Blazor WebAssembly project templates: `blazorwasm`, `blazorwasm-empty`
 
 :::moniker-end

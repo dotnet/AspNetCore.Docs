@@ -118,8 +118,6 @@ The `builder` variable represents a <xref:Microsoft.AspNetCore.Builder.WebApplic
 builder.Services.AddSingleton<IDataAccess, DataAccess>();
 ```
 
-:::moniker-end
-
 :::moniker range="< aspnetcore-6.0"
 
 After creating a new app, examine the `Startup.ConfigureServices` method in `Startup.cs`:

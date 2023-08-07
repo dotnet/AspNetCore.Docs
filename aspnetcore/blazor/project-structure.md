@@ -18,9 +18,7 @@ This article describes the files and folders that make up a Blazor app generated
 
 ## Blazor Web App
 
-<!-- UPDATE 8.0 Assumes that there will be a 'blazor-empty' template at release -->
-
-Blazor Web App project templates: `blazor`, `blazor-empty`
+Blazor Web App project template: `blazor`
 
 Project structure:
 
