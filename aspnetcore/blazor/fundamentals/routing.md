@@ -1020,7 +1020,7 @@ At the top of the component that specifies the <xref:Microsoft.AspNetCore.Compon
 
 Add a `<Navigating>` tag to the component with markup to display during page transition events. For more information, see <xref:Microsoft.AspNetCore.Components.Routing.Router.Navigating> (API documentation).
 
-In the router element content (`<Router>...</Router>`) of the `App` component (`App.razor`):
+In the router element content (`<Router>...</Router>`):
 
 ```razor
 <Navigating>

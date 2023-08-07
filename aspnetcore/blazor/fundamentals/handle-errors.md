@@ -468,9 +468,30 @@ The following `Error` component example merely logs errors, but methods of the c
 > [!NOTE]
 > For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE 8.0 Confirm that we want to do this in the App component
+     and not in the Routes component wrapping the Router -->
+
+In the `App` component, wrap the `Routes` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+
+In `App.razor`:
+
+```razor
+<Error>
+    <Routes />
+</Error>
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
 In the `App` component, wrap the `Router` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
-`App.razor`:
+In `App.razor`:
 
 ```razor
 <Error>
@@ -479,6 +500,8 @@ In the `App` component, wrap the `Router` component with the `Error` component. 
     </Router>
 </Error>
 ```
+
+:::moniker-end
 
 To process errors in a component:
 
