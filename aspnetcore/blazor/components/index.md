@@ -14,7 +14,7 @@ uid: blazor/components/index
 
 This article explains how to create and use Razor components in Blazor apps, including guidance on Razor syntax, component naming, namespaces, and component parameters.
 
-Blazor apps are built using *Razor components*, informally known as *Blazor components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
+Blazor apps are built using *Razor components*, informally known as *Blazor components* or only *components*. A component is a self-contained portion of user interface (UI) with processing logic to enable dynamic behavior. Components can be nested, reused, shared among projects, and [used in MVC and Razor Pages apps](xref:blazor/components/prerendering-and-integration).
 
 ## Component classes
 
@@ -39,6 +39,8 @@ Directives and directive attributes used in components are explained further in 
 
 ### Component name, class name, and namespace
 
+:::moniker range=">= aspnetcore-8.0"
+
 A component's name must start with an uppercase character:
 
 <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> `ProductDetail.razor`
@@ -47,11 +49,72 @@ A component's name must start with an uppercase character:
 
 Common Blazor naming conventions used throughout the Blazor documentation include:
 
-* Component file paths use Pascal case&dagger; and appear before showing component code examples. Paths indicate typical folder locations. For example, `Pages/ProductDetail.razor` indicates that the `ProductDetail` component has a file name of `ProductDetail.razor` and resides in the `Pages` folder of the app.
+* File paths and file names use Pascal case&dagger; and appear before showing code examples. If a path is present, it indicates the typical folder location. For example, `Components/Pages/ProductDetail.razor` indicates that the `ProductDetail` component has a file name of `ProductDetail.razor` and resides in the `Pages` folder of the `Components` folder of the app.
 * Component file paths for routable components match their URLs in kebab case&Dagger; with hyphens appearing between words in a component's route template. For example, a `ProductDetail` component with a route template of `/product-detail` (`@page "/product-detail"`) is requested in a browser at the relative URL `/product-detail`.
 
 &dagger;Pascal case (upper camel case) is a naming convention without spaces and punctuation and with the first letter of each word capitalized, including the first word.  
-&Dagger;kebab case is a naming convention without spaces and punctuation that uses lowercase letters and dashes between words.
+&Dagger;Kebab case is a naming convention without spaces and punctuation that uses lowercase letters and dashes between words.
+
+Components are ordinary [C# classes](/dotnet/csharp/programming-guide/classes-and-structs/classes) and can be placed anywhere within a project. Components that produce webpages usually reside in the `Components/Pages` folder. Non-page components are frequently placed in the `Components` folder or a custom folder added to the project.
+
+Typically, a component's namespace is derived from the app's root namespace and the component's location (folder) within the app. If the app's root namespace is `BlazorSample` and the `Counter` component resides in the `Components/Pages` folder:
+
+* The `Counter` component's namespace is `BlazorSample.Components.Pages`.
+* The fully qualified type name of the component is `BlazorSample.Components.Pages.Counter`.
+
+For custom folders that hold components, add an [`@using`][2] directive to the parent component or to the app's `_Imports.razor` file. The following example makes components in the `AdminComponents` folder available:
+
+```razor
+@using BlazorSample.AdminComponents
+```
+
+> [!NOTE]
+> [`@using`][2] directives in the `_Imports.razor` file are only applied to Razor files (`.razor`), not C# files (`.cs`).
+
+Aliased [`using`](/dotnet/csharp/language-reference/keywords/using-directive) statements are supported. In the following example, the public `WeatherForecast` class of the `GridRendering` component is made available as `WeatherForecast` in a component elsewhere in the app:
+
+```razor
+@using WeatherForecast = Components.Pages.GridRendering.WeatherForecast
+```
+
+Components can also be referenced using their fully qualified names, which doesn't require an [`@using`][2] directive. The following example directly references the `ProductDetail` component in the `AdminComponents/Pages` folder of the app:
+
+```razor
+<BlazorSample.AdminComponents.Pages.ProductDetail />
+```
+
+The namespace of a component authored with Razor is based on the following (in priority order):
+
+* The [`@namespace`][8] directive in the Razor file's markup (for example, `@namespace BlazorSample.CustomNamespace`).
+* The project's `RootNamespace` in the project file (for example, `<RootNamespace>BlazorSample</RootNamespace>`).
+* The project namespace and the path from the project root to the component. For example, the framework resolves `{PROJECT NAMESPACE}/Components/Pages/Home.razor` with a project namespace of `BlazorSample` to the namespace `BlazorSample.Components.Pages` for the `Home` component. `{PROJECT NAMESPACE}` is the project namespace. Components follow C# name binding rules. For the `Home` component in this example, the components in scope are all of the components:
+  * In the same folder, `Components/Pages`.
+  * The components in the project's root that don't explicitly specify a different namespace.
+
+The following are **not** supported:
+
+<!-- UPDATE 8.0 Confirm second bullet is correct -->
+
+* The [`global::`](/dotnet/csharp/language-reference/operators/namespace-alias-qualifier) qualification.
+* Partially-qualified names. For example, you can't add `@using BlazorSample` to a component and then reference the `NavMenu` component in the app's `Components/Layout` folder (`Components/Layout/NavMenu.razor`) with `<Layout.NavMenu></Layout.NavMenu>`.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-8.0"
+
+A component's name must start with an uppercase character:
+
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Supported:</span> `ProductDetail.razor`
+
+<span aria-hidden="true">❌</span><span class="visually-hidden">Unsupported:</span> `productDetail.razor`
+
+Common Blazor naming conventions used throughout the Blazor documentation include:
+
+* File paths and file names use Pascal case&dagger; and appear before showing code examples. If a path is present, it indicates the typical folder location. For example, `Pages/ProductDetail.razor` indicates that the `ProductDetail` component has a file name of `ProductDetail.razor` and resides in the `Pages` folder of the app.
+* Component file paths for routable components match their URLs in kebab case&Dagger; with hyphens appearing between words in a component's route template. For example, a `ProductDetail` component with a route template of `/product-detail` (`@page "/product-detail"`) is requested in a browser at the relative URL `/product-detail`.
+
+&dagger;Pascal case (upper camel case) is a naming convention without spaces and punctuation and with the first letter of each word capitalized, including the first word.  
+&Dagger;Kebab case is a naming convention without spaces and punctuation that uses lowercase letters and dashes between words.
 
 Components are ordinary [C# classes](/dotnet/csharp/programming-guide/classes-and-structs/classes) and can be placed anywhere within a project. Components that produce webpages usually reside in the `Pages` folder. Non-page components are frequently placed in the `Shared` folder or a custom folder added to the project.
 
@@ -60,10 +123,10 @@ Typically, a component's namespace is derived from the app's root namespace and 
 * The `Counter` component's namespace is `BlazorSample.Pages`.
 * The fully qualified type name of the component is `BlazorSample.Pages.Counter`.
 
-For custom folders that hold components, add an [`@using`][2] directive to the parent component or to the app's `_Imports.razor` file. The following example makes components in the `Components` folder available:
+For custom folders that hold components, add an [`@using`][2] directive to the parent component or to the app's `_Imports.razor` file. The following example makes components in the `AdminComponents` folder available:
 
 ```razor
-@using BlazorSample.Components
+@using BlazorSample.AdminComponents
 ```
 
 > [!NOTE]
@@ -85,7 +148,7 @@ The namespace of a component authored with Razor is based on the following (in p
 
 * The [`@namespace`][8] directive in the Razor file's markup (for example, `@namespace BlazorSample.CustomNamespace`).
 * The project's `RootNamespace` in the project file (for example, `<RootNamespace>BlazorSample</RootNamespace>`).
-* The project name, taken from the project file's file name (`.csproj`), and the path from the project root to the component. For example, the framework resolves `{PROJECT ROOT}/Pages/Index.razor` with a project namespace of `BlazorSample` (`BlazorSample.csproj`) to the namespace `BlazorSample.Pages` for the `Index` component. `{PROJECT ROOT}` is the project root path. Components follow C# name binding rules. For the `Index` component in this example, the components in scope are all of the components:
+* The project namespace and the path from the project root to the component. For example, the framework resolves `{PROJECT NAMESPACE}/Pages/Index.razor` with a project namespace of `BlazorSample` to the namespace `BlazorSample.Pages` for the `Index` component. `{PROJECT NAMESPACE}` is the project namespace. Components follow C# name binding rules. For the `Index` component in this example, the components in scope are all of the components:
   * In the same folder, `Pages`.
   * The components in the project's root that don't explicitly specify a different namespace.
 
@@ -93,6 +156,8 @@ The following are **not** supported:
 
 * The [`global::`](/dotnet/csharp/language-reference/operators/namespace-alias-qualifier) qualification.
 * Partially-qualified names. For example, you can't add `@using BlazorSample` to a component and then reference the `NavMenu` component in the app's `Shared` folder (`Shared/NavMenu.razor`) with `<Shared.NavMenu></Shared.NavMenu>`.
+
+:::moniker-end
 
 ### Partial class support
 
@@ -110,7 +175,7 @@ Components are generated as [C# partial classes](/dotnet/csharp/programming-guid
 
 The following example shows the default `Counter` component with an [`@code`][1] block in an app generated from a Blazor project template. Markup and C# code are in the same file. This is the most common approach taken in component authoring.
 
-`Pages/Counter.razor`:
+`Counter.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -138,7 +203,7 @@ The following example shows the default `Counter` component with an [`@code`][1]
 
 The following `Counter` component splits presentation HTML and Razor markup from the C# code using a code-behind file with a partial class. Splitting the markup from the C# code is favored by some organizations and developers to organize their component code to suit how they prefer to work. For example, the organization's UI expert can work on the presentation layer independently of another developer working on the component's C# logic. The approach is also useful when working with automatically-generated code or source generators. For more information, see [Partial Classes and Methods (C# Programming Guide)](/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods).
 
-`Pages/CounterPartialClass.razor`:
+`CounterPartialClass.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -164,9 +229,27 @@ The following `Counter` component splits presentation HTML and Razor markup from
 
 :::moniker-end
 
-`Pages/CounterPartialClass.razor.cs`:
+`CounterPartialClass.razor.cs`:
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-8.0"
+
+```csharp
+namespace BlazorSample.Components.Pages;
+
+public partial class CounterPartialClass
+{
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 ```csharp
 namespace BlazorSample.Pages;
@@ -222,6 +305,13 @@ using Microsoft.AspNetCore.Components.Web.Virtualization;
 using Microsoft.JSInterop;
 ```
 
+Typical namespaces also include the namespace of the app and the namespace corresponding to the app's `Components` folder:
+
+```csharp
+using BlazorSample;
+using BlazorSample.Components;
+```
+
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
@@ -238,6 +328,13 @@ using Microsoft.AspNetCore.Components.Web.Virtualization;
 using Microsoft.JSInterop;
 ```
 
+Typical namespaces also include the namespace of the app and the namespace corresponding to the app's `Shared` folder:
+
+```csharp
+using BlazorSample;
+using BlazorSample.Shared;
+```
+
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
@@ -250,8 +347,6 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 ```
 
-:::moniker-end
-
 Typical namespaces also include the namespace of the app and the namespace corresponding to the app's `Shared` folder:
 
 ```csharp
@@ -259,13 +354,15 @@ using BlazorSample;
 using BlazorSample.Shared;
 ```
 
+:::moniker-end
+
 ### Specify a base class
 
 The [`@inherits`][6] directive is used to specify a base class for a component. Unlike using [partial classes](#partial-class-support), which only split markup from C# logic, using a base class allows you to inherit C# code for use across a group of components that share the base class's properties and methods. Using base classes reduce code redundancy in apps and are useful when supplying base code from class libraries to multiple apps. For more information, see [Inheritance in C# and .NET](/dotnet/csharp/fundamentals/tutorials/inheritance).
 
 In the following example, the `BlazorRocksBase` base class derives from <xref:Microsoft.AspNetCore.Components.ComponentBase>.
 
-`Pages/BlazorRocks.razor`:
+`BlazorRocks.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -321,9 +418,9 @@ In the following example, the `BlazorRocksBase` base class derives from <xref:Mi
 
 Routing in Blazor is achieved by providing a route template to each accessible component in the app with an [`@page`][9] directive. When a Razor file with an [`@page`][9] directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> specifying the route template. At runtime, the router searches for component classes with a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute> and renders whichever component has a route template that matches the requested URL.
 
-The following `HelloWorld` component uses a route template of `/hello-world`, and the rendered webpage for the component is reached at the relative URL `/hello-world`. Components that produce webpages usually reside in the `Pages` folder, but you can use any folder to hold components, including within nested folders.
+The following `HelloWorld` component uses a route template of `/hello-world`, and the rendered webpage for the component is reached at the relative URL `/hello-world`.
 
-`Pages/HelloWorld.razor`:
+`HelloWorld.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -351,7 +448,7 @@ The following `HelloWorld` component uses a route template of `/hello-world`, an
 
 The preceding component loads in the browser at `/hello-world` regardless of whether or not you add the component to the app's UI navigation. Optionally, components can be added to the `NavMenu` component so that a link to the component appears in the app's UI-based navigation.
 
-For the preceding `HelloWorld` component, you can add a `NavLink` component to the `NavMenu` component in the `Shared` folder. For more information, including descriptions of the `NavLink` and `NavMenu` components, see <xref:blazor/fundamentals/routing>.
+For the preceding `HelloWorld` component, you can add a `NavLink` component to the `NavMenu` component. For more information, including descriptions of the `NavLink` and `NavMenu` components, see <xref:blazor/fundamentals/routing>.
 
 ### Markup
 
@@ -368,7 +465,7 @@ Component members are used in rendering logic using C# expressions that start wi
 * `headingFontStyle` for the CSS property value `font-style` of the heading element.
 * `headingText` for the content of the heading element.
 
-`Pages/Markup.razor`:
+`Markup.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -411,7 +508,7 @@ Components can include other components by declaring them using HTML syntax. The
 
 Consider the following `Heading` component, which can be used by other components to display a heading.
 
-`Shared/Heading.razor`:
+`Heading.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -439,7 +536,7 @@ Consider the following `Heading` component, which can be used by other component
 
 The following markup in the `HeadingExample` component renders the preceding `Heading` component at the location where the `<Heading />` tag appears.
 
-`Pages/HeadingExample.razor`:
+`HeadingExample.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -499,7 +596,7 @@ The `Heading` component example shown in this section doesn't have an [`@page`][
 
 :::moniker-end
 
-`Shared/ParameterChild.razor`:
+`ParameterChild.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -533,7 +630,7 @@ The `Title` and `Body` component parameters of the `ParameterChild` component ar
 * The first `ParameterChild` component is rendered without supplying parameter arguments.
 * The second `ParameterChild` component receives values for `Title` and `Body` from the `ParameterParent` component, which uses an [explicit C# expression](xref:mvc/views/razor#explicit-razor-expressions) to set the values of the `PanelBody`'s properties.
 
-`Pages/ParameterParent.razor`:
+`ParameterParent.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -601,7 +698,7 @@ Throughout the documentation, code examples:
 * Use the `@` prefix with nonliterals, ***even when it's optional***. Example: `Count="@ct"`, where `ct` is a number-typed variable. `Count="ct"` is a valid stylistic approach, but the documentation and examples don't adopt the convention.
 * Always avoid `@` for literals, outside of Razor expressions. Example: `IsFixed="true"`.
 
-`Pages/ParameterParent2.razor`:
+`ParameterParent2.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -689,7 +786,7 @@ The code in the preceding example generates a *compiler error* when the app is b
 
 To support the assignment of a composed value, use a method, field, or property. The following example performs the concatenation of "`Set by `" and an object's property value in the C# method `GetTitle`:
 
-`Pages/ParameterParent3.razor`:
+`ParameterParent3.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -786,21 +883,21 @@ Don't use the [`init` accessor](/dotnet/csharp/language-reference/keywords/init)
 
 [`Tuples`](/dotnet/csharp/language-reference/builtin-types/value-tuples) ([API documentation](xref:System.Tuple)) are supported for component parameters and [`RenderFragment`](#child-content-render-fragments) types. The following component parameter example passes three values in a `Tuple`:
 
-`Shared/RenderTupleChild.razor`:
+`RenderTupleChild.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Shared/index/RenderTupleChild.razor":::
 
-`Pages/RenderTupleParent.razor`:
+`RenderTupleParent.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/index/RenderTupleParent.razor":::
     
 [Named tuples](/dotnet/csharp/language-reference/builtin-types/value-tuples#tuple-field-names) are supported, as seen in the following example:
 
-`Shared/RenderNamedTupleChild.razor`:
+`RenderNamedTupleChild.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Shared/index/RenderNamedTupleChild.razor":::
 
-`Pages/RenderNamedTupleParent.razor`:
+`RenderNamedTupleParent.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_Server/Pages/index/RenderNamedTupleParent.razor":::
 
@@ -824,7 +921,7 @@ Optional route parameters aren't supported, so two [`@page`][9] directives are a
 
 :::moniker-end
 
-`Pages/RouteParameter.razor`:
+`RouteParameter.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -858,7 +955,7 @@ Components can set the content of another component. The assigning component pro
 
 In the following example, the `RenderFragmentChild` component has a `ChildContent` component parameter that represents a segment of the UI to render as a <xref:Microsoft.AspNetCore.Components.RenderFragment>. The position of `ChildContent` in the component's Razor markup is where the content is rendered in the final HTML output.
 
-`Shared/RenderFragmentChild.razor`:
+`RenderFragmentChild.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -891,7 +988,7 @@ In the following example, the `RenderFragmentChild` component has a `ChildConten
 
 The following `RenderFragmentParent` component provides content for rendering the `RenderFragmentChild` by placing the content inside the child component's opening and closing tags.
 
-`Pages/RenderFragmentParent.razor`:
+`RenderFragmentParent.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -989,7 +1086,7 @@ When the component is rendered, the field is populated with the component instan
 
 Consider the following `ReferenceChild` component that logs a message when its `ChildMethod` is called.
 
-`Shared/ReferenceChild.razor`:
+`ReferenceChild.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -1023,7 +1120,7 @@ To use a reference variable with an event handler, use a lambda expression or as
 
 The following lambda approach uses the preceding `ReferenceChild` component.
 
-`Pages/ReferenceParent1.razor`:
+`ReferenceParent1.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -1051,7 +1148,7 @@ The following lambda approach uses the preceding `ReferenceChild` component.
 
 The following delegate approach uses the preceding `ReferenceChild` component.
 
-`Pages/ReferenceParent2.razor`:
+`ReferenceParent2.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -1097,7 +1194,7 @@ HTML element attribute properties are conditionally set based on the .NET value.
 
 In the following example, `IsCompleted` determines if the `<input>` element's `checked` property is set.
 
-`Pages/ConditionalAttribute.razor`:
+`ConditionalAttribute.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -1137,7 +1234,7 @@ Strings are normally rendered using DOM text nodes, which means that any markup 
 
 The following example shows using the <xref:Microsoft.AspNetCore.Components.MarkupString> type to add a block of static HTML content to the rendered output of a component.
 
-`Pages/MarkupStringExample.razor`:
+`MarkupStringExample.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -1173,7 +1270,7 @@ Render fragments can be defined using Razor template syntax to define a UI snipp
 
 The following example illustrates how to specify <xref:Microsoft.AspNetCore.Components.RenderFragment> and <xref:Microsoft.AspNetCore.Components.RenderFragment%601> values and render templates directly in a component. Render fragments can also be passed as arguments to [templated components](xref:blazor/components/templated-components).
 
-`Pages/RazorTemplate.razor`:
+`RazorTemplate.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -1348,23 +1445,44 @@ Whitespace isn't preserved from the preceding markup:
 
 A *root Razor component* is the first component loaded of any component hierarchy created by the app.
 
-In an app created from the Blazor Server project template, the `App` component (`App.razor`) is created as the default root component in `Pages/_Host.cshtml` using the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper):
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+In an app created from the Blazor Web App project template, the `App` component (`App.razor`) is specified as the default root component by the type parameter declared for the call to [`MapRazorComponents<TRootComponent>`](xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A) in the server-side `Program` file. The following example shows the use of the `App` component as the root component, which is the default for an app created from the Blazor project template:
+
+```csharp
+app.MapRazorComponents<App>();
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+In an app created from the Blazor Server project template, the `App` component (`App.razor`) is specified as the default root component in `Pages/_Host.cshtml` using the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper):
 
 ```cshtml
 <component type="typeof(App)" render-mode="ServerPrerendered" />
 ```
 
-In an app created from the Blazor WebAssembly project template, the `App` component (`App.razor`) is created as the default root component in `Program.cs`:
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
+
+In an app created from the Blazor WebAssembly project template, the `App` component (`App.razor`) is specified as the default root component in the `Program` file:
 
 ```csharp
 builder.RootComponents.Add<App>("#app");
 ```
 
-In the preceding code, the CSS selector, `#app`, indicates that the `App` component is created for the `<div>` in `wwwroot/index.html` with an `id` of `app`:
+In the preceding code, the CSS selector, `#app`, indicates that the `App` component is specified for the `<div>` in `wwwroot/index.html` with an `id` of `app`:
 
 ```html
 <div id="app">...</app>
 ```
+
+<!-- UPDATE 8.0 Need to check on this: Is this still valid in a 
+     BW app, and is the render-mode still set in this way? -->
 
 MVC and Razor Pages apps can also use the [Component Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper) to register statically-rendered Blazor WebAssembly root components:
 

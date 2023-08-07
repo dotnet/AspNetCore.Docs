@@ -18,7 +18,7 @@ For the following example, the `setElementText1` function is placed inside the `
 
 The [`OnAfterRender{Async}` lifecycle event](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) isn't called during the prerendering process on the server. Override the `OnAfterRender{Async}` method to delay JS interop calls until after the component is rendered and interactive on the client after prerendering.
 
-`Pages/PrerenderedInterop1.razor`:
+`PrerenderedInterop1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop1.razor" highlight="2-3,10-17":::
 
@@ -54,7 +54,7 @@ Where <xref:Microsoft.JSInterop.JSRuntime.InvokeAsync%2A?displayProperty=nameWit
 
 [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) is called to rerender the component with the new state obtained from the JS interop call (for more information, see <xref:blazor/components/rendering>). The code doesn't create an infinite loop because `StateHasChanged` is only called when `data` is `null`.
 
-`Pages/PrerenderedInterop2.razor`:
+`PrerenderedInterop2.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/prerendering/PrerenderedInterop2.razor" highlight="3-4,18,23-29":::
 

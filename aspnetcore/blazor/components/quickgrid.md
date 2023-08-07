@@ -22,6 +22,10 @@ Add a ***prerelease*** package reference for the [`Microsoft.AspNetCore.Componen
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
+## Sample app
+
+For various `QuickGrid` demonstrations, see the [**QuickGrid for Blazor** sample app](https://aspnet.github.io/quickgridsamples/). The demo site is hosted on GitHub Pages. The site loads fast thanks to static prerendering using the community-maintained [`BlazorWasmPrerendering.Build` GitHub project](https://github.com/jsakamoto/BlazorWasmPreRendering.Build).
+
 ## `QuickGrid` implementation
 
 To implement a `QuickGrid` component:
@@ -46,7 +50,7 @@ To implement a `QuickGrid` component:
 
 For example, add the following component to render a grid.
 
-`Pages/QuickGridExample.razor`:
+`QuickGridExample.razor`:
 
 ```razor
 @page "/quickgrid-example"
@@ -86,7 +90,7 @@ To use Entity Framework (EF) Core as the data source:
 
   [!INCLUDE[](~/includes/package-reference.md)]
 
-* Call `AddQuickGridEntityFrameworkAdapter` on the service collection in `Program.cs` to register an EF-aware implementation of `IAsyncQueryExecutor`:
+* Call `AddQuickGridEntityFrameworkAdapter` on the service collection in the `Program` file to register an EF-aware implementation of `IAsyncQueryExecutor`:
 
   ```csharp
   builder.Services.AddQuickGridEntityFrameworkAdapter();
@@ -109,7 +113,7 @@ Add a ***prerelease*** package reference for the [`Microsoft.AspNetCore.Componen
 
 Add the following component to render a grid.
 
-`Pages/QuickGridExample.razor`:
+`QuickGridExample.razor`:
 
 ```razor
 @page "/quickgrid-example"
@@ -141,12 +145,3 @@ Add the following component to render a grid.
 Access the component in a browser at the relative path `/quickgrid-example`.
 
 There aren't current plans to extend `QuickGrid` with features that full-blown commercial grids tend to offer, for example, hierarchical rows, drag-to-reorder columns, or Excel-like range selections. If you require advanced features that you don't wish to develop on your own, continue using third-party grids.
-
-:::moniker range="< aspnetcore-8.0"
-
-For various `QuickGrid` demonstrations, see the [**QuickGrid for Blazor** app](https://aspnet.github.io/quickgridsamples/). The demo site is built using Blazor WebAssembly and is hosted on GitHub Pages. The site loads fast thanks to static prerendering using the community-maintained [`BlazorWasmPrerendering.Build` GitHub project](https://github.com/jsakamoto/BlazorWasmPreRendering.Build).
-
-> [!WARNING]
-> The `QuickGrid` component is in preview for ASP.NET Core 7.x. You're welcome to use it in production if it meets your needs, but it isn't officially supported until ASP.NET Core 8.0 or later.
-
-:::moniker-end
