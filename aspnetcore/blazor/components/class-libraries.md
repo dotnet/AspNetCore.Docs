@@ -188,7 +188,7 @@ In the following examples, `ComponentLibrary` is an RCL containing the `Componen
 
 In the app that consumes the RCL, reference the `Component1` component using its namespace, as the following example shows.
 
-`Pages/ConsumeComponent1.razor`:
+`ConsumeComponent1.razor`:
 
 ```razor
 @page "/consume-component-1"
@@ -200,7 +200,7 @@ In the app that consumes the RCL, reference the `Component1` component using its
 
 Alternatively, add a [`@using`](xref:mvc/views/razor#using) directive and use the component without its namespace. The following `@using` directive can also appear in any `_Imports.razor` file in or above the current folder.
 
-`Pages/ConsumeComponent2.razor`:
+`ConsumeComponent2.razor`:
 
 ```razor
 @page "/consume-component-2"
@@ -276,7 +276,7 @@ Add a component to the RCL that uses the `extra-style` class.
 
 Add a page to the app that uses the `ExtraStyles` component from the RCL.
 
-`Pages/ConsumeComponent3.razor`:
+`ConsumeComponent3.razor`:
 
 ```razor
 @page "/consume-component-3"
@@ -382,7 +382,7 @@ Add the following `Jeep` component to the app that consumes the `ComponentLibrar
 * The Jeep YJ&reg; image from the `ComponentLibrary` RCL's `wwwroot` folder.
 * The `JeepYJ` component from the RCL.
 
-`Pages/Jeep.razor`:
+`Jeep.razor`:
 
 ```razor
 @page "/jeep"

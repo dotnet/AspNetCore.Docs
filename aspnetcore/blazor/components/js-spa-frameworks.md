@@ -20,7 +20,7 @@ Razor components can be dynamically-rendered from JavaScript (JS) for existing J
 
 The example in this section renders the following Razor component into a page via JS.
 
-`Shared/Quote.razor`:
+`Quote.razor`:
 
 ```razor
 <div class="m-5 p-5">
@@ -34,11 +34,7 @@ The example in this section renders the following Razor component into a page vi
 }
 ```
 
-In the `Program` file, add the namespace for the location of the component. The following example assumes that the `Quote` component is in the app's `Shared` folder, and the app's namespace is `BlazorSample`:
-
-```csharp
-using BlazorSample.Shared;
-```
+In the `Program` file, add the [namespace for the location of the component](xref:blazor/components/index#component-name-class-name-and-namespace).
 
 Call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript%2A> on the app's root component collection to register the a Razor component as a root component for JS rendering.
 
@@ -68,7 +64,7 @@ The following example demonstrates the dynamic registration of the preceding `Qu
 
 :::moniker range="< aspnetcore-8.0"
 
-* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in `Program.cs`:
+* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in the `Program` file:
 
   ```csharp
   builder.Services.AddServerSideBlazor(options =>
@@ -162,7 +158,7 @@ Quote &copy;1988-1999 Satellite of Love LLC: [*Mystery Science Theater 3000*](ht
 
 The preceding example dynamically renders the root component when the `showQuote()` JS function is called. To render a root component into a container element when Blazor starts, use a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers) to render the component, as the following example demonstrates.
 
-The following example builds on the preceding example, using the `Quote` component, the root component registration in `Program.cs`, and the initialization of `jsComponentInitializers.js`. The `showQuote()` function (and the `script.js` file) aren't used.
+The following example builds on the preceding example, using the `Quote` component, the root component registration in the `Program` file, and the initialization of `jsComponentInitializers.js`. The `showQuote()` function (and the `script.js` file) aren't used.
 
 In HTML, place the target container element, `quoteContainer2` for this example:
 
@@ -247,7 +243,7 @@ builder.Services.AddRazorComponents()
 ```
 
 > [!NOTE]
-> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) at the top of the server-side `Program` file.
+> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Components.Pages;`) at the top of the server-side `Program` file.
 
 :::moniker-end
 
@@ -255,7 +251,7 @@ builder.Services.AddRazorComponents()
 
 ### Blazor Server registration
 
-To register a root component as a custom element in a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in `Program.cs`. The following example registers the `Counter` component with the custom HTML element `my-counter`:
+To register a root component as a custom element in a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A> in the `Program` file. The following example registers the `Counter` component with the custom HTML element `my-counter`:
 
 ```csharp
 builder.Services.AddServerSideBlazor(options =>
@@ -265,7 +261,7 @@ builder.Services.AddServerSideBlazor(options =>
 ```
 
 > [!NOTE]
-> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) at the top of the `Program.cs` file.
+> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Components.Pages;`) at the top of the `Program` file.
 
 :::moniker-end
 
@@ -280,7 +276,7 @@ builder.RootComponents.RegisterCustomElement<Counter>("my-counter");
 ```
 
 > [!NOTE]
-> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) at the top of the client-side `Program` file.
+> The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Components.Pages;`) at the top of the client-side `Program` file.
 
 ### Use the registered custom element
 
@@ -300,7 +296,7 @@ Pass parameters to your Blazor component either as HTML attributes or as JavaScr
 
 The following `Counter` component uses an `IncrementAmount` parameter to set the increment amount of the **:::no-loc text="Click me":::** button.
 
-`Pages/Counter.razor`:
+`Counter.razor`:
 
 ```razor
 @page "/counter"
@@ -355,7 +351,7 @@ Supported parameter types:
 
 Register a root component as a custom element:
 
-* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsBuilderExtensions.AddServerComponents%2A> in `Program.cs`:
+* In a Blazor Server app, modify the call to <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsBuilderExtensions.AddServerComponents%2A> in the `Program` file:
 
   ```csharp
   builder.Services.AddServerSideBlazor(options =>
@@ -365,16 +361,16 @@ Register a root component as a custom element:
   ```
   
   > [!NOTE]
-  > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
+  > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Components.Pages;`) in the the `Program` file.
 
-* In a Blazor WebAssembly app, call `RegisterAsCustomElement` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in `Program.cs`:
+* In a Blazor WebAssembly app, call `RegisterAsCustomElement` on <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHostBuilder.RootComponents> in the `Program` file:
 
   ```csharp
   builder.RootComponents.RegisterAsCustomElement<Counter>("my-counter");
   ```
   
   > [!NOTE]
-  > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Pages;`) in the `Program.cs` file.
+  > The preceding code example requires a namespace for the app's components (for example, `using BlazorSample.Components.Pages;`) in the the `Program` file.
 
 Include the following `<script>` tag in the app's HTML ***before*** the Blazor script tag:
 

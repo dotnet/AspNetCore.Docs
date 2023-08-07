@@ -50,7 +50,7 @@ To implement a `QuickGrid` component:
 
 For example, add the following component to render a grid.
 
-`Pages/QuickGridExample.razor`:
+`QuickGridExample.razor`:
 
 ```razor
 @page "/quickgrid-example"
@@ -113,7 +113,7 @@ Add a ***prerelease*** package reference for the [`Microsoft.AspNetCore.Componen
 
 Add the following component to render a grid.
 
-`Pages/QuickGridExample.razor`:
+`QuickGridExample.razor`:
 
 ```razor
 @page "/quickgrid-example"

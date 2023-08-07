@@ -24,7 +24,7 @@ A Blazor layout is a Razor component that shares markup with components that ref
 
 To create a layout component:
 
-* Create a Razor component defined by a Razor template or C# code. Layout components based on a Razor template use the `.razor` file extension just like ordinary Razor components. Because layout components are shared across an app's components, they're usually placed in the app's `Shared` folder. However, layouts can be placed in any location accessible to the components that use it. For example, a layout can be placed in the same folder as the components that use it.
+* Create a Razor component defined by a Razor template or C# code. Layout components based on a Razor template use the `.razor` file extension just like ordinary Razor components. Because layout components are shared across an app's components, they're usually placed in the app's shared or layout folder. However, layouts can be placed in any location accessible to the components that use it. For example, a layout can be placed in the same folder as the components that use it.
 * Inherit the component from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>. The <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> defines a <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property (<xref:Microsoft.AspNetCore.Components.RenderFragment> type) for the rendered content inside the layout.
 * Use the Razor syntax `@Body` to specify the location in the layout markup where the content is rendered.
 
@@ -33,7 +33,7 @@ To create a layout component:
 
 The following `DoctorWhoLayout` component shows the Razor template of a layout component. The layout inherits <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> and sets the `@Body` between the navigation bar (`<nav>...</nav>`) and the footer (`<footer>...</footer>`).
 
-`Shared/DoctorWhoLayout.razor`:
+`DoctorWhoLayout.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -63,7 +63,7 @@ The following `DoctorWhoLayout` component shows the Razor template of a layout c
 
 In an app created from a [Blazor project template](xref:blazor/project-structure), the `MainLayout` component is the app's [default layout](#apply-a-default-layout-to-an-app). Blazor's layout adopts the [:::no-loc text="Flexbox"::: layout model (MDN documentation)](https://developer.mozilla.org/docs/Glossary/Flexbox) ([W3C specification](https://www.w3.org/TR/css-flexbox-1/)).
 
-`Shared/MainLayout.razor`:
+`MainLayout.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -91,7 +91,7 @@ In an app created from a [Blazor project template](xref:blazor/project-structure
 
 :::moniker range=">= aspnetcore-8.0"
 
-[Blazor's CSS isolation feature](xref:blazor/components/css-isolation) applies isolated CSS styles to the `MainLayout` component. By convention, the styles are provided by the accompanying stylesheet of the same name, `Shared/MainLayout.razor.css`. The ASP.NET Core framework implementation of the stylesheet is available for inspection in the ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository):
+[Blazor's CSS isolation feature](xref:blazor/components/css-isolation) applies isolated CSS styles to the `MainLayout` component. By convention, the styles are provided by the accompanying stylesheet of the same name, `MainLayout.razor.css`. The ASP.NET Core framework implementation of the stylesheet is available for inspection in the ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository):
 
 * [Blazor Web App `MainLayout.razor.css`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/Components-CSharp/Shared/MainLayout.razor.css)
 * [Blazor WebAssembly `MainLayout.razor.css`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Shared/MainLayout.razor.css)
@@ -102,7 +102,7 @@ In an app created from a [Blazor project template](xref:blazor/project-structure
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
 
-[Blazor's CSS isolation feature](xref:blazor/components/css-isolation) applies isolated CSS styles to the `MainLayout` component. By convention, the styles are provided by the accompanying stylesheet of the same name, `Shared/MainLayout.razor.css`. The ASP.NET Core framework implementation of the stylesheet is available for inspection in the ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository):
+[Blazor's CSS isolation feature](xref:blazor/components/css-isolation) applies isolated CSS styles to the `MainLayout` component. By convention, the styles are provided by the accompanying stylesheet of the same name, `MainLayout.razor.css`. The ASP.NET Core framework implementation of the stylesheet is available for inspection in the ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository):
 
 * [Blazor Server `MainLayout.razor.css`](https://github.com/dotnet/aspnetcore/blob/release/7.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorServerWeb-CSharp/Shared/MainLayout.razor.css)
 * [Blazor WebAssembly `MainLayout.razor.css`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Shared/MainLayout.razor.css)
@@ -119,7 +119,7 @@ Use the [`@layout`](xref:mvc/views/razor#layout) Razor directive to apply a layo
 
 The content of the following `Episodes` component is inserted into the `DoctorWhoLayout` at the position of `@Body`.
 
-`Pages/Episodes.razor`:
+`Episodes.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -275,7 +275,7 @@ The following example shows how to use nested layouts. The `Episodes` component 
 
 The following `DoctorWhoLayout` component is a modified version of the example shown earlier in this article. The header and footer elements are removed, and the layout references another layout, `ProductionsLayout`. The `Episodes` component is rendered where `@Body` appears in the `DoctorWhoLayout`.
 
-`Shared/DoctorWhoLayout.razor`:
+`DoctorWhoLayout.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -303,7 +303,7 @@ The following `DoctorWhoLayout` component is a modified version of the example s
 
 The `ProductionsLayout` component contains the top-level layout elements, where the header (`<header>...</header>`) and footer (`<footer>...</footer>`) elements now reside. The `DoctorWhoLayout` with the `Episodes` component is rendered where `@Body` appears.
 
-`Shared/ProductionsLayout.razor`:
+`ProductionsLayout.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 

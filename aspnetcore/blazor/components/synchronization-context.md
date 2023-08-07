@@ -102,7 +102,7 @@ Register the services:
 
 Use the `NotifierService` to update a component.
 
-`Pages/ReceiveNotifications.razor`:
+`ReceiveNotifications.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 

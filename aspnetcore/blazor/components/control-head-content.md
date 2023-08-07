@@ -22,7 +22,7 @@ Specify `<head>` element content with the <xref:Microsoft.AspNetCore.Components.
 
 The following example sets the page's title and description using Razor.
 
-`Pages/ControlHeadContent.razor`:
+`ControlHeadContent.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 

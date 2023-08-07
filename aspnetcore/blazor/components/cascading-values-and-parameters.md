@@ -58,7 +58,7 @@ The following `ThemeInfo` C# class is placed in a folder named `UIThemeClasses` 
 
 The following [layout component](xref:blazor/components/layouts) specifies theme information (`ThemeInfo`) as a cascading value for all components that make up the layout body of the <xref:Microsoft.AspNetCore.Components.LayoutComponentBase.Body> property. `ButtonClass` is assigned a value of [`btn-success`](https://getbootstrap.com/docs/5.0/components/buttons/), which is a Bootstrap button style. Any descendent component in the component hierarchy can use the `ButtonClass` property through the `ThemeInfo` cascading value.
 
-`Shared/MainLayout.razor`:
+`MainLayout.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -90,7 +90,7 @@ To make use of cascading values, descendent components declare cascading paramet
 
 The following component binds the `ThemeInfo` cascading value to a cascading parameter, optionally using the same name of `ThemeInfo`. The parameter is used to set the CSS class for the **`Increment Counter (Themed)`** button.
 
-`Pages/ThemedCounter.razor`:
+`ThemedCounter.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -120,7 +120,7 @@ The following component binds the `ThemeInfo` cascading value to a cascading par
 
 Similar to a regular component parameter, components accepting a cascading parameter are rerendered when the cascading value is changed. For instance, configuring a different theme instance causes the `ThemedCounter` component from the [`CascadingValue` component](#cascadingvalue-component) section to rerender:
 
-`Shared/MainLayout.razor`:
+`MainLayout.razor`:
 
 ```razor
 <main>
@@ -212,7 +212,7 @@ The following `TabSet` component maintains a set of tabs. The tab set's `Tab` co
 
 Child `Tab` components aren't explicitly passed as parameters to the `TabSet`. Instead, the child `Tab` components are part of the child content of the `TabSet`. However, the `TabSet` still needs a reference each `Tab` component so that it can render the headers and the active tab. To enable this coordination without requiring additional code, the `TabSet` component *can provide itself as a cascading value* that is then picked up by the descendent `Tab` components.
 
-`Shared/TabSet.razor`:
+`TabSet.razor`:
 
 ```razor
 @using BlazorSample.UIInterfaces
@@ -258,7 +258,7 @@ Child `Tab` components aren't explicitly passed as parameters to the `TabSet`. I
 
 Descendent `Tab` components capture the containing `TabSet` as a cascading parameter. The `Tab` components add themselves to the `TabSet` and coordinate to set the active tab.
 
-`Shared/Tab.razor`:
+`Tab.razor`:
 
 ```razor
 @using BlazorSample.UIInterfaces
@@ -297,7 +297,7 @@ Descendent `Tab` components capture the containing `TabSet` as a cascading param
 
 The following `ExampleTabSet` component uses the `TabSet` component, which contains three `Tab` components.
 
-`Pages/ExampleTabSet.razor`:
+`ExampleTabSet.razor`:
 
 ```razor
 @page "/example-tab-set"

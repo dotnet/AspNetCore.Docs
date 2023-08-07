@@ -23,6 +23,8 @@ cd ConsoleApp1
 
 In a command shell in the `ConsoleApp1` folder, add package references for <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName> and <xref:Microsoft.Extensions.Logging?displayProperty=fullName> to the console app:
 
+<!-- UPDATE 8.0 Remove prerelease switches -->
+
 ```dotnetcli
 dotnet add package Microsoft.AspNetCore.Components.Web --prerelease
 dotnet add package Microsoft.Extensions.Logging --prerelease
@@ -50,7 +52,7 @@ Add the following `RenderMessage` component to the project.
 }
 ```
 
-Update `Program.cs`:
+Update the `Program` file:
 
 * Set up dependency injection (<xref:Microsoft.Extensions.DependencyInjection.IServiceCollection>/<xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider%2A>) and logging (<xref:Microsoft.Extensions.DependencyInjection.LoggingServiceCollectionExtensions.AddLogging%2A>/<xref:Microsoft.Extensions.Logging.ILoggerFactory>).
 * Create an `HtmlRenderer` and render the `RenderMessage` component by calling `RenderComponentAsync`.

@@ -77,7 +77,7 @@ In the following example, <xref:Microsoft.AspNetCore.Components.ParameterView.Tr
 
 Although [route parameter matching is case insensitive](xref:blazor/fundamentals/routing#route-parameters), <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A> only matches case-sensitive parameter names in the route template. The following example requires the use of `/{Param?}` in the route template in order to get the value with <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A>, not `/{param?}`. If `/{param?}` is used in this scenario, <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A> returns `false` and `message` isn't set to either `message` string.
 
-`Pages/SetParamsAsync.razor`:
+`SetParamsAsync.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -111,7 +111,7 @@ If synchronous parent component initialization is used, the parent initializatio
 
 For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
 
-`Pages/OnInit.razor`:
+`OnInit.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -204,7 +204,7 @@ For the following example component, navigate to the component's page at a URL:
 
 :::moniker-end
 
-`Pages/OnParamsSet.razor`:
+`OnParamsSet.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -252,7 +252,7 @@ The `firstRender` parameter for <xref:Microsoft.AspNetCore.Components.ComponentB
 * Is set to `true` the first time that the component instance is rendered.
 * Can be used to ensure that initialization work is only performed once.
 
-`Pages/AfterRender.razor`:
+`AfterRender.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -456,7 +456,7 @@ The following component:
 
 If a single object requires disposal, a lambda can be used to dispose of the object when <xref:System.IDisposable.Dispose%2A> is called. The following example appears in the <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system> article and demonstrates the use of a lambda expression for the disposal of a <xref:System.Timers.Timer>.
 
-`Pages/CounterWithTimerDisposal1.razor`:
+`CounterWithTimerDisposal1.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -487,7 +487,7 @@ If a single object requires disposal, a lambda can be used to dispose of the obj
 
 If the object is created in a lifecycle method, such as [`OnInitialized`/`OnInitializedAsync`](#component-initialization-oninitializedasync), check for `null` before calling `Dispose`.
 
-`Pages/CounterWithTimerDisposal2.razor`:
+`CounterWithTimerDisposal2.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -568,6 +568,8 @@ These are unusual scenarios. For objects that are implemented correctly and beha
 ### Event handlers
 
 Always unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms-and-input-components) examples show how to unsubscribe an event handler in the `Dispose` method:
+
+<!-- UPDATE 8.0 There's a form here, potentially to receive 8.0 updates -->
 
 * Private field and lambda approach
 
@@ -703,7 +705,7 @@ In the following example:
 * `await Task.Delay(5000, cts.Token);` represents long-running asynchronous background work.
 * `BackgroundResourceMethod` represents a long-running background method that shouldn't start if the `Resource` is disposed before the method is called.
 
-`Pages/BackgroundWork.razor`:
+`BackgroundWork.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
