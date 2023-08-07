@@ -62,30 +62,30 @@ In the following example, a Razor component renders a component based on the use
 
 | User spaceflight carrier selection | Shared Razor component to render    |
 | ---------------------------------- | ----------------------------------- |
-| Rocket Lab&reg;                    | `Shared/RocketLab.razor`            |
-| SpaceX&reg;                        | `Shared/SpaceX.razor`               |
-| ULA&reg;                           | `Shared/UnitedLaunchAlliance.razor` |
-| Virgin Galactic&reg;               | `Shared/VirginGalactic.razor`       |
+| Rocket Lab&reg;                    | `RocketLab.razor`            |
+| SpaceX&reg;                        | `SpaceX.razor`               |
+| ULA&reg;                           | `UnitedLaunchAlliance.razor` |
+| Virgin Galactic&reg;               | `VirginGalactic.razor`       |
 
 :::moniker range=">= aspnetcore-7.0"
 
-`Shared/RocketLab.razor`:
+`RocketLab.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/dynamiccomponent/RocketLab.razor":::
 
-`Shared/SpaceX.razor`:
+`SpaceX.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/dynamiccomponent/SpaceX.razor":::
 
-`Shared/UnitedLaunchAlliance.razor`:
+`UnitedLaunchAlliance.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/dynamiccomponent/UnitedLaunchAlliance.razor":::
 
-`Shared/VirginGalactic.razor`:
+`VirginGalactic.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Shared/dynamiccomponent/VirginGalactic.razor":::
 
-`Pages/DynamicComponentExample1.razor`:
+`DynamicComponentExample1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_WebAssembly/Pages/dynamiccomponent/DynamicComponentExample1.razor":::
 
@@ -93,23 +93,23 @@ In the following example, a Razor component renders a component based on the use
 
 :::moniker range="< aspnetcore-7.0"
 
-`Shared/RocketLab.razor`:
+`RocketLab.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/dynamiccomponent/RocketLab.razor":::
 
-`Shared/SpaceX.razor`:
+`SpaceX.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/dynamiccomponent/SpaceX.razor":::
 
-`Shared/UnitedLaunchAlliance.razor`:
+`UnitedLaunchAlliance.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/dynamiccomponent/UnitedLaunchAlliance.razor":::
 
-`Shared/VirginGalactic.razor`:
+`VirginGalactic.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Shared/dynamiccomponent/VirginGalactic.razor":::
 
-`Pages/DynamicComponentExample1.razor`:
+`DynamicComponentExample1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/6.0/BlazorSample_WebAssembly/Pages/dynamiccomponent/DynamicComponentExample1.razor":::
 
@@ -140,9 +140,9 @@ The following example configures a component metadata object (`ComponentMetadata
 
 :::moniker-end
 
-The following `RocketLabWithWindowSeat` component (`Shared/RocketLabWithWindowSeat.razor`) has been updated from the preceding example to include a component parameter named `WindowSeat` to specify if the passenger prefers a window seat on their flight:
+The following `RocketLabWithWindowSeat` component (`RocketLabWithWindowSeat.razor`) has been updated from the preceding example to include a component parameter named `WindowSeat` to specify if the passenger prefers a window seat on their flight:
 
-`Shared/RocketLabWithWindowSeat.razor`:
+`RocketLabWithWindowSeat.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -160,14 +160,14 @@ In the following example:
 
 * Only the `RocketLabWithWindowSeat` component's parameter for a window seat (`WindowSeat`) receives the value of the **`Window Seat`** checkbox.
 * The namespace of the app is `BlazorSample`. ***Change the namespace to match your app's namespace.***
-* The dynamically-rendered components are shared components in the app's `Shared` folder:
-  * Shown in this article section: `RocketLabWithWindowSeat` (`Shared/RocketLabWithWindowSeat.razor`)
+* The dynamically-rendered components are shared components:
+  * Shown in this article section: `RocketLabWithWindowSeat` (`RocketLabWithWindowSeat.razor`)
   * Components shown in the [Example](#example) section earlier in this article:
-    * `SpaceX` (`Shared/SpaceX.razor`)
-    * `UnitedLaunchAlliance` (`Shared/UnitedLaunchAlliance.razor`)
-    * `VirginGalactic` (`Shared/VirginGalactic.razor`)
+    * `SpaceX` (`SpaceX.razor`)
+    * `UnitedLaunchAlliance` (`UnitedLaunchAlliance.razor`)
+    * `VirginGalactic` (`VirginGalactic.razor`)
 
-`Pages/DynamicComponentExample2.razor`:
+`DynamicComponentExample2.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -201,7 +201,7 @@ Event callbacks (<xref:Microsoft.AspNetCore.Components.EventCallback>) can be pa
 
 Implement an event callback parameter (<xref:Microsoft.AspNetCore.Components.EventCallback>) within each dynamically-rendered component.
 
-`Shared/RocketLab2.razor`:
+`RocketLab2.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -215,7 +215,7 @@ Implement an event callback parameter (<xref:Microsoft.AspNetCore.Components.Eve
 
 :::moniker-end
 
-`Shared/SpaceX2.razor`:
+`SpaceX2.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -229,7 +229,7 @@ Implement an event callback parameter (<xref:Microsoft.AspNetCore.Components.Eve
 
 :::moniker-end
 
-`Shared/UnitedLaunchAlliance2.razor`:
+`UnitedLaunchAlliance2.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -243,7 +243,7 @@ Implement an event callback parameter (<xref:Microsoft.AspNetCore.Components.Eve
 
 :::moniker-end
 
-`Shared/VirginGalactic2.razor`:
+`VirginGalactic2.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -267,7 +267,7 @@ The parent component passes the callback method, `ShowDTMessage` in the paramete
 > [!IMPORTANT]
 > For the following `DynamicComponentExample3` component, modify the code in the `OnDropdownChange` method. Change the namespace name of "`BlazorSample`" in the `Type.GetType()` argument to match your app's namespace.
 
-`Pages/DynamicComponentExample3.razor`:
+`DynamicComponentExample3.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 

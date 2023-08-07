@@ -24,7 +24,7 @@ A templated component is defined by specifying one or more component parameters 
 
 Often, templated components are generically typed, as the following `TableTemplate` component demonstrates. The generic type `<T>` in this example is used to render `IReadOnlyList<T>` values, which in this case is a series of pet rows in a component that displays a table of pets.
 
-`Shared/TableTemplate.razor`:
+`TableTemplate.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -54,7 +54,7 @@ When using a templated component, the template parameters can be specified using
 
 Specify the `Context` attribute on the component element when you want to specify the content parameter name for implicit child content (without any wrapping child element). In the following example, the `Context` attribute appears on the `TableTemplate` element and applies to all <xref:Microsoft.AspNetCore.Components.RenderFragment%601> template parameters.
 
-`Pages/Pets1.razor`:
+`Pets1.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -82,7 +82,7 @@ Specify the `Context` attribute on the component element when you want to specif
 
 Alternatively, you can change the parameter name using the `Context` attribute on the <xref:Microsoft.AspNetCore.Components.RenderFragment%601> child element. In the following example, the `Context` is set on `RowTemplate` rather than `TableTemplate`:
 
-`Pages/Pets2.razor`:
+`Pets2.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -110,7 +110,7 @@ Alternatively, you can change the parameter name using the `Context` attribute o
 
 Component arguments of type <xref:Microsoft.AspNetCore.Components.RenderFragment%601> have an implicit parameter named `context`, which can be used. In the following example, `Context` isn't set. `@context.{PROPERTY}` supplies pet values to the template, where `{PROPERTY}` is a `Pet` property:
 
-`Pages/Pets3.razor`:
+`Pets3.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -138,7 +138,7 @@ Component arguments of type <xref:Microsoft.AspNetCore.Components.RenderFragment
 
 When using generic-typed components, the type parameter is inferred if possible. However, you can explicitly specify the type with an attribute that has a name matching the type parameter, which is `TItem` in the preceding example:
 
-`Pages/Pets4.razor`:
+`Pets4.razor`:
 
 :::moniker range=">= aspnetcore-7.0"
 

@@ -18,44 +18,56 @@ This article describes the files and folders that make up a Blazor app generated
 
 ## Blazor Web App
 
-Blazor Web App project template: `blazor`
+<!-- UPDATE 8.0 Assumes that there will be a 'blazor-empty' template at release -->
+
+Blazor Web App project templates: `blazor`, `blazor-empty`
 
 Project structure:
 
-* `Models` folder: Contains the weather data `WeatherForecast` class (`WeatherForecast.cs`) for the app's `ShowData` component.
+<!-- UPDATE 8.0 Check on Error page setup per
+     https://github.com/dotnet/aspnetcore/issues/49853 -->
 
-* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following:
-  * `Counter` component (`Counter.razor`): Implements the *Counter* page.
-  * `ShowData` component (`ShowData.razor`): Implements the *Weather forecast* page.
-  * `Index` component (`Index.razor`): Implements the *Home* page.
+* Server project: `BlazorWeb-CSharp`
 
-* `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
+  * `Components` folder: 
 
-* `Shared` folder: Contains the following shared components and stylesheets:
-  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
-  * `MainLayout.razor.css`: Stylesheet for the app's main layout.
-  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component indicates to the user which component is currently displayed.
-  * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
+    * `Layout` folder: Contains the following shared components and stylesheets:
+      * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
+      * `MainLayout.razor.css`: Stylesheet for the app's main layout.
+      * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/routing#navlink-and-navmenu-components) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component indicates to the user which component is currently displayed.
+      * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
 
-* `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets.
+    * `Pages` folder: Contains the app's routable server-side Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following:
+      * `Counter` component (`Counter.razor`): Implements the *Counter* page.
+      * `Home` component (`Home.razor`): Implements the *Home* page.
+      * `Weather` component (`Weather.razor`): Implements the *Weather forecast* page.
+      * `Error` component (`Error.razor`): Implements the *Error* page.
 
-* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
+    * `App` component (`App.razor`): The root component of the app with HTML `<head>` markup, the `Routes` component, and the Blazor `<script>` tag.
 
-* `App.razor`: The root component of the app that sets up routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. For client-side interactive components, the <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
+    * `Routes` component (`Routes.razor`): Sets up routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. For client-side interactive components, the <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
 
-* `appsettings.json` and environmental app settings files: Provide [configuration settings](xref:blazor/fundamentals/configuration) for the app.
+    * `_Imports.razor`: Includes common Razor directives to include in the server-side rendered (SSR) app components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
-* `Program.cs`/`Program.Server.cs`/`Program.Browser.cs`: The app's entry point that sets up the ASP.NET Core web application or WebAssembly [host](xref:fundamentals/host/generic-host#host-definition) and contains the app's startup logic, including service registrations, configuration, logging, and request processing pipeline.
+  * `Properties` folder: Holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
-  If a Blazor Web App app is only created for Blazor Server hosting, a single file named `Program.cs` is created by the Blazor project template. If a Blazor Web App is created for both Blazor Server and Blazor WebAssembly hosting, two files are created:
+  * `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the server-side project containing the app's public static assets.
+
+  * `Program.cs` file: The server-side project's entry point that sets up the ASP.NET Core web application [host](xref:fundamentals/host/generic-host#host-definition) and contains the app's startup logic, including service registrations, configuration, logging, and request processing pipeline.
+    * Services for Razor components are added by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>. <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsBuilderExtensions.AddServerComponents%2A> adds services to support rendering interactive server components.
+    * <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> discovers available components and specifies the root component for the app, which by default is the `App` component (`App.razor`). <xref:Microsoft.AspNetCore.Builder.RazorComponentEndpointConventionBuilder.AddServerRenderMode%2A> configures the Server render mode for the app.
+
+  * App settings files (`appsettings.Development.json`, `appsettings.json`): Provide [configuration settings](xref:blazor/fundamentals/configuration) for the server-side project.
+
+* Client project: `BlazorWeb-CSharp.Client`
+
+  * `Pages` folder: Contains the app's routable client-side Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes `Counter` component (`Counter.razor`) that implements the *Counter* page.
   
-  * `Program.Server.cs` is created for server-side execution by the server-side .NET runtime.
-  * `Program.Browser.cs` is created for client-side execution by the client-side .NET runtime based on WebAssembly.
+  * The [Web Root](xref:fundamentals/index#web-root) folder for the client-side project containing the app's public static assets, including app settings files (`appsettings.Development.json`, `appsettings.json`) that provide [configuration settings](xref:blazor/fundamentals/configuration) for the client-side project.
 
-  A `Program` file:
+  * `Program.cs` file: The client-side project's entry point that sets up the WebAssembly [host](xref:fundamentals/host/generic-host#host-definition) and contains the project's startup logic, including service registrations, configuration, logging, and request processing pipeline.
 
-  * Specifies the app's [dependency injection (DI)](xref:fundamentals/dependency-injection) services. Services for Razor components are added by calling `AddRazorComponents`. For Blazor Server hosting, `AddServerComponents` adds services to support rendering interactive server components, and `AddWebAssemblyComponents` adds services to support rendering interactive WebAssembly components.
-  * Configures the app's request handling pipeline. For Blazor Server hosting, `MapRazorComponents` discovers available components and specifies the root component for the app, which by default is the `App` component (`App.razor`).
+  * `_Imports.razor`: Includes common Razor directives to include in the client-side rendered (CSR) app components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
 
 Additional files and folders may appear in an app produced from a Blazor Web App project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 
@@ -301,10 +313,6 @@ Project structure:
 
 Additional files and folders may appear in an app produced from a Blazor WebAssembly project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
 A *hosted Blazor WebAssembly solution* includes the following ASP.NET Core projects:
 
 * ":::no-loc text="Client":::": The Blazor WebAssembly app.
@@ -472,7 +480,7 @@ The project structure of the client-side app in a hosted Blazor Webassembly solu
 
 :::moniker range=">= aspnetcore-8.0"
 
-In a Blazor Web App, `<head>` content is located in the `App.razor` file.
+In a Blazor Web App, `<head>` content is located in the `Components/App.razor` file.
 
 :::moniker-end
 

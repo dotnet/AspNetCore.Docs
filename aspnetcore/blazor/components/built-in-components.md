@@ -16,6 +16,8 @@ The following built-in Razor components are provided by the Blazor framework:
 
 :::moniker range=">= aspnetcore-8.0"
 
+<!-- UPDATE 8.0 Confirm/update list -->
+
 * [`App`](xref:blazor/project-structure)
 * [`Authentication`](xref:blazor/security/webassembly/index#authentication-component)
 * [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)

@@ -45,8 +45,7 @@ For more information on the performance implications of the framework's conventi
 
 ## Streaming rendering
 
-<!-- UPDATE AT 8.0 Cross-link 'server-side rendering (SSR)'
-     & will we be retaining the suppress-error attribute NOTE? -->
+<!-- UPDATE 8.0 Cross-link server-side rendering (SSR) -->
 
 Use *streaming rendering* with server-side rendering (SSR) to stream content updates on the response stream and improve the user experience for components that perform long-running asynchronous tasks to fully render.
 
@@ -54,12 +53,12 @@ For example, consider a component that makes a long-running database query or we
 
 To stream content updates when using SSR, apply the `[StreamRendering(true)]` attribute to the component. Streaming rendering must be explicitly enabled because streamed updates may cause content on the page to shift. Components without the attribute automatically adopt streaming rendering if the parent component uses the feature. Pass `false` to the attribute in a child component to disable the feature at that point and further down the component subtree. The attribute is functional when applied to components supplied by a [Razor class library](xref:blazor/components/class-libraries).
 
-The following example is based on the `ShowData` component in an app created from the [Blazor Web App project template](xref:blazor/project-structure#blazor-web-app). The call to `Task.Delay(1000)` simulates retrieving weather data asynchronously. The component initially renders placeholder content ("`Loading...`") without waiting for the asynchronous delay to complete. When the asynchronous delay completes and the weather data content is generated, the content is streamed to the response and patched into the weather forecast table.
+The following example is based on the `Weather` component in an app created from the [Blazor Web App project template](xref:blazor/project-structure#blazor-web-app). The call to `Task.Delay(1000)` simulates retrieving weather data asynchronously. The component initially renders placeholder content ("`Loading...`") without waiting for the asynchronous delay to complete. When the asynchronous delay completes and the weather data content is generated, the content is streamed to the response and patched into the weather forecast table.
 
-`Pages/ShowData.razor`:
+`Weather.razor`:
 
 ```razor
-@page "/showdata"
+@page "/weather"
 @attribute [StreamRendering(true)]
 
 ...
@@ -93,7 +92,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(1000);
+        await Task.Delay(500);
 
         ...
 
@@ -110,7 +109,7 @@ else
 
 Even if <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> is overridden, the component is always initially rendered.
 
-`Pages/ControlRender.razor`:
+`ControlRender.razor`:
 
 ::: moniker range=">= aspnetcore-7.0"
 
@@ -162,7 +161,7 @@ Consider the following `CounterState1` component, which updates the count four t
 * Automatic renders occur after the first and last increments of `currentCount`.
 * Manual renders are triggered by calls to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> when the framework doesn't automatically trigger rerenders at intermediate processing points where `currentCount` is incremented.
 
-`Pages/CounterState1.razor`:
+`CounterState1.razor`:
 
 ::: moniker range=">= aspnetcore-7.0"
 
@@ -201,7 +200,7 @@ Because the callback is invoked outside of Blazor's synchronization context, the
 
 > :::no-loc text="System.InvalidOperationException: 'The current thread is not associated with the Dispatcher. Use InvokeAsync() to switch execution to the Dispatcher when triggering rendering or component state.'":::
 
-`Pages/CounterState2.razor`:
+`CounterState2.razor`:
 
 ::: moniker range=">= aspnetcore-7.0"
 
@@ -239,7 +238,7 @@ One way to deal with this scenario is to provide a *state management* class, oft
 
 For approaches to manage state, see the following resources:
 
-* [In-memory state container service (Blazor Server)](xref:blazor/state-management?pivots=server#in-memory-state-container-service-server) ([Blazor WebAssembly equivalent](xref:blazor/state-management?pivots=webassembly#in-memory-state-container-service-server)) section of the *State management* article.
+* [Server-side in-memory state container service](xref:blazor/state-management?pivots=server#in-memory-state-container-service-server) ([client-side equivalent](xref:blazor/state-management?pivots=webassembly#in-memory-state-container-service-wasm)) section of the *State management* article.
 * [Pass data across a component hierarchy](xref:blazor/components/cascading-values-and-parameters#pass-data-across-a-component-hierarchy) using cascading values and parameters.
 * [Bind across more than two components](xref:blazor/components/data-binding#bind-across-more-than-two-components) using data bindings.
 

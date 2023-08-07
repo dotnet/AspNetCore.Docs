@@ -14,6 +14,8 @@ uid: blazor/fundamentals/handle-errors
 
 This article describes how Blazor manages unhandled exceptions and how to develop apps that detect and handle errors.
 
+[!INCLUDE[](~/blazor/includes/location-client-and-server.md)]
+
 ## Detailed errors during development
 
 When a Blazor app isn't functioning properly during development, receiving detailed error information from the app assists in troubleshooting and fixing the issue. When an error occurs, Blazor apps display a light yellow bar at the bottom of the screen:
@@ -25,31 +27,9 @@ The UI for this error handling experience is part of the [Blazor project templat
 
 :::moniker range=">= aspnetcore-8.0"
 
-In a Blazor Web App, customize the experience in the `App.razor` file. Because the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) (for example, `<environment include="Production">...</environment>`) isn't supported in Razor components, the following example injects <xref:Microsoft.Extensions.Hosting.IHostEnvironment> to configure error messages for different environments.
+In a Blazor Web App, customize the experience in the `MainLayout` component. Because the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) (for example, `<environment include="Production">...</environment>`) isn't supported in Razor components, the following example injects <xref:Microsoft.Extensions.Hosting.IHostEnvironment> to configure error messages for different environments.
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
-
-In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
-
-In a Blazor Server app, customize the experience in the `Pages/_Layout.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-8.0"
-
-At the top of the `App` component file (`App.razor`):
+At the top of `Components/Layout/MainLayout.razor`:
 
 ```razor
 @inject IHostEnvironment HostEnvironment
@@ -74,6 +54,24 @@ Create or modify the Blazor error UI markup:
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
+
+In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
+
+In a Blazor Server app, customize the experience in the `Pages/_Layout.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
+
+:::moniker-end
+
+:::moniker range="< aspnetcore-6.0"
+
+In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
+
+:::moniker-end
+
 :::moniker range="< aspnetcore-8.0"
 
 Create or modify the Blazor error UI markup:
@@ -93,7 +91,7 @@ Create or modify the Blazor error UI markup:
 
 :::moniker-end
 
-In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html` file:
+In a standalone Blazor WebAssembly app, customize the experience in the `wwwroot/index.html` file:
 
 ```html
 <div id="blazor-error-ui">
@@ -105,13 +103,13 @@ In a Blazor WebAssembly app, customize the experience in the `wwwroot/index.html
 
 :::moniker range=">= aspnetcore-8.0"
 
-The `blazor-error-ui` element is normally hidden due to the presence of the `display: none` style of the `blazor-error-ui` CSS class in the app's stylesheet (`wwwroot/css/app.css`). When an error occurs, the framework applies `display: block` to the element.
+The `blazor-error-ui` element is normally hidden due to the presence of the `display: none` style of the `blazor-error-ui` CSS class in the app's auto-generated stylesheet. When an error occurs, the framework applies `display: block` to the element.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-The `blazor-error-ui` element is normally hidden due to the presence of the `display: none` style of the `blazor-error-ui` CSS class in the site's stylesheet (`wwwroot/css/site.css` for Blazor Server or `wwwroot/css/app.css` for Blazor WebAssembly). When an error occurs, the framework applies `display: block` to the element.
+The `blazor-error-ui` element is normally hidden due to the presence of the `display: none` style of the `blazor-error-ui` CSS class in the site's stylesheet in the `wwwroot/css` folder. When an error occurs, the framework applies `display: block` to the element.
 
 :::moniker-end
 
@@ -181,11 +179,11 @@ To treat failures like lifecycle method exceptions, explicitly dispatch exceptio
 }
 ```
 
-For a working demonstration of `DispatchExceptionAsync`, implement the timer notification example in [Invoke component methods externally to update state](xref:blazor/components/sync-context#invoke-component-methods-externally-to-update-state). In a Blazor app, add the following files from the timer notification example and register the services in `Program.cs` as the section explains:
+For a working demonstration of `DispatchExceptionAsync`, implement the timer notification example in [Invoke component methods externally to update state](xref:blazor/components/sync-context#invoke-component-methods-externally-to-update-state). In a Blazor app, add the following files from the timer notification example and register the services in the `Program` file as the section explains:
 
 * `TimerService.cs`
 * `NotifierService.cs`
-* `Pages/ReceiveNotifications.razor`
+* `ReceiveNotifications.razor`
 
 The example uses a timer outside of a Razor component's lifecycle, where an unhandled exception normally isn't processed by Blazor's error handling mechanisms, such as an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries).
 
@@ -200,7 +198,7 @@ if (elapsedCount == 2)
 
 Place an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries) in the app's main layout. Replace the `<article>...</article>` markup with the following markup.
 
-`Shared/MainLayout.razor`:
+`Components/Layout/MainLayout.razor`:
 
 ```razor
 <article class="content px-4">
@@ -219,7 +217,7 @@ Place an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundarie
 
 If you run the app at this point, the exception is thrown when the elapsed count reaches a value of two. However, the UI doesn't change. The error boundary doesn't show the error content.
 
-Change the `OnNotify` method of the `ReceiveNotification` component (`Pages/ReceiveNotification.razor`):
+Change the `OnNotify` method of the `ReceiveNotification` component (`ReceiveNotification.razor`):
 
 * Wrap the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> in a `try-catch` block.
 * Pass any <xref:System.Exception> to `DispatchExceptionAsync` and await the result.
@@ -242,7 +240,7 @@ public async Task OnNotify(string key, int value)
 }
 ```
 
-When the timer service executes and reaches a count of two, the exception is dispatched to the Razor component, which in turn triggers the error boundary to display the error content of the `<ErrorBoundary>` in the `MainLayout` component (`Shared/MainLayout.razor`):
+When the timer service executes and reaches a count of two, the exception is dispatched to the Razor component, which in turn triggers the error boundary to display the error content of the `<ErrorBoundary>` in the `MainLayout` component:
 
 > :::no-loc text="Oh, dear! Oh, my! - George Takei":::
 
@@ -264,7 +262,7 @@ When the timer service executes and reaches a count of two, the exception is dis
 
 Client-side errors don't include the call stack and don't provide detail on the cause of the error, but server logs do contain such information. For development purposes, sensitive circuit error information can be made available to the client by enabling detailed errors.
 
-Set <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType> to `true`. For more information and an example, see <xref:blazor/fundamentals/signalr#circuit-handler-options-for-blazor-server-apps>.
+Set <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType> to `true`. For more information and an example, see <xref:blazor/fundamentals/signalr#server-side-circuit-handler-options>.
 
 An alternative to setting <xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DetailedErrors?displayProperty=nameWithType> is to set the `DetailedErrors` configuration key to `true` in the app's Development environment settings file (`appsettings.Development.json`).  Additionally, set [SignalR server-side logging](xref:signalr/diagnostics#server-side-logging) (`Microsoft.AspNetCore.SignalR`) to [Debug](xref:Microsoft.Extensions.Logging.LogLevel) or [Trace](xref:Microsoft.Extensions.Logging.LogLevel) for detailed SignalR logging.
 
@@ -345,23 +343,21 @@ For global exception handling, see the following sections:
 
 To define an error boundary, use the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> component to wrap existing content. For example, an error boundary can be added around the body content of the app's main layout.
 
-`Shared/MainLayout.razor`:
+In `MainLayout.razor`:
 
 ```razor
-<main>
-    <article class="content px-4">
-        <ErrorBoundary>
-            @Body
-        </ErrorBoundary>
-    </article>
-</main>
+<article class="content px-4">
+    <ErrorBoundary>
+        @Body
+    </ErrorBoundary>
+</article>
 ```
 
 The app continues to function normally, but the error boundary handles unhandled exceptions.
 
 Consider the following example, where the `Counter` component throws an exception if the count increments past five.
 
-In `Pages/Counter.razor`:
+In `Counter.razor`:
 
 ```csharp
 private void IncrementCount()
@@ -377,12 +373,13 @@ private void IncrementCount()
 
 If the unhandled exception is thrown for a `currentCount` over five:
 
+* The error is logged normally (`System.InvalidOperationException: Current count is too big!`).
 * The exception is handled by the error boundary.
-* Error UI is rendered (`An error has occurred.`).
+* Error UI is rendered by the error boundary with the following default error message: `An error has occurred.`
 
 By default, the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> component renders an empty `<div>` element with the `blazor-error-boundary` CSS class for its error content. The colors, text, and icon for the default UI are defined using CSS in the app's stylesheet in the `wwwroot` folder, so you're free to customize the error UI.
 
-You can also change the default error content by setting the `ErrorContent` property:
+Change the default error content by setting the <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.ErrorContent> property:
 
 ```razor
 <ErrorBoundary>
@@ -390,12 +387,17 @@ You can also change the default error content by setting the `ErrorContent` prop
         @Body
     </ChildContent>
     <ErrorContent>
-        <p class="errorUI">Nothing to see here right now. Sorry!</p>
+        <p class="errorUI">😈 A rotten gremlin got us. Sorry!</p>
     </ErrorContent>
 </ErrorBoundary>
 ```
 
-Because the error boundary is defined in the layout in the preceding examples, the error UI is seen regardless of which page the user navigated to. We recommend narrowly scoping error boundaries in most scenarios. If you do broadly scope an error boundary, you can reset it to a non-error state on subsequent page navigation events by calling the error boundary's <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> method:
+Because the error boundary is defined in the layout in the preceding examples, the error UI is seen regardless of which page the user navigates to after the error occurs. We recommend narrowly scoping error boundaries in most scenarios. If you broadly scope an error boundary, you can reset it to a non-error state on subsequent page navigation events by calling the error boundary's <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> method.
+
+In `MainLayout.razor`:
+
+* Add a field for the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> to [capture a reference](xref:blazor/components/index#capture-references-to-components) to it with the [`@ref`](xref:mvc/views/razor#ref) attribute directive.
+* In the [`OnParameterSet` lifecycle method](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), trigger a recovery on the error boundary with <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A>.
 
 ```razor
 ...
@@ -416,13 +418,32 @@ Because the error boundary is defined in the layout in the preceding examples, t
 }
 ```
 
+To avoid the infinite loop where recovering merely rerenders a component that throws the error again, don't call <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> from rendering logic. Only call <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover%2A> when:
+
+* The user performs a UI gesture, such as selecting a button to indicate that they want to retry a procedure or when the user navigates to a new component.
+* Additional logic also clears the exception. When the component is rerendered, the error doesn't reoccur.
+
 ## Alternative global exception handling
 
 An alternative to using [Error boundaries](#error-boundaries) (<xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary>) is to pass a custom error component as a [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) to child components. An advantage of using a component over using an [injected service](xref:blazor/fundamentals/dependency-injection) or a custom logger implementation is that a cascaded component can render content and apply CSS styles when an error occurs.
 
 The following `Error` component example merely logs errors, but methods of the component can process errors in any way required by the app, including through the use of multiple error processing methods. 
 
-`Shared/Error.razor`:
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+`Components/Error.razor`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
+`Error.razor`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ```razor
 @using Microsoft.Extensions.Logging
@@ -447,9 +468,30 @@ The following `Error` component example merely logs errors, but methods of the c
 > [!NOTE]
 > For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-8.0"
+
+<!-- UPDATE 8.0 Confirm that we want to do this in the App component
+     and not in the Routes component wrapping the Router -->
+
+In the `App` component, wrap the `Routes` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+
+In `App.razor`:
+
+```razor
+<Error>
+    <Routes />
+</Error>
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
+
 In the `App` component, wrap the `Router` component with the `Error` component. This permits the `Error` component to cascade down to any component of the app where the `Error` component is received as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
 
-`App.razor`:
+In `App.razor`:
 
 ```razor
 <Error>
@@ -458,6 +500,8 @@ In the `App` component, wrap the `Router` component with the `Error` component. 
     </Router>
 </Error>
 ```
+
+:::moniker-end
 
 To process errors in a component:
 
@@ -515,7 +559,7 @@ An app can use an error processing component as a cascading value to process err
 
 The following `Error` component passes itself as a [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) to child components. The following example merely logs the error, but methods of the component can process errors in any way required by the app, including through the use of multiple error processing methods. An advantage of using a component over using an [injected service](xref:blazor/fundamentals/dependency-injection) or a custom logger implementation is that a cascaded component can render content and apply CSS styles when an error occurs.
 
-`Shared/Error.razor`:
+`Error.razor`:
 
 ```razor
 @using Microsoft.Extensions.Logging
@@ -589,10 +633,10 @@ Because the approaches in this section handle errors with a [`try-catch`](/dotne
 
 :::moniker range=">= aspnetcore-6.0"
 
-If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Extensions.Logging.ILogger> instances configured in the service container. By default, Blazor apps log to console output with the Console Logging Provider. Consider logging to a location on the server (or backend web API for Blazor WebAssembly apps) with a provider that manages log size and log rotation. Alternatively, the app can use an Application Performance Management (APM) service, such as [Azure Application Insights (Azure Monitor)](/azure/azure-monitor/app/app-insights-overview).
+If an unhandled exception occurs, the exception is logged to <xref:Microsoft.Extensions.Logging.ILogger> instances configured in the service container. By default, Blazor apps log to console output with the Console Logging Provider. Consider logging to a location on the server (or backend web API for client-side apps) with a provider that manages log size and log rotation. Alternatively, the app can use an Application Performance Management (APM) service, such as [Azure Application Insights (Azure Monitor)](/azure/azure-monitor/app/app-insights-overview).
 
 > [!NOTE]
-> Native [Application Insights](/azure/azure-monitor/app/app-insights-overview) features to support Blazor WebAssembly apps and native Blazor framework support for [Google Analytics](https://analytics.google.com/analytics/web/) might become available in future releases of these technologies. For more information, see [Support App Insights in Blazor WASM Client Side (microsoft/ApplicationInsights-dotnet #2143)](https://github.com/microsoft/ApplicationInsights-dotnet/issues/2143) and [Web analytics and diagnostics (includes links to community implementations) (dotnet/aspnetcore #5461)](https://github.com/dotnet/aspnetcore/issues/5461). In the meantime, a client-side Blazor WebAssembly app can use the [Application Insights JavaScript SDK](/azure/azure-monitor/app/javascript) with [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to log errors directly to Application Insights from a client-side app.
+> Native [Application Insights](/azure/azure-monitor/app/app-insights-overview) features to support client-side apps and native Blazor framework support for [Google Analytics](https://analytics.google.com/analytics/web/) might become available in future releases of these technologies. For more information, see [Support App Insights in Blazor WASM Client Side (microsoft/ApplicationInsights-dotnet #2143)](https://github.com/microsoft/ApplicationInsights-dotnet/issues/2143) and [Web analytics and diagnostics (includes links to community implementations) (dotnet/aspnetcore #5461)](https://github.com/dotnet/aspnetcore/issues/5461). In the meantime, a client-side app can use the [Application Insights JavaScript SDK](/azure/azure-monitor/app/javascript) with [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to log errors directly to Application Insights from a client-side app.
 
 During development in a Blazor app operating over a circuit, the app usually sends the full details of exceptions to the browser's console to aid in debugging. In production, detailed errors aren't sent to clients, but an exception's full details are logged on the server.
 
@@ -604,7 +648,7 @@ For more information, see the following articles:
 * <xref:fundamentals/error-handling>&Dagger;
 * <xref:web-api/index>
 
-&Dagger;Applies to server-side Blazor apps and other server-side ASP.NET Core apps that are web API backend apps for Blazor. Blazor WebAssembly apps can trap and send error information on the client to a web API, which logs the error information to a persistent logging provider.
+&Dagger;Applies to server-side Blazor apps and other server-side ASP.NET Core apps that are web API backend apps for Blazor. Client-side apps can trap and send error information on the client to a web API, which logs the error information to a persistent logging provider.
 
 :::moniker-end
 
@@ -620,7 +664,7 @@ For more information, see the following articles:
 * <xref:fundamentals/error-handling>&Dagger;
 * <xref:web-api/index>
 
-&dagger;Native [Application Insights](/azure/azure-monitor/app/app-insights-overview) features to support Blazor WebAssembly apps and native Blazor framework support for [Google Analytics](https://analytics.google.com/analytics/web/) might become available in future releases of these technologies. For more information, see [Support App Insights in Blazor WASM Client Side (microsoft/ApplicationInsights-dotnet #2143)](https://github.com/microsoft/ApplicationInsights-dotnet/issues/2143) and [Web analytics and diagnostics (includes links to community implementations) (dotnet/aspnetcore #5461)](https://github.com/dotnet/aspnetcore/issues/5461). In the meantime, a client-side Blazor WebAssembly app can use the [Application Insights JavaScript SDK](/azure/azure-monitor/app/javascript) with [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to log errors directly to Application Insights from a client-side app.
+&dagger;Native [Application Insights](/azure/azure-monitor/app/app-insights-overview) features to support client-side apps and native Blazor framework support for [Google Analytics](https://analytics.google.com/analytics/web/) might become available in future releases of these technologies. For more information, see [Support App Insights in Blazor WASM Client Side (microsoft/ApplicationInsights-dotnet #2143)](https://github.com/microsoft/ApplicationInsights-dotnet/issues/2143) and [Web analytics and diagnostics (includes links to community implementations) (dotnet/aspnetcore #5461)](https://github.com/dotnet/aspnetcore/issues/5461). In the meantime, a client-side app can use the [Application Insights JavaScript SDK](/azure/azure-monitor/app/javascript) with [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to log errors directly to Application Insights from a client-side app.
 
 &Dagger;Applies to server-side ASP.NET Core apps that are web API backend apps for Blazor apps. Client-side apps trap and send error information to a web API, which logs the error information to a persistent logging provider.
 
@@ -674,6 +718,8 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
 
+<!-- UPDATE 8.0 -->
+
 :::moniker range=">= aspnetcore-7.0"
 
 :::code language="razor" source="~/../blazor-samples/7.0/BlazorSample_Server/Pages/handle-errors/ProductDetails.razor" highlight="11,27-39":::
@@ -702,7 +748,7 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
 
 The declarative markup in a Razor component file (`.razor`) is compiled into a C# method called <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A>. When a component renders, <xref:Microsoft.AspNetCore.Components.ComponentBase.BuildRenderTree%2A> executes and builds up a data structure describing the elements, text, and child components of the rendered component.
 
-Rendering logic can throw an exception. An example of this scenario occurs when `@someObject.PropertyName` is evaluated but `@someObject` is `null`. For Blazor Server apps, an unhandled exception thrown by rendering logic is fatal to the app's circuit.
+Rendering logic can throw an exception. An example of this scenario occurs when `@someObject.PropertyName` is evaluated but `@someObject` is `null`. For Blazor apps operating over a circuit, an unhandled exception thrown by rendering logic is fatal to the app's circuit.
 
 To prevent a <xref:System.NullReferenceException> in rendering logic, check for a `null` object before accessing its members. In the following example, `person.Address` properties aren't accessed if `person.Address` is `null`:
 
@@ -766,7 +812,7 @@ The following conditions apply to error handling with <xref:Microsoft.JSInterop.
 
 Similarly, JS code may initiate calls to .NET methods indicated by the [`[JSInvokable]` attribute](xref:blazor/js-interop/call-dotnet-from-javascript). If these .NET methods throw an unhandled exception:
 
-* In a Blazor Server app, the exception is ***not*** treated as fatal to the app's circuit.
+* In a Blazor app operating over a circuit, the exception is ***not*** treated as fatal to the app's circuit.
 * The JS-side `Promise` is rejected.
 
 You have the option of using error handling code on either the .NET side or the JS side of the method call.
@@ -780,7 +826,10 @@ For more information, see the following articles:
 
 ### Prerendering
 
-Razor components can be prerendered using the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) so that their rendered HTML markup is returned as part of the user's initial HTTP request.
+<!-- UPDATE 8.0 This section makes some claims about the TH that probably
+     require updates >=8.0. -->
+
+Razor components are prerendered by default so that their rendered HTML markup is returned as part of the user's initial HTTP request.
 
 In a Blazor app operating over a circuit, prerendering works by:
 
@@ -795,7 +844,7 @@ For prerendered client-side components, prerendering works by:
 
 If a component throws an unhandled exception during prerendering, for example, during a lifecycle method or in rendering logic:
 
-* In Blazor app operating over a circuit, the exception is fatal to the circuit. For prerendered client-side components, the exception prevents rendering the component.
+* In a Blazor app operating over a circuit, the exception is fatal to the circuit. For prerendered client-side components, the exception prevents rendering the component.
 * The exception is thrown up the call stack from the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>.
 
 Under normal circumstances when prerendering fails, continuing to build and render the component doesn't make sense because a working component can't be rendered.
