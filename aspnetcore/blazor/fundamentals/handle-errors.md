@@ -503,6 +503,8 @@ In `App.razor`:
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-6.0"
+
 To process errors in a component:
 
 * Designate the `Error` component as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) in the [`@code`](xref:mvc/views/razor#code) block. In an example `Counter` component in an app based on a Blazor project template, add the following `Error` property:
@@ -717,8 +719,6 @@ In the following example where <xref:Microsoft.AspNetCore.Components.ComponentBa
 * When the `catch` block is executed:
   * `loadFailed` is set to `true`, which is used to display an error message to the user.
   * The error is logged.
-
-<!-- UPDATE 8.0 -->
 
 :::moniker range=">= aspnetcore-7.0"
 

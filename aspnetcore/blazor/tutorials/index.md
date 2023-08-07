@@ -22,7 +22,7 @@ For an overview of Blazor, see <xref:blazor/index>.
 
 * <xref:blazor/tutorials/build-a-blazor-app>
 
-<!-- UPDATE 8.0 -->
+<!-- UPDATE 8.0 For cross-link to SignalR-Blazor tutorial -->
 
 * <xref:blazor/tutorials/signalr-blazor-preview>
 
