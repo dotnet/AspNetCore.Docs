@@ -781,7 +781,7 @@ Create resources for each locale. In the following example, resources are create
 * Spanish (`es`): `¡Hola, Mundo!`
 
 > [!NOTE]
-> The following resource file can be added in Visual Studio by right-clicking the components' folder and selecting **Add** > **New Item** > **Resources File**. Name the file `CultureExample2.resx`. When the editor appears, provide data for a new entry. Set the **Name** to `Greeting` and **Value** to `Hello, World!`. Save the file.
+> The following resource file can be added in Visual Studio by right-clicking and selecting **Add** > **New Item** > **Resources File**. Name the file `CultureExample2.resx`. When the editor appears, provide data for a new entry. Set the **Name** to `Greeting` and **Value** to `Hello, World!`. Save the file.
 
 `CultureExample2.resx`:
 
@@ -853,7 +853,7 @@ Create resources for each locale. In the following example, resources are create
 ```
 
 > [!NOTE]
-> The following resource file can be added in Visual Studio by right-clicking the components' folder and selecting **Add** > **New Item** > **Resources File**. Name the file `CultureExample2.es.resx`. When the editor appears, provide data for a new entry. Set the **Name** to `Greeting` and **Value** to `¡Hola, Mundo!`. Save the file.
+> The following resource file can be added in Visual Studio by right-clicking and selecting **Add** > **New Item** > **Resources File**. Name the file `CultureExample2.es.resx`. When the editor appears, provide data for a new entry. Set the **Name** to `Greeting` and **Value** to `¡Hola, Mundo!`. Save the file.
 
 `CultureExample2.es.resx`:
 
