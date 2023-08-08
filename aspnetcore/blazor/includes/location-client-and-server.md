@@ -3,9 +3,9 @@ Throughout this article, the terms **client**/**client-side** and **server**/**s
 :::moniker range=">= aspnetcore-8.0"
 
 * **Client**/**client-side**
-  * The client project of a Blazor Web App. Blazor script start configuration is found in the `App` component (`Components/App.razor`) of the server project. The `Program` file is `Program.cs` of the client project.
+  * Client-side rendering (CSR) and interactivity of a Blazor Web App. The `Program` file is `Program.cs` of the client project (`BlazorWeb-CSharp.Client`). Routable components with an `@page` directive are placed in the `Pages` folder. Blazor script start configuration is found in the `App` component (`Components/App.razor`) of the server project (`BlazorWeb-CSharp`).
   * A Blazor WebAssembly app. Blazor script start configuration is found in the `wwwroot/index.html` file. The `Program` file is `Program.cs`.
-* **Server**/**server-side**: The server project of a Blazor Web App. Blazor script start configuration is found in the `App` component (`Components/App.razor`) of the server project. The `Program` file is `Program.cs` of the server project.
+* **Server**/**server-side**: Server-side rendering (SSR) and interactivity of a Blazor Web App. Blazor script start configuration is found in the `App` component (`Components/App.razor`) of the server project (`BlazorWeb-CSharp`). The `Program` file is `Program.cs` of the server project.
 
 :::moniker-end
 
