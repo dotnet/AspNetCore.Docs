@@ -508,11 +508,13 @@ Multiple role tests are supported:
 
   ```razor
   <AuthorizeView Roles="Admin">
-      <AuthorizeView Roles="Developer">
+      <AuthorizeView Roles="Developer" Context="innerContext">
           ...
       </AuthorizeView>
   </AuthorizeView>
   ```
+
+  For more information on the `Context` for the inner <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>, see <xref:blazor/security/index#role-based-and-policy-based-authorization>.
 
 * Require that the user be in **either** the `Admin` **or** `Developer` role with the `[Authorize]` attribute:
 
