@@ -25,7 +25,9 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
 * [!INCLUDE[](~/includes/8.0-SDK.md)]
 * On Linux, see [Prerequisites for native AOT deployment](/dotnet/core/deploying/native-aot/?tabs=net8plus#prerequisites-for-native-aot-deployment).
 * [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **Desktop development with C++** workload installed.
-
+<!-- No plans to change VS / C++ 
+see https://teams.microsoft.com/l/message/19:eec19feafb3d4257b3d11587a99070b6@thread.v2/1690943798745?context=%7B%22contextType%22%3A%22chat%22%7D
+-->
   ![Visual Studio workload selection dialog showing "Desktop development with C++" selected.](~/fundamentals/aot/_static/cpponly.png)
 
 # [Visual Studio](#tab/visual-studio)
