@@ -31,7 +31,7 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
   ![Visual Studio workload selection dialog showing "Desktop development with C++" selected.](~/fundamentals/aot/_static/cpponly.png)
 
 > [!NOTE]
-> Visual Studio 2022 Preview is required because native AOT requires [link.exe](/cpp/build/reference/linker-options) and the Visual C++ static runtime libraries. There currently are no plans to support native AOT ***without*** Visual Studio.
+> Visual Studio 2022 Preview is required because native AOT requires [link.exe](/cpp/build/reference/linker-options) and the Visual C++ static runtime libraries. There are no plans to support native AOT ***without*** Visual Studio.
 
 # [Visual Studio](#tab/visual-studio)
 
