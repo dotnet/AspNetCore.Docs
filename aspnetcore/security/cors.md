@@ -17,9 +17,8 @@ uid: security/cors
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://twitter.com/serpent5)
 
-This article shows how **C**ross-**O**rigin **R**esource **S**haring ([CORS]([url](https://developer.mozilla.org/docs/Glossary/CORS)) in enabled in an ASP.NET Core app.
+This article shows how **C**ross-**O**rigin **R**esource **S**haring ([CORS]([url]This article shows how **C**ross-**O**rigin **R**esource **S**haring ([CORS]([url](https://developer.mozilla.org/docs/Glossary/CORS))) is enabled in an ASP.NET Core app.
 
-This article shows how Cross-Origin Resource Sharing ([CORS]([url](https://developer.mozilla.org/docs/Glossary/CORS)) in enabled in an ASP.NET Core app.
 
 Browser security prevents a web page from making requests to a different domain than the one that served the web page. This restriction is called the *same-origin policy*. The same-origin policy prevents a malicious site from reading sensitive data from another site. Sometimes, you might want to allow other sites to make cross-origin requests to your app. For more information, see the [Mozilla CORS article](https://developer.mozilla.org/docs/Web/HTTP/CORS).
 
