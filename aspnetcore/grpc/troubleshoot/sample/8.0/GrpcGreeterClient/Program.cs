@@ -165,11 +165,10 @@ public class SubdirectoryHandler : DelegatingHandler
 #endif
 
 #if Http3Handler
-#region Http3Handler
 using Grpc.Net.Client;
 using GrpcGreeterClient;
 using System.Net;
-
+#region CallHttp3Handler
 var handler = new Http3Handler(new HttpClientHandler());
 
 var channel = GrpcChannel.ForAddress("https://localhost:7106", new GrpcChannelOptions { HttpHandler = handler });
