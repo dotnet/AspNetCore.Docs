@@ -16,7 +16,9 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
 > [!NOTE]
 > * The native AOT feature is currently in preview.
 > * In .NET 8, not all ASP.NET Core features are compatible with native AOT.
-> * Tabs are provided for the [.NET Core CLI](/dotnet/core/tools/) and [Visual Studio](https://visualstudio.microsoft.com/vs/preview/) instructions. However, in this early preview installation of Visual Studio is a prerequisite even if the CLI tab is selected. And the CLI must be used to publish even if the Visual Studio tab is selected.
+> * Tabs are provided for the [.NET Core CLI](/dotnet/core/tools/) and [Visual Studio](https://visualstudio.microsoft.com/vs/preview/) instructions:
+>   * Visual Studio is a prerequisite even if the CLI tab is selected.
+>   * The CLI must be used to publish even if the Visual Studio tab is selected.
 
 ## Prerequisites
 
@@ -27,6 +29,9 @@ ASP.NET Core 8.0 introduces support for [.NET native ahead-of-time (AOT)](/dotne
 * [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) with the **Desktop development with C++** workload installed.
 
   ![Visual Studio workload selection dialog showing "Desktop development with C++" selected.](~/fundamentals/aot/_static/cpponly.png)
+
+> [!NOTE]
+> Visual Studio 2022 Preview is required because native AOT requires [link.exe](/cpp/build/reference/linker-options) and the Visual C++ static runtime libraries. There currently are no plans to support native AOT ***without*** Visual Studio.
 
 # [Visual Studio](#tab/visual-studio)
 
