@@ -1,4 +1,4 @@
-:::moniker range="= aspnetcore-7.0"
+:::moniker range=">= aspnetcore-8.0"
 
 `WebApplication` automatically adds the following middleware depending on certain conditions:
 * [`UseDeveloperExceptionPage`](/dotnet/api/microsoft.aspnetcore.diagnostics.developerexceptionpagemiddleware) is added first when the [`HostingEnvironment`](xref:fundamentals/environments) is `"Development"`.
