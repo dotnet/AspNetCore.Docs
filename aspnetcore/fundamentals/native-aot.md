@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core support for native AOT
 monikerRange: '>= aspnetcore-8.0'
 ms.author: midenn
 ms.custom: mvc, engagement-fy23
-ms.date: 8/5/2023
+ms.date: 08/10/2023
 uid: fundamentals/native-aot
 ---
 # ASP.NET Core support for native AOT
@@ -88,18 +88,9 @@ In .NET 8, native AOT is supported by the following ASP.NET Core app types:
 * gRPC - For more information, see [gRPC and native AOT](xref:grpc/native-aot).
 * Worker services - For more information, see [AOT in Worker Service templates](xref:fundamentals/host/hosted-services?view=aspnetcore-8.0&preserve-view=true#native-aot).
 
-## The API template
+## The Web API (native AOT) template
 
-The **ASP.NET Core API** template has an option to enable AOT:
-
-* Visual Studio 2022 has an **Enable native AOT publish option**.
-* The CLI uses the `dotnet new api` command and the `--aot` option, as in the following example:
-
-  ```.NET CLI
-  dotnet new api --aot -o MyFirstAotWebApi
-  ```
-
-This template is intended to produce a project more directly focused on cloud-native, API-first scenarios. The template differs from the **Web API** project template in the following ways:
+The **ASP.NET Core Web API (native AOT)** template (short name `webapiaot`) creates a project with AOT enabled. The template differs from the **Web API** project template in the following ways:
 
 * Uses minimal APIs only, as MVC isn't yet compatible with native AOT.
 * Uses the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder> API to ensure only the essential features are enabled by default, minimizing the app's deployed size.
@@ -107,9 +98,6 @@ This template is intended to produce a project more directly focused on cloud-na
 * Doesn't include a launch profile for running under IIS or IIS Express.
 * Creates an [`.http` file](xref:test/http-files) configured with sample HTTP requests that can be sent to the app's endpoints.
 * Includes a sample `Todo` API instead of the weather forecast sample.
-
-In addition to these differences, the **ASP.NET Core API** template has the following differences when the **Enable native AOT publish** option is selected:
-
 * Adds `PublishAot` to the project file, as shown [earlier in this article](#native-aot-publishing).
 * Enables the [JSON serializer source generators](/dotnet/standard/serialization/system-text-json/source-generation). The source generator is used to generate serialization code at build time, which is required for native AOT compilation.
 
