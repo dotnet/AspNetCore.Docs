@@ -133,10 +133,10 @@ Console.WriteLine("Greeting: " + reply.Message);
 Console.WriteLine("Press any key to exit...");
 Console.ReadKey();
 
-// <snippet_SubdirectoryHandler>
 /// <summary>
 /// A delegating handler that adds a subdirectory to the URI of gRPC requests.
 /// </summary>
+/// // <snippet_SubdirectoryHandler>
 public class SubdirectoryHandler : DelegatingHandler
 {
     private readonly string _subdirectory;
@@ -163,11 +163,11 @@ public class SubdirectoryHandler : DelegatingHandler
 #endif
 
 #if Http3Handler
-// <snippet_CallHttp3Handler>
 using Grpc.Net.Client;
 using GrpcGreeterClient;
 using System.Net;
 
+// <snippet_CallHttp3Handler>
 var handler = new Http3Handler(new HttpClientHandler());
 
 var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions { HttpHandler = handler });
@@ -175,15 +175,15 @@ var client = new Greeter.GreeterClient(channel);
 
 var reply = await client.SayHelloAsync(
                   new HelloRequest { Name = "GreeterClient" });
-// </snippet_Http3Handler>
+// </snippet_CallHttp3Handler>
 Console.WriteLine("Greeting: " + reply.Message);
 Console.WriteLine("Press any key to exit...");
 Console.ReadKey();
 
-// <snippet_Http3Handler>
 /// <summary>
 /// A delegating handler that changes the request HTTP version to HTTP/3.
 /// </summary>
+/// // <snippet_Http3Handler>
 public class Http3Handler : DelegatingHandler
 {
     public Http3Handler() { }
