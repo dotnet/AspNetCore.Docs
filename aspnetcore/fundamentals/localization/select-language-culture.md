@@ -142,6 +142,19 @@ In the preceding example, the order of `QueryStringRequestCultureProvider` and `
 
 As previously mentioned, add a custom provider via <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptionsExtensions.AddInitialRequestCultureProvider%2A> which sets the order to `0`, so this provider takes the precedence over the others.
 
+## Use user override culture
+
+Before `ASP.NET Core 8.0`, there is no way in the current  localization APIs which allows the user doesn't rely on the system culture settings. So, changing the culture date/time format reflect to the default culture.
+
+`ASP.NET Core 8.0` brings a new `RequestLocalizationOptions` property called `CultureInfoUseUserOverride` that allow the user to configure `CultureInfo.UseUserOverride`.
+
+```csharp
+    app.UseRequestLocalization(options =>
+    {
+        options.CultureInfoUseUserOverride = false;
+    });
+```
+
 ## Set the culture programmatically
 
 This sample **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) contains UI to set the `Culture`. The `Views/Shared/_SelectLanguagePartial.cshtml` file allows you to select the culture from the list of supported cultures:
