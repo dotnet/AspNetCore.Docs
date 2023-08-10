@@ -6,7 +6,7 @@ monikerRange: '>= aspnetcore-8.0'
 ms.topic: tutorial
 ms.author: midenn
 ms.custom: mvc
-ms.date: 05/25/2023
+ms.date: 08/10/2023
 uid: fundamentals/native-aot-tutorial
 ---
 # Tutorial: Publish an ASP.NET Core app using native AOT
@@ -54,13 +54,13 @@ Create an ASP.NET Core API app that is configured to work with native AOT:
 Run the following commands:
 
 ```dotnetcli
-dotnet new api --aot -o MyFirstAotWebApi && cd MyFirstAotWebApi
+dotnet new webapiaot -o MyFirstAotWebApi && cd MyFirstAotWebApi
 ```
 
 Output similar to the following example is displayed:
 
 ```output
-The template "ASP.NET Core API" was created successfully.
+The template "ASP.NET Core Web API (native AOT)" was created successfully.
 
 Processing post-creation actions...
 Restoring C:\Code\Demos\MyFirstAotWebApi\MyFirstAotWebApi.csproj:
@@ -71,12 +71,8 @@ Restore succeeded.
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Create a new ASP.NET Core API project. ***Note:*** The ASP.NET Core API project is different than the ASP.NET Core ***Web*** API project.
+1. Create a new `ASP.NET Core web API (native AOT)` project.
 1. Name the project **MyFirstAotWebApi**.
-1. In the Additional information dialog, select **Enable native AOT publish**.
-
-   ![Enable native AOT publish](~/fundamentals/aot/_static/aot.png)
-
 1. Select **Create**.
 
 ---
@@ -93,7 +89,7 @@ dotnet publish
 
 # [Visual Studio](#tab/visual-studio)
 
-Visual studio doesn't currently support publishing an AOT app. Use the CLI command:
+Visual studio doesn't support publishing an AOT app. Use the CLI command:
 
 ```dotnetcli
 dotnet publish
@@ -140,7 +136,7 @@ Mode                 LastWriteTime         Length Name
 -a---          30/03/2023  1:41 PM       43044864 MyFirstAotWebApi.pdb
 ```
 
-The executable is self-contained and doesn't require a .NET runtime to run. When launched, it should behave the same as the app run in the development environment. Run the AOT app:
+The executable is self-contained and doesn't require a .NET runtime to run. When launched, it behaves the same as the app run in the development environment. Run the AOT app:
 
 ```
 .\bin\Release\net8.0\win-x64\publish\MyFirstAotWebApi.exe
