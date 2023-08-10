@@ -184,7 +184,8 @@ Console.ReadKey();
 /// <summary>
 /// A delegating handler that changes the request HTTP version to HTTP/3.
 /// </summary>
-/// // <snippet_Http3Handler>
+
+// <snippet_Http3Handler>
 public class Http3Handler : DelegatingHandler
 {
     public Http3Handler() { }
