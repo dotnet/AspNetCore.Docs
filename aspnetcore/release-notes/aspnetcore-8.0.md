@@ -4,7 +4,7 @@ author: rick-anderson
 description: Learn about the new features in ASP.NET Core 8.0.
 ms.author: riande
 ms.custom: mvc
-ms.date: 08/02/2023
+ms.date: 08/10/2023
 uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core 8.0
@@ -211,7 +211,7 @@ Support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/
 
 ### New project template
 
-The new **ASP.NET Core API** template in Visual Studio 2022 has an **Enable native AOT publish** option. The equivalent template and option in the CLI is the `dotnet new api` command and the `--aot` option. This template is intended to produce a project focused on cloud-native, API-first scenarios. For more information, see [The API template](xref:fundamentals/native-aot#the-api-template).
+The new **ASP.NET Core Web API (native AOT)** project template (short name `webapiaot`) creates a project with AOT publish enabled. For more information, see [The Web API (nativetemplate](xref:fundamentals/native-aot#the-api-template).
 
 ### New CreateSlimBuilder method
 
