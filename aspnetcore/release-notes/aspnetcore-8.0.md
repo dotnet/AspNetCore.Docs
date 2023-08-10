@@ -211,7 +211,7 @@ Support for [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/
 
 ### New project template
 
-The new **ASP.NET Core Web API (native AOT)** project template (short name `webapiaot`) creates a project with AOT publish enabled. For more information, see [The Web API (nativetemplate](xref:fundamentals/native-aot#the-api-template).
+The new **ASP.NET Core Web API (native AOT)** project template (short name `webapiaot`) creates a project with AOT publish enabled. For more information, see [The Web API (native AOT) template](xref:fundamentals/native-aot#the-web-api-native-aot-template).
 
 ### New CreateSlimBuilder method
 
