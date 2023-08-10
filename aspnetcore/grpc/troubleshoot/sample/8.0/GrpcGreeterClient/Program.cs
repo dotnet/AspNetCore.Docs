@@ -136,7 +136,8 @@ Console.ReadKey();
 /// <summary>
 /// A delegating handler that adds a subdirectory to the URI of gRPC requests.
 /// </summary>
-/// // <snippet_SubdirectoryHandler>
+
+// <snippet_SubdirectoryHandler>
 public class SubdirectoryHandler : DelegatingHandler
 {
     private readonly string _subdirectory;
