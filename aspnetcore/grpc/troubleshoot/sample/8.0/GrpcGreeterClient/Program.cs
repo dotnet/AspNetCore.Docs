@@ -1,14 +1,14 @@
-﻿#define StandardHTTPS  // Options: StandardHTTPS | IgnoreInvalidCertificate | IgnoreInvalidCertificateClientFactory | CallInsecureGrpcServices | DotNet3InsecureGrpcServices | SubdirectoryHandler
+﻿#define StandardHTTPS  // Options: StandardHTTPS | IgnoreInvalidCertificate | IgnoreInvalidCertificateClientFactory | CallInsecureGrpcServices | DotNet3InsecureGrpcServices | SubdirectoryHandler | Http3Handler
 
 #if StandardHTTPS
 using Grpc.Net.Client;
 using GrpcGreeterClient;
 
 // The port number must match the port of the gRPC server.
-#region StandardHTTPS
+// <snippet_StandardHTTPS>
 var channel = GrpcChannel.ForAddress("https://localhost:5001");
 var client = new Greeter.GreeterClient(channel);
-#endregion
+// </snippet_StandardHTTPS>
 var reply = await client.SayHelloAsync(
                   new HelloRequest { Name = "GreeterClient" });
 Console.WriteLine("Greeting: " + reply.Message);
@@ -25,7 +25,7 @@ using System.Threading.Tasks;
 using Grpc.Net.Client;
 using GrpcGreeterClient;
 
-#region IgnoreInvalidCertificate
+// <snippet_IgnoreInvalidCertificate>
 var handler = new HttpClientHandler();
 handler.ServerCertificateCustomValidationCallback = 
     HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
@@ -33,7 +33,7 @@ handler.ServerCertificateCustomValidationCallback =
 var channel = GrpcChannel.ForAddress("https://localhost:5001",
     new GrpcChannelOptions { HttpHandler = handler });
 var client = new Greeter.GreeterClient(channel);
-#endregion
+// </snippet_IgnoreInvalidCertificate>
 
 var reply = await client.SayHelloAsync(
                   new HelloRequest { Name = "GreeterClient" });
@@ -51,7 +51,7 @@ using GrpcGreeterClient;
 using Microsoft.Extensions.DependencyInjection;
 using Grpc.Net.ClientFactory;
 
-#region IgnoreInvalidCertificateClientFactory
+// <snippet_IgnoreInvalidCertificateClientFactory>
 
 var services = new ServiceCollection();
 
@@ -68,8 +68,7 @@ services
 
         return handler;
     });
-
-#endregion
+// </snippet_IgnoreInvalidCertificateClientFactory>
 #endif
 
 
@@ -77,13 +76,13 @@ services
 using Grpc.Net.Client;
 using GrpcGreeterClient;
 
-#region CallInsecureGrpcServices
+// <snippet_CallInsecureGrpcServices>
 AppContext.SetSwitch(
     "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
 var channel = GrpcChannel.ForAddress("http://localhost:5000");
 var client = new Greeter.GreeterClient(channel);
-#endregion
+// </snippet_CallInsecureGrpcServices>
 var reply = await client.SayHelloAsync(
                   new HelloRequest { Name = "GreeterClient" });
 Console.WriteLine("Greeting: " + reply.Message);
@@ -99,7 +98,7 @@ Console.ReadKey();
 using Grpc.Net.Client;
 using GrpcGreeterClient;
 
-#region DotNet3InsecureGrpcServices
+// <snippet_DotNet3InsecureGrpcServices>
 var handler = new HttpClientHandler();
 handler.ServerCertificateCustomValidationCallback = 
     HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
@@ -107,7 +106,7 @@ handler.ServerCertificateCustomValidationCallback =
 var channel = GrpcChannel.ForAddress("https://localhost:5001",
     new GrpcChannelOptions { HttpHandler = handler });
 var client = new Greeter.GreeterClient(channel);
-#endregion
+// </snippet_DotNet3InsecureGrpcServices>
 
 var reply = await client.SayHelloAsync(
                   new HelloRequest { Name = "GreeterClient" });
@@ -121,7 +120,7 @@ Console.ReadKey();
 using Grpc.Net.Client;
 using GrpcGreeterClient;
 
-#region CallSubdirectoryHandler
+// <snippet_CallSubdirectoryHandler>
 var handler = new SubdirectoryHandler(new HttpClientHandler(), "/MyApp");
 
 var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions { HttpHandler = handler });
@@ -129,12 +128,12 @@ var client = new Greeter.GreeterClient(channel);
 
 var reply = await client.SayHelloAsync(
                   new HelloRequest { Name = "GreeterClient" });
+// </snippet_CallSubdirectoryHandler>
 Console.WriteLine("Greeting: " + reply.Message);
 Console.WriteLine("Press any key to exit...");
 Console.ReadKey();
-#endregion
 
-#region SubdirectoryHandler
+// <snippet_SubdirectoryHandler>
 /// <summary>
 /// A delegating handler that adds a subdirectory to the URI of gRPC requests.
 /// </summary>
@@ -160,11 +159,11 @@ public class SubdirectoryHandler : DelegatingHandler
         return base.SendAsync(request, cancellationToken);
     }
 }
-#endregion
+// </snippet_SubdirectoryHandler>
 #endif
 
 #if Http3Handler
-#region Http3Handler
+// <snippet_CallHttp3Handler>
 using Grpc.Net.Client;
 using GrpcGreeterClient;
 using System.Net;
@@ -176,12 +175,12 @@ var client = new Greeter.GreeterClient(channel);
 
 var reply = await client.SayHelloAsync(
                   new HelloRequest { Name = "GreeterClient" });
+// </snippet_Http3Handler>
 Console.WriteLine("Greeting: " + reply.Message);
 Console.WriteLine("Press any key to exit...");
 Console.ReadKey();
-#endregion
 
-#region Http3Handler
+// <snippet_Http3Handler>
 /// <summary>
 /// A delegating handler that changes the request HTTP version to HTTP/3.
 /// </summary>
@@ -199,5 +198,5 @@ public class Http3Handler : DelegatingHandler
         return base.SendAsync(request, cancellationToken);
     }
 }
-#endregion
+// </snippet_Http3Handler>
 #endif
