@@ -84,7 +84,7 @@ Native AOT analysis includes all of the app's code and the libraries the app dep
 
 In .NET 8, native AOT is supported by the following ASP.NET Core app types:
 
-* minimal APIs - For more information, see the [API template](#the-api-template) section later in this article.
+* minimal APIs - For more information, see the [The Web API (native AOT) template](#the-web-api-native-aot-template) section later in this article.
 * gRPC - For more information, see [gRPC and native AOT](xref:grpc/native-aot).
 * Worker services - For more information, see [AOT in Worker Service templates](xref:fundamentals/host/hosted-services?view=aspnetcore-8.0&preserve-view=true#native-aot).
 
