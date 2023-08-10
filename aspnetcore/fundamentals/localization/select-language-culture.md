@@ -11,7 +11,7 @@ uid: fundamentals/localization/select-language-culture
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-:::moniker range="> aspnetcore-8.0"
+:::moniker range="> aspnetcore-5.0"
 
 [Hisham Bin Ateya](https://twitter.com/hishambinateya), [Damien Bowden](https://twitter.com/damien_bod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -142,11 +142,13 @@ In the preceding example, the order of `QueryStringRequestCultureProvider` and `
 
 As previously mentioned, add a custom provider via <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptionsExtensions.AddInitialRequestCultureProvider%2A> which sets the order to `0`, so this provider takes the precedence over the others.
 
-## Use user override culture
+:::moniker-end
 
-Before `ASP.NET Core 8.0`, there is no way in the current  localization APIs which allows the user doesn't rely on the system culture settings. So, changing the culture date/time format reflect to the default culture.
+:::moniker range="> aspnetcore-8.0"
 
-`ASP.NET Core 8.0` brings a new `RequestLocalizationOptions` property called `CultureInfoUseUserOverride` that allow the user to configure `CultureInfo.UseUserOverride`.
+## User override culture
+
+In previous versions, there was no way a user could override the culture settings. The culture settings were always set by the system culture settings. In ASP.NET Core 8.0, the [RequestLocalizationOptions.CultureInfoUseUserOverride](xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.CultureInfoUseUserOverride) property allows the user to override the culture settings:
 
 ```csharp
     app.UseRequestLocalization(options =>
@@ -154,6 +156,10 @@ Before `ASP.NET Core 8.0`, there is no way in the current  localization APIs whi
         options.CultureInfoUseUserOverride = false;
     });
 ```
+
+:::moniker-end
+
+:::moniker range="> aspnetcore-5.0"
 
 ## Set the culture programmatically
 
