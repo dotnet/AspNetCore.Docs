@@ -71,7 +71,7 @@ Restore succeeded.
 
 # [Visual Studio](#tab/visual-studio)
 
-1. Create a new `ASP.NET Core web API (native AOT)` project.
+1. Create a new `ASP.NET Core Web API (native AOT)` project.
 1. Name the project **MyFirstAotWebApi**.
 1. Select **Create**.
 
