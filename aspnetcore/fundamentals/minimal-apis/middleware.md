@@ -11,5 +11,6 @@ uid: fundamentals/minimal-apis/middleware
 # Middleware in Minimal API apps
 
 [!INCLUDE [webapplication7](~/fundamentals/minimal-apis/includes/middleware.md)]
+[!INCLUDE [webapplication8](~/fundamentals/minimal-apis/includes/middleware8.md)]
 
 For more information about middleware see [ASP.NET Core Middleware](xref:fundamentals/middleware/index), and the [list of built-in middleware](xref:fundamentals/middleware/index#built-in-middleware) that can be added to applications.
