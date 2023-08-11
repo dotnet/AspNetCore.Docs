@@ -240,7 +240,7 @@ For macOS, select the .NET 7 version of this tutorial.
 
 ---
 
-### Test posting data
+## Test posting data
 
 The following code in `Program.cs` creates an HTTP POST endpoint `/todoitems` that adds data to the in-memory database:
 
