@@ -505,7 +505,7 @@ In the following `InjectAuthStateProvider` component:
 
 For more information, see the guidance on <xref:Microsoft.AspNetCore.Components.OwningComponentBase> in <xref:blazor/fundamentals/dependency-injection#owningcomponentbase>.
 
-<!-- HOLD: This content will be discussed with the PU after .NET 8 releases. This is tracked by https://github.com/dotnet/AspNetCore.Docs/issues/28001.
+<!-- UPDATE 8.0 This content will be discussed with the PU after .NET 8 releases. This is tracked by https://github.com/dotnet/AspNetCore.Docs/issues/28001.
 
 ## Unauthorized content display while prerendering with a custom `AuthenticationStateProvider`
 

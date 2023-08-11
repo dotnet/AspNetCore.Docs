@@ -30,6 +30,20 @@ ASP.NET Core abstractions, such as <xref:Microsoft.AspNetCore.Identity.SignInMan
 > [!NOTE]
 > The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core 6.0 or later. When targeting ASP.NET Core 5.0 or earlier, remove the null type designation (`?`) from examples in this article.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Antiforgery support
+
+Blazor adds Antiforgery Middleware and requires endpoint [antiforgery protection](xref:security/anti-request-forgery) by default. 
+
+The `AntiforgeryToken` component renders an antiforgery token as a hidden field, and this component is automatically added to form (`EditForm`) instances. For more information, see <xref:blazor/forms-and-input-components#antiforgery-support>.
+
+The `AntiforgeryStateProvider` service provides access to an antiforgery token associated with the current session. Inject the service and call its `GetAntiforgeryToken` method to obtain the current `AntiforgeryRequestToken`. For more information, see <xref:blazor/call-web-api#antiforgery-support>.
+
+Blazor stores request tokens in component state, which guarantees that antiforgery tokens are available to interactive components, even when they don't have access to the request.
+
+:::moniker-end
+
 ## Authentication
 
 Blazor uses the existing ASP.NET Core authentication mechanisms to establish the user's identity. The exact mechanism depends on how the Blazor app is hosted, Blazor Server or Blazor WebAssembly.
