@@ -546,7 +546,7 @@ The sample app implements a single DELETE endpoint using `MapDelete`:
 
 * Select the **run** button for the DELETE request.
 
-  The DELETE request is sent to the app and the response is displayed in the **Response** pane. The status code is 200 and the response body contains the deleted `Todo` item.
+  The DELETE request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
   
 # [Visual Studio Code](#tab/visual-studio-code)
 

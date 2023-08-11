@@ -75,10 +75,7 @@ static async Task<IResult> DeleteTodo(int id, TodoDb db)
     {
         db.Todos.Remove(todo);
         await db.SaveChangesAsync();
-
-        TodoItemDTO todoItemDTO = new TodoItemDTO(todo);
-        
-        return TypedResults.Ok(todoItemDTO);
+        return TypedResults.NoContent();
     }
 
     return TypedResults.NotFound();
