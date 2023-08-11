@@ -300,7 +300,7 @@ Use the POST endpoint to add data to the app.
 
 * Run the app.
 
-* Select the **Send request** link that is above the `POST` request line.
+* Select the green **run** button to the left of the line that begins with `Post`.
 
   ![.http file window with run link highlighted.](~/tutorials/min-web-api/_static/http-file-run-button.png)
 
@@ -363,7 +363,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
   ###
   ```
 
-* Select the **Send request** link that is above the new `GET` request line.
+* Select the green **run** button to the left of the new `GET` request line.
 
   The GET request is sent to the app and the response is displayed in the **Response** pane.
 
@@ -390,7 +390,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
 
 * Replace `{id}` with `1`.
 
-* Select the **Send request** link that is above the new GET request line.
+* Select the green **run** button to the left of the new GET request line.
 
   The GET request is sent to the app and the response is displayed in the **Response** pane.
 
@@ -496,7 +496,7 @@ Update the to-do item that has Id = 1 and set its name to `"feed fish"`.
 
   The preceding code adds a Content-Type header and a JSON request body.
 
-* Select the **Send request** link that is above the PUT request line.
+* Select the green **run** button to the left of the PUT request line.
 
   The PUT request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
   
@@ -544,7 +544,7 @@ The sample app implements a single DELETE endpoint using `MapDelete`:
   ###
   ```
 
-* Select the **Send request** link for the DELETE request.
+* Select the **run** button for the DELETE request.
 
   The DELETE request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
   
