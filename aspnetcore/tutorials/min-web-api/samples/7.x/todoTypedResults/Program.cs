@@ -70,7 +70,7 @@ static async Task<IResult> DeleteTodo(int id, TodoDb db)
     {
         db.Todos.Remove(todo);
         await db.SaveChangesAsync();
-        return TypedResults.Ok(todo);
+        return TypedResults.NoContent();
     }
 
     return TypedResults.NotFound();
