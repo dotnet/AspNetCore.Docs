@@ -144,7 +144,7 @@ As previously mentioned, add a custom provider via <xref:Microsoft.AspNetCore.Bu
 
 :::moniker-end
 
-:::moniker range="> aspnetcore-8.0"
+:::moniker range=">= aspnetcore-8.0"
 
 ## User override culture
 
