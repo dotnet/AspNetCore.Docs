@@ -90,6 +90,8 @@ Attacks that exploit trusted cookies between apps hosted on the same domain can 
 
 Antiforgery middleware is added to the [Dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Program.cs`:
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-8.0"
 
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc%2A>
@@ -107,6 +109,8 @@ Antiforgery middleware is added to the [Dependency injection](xref:fundamentals/
 * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-7.0"
 
 The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
 
