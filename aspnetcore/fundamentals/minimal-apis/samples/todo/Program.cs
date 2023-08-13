@@ -80,7 +80,7 @@ app.MapDelete("/todoitems/{id}", async (int id, TodoDb db) =>
     {
         db.Todos.Remove(todo);
         await db.SaveChangesAsync();
-        return Results.Ok(todo);
+        return Results.NoContent();
     }
 
     return Results.NotFound();

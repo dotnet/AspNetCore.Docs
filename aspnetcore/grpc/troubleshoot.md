@@ -5,7 +5,7 @@ description: Troubleshoot errors when using gRPC on .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.author: jamesnk
 ms.custom: mvc
-ms.date: 04/26/2023
+ms.date: 08/08/2023
 uid: grpc/troubleshoot
 ---
 
@@ -25,7 +25,7 @@ The gRPC template and samples use [Transport Layer Security (TLS)](https://tools
 
 You can verify the ASP.NET Core gRPC service is using TLS in the logs written on app start. The service will be listening on an HTTPS endpoint:
 
-```text
+```output
 info: Microsoft.Hosting.Lifetime[0]
       Now listening on: https://localhost:5001
 info: Microsoft.Hosting.Lifetime[0]
@@ -36,14 +36,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 The .NET Core client must use `https` in the server address to make calls with a secured connection:
 
-```csharp
-static async Task Main(string[] args)
-{
-    // The port number(5001) must match the port of the gRPC server.
-    var channel = GrpcChannel.ForAddress("https://localhost:5001");
-    var client = new Greet.GreeterClient(channel);
-}
-```
+[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_StandardHTTPS)]
 
 All gRPC client implementations support TLS. gRPC clients from other languages typically require the channel configured with `SslCredentials`. `SslCredentials` specifies the certificate that the client will use, and it must be used instead of insecure credentials. For examples of configuring the different gRPC client implementations to use TLS, see [gRPC Authentication](https://www.grpc.io/docs/guides/auth/).
 
@@ -58,33 +51,11 @@ You may see this error if you are testing your app locally and the ASP.NET Core 
 
 If you are calling a gRPC service on another machine and are unable to trust the certificate then the gRPC client can be configured to ignore the invalid certificate. The following code uses <xref:System.Net.Http.HttpClientHandler.ServerCertificateCustomValidationCallback%2A?displayProperty=nameWithType> to allow calls without a trusted certificate:
 
-```csharp
-var handler = new HttpClientHandler();
-handler.ServerCertificateCustomValidationCallback = 
-    HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
-
-var channel = GrpcChannel.ForAddress("https://localhost:5001",
-    new GrpcChannelOptions { HttpHandler = handler });
-var client = new Greet.GreeterClient(channel);
-```
+[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_IgnoreInvalidCertificate)]
 
 The [gRPC client factory](xref:grpc/clientfactory) allows calls without a trusted certificate. Use the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method to configure the handler on the client:
 
-```csharp
-builder.Services
-    .AddGrpcClient<Greeter.GreeterClient>(o =>
-    {
-        o.Address = new Uri("https://localhost:5001");
-    })
-    .ConfigurePrimaryHttpMessageHandler(() =>
-    {
-        var handler = new HttpClientHandler();
-        handler.ServerCertificateCustomValidationCallback = 
-            HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
-
-        return handler;
-    });
-```
+[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_IgnoreInvalidCertificateClientFactory)]
 
 > [!WARNING]
 > Untrusted certificates should only be used during app development. Production apps should always use valid certificates.
@@ -96,19 +67,7 @@ The .NET gRPC client can call insecure gRPC services by specifing `http` in the 
 There are some additional requirements to call insecure gRPC services depending on the .NET version an app is using:
 
 * .NET 5 or later requires [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version 2.32.0 or later.
-* .NET Core 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`:
-
-    ```csharp
-    // This switch must be set before creating the GrpcChannel/HttpClient.
-    AppContext.SetSwitch(
-        "System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
-    
-    // The port number(5000) must match the port of the gRPC server.
-    var channel = GrpcChannel.ForAddress("http://localhost:5000");
-    var client = new Greet.GreeterClient(channel);
-    ```
-
-The `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch is only required for .NET Core 3.x. It does nothing in .NET 5 and isn't required.
+* .NET Core 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`. For more information see [Asp.Net Core 3.x: Call insecure gRPC services with the .NET client](xref:grpc/troubleshoot?view=aspnetcore-3.1#call-insecure-grpc-services-with-net-core-client-2):
 
 > [!IMPORTANT]
 > Insecure gRPC services must be hosted on a HTTP/2-only port. For more information, see [ASP.NET Core protocol negotiation](xref:grpc/aspnetcore#protocol-negotiation).
@@ -119,29 +78,7 @@ Kestrel doesn't support HTTP/2 with TLS on macOS before .NET 8. The ASP.NET Core
 
 > Unable to bind to https://localhost:5001 on the IPv4 loopback interface: 'HTTP/2 over TLS is not supported on macOS due to missing ALPN support.'.
 
-To work around this issue in .NET 7 and earlier, configure Kestrel and the gRPC client to use HTTP/2 *without* TLS. You should only do this during development. Not using TLS will result in gRPC messages being sent without encryption.
-
-Kestrel must configure an HTTP/2 endpoint without TLS in `Program.cs`:
-
-```csharp
-var builder = WebApplication.CreateBuilder(args);
-
-builder.WebHost.ConfigureKestrel(options =>
-{
-    // Setup a HTTP/2 endpoint without TLS.
-    options.ListenLocalhost(<5287>, o => o.Protocols =
-        HttpProtocols.Http2);
-});
-```
-
-* In the preceding code, replace the localhost port number `5287` with the `HTTP` (not `HTTPS`) port number specified in `Properties/launchSettings.json` within the gRPC service project.
-
-When an HTTP/2 endpoint is configured without TLS, the endpoint's [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) must be set to `HttpProtocols.Http2`. `HttpProtocols.Http1AndHttp2` can't be used because TLS is required to negotiate HTTP/2. Without TLS, all connections to the endpoint default to HTTP/1.1, and gRPC calls fail.
-
-The gRPC client must also be configured to not use TLS. For more information, see [Call insecure gRPC services with .NET Core client](#call-insecure-grpc-services-with-net-core-client).
-
-> [!WARNING]
-> HTTP/2 without TLS should only be used during app development. Production apps should always use transport security. For more information, see [Security considerations in gRPC for ASP.NET Core](xref:grpc/security#transport-security).
+To work around this issue in .NET 7 and earlier, configure Kestrel and the gRPC client to use HTTP/2 *without* TLS. You should only do this during development. Not using TLS will result in gRPC messages being sent without encryption. For more information see [Asp.Net Core 7.0: Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot?view=aspnetcore-7.0#unable-to-start-aspnet-core-grpc-app-on-macos).
 
 ## gRPC C# assets are not code generated from `.proto` files
 
@@ -198,44 +135,11 @@ The address path is ignored because gRPC has a standardized, prescriptive addres
 
 There are some scenarios when an app needs to include a path with gRPC calls. For example, when an ASP.NET Core gRPC app is hosted in an IIS directory and the directory needs to be included in the request. When a path is required, it can be added to the gRPC call using the custom `SubdirectoryHandler` specified below:
 
-```csharp
-/// <summary>
-/// A delegating handler that adds a subdirectory to the URI of gRPC requests.
-/// </summary>
-public class SubdirectoryHandler : DelegatingHandler
-{
-    private readonly string _subdirectory;
-
-    public SubdirectoryHandler(HttpMessageHandler innerHandler, string subdirectory)
-        : base(innerHandler)
-    {
-        _subdirectory = subdirectory;
-    }
-
-    protected override Task<HttpResponseMessage> SendAsync(
-        HttpRequestMessage request, CancellationToken cancellationToken)
-    {
-        var old = request.RequestUri;
-
-        var url = $"{old.Scheme}://{old.Host}:{old.Port}";
-        url += $"{_subdirectory}{request.RequestUri.AbsolutePath}";
-        request.RequestUri = new Uri(url, UriKind.Absolute);
-
-        return base.SendAsync(request, cancellationToken);
-    }
-}
-```
+[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_SubdirectoryHandler)]
 
 `SubdirectoryHandler` is used when the gRPC channel is created.
 
-```csharp
-var handler = new SubdirectoryHandler(new HttpClientHandler(), "/MyApp");
-
-var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions { HttpHandler = handler });
-var client = new Greet.GreeterClient(channel);
-
-var reply = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
-```
+[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallSubdirectoryHandler)]
 
 The preceding code:
 
@@ -251,36 +155,11 @@ The .NET gRPC client supports HTTP/3 with .NET 6 or later. If the server sends a
 
 A <xref:System.Net.Http.DelegatingHandler> can be used to force a gRPC client to use HTTP/3. Forcing HTTP/3 avoids the overhead of upgrading the request. Force HTTP/3 with code similar to the following:
 
-```csharp
-/// <summary>
-/// A delegating handler that changes the request HTTP version to HTTP/3.
-/// </summary>
-public class Http3Handler : DelegatingHandler
-{
-    public Http3Handler() { }
-    public Http3Handler(HttpMessageHandler innerHandler) : base(innerHandler) { }
-
-    protected override Task<HttpResponseMessage> SendAsync(
-        HttpRequestMessage request, CancellationToken cancellationToken)
-    {
-        request.Version = HttpVersion.Version30;
-        request.VersionPolicy = HttpVersionPolicy.RequestVersionExact;
-
-        return base.SendAsync(request, cancellationToken);
-    }
-}
-```
+[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_Http3Handler)]
 
 `Http3Handler` is used when the gRPC channel is created. The following code creates a channel configured to use `Http3Handler`.
 
-```csharp
-var handler = new Http3Handler(new HttpClientHandler());
-
-var channel = GrpcChannel.ForAddress("https://localhost:5001", new GrpcChannelOptions { HttpHandler = handler });
-var client = new Greet.GreeterClient(channel);
-
-var reply = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
-```
+[!code-csharp[](~/grpc/troubleshoot/sample/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallHttp3Handler)]
 
 Alternatively, a client factory can be configured with `Http3Handler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
 

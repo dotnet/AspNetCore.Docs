@@ -3,7 +3,7 @@ title: "Tutorial: Create a minimal API with ASP.NET Core"
 author: wadepickett
 description: Learn how to build a minimal API with ASP.NET Core.
 ms.author: wpickett
-ms.date: 07/18/2023
+ms.date: 08/11/2023
 ms.custom: engagement-fy24
 monikerRange: '>= aspnetcore-6.0'
 uid: tutorials/min-web-api
@@ -240,7 +240,7 @@ For macOS, select the .NET 7 version of this tutorial.
 
 ---
 
-### Test posting data
+## Test posting data
 
 The following code in `Program.cs` creates an HTTP POST endpoint `/todoitems` that adds data to the in-memory database:
 
@@ -300,9 +300,9 @@ Use the POST endpoint to add data to the app.
 
 * Run the app.
 
-* Select the green **run** button to the left of the line that begins with `Post`.
+* Select the **Send request** link that is above the `POST` request line.
 
-  ![.http file window with run button highlighted.](~/tutorials/min-web-api/_static/http-file-run-button.png)
+  ![.http file window with run link highlighted.](~/tutorials/min-web-api/_static/http-file-run-button.png)
 
   The POST request is sent to the app and the response is displayed in the **Response** pane.
 
@@ -363,7 +363,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
   ###
   ```
 
-* Select the green **run** button to the left of the new `GET` request line.
+* Select the **Send request** link that is above the new `GET` request line.
 
   The GET request is sent to the app and the response is displayed in the **Response** pane.
 
@@ -390,7 +390,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
 
 * Replace `{id}` with `1`.
 
-* Select the green **run** button to the left of the new GET request line.
+* Select the **Send request** link that is above the new GET request line.
 
   The GET request is sent to the app and the response is displayed in the **Response** pane.
 
@@ -496,7 +496,7 @@ Update the to-do item that has Id = 1 and set its name to `"feed fish"`.
 
   The preceding code adds a Content-Type header and a JSON request body.
 
-* Select the green **run** button to the left of the PUT request line.
+* Select the **Send request** link that is above the new GET request line.
 
   The PUT request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
   
@@ -544,9 +544,9 @@ The sample app implements a single DELETE endpoint using `MapDelete`:
   ###
   ```
 
-* Select the **run** button for the DELETE request.
+* Select the **Send request** link for the DELETE request.
 
-  The DELETE request is sent to the app and the response is displayed in the **Response** pane. The status code is 200 and the response body contains the deleted `Todo` item.
+  The DELETE request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
   
 # [Visual Studio Code](#tab/visual-studio-code)
 

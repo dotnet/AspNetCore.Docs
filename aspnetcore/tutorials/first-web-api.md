@@ -83,7 +83,7 @@ A NuGet package must be added to support the database used in this tutorial.
 * Run the following commands:
 
    ```dotnetcli
-   dotnet new webapi -o TodoApi
+   dotnet new webapi --use-controllers -o TodoApi
    cd TodoApi
    dotnet add package Microsoft.EntityFrameworkCore.InMemory
    code -r ../TodoApi

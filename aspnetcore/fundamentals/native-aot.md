@@ -5,7 +5,7 @@ description: Learn about ASP.NET Core support for native AOT
 monikerRange: '>= aspnetcore-8.0'
 ms.author: midenn
 ms.custom: mvc, engagement-fy23
-ms.date: 8/5/2023
+ms.date: 08/10/2023
 uid: fundamentals/native-aot
 ---
 # ASP.NET Core support for native AOT
@@ -84,22 +84,13 @@ Native AOT analysis includes all of the app's code and the libraries the app dep
 
 In .NET 8, native AOT is supported by the following ASP.NET Core app types:
 
-* minimal APIs - For more information, see the [API template](#the-api-template) section later in this article.
+* minimal APIs - For more information, see the [The Web API (native AOT) template](#the-web-api-native-aot-template) section later in this article.
 * gRPC - For more information, see [gRPC and native AOT](xref:grpc/native-aot).
 * Worker services - For more information, see [AOT in Worker Service templates](xref:fundamentals/host/hosted-services?view=aspnetcore-8.0&preserve-view=true#native-aot).
 
-## The API template
+## The Web API (native AOT) template
 
-The **ASP.NET Core API** template has an option to enable AOT:
-
-* Visual Studio 2022 has an **Enable native AOT publish option**.
-* The CLI uses the `dotnet new api` command and the `--aot` option, as in the following example:
-
-  ```.NET CLI
-  dotnet new api --aot -o MyFirstAotWebApi
-  ```
-
-This template is intended to produce a project more directly focused on cloud-native, API-first scenarios. The template differs from the **Web API** project template in the following ways:
+The **ASP.NET Core Web API (native AOT)** template (short name `webapiaot`) creates a project with AOT enabled. The template differs from the **Web API** project template in the following ways:
 
 * Uses minimal APIs only, as MVC isn't yet compatible with native AOT.
 * Uses the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder> API to ensure only the essential features are enabled by default, minimizing the app's deployed size.
@@ -107,9 +98,6 @@ This template is intended to produce a project more directly focused on cloud-na
 * Doesn't include a launch profile for running under IIS or IIS Express.
 * Creates an [`.http` file](xref:test/http-files) configured with sample HTTP requests that can be sent to the app's endpoints.
 * Includes a sample `Todo` API instead of the weather forecast sample.
-
-In addition to these differences, the **ASP.NET Core API** template has the following differences when the **Enable native AOT publish** option is selected:
-
 * Adds `PublishAot` to the project file, as shown [earlier in this article](#native-aot-publishing).
 * Enables the [JSON serializer source generators](/dotnet/standard/serialization/system-text-json/source-generation). The source generator is used to generate serialization code at build time, which is required for native AOT compilation.
 
@@ -158,7 +146,7 @@ For more information, see:
 
 ### Changes to `launchSettings.json`
 
-The API template `launchSettings.json` file has the `iisSettings` section and `IIS Express` profile removed:
+The `launchSettings.json` file created by the **Web API (native AOT)** template has the `iisSettings` section and `IIS Express` profile removed:
 
 ```diff
 {
@@ -202,7 +190,7 @@ The template uses the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSl
 
 :::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="4":::
 
-The `CreateSlimBuilder` method initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimum ASP.NET Core features necessary to run an app. It's used by the template whether or not the AOT option is used.
+The `CreateSlimBuilder` method initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimum ASP.NET Core features necessary to run an app.
 
 As noted earlier, the `CreateSlimBuilder` method doesn't include support for HTTPS or HTTP/3. These protocols typically aren't required for apps that run behind a TLS termination proxy. For example, see [TLS termination and end to end TLS with Application Gateway](/azure/application-gateway/ssl-overview). HTTPS can be enabled by calling [builder.WebHost.UseKestrelHttpsConfiguration](https://source.dot.net/#Microsoft.AspNetCore.Server.Kestrel/WebHostBuilderKestrelExtensions.cs,fcec859000ccaa50) <!-- TODO replace with xref: (xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel%2A) --> HTTP/3 can be enabled by calling [builder.WebHost.UseQuic](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderQuicExtensions.UseQuic%2A).
 
